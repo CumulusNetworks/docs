@@ -495,15 +495,15 @@ The following example command shows all TACACS+ configuration:
 cumulus@switch:~$ nv show system aaa tacacs
                     applied
 ------------------  -------
-enable              off    
+state               disabled    
 debug-level         0      
 timeout             5      
 vrf                 mgmt   
 accounting                 
-  enable            off    
+  state             disabled    
 authentication             
   mode              pap    
-  per-user-homedir  off    
+  per-user-homedir  disabled    
 [server]            5      
 [server]            10 
 ```
@@ -613,7 +613,7 @@ The following table describes the TACACS+ client configuration files that Cumulu
 | `/etc/sudoers.d/tacplus` | Allows TACACS+ privilege level 15 users to run commands with `sudo`. The file includes an example (commented out) of how to enable privilege level 15 TACACS users to use `sudo` without a password and provides an example of how to enable all TACACS users to run specific commands with sudo. Only edit this file with the `visudo -f /etc/sudoers.d/tacplus` command. |
 | `/etc/audisp/plugins.d/audisp-tacplus.conf` | The `audisp` plugin configuration file. You do not need to modify this file. |
 | `/etc/audisp/audisp-tac_plus.conf` | The TACACS+ server configuration file for accounting. You do not need to modify this file. You can use this configuration file when you only want to debug TACACS+ accounting issues, not all TACACS+ users. |
-| `/etc/audit/rules.d/audisp-tacplus.rules` | The `auditd` rules for TACACS+ accounting. The `augenrules` command uses all rule files to generate the rules file.
+| `/etc/audit/rules.d/audisp-tacplus.rules` | The `auditd` rules for TACACS+ accounting. The `augenrules` command uses all rule files to generate the rules file.|
 | `/etc/audit/audit.rules`|The audit rules file that generate when you install `auditd`. |
 
 ## Considerations

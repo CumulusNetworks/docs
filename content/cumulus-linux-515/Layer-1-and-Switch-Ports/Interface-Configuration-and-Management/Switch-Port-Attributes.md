@@ -63,7 +63,7 @@ cumulus@switch:~$ nv config apply
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command:
 
-If you set the link speed for a port and leave the default auto-negotiation setting (`on`) or set auto-negotiation `on`, the link comes up with auto-negotiation `on` and the switch advertises the configured link speed setting to the other side of the connection.
+If you set the link speed for a port and leave the default auto-negotiation setting (`enabled`) or set auto-negotiation `enabled`, the link comes up with auto-negotiation `enabled` and the switch advertises the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -74,7 +74,7 @@ iface swp1
 ...
 ```
 
-If you set the link speed for a port and set auto-negotiation `off`, the link comes up with auto-negotiation `off` and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
+If you set the link speed for a port and set auto-negotiation `disabled`, the link comes up with auto-negotiation `disabled` and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -85,7 +85,7 @@ iface swp1
 ...
 ```
 
-If you do not set a link speed for a port and set auto-negotiation `on`, the switch advertises all supported speeds on the interface:
+If you do not set a link speed for a port and set auto-negotiation `enabled`, the switch advertises all supported speeds on the interface:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -99,7 +99,7 @@ iface swp1
 {{< /tabs >}}
 
 {{%notice note%}}
-- In Cumulus Linux 5.14 and later, if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, the link comes up with auto-negotiation `on` and the switch advertises the configured link speed setting to the other side of the connection.
+- In Cumulus Linux 5.14 and later, if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, the link comes up with auto-negotiation `enabled` and the switch advertises the configured link speed setting to the other side of the connection.
 - In Cumulus Linux 5.13 and earlier if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, force mode is set and the switch does not advertise the configured link speed setting to the other side of the connection.
 {{%/notice%}}
 
@@ -194,14 +194,16 @@ To show the MTU setting for an interface:
 
 ```
 cumulus@switch:~$ nv show interface swp1
+                           operational              applied
+-------------------------  -----------------------  -------
 ...
 link                                                            
-  auto-negotiate          disabled                      enabled      
-  duplex                  full                          full    
-  speed                   1G                            auto    
-  mac-address             48:b0:2d:c8:bb:07                     
-  fec                                                   auto    
-  mtu                     9216                          9216    
+  auto-negotiate           disabled                  enabled      
+  duplex                   full                      full    
+  speed                    1G                        auto    
+  mac-address              48:b0:2d:c8:bb:07                 
+  fec                                                auto    
+  mtu                      9216                      9216    
 ...
 ```
 
@@ -626,7 +628,7 @@ cumulus@SN2700:mgmt:~$ nv show int swp11 link
 auto-negotiate         enabled            enabled     
 duplex                 full               full   
 speed                  100G               auto   
-fec                    off                off   
+fec                    disabled           disabled  
 mtu                    9216               9216   
 fast-linkup            disabled                       
 [breakout]                                       
@@ -641,7 +643,7 @@ cumulus@SN4700:mgmt:~$ nv show int swp1s1 link
 auto-negotiate         enabled            enabled     
 duplex                 full               full   
 speed                  100G               auto   
-fec                    rs                 off    
+fec                    rs                 disabled    
 mtu                    9216               9216   
 fast-linkup            disabled                       
 [breakout]                                       
@@ -662,15 +664,15 @@ cumulus@switch:~$ cat /etc/network/ifupdown2/policy.d/address.json
         },
         "iface_defaults": {
             "swp1": {
-                "link-autoneg": "on",
+                "link-autoneg": "enabled",
                 "link-speed": "1000"
           },
             "swp16": {
-                "link-autoneg": "off",
+                "link-autoneg": "disabled",
                 "link-speed": "10000"
             },
             "swp50": {
-                "link-autoneg": "off",
+                "link-autoneg": "disabled",
                 "link-speed": "100000",
                 "link-fec": "rs"
             }
@@ -1707,7 +1709,7 @@ You can break out (split) a port using the following options:
 - `4x` splits the port into four interfaces.
 - `8x` splits the port into eight interfaces.
 
-If you split a 100G port into four interfaces and auto-negotiation is on (the default setting), Cumulus Linux advertises the speed for each interface up to the maximum speed possible for a 100G port (100/4=25G). You can overide this configuration and set specific speeds for the split ports if necessary.
+If you split a 100G port into four interfaces and auto-negotiation is enabled (the default setting), Cumulus Linux advertises the speed for each interface up to the maximum speed possible for a 100G port (100/4=25G). You can overide this configuration and set specific speeds for the split ports if necessary.
 
 {{%notice warning%}}
 - Cumulus Linux 5.4 and later uses a new format for port splitting; instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. The new format does not support specifying a speed for breakout ports in the `/etc/cumulus/ports.conf` file. To set a speed, either set the `link-speed` parameter for each split port in the `/etc/network/interfaces` file or run the NVUE `nv set interface <interface-id> link speed <speed>` command.
@@ -1724,7 +1726,7 @@ cumulus@switch:~$ nv set interface swp1s0-3 link state up
 cumulus@switch:~$ nv config apply
 ```
 
-The following example splits the port into four interfaces and forces the link speed to be 10G. The link comes up with auto-negotiation `on` and the switch advertises the configured link speed setting to the other side of the connection.
+The following example splits the port into four interfaces and forces the link speed to be 10G. The link comes up with auto-negotiation enabled and the switch advertises the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link breakout 4x
@@ -1762,7 +1764,7 @@ When you configure a breakout port to 4x or 8x on certain switches such as the S
    cumulus@switch:~$ sudo systemctl reload switchd.service
    ```
 
-3. To configure specific speeds for the split ports, edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example configures the speed for each swp1 breakout port (swp1s0, swp1s1, swp1s2, and swp1s3) to 10G with auto-negotiation off.
+3. To configure specific speeds for the split ports, edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example configures the speed for each swp1 breakout port (swp1s0, swp1s1, swp1s2, and swp1s3) to 10G with auto-negotiation disabled.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
@@ -1982,41 +1984,41 @@ type                      swp                swp
 [acl]                                               
 evpn                                                
   multihoming                                       
-    uplink                                   off    
+    uplink                                   disabled    
 ptp                                                 
-  enable                                     off    
+  state                                      disabled    
 router                                              
   adaptive-routing                                  
-    enable                                   off    
+    state                                    disabled    
   ospf                                              
-    enable                                   off    
+    state                                    disabled    
   ospf6                                             
-    enable                                   off    
+    state                                    disabled    
   pbr                                               
     [map]                                           
   pim                                               
-    enable                                   off    
+    state                                    disabled    
 synce                                               
-  enable                                     off    
+  state                                      disabled    
 ip                                                  
   igmp                                              
-    enable                                   off    
+    state                                    disabled    
   ipv4                                              
-    forward                                  on     
+    forward                                  enabled     
   ipv6                                              
-    enable                                   on     
-    forward                                  on     
+    state                                    enabled     
+    forward                                  enabled     
   neighbor-discovery                                
-    enable                                   on     
+    state                                    enabled     
     [dnssl]                                         
     home-agent                                      
-      enable                                 off    
+      state                                  disabled    
     [prefix]                                        
     [rdnss]                                         
     router-advertisement                            
-      enable                                 off    
+      state                                  disabled    
   vrrp                                              
-    enable                                   off    
+    state                                    disabled    
   vrf                                        default
   [gateway]                                         
 link                                                
@@ -2087,8 +2089,8 @@ The following example shows the bonds on the switch:
 cumulus@switch:~$ nv show interface --view=bonds
 Interface  Admin Status  Oper Status  Mode  Mlag ID  Lacp-rate  Lacp-bypass  Up-delay  Down-delay  
 ---------  ------------  -----------  ----  -------  ---------  -----------  --------  ----------  
-bond1      up            up                 1        fast       on           50000     40000  
-bond2      up            up                 2        fast       on           60000     20000 
+bond1      up            up                 1        fast       enabled           50000     40000  
+bond2      up            up                 2        fast       enabled           60000     20000 
 ```
 
 You can filter the `nv show interface` command output on specific columns. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.
@@ -2177,7 +2179,7 @@ Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 <!-- Vale issue #253 -->
 ### Auto-negotiation and FEC
 <!-- vale on -->
-If auto-negotiation is off on 100G and 25G interfaces, you must set FEC to *off*, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is off.
+If auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to *off*, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is disabled.
 
 ### Auto-negotiation with the Spectrum-4 Switch
 

@@ -139,7 +139,7 @@ To show port security configuration, run the `nv show interface <interface-id> p
 cumulus@switch:~$ nv show interface swp1 port-security
                    operational  applied
 -----------------  -----------  --------
-enable             on           on
+state              enabled      enabled
 mac-limit          32           32
 sticky-mac         disabled     disabled
 sticky-timeout     1800         1800

@@ -29,7 +29,7 @@ The following commands create a VLAN-aware bridge with LACP bypass enabled:
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1-2
 cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass enabled
 cumulus@leaf01:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf01:~$ nv config apply
@@ -91,7 +91,7 @@ lldp
   [neighbor]                                                  
 bond                                                          
   down-delay               0                        0         
-  lacp-bypass              off                      disabled  
+  lacp-bypass              disabled                 disabled  
   lacp-rate                fast                     fast      
   mode                     lacp                     lacp      
   up-delay                 0                        0         

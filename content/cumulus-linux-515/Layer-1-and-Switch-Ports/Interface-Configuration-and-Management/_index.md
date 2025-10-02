@@ -914,31 +914,29 @@ To show the description (alias) for an interface:
 
 ```
 cumulus@switch$ nv show interface swp1
-                         operational        applied
------------------------  -----------------  -------
                           operational                   applied          
 ------------------------  ----------------------------  -----------------
 ...                                                            
 description               hypervisor_port_1             hypervisor_port_1
 ip                                                                       
   vrrp                                                                   
-    enable                                              off              
+    state                                               disabled              
   igmp                                                                   
-    enable                                              off              
+    state                                               disabled              
   neighbor-discovery                                                     
-    enable                                              on               
+    state                                               enabled               
     router-advertisement                                                 
-      enable                                            off              
+      state                                             disabled              
     home-agent                                                           
-      enable                                            off              
+      state                                             disabled              
     [rdnss]                                                              
     [dnssl]                                                              
     [prefix]                                                             
   ipv4                                                                   
-    forward                                             on               
+    forward                                             enabled               
   ipv6                                                                   
-    enable                                              on               
-    forward                                             on               
+    state                                               enabled               
+    forward                                             enabled               
   vrf                                                   default          
   [address]               fe80::4ab0:2dff:feeb:db72/64                   
   [gateway]                                                              

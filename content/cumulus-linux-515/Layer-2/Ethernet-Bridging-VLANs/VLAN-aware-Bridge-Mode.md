@@ -153,8 +153,8 @@ NVIDIA Spectrum 1 switches support a maximum of 10000 VLAN elements. NVIDIA Spec
 Cumulus Linux calculates the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 2600 VLANs totals 15600 VLAN elements.
 
 On NVIDIA Spectrum-2 switches and later, if you enable multiple VLAN-aware bridges and want to use more VLAN elements than the default, you must update the number of VLAN elements in the `/etc/mlx/datapath/broadcast_domains.conf` file.
-  - To specify the total number of bridge domains you want to use, uncomment and edit the `broadcast_domain.max_vlans` parameter. The default value is 6143 when warm restart mode is `off` or 4096 when warm restart mode is `on`.
-  - To specify the total number of subinterfaces you want to use, uncomment and edit the `broadcast_domain.max_subinterfaces` parameter. The default value is 3872 when warm restart mode is `off` or 1872 when warm restart mode is `on`.
+  - To specify the total number of bridge domains you want to use, uncomment and edit the `broadcast_domain.max_vlans` parameter. The default value is 6143 when warm restart mode is off or 4096 when warm restart mode is on.
+  - To specify the total number of subinterfaces you want to use, uncomment and edit the `broadcast_domain.max_subinterfaces` parameter. The default value is 3872 when warm restart mode is off or 1872 when warm restart mode is on.
 
   You must restart `switchd` with the `systemctl restart switchd` command to apply the configuration.
 
@@ -578,9 +578,9 @@ To show if the `svi-force-up` option is set to `on` for all SVIs on the switch, 
 
 ```
 cumulus@switch:~$ nv show system global svi-force-up
-       operational  applied
+        operational  applied
 ------  -----------  -------
-enable  on           on
+state   enabled      enabled
 ```
 
 To show if the `svi-force-up` option is set to `on` for SVIs in a specific bridge, run the `nv show bridge domain <domain-id> svi-force-up` command:
@@ -589,7 +589,7 @@ To show if the `svi-force-up` option is set to `on` for SVIs in a specific bridg
 cumulus@switch:~$ nv show bridge domain br_default svi-force-up
         applied
 ------  -------
-enable  on
+state   enabled
 ```
 
 <!-- vale off -->

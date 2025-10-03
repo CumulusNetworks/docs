@@ -111,8 +111,6 @@ graph G {
 }
 ```
 
-
-
 ### Supported LLDP Parameters
 
 `ptmd` supports the following LLDP parameters:

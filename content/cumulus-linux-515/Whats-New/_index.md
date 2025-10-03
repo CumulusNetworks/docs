@@ -66,12 +66,13 @@ Old Name | New Name|
   - {{<link url="Secure-Mount-Directory-Encryption" text="Secure Mount Directory Encryption">}}
   - {{<link url="New-and-Changed-NVUE-Commands" text="Changed command syntax and output">}}
   - `--expand` option for {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff command">}}, {{<link url="NVUE-CLI/#show-switch-configuration" text="nv config show command">}}, and {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="nv config find command">}}
-  - `expand=true` parameter for API calls to {{<link url="NVUE-API/#view-differences-between-configurations" text="View differences between configurations">}}, {{<link url="NVUE-API/#view-a-configuration" text="view a configuration">}}, and{{<link url="NVUE-API/#use-filters-in-a-query" text="search for a specific configuration">}}
+  - `expand=true` parameter for API calls to {{<link url="NVUE-API/#view-differences-between-configurations" text="View differences between configurations">}}, {{<link url="NVUE-API/#view-a-configuration" text="view a configuration">}}, and {{<link url="NVUE-API/#use-filters-in-a-query" text="search for a specific configuration">}}
   - Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
   - Aging time added to neighbor information
   - Login brute forcing via API
   - Refactor system aaa and tacacs to common model
   - Batch execution support for CLI commands through the API
+  - Customize autocomplete
 
 ## Release Considerations
 

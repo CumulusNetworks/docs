@@ -594,8 +594,8 @@ cumulus@switch:~$ ip link show swp2
 ### Change Link Flap Protection Settings
 
 You can change the following link flap protection settings:
-- The duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (off) and 300. The default setting is 10.
-- The number of times the link can flap within the link flap window before link flap protection triggers. You can specify a value between 0 (off) and 30. The default setting is 5.
+- The duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (disabled) and 300. The default setting is 10.
+- The number of times the link can flap within the link flap window before link flap protection triggers. You can specify a value between 0 (disabled) and 30. The default setting is 5.
 
 The following example configures the link flap duration to 30 and the number of times the link must flap to 8.
 

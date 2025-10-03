@@ -119,6 +119,10 @@ To upgrade all the packages installed on the switch to their latest versions, ru
 
 ```
 cumulus@switch:~$ sudo nv action upgrade system packages to latest use-vrf default dry-run
+Action executing ...
+Checking for package updates...
+Action executing ...
+...
 ```
 
 By default, the NVUE `sudo nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf-id>` option.
@@ -385,7 +389,7 @@ key
 To show the list of keys:
 
 ```
-cumulus@switch:~$ nv show system packages keys
+cumulus@switch:~$ nv show system packages key
 Key ID                                          Path                                                                   Scope 
 ----------------------------------------------  ---------------------------------------------------------------------  ------ 
 debian-archive-bookworm-automatic.asc           /etc/apt/trusted.gpg.d/debian-archive-bookworm-automatic.asc           global 

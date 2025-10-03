@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4501643</td>
+<td>Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a {{switchd}} service crash.</td>
+<td>4.3.3-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>4472516</td>
 <td>When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge.</td>
 <td>4.3.3-4.4.5</td>

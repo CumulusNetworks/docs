@@ -3,7 +3,7 @@ title: Changes to NVUE Commands in Cumulus Linux 5.15.0
 weight: 421
 ---
 
-The upcoming Cumulus Linux 5.15.0 release includes updates to NVUE commands to standardize a common interface across Cumulus Linux, NVIDIA OS (NVOS), and Host-Based Networking. This article provides an overview of the command changes planned in version 5.15.0.
+The upcoming Cumulus Linux 5.15.0 release includes updates to NVUE commands to standardize a common interface across Cumulus Linux, NVIDIA OS (NVOS), and Host-based Networking. This article provides an overview of the command changes planned in version 5.15.0.
 
 
 ## NVUE Command Changes

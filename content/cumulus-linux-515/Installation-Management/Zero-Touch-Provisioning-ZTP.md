@@ -252,9 +252,13 @@ To show the status of the ZTP service, run the `nv show system ztp` command.
 cumulus@switch:~$ nv show system ztp
         operational
 -------  -----------
-service  enabled   
-status   enabled   
-version  1.0  
+service     disabled                                 
+source      dhcp-opt239                              
+status      success                                  
+date        2025-09-30T13:18:53Z                     
+version     1.0                                      
+script                                               
+  location  http://192.223.100.7/cumulus-ztp 
 ```
 
 {{%notice note%}}
@@ -699,12 +703,14 @@ ZTP Manual: Executing http://192.0.2.1/demo.sh
 error: ZTP Manual: Payload returned code 1
 error: Script returned failure
 cumulus@switch:~$ sudo ztp -s
-State         enabled
-Version       1.0
-Result        Script Failure
-Date          Mon 20 May 2019 09:31:27 PM UTC
-Method        ZTP Manual
-URL           http://192.0.2.1/demo.sh
+Last ZTP INFO:
+
+date: 2025-09-30T13:18:53Z
+method: ZTP DHCP
+result: success
+state: disabled
+url: http://192.200.168.7/cumulus-ztp
+version: 1.0
 ```
 
 Use the following command to check `syslog` for information about ZTP:

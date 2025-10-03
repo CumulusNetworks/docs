@@ -37,9 +37,39 @@
 <td></td>
 </tr>
 <tr>
+<td>4641326</td>
+<td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4640126</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4629293</td>
+<td>The {{nv show system telemetry}} command output shows the global port but not the per destination port, which makes it look like the port configured and displayed do not match.</td>
+<td>5.12.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4625452</td>
+<td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4621451</td>
 <td>Changing the gateway interface IP address on the DHCP relay causes DHCP relay to not forward the packet. To work around this issue, restart the DHCP relay service corresponding to the VRF on which it is running.</td>
 <td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4618809</td>
+<td>When collecting streaming telemetry data for per-process information and statistics from the system, you might see false errors about unavailable process IDs in the logs.</td>
+<td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -70,6 +100,12 @@
 <td>4601056</td>
 <td>The neighbor manager service memory usage increases significantly after the number of entries in the kernel neighbor table exceeds the {{gc_threshold}}.</td>
 <td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4597334</td>
+<td>NVUE shows SRv6 statistics intermittently even though static SID configuration is present.</td>
+<td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -187,6 +223,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4546056</td>
 <td>When an ESI changes from remote to local, the switch does not uninstall remote neighbors from the ASIC. To work around this issue, flap the layer 3 VNI associated with the SVI to clean up stale neighbors from the ASIC.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4535806</td>
+<td>After a factory reset, the switch does not clear the {{/var/tmp}} directory, which the switch uses for temporary files.</td>
 <td>5.14.0</td>
 <td></td>
 </tr>
@@ -680,6 +722,14 @@ To work around this issue when using fiber cables:
 <td>
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3414866</td>
+<td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
+sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
+You can ignore this error; it has no impact on switch functionality.</td>
+<td>5.6.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

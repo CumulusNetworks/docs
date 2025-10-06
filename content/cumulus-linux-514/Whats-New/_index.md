@@ -8,6 +8,10 @@ This document supports the Cumulus Linux 5.14 release, and lists new platforms, 
 - For a list of open and fixed issues in Cumulus Linux 5.14, see the {{<link title="Cumulus Linux 5.14 Release Notes" text="Cumulus Linux 5.14 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.14, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+{{%notice infonopad%}}
+The upcoming Cumulus Linux 5.15.0 release includes updates to NVUE commands. These changes aim to standardize commands across Cumulus Linux, NVIDIA OS (NVOS), and Host-based Networking. To help you prepare, NVIDIA recommends reviewing the [list of NVUE command changes]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/NVUE-Command-Changes-515" >}}) so that you can update any automation accordingly.
+{{%/notice%}}
+
 ## What's New in Cumulus Linux 5.14
 
 Cumulus Linux 5.14.0 contains several new features and improvements, and provides bug fixes.

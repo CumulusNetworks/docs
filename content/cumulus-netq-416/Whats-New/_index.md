@@ -43,6 +43,7 @@ To install NetQ for NVLink, perform a new virtual machine installation.
 The NetQ 4.16 server is compatible with NetQ agents 4.16 and 4.15. You can install NetQ agents on switches and servers running:
 
 - Cumulus Linux 
-- Ubuntu 24.04, 22.04
+- Ubuntu 24.04, 22.04 <!--still support 22.04? NVLink requires 24.04-->
+- NVOS
 
 NVIDIA recommends upgrading to the latest agent version. The NetQ agent is not compatible with Broadcom switches. Reach out to your NVIDIA support representative if your networking environment requires Broadcom support.

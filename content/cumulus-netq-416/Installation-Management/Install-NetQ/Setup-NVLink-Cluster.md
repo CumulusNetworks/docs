@@ -21,7 +21,7 @@ NetQ NVLink 4.15.0 supports 3-node clusters with the following system requiremen
 
 ## Port Requirements
 
-Confirm that the required ports are open for communications.
+Confirm that the required ports are open for communication.
 
 | Port or Protocol Number | Protocol | Component Access |
 | --- | --- | --- |

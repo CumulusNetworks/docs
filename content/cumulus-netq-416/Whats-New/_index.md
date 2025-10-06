@@ -19,7 +19,7 @@ NetQ 4.16.0 includes the following new features:
 - Duplicate IP validation (beta)
 - NVOS upgrades for NVLink switches
 - View Slurm data in Grafana
-- Cable Validation Tool
+- {{<link title="Cable Validations" text="Cable Validation Tool">}}
 
 
 

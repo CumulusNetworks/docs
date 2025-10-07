@@ -35,17 +35,11 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 
 {{<tabs "TabID35" >}}
 
-{{<tab "On-premises Deployments" >}}
+{{<tab "On-premises" >}}
 
 | Server Arrangement | Hypervisor | Requirements & Installation |
 | :--- | --- | :---: |
 | High-availability scale cluster | KVM or VMware | {{<link title="Install NetQ NVLink" text="Start install">}} |
-
-{{</tab>}}
-
-{{<tab "Cloud (OPTA) Deployments" >}}
-
-Not available
 
 {{</tab>}}
 
@@ -56,17 +50,11 @@ Not available
 
 {{<tabs "TabID56" >}}
 
-{{<tab "On-premises Deployments" >}}
+{{<tab "On-premises" >}}
 
 | Server Arrangement | Hypervisor | Requirements & Installation |
 | :--- | --- | :---: |
 | High-availability scale cluster | KVM or VMware | {{<link title="Install NetQ NVLink" text="Start install">}} |
-
-{{</tab>}}
-
-{{<tab "Cloud (OPTA) Deployments" >}}
-
-Not available
 
 {{</tab>}}
 

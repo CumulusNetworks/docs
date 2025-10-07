@@ -89,7 +89,9 @@ If you accidentally included a switch that you do *not* want to upgrade, hover o
 
 9. Verify the upgrade job options.
 
-    By default, NetQ performs a roll back to the original Cumulus Linux version on any server which fails to upgrade. It also takes network snapshots before and after the upgrade.
+{{%notice note%}}
+By default, NetQ performs a roll back to the original Cumulus Linux version on any server which fails to upgrade. For single-server and cluster deployments, NetQ takes network snapshots before and after the upgrade. This option is unavailable in scale cluster deployments.
+{{%/notice%}}
 
 You can exclude selected services and protocols from the snapshots by clicking them. Node and services must be included.
 

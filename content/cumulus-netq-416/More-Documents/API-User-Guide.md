@@ -95,7 +95,7 @@ To log in and obtain authorization:
 1. Open a terminal window.
 
 2. Log in to obtain the access token. You will need the following information:
-    - Hostname or IP address, and port (443 for cloud deployments, 32708 for on-premises deployments) of your API gateway
+    - Hostname or IP address, and port (443 for cloud deployments, 32710 for on-premises deployments) of your API gateway
     - Your login credentials that were provided as part of the NetQ installation process. For this release, the default is username *admin* and password *admin*.
 
     This example uses an IP address of 192.168.0.10, port of 443, and the default credentials:
@@ -289,7 +289,7 @@ This example uses the *server01* switch.
 This example uses the *server01* switch in an on-premises network deployment.
 
 ```
-curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/evpn/hostname/spine01" -H "accept: application/json" -H "Authorization: <auth-token>" | python -m json.tool
+curl -X GET "https://<netq.domain>:32710/netq/telemetry/v1/object/evpn/hostname/spine01" -H "accept: application/json" -H "Authorization: <auth-token>" | python -m json.tool
 ```
 
 ```
@@ -358,7 +358,7 @@ curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/evpn/hostname/
 
 Make your request to the *interfaces* endpoint to view the status of all interfaces. By specifying the *eq-timestamp* option and entering a date and time in epoch format, you indicate the data for that time (versus in the last hour by default), as follows:
 
-    curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/interface?eq_timestamp=1556046250" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool
+    curl -X GET "https://<netq.domain>:32710/netq/telemetry/v1/object/interface?eq_timestamp=1556046250" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool
      
     [
       {
@@ -413,7 +413,7 @@ Make your request to the *interfaces* endpoint to view the status of all interfa
 
 Make your request to the *inventory* endpoint to get a listing of all monitored nodes and their configuration information, as follows:
 
-    curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/inventory" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool
+    curl -X GET "https://<netq.domain>:32710/netq/telemetry/v1/object/inventory" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool
      
     [
       {

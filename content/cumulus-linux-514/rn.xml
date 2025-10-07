@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4647325</td>
+<td>Running the {{nv config save}} command while a diff is pending might result in unexpected {{nv config diff}} output. To work around this issue, run the {{nv config diff --verbose}} command.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4643537</td>
+<td>The {{nv action clear interface &lt;port&gt;}} command does not clear the in and out packet counters under {{interface/&lt;port&gt;/link/stats}}.</td>
+<td>5.12.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4641344</td>
 <td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
 <td>5.14.0</td>
@@ -37,9 +49,21 @@
 <td></td>
 </tr>
 <tr>
+<td>4641291</td>
+<td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or phy.</td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4640126</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4633514</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -52,6 +76,12 @@
 <td>4625452</td>
 <td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
 <td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4621717</td>
+<td>TACACS authorization configuration changes require you to restart {{nvued}}.</td>
+<td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -81,6 +111,12 @@
 <tr>
 <td>4607838</td>
 <td>You might see convergence degradation in remote link failure scenarios due to very chatty LTTng traces.   </td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4607288</td>
+<td>You might see convergence degradation in a remote link failure scenario due to very chatty LTTNG traces that add logging overhead.</td>
 <td>5.14.0</td>
 <td></td>
 </tr>
@@ -177,6 +213,12 @@
 <tr>
 <td>4551249</td>
 <td>The NVUE service might fail during switch upgrade. To work around this issue, stop the {{sysmonitor}} with the {{sudo systemctl stop sysmonitor}} command, then upgrade the switch with the {{nv action upgrade system packages to latest}} command.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4550126</td>
+<td>Sometimes NVUE does not show SRv6 statistics even though static SID configuration is present.</td>
 <td>5.14.0</td>
 <td></td>
 </tr>

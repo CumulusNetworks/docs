@@ -6,6 +6,10 @@ toc: 4
 ---
 Snapshots capture a network's state---including the services running on the network---at a particular point in time. Comparing snapshots lets you check what (if anything) changed in the network, which can be helpful when upgrading a switch or modifying its configuration. This section outlines how to create, compare, and interpret snapshots.
 
+{{%notice note%}}
+Network snapshots are not available or supported on scale cluster deployments.
+{{%/notice%}}
+
 ## Create a Network Snapshot
 
 To create a snapshot:

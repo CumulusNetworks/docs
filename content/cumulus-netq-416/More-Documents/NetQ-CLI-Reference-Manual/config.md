@@ -800,7 +800,7 @@ netq config add cli server
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | vrf | \<text-vrf-name\> | Use this VRF for communication with the telemetry server (NetQ server, VM, or cloud gateway). This should be the same VRF where you set the routing tables for connectivity to the telemetry server. Typically this is the management VRF. |
-| port | \<text-gateway-port\> | Use this port for communication with the telemetry server (NetQ server, VM, or cloud gateway). The default port is 32708 for on-premises deployments and 443  for cloud deployments. |
+| port | \<text-gateway-port\> | Use this port for communication with the telemetry server (NetQ server, VM, or cloud gateway). The default port is 32710 for on-premises deployments and 443  for cloud deployments. |
 
 ### Sample Usage
 

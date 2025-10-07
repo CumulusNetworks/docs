@@ -9,16 +9,26 @@ NetQ deletes some types of data periodically to minimize database usage and incr
 
 | Feature | Retention Period (Days) |
 | -------------| :---: |
-|Queue histograms | 3 |
-|Link health | 3 |
-|Validation results | 30*, 40<sup>†</sup>|
-|Flow analysis | 40 |
-|RoCE data | 40 |
+|Agent validations | 40 |
+|BGP validations | 30 |
 |Device inventory  | 40 |
+|Duplicate IP address validations | 40 |
+|EVPN validations | 30 |
+|Flow analysis | 40 |
+|Interface validations | 30 |
+|Link health | 3 |
+|MLAG validations | 30 |
+|MTU validations | 30 |
 |Network snapshots | 40 |
+|NTP validations | 40 |
+|Queue histograms | 3 |
+|RoCE data | 40 |
+|RoCE validations | 30 |
+|Sensor validations | 40 |
 |Topology data | 40 |
+|Topology validations | 40 |
+|Validation filters | 40 |
+|VLAN validations | 30 |
+|VXLAN validations | 30 |
 |What Just Happened data | 40 |
-
-*30-day: BGP, EVPN, interfaces, MLAG, MTU, RoCE, VLAN, VXLAN<br>
-<sup>†</sup>40-day: addresses, agent, NTP, sensors, topology, validation filters
 

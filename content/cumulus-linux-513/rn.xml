@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4643537</td>
+<td>The {{nv action clear interface &lt;port&gt;}} command does not clear the in and out packet counters under {{interface/&lt;port&gt;/link/stats}}.</td>
+<td>5.12.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4641341</td>
 <td>The neighbor manager service memory usage increases significantly after the number of entries in the kernel neighbor table exceeds the {{gc_threshold}}.</td>
 <td>5.13.1-5.14.0</td>
@@ -25,9 +31,21 @@
 <td></td>
 </tr>
 <tr>
+<td>4641291</td>
+<td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or phy.</td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4640126</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4633514</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1298,6 +1316,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4643537</td>
+<td>The {{nv action clear interface &lt;port&gt;}} command does not clear the in and out packet counters under {{interface/&lt;port&gt;/link/stats}}.</td>
+<td>5.12.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4641326</td>
 <td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
 <td>5.12.0-5.14.0</td>
@@ -1307,6 +1331,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4640126</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4633514</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

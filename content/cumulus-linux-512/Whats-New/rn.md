@@ -14,8 +14,10 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4643537"></a> [4643537](#4643537) <a name="4643537"></a> <br /> | The <code>nv action clear interface <port></code> command does not clear the in and out packet counters under <code>interface/<port>/link/stats</code>. | 5.12.1-5.14.0 | |
 | <a name="4641326"></a> [4641326](#4641326) <a name="4641326"></a> <br /> | Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error. | 5.12.0-5.14.0 | |
 | <a name="4640126"></a> [4640126](#4640126) <a name="4640126"></a> <br /> | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.14.0 | |
+| <a name="4633514"></a> [4633514](#4633514) <a name="4633514"></a> <br /> | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | |
 | <a name="4629293"></a> [4629293](#4629293) <a name="4629293"></a> <br /> | The <code>nv show system telemetry</code> command output shows the global port but not the per destination port, which makes it look like the port configured and displayed do not match. | 5.12.1-5.14.0 | |
 | <a name="4625452"></a> [4625452](#4625452) <a name="4625452"></a> <br /> | Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error. | 5.12.0-5.14.0 | |
 | <a name="4608614"></a> [4608614](#4608614) <a name="4608614"></a> <br /> | When setting up SSH keys, you have to run <code>nv config apply</code> twice for the configuration to take effect. | 5.11.3-5.14.0 | |
@@ -197,6 +199,7 @@ pdfhidden: True
 |---	        |---	        |---	    |---	                |
 | <a name="4641326"></a> [4641326](#4641326) <a name="4641326"></a> <br /> | Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error. | 5.12.0-5.14.0 | |
 | <a name="4640126"></a> [4640126](#4640126) <a name="4640126"></a> <br /> | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.14.0 | |
+| <a name="4633514"></a> [4633514](#4633514) <a name="4633514"></a> <br /> | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | |
 | <a name="4625452"></a> [4625452](#4625452) <a name="4625452"></a> <br /> | Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error. | 5.12.0-5.14.0 | |
 | <a name="4608614"></a> [4608614](#4608614) <a name="4608614"></a> <br /> | When setting up SSH keys, you have to run <code>nv config apply</code> twice for the configuration to take effect. | 5.11.3-5.14.0 | |
 | <a name="4582679"></a> [4582679](#4582679) <a name="4582679"></a> <br /> | If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic.  | 5.9.4-5.14.0 | |

@@ -139,6 +139,8 @@ Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost e
 
 Run the following command with the `config-key` obtained from the email you received from NVIDIA titled *NetQ Access Link*. You can also obtain the configuration key {{<link title="Configure Premises" text="through the NetQ UI">}}.
 
+If the VM already has NetQ installed, run the `netq bootstrap reset` command before reinstalling NetQ.
+
 ```
 nvidia@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
 ```

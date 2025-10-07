@@ -7,6 +7,30 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4641326</td>
+<td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4640126</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4629293</td>
+<td>The {{nv show system telemetry}} command output shows the global port but not the per destination port, which makes it look like the port configured and displayed do not match.</td>
+<td>5.12.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4625452</td>
+<td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4608614</td>
 <td>When setting up SSH keys, you have to run {{nv config apply}} twice for the configuration to take effect.</td>
 <td>5.11.3-5.14.0</td>
@@ -129,16 +153,16 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
-<td>5.14.0</td>
 </tr>
 <tr>
 <td>4486200</td>
@@ -858,6 +882,14 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3414866</td>
+<td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
+sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
+You can ignore this error; it has no impact on switch functionality.</td>
+<td>5.6.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3362113</td>
 <td>If you restore an NVUE {{startup.yaml}} file or run the {{nv config patch}} command after an upgrade that includes breakout ports with QoS configuration, the NVUE configuration fails to apply. Subsequent attempts to run {{nv config apply}} fail with a message similar to {{Invalid config [rev_id: 11] qos config is not supported on the following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
 <td>5.4.0-5.14.0</td>
@@ -1096,6 +1128,24 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4641326</td>
+<td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4640126</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4625452</td>
+<td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4608614</td>
 <td>When setting up SSH keys, you have to run {{nv config apply}} twice for the configuration to take effect.</td>
 <td>5.11.3-5.14.0</td>
@@ -1212,16 +1262,16 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
-<td>5.14.0</td>
 </tr>
 <tr>
 <td>4486200</td>
@@ -1944,6 +1994,14 @@ To work around this issue when using fiber cables:
 <td>
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3414866</td>
+<td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
+sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
+You can ignore this error; it has no impact on switch functionality.</td>
+<td>5.6.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

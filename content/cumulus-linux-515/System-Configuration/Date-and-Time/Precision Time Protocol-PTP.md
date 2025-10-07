@@ -867,14 +867,14 @@ To change the message mode to mixed on swp1:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast on
+cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To change the message mode back to the default setting of multicast on swp1:
 
 ```
-cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast off
+cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -2071,25 +2071,25 @@ To check configuration for a PTP interface, run the `nv show interface <interfac
 
 ```
 cumulus@switch:~$ nv show interface swp1 ptp
-                           operational  applied     description
--------------------------  -----------  ----------  ----------------------------------------------------------------------
-enable                                  on          Turn the feature 'on' or 'off'.  The default is 'off'.
-acceptable-master                       off         Determines if acceptable master check is enabled for this interface.
-delay-mechanism            end-to-end   end-to-end  Mode in which PTP message is transmitted.
-forced-master              off          off         Configures PTP interfaces to forced master state.
-instance                                1           PTP instance number.
-mixed-multicast-unicast                 off         Enables Multicast for Announce, Sync and Followup and Unicast for D...
-transport                  ipv4         ipv4        Transport method for the PTP messages.
-ttl                        1            1           Maximum number of hops the PTP messages can make before it gets dro...
-unicast-request-duration                300         The service time in seconds to be requested during discovery.
+                           operational  applied    
+-------------------------  -----------  ---------- 
+state                                   enabled    
+acceptable-master                       off        
+delay-mechanism            end-to-end   end-to-end 
+forced-master              disabled     disabled        
+instance                                1          
+mixed-multicast-unicast                 disabled        
+transport                  ipv4         ipv4       
+ttl                        1            1          
+unicast-request-duration                300        
 timers
-  announce-interval        0            0           Mean time interval between successive Announce messages.  It's spec...
-  announce-timeout         3            3           The number of announceIntervals that have to pass without receipt o...
-  delay-req-interval       -3           -3          The minimum permitted mean time interval between successive Delay R...
-  sync-interval            -3           -3          The mean SyncInterval for multicast messages.  It's specified as a...
-peer-mean-path-delay       0                        An estimate of the current one-way propagation delay on the link wh...
-port-state                 master                   State of the port
-protocol-version           2                        The PTP version in use on the port
+  announce-interval        0            0          
+  announce-timeout         3            3          
+  delay-req-interval       -3           -3         
+  sync-interval            -3           -3         
+peer-mean-path-delay       0                       
+port-state                 master                  
+protocol-version           2                       
 ```
 
 ### Show PTP Counters
@@ -2426,7 +2426,7 @@ To see the PTP shaping setting for an interface, run the `nv show interface <int
 cumulus@switch:~$ nv show interface swp1 ptp shaper
         operational  applied  
 ------  -----------  -------  
-enable               on   
+state                enabled   
 ```
 
 {{< /tab >}}

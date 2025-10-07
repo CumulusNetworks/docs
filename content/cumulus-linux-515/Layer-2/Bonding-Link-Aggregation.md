@@ -101,7 +101,7 @@ You can set these configuration options for a bond.
 |Link aggregation mode |Cumulus Linux supports IEEE 802.3ad link aggregation mode (802.3ad) and balance-xor mode. The default mode is 802.3ad. <br>Set balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections.{{%notice note%}}When you use balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the MLAG ID with the same value on both MLAG switches. Otherwise, the MLAG switch pair treats the bonds as single-connected.{{%/notice%}} |
 |MII link monitoring frequency|How often (in milliseconds) you want to inspect the link state of each slave for failures. <br>You can specify a value between 0 and 255. The default value is 100. |
 |miimon link status mode| The miimon link status mode. You can set the mode to either netif_carrier_ok(), or MII or ethtool ioctls. The default setting is netif_carrier_ok(). |
-|LACP bypass| Set LACP bypass on a bond in 802.3ad mode so that it becomes active and forwards traffic even when there is no LACP partner. You can specify on or off. The default setting is off. See {{<link url="LACP-Bypass" text="LACP Bypass">}}.|
+|LACP bypass| Set LACP bypass on a bond in 802.3ad mode so that it becomes active and forwards traffic even when there is no LACP partner. You can specify enabled or disabled. The default setting is disabled. See {{<link url="LACP-Bypass" text="LACP Bypass">}}.|
 |Transmit rate| The rate at which the link partner transmits LACP control packets. You can specify slow or fast. The default setting is fast.|
 |Minimum number of links| The minimum number of links that must be active before the bond goes into service. You can set a value between 0 and 255. The default value is 1, which indicates that the bond must have at least one active member.<br><br>Use a value greater than 1 if you need higher level services to ensure a minimum aggregate bandwidth level before activating a bond.<br><br>If the number of active members drops below this setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to this value, the bond becomes link-up.|
 
@@ -404,16 +404,16 @@ For load balancing between multiple interfaces that are members of the same bond
 
 | <div style="width:200px">Field  | Default Setting | NVUE Command | `traffic.conf`|
 | ------- | --------------- | ------------ | --------------------------------------------- |
-| IP protocol | on |`nv set system forwarding lag-hash ip-protocol on`<br><br>`nv set system forwarding lag-hash ip-protocol off`|`lag_hash_config.ip_prot`|
-| Source MAC address| on |`nv set system forwarding lag-hash source-mac on`<br><br>`nv set system forwarding lag-hash source-mac off`|`lag_hash_config.smac`|
-| Destination MAC address| on | `nv set system forwarding lag-hash destination-mac on`<br><br>`nv set system forwarding lag-hash destination-mac off`|`lag_hash_config.dmac`|
-| Source IP address | on | `nv set system forwarding lag-hash source-ip on`<br><br>`nv set system forwarding lag-hash source-ip off`|`lag_hash_config.sip` |
-| Destination IP address| on | `nv set system forwarding lag-hash destination-ip on`<br><br>`nv set system forwarding lag-hash destination-ip off`| `lag_hash_config.dip` |
-| Source port | on | `nv set system forwarding lag-hash source-port on`<br><br>`nv set system forwarding lag-hash source-port off`|`lag_hash_config.sport` |
-| Destination port | on | `nv set system forwarding lag-hash destination-port on`<br><br>`nv set system forwarding lag-hash destination-port off`| `lag_hash_config.dport` |
-| Ethertype| on | `nv set system forwarding lag-hash ether-type on`<br><br>`nv set system forwarding lag-hash ether-type off`|`lag_hash_config.ether_type` |
-| VLAN ID| on | `nv set system forwarding lag-hash vlan on`<br><br>`nv set system forwarding lag-hash vlan off`|`lag_hash_config.vlan_id` |
-| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}})| off | `nv set system forwarding lag-hash gtp-teid on`<br><br>`nv set system forwarding lag-hash gtp-teid off`| `lag_hash_config.gtp_teid`|
+| IP protocol | enabled |`nv set system forwarding lag-hash ip-protocol enabled`<br><br>`nv set system forwarding lag-hash ip-protocol disabled`|`lag_hash_config.ip_prot`|
+| Source MAC address| enabled |`nv set system forwarding lag-hash source-mac enabled`<br><br>`nv set system forwarding lag-hash source-mac disabled`|`lag_hash_config.smac`|
+| Destination MAC address| enabled | `nv set system forwarding lag-hash destination-mac enabled`<br><br>`nv set system forwarding lag-hash destination-mac disabled`|`lag_hash_config.dmac`|
+| Source IP address | enabled | `nv set system forwarding lag-hash source-ip enabled`<br><br>`nv set system forwarding lag-hash source-ip disabled`|`lag_hash_config.sip` |
+| Destination IP address| enabled | `nv set system forwarding lag-hash destination-ip enabled`<br><br>`nv set system forwarding lag-hash destination-ip disabled`| `lag_hash_config.dip` |
+| Source port | enabled | `nv set system forwarding lag-hash source-port enabled`<br><br>`nv set system forwarding lag-hash source-port disabled`|`lag_hash_config.sport` |
+| Destination port | enabled | `nv set system forwarding lag-hash destination-port enabled`<br><br>`nv set system forwarding lag-hash destination-port disabled`| `lag_hash_config.dport` |
+| Ethertype| enabled | `nv set system forwarding lag-hash ether-type enabled`<br><br>`nv set system forwarding lag-hash ether-type disabled`|`lag_hash_config.ether_type` |
+| VLAN ID| enabled | `nv set system forwarding lag-hash vlan enabled`<br><br>`nv set system forwarding lag-hash vlan disabled`|`lag_hash_config.vlan_id` |
+| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}})| disabled | `nv set system forwarding lag-hash gtp-teid enabled`<br><br>`nv set system forwarding lag-hash gtp-teid disabled`| `lag_hash_config.gtp_teid`|
 
 The following example commands omit the source MAC address and destination MAC address from the hash calculation:
 
@@ -421,8 +421,8 @@ The following example commands omit the source MAC address and destination MAC a
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set system forwarding lag-hash source-mac off
-cumulus@switch:~$ nv set system forwarding lag-hash destination-mac off
+cumulus@switch:~$ nv set system forwarding lag-hash source-mac disabled
+cumulus@switch:~$ nv set system forwarding lag-hash destination-mac disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -493,11 +493,11 @@ To enable TEID-based load balancing:
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set system forwarding lag-hash gtp-teid on
+cumulus@switch:~$ nv set system forwarding lag-hash gtp-teid enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable TEID-based load balancing, run the `nv set system forwarding lag-hash gtp-teid off` command.
+To disable TEID-based load balancing, run the `nv set system forwarding lag-hash gtp-teid disabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -537,18 +537,18 @@ To show information for a bond, run the NVUE `nv show interface <bond> bond` com
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface bond1 bond
-             operational  applied  description
------------  -----------  -------  ------------------------------------------------------
-down-delay   0            0        bond down delay
-lacp-bypass  enabled      enabled  lacp bypass
-lacp-rate    fast         fast     lacp rate
-mode                      lacp     bond mode
-up-delay     0            0        bond up delay
-[member]     swp1         swp1     Set of bond members
+             operational  applied 
+-----------  -----------  ------- 
+down-delay   0            0       
+lacp-bypass  enabled      enabled 
+lacp-rate    fast         fast    
+mode                      lacp    
+up-delay     0            0       
+[member]     swp1         swp1    
 mlag
-  enable                  on       Turn the feature 'on' or 'off'.  The default is 'off'.
-  id         1            1        MLAG id
-  status     single                Mlag Interface status
+  state                   enabled 
+  id         1            1       
+  status     single               
 ```
 
 You can also run the Linux `sudo cat /proc/net/bonding/<bond>` command:
@@ -606,8 +606,8 @@ fec                                       auto     Link forward error correction
 mtu                    9000               9000     interface mtu
 speed                  1G                 auto     Link speed
 dot1x
-  mab                                     off      bypass MAC authentication
-  parking-vlan                            off      VLAN for unauthorized MAC addresses
+  mab                                     disabled bypass MAC authentication
+  parking-vlan                            disabled VLAN for unauthorized MAC addresses
 state                  up                 up       The state of the interface
 stats
   carrier-transitions  1                           Number of times the interface state has transitioned between up and...

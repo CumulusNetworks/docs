@@ -224,12 +224,12 @@ cumulus@switch:~$ nv show system image
 current        2                        
 next           2                        
 partition1                              
-  build-id     5.13.0.0026.devsignedpkgs
+  build-id     5.13.0.0026
   description  Cumulus Linux 5.15.0     
   disk         /dev/sda5                
   release      5.12.0                   
 partition2                              
-  build-id     5.15.0.0018.devsignedpkgs
+  build-id     5.15.0.0018
   description  Cumulus Linux 5.15.0     
   disk         /dev/sda6                
   release      5.15.0 

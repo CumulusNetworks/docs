@@ -122,7 +122,7 @@ You can run the following commands to show information about dropped packets and
 {{< tabs "TabID76 ">}}
 {{< tab "NVUE Commands ">}}
 
-To show information about packet drops for all the channels you configure, run the `nv show system wjh packet-buffer ` command. The command output includes the reason for the drop and the recommended action to take.
+To show information about packet drops for all the channels you configure, run the `nv show system wjh packet-buffer` command. The command output includes the reason for the drop and the recommended action to take.
 
 You can also show the WJH configuration on the switch:
 - To show the configuration for a channel, run the `nv show system wjh channel <channel>` command. For example, `nv show system wjh channel forwarding`.

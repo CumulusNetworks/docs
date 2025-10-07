@@ -50,12 +50,12 @@ leaf01(config-if)# no ipv6 nd suppress-ra
 
 You can configure these optional settings:
 
-- Allow consecutive Router Advertisement packets to transmit more frequently than every three seconds (fast retransmit). You can set this parameter to `on` or `off`. The default setting is `on`.
+- Allow consecutive Router Advertisement packets to transmit more frequently than every three seconds (fast retransmit). You can set this parameter to enabled or disabled. The default setting is enabled.
 - Set the hop limit value advertised in a Router Advertisement message. You can set a value between 0 and 255. The default value is 64.
 - Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 1800000 miliseconds. The default value is 600000 miliseconds.
 - Set the maximum amount of time that Router Advertisement messages can exist on the route. You can set a value between 0 and 9000 seconds. The default value is 1800.
-- Allow a dynamic host to use a managed protocol, such as DHCPv6 to configure IP addresses automatically (managed configuration). Set this parameter to `on` or `off`. By default, this parameter is not set.
-- Allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. Set this parameter to `on` or `off`. By default, this parameter is not set.
+- Allow a dynamic host to use a managed protocol, such as DHCPv6 to configure IP addresses automatically (managed configuration). Set this parameter to enabled or disabled. By default, this parameter is not set.
+- Allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. Set this parameter to enabled or disabled. By default, this parameter is not set.
 - Set the amount of time that an IPv6 node is reachable. You can set a value between 0 and 3600000 milliseconds. The default value is 0.
 - Set the interval at which neighbor solicitation messages retransmit. You can set a value between 0 and 4294967295 milliseconds. The default value is 0.
 - Allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default value is medium.
@@ -118,14 +118,14 @@ interface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands set fast retransmit to off and managed configuration to on:
+The following example commands disable fast retransmit and enable managed configuration:
 
 {{< tabs "TabID95 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement fast-retransmit off
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement managed-config on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement fast-retransmit disabled
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement managed-config enabled
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -163,9 +163,9 @@ interface swp1
 To configure IPv6 prefixes, you must specify the IPv6 prefixes you want to include in router advertisements. In addition, you can configure these optional settings:
 - Set the amount of time that the prefix is valid for on-link determination. You can set a value between 0 and 4294967295 seconds. The default value is 2592000.
 - Set the amount of time that addresses generated from a prefix remain preferred. You can set a value between 0 and 4294967295 seconds. The default value is 604800.
-- Enable adverisement to make no statement about prefix on-link or off-link properties. By default, this setting is off.
-- Enable the specified prefix to use IPv6 autoconfiguration. By default, this setting is on.
-- Indicate to hosts on the local link that the specified prefix contains a complete IP address by setting the R flag. By default, this setting is off.
+- Enable adverisement to make no statement about prefix on-link or off-link properties. By default, this setting is disabled.
+- Enable the specified prefix to use IPv6 autoconfiguration. By default, this setting is enabled.
+- Indicate to hosts on the local link that the specified prefix contains a complete IP address by setting the R flag. By default, this setting is disabled.
 
 The following example commands set the IPv6 prefix to 2001:db8:1::100/32, the amount of time that the prefix is valid for on-link determination to 2000000000, and the amount of time that addresses generated from a prefix remain preferred to 1000000000.
 
@@ -206,15 +206,15 @@ interface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands set advertisement to make no statement about prefix on-link or off-link properties, enable the specified prefix to use IPv6 autoconfiguration, and indicate to hosts on the local link that the specified prefix contains a complete IP address. The prefixes that have `router-address on` must be on-link and auto-configurable.
+The following example commands set advertisement to make no statement about prefix on-link or off-link properties, enable the specified prefix to use IPv6 autoconfiguration, and indicate to hosts on the local link that the specified prefix contains a complete IP address. The prefixes that have router-address enabled must be on-link and auto-configurable.
 
 {{< tabs "TabID207 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32 off-link off
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32 autoconfig on
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32 router-address on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32 off-link disabled
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32 autoconfig enabled
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32 router-address enabled
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -652,13 +652,13 @@ home-agent
 [prefix]              2001:db8:1::100/32  
 router-advertisement
   state               enabled        
-  fast-retransmit     off       
+  fast-retransmit     disabled       
   hop-limit           100       
   interval            6000      
-  interval-option     on        
+  interval-option     enabled        
   lifetime            4000      
-  managed-config      on        
-  other-config        off       
+  managed-config      enabled        
+  other-config        disabled       
   reachable-time      3600000   
   retransmit-time     4294967295
   router-preference   high      
@@ -670,10 +670,10 @@ To show prefix configuration for an interface, run the `nv show interface <inter
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32
                     applied    
 ------------------  -------    
-autoconfig          on         
-off-link            on         
+autoconfig          enabled         
+off-link            enabled         
 preferred-lifetime  1000000000 
-router-address      on         
+router-address      enabled         
 valid-lifetime      2000000000 
 ```
 
@@ -695,13 +695,13 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 ipv6 neighbor-discovery router-adv
 -----------------     -----------------
 state                 enabled
 interval              10000
-interval-option       off
-fast-retransmit       on
+interval-option       enabled
+fast-retransmit       enabled
 lifetime              1800
 reachable-time        0
 retransmit-time       0
-managed-config        off
-other-config          off
+managed-config        disabled
+other-config          disabled
 hop-limit             64
 router-preference     medium
 ra-sent               218

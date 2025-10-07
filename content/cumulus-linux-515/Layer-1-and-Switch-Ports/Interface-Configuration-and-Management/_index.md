@@ -594,8 +594,8 @@ cumulus@switch:~$ ip link show swp2
 ### Change Link Flap Protection Settings
 
 You can change the following link flap protection settings:
-- The duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (off) and 300. The default setting is 10.
-- The number of times the link can flap within the link flap window before link flap protection triggers. You can specify a value between 0 (off) and 30. The default setting is 5.
+- The duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (disabled) and 300. The default setting is 10.
+- The number of times the link can flap within the link flap window before link flap protection triggers. You can specify a value between 0 (disabled) and 30. The default setting is 5.
 
 The following example configures the link flap duration to 30 and the number of times the link must flap to 8.
 
@@ -914,31 +914,29 @@ To show the description (alias) for an interface:
 
 ```
 cumulus@switch$ nv show interface swp1
-                         operational        applied
------------------------  -----------------  -------
                           operational                   applied          
 ------------------------  ----------------------------  -----------------
 ...                                                            
 description               hypervisor_port_1             hypervisor_port_1
 ip                                                                       
   vrrp                                                                   
-    enable                                              off              
+    state                                               disabled              
   igmp                                                                   
-    enable                                              off              
+    state                                               disabled              
   neighbor-discovery                                                     
-    enable                                              on               
+    state                                               enabled               
     router-advertisement                                                 
-      enable                                            off              
+      state                                             disabled              
     home-agent                                                           
-      enable                                            off              
+      state                                             disabled              
     [rdnss]                                                              
     [dnssl]                                                              
     [prefix]                                                             
   ipv4                                                                   
-    forward                                             on               
+    forward                                             enabled               
   ipv6                                                                   
-    enable                                              on               
-    forward                                             on               
+    state                                               enabled               
+    forward                                             enabled               
   vrf                                                   default          
   [address]               fe80::4ab0:2dff:feeb:db72/64                   
   [gateway]                                                              

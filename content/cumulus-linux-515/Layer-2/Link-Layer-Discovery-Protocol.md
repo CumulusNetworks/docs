@@ -130,8 +130,8 @@ cumulus@leaf01:~$ nv show system lldp
 state                   enabled      disabled
 tx-interval             30           30     
 tx-hold-multiplier      4            4      
-dot1-tlv                off          off    
-lldp-med-inventory-tlv  off          off    
+dot1-tlv                disabled     disabled    
+lldp-med-inventory-tlv  disabled     disabled    
 mode                    default      default
 ```
 
@@ -413,7 +413,7 @@ You can transmit the following IEEE 802.1 TLVs when exchanging LLDP messages. By
 | VLAN Name        | 3       | The name of any VLAN to which the port belongs. |
 | Link Aggregation | 7       | Indicates if the port supports link aggregation and if it is on. |
 
-To enable IEEE 802.1 TLV transmission, run the `nv set system lldp dot1-tlv on` command:
+To enable IEEE 802.1 TLV transmission, run the `nv set system lldp dot1-tlv enabled` command:
 
 ```
 cumulus@switch:~$ nv set system lldp dot1-tlv enabled
@@ -443,14 +443,14 @@ Cumulus Linux transmits the following IEEE 802.3 TLVs by default. You do not nee
 
 | Name                | Subtype | Description |
 |-------------------- | ------- | ----------- |
-| Link Aggregation    | 3       | Indicates if the port supports link aggregation and if it is on.  |
+| Link Aggregation    | 3       | Indicates if the port supports link aggregation and if it is enabled.  |
 | Maximum Frame Size  | 4       | The MTU configuration on the port. The MTU on the port is the <span class="a-tooltip">[MFS](## "Maximum Frame Size ")</span>. |
 
 ### QoS TLVs
 
 Adding <span class="a-tooltip">[QoS](## "Quality of Service ")</span> configuration as part of the DCBX TLVs allows automated configuration on hosts and switches that connect to the switch.
 
-You can transmit the following QoS TLVs. By default, all QoS TLV transmission is `off` on all interfaces.
+You can transmit the following QoS TLVs. By default, all QoS TLV transmission is `disabled` on all interfaces.
 
 | Name               | Subtype | Description |
 |------------------- | ------- | ----------- |
@@ -468,24 +468,24 @@ When you enable {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="ROCE">}} o
 
 #### Enable QoS TLV Transmission
 
-To enable PFC Configuration TLV transmission, run the `nv set interface <interface-id> lldp dcbx-pfc-tlv on` command:
+To enable PFC Configuration TLV transmission, run the `nv set interface <interface-id> lldp dcbx-pfc-tlv enabled` command:
 
 ```
-cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable ETS Configuration TLV transmission, run the `nv set interface <interface-id> lldp dcbx-ets-config-tlv on` command:
+To enable ETS Configuration TLV transmission, run the `nv set interface <interface-id> lldp dcbx-ets-config-tlv enabled` command:
 
 ```
-cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-config-tlv on
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-config-tlv enabled
 cumulus@switch:~$ nv config apply 
 ```
 
-To enable ETS Recommendation TLV transmission, run the `nv set interface <interface-id> lldp dcbx-ets-recomm-tlv on` command:
+To enable ETS Recommendation TLV transmission, run the `nv set interface <interface-id> lldp dcbx-ets-recomm-tlv enabled` command:
 
 ```
-cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv on
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -518,17 +518,17 @@ cumulus@switch:~$ nv config apply
 
 #### Show QoS TLV Transmission Settings
 
-To show if Qos TLV transmission is `on` for an interface, run the NVUE `nv show interface <interface-id>` command:
+To show if Qos TLV transmission is `enabled` for an interface, run the NVUE `nv show interface <interface-id>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1
-                          operational        applied      description
-------------------------  -----------------  -----------  ---------------------------------------------------
+                          operational        applied    
+------------------------  -----------------  ----------- 
 ...
 lldp
-  dcbx-ets-config-tlv                        on           DCBX ETS config TLV flag
-  dcbx-ets-recomm-tlv                        off          DCBX ETS recommendation TLV flag
-  dcbx-pfc-tlv                               on           DCBX PFC TLV flag
+  dcbx-ets-config-tlv                        enabled   
+  dcbx-ets-recomm-tlv                        edisabled 
+  dcbx-pfc-tlv                               enabled   
 ... 
 ```
 
@@ -545,7 +545,7 @@ cumulus@switch:~$ nv config apply
 
 To disable LLDP-MED inventory TLV transmission, run the `nv unset system lldp lldp-med-inventory-tlv` command.
 
-To show if LLDP-MED Inventory TLV transmission is on, run the NVUE `nv show system lldp` command:
+To show if LLDP-MED Inventory TLV transmission is enabled, run the NVUE `nv show system lldp` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show system lldp

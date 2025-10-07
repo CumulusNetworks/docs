@@ -137,9 +137,7 @@ Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost e
 {{< tabs "TabID136 ">}}
 {{< tab "New Install">}}
 
-Run the following command with the `config-key` obtained from the email you received from NVIDIA titled *NetQ Access Link*. You can also obtain the configuration key {{<link title="Configure Premises" text="through the NetQ UI">}}.
-
-If the VM already has NetQ installed, run the `netq bootstrap reset` command before reinstalling NetQ.
+Run the following command with the `config-key` obtained from the email you received from NVIDIA titled *NetQ Access Link*. You can also obtain the configuration key {{<link title="Configure Premises" text="through the NetQ UI">}}. If you have previously used the `config-key`, run `netq bootstrap reset` on the VM where you initially used the `config-key` before attempting the installation on the new VM.
 
 ```
 nvidia@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
@@ -147,7 +145,7 @@ nvidia@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mn
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
     <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0-opta.tgz config-key &lt;your-config-key&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install opta standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.15.0-opta.tgz config-key &lt;your-config-key&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install opta standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.15.0-opta.tgz config-key &lt;your-config-key&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset</code> command and rerun the install command.</p>
     <p></p></div>
     
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>

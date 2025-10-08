@@ -14,7 +14,6 @@ Instead of specifying properties of each individual peer, you can define one or 
 - If the peer you want to add to a group already exists in the BGP configuration, delete it first, than add it to the peer group.
 - Configuring a peer group results in BGP session flaps, which might lead to traffic loss.
 - When you delete a peer group associated with a BGP neighbor, Cumulus Linux also removes the corresponding neighbor configuration.
-- If you want to modify a peer group, you must delete the existing BGP neighbor configuration and reconfigure it with the new peer group.
 {{%/notice%}}
 
 The following example commands create a peer group called SPINE that includes two external peers.

@@ -1,5 +1,5 @@
 <tables>
-<table name="Open Issues in 4.0.1">
+<table name="Open Issues in 4.4.1">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -7,129 +7,113 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2893000</td>
-<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
-<td>2.4.0-4.0.1</td>
-<td>4.1.0-4.15.1</td>
+<td>3739222</td>
+<td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
+<td>4.2.0-4.8.0</td>
+<td>4.9.0-4.15.1</td>
 </tr>
 <tr>
-<td>2843640</td>
-<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
+<td>3442456</td>
+<td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
+<td>4.2.0-4.6.0</td>
+<td>4.7.0-4.15.1</td>
 </tr>
 <tr>
-<td>2817749</td>
-<td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
-<td>4.0.1-4.2.0</td>
-<td>4.3.0-4.15.1</td>
+<td>3438973</td>
+<td>When you install NetQ onto your VM, the installation fails with the following messages:
+
+
+05:57:33.023618: master-node-installer: Installed Debian ...	[ FAILED ]
+--------------------------------------
+ERROR: Failed to install the master node
+
+
+This is due to an expired key in the installation tarball. For assistance working around this issue, contact NVIDIA support.</td>
+<td>4.3.0-4.5.0</td>
+<td>4.6.0-4.15.1</td>
 </tr>
 <tr>
-<td>2815596</td>
-<td>The NetQ Cloud VM for KVM hypervisors installer and opta-check fail because the minimum disk requirements do not meet the default image settings. To work around this issue, increase the disk space from 32GB to 64GB before you run the {{netq bootstrap}} command.
-
-
-1. Check the size of the existing hard disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
-
-	cumulus@netq-401-cloud:~$ df -hm /
-	Filesystem     1M-blocks  Used Available Use% Mounted on
-	/dev/vda1          31583  1192     30375   4% /
-
-2. Shutdown the VM.
-
-3. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size appears in the virtual size field:
-
-
-	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	image: netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	file format: qcow2
-	virtual size: 32G (34359738368 bytes)
-	disk size: 1.3G
-	cluster_size: 65536
-	Format specific information:
-	    compat: 1.1
-	    lazy refcounts: false
-	    refcount bits: 16
-	    corrupt: false
-
-4. Add 32 GB to the image:
-
-	root@server:/var/lib/libvirt/images# qemu-img resize netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2 +32G
-	Image resized.
-
-5. Verify the change.
-
-	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	image: netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
-	file format: qcow2
-	virtual size: 64G (68719476736 bytes)
-	disk size: 1.3G
-	cluster_size: 65536
-	Format specific information:
-	    compat: 1.1
-	    lazy refcounts: false
-	    refcount bits: 16
-	    corrupt: false
-
-6. Start the VM and log back in.
-
-7. Run the following commands on the partition, referencing the filesystem /dev/vda1 obtained in step 1:
-
-
-	cumulus@netq-401-cloud:~$ sudo growpart /dev/vda 1
-	CHANGED: partition=1 start=227328 old: size=66881503 end=67108831 new: size=133990367,end=134217695
-
-	cumulus@netq-401-cloud:~$ sudo resize2fs /dev/vda1
-	resize2fs 1.44.1 (24-Mar-2018)
-	Filesystem at /dev/vda1 is mounted on /; on-line resizing required
-	old_desc_blocks = 4, new_desc_blocks = 8
-	The filesystem on /dev/vda1 is now 16748795 (4k) blocks long.
-
-8. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB:
-
-	cumulus@netq-401-cloud:~$ df -hm /
-	Filesystem     1M-blocks  Used Available Use% Mounted on
-	/dev/vda1          63341  1193     62132   2% /</td>
-<td>4.0.1-4.1.1</td>
-<td>4.2.0-4.15.1</td>
+<td>3395385</td>
+<td>When you use NetQ LCM to upgrade a Cumulus Linux switch in an MLAG pair, the upgrade might fail.</td>
+<td>4.4.1-4.5.0</td>
+<td>4.6.0-4.15.1</td>
 </tr>
 <tr>
-<td>2711101</td>
-<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
-To work around this issue, disable RoCE monitoring:
-
-1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
-        #- period: "60"
-        #  key: "roce"
-        #  isactive: true
-        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
-        #  parser: "local"
-
-2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
-        $ sudo rm /var/run/netq/netq_commands.yml
-
-3. Restart the NetQ agent:
-       $ netq config agent restart</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
+<td>3360627</td>
+<td>When the switch RoCE egress pool buffer limit is configured as unlimited, the maximum buffer usage for RoCE counters might display incorrect values in the NetQ UI.</td>
+<td>4.4.1-4.5.0</td>
+<td>4.6.0-4.15.1</td>
 </tr>
 <tr>
-<td>2690469</td>
-<td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
-To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
-&apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
-<td>3.2.1-4.0.1</td>
-<td>4.1.0-4.15.1</td>
+<td>3305144</td>
+<td>When you perform a {{netq trace}} between two hosts, the following message might be printed in the output even when the trace is successful:
+
+
+argument of type ‘NoneType’ is not iterable
+</td>
+<td>4.4.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3303284</td>
+<td>When you run the  {{netq show opta-health}} command, it might fail and produce the following error:
+
+
+ERROR: Expecting value: line 1 column 1 (char 0)
+</td>
+<td>4.3.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3290068</td>
+<td>When you back up NetQ data with the {{backuprestore.sh}} script, the operation fails with the following log messages:
+
+Failed to clear all earlier snapshot for keyspace:master. Exiting!
+command terminated with exit code 1
+Failed to execute /opt/backuprestore/createbackup.sh script on cassandra pod.
+Failed to proceed ahead with backup procedure. Exiting !
+
+Contact NVIDIA support for assistance performing a backup.</td>
+<td>4.4.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3266922</td>
+<td>When a NetQ agent sends your NetQ server or OPTA an unexpectedly large number for switch interface counters, {{netq check}} and {{netq show}} commands might fail with the following message:
+
+
+local variable ‘url’ referenced before assignment
+</td>
+<td>4.4.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3241664</td>
+<td>When you start the {{netq-agent}} service, the WJH service is enabled by default.  However, when you run the {{netq config show agent wjh}} command, the output might reflect the WJH service as disabled.</td>
+<td>4.4.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3179145</td>
+<td>The NetQ agent does not collect VLAN information from WJH data. This has been resolved, however when you upgrade to a NetQ version with the fix, historical WJH data will not be displayed in the UI.</td>
+<td>4.3.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3015875</td>
+<td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
+<td>4.1.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
 </tr>
 </table>
-<table name="Fixed Issues in 4.0.1">
+<table name="Fixed Issues in 4.4.1">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
 </tr>
 </table>
-<table name="Open Issues in 4.0.0">
+<table name="Open Issues in 4.4.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -137,76 +121,168 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2893000</td>
-<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
-<td>2.4.0-4.0.1</td>
-<td>4.1.0-4.15.1</td>
+<td>3739222</td>
+<td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
+<td>4.2.0-4.8.0</td>
+<td>4.9.0-4.15.1</td>
 </tr>
 <tr>
-<td>2843640</td>
-<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
+<td>3442456</td>
+<td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
+<td>4.2.0-4.6.0</td>
+<td>4.7.0-4.15.1</td>
 </tr>
 <tr>
-<td>2711101</td>
-<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
-To work around this issue, disable RoCE monitoring:
+<td>3438973</td>
+<td>When you install NetQ onto your VM, the installation fails with the following messages:
 
-1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
-        #- period: "60"
-        #  key: "roce"
-        #  isactive: true
-        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
-        #  parser: "local"
 
-2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
-        $ sudo rm /var/run/netq/netq_commands.yml
+05:57:33.023618: master-node-installer: Installed Debian ...	[ FAILED ]
+--------------------------------------
+ERROR: Failed to install the master node
 
-3. Restart the NetQ agent:
-       $ netq config agent restart</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
+
+This is due to an expired key in the installation tarball. For assistance working around this issue, contact NVIDIA support.</td>
+<td>4.3.0-4.5.0</td>
+<td>4.6.0-4.15.1</td>
 </tr>
 <tr>
-<td>2690469</td>
-<td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
-To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
-&apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
-<td>3.2.1-4.0.1</td>
-<td>4.1.0-4.15.1</td>
+<td>3305144</td>
+<td>When you perform a {{netq trace}} between two hosts, the following message might be printed in the output even when the trace is successful:
+
+
+argument of type ‘NoneType’ is not iterable
+</td>
+<td>4.4.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3303284</td>
+<td>When you run the  {{netq show opta-health}} command, it might fail and produce the following error:
+
+
+ERROR: Expecting value: line 1 column 1 (char 0)
+</td>
+<td>4.3.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3290068</td>
+<td>When you back up NetQ data with the {{backuprestore.sh}} script, the operation fails with the following log messages:
+
+Failed to clear all earlier snapshot for keyspace:master. Exiting!
+command terminated with exit code 1
+Failed to execute /opt/backuprestore/createbackup.sh script on cassandra pod.
+Failed to proceed ahead with backup procedure. Exiting !
+
+Contact NVIDIA support for assistance performing a backup.</td>
+<td>4.4.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3266922</td>
+<td>When a NetQ agent sends your NetQ server or OPTA an unexpectedly large number for switch interface counters, {{netq check}} and {{netq show}} commands might fail with the following message:
+
+
+local variable ‘url’ referenced before assignment
+</td>
+<td>4.4.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3241664</td>
+<td>When you start the {{netq-agent}} service, the WJH service is enabled by default.  However, when you run the {{netq config show agent wjh}} command, the output might reflect the WJH service as disabled.</td>
+<td>4.4.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3179145</td>
+<td>The NetQ agent does not collect VLAN information from WJH data. This has been resolved, however when you upgrade to a NetQ version with the fix, historical WJH data will not be displayed in the UI.</td>
+<td>4.3.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
+</tr>
+<tr>
+<td>3015875</td>
+<td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
+<td>4.1.0-4.4.1</td>
+<td>4.5.0-4.15.1</td>
 </tr>
 </table>
-<table name="Fixed Issues in 4.0.0">
+<table name="Fixed Issues in 4.4.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
 </tr>
 <tr>
-<td>2611898</td>
-<td>Fixed an issue where deleting a snapshot does not remove the snapshot card from the workbench. However, the workbench might refresh before the deleted snapshot’s card is removed. During the refresh, you may notice a brief flashing. This is expected behavior and you can safely ignore the flashing.</td>
+<td>3254224</td>
+<td>In a What Just Happened table, column titles might appear as long strings of text. To fix this issue, select the ‘reset columns’ icon at the upper-right corner of the application. </td>
 <td></td>
 </tr>
 <tr>
-<td>2556754</td>
-<td>netq-agent installed on Cumulus Linux might slowly leak memory during sustained layer two network events at high scale.</td>
-<td>3.3.0-3.3.1</td>
+<td>3244553</td>
+<td>The What Just Happened (WJH) feature does not work with the NetQ agent on SONiC switches.</td>
+<td></td>
 </tr>
 <tr>
-<td>2555197</td>
-<td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
-<td>3.3.0-3.3.1</td>
+<td>3226405</td>
+<td>TLS versions 1.0 and 1.1 are enabled for the OPTA API Gateway listening on TCP port 32708. Only TLS versions 1.2 and 1.3 should be enabled.</td>
+<td>4.3.0</td>
 </tr>
 <tr>
-<td>2553453</td>
-<td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
-<td>3.1.0-3.3.1</td>
+<td>3216161</td>
+<td>In an OPTA clustered environment, NetQ agents might appear as rotten after upgrading to NetQ 4.3.0. To work around this issue, configure the {{spice: false}} parameter in {{/etc/netq/netq.yml}}.</td>
+<td>4.3.0</td>
 </tr>
 <tr>
-<td>2549319</td>
-<td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
-<td>3.0.0-3.3.1</td>
+<td>3211317</td>
+<td>Upgrading Cumulus Linux with NetQ LCM fails when you upgrade a switch with the MLAG primary role.</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>3205778</td>
+<td>In some high scale environments, NetQ agents might appear as rotten during high load.</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>3203960</td>
+<td>When you add an LDAP user, the operation will fail and return an error: {{Parameter error}}. This has been resolved in NetQ 4.4.0 and later. If you configured LDAP authentication prior to NetQ 4.4.0, you must reconfigure LDAP after upgrading.</td>
+<td></td>
+</tr>
+<tr>
+<td>3157803</td>
+<td>The {{netq show}} commands to view MACs, IP addresses, neighbors, and routes might show a higher value compared to the corresponding entries in the NetQ UI. The {{netq show}} commands display additional values from the NetQ server or OPTA in addition to monitored devices in the NetQ inventory.</td>
+<td>4.2.0-4.3.0</td>
+</tr>
+<tr>
+<td>3141723</td>
+<td>When you edit a TCA rule, an error will prevent the rule from updating. To work around this problem, delete the existing rule and create a new one.</td>
+<td></td>
+</tr>
+<tr>
+<td>3140425</td>
+<td>LCM NetQ install or upgrade will silently fail if a target switch's hostname is still set to the default ({{cumulus}} for Cumulus Linux or {{sonic} for SONiC).</td>
+<td></td>
+</tr>
+<tr>
+<td>3131311</td>
+<td>Sensor validation checks might still reflect a failure in NetQ after the sensor failure has recovered.</td>
+<td>4.2.0-4.3.0</td>
+</tr>
+<tr>
+<td>3085064</td>
+<td>When you attempt to install NetQ on a device using LCM and configure the incorrect VRF, the installation will be reflected as successful but the switch will not be present in the inventory in the LCM UI.</td>
+<td>4.1.0-4.3.0</td>
+</tr>
+<tr>
+<td>3053143</td>
+<td>The MLAG Session card might not show all MLAG events.</td>
+<td>4.2.0-4.3.0</td>
+</tr>
+<tr>
+<td>2605545</td>
+<td>Sort functionality is disabled when the number of records exceeds 10,000 entries in a full-screen, tabular view. </td>
+<td>4.3.0</td>
 </tr>
 </table>
 </tables>

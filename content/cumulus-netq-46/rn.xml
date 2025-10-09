@@ -1,5 +1,5 @@
 <tables>
-<table name="Open Issues in 4.0.1">
+<table name="Open Issues in 4.6.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -7,206 +7,153 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2893000</td>
-<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
-<td>2.4.0-4.0.1</td>
-<td>4.1.0-4.15.1</td>
+<td>3739222</td>
+<td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
+<td>4.2.0-4.8.0</td>
+<td>4.9.0-4.15.1</td>
 </tr>
 <tr>
-<td>2843640</td>
-<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
+<td>3549877</td>
+<td>NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes.</td>
+<td>4.6.0-4.8.0</td>
+<td>4.9.0-4.15.1</td>
 </tr>
 <tr>
-<td>2817749</td>
-<td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
-<td>4.0.1-4.2.0</td>
-<td>4.3.0-4.15.1</td>
+<td>3491935</td>
+<td>NetQ might generate continuous TCA events for the NetQ VM squashfs mounts when disk utilization TCA rules are configured for all hosts.  </td>
+<td>4.5.0-4.6.0</td>
+<td>4.7.0-4.15.1</td>
 </tr>
 <tr>
-<td>2815596</td>
-<td>The NetQ Cloud VM for KVM hypervisors installer and opta-check fail because the minimum disk requirements do not meet the default image settings. To work around this issue, increase the disk space from 32GB to 64GB before you run the {{netq bootstrap}} command.
+<td>3454057</td>
+<td>When you configure more than one TCA rule referencing the same TCA event type, adding additional TCA rules fails with the following message:
 
-
-1. Check the size of the existing hard disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
-
-	cumulus@netq-401-cloud:~$ df -hm /
-	Filesystem     1M-blocks  Used Available Use% Mounted on
-	/dev/vda1          31583  1192     30375   4% /
-
-2. Shutdown the VM.
-
-3. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size appears in the virtual size field:
-
-
-	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	image: netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	file format: qcow2
-	virtual size: 32G (34359738368 bytes)
-	disk size: 1.3G
-	cluster_size: 65536
-	Format specific information:
-	    compat: 1.1
-	    lazy refcounts: false
-	    refcount bits: 16
-	    corrupt: false
-
-4. Add 32 GB to the image:
-
-	root@server:/var/lib/libvirt/images# qemu-img resize netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2 +32G
-	Image resized.
-
-5. Verify the change.
-
-	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	image: netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
-	file format: qcow2
-	virtual size: 64G (68719476736 bytes)
-	disk size: 1.3G
-	cluster_size: 65536
-	Format specific information:
-	    compat: 1.1
-	    lazy refcounts: false
-	    refcount bits: 16
-	    corrupt: false
-
-6. Start the VM and log back in.
-
-7. Run the following commands on the partition, referencing the filesystem /dev/vda1 obtained in step 1:
-
-
-	cumulus@netq-401-cloud:~$ sudo growpart /dev/vda 1
-	CHANGED: partition=1 start=227328 old: size=66881503 end=67108831 new: size=133990367,end=134217695
-
-	cumulus@netq-401-cloud:~$ sudo resize2fs /dev/vda1
-	resize2fs 1.44.1 (24-Mar-2018)
-	Filesystem at /dev/vda1 is mounted on /; on-line resizing required
-	old_desc_blocks = 4, new_desc_blocks = 8
-	The filesystem on /dev/vda1 is now 16748795 (4k) blocks long.
-
-8. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB:
-
-	cumulus@netq-401-cloud:~$ df -hm /
-	Filesystem     1M-blocks  Used Available Use% Mounted on
-	/dev/vda1          63341  1193     62132   2% /</td>
-<td>4.0.1-4.1.1</td>
-<td>4.2.0-4.15.1</td>
+Failed to add/update TCA http status_code: 409</td>
+<td>4.5.0-4.6.0</td>
+<td>4.7.0-4.15.1</td>
 </tr>
 <tr>
-<td>2711101</td>
-<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
-To work around this issue, disable RoCE monitoring:
-
-1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
-        #- period: "60"
-        #  key: "roce"
-        #  isactive: true
-        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
-        #  parser: "local"
-
-2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
-        $ sudo rm /var/run/netq/netq_commands.yml
-
-3. Restart the NetQ agent:
-       $ netq config agent restart</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
+<td>3448057</td>
+<td>NetQ NTP validations will report time syncronization failures for switches running the NTP service in the default VRF.</td>
+<td>4.5.0-4.6.0</td>
+<td>4.7.0-4.15.1</td>
 </tr>
 <tr>
-<td>2690469</td>
-<td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
-To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
-&apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
-<td>3.2.1-4.0.1</td>
-<td>4.1.0-4.15.1</td>
+<td>3446351</td>
+<td>When you perform an apt upgrade from NetQ 4.5.0 to version 4.6.0, the {{sudo apt upgrade}} command fails with the following message: 
+
+
+Setting up shim-signed (1.40.9+15.7-0ubuntu1) ...
+
+mount: /var/lib/grub/esp: special device /dev/vda15 does not exist.
+
+dpkg: error processing package shim-signed (--configure):
+
+installed shim-signed package post-installation script subprocess returned error exit status 32
+
+Errors were encountered while processing:
+
+shim-signed
+
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+
+
+To work around this issue, run the {{sudo apt remove -y shim-signed grub-efi-amd64-bin --allow-remove-essential}} command and rerun the {{sudo apt upgrade}} command.</td>
+<td>4.5.0-4.6.0</td>
+<td>4.7.0-4.15.1</td>
+</tr>
+<tr>
+<td>3442456</td>
+<td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
+<td>4.2.0-4.6.0</td>
+<td>4.7.0-4.15.1</td>
+</tr>
+<tr>
+<td>3436299</td>
+<td>RoCE validations might not display data in the NetQ UI and CLI for Cumulus Linux switches when the NVUE service is not running. This issue will resolve itself within 24 hours after the next full status update from the NetQ agent. </td>
+<td>4.6.0</td>
+<td>4.7.0-4.15.1</td>
+</tr>
+<tr>
+<td>3431386</td>
+<td>When you upgrade your NetQ VM from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command, certain pods are not correctly retagged. To work around this issue, retag and restart the affected pods with the following commands for your deployment after upgrading:
+
+On-premises VMs:
+
+sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
+
+sudo docker tag localhost:5000/cp-schema-registry:7.2.0 docker-registry:5000/cp-schema-registry:7.2.0
+sudo docker push docker-registry:5000/cp-schema-registry:7.2.0
+sudo kubectl get pods -n default|grep -i cp-schema-registry|awk '{print $1}'|xargs kubectl delete pod -n default
+
+sudo docker tag localhost:5000/cp-kafka:7.2.0 docker-registry:5000/cp-kafka:7.2.0
+sudo docker push docker-registry:5000/cp-kafka:7.2.0
+sudo kubectl get pods -n default|grep -i kafka-broker|awk '{print $1}'|xargs kubectl delete pod -n default
+
+
+Cloud VMs:
+
+sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
+
+</td>
+<td>4.5.0-4.6.0</td>
+<td>4.7.0-4.15.1</td>
+</tr>
+<tr>
+<td>3429528</td>
+<td>EVPN and RoCE validation cards in the NetQ UI might not display data when Cumulus Linux switches are configured with high VNI scale.</td>
+<td>4.6.0-4.8.0</td>
+<td>4.9.0-4.15.1</td>
 </tr>
 </table>
-<table name="Fixed Issues in 4.0.1">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-</tr>
-</table>
-<table name="Open Issues in 4.0.0">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-<th> Fixed </th>
-</tr>
-<tr>
-<td>2893000</td>
-<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
-<td>2.4.0-4.0.1</td>
-<td>4.1.0-4.15.1</td>
-</tr>
-<tr>
-<td>2843640</td>
-<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
-</tr>
-<tr>
-<td>2711101</td>
-<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
-To work around this issue, disable RoCE monitoring:
-
-1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
-        #- period: "60"
-        #  key: "roce"
-        #  isactive: true
-        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
-        #  parser: "local"
-
-2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
-        $ sudo rm /var/run/netq/netq_commands.yml
-
-3. Restart the NetQ agent:
-       $ netq config agent restart</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
-</tr>
-<tr>
-<td>2690469</td>
-<td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
-To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
-&apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
-<td>3.2.1-4.0.1</td>
-<td>4.1.0-4.15.1</td>
-</tr>
-</table>
-<table name="Fixed Issues in 4.0.0">
+<table name="Fixed Issues in 4.6.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
 </tr>
 <tr>
-<td>2611898</td>
-<td>Fixed an issue where deleting a snapshot does not remove the snapshot card from the workbench. However, the workbench might refresh before the deleted snapshot’s card is removed. During the refresh, you may notice a brief flashing. This is expected behavior and you can safely ignore the flashing.</td>
-<td></td>
+<td>3438973</td>
+<td>When you install NetQ onto your VM, the installation fails with the following messages:
+
+
+05:57:33.023618: master-node-installer: Installed Debian ...	[ FAILED ]
+--------------------------------------
+ERROR: Failed to install the master node
+
+
+This is due to an expired key in the installation tarball. For assistance working around this issue, contact NVIDIA support.</td>
+<td>4.3.0-4.5.0</td>
 </tr>
 <tr>
-<td>2556754</td>
-<td>netq-agent installed on Cumulus Linux might slowly leak memory during sustained layer two network events at high scale.</td>
-<td>3.3.0-3.3.1</td>
+<td>3395385</td>
+<td>When you use NetQ LCM to upgrade a Cumulus Linux switch in an MLAG pair, the upgrade might fail.</td>
+<td>4.4.1-4.5.0</td>
 </tr>
 <tr>
-<td>2555197</td>
-<td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
-<td>3.3.0-3.3.1</td>
+<td>3367267</td>
+<td>When you upgrade a switch with NetQ LCM using the {{root}} user, the upgrade fails with the following message:  Destination /home/root does not exist.  To work around this issue, perform the upgrade using a different user account.</td>
+<td>4.5.0</td>
 </tr>
 <tr>
-<td>2553453</td>
-<td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
-<td>3.1.0-3.3.1</td>
+<td>3362224</td>
+<td>When you configure a new access profile with SSH authentication using the CLI, the command fails with the following log message:
+
+
+Expecting value: line 1 column 1 (char 0) 
+
+
+To work around this issue, use the NetQ UI to configure the access profile.</td>
+<td>4.5.0</td>
 </tr>
 <tr>
-<td>2549319</td>
-<td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
-<td>3.0.0-3.3.1</td>
+<td>3360627</td>
+<td>When the switch RoCE egress pool buffer limit is configured as unlimited, the maximum buffer usage for RoCE counters might display incorrect values in the NetQ UI.</td>
+<td>4.4.1-4.5.0</td>
 </tr>
 </table>
 </tables>

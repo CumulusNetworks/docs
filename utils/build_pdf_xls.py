@@ -114,26 +114,26 @@ def get_xls_files():
     for directory in dir_list:
         if directory in excluded_dirs:
             continue 
-    for directory in dir_list:
-        for file in os.listdir("content/" + directory):
-            if file.endswith(".xml"):
-                print("Converting {}/rn.xml to xls".format(directory))
-                create_response = doc_api.create_doc({
-                    "test": TEST,                                                   # test documents are free but watermarked
-                    "document_url": "{}{}/{}".format(base_url, directory, file),
-                    "name": "{}-{}".format(directory, file),                        # help you find a document later
-                    "document_type": "xls",                                         # pdf or xls or xlsx
-                    "prince_options": {
-                        "http_user": http_user,
-                        "http_password": http_pass
-                    }
-                })
-                xls_file = file.replace(".xml", ".xls")
-                destination_file = "content/{}/{}".format(directory, xls_file)
-                print("Writing {} to {}\n".format(file, destination_file))
-                file = open(destination_file, "wb")
-                file.write(create_response)
-                file.close
+        for directory in dir_list:
+            for file in os.listdir("content/" + directory):
+                if file.endswith(".xml"):
+                    print("Converting {}/rn.xml to xls".format(directory))
+                    create_response = doc_api.create_doc({
+                        "test": TEST,                                                   # test documents are free but watermarked
+                        "document_url": "{}{}/{}".format(base_url, directory, file),
+                        "name": "{}-{}".format(directory, file),                        # help you find a document later
+                        "document_type": "xls",                                         # pdf or xls or xlsx
+                        "prince_options": {
+                            "http_user": http_user,
+                            "http_password": http_pass
+                        }
+                    })
+                    xls_file = file.replace(".xml", ".xls")
+                    destination_file = "content/{}/{}".format(directory, xls_file)
+                    print("Writing {} to {}\n".format(file, destination_file))
+                    file = open(destination_file, "wb")
+                    file.write(create_response)
+                    file.close
 try:
 
     # dir_list = get_dir_list()

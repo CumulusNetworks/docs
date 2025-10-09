@@ -265,8 +265,8 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 
 Follow the steps under _Restore Data and New Install_ if you have a {{<link title="Back Up and Restore NetQ" text="backup data tarball">}} from a previous NetQ installation to restore.
 
-{{< tabs “TabID268 “>}}
-{{< tab “New Install”>}}
+{{< tabs "TabID268">}}
+{{< tab "New Install">}}
 
 ```
 nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-4.15.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
@@ -275,7 +275,7 @@ nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-4.15.0.tgz k
 
 {{< /tab >}}
 
-{{< tab “Restore Data and New Install”>}}
+{{< tab "Restore Data and New Install">}}
 
 Restore your data...
 

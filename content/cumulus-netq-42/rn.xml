@@ -1,5 +1,5 @@
 <tables>
-<table name="Open Issues in 4.2.0">
+<table name="Open Issues in 4.0.1">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -7,116 +7,22 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3739222</td>
-<td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
-<td>4.2.0-4.8.0</td>
-<td>4.9.0-4.15.1</td>
+<td>2893000</td>
+<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
+<td>2.4.0-4.0.1</td>
+<td>4.1.0-4.15.1</td>
 </tr>
 <tr>
-<td>3442456</td>
-<td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
-<td>4.2.0-4.6.0</td>
-<td>4.7.0-4.15.1</td>
-</tr>
-<tr>
-<td>3157803</td>
-<td>The {{netq show}} commands to view MACs, IP addresses, neighbors, and routes might show a higher value compared to the corresponding entries in the NetQ UI. The {{netq show}} commands display additional values from the NetQ server or OPTA in addition to monitored devices in the NetQ inventory.</td>
-<td>4.2.0-4.3.0</td>
-<td>4.4.0-4.15.1</td>
-</tr>
-<tr>
-<td>3136898</td>
-<td>On switches running Cumulus Linux 5.2.0 and NetQ agent 4.2.0 or earlier, NetQ commands might fail and errors are logged to {{/var/log/netq-agent.log}}. To work around this issue, use NetQ agent version 4.3.0.</td>
-<td>4.2.0</td>
-<td>4.3.0-4.15.1</td>
-</tr>
-<tr>
-<td>3131311</td>
-<td>Sensor validation checks might still reflect a failure in NetQ after the sensor failure has recovered.</td>
-<td>4.2.0-4.3.0</td>
-<td>4.4.0-4.15.1</td>
-</tr>
-<tr>
-<td>3085064</td>
-<td>When you attempt to install NetQ on a device using LCM and configure the incorrect VRF, the installation will be reflected as successful but the switch will not be present in the inventory in the LCM UI.</td>
-<td>4.1.0-4.3.0</td>
-<td>4.4.0-4.15.1</td>
-</tr>
-<tr>
-<td>3085017</td>
-<td>When you hover over a device with WJH events in the flow analysis graph, the number of WJH packet drops in the event summary might display 0 drops. This is because the device did not detect any WJH events on the selected path. To view the WJH events, select different paths to display any WJH events for that device.</td>
-<td>4.2.0</td>
-<td>4.3.0-4.15.1</td>
-</tr>
-<tr>
-<td>3053143</td>
-<td>The MLAG Session card might not show all MLAG events.</td>
-<td>4.2.0-4.3.0</td>
-<td>4.4.0-4.15.1</td>
-</tr>
-<tr>
-<td>3047149</td>
-<td>When you reboot the OPTA, the NetQ validation summary might show an incorrect number of validations. This condition will resolve itself within an hour of the reboot.</td>
-<td>4.2.0</td>
-<td>4.3.0-4.15.1</td>
-</tr>
-<tr>
-<td>3015875</td>
-<td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
-<td>4.1.0-4.4.1</td>
-<td>4.5.0-4.15.1</td>
+<td>2843640</td>
+<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
+<td>4.0.0-4.1.1</td>
+<td>4.2.0-4.15.1</td>
 </tr>
 <tr>
 <td>2817749</td>
 <td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
 <td>4.0.1-4.2.0</td>
 <td>4.3.0-4.15.1</td>
-</tr>
-</table>
-<table name="Fixed Issues in 4.2.0">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-</tr>
-<tr>
-<td>3011307</td>
-<td>NetQ Agent: The NetQ Agent fails to start in Cumulus Linux on switches with ARM CPUs. The log files show the following message:
-
-
-systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
-</td>
-<td>4.1.1</td>
-</tr>
-<tr>
-<td>2896825</td>
-<td>WJH monitoring fails to start with netq-agent on Cumulus Linux 5.0. To work around this issue, reinstall the netq-agent package and configure the netq agent to start monitoring:
-
-
-1. Add the gpg key for the repository:
-
-{{wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -}}
-
-
-2. Add the repository to {{/etc/apt/sources.list}}:
-
-{{echo 'deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest' | sudo tee -a /etc/apt/sources.list}}
-
-
-3. Reinstall the netq-agent package:
-
-{{sudo apt-get update &amp;&amp; sudo apt-get install --reinstall netq-agent}}</td>
-<td>4.1.0-4.1.1</td>
-</tr>
-<tr>
-<td>2885440</td>
-<td>After upgrading to NetQ 4.1.0, validation checks might show intermittent errors that are not valid while the validation application processess pending messages after upgrade. This condition will clear once all messages are processed.</td>
-<td>4.1.0-4.1.1</td>
-</tr>
-<tr>
-<td>2843640</td>
-<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
-<td>4.0.0-4.1.1</td>
 </tr>
 <tr>
 <td>2815596</td>
@@ -185,6 +91,7 @@ systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
 	Filesystem     1M-blocks  Used Available Use% Mounted on
 	/dev/vda1          63341  1193     62132   2% /</td>
 <td>4.0.1-4.1.1</td>
+<td>4.2.0-4.15.1</td>
 </tr>
 <tr>
 <td>2711101</td>
@@ -204,6 +111,102 @@ To work around this issue, disable RoCE monitoring:
 3. Restart the NetQ agent:
        $ netq config agent restart</td>
 <td>4.0.0-4.1.1</td>
+<td>4.2.0-4.15.1</td>
+</tr>
+<tr>
+<td>2690469</td>
+<td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
+To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
+&apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
+<td>3.2.1-4.0.1</td>
+<td>4.1.0-4.15.1</td>
+</tr>
+</table>
+<table name="Fixed Issues in 4.0.1">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+</tr>
+</table>
+<table name="Open Issues in 4.0.0">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+<th> Fixed </th>
+</tr>
+<tr>
+<td>2893000</td>
+<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
+<td>2.4.0-4.0.1</td>
+<td>4.1.0-4.15.1</td>
+</tr>
+<tr>
+<td>2843640</td>
+<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
+<td>4.0.0-4.1.1</td>
+<td>4.2.0-4.15.1</td>
+</tr>
+<tr>
+<td>2711101</td>
+<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
+To work around this issue, disable RoCE monitoring:
+
+1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
+        #- period: "60"
+        #  key: "roce"
+        #  isactive: true
+        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
+        #  parser: "local"
+
+2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
+        $ sudo rm /var/run/netq/netq_commands.yml
+
+3. Restart the NetQ agent:
+       $ netq config agent restart</td>
+<td>4.0.0-4.1.1</td>
+<td>4.2.0-4.15.1</td>
+</tr>
+<tr>
+<td>2690469</td>
+<td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
+To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
+&apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
+<td>3.2.1-4.0.1</td>
+<td>4.1.0-4.15.1</td>
+</tr>
+</table>
+<table name="Fixed Issues in 4.0.0">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+</tr>
+<tr>
+<td>2611898</td>
+<td>Fixed an issue where deleting a snapshot does not remove the snapshot card from the workbench. However, the workbench might refresh before the deleted snapshot’s card is removed. During the refresh, you may notice a brief flashing. This is expected behavior and you can safely ignore the flashing.</td>
+<td></td>
+</tr>
+<tr>
+<td>2556754</td>
+<td>netq-agent installed on Cumulus Linux might slowly leak memory during sustained layer two network events at high scale.</td>
+<td>3.3.0-3.3.1</td>
+</tr>
+<tr>
+<td>2555197</td>
+<td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
+<td>3.3.0-3.3.1</td>
+</tr>
+<tr>
+<td>2553453</td>
+<td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
+<td>3.1.0-3.3.1</td>
+</tr>
+<tr>
+<td>2549319</td>
+<td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
+<td>3.0.0-3.3.1</td>
 </tr>
 </table>
 </tables>

@@ -1,5 +1,5 @@
 <tables>
-<table name="Open Issues in 3.1.0">
+<table name="Open Issues in 4.0.1">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -13,108 +13,200 @@
 <td>4.1.0-4.15.1</td>
 </tr>
 <tr>
-<td>2553453</td>
-<td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
-<td>3.1.0-3.3.1</td>
-<td>4.0.0-4.15.1</td>
+<td>2843640</td>
+<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
+<td>4.0.0-4.1.1</td>
+<td>4.2.0-4.15.1</td>
 </tr>
 <tr>
-<td>2551790</td>
-<td>CLI: Upgrade to NetQ 3.1.0 using the CLI fails due to an authentication issue. To work around this issue, run the {{netq bootstrap master upgrade}} command as usual, then use the Admin UI to complete the upgrade at _https://&lt;netq-appl-vm-hostname-or-ipaddr&gt;:8443_.</td>
-<td>3.1.0-3.1.1</td>
-<td>3.2.0-3.3.1</td>
+<td>2817749</td>
+<td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
+<td>4.0.1-4.2.0</td>
+<td>4.3.0-4.15.1</td>
 </tr>
 <tr>
-<td>2551641</td>
-<td>Infra: NetQ VM installation fails if the designated disk size is greater than 2TB. To work around this issue, specify the disk for cloud deployments to be between 256GB and 2TB SSD, and for on-premises deployments to be between 32 GB and 2TB.</td>
-<td>2.4.0-3.1.1</td>
-<td>3.2.0-3.3.1</td>
+<td>2815596</td>
+<td>The NetQ Cloud VM for KVM hypervisors installer and opta-check fail because the minimum disk requirements do not meet the default image settings. To work around this issue, increase the disk space from 32GB to 64GB before you run the {{netq bootstrap}} command.
+
+
+1. Check the size of the existing hard disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
+
+	cumulus@netq-401-cloud:~$ df -hm /
+	Filesystem     1M-blocks  Used Available Use% Mounted on
+	/dev/vda1          31583  1192     30375   4% /
+
+2. Shutdown the VM.
+
+3. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size appears in the virtual size field:
+
+
+	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
+	image: netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
+	file format: qcow2
+	virtual size: 32G (34359738368 bytes)
+	disk size: 1.3G
+	cluster_size: 65536
+	Format specific information:
+	    compat: 1.1
+	    lazy refcounts: false
+	    refcount bits: 16
+	    corrupt: false
+
+4. Add 32 GB to the image:
+
+	root@server:/var/lib/libvirt/images# qemu-img resize netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2 +32G
+	Image resized.
+
+5. Verify the change.
+
+	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
+	image: netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
+	file format: qcow2
+	virtual size: 64G (68719476736 bytes)
+	disk size: 1.3G
+	cluster_size: 65536
+	Format specific information:
+	    compat: 1.1
+	    lazy refcounts: false
+	    refcount bits: 16
+	    corrupt: false
+
+6. Start the VM and log back in.
+
+7. Run the following commands on the partition, referencing the filesystem /dev/vda1 obtained in step 1:
+
+
+	cumulus@netq-401-cloud:~$ sudo growpart /dev/vda 1
+	CHANGED: partition=1 start=227328 old: size=66881503 end=67108831 new: size=133990367,end=134217695
+
+	cumulus@netq-401-cloud:~$ sudo resize2fs /dev/vda1
+	resize2fs 1.44.1 (24-Mar-2018)
+	Filesystem at /dev/vda1 is mounted on /; on-line resizing required
+	old_desc_blocks = 4, new_desc_blocks = 8
+	The filesystem on /dev/vda1 is now 16748795 (4k) blocks long.
+
+8. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB:
+
+	cumulus@netq-401-cloud:~$ df -hm /
+	Filesystem     1M-blocks  Used Available Use% Mounted on
+	/dev/vda1          63341  1193     62132   2% /</td>
+<td>4.0.1-4.1.1</td>
+<td>4.2.0-4.15.1</td>
 </tr>
 <tr>
-<td>2551569</td>
-<td>CLI: When a proxy server is configured for NetQ Cloud access and lifecycle management (LCM) is enabled, the associated LCM CLI commands fail due to incorrect port specification. To work around this issue, configure the NetQ Collector to connect directly to NetQ Cloud without a proxy.</td>
-<td>3.1.0-3.1.1</td>
-<td>3.2.0-3.3.1</td>
+<td>2711101</td>
+<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
+To work around this issue, disable RoCE monitoring:
+
+1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
+        #- period: "60"
+        #  key: "roce"
+        #  isactive: true
+        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
+        #  parser: "local"
+
+2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
+        $ sudo rm /var/run/netq/netq_commands.yml
+
+3. Restart the NetQ agent:
+       $ netq config agent restart</td>
+<td>4.0.0-4.1.1</td>
+<td>4.2.0-4.15.1</td>
 </tr>
 <tr>
-<td>2549344</td>
-<td>UI: The lifecycle management feature does not present general alarm or info events; however, errors related to the upgrade process are reported within the NetQ UI.</td>
-<td>3.0.0-3.1.1</td>
-<td>3.2.0-3.3.1</td>
-</tr>
-<tr>
-<td>2549319</td>
-<td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
-<td>3.0.0-3.3.1</td>
-<td>4.0.0-4.15.1</td>
-</tr>
-<tr>
-<td>2549246</td>
-<td>NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s).</td>
-<td>2.4.0-3.2.1</td>
-<td>3.3.0-3.3.1</td>
+<td>2690469</td>
+<td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
+To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
+&apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
+<td>3.2.1-4.0.1</td>
+<td>4.1.0-4.15.1</td>
 </tr>
 </table>
-<table name="Fixed Issues in 3.1.0">
+<table name="Fixed Issues in 4.0.1">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+</tr>
+</table>
+<table name="Open Issues in 4.0.0">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+<th> Fixed </th>
+</tr>
+<tr>
+<td>2893000</td>
+<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
+<td>2.4.0-4.0.1</td>
+<td>4.1.0-4.15.1</td>
+</tr>
+<tr>
+<td>2843640</td>
+<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
+<td>4.0.0-4.1.1</td>
+<td>4.2.0-4.15.1</td>
+</tr>
+<tr>
+<td>2711101</td>
+<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
+To work around this issue, disable RoCE monitoring:
+
+1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
+        #- period: "60"
+        #  key: "roce"
+        #  isactive: true
+        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
+        #  parser: "local"
+
+2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
+        $ sudo rm /var/run/netq/netq_commands.yml
+
+3. Restart the NetQ agent:
+       $ netq config agent restart</td>
+<td>4.0.0-4.1.1</td>
+<td>4.2.0-4.15.1</td>
+</tr>
+<tr>
+<td>2690469</td>
+<td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
+To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
+&apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
+<td>3.2.1-4.0.1</td>
+<td>4.1.0-4.15.1</td>
+</tr>
+</table>
+<table name="Fixed Issues in 4.0.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
 </tr>
 <tr>
-<td>2549842</td>
-<td>Switch upgrade of Cumulus Linux in the lifecycle management feature fails when attempted by a user with a standard or sudo user role and custom password credentials. To work around this issue, upgrades should be performed by users with root or sudo user role and an SSH key. Optionally, upgrade using a root user role with custom password. </td>
-<td>3.0.0-3.0.1</td>
+<td>2611898</td>
+<td>Fixed an issue where deleting a snapshot does not remove the snapshot card from the workbench. However, the workbench might refresh before the deleted snapshot’s card is removed. During the refresh, you may notice a brief flashing. This is expected behavior and you can safely ignore the flashing.</td>
+<td></td>
 </tr>
 <tr>
-<td>2549787</td>
-<td>When upgrading to NetQ 3.0.0, if you are using NetQ Agent 2.3.1 or earlier and have MLAG configured, the MLAG service becomes unresponsive. To resolve this issue, upgrade your NetQ Agents to version 3.0.0.</td>
-<td>3.0.0-3.0.1</td>
+<td>2556754</td>
+<td>netq-agent installed on Cumulus Linux might slowly leak memory during sustained layer two network events at high scale.</td>
+<td>3.3.0-3.3.1</td>
 </tr>
 <tr>
-<td>2549721</td>
-<td>When installing NetQ on switches running in Cumulus Linux 3.7.x  with management VRF configured, the CLI and Agent server are configured as follows:
-
-netq config add cli server [ipaddr] vrf mgmt
-netq config restart cli
-
-netq config add agent server [ipaddr] vrf mgmt
-netq config restart agent
-
-This results in {{netqd}} running in both default and management VRF and the NetQ Agent running in default VRF. In this scenario, the NetQ Agent status is not reported correctly to the management VRF. To workaround this issue: 
-
-
-If you have management VRF configured, run the following commands:
-
-systemctl stop netqd.service
-systemctl disable netqd.service
-systemctl enable netqd@mgmt.service
-systemctl restart netqd@mgmt.service
-
-If you have default VRF configured, run the following commands:
-
-systemctl stop netqd@mgmt.service
-systemctl disable netqd@mgmt.service
-systemctl enable netqd.service
-systemctl restart netqd.service
-
-</td>
-<td>3.0.0-3.0.1</td>
+<td>2555197</td>
+<td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
+<td>3.3.0-3.3.1</td>
 </tr>
 <tr>
-<td>2549704</td>
-<td>When multiple premises are deployed and Cumulus Linux upgrades have been performed on switches using the lifecycle management feature, the Upgrade History card displays history for all premises rather than only those for the selected premises.</td>
-<td>3.0.0-3.0.1</td>
+<td>2553453</td>
+<td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
+<td>3.1.0-3.3.1</td>
 </tr>
 <tr>
-<td>2549682</td>
-<td>Performing an upgrade using the lifecycle management feature fails intermittently when SSH key switch access authorization is used. To work around this issue, use basic authentication or retry an upgrade job that uses SSH key authorization.</td>
-<td>3.0.0-3.0.1</td>
-</tr>
-<tr>
-<td>2547642</td>
-<td>Admin UI: If the Master Installation phase fails during NetQ installation, refreshing the page causes the error log to be lost. On failure, download the error log, then run {{netq bootstrap reset}} followed by {{netq bootstrap master interface}} on the node before restarting the installation process.</td>
-<td>2.4.1-3.0.1</td>
+<td>2549319</td>
+<td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
+<td>3.0.0-3.3.1</td>
 </tr>
 </table>
 </tables>

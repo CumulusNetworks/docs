@@ -106,8 +106,14 @@ def get_xls_files():
     '''
     Generate XLS files from docraptor.
     The process is simpler than PDF process so it is a self-contained method that directly downloads and writes the xls files.
+    Also excludes EoS netq directories that are still in the release json but we're not publishing any longer.
     '''
+    excluded_dirs = {"cumulus-netq-24", "cumulus-netq-30", "cumulus-netq-31", "cumulus-netq-32", "cumulus-netq-33", "cumulus-netq-40", "cumulus-netq-41", "cumulus-netq-42", "cumulus-netq-43", "cumulus-netq-44", "cumulus-netq-45", "cumulus-netq-46", "cumulus-netq-47"}
     dir_list = get_dir_list()
+    
+    for directory in dir_list:
+        if directory in excluded_dirs:
+            continue 
     for directory in dir_list:
         for file in os.listdir("content/" + directory):
             if file.endswith(".xml"):

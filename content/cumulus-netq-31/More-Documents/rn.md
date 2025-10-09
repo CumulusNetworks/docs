@@ -1,7 +1,7 @@
 ---
-title: Cumulus NetQ 3.1 Release Notes
-author: Cumulus Networks
-weight: 652
+title: NVIDIA Cumulus NetQ 3.1 Release Notes
+author: NVIDIA
+weight: 30
 product: Cumulus NetQ
 version: "3.1"
 toc: 1

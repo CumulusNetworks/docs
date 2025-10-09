@@ -159,13 +159,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4546685</td>
-<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
-</td>
-<td>5.8.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4546389</td>
 <td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
 <td>5.13.0-5.13.1</td>
@@ -1405,13 +1398,6 @@ This issue can occur in the following conditions:
 &lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
 To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
 <td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4546685</td>
-<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
-</td>
-<td>5.8.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

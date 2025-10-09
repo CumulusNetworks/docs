@@ -9,17 +9,19 @@ Follow these steps to set up and configure your VMs in a cluster of servers runn
 
 ## System Requirements
 
-NetQ NVLink 4.15.0 supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
+NetQ NVLink 4.16.0 supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
 
 | Resource | Minimum Requirements |
 | :--- | :--- |
 | Processor | 48 virtual CPUs |
 | Memory | 512GB RAM |
-| Local disk storage | 3.2TB SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br> (Note: This must be an SSD; other storage options can lead to system instability and are not supported.)|
+| Local disk storage | 3.2TB NVMe |
 | Network interface speed | 10 Gbps NIC |
 | Hypervisor | KVM/QCOW (QEMU Copy on Write) image for servers running Ubuntu;<br> VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux or Ubuntu | 
 
 ## Port Requirements
+
+<!--removed Cassandra, but need to confirm and remove additional ports-->
 
 Confirm that the required ports are open for communication.
 
@@ -51,9 +53,6 @@ Additionally, for internal cluster communication, you must open these ports:
 |2380|	TCP|	etcd|
 |7072|	TCP|	Kafka JMX monitoring|
 |9092|	TCP|	Kafka client|
-|7071|	TCP|	Cassandra JMX monitoring|
-|7000|	TCP|	Cassandra cluster communication|
-|9042|	TCP|	Cassandra client|
 |7073|	TCP|	Zookeeper JMX monitoring|
 |2888|	TCP|	Zookeeper cluster communication|
 |3888|	TCP|	Zookeeper cluster communication|
@@ -76,6 +75,8 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 {{%/notice%}}
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
+
+<!--need to create and update shortcode for 4.16; see confluence-->
 
  {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.15">}}
 
@@ -123,8 +124,13 @@ nvidia@<ipaddr>'s password:
 Last login: Thu Dec  3 21:35:43 2024 from <local-ipaddr>
 nvidia@ubuntu:~$
 ```
+4. Verify that the master node is ready for installation. Fix any errors before installing the NetQ software.
 
-4. Change the hostname for the VM from the default value.
+```
+nvidia@hostname:~$ sudo opta-check-scale
+```
+
+5. Change the hostname for the VM from the default value.
 
 The default hostname for the NetQ virtual machines is *ubuntu*. Change the hostname to fit your naming conventions while meeting Internet and Kubernetes naming standards.
 
@@ -145,60 +151,31 @@ Add the same `NEW_HOSTNAME` value to **/etc/hosts** on your VM for the localhost
 127.0.0.1 localhost NEW_HOSTNAME
 ```
 
-5. Open your hypervisor and set up the VM for the additional nodes in the same manner as for the master node.
+6. Open your hypervisor and set up the VM for the additional nodes in the same manner as for the master node.
 
+7. Run the following command on each node to verify that the node is ready for a NetQ software installation. Fix any errors indicated before installing the software.
 
-6. Install and activate the NetQ software using the CLI.
+```
+nvidia@hostname:~$ sudo opta-check-scale
+```
 
-Run the following command on your *master* node to initialize the cluster. Copy the output of the command which includes the SSH key. You will use it in the next step.
+8. Install and activate the NetQ software using the CLI.
+
+Run the following command on your *master node* to initialize the cluster and create the `netq-admin` user. Copy the output of the command which includes the SSH key. You will use it in the next step. 
 
 ```
 nvidia@<hostname>:~$ netq install cluster master-init
     Please run the following command on all worker nodes:
     netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVM3dQN9MWTU1a
 ```
-7. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
+9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
-8. Run the installation command on your master node with the mandatory configuration options:
-
-```
-nvidia@<hostname>:~$ netq install nvl servers 10.1.0.100 10.1.0.101 10.1.0.102 bundle /mnt/installables/NetQ-4.15.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password>
-```
-
-Optionally, include an alertmanager webhook URL with the `alertmanager-webhook-url` option:
+10. Create a JSON template using the installation command for your deployment model. For a 3-node cluster, run the `netq install nvl config generate` command on your master node to generate a template for the cluster configuration JSON file: 
 
 ```
-nvidia@<hostname>:~$ netq install nvl servers 10.1.0.100 10.1.0.101 10.1.0.102 bundle /mnt/installables/NetQ-4.15.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> alertmanager-webhook-url http://alertmanager.example.com/webhook
+nvidia@netq-server:~$ netq install nvl config generate
+2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/nvl-cluster-config.json
 ```
-
-<div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
-
-
-<!-- NOT OUTLINING JSON METHOD FOR NOW. 
-
-8. Create a JSON template using the installation command for your deployment model.
-
-{{< tabs "Tab179 ">}}
-
-{{< tab "3-Node Cluster">}}
-
-For a 3-node cluster, run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file:
-
-```
-nvidia@netq-server:~$ netq install cluster config generate
-2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
-```
-{{< /tab >}}
-{{< tab "5-Node Cluster">}}
-For a 5-node cluster, run the `netq install cluster config generate workers 2` command on your master node to generate a cluster configuration JSON file with 2 additional `worker-nodes` objects:
-
-```
-nvidia@netq-server:~$ netq install cluster config generate workers 2
-2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 11. Edit the cluster configuration JSON file with the values for each attribute.
 
@@ -206,150 +183,93 @@ nvidia@netq-server:~$ netq install cluster config generate workers 2
 
 {{< tab "Default JSON Template">}}
 
-The following example includes the `worker-nodes` objects for a 5-node deployment. The JSON template for the 3-node deployment will not include `worker-nodes`.  
-
 ``` 
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 {
         "version": "v2.0",
         "interface": "<INPUT>",
         "cluster-vip": "<INPUT>",
-        "master-ip": "<INPUT>",
         "is-ipv6": false,
-        "ha-nodes": [
+        "servers": [
                 {
                         "ip": "<INPUT>"
+                        "description": "<SERVER1>"
                 },
                 {
                         "ip": "<INPUT>"
-                }
-        ]
-        "worker-nodes": [
-                {
-                        "ip": "<INPUT>"
+                        "description": "<SERVER2>"
                 },
-                {
+                                {
                         "ip": "<INPUT>"
-                }
-        ]
+                        "description": "<SERVER3>"
+                },
+                ],
+        "shared-cluster-install": false,
+        "storage-path": "/var/lib/longhorn",
+        "alertmanager_webhook_url": "<INPUT>"
 }
 ```
-
-
 
 | Attribute | Description |
 |----- | ----------- |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
-| `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
-| `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
+| `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `ha-nodes` | The IP addresses of the two HA nodes in your cluster. |
-| `worker-nodes` | The IP addresses of the two worker nodes (for 5-node deployments). |
-
-{{%notice note%}}
-
-NetQ uses the 10.244.0.0/16 (`pod-ip-range`) and 10.96.0.0/16 (`service-ip-range`) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the cluster configuration JSON file:
-
-```
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
-{
-        "version": "v2.0",
-        "interface": "eth0",
-        "cluster-vip": "10.176.235.101",
-        "master-ip": "10.176.235.50",
-        "is-ipv6": false,
-        "pod-ip-range": "192.168.0.1/32",
-	"service-ip-range": "172.168.0.1/32",
-        "ha-nodes": [
-                {
-                        "ip": "10.176.235.51"
-                },
-                {
-                        "ip": "10.176.235.52"
-                }
-        ]
-}
-```
-
-{{%/notice%}}
+| `servers`, `ip` | The IP addresses of the three nodes in your cluster. |
+| `alertmanager_webhook_url` |The URL for the Alertmanager webhook. |
 
 {{< /tab >}}
 {{< tab "Completed JSON Example ">}}
 
-The following example configures a 3-node cluster installation with the master IP of 10.176.235.50, and the HA nodes 10.176.235.51 and 10.176.235.52: 
-``` 
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
-{
-        "version": "v2.0",
-        "interface": "eth0",
-        "cluster-vip": "10.176.235.101",
-        "master-ip": "10.176.235.50",
-        "is-ipv6": false,
-        "ha-nodes": [
-                {
-                        "ip": "10.176.235.51"
-                },
-                {
-                        "ip": "10.176.235.52"
-                }
-        ]
-}
-```
-The following example configures a 5-node cluster installation with a master node, two HA nodes, and two worker nodes:
+The following example configures a 3-node cluster installation: 
 
-```
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
+``` 
+nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 {
         "version": "v2.0",
         "interface": "eth0",
         "cluster-vip": "10.176.235.101",
-        "master-ip": "10.176.235.50",
         "is-ipv6": false,
-        "ha-nodes": [
+        "servers": [
                 {
                         "ip": "10.176.235.51"
+                        "description": "Server1"
                 },
                 {
                         "ip": "10.176.235.52"
-                }
-        ]
-        "worker-nodes": [
-                {
-                        "ip": "10.176.235.53"
+                        "description": "Server2"
                 },
-                {
-                        "ip": "10.176.235.54"
-                }
-        ]
+                                {
+                        "ip": "10.176.235.53"
+                        "description": "Server3"
+                },
+                ],
+        "shared-cluster-install": false,
+        "storage-path": "/var/lib/longhorn",
+        "alertmanager_webhook_url": "http://alert.example.com"
 }
 ```
 
 | Attribute | Description |
 |----- | ----------- |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
-| `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
-| `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
+| `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `ha-nodes` | The IP addresses of the two HA nodes in your cluster. |
-| `worker-nodes` | The IP addresses of the two worker nodes (for 5-node deployments). |
+| `servers`, `ip` | The IP addresses of the three nodes in your cluster. |
+| `alertmanager_webhook_url` |The URL for the Alertmanager webhook. |
 
 {{< /tab >}}
 {{< /tabs >}}
 
 
-12. Run the installation command on your master node. Follow the steps under _Restore Data and New Install_ if you have a {{<link title="Back Up and Restore NetQ" text="backup data tarball">}} from a previous NetQ installation to restore.
-
-{{< tabs "TabID41 ">}}
-{{< tab "New Install">}}
-
-Run the following command on your master node, using the JSON configuration file created in step 11:
+12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step. Specify the passwords for the read-write user and the read-only user in the `rw-password` and r`o-password` fields, respectively. The passwords must each include a minimum of eight characters.
 
 ```
-nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.15.0.tgz /tmp/cluster-install-config.json
+nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-4.16.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
 ```
--->
+<div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
-
+<!--need to check with Rohith about this section-->
 ## Verify Installation Status
 
 To view the status of the installation, use the `netq show status [verbose]` command. The following example shows a successful 3-node installation:

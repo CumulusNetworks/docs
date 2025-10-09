@@ -161,7 +161,7 @@ nvidia@hostname:~$ sudo opta-check-scale
 
 8. Install and activate the NetQ software using the CLI.
 
-Run the following command on your *master node* to initialize the cluster and create the `netq-admin` user. Copy the output of the command which includes the SSH key. You will use it in the next step. 
+Run the following command on your *master node* to initialize the cluster. Copy the output of the command which includes the SSH key. You will use it in the next step. 
 
 ```
 nvidia@<hostname>:~$ netq install cluster master-init
@@ -170,7 +170,7 @@ nvidia@<hostname>:~$ netq install cluster master-init
 ```
 9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
-10. Create a JSON template using the installation command for your deployment model. For a 3-node cluster, run the `netq install nvl config generate` command on your master node to generate a template for the cluster configuration JSON file: 
+10. Create a JSON template using the installation command for your deployment model. Run the `netq install nvl config generate` command on your master node to generate a template for the cluster configuration JSON file: 
 
 ```
 nvidia@netq-server:~$ netq install nvl config generate
@@ -215,7 +215,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `servers`, `ip` | The IP addresses of the three nodes in your cluster. |
+| `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
 | `alertmanager_webhook_url` |The URL for the Alertmanager webhook. |
 
 {{< /tab >}}

@@ -9,7 +9,7 @@ Follow these steps to set up and configure your VMs in a cluster of servers runn
 
 ## System Requirements
 
-NetQ NVLink 4.16.0 supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
+NetQ NVLink 4.15.0 supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
 
 | Resource | Minimum Requirements |
 | :--- | :--- |
@@ -261,13 +261,23 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 {{< /tab >}}
 {{< /tabs >}}
 
+12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step. Specify the passwords for the read-write user and the read-only user in the `rw-password` and `ro-password` fields, respectively. The passwords must each include a minimum of eight characters.
 
-12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step. Specify the passwords for the read-write user and the read-only user in the `rw-password` and r`o-password` fields, respectively. The passwords must each include a minimum of eight characters.
+Follow the steps under _Restore Data and New Install_ if you have a {{<link title="Back Up and Restore NetQ" text="backup data tarball">}} from a previous NetQ installation to restore.
+
+{{< tabs “TabID268 “>}}
+{{< tab “New Install”>}}
 
 ```
-nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-4.16.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
+nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-4.15.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
+
+{{< /tab >}}
+{{< tab “Restore Data and New Install”>}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 <!--need to check with Rohith about this section-->
 ## Verify Installation Status

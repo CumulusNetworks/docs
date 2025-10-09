@@ -233,20 +233,20 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
         "servers": [
                 {
                         "ip": "10.176.235.51"
-                        "description": "Server1"
+                        "description": "MasterIP"
                 },
                 {
                         "ip": "10.176.235.52"
-                        "description": "Server2"
+                        "description": "Worker1"
                 },
                                 {
                         "ip": "10.176.235.53"
-                        "description": "Server3"
+                        "description": "Worker2"
                 },
                 ],
         "shared-cluster-install": false,
         "storage-path": "/var/lib/longhorn",
-        "alertmanager_webhook_url": "http://alert.example.com"
+        "alertmanager_webhook_url": "http://master_ip:5029/webhook"
 }
 ```
 
@@ -274,7 +274,10 @@ nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-4.15.0.tgz k
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
 {{< /tab >}}
+
 {{< tab “Restore Data and New Install”>}}
+
+Restore your data...
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -1,5 +1,5 @@
 <tables>
-<table name="Open Issues in 4.0.1">
+<table name="Open Issues in 3.3.1">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -13,200 +13,490 @@
 <td>4.1.0-4.15.1</td>
 </tr>
 <tr>
-<td>2843640</td>
-<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
-</tr>
-<tr>
-<td>2817749</td>
-<td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
-<td>4.0.1-4.2.0</td>
-<td>4.3.0-4.15.1</td>
-</tr>
-<tr>
-<td>2815596</td>
-<td>The NetQ Cloud VM for KVM hypervisors installer and opta-check fail because the minimum disk requirements do not meet the default image settings. To work around this issue, increase the disk space from 32GB to 64GB before you run the {{netq bootstrap}} command.
-
-
-1. Check the size of the existing hard disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
-
-	cumulus@netq-401-cloud:~$ df -hm /
-	Filesystem     1M-blocks  Used Available Use% Mounted on
-	/dev/vda1          31583  1192     30375   4% /
-
-2. Shutdown the VM.
-
-3. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size appears in the virtual size field:
-
-
-	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	image: netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	file format: qcow2
-	virtual size: 32G (34359738368 bytes)
-	disk size: 1.3G
-	cluster_size: 65536
-	Format specific information:
-	    compat: 1.1
-	    lazy refcounts: false
-	    refcount bits: 16
-	    corrupt: false
-
-4. Add 32 GB to the image:
-
-	root@server:/var/lib/libvirt/images# qemu-img resize netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2 +32G
-	Image resized.
-
-5. Verify the change.
-
-	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	image: netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
-	file format: qcow2
-	virtual size: 64G (68719476736 bytes)
-	disk size: 1.3G
-	cluster_size: 65536
-	Format specific information:
-	    compat: 1.1
-	    lazy refcounts: false
-	    refcount bits: 16
-	    corrupt: false
-
-6. Start the VM and log back in.
-
-7. Run the following commands on the partition, referencing the filesystem /dev/vda1 obtained in step 1:
-
-
-	cumulus@netq-401-cloud:~$ sudo growpart /dev/vda 1
-	CHANGED: partition=1 start=227328 old: size=66881503 end=67108831 new: size=133990367,end=134217695
-
-	cumulus@netq-401-cloud:~$ sudo resize2fs /dev/vda1
-	resize2fs 1.44.1 (24-Mar-2018)
-	Filesystem at /dev/vda1 is mounted on /; on-line resizing required
-	old_desc_blocks = 4, new_desc_blocks = 8
-	The filesystem on /dev/vda1 is now 16748795 (4k) blocks long.
-
-8. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB:
-
-	cumulus@netq-401-cloud:~$ df -hm /
-	Filesystem     1M-blocks  Used Available Use% Mounted on
-	/dev/vda1          63341  1193     62132   2% /</td>
-<td>4.0.1-4.1.1</td>
-<td>4.2.0-4.15.1</td>
-</tr>
-<tr>
-<td>2711101</td>
-<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
-To work around this issue, disable RoCE monitoring:
-
-1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
-        #- period: "60"
-        #  key: "roce"
-        #  isactive: true
-        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
-        #  parser: "local"
-
-2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
-        $ sudo rm /var/run/netq/netq_commands.yml
-
-3. Restart the NetQ agent:
-       $ netq config agent restart</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
-</tr>
-<tr>
 <td>2690469</td>
 <td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
 To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
 &apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
 <td>3.2.1-4.0.1</td>
 <td>4.1.0-4.15.1</td>
-</tr>
-</table>
-<table name="Fixed Issues in 4.0.1">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-</tr>
-</table>
-<table name="Open Issues in 4.0.0">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-<th> Fixed </th>
-</tr>
-<tr>
-<td>2893000</td>
-<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
-<td>2.4.0-4.0.1</td>
-<td>4.1.0-4.15.1</td>
-</tr>
-<tr>
-<td>2843640</td>
-<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
-</tr>
-<tr>
-<td>2711101</td>
-<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
-To work around this issue, disable RoCE monitoring:
-
-1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
-        #- period: "60"
-        #  key: "roce"
-        #  isactive: true
-        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
-        #  parser: "local"
-
-2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
-        $ sudo rm /var/run/netq/netq_commands.yml
-
-3. Restart the NetQ agent:
-       $ netq config agent restart</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.15.1</td>
-</tr>
-<tr>
-<td>2690469</td>
-<td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
-To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
-&apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
-<td>3.2.1-4.0.1</td>
-<td>4.1.0-4.15.1</td>
-</tr>
-</table>
-<table name="Fixed Issues in 4.0.0">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-</tr>
-<tr>
-<td>2611898</td>
-<td>Fixed an issue where deleting a snapshot does not remove the snapshot card from the workbench. However, the workbench might refresh before the deleted snapshot’s card is removed. During the refresh, you may notice a brief flashing. This is expected behavior and you can safely ignore the flashing.</td>
-<td></td>
 </tr>
 <tr>
 <td>2556754</td>
 <td>netq-agent installed on Cumulus Linux might slowly leak memory during sustained layer two network events at high scale.</td>
 <td>3.3.0-3.3.1</td>
+<td>4.0.0-4.15.1</td>
 </tr>
 <tr>
 <td>2555197</td>
 <td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
 <td>3.3.0-3.3.1</td>
+<td>4.0.0-4.15.1</td>
 </tr>
 <tr>
 <td>2553453</td>
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>
+<td>4.0.0-4.15.1</td>
 </tr>
 <tr>
 <td>2549319</td>
 <td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
 <td>3.0.0-3.3.1</td>
+<td>4.0.0-4.15.1</td>
+</tr>
+</table>
+<table name="Fixed Issues in 3.3.1">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+</tr>
+<tr>
+<td>2556545</td>
+<td>NetQ Agent: When upgrading to NetQ 3.3.0, sometimes the NetQ Agent fails to complete the upgrade on Broadcom-based swtiches. To work around this issue, update the following file on the switch where the NetQ Agent is running:
+
+Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.
+
+Copy and append the following to the file:
+ 
+- service: "inventory"
+    commands:
+      - key: "os-release"
+        command: "cat /etc/os-release"
+        isactive: true
+        parser: "local"
+      - key: "eprom"
+        command: "/usr/cumulus/bin/decode-syseeprom -j"
+        isactive: true
+        parser: "local"
+      - key: "lscpu"
+        command: "/usr/bin/lscpu"
+        isactive: true
+        parser: "local"
+      - key: "meminfo"
+        command: "cat /proc/meminfo"
+        isactive: true
+        parser: "local"
+      - key: "lsblk"
+        command: "lsblk -d -n -o name,size,type,vendor,tran,rev,model"
+        isactive: true
+        parser: "local"
+      - key: "dmicode"
+        command: "dmidecode -t 17"
+        isactive: true
+        parser: "local"
+      - key: "is-opta"
+        command: "cat /etc/app-release"
+        isactive: true
+        parser: "local"
+
+Remove the existing generated command file.
+
+cumulus@switch:~$ rm /var/run/netq/netq-commands.yml
+
+Restart the NetQ Agent.
+
+cumulus@switch:~$ netq config restart agent
+</td>
+<td>3.3.0</td>
+</tr>
+<tr>
+<td>2556434</td>
+<td>NetQ UI: When switches are running NetQ but hosts are not, the topology does not display the spine and leaf layers as separate tiers.</td>
+<td>3.3.0</td>
+</tr>
+<tr>
+<td>2556275</td>
+<td>NetQ UI: The full-screen BGP Validation card for the default validation can become unresponsive when a very large number of sessions or errors are present.</td>
+<td>3.3.0</td>
+</tr>
+<tr>
+<td>2556268</td>
+<td>NetQ UI: When assigning a switch configuration profile to a switch using the lifecycle management, you cannot save the per-switch variable data. This prevents you from applying the switch configuration. Upgrade to NetQ 3.3.1 to take advantage of this feature.</td>
+<td>3.3.0</td>
+</tr>
+<tr>
+<td>2556227</td>
+<td>Admin UI: For cloud deployments, clicking the _Open NetQ_ link at the bottom of the Admin UI NetQ Health page returns an error _default backend - 404_ as it attempts to open the NetQ UI on the on-site NetQ Cloud Appliance or VM running the NetQ Collector software. In cloud deployments, the NetQ UI is run in the Cloud rather than locally, thus causing the error. To open the NetQ UI and view your data, enter _https://netq.cumulusnetworks.com/_ into the address bar of your browser.</td>
+<td>3.3.0</td>
+</tr>
+<tr>
+<td>2556205</td>
+<td>NetQ CLI: User cannot remove a notification channel when threshold-based event rules are configured.</td>
+<td>3.2.1-3.3.0</td>
+</tr>
+<tr>
+<td>2556192</td>
+<td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:
+In a terminal window, open the database shell (cqlsh).
+
+$ CASSANDRA_POD=&apos;kubectl get pods | grep cassandra | cut -f1 -d" "&apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
+
+Display the premises table.
+
+cqlsh&gt; select opid,name,namespace from master.premises ;
+
+The resulting output would be similar to this, with new premises having an empty namespace:
+
+ opid  | name  | namespace
+-------+-------+-----------
+ 20001 | site1 |      null
+     0 | OPID0 |      null
+ 20002 | site2 |          
+ 20000 | site0 |      null
+ 20003 | site3 |          
+(5 rows)
+
+For each new premises, insert a _null_ value into the database to resolve the issue. For example the new premises _site3_ has an empty namespace value, run following query against its opid _20003_ to change the value.
+
+cqlsh&gt; insert into master.premises (opid,namespace) values (20003,null);
+
+Verify the new premises now have null values in the database.
+
+cqlsh&gt; select opid,name,namespace from master.premises ;
+ opid  | name  | namespace
+-------+-------+-----------
+ 20001 | site1 |      null
+     0 | OPID0 |      null
+ 20002 | site2 |      null     
+ 20000 | site0 |      null
+ 20003 | site3 |      null
+(5 rows)
+</td>
+<td>3.3.0</td>
+</tr>
+<tr>
+<td>2556117</td>
+<td>NetQ Infra: The NetQ Agent fails to start when switch is running Cumulus Linux version 4.1.1 or 4.2.0. To work around this issue, run the following on each switch:
+
+For CL 4.1.1, rename the WJH types file to the 4.3.3260 version:
+
+cumulus@switch:~$ sudo mv /usr/lib/cumulus/wjh/wjh_types_4.4.3260.py /usr/lib/cumulus/wjh/wjh_types_4.3.3260.py 
+
+Then restart the NetQ Agent:
+
+cumulus@switch:~$ netq config restart agent
+
+For CL 4.2.0, edit the following line in the /usr/sbin/netq-agent-prestart script to change the version from 4.4.095 to 4.4.0952:
+
+elif [ $sx_sdk_ver == “4.4.0952” ] || [  $sx_sdk_ver == “4.4.1624” ] || [ $sx_sdk_ver == “4.3.3260” ]; 
+
+Then restart the NetQ Agent:
+
+cumulus@switch:~$ netq config restart agent
+</td>
+<td>3.3.0</td>
+</tr>
+<tr>
+<td>2556007</td>
+<td>NetQ API: Several APIs are presenting the following error when viewed in Swagger UI:
+
+Fetch errorundefined https://api.prod2.netq.cumulusnetworks.com/netq/telemetry/v1/api-docs/events/swagger.json
+
+To correct this presentation issue:
+Open the netqui YAML file for editing.
+
+kubectl edit netquis netqui
+
+Locate the _misc_ section. For example:
+
+misc:
+  cassandraReconnectLogOnly: "true"
+  clusterName: netq
+  forgotPasswordLink: /link/to/set/password
+  ...
+  smtpSSL: "true"
+  tlsEnabled: "true"
+
+Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
+
+misc:
+  cassandraReconnectLogOnly: "true"
+  clusterName: netq
+  forgotPasswordLink: /link/to/set/password
+  ...
+  smtpSSL: "true"
+  tlsEnabled: "true"
+  document_namespace: "default"
+
+Save the file.</td>
+<td>3.3.0</td>
+</tr>
+<tr>
+<td>2555848</td>
+<td>NetQ Infra: It is important to plan your upgrade to NetQ 3.3.0 because the NetQ Appliance or VM becomes unavailable for approximately an hour during the process. No data is lost in the process.</td>
+<td>3.3.0</td>
+</tr>
+<tr>
+<td>2555617</td>
+<td>NetQ Infra: Upgrading the NetQ Agent before upgrading the NetQ CLI for version 3.3.0 causes the NetQ CLI to fail the upgrade. To work around this issue, upgrade the NetQ CLI first, then follow with the NetQ Agent upgrade.</td>
+<td>3.3.0</td>
+</tr>
+<tr>
+<td>2555587</td>
+<td>NetQ UI: Switches with LLDP enabled only on eth0 are not shown on the topology diagram.</td>
+<td>3.3.0</td>
+</tr>
+</table>
+<table name="Open Issues in 3.3.0">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+<th> Fixed </th>
+</tr>
+<tr>
+<td>2893000</td>
+<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
+<td>2.4.0-4.0.1</td>
+<td>4.1.0-4.15.1</td>
+</tr>
+<tr>
+<td>2690469</td>
+<td>While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage.
+To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
+&apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
+<td>3.2.1-4.0.1</td>
+<td>4.1.0-4.15.1</td>
+</tr>
+<tr>
+<td>2556754</td>
+<td>netq-agent installed on Cumulus Linux might slowly leak memory during sustained layer two network events at high scale.</td>
+<td>3.3.0-3.3.1</td>
+<td>4.0.0-4.15.1</td>
+</tr>
+<tr>
+<td>2556545</td>
+<td>NetQ Agent: When upgrading to NetQ 3.3.0, sometimes the NetQ Agent fails to complete the upgrade on Broadcom-based swtiches. To work around this issue, update the following file on the switch where the NetQ Agent is running:
+
+Open the _armel-netq-commands.yml_ file in the _/etc/netq/commands/_ directory for editing.
+
+Copy and append the following to the file:
+ 
+- service: "inventory"
+    commands:
+      - key: "os-release"
+        command: "cat /etc/os-release"
+        isactive: true
+        parser: "local"
+      - key: "eprom"
+        command: "/usr/cumulus/bin/decode-syseeprom -j"
+        isactive: true
+        parser: "local"
+      - key: "lscpu"
+        command: "/usr/bin/lscpu"
+        isactive: true
+        parser: "local"
+      - key: "meminfo"
+        command: "cat /proc/meminfo"
+        isactive: true
+        parser: "local"
+      - key: "lsblk"
+        command: "lsblk -d -n -o name,size,type,vendor,tran,rev,model"
+        isactive: true
+        parser: "local"
+      - key: "dmicode"
+        command: "dmidecode -t 17"
+        isactive: true
+        parser: "local"
+      - key: "is-opta"
+        command: "cat /etc/app-release"
+        isactive: true
+        parser: "local"
+
+Remove the existing generated command file.
+
+cumulus@switch:~$ rm /var/run/netq/netq-commands.yml
+
+Restart the NetQ Agent.
+
+cumulus@switch:~$ netq config restart agent
+</td>
+<td>3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2556434</td>
+<td>NetQ UI: When switches are running NetQ but hosts are not, the topology does not display the spine and leaf layers as separate tiers.</td>
+<td>3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2556275</td>
+<td>NetQ UI: The full-screen BGP Validation card for the default validation can become unresponsive when a very large number of sessions or errors are present.</td>
+<td>3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2556268</td>
+<td>NetQ UI: When assigning a switch configuration profile to a switch using the lifecycle management, you cannot save the per-switch variable data. This prevents you from applying the switch configuration. Upgrade to NetQ 3.3.1 to take advantage of this feature.</td>
+<td>3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2556227</td>
+<td>Admin UI: For cloud deployments, clicking the _Open NetQ_ link at the bottom of the Admin UI NetQ Health page returns an error _default backend - 404_ as it attempts to open the NetQ UI on the on-site NetQ Cloud Appliance or VM running the NetQ Collector software. In cloud deployments, the NetQ UI is run in the Cloud rather than locally, thus causing the error. To open the NetQ UI and view your data, enter _https://netq.cumulusnetworks.com/_ into the address bar of your browser.</td>
+<td>3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2556205</td>
+<td>NetQ CLI: User cannot remove a notification channel when threshold-based event rules are configured.</td>
+<td>3.2.1-3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2556192</td>
+<td>NetQ UI: In multi-site on-premises deployments, when a new premises (created using the Premises card) is selected from the dropdown in the application header, the NetQ UI becomes unresponsive for many navigation tabs. To work around this issue, manually update the database as follows:
+In a terminal window, open the database shell (cqlsh).
+
+$ CASSANDRA_POD=&apos;kubectl get pods | grep cassandra | cut -f1 -d" "&apos; ; kubectl exec -it $CASSANDRA_POD -- cqlsh
+
+Display the premises table.
+
+cqlsh&gt; select opid,name,namespace from master.premises ;
+
+The resulting output would be similar to this, with new premises having an empty namespace:
+
+ opid  | name  | namespace
+-------+-------+-----------
+ 20001 | site1 |      null
+     0 | OPID0 |      null
+ 20002 | site2 |          
+ 20000 | site0 |      null
+ 20003 | site3 |          
+(5 rows)
+
+For each new premises, insert a _null_ value into the database to resolve the issue. For example the new premises _site3_ has an empty namespace value, run following query against its opid _20003_ to change the value.
+
+cqlsh&gt; insert into master.premises (opid,namespace) values (20003,null);
+
+Verify the new premises now have null values in the database.
+
+cqlsh&gt; select opid,name,namespace from master.premises ;
+ opid  | name  | namespace
+-------+-------+-----------
+ 20001 | site1 |      null
+     0 | OPID0 |      null
+ 20002 | site2 |      null     
+ 20000 | site0 |      null
+ 20003 | site3 |      null
+(5 rows)
+</td>
+<td>3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2556117</td>
+<td>NetQ Infra: The NetQ Agent fails to start when switch is running Cumulus Linux version 4.1.1 or 4.2.0. To work around this issue, run the following on each switch:
+
+For CL 4.1.1, rename the WJH types file to the 4.3.3260 version:
+
+cumulus@switch:~$ sudo mv /usr/lib/cumulus/wjh/wjh_types_4.4.3260.py /usr/lib/cumulus/wjh/wjh_types_4.3.3260.py 
+
+Then restart the NetQ Agent:
+
+cumulus@switch:~$ netq config restart agent
+
+For CL 4.2.0, edit the following line in the /usr/sbin/netq-agent-prestart script to change the version from 4.4.095 to 4.4.0952:
+
+elif [ $sx_sdk_ver == “4.4.0952” ] || [  $sx_sdk_ver == “4.4.1624” ] || [ $sx_sdk_ver == “4.3.3260” ]; 
+
+Then restart the NetQ Agent:
+
+cumulus@switch:~$ netq config restart agent
+</td>
+<td>3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2556007</td>
+<td>NetQ API: Several APIs are presenting the following error when viewed in Swagger UI:
+
+Fetch errorundefined https://api.prod2.netq.cumulusnetworks.com/netq/telemetry/v1/api-docs/events/swagger.json
+
+To correct this presentation issue:
+Open the netqui YAML file for editing.
+
+kubectl edit netquis netqui
+
+Locate the _misc_ section. For example:
+
+misc:
+  cassandraReconnectLogOnly: "true"
+  clusterName: netq
+  forgotPasswordLink: /link/to/set/password
+  ...
+  smtpSSL: "true"
+  tlsEnabled: "true"
+
+Add the {{document_namespace}} parameter below the {{tlsEnabled}} parameter.
+
+misc:
+  cassandraReconnectLogOnly: "true"
+  clusterName: netq
+  forgotPasswordLink: /link/to/set/password
+  ...
+  smtpSSL: "true"
+  tlsEnabled: "true"
+  document_namespace: "default"
+
+Save the file.</td>
+<td>3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2555848</td>
+<td>NetQ Infra: It is important to plan your upgrade to NetQ 3.3.0 because the NetQ Appliance or VM becomes unavailable for approximately an hour during the process. No data is lost in the process.</td>
+<td>3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2555617</td>
+<td>NetQ Infra: Upgrading the NetQ Agent before upgrading the NetQ CLI for version 3.3.0 causes the NetQ CLI to fail the upgrade. To work around this issue, upgrade the NetQ CLI first, then follow with the NetQ Agent upgrade.</td>
+<td>3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2555587</td>
+<td>NetQ UI: Switches with LLDP enabled only on eth0 are not shown on the topology diagram.</td>
+<td>3.3.0</td>
+<td>3.3.1</td>
+</tr>
+<tr>
+<td>2555197</td>
+<td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
+<td>3.3.0-3.3.1</td>
+<td>4.0.0-4.15.1</td>
+</tr>
+<tr>
+<td>2553453</td>
+<td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
+<td>3.1.0-3.3.1</td>
+<td>4.0.0-4.15.1</td>
+</tr>
+<tr>
+<td>2549319</td>
+<td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
+<td>3.0.0-3.3.1</td>
+<td>4.0.0-4.15.1</td>
+</tr>
+</table>
+<table name="Fixed Issues in 3.3.0">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+</tr>
+<tr>
+<td>2556006</td>
+<td>NetQ Infra: Customers with cloud deployments who wish to use the lifecycle management (LCM) feature in NetQ 3.3.0 must upgrade their NetQ Cloud Appliance or Virtual Machine as well as the NetQ Agent.</td>
+<td>3.2.1</td>
+</tr>
+<tr>
+<td>2549246</td>
+<td>NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s).</td>
+<td>2.4.0-3.2.1</td>
 </tr>
 </table>
 </tables>

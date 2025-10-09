@@ -1,5 +1,5 @@
 ---
-title: NVIDIA Cumulus NetQ 4.7 User Guide
+title: NVIDIA NetQ 4.7 User Guide
 author: NVIDIA
 weight: 1
 subsection: true
@@ -10,9 +10,10 @@ cascade:
     imgData: cumulus-netq
     siteSlug: cumulus-netq
     old: true
-    expiryDate: 2024-10-19T00:32:13-07:00
 ---
 
-NVIDIA® Cumulus NetQ™ is a highly scalable, modern network operations tool set that utilizes telemetry for deep troubleshooting, visibility, and automated workflows from a single GUI interface, reducing maintenance and network downtime. It combines the ability to easily upgrade, configure and deploy network elements with a full suite of operations capabilities, such as visibility, troubleshooting, validation, trace and comparative look-back functionality.
+NVIDIA® NetQ™ is a scalable, modern network operations tool set that provides visibility into your overlay and underlay networks, enabling troubleshooting in real-time. NetQ delivers data and statistics about the health of your data center—from the container, virtual machine, or host, all the way to the switch and port. NetQ correlates configuration and operational status, and tracks state changes while simplifying management for the entire Linux-based data center. With NetQ, network operations change from a manual, reactive, node-by-node approach to an automated, informed, and agile one. Visit {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/netq/" text="Network Operations with NetQ">}} to learn more.
 
-This guide <!-- vale off -->is intended<!-- vale on --> for network administrators who are responsible for deploying, configuring, monitoring and troubleshooting the network in their data center or campus environment. NetQ {{<version>}} offers the ability to easily monitor and manage your network infrastructure and operational health. This guide provides instructions and information about monitoring individual components of the network, the network as a whole, and the NetQ software applications using the NetQ command line interface (NetQ CLI), NetQ (graphical) user interface (NetQ UI), and NetQ Admin UI.
+This user guide provides documentation for network administrators who are responsible for deploying, configuring, monitoring, and troubleshooting the network in their data center or campus environment.
+
+For a list of the new features in this release, see {{<link title="What's New" text="What's New">}}. For bug fixes and known issues, refer to the {{<link title="NVIDIA NetQ 4.7 Release Notes" text="release notes">}}. 

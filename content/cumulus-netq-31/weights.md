@@ -1,5 +1,5 @@
 ---
-title: NetQ Page Weights
+title: Cumulus NetQ Page Weights
 layout: weights
 bookhidden: true
 weight: 999

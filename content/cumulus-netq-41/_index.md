@@ -4,13 +4,13 @@ author: NVIDIA
 weight: 1
 subsection: true
 toc: 1
+old: true
+draft: true
 cascade:
     product: Cumulus NetQ
     version: "4.1"
     imgData: cumulus-netq
     siteSlug: cumulus-netq
-    old: true
-    expiryDate: 2024-10-19T00:32:13-07:00
 ---
 
 NVIDIA® Cumulus NetQ™ is a highly scalable, modern network operations tool set that utilizes telemetry for deep troubleshooting, visibility, and automated workflows from a single GUI interface, reducing maintenance and network downtime. It combines the ability to easily upgrade, configure and deploy network elements with a full suite of operations capabilities, such as visibility, troubleshooting, validation, trace and comparative look-back functionality.

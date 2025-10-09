@@ -1,5 +1,5 @@
 ---
-title: NVIDIA Cumulus NetQ
+title: Cumulus NetQ
 layout: pdf
 product: Cumulus NetQ
 type: pdf

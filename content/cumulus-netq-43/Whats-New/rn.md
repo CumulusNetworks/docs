@@ -1,5 +1,5 @@
 ---
-title: NVIDIA Cumulus NetQ 4.3 Release Notes
+title: NVIDIA NetQ 4.3 Release Notes
 author: NVIDIA
 weight: 30
 product: Cumulus NetQ

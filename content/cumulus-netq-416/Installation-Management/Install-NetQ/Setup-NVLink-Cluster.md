@@ -31,32 +31,20 @@ Confirm that the required ports are open for communication.
 |22	|TCP|	SSH|
 |80	|TCP|	nginx|
 |179	|TCP|	Calico networking (BGP)|
-|443	|TCP|	NetQ UI|
 |2379	|TCP|	etcd datastore|
 |4789	|UDP|	Calico networking (VxLAN)|
 |5000	|TCP|	Docker registry|
 |6443	|TCP|	kube-apiserver|
-|30001	|TCP|	DPU communication|
-|31980	|TCP|	NetQ Agent communication|
-|31982	|TCP|	NetQ Agent SSL communication|
-|32710	|TCP|	API Gateway|
 
 Additionally, for internal cluster communication, you must open these ports:
 
 | Port or Protocol Number | Protocol | Component Access |
 | --- | --- | --- |
-|8080|	TCP|	Admin API|
 |5000|	TCP|	Docker registry|
 |6443|	TCP|	Kubernetes API server|
 |10250|	TCP|	kubelet health probe|
 |2379|	TCP|	etcd|
 |2380|	TCP|	etcd|
-|7072|	TCP|	Kafka JMX monitoring|
-|9092|	TCP|	Kafka client|
-|7073|	TCP|	Zookeeper JMX monitoring|
-|2888|	TCP|	Zookeeper cluster communication|
-|3888|	TCP|	Zookeeper cluster communication|
-|2181|	TCP|	Zookeeper client|
 |36443|	TCP|	Kubernetes control plane|
 
 ## Installation and Configuration

@@ -50,7 +50,7 @@ Confirm that the required ports are open for communications. The OPTA must be ab
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.15 KVM Cloud** image. For deployments using VMware, download the **NetQ SW 4.5 VMware Cloud** image.<br>
+    e. For deployments using KVM, download the **NetQ SW 4.15 KVM Cloud** image. For deployments using VMware, download the **NetQ SW 4.15 VMware Cloud** image.<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}

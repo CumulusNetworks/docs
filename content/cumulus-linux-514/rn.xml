@@ -984,15 +984,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
-<td>4629153</td>
-<td>When you configure several hundred BGP sessions, the {{agentx}} handler in FRR might crash with the following signature:
-{{Received signal 6 at 1755908669 (si_addr 0x6b00034298, PC 0x7fc05563beec); aborting...
-...
-in thread agentx_timeout scheduled from lib/agentx.c:121 agentx_events_update()}}
-To work around this issue, disable SNMP with the {{nv set system snmp-server state disabled}} command. You might also need to increase the FRR file descriptors with the {{LimitNOFILE}} parameter in the {{/lib/systemd/system/frr.service}} file and restart {{frr.service}}.</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
 <td>4555938</td>
 <td>When one of the FRR processes such as {{bgpd}} or zebra goes down, {{watchfrr}} tries to restart those processes and also restarts the routing telemetry service, which blocks {{watchfrr}} causing cascading failures on other processes.</td>
 <td>5.12.0-5.13.1</td>

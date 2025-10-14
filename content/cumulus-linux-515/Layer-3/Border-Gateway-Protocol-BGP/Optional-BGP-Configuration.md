@@ -72,6 +72,59 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 If you unset a peer group, make sure that it is not applied to any neighbors. If the peer group is applied to neighbors, configure all parameters, such as the remote AS, directly on the neighbors before removing the peer group.
 {{%/notice%}}
 <!-- vale on -->
+
+## IPv6-only Unnumbered Peering
+
+To configure a BGP unnumbered peer for IPv6-only peering over a link-local address, you must configure an NVUE snippet. When you configure an NVUE snippet for a `v6only` peering, the `remote-as` and any `peer-group` configuration must be applied with the snippet instead of NVUE CLI commands. If a peer group is configured for the neighbor, the remote-as can be defined in the peer group configuration through NVUE commands.
+
+The following example configures the BGP peer group CLIENT1 with soft reconfiguration and community advertisement enabled, and the remote AS set to external. The snippet configuration configures the `v6only` option and applies the peer group to the neighbor: 
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 address-family ipv4-unicast community-advertise
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 address-family ipv4-unicast soft-reconfiguration enabled
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 remote-as external
+cumulus@leaf01:~$ nv config apply
+```
+
+Create a .yaml file with the following content:
+
+```
+- set:
+    system:
+      config:
+        snippet:
+          frr.conf: |
+            router bgp 65101
+            neighbor swp1 interface v6only peer-group CLIENT1
+```
+
+Patch and apply the snippet:
+
+```
+cumulus@leaf01:~$ nv config patch bgp_snippet.yaml
+cumulus@leaf01:~$ nv config apply
+```
+
+The following example configures a `v6only` peering with no peer group applied:
+
+Create a .yaml file with the following content:
+
+```
+- set:
+    system:
+      config:
+        snippet:
+          frr.conf: |
+            router bgp 65101
+            neighbor swp1 interface v6only remote-as external
+```
+
+Patch and apply the snippet:
+
+```
+cumulus@leaf01:~$ nv config patch bgp_snippet.yaml
+cumulus@leaf01:~$ nv config apply
+```
 ## BGP Dynamic Neighbors
 
 *BGP dynamic neighbors* provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.

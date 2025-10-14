@@ -47,7 +47,7 @@ nvidia@netq-server:~$ sudo cp ./vm-backuprestore.sh /usr/sbin/
 3. Log in to your NetQ server and set the script to executable. Do this for each node in your deployment:
 
 ```
-nvidia@netq-server:/home/nvidia# chmod +x /usr/sbin/vm-backuprestore.sh
+nvidia@netq-server:/home/nvidia# sudo chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 
 4. On your NetQ server (or the master node in cluster deployments), run the `/usr/sbin/vm-backuprestore.sh --backup` command. This command backs up each node in your deployment and combines the data into a single .tar file. Take note of the config key in the output of this command. You will enter it when you restore your data:  

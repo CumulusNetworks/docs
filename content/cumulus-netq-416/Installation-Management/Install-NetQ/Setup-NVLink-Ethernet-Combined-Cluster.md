@@ -1,5 +1,5 @@
 ---
-title: Install NetQ NVLink
+title: Install NetQ for Ethernet and NVLink
 author: NVIDIA
 weight: 227
 toc: 5
@@ -9,7 +9,7 @@ Follow these steps to set up and configure your VMs in a cluster of servers runn
 
 ## System Requirements
 
-NetQ for NVLink supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
+NetQ for Ethernet and NVLink supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
 
 | Resource | Minimum Requirements |
 | :--- | :--- |
@@ -21,7 +21,7 @@ NetQ for NVLink supports 3-node clusters with the following system requirements.
 
 ## Port Requirements
 
-Confirm that the required ports are open for communication.
+Confirm that the required ports are open for communications.
 
 | Port or Protocol Number | Protocol | Component Access |
 | --- | --- | --- |
@@ -29,20 +29,31 @@ Confirm that the required ports are open for communication.
 |22	|TCP|	SSH|
 |80	|TCP|	nginx|
 |179	|TCP|	Calico networking (BGP)|
+|443	|TCP|	NetQ UI|
 |2379	|TCP|	etcd datastore|
 |4789	|UDP|	Calico networking (VxLAN)|
 |5000	|TCP|	Docker registry|
 |6443	|TCP|	kube-apiserver|
+|30001	|TCP|	DPU communication|
+|31980	|TCP|	NetQ Agent communication|
+|31982	|TCP|	NetQ Agent SSL communication|
+|32710	|TCP|	API Gateway|
 
 Additionally, for internal cluster communication, you must open these ports:
 
 | Port or Protocol Number | Protocol | Component Access |
 | --- | --- | --- |
+|8080|	TCP|	Admin API|
 |5000|	TCP|	Docker registry|
 |6443|	TCP|	Kubernetes API server|
 |10250|	TCP|	kubelet health probe|
 |2379|	TCP|	etcd|
 |2380|	TCP|	etcd|
+|7072|	TCP|	Kafka JMX monitoring|
+|9092|	TCP|	Kafka client|
+|7071|	TCP|	Cassandra JMX monitoring|
+|7000|	TCP|	Cassandra cluster communication|
+|9042|	TCP|	Cassandra client|
 |36443|	TCP|	Kubernetes control plane|
 
 ## Installation and Configuration
@@ -156,7 +167,7 @@ nvidia@<hostname>:~$ netq install cluster master-init
 ```
 9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
-10. Create a JSON template using the installation command for your deployment model. Run the `netq install nvl config generate` command on your master node to generate a template for the cluster configuration JSON file: 
+10. Create a JSON template using the installation command for your deployment model. Run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file: 
 
 ```
 nvidia@netq-server:~$ netq install nvl config generate
@@ -169,30 +180,24 @@ nvidia@netq-server:~$ netq install nvl config generate
 
 {{< tab "Default JSON Template">}}
 
-``` 
-nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
+```
+nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json 
 {
         "version": "v2.0",
         "interface": "<INPUT>",
         "cluster-vip": "<INPUT>",
+        "master-ip": "<INPUT>",
         "is-ipv6": false,
-        "servers": [
+        "ha-nodes": [
                 {
                         "ip": "<INPUT>"
-                        "description": "<SERVER1>"
                 },
                 {
                         "ip": "<INPUT>"
-                        "description": "<SERVER2>"
-                },
-                                {
-                        "ip": "<INPUT>"
-                        "description": "<SERVER3>"
-                },
+                }
                 ],
         "shared-cluster-install": false,
-        "storage-path": "/var/lib/longhorn",
-        "alertmanager_webhook_url": "<INPUT>"
+        "storage-path": "/var/lib/longhorn"
 }
 ```
 
@@ -247,17 +252,19 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 {{< /tab >}}
 {{< /tabs >}}
 
-12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step. Specify the passwords for the read-write user and the read-only user in the `rw-password` and `ro-password` fields, respectively. The passwords must each include a minimum of eight characters.
+12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step.
 
 {{< tabs "TabID268">}}
 {{< tab "New Install">}}
 
 ```
-nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-4.15.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
+nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-4.15.0.tgz /tmp/nvl-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
+{{< /tab >}}
 {{< /tabs >}}
+
 
 ## Verify Installation Status
 
@@ -270,6 +277,7 @@ State: Active
     Version: 4.15.0
     Installer Version: 4.15.0
     Installation Type: Cluster
+    Installation Mode: Combined
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC
     Is Cloud: False
@@ -307,4 +315,5 @@ If any of the applications or services display a DOWN status after 30 minutes, o
 
 ## Next Steps
 
-Connect to the controller (NMX-C) and telemetry (NMX-T) services before accessing the NVLink REST API.
+- Ethernet: {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser to access Ethernet data.
+- NVLink: connect to the controller (NMX-C) and telemetry (NMX-T) services before accessing the NVLink REST API.

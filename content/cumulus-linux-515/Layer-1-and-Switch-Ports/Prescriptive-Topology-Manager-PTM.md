@@ -30,7 +30,7 @@ PTM performs its LLDP neighbor check using the PortID ifname TLV information.
 
 ## ptmd Scripts
 
-The `ptmd` service executes scripts at `/etc/ptm.d/if-topo-pass` and `/etc/ptm.d/if-topo-fail` for each interface that goes through a change and runs `if-topo-pass` when an LLDP or BFD check passes, or `if-topo-fails` when the check fails. The scripts receive an argument string that is the result of the `ptmctl` command; see {{%link url="#ptmd-service-commands" text="`ptmd` commands below"%}}.
+The `ptmd` service executes scripts at `/etc/ptm.d/if-topo-pass` and `/etc/ptm.d/if-topo-fail` for each interface that goes through a change and runs `if-topo-pass` when an LLDP check passes, or `if-topo-fails` when the check fails. The scripts receive an argument string that is the result of the `ptmctl` command; see {{%link url="#ptmd-service-commands" text="`ptmd` commands below"%}}.
 
 You can modify these default scripts.
 
@@ -137,74 +137,6 @@ graph G {
 ```
 {{%/notice%}}
 
-## BFD
-
-<span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. PTM provides a unified mechanism for link detection over all media and protocol layers and integrated with FRR to enable BFD. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD, see {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
-
-## Check Link State
-
-You can enable PTM to perform additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that PTM defines.
-
-{{%notice note%}}
-You only need to enable PTM to check link state. You do not need to enable PTM to determine BFD status.
-{{%/notice%}}
-
-{{< tabs "TabID185 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set router ptm enable
-cumulus@switch:~$ nv config apply
-```
-
-To disable the check link state:
-
-```
-cumulus@switch:~$ nv unset router ptm enable
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# configure terminal
-switch(config)# ptm-enable
-switch(config)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-To disable the check link state, set the `no ptm-enable` parameter:
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# configure terminal
-switch(config)# no ptm-enable
-switch(config)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To check PTM status on an interface, run the vtysh `show interface <interface-id>` command.
-
-```
-cumulus@switch:~$ show interface swp51
-Interface swp51 is up, line protocol is up
-  Link ups:       0    last: (never)
-  Link downs:     0    last: (never)
-  PTM status: disabled
-...
-```
-
 ## ptmd Service Commands
 
 PTM sends client notifications in CSV format.
@@ -241,7 +173,7 @@ cumulus@switch:~$ sudo systemctl status ptmd.service
 
 ## ptmctl Commands
 
-`ptmctl` is a client of the `ptmd` service that retrieves the operational state of the ports configured on the switch and information about BFD sessions from `ptmd`. `ptmctl` parses the CSV notifications sent by `ptmd`. See `man ptmctl` for more information.
+`ptmctl` is a client of the `ptmd` service that retrieves the operational and LLDP state of the ports configured on the switch. `ptmctl` parses the CSV notifications sent by `ptmd`. See `man ptmctl` for more information.
 
 ### ptmctl Examples
 
@@ -255,20 +187,17 @@ The examples below contain the following keywords in the output of the `cbl stat
 
 For basic output, use `ptmctl` without any options:
 
-{{%notice note%}}
-PTM show command output displays BFD status when you configure {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} through integration with FRR.
-{{%/notice%}}
 
 ```
 cumulus@switch:~$ sudo ptmctl
 
--------------------------------------------------------------
-port  cbl     BFD     BFD                  BFD    BFD
-      status  status  peer                 local  type
--------------------------------------------------------------
-swp1  pass    pass    11.0.0.2             N/A    singlehop
-swp2  pass    N/A     N/A                  N/A    N/A
-swp3  pass    N/A     N/A                  N/A    N/A
+---------------
+port  cbl     
+      status  
+---------------
+swp1  pass 
+swp2  pass  
+swp3  pass  
 ```
 
 For more detailed output, use the `-d` option:
@@ -276,67 +205,13 @@ For more detailed output, use the `-d` option:
 ```
 cumulus@switch:~$ sudo ptmctl -d
 
---------------------------------------------------------------------------------------
-port  cbl    exp     act      sysname  portID  portDescr  match  last    BFD   BFD
-      status nbr     nbr                                  on     upd     Type  state
---------------------------------------------------------------------------------------
-swp45 pass   h1:swp1 h1:swp1  h1       swp1    swp1       IfName 5m: 5s  N/A   N/A
-swp46 fail   h2:swp1 h2:swp1  h2       swp1    swp1       IfName 5m: 5s  N/A   N/A
+------------------------------------------------------------------------
+port  cbl    exp     act      sysname  portID  portDescr  match  last    
+      status nbr     nbr                                  on     upd     
+------------------------------------------------------------------------
+swp45 pass   h1:swp1 h1:swp1  h1       swp1    swp1       IfName 5m: 5s  
+swp46 fail   h2:swp1 h2:swp1  h2       swp1    swp1       IfName 5m: 5s  
 
-#continuation of the output
--------------------------------------------------------------------------------------------------
-BFD   BFD       det_mult  tx_timeout  rx_timeout  echo_tx_timeout  echo_rx_timeout  max_hop_cnt
-peer  DownDiag
--------------------------------------------------------------------------------------------------
-N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
-N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
-```
-
-To show information about the active BFD sessions that the `ptmd` serice is tracking, use the `-b` option:
-
-```
-cumulus@switch:~$ sudo ptmctl -b
-
-----------------------------------------------------------
-port  peer        state  local         type       diag
-
-----------------------------------------------------------
-swp1  11.0.0.2    Up     N/A           singlehop  N/A
-N/A   12.12.12.1  Up     12.12.12.4    multihop   N/A
-```
-
-To show LLDP information, use the `-l` option. The output shows only the active neighbors that the `ptmd` service is tracking.
-
-```
-cumulus@switch:~$ sudo ptmctl -l
-
----------------------------------------------
-port  sysname  portID  port   match  last
-                       descr  on     upd
----------------------------------------------
-swp45 h1       swp1    swp1   IfName 5m:59s
-swp46 h2       swp1    swp1   IfName 5m:59s
-```
-
-To show detailed information about the active BFD sessions that the `ptmd` service is tracking, use the `-b` and `-d` option:
-
-```
-cumulus@switch:~$ sudo ptmctl -b -d
-
-----------------------------------------------------------------------------------------
-port  peer                 state  local  type       diag  det   tx_timeout  rx_timeout
-                                                          mult
-----------------------------------------------------------------------------------------
-swp1  fe80::202:ff:fe00:1  Up     N/A    singlehop  N/A   3     300         900
-swp1  3101:abc:bcad::2     Up     N/A    singlehop  N/A   3     300         900
-
-#continuation of output
----------------------------------------------------------------------
-echo        echo        max      rx_ctrl  tx_ctrl  rx_echo  tx_echo
-tx_timeout  rx_timeout  hop_cnt
----------------------------------------------------------------------
-0           0           N/A      187172   185986   0        0
-0           0           N/A      501      533      0        0
 ```
 
 ### ptmctl Error Outputs
@@ -352,8 +227,6 @@ please check /var/log/ptmd.log for more info
 
 No Hostname/MgmtIP found [Check LLDPD daemon status] -
 please check /var/log/ptmd.log for more info
-
-No BFD sessions . Check connections
 
 No LLDP ports detected. Check connections
 
@@ -406,7 +279,6 @@ If an LLDP neighbor advertises a `PortDescr` that contains commas, `ptmctl -d` s
 
 ## Related Information
 
-- {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection (BFD)">}}
 - {{<exlink url="http://www.graphviz.org" text="Graphviz">}}
 - {{<exlink url="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" text="LLDP on Wikipedia">}}
 - {{<exlink url="https://github.com/CumulusNetworks/ptm" text="PTMd GitHub repo">}}

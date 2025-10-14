@@ -26,7 +26,8 @@ To set up DHCP relay, configure:
 {{%notice note%}}
 - Server groups do not support IPv6.
 - A server group must contain at least one server and one upstream interface.
-- You must associate a downstream interface with the server group.
+- Upstream interfaces must be in the same VRF as the DHCP instance.
+- You must associate a downstream interface with the server group. Downstream interfaces can be in any VRF.
 {{%/notice%}}
 
 {{< tabs "TabID20 ">}}
@@ -63,7 +64,7 @@ cumulus@switch:~$ nv config apply
 {{%notice note%}}
 In Cumulus 5.13 and earlier, DHCP relay forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux generates a single configuration file for each VRF in the format `isc-dhcp-relay-<VRF>`. Only one instance of the DHCP relay service runs per VRF.
 
-Cumulus Linux 5.14 and later enables selective forwarding of DHCP client requests to specific groups of servers within the same VRF and introduces multiple configuration files; one for each server group.
+Cumulus Linux 5.14 and later enables selective forwarding of DHCP client requests to specific groups of servers and introduces multiple configuration files; one for each server group.
 {{%/notice%}}
 
 In the `/etc/default` directory, create a file with the name of the server group in the format `isc-dhcp-relay-<server-group-id>-<vrf-id>`. Add the DHCP server IP addresses and the interfaces participating in DHCP relay associated with the server group (upstream and downstream interfaces).
@@ -260,11 +261,12 @@ cumulus@switch:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 
 In a multi-tenant EVPN symmetric routing environment with MLAG, you must enable RFC 3527 support. You can specify an interface, such as the loopback or VRF interface for the gateway address. The interface must be reachable in the tenant VRF that you configure for DHCP relay and must have a unique IPv4 address. For EVPN symmetric routing with an anycast gateway that reuses the same SVI IP address on multiple leaf switches, you must assign a unique IP address for the VRF interface and include the layer 3 VNI for this VRF in the DHCP relay configuration.
 
-{{< img src = "/images/cumulus-linux/dhcp-server-groups-evpn.png" >}}
+{{< img src = "/images/cumulus-linux/dhcp-relay-server-groups-cl515.png" width = "1050" >}}
 
 The following example:
 - Configures VRF RED with IPv4 address 20.20.20.1/32.
 - Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of the interface list to service DHCP packets. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-id> evpn` command.
+- Configures the SVI vlan30, which is located in VRF BLUE to be part of the downstream interface list.
 - Sets the DHCP server to 10.1.10.104.
 - Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
 
@@ -279,6 +281,7 @@ You do not need to add physical uplinks in the EVPN relay configuration. Only la
 cumulus@switch:~$ nv set vrf RED loopback ip address 20.20.20.1/32
 cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan10 server-group-name red-servers
 cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan20 server-group-name red-servers
+cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan30 server-group-name red-servers
 cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers upstream-interface vlan4024_l3
 cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers server 10.1.10.104
 cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected state enabled
@@ -358,6 +361,7 @@ In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN inte
 
 The following example:
 - Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-id> evpn` command.
+- Configures the SVI vlan30, which is located in VRF BLUE to be part of the downstream interface list.
 - Sets the DHCP server IP address to 10.1.10.104.
 
 {{%notice note%}}
@@ -370,6 +374,7 @@ You do not need to add physical uplinks in the EVPN relay configuration. Only la
 ```
 cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan10 server-group-name red-servers
 cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan20 server-group-name red-servers
+cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan30 server-group-name red-servers
 cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers upstream-interface vlan4024_l3
 cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers server 10.1.10.104
 cumulus@switch:~$ nv config apply

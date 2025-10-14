@@ -70,7 +70,7 @@ Old Name | New Name|
   - Login brute forcing via API
   - Timestamp format in `nv show` command output changed from UTC to duration (days, hour:minutes:seconds)
   - Refactor system aaa and tacacs to common model
-  - Batch execution support for CLI commands through the API
+  - {{<link url="NVUE-API/#patch-a-batch-of-configuration-commands" text="Batch execution support for patching in CLI commands through the API">}}. This feature also improves performance when patching in text commands {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="through the CLI">}}.
   - Customize autocomplete
 
 ## Release Considerations

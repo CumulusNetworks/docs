@@ -7,7 +7,7 @@ toc: 3
 You can install NetQ either on your premises or as a remote, cloud solution. If you are unsure which option is best for your network, refer to {{<link title="Before You Install" text="Before You Install">}}.
 
 
-## Ethernet Deployments
+## NetQ for Ethernet
 
 {{<tabs "TabID11" >}}
 
@@ -31,7 +31,7 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 
 {{</tabs>}}
 
-## NVLink Deployments
+## NetQ for NVLink
 
 {{<tabs "TabID35" >}}
 
@@ -46,7 +46,7 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 {{</tabs>}}
 
 
-## Combined Ethernet and NVLink Deployments
+## NetQ for Ethernet and NVLink
 
 {{<tabs "TabID56" >}}
 
@@ -54,7 +54,7 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 
 | Server Arrangement | Hypervisor | Requirements & Installation |
 | :--- | --- | :---: |
-| High-availability scale cluster | KVM or VMware | {{<link title="Install NetQ NVLink" text="Start install">}} |
+| High-availability scale cluster | KVM or VMware | {{<link title="Install NetQ for Ethernet and NVLink" text="Start install">}} |
 
 {{</tab>}}
 

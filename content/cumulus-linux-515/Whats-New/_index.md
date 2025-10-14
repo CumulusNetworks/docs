@@ -19,7 +19,7 @@ Cumulus Linux 5.15.0 contains new platforms, new features and improvements, and 
 ### New Features and Enhancements
 
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming counters">}}
-- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}
+- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}. Legacy BFD configuration and routing link state verification with PTMd is now deprecated.
 - {{<link url="Optional-BGP-Configuration/#ecmp" text="Support 256 BGP sessions and 256-way ECMP on Spectrum-4">}}
 - {{<link url="Latency-Monitoring" text="Switch latency monitoring">}}
 - {{<link url="Docker-with-Cumulus-Linux" text="Support for docker-container">}}

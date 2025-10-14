@@ -12,7 +12,6 @@ You can customize the `topology.dot` file to control the PTM service (`ptmd`) at
 
 - Topology verification using <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span>. The `ptmd` service creates a client connection to the LLDP service (`lldpd`), and retrieves the neighbor relationship between the nodes or ports in the network and compares them against the prescribed topology specified in the `topology.dot` file.
 - PTM only supports physical interfaces, such as swp1 or eth0. You cannot specify virtual interfaces, such as bonds or subinterfaces in the topology file.
-- Integration with <span class="a-tooltip">[FRR](## "FRRouting")</span> (PTM to FRR notification for BFD status).
 - Client management; the `ptmd` service creates an abstract named socket `/var/run/ptmd.socket` on startup. Other applications can connect to this socket to receive notifications and send commands.
 - Event notifications.
 - Configuration with a `topology.dot` file; {{<link url="#configure-ptm" text="see below">}}.

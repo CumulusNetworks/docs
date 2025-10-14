@@ -54,10 +54,6 @@ Additionally, for internal cluster communication, you must open these ports:
 |7071|	TCP|	Cassandra JMX monitoring|
 |7000|	TCP|	Cassandra cluster communication|
 |9042|	TCP|	Cassandra client|
-|7073|	TCP|	Zookeeper JMX monitoring|
-|2888|	TCP|	Zookeeper cluster communication|
-|3888|	TCP|	Zookeeper cluster communication|
-|2181|	TCP|	Zookeeper client|
 |36443|	TCP|	Kubernetes control plane|
 
 ## Installation and Configuration
@@ -171,7 +167,7 @@ nvidia@<hostname>:~$ netq install cluster master-init
 ```
 9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
-10. Create a JSON template using the installation command for your deployment model. Run the `netq install nvl config generate` command on your master node to generate a template for the cluster configuration JSON file: 
+10. Create a JSON template using the installation command for your deployment model. Run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file: 
 
 ```
 nvidia@netq-server:~$ netq install nvl config generate
@@ -184,30 +180,24 @@ nvidia@netq-server:~$ netq install nvl config generate
 
 {{< tab "Default JSON Template">}}
 
-``` 
-nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
+```
+nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json 
 {
         "version": "v2.0",
         "interface": "<INPUT>",
         "cluster-vip": "<INPUT>",
+        "master-ip": "<INPUT>",
         "is-ipv6": false,
-        "servers": [
+        "ha-nodes": [
                 {
                         "ip": "<INPUT>"
-                        "description": "<SERVER1>"
                 },
                 {
                         "ip": "<INPUT>"
-                        "description": "<SERVER2>"
-                },
-                                {
-                        "ip": "<INPUT>"
-                        "description": "<SERVER3>"
-                },
+                }
                 ],
         "shared-cluster-install": false,
-        "storage-path": "/var/lib/longhorn",
-        "alertmanager_webhook_url": "<INPUT>"
+        "storage-path": "/var/lib/longhorn"
 }
 ```
 

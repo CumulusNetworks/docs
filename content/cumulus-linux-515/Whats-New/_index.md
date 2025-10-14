@@ -26,13 +26,11 @@ Cumulus Linux 5.15.0 contains new platforms, new features and improvements, and 
 - {{<link url="FIPS" text="FIPS mode">}}
 - {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Dynamic IPv6 Multi-tenancy">}}
 - {{<link url="SSH-for-Remote-Access/#ssh-ciphers" text="SSH cipher configuration">}}
-- Support for maintenance releases
 - Users must re-authenticate when changing authenticators
 - Radius user Hardening
 - Changes in DSCP to traffic class mapping for MRC QOS template
 - Offline package upgrade
 - MRC QoS profile change in DSCP to traffic mapping
-- Random hash support for adaptive routing eligible traffic
 - Telemetry
   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
   - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
@@ -72,7 +70,7 @@ Old Name | New Name|
   - Login brute forcing via API
   - Timestamp format in `nv show` command output changed from UTC to duration (days, hour:minutes:seconds)
   - Refactor system aaa and tacacs to common model
-  - Batch execution support for CLI commands through the API
+  - {{<link url="NVUE-API/#patch-a-batch-of-configuration-commands" text="Batch execution support for patching in CLI commands through the API">}}. This feature also improves performance when patching in text commands {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="through the CLI">}}.
   - Customize autocomplete
 
 ## Release Considerations

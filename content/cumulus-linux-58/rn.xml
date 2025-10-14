@@ -13,13 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4546685</td>
-<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
-</td>
-<td>5.8.0-5.13.1</td>
-<td>5.14.0</td>
-</tr>
-<tr>
 <td>4540976</td>
 <td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
 <td>5.8.0-5.9.3</td>

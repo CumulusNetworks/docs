@@ -5,7 +5,7 @@ weight: 227
 toc: 5
 bookhidden: true
 ---
-Follow these steps to set up and configure your VMs in a cluster of servers running NetQ NVLink. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
+Follow these steps to set up and configure your VMs in a cluster of servers. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
 
 ## System Requirements
 
@@ -53,7 +53,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.15.0 KVM** image. For deployments using VMware, download the **NetQ SW 4.15.0 VMware** image<br>
+    e. For deployments using KVM, download the **NetQ SW 5.0.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.0.0 VMware** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -175,7 +175,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
         "version": "v2.0",
         "interface": "<INPUT>",
         "cluster-vip": "<INPUT>",
-        "is-ipv6": false,
+        "is-ipv6": "<INPUT>",
         "servers": [
                 {
                         "ip": "<INPUT>"
@@ -190,7 +190,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
                         "description": "<SERVER3>"
                 },
                 ],
-        "shared-cluster-install": false,
+        "shared-cluster-install": "<INPUT>",
         "storage-path": "/var/lib/longhorn",
         "alertmanager_webhook_url": "<INPUT>"
 }
@@ -200,8 +200,9 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 |----- | ----------- |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
-| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
+| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
+| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a  Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` |The URL for the Alertmanager webhook. |
 
 {{< /tab >}}
@@ -240,8 +241,9 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 |----- | ----------- |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
-| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `servers`, `ip` | The IP addresses of the three nodes in your cluster. |
+| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
+| `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
+| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a  Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` |The URL for the Alertmanager webhook. |
 
 {{< /tab >}}
@@ -253,7 +255,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 {{< tab "New Install">}}
 
 ```
-nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-4.15.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
+nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.0.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -285,22 +287,6 @@ State: Active
 ```
 Run the `netq show opta-health` command to verify that all applications are operating properly. Allow at least 15 minutes for all applications to come up and report their status.
 
-```
-nvidia@hostname:~$ netq show opta-health
-    Application                                            Status    Namespace      Restarts    Timestamp
-    -----------------------------------------------------  --------  -------------  ----------  ------------------------
-    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2024
-    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2024
-    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2024
-    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2024
-    ...
-```
 {{%notice note%}}
 If any of the applications or services display a DOWN status after 30 minutes, open a support ticket and attach the output of the `opta-support` command.
 {{%/notice%}}

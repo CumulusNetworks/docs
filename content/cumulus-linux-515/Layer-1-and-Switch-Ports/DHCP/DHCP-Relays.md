@@ -264,10 +264,10 @@ In a multi-tenant EVPN symmetric routing environment with MLAG, you must enable 
 {{< img src = "/images/cumulus-linux/dhcp-relay-server-groups-cl515.png" width = "1050" >}}
 
 The following example:
-- Configures VRF RED with IPv4 address 20.20.20.1/32.
-- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of the interface list to service DHCP packets. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-id> evpn` command.
-- Configures the SVI vlan30, which is located in VRF BLUE to be part of the downstream interface list.
-- Sets the DHCP server to 10.1.10.104.
+- Configures VRF `UPLINK_VRF` with IPv4 address 20.20.20.1/32 and sets the VRF loopback as the gateway interface.
+- Configures the tenant SVIs vlan10, vlan20, and vlan30 as downstream interfaces.
+- Configures the layer 3 VNI VLAN interface for VRF `UPLINK_VRF` vlan4024_l3 as an upstream interface. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-id> evpn` command.
+- Sets the DHCP server to 10.1.100.104.
 - Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
 
 {{%notice note%}}
@@ -278,14 +278,15 @@ You do not need to add physical uplinks in the EVPN relay configuration. Only la
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf RED loopback ip address 20.20.20.1/32
-cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan10 server-group-name red-servers
-cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan20 server-group-name red-servers
-cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan30 server-group-name red-servers
-cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers upstream-interface vlan4024_l3
-cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers server 10.1.10.104
-cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected state enabled
-cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn state enabled
+cumulus@switch:~$ nv set vrf UPLINK_VRF loopback ip address 20.20.20.1/32
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF gateway-interface UPLINK_VRF
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF downstream-interface vlan10 server-group-name uplink-servers
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF downstream-interface vlan20 server-group-name uplink-servers
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF downstream-interface vlan30 server-group-name uplink-servers
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF server-group uplink-servers upstream-interface vlan4024_l3
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF server-group uplink-servers server 10.1.100.104
+cumulus@switch:~$ nv set vrf UPLINK_VRF router bgp address-family ipv4-unicast redistribute connected state enabled
+cumulus@switch:~$ nv set vrf UPLINK_VRF router bgp address-family ipv4-unicast route-export to-evpn state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -297,19 +298,19 @@ cumulus@switch:~$ nv config apply
    ```
    cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
    ...
-   auto RED
-   iface RED
+   auto UPLINK_VRF
+   iface UPLINK_VRF
            address 20.20.20.1/32
            vrf-table auto
    ```
 
-2. Configure VRF RED to advertise the connected routes as type-5 so that the loopback IPv4 address is reachable:
+2. Configure VRF `UPLINK_VRF` to advertise the connected routes as type-5 so that the loopback IPv4 address is reachable:
 
    ```
    cumulus@leaf01:mgmt:~$ sudo vtysh 
    ...
    leaf01# configure terminal
-   leaf01(config)# router bgp 65101 vrf RED
+   leaf01(config)# router bgp 65101 vrf UPLINK_VRF
    leaf01(config-router)# address-family l2vpn evpn
    leaf01(config-router-af)# advertise ipv4 unicast 
    leaf01(config-router-af)# end
@@ -320,8 +321,8 @@ cumulus@switch:~$ nv config apply
 
    ```
    ...
-   router bgp 65101 vrf RED
-    bgp router-id 10.10.10.1
+   router bgp 65101 vrf UPLINK_VRF
+    bgp router-id 20.20.20.1
    ..
     !
     address-family ipv4 unicast
@@ -339,17 +340,17 @@ cumulus@switch:~$ nv config apply
 3. Edit the `/etc/default//etc/default/isc-dhcp-relay-<server-group-id>-<vrf-id>` file.
 
    ```
-   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-red-servers-RED
-   SERVERS="10.1.10.104"
-   INTF_CMD=" -i vlan10 -i vlan20 -i vlan4024_l3" 
-   OPTIONS="-U RED"
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-uplink-servers-UPLINK_VRF
+   SERVERS="10.1.100.104"
+   INTF_CMD=" -i vlan10 -i vlan20 -i vlan30 -i vlan4024_l3" 
+   OPTIONS="-U UPLINK_VRF"
    ```
 
 4. Enable and start the DHCP service:
 
    ```
-   sudo systemctl enable dhcrelay-red-servers-RED.service
-   sudo systemctl start dhcrelay-red-servers-RED.service
+   sudo systemctl enable dhcrelay-uplink-servers-UPLINK_VRF.service
+   sudo systemctl start dhcrelay-uplink-servers-UPLINK_VRF.service
    ```
 
 {{< /tab >}}
@@ -360,9 +361,9 @@ cumulus@switch:~$ nv config apply
 In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
 
 The following example:
-- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-id> evpn` command.
-- Configures the SVI vlan30, which is located in VRF BLUE to be part of the downstream interface list.
-- Sets the DHCP server IP address to 10.1.10.104.
+- Configures the tenant SVIs vlan10, vlan20, and vlan30 as downstream interfaces.
+- Configures the layer 3 VNI VLAN interface for VRF `UPLINK_VRF` vlan4024_l3 as an upstream interface. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-id> evpn` command.
+- Sets the DHCP server IP address to 10.1.100.104.
 
 {{%notice note%}}
 You do not need to add physical uplinks in the EVPN relay configuration. Only layer 3 VNI VLAN interface configuration is required for uplinks.
@@ -372,11 +373,11 @@ You do not need to add physical uplinks in the EVPN relay configuration. Only la
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan10 server-group-name red-servers
-cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan20 server-group-name red-servers
-cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan30 server-group-name red-servers
-cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers upstream-interface vlan4024_l3
-cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers server 10.1.10.104
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF downstream-interface vlan10 server-group-name uplink-servers
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF downstream-interface vlan20 server-group-name uplink-servers
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF downstream-interface vlan30 server-group-name uplink-servers
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF server-group uplink-servers upstream-interface vlan4024_l3
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF server-group uplink-servers server 10.1.100.104
 cumulus@switch:~$ nv config apply
 ```
 
@@ -386,8 +387,8 @@ cumulus@switch:~$ nv config apply
 1. Edit the `/etc/default//etc/default/isc-dhcp-relay-<server-group-id>-<vrf-id>` file.
 
    ```
-   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-red-servers-RED
-   SERVERS="10.1.10.104"
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-uplink-servers-UPLINK_VRF
+   SERVERS="10.1.100.104"
    INTF_CMD=" -i vlan10 -i vlan20 -i vlan4024_l3" 
    OPTIONS=""
    ```
@@ -395,8 +396,8 @@ cumulus@switch:~$ nv config apply
 2. Enable and start the DHCP service:
 
    ```
-   sudo systemctl enable dhcrelay-red-servers-RED.service
-   sudo systemctl start dhcrelay-red-servers-RED.service
+   sudo systemctl enable dhcrelay-red-servers-UPLINK_VRF.service
+   sudo systemctl start dhcrelay-red-servers-UPLINK_VRF.service
    ```
 
 {{< /tab >}}
@@ -411,22 +412,22 @@ For IPv6 DHCP relay in a symmetric routing environment, you must assign a unique
 {{%/notice%}}
 
 The following example:
-- Configures VRF RED with the unique IPv6 address 2001:db8:666::1/128.
+- Configures VRF UPLINK_VRF with the unique IPv6 address 2001:db8:666::1/128.
 - Configures VLAN 10 and 20 in VRF RED to service DHCP requests from downstream hosts.
 - Sets the DHCP server to 2001:db8:199::2.
-- Configures the layer 3 VNI interface for VRF RED vlan4024_l3 to process DHCP packets from the upstream server.
-- Configures VRF RED to advertise the connected routes so that the loopback IPv6 address is reachable.
+- Configures the layer 3 VNI interface for VRF UPLINK_VRF vlan4024_l3 to process DHCP packets from the upstream server.
+- Configures VRF UPLINK_VRF to advertise the connected routes so that the loopback IPv6 address is reachable.
 
 {{< tabs "TabID367 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf RED loopback ip address 2001:db8:666::1/128
-cumulus@switch:~$ nv set service dhcp-relay6 RED interface downstream vlan10
-cumulus@switch:~$ nv set service dhcp-relay6 RED interface downstream vlan20
-cumulus@switch:~$ nv set service dhcp-relay6 RED interface upstream RED server-address 2001:db8:199::2
-cumulus@switch:~$ nv set service dhcp-relay6 RED interface upstream vlan4024_l3
-cumulus@switch:~$ nv set vrf RED router bgp address-family ipv6-unicast route-export to-evpn state enabled
+cumulus@switch:~$ nv set vrf UPLINK_VRF loopback ip address 2001:db8:666::1/128
+cumulus@switch:~$ nv set service dhcp-relay6 UPLINK_VRF interface downstream vlan10
+cumulus@switch:~$ nv set service dhcp-relay6 UPLINK_VRF interface downstream vlan20
+cumulus@switch:~$ nv set service dhcp-relay6 UPLINK_VRF interface upstream UPLINK_VRF server-address 2001:db8:199::2
+cumulus@switch:~$ nv set service dhcp-relay6 UPLINK_VRF interface upstream vlan4024_l3
+cumulus@switch:~$ nv set vrf UPLINK_VRF router bgp address-family ipv6-unicast route-export to-evpn state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -438,19 +439,19 @@ cumulus@switch:~$ nv config apply
    ```
    cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
    ...
-   auto RED
-   iface RED
+   auto UPLINK_VRF
+   iface UPLINK_VRF
            address 2001:db8:666::1/128
            vrf-table auto
    ```
 
-2. Configure VRF RED to advertise the connected routes so that the loopback IPv6 address is reachable:
+2. Configure VRF UPLINK_VRF to advertise the connected routes so that the loopback IPv6 address is reachable:
 
    ```
    cumulus@leaf01:mgmt:~$ sudo vtysh 
    ...
    leaf01# configure terminal
-   leaf01(config)# router bgp 65101 vrf RED
+   leaf01(config)# router bgp 65101 vrf UPLINK_VRF
    leaf01(config-router)# address-family l2vpn evpn
    leaf01(config-router-af)# advertise ipv6 unicast 
    leaf01(config-router-af)# end
@@ -461,7 +462,7 @@ cumulus@switch:~$ nv config apply
 
    ```
    ...
-   router bgp 65101 vrf RED
+   router bgp 65101 vrf UPLINK_VRF
     bgp router-id 10.10.10.1
    ..
     !
@@ -480,20 +481,20 @@ cumulus@switch:~$ nv config apply
 3. Edit the `/etc/default/isc-dhcp-relay6-<vrf-id>` file.
 
    - Set the `-l ` option to the VLANs that receive DHCP requests from hosts.
-   - Set the `<ip-address-dhcp-server>%<interface-facing-dhcp-server>` option to associate the DHCP Server with VRF RED.
+   - Set the `<ip-address-dhcp-server>%<interface-facing-dhcp-server>` option to associate the DHCP Server with VRF UPLINK_VRF.
    - Set the `-u` option to indicate where the switch receives replies from the DHCP server (SVI vlan4024_l3).
 
    ```
-   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay6-RED
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay6-UPLINK_VRF
    INTF_CMD="-l vlan10 -l vlan20"
-   SERVERS="-u 2001:db8:199::2%RED -u vlan4024_l3"
+   SERVERS="-u 2001:db8:199::2%UPLINK_VRF -u vlan4024_l3"
    ```
 
 4. Enable and start the DHCP service:
 
    ```
-   sudo systemctl enable dhcrelay6@RED.service
-   sudo systemctl start dhcrelay6@RED.service
+   sudo systemctl enable dhcrelay6@UPLINK_VRF.service
+   sudo systemctl start dhcrelay6@UPLINK_VRF.service
 
    ```
 

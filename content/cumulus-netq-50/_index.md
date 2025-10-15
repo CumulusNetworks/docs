@@ -1,12 +1,12 @@
 ---
-title: NVIDIA NetQ 4.16 User Guide
+title: NVIDIA NetQ 5.0 User Guide
 author: NVIDIA
 weight: 1
 subsection: true
 toc: 1
 cascade:
     product: Cumulus NetQ
-    version: "4.16"
+    version: "5.0"
     imgData: cumulus-netq
     siteSlug: cumulus-netq
     draft: true
@@ -16,4 +16,4 @@ NVIDIA® NetQ™ is a network operations tool set that provides visibility into 
 
 This user guide provides documentation for network administrators who are responsible for deploying, configuring, monitoring, and troubleshooting the network in their data center or campus environment.
 
-For a list of the new features in this release, see {{<link title="What's New" text="What's New">}}. For bug fixes and known issues, refer to the {{<link title="NVIDIA NetQ 4.16 Release Notes" text="release notes">}}. 
+For a list of the new features in this release, see {{<link title="What's New" text="What's New">}}. For bug fixes and known issues, refer to the {{<link title="NVIDIA NetQ 5.0 Release Notes" text="release notes">}}. 

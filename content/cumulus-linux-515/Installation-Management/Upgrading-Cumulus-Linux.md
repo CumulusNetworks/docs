@@ -19,7 +19,7 @@ Cumulus Linux supports two methods that can use ISSU:
 - {{<link url="#optimized-image-upgrade" text="Optimized image upgrade">}}
 - {{<link url="#package-upgrade" text="Package upgrade">}}
 
-Before you start the upgrade, you must configure the switch in half-resource mode. When the switch operates in half-resource mode, performing a warm reboot (using the `nv action reboot system mode warm` command) results in a hitless upgrade. For more information about reboot modes, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
+Before you start an ISSU-based upgrade, you must configure the switch in half-resource mode. When the switch operates in half-resource mode, performing a warm reboot (using the `nv action reboot system mode warm` command) results in a hitless upgrade. For more information about reboot modes, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
 
 To configure the switch in half resource mode:
 

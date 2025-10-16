@@ -17,7 +17,7 @@ NetQ for Ethernet and NVLink supports 3-node clusters with the following system 
 | Memory | 512GB RAM |
 | Local disk storage | 3.2TB NVMe |
 | Network interface speed | 10 Gbps NIC |
-| Hypervisor | KVM/QCOW (QEMU Copy on Write) image for servers running Ubuntu;<br> VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux or Ubuntu | 
+| Hypervisor | KVM/QCOW (QEMU Copy on Write) image for servers running Ubuntu 24.04;<br> VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux or Ubuntu 24.04| 
 
 ## Port Requirements
 
@@ -73,11 +73,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
-<!--need to create and update shortcode; see confluence-->
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.0">}}
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.15">}}
-
- {{<netq-install/vm-setup hypervisor="vmware" version="4.15">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="5.0">}}
 
 3. Log in to the VM and change the password.
 
@@ -213,8 +211,6 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {{< /tab >}}
 {{< tab "Completed JSON Example ">}}
 
-The following example configures a 3-node cluster installation: 
-
 ``` 
 nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
 {
@@ -232,7 +228,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
                 },
                 ],
         "shared-cluster-install": false,
-        "storage-path": "/var/lib/longhorn",
+        "storage-path": "/var/lib/longhorn"
 }
 ```
 

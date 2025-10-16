@@ -50,7 +50,7 @@ Confirm that the required ports are open for communications. The OPTA must be ab
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.0 KVM Cloud** image. For deployments using VMware, download the **NetQ SW 5.0 VMware Cloud** image.<br>
+    e. For deployments using KVM, download the **NetQ SW 5.0.0 KVM Cloud** image. For deployments using VMware, download the **NetQ SW 5.0.0 VMware Cloud** image.<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -58,9 +58,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 {{%/notice%}}
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
-<!--undo these shortcodes-->
-{{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="4.15">}}
-{{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="4.15">}}
+
+{{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="5.0">}}
+{{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="5.0">}}
 
 3. Log in to the VM and change the password.
 

@@ -62,7 +62,7 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
-<!--need to create and update shortcode for 4.16; see confluence-->
+<!--need to create and update shortcode; see confluence-->
 
  {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.15">}}
 
@@ -269,8 +269,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 4.15.0
-    Installer Version: 4.15.0
+    Version: 5.0.0
+    Installer Version: 5.0.0
     Installation Type: Cluster
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC

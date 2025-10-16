@@ -24,20 +24,20 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 <!-- check on this pre-release -->
 
-- When you upgrade to NetQ v4.15.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
-- You must upgrade cloud (OPTA) deployments to NetQ 4.15 before initiating a {{<link title="Switch Management/#switch-discovery" text="switch discovery">}}.
+- When you upgrade to NetQ v5.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
+- You must upgrade cloud (OPTA) deployments to NetQ 5.0 before initiating a {{<link title="Switch Management/#switch-discovery" text="switch discovery">}}.
 - The API gateway port for on-premises deployments has changed from 32708 to 32710.
 
 ### Upgrade Paths
 
-You can upgrade to NetQ 5.0 if your deployment is running version 4.15 or 4.14. For on-premises and cloud deployments, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 4.16 installation">}}
+You can upgrade to NetQ 5.0 if your deployment is running version 4.15 or 4.14. For on-premises and cloud deployments, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.0 installation">}}
 
 To install NetQ for NVLink, perform a new virtual machine installation.
 
 
 ### Compatible Agent Versions
 
-The NetQ 5.0 server is compatible with NetQ agents 4.15 and 4.14. You can install NetQ agents on switches and servers running:
+The NetQ 5.0 server is compatible with NetQ agents 5.0 and 4.15. You can install NetQ agents on switches and servers running:
 
 - Cumulus Linux 5.15, 5.14, 5.11.3
-- Ubuntu 24.04, 22.04 <!--still support 22.04? NVLink requires 24.04-->
+- Ubuntu 24.04, 22.04

@@ -73,7 +73,7 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
-<!--need to create and update shortcode for 4.16; see confluence-->
+<!--need to create and update shortcode; see confluence-->
 
  {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.15">}}
 

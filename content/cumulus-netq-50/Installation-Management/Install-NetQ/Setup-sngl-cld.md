@@ -50,7 +50,7 @@ Confirm that the required ports are open for communications. The OPTA must be ab
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.15 KVM Cloud** image. For deployments using VMware, download the **NetQ SW 4.5 VMware Cloud** image.<br>
+    e. For deployments using KVM, download the **NetQ SW 5.0 KVM Cloud** image. For deployments using VMware, download the **NetQ SW 5.0 VMware Cloud** image.<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -140,12 +140,12 @@ Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost e
 Run the following command with the `config-key` obtained from the email you received from NVIDIA titled *NetQ Access Link*. You can also obtain the configuration key {{<link title="Configure Premises" text="through the NetQ UI">}}. If you have previously used the `config-key`, run `netq bootstrap reset` on the VM where you initially used the `config-key` before attempting the installation on the new VM.
 
 ```
-nvidia@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
+nvidia@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-5.0.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0-opta.tgz config-key &lt;your-config-key&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install opta standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.15.0-opta.tgz config-key &lt;your-config-key&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-5.0.0-opta.tgz config-key &lt;your-config-key&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install opta standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-5.0.0-opta.tgz config-key &lt;your-config-key&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset</code> command and rerun the install command.</p>
     <p></p></div>
     
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -158,12 +158,12 @@ Restore your data with the backup file you created during a backup using the `re
 Run the installation command on your NetQ server, referencing the path where the backup file resides and including the `config-key` created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}.
 
 ```
-nvidia@netq-server:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/nvidia/backup-netq-standalone-cloud-4.13.0-2024-12-11_19_50_12_UTC.tar
+nvidia@netq-server:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-5.0.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/nvidia/backup-netq-standalone-cloud-4.13.0-2024-12-11_19_50_12_UTC.tar
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0-opta.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/nvidia/backup-netq-standalone-cloud-4.13.0-2024-12-11_19_50_12_UTC.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install opta standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.15.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/nvidia/backup-netq-standalone-cloud-4.12.0-2024-12-11_19_50_12_UTC.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-5.0.0-opta.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/nvidia/backup-netq-standalone-cloud-4.13.0-2024-12-11_19_50_12_UTC.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install opta standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-5.0.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/nvidia/backup-netq-standalone-cloud-4.12.0-2024-12-11_19_50_12_UTC.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
@@ -178,8 +178,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 
 ```
 State: Active
-    Version: 4.15.0
-    Installer Version: 4.15.0
+    Version: 5.0.0
+    Installer Version: 5.0.0
     Installation Type: Standalone
     Activation Key: PKrgipMGEhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixUQmFLTUhzZU80RUdTL3pOT01uQ2lnRnrrUhTbXNPUGRXdnUwTVo5SEpBPTIHZGVmYXVsdDoHbmV0cWRldgz=
     Master SSH Public Key: a3NoLXJzYSBBQUFNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFEazliekZDblJUajkvOZ0hteXByTzZIb3Y2cVZBWFdsNVNtKzVrTXo3dmMrcFNZTGlOdWl1bEhZeUZZVDhSNmU3bFdqS3NrSE10bzArNFJsQVd6cnRvbVVzLzlLMzQ4M3pUMjVZQXpIU2N1ZVhBSE1TdZ0JyUkpXYUpTNjJ2RTkzcHBDVjBxWWJvUFo3aGpCY3ozb0VVWnRsU1lqQlZVdjhsVjBNN3JEWW52TXNGSURWLzJ2eks3K0x2N01XTG5aT054S09hdWZKZnVOT0R4YjFLbk1mN0JWK3hURUpLWW1mbTY1ckoyS1ArOEtFUllrr5TkF3bFVRTUdmT3daVNoZnpQajMwQ29CWDZZMzVST2hDNmhVVnN5OEkwdjVSV0tCbktrWk81MWlMSDAyZUpJbXJHUGdQa2s1SzhJdGRrQXZISVlTZ0RwRlpRb3Igcm9vdEBucXRzLTEwLTE4OC00NC0xNDc=
@@ -194,36 +194,6 @@ State: Active
 ```
 Run the `netq show opta-health` command to verify that all applications are operating properly. Allow at least 15 minutes for all applications to come up and report their status.
 
-```
-nvidia@hostname:~$ sudo netq show opta-health
-[sudo] password for nvidia:
-Application                                          Status    Namespace      Restarts    Timestamp
----------------------------------------------------  --------  -------------  ----------  ------------------------
-netq-api-gateway-nginx-deploy-5f9f7d8766-gp89q       READY     default        0           Sat Mar 15 02:01:00 2025
-netq-app-admin-netq-appliance                        READY     default        0           Sat Mar 15 02:01:00 2025
-netq-fluend-aggregator-opta-deploy-84989948c6-dz2n9  READY     default        0           Sat Mar 15 02:01:00 2025
-netq-lcm-executor-deploy-7767c7d78-n4dcp             READY     default        0           Sat Mar 15 02:01:00 2025
-netq-opta-deploy-7c547d95d7-gstcw                    READY     default        0           Sat Mar 15 02:01:00 2025
-netq-prom-adapter-588d676df7-b9dpm                   READY     default        0           Sat Mar 15 02:01:00 2025
-netqclustermanager-5bffc6ccf-c4j6t                   READY     default        0           Sat Mar 15 02:01:00 2025
-netqedge-75c57b866f-ps8nt                            READY     default        0           Sat Mar 15 02:01:00 2025
-netqinstaller-b95f9c974-zjb6c                        READY     default        0           Sat Mar 15 02:01:00 2025
-reloader-reloader-5c6c75f7c-lcwvm                    READY     default        0           Sat Mar 15 02:01:00 2025
-default-http-backend-2lpdm                           READY     ingress-nginx  0           Sat Mar 15 02:01:00 2025
-nginx-ingress-controller-cqdm9                       READY     ingress-nginx  0           Sat Mar 15 02:01:00 2025
-calico-kube-controllers-84f6f4f568-bk2nk             READY     kube-system    0           Sat Mar 15 02:01:00 2025
-calico-node-vrwz6                                    READY     kube-system    0           Sat Mar 15 02:01:00 2025
-coredns-6bfcc79674-hdd7g                             READY     kube-system    0           Sat Mar 15 02:01:00 2025
-coredns-6bfcc79674-ldvmt                             READY     kube-system    0           Sat Mar 15 02:01:00 2025
-docker-registry-netq-appliance                       READY     kube-system    0           Sat Mar 15 02:01:00 2025
-etcd-netq-appliance                                  READY     kube-system    2           Sat Mar 15 02:01:00 2025
-kube-apiserver-netq-appliance                        READY     kube-system    1           Sat Mar 15 02:01:00 2025
-kube-controller-manager-netq-appliance               READY     kube-system    1           Sat Mar 15 02:01:00 2025
-kube-proxy-sjz9g                                     READY     kube-system    0           Sat Mar 15 02:01:00 2025
-kube-scheduler-netq-appliance                        READY     kube-system    1           Sat Mar 15 02:01:00 2025
-metrics-server-5d68d5fc94-tlkjl                      READY     kube-system    0           Sat Mar 15 02:01:00 2025
-cluster node: netq-appliance                         READY     N/A            N/A         Sat Mar 15 02:01:00 2025
-```
 {{%notice note%}}
 If any of the applications or services display Status as DOWN after 30 minutes, open a support ticket and attach the output of the `opta-support` command.
 {{%/notice%}}

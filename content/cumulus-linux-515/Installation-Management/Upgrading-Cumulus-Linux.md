@@ -4,19 +4,22 @@ author: NVIDIA
 weight: 30
 toc: 3
 ---
-There are multiple ways to upgrade Cumulus Linux, including options supporting {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}} to upgrade an active switch with minimal disruption to the network:
-- Install a new Cumulus Linux image with {{<link url="#image-upgrade" text="Optimized image upgrade">}}, supporting ISSU.
-- Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}}, supporting ISSU.
-- Install a new Cumulus Linux image with <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>, an impactful upgrade requiring manual backup and restoral of your switch configuration.
-## ISSU
+This guide describes the three methods for upgrading Cumulus Linux. Two of these methods support {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to upgrade with minimal disruption to network traffic.
 
-<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to upgrade the switch software while the network continues to forward packets with minimal disruption to the network.
+To upgrade Cumulus Linux, choose one of the three upgrade methods:
 
-Cumulus Linux supports ISSU with
-- Optimized image upgrade
-- Package upgrade
+- Install a new Cumulus Linux image with {{<link url="#optimized-image-upgrade" text="optimized image upgrade">}}, (ISSU support and maintains the current switch configuration)
+- Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}} (ISSU support and maintains the current switch configuration)
+- Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you will need to manually back up and restore your switch configuration)
+## Upgrades with ISSU Support
 
-The switch must be configured in half resource mode before you start the software upgrade. When the switch is in half resource mode mode, restarting the switch after an upgrade with a warm reboot (`nv action reboot system mode warm`) results in no traffic loss (this is a hitless upgrade). For more information about reboot modes, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
+<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to upgrade the switch software while the network continues to forward packets with minimal disruption to the network, also called a hitless upgrade.
+
+Cumulus Linux supports two methods that use ISSU:
+- {{<link url="#optimized-image-upgrade" text="Optimized image upgrade">}}
+- {{<link url="#package-upgrade" text="Package upgrade">}}
+
+Before you start the upgrade, you must configure the switch in half-resource mode. When the switch operates in half-resource mode, performing a warm reboot (using the `nv action reboot system mode warm` command) results in a hitless upgrade. For more information about reboot modes, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
 
 To configure the switch in half resource mode:
 
@@ -47,6 +50,14 @@ Restart the switchd service with the `sudo systemctl restart switchd.service` co
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+Cumulus Linux supports ISSU and warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. 
+
+The following features are not supported during warm boot:
+- EVPN MLAG or EVPN multihoming.
+- LACP bonds. LACP control plane sessions might time out before warm boot completes. Use static LAG to keep bonds up with sub-second convergence during warm boot.
+{{%/notice%}}
+
 ## Before You Upgrade
 ### Create a cl-support File
 
@@ -65,7 +76,6 @@ cumulus@switch:~$ nv action generate system tech-support
 ```
 cumulus@switch:~$ nv action generate system tech-support
 ```
-
 
 ## Optimized Image Upgrade
 

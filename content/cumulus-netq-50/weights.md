@@ -1,13 +1,14 @@
 ---
-title: NVIDIA NetQ
-layout: pdf
-product: Cumulus NetQ
-type: pdf
+title: NetQ Page Weights
+layout: weights
 bookhidden: true
-version: "4.16"
+weight: 999
+product: Cumulus NetQ
+version: "5.0"
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 pdfhidden: true
 draft: true
 
 ---
+

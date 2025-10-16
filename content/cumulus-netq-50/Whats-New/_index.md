@@ -8,11 +8,9 @@ toc: 1
 
 This page summarizes new features and improvements for the NetQ {{<version>}} release. 
 
-- For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 4.16 Release Notes" text="release notes">}}
+- For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.0 Release Notes" text="release notes">}}
 
-## What's New in NetQ 4.16
-
-NetQ 4.16.0 includes the following new features:
+## What's New in NetQ 5.0
 
 - NetQ for NVLink
 - Create and apply custom tags to organize and filter devices
@@ -20,7 +18,6 @@ NetQ 4.16.0 includes the following new features:
 - NVOS upgrades for NVLink switches
 - View Slurm data in Grafana
 - {{<link title="Cable Validations" text="Cable Validation Tool">}}
-
 
 
 ## Release Considerations
@@ -33,17 +30,14 @@ NetQ 4.16.0 includes the following new features:
 
 ### Upgrade Paths
 
-You can upgrade to NetQ 4.16 if your deployment is running version 4.15 or 4.14. For on-premises and cloud deployments, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 4.16 installation">}}
+You can upgrade to NetQ 5.0 if your deployment is running version 4.15 or 4.14. For on-premises and cloud deployments, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 4.16 installation">}}
 
 To install NetQ for NVLink, perform a new virtual machine installation.
 
 
 ### Compatible Agent Versions
 
-The NetQ 4.16 server is compatible with NetQ agents 4.16 and 4.15. You can install NetQ agents on switches and servers running:
+The NetQ 5.0 server is compatible with NetQ agents 4.15 and 4.14. You can install NetQ agents on switches and servers running:
 
-- Cumulus Linux 
+- Cumulus Linux 5.15, 5.14, 5.11.3
 - Ubuntu 24.04, 22.04 <!--still support 22.04? NVLink requires 24.04-->
-- NVOS
-
-NVIDIA recommends upgrading to the latest agent version. The NetQ agent is not compatible with Broadcom switches. Reach out to your NVIDIA support representative if your networking environment requires Broadcom support.

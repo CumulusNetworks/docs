@@ -180,7 +180,7 @@ You can manipulate the tabular data displayed in a full-screen card by filtering
 Select <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" alt="" height="18" width="18"/> **Export** to download and export the tabular data. You can sort and filter tables that exceed 10,000 rows by exporting the data as a CSV file and opening it in a spreadsheet program.
 
 {{<notice tip>}}
-If your browser prevents you from downloading an exported file because it is too large, you can apply filters in the UI to decrease the size of the dataset.
+If you are unable to download an exported file because it is too large, you can apply filters in the UI to decrease the size of the dataset.
 {{</notice>}}
 
 The following icons are common in the full-screen card view:

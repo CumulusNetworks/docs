@@ -1,15 +1,15 @@
 ---
-title: Install NetQ NVLink
+title: Install NetQ for Ethernet and NVLink
 author: NVIDIA
 weight: 227
 toc: 5
 bookhidden: true
 ---
-Follow these steps to set up and configure your VMs in a cluster of servers running NetQ NVLink. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
+Follow these steps to set up and configure your VMs in a cluster of servers. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
 
 ## System Requirements
 
-NetQ for NVLink supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
+NetQ for Ethernet and NVLink supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
 
 | Resource | Minimum Requirements |
 | :--- | :--- |
@@ -21,7 +21,7 @@ NetQ for NVLink supports 3-node clusters with the following system requirements.
 
 ## Port Requirements
 
-Confirm that the required ports are open for communication.
+Confirm that the required ports are open for communications.
 
 | Port or Protocol Number | Protocol | Component Access |
 | --- | --- | --- |
@@ -29,20 +29,31 @@ Confirm that the required ports are open for communication.
 |22	|TCP|	SSH|
 |80	|TCP|	nginx|
 |179	|TCP|	Calico networking (BGP)|
+|443	|TCP|	NetQ UI|
 |2379	|TCP|	etcd datastore|
 |4789	|UDP|	Calico networking (VxLAN)|
 |5000	|TCP|	Docker registry|
 |6443	|TCP|	kube-apiserver|
+|30001	|TCP|	DPU communication|
+|31980	|TCP|	NetQ Agent communication|
+|31982	|TCP|	NetQ Agent SSL communication|
+|32710	|TCP|	API Gateway|
 
 Additionally, for internal cluster communication, you must open these ports:
 
 | Port or Protocol Number | Protocol | Component Access |
 | --- | --- | --- |
+|8080|	TCP|	Admin API|
 |5000|	TCP|	Docker registry|
 |6443|	TCP|	Kubernetes API server|
 |10250|	TCP|	kubelet health probe|
 |2379|	TCP|	etcd|
 |2380|	TCP|	etcd|
+|7072|	TCP|	Kafka JMX monitoring|
+|9092|	TCP|	Kafka client|
+|7071|	TCP|	Cassandra JMX monitoring|
+|7000|	TCP|	Cassandra cluster communication|
+|9042|	TCP|	Cassandra client|
 |36443|	TCP|	Kubernetes control plane|
 
 ## Installation and Configuration
@@ -53,7 +64,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.15.0 KVM** image. For deployments using VMware, download the **NetQ SW 4.15.0 VMware** image<br>
+    e. For deployments using KVM, download the **NetQ SW 5.0.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.0.0 VMware** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -156,11 +167,11 @@ nvidia@<hostname>:~$ netq install cluster master-init
 ```
 9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
-10. Create a JSON template using the installation command for your deployment model. Run the `netq install nvl config generate` command on your master node to generate a template for the cluster configuration JSON file: 
+10. Create a JSON template using the installation command for your deployment model. Run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file: 
 
 ```
-nvidia@netq-server:~$ netq install nvl config generate
-2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/nvl-cluster-config.json
+nvidia@netq-server:~$ netq install cluster config generate
+2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/combined-cluster-config.json
 ```
 
 11. Edit the cluster configuration JSON file with the values for each attribute.
@@ -169,30 +180,24 @@ nvidia@netq-server:~$ netq install nvl config generate
 
 {{< tab "Default JSON Template">}}
 
-``` 
-nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
+```
+nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
 {
         "version": "v2.0",
         "interface": "<INPUT>",
         "cluster-vip": "<INPUT>",
-        "is-ipv6": false,
-        "servers": [
+        "master-ip": "<INPUT>",
+        "is-ipv6": "<INPUT>",
+        "ha-nodes": [
                 {
                         "ip": "<INPUT>"
-                        "description": "<SERVER1>"
                 },
                 {
                         "ip": "<INPUT>"
-                        "description": "<SERVER2>"
-                },
-                                {
-                        "ip": "<INPUT>"
-                        "description": "<SERVER3>"
-                },
+                }
                 ],
-        "shared-cluster-install": false,
-        "storage-path": "/var/lib/longhorn",
-        "alertmanager_webhook_url": "<INPUT>"
+        "shared-cluster-install": "<INPUT>"
+        "storage-path": "/var/lib/longhorn"
 }
 ```
 
@@ -200,9 +205,10 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 |----- | ----------- |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
-| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
-| `alertmanager_webhook_url` |The URL for the Alertmanager webhook. |
+| `master-ip` | The IP address of the primary master node in your cluster. |
+| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
+| `ha-nodes`, `ip` | The IP addresses of the two worker nodes in your cluster. |
+| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a  Base Command Manager deployment) or `false` to install Kubernetes. |
 
 {{< /tab >}}
 {{< tab "Completed JSON Example ">}}
@@ -210,29 +216,23 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 The following example configures a 3-node cluster installation: 
 
 ``` 
-nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
+nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
 {
         "version": "v2.0",
         "interface": "eth0",
         "cluster-vip": "10.176.235.101",
+        "master-ip": "10.176.235.51",
         "is-ipv6": false,
-        "servers": [
-                {
-                        "ip": "10.176.235.51"
-                        "description": "MasterIP"
-                },
+        "ha-nodes": [
                 {
                         "ip": "10.176.235.52"
-                        "description": "Worker1"
                 },
-                                {
+                {
                         "ip": "10.176.235.53"
-                        "description": "Worker2"
                 },
                 ],
         "shared-cluster-install": false,
         "storage-path": "/var/lib/longhorn",
-        "alertmanager_webhook_url": "http://master_ip:5029/webhook"
 }
 ```
 
@@ -240,24 +240,27 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 |----- | ----------- |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
-| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `servers`, `ip` | The IP addresses of the three nodes in your cluster. |
-| `alertmanager_webhook_url` |The URL for the Alertmanager webhook. |
+| `master-ip` | The IP address of the primary master node in your cluster. |
+| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
+| `ha-nodes`, `ip` | The IP addresses of the two worker nodes in your cluster. |
+| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a  Base Command Manager deployment) or `false` to install Kubernetes. |
 
 {{< /tab >}}
 {{< /tabs >}}
 
-12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step. Specify the passwords for the read-write user and the read-only user in the `rw-password` and `ro-password` fields, respectively. The passwords must each include a minimum of eight characters.
+12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step.
 
 {{< tabs "TabID268">}}
 {{< tab "New Install">}}
 
 ```
-nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-4.15.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
+nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.0.0.tgz /tmp/combined-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
+{{< /tab >}}
 {{< /tabs >}}
+
 
 ## Verify Installation Status
 
@@ -267,44 +270,30 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 4.15.0
-    Installer Version: 4.15.0
+    Version: 5.0.0
+    Installer Version: 5.0.0
     Installation Type: Cluster
+    Installation Mode: Combined
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC
     Is Cloud: False
     
     Kubernetes Cluster Nodes Status:
-    IP Address    Hostname     Role    NodeStatus    Virtual IP
-    ------------  -----------  ------  ------------  ------------
-    10.213.7.52   10.213.7.52  Worker  Ready         10.213.7.53
-    10.213.7.51   10.213.7.51  Worker  Ready         10.213.7.53
-    10.213.7.49   10.213.7.49  Master  Ready         10.213.7.53
+    IP Address      Hostname       Role    NodeStatus    Virtual IP
+    ------------    -----------    ------  ------------  ------------
+    10.176.235.53   10.176.235.53  Worker  Ready         10.176.235.56
+    10.176.235.52   10.176.235.52  Worker  Ready         10.176.235.55
+    10.176.235.51   10.176.235.51  Master  Ready         10.176.235.54
     
     In Summary, Live state of the NetQ is... Active
 ```
 Run the `netq show opta-health` command to verify that all applications are operating properly. Allow at least 15 minutes for all applications to come up and report their status.
 
-```
-nvidia@hostname:~$ netq show opta-health
-    Application                                            Status    Namespace      Restarts    Timestamp
-    -----------------------------------------------------  --------  -------------  ----------  ------------------------
-    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2024
-    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2024
-    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2024
-    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2024
-    ...
-```
 {{%notice note%}}
 If any of the applications or services display a DOWN status after 30 minutes, open a support ticket and attach the output of the `opta-support` command.
 {{%/notice%}}
 
 ## Next Steps
 
-Connect to the controller (NMX-C) and telemetry (NMX-T) services before accessing the NVLink REST API.
+- Ethernet: {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser to access Ethernet data.
+- NVLink: connect to the controller (NMX-C) and telemetry (NMX-T) services before accessing the NVLink REST API.

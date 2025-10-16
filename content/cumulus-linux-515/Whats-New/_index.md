@@ -19,14 +19,12 @@ Cumulus Linux 5.15.0 contains new platforms, new features and improvements, and 
 ### New Features and Enhancements
 
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming counters">}}
-- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}
+- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}. Legacy BFD configuration and routing link state verification with PTMd is now deprecated.
 - {{<link url="Optional-BGP-Configuration/#ecmp" text="Support 256 BGP sessions and 256-way ECMP on Spectrum-4">}}
 - {{<link url="Latency-Monitoring" text="Switch latency monitoring">}}
 - {{<link url="Docker-with-Cumulus-Linux" text="Support for docker-container">}}
-- {{<link url="FIPS" text="FIPS mode">}}
 - {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Dynamic IPv6 Multi-tenancy">}}
 - {{<link url="SSH-for-Remote-Access/#ssh-ciphers" text="SSH cipher configuration">}}
-- Users must re-authenticate when changing authenticators
 - Radius user Hardening
 - Changes in DSCP to traffic class mapping for MRC QOS template
 - Offline package upgrade
@@ -65,13 +63,11 @@ Old Name | New Name|
   - {{<link url="New-and-Changed-NVUE-Commands" text="Changed command syntax and output">}}
   - `--expand` option for {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff command">}}, {{<link url="NVUE-CLI/#show-switch-configuration" text="nv config show command">}}, and {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="nv config find command">}}
   - `expand=true` parameter for API calls to {{<link url="NVUE-API/#view-differences-between-configurations" text="View differences between configurations">}}, {{<link url="NVUE-API/#view-a-configuration" text="view a configuration">}}, and {{<link url="NVUE-API/#use-filters-in-a-query" text="search for a specific configuration">}}
-  - Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
   - Aging time added to neighbor information
   - Login brute forcing via API
   - Timestamp format in `nv show` command output changed from UTC to duration (days, hour:minutes:seconds)
-  - Refactor system aaa and tacacs to common model
   - {{<link url="NVUE-API/#patch-a-batch-of-configuration-commands" text="Batch execution support for patching in CLI commands through the API">}}. This feature also improves performance when patching in text commands {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="through the CLI">}}.
-  - Customize autocomplete
+  - Improved command completion when using tab to view CLI command options
 
 ## Release Considerations
 

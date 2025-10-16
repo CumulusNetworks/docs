@@ -26,13 +26,11 @@ You can configure the switch to restart in one of the following modes.
 - **warm** restarts the system with no interruption to traffic for existing route entries. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
 
    When you restart the switch in warm mode, BGP only performs a graceful restart if the BGP graceful restart option is set to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
-  <!--
-  {{%notice note%}}
-  Cumulus Linux does not support LACP bonds during warm boot; the LACP control plane sessions might time out before warm boot completes. Use a static Link Aggregation Group to keep bonds up during warm boot.
-  {{%/notice%}}
-  -->
+
 {{%notice note%}}
 Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
+
+LACP bonds are not supported during warm boot. LACP control plane sessions might time out before warm boot completes. Use static LAG to keep bonds up with sub-second convergence during warm boot.
 {{%/notice%}}
 
 NVIDIA recommends you use NVUE commands to configure restart mode and reboot the system. If you prefer to use `csmgrctl` commands, you must stop NVUE from managing the `/etc/cumulus/csmgrd.conf` file before you set restart mode:

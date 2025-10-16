@@ -23,10 +23,14 @@ Cumulus Linux provides these reboot modes:
   In an eBGP multihop configuration with warm reboot mode, you must set the {{<link url="Optional-BGP-Configuration/#restart-timers" text="BGP graceful restart timer">}} to 180 seconds or more.
 
 {{%notice note%}}
-Cumulus Linux supports warm reboot mode with:
-- 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
+Cumulus Linux supports warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. 
+
+The following features are not supported during warm boot:
+- EVPN MLAG or EVPN multihoming.
+- LACP bonds. LACP control plane sessions might time out before warm boot completes. Use static LAG to keep bonds up with sub-second convergence during warm boot.
 {{%/notice%}}
 <!--
+Ania's original draft below? reformatted the note box to separate supported vs. unsupported with the number of caveats.
 {{%notice note%}}
 Cumulus Linux does not support LACP bonds during warm boot; the LACP control plane sessions might time out before warm boot completes. Use a static Link Aggregation Group to keep bonds up during warm boot.
 {{%/notice%}}

@@ -4,18 +4,18 @@ author: NVIDIA
 weight: 30
 toc: 3
 ---
-This guide describes the three methods for upgrading Cumulus Linux. Two of these methods support {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to upgrade with minimal disruption to network traffic.
+This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to upgrade with minimal disruption to network traffic.
 
 To upgrade Cumulus Linux, choose one of the three upgrade methods:
 
 - Install a new Cumulus Linux image with {{<link url="#optimized-image-upgrade" text="optimized image upgrade">}}, (ISSU support and maintains the current switch configuration)
 - Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}} (ISSU support and maintains the current switch configuration)
 - Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you will need to manually back up and restore your switch configuration)
-## Upgrades with ISSU Support
+## Upgrades with ISSU
 
 <span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to upgrade the switch software while the network continues to forward packets with minimal disruption to the network, also called a hitless upgrade.
 
-Cumulus Linux supports two methods that use ISSU:
+Cumulus Linux supports two methods that can use ISSU:
 - {{<link url="#optimized-image-upgrade" text="Optimized image upgrade">}}
 - {{<link url="#package-upgrade" text="Package upgrade">}}
 

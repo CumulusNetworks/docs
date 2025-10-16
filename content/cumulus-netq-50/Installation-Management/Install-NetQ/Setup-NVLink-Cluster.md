@@ -185,7 +185,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
                         "ip": "<INPUT>"
                         "description": "<SERVER2>"
                 },
-                                {
+                {
                         "ip": "<INPUT>"
                         "description": "<SERVER3>"
                 },
@@ -203,7 +203,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
 | `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a  Base Command Manager deployment) or `false` to install Kubernetes. |
-| `alertmanager_webhook_url` |The URL for the Alertmanager webhook. |
+| `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |
 
 {{< /tab >}}
 {{< tab "Completed JSON Example ">}}
@@ -226,7 +226,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
                         "ip": "10.176.235.52"
                         "description": "Worker1"
                 },
-                                {
+                {
                         "ip": "10.176.235.53"
                         "description": "Worker2"
                 },
@@ -244,7 +244,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
 | `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a  Base Command Manager deployment) or `false` to install Kubernetes. |
-| `alertmanager_webhook_url` |The URL for the Alertmanager webhook. |
+| `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |
 
 {{< /tab >}}
 {{< /tabs >}}

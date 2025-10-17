@@ -48,10 +48,23 @@ An NMX-M API response comprises a status code, any relevant error codes (if unsu
 | 200 | Success | Request was successfully processed. |
 | 400  | Bad Request | Invalid input was detected in request. |
 | 401  | Unauthorized | Authentication has failed or credentials were not provided. |
-| 403  | Forbidden | Request was valid, but user might not have the needed permissions. |
+| 403  | Forbidden | Request was valid, but user might not have the necessary permissions. |
 | 404  | Not Found | Requested resource could not be found. |
 | 409  | Conflict | Request cannot be processed due to conflict in current state of the resource. |
 | 500  | Internal Server Error | Unexpected condition has occurred. |
 | 503  | Service Unavailable | The service being requested is currently unavailable. |
 
 ## Limitations
+
+The NMX-M REST API contains fields that use the numeric `uint64` format. Because tools like Swagger have limited JSON parsing capabilities, they cannot handle these large values correctly. This issue arises because Swagger relies on the native JavaScript `JSON.parse` method, which cannot accurately interpret 64-bit integers.
+
+To address this limitation, pre-process any JSON data containing `uint64` values before handling it in browser-based applications:
+
+```
+const preprocessed = jsonAsString.replace(/:\s*(\d{16,})/g, ': "$1"');
+const result = JSON.parse(preprocessed, (key, value) => typeof value === 'string' && /:\s*(\d{16,})/g.test(value) ? BigInt(value) : value)
+```
+
+Responses from certain endpoints can be very large, which may result in slow loading, unresponsiveness, or even browser freezes. This limitation stems from browser and JavaScript processing constraints. For handling large-scale data, use dedicated tools such as Insomnia, Postman, or the command line.
+
+Additionally, complex schemas with deeply nested structures can cause rendering issues.

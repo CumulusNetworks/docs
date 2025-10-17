@@ -7,7 +7,7 @@ toc: 3
 
 The NMX-M API is organized around {{<exlink url="https://en.wikipedia.org/wiki/REST" text="REST">}} and conforms with {{<exlink url="https://spec.openapis.org/oas/v3.0.3" text="OpenAPI Specification v3.0.3">}}. The API provides access to resources and functionalities <!--which ones?--> through a set of defined endpoints. Each endpoint has its own schema, which includes the payload, parameters, and the expected request/response formats.
 
-<!--update these links-->
+<!--4.15 update these links-->
 - {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nmx-api-8513100/" text="NMX-M REST API in Swagger">}}
 - {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nmx-api-8513100/openapi.yaml" text="View the full object model">}}
 
@@ -39,17 +39,19 @@ curl -X 'PUT' \
 ```
 {{< /expand >}}
 
-### API Responses
+## API Responses
 
 An NMX-M API response comprises a status code, any relevant error codes (if unsuccessful), and the collected data (if successful). NMX-M uses conventional HTTP response codes to indicate the success or failure of an API request:
 
-| Code | Name | Description | Action |
-| ---- | ---- | ----| ---- |
-| 200 | Success | Request was successfully processed. | Review response. |
-| 400  | Bad Request | Invalid input was detected in request. | Check the syntax of your request and make sure it matches the schema. |
-| 401  | Unauthorized | Authentication has failed or credentials were not provided. | Provide or verify your credentials, or request access from your administrator. |
-| 403  | Forbidden | Request was valid, but user might not have the needed permissions. | Verify your credentials or request an account from your administrator. |
-| 404  | Not Found | Requested resource could not be found. | Try the request again after a period of time or verify status of resource. |
-| 409  | Conflict | Request cannot be processed due to conflict in current state of the resource. | Verify status of resource and remove conflict. |
-| 500  | Internal Server Error | Unexpected condition has occurred. | Perform general troubleshooting and try the request again. |
-| 503  | Service Unavailable | The service being requested is currently unavailable. | Verify the status of the NetQ Platform or appliance, and the associated service. |
+| Code | Name | Description |
+| ---- | ---- | ----|
+| 200 | Success | Request was successfully processed. |
+| 400  | Bad Request | Invalid input was detected in request. |
+| 401  | Unauthorized | Authentication has failed or credentials were not provided. |
+| 403  | Forbidden | Request was valid, but user might not have the needed permissions. |
+| 404  | Not Found | Requested resource could not be found. |
+| 409  | Conflict | Request cannot be processed due to conflict in current state of the resource. |
+| 500  | Internal Server Error | Unexpected condition has occurred. |
+| 503  | Service Unavailable | The service being requested is currently unavailable. |
+
+## Limitations

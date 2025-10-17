@@ -19,7 +19,7 @@ Cumulus Linux supports two methods that can use ISSU:
 - {{<link url="#optimized-image-upgrade" text="Optimized image upgrade">}}
 - {{<link url="#package-upgrade" text="Package upgrade">}}
 
-Before you start an ISSU-based upgrade, you must configure the switch in half-resource mode. When the switch operates in half-resource mode, performing a warm reboot (using the `nv action reboot system mode warm` command) results in a hitless upgrade. For more information about reboot modes, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
+ISSU requires the use of {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="warm reboot mode">}}. You must configure the switch in half-resource mode to perform a warm reboot. When the switch operates in half-resource mode, performing a warm reboot (using the `nv action reboot system mode warm` command) results in a hitless upgrade. For more information about reboot modes, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
 
 To configure the switch in half resource mode:
 
@@ -186,6 +186,18 @@ To activate the other partition at next boot, run the `cl-image-upgrade -a` comm
 cumulus@switch:~$ cl-image-upgrade -a 
 ```
 
+3. Reboot the switch. If you have the switch resource mode configured to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+
+```
+    cumulus@switch:~$ sudo csmgrctl -wf
+```
+
+Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+
+```
+    cumulus@switch:~$ sudo reboot
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -324,7 +336,7 @@ If you have the switch resource mode configured to half for {{<link url="#issu" 
 cumulus@switch:~$ sudo csmgrctl -wf
 ```
 
-Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}:
+Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default mode is a cold reboot:
 
 ```
 cumulus@switch:~$ sudo reboot
@@ -451,19 +463,15 @@ As with other Linux distributions, the `/etc` directory is the primary location 
 To show a list of files changed from the previous Cumulus Linux install, run the `sudo dpkg --verify` command.
 To show a list of generated `/etc/default/isc-*` files changed from the previous Cumulus Linux install, run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command.
 
-```
-cumulus@switch:~$ sudo csmgrctl -wf
-```
-
 {{< /tab >}}
 
 {{< /tabs >}}
 
 2. Download the Cumulus Linux image.
-3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
+3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, defines the current NVUE startup configuration to back up and restore in the new image, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.15.0-mlx-amd64.bin && sudo reboot
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.15.0-mlx-amd64.bin -t /etc/nvue.d/startup.yaml && sudo reboot
     ```
 
 4. Restore the configuration files to the new release:

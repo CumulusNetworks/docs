@@ -9,7 +9,7 @@ The following sections describe how to back up and restore your NetQ data and VM
 
 {{%notice note%}}
 - You must run backup and restore scripts with sudo privileges.
-- When you upgrade to NetQ v4.16.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
+- When you upgrade to NetQ v5.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
 - NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
 {{%/notice%}}
 
@@ -132,7 +132,7 @@ nvidia@netq-server:~$ sudo cp ./vm-backuprestore.sh /usr/sbin/
 3. Log in to your NetQ server and set the script to executable. Do this for each node in your deployment:
 
 ```
-nvidia@netq-server:/home/nvidia# chmod +x /usr/sbin/vm-backuprestore.sh
+nvidia@netq-server:/home/nvidia# sudo chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 
 4. On your NetQ server (or the master node in cluster deployments), run the `/usr/sbin/vm-backuprestore.sh --backup` command. This command backs up each node in your deployment and combines the data into a single .tar file. Take note of the config key in the output of this command. You will enter it when you restore your data:  

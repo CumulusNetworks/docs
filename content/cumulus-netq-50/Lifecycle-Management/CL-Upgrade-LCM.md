@@ -110,7 +110,7 @@ You can exclude selected services and protocols from the snapshots by clicking t
 Perform the upgrade using the {{<link title="lcm/#netq-lcm-upgrade-cl-image" text="netq lcm upgrade cl-image">}} command, providing a name for the upgrade job, the Cumulus Linux and NetQ version, and a comma-separated list of the hostname(s) to be upgraded:
 
 ```
-nvidia@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5.13.1 netq-version 4.15.0 hostnames spine01,spine02
+nvidia@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5.15.0 netq-version 5.0.0 hostnames spine01,spine02
 ```
 
 ### Create a Network Snapshot
@@ -118,7 +118,7 @@ nvidia@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5
 You can also generate a network snapshot before and after the upgrade by adding the `run-snapshot-before-after` option to the command:
 
 ```
-nvidia@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5.13.1 netq-version 4.15.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-snapshot-before-after
+nvidia@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5.15.0 netq-version 5.0.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-snapshot-before-after
 ```
 
 ### Restore upon an Upgrade Failure
@@ -126,7 +126,7 @@ nvidia@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5
 (Recommended) You can restore the previous version of Cumulus Linux if the upgrade job fails by adding the `run-restore-on-failure` option to the command.
 
 ```
-nvidia@switch:~$ netq lcm upgrade cl-image name upgrade-example cl-version 5.13.1 netq-version 4.15.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-restore-on-failure
+nvidia@switch:~$ netq lcm upgrade cl-image name upgrade-example cl-version 5.15.0 netq-version 5.0.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-restore-on-failure
 ```
 
 {{</tab>}}

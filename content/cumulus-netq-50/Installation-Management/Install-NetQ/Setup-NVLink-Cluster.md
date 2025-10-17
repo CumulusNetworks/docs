@@ -17,7 +17,7 @@ NetQ for NVLink supports 3-node clusters with the following system requirements.
 | Memory | 512GB RAM |
 | Local disk storage | 3.2TB NVMe |
 | Network interface speed | 10 Gbps NIC |
-| Hypervisor | KVM/QCOW (QEMU Copy on Write) image for servers running Ubuntu;<br> VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux or Ubuntu | 
+| Hypervisor | KVM/QCOW (QEMU Copy on Write) image for servers running Ubuntu 24.04;<br> VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux or Ubuntu 24.04| 
 
 ## Port Requirements
 
@@ -62,11 +62,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
-<!--need to create and update shortcode for 4.16; see confluence-->
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.0">}}
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.15">}}
-
- {{<netq-install/vm-setup hypervisor="vmware" version="4.15">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="5.0">}}
 
 3. Log in to the VM and change the password.
 
@@ -185,7 +183,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
                         "ip": "<INPUT>"
                         "description": "<SERVER2>"
                 },
-                                {
+                {
                         "ip": "<INPUT>"
                         "description": "<SERVER3>"
                 },
@@ -202,13 +200,11 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
-| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a  Base Command Manager deployment) or `false` to install Kubernetes. |
-| `alertmanager_webhook_url` |The URL for the Alertmanager webhook. |
+| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
+| `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |
 
 {{< /tab >}}
 {{< tab "Completed JSON Example ">}}
-
-The following example configures a 3-node cluster installation: 
 
 ``` 
 nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
@@ -226,7 +222,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
                         "ip": "10.176.235.52"
                         "description": "Worker1"
                 },
-                                {
+                {
                         "ip": "10.176.235.53"
                         "description": "Worker2"
                 },
@@ -243,8 +239,8 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
-| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a  Base Command Manager deployment) or `false` to install Kubernetes. |
-| `alertmanager_webhook_url` |The URL for the Alertmanager webhook. |
+| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
+| `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -259,6 +255,7 @@ nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.0.0.tgz ko
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
+{{< /tab >}}
 {{< /tabs >}}
 
 ## Verify Installation Status
@@ -269,8 +266,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 4.15.0
-    Installer Version: 4.15.0
+    Version: 5.0.0
+    Installer Version: 5.0.0
     Installation Type: Cluster
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC

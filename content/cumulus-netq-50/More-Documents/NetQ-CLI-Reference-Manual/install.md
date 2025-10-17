@@ -106,7 +106,7 @@ netq install cluster bundle
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.15.0.tgz /tmp/cluster-install-config.json restore /home/nvidia/combined_backup_20241211111316.tar
+nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-5.0.0.tgz /tmp/cluster-install-config.json restore /home/nvidia/combined_backup_20241211111316.tar
 ```
 
 ### Related Commands
@@ -229,7 +229,7 @@ netq install cluster full
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
+nvidia@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-5.0.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands
@@ -524,7 +524,7 @@ netq install opta standalone full
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.15.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
+nvidia@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-5.0.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
 ```
 
 ### Related Commands
@@ -647,7 +647,7 @@ netq install standalone full
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz
+nvidia@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.0.0.tgz
 ```
 
 ### Related Commands

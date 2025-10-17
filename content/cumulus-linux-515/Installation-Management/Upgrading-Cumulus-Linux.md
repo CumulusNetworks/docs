@@ -119,13 +119,13 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
    cumulus@switch:~$ nv action boot-next system image other 
    ```
 
-4. Reboot the switch. If you have the switch resource mode configured to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+4. Reboot the switch. If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
     cumulus@switch:~$ nv action reboot system mode warm
 ```
 
-Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
 
 ```
     cumulus@switch:~$ nv action reboot system
@@ -186,13 +186,13 @@ To activate the other partition at next boot, run the `cl-image-upgrade -a` comm
 cumulus@switch:~$ cl-image-upgrade -a 
 ```
 
-3. Reboot the switch. If you have the switch resource mode configured to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+3. Reboot the switch. If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
     cumulus@switch:~$ sudo csmgrctl -wf
 ```
 
-Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
 
 ```
     cumulus@switch:~$ sudo reboot
@@ -251,12 +251,12 @@ To upgrade the switch with package upgrade:
     yes
 ```
 
-If you have the switch resource mode configured to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
     cumulus@switch:~$ nv action reboot system mode warm
 ```
-Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
 
 ```
     cumulus@switch:~$ nv action reboot system
@@ -330,13 +330,13 @@ Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#
     *** System reboot required ***
     ```
 
-If you have the switch resource mode configured to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
 cumulus@switch:~$ sudo csmgrctl -wf
 ```
 
-Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default mode is a cold reboot:
+If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
 
 ```
 cumulus@switch:~$ sudo reboot

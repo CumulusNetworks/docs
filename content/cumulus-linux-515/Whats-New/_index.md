@@ -10,12 +10,7 @@ This document supports the Cumulus Linux 5.15 release, and lists new platforms, 
 
 ## What's New in Cumulus Linux 5.15
 
-Cumulus Linux 5.15.0 contains new platforms, new features and improvements, and provides bug fixes.
-
-### Platforms
-
-- NVIDIA SN5640
-
+Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fixes.
 ### New Features and Enhancements
 
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming counters">}}

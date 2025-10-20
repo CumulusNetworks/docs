@@ -39,6 +39,10 @@ To configure optional settings for gNMI dial-in mode:
   - Cumulus Linux uses a self-signed certificate. You can generate your own TLS server certificate and bind it with the gNMI server application.
   - If you need to use mTLS on the gNMI RPC, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. Specify either `uri` (a local or remote URI from where to retrieve the crl bundle file) or `data` (for a PEM encoded CRL).
 
+{{%notice note%}}
+When you configure a CA certificate, entity certificate, or CRL, existing gNMI sessions are disconnected to apply the new certificate configuration.
+{{%/notice%}}
+
 The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
 
 ```
@@ -70,6 +74,10 @@ To configure optional settings for each tunnel server:
 - Specify the target name and target application you want to access. The default target application is GNMI-GNOI.
 - Specify the retry interval. The default retry interval is 30 seconds.
 - Import and enable a TLS or mTLS certificate for validation. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. For information about importing certificates and CRLs, refer to {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Security with Certificates and CRLs">}}.
+
+{{%notice note%}}
+When you configure a CA certificate, entity certificate, or CRL, existing gNMI sessions are disconnected to apply the new certificate configuration.
+{{%/notice%}}
 
 The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10, and enables the tunnel server:
 

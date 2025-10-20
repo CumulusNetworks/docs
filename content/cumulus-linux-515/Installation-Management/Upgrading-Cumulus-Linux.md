@@ -4,19 +4,22 @@ author: NVIDIA
 weight: 30
 toc: 3
 ---
-There are multiple ways to upgrade Cumulus Linux, including options supporting {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}} to upgrade an active switch with minimal disruption to the network:
-- Install a new Cumulus Linux image with {{<link url="#image-upgrade" text="Optimized image upgrade">}}, supporting ISSU.
-- Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}}, supporting ISSU.
-- Install a new Cumulus Linux image with <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>, an impactful upgrade requiring manual backup and restoral of your switch configuration.
-## ISSU
+This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to upgrade with minimal disruption to network traffic.
 
-<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to upgrade the switch software while the network continues to forward packets with minimal disruption to the network.
+To upgrade Cumulus Linux, choose one of the three upgrade methods:
 
-Cumulus Linux supports ISSU with
-- Optimized image upgrade
-- Package upgrade
+- Install a new Cumulus Linux image with {{<link url="#optimized-image-upgrade" text="optimized image upgrade">}}, (ISSU support and maintains the current switch configuration)
+- Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}} (ISSU support and maintains the current switch configuration)
+- Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you will need to manually back up and restore your switch configuration)
+## Upgrades with ISSU
 
-The switch must be configured in half resource mode before you start the software upgrade. When the switch is in half resource mode mode, restarting the switch after an upgrade with a warm reboot (`nv action reboot system mode warm`) results in no traffic loss (this is a hitless upgrade). For more information about reboot modes, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
+<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to upgrade the switch software while the network continues to forward packets with minimal disruption to the network, also called a hitless upgrade.
+
+Cumulus Linux supports two methods that can use ISSU:
+- {{<link url="#optimized-image-upgrade" text="Optimized image upgrade">}}
+- {{<link url="#package-upgrade" text="Package upgrade">}}
+
+ISSU requires the use of {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="warm reboot mode">}}. You must configure the switch in half-resource mode to perform a warm reboot. When the switch operates in half-resource mode, performing a warm reboot (using the `nv action reboot system mode warm` command) results in a hitless upgrade. For more information about reboot modes, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
 
 To configure the switch in half resource mode:
 
@@ -47,6 +50,14 @@ Restart the switchd service with the `sudo systemctl restart switchd.service` co
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+Cumulus Linux supports ISSU and warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. 
+
+The following features are not supported during warm boot:
+- EVPN MLAG or EVPN multihoming.
+- LACP bonds. LACP control plane sessions might time out before warm boot completes. Use static LAG to keep bonds up with sub-second convergence during warm boot.
+{{%/notice%}}
+
 ## Before You Upgrade
 ### Create a cl-support File
 
@@ -65,7 +76,6 @@ cumulus@switch:~$ nv action generate system tech-support
 ```
 cumulus@switch:~$ nv action generate system tech-support
 ```
-
 
 ## Optimized Image Upgrade
 
@@ -109,13 +119,13 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
    cumulus@switch:~$ nv action boot-next system image other 
    ```
 
-4. Reboot the switch. If you have the switch resource mode configured to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+4. Reboot the switch. If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
     cumulus@switch:~$ nv action reboot system mode warm
 ```
 
-Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
 
 ```
     cumulus@switch:~$ nv action reboot system
@@ -176,6 +186,18 @@ To activate the other partition at next boot, run the `cl-image-upgrade -a` comm
 cumulus@switch:~$ cl-image-upgrade -a 
 ```
 
+3. Reboot the switch. If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+
+```
+    cumulus@switch:~$ sudo csmgrctl -wf
+```
+
+If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+
+```
+    cumulus@switch:~$ sudo reboot
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -229,12 +251,12 @@ To upgrade the switch with package upgrade:
     yes
 ```
 
-If you have the switch resource mode configured to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
     cumulus@switch:~$ nv action reboot system mode warm
 ```
-Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
 
 ```
     cumulus@switch:~$ nv action reboot system
@@ -308,13 +330,13 @@ Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#
     *** System reboot required ***
     ```
 
-If you have the switch resource mode configured to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
 cumulus@switch:~$ sudo csmgrctl -wf
 ```
 
-Otherwise, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}:
+If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
 
 ```
 cumulus@switch:~$ sudo reboot
@@ -441,19 +463,15 @@ As with other Linux distributions, the `/etc` directory is the primary location 
 To show a list of files changed from the previous Cumulus Linux install, run the `sudo dpkg --verify` command.
 To show a list of generated `/etc/default/isc-*` files changed from the previous Cumulus Linux install, run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command.
 
-```
-cumulus@switch:~$ sudo csmgrctl -wf
-```
-
 {{< /tab >}}
 
 {{< /tabs >}}
 
 2. Download the Cumulus Linux image.
-3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
+3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, defines the current NVUE startup configuration to back up and restore in the new image, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.15.0-mlx-amd64.bin && sudo reboot
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.15.0-mlx-amd64.bin -t /etc/nvue.d/startup.yaml && sudo reboot
     ```
 
 4. Restore the configuration files to the new release:

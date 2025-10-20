@@ -34,18 +34,21 @@ cumulus@switch:~$ nv config apply
 
 To disable BFD, run the `nv set router bfd state disabled` command.
 
+{{%notice note%}}
+When you change the BFD state, the FRR service will restart, affecting all configured routing protocols.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Enable and start the BFD service:
+1. Enable the `bfdd` daemon as described in {{<link title="FRRouting">}}.
 
-``` 
-cumulus@switch:~$ sudo systemctl enable bfdd.service
-cumulus@switch:~$ sudo systemctl start bfdd.service 
-```
+2. Restart the FRR service with the `sudo systemctl restart frr.service` command
 
 {{< /tab >}}
 {{< /tabs >}}
+
+
 
 ## Configure BFD
 

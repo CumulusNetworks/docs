@@ -580,18 +580,6 @@ server03          swp49                     server03          swp50             
 server03          swp50                     server03          swp49                     Speed mismatch (Unknown, 40G)  
 ```
 
-```
-cumulus@switch:~$ netq check interfaces
-Checked Nodes: 18, Failed Nodes: 8
-Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
- 
-Matching cables records:
-Hostname          Interface                 Peer Hostname     Peer Interface            Message
------------------ ------------------------- ----------------- ------------------------- -----------------------------------
-leaf02            -                         -                 -                         Link flapped 11 times in last 5
-                                                                                        mins                    
-```
-
 ### Related Commands
 
 - `netq show interfaces physical`

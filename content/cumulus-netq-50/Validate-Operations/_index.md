@@ -18,7 +18,7 @@ The following table displays the validation categories and the default frequency
 | Agents | Yes | Yes |  Yes |  60 mins |
 | BGP | Yes | Yes | Yes |  60 mins |
 | Cumulus Linux version | No | Yes |  No | on-demand, as scheduled |
-| Duplicate IP addresses | Yes | Yes | No | on-demand, as scheduled |
+| Duplicate IP addresses* | Yes | Yes | No | on-demand, as scheduled |
 | EVPN | Yes | Yes |  Yes | 60 mins |
 | Interfaces | Yes | Yes |  Yes |  60 mins |
 | MLAG (CLAG) | Yes | Yes |  Yes |  60 mins |
@@ -29,6 +29,8 @@ The following table displays the validation categories and the default frequency
 | Topology | Yes | Yes | No | on-demand, as scheduled |
 | VLAN | Yes | Yes | Yes |  60 mins |
 | VXLAN | Yes | Yes | Yes |  60 mins |
+
+*This validation is undergoing improvements. The enhanced version is available in the UI and does not generate events.
 
 {{<notice note>}}
 After logging in, it can take up to an hour for NetQ to display accurate validation data.

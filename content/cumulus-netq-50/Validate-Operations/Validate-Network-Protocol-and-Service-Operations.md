@@ -49,7 +49,7 @@ Using the NetQ UI, you can create an on-demand or scheduled validations for mult
 
 To create a validation in the UI:
 
-1. In the workbench header, select **Validation**, then **Create a validation**. Choose whether the validation should run on all devices or on a {{<link title="Device Groups" text="group of devices">}}.
+1. In the workbench header, select **Validation**, then **Create a validation**. Choose whether the validation should run on all devices, a {{<link title="Device Groups" text="group of devices">}}, or devices with certain labels.
 
 2. Select the protocols or services you want to include as part of the validation. All {{<link title="Validation Tests Reference" text="tests that comprise the validation">}} are included by default, but you can select an individual test to exclude it from the validation check. Hover over an individual test and select **Customize** to configure filters which can exclude individual devices or failure reasons from the validation. Then click **Next**.
 

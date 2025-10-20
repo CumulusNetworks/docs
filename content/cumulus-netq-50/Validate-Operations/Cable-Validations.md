@@ -5,7 +5,7 @@ weight: 1105
 toc: 3
 ---
 
-Launch the cable validation tool from within NetQ to validate layer 1 physical links and connections in your clustered network environments. The tool can detect a range of network cabling issues, including: 
+Launch the cable validation tool from within NetQ to validate layer-1 physical links and connections in your clustered network environments. The tool can detect a range of network cabling issues, including: 
 
 - Miswired or incorrectly connected cables within clusters.
 - Missing or disconnected links between network nodes.

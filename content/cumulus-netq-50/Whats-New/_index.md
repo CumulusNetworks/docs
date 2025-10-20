@@ -14,10 +14,10 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 - NetQ for NVLink
 - Create and apply custom tags to organize and filter devices
-- Duplicate IP validation improvements (beta)
+- Duplicate IP validation performance improvements (beta)
 - NVOS upgrades for NVLink switches
 - View Slurm data in Grafana
-- {{<link title="Cable Validations" text="Cable Validation Tool">}}
+- You can now launch the {{<link title="Cable Validations" text="Cable Validation Tool">}} from NetQ.
 
 
 ## Release Considerations

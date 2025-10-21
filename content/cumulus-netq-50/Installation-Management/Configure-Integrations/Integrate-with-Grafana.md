@@ -156,7 +156,7 @@ To view and filter Slurm jobs in Grafana, you must have an {{<exlink url="https:
 
 {{<tab "Basic Authentication">}}
 
-Two versions of this command exist. Specify either the Base Command Manager IP address in `ip-address` or the domain name in `hostname`. Replace `port-text` with the port that BCM uses.
+Two versions of this command exist. Specify either the Base Command Manager IP address in `ip-address` or the domain name in `hostname`. Replace `port-text` with the port that BCM uses. You can run this command from any node in your cluster.
 
 ```
 nvidia@netq-server:~$ netq add bcm auth-type basic user <username> pass <password> ip <ip-address> port <port-text>  

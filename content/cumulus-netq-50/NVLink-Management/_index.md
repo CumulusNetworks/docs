@@ -5,7 +5,7 @@ weight: 350
 toc: 2
 ---
 
-NetQ for NVLink collects and processes data center telemetry, monitors system performance, and provides insights and predictive analytics on system operability and health.
+NetQ for NVLink collects telemetry data, monitors performance, and allows you to configure and manage NVLink switches running NVOS.
 
 <!--link to marketing webpage if available-->
 

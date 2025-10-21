@@ -157,11 +157,13 @@ nvidia@netq-server:~$ netq show vm-token expiry 40
 
 {{<figure src="/images/netq/grafana-prom-415.png" alt="" width="1200">}}
 
-3. Continue through the steps to configure the data source. In the *Connection* field, enter the IP address of your NetQ server followed by `/api/netq/vm/`, for example `https://10.255.255.255/api/netq/vm/`. In a cluster deployment, enter the virtual IP address in this field (followed by `/api/netq/vm/`). 
+3. Continue through the steps to configure the data source:
 
-<!--insert pic-->
-
-4. On the same page, navigate to the *Authentication* section. In the *HTTP headers* section, select **Add header**. In the *Header* field, enter **Authorization**. In the *Value* field, enter the token that you generated in step one of this section.
+- In the *Name* field, enter the name of the data source. The name should be lowercase and begin with the data source name (for example, `slurm_dashboard`).
+- In the *Connection* field, enter the IP address of your NetQ server followed by `/api/netq/vm/`, for example `https://10.255.255.255/api/netq/vm/`. In a cluster deployment, enter the virtual IP address in this field (followed by `/api/netq/vm/`). 
+- In the *Authentication* section, select **Forward OAuth identity** from the dropdown menu. 
+   - In *TLS settings*, select **Skip TLS certificate validation**.
+   - In the *HTTP headers* section, select **Add header**. In the *Header* field, enter **Authorization**. In the *Value* field, enter the token that you generated in step one of this section.
 
 {{<figure src="/images/netq/grafana-header-415.png" alt="" width="1000">}}
 

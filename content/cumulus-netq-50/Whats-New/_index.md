@@ -15,7 +15,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - You can now monitor NVLink switches with NetQ. 
 - Create and apply custom tags to organize and filter devices
 - NVOS upgrades for NVLink switches
-- View Slurm data in Grafana
+- {{<link title="Integrate NetQ with Grafana/#collect-slurm-telemetry" text="View Slurm data in Grafana">}}
 - You can now launch the {{<link title="Cable Validations" text="Cable Validation Tool">}} from NetQ.
 - Performance improvements to the duplicate IP address validation (beta)
 - Security enhancements and general performance improvements

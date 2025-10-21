@@ -144,6 +144,53 @@ nvidia@netq-server:~$ netq add otlp endpoint tsdb-name <text-tsdb-endpoint> tsdb
 
 3. If you set the `export` option to `true` in the previous step, the TSDB will begin receiving the time-series data for the metrics that you configured on the switch. Use the `netq show otlp endpoint` command to view the TSDB endpoint configuration.
 
+## Collect Slurm Telemetry
+
+{{<exlink url="https://slurm.schedmd.com/quickstart.html" text="Slurm">}} (Simple Linux Utility for Resource Management) is an open-source job scheduler used in high-performance computing (HPC) environments. It manages and allocates compute resources, schedules jobs, and distributes workloads across a cluster.
+
+To view and filter Slurm jobs in Grafana, you must have an {{<exlink url="https://www.nvidia.com/en-us/data-center/base-command/manager/" text="NVIDIA Base Command Manager">}} deployment running BCM v11 or later. 
+
+1. Authenticate into BCM using either basic authentication (username and password) or certificate-based authentication.
+
+{{<tabs "BCM auth">}}
+
+{{<tab "Basic Authentication">}}
+
+Two versions of this command exist. Specify either the Base Command Manager IP address in `ip-address` or the domain name in `hostname`. Replace `port-text` with the port that BCM uses.
+
+```
+nvidia@netq-server:~$ netq add bcm auth-type basic user <username> pass <password> ip <ip-address> port <port-text>  
+nvidia@netq-server:~$ netq add bcm auth-type basic user <username> pass <password> hostname <hostname> port <port-text> 
+```
+For example:
+```
+nvidia@netq-server:~$ netq add bcm auth-type basic user admin pass secretpass123 ip 192.168.1.100 port 8082
+```
+{{</tab>}}
+
+{{<tab "Certificate-based Authentication" >}}
+
+Two versions of this command exist. Specify either the Base Command Manager IP address in `ip-address` or the domain name in `hostname`. Replace `port-text` with the port that BCM uses.
+
+Specify the full path to both the certificate and key files. These are typically located in the `/mnt/bcm/` directory.
+
+```
+nvidia@netq-server:~$ netq add bcm auth-type cert cert-file <certificate-path> key-file <key-path> ip <ip-address> port <port-text> 
+nvidia@netq-server:~$ netq add bcm auth-type cert cert-file <certificate-path> key-file <key-path> hostname <hostname> port <port-text> 
+```
+For example:
+```
+nvidia@netq-server:~$ netq add bcm auth-type cert cert-file /mnt/bcm/bcm.crt key-file /mnt/bcm/bcm.key ip 192.168.1.100 port 8082 
+```
+{{</tab>}}
+
+{{</tab>}}
+
+2. Verify that your credentials are correct and check for BCM version compatibility:
+
+```
+nvidia@netq-server:~$ netq show bcm auth-status
+```
 
 ## Configure Data Sources in Grafana
 

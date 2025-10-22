@@ -24,6 +24,7 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 - Changes in DSCP to traffic class mapping for MRC QOS template
 - Offline package upgrade
 - RoCE `lossy-multi-tc` {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="profile">}} updated to map DSCP values 41-50 to traffic class 5.
+- {{<link url="User-Accounts/#aaa-authentication-restrictions" text="AAA Authentication Restrictions">}}
 - Telemetry
   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
   - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
@@ -59,7 +60,6 @@ Old Name | New Name|
   - `--expand` option for {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff command">}}, {{<link url="NVUE-CLI/#show-switch-configuration" text="nv config show command">}}, and {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="nv config find command">}}
   - `expand=true` parameter for API calls to {{<link url="NVUE-API/#view-differences-between-configurations" text="View differences between configurations">}}, {{<link url="NVUE-API/#view-a-configuration" text="view a configuration">}}, and {{<link url="NVUE-API/#use-filters-in-a-query" text="search for a specific configuration">}}
   - Aging time added to neighbor information
-  - Login brute forcing via API
   - Timestamp format in `nv show` command output changed from UTC to duration (days, hour:minutes:seconds)
   - {{<link url="NVUE-API/#patch-a-batch-of-configuration-commands" text="Batch execution support for patching in CLI commands through the API">}}. This feature also improves performance when patching in text commands {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="through the CLI">}}.
   - Improved command completion when using tab to view CLI command options

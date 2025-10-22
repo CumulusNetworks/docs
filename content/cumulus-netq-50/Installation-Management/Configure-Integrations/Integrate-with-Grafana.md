@@ -2131,7 +2131,7 @@ nvidia@netq-server:~$ netq show vm-token expiry 40
 
 3. Continue through the steps to configure the data source:
 
-- In the *Name* field, enter the name of the data source. The name should be lowercase and begin with the data source name (for example, `slurm_dashboard`).
+- In the *Name* field, enter the name of the data source. The name should be lowercase and begin with the data source name (for example, `slurm_dashboard` or `kpi`).
 - In the *Connection* field, enter the IP address of your NetQ server followed by `/api/netq/vm/`, for example `https://10.255.255.255/api/netq/vm/`. In a cluster deployment, enter the virtual IP address in this field (followed by `/api/netq/vm/`). 
 - In the *Authentication* section, select **Forward OAuth identity** from the dropdown menu. 
    - In *TLS settings*, select **Skip TLS certificate validation**.

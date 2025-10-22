@@ -422,6 +422,77 @@ history-cnt              20           20
 len-min                  8            8
 ```
 
+## AAA Authentication Restrictions
+
+AAA authentication restrictions are enabled by default to limit login attempts and prevent unauthorized access. After five consecutive failed login attempts, the user account is locked out.
+
+A reattempt timer controls when additional login attempts can be made. Following each failed login, the user must wait 15 seconds before retrying. This restriction remains in effect until the maximum number of consecutive failures is reached, triggering a lockout condition.
+
+{{%notice note%}}
+AAA authentication restrictions apply to authentication attempts to access the switch through the CLI and the {{<link url="NVUE-API" text="NVUE API">}}.
+{{%/notice%}}
+
+To disable AAA authentication restrictions, set the `lockout-state` parameter to `disabled`:
+```
+cumulus@switch:mgmt:~$ nv set aaa authentication restrictions lockout-state disabled
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+To modify the default reattempt timer (15 seconds), configure the `lockout-reattempt` value in seconds:
+
+```
+cumulus@switch:mgmt:~$ nv set aaa authentication restrictions lockout-reattempt 5
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+To change the maximum number of failed login attempts before a user is locked out, adjust the `lockout-attempts` parameter:
+
+```
+cumulus@switch:mgmt:~$ nv set system aaa authentication restrictions lockout-attempts 10
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+To extend the reattempt timer after each failed login, configure the failure delay (`fail-delay`) parameter. By default, the failure delay is disabled (set to 0 seconds). The following example adds a 5-second delay to the reattempt timer after every failed authentication attempt:
+
+```
+cumulus@switch:mgmt:~$ nv set system aaa authentication restrictions fail-delay 5
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+To clear the restriction state for a user that is locked out, run the `nv action clear system aaa authentication restrictions user <username>` command:
+
+```
+cumulus@switch:mgmt:~$ nv action clear system aaa authentication restrictions user testuser
+Action executing ...
+Clearing restrictions for user testuser
+Action executing ...
+Successfully cleared user name testuser
+Action succeeded
+```
+
+To clear the restriction state for all users that are locked out, run the `nv action clear system aaa authentication restrictions` command:
+
+```
+cumulus@switch:mgmt:~$ nv action clear system aaa authentication restrictions 
+Action executing ...
+Clearing restrictions for all users
+Action executing ...
+Successfully cleared all users
+Action succeeded
+```
+
+To show the current AAA restriction configuration, run the `nv show system aaa authentication restrictions` command:
+
+```
+cumulus@switch:mgmt:~$ nv show system aaa authentication restrictions 
+                   operational  applied
+-----------------  -----------  -------
+lockout-state      enabled      enabled
+fail-delay         0            0      
+lockout-reattempt  15           15     
+lockout-attempts   5            5   
+```
+
 ## Related Information
 
 - {{<exlink url="https://man7.org/linux/man-pages/man3/crypt.3.html" text="crypt man page">}}

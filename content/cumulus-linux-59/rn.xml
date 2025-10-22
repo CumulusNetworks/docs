@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4633514</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4582679</td>
 <td>If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
 <td>5.9.4-5.14.0</td>
@@ -14,7 +20,7 @@
 </tr>
 <tr>
 <td>4531104</td>
-<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
 <td>5.14.0</td>
 </tr>
@@ -36,13 +42,13 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423336</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.11.3</td>
 <td>5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4423335</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -54,7 +60,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423244</td>
-<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -97,13 +103,13 @@ This happens in async mode, where the end notification expected after an end of 
 </tr>
 <tr>
 <td>4124831</td>
-<td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
+<td>When you enable Per-VLAN Rapid Spanning Tree (PVRST) mode, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
 <tr>
 <td>4124139</td>
-<td>MLAG interfaces, including VXLAN interfaces, go down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>When you add MLAG configuration to the first bond in a single MLAG switch configuration, MLAG interfaces and VXLAN interfaces go down.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
@@ -186,10 +192,7 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 <tr>
 <td>3900813</td>
 <td>When you configure or edit a large or extended BGP community list with NVUE, {{nv config apply}} might return an error and {{frr-reload}} might fail with the following message in {{/var/log/frr/frr-reload.log}}:
-{
-2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to
-vtysh (exec file) exited with status 13
-}
+2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to vtysh (exec file) exited with status 13
 
 You can safely ignore this error as FRR accepts and applies the new configuration. To work around this issue, apply the same configuration with the {{nv config apply -y}} command. The new configuration will correctly show in both NVUE and FRR.</td>
 <td>5.9.0-5.9.4</td>
@@ -307,7 +310,7 @@ Mounting dev-mqueue.mount
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -455,6 +458,14 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3414866</td>
+<td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
+sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
+You can ignore this error; it has no impact on switch functionality.</td>
+<td>5.6.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3393966</td>
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
 <td>5.5.0-5.9.4</td>
@@ -595,12 +606,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2964279</td>
-<td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
-<td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.14.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.14.0</td>
@@ -736,6 +741,11 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>5.9.2-5.9.3</td>
 </tr>
 <tr>
+<td>4535746</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.9.3</td>
+</tr>
+<tr>
 <td>4535696</td>
 <td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
 <td>5.12.1-5.14.0</td>
@@ -759,11 +769,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4500033</td>
 <td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
 <td>5.13.0</td>
-</tr>
-<tr>
-<td>4499106</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.9.3</td>
 </tr>
 <tr>
 <td>4486320</td>
@@ -994,6 +999,12 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4633514</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4549884</td>
 <td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
 <td>5.6.0-5.13.1</td>
@@ -1006,8 +1017,8 @@ This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
 &lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
 To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
-<td>5.9.1-5.14.0</td>
-<td></td>
+<td>5.9.1-5.9.3, 5.14.0</td>
+<td>5.9.4</td>
 </tr>
 <tr>
 <td>4548340</td>
@@ -1024,12 +1035,18 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4535748</td>
 <td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
-<td>5.9.2-5.14.0</td>
-<td></td>
+<td>5.9.2-5.9.3</td>
+<td>5.9.4-5.14.0</td>
+</tr>
+<tr>
+<td>4535746</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.9.3</td>
+<td>5.9.4-5.14.0</td>
 </tr>
 <tr>
 <td>4531104</td>
-<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
 <td>5.14.0</td>
 </tr>
@@ -1042,12 +1059,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 To work around this issue, power cycle the switch.</td>
 <td>5.5.1-5.13.1</td>
 <td>5.14.0</td>
-</tr>
-<tr>
-<td>4499106</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4495231</td>
@@ -1069,13 +1080,13 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423336</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.11.3</td>
 <td>5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4423335</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1087,7 +1098,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423244</td>
-<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1120,8 +1131,8 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
-<td>5.9.2-5.14.0</td>
-<td></td>
+<td>5.9.2-5.9.3, 5.12.0-5.14.0</td>
+<td>5.9.4</td>
 </tr>
 <tr>
 <td>4281099</td>
@@ -1175,8 +1186,8 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4218485</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.11.3</td>
-<td>5.12.0-5.14.0</td>
+<td>5.5.1-5.9.3</td>
+<td>5.9.4-5.14.0, 5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4214550</td>
@@ -1240,13 +1251,13 @@ This happens in async mode, where the end notification expected after an end of 
 </tr>
 <tr>
 <td>4124831</td>
-<td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
+<td>When you enable Per-VLAN Rapid Spanning Tree (PVRST) mode, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
 <tr>
 <td>4124139</td>
-<td>MLAG interfaces, including VXLAN interfaces, go down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>When you add MLAG configuration to the first bond in a single MLAG switch configuration, MLAG interfaces and VXLAN interfaces go down.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
@@ -1353,13 +1364,13 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>3994544</td>
 <td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3985600</td>
 <td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -1374,31 +1385,28 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 <tr>
 <td>3900813</td>
 <td>When you configure or edit a large or extended BGP community list with NVUE, {{nv config apply}} might return an error and {{frr-reload}} might fail with the following message in {{/var/log/frr/frr-reload.log}}:
-{
-2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to
-vtysh (exec file) exited with status 13
-}
+2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to vtysh (exec file) exited with status 13
 
 You can safely ignore this error as FRR accepts and applies the new configuration. To work around this issue, apply the same configuration with the {{nv config apply -y}} command. The new configuration will correctly show in both NVUE and FRR.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3897227</td>
 <td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
-<td>5.5.1-5.9.3</td>
+<td>5.5.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3895848</td>
 <td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3890993</td>
 <td>On the NVIDIA spectrum-4 switch, {{l1-show}} command output does not show Eye opening information for an interface port.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -1443,7 +1451,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3873219</td>
 <td>When you remove a port from a bond and add it to the bridge in a single set of NVUE commands, then apply the configuration, the port forwarding state is blocked on all the bridge VLANs. To work around this issue, apply the configuration in two steps. First remove the port from the bond and apply the configuration, then add the port to the bridge and apply the configuration. </td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -1484,7 +1492,7 @@ Mounting dev-mqueue.mount
 <tr>
 <td>3775686</td>
 <td>The BGP Suppress Route Advertisement feature under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR does not read kernel route updates fast enough, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -1495,7 +1503,7 @@ Mounting dev-mqueue.mount
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -1522,7 +1530,7 @@ cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
 cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
 cumulus@switch:~$ nv set acl one type mac
 </td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -1546,13 +1554,13 @@ cumulus@switch:~$ nv set acl one type mac
 <tr>
 <td>3636266</td>
 <td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address is not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3610591</td>
 <td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -1643,9 +1651,17 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3414866</td>
+<td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
+sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
+You can ignore this error; it has no impact on switch functionality.</td>
+<td>5.6.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3393966</td>
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
-<td>5.5.0-5.9.3</td>
+<td>5.5.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -1783,12 +1799,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2964279</td>
-<td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
-<td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.14.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.14.0</td>
@@ -1869,7 +1879,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 </table>
@@ -1893,6 +1903,12 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4633514</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4549884</td>
 <td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
 <td>5.6.0-5.13.1</td>
@@ -1905,8 +1921,8 @@ This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
 &lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
 To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
-<td>5.9.1-5.14.0</td>
-<td></td>
+<td>5.9.1-5.9.3, 5.14.0</td>
+<td>5.9.4</td>
 </tr>
 <tr>
 <td>4548340</td>
@@ -1923,8 +1939,14 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4535748</td>
 <td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
-<td>5.9.2-5.14.0</td>
-<td></td>
+<td>5.9.2-5.9.3</td>
+<td>5.9.4-5.14.0</td>
+</tr>
+<tr>
+<td>4535746</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.9.3</td>
+<td>5.9.4-5.14.0</td>
 </tr>
 <tr>
 <td>4532006</td>
@@ -1934,7 +1956,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4531104</td>
-<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
 <td>5.14.0</td>
 </tr>
@@ -1947,12 +1969,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 To work around this issue, power cycle the switch.</td>
 <td>5.5.1-5.13.1</td>
 <td>5.14.0</td>
-</tr>
-<tr>
-<td>4499106</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4495231</td>
@@ -1968,13 +1984,13 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423336</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.11.3</td>
 <td>5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4423335</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1986,7 +2002,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423244</td>
-<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -2019,8 +2035,8 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
-<td>5.9.2-5.14.0</td>
-<td></td>
+<td>5.9.2-5.9.3, 5.12.0-5.14.0</td>
+<td>5.9.4</td>
 </tr>
 <tr>
 <td>4281099</td>
@@ -2074,8 +2090,8 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4218485</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.11.3</td>
-<td>5.12.0-5.14.0</td>
+<td>5.5.1-5.9.3</td>
+<td>5.9.4-5.14.0, 5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4214550</td>
@@ -2139,13 +2155,13 @@ This happens in async mode, where the end notification expected after an end of 
 </tr>
 <tr>
 <td>4124831</td>
-<td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
+<td>When you enable Per-VLAN Rapid Spanning Tree (PVRST) mode, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
 <tr>
 <td>4124139</td>
-<td>MLAG interfaces, including VXLAN interfaces, go down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>When you add MLAG configuration to the first bond in a single MLAG switch configuration, MLAG interfaces and VXLAN interfaces go down.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
@@ -2252,13 +2268,13 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>3994544</td>
 <td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3985600</td>
 <td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -2273,31 +2289,28 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 <tr>
 <td>3900813</td>
 <td>When you configure or edit a large or extended BGP community list with NVUE, {{nv config apply}} might return an error and {{frr-reload}} might fail with the following message in {{/var/log/frr/frr-reload.log}}:
-{
-2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to
-vtysh (exec file) exited with status 13
-}
+2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to vtysh (exec file) exited with status 13
 
 You can safely ignore this error as FRR accepts and applies the new configuration. To work around this issue, apply the same configuration with the {{nv config apply -y}} command. The new configuration will correctly show in both NVUE and FRR.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3897227</td>
 <td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
-<td>5.5.1-5.9.3</td>
+<td>5.5.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3895848</td>
 <td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3890993</td>
 <td>On the NVIDIA spectrum-4 switch, {{l1-show}} command output does not show Eye opening information for an interface port.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -2342,7 +2355,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3873219</td>
 <td>When you remove a port from a bond and add it to the bridge in a single set of NVUE commands, then apply the configuration, the port forwarding state is blocked on all the bridge VLANs. To work around this issue, apply the configuration in two steps. First remove the port from the bond and apply the configuration, then add the port to the bridge and apply the configuration. </td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -2383,7 +2396,7 @@ Mounting dev-mqueue.mount
 <tr>
 <td>3775686</td>
 <td>The BGP Suppress Route Advertisement feature under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR does not read kernel route updates fast enough, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -2394,7 +2407,7 @@ Mounting dev-mqueue.mount
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -2421,7 +2434,7 @@ cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
 cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
 cumulus@switch:~$ nv set acl one type mac
 </td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -2445,13 +2458,13 @@ cumulus@switch:~$ nv set acl one type mac
 <tr>
 <td>3636266</td>
 <td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address is not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3610591</td>
 <td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -2542,9 +2555,17 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3414866</td>
+<td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
+sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
+You can ignore this error; it has no impact on switch functionality.</td>
+<td>5.6.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3393966</td>
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
-<td>5.5.0-5.9.3</td>
+<td>5.5.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -2682,12 +2703,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2964279</td>
-<td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
-<td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.14.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.14.0</td>
@@ -2768,7 +2783,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 </table>
@@ -3032,6 +3047,12 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4633514</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4549884</td>
 <td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
 <td>5.6.0-5.13.1</td>
@@ -3044,8 +3065,8 @@ This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
 &lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
 To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
-<td>5.9.1-5.14.0</td>
-<td></td>
+<td>5.9.1-5.9.3, 5.14.0</td>
+<td>5.9.4</td>
 </tr>
 <tr>
 <td>4548340</td>
@@ -3061,7 +3082,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4531104</td>
-<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
 <td>5.14.0</td>
 </tr>
@@ -3083,13 +3104,13 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423336</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.11.3</td>
 <td>5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4423335</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -3101,7 +3122,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423244</td>
-<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -3158,8 +3179,8 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4218485</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.11.3</td>
-<td>5.12.0-5.14.0</td>
+<td>5.5.1-5.9.3</td>
+<td>5.9.4-5.14.0, 5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4214550</td>
@@ -3217,13 +3238,13 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 </tr>
 <tr>
 <td>4124831</td>
-<td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
+<td>When you enable Per-VLAN Rapid Spanning Tree (PVRST) mode, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
 <tr>
 <td>4124139</td>
-<td>MLAG interfaces, including VXLAN interfaces, go down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>When you add MLAG configuration to the first bond in a single MLAG switch configuration, MLAG interfaces and VXLAN interfaces go down.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
@@ -3281,7 +3302,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4062261</td>
 <td>After a networking restart, ERSPAN mirror sessions might not start. To work around this issue, run the {{systemctl reload switchd}} command to start the ERSPAN mirror sessions.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3293,7 +3314,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4052800</td>
 <td>ERSPAN port-mirror sessions might not come up after a {{switchd}} service restart. To work around this issue and bring up the ERSPAN session, either run {{switchd reload}} after a {{switchd restart}} or use an ACL-based ERSPAN session.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3318,13 +3339,13 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4037434</td>
 <td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>4.3.0-5.9.3</td>
+<td>4.3.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3336,25 +3357,25 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4035597</td>
 <td>When using SSM and the upstream interface goes away (the source stops sending or the link goes down) the PIMREG interface is added to the outgoing interface list of the S,G and is never removed. As a result, multicast traffic that hits the impacted S,G is forwarded to the CPU and dropped by the switch.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4023776</td>
 <td>The NVUE {{nv show interface eth0}} and {{nv show vrf}} commands take more than two minutes to run if you have configured hundreds of interfaces because NVUE makes repetitive system calls to get {{vlan/link/tunnel}} bridge information.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4023649</td>
 <td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
-<td>5.2.0-5.9.3</td>
+<td>5.2.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4023645</td>
 <td>When you disable dynamic NAT manually in the {{/etc/cumulus/switchd.conf}} file instead of using NVUE commands but the dynamic NAT rules still exist in the {{/etc/cumulus/acl/policy,d/.rules}} file, the switch encounters a memory leak. To work around this issue, remove dynamic NAT rules in rules files in {{/etc/cumulus/acl/policy.d}} before you disable dynamic NAT in the {{/etc/cumulus/switchd.conf}} file.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3367,13 +3388,13 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>4013592</td>
 <td>A memory corruption kernel crash might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
 kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4007614</td>
 <td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3385,175 +3406,175 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>4007612</td>
 <td>When two SVIs are configured with the same VLAN ID and are assigned to separate bridges (each in a different VRF) but both bridges share the same MAC hardware address, traffic drops might occur.</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4007329</td>
 <td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4005261</td>
 <td>On the Spectrum-4 switch, when you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4003866</td>
 <td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
-<td>5.0.1-5.9.3</td>
+<td>5.0.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3994544</td>
 <td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3994463</td>
 <td>The {{ntpsec@mgmt}} service does not come up by default when you install an image with ONIE because the trigger to bring up the service is missing.</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3985600</td>
 <td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3983497</td>
 <td>The NVIDIA SN4600C switch fails to boot fully after  you upgrade from Cumulus Linux 4.2.1 to 5.7 with ONIE install. To work around this issue, perform an intermediate step image upgrade; for example, upgrade the switch from Cumulus Linux 4.2.1 to 5.2.1 to 5.7.0.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982294</td>
 <td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
-<td>5.6.0-5.9.3</td>
+<td>5.6.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982260</td>
 <td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982258</td>
 <td>The NVUE unset and set command for the same object in a patch file ({{nv config patch &lt;file&gt;.yaml}}) causes a python exception.</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982256</td>
 <td>After {{switchd}} restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting.</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982253</td>
 <td>When you enable or disable MLAG configuration on an interface, Cumulus Linux logs LACP partner MAC address and BPDU guard mismatches incorrectly. This issue does not impact functionality.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982251</td>
 <td>When there are multiple interface flaps with sFlow on 100G interfaces, sFlow might use a different value than the one configured.</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982250</td>
 <td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982249</td>
 <td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
-<td>5.5.0-5.9.3</td>
+<td>5.5.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982243</td>
 <td>With Optimized Multicast Flooding (OMF), when you unset multiple multicast router ports in a single commit, multicast traffic still floods one of the ports. To work around this issue, unset multicast router ports one by one instead of in a single commit.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982242</td>
 <td>PTP doesn't come up with IPv6 over a trunk port due to the IPv6 VLAN tag not being sent.  PTP over an IPv4 trunk works fine.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982239</td>
 <td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982234</td>
 <td>With LACP bypass enabled, Cumulus Linux does not program the MAC address in the bridge FDB for VLAN unaware tagged ports.  With EVPN, the address is not advertised and the remote side might flood the packet instead of unicast.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982233</td>
 <td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
-<td>5.6.0-5.9.3</td>
+<td>5.6.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982231</td>
 <td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
-<td>5.6.0-5.9.3</td>
+<td>5.6.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982230</td>
 <td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982227</td>
 <td>In an EVPN multihoming configuration, if you enable multihoming without any local ESI configuration, {{arp-nd-redirect}} remains disabled unless you restart FRR with the {{sudo systemctl restart frr.service}} command.</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982226</td>
 <td>When you enable SPAN  on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices, such as load balancers, might fail to update the bridge MAC table to point to the interface with the newly active load balancer. To work around this issue, remove the SPAN configuration from the bridge member or ensure that the load balancer generates non-ARP traffic after the failover to properly update the bridge MAC table.</td>
-<td>5.4.0-5.9.3</td>
+<td>5.4.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3980957</td>
 <td>On NVIDIA Cumulus VX, the password does not reset to the default value of {{cumulus}}.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3980956</td>
 <td>The default memory configuration for NVIDIA Cumulus VX OVA is too low and needs to be increased.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3980943</td>
 <td>The default NIC for the VMWare OVA file is set to vmxnet3 instead of e1000.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3980942</td>
 <td>SNMP IF-MIB reports all interfaces (including layer 3 and VNIs) as {{ifType=6}} (ethernetCsmacd) instead of IANA MIB-II types. </td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3562,19 +3583,19 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
-<td>4.4.0-5.9.3</td>
+<td>4.4.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3980938</td>
 <td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3980925</td>
 <td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3586,26 +3607,26 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>3965574</td>
 <td>The {{ethtool -m}} command shows incorrect optical DOM information for SFP modules. To work around this issue, run the {{l1-show}} command to show optical power values for SFP optical transceivers..</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3965573</td>
 <td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.3</td>
+<td>5.3.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3965564</td>
 <td>A kernel crash due to memory corruption might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
 kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3951316</td>
 <td>In an EVPN multihoming configuration, if a host bond enters the protodown state due to a link flap, when you try to clear the protodown state, FRR reprograms it.</td>
-<td>5.9.1-5.9.3</td>
+<td>5.9.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3620,31 +3641,28 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 <tr>
 <td>3900813</td>
 <td>When you configure or edit a large or extended BGP community list with NVUE, {{nv config apply}} might return an error and {{frr-reload}} might fail with the following message in {{/var/log/frr/frr-reload.log}}:
-{
-2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to
-vtysh (exec file) exited with status 13
-}
+2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to vtysh (exec file) exited with status 13
 
 You can safely ignore this error as FRR accepts and applies the new configuration. To work around this issue, apply the same configuration with the {{nv config apply -y}} command. The new configuration will correctly show in both NVUE and FRR.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3897227</td>
 <td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
-<td>5.5.1-5.9.3</td>
+<td>5.5.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3895848</td>
 <td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3890993</td>
 <td>On the NVIDIA spectrum-4 switch, {{l1-show}} command output does not show Eye opening information for an interface port.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3689,7 +3707,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3873219</td>
 <td>When you remove a port from a bond and add it to the bridge in a single set of NVUE commands, then apply the configuration, the port forwarding state is blocked on all the bridge VLANs. To work around this issue, apply the configuration in two steps. First remove the port from the bond and apply the configuration, then add the port to the bridge and apply the configuration. </td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3730,7 +3748,7 @@ Mounting dev-mqueue.mount
 <tr>
 <td>3775686</td>
 <td>The BGP Suppress Route Advertisement feature under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR does not read kernel route updates fast enough, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3741,7 +3759,7 @@ Mounting dev-mqueue.mount
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -3768,7 +3786,7 @@ cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
 cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
 cumulus@switch:~$ nv set acl one type mac
 </td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3792,13 +3810,13 @@ cumulus@switch:~$ nv set acl one type mac
 <tr>
 <td>3636266</td>
 <td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address is not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3610591</td>
 <td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3889,9 +3907,17 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3414866</td>
+<td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
+sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
+You can ignore this error; it has no impact on switch functionality.</td>
+<td>5.6.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3393966</td>
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
-<td>5.5.0-5.9.3</td>
+<td>5.5.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4029,12 +4055,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2964279</td>
-<td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
-<td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.14.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.14.0</td>
@@ -4115,7 +4135,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 </table>
@@ -4139,6 +4159,12 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4633514</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4549884</td>
 <td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
 <td>5.6.0-5.13.1</td>
@@ -4158,7 +4184,7 @@ You can safely ignore this warning.</td>
 </tr>
 <tr>
 <td>4531104</td>
-<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
 <td>5.14.0</td>
 </tr>
@@ -4180,13 +4206,13 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423336</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.11.3</td>
 <td>5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4423335</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -4198,7 +4224,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423244</td>
-<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -4249,8 +4275,8 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4218485</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.11.3</td>
-<td>5.12.0-5.14.0</td>
+<td>5.5.1-5.9.3</td>
+<td>5.9.4-5.14.0, 5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4134451</td>
@@ -4272,7 +4298,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 </tr>
 <tr>
 <td>4124139</td>
-<td>MLAG interfaces, including VXLAN interfaces, go down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>When you add MLAG configuration to the first bond in a single MLAG switch configuration, MLAG interfaces and VXLAN interfaces go down.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
@@ -4303,7 +4329,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4062261</td>
 <td>After a networking restart, ERSPAN mirror sessions might not start. To work around this issue, run the {{systemctl reload switchd}} command to start the ERSPAN mirror sessions.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4315,7 +4341,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4052800</td>
 <td>ERSPAN port-mirror sessions might not come up after a {{switchd}} service restart. To work around this issue and bring up the ERSPAN session, either run {{switchd reload}} after a {{switchd restart}} or use an ACL-based ERSPAN session.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4327,13 +4353,13 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4037434</td>
 <td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>4.3.0-5.9.3</td>
+<td>4.3.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4345,157 +4371,157 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4035597</td>
 <td>When using SSM and the upstream interface goes away (the source stops sending or the link goes down) the PIMREG interface is added to the outgoing interface list of the S,G and is never removed. As a result, multicast traffic that hits the impacted S,G is forwarded to the CPU and dropped by the switch.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4023776</td>
 <td>The NVUE {{nv show interface eth0}} and {{nv show vrf}} commands take more than two minutes to run if you have configured hundreds of interfaces because NVUE makes repetitive system calls to get {{vlan/link/tunnel}} bridge information.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4023649</td>
 <td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
-<td>5.2.0-5.9.3</td>
+<td>5.2.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4023645</td>
 <td>When you disable dynamic NAT manually in the {{/etc/cumulus/switchd.conf}} file instead of using NVUE commands but the dynamic NAT rules still exist in the {{/etc/cumulus/acl/policy,d/.rules}} file, the switch encounters a memory leak. To work around this issue, remove dynamic NAT rules in rules files in {{/etc/cumulus/acl/policy.d}} before you disable dynamic NAT in the {{/etc/cumulus/switchd.conf}} file.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4007614</td>
 <td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4007329</td>
 <td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4005261</td>
 <td>On the Spectrum-4 switch, when you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>4003866</td>
 <td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
-<td>5.0.1-5.9.3</td>
+<td>5.0.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3985600</td>
 <td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3983497</td>
 <td>The NVIDIA SN4600C switch fails to boot fully after  you upgrade from Cumulus Linux 4.2.1 to 5.7 with ONIE install. To work around this issue, perform an intermediate step image upgrade; for example, upgrade the switch from Cumulus Linux 4.2.1 to 5.2.1 to 5.7.0.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982294</td>
 <td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
-<td>5.6.0-5.9.3</td>
+<td>5.6.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982260</td>
 <td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982253</td>
 <td>When you enable or disable MLAG configuration on an interface, Cumulus Linux logs LACP partner MAC address and BPDU guard mismatches incorrectly. This issue does not impact functionality.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982250</td>
 <td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982249</td>
 <td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
-<td>5.5.0-5.9.3</td>
+<td>5.5.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982243</td>
 <td>With Optimized Multicast Flooding (OMF), when you unset multiple multicast router ports in a single commit, multicast traffic still floods one of the ports. To work around this issue, unset multicast router ports one by one instead of in a single commit.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982242</td>
 <td>PTP doesn't come up with IPv6 over a trunk port due to the IPv6 VLAN tag not being sent.  PTP over an IPv4 trunk works fine.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982239</td>
 <td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982234</td>
 <td>With LACP bypass enabled, Cumulus Linux does not program the MAC address in the bridge FDB for VLAN unaware tagged ports.  With EVPN, the address is not advertised and the remote side might flood the packet instead of unicast.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982233</td>
 <td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
-<td>5.6.0-5.9.3</td>
+<td>5.6.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982231</td>
 <td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
-<td>5.6.0-5.9.3</td>
+<td>5.6.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982230</td>
 <td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3982226</td>
 <td>When you enable SPAN  on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices, such as load balancers, might fail to update the bridge MAC table to point to the interface with the newly active load balancer. To work around this issue, remove the SPAN configuration from the bridge member or ensure that the load balancer generates non-ARP traffic after the failover to properly update the bridge MAC table.</td>
-<td>5.4.0-5.9.3</td>
+<td>5.4.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3980957</td>
 <td>On NVIDIA Cumulus VX, the password does not reset to the default value of {{cumulus}}.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3980956</td>
 <td>The default memory configuration for NVIDIA Cumulus VX OVA is too low and needs to be increased.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3980943</td>
 <td>The default NIC for the VMWare OVA file is set to vmxnet3 instead of e1000.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4504,32 +4530,32 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
-<td>4.4.0-5.9.3</td>
+<td>4.4.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3980938</td>
 <td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3980925</td>
 <td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3965573</td>
 <td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.3</td>
+<td>5.3.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3965564</td>
 <td>A kernel crash due to memory corruption might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
 kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4550,31 +4576,28 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 <tr>
 <td>3900813</td>
 <td>When you configure or edit a large or extended BGP community list with NVUE, {{nv config apply}} might return an error and {{frr-reload}} might fail with the following message in {{/var/log/frr/frr-reload.log}}:
-{
-2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to
-vtysh (exec file) exited with status 13
-}
+2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to vtysh (exec file) exited with status 13
 
 You can safely ignore this error as FRR accepts and applies the new configuration. To work around this issue, apply the same configuration with the {{nv config apply -y}} command. The new configuration will correctly show in both NVUE and FRR.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3897227</td>
 <td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
-<td>5.5.1-5.9.3</td>
+<td>5.5.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3895848</td>
 <td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3890993</td>
 <td>On the NVIDIA spectrum-4 switch, {{l1-show}} command output does not show Eye opening information for an interface port.</td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4619,7 +4642,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3873219</td>
 <td>When you remove a port from a bond and add it to the bridge in a single set of NVUE commands, then apply the configuration, the port forwarding state is blocked on all the bridge VLANs. To work around this issue, apply the configuration in two steps. First remove the port from the bond and apply the configuration, then add the port to the bridge and apply the configuration. </td>
-<td>5.9.0-5.9.3</td>
+<td>5.9.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4660,7 +4683,7 @@ Mounting dev-mqueue.mount
 <tr>
 <td>3775686</td>
 <td>The BGP Suppress Route Advertisement feature under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR does not read kernel route updates fast enough, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
-<td>5.8.0-5.9.3</td>
+<td>5.8.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4671,7 +4694,7 @@ Mounting dev-mqueue.mount
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -4698,7 +4721,7 @@ cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
 cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
 cumulus@switch:~$ nv set acl one type mac
 </td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4722,13 +4745,13 @@ cumulus@switch:~$ nv set acl one type mac
 <tr>
 <td>3636266</td>
 <td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address is not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
 <td>3610591</td>
 <td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4819,9 +4842,17 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3414866</td>
+<td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
+sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
+You can ignore this error; it has no impact on switch functionality.</td>
+<td>5.6.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3393966</td>
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
-<td>5.5.0-5.9.3</td>
+<td>5.5.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4959,12 +4990,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2964279</td>
-<td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
-<td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.14.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.14.0</td>
@@ -5045,7 +5070,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 </table>
@@ -5241,6 +5266,11 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 <td>3463827</td>
 <td>On rare occasions, SPT switchover might not happen cleanly in PIM, resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
 <td>5.6.0-5.8.0</td>
+</tr>
+<tr>
+<td>3436407</td>
+<td>The {{nv show acl &lt;aclname&gt;}} command output shows a header but no ACL details. </td>
+<td>5.5.0-5.8.0</td>
 </tr>
 <tr>
 <td>3433577</td>

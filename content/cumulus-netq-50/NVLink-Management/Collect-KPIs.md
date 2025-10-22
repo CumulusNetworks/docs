@@ -1,5 +1,5 @@
 ---
-title: Monitor KPIs
+title: Collect KPIs
 author: NVIDIA
 weight: 850
 toc: 4

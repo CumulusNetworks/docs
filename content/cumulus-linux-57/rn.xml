@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>4531104</td>
-<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
 <td>5.14.0</td>
 </tr>
@@ -25,14 +25,14 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4505138</td>
 <td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
-<td>5.6.0-5.13.1</td>
-<td>5.14.0</td>
+<td>5.6.0-5.9.3</td>
+<td>5.9.4-5.14.0, 5.14.0</td>
 </tr>
 <tr>
 <td>4469498</td>
 <td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
-<td>5.4.0-5.13.1</td>
-<td>5.14.0</td>
+<td>5.4.0-5.9.3</td>
+<td>5.9.4-5.14.0, 5.14.0</td>
 </tr>
 <tr>
 <td>4413450</td>
@@ -45,20 +45,20 @@ To work around this issue, power cycle the switch.</td>
 <td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
-<td>5.7.0-5.11.1</td>
-<td>5.11.2-5.14.0, 5.14.0</td>
+<td>5.7.0-5.9.3</td>
+<td>5.9.4-5.14.0, 5.11.2-5.14.0, 5.14.0</td>
 </tr>
 <tr>
 <td>4377862</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
-<td>5.1.0-5.11.1</td>
-<td>5.11.2-5.14.0, 5.13.0-5.14.0</td>
+<td>5.1.0-5.9.3</td>
+<td>5.9.4-5.14.0, 5.11.2-5.14.0, 5.13.0-5.14.0</td>
 </tr>
 <tr>
 <td>4072165</td>
 <td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
-<td>5.7.0-5.10.1</td>
-<td>5.11.0-5.14.0</td>
+<td>5.7.0-5.9.3</td>
+<td>5.9.4-5.14.0, 5.11.0-5.14.0</td>
 </tr>
 <tr>
 <td>4039850</td>
@@ -81,8 +81,8 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>3980924</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.11.0</td>
-<td>5.11.1-5.14.0, 5.12.0-5.14.0</td>
+<td>5.5.1-5.9.3</td>
+<td>5.9.4-5.14.0, 5.11.1-5.14.0, 5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>3955615</td>
@@ -111,7 +111,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>3897227</td>
 <td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
-<td>5.5.1-5.9.3</td>
+<td>5.5.1-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -173,7 +173,7 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -289,7 +289,7 @@ cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
 cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
 cumulus@switch:~$ nv set acl one type mac
 </td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -366,7 +366,7 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 <tr>
 <td>3636266</td>
 <td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address is not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -396,7 +396,7 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 <tr>
 <td>3610591</td>
 <td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
-<td>5.7.0-5.9.3</td>
+<td>5.7.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -494,6 +494,12 @@ To work around this issue when using fiber cables:
 <td></td>
 </tr>
 <tr>
+<td>3436407</td>
+<td>The {{nv show acl &lt;aclname&gt;}} command output shows a header but no ACL details. </td>
+<td>5.5.0-5.8.0</td>
+<td>5.9.0-5.14.0</td>
+</tr>
+<tr>
 <td>3433577</td>
 <td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
 <td>5.5.0-5.8.0</td>
@@ -519,9 +525,17 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3414866</td>
+<td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
+sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
+You can ignore this error; it has no impact on switch functionality.</td>
+<td>5.6.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3393966</td>
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
-<td>5.5.0-5.9.3</td>
+<td>5.5.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -679,12 +693,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2964279</td>
-<td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
-<td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.14.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.14.0</td>
@@ -765,7 +773,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 </table>

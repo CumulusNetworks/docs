@@ -2141,7 +2141,7 @@ nvidia@netq-server:~$ netq show vm-token expiry 40
 
 5. Select **Save & test**. If the operation was successful, you will begin to see metrics in your Grafana dashboard. 
 
-## Import a Dashboard Template
+### Import a Dashboard Template
 
 To import a preconfigured dashboard into your Grafana instance:
 
@@ -2155,7 +2155,7 @@ To import a preconfigured dashboard into your Grafana instance:
 
 5. Click **Import**.
 
-## Grafana Best Practices
+### Grafana Best Practices
 
 If data retrieval with Grafana is slow, you might need to adjust your dashboard settings. Fabric-wide queries on large networks (over 1000 switches) can generate millions of data points, which can significantly degrade performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
 

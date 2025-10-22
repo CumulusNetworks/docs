@@ -9,67 +9,61 @@
 <tr>
 <td>4521037</td>
 <td>The PTP violations summary in the UI might not render properly. To work around this issue, refresh the page in your browser.</td>
-<td>4.15.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4486633</td>
-<td>When you run a validation using a {{netq check}} command, the test results might incorrectly display as passed when the tests were actually skipped. The UI correctly shows which validations were skipped.</td>
-<td>4.15.0</td>
+<td>4.15.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4298008</td>
 <td>When you upgrade NetQ, any pre-existing validation data will be lost.</td>
-<td>4.13.0-4.15.0</td>
+<td>4.13.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4131550</td>
 <td>When you run a topology validation, the full-screen topology validation view might not display the latest results. To work around this issue, refresh the page.</td>
-<td>4.12.0-4.15.0</td>
+<td>4.12.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4126632</td>
 <td>In scale deployments with 1,000 or more switches, BGP validations might take up to five minutes to display results in the UI or CLI.</td>
-<td>4.13.0-4.15.0</td>
+<td>4.13.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4100882</td>
 <td>When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export.</td>
-<td>4.12.0-4.15.0</td>
+<td>4.12.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3993538</td>
 <td>When you re-position a card on your workbench and then manually refresh the workbench, NetQ might reposition the cards.</td>
-<td>4.11.0-4.15.0</td>
+<td>4.11.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3985598</td>
 <td>When you configure multiple threshold-crossing events for the same TCA event ID on the same device, NetQ will only display one TCA event for each hostname per TCA event ID, even if both thresholds are crossed or status events are triggered.  </td>
-<td>4.11.0-4.15.0</td>
+<td>4.11.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3800434</td>
 <td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
-<td>4.9.0-4.15.0</td>
+<td>4.9.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3772274</td>
 <td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
-<td>4.9.0-4.15.0</td>
+<td>4.9.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3613811</td>
 <td>LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the {{mgmt}} VRF on Cumulus Linux switches when interface eth0 is in use.</td>
-<td>4.8.0-4.15.0</td>
+<td>4.8.0-4.15.1</td>
 <td></td>
 </tr>
 </table>

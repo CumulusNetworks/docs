@@ -1,9 +1,9 @@
 ---
-title: NVIDIA NetQ 4.16 Release Notes
+title: NVIDIA NetQ 5.0 Release Notes
 author: Cumulus Networks
 weight: 30
 product: Cumulus NetQ
-version: "4.16"
+version: "5.0"
 toc: 1
 type: rn
 pdfhidden: True

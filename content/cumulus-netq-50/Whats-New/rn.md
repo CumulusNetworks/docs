@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4399074"></a> [4399074](#4399074) <a name="4399074"></a> <br /> | Switch registration does not fail as expected when the same switch is first registered using its IP address and then again using its domain name. | 5.0.0 | |
 
 ### Fixed Issues in 5.0.0
 |  Issue ID 	|   Description	|   Affects	|

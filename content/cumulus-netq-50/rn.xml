@@ -6,6 +6,12 @@
 <th> Affects </th>
 <th> Fixed </th>
 </tr>
+<tr>
+<td>4399074</td>
+<td>Switch registration does not fail as expected when the same switch is first registered using its IP address and then again using its domain name.</td>
+<td>5.0.0</td>
+<td></td>
+</tr>
 </table>
 <table name="Fixed Issues in 5.0.0">
 <tr>

@@ -26,7 +26,7 @@ Installing the Cumulus Linux image is destructive; configuration files on the sw
 In the following procedures:
 
 - You can name your Cumulus Linux image using any of the
-{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}} mentioned here.
+{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}}.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
 
 ## Install Using a DHCP/Web Server With DHCP Options
@@ -45,7 +45,7 @@ To install Cumulus Linux using a DHCP or web server *with* <span class="a-toolti
 The most common way is to send DHCP option 114 with the entire URL to the web server (this can be the same system). However, there are other ways you can use DHCP even if you do not have full control over DHCP. See the ONIE user guide for information on {{<exlink url="https://opencomputeproject.github.io/onie/design-spec/discovery.html#partial-installer-urls" text="partial installer URLs">}} and {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#advanced-dhcp-2-vivso" text="advanced DHCP options">}}; both articles list more supported DHCP options.
 {{%/notice%}}
 
-Here is an example DHCP configuration with an {{<exlink url="http://www.isc.org/downloads/dhcp/" text="ISC DHCP server">}}:
+The following shows an example DHCP configuration with an {{<exlink url="http://www.isc.org/downloads/dhcp/" text="ISC DHCP server">}}:
 
 ```
 subnet 172.0.24.0 netmask 255.255.255.0 {
@@ -54,7 +54,7 @@ subnet 172.0.24.0 netmask 255.255.255.0 {
 }
 ```
 
-Here is an example DHCP configuration with {{<exlink url="http://www.thekelleys.org.uk/dnsmasq/doc.html" text="dnsmasq">}} (static address assignment):
+The following shows an example DHCP configuration with {{<exlink url="http://www.thekelleys.org.uk/dnsmasq/doc.html" text="dnsmasq">}} (static address assignment):
 
 ```
 dhcp-host=sw4,192.168.100.14,6c:64:1a:00:03:ba,set:sw4
@@ -71,7 +71,10 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 {{< tab "Install from ONIE ">}}
 
 1. Place the Cumulus Linux image in a directory on the web server.
-2. Run the `onie-nos-install` command:
+
+2. [Boot into ONIE install mode](#boot-into-onie-install-mode)
+
+3. Run the `onie-nos-install` command:
 
     ```
     ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-x86_64.bin
@@ -102,7 +105,9 @@ You need a console connection to access the switch; you cannot perform this proc
 {{< tabs "TabID111 ">}}
 {{< tab "Install from ONIE ">}}
 
-1. ONIE is in *{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="discovery mode">}}*. You must disable discovery mode with the following command:
+1. [Boot into ONIE install mode](#boot-into-onie-install-mode)
+
+2. ONIE is in *{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="discovery mode">}}*. You must disable discovery mode with the following command:
 
     ```
     onie# onie-discovery-stop
@@ -114,15 +119,15 @@ You need a console connection to access the switch; you cannot perform this proc
     onie# /etc/init.d/discover.sh stop
     ```
 
-2. Assign a static address to eth0 with the `ip addr add` command:
+3. Assign a static address to eth0 with the `ip addr add` command:
 
     ```
     ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
     ```
 
-3. Place the Cumulus Linux image in a directory on your web server.
+4. Place the Cumulus Linux image in a directory on your web server.
 
-4. Run the installer manually (because there are no DHCP options):
+5. Run the installer manually (because there are no DHCP options):
 
     ```
     ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-x86_64.bin
@@ -149,13 +154,15 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 {{< tabs "TabID162 ">}}
 {{< tab "Install from ONIE ">}}
 
-1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
+1. [Boot into ONIE install mode](#boot-into-onie-install-mode)
+
+2. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
     ```
     ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
     ```
 
-2. If you are using static addressing, disable ONIE discovery mode:
+3. If you are using static addressing, disable ONIE discovery mode:
 
     ```
     onie# onie-discovery-stop
@@ -167,9 +174,9 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
     onie# /etc/init.d/discover.sh stop
     ```
 
-3. Place the Cumulus Linux image into a TFTP or FTP directory.
+4. Place the Cumulus Linux image into a TFTP or FTP directory.
 
-4. If you are not using DHCP options, run one of the following commands (tftp for TFTP or ftp for FTP):
+5. If you are not using DHCP options, run one of the following commands (tftp for TFTP or ftp for FTP):
 
     ```
     ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-x86_64.bin
@@ -198,13 +205,15 @@ Follow the steps below to install the Cumulus Linux image referencing a local fi
 {{< tabs "TabID217 ">}}
 {{< tab "Install from ONIE ">}}
 
-1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
+1. [Boot into ONIE install mode](#boot-into-onie-install-mode)
+
+2. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
     ```
     ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
     ```
 
-2. If you are using static addressing, disable ONIE discovery mode.
+3. If you are using static addressing, disable ONIE discovery mode.
 
     ```
     onie# onie-discovery-stop
@@ -216,9 +225,9 @@ Follow the steps below to install the Cumulus Linux image referencing a local fi
     onie# /etc/init.d/discover.sh stop
     ```
 
-3. Use {{<exlink url="http://en.wikipedia.org/wiki/Secure_copy" text="scp">}} to copy the Cumulus Linux image to the switch.
+4. Use {{<exlink url="http://en.wikipedia.org/wiki/Secure_copy" text="scp">}} to copy the Cumulus Linux image to the switch.
 
-4. Run the installer manually from ONIE:
+5. Run the installer manually from ONIE:
 
     ```
     ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-x86_64.bin
@@ -240,27 +249,31 @@ Use these options to stage additional files with the Cumulus Linux image:
 - `-z` stages a <span class="a-tooltip">[ZTP](## "Zero Touch Provisioning")</span> script.
 - `-t` stages an NVUE `startup.yaml` file.
 
-The following example stages an image that is hosted on an HTTP server:
+The following example stages an image on an HTTP server:
 
 ```
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer 
 ```
 
-The following example stages an image that is hosted on an HTTP server and a ZTP script hosted on an HTTP server:
+The following example stages an image and a ZTP script on an HTTP server:
 
 ```
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -z http://203.0.113.10/ztp-script
 ```
 
-The following example stages an image that is hosted on an HTTP server and a local NVUE `startup.yaml` file:
+The following example stages an image on an HTTP server and a local NVUE `startup.yaml` file:
   
 ```
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -t /etc/nvue.d/startup.yaml
 ```
 
 {{%notice note%}}
-When you stage an NVUE `startup.yaml` file, ZTP still runs after the new image is installed. To prevent ZTP from running after the new image is installed, either:
-- Run the `sudo ztp -d` command to disable ZTP after the new image is running.
+If your NVUE `startup.yaml` file includes certificate configuration for gNMI, the NVUE API, or other features, NVUE does not restore the certificate files. Perform a package upgrade when possible, or manually back up and restore your certificate files to the same path after the ONIE image upgrade is complete.
+{{%/notice%}}
+
+{{%notice note%}}
+When you stage an NVUE `startup.yaml` file, ZTP still runs after the new image installs. To prevent ZTP from running after the new image installs, either:
+- Run the `sudo ztp -d` or `nv action disable system ztp` commands to disable ZTP after the new image is running.
 - Use the `-z` option to specify an existing ZTP script that takes no action. For example, create a file called `/tmp/cumulus_ztp.sh` that contains the line `#!/bin/bash # CUMULUS-AUTOPROVISIONING` and specify `sudo onie-install -fa -i <image-path> -z /tmp/cumulus_ztp.sh -t /etc/nvue.d/startup.yaml`.
 {{%/notice%}}
 
@@ -275,7 +288,7 @@ Activating staged installer...done.
 Reboot required to take effect.
 ```
 
-You can combine the `-i`, `-z`, `-t` and `-a` options all at once. In addition, you can use the `-f` (force) option together with the `-a` option to suppress the yes and no prompts:
+You can combine the `-i`, `-z`, `-t` and `-a` options. In addition, you can use the `-f` (force) option together with the `-a` option to suppress the yes and no prompts:
 
 ```
 cumulus@cumulus:~$ sudo onie-install -fa -i http://203.0.113.10/image-installer -z http://203.0.113.10/ztp-script -t /etc/nvue.d/startup.yaml
@@ -292,7 +305,7 @@ Reboot required to take effect.
 Follow the steps below to install the Cumulus Linux image using a USB drive.
 
 {{%notice tip%}}
-Installing Cumulus Linux using a USB drive is fine for a single switch here and there but is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
+Installing Cumulus Linux using a USB drive is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
 {{%/notice%}}
 
 ### Prepare for USB Installation
@@ -351,17 +364,11 @@ e. To continue installing Cumulus Linux, mount the USB drive to move files:
 
     SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
-5. Monitor the console and select the ONIE option from the first GRUB screen shown below.
+5. [Boot into ONIE install mode](#boot-into-onie-install-mode)
 
-    {{< img src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
+6. The switch recognizes the USB drive and mounts it automatically. Cumulus Linux installation begins.
 
-6. Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB menu specific to the ONIE partition. No action is necessary in this menu to select the default option *ONIE: Install OS*.
-
-    {{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
-
-7. The switch recognizes the USB drive and mounts it automatically. Cumulus Linux installation begins.
-
-8. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
+7. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
 ## ONIE Installation Options
 
@@ -384,6 +391,28 @@ ONIE:/ # ./cumulus-linux-4.4.0-mlx-amd64.bin --password 'MyP4$$word'
 {{%/notice%}}
 
 You can run more than one option in the same command.
+
+### Boot Into ONIE Install Mode
+
+To boot the switch into ONIE install mode, connect a console cable to the switch and monitor the console. When you see the five-second countdown, press esc or F4 to go to the GRUB menu, then use the arrow keys to select the ONIE option from the first GRUB screen. (If you press esc or F4 more than one time, the GRUB CLI opens. Type `normal`, then press Enter to go back to the countdown timer.)
+
+   {{%notice info%}}
+**Before** the GRUB menu appears, the switch goes through the boot cycle. Do **not** interrupt this autoboot process when you see the following lines; wait until you see the GRUB menu.
+
+```
+...
+USB0:  Bringing USB2 host out of reset...
+Net:   eth-0
+SF:    MX25L6405D with page size 4 KiB, total 8 MiB
+Hit any key to stop autoboot:  2
+```
+{{%/notice%}}
+
+{{< img src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
+
+Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB menu specific to the ONIE partition. No action is necessary in this menu to select the default option *ONIE: Install OS*.
+
+{{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
 
 ### Set the cumulus User Password
 
@@ -629,4 +658,3 @@ On a switch with the Spectrum-4 ASIC, if the ASIC firmware fails to boot, you se
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}
-- {{<link url="Managing-Cumulus-Linux-Disk-Images" text="Managing Cumulus Linux Disk Images">}}

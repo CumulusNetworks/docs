@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4501643</td>
+<td>Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a {{switchd}} service crash.</td>
+<td>4.3.3-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>4472516</td>
 <td>When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge.</td>
 <td>4.3.3-4.4.5</td>
@@ -26,7 +32,7 @@
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -1588,7 +1594,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -2081,7 +2087,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -3649,7 +3655,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -4320,7 +4326,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -5895,7 +5901,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -6386,7 +6392,7 @@ ip route 128.0.0.0/1 10.1.1.1
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -8122,7 +8128,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -9090,7 +9096,7 @@ Fixed: 2.4.47+dfsg-3+deb10u5</td>
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -11203,7 +11209,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>

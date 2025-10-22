@@ -23,7 +23,7 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 - Radius user Hardening
 - Changes in DSCP to traffic class mapping for MRC QOS template
 - Offline package upgrade
-- MRC QoS profile change in DSCP to traffic mapping
+- RoCE `lossy-multi-tc` {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="profile">}} updated to map DSCP values 41-50 to traffic class 5.
 - Telemetry
   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
   - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}

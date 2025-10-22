@@ -13,7 +13,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 ## What's New in NetQ 5.0
 
 - You can now monitor NVLink switches with NetQ. 
-- Create and apply custom tags to organize and filter devices
+- {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="Create and apply custom labels">}} to organize and filter switches.
 - NVOS upgrades for NVLink switches
 - {{<link title="Integrate NetQ with Grafana/#collect-slurm-telemetry" text="View Slurm data in Grafana">}}
 - You can now launch the {{<link title="Cable Validations" text="Cable Validation Tool">}} from NetQ.

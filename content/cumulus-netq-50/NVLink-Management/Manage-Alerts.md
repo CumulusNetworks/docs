@@ -62,8 +62,9 @@ To do so:
 
 Create a webhook.yaml  file containing the new Alerts webhook receiver URL(s). You can provide a single URL or a comma-separated list. Example:
 http://alert1.example.com:9093,http://alert2.example.com:9093/webhook
-Run the following script under the root user:
-/opt/nvidia/nmx/scripts/alerts-webhook-url-config.sh
+Run the following script as the root user:
+
+/opt/netq-admin/nvl/scripts/alerts-webhook-url-config.sh
 When prompted, you'll see the following menu:
 Choose an option:
 1) Update webhook receiver URLs

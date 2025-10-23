@@ -39,5 +39,5 @@ To upgrade your existing NMX-M deployment, perform a system bringup to connect t
 
 The NetQ 5.0 server is compatible with NetQ agents 5.0 and 4.15. You can install NetQ agents on switches and servers running:
 
-- Cumulus Linux 5.15, 5.14, 5.11.3
+- Cumulus Linux 5.15, 5.14, 5.11.3, 5.9.4
 - Ubuntu 24.04, 22.04

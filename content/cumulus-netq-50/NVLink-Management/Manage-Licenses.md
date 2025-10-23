@@ -43,7 +43,7 @@ To view license details, including license type, issue date, and expiration date
 
 ## Receive License Notifications
 
-If you have configured a webhook receiver<!--link out to Alerts Management-->, you will receive a notification when your license is about to expire or has already expired. These notifications are sent every 24 hours until the license status is updated.
+If you have {{<link title="Manage Alerts" text="configured a webhook receiver">}} you will receive a notification when your license is about to expire or has already expired. These notifications are sent every 24 hours until the license status is updated.
 
 NetQ for NVLink broadcasts two types of license notifications: expires soon and expired.
 

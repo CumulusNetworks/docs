@@ -246,6 +246,39 @@ Undersize Errors  0        n/a
 - On NVIDIA Spectrum switches, Cumulus Linux updates physical counters to the kernel every two seconds and virtual interfaces (such as VLAN interfaces) every ten seconds. You cannot change these values. Because the update process takes a lower priority than other `switchd` processes, the interval might be longer when the system is under a heavy load.
 {{%/notice%}}
 
+## Interface Fault Detection
+
+You can view interface status along with any detected local or remote fault with the `nv show interface status` command:
+
+```
+cumulus@switch:mgmt:~$ nv show interface status
+
+Interface  Admin Status  Oper Status  Protodown  Protodown Reason  Fault  
+---------  ------------  -----------  ---------  ----------------  --------
+...
+swp45      up            down         disabled                     Local Fault  
+swp46      up            down         disabled                     Remote Fault
+swp47      down          down         disabled                     No Fault   
+swp48      down          down         disabled                     No Fault 
+...
+```
+
+To view additional fault information for a specific interface, run the `nv show interface <interface> link phy detail` command:
+
+```
+cumulus@switch:mgmt:~$ nv show interface swp45 link phy detail
+                                  operational       
+--------------------------------  -------------------
+linkdown-reason-code-local        23                
+linkdown-reason-status-local      CABLE_WAS_UNPLUGGED
+linkdown-reason-code-remote       1                 
+linkdown-reason-status-remote     UNKNOWN_REASON    
+```
+
+{{%notice note%}}
+Interface fault detection is supported on NVIDIA Spectrum-4 and later platforms.
+{{%/notice%}}
+
 ## AmBER PHY Health Management
 
 To show physical layer information, such as the error counters for each lane on a port and <span class="a-tooltip">[SNR](## "Signal-to-Noise Ratio")</span> information for media and host lanes (lane0 through lane7), run the `nv show interface <interface-id> link phy health` command.

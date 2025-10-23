@@ -42,8 +42,11 @@ Labels are key-value pairs that you can assign to switches. You can use labels t
 You can apply a maximum of 24 labels per hostname. From the menu, select **Manage labels** to view the label management dashboard.
 
 {{<img src="/images/netq/label-management-50.png" alt="" width="1200">}}
-
 ### Assign a Custom Label
+{{<tabs "TabID56" >}}
+
+{{<tab "NetQ UI" >}}
+
 
 1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** and select **Manage labels**.
 
@@ -57,15 +60,28 @@ You can apply a maximum of 24 labels per hostname. From the menu, select **Manag
 
 6. Select **Assign label**.
 
-### Delete a Custom Label
+{{</tab>}}
 
+{{</tabs>}}
+
+### Delete a Custom Label
+{{<tabs "TabID68" >}}
+
+{{<tab "NetQ UI" >}}
 1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** and select **Manage labels**.
 
 2. Navigate to the label you would like to delete and select the three-dot menu. Select **Delete**.
+{{</tab>}}
+
+{{</tabs>}}
 
 ### Remove a Custom Label
 
 You can change the devices that are assigned a certain label by modifying the rule that you created when you originally assigned the label.
+
+{{<tabs "TabID82" >}}
+
+{{<tab "NetQ UI" >}}
 
 1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** and select **Manage labels**.
 
@@ -76,6 +92,10 @@ You can change the devices that are assigned a certain label by modifying the ru
 4. Select **Apply**. The devices that match the rule are populated in the UI. You can continue to refine or add rules until the expected devices are displayed.
 
 5. The labels that are assigned to the matched devices are displayed in the UI. Choose the labels you want removed, then select **Remove label**.
+
+{{</tab>}}
+
+{{</tabs>}}
 
 ## Decommission a Switch
 

@@ -169,11 +169,11 @@ nvidia@netq-server:~$ netq add bcm auth-type basic user admin pass secretpass123
 {{</tab>}}
 
 {{<tab "Certificate-based Authentication" >}}
+{{%notice infonopad%}}
+You must run this command from the node that hosts the <code>netq-bcm-gateway</code> pod. To identify this node, run the <code>kubectl get pods -o wide | grep netq-bcm-gateway</code> command. The output of this command displays the correct node.
+{{%/notice%}}
 
-Two versions of this command exist. Specify either the Base Command Manager IP address in `ip-address` or the domain name in `hostname`. Replace `port-text` with the port that BCM uses.
-
-Specify the full path to both the certificate and key files. These are typically located in the `/mnt/bcm/` directory.
-
+Two versions of this command exist. Specify either the Base Command Manager IP address in `ip-address` or the domain name in `hostname`. Replace `port-text` with the port that BCM uses. Specify the full path to both the certificate and key files. These are typically located in the `/mnt/bcm/` directory.
 ```
 nvidia@netq-server:~$ netq add bcm auth-type cert cert-file <certificate-path> key-file <key-path> ip <ip-address> port <port-text> 
 nvidia@netq-server:~$ netq add bcm auth-type cert cert-file <certificate-path> key-file <key-path> hostname <hostname> port <port-text> 
@@ -2131,7 +2131,7 @@ nvidia@netq-server:~$ netq show vm-token expiry 40
 
 3. Continue through the steps to configure the data source:
 
-- In the *Name* field, enter the name of the data source. The name should be lowercase and begin with the data source name (for example, `slurm_dashboard` or `kpi`).
+- In the *Name* field, enter the name of the data source. The name **must start with the data source name** and be written in lowercase (for example, `slurm_dashboard` or `kpi-dashboard`).
 - In the *Connection* field, enter the IP address of your NetQ server followed by `/api/netq/vm/`, for example `https://10.255.255.255/api/netq/vm/`. In a cluster deployment, enter the virtual IP address in this field (followed by `/api/netq/vm/`). 
 - In the *Authentication* section, select **Forward OAuth identity** from the dropdown menu. 
    - In *TLS settings*, select **Skip TLS certificate validation**.
@@ -2154,7 +2154,9 @@ To import a preconfigured dashboard into your Grafana instance:
 4. (Optional) Change the dashboard name, folder, or UID.
 
 5. Click **Import**.
-
+{{<notice tip>}}
+If the dashboard does not display data, refresh your browser.
+{{</notice>}}
 ### Grafana Best Practices
 
 If data retrieval with Grafana is slow, you might need to adjust your dashboard settings. Fabric-wide queries on large networks (over 1000 switches) can generate millions of data points, which can significantly degrade performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.

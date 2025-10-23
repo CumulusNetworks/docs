@@ -22,13 +22,13 @@ The NetQ header displays the number of switches in your network that are 'fresh'
 
 To view the hardware and software component inventory for switches running NetQ in your network, enter Inventory/Switches in the global search field. The card displays the total number of switches in your network, divided into the number of fresh and rotten switches.
 
-{{<img src="/images/netq/switch-med-490.png" alt="medium switch card displaying 513 fresh switches and 13 rotten switches" width="200">}}
+{{<img src="/images/netq/switch-med-490.png" alt="medium switch card displaying 513 fresh switches and 13 rotten switches" height="330" width="200">}}
 
 ## View Distribution and Component Counts
 
 Open the large Inventory/Switches card to display more granular information about software and hardware distribution. By default, the card displays data for fresh switches. Select **Rotten switches** from the dropdown to display information for switches that are in a down state. Hover over the top of the card and select a category to restrict the view to ASICs, platform, or software.
 
-{{<img src="/images/netq/switch-inventory-large-update.png" alt="switch software and hardware information" width="600">}}<br>
+{{<img src="/images/netq/switch-inventory-large-update.png" alt="switch software and hardware information" height="270"width="600">}}<br>
 
 Expand the Inventory/Switches card to full-screen to view, filter or export information about ASICs, motherboards, CPUs, memory, disks, and operating system. You can right-click the hostname of a given switch to open a monitoring dashboard for that switch in a new tab.
 

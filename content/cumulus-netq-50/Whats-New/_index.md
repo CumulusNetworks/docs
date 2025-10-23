@@ -8,11 +8,11 @@ toc: 1
 
 This page summarizes new features and improvements for the NetQ {{<version>}} release. 
 
-- For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.0 Release Notes" text="release notes">}}
+- For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.0 Release Notes" text="release notes">}}.
 
 ## What's New in NetQ 5.0
 
-- You can now monitor NVLink deployments with NetQ. 
+- You can now {{<link title="NVLink Management" text="monitor NVLink deployments">}} with NetQ. 
 - {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="Create and apply custom labels">}} to organize and filter switches.
 - {{<link title="Integrate NetQ with Grafana/#collect-slurm-telemetry" text="View Slurm data in Grafana">}}
 - You can now launch the {{<link title="Cable Validations" text="Cable Validation Tool">}} from NetQ.

@@ -20,7 +20,6 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 - {{<link url="Docker-with-Cumulus-Linux" text="Support for docker-container">}}
 - {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Dynamic IPv6 Multi-tenancy">}}
 - {{<link url="SSH-for-Remote-Access/#ssh-ciphers" text="SSH cipher configuration">}}
-- Radius user Hardening
 - Changes in DSCP to traffic class mapping for MRC QOS template
 - Offline package upgrade
 - RoCE `lossy-multi-tc` {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="profile">}} updated to map DSCP values 41-50 to traffic class 5.

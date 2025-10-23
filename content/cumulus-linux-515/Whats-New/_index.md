@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 5
 toc: 2
 ---
-This document supports the Cumulus Linux 5.15 release, and lists new platforms, features, and enhancements.
+This document supports the Cumulus Linux 5.15 release, and lists new features and enhancements.
 - For a list of open and fixed issues in Cumulus Linux 5.15, see the {{<link title="Cumulus Linux 5.15 Release Notes" text="Cumulus Linux 5.15 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.15, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
@@ -14,15 +14,16 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 ### New Features and Enhancements
 
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming counters">}}
-- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}. Legacy BFD configuration and routing link state verification with PTMd is now deprecated.
+- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}. Legacy BFD configuration and routing link state verification with PTMd is now deprecated
 - {{<link url="Optional-BGP-Configuration/#ecmp" text="Support 256 BGP sessions and 256-way ECMP on Spectrum-4">}}
 - {{<link url="Latency-Monitoring" text="Switch latency monitoring">}}
 - {{<link url="Docker-with-Cumulus-Linux" text="Support for docker-container">}}
 - {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Dynamic IPv6 Multi-tenancy">}}
 - {{<link url="SSH-for-Remote-Access/#ssh-ciphers" text="SSH cipher configuration">}}
 - Offline package upgrade
-- RoCE `lossy-multi-tc` {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="profile">}} updated to map DSCP values 41-50 to traffic class 5.
+- RoCE `lossy-multi-tc` {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="profile">}} updated to map DSCP values 41-50 to traffic class 5
 - {{<link url="User-Accounts/#aaa-authentication-restrictions" text="AAA Authentication Restrictions">}}
+- {{<link url="Interface-Configuration-and-Management/#interface-fault-detection" text="Interface fault detection">}}
 - Telemetry
   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
   - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}

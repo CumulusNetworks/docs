@@ -9,7 +9,7 @@ The KPI REST endpoint provides key performance indicators (KPIs) that summarize 
 
 ## Access the API
 
-In the following examples, replace `<username>` with either `rw-user` (read-write access) or `ro-user` (read-only access). Replace `<password>` with the actual password associated with the user. <!--4.15 does this work with admin admin?-->
+In the following examples, replace `<username>` with either `rw-user` (read-write access) or `ro-user` (read-only access). Replace `<password>` with the actual password associated with the user. <!--4.15 does this work with nvidia, nvidia?-->
 
 {{<tabs "KPI access">}}
 

@@ -21,8 +21,8 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 - {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Dynamic IPv6 Multi-tenancy">}}
 - {{<link url="SSH-for-Remote-Access/#ssh-ciphers" text="SSH cipher configuration">}}
 - Offline package upgrade
-- RoCE `lossy-multi-tc` {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="profile">}} updated to map DSCP values 41-50 to traffic class 5
-- {{<link url="User-Accounts/#aaa-authentication-restrictions" text="AAA Authentication Restrictions">}}
+- RoCE {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="lossy multi TC profile">}} updated to map DSCP values 41-50 to traffic class 5
+- {{<link url="User-Accounts/#aaa-authentication-restrictions" text="AAA authentication restrictions">}}
 - {{<link url="Interface-Configuration-and-Management/#interface-fault-detection" text="Interface fault detection">}}
 - Telemetry
   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time

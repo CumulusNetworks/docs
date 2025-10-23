@@ -17,13 +17,13 @@ NetQ for NVLink includes an evaluation license that is automatically applied dur
 
 ## Apply a New License
 
-1. Upload the new license file to `/opt/netq-admin/nmx/licenses`. 
+1. Upload the new license file to `/opt/netq-admin/nvl/licenses`. 
 2. Run the following script:
 
 ```
-/opt/netq-admin/nmx/scripts/license-config.sh
+/opt/netq-admin/nvl/scripts/license-config.sh
 ```
-3. When prompted, select the first option, **Apply new license (replace existing)**.
+3. When prompted, select the first option: **Apply new license (replace existing)**
 4. Select the license file and confirm that the new license details are correct.
 
 The script concurrently applies the new license and replaces the previous one.
@@ -35,10 +35,10 @@ To view license details, including license type, issue date, and expiration date
 1. Run the following script:
 
 ``` 
-/opt/netq-admin/nmx/scripts/license-config.sh
+/opt/netq-admin/nvl/scripts/license-config.sh
 ```
 
-2. When prompted, select the second option, **Get active license information**.
+2. When prompted, select the second option, **Get active license information**. 
 
 
 ## Receive License Notifications

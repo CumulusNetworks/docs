@@ -25,15 +25,15 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 - {{<link url="User-Accounts/#aaa-authentication-restrictions" text="AAA authentication restrictions">}}
 - {{<link url="Interface-Configuration-and-Management/#interface-fault-detection" text="Interface fault detection">}}
 - Telemetry
-  - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
-  - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
-  - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="BGP graceful shutdown metric for OLTP">}}
-  - {{<link url="Open-Telemetry-Export/#acl-statistics" text="ACL metrics for OTLP">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="ACL metrics for gNMI streaming">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="PHY metrics for gNMI streaming">}} (Number of bit errors corrected and upper boundary of the bin)
-  - High frequency telemetry Nsight Integration
-  - Telemetry Parity between OpenTelemetry and gNMI (Phase 1)
-  - {{< expand "Updated gNMI PHY metric names" >}}
+   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
+   - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
+   - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="BGP graceful shutdown metric for OLTP">}}
+   - {{<link url="Open-Telemetry-Export/#acl-statistics" text="ACL metrics for OTLP">}}
+   - {{<link url="gNMI-Streaming/#metrics" text="ACL metrics for gNMI streaming">}}
+   - {{<link url="gNMI-Streaming/#metrics" text="PHY metrics for gNMI streaming">}} (Number of bit errors corrected and upper boundary of the bin)
+   - {{<link url="High-Frequency-Telemetry/#streaming-hft-export" text="High frequency telemetry streaming">}} and {{<link url="High-Frequency-Telemetry/#congestion-notifications" text="congestion event notifications">}}
+   - Telemetry Parity between OpenTelemetry and gNMI (Phase 1)
+   - {{< expand "Updated gNMI PHY metric names" >}}
 Old Name | New Name|
 | -------- | --------- |
 | `/interfaces/interface[name]/ethernet/phy/state/effective-errors` | `/interfaces/interface[name]/phy/state/effective-errors` |

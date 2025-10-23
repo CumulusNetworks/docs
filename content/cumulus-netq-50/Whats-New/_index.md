@@ -12,7 +12,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 5.0
 
-- You can now monitor NVLink switches with NetQ. 
+- You can now monitor NVLink deployments with NetQ. 
 - {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="Create and apply custom labels">}} to organize and filter switches.
 - {{<link title="Integrate NetQ with Grafana/#collect-slurm-telemetry" text="View Slurm data in Grafana">}}
 - You can now launch the {{<link title="Cable Validations" text="Cable Validation Tool">}} from NetQ.
@@ -22,10 +22,6 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## Release Considerations
 
-<!-- check on this pre-release -->
-
-- When you upgrade to NetQ v5.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
-- You must upgrade cloud (OPTA) deployments to NetQ 5.0 before initiating a {{<link title="Switch Management/#switch-discovery" text="switch discovery">}}.
 - The API gateway port for on-premises deployments has changed from 32708 to 32710.
 
 ### Upgrade Paths

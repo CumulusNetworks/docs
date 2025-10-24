@@ -217,7 +217,7 @@ open-telemetry-counter-set=gb200
 ```
 
 {{%notice note%}}
-It can take up to a minute for the device to restart and apply the changes.
+It can take up to a minute for the device to restart and apply the changes. If you manually edit the fieldset file, you must restart DTS for the changes to be reflected.
 {{%/notice%}}
 
 Read more about OpenTelemetry and DTS configurations in the {{<exlink url="https://docs.nvidia.com/doca/archive/2-9-3/doca+telemetry+service+guide/index.html#src-3382565608_id-.DOCATelemetryServiceGuidev2.9.1-OpenTelemetryExporter" text="DOCA Telemetry Service guide">}}.

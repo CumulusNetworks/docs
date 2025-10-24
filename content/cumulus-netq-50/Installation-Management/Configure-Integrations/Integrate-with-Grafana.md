@@ -28,13 +28,14 @@ The Grafana integration is in beta and supported for on-premises deployments onl
 
 NetQ is configured with OTLP secure mode with TLS by default and expects clients to secure data with a certificate. You can configure NetQ and your client devices to use your own generated CA certificate, NetQ's self-signed certificate, or set the connections to insecure mode.
 
-{{%notice note%}}
-OpenTelemetry on host DPUs and NICs only supports insecure mode.
-{{%/notice%}}
-
-{{<tabs "certifcate options">}}
+{{<tabs "certificate options">}}
 
 {{<tab "TLS with a CA Certificate">}}
+
+{{<tabs "ca-cert-sub-tabs">}}
+
+{{<tab "Cumulus Linux Switches">}}
+
 ### TLS with a CA Certificate
 
 NVIDIA recommends using your own generated CA certificate. To configure a CA certificate:
@@ -52,7 +53,35 @@ NVIDIA recommends using your own generated CA certificate. To configure a CA cer
 
 {{</tab>}}
 
+{{<tab "DPUs and NICs">}}
+
+### TLS with a CA Certificate
+
+NVIDIA recommends using your own generated CA certificate. To configure a CA certificate:
+
+1. Copy your certificate files to the NetQ server in the `/mnt/admin` directory. For example, copy the certificate and key to `/mnt/admin/certs/server.crt` and `/mnt/admin/certs/server.key` 
+
+2. Copy your certificate to your DPU or NIC in the `/opt/mellanox/doca/services/telemetry/config/certs/` directory.
+
+3. Change permissions on the certificate with the `chmod 644 /opt/mellanox/doca/services/telemetry/config/certs/ca.pem` command to make the certificate readable to all users.
+
+4. [Configure OpenTelemetry](#configure-and-enable-opentelemetry-on-devices) on your DPU or NIC and include an additional line referencing the certificate in `/opt/mellanox/doca/services/telemetry/config/dts_config.ini`:
+
+```
+open-telemetry-ca-file=/config/certs/ca.pem
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+{{</tab>}}
+
 {{<tab "TLS with NetQ's Self-signed Certificate" >}}
+
+{{<tabs "netq-self-cert-sub-tabs">}}
+
+{{<tab "Cumulus Linux Switches">}}
 ### TLS with NetQ's Self-signed Certificate
 
 To run on the switch in secure mode with NetQ's self-signed certificate:
@@ -78,7 +107,35 @@ To run on the switch in secure mode with NetQ's self-signed certificate:
 
 {{</tab>}}
 
+{{<tab "DPUs and NICs">}}
+
+### TLS with NetQ's Self-signed Certificate
+
+To run on a DPU or NIC in secure mode with NetQ's self-signed certificate:
+
+1. From the NetQ server, display the certificate using `netq show otlp tls-ca-cert dump` command. Copy the certificate from the output. 
+
+2. Copy the certificate content from step 1 to a file on your DPU or NIC in the `/opt/mellanox/doca/services/telemetry/config/certs/` directory. For example, copy the output content into `/opt/mellanox/doca/services/telemetry/config/certs/ca.pem`
+
+3. Change permissions on the certificate with the `chmod 644 /opt/mellanox/doca/services/telemetry/config/certs/ca.pem` command to make the certificate readable to all users.
+
+4. [Configure OpenTelemetry](#configure-and-enable-opentelemetry-on-devices) on your DPU or NIC and include an additional line referencing the certificate in `/opt/mellanox/doca/services/telemetry/config/dts_config.ini`:
+
+```
+open-telemetry-ca-file=/config/certs/ca.pem
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+{{</tab>}}
+
 {{<tab "Insecure Mode" >}}
+
+{{<tabs "insecure-sub-tabs">}}
+
+{{<tab "Cumulus Linux Switches">}}
 ### Insecure Mode
 
 To use insecure mode and disable TLS:
@@ -92,6 +149,21 @@ To use insecure mode and disable TLS:
    nvidia@switch:~$ nv config apply
    ```
 {{</tab>}}
+
+{{<tab "DPUs and NICs">}}
+### Insecure Mode
+
+To use insecure mode and disable TLS:
+
+1. On your NetQ server, run the `netq set otlp security-mode insecure` command.
+
+2. On your DPU or NIC, [Configure OpenTelemetry](#configure-and-enable-opentelemetry-on-devices) but do not include a `open-telemetry-ca-file=` line in the `/opt/mellanox/doca/services/telemetry/config/dts_config.ini` configuration file.
+
+{{</tab>}}
+
+{{</tabs>}}
+
+{{</tabs>}}
 
 {{</tabs>}}
 ## Configure and Enable OpenTelemetry on Devices
@@ -114,11 +186,36 @@ NVIDIA recommends setting the <code>sample-interval</code> option to 10 seconds 
 
 1. {{<link title="Install NIC and DPU Agents" text="Install DOCA Telemetry Service (DTS)">}} on your ConnectX hosts or DPUs. 
 
-2. Configure the DPU to send OpenTelemetry data by editing the `/opt/mellanox/doca/services/telemetry/config/dts_config.ini` file. Add the following line under the `IPC transport` section. Replace `TS-IP` with the IP address of your telemetry receiver. 
+2. Configure OpenTelemetry data export by editing the `/opt/mellanox/doca/services/telemetry/config/dts_config.ini` file. Add the following lines under the `IPC transport` section. Replace `TS-IP` with the IP address of your telemetry receiver. 
+
+For HTTPS transport:
 
 ```
+open-telemetry-transport=http
 open-telemetry-receiver=http://<TS-IP>:30009/v1/metrics
 ```
+
+For gRPC transport:
+
+```
+open-telemetry-transport=grpc
+open-telemetry-receiver=<TS-IP>:30008/v1/metrics
+```
+
+3. To support telemetry at a scale of up to 4K devices on hosts with ConnectX NICs or DPUs in NIC mode, configure {{<exlink url="https://docs.nvidia.com/doca/sdk/doca+telemetry+service+guide/index.html#src-3879575060_id-.DOCATelemetryServiceGuidev3.1.0-counterset-and-fieldset-filesCountersetandFieldsetFiles" text="counterset and fieldset">}} files to control the telemetry data exported from DTS.
+
+Download {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-50/DTS/gb200.cset" text="gb200.cset">}} and {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-50/DTS/gb200.fset" text="gb200.fset">}}, then copy the files to `/opt/mellanox/doca/services/telemetry/config/prometheus_configs/cset/` on your host.
+
+Add the following lines to the `/opt/mellanox/doca/services/telemetry/config/dts_config.ini` configuration file:
+
+```
+prometheus-fset-indexes=device_name,device_id,pod_name,^id$,@id 
+prometheus-cset-dir=/config/prometheus_configs/cset
+prometheus-fset-dir=/config/prometheus_configs/cset
+open-telemetry-field-set=gb200 
+open-telemetry-counter-set=gb200
+```
+
 {{%notice note%}}
 It can take up to a minute for the device to restart and apply the changes.
 {{%/notice%}}

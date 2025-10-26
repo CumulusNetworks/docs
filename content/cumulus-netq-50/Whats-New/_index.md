@@ -28,8 +28,6 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 You can upgrade to NetQ 5.0 if your deployment is running version 4.15 or 4.14. For on-premises and cloud deployments, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.0 installation">}}
 
-To upgrade your existing NMX-M deployment, perform a system bringup to connect to NMX-C and NMX-T <!--4.15 link to pages when ready-->
-
 
 ### Compatible Agent Versions
 

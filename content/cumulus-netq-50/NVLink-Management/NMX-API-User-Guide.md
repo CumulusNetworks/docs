@@ -5,7 +5,7 @@ weight: 1005
 toc: 3
 ---
 
-The NMX-M API is organized around {{<exlink url="https://en.wikipedia.org/wiki/REST" text="REST">}} and conforms with {{<exlink url="https://spec.openapis.org/oas/v3.0.3" text="OpenAPI Specification v3.0.3">}}. The API provides access to resources and functionalities <!--which ones?--> through a set of defined endpoints. Each endpoint has its own schema, which includes the payload, parameters, and the expected request/response formats.
+The NMX-M API is organized around {{<exlink url="https://en.wikipedia.org/wiki/REST" text="REST">}} and conforms with {{<exlink url="https://spec.openapis.org/oas/v3.0.3" text="OpenAPI Specification v3.0.3">}}. The API provides access to resources and functionalities through a set of defined endpoints. Each endpoint has its own schema, which includes the payload, parameters, and the expected request/response formats.
 
 <!--4.15 update these links-->
 - {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nmx-api-8513100/" text="NMX-M REST API in Swagger">}}
@@ -15,7 +15,7 @@ This guide provides an overview of the NMX-M API framework, including the basics
 
 ## Authentication
 
-The NMX-M API uses {{<exlink url="https://developer.konghq.com/plugins/basic-auth/" text="Kong Basic Auth">}} for API access. During the installation process, NetQ creates two users that are authorized to interact with the API: `ro-user` and `rw-user`. The `ro-user` is authorized to perform read-only operations, which correspond to GET requests. The `rw-user` is authorized to access all API endpoints, including GET, POST, PUT, DELETE, and PATCH requests. <!--what about admin, admin?-->
+The NMX-M API uses {{<exlink url="https://developer.konghq.com/plugins/basic-auth/" text="Kong Basic Auth">}} for API access. During the installation process, NetQ creates two users that are authorized to interact with the API: `ro-user` and `rw-user`. The `ro-user` is authorized to perform read-only operations, which correspond to GET requests. The `rw-user` is authorized to access all API endpoints, including GET, POST, PUT, DELETE, and PATCH requests. <!--4.15 need to update what about admin, admin?-->
 
 {{< expand "Read-only example using cURL" >}}
 ```

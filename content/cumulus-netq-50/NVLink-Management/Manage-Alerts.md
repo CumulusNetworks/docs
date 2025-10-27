@@ -16,40 +16,21 @@ The *port status* alert is triggered by a group of events that affect port opera
 There are two types of alerts in this group---ongoing port validations and anomaly detection:
 
 ### Ongoing Port Validation
-- Trigger condition: More than 3 errors of a specific metric are detected within a 24-hour window.
-  - Behavior: The alert is sent continuously until the condition is resolved. This ensures that external systems receive the alert even if temporarily down.
-  - Alert group: `ongoing_port_validation`
-  - Alert name: `OngoingPortValidation`
-  - Severity: `warning`
+| Alert Type | Alert Group | Alert Name(s) | Severity | Trigger Condition | Behavior |
+| :-- | :-- | :-- | :-- | :-- | :-- |
+| Ongoing Port Validation | `ongoing_port_validation` | `OngoingPortValidation` | warning | More than 3 errors of a specific metric are detected within a 24-hour window. | The alert is sent continuously until the condition is resolved to ensure delivery even if external systems are temporarily down. |
+
 
 ### Anomaly Detection
 
-For each new metric value, NMX-M analyzes historical data over a predefined time period using a statistical model. If the value deviates significantly from the expected range (beyond two standard deviations), the system triggers an alert.  The following alerts are included:
+For each new metric value, NetQ analyzes historical data over a predefined time period using a statistical model. If the value deviates significantly from the expected range (beyond two standard deviations), the system triggers an alert.  The following alerts are included:
 
-- Port Congestion Warning
-  - Alert group: `port_metrics_deviation`
-  - Alert name: `PortCongestion`
-  - Severity: `warning`
-
-- Physical Layer Retransmission Warning
-  - Alert group: `port_metrics_deviation`
-  - Alert name: `PhysicalLayerRetransmission`
-  - Severity: `warning`
-
-- Port Degradation Warning
-  - Alert group: `port_metrics_deviation`
-  - Alert names:
-    - `PortDegradationHistogram1`
-    - `PortDegradationHistogram2`
-    - `PortDegradationHistogram3`
-    - `PortDegradationBER`
-    - `PortDegradationLinkErrors`
-  - Severity: `warning`
-
-- Packet Discard Warning
-  - Alert group: `port_metrics_deviation`
-  - Alert name: `PacketDiscard`
-  - Severity: `warning`
+| Alert Type | Alert Group | Alert Name(s) | Severity |
+| :-- | :-- | :-- | :-- |
+| Port Congestion Warning | `port_metrics_deviation` | `PortCongestion` | warning |
+| Physical Layer Retransmission Warning | `port_metrics_deviation` | `PhysicalLayerRetransmission` | warning |
+| Port Degradation Warning | `port_metrics_deviation` | `PortDegradationHistogram1`, `PortDegradationHistogram2`, `PortDegradationHistogram3`, `PortDegradationBER`, `PortDegradationLinkErrors` | warning |
+| Packet Discard Warning | `port_metrics_deviation` | `PacketDiscard` | warning |
 
 ## Update the Webhook Receiver URL
 

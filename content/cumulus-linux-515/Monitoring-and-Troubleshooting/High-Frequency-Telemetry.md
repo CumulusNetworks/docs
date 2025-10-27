@@ -99,7 +99,9 @@ cumulus@switch:~$ nv set system telemetry congestion-event export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-
+{{%notice note%}}
+If you enable congestion notifications while the buffer threshold is already exceeded for a traffic class, the switch sends notifications only after congestion clears and the threshold is crossed again.​
+{{%/notice%}}
 
 ## Collect HFT in JSON File
 

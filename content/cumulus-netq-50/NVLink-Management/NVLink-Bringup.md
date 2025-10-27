@@ -85,21 +85,21 @@ After the bringup process begins, it cannot be stopped. If the bringup operation
 
 1. Establish an SSH connection to the switch.
 
-2. Retrieve the certificates from the switch:
+2. Display the certificates configured on the switch:
 
 ```
 nv show system security ca-certificate
 nv show system security certificate
 ```
 
-3. Delete the NMX certificates:
+3. Delete the certificates associated with NMX-M or NetQ NVLink:
 
 ```
 nv action delete system security certificate <certificate_name>
 nv action delete system security ca-certificate <ca_certificate_name>
 ```
 
-4. Remove the SDN configuration file and reset it to the default:
+4. Remove the SDN configuration file and restore it to the default:
 
 ```
 nv action delete sdn config apps nmx-controller type fm_config files fm_config.cfg

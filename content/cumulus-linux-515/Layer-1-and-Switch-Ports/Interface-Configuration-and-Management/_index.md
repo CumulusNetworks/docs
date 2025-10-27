@@ -981,14 +981,18 @@ To view additional fault information for a specific interface, run the `nv show 
 cumulus@switch:mgmt:~$ nv show interface swp45 link phy detail
                                   operational       
 --------------------------------  -------------------
+...
 linkdown-reason-code-local        23                
 linkdown-reason-status-local      CABLE_WAS_UNPLUGGED
 linkdown-reason-code-remote       1                 
-linkdown-reason-status-remote     UNKNOWN_REASON    
+linkdown-reason-status-remote     UNKNOWN_REASON
+...
 ```
 
 {{%notice note%}}
-Interface fault detection is supported on NVIDIA Spectrum-4 and later platforms.
+- Interface fault detection is supported on NVIDIA Spectrum-4 and later platforms.
+- Fault status reported by the `nv show interface status` command is only supported on physical switch ports and breakout interfaces. Fault state is not applicable to logical interfaces such as VLAN sub-interfaces, SVIs, loopback interfaces, VRF interfaces, and bonds.
+- Fault detection data is not retained across reboots or when the `switchd` service is restarted.
 {{%/notice%}}
 
 

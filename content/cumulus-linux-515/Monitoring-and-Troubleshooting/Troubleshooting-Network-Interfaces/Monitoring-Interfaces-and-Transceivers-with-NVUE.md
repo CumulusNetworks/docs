@@ -246,7 +246,7 @@ Undersize Errors  0        n/a
 - On NVIDIA Spectrum switches, Cumulus Linux updates physical counters to the kernel every two seconds and virtual interfaces (such as VLAN interfaces) every ten seconds. You cannot change these values. Because the update process takes a lower priority than other `switchd` processes, the interval might be longer when the system is under a heavy load.
 {{%/notice%}}
 
-## Interface Fault Detection
+### Interface Fault Detection
 
 You can view interface status along with any detected local or remote fault with the `nv show interface status` command:
 
@@ -269,14 +269,18 @@ To view additional fault information for a specific interface, run the `nv show 
 cumulus@switch:mgmt:~$ nv show interface swp45 link phy detail
                                   operational       
 --------------------------------  -------------------
+...
 linkdown-reason-code-local        23                
 linkdown-reason-status-local      CABLE_WAS_UNPLUGGED
 linkdown-reason-code-remote       1                 
-linkdown-reason-status-remote     UNKNOWN_REASON    
+linkdown-reason-status-remote     UNKNOWN_REASON
+...
 ```
 
 {{%notice note%}}
-Interface fault detection is supported on NVIDIA Spectrum-4 and later platforms.
+- Interface fault detection is supported on NVIDIA Spectrum-4 and later platforms.
+- Fault status reported by the `nv show interface status` command is only supported on physical switch ports and breakout interfaces. Fault state is not applicable to logical interfaces such as VLAN sub-interfaces, SVIs, loopback interfaces, VRF interfaces, and bonds.
+- Fault detection data is not retained across reboots or when the `switchd` service is restarted.
 {{%/notice%}}
 
 ## AmBER PHY Health Management

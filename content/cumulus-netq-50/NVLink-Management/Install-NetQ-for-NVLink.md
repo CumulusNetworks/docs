@@ -22,4 +22,4 @@ NetQ for NVLink requires a 3-node cluster with the following system requirements
 ## Next Steps
 
 - For new deployments, refer to {{<link title="Install the NetQ System" text="Install NetQ">}}.
-- To upgrade your existing NMX-M deployment, {{<link title="NVLink Bringup" text="perform a system bringup">}}to connect to NMX-C and NMX-T.
+- To upgrade your existing NMX-M deployment, {{<link title="NVLink Bringup" text="perform a system bringup">}} to connect to NMX-C and NMX-T.

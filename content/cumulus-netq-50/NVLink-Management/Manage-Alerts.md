@@ -5,7 +5,7 @@ weight: 850
 toc: 4
 ---
 
-NMX-M continuously gathers metrics from telemetry services. When specific thresholds defined by alert rules are exceeded, the system generates events and sends them to the webhook URL that was {{<link title="Install NetQ NVLink" text="configured during the initial installation">}}. Some alerts detail exact events, such as a port-down occurrence, while others highlight trends, like deteriorating port health. 
+NetQ continuously gathers metrics from telemetry services. When specific thresholds defined by alert rules are exceeded, the system generates events and sends them to the webhook URL that was {{<link title="Install the NetQ System" text="configured during the initial installation">}}. Some alerts detail exact events, such as a port-down occurrence, while others highlight trends, like deteriorating port health. 
 
 All triggering conditions are preconfigured and cannot be modified.
 
@@ -51,32 +51,22 @@ For each new metric value, NMX-M analyzes historical data over a predefined time
   - Alert name: `PacketDiscard`
   - Severity: `warning`
 
-
-
-<!-- checking this with Ilia
 ## Update the Webhook Receiver URL
 
 You can update the webhook URL at any time after installation.
 
-To do so:
+1. Create a `webhook.yaml` file that specifies the new alerts webhook receiver URL(s). You can provide a single URL or a comma-separated list of URLs.
 
-Create a webhook.yaml  file containing the new Alerts webhook receiver URL(s). You can provide a single URL or a comma-separated list. Example:
-http://alert1.example.com:9093,http://alert2.example.com:9093/webhook
-Run the following script as the root user:
-
+2. Run the following script as the root user:
+```
 /opt/netq-admin/nvl/scripts/alerts-webhook-url-config.sh
-When prompted, you'll see the following menu:
-Choose an option:
-1) Update webhook receiver URLs
-2) Retrieve webhook receiver URLs and their statuses
-3) Clear webhook receiver URLs
-4) Exit
-Enter your selection: ..
-To view the current configuration, select option 2.
+```
 
-To update the webhook URLs, select option 1.
+3. NetQ prompts you to choose one of four options: 
 
-To clear the URLs, select option 3.
+- Update webhook receiver URLs
+- Retrieve webhook receiver URLs and their statuses
+- Clear webhook receiver URLs
+- Exit
 
-New webhook URLs will begin receiving notifications shortly after the system automatically redeploys the relevant components.
--->
+4. If you chose the first option, NetQ will automatically redeploy and apply the updated URL settings.

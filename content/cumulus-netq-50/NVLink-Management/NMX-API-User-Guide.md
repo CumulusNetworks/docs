@@ -1,7 +1,7 @@
 ---
 title: NMX-M API User Guide
 author: NVIDIA
-weight: 1005
+weight: 350
 toc: 3
 ---
 
@@ -15,7 +15,11 @@ This guide provides an overview of the NMX-M API framework, including the basics
 
 ## Authentication
 
-The NMX-M API uses {{<exlink url="https://developer.konghq.com/plugins/basic-auth/" text="Kong Basic Auth">}} for API access. During the installation process, NetQ creates two users that are authorized to interact with the API: `ro-user` and `rw-user`. The `ro-user` is authorized to perform read-only operations, which correspond to GET requests. The `rw-user` is authorized to access all API endpoints, including GET, POST, PUT, DELETE, and PATCH requests. <!--4.15 need to update what about admin, admin?-->
+The NMX-M API uses {{<exlink url="https://developer.konghq.com/plugins/basic-auth/" text="Kong Basic Auth">}} for API access. The default username and passwords vary according to your deployment:
+
+- NVLink-only deployment: during the installation process, NetQ creates two users that are authorized to interact with the API: `ro-user` and `rw-user`. The `ro-user` is authorized to perform read-only operations, which correspond to GET requests. The `rw-user` is authorized to access all API endpoints, including GET, POST, PUT, DELETE, and PATCH requests.
+
+- Ethernet and NVLink combined deployment: during the installation process, NetQ creates the default username and password, *admin*, *admin*. Upon {{<link title="Access the NetQ UI" text="initial login">}}, the NetQ UI will prompt you to change the default values. The admin has read-write access and can {{<link title="Add and Manage Accounts" text="create additional accounts">}}. The username, password, and access level are specified during the account creation process. 
 
 {{< expand "Read-only example using cURL" >}}
 ```

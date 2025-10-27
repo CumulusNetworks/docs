@@ -297,5 +297,6 @@ If any of the applications or services display a DOWN status after 30 minutes, o
 
 ## Next Steps
 
-- Ethernet: {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser to access Ethernet data.
-- NVLink: connect to the controller (NMX-C) and telemetry (NMX-T) services before accessing the NVLink REST API.
+After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser using the virtual cluster IP address. 
+
+To access NVLink data, {{<link title="NVLink Bringup" text="perform a system bringup">}} to connect to telemetry and controller services.

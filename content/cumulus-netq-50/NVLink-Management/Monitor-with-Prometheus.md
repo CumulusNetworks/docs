@@ -11,7 +11,7 @@ toc: 4
 
 You can configure NetQ to expose telemetry data in a format compatible with the Prometheus protocol by setting Prometheus as the target endpoint during the Prometheus server configuration. The telemetry data available through the Prometheus metrics endpoint reflects data collected from NMX-T.
 
-To configure NetQ NVLink as a Prometheus scraping target, add the NetQ NVLink endpoint details to the `prometheus.yml` configuration file. The following example illustrates a sample configuration, where `job_name` defines the scraping job name and `id` represents the NVLink5 domain ID:
+To configure NetQ as a Prometheus scraping target, add the NetQ NVLink endpoint details to the `prometheus.yml` configuration file. The following example illustrates a sample configuration, where `job_name` defines the scraping job name and `id` represents the NVLink5 domain ID:
 
 <!--4.15 what about username and password-->
 

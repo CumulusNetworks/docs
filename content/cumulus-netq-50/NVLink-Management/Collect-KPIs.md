@@ -9,14 +9,13 @@ The KPI REST endpoint provides key performance indicators (KPIs) that summarize 
 
 ## Access the API
 
-In the following examples, replace `<username>` with either `rw-user` (read-write access) or `ro-user` (read-only access). Replace `<password>` with the actual password associated with the user. <!--4.15 does this work with nvidia, nvidia?-->
-
+You can access key performance indicators by making a GET request to the `/v1/kpis` endpoint. You must specify {{<link title="NMX-M API User Guide/#authentication" text="your username and password">}} in the request body:
 {{<tabs "KPI access">}}
 
 {{<tab "cURL">}}
 ```
 curl --request GET \
-  --url https://xxxx.xxxx.xxxx.xxxx/nmx/v1/kpis \
+  --url https://<ip_address>/nmx/v1/kpis \
   --user "<username>:<password>" --insecure 
 ```
 
@@ -28,43 +27,20 @@ wget --quiet \
   --user '<username>' \
   --password '<password>' \
   --output-document \
-  - https://xxxx.xxxx.xxxx.xxxx/nmx/v1/kpis --no-check-certificate
+  - https://<ip_address>/nmx/v1/kpis --no-check-certificate
 ```
 {{</tab>}}
 {{</tabs>}}
 
 ## API Filters
 
-The REST API supports filtering based on health or inventory information. To use these filters, append the filter parameter to the endpoint, for example `kpis?filter=HEALTH`. Filter values include:
-
-Health filters:
-- HEALTH
-- SWITCH_HEALTH
-- GPU_HEALTH
-- DOMAIN_HEALTH
-- COMPUTE_HEALTH
-
-Inventory filters:
-- INVENTORY
-- COMPUTE_ALLOCATION
-- CONNECTION_COUNT
-- CABLE_TYPE
-- CABLE_PN
-- CABLE_FW_VERSION
-- PORT_COUNT
-- LINK_UP_COUNT
-- LINKDOWN_FREQUENCY
-- LINKDOWN_RATE
-- CHIP_TEMPERATURE
-- EFF_BER
-- SYMBOL_BER
-- RAW_BER
+The REST API supports filtering based on health or inventory information. To use these filters, append the filter parameter to the endpoint, for example `kpis?filter=HEALTH`. Refer to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nmx-api-8513100/#/KPI/GetKPI" text="Swagger API">}} for a complete list of available filters.
 
 {{< expand "cURL example with filtering" >}}
 
 Make a GET request to the `/v1/kpis` endpoint using a filter:
 ```
-curl --request GET --url https://xxx.xxx.xx/nmx/v1/kpis?filter=SWITCH_HEALTH --user "<username>:<password>" --insecure
+curl --request GET --url https://<ip_address>/nmx/v1/kpis?filter=SWITCH_HEALTH --user "<username>:<password>" --insecure
 ```
 Example response:
 ```
@@ -95,7 +71,7 @@ Example response:
 
 Make a GET request to the `/v1/kpis` endpoint without using a filter:
 ```
-curl --request GET --url https://xxxx.xxxx.xxxx.xxxx/nmx/v1/kpis --user "<username>:<password>" --insecure
+curl --request GET --url https://<ip_address>/nmx/v1/kpis --user "<username>:<password>" --insecure
 ```
 Example response:
 ```

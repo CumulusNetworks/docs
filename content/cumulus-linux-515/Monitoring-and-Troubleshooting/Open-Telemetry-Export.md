@@ -968,6 +968,12 @@ When you enable control plane statistic telemetry, the switch exports the follow
 | `nvswitch_control_plane_trap_group_rx_packets` | Control plane trap group receive packets. |
 | `nvswitch_control_plane_trap_group_rx_bytes` | Control plane trap group receive bytes. |
 | `nvswitch_control_plane_trap_group_pkt_violations` | Control plane trap group packet violations. |
+| `node_netstat_Ip_InReceives` | Control plane input IPv4 packets |
+| `node_netstat_Ip_InAddrErrors` | Control plane input IPv4 errors. |
+| `node_netstat_Ip_InDelivers ` | Control plane output IPv4 packets.. |
+| `node_netstat_Ip6_InReceives ` | Control plane input IPv6 packets. |
+| `node_netstat_Ip6_InAddrErrors ` | Control plane input IPv6 errors. |
+| `node_netstat_Ip6_InDelivers` | Control plane output IPv6 packets. |
 
 {{< expand "Example JSON data for nvswitch_control_plane_trap_rx_drop:" >}}
 ```
@@ -1322,37 +1328,24 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_dot3_control_in_unknown_opcodes` | Input 802.3 unknown opcode counter. |
 | `nvswitch_interface_dot3_in_pause_frames` | Input 802.3 pause frame counter. |
 | `nvswitch_interface_dot3_out_pause_frames` | Output 802.3 pause frame counter. |
-| `nvswitch_interface_dot3_stats_alignment_errors` | 802.3 alignment error counter. |
 | `nvswitch_interface_dot3_stats_carrier_sense_errors` | 802.3 interface carrier sense error counter. |
 | `nvswitch_interface_dot3_stats_deferred_transmissions` | 802.3 deferred transmission counter. |
-| `nvswitch_interface_dot3_stats_excessive_collisions` | 802.3 excessive collisions counter. |
 | `nvswitch_interface_dot3_stats_fcs_errors` | 802.3 FCS error counter. |
 | `nvswitch_interface_dot3_stats_frame_too_longs` | 802.3 excessive frame size counter. |
-| `nvswitch_interface_dot3_stats_internal_mac_receive_errors` | 802.3 internal MAC receive error counter. |
-| `nvswitch_interface_dot3_stats_internal_mac_transmit_errors` | 802.3 internal MAC transmit error counter. |
-| `nvswitch_interface_dot3_stats_late_collisions` | 802.3 late collisions counter. |
-| `nvswitch_interface_dot3_stats_multiple_collision_frames` | 802.3 multiple collision frames counter. |
-| `nvswitch_interface_dot3_stats_single_collision_frames` | 802.3 single collision frames counter. |
-| `nvswitch_interface_dot3_stats_sqe_test_errors` | 802.3 SQE test error counter. |
 | `nvswitch_interface_dot3_stats_symbol_errors` | 802.3 symbol error counter. |
 | `nvswitch_interface_802_dot3_a_frames_transmitted_ok` | Number of 802.3a frames transmitted.|
 | `nvswitch_interface_performance_marked_packets` | Interface performance marked packets, with marking as `ece` or `ecn`. |
-| `nvswitch_interface_discards_ingress_general` | Interface ingress general discards counter. |
 | `nvswitch_interface_discards_ingress_policy_engine` | Interface ingress policy engine discards counter. |
 | `nvswitch_interface_discards_ingress_vlan_membership` | Interface ingress VLAN membership filter discards counter. |
 | `nvswitch_interface_discards_ingress_tag_frame_type` | Interface ingress VLAN tag filter discards counter. |
 | `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN emmbership filter discards counter. |
 | `nvswitch_interface_discards_loopback_filter` | Interface loopback filter discards counter. |
-| `nvswitch_interface_discards_egress_general` | Interface egress general discards counter. |
-| `nvswitch_interface_discards_egress_link_down` | Interface egress link down discards counter. |
 | `nvswitch_interface_discards_egress_hoq` | Interface egress head-of-queue timeout discards. |
-| `nvswitch_interface_discards_port_isolation` | Interface port isolation filter discards. |
 | `nvswitch_interface_discards_egress_policy_engine` | Interface egress policy engine discards. |
 | `nvswitch_interface_discards_ingress_tx_link_down` | Interface ingress transmit link down discards. |
 | `nvswitch_interface_discards_egress_stp_filter` | Interface egress spanning tree filter discards. | 
 | `nvswitch_interface_discards_egress_hoq_stall` | Interface egress head-of-queue stall discards.|
 | `nvswitch_interface_discards_egress_sll` | Interface egress switch lifetime limit discards. |
-| `nvswitch_interface_discards_ingress_discard_all` | Interface total ingress discards.| 
 | `nvswitch_interface_ether_stats_pkts64octets` | Total packets received, 64 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts65to127octets` | Total packets received, 65 to 127 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts128to255octets` | Total packets received, 12 to 255 octets in length. |  
@@ -1366,7 +1359,6 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_carrier_up_changes_total` | Total number of carrier up transitions for the interface. |
 | `nvswitch_interface_carrier_last_change_time_ms` | Time of last carrier change for the interface as Unix epoch timestamp, with millisecond granularity. |
 |`nvswitch_interface_ether_stats_broadcast_pkts` | The total number of good packets received and directed to the broadcast address.|
-| `nvswitch_interface_ether_stats_collisions` |The best estimate of the total number of collisions on this Ethernet segment.|
 | `nvswitch_interface_ether_stats_crc_align_errors` | The total number of packets received that had a length (excluding framing bits, but including FCS octets) of between 64 and MTU octets, inclusive, but had either a bad frame check sequence (FCS) with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error).|
 | `nvswitch_interface_ether_stats_drop_events` | The total number of events in which packets are dropped due to lack of resources. |
 | `nvswitch_interface_ether_stats_fragments` | The total number of packets received that were less than 64 octets in length (excluding framing bits but including FCS octets) and had either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non- integral number of octets (alignment error).|
@@ -1403,13 +1395,9 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_proto_down` | Interface protocol down status. |
 | `nvswitch_interface_oper_aggregate_speed` | Speed in bits per second for the connected interface. |
 | `nvswitch_interface_number_of_lanes` | Number of lanes used by the interface. |
-| `nvswitch_interface_if_in_broadcast_pkts` | Number of interface in broadcast packets. |
 | `nvswitch_interface_if_in_discards` | Number of interface in discards.|
 | `nvswitch_interface_if_in_errors`| Number of interface in errors.|
-| `nvswitch_interface_if_in_multicast_pkts`| Number of interface in multicast packets.|
-| `nvswitch_interface_if_in_octets`| Number of interface in octets.|
 | `nvswitch_interface_if_in_ucast_pkts`| Number of interface in unicast packets.|
-| `nvswitch_interface_if_in_unknown_protos` | Number of interface in unknown protocols.|
 | `nvswitch_interface_if_out_broadcast_pkts`| Number of interface out broadcast packets. |
 | `nvswitch_interface_if_out_discards` | Number of interface out discards.|
 | `nvswitch_interface_if_out_errors` | Number of interface out errors. |
@@ -1427,10 +1415,8 @@ The switch collects and exports the following additional interface traffic class
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_interface_tc_tx_bc_frames` | Interface egress traffic class transmit broadcast frames counter. |
 | `nvswitch_interface_tc_tx_ecn_marked_tc` | Interface egress traffic class transmit ECN marked counter. |
 | `nvswitch_interface_tc_tx_frames` | Interface egress traffic class transmit frames counter. |
-| `nvswitch_interface_tc_tx_mc_frames` | Interface egress traffic class transmit multicast frames counter. |
 | `nvswitch_interface_tc_tx_no_buffer_discard_uc` | Interface egress traffic class transmit unicast no buffer discard counter. |
 | `nvswitch_interface_tc_tx_octet` | Interface egress traffic class transmit bytes counter.|
 | `nvswitch_interface_tc_tx_queue` | Interface egress traffic class transmit queue counter. |
@@ -1444,10 +1430,8 @@ The switch collects and exports the following additional interface priority grou
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_interface_pg_rx_buffer_discard` | Interface ingress priority group receive buffer discard counter. |
 | `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
 | `nvswitch_interface_pg_rx_octets` | Interface ingress priority group receive bytes counter. |
-| `nvswitch_interface_pg_rx_shared_buffer_discard` | Interface ingress priority group receive shared buffer discard counter. |
 
 {{< /tab >}}
 {{< tab "Switch Priority ">}}
@@ -1456,22 +1440,11 @@ The switch collects and exports the following additional interface switch priori
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_interface_sp_rx_bc_frames` | Received broadcast counter for the switch priority |
 | `nvswitch_interface_sp_rx_discard` | Receive discard counter for the switch priority |
-| `nvswitch_interface_sp_rx_frames` | Receive frame counter for the switch priority. |
-| `nvswitch_interface_sp_rx_mc_frames` | Receive multicast frame counter for the switch priority. |
-| `nvswitch_interface_sp_rx_octets` | Receive octets counter for the switch priority. |
 | `nvswitch_interface_sp_rx_pause` | Receive pause counter for the switch priority. |
 | `nvswitch_interface_sp_rx_pause_duration` | Receive pause duration counter for the switch priority. |
-| `nvswitch_interface_sp_rx_pause_transition` | Receive pause transition counter for the switch priority. |
-| `nvswitch_interface_sp_rx_uc_frames` | Receive unicast frame counter for the switch priority. |
-| `nvswitch_interface_sp_tx_bc_frames` | Transmit broadcast frame counter for the switch priority. |
-| `nvswitch_interface_sp_tx_frames` | Transmit frame counter for the switch priority. |
-| `nvswitch_interface_sp_tx_mc_frames` | Transmit multicast frame counter for the switch priority. |
-| `nvswitch_interface_sp_tx_octets` | Transmit octets counter for the switch priority. |
 | `nvswitch_interface_sp_tx_pause` | Transmit pause counter for the switch priority. |
 | `nvswitch_interface_sp_tx_pause_duration` | Transmit pause duration for the switch priority. |
-| `nvswitch_interface_sp_tx_uc_frames` | Transmit unicast frame counter for the switch priority. |
 
 {{< /tab >}}
 {{< tab "PHY">}}
@@ -1562,43 +1535,6 @@ The switch collects and exports the following additional interface statistics wh
 
 {{< /expand >}}
 <br>
-{{< expand "Example JSON data for nvswitch_interface_if_in_broadcast_pkts:" >}}
-```
-{
-  "name": "nvswitch_interface_if_in_broadcast_pkts",
-  "description": "NVIDIA Ethernet Switch Interface if in broadcast pkts counter",
-  "gauge": {
-    "dataPoints": [
-      {
-        "attributes": [
-          {
-            "key": "interface",
-            "value": {
-              "stringValue": "swp1s0"
-            }
-          }
-        ],
-        "timeUnixNano": "1745875601233000000",
-        "asDouble": 0
-      },
-      {
-        "attributes": [
-          {
-            "key": "interface",
-            "value": {
-              "stringValue": "swp1s1"
-            }
-          }
-        ],
-        "timeUnixNano": "1745875601233000000",
-        "asDouble": 0
-      }
-    ]
-  }
-}
-```
-{{< /expand >}}
-<br>
 {{< expand "Example JSON data for nvswitch_interface_if_in_discards:" >}}
 ```
 {
@@ -1654,56 +1590,6 @@ The switch collects and exports the following additional interface statistics wh
         ],
         "timeUnixNano": "1745875520233000000",
         "asDouble": 0
-      }
-    ]
-  }
-}
-```
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for nvswitch_interface_if_in_multicast_pkts:" >}}
-```
-{
-  "name": "nvswitch_interface_if_in_multicast_pkts",
-  "description": "NVIDIA Ethernet Switch Interface if in multicast pkts counter",
-  "gauge": {
-    "dataPoints": [
-      {
-        "attributes": [
-          {
-            "key": "interface",
-            "value": {
-              "stringValue": "swp1s0"
-            }
-          }
-        ],
-        "timeUnixNano": "1745875325232000000",
-        "asDouble": 11
-      }
-    ]
-  }
-}
-```
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for nvswitch_interface_if_in_octets:" >}}
-```
-{
-  "name": "nvswitch_interface_if_in_octets",
-  "description": "NVIDIA Ethernet Switch Interface if in octets counter",
-  "gauge": {
-    "dataPoints": [
-      {
-        "attributes": [
-          {
-            "key": "interface",
-            "value": {
-              "stringValue": "swp1s0"
-            }
-          }
-        ],
-        "timeUnixNano": "1745875331232000000",
-        "asDouble": 3758
       }
     ]
   }
@@ -6172,3 +6058,4 @@ Exporters       Enqueue Failed Metric Points   Queue Capacity   Queue Size   Sen
 otlp/global     0                              1000             0            7087                        52000844
 ```
 <!-- vale on -->
+

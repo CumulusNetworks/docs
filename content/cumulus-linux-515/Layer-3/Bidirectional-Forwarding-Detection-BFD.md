@@ -54,7 +54,11 @@ To configure BFD, you configure a BFD profile, then attach the profile to the cl
 ### Configure a BFD Profile
 
 To configure BFD, you must create a BFD profile that includes the following options:
+<<<<<<< HEAD
 - The detection time multiplier to determine packet loss. The detection timeout is calculated based on multiplying the detection multiplier with the greater value between the local switch's receive interval and the peer's transmit interval. The default value is 3.
+=======
+- The detection time multiplier to determine packet loss. The detection timeout is calculated based on multiplying the detection multiplier with the greater value between the local switch's receive interval and the peer's transmit interval.
+>>>>>>> 21c35bf3a9f5e6965199d467c6226e3f5e51915e
 - The minimum interval for transmitting BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300.
 - The minimum interval between the received BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300.
 - Shutdown, which enables or disables the peer. When the peer is disabled the switch sends an `administrative down` message to the remote peer. The default value is `disabled`.

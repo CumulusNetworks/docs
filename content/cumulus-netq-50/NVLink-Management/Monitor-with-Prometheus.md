@@ -1,7 +1,7 @@
 ---
 title: Monitor with Prometheus
 author: NVIDIA
-weight: 550
+weight: 900
 toc: 4
 ---
 

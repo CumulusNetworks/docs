@@ -9,19 +9,16 @@ NetQ continuously gathers metrics from telemetry services. When specific thresho
 
 All triggering conditions are preconfigured and cannot be modified.
 
-## Supported Rules
+## Ongoing Port Validation
 
 The *port status* alert is triggered by a group of events that affect port operation. These alerts are based on deviations in a group of metrics---if any metric exceeds two standard deviations from the average, an alert is raised. The alert includes the port ID, domain, node ID, and port number.
 
-There are two types of alerts in this group---ongoing port validations and anomaly detection:
-
-### Ongoing Port Validation
 | Alert Type | Alert Group | Alert Name(s) | Severity | Trigger Condition | Behavior |
 | :-- | :-- | :-- | :-- | :-- | :-- |
 | Ongoing Port Validation | `ongoing_port_validation` | `OngoingPortValidation` | warning | More than 3 errors of a specific metric are detected within a 24-hour window. | The alert is sent continuously until the condition is resolved to ensure delivery even if external systems are temporarily down. |
 
 
-### Anomaly Detection
+## Anomaly Detection
 
 For each new metric value, NetQ analyzes historical data over a predefined time period using a statistical model. If the value deviates significantly from the expected range (beyond two standard deviations), the system triggers an alert.  The following alerts are included:
 
@@ -31,6 +28,16 @@ For each new metric value, NetQ analyzes historical data over a predefined time 
 | Physical Layer Retransmission Warning | `port_metrics_deviation` | `PhysicalLayerRetransmission` | warning |
 | Port Degradation Warning | `port_metrics_deviation` | `PortDegradationHistogram1`, `PortDegradationHistogram2`, `PortDegradationHistogram3`, `PortDegradationBER`, `PortDegradationLinkErrors` | warning |
 | Packet Discard Warning | `port_metrics_deviation` | `PacketDiscard` | warning |
+
+## License Validations
+
+NetQ broadcasts alerts when your {{<link title="Manage Licenses" text="license">}} is expired or about to expire. 
+
+| Alert Type | Alert Group | Alert Name(s) | Severity |
+| :-- | :-- | :-- | :-- |
+| Expires Soon | `licensing` | `LicenseValidation` | warning |
+| Expired | `licensing` | `LicenseValidation` | critical |
+
 
 ## Update the Webhook Receiver URL
 

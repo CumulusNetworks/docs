@@ -1,7 +1,7 @@
 ---
 title: Manage Licenses
 author: NVIDIA
-weight: 1005
+weight: 850
 toc: 3
 ---
 
@@ -41,17 +41,6 @@ To view license details, including license type, issue date, and expiration date
 2. When prompted, select the second option, **Get active license information**. 
 
 
-## Receive License Notifications
+## Receive License Alerts
 
 If you have {{<link title="Manage Alerts" text="configured a webhook receiver">}} you will receive a notification when your license is about to expire or has already expired. These notifications are sent every 24 hours until the license status is updated.
-
-NetQ for NVLink broadcasts two types of license notifications: expires soon and expired.
-
-- *Expires soon* indicates that the license will expire within 60 days. The notification includes the following parameters:
-    - Job: `licensing`
-    - Alert name: `LicenseValidation`
-    - Severity: `warning`
-- *Expired* indicates the license is expired. The notification includes the following parameters:
-    - Job: `licensing`
-    - Alert name: `LicenseValidation`
-    - Severity: `critical`

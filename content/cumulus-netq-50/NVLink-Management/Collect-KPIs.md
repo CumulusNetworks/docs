@@ -9,7 +9,7 @@ The KPI REST endpoint provides key performance indicators (KPIs) that summarize 
 
 ## Access the API
 
-You can access key performance indicators by making a GET request to the `/v1/kpis` endpoint. You must specify {{<link title="NMX-M API User Guide/#authentication" text="your username and password">}} in the request body:
+You can access key performance indicators by making a GET request to the `/v1/kpis` endpoint. You must specify {{<link title="NetQ NVLink API User Guide/#authentication" text="your username and password">}} in the request body:
 {{<tabs "KPI access">}}
 
 {{<tab "cURL">}}

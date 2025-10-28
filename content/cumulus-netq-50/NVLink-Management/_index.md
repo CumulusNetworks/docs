@@ -5,13 +5,18 @@ weight: 350
 toc: 2
 ---
 
-NetQ NVLink collects telemetry data, monitors performance, and allows you to configure and manage NVLink deployments. It aggregates and streams telemetry metrics that you can access through a Prometheus endpoint or gRPC. You can use NetQ to manage NVLink network configurations and resources, and use it to allocate and reserve GPUs for AI workloads.
+NVIDIA NVLink is a high-speed interconnect that allows multiple GPUs to communicate directly. You can use NetQ to configure and manage NVLink deployments, collect telemetry data, and monitor performance. NetQ aggregates and streams telemetry metrics that you can access through a Prometheus endpoint or gRPC. You can use the REST API to manage NVLink network configurations and resources, and allocate GPUs for AI workloads.
 
 {{<notice tip>}}
-NetQ NVLink was previously packaged as NMX-M. 
+NetQ NVLink was previously packaged as NMX-M.
 {{</notice>}}
 
 
-<!--insert TOC with links
- - Install NetQ for NVLink
- -->
+- {{<link title="Install NetQ for NVLink">}}
+- {{<link title="NVLink Bringup">}}
+- {{<link title="NetQ NVLink API User Guide">}}
+- {{<link title="Collect KPIs">}}
+- {{<link title="Manage Alerts">}}
+- {{<link title="Manage Licenses">}}
+- {{<link title="Manage Partitions">}}
+- {{<link title="Troubleshooting and Support">}}

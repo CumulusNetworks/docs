@@ -8,14 +8,9 @@ toc: 3
 
 Cumulus Linux supports BFD with BGP, OSPF, PIM, and static routes and on interfaces, subinterfaces, and bonds.
 
-{{%notice note%}}
-Every BFD interface requires an IP address. The neighbor IP address for a single hop BFD session must exist in the ARP table before BFD can start sending control packets.
-{{%/notice%}}
 
 {{%notice note%}}
-Cumulus Linux does not support:
-- BFD demand mode
-- Dynamic BFD timer negotiation on an existing session. Any change to the timer values takes effect only when the session goes down and comes back up.
+Cumulus Linux does not support BFD demand mode, BFD echo mode, or BGP BFD strict mode.
 {{%/notice%}}
 
 ## Enable BFD
@@ -54,12 +49,12 @@ When you change the BFD state, the FRR service will restart, affecting all confi
 
 You can configure BFD with NVUE or vtysh commands.
 
-To configure BFD, you configure a BFD profile, then attach the profile to the client, such as a BGP neighbor or peer group, OSPF interface, PIM session, or static route. The BFD profile includes configuration parameters such detect multiplier, transmit interval, receive interval, and minimum expected TTL.
+To configure BFD, you configure a BFD profile, then attach the profile to the client, such as a BGP neighbor or peer group, OSPF interface, PIM interface, or static route. The BFD profile includes configuration parameters such as detect multiplier, transmit interval, receive interval, passive mode, admin state, and minimum expected TTL.
 
 ### Configure a BFD Profile
 
 To configure BFD, you must create a BFD profile that includes the following options:
-- The detection time multiplier to determine packet loss. The remote transmission interval is multiplied by this value to determine the connection loss detection timer. You can set a value between 1 and 255. The default value is 3.
+- The detection time multiplier to determine packet loss. The detection timeout is calculated based on multiplying the detection multiplier with the greater value between the local switch's receive interval and the peer's transmit interval. The default value is 3.
 - The minimum interval for transmitting BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300.
 - The minimum interval between the received BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300.
 - Shutdown, which enables or disables the peer. When the peer is disabled the switch sends an `administrative down` message to the remote peer. The default value is `disabled`.
@@ -169,7 +164,7 @@ neighbor fabric bfd profile BFD1
 
 ### BFD with OSPF
 
-When you enable BFD on an OSPF interface, a neighbor registers with BFD when two-way adjacency starts and de-registers when adjacency goes down. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
+When you enable BFD on an OSPF interface, a neighbor registers with BFD when two-way adjacency starts and de-registers when adjacency goes down. The BFD configuration is per interface and any IPv4 neighbors discovered on that interface inherit the configuration.
 
 The following example configures BFD in OSPF for interface swp1 using the BFD profile BFD1.
 
@@ -210,7 +205,7 @@ interface swp1
 
 ### BFD with PIM
 
-To configure BFD with PIM, you attach a BFD profile to a PIM session.
+To configure BFD with PIM, you attach a BFD profile to a PIM interface.
 
 {{< tabs "TabID275 ">}}
 {{< tab "NVUE Commands ">}}
@@ -257,14 +252,14 @@ You can associate static routes with BFD to monitor static route reachability. D
 
 ```
 cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd profile BFD1 
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd multi-hop
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd multi-hop enabled
 cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd source 10.10.10.3
 cumulus@switch:~$ nv config apply
 ```
 
 ```
 cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd profile BFD2
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd multi-hop
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd multi-hop enabled
 cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd source 10.10.10.3
 cumulus@switch:~$ nv config apply
 ```
@@ -272,8 +267,34 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# ip route 10.10.10.101/32 10.0.1.0 bfd multi-hop source 10.10.10.3 profile BFD1
+switch(config)# end
+switch# write memory
+switch# exit
+```
+
+To view BFD static route status, use the `show bfd static route` vtysh command:
+
+```
+switch# show bfd static route
+Showing BFD monitored static routes:
+
+  Next hops:
+    VRF default IPv4 Unicast:
+        10.10.10.101/32 peer 10.0.1.0 (status: uninstalled)
+```
+
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+- BFD with static routes is supported only when a next-hop IP address is specified.
+- BFD operates in single hop mode by default. You must configure `multi-hop enabled` to use BFD for multihop next-hop tracking through static routes.
+{{%/notice%}}
 <!--
 ## Echo Function
 
@@ -310,6 +331,11 @@ You configure the echo function by setting the following parameters in the topol
 - **echoMinRx** is the minimum interval between echo packets the local system is capable of receiving. The BFD control packet advertises this value. When you enable the echo function, it defaults to 50. If you disable the echo function, this parameter is automatically 0, which indicates the port or the node cannot process or receive echo packets.
 - **slowMinTx** is the minimum interval between transmitting BFD control packets when the switch exchanges echo packets.
 -->
+
+### Considerations
+
+- A BFP profile applied to an interface can be changed, but you can not unset a profile while BFD is still enabled on the interface. To remove BFD completely from an interface, use the `nv unset interface <if-name> router <protocol> bfd` command. To change the profile, set a new profile with the `nv set interface <if-name> router <protocol> bfd profile <profile>` command.
+- BFD is supported in the `default` VRF and non-default VRFs.
 
 ## Show BFD Information
 
@@ -403,60 +429,7 @@ cumulus@switch:~$ nv show interface swp1 router ospf bfd
 profile               BFD1
 ```
 
-You can run vtysh commands to show neighbor information in OSPF, including BFD status.
-
-- To show IPv6 OSPF interface information, run the vtysh `show ip ospf6 interface <interface-id>` command.
-- To show IPv4 OSPF interface information, run the vtysh `show ip ospf interface <interface-id>` command.
-
-   The following example shows IPv6 OSPF interface information.
-
-    ```
-    cumulus@switch:~$ sudo vtysh
-    switch# show ip ospf6 interface swp2s0
-      swp2s0 is up, type BROADCAST
-    Interface ID: 4
-    Internet Address:
-      inet : 11.0.0.21/30
-      inet6: fe80::4638:39ff:fe00:6c8e/64
-    Instance ID 0, Interface MTU 1500 (autodetect: 1500)
-    MTU mismatch detection: enabled
-    Area ID 0.0.0.0, Cost 10
-    State PointToPoint, Transmit Delay 1 sec, Priority 1
-    Timer intervals configured:
-      Hello 10, Dead 40, Retransmit 5
-    DR: 0.0.0.0 BDR: 0.0.0.0
-    Number of I/F scoped LSAs is 2
-      0 Pending LSAs for LSUpdate in Time 00:00:00 [thread off]
-      0 Pending LSAs for LSAck in Time 00:00:00 [thread off]
-    BFD: Detect Mul: 3, Min Rx interval: 300, Min Tx interval: 300
-    ```
-
-- To show IPv6 OSPF neighbor details, run the vtysh `show ip ospf6 neighbor detail` command.
-- To show IPv4 OSPF interface information, run the vtysh `show ip ospf neighbor detail` command.
-
-  The following example shows IPv6 OSPF neighbor details.
-
-  ```
-  cumulus@switch:~$ sudo vtysh
-  switch# show ip ospf6 neighbor detail
-    Neighbor 0.0.0.4%swp2s0
-      Area 0.0.0.0 via interface swp2s0 (ifindex 4)
-      His IfIndex: 3 Link-local address: fe80::202:ff:fe00:a
-      State Full for a duration of 02:32:33
-      His choice of DR/BDR 0.0.0.0/0.0.0.0, Priority 1
-      DbDesc status: Slave SeqNum: 0x76000000
-      Summary-List: 0 LSAs
-      Request-List: 0 LSAs
-      Retrans-List: 0 LSAs
-      0 Pending LSAs for DbDesc in Time 00:00:00 [thread off]
-      0 Pending LSAs for LSReq in Time 00:00:00 [thread off]
-      0 Pending LSAs for LSUpdate in Time 00:00:00 [thread off]
-      0 Pending LSAs for LSAck in Time 00:00:00 [thread off]
-      BFD: Type: single hop
-        Detect Mul: 3, Min Rx interval: 300, Min Tx interval: 300
-        Status: Up, Last update: 0:00:00:20
-  ```
-
+You can run vtysh commands to show neighbor information in OSPF, including BFD status. To show IPv4 OSPF interface information, run the vtysh `show ip ospf interface <interface-id>` command.
 ### Show BFD with PIM
 
 To show the BFD profile associated with a PIM session, run the NVUE `nv show interface <interface-id> router pim bfd` command:
@@ -479,29 +452,6 @@ cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0
 -------  -----------  -------
 
 profile               BFD1
-```
-
-## Troubleshooting
-
-To troubleshoot BFD, run the Linux `ptmctl -b` command.
-
-```
-cumulus@switch:~$ ptmctl -b
-
-----------------------------------------------------------------------------------------
-port  peer                 state  local  type       diag  det   tx_timeout  rx_timeout
-                                                          mult
-----------------------------------------------------------------------------------------
-swp1  fe80::202:ff:fe00:1  Up     N/A    singlehop  N/A   3     300         900
-swp1  3101:abc:bcad::2     Up     N/A    singlehop  N/A   3     300         900
-
-#continuation of output
----------------------------------------------------------------------
-echo        echo        max      rx_ctrl  tx_ctrl  rx_echo  tx_echo
-tx_timeout  rx_timeout  hop_cnt
----------------------------------------------------------------------
-0           0           N/A      187172   185986   0        0
-0           0           N/A      501      533      0        0
 ```
 
 ## Related Information

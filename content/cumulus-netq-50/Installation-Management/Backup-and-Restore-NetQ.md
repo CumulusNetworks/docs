@@ -10,7 +10,7 @@ The following sections describe how to back up and restore your NetQ data and VM
 {{%notice note%}}
 - You must run backup and restore scripts with sudo privileges.
 - NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
-- The backup and restore process does not retain several configurations necessary for the Grafana integration, including switch TLS certificates, authentication tokens (vm-tokens), OpenTelemetry configurations, and external time-series database configurations. After reinstalling NetQ, you must {{<link title="Integrate NetQ with Grafana" text="reconfigure these components">}}. Grafana will not display data from previous NetQ versions. 
+- The backup and restore process does not retain several configurations necessary for the Grafana integration, including switch TLS certificates, authentication tokens (vm-tokens), OpenTelemetry configurations, and external time-series database configurations. After reinstalling NetQ, you must {{<link title="Integrate NetQ with Grafana" text="reconfigure these components">}}. Grafana will not display data from previous NetQ versions.
 {{%/notice%}}
 
 ## Back Up Your NetQ Data

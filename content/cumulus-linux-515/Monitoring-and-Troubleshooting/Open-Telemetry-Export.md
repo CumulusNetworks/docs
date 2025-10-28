@@ -741,7 +741,10 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 | `nvswitch_ar_congestion_changes`  | Number of adaptive routing change events triggered due to congestion or link-down.|
 | `nvswitch_srv6_no_sid_drops`| Number of packets dropped due to no matching SID. |
 | `nvswitch_srv6_in_pkts` | Number of packets received for this SID. |
-| `nvswitch_qos_trimmed_unicast_pkts`| The Number of packets that were trimmed.|
+| `nvswitch_qos_trimmed_unicast_pkts`| Number of packets that were trimmed.|
+| `nvswitch_interface_trimmed_unicast_pkts [interface]`| Number of packets that were trimmed on the interface.|
+| `nvswitch_interface_trimmed_tx_unicast_pkts [interface] `| Number of packets that were trimmed and sent successfully on the interface.|
+| `nvswitch_interface_tc_trimmed_unicast_pkts [interface][tc]`| Number of packets that were trimmed on the interface and traffic class.|
 
 {{< expand "Example JSON data for nvswitch_ar_congestion_changes:" >}}
 ```

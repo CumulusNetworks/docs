@@ -1,7 +1,7 @@
 ---
 title: NVLink Management
 author: NVIDIA
-weight: 350
+weight: 1070
 toc: 2
 ---
 

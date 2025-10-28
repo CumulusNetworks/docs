@@ -11,15 +11,22 @@ The NetQ NVLink API is organized around {{<exlink url="https://en.wikipedia.org/
 - {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nmx-api-8513100/" text="REST API in Swagger">}}
 - {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nmx-api-8513100/openapi.yaml" text="View the full object model">}}
 
-This guide provides an overview of the NMX-M API framework, including the basics of using Swagger UI 2.0 or `bash` plus `curl` to view and test the APIs. Descriptions of each endpoint and model parameter are in individual API JSON files.
-
 ## Authentication
 
 The API uses {{<exlink url="https://developer.konghq.com/plugins/basic-auth/" text="Kong Basic Auth">}} for API access. The default username and passwords vary according to your deployment:
 
 - NVLink-only deployment: during the installation process, NetQ creates two users that are authorized to interact with the API: `ro-user` and `rw-user`. The `ro-user` is authorized to perform read-only operations, which correspond to GET requests. The `rw-user` is authorized to access all API endpoints, including GET, POST, PUT, DELETE, and PATCH requests.
 
-- Ethernet and NVLink combined deployment: during the installation process, NetQ creates the default username and password, *admin*, *admin*. Upon {{<link title="Access the NetQ UI" text="initial login">}}, the NetQ UI will prompt you to change the default values. The admin has read-write access and can {{<link title="Add and Manage Accounts" text="create additional accounts">}}. The username, password, and access level are specified during the account creation process. 
+- Ethernet and NVLink combined deployment: during the installation process, NetQ creates the default username and password, *admin*, *admin*. Upon {{<link title="Access the NetQ UI" text="initial login">}}, the NetQ UI will prompt you to change the default values. The admin has read-write access and can {{<link title="Add and Manage Accounts" text="create additional accounts">}}. The username, password, and access level are specified during the account creation process.
+
+## Asynchronous Operations
+
+Some REST API calls involve asynchronous, long-running tasks. When one of these APIs is invoked, it immediately returns a `202 Accepted` response. This indicates that the request has been received and is being processed, but the operation is not yet complete. Each `202` response includes:
+
+- A JSON body with an `operationID` (for example, `"operationId": "551137c2f9e1fac808a5f572"`)
+- A location header that points to the operations API endpoint at `/nmx/v1/operations/<op-id>`
+
+If the operation eventually creates a new resource (for example, a service), querying the operation once its status is completed returns a response containing a location header pointing to the new resource endpoint (for example, `/nmx/v1/services/<created-service-id>`).
 
 ## API Responses
 

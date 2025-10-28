@@ -41,7 +41,7 @@ The following example performs a switch bringup by making a POST request to the 
 
 ```
 curl -X 'POST' \
-  'https://<NMX-Manager-API>/nmx/v1/bring-up' \
+  'https://<ip_address>/nmx/v1/bring-up' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
   -F 'FmConfig=@<fm-config-file>' \
@@ -55,7 +55,7 @@ This example is similar to the previous one, but defines both a global and indiv
 
 ```
 curl -X 'POST' \
-  'https://<NMX-Manager-API>/nmx/v1/bring-up' \
+  'https://<ip_address>/nmx/v1/bring-up' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
   -F 'FmConfig=@<fm-config-file>' \
@@ -75,7 +75,7 @@ If all initial validations succeed, the API returns an `HTTP 202 Accepted` respo
 
 ```
 curl -X 'GET' \
-  'https://<NMX-Manager-API>/nmx/v1/bring-up/682880baaf653727786b618f' \
+  'https://<ip_address>/nmx/v1/bring-up/682880baaf653727786b618f' \
   -H 'accept: application/json'
 ```
 

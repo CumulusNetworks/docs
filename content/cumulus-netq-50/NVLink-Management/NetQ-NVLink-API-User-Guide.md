@@ -30,7 +30,7 @@ If the operation eventually creates a new resource (for example, a service), que
 
 ## API Responses
 
-An NetQ NVLink API response comprises a status code, any relevant error codes (if unsuccessful), and the collected data (if successful). The API uses conventional HTTP response codes to indicate the success or failure of an API request:
+The NetQ NVLink API uses conventional HTTP response codes to indicate the success or failure of an API request:
 
 | Code | Name | Description |
 | ---- | ---- | ----|

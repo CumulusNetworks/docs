@@ -218,14 +218,12 @@ Use NVUE commands to show and clear packet trimming counters.
 You can show the number of trimmed packets at the global level and the number of trimmed packets for each interface.  
 
 {{%notice note%}}
-- You can show packet trimming counters on switches with the Spectrum-4 and Spectrum-5 ASIC.
+- You can show packet trimming counters on switches with Spectrum-4 and later ASICs.
 - Spectrum-4 switches display only the total number of trimmed packets per port and do not provide counters for the number of trimmed packets that were sent successfully on a port.
 {{%/notice%}}
 
 To display the number of trimmed packets at both the global and interface levels, run the `nv show system forwarding packet-trim counters` command:
 
-
-Spectrum-4 example:
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim counters
@@ -239,22 +237,6 @@ swp1        1000                  N/A
 swp2        2000                  N/A 
 swp3        4000                  N/A 
 swp4        5000                  N/A 
-```
-
-Spectrum-5 example:
-
-```
-cumulus@switch:~$ nv show system forwarding packet-trim counters
-Global 
- trimmed-packets      20,000 
-Port-Level 
--------------
-Interface  Trim Eligible Packets Trimmed TxPackets 
----------  ---------------  ------------------ 
-swp1        1000             1000 
-swp2        2000             2000 
-swp3        4000             4000 
-swp4        5000             5000 
 ```
 
 To show the number of trimmed packets for a specific interface by traffic class, run the `nv show interface <interface-id> packet-trim counters` command. You must specify a specific interface. The NVUE command does not support interface ranges.

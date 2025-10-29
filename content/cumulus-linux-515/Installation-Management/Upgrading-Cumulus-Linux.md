@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 30
 toc: 3
 ---
-This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to upgrade with minimal disruption to network traffic.
+This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to perform a hitless (sub-second loss of data plane traffic) upgrade.
 
 To upgrade Cumulus Linux, choose one of the three upgrade methods:
 
@@ -13,7 +13,7 @@ To upgrade Cumulus Linux, choose one of the three upgrade methods:
 - Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you will need to manually back up and restore your switch configuration)
 ## Upgrades with ISSU
 
-<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to upgrade the switch software while the network continues to forward packets with minimal disruption to the network, also called a hitless upgrade.
+<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to perform a hitless upgrade of the switch software while the network continues to forward packets. ISSU hitless upgrade minimizes data plane traffic disruption to sub-second levels and automatically translates the switch NVUE configuration to the new version’s schema. During ISSU, the routing control plane is temporarily unavailable; however, the {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} capability maintains traffic flow through the switch.
 
 Cumulus Linux supports two methods that can use ISSU:
 - {{<link url="#optimized-image-upgrade" text="Optimized image upgrade">}}
@@ -53,9 +53,9 @@ Restart the switchd service with the `sudo systemctl restart switchd.service` co
 {{%notice note%}}
 Cumulus Linux supports ISSU and warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. 
 
-The following features are not supported during warm boot:
+The following features are not supported during warm reboot:
 - EVPN MLAG or EVPN multihoming.
-- LACP bonds. LACP control plane sessions might time out before warm boot completes. Use static LAG to keep bonds up with sub-second convergence during warm boot.
+- LACP bonds. LACP control plane sessions might time out before warm reboot completes. Use static LAG to keep bonds up with sub-second convergence during a warm reboot.
 {{%/notice%}}
 
 ## Before You Upgrade
@@ -125,7 +125,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
     cumulus@switch:~$ nv action reboot system mode warm
 ```
 
-If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
 
 ```
     cumulus@switch:~$ nv action reboot system
@@ -146,9 +146,9 @@ current        2
 next           2                        
 partition1                              
   build-id     5.13.0.0026
-  description  Cumulus Linux 5.15.0     
+  description  Cumulus Linux 5.13.0     
   disk         /dev/sda5                
-  release      5.12.0                   
+  release      5.13.0                   
 partition2                              
   build-id     5.15.0.0018
   description  Cumulus Linux 5.15.0     
@@ -192,7 +192,7 @@ cumulus@switch:~$ cl-image-upgrade -a
     cumulus@switch:~$ sudo csmgrctl -wf
 ```
 
-If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
 
 ```
     cumulus@switch:~$ sudo reboot
@@ -256,7 +256,7 @@ If you configured the switch resource mode to half for {{<link url="#issu" text=
 ```
     cumulus@switch:~$ nv action reboot system mode warm
 ```
-If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
 
 ```
     cumulus@switch:~$ nv action reboot system
@@ -336,7 +336,7 @@ If you configured the switch resource mode to half for {{<link url="#issu" text=
 cumulus@switch:~$ sudo csmgrctl -wf
 ```
 
-If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
 
 ```
 cumulus@switch:~$ sudo reboot

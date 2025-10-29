@@ -105,7 +105,22 @@ You can configure the following global RADIUS settings and server specific setti
 | `source-ipv4`</br>`source-ipv6`| A specific interface to reach all RADIUS servers. To configure the source IP address for a specific RADIUS server, use the `source-ip` option.|
 | `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. You enable the debug option globally for all the servers.|
 | `require-message-authenticator` | Requires authentication packets to have the Message-Authenticator attribute; the switch discards as Access-Reject all packets that do not have the Message-Authenticator attribute.|
-| `auth-type` | The method used for authentication. Options are `pap`, `chap`, and the default value of `mschapv2`. NVIDIA recommends using PEAP with MSCHAPv2 for authentication with your RADIUS server. |
+| `auth-type` | The method used for authentication. Options are `pap`, `chap`, and the default value of `mschapv2`. |
+
+{{%notice infonopad%}}
+- With the default `auth-type` of `mschapv2`, configure your RADIUS server to use PEAP with MSCHAPv2; do not configure md5 authentication. 
+- Additionally, to ensure the correct privilege level is applied to users with MSCHAPv2, if you are using FreeRADIUS, configure `/etc/freeradius/3.0/mods-enabled/eap` with `use_tunneled_reply = yes`. For example:
+
+```
+peap {
+    tls = tls-common
+    default_eap_type = mschapv2
+    copy_request_to_tunnel = no
+    use_tunneled_reply = yes   (change from no to yes)
+    virtual_server = "inner-tunnel"
+}
+```
+{{%/notice%}}
 
 The following example configures global RADIUS settings:
 

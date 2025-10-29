@@ -14,7 +14,6 @@ Instead of specifying properties of each individual peer, you can define one or 
 - If the peer you want to add to a group already exists in the BGP configuration, delete it first, than add it to the peer group.
 - Configuring a peer group results in BGP session flaps, which might lead to traffic loss.
 - When you delete a peer group associated with a BGP neighbor, Cumulus Linux also removes the corresponding neighbor configuration.
-- If you want to modify a peer group, you must delete the existing BGP neighbor configuration and reconfigure it with the new peer group.
 {{%/notice%}}
 
 The following example commands create a peer group called SPINE that includes two external peers.
@@ -73,6 +72,59 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 If you unset a peer group, make sure that it is not applied to any neighbors. If the peer group is applied to neighbors, configure all parameters, such as the remote AS, directly on the neighbors before removing the peer group.
 {{%/notice%}}
 <!-- vale on -->
+
+## IPv6-only Unnumbered Peering
+
+To configure a BGP unnumbered peer for IPv6-only peering over a link-local address, you must configure an NVUE snippet. When you configure an NVUE snippet for a `v6only` peering, the `remote-as` and any `peer-group` configuration must be applied with the snippet instead of NVUE CLI commands. If a peer group is configured for the neighbor, the remote-as can be defined in the peer group configuration through NVUE commands.
+
+The following example configures the BGP peer group CLIENT1 with soft reconfiguration and community advertisement enabled, and the remote AS set to external. The snippet configuration configures the `v6only` option and applies the peer group to the neighbor: 
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 address-family ipv4-unicast community-advertise
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 address-family ipv4-unicast soft-reconfiguration enabled
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 remote-as external
+cumulus@leaf01:~$ nv config apply
+```
+
+Create a .yaml file with the following content:
+
+```
+- set:
+    system:
+      config:
+        snippet:
+          frr.conf: |
+            router bgp 65101
+            neighbor swp1 interface v6only peer-group CLIENT1
+```
+
+Patch and apply the snippet:
+
+```
+cumulus@leaf01:~$ nv config patch bgp_snippet.yaml
+cumulus@leaf01:~$ nv config apply
+```
+
+The following example configures a `v6only` peering with no peer group applied:
+
+Create a .yaml file with the following content:
+
+```
+- set:
+    system:
+      config:
+        snippet:
+          frr.conf: |
+            router bgp 65101
+            neighbor swp1 interface v6only remote-as external
+```
+
+Patch and apply the snippet:
+
+```
+cumulus@leaf01:~$ nv config patch bgp_snippet.yaml
+cumulus@leaf01:~$ nv config apply
+```
 ## BGP Dynamic Neighbors
 
 *BGP dynamic neighbors* provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
@@ -2457,7 +2509,7 @@ You can configure the following graceful BGP restart timers.
 |<div style="width:250px">Timer | Description |
 | ---- | ----------- |
 | `restart-time` | The number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. You can set a value between 1 and 4095. The default is 120 seconds.|
-| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. You can set a value between 0 and 3600. The default is 360 seconds. |
+| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. You can set a value between 0 and 3600. The default is 120 seconds. |
 | `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. You can set a value between 1 and 4095. The default is 360 seconds.|
 
 {{%notice note%}}

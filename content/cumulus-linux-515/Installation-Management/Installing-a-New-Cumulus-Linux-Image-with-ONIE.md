@@ -71,7 +71,10 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 {{< tab "Install from ONIE ">}}
 
 1. Place the Cumulus Linux image in a directory on the web server.
-2. Run the `onie-nos-install` command:
+
+2. [Boot into ONIE install mode](#boot-into-onie-install-mode)
+
+3. Run the `onie-nos-install` command:
 
     ```
     ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-x86_64.bin
@@ -80,26 +83,6 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
 
-{{< tabs "TabID83 ">}}
-{{< tab "NVUE Commands ">}}
-
-1. Place the Cumulus Linux image in a directory on the web server.
-
-2. From the Cumulus Linux command prompt, run the `nv action install system image onie <image>` command:
-
-    ```
-    cumulus@switch:~$ nv action install system image onie http://10.0.1.251/path/to/cumulus-install-x86_64.bin
-    ```
-
-3. Reboot the switch with the `nv action install system image onie <image> activate reboot` command:
-
-   ```
-   cumulus@switch:~$ nv action install system image onie http://10.0.1.251/path/to/cumulus-install-x86_64.bin activate reboot
-   ```
-
-{{< /tab >}}
-{{< tab "Linux Commands">}}
-
 1. Place the Cumulus Linux image in a directory on the web server.
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
@@ -107,9 +90,6 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
     ```
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-x86_64.bin
     ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -125,7 +105,9 @@ You need a console connection to access the switch; you cannot perform this proc
 {{< tabs "TabID111 ">}}
 {{< tab "Install from ONIE ">}}
 
-1. ONIE is in *{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="discovery mode">}}*. You must disable discovery mode with the following command:
+1. [Boot into ONIE install mode](#boot-into-onie-install-mode)
+
+2. ONIE is in *{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="discovery mode">}}*. You must disable discovery mode with the following command:
 
     ```
     onie# onie-discovery-stop
@@ -137,15 +119,15 @@ You need a console connection to access the switch; you cannot perform this proc
     onie# /etc/init.d/discover.sh stop
     ```
 
-2. Assign a static address to eth0 with the `ip addr add` command:
+3. Assign a static address to eth0 with the `ip addr add` command:
 
     ```
     ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
     ```
 
-3. Place the Cumulus Linux image in a directory on your web server.
+4. Place the Cumulus Linux image in a directory on your web server.
 
-4. Run the installer manually (because there are no DHCP options):
+5. Run the installer manually (because there are no DHCP options):
 
     ```
     ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-x86_64.bin
@@ -153,31 +135,6 @@ You need a console connection to access the switch; you cannot perform this proc
 
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
-
-{{< tabs "TabID134 ">}}
-{{< tab "NVUE Commands ">}}
-
-1. Place the Cumulus Linux image in a directory on your web server.
-
-2. From the Cumulus Linux command prompt, run the `nv action install system image onie <image>` command:
-
-   ```
-   cumulus@switch:~$ nv action install system image onie /path/to/cumulus-install-x86_64.bin
-   Action executing ... 
-   Installing ONIE image, it might take a few minutes ... 
-   Action executing ... 
-   Reboot is required to complete the ONIE installation 
-   Action succeeded
-   ```
-
-3. Reboot the switch with the `nv action install system image onie <image> activate reboot` command:
-
-   ```
-   cumulus@switch:~$ nv action install system image onie /path/to/cumulus-install-x86_64.bin activate reboot
-   ```
-
-{{< /tab >}}
-{{< tab "Linux Commands">}}
 
 1. Place the Cumulus Linux image in a directory on your web server.
 
@@ -190,9 +147,6 @@ You need a console connection to access the switch; you cannot perform this proc
 {{< /tab >}}
 {{< /tabs >}}
 
-{{< /tab >}}
-{{< /tabs >}}
-
 ## Install Using FTP Without a Web Server
 
 Follow the steps below if your laptop is on the same network as the switch eth0 interface but *no* DHCP server is available.
@@ -200,13 +154,15 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 {{< tabs "TabID162 ">}}
 {{< tab "Install from ONIE ">}}
 
-1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
+1. [Boot into ONIE install mode](#boot-into-onie-install-mode)
+
+2. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
     ```
     ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
     ```
 
-2. If you are using static addressing, disable ONIE discovery mode:
+3. If you are using static addressing, disable ONIE discovery mode:
 
     ```
     onie# onie-discovery-stop
@@ -218,9 +174,9 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
     onie# /etc/init.d/discover.sh stop
     ```
 
-3. Place the Cumulus Linux image into a TFTP or FTP directory.
+4. Place the Cumulus Linux image into a TFTP or FTP directory.
 
-4. If you are not using DHCP options, run one of the following commands (tftp for TFTP or ftp for FTP):
+5. If you are not using DHCP options, run one of the following commands (tftp for TFTP or ftp for FTP):
 
     ```
     ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-x86_64.bin
@@ -231,41 +187,13 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
 
-{{< tabs "TabID211 ">}}
-{{< tab "NVUE Commands ">}}
-
-1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in Cumulus Linux).
-
-2. From the Cumulus Linux command prompt, run the following command:
-
-    ```
-    cumulus@switch:~$ nv action install system image onie ftp://local-ftp-server/cumulus-install-x86_64.bin
-    Action executing ... 
-    Installing ONIE image, it might take a few minutes ... 
-    Action executing ... 
-    Reboot is required to complete the ONIE installation 
-    Action succeeded
-    ```
-
-3. Reboot the switch with the `nv action install system image onie <image> activate reboot` command:
-
-   ```
-   cumulus@switch:~$ nv action install system image onie ftp://local-ftp-server/cumulus-install-x86_64.bin activate reboot
-   ```
-
-{{< /tab >}}
-{{< tab "Linux Commands">}}
-
-1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in Cumulus Linux).
+1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in  Cumulus Linux).
 
 2. From the Cumulus Linux command prompt, run the following command, then reboot the switch.
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-x86_64.bin
     ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -277,13 +205,15 @@ Follow the steps below to install the Cumulus Linux image referencing a local fi
 {{< tabs "TabID217 ">}}
 {{< tab "Install from ONIE ">}}
 
-1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
+1. [Boot into ONIE install mode](#boot-into-onie-install-mode)
+
+2. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
     ```
     ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
     ```
 
-2. If you are using static addressing, disable ONIE discovery mode.
+3. If you are using static addressing, disable ONIE discovery mode.
 
     ```
     onie# onie-discovery-stop
@@ -295,9 +225,9 @@ Follow the steps below to install the Cumulus Linux image referencing a local fi
     onie# /etc/init.d/discover.sh stop
     ```
 
-3. Use {{<exlink url="http://en.wikipedia.org/wiki/Secure_copy" text="scp">}} to copy the Cumulus Linux image to the switch.
+4. Use {{<exlink url="http://en.wikipedia.org/wiki/Secure_copy" text="scp">}} to copy the Cumulus Linux image to the switch.
 
-4. Run the installer manually from ONIE:
+5. Run the installer manually from ONIE:
 
     ```
     ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-x86_64.bin
@@ -434,17 +364,11 @@ e. To continue installing Cumulus Linux, mount the USB drive to move files:
 
     SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
-5. Monitor the console and select the ONIE option from the first GRUB screen shown below.
+5. [Boot into ONIE install mode](#boot-into-onie-install-mode)
 
-    {{< img src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
+6. The switch recognizes the USB drive and mounts it automatically. Cumulus Linux installation begins.
 
-6. Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB menu specific to the ONIE partition. No action is necessary in this menu to select the default option *ONIE: Install OS*.
-
-    {{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
-
-7. The switch recognizes the USB drive and mounts it automatically. Cumulus Linux installation begins.
-
-8. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
+7. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
 ## ONIE Installation Options
 
@@ -467,6 +391,28 @@ ONIE:/ # ./cumulus-linux-4.4.0-mlx-amd64.bin --password 'MyP4$$word'
 {{%/notice%}}
 
 You can run more than one option in the same command.
+
+### Boot Into ONIE Install Mode
+
+To boot the switch into ONIE install mode, connect a console cable to the switch and monitor the console. When you see the five-second countdown, press esc or F4 to go to the GRUB menu, then use the arrow keys to select the ONIE option from the first GRUB screen. (If you press esc or F4 more than one time, the GRUB CLI opens. Type `normal`, then press Enter to go back to the countdown timer.)
+
+   {{%notice info%}}
+**Before** the GRUB menu appears, the switch goes through the boot cycle. Do **not** interrupt this autoboot process when you see the following lines; wait until you see the GRUB menu.
+
+```
+...
+USB0:  Bringing USB2 host out of reset...
+Net:   eth-0
+SF:    MX25L6405D with page size 4 KiB, total 8 MiB
+Hit any key to stop autoboot:  2
+```
+{{%/notice%}}
+
+{{< img src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
+
+Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB menu specific to the ONIE partition. No action is necessary in this menu to select the default option *ONIE: Install OS*.
+
+{{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
 
 ### Set the cumulus User Password
 
@@ -707,6 +653,37 @@ SecureBoot enabled
 {{%notice note%}}
 On a switch with the Spectrum-4 ASIC, if the ASIC firmware fails to boot, you see a message alerting you to contact NVIDIA Customer Support for further options.
 {{%/notice%}}
+
+### Downgrade a Secure Boot Switch
+
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.15 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (in Cumulus Linux 5.10 or Cumulus Linux 5.9.2 and earlier), which has security vulnerabilities.
+
+After downgrading the switch from Cumulus Linux 5.15.0 with ONIE, follow the steps below to disable, then enable secure boot **before** the switch boots.
+
+You can also follow the steps below to recover a downgraded secure boot switch that does not boot and that shows the following error:
+
+  ```
+  Verifiying shim SBAT data failed: Security Policy Violation
+  Something has gone seriously wrong: SBAT self-check failed: Security Policy Violation
+  ```
+
+1. On the switch, **disable** SecureBoot in BIOS:
+
+   a. Press Ctrl B through the serial console during system boot while the BIOS version prints.
+
+   b. When prompted, provide the BIOS password. The default password is `admin`.
+
+   c. To disable secure boot, navigate to `Security`, and change `Secure Boot` to `Disabled`.
+
+   d. Select `Save & Exit`.
+
+2. Boot into Cumulus Linux.
+
+3. Run the `mokutil --set-sbat-policy delete` command.
+
+4. Reboot the switch.
+
+5. Follow steps a through d above to **enable** secure boot in BIOS. In step c, change `Secure Boot` to `Enabled`.
 
 ## Related Information
 

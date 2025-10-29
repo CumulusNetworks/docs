@@ -29,12 +29,10 @@ You can configure the switch to restart in one of the following modes.
 
 {{%notice note%}}
 Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
+
+LACP bonds are not supported during warm boot. LACP control plane sessions might time out before warm boot completes. Use static LAG to keep bonds up with sub-second convergence during warm boot.
 {{%/notice%}}
-<!--
-{{%notice note%}}
-Cumulus Linux does not support LACP bonds during warm boot; the LACP control plane sessions might time out before warm boot completes. Use a static Link Aggregation Group to keep bonds up during warm boot.
-{{%/notice%}}
--->
+
 NVIDIA recommends you use NVUE commands to configure restart mode and reboot the system. If you prefer to use `csmgrctl` commands, you must stop NVUE from managing the `/etc/cumulus/csmgrd.conf` file before you set restart mode:
 
 1. Run the following NVUE commands:

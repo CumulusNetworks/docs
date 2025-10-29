@@ -4,43 +4,125 @@ author: NVIDIA
 weight: 5
 toc: 2
 ---
-This document supports the Cumulus Linux 5.15 release, and lists new platforms, features, and enhancements.
+This document supports the Cumulus Linux 5.15 release, and lists new features and enhancements.
 - For a list of open and fixed issues in Cumulus Linux 5.15, see the {{<link title="Cumulus Linux 5.15 Release Notes" text="Cumulus Linux 5.15 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.15, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
 ## What's New in Cumulus Linux 5.15
 
-Cumulus Linux 5.15.0 contains new platforms, new features and improvements, and provides bug fixes.
-
-### Platforms
-
-- NVIDIA SN5640
-
+Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fixes.
 ### New Features and Enhancements
 
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming counters">}}
-- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}
+- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}. Legacy BFD configuration and routing link state verification with PTMd is now deprecated.
 - {{<link url="Optional-BGP-Configuration/#ecmp" text="Support 256 BGP sessions and 256-way ECMP on Spectrum-4">}}
 - {{<link url="Latency-Monitoring" text="Switch latency monitoring">}}
 - {{<link url="Docker-with-Cumulus-Linux" text="Support for docker-container">}}
-- {{<link url="FIPS" text="FIPS mode">}}
 - {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Dynamic IPv6 Multi-tenancy">}}
 - {{<link url="SSH-for-Remote-Access/#ssh-ciphers" text="SSH cipher configuration">}}
-- Users must re-authenticate when changing authenticators
-- Radius user Hardening
-- Changes in DSCP to traffic class mapping for MRC QOS template
 - Offline package upgrade
-- MRC QoS profile change in DSCP to traffic mapping
+- RoCE {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="lossy multi TC profile">}} updated to map DSCP values 41-50 to traffic class 5
+- {{<link url="User-Accounts/#aaa-authentication-restrictions" text="AAA authentication restrictions">}}
+- {{<link url="Interface-Configuration-and-Management/#interface-fault-detection" text="Interface fault detection">}}
 - Telemetry
-  - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
-  - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
-  - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="BGP graceful shutdown metric for OLTP">}}
-  - {{<link url="Open-Telemetry-Export/#acl-statistics" text="ACL metrics for OTLP">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="ACL metrics for gNMI streaming">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="PHY metrics for gNMI streaming">}} (Number of bit errors corrected and upper boundary of the bin)
-  - High frequency telemetry Nsight Integration
-  - Telemetry Parity between OpenTelemetry and gNMI (Phase 1)
-  - {{< expand "Updated gNMI PHY metric names" >}}
+   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
+   - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
+   - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="BGP graceful shutdown metric for OLTP">}}
+   - {{<link url="Open-Telemetry-Export/#acl-statistics" text="ACL metrics for OTLP">}}
+   - {{<link url="gNMI-Streaming/#metrics" text="ACL metrics for gNMI streaming">}}
+   - {{<link url="gNMI-Streaming/#metrics" text="PHY metrics for gNMI streaming">}} (Number of bit errors corrected and upper boundary of the bin)
+   - {{<link url="High-Frequency-Telemetry/#streaming-hft-export" text="High frequency telemetry streaming">}} and {{<link url="High-Frequency-Telemetry/#congestion-notifications" text="congestion event notifications">}}
+   - {{< expand "New gNMI xPaths aligning with OTEL metrics:" >}}
+**New Platform Metrics:**
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name]/state/name` | List of components, keyed by component name.|
+| `/components/component[name]/state/serial-no` | Serial number of the component, keyed by component name.|
+| `/components/component[name]/state/part-no` | Part number of the component, keyed by component name.|
+| `/components/component[name]/storage/state/counters/rotation-rate-rpm` | Disk rotation rate in RPMs (supported only on SATA disks). |
+| `/components/component[name]/storage/state/counters/write-cache` | Indicates whether the disk has a write cache (supported only on SATA disks). |
+| `/components/component[name]/storage/state/counters/write-cache-enabled` | Indicates whether the disk write cache is enabled. (supported only on SATA disks) |
+| `/components/component[name]/storage/state/counters/discard-seconds` | Number of seconds spent by all discards. |
+| `/components/component[name]/storage/state/counters/discard-sectors` | Number of sectors discarded successfully.|
+| `/components/component[name]/storage/state/counters/discard-completed` | Number of discards completed successfully. |
+| `/components/component[name]/storage/state/counters/discard-merged` | Number of discards merged.|
+| `/components/component[name]/storage/state/counters/flush-req-seconds` | Number of seconds spent by all flush requests. |
+| `/components/component[name]/storage/state/counters/flush-req` | Number of flush requests completed successfully. |
+| `/components/component[name]/storage/state/counters/io-ops-in-progress` | Number of I/Os currently in progress. |
+| `/components/component[name]/storage/state/counters/io-seconds` | Total seconds spent doing I/Os. |
+| `/components/component[name]/storage/state/counters/io-weighted-seconds` | The weighted # of seconds spent doing I/Os. |
+| `/components/component[name]/storage/state/counters/read-bytes` | Number of bytes read successfully. |
+| `/components/component[name]/storage/state/counters/read-seconds` | Number of seconds spent by all reads. |
+| `/components/component[name]/storage/state/counters/read-ops` | Number of reads completed successfully. |
+| `/components/component[name]/storage/state/counters/read-merged` | Number of reads merged. |
+| `/components/component[name]/storage/state/counters/write-seconds` | Number of seconds spent by all writes. |
+| `/components/component[name]/storage/state/counters/write-ops` | Number of writes completed successfully. |
+| `/components/component[name]/storage/state/counters/write-merged` | Number of writes merged. |
+| `/system/mount-points/mount-point[name]/state/inodes` | Filesystem total file nodes. |
+| `/components/component[name]/state/part-no` | Part number of the component, keyed by component name.|
+| `/system/mount-points/mount-point[name]/state/inodes-free` | Filesystem total free file nodes. |
+| `/system/mount-points/mount-point[name]/state/read-only` | Filesystem read-only status. |
+| `/system/mount-points/mount-point[name]/state/device-error` | Whether an error occurred while getting statistics for the given device. |
+| `/components/component[name=<fanid>]/fan/state/direction` | Fan direction. |
+| `/components/component[name=<fanid>]/fan/state/max-speed` | Fan Maximum speed capacity. |
+| `/components/component[name=<fanid>]/fan/state/min-speed` | Fan Minimum speed capacity. |
+| `/components/component[name]/state/software-version` | The version of the currently running software. |
+
+**New QoS Metrics:**
+
+|  Name | Description |
+|------ | ----------- |
+| `/qos/interfaces/interface[interface-id]/priority-group/state/counters/in-pkts` | Number of received input packets for a priority group. |
+| `/qos/interfaces/interface[interface-id]/state/priority-group/state/counters/in-octets` | Number of octets of input data received for a given priority group. |
+| `/qos/interfaces/interface[interface-id]/switch-priority/state/counters/in-discards` | Number of discarded inbound packets. |
+| `/qos/interfaces/interface[interface-id]/switch-priority/state/in-pause-duration` | Total time in microseconds packet transmission on the port has been paused. |
+| `/qos/interfaces/interface[interface-id]/switch-priority/state/out-pause-duration` | Total time in microseconds that the far-end port has been requested to pause. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue/state/instant-queue-len` | Transmit queue depth in bytes on traffic class selected by traffic_class of the port selected by local_port. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue/state/transmit-uc-pkts` | Number of unicast packets transmitted by this queue.|
+
+**New Interface Metrics:**
+
+|  Name | Description |
+|------ | ----------- |
+| `/interfaces/interface[name]/state/counters/carrier-up-transitions` | Total number of carrier up events on the interface. |
+| `/interfaces/interface[name]/state/counters/out-hoq-drops` | Number of packets dropped at egress due to Head-of-Queue Timeout. |
+| `/interfaces/interface[name]/state/counters/out-hoq-stall-drops` | Number of packets dropped at egress due to Head-of-Queue Timeout. |
+| `/interfaces/interface[name]/state/counters/out-sll-drops` | Number of packets dropped at egress due to exceeding switch lifetime limit.|
+| `/interfaces/interface[name]/state/counters/out-acl-drops` | Number of packets dropped at egress due to ACL policy. |
+| `/interfaces/interface[name]/state/counters/out-stp-filter-drops` | Number of packets dropped at egress due to STP filter. |
+| `/interfaces/interface[name]/state/counters/out-vlan-membership-drops` | Number of packets dropped at egress due to VLAN membership filter. |
+| `/interfaces/interface[name]/state/counters/in-vlan-tag-allowance-drops ` | Number of packets dropped at ingress due to VLAN tag allowance filter. |
+| `/interfaces/interface[name]/state/counters/in-link-down-drops` | Number of packets dropped at ingress due to egress link down. |
+| `/interfaces/interface[name]/state/counters/in-vlan-membership-drops` | Number of packets dropped at ingress due to VLAN membership filter. |
+| `/interfaces/interface[name]/state/counters/in-loopback-drops` | Number of packets dropped at ingress due to loopback filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-control-unknown-opcodes` | Number of MAC control frames received with an unsupported opcode. |
+| `/interfaces/interface[name]/ethernet/state/counters/pkt_drop_events_probe_resource_lack` | Total number packets dropped by the probe due to lack of resources. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-1519-2047-octets` | Total number of packets (including bad packets) received that were between 1519 and 2047 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-2048-4095-octets` | Total number of packets (including bad packets) received that were between 2048 and 4095 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-4096-8191-octets` | Total number of packets (including bad packets) received that were between 4096 and 8191 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-8192-9216-octets` | Total number of packets (including bad packets) received that were between 8192 and 10239 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/state/counters/no-buffer-mc-dropped-pkts ` | The number of multicast packets dropped due to lack of egress buffer resources. Valid only for Spectrum switches. |
+| `/interfaces/interface[name]/state/counters/in-buffer-almost-full` | Number of times that the port Rx buffer passed a buffer utilization threshold. |
+| `/interfaces/interface[name]/state/counters/in-buffer-full` | Number of times that the port Rx buffer reached 100% utilization. |
+| `/interfaces/interface[name]/state/counters/in-ebp-pkts` | The number of received EBP packets. |
+| `/interfaces/interface[name]/state/counters/out-ebp-pkts` | The number of transmitted EBP packets. |
+| `/interfaces/interface[name]/state/counters/pkts-payload-internal-checksum-errors` | Number of packet payload internal checksum errors. |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-1024-1518-octets` | Total number of packets (including bad packets) transmitted that were between 1024 and 1518 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-128-255-octets` | Total number of packets (including bad packets) transmitted that were between 128 and 255 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-1519-2047-octets` | Total number of packets (including bad packets) transmitted that were between 1519 and 2047 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-2048-4095-octets` | Total number of packets (including bad packets) transmitted that were between 2048 and 4095 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-256-511-octets` | Total number of packets (including bad packets) transmitted that were between 256 and 511 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-4096-8191-octets` | Total number of packets (including bad packets) transmitted that were between 4096 and 8191 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-512-1023-octets` | Total number of packets (including bad packets) transmitted that were between 512 and 1023 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-64-octets` | Total number of packets (including bad packets) transmitted that were 64 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-65-127-octets` | Total number of packets (including bad packets) transmitted that were between 65 and 127 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-8192-9216-octets` | Total number of packets (including bad packets) transmitted that were between 8192 and 10239 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/state/counters/ecn-marked-pkts` | Count of packets marked as ECN or potentially marked as ECN |
+| `/interfaces/interface[name]/state/counters/ece-marked-pkts` | Count of packets marked as ECE or potentially marked as ECE. |
+| `/interfaces/interface[name]/state/counters/tx-wait` | Count of wire-speed, one-byte time intervals during which the port had data ready to transmit but did not send any data. |
+{{< /expand >}}
+   - {{< expand "Updated gNMI PHY metric names" >}}
 Old Name | New Name|
 | -------- | --------- |
 | `/interfaces/interface[name]/ethernet/phy/state/effective-errors` | `/interfaces/interface[name]/phy/state/effective-errors` |
@@ -60,18 +142,52 @@ Old Name | New Name|
 | `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-ber` | `/interfaces/interface[name]/phy/channels/channel[id]/ber/state/raw-ber` |
 | `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-errors` | `/interfaces/interface[name]/phy//channels/channel[id]/state/raw-errors` |
 {{< /expand >}}
+   - {{< expand "Deprecated OTEL Metrics" >}}
+|  Name | Removal Reason |
+|------ | ----------- |
+| `nvswitch_interface_discards_egress_link_down` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_discards_ingress_discard_all` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_discards_port_isolation` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_dot3_stats_alignment_errors` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_dot3_stats_excessive_collisions` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_dot3_stats_internal_mac_receive_errors` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_dot3_stats_internal_mac_transmit_errors` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_dot3_stats_late_collisions` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_dot3_stats_multiple_collision_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_dot3_stats_single_collision_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_dot3_stats_sqe_test_errors` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_ether_stats_collisions` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_if_in_unknown_protos` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_pg_rx_buffer_discard` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_pg_rx_shared_buffer_discard` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_sp_rx_bc_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_sp_rx_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_sp_rx_mc_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_sp_rx_octets` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_sp_rx_pause_transition` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_sp_rx_uc_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_sp_tx_bc_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_sp_tx_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_sp_tx_mc_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_sp_tx_octets` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_sp_tx_uc_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_tc_tx_bc_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_tc_tx_mc_frames` | Unsupported on Spectrum switches. |
+| `nvswitch_interface_discards_egress_general` | Duplicate of `nvswitch_interface_if_out_discards` |
+| `nvswitch_interface_discards_ingress_general` | Duplicate of `nvswitch_interface_if_in_discards` |
+| `nvswitch_interface_if_in_broadcast_pkts` | Duplicate of `nvswitch_interface_ether_stats_broadcast_pkts` |
+| `nvswitch_interface_if_in_multicast_pkts` | Duplicate of `nvswitch_interface_ether_stats_multicast_pkts` |
+| `nvswitch_interface_if_in_octets` | Duplicate of `nvswitch_interface_ether_stats_octets` |
+{{< /expand >}}
 - NVUE
   - {{<link url="Secure-Mount-Directory-Encryption" text="Secure Mount Directory Encryption">}}
   - {{<link url="New-and-Changed-NVUE-Commands" text="Changed command syntax and output">}}
   - `--expand` option for {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff command">}}, {{<link url="NVUE-CLI/#show-switch-configuration" text="nv config show command">}}, and {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="nv config find command">}}
   - `expand=true` parameter for API calls to {{<link url="NVUE-API/#view-differences-between-configurations" text="View differences between configurations">}}, {{<link url="NVUE-API/#view-a-configuration" text="view a configuration">}}, and {{<link url="NVUE-API/#use-filters-in-a-query" text="search for a specific configuration">}}
-  - Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
   - Aging time added to neighbor information
-  - Login brute forcing via API
   - Timestamp format in `nv show` command output changed from UTC to duration (days, hour:minutes:seconds)
-  - Refactor system aaa and tacacs to common model
-  - Batch execution support for CLI commands through the API
-  - Customize autocomplete
+  - {{<link url="NVUE-API/#patch-a-batch-of-configuration-commands" text="Batch execution support for patching in CLI commands through the API">}}. This feature also improves performance when patching in text commands {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="through the CLI">}}.
+  - Improved command completion when using tab to view CLI command options
 
 ## Release Considerations
 

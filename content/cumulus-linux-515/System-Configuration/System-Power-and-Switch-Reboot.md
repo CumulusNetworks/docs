@@ -16,32 +16,62 @@ Cumulus Linux provides these reboot modes:
 - **power-cycle** lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
-- **warm** restarts the switch with no interruption to traffic for existing route entries and without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. Warm reboot mode reduces all the available {{<link title="Forwarding Table Size and Profiles" text="forwarding table entries">}} on the switch by half to accommodate traffic forwarding during a reboot.
+- **warm** restarts the switch with no interruption to traffic for existing route entries and without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. Warm reboot requires configuring the switch {{<link url="#resource-allocation" text="resource mode">}} to `half` to reduce the available {{<link title="Forwarding Table Size and Profiles" text="forwarding table entries">}} on the switch by half to accommodate traffic forwarding during a reboot.
 
   When you restart the switch in warm reboot mode, BGP only performs a graceful restart if the BGP graceful restart option is set to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
   In an eBGP multihop configuration with warm reboot mode, you must set the {{<link url="Optional-BGP-Configuration/#restart-timers" text="BGP graceful restart timer">}} to 180 seconds or more.
 
 {{%notice note%}}
-Cumulus Linux supports warm reboot mode with:
-- 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
+Cumulus Linux supports warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. 
+
+The following features are not supported during warm boot:
+- EVPN MLAG or EVPN multihoming.
+- LACP bonds. LACP control plane sessions might time out before warm boot completes. Use static LAG to keep bonds up with sub-second convergence during warm boot.
 {{%/notice%}}
 <!--
+Ania's original draft below? reformatted the note box to separate supported vs. unsupported with the number of caveats.
 {{%notice note%}}
 Cumulus Linux does not support LACP bonds during warm boot; the LACP control plane sessions might time out before warm boot completes. Use a static Link Aggregation Group to keep bonds up during warm boot.
 {{%/notice%}}
 -->
 ### Resource Allocation
 
-To manage switch resource allocation for fast, cold, and warm reboot mode, you can configure the resource mode to be either `half` or `full`. By default, the resource mode for warm boot and ISSU-based software upgrade is `half`.
+To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is set to `full`. Warm boot and hitless ISSU-based software upgrade requires the resource mode to be `half`.
 
-The following example sets the switch resource mode to `full`:
+The following example sets the switch resource mode to `half`:
+
+{{< tabs "TabID40 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system forwarding resource-mode full
+cumulus@switch:~$ nv set system forwarding resource-mode half
 ```
 
-To set the resource-mode back to the default value (half) run the `nv unset system forwarding resource-mode` command.
+To set the resource-mode back to the default value (full) run the `nv unset system forwarding resource-mode` command.
+
+{{%notice infonopad%}}
+Changing the resource mode on the switch requires a `switchd` restart, which impacts traffic forwarding. 
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/resource-mode.conf
+...
+resource_mode = half
+```
+
+Restart the switchd service with the `sudo systemctl restart switchd.service` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+
+
+
+
 
 ### Reboot
 
@@ -49,28 +79,57 @@ To reboot the switch, run the `nv action reboot system <mode>` command. To force
 
 The following command reboots the switch immediately without notifying any running processes:
 
+{{< tabs "TabID78">}}
+{{< tab "NVUE Commands ">}}
+
 ```
-cumulus@switch:~$ nv action reboot system immediate
+cumulus@switch:~$ nv action reboot system mode immediate
 
 Do you want to continue? [y/N]  
 Action executing ... 
 Action succeeded 
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo reboot -f
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The following command shuts down the system:
 
+{{< tabs "TabID101">}}
+{{< tab "NVUE Commands ">}}
+
 ```
-cumulus@switch:~$ nv action reboot system halt
+cumulus@switch:~$ nv action reboot system mode halt
 
 Do you want to continue? [y/N]  
 Action executing ... 
-Action succeeded 
+Action succeded
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo halt -f
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The following command power cycles the switch:
 
+{{< tabs "TabID125">}}
+{{< tab "NVUE Commands ">}}
+
 ```
-cumulus@switch:~$ nv action reboot system power-cycle
+cumulus@switch:~$ nv action reboot system mode power-cycle
 The operation will Power Cycle the switch.
 Type [y] to power cycle.
 Type [N] to abort.
@@ -80,15 +139,38 @@ Action executing ...
 Action succeeded 
 ```
 
-The following command reboots the switch in cold mode without prompting for confirmation:
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ nv action reboot system cold force
+cumulus@switch:~$ sudo cl-powercycle
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following command reboots the switch in cold mode without prompting for confirmation:
+
+{{< tabs "TabID151">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv action reboot system mode cold force
 ```
 
 You can also run `nv action reboot system force` because cold reboot is the default mode.
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
-The following command reboots the switch in fast mode:
+```
+cumulus@switch:~$ sudo csmgrctl -cf
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< tabs "TabID168">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv action reboot system fast
@@ -98,13 +180,36 @@ Action executing ...
 Action succeeded 
 ```
 
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -ff
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 The following command reboots the switch in warm mode without prompting for confirmation.
+
+{{< tabs "TabID189">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv action reboot system warm force
 ```
 
-### Show Reboot and Resource Mode
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -wf
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Show Reboot
 
 To show reboot information, such as the date and time, and reason, and the reboot mode, run the `nv show system reboot` command:
 
@@ -127,12 +232,14 @@ required          no
 last-reboot-mode  cold
 ```
 
+<!-- COMMENTED OUT AS THIS COMMAND ISN'T OPERATIONAL IN 5.15
 To display the current resource mode, run the `nv show system forwarding resource-mode` command. 
 
 ```
 cumulus@switch:~$ nv show system forwarding resource-mode
 cumulus@switch:~$ nv config apply
 ```
+-->
 
 ## Power Off
 

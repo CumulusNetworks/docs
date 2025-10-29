@@ -212,7 +212,7 @@
 </tr>
 <tr>
 <td>4551249</td>
-<td>The NVUE service might fail during switch upgrade. To work around this issue, stop the {{sysmonitor}} with the {{sudo systemctl stop sysmonitor}} command, then upgrade the switch with the {{nv action upgrade system packages to latest}} command.</td>
+<td>The NVUE service might fail during switch upgrade on Cumulus Linux 5.13.1. To work around this issue, stop the {{sysmonitor}} with the {{sudo systemctl stop sysmonitor}} command, then upgrade the switch with the {{nv action upgrade system packages to latest}} command.</td>
 <td>5.14.0</td>
 <td></td>
 </tr>

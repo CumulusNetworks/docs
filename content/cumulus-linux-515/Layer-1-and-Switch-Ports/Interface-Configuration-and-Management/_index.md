@@ -958,6 +958,44 @@ cumulus@switch$ ip link show swp1
 
 You can monitor the traffic rate and <span class="a-tooltip">[PPS](## "Packets per Second")</span> for an interface to ensure optimal network performance and reliability; refer to {{<link title="Troubleshooting Network Interfaces/#monitor-interface-traffic-rate-and-pps" text="Commands to monitor interface traffic rate and PPS">}}.
 
+### Interface Fault Detection
+
+You can view interface status along with any detected local or remote fault with the `nv show interface status` command:
+
+```
+cumulus@switch:mgmt:~$ nv show interface status
+
+Interface  Admin Status  Oper Status  Protodown  Protodown Reason  Fault  
+---------  ------------  -----------  ---------  ----------------  --------
+...
+swp45      up            down         disabled                     Local Fault  
+swp46      up            down         disabled                     Remote Fault
+swp47      down          down         disabled                     No Fault   
+swp48      down          down         disabled                     No Fault 
+...
+```
+
+To view additional fault information for a specific interface, run the `nv show interface <interface> link phy detail` command:
+
+```
+cumulus@switch:mgmt:~$ nv show interface swp45 link phy detail
+                                  operational       
+--------------------------------  -------------------
+...
+linkdown-reason-code-local        23                
+linkdown-reason-status-local      CABLE_WAS_UNPLUGGED
+linkdown-reason-code-remote       1                 
+linkdown-reason-status-remote     UNKNOWN_REASON
+...
+```
+
+{{%notice note%}}
+- Interface fault detection is supported on NVIDIA Spectrum-4 and later platforms.
+- Fault status reported by the `nv show interface status` command is only supported on physical switch ports and breakout interfaces. Fault state is not applicable to logical interfaces such as VLAN sub-interfaces, SVIs, loopback interfaces, VRF interfaces, and bonds.
+- Fault detection data is not retained across reboots or when the `switchd` service is restarted.
+{{%/notice%}}
+
+
 ## Considerations
 
 Even though `ifupdown2` supports the inclusion of multiple `iface` stanzas for the same interface, use a single `iface` stanza for each interface. If you must specify more than one `iface` stanza; for example, if the configuration for a single interface comes from many places, like a template or a sourced file, make sure the stanzas do not specify the same interface attributes. Otherwise, you see unexpected behavior.

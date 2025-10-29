@@ -306,7 +306,7 @@ if (
 {{< /tab >}}
 {{< /tabs >}}
 
-### Selector with Severity:
+### Selector with Severity
 
 To forward all logs at severity notice and above regardless of program or facility:
 

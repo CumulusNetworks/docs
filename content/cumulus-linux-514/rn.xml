@@ -257,12 +257,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4546056</td>
-<td>When an ESI changes from remote to local, the switch does not uninstall remote neighbors from the ASIC. To work around this issue, flap the layer 3 VNI associated with the SVI to clean up stale neighbors from the ASIC.</td>
-<td>5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4535806</td>
 <td>After a factory reset, the switch does not clear the {{/var/tmp}} directory, which the switch uses for temporary files.</td>
 <td>5.14.0</td>

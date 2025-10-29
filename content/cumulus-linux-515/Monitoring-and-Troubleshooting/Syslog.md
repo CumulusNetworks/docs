@@ -185,6 +185,19 @@ og: [udp sum ok] SYSLOG, length: 113
 
 You can control which logs to capture using selectors. A selector enables you to choose options such as facility, program name, severity, filters (with match conditions and actions for log selection), and rate limit, for precise and targeted log management. You define the selectors you want to use for a specific server.
 
+{{%notice infonopad%}}
+In Cumulus Linux versions prior to 5.15, syslog selector configuration applied default values for facility (`daemon`) and severity (`notice`) if they were not explicitly configured. If a selector included a program name, only logs from that program and matching other conditions (`facility`, `severity`, `filter`, `rate-limit`) were forwarded; logs from other programs were dropped. When a selector was defined with only rate-limit or severity, the respective defaults were still applied unless you explicitly configured otherwise.
+
+Starting with Cumulus Linux 5.15, selector behavior has changed as follows:
+
+- **No Default Facility or Severity**: Selectors now require explicit facility and severity values; no defaults are applied. If left unspecified, all facilities and severities are included for log forwarding.
+- **Expanded Program Matching**: When a selector specifies a program name alongside other conditions, logs from the targeted program are forwarded according to those conditions, and logs from all other programs are also forwarded unless excluded by other selectors.
+- **Selectors Without Program Name**: If a selector is configured without a program name, logs matching the explicit conditions (facility, severity, filter, rate-limit) are forwarded, and no hidden defaults are applied. All program names are considered under the filter and rate constraints.
+- **Severity-Only Selectors**: When only severity is specified, logs from all programs and all facilities at that severity or higher are forwarded, without needing to create duplicate selectors for separate facilities.
+- **Multiple Conditions and Rate-Limiting**: Selectors combining multiple conditions (facility, filters, rate-limits, program name, severity) now forward all logs matching those criteria from all programs, instead of restricting solely to the specified program.
+- **Rate-Limit-Only Selectors**: You can configure selectors with only a rate-limit; no other conditions are silently assumed.
+{{%/notice%}}
+
 ### Selector with Program and Conditions
 
 To forward syslog messages only from the `ifreload` program containing the text 'ip link set', and to allow logging from other programs unless restricted:

@@ -22,18 +22,80 @@ The NetQ header displays the number of switches in your network that are 'fresh'
 
 To view the hardware and software component inventory for switches running NetQ in your network, enter Inventory/Switches in the global search field. The card displays the total number of switches in your network, divided into the number of fresh and rotten switches.
 
-{{<img src="/images/netq/switch-med-490.png" alt="medium switch card displaying 513 fresh switches and 13 rotten switches" width="200">}}
+{{<img src="/images/netq/switch-med-490.png" alt="medium switch card displaying 513 fresh switches and 13 rotten switches" height="330" width="200">}}
 
 ## View Distribution and Component Counts
 
 Open the large Inventory/Switches card to display more granular information about software and hardware distribution. By default, the card displays data for fresh switches. Select **Rotten switches** from the dropdown to display information for switches that are in a down state. Hover over the top of the card and select a category to restrict the view to ASICs, platform, or software.
 
-{{<img src="/images/netq/switch-inventory-large-update.png" alt="switch software and hardware information" width="600">}}<br>
+{{<img src="/images/netq/switch-inventory-large-update.png" alt="switch software and hardware information" height="270"width="600">}}<br>
 
 Expand the Inventory/Switches card to full-screen to view, filter or export information about ASICs, motherboards, CPUs, memory, disks, and operating system. You can right-click the hostname of a given switch to open a monitoring dashboard for that switch in a new tab.
 
-{{<img src="/images/netq/switch-inventory-415.png" alt="" width="1200">}}<br>
+## Create and Assign Switch Labels
 
+Labels are key-value pairs that you can assign to switches. You can use labels to group, filter, and organize switches. You can also run validations against a set of switches that share a common label. There are two types of labels: system-generated labels and user-generated, or custom, labels.
+
+- System-generated labels reflect the static labels {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/#static-labels" text="applied to switches using NVUE commands">}}. System-generated labels include an icon in the NetQ UI. These labels can only be deleted using NVUE commands. These switches must be running the NetQ Agent for labels to appear in NetQ.
+- User-generated labels can be created and deleted using the NetQ UI.
+
+You can apply a maximum of 24 labels per hostname. From the menu, select **Manage labels** to view the label management dashboard.
+
+{{<img src="/images/netq/label-management-50.png" alt="" width="1200">}}
+### Assign a Custom Label
+{{<tabs "TabID56" >}}
+
+{{<tab "NetQ UI" >}}
+
+
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** and select **Manage labels**.
+
+2. Select **Assign/Remove labels**.
+
+3. From the **Assign label** tab, create at least one rule that reflects the devices that will receive a label. 
+
+4. Select **Apply**. The devices that match the rule are populated in the UI. You can continue to refine or add rules until the expected devices are displayed.
+
+5. Enter the name of a new label or select an existing label to apply to the displayed devices.
+
+6. Select **Assign label**.
+
+{{</tab>}}
+
+{{</tabs>}}
+
+### Delete a Custom Label
+{{<tabs "TabID68" >}}
+
+{{<tab "NetQ UI" >}}
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** and select **Manage labels**.
+
+2. Navigate to the label you would like to delete and select the three-dot menu. Select **Delete**.
+{{</tab>}}
+
+{{</tabs>}}
+
+### Remove a Custom Label
+
+You can change the devices that are assigned a certain label by modifying the rule that you created when you originally assigned the label.
+
+{{<tabs "TabID82" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** and select **Manage labels**.
+
+2. Select **Assign/Remove labels**.
+
+3. From the **Remove label** tab, create at least one rule that specifies the devices whose label you would like to remove.
+
+4. Select **Apply**. The devices that match the rule are populated in the UI. You can continue to refine or add rules until the expected devices are displayed.
+
+5. The labels that are assigned to the matched devices are displayed in the UI. Choose the labels you want removed, then select **Remove label**.
+
+{{</tab>}}
+
+{{</tabs>}}
 
 ## Decommission a Switch
 

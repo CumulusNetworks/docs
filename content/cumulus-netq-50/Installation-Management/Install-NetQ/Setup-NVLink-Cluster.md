@@ -290,4 +290,4 @@ If any of the applications or services display a DOWN status after 30 minutes, o
 
 ## Next Steps
 
-Connect to the controller (NMX-C) and telemetry (NMX-T) services before accessing the NVLink REST API.
+{{<link title="NVLink Bringup" text="Perform a system bringup">}} to connect to telemetry and controller services.

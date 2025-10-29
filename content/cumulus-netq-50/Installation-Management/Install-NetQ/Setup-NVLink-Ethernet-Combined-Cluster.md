@@ -196,6 +196,8 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
                 ],
         "shared-cluster-install": "<INPUT>"
         "storage-path": "/var/lib/longhorn"
+        "alertmanager_webhook_url": "<INPUT>"
+
 }
 ```
 
@@ -206,10 +208,11 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
 | `ha-nodes`, `ip` | The IP addresses of the two worker nodes in your cluster. |
-| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a  Base Command Manager deployment) or `false` to install Kubernetes. |
+| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
+| `alertmanager_webhook_url` | Enter the URL of the Alertmanager webhook. You can add multiple URLs as a comma-separated list. Note that you must manually add this line to the JSON template to receive NVLink alerts. |
 
 {{< /tab >}}
-{{< tab "Completed JSON Example ">}}
+{{< tab "Completed JSON Example">}}
 
 ``` 
 nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
@@ -228,7 +231,9 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
                 },
                 ],
         "shared-cluster-install": false,
-        "storage-path": "/var/lib/longhorn"
+        "storage-path": "/var/lib/longhorn",
+        "alertmanager_webhook_url": "http://alert.example.com:9093/webhook"
+
 }
 ```
 
@@ -239,7 +244,8 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
 | `ha-nodes`, `ip` | The IP addresses of the two worker nodes in your cluster. |
-| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a  Base Command Manager deployment) or `false` to install Kubernetes. |
+| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
+| `alertmanager_webhook_url` | Enter the URL of the Alertmanager webhook. You can add multiple URLs as a comma-separated list. Note that you must manually add this line to the JSON template to receive NVLink alerts. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -291,5 +297,6 @@ If any of the applications or services display a DOWN status after 30 minutes, o
 
 ## Next Steps
 
-- Ethernet: {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser to access Ethernet data.
-- NVLink: connect to the controller (NMX-C) and telemetry (NMX-T) services before accessing the NVLink REST API.
+After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser using the virtual cluster IP address. 
+
+To access NVLink data, {{<link title="NVLink Bringup" text="perform a system bringup">}} to connect to telemetry and controller services.

@@ -9,8 +9,8 @@ The following sections describe how to back up and restore your NetQ data and VM
 
 {{%notice note%}}
 - You must run backup and restore scripts with sudo privileges.
-- When you upgrade to NetQ v5.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
 - NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
+- The backup and restore process does not retain several configurations necessary for the Grafana integration, including switch TLS certificates, authentication tokens (vm-tokens), OpenTelemetry configurations, and external time-series database configurations. After reinstalling NetQ, you must {{<link title="Integrate NetQ with Grafana" text="reconfigure these components">}}. Grafana will not display data from previous NetQ versions.
 {{%/notice%}}
 
 ## Back Up Your NetQ Data
@@ -196,64 +196,3 @@ nvidia@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718
 ## Restore Your NetQ Data
 
 To restore your NetQ data, perform a {{<link title="Install the NetQ System" text="new NetQ VM installation">}} and follow the steps to restore your NetQ data when you run the `netq install` command. You will use the `restore` option, referencing the path where the backup file resides.
-
-
-<!--
-Perform a {{<link title="Install the NetQ System" text="new installation">}} and restore your data with the backup file you created in the preceding steps. The `restore` option copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. 
-
-Run the installation command on your NetQ server (or on the master node in cluster deployments), referencing the path where the backup file resides and including the `config-key` created during the backup process.
-
-{{<tabs "96">}}
-
-{{<tab "Single Server">}}
-
-```
-nvidia@netq-server:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/nvidia/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar
-```
-{{</tab>}}
-
-{{<tab "Cluster" >}}
-
-```
-nvidia@netq-server:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/nvidia/combined_backup_20241211111316.tar
-```
-
-{{</tab>}}
-
-{{<tab "Scale Cluster">}}
-
-1. Add the `config-key` parameter to the JSON template you used during the {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster installation">}}. Edit the file with values for each attribute.
-
-```
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
-{
-        "version": "v2.0",
-        "config-key": "<INPUT>",
-        "interface": "<INPUT>",
-        "cluster-vip": "<INPUT>",
-        "master-ip": "<INPUT>",
-        "is-ipv6": false,
-        "ha-nodes":
-                {
-                        "ip": "<INPUT>"
-                },
-                {
-                        "ip": "<INPUT>"
-                }
-}
-```
-
-2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
-
-```
-nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.tgz /tmp/cluster-install-config.json restore /home/nvidia/combined_backup_20241211111316.tar
-```
-{{</tab>}}
-
-{{</tabs>}}
-
-{{<notice note>}}
-If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must {{<link title="Install NetQ Agents/#configure-netq-agents-using-a-configuration-file" text="reconfigure the agents">}} on each switch as a final step.
-{{</notice>}}
-
--->

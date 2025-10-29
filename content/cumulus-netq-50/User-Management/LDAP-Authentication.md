@@ -17,7 +17,7 @@ LDAP integration requires information about how to connect to your LDAP server, 
 
 ### Provide Your LDAP Server Information
 
-To connect to your LDAP server, you need the URI and bind credentials. The URI identifies the location of the LDAP server. It comprises a FQDN (fully qualified domain name) or IP address, and the port of the LDAP server where the LDAP client can connect. For example: *myldap.mycompany.com* or *192.168.10.2*. Typically you use port 389 for connection over TCP or UDP. In production environments, you deploy a secure connection with SSL. In this case, the port used is typically 636. Setting the **Enable SSL** toggle automatically sets the server port to 636.
+To connect to your LDAP server, you need the URI and bind credentials. The URI identifies the location of the LDAP server. It comprises a FQDN (fully qualified domain name) or IP address, and the port of the LDAP server where the LDAP client can connect. For example: *myldap.mycompany.com* or *192.168.10.2*. Use port 389 for connection over TCP or UDP. In production environments, deploy a secure connection with SSL using port 636. Setting the **Enable SSL** toggle automatically sets the server port to 636.
 
 ### Specify Your Authentication Method
 

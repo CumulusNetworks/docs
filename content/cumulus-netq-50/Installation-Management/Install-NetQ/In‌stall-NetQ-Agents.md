@@ -7,7 +7,7 @@ toc: 4
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 5.15, 5.14, 5.11.3
+- Cumulus Linux 5.15, 5.14, 5.11.3, 5.9.4
 - Ubuntu 24.04, 22.04
 
 ## Prepare for NetQ Agent Installation

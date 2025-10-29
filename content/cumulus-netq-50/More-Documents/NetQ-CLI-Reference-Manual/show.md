@@ -274,6 +274,19 @@ leaf03            Rotten           no       4.15.0-cld12u52~1744815975.8dbbbd20c
 - ```netq config del agent```
 
 - - -
+<!--
+## netq show bcm
+
+### Syntax
+
+### Required Arguments
+
+### Options
+
+### Related Commands
+
+- `netq add bcm auth-type`
+-->
 
 <!-- vale off -->
 ## netq show bgp

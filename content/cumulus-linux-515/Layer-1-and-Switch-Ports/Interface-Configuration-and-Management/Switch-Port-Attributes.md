@@ -2181,9 +2181,10 @@ Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 <!-- vale on -->
 If auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to *off*, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is disabled.
 
-### Auto-negotiation with the Spectrum-4 Switch
+### Auto-negotiation with PAM4 on Spectrum-4 and later Switches
 
-When you connect an NVIDIA Spectrum-4 switch to another NVIDIA Spectrum-4 switch with PAM4 modulation, you must enable auto-negotiation.
+- When you connect an NVIDIA Spectrum-4 switch to another NVIDIA Spectrum-4 switch with PAM4 modulation, you must enable auto-negotiation.
+- When you use any PAM4 DAC cable, you must enable auto-negotiation.
 
 ### NVIDIA SN5600 Switch and Force Mode
 

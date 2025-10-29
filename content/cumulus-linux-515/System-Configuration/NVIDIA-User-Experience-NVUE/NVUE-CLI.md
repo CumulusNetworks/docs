@@ -233,14 +233,14 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config attach`|  Attaches configuration to a revision. |
 | `nv config delete` |  Deletes a configuration revision. |
 | `nv config detach` | Detaches the configuration from the current pending configuration and uses an integer to identify it; for example, `4`. To list all the current detached pending configurations, run `nv config diff <<press tab>`.|
-| `nv config diff <revision> <revision>` | {{<link url="NVUE-CLI/#view-differences-between-configurations" text="Shows differences between configurations">}}, such as the pending configuration and the applied configuration, or the detached configuration and the pending configuration.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config diff` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each item shows individually), add the `--expand` option (`nv config diff --expand`).|
-| `nv config find <string>`| {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Finds a portion of the applied configuration">}} according to the search string you provide. For example to find swp1 in the applied configuration, run `nv config find swp1`.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config find` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each item shows individually), add the `--expand` option (`nv config find --expand`).|
+| `nv config diff <revision> <revision>` | {{<link url="NVUE-CLI/#view-differences-between-configurations" text="Shows differences between configurations">}}, such as the pending configuration and the applied configuration, or the detached configuration and the pending configuration.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config diff` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each item shows individually), add the `--expand` option (`nv config diff --expand`).|
+| `nv config find <string>`| {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Finds a portion of the applied configuration">}} according to the search string you provide. For example to find swp1 in the applied configuration, run `nv config find swp1`.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config find` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each item shows individually), add the `--expand` option (`nv config find --expand`).|
 | `nv config history` | Enables you to keep track of the configuration changes on the switch and shows a table with the configuration revision ID, the date and time of the change, the user account that made the change, and the type of change (such as CLI or REST API). The `nv config history <revision>` command shows the apply history for a specific revision. |
 | `nv config patch <nvue-file>` | {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Updates the pending configuration">}} with the specified YAML configuration file or text file of NVUE set and unset commands. |
 | `nv config replace <nvue-file>` | {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replaces the pending configuration">}} with the specified YAML configuration file or text file of NVUE set and unset commands. |
 |`nv config revision` | Shows all the configuration revisions on the switch. |
 | `nv config save` | {{<link url="NVUE-CLI/#auto-save" text="Overwrites the startup configuration">}} with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. Use this command when the auto save option is off.|
-| `nv config show` | Shows the {{<link url="NVUE-CLI/#show-switch-configuration" text="currently applied configuration">}} in `yaml` format. This command also shows NVUE version information.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config show` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each item shows individually), add the `--expand` option (`nv config show --expand`). |
+| `nv config show` | Shows the {{<link url="NVUE-CLI/#show-switch-configuration" text="currently applied configuration">}} in `yaml` format. This command also shows NVUE version information.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config show` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each item shows individually), add the `--expand` option (`nv config show --expand`). |
 | `nv config show -o commands` | Shows the currently applied configuration commands. |
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
 | `nv config translate` | Translates a revision or YAML file configuration. |
@@ -410,7 +410,7 @@ cumulus@switch:~$ nv config find br_default
             br_default: {}
 ```
 
-Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config find` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each port shows individually), add the `--expand` option:
+Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config find` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each port shows individually), add the `--expand` option:
 
 ```
 cumulus@switch:~$ nv config find br_default --expand
@@ -495,7 +495,7 @@ header:
 - To show the configuration on the switch in YAML format and include all default options, run the `nv config show --all` command.
 - To show the configuration for a specific revision, run the `nv config show -r <rev-id>` command.
 
-Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config show` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each port shows individually), add the `--expand` option:
+Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config show` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each port shows individually), add the `--expand` option:
 
 ```
 cumulus@switch:~$ nv config show --expand
@@ -601,7 +601,7 @@ cumulus@switch:~$ nv config diff applied startup
 
 When you run the `nv config diff` command, NVUE show only the new configuration. Add the `--verbose` option to see the previous configuration and the new configuration.
 
-Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config diff` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each item shows individually), add the `--expand` option.
+Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config diff` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each item shows individually), add the `--expand` option.
 
 ## Replace and Patch a Pending Configuration
 

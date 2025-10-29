@@ -40,7 +40,7 @@ Cumulus Linux sends logs through `rsyslog`, which writes them to files in the `/
 
 Cumulus Linux rotates and compresses log files into an archive. Processes that do not use `rsyslog` write to their own log files within the `/var/log` directory. For more information on specific log files, see {{<link url="Troubleshooting-Log-Files">}}.
 
-## Configure syslog Servers
+## Configure Basic Syslog
 
 You can configure Cumulus Linux to send log files to one or more remote syslog servers. By default, Cumulus Linux uses port 514, the UDP protocol, and the `default` VRF for logging transport settings.
 
@@ -164,17 +164,17 @@ The following example shows a syslog file in WELF format:
 The following example shows a syslog file in standard format:
 
 ```
-09:07:38.031030 IP6 (flowlabel 0xf4e84, hlim 64, next-header UDP (17) payload length: 96) fe80::202:ff:fe00:9.37794 > fe80::202:ff:fe00:29.syslog: [udp sum ok] SYSLOG, length: 88
+09:07:38.031030 IP6 (flowlabel 0xf4e84, hlim 64, next-header UDP (17) payload length: 96) fe80::202:ff:fe00:9.37794 > 192.168.0.254.syslog: [udp sum ok] SYSLOG, length: 88
         Facility user (1), Severity info (6)
         Msg: Apr 17 09:07:38 leaf-11 nv-cli INFO cumulus (cli_id=9Scssp_M): nv show system syslog
 `.N..`.@............... ...............).....`:;<14>Apr 17 09:07:38 leaf-11 nv-cli INFO cumulus (cli_id=9Scssp_M): nv show system syslog
 
-09:14:00.317002 IP6 (flowlabel 0xf4e84, hlim 64, next-header UDP (17) payload length: 107) fe80::202:ff:fe00:9.37794 > fe80::202:ff:fe00:29.syslog: [udp sum ok] SYSLOG, length: 99
+09:14:00.317002 IP6 (flowlabel 0xf4e84, hlim 64, next-header UDP (17) payload length: 107) fe80::202:ff:fe00:9.37794 > 192.168.0.254.syslog: [udp sum ok] SYSLOG, length: 99
         Facility user (1), Severity error (3)
         Msg: Apr 17 09:14:00 leaf-11 nvued:   ERROR: native.py:558 Could not get info about voltage sensors.
 `.N..k.@............... ...............).....k{.<11>Apr 17 09:14:00 leaf-11 nvued:   ERROR: native.py:558 Could not get info about voltage sensors.
 
-09:14:00.563760 IP6 (flowlabel 0xf4e84, hlim 64, next-header UDP (17) payload length: 121) fe80::202:ff:fe00:9.37794 > fe80::202:ff:fe00:29.sysl
+09:14:00.563760 IP6 (flowlabel 0xf4e84, hlim 64, next-header UDP (17) payload length: 121) fe80::202:ff:fe00:9.37794 > 192.168.0.254.sysl
 og: [udp sum ok] SYSLOG, length: 113
         Facility authpriv (10), Severity notice (5)
         Msg: Apr 17 09:14:00 leaf-11 sudo:     nvue : PWD=/var/lib/nvue ; USER=root ; COMMAND=/usr/bin/cat /var/log/syslog
@@ -185,134 +185,190 @@ og: [udp sum ok] SYSLOG, length: 113
 
 You can control which logs to capture using selectors. A selector enables you to choose options such as facility, program name, severity, filters (with match conditions and actions for log selection), and rate limit, for precise and targeted log management. You define the selectors you want to use for a specific server.
 
-### Severity
+### Selector with Program and Conditions
 
-The following table describes the severity levels you can use in a selector:
+To forward syslog messages only from the `ifreload` program containing the text 'ip link set', and to allow logging from other programs unless restricted:
 
-| Level | NVUE Option | Description |
-| ----- |------- |------------------------------------------------------------------|
-| 0     | `emerg` | Emergency messages (the system is about to crash or is unstable).   |
-| 1     | `alert` | Serious conditions (alerts); you must take action immediately.          |
-| 2     | `crit` | Critical conditions (serious hardware or software failures).            |
-| 3     | `err` | Error conditions (often used by drivers to indicate difficulties with the hardware). |
-| 4     | `warning` | Warning messages (nothing serious but might indicate problems). |
-| 5     | `notice` | Notifications for many conditions, including security events. |
-| 6     | `info` | Informational messages.      |
-| 7     | `debug` | Debug messages.  |
-
-If you set the severity to `warning` (4), the forwarding process does not include logs with severity levels `debug` (7), `info` (6), and `notice` (5). The forwarding process only forwards logs with severity level `warning` (4) or higher (`err` (3), `crit` (2), `alert` (1), and `emerg` (0)).
-
-The following example defines the selector called SELECTOR1 and groups logs based on the source `cron` with severity levels up to and including `debug` (all logs with severity levels `debug`, `info`, `notice`, `warning`, and `higher`):
-
+{{< tabs "Example2Tabs" >}}
+{{< tab "NVUE Commands" >}}
 ```
-cumulus@switch:~$ nv set system syslog selector SELECTOR1 facility cron
-cumulus@switch:~$ nv set system syslog selector SELECTOR2 severity debug
+cumulus@switch:~$ nv set system syslog selector ifreload program-name ifreload
+cumulus@switch:~$ nv set system syslog selector ifreload filter 1 match 'ip link set'
+cumulus@switch:~$ nv set system syslog selector ifreload filter 1 action include
+cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 1 selector-id ifreload
 cumulus@switch:~$ nv config apply
 ```
-
-### Filters
-
-You can define filters to include or exclude messages that match certain regex patterns.
-
-The following example configures the selector SELECTOR2. The syslog process searches for messages that match the regex patterns `issu_start=true.+$` and `smonctl -v -j -t fan`, excluding any that contain `Running`. `rsyslog` forwards only the filtered messages to the syslog server.
-
+{{< /tab >}}
+{{< tab "Linux Commands" >}}
 ```
-cumulus@switch:~$ nv set system syslog selector SELECTOR2 program-name switchd
-cumulus@switch:~$ nv set system syslog selector SELECTOR2 severity debug
-cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 10 match issu_start=true.+$
-cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 10 action include
-cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 15 match 'smonctl -v -j -t fan'
-cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 15 action include
-cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 2 match Running
-cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 2 action exclude
-cumulus@switch:~$ nv config apply
-```
-
-### Rate Limit
-
-You can specify a rate-limiting rule with an interval (between 1 and 65535) and a burst limit (between 1 and 65535) to control log message processing or forwarding within a defined time period. The interval defines the time window within which the switch limits log messages after reaching the burst threshold. The burst limit specifies the maximum number of log messages that the switch can process instantly before rate limiting takes effect.
-
-The following example sets a rate limiting rule with an interval of 240 and a burst limit of 2. With a burst limit of 2, `rsyslog` sends up to two log messages at the specified interval and drops any additional messages beyond this limit. After 240 seconds, `rsyslog` resumes processing and forwarding logs to the syslog server.
-
-```
-cumulus@switch:~$ nv set system syslog selector SELECTOR1 rate-limit interval 240
-cumulus@switch:~$ nv set system syslog selector SELECTOR1 rate-limit burst 2
-cumulus@switch:~$ nv config apply
-```
-
-NVUE writes the configuration to the `/etc/rsyslog.d/11-remotesyslog.conf` file:
-
-```
-cumulus@switch:~$ sudo cat /etc/rsyslog.d/11-remotesyslog.conf
 if (
-  $Programname == "nvued" and
-  $syslogfacility-text == "user" and
-  $syslogseverity <= 5
+  $programname == "ifreload" and
+  re_match($msg, 'ip link set')
 ) then {
-    action(type="omfwd" Target="fe80::202:ff:fe00:29" Port="514" Protocol="udp" RateLimit.Interval="240" RateLimit.Burst="2")
+    action(type="omfwd" Target="192.168.0.254" Port="514" Protocol="udp")
+}
+if (
+  $programname != "ifreload"
+) then {
+    action(type="omfwd" Target="192.168.0.254" Port="514" Protocol="udp")
 }
 ```
+{{< /tab >}}
+{{< /tabs >}}
 
-The following example shows the resulting syslog file.
 
+### Selector with Rate-Limit
+
+To restrict log forwarding to five messages per minute, apply rate-limiting:
+
+{{< tabs "Example3Tabs" >}}
+{{< tab "NVUE Commands" >}}
 ```
-09:58:39.030499 IP6 (flowlabel 0x3b3ac, hlim 64, next-header UDP (17) payload length: 156) fe80::202:ff:fe00:9.51952 > fe80::202:ff:fe00:29.syslog: [udp sum ok] SYSLOG, length: 148
-        Facility user (1), Severity warning (4)
-        Msg: Apr 17 09:58:39 leaf-11 nvued: WARNING: apply_config.py:995 File '/etc/default/prometheus-node-exporter' being rendered has not been registered.
-`......@............... ...............)........<12>Apr 17 09:58:39 leaf-11 nvued: WARNING: apply_config.py:995 File '/etc/default/prometheus-node-exporter' being rendered has not been registered.
-
-10:02:15.227322 IP6 (flowlabel 0x22995, hlim 64, next-header UDP (17) payload length: 102) fe80::202:ff:fe00:9.46796 > fe80::202:ff:fe00:29.syslog: [udp sum ok] SYSLOG, length: 94
-        Facility user (1), Severity notice (5)
-        Msg: Apr 17 10:02:15 leaf-11 nvued: testing:: my_important_id syslog feature functional testing
-`.)..f.@............... ...............).....f3.<13>Apr 17 10:02:15 leaf-11 nvued: testing:: my_important_id syslog feature functional testing
-```
-
-### Set Selectors for a Server
-
-To set a selector for a server, run the `nv set system syslog server <server-id> selector 1 selector-id <selector-id>` command.
-
-The following example configures and sets the selector `selector-ifreload` for the server fe80::202:ff:fe00:29, which filters logs generated by `ifreload` with severity levels up to and including `info` (all logs with severity levels `info`, `notice`, `warning`, and `higher`).
-
-```
-cumulus@switch:~$ nv set system syslog server fe80::202:ff:fe00:29 selector 1 selector-id selector-ifreload
-cumulus@switch:~$ nv set system syslog selector selector-ifreload program-name ifreload
-cumulus@switch:~$ nv set system syslog selector selector-ifreload severity info
+cumulus@switch:~$ nv set system syslog selector rl rate-limit burst 5
+cumulus@switch:~$ nv set system syslog selector rl rate-limit interval 60
+cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 1 selector-id rl
 cumulus@switch:~$ nv config apply
 ```
+{{< /tab >}}
+{{< tab "Linux Commands" >}}
+```
+action(
+  type="omfwd"
+  Target="192.168.0.254"
+  Port="514"
+  Protocol="udp"
+  RateLimit.Interval="60"
+  RateLimit.Burst="5"
+)
+```
+{{< /tab >}}
+{{< /tabs >}}
 
-The above commands write to the `/etc/rsyslog.d/11-remotesyslog.conf` file:
 
+### Selector with Filter
+
+To filter and forward only logs containing a specific string (for example, 'ip link set'):
+
+{{< tabs "Example4Tabs" >}}
+{{< tab "NVUE Commands" >}}
+```
+cumulus@switch:~$ nv set system syslog selector filter-only filter 1 match 'ip link set'
+cumulus@switch:~$ nv set system syslog selector filter-only filter 1 action include
+cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 1 selector-id filter-only
+cumulus@switch:~$ nv config apply
+```
+{{< /tab >}}
+{{< tab "Linux Commands" >}}
+```
+if (
+  re_match($msg, 'ip link set')
+) then {
+    action(type="omfwd" Target="192.168.0.254" Port="514" Protocol="udp")
+}
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+
+### Selector with Facility
+
+To forward only logs originating from the `user` facility:
+
+{{< tabs "Example5Tabs" >}}
+{{< tab "NVUE Commands" >}}
+```
+cumulus@switch:~$ nv set system syslog selector facility-selector facility user
+cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 1 selector-id facility-selector
+cumulus@switch:~$ nv config apply
+```
+{{< /tab >}}
+{{< tab "Linux Commands" >}}
+```
+if (
+  $syslogfacility-text == "user"
+) then {
+    action(type="omfwd" Target="192.168.0.254" Port="514" Protocol="udp")
+}
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+### Selector with Severity:
+
+To forward all logs at severity notice and above regardless of program or facility:
+
+{{< tabs "Example6Tabs" >}}
+{{< tab "NVUE Commands" >}}
+```
+cumulus@switch:~$ nv set system syslog selector severity-level severity notice
+cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 1 selector-id severity-level
+cumulus@switch:~$ nv config apply
+```
+{{< /tab >}}
+{{< tab "Linux Commands" >}}
+```
+if (
+  $syslogseverity <= 5
+) then {
+    action(type="omfwd" Target="192.168.0.254" Port="514" Protocol="udp")
+}
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+### Multiple Selectors
+
+To combine forwarding criteria for multiple programs, filter matches, facilities, severity levels, and rate limits:
+
+{{< tabs "ExampleMultiTabs" >}}
+{{< tab "NVUE Commands" >}}
+```
+cumulus@switch:~$ nv set system syslog selector ifreload facility daemon
+cumulus@switch:~$ nv set system syslog selector ifreload filter 1 action include
+cumulus@switch:~$ nv set system syslog selector ifreload filter 1 match 'ip link set'
+cumulus@switch:~$ nv set system syslog selector ifreload program-name ifreload
+cumulus@switch:~$ nv set system syslog selector sev-rl program-name switchd
+cumulus@switch:~$ nv set system syslog selector sev-rl rate-limit burst 1234
+cumulus@switch:~$ nv set system syslog selector sev-rl rate-limit interval 120
+cumulus@switch:~$ nv set system syslog selector sev-rl severity notice
+cumulus@switch:~$ nv set system syslog selector user facility user
+cumulus@switch:~$ nv set system syslog selector user program-name ifreload
+cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 1 selector-id ifreload
+cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 2 selector-id user
+cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 3 selector-id sev-rl
+cumulus@switch:~$ nv config apply
+```
+{{< /tab >}}
+{{< tab "Linux Commands" >}}
 ```
 if (
   $Programname == "ifreload" and
   $syslogfacility-text == "daemon" and
-  $syslogseverity <= 6
+  re_match($msg,'ip link set')
 ) then {
-    action(type="omfwd" Target="fe80::202:ff:fe00:29" Port="514" Protocol="udp")
+    action(type="omfwd" Target="192.168.0.254" Port="514" Protocol="udp")
+}
+if (
+  $Programname == "ifreload" and
+  $syslogfacility-text == "user"
+) then {
+    action(type="omfwd" Target="192.168.0.254" Port="514" Protocol="udp")
+}
+if (
+  $Programname == "switchd" and
+  $syslogseverity <= 5
+) then {
+    action(type="omfwd" Target="192.168.0.254" Port="514" Protocol="udp" RateLimit.Interval="120" RateLimit.Burst="1234")
+}
+if (
+  $programname != "ifreload" and
+  $programname != "switchd"
+) then {
+    action(type="omfwd" Target="192.168.0.254" Port="514" Protocol="udp")
 }
 ```
-
-The following example shows the resulting syslog file:
-
-```
-09:22:01.942096 IP6 (flowlabel 0xb2fb6, hlim 64, next-header UDP (17) payload length: 103) fe80::202:ff:fe00:9.41862 > fe80::202:ff:fe00:29.syslog: [udp sum ok] SYSLOG, length: 95
-        Facility daemon (3), Severity info (6)
-        Msg: Apr 17 09:22:01 leaf-11 ifreload[2545796]: info: swp4: keeping link down due to user config
-`./..g.@............... ...............).....g.M<30>Apr 17 09:22:01 leaf-11 ifreload[2545796]: info: swp4: keeping link down due to user config
-
-09:22:01.942573 IP6 (flowlabel 0xb2fb6, hlim 64, next-header UDP (17) payload length: 101) fe80::202:ff:fe00:9.41862 > fe80::202:ff:fe00:29.syslog: [udp sum ok] SYSLOG, length: 93
-        Facility daemon (3), Severity info (6)
-        Msg: Apr 17 09:22:01 leaf-11 ifreload[2545796]: info: swp4: netlink: ip link set dev swp4 down
-`./..e.@............... ...............).....eyt<30>Apr 17 09:22:01 leaf-11 ifreload[2545796]: info: swp4: netlink: ip link set dev swp4 down
-```
-
-You can assign multiple selectors to each syslog server based on priority. The following example configures SELECTOR1 with priority 1 and SELECTOR2 with priority 2.
-
-```
-cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 1 selector-id SELECTOR1
-cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 2 selector-id SELECTOR2
-cumulus@switch:~$ nv config apply
-```
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Verify syslog Configuration
 
@@ -337,7 +393,7 @@ server
     --------------------  -------  --------  ----  --------  -----------------
     192.168.0.254         default  tcp       601   1         SELECTOR1        
                                                    2         SELECTOR2        
-    fe80::202:ff:fe00:29  default  udp       514   1         selector-ifreload
+    192.168.0.254  default  udp       514   1         selector-ifreload
 
 selector
 ===========
@@ -368,7 +424,7 @@ Servers               Vrf      Protocol  Port  Priority  Selector-Id
 --------------------  -------  --------  ----  --------  -----------------
 192.168.0.254         default  tcp       601   1         SELECTOR1        
                                                2         SELECTOR2        
-fe80::202:ff:fe00:29  default  udp       514   1         selector-ifreload
+192.168.0.254  default  udp       514   1         selector-ifreload
 ```
 
 To show information for a specific syslog server, run the `nv show system syslog server <server-id>` command:

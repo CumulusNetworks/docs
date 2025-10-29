@@ -186,7 +186,7 @@ og: [udp sum ok] SYSLOG, length: 113
 You can control which logs to capture using selectors. A selector enables you to choose options such as facility, program name, severity, filters (with match conditions and actions for log selection), and rate limit, for precise and targeted log management. You define the selectors you want to use for a specific server.
 
 {{%notice infonopad%}}
-In Cumulus Linux versions prior to 5.15, syslog selector configuration applied default values for facility (`daemon`) and severity (`notice`) if they were not explicitly configured. If a selector included a program name, only logs from that program and matching other conditions (`facility`, `severity`, `filter`, `rate-limit`) were forwarded; logs from other programs were dropped. When a selector was defined with only rate-limit or severity, the respective defaults were still applied unless you explicitly configured otherwise.
+In Cumulus Linux versions prior to 5.15, syslog selector configuration applied default values for facility (`daemon`) and severity (`notice`) if they were not explicitly configured. If a selector included a program name, only logs from that program and matching other conditions (`facility`, `severity`, `filter`, `rate-limit`) were forwarded; logs from other programs were dropped. When a selector was defined with only rate-limit or severity, the respective defaults were still applied unless you explicitly configured otherwise.<br><br>
 
 Starting with Cumulus Linux 5.15, selector behavior has changed as follows:
 
@@ -306,7 +306,7 @@ if (
 {{< /tab >}}
 {{< /tabs >}}
 
-### Selector with Severity:
+### Selector with Severity
 
 To forward all logs at severity notice and above regardless of program or facility:
 

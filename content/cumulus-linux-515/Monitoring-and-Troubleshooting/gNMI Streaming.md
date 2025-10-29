@@ -463,6 +463,9 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 |  Name | Description |
 |------ | ----------- |
 | `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-unicast-pkts`| The number packets that were trimmed on the interface.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts`| The number of packets that were trimmed and sent succesfully on the interface.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts`| The number of packets that were trimmed on the interface queue.|
 
 {{< /tab >}}
 {{< tab "Platform">}}

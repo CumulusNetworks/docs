@@ -452,6 +452,10 @@ cumulus@switch:mgmt:~$ nv set system aaa authentication restrictions lockout-att
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
+{{%notice note%}}
+If a user does not reach the number of failed login attempts specified by `lockout-attempts` within a 15-minute window, the allowed number of login attempts resets. The user can attempt to log in up to the configured `lockout-attempts` value again after the reset.
+{{%/notice%}}
+
 To extend the reattempt timer after each failed login, configure the failure delay (`fail-delay`) parameter. By default, the failure delay is disabled (set to 0 seconds). The following example adds a 5-second delay to the reattempt timer after every failed authentication attempt:
 
 ```

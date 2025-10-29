@@ -105,6 +105,7 @@ You can configure the following global RADIUS settings and server specific setti
 | `source-ipv4`</br>`source-ipv6`| A specific interface to reach all RADIUS servers. To configure the source IP address for a specific RADIUS server, use the `source-ip` option.|
 | `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. You enable the debug option globally for all the servers.|
 | `require-message-authenticator` | Requires authentication packets to have the Message-Authenticator attribute; the switch discards as Access-Reject all packets that do not have the Message-Authenticator attribute.|
+| `auth-type` | The method used for authentication. Options are `pap`, `chap`, and the default value of `mschapv2`. NVIDIA recommends using PEAP with MSCHAPv2 for authentication with your RADIUS server. |
 
 The following example configures global RADIUS settings:
 
@@ -115,7 +116,8 @@ cumulus@switch:~$ nv set system aaa radius retransmit 8
 cumulus@switch:~$ nv set system aaa radius timeout 10
 cumulus@switch:~$ nv set system aaa radius source-ipv4 192.168.1.10
 cumulus@switch:~$ nv set system aaa radius debug enable
-cumulus@switch:~$ nv set system aaa radius require-message-authenticator enabled 
+cumulus@switch:~$ nv set system aaa radius require-message-authenticator enabled
+cumulus@switch:~$ nv set system aaa radius auth-type mschapv
 cumulus@switch:~$ nv config apply
 ```
 
@@ -328,7 +330,8 @@ vrf              mgmt           mgmt
 debug            disabled       disabled      
 privilege-level                 15            
 retransmit       0              0             
-port                            1812          
+port                            1812
+auth-type                       mschapv2
 timeout                         3             
 accounting       enabled        enabled       
 [server]         192.168.0.254  192.168.0.254 
@@ -403,7 +406,7 @@ Cumulus Linux does not remove the RADIUS fixed account from the `/etc/passwd` or
 To remove the home directories of the RADIUS users, obtain the list by running the following command:
 
 ```
-cumulus@switch:~$ sudo ls -l /home | grep radius
+cumulus@switch:~$ sudo ls -l /var/cache/radius/user
 ```
 
 For all users listed, except the `radius_user`, run the following command to remove the home directories:
@@ -417,14 +420,6 @@ cumulus@switch:~$ sudo deluser --remove-home USERNAME
 ```
 userdel: cannot remove entry 'USERNAME' from /etc/passwd
 /usr/sbin/deluser: `/usr/sbin/userdel USERNAME' returned error code 1. Exiting.
-```
-
-After you remove all the RADIUS users, run the command to remove the fixed account. If there are changes to the account in the `/etc/nss_mapuser.conf` file, use that account name instead of `radius_user`.
-
-```
-cumulus@switch:~$ sudo deluser --remove-home radius_user
-cumulus@switch:~$ sudo deluser --remove-home radius_priv_user
-cumulus@switch:~$ sudo delgroup radius_users
 ```
 
 ## Considerations

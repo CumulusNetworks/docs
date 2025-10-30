@@ -248,42 +248,42 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 |  Name | Description |
 |------ | ----------- |
-| `/acl/interfaces/interface[name]/state/id` | *|
-| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/state/set-name`| *|
-| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/state/type` | *|
-| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id='<entry-id>']/state/sequence-id` | *|
-| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-packets` | *|
-| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-octets` | *|
-| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/state/set-name` | *|
-| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/state/type` | *|
-| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id='<entry-id>']/state/sequence-id` | *|
-| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-packets`| *|
-| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-octets` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/state/name` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/state/type` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/state/sequence-id` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/source-mac` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/source-mac-mask` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/destination-mac` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/destination-mac-mask` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/ethertype` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/source-address` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/destination-address` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/dscp` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/protocol` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/hop-limit` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/icmpv4/state/type` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/source-address` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/destination-address` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/dscp` | * |
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/protocol` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/hop-limit` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/icmpv6/state/type` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/action/state/forwarding-action` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/action/state/log-action` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/source-port` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/destination-port` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/explicit-tcp-flags` | *|
+| `/acl/interfaces/interface[name]/state/id` | * Interface ACL state. |
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/state/set-name`| * Interface ingress ACL set name. |
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/state/type` | * Interface ingress ACL type. |
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id='<entry-id>']/state/sequence-id` | * Interface ingress ACL sequence. |
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-packets` | * Interface ingress ACL sequence matched packets.|
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-octets` | * Interface ingress ACL matched bytes. |
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/state/set-name` | * Interface egress ACL set name. |
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/state/type` | * Interface egress ACL type. |
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id='<entry-id>']/state/sequence-id` | * Interface egress ACL sequence. |
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-packets`| * Interface egress ACL matched packets. |
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-octets` | * Interface egress ACL matched bytes. |
+| `/acl/acl-sets/acl-set[name][acl-type]/state/name` | * ACL name. |
+| `/acl/acl-sets/acl-set[name][acl-type]/state/type` | * ACL type. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/state/sequence-id` | * ACL sequence. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/source-mac` | * ACL sequence L2 source MAC address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/source-mac-mask` | * ACL sequence L2 source MAC mask. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/destination-mac` | * ACL sequence L2 destination MAC address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/destination-mac-mask` | * ACL sequence L2 destination MAC mask. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/ethertype` | * ACL sequence L2 ethertype. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/source-address` | * ACL sequence IPv4 source address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/destination-address` | * ACL sequence IPv4 destination address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/dscp` | * ACL sequence IPv4 DSCP. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/protocol` | * ACL sequence IPv4 protocol. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/hop-limit` | * ACL sequence IPv4 hop limit. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/icmpv4/state/type` | * ACL sequence ICMPv4 type. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/source-address` | * ACL sequence IPv6 source address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/destination-address` | * ACL sequence IPv6 destination address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/dscp` | * ACL sequence IPv6 DSCP. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/protocol` | * ACL sequence IPv6 protocol. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/hop-limit` | * ACL sequence IPv6 hop limit. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/icmpv6/state/type` | * ACL sequence ICMPv6 type. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/action/state/forwarding-action` | * ACL sequence forwarding action. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/action/state/log-action` | * ACL sequence log action. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/source-port` | * ACL sequence L4 source port. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/destination-port` | * ACL sequence L4 destination port. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/explicit-tcp-flags` | * ACL sequence L4 TCP flags. |
 
 {{< /tab >}}
 {{< tab "Adaptive Routing">}}

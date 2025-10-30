@@ -7,7 +7,7 @@ toc: 4
 
 NetQ and network operating system images are managed with LCM. This section explains how to check for missing images, upgrade images, and specify default images.
 
-The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages according to the version of Cumulus Linux you are running. {{<netq-install/agent-version version="4.15.0" opsys="cl">}}
+The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages according to the version of Cumulus Linux you are running. {{<netq-install/agent-version version="5.0.0" opsys="cl">}}
 
 ## View and Upload Missing Images
 
@@ -122,11 +122,11 @@ netq lcm show netq-images
 
 2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.15/p/python-netq/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.15.0 for a NetQ VM running Ubuntu 24.04 with an AMD 64 architecture.
+3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 5.0.0 for a NetQ VM running Ubuntu 24.04 with an AMD 64 architecture.
 
     ```
-    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.15.0-ub24.04u52~1753783150.2a97c1dde_amd64.deb	
-    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.15.0-ub24.04u52~1753783150.2a97c1dde_amd64.deb
+    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_5.0.0-ub24.04u53~1753783150.2a97c1dde_amd64.deb	
+    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_5.0.0-ub24.04u53~1753783150.2a97c1dde_amd64.deb
     ```
 
 {{</tab>}}
@@ -172,8 +172,8 @@ nvidia@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.13.1-mlx-a
 NetQ images:
 
 ```
-nvidia@switch:~$ netq lcm add image /path/to/download/netq-agent_4.15.0-cld12u52~1753783414.2a97c1dde_amd64.deb
-nvidia@switch:~$ netq lcm add image /path/to/download/netq-apps_4.15.0-cld12u52~1753783414.2a97c1dde_amd64.deb
+nvidia@switch:~$ netq lcm add image /path/to/download/netq-agent_5.0.0-cld12u53~1753783414.2a97c1dde_amd64.deb
+nvidia@switch:~$ netq lcm add image /path/to/download/netq-apps_5.0.0-cld12u53~1753783414.2a97c1dde_amd64.deb
 ```
 
 {{</tab>}}

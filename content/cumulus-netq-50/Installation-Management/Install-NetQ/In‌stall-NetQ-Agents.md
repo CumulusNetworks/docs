@@ -72,7 +72,7 @@ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-latest
 ```
 
 {{<notice tip>}}
-You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.15: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-4.15</pre>
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 5.0: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-5.0</pre>
 {{</notice>}}
 
 2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
@@ -305,7 +305,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.15.0" opsys="cl">}}
+    {{<netq-install/agent-version version="5.0.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -334,7 +334,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.15.0" opsys="ub">}}
+    {{<netq-install/agent-version version="5.0.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 

@@ -347,6 +347,79 @@ cumulus@switch:~$ sudo reboot
 {{< /tab >}}
 {{< /tabs >}}
 
+## Offline Package Upgrade
+
+Cumulus Linux is set up by default to use NVIDIA’s production APT repository, with the configuration defined in /etc/apt/sources.list. This allows the switch to directly access and install updates or packages from the internet. For networks without internet access, NVIDIA also provides a Docker container that can host an APT repository locally, enabling your switch to retrieve packages from a server within your environment. To obtain the docker container, download it from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}.
+
+{{%notice note%}}
+You can run the docker container on your own server, or use {{<link url="Docker-with-Cumulus-Linux/" text="Docker with Cumulus Linux">}} to run it on a switch.
+{{%/notice%}}
+
+To launch the docker container and configure your switch for offline package upgrade:
+
+1. Copy the docker container tarball to your server. Load the image with the `sudo docker load -i /path/to/tarball/cumulus-linux-apt-mirror-5.15.0.tar` command:
+
+```
+cumulus@switch:~$ sudo docker load -i ./cumulus-linux-apt-mirror-5.15.0.tar 
+36f5f951f60a: Loading layer [==================================================>]  77.89MB/77.89MB
+2351dd6bd33d: Loading layer [==================================================>]  118.7MB/118.7MB
+00cc4f38365c: Loading layer [==================================================>]  3.584kB/3.584kB
+15db5544fc22: Loading layer [==================================================>]  4.608kB/4.608kB
+ce6adb617595: Loading layer [==================================================>]   2.56kB/2.56kB
+1fc99835d6cd: Loading layer [==================================================>]   5.12kB/5.12kB
+ef322fe0300d: Loading layer [==================================================>]  7.168kB/7.168kB
+22fcae930038: Loading layer [==================================================>]  3.072kB/3.072kB
+049771462316: Loading layer [==================================================>]   5.12kB/5.12kB
+ba266af6a60c: Loading layer [==================================================>]  4.096kB/4.096kB
+76333a9a644a: Loading layer [==================================================>]  5.632kB/5.632kB
+599cafa33123: Loading layer [==================================================>]  9.216kB/9.216kB
+346269b5a88b: Loading layer [==================================================>]  8.195MB/8.195MB
+0abaedd440c4: Loading layer [==================================================>]   3.27GB/3.27GB
+Loaded image: cumulus-linux-apt-mirror:5.15.0
+```
+
+2. Run the docker container, publishing ports for HTTP (8080:80) and HTTPS (8443:8443), supplying desired environment variables, and optionally defining volumes to mount for your own CA or server certificates. Supported envrionment variables include:
+
+- `REPO_HOST=<hostname>` - defines the hostname used to connect to the repository and is used for the Common Name (CN) or Subject Alternative Name (SAN) field in certificates.
+- `REPO_IP=<ip-address>` - defines the IP used to connect to the respository if you do not use a hostname.
+- `FORCE_REISSUE=[0 | 1]` - set to 1 to force reissuing the server certificate when the container starts.
+
+The following example runs the container referencing IP address 10.1.1.100, and defines local volumes on the host to mount for a CA certificate:
+
+```
+cumulus@switch:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_IP=10.1.1.100 -e FORCE_REISSUE=1 -v /local/certpath/ca.crt:/etc/nginx/ca/ca.crt:ro -v /local/certpath/ca.key:/etc/nginx/ca/ca.key:ro cumulus-linux-apt-mirror:5.15.0
+```
+
+{{%notice note%}}
+If you do not specify your own CA or server certificate, a self-signed certificate will be used.
+{{%/notice%}}
+
+3. Install the certificate on the switches you want to upgrade:
+
+```
+cumulus@switch:~$ curl -fsSL http://10.1.1.100:8080/ca.crt -o /usr/local/share/ca-certificates/repo-ca.crt
+cumulus@switch:~$ sudo update-ca-certificates 
+Updating certificates in /etc/ssl/certs...
+rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
+rehash: warning: skipping duplicate certificate in repo-ca2.pem
+rehash: warning: skipping duplicate certificate in repo-ca5.pem
+1 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+```
+
+4. Configure `/etc/apt/sources.list` on your switches with your repository:
+
+```
+cumulus@switch:~$ sudo vi /etc/apt/sources.list
+...
+deb https://10.10.10.2:8443 CumulusLinux-5.15.0 cumulus upstream netq
+...
+```
+
+5. Continue with a {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} on your switch. 
+
+
 ## ONIE Image Upgrade
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch. ONIE upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.15).

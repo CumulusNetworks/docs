@@ -349,7 +349,7 @@ cumulus@switch:~$ sudo reboot
 
 ## Offline Package Upgrade
 
-Cumulus Linux is set up by default to use NVIDIA’s production APT repository, with the configuration defined in /etc/apt/sources.list. This allows the switch to directly access and install updates or packages from the internet. For networks without internet access, NVIDIA also provides a Docker container that can host an APT repository locally, enabling your switch to retrieve packages from a server within your environment. To obtain the docker container, download it from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}.
+Cumulus Linux is set up by default to use NVIDIA’s production APT repository, with the configuration defined in `/etc/apt/sources.list`. This allows the switch to directly access and install updates or packages from the internet. For networks without internet access, NVIDIA also provides a docker container that can host an APT repository locally, enabling your switch to retrieve packages from a server within your environment. To obtain the docker container, download it from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}.
 
 {{%notice note%}}
 You can run the docker container on your own server, or use {{<link url="Docker-with-Cumulus-Linux/" text="Docker with Cumulus Linux">}} to run it on a switch.

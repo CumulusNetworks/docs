@@ -5,7 +5,7 @@ weight: 520
 toc: 3
 ---
 
-The following sections describe how to back up and restore your NetQ data and VMs for on-premises deployments. Most NetQ data for cloud deployments is backed up automatically, but the backup and restore process is required for cloud VMs to retain site configuration key data.
+The following sections describe how to back up and restore your NetQ data and VMs for on-premises deployments.
 
 {{%notice note%}}
 - You must run backup and restore scripts with sudo privileges.
@@ -101,93 +101,6 @@ Fri Jan 17 05:58:14 2025 - All pods are up
 ```
 nvidia@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>
 ```
-
-{{</tab>}}
-
-{{<tab "Cloud Deployments" >}}
-   
-1. Retrieve the `vm-backuprestore.sh` script:
-
-<p style="text-indent: 40px">a. Log in to the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.<br></p>
-<p style="text-indent: 40px">b. Select <b>NVIDIA Licensing Portal</b>.</p>
-<p style="text-indent: 40px">c. Select <b>Software Downloads</b> from the menu.</p>
-<p style="text-indent: 40px">d. In the search field, enter <b>NetQ</b>.</p>
-<p style="text-indent: 40px">e. Locate the latest <i>NetQ Upgrade Backup Restore</i> file and select <b>Download</b>.</p>
-<p style="text-indent: 40px">f. If prompted, read the license agreement and proceed with the download.<br></p>
-
-2. Copy the `vm-backuprestore.sh` script to your NetQ server in standalone deployments, or to each node in cluster deployments:
-
-```
-username@hostname:~$ scp ./vm-backuprestore.sh nvidia@10.10.10.10:/home/nvidia/
-nvidia@10.10.10.10's password:
-vm-backuprestore.sh                                                                                        
-```
-
-Then copy the `vm-backuprestore.sh` script to the `/usr/sbin/` directory on your NetQ servers:
-
-```
-nvidia@netq-server:~$ sudo cp ./vm-backuprestore.sh /usr/sbin/
-```
-
-3. Log in to your NetQ server and set the script to executable. Do this for each node in your deployment:
-
-```
-nvidia@netq-server:/home/nvidia# sudo chmod +x /usr/sbin/vm-backuprestore.sh
-```
-
-4. On your NetQ server (or the master node in cluster deployments), run the `/usr/sbin/vm-backuprestore.sh --backup` command. This command backs up each node in your deployment and combines the data into a single .tar file. Take note of the config key in the output of this command. You will enter it when you restore your data:  
-
-```
-nvidia@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
-Fri Jan 17 05:44:13 2025 - Please find detailed logs at: /var/log/vm-backuprestore.log
-Stopping pods...
-Fri Jan 17 05:44:13 2025 - Stopping pods in namespace default
-Fri Jan 17 05:44:19 2025 - Scaling all pods to replica 0
-Fri Jan 17 05:44:38 2025 - Waiting for all pods to go down in namespace: default
-Fri Jan 17 05:45:39 2025 - Stopping pods in namespace ingress-nginx
-Fri Jan 17 05:45:43 2025 - Scaling all pods to replica 0
-Fri Jan 17 05:45:57 2025 - Waiting for all pods to go down in namespace: ingress-nginx
-Fri Jan 17 05:45:57 2025 - Stopping pods in namespace monitoring
-Fri Jan 17 05:46:01 2025 - Scaling all pods to replica 0
-Fri Jan 17 05:46:14 2025 - Waiting for all pods to go down in namespace: monitoring
-Fri Jan 17 05:46:14 2025 - All pods are down
-Fetching master and worker IPs...
-Running backup on all nodes...
-Running backup on master node (10.188.46.221)...
-Fri Jan 17 05:46:14 2025 - Starting backup of data, the backup might take time based on the size of the data
-Fri Jan 17 05:46:15 2025 - Creating backup tar /opt/backuprestore/backup-netq-cluster.tar
-Backup is successful
-Running backup on worker node (10.188.46.193)...
-Fri Jan 17 05:46:19 2025 - Please find detailed logs at: /var/log/vm-backuprestore.log
-Fri Jan 17 05:46:19 2025 - Starting backup of data, the backup might take time based on the size of the data
-Fri Jan 17 05:46:19 2025 - Creating backup tar /opt/backuprestore/backup-netq-cluster.tar
-Backup is successful
-Running backup on worker node (10.188.44.55)...
-Fri Jan 17 05:46:44 2025 - Please find detailed logs at: /var/log/vm-backuprestore.log
-Fri Jan 17 05:46:44 2025 - Starting backup of data, the backup might take time based on the size of the data
-Fri Jan 17 05:46:45 2025 - Creating backup tar /opt/backuprestore/backup-netq-cluster.tar
-Backup is successful
-Combining tars from all nodes...
-Adding the latest master tar...
-Fetching the latest tar from worker node (10.188.46.193)...
-Fetching the latest tar from worker node (10.188.44.55)...
-Creating combined tar at /opt/backuprestore/combined_backup_20250117054718.tar...
-Cleaning up temporary files...
-Combined tar created at /opt/backuprestore/combined_backup_20250117054718.tar
-The config key is EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixWMnkyRVRwbkxVVXBTVDFsSXUzM3NzRlNkMFE5S0Y3OFlVRVdBWUU5K244PQ==, alternately the config key is available in file /tmp/config-key
-Starting pods on master node...
-Fri Jan 17 05:48:25 2025 - Scaling all pods to replica 1
-Fri Jan 17 05:50:01 2025 - Waiting for all pods to come up
-Fri Jan 17 05:58:14 2025 - All pods are up
-```
-
-5. Copy the newly created tarball from the server and restore the data on your _new_ VM.
-
-```
-nvidia@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>
-```
-
-6. On your NetQ server (or the master node in cluster deployments), run the `netq bootstrap reset purge-db` command to deactivate the current premises. Use the `netq config show cli premises` command to verify that the status of the premises is inactive.
 
 {{</tab>}}
 

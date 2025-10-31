@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4621759</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4521203</td>
 <td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
 2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
@@ -1011,6 +1017,12 @@ You can safely ignore this warning.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4621759</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.14.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4469498</td>

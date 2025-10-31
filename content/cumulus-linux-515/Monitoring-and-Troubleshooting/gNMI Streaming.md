@@ -805,8 +805,10 @@ The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](#
 
 Cumulus Linux supports the following gNOI OpenConfig models:
 
-- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/system/system.proto#L78" text="System Reboot">}}, supporting warm, fast and cold reboot modes. The reboot gNOI RPC maps to the `nv action system reboot mode <mode>` command.
-- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L46" text="Software Image Installation">}}, supporting optimized image installation mapping to the `nv action install system image files <image>` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/system/system.proto#L78" text="System Reboot">}}, supporting warm, fast and cold reboot modes. The `reboot` gNOI RPC maps to the `nv action system reboot mode <mode>` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L139" text="Software Image Retrieval">}}, supporting copy operations of images to the switch. The `install` gNOI RPC maps to the `nv action fetch system image <image>` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L145" text="Software Image Activation">}}, supporting optimized image installation and activation. The `activate` gNOI RPC maps to the `nv action install system image files <image>`, `nv action boot-next system image other`, and  `nv action system reboot mode <mode> commands if a reboot is requested.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L46" text="Software Image Installation">}}
 - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto" text="File Management">}}, supporting retrieval, viewing, or deleting files. The following file management gNOI RPCs are supported:
   - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L34" text="Get">}}, the equivalent of the `nv action upload system file-path [local-path] [remote-url]` command.
   - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L52" text="Put">}}, the equivalent of the `nv action fetch system file-path [local-path][remote-url] [file-permissions]` command.

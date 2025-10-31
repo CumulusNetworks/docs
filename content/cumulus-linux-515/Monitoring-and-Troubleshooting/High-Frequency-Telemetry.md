@@ -17,7 +17,7 @@ Cumulus Linux provides two different methods to collect and analyze high frequen
 - Cumulus Linux supports high frequency telemetry on Spectrum-4 and later switches. 
 - Cumulus Linux does not support high frequency telemetry on ports using 8 lanes. On the Spectrum-4 switch, swp1 through swp64 use all 8 lanes; to run high frequency telemetry, you must break out these ports.
 - To correlate counters from different switches, the switches must have the same time (Cumulus Linux adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP; however, NVIDIA recommends using PTP because the timestamp is accurate between switches in the fabric at the microsecond level.
-- Streaming HFT export produces a high volume of metrics and is supported only with a {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="single gRPC export destination">}}. If you are exporting OTEL data to more than one destination, configure a {{<link url="Open-Telemetry-Export/#customize-export" text="`stats-group`">}} to limit `hft` export to only one destination.
+- Streaming HFT export produces a large number of metrics and is supported only with a {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="single gRPC export destination">}}. If you are exporting OTEL data to more than one destination, do not enable HFT globally and configure a {{<link url="Open-Telemetry-Export/#customize-export" text="`stats-group`">}} to enable `hft` export to only one destination.
 {{%/notice%}}
 
 ## Streaming HFT Export
@@ -58,7 +58,7 @@ cumulus@switch:~$ nv set interfaces swp1s0-3,swp2s0-3 telemetry hft state enable
 cumulus@switch:~$ nv config apply
 ```
 
-Configure a duration, in seconds, to stop streaming HFT data after a specified period. The default duration is 1 hour (3600 seconds):
+Configure a duration, in seconds, to stop streaming HFT data after a specified period. The maximum duration is 1 hour (3600 seconds):
 
 ```
 cumulus@switch:~$ nv set system telemetry hft duration 120
@@ -67,13 +67,25 @@ cumulus@switch:~$ nv config apply
 
 3. Enable HFT streaming to export data to your configured {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export destination">}}:
 
+If you are only exporting OTEL data to a single collector from your switch, you can enable HFT export globally:
+
 ```
 cumulus@switch:~$ nv set system telemetry hft export state enabled 
 cumulus@switch:~$ nv config apply
 ```
 
+Otherwise, configure a new statistic group to enable only HFT export to a destination:
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state enable
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group ONLY-HFT
+cumulus@switch:~$ nv config apply
+```
+
 {{%notice note%}}
-After you enable HFT export and the configured duration expires, you must disable and then reenable HFT export if you want to restart HFT collection and export:
+After you enable HFT export and the configured duration expires, you must disable and then reenable HFT export if you want to restart HFT collection and export.
+
+If you have HFT enabled globally (for when you are only generating OTLP data to a single collector for HFT):
 
 ```
 cumulus@switch:~$ nv set system telemetry hft export state disabled
@@ -81,9 +93,22 @@ cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv set system telemetry hft export state enabled
 cumulus@switch:~$ nv config apply
 ```
+
+If you have a statistics group configured to enable HFT only for a single destination:
+
+```
+cumulus@switch:~$ cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state disable
+cumulus@switch:~$ nv config apply
+cumulus@switch:~$ cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state enable
+cumulus@switch:~$ nv config apply
+```
 {{%/notice%}}
 
 You can view HFT status and configured parameters with the `nv show system telemetry hft` command.
+
+### Considerations and Scale
+
+High-frequency telemetry generates a significant volume of data records. For instance, enabling a single counter for HFT on one port with a sampling interval of 100 microseconds can produce approximately 89 MB of data during a 10-second collection period. At greater interface or counter scales, the required storage capacity on the collector increases substantially. To optimize storage utilization, enable data compression on the collector when handling large telemetry datasets.
 
 ## Collect HFT in JSON File
 

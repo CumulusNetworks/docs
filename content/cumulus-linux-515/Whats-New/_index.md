@@ -13,6 +13,7 @@ This document supports the Cumulus Linux 5.15 release, and lists new features an
 Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fixes.
 ### New Features and Enhancements
 
+- {{<link url="#new-changed-and-deprecated-nvue-commands" text="NVUE command changes">}}
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet trimming counters">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}. Legacy BFD configuration and routing link state verification with PTMd is now deprecated.
 - {{<link url="Optional-BGP-Configuration/#ecmp" text="Support 256 BGP sessions and 256-way ECMP on Spectrum-4">}}

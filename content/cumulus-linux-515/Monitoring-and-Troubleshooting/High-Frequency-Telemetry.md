@@ -83,7 +83,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-After you enable HFT export and the configured duration expires, you must disable and then reenable HFT export if you want to restart HFT collection and export.
+After you enable HFT export and the configured duration completes, you must disable and then reenable HFT export if you want to restart HFT collection and export.
 
 If you have HFT enabled globally (for when you are only generating OTLP data to a single collector for HFT):
 

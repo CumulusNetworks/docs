@@ -13,11 +13,11 @@ This document supports the Cumulus Linux 5.15 release, and lists new features an
 Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fixes.
 ### New Features and Enhancements
 
-- {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming counters">}}
+- {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet trimming counters">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}. Legacy BFD configuration and routing link state verification with PTMd is now deprecated.
 - {{<link url="Optional-BGP-Configuration/#ecmp" text="Support 256 BGP sessions and 256-way ECMP on Spectrum-4">}}
 - {{<link url="Latency-Monitoring" text="Switch latency monitoring">}}
-- {{<link url="Docker-with-Cumulus-Linux" text="Support for docker-container">}}
+- {{<link url="Docker-with-Cumulus-Linux" text="Enhanced NVUE support for docker containers">}}
 - {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Dynamic IPv6 Multi-tenancy">}}
 - {{<link url="SSH-for-Remote-Access/#ssh-ciphers" text="SSH cipher configuration">}}
 - {{<link url="Upgrading-Cumulus-Linux/#offline-package-upgrade" text="Offline package upgrade">}}
@@ -26,7 +26,6 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 - {{<link url="Interface-Configuration-and-Management/#interface-fault-detection" text="Interface fault detection">}}
 - {{<link url="Syslog/#selectors-and-filters" text="Rsyslog selector design changes">}}
 - Telemetry
-   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
    - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
    - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="BGP graceful shutdown metric for OLTP">}}
    - {{<link url="Open-Telemetry-Export/#acl-statistics" text="ACL metrics for OTLP">}}
@@ -61,7 +60,6 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 | `/components/component[name]/storage/state/counters/write-ops` | Number of writes completed successfully. |
 | `/components/component[name]/storage/state/counters/write-merged` | Number of writes merged. |
 | `/system/mount-points/mount-point[name]/state/inodes` | Filesystem total file nodes. |
-| `/components/component[name]/state/part-no` | Part number of the component, keyed by component name.|
 | `/system/mount-points/mount-point[name]/state/inodes-free` | Filesystem total free file nodes. |
 | `/system/mount-points/mount-point[name]/state/read-only` | Filesystem read-only status. |
 | `/system/mount-points/mount-point[name]/state/device-error` | Whether an error occurred while getting statistics for the given device. |
@@ -122,6 +120,30 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 | `/interfaces/interface[name]/state/counters/ecn-marked-pkts` | Count of packets marked as ECN or potentially marked as ECN |
 | `/interfaces/interface[name]/state/counters/ece-marked-pkts` | Count of packets marked as ECE or potentially marked as ECE. |
 | `/interfaces/interface[name]/state/counters/tx-wait` | Count of wire-speed, one-byte time intervals during which the port had data ready to transmit but did not send any data. |
+| `/interfaces/interface[name]/phy/histograms/state/rs-num-corr-err[upper-boundary]/count`| Number of bit errors corrected that are less than or equal to upper boundary. |
+| `/interfaces/interface[name]/phy/histograms/state/rs-num-corr-err[upper-boundary]/upper-boundary` | Upper boundary of the bin.|
+
+**New Routing Metrics:**
+
+|  Name | Description |
+|------ | ----------- |
+| `/tables/table[address-family=IPV4][protocol=BGP]/state/route-count` | IPv4 BGP route count. |
+| `/tables/table[address-family=IPV6][protocol=BGP]/state/route-count` | IPv6 BGP route count. |
+| `/tables/table[address-family=IPV4][protocol=DIRECTLY_CONNECTED]/state/route-count` | IPv4 connected route count. |
+| `/tables/table[address-family=IPV6][protocol=DIRECTLY_CONNECTED]/state/route-count` | IPv6 connected route count. |
+| `/tables/table[address-family=IPV4][protocol=STATIC]/state/route-count` | IPv4 static route count. |
+| `/tables/table[address-family=IPV6][protocol=STATIC]/state/route-count` | IPv6 static route count. |
+| `/tables/table[address-family=IPV4][protocol=OSPF]/state/route-count` | IPv4 OSPF route count. |
+| `/tables/table[address-family=IPV6][protocol=OSPF]/state/route-count` | IPv6 OSPF route count. |
+| `/tables/table[address-family=IPV4][protocol=KERNEL]/state/route-count` | IPv4 kernel route count. |
+| `/tables/table[address-family=IPV6][protocol=KERNEL]/state/route-count` | IPv6 kernel route count. |
+| `/tables/table[address-family=IPV4][protocol=POLICY_BASED_ROUTING]/state/route-count` | IPv4 PBR route count.|
+| `/tables/table[address-family=IPV6][protocol=POLICY_BASED_ROUTING]/state/route-count` | IPv6 PBR route count.|
+| `/tables/table[address-family=IPV4][protocol=TABLE_CONNECTION]/state/route-count` | IPv4 table connection route count.|
+| `/tables/table[address-family=IPV6][protocol=TABLE_CONNECTION]/state/route-count` | IPv6 table connection route count.|
+| `/network-instances/network-instance/tables/state/ipv4-route-count` | Total IPv4 route count.|
+| `//network-instances/network-instance/tables/state/ipv6-route-count` | Total IPv6 route count.|
+| `/network-instances/network-instance/tables/state/rib-nexthop-group-count` | Nexthop group count.|
 {{< /expand >}}
    - {{< expand "Updated gNMI PHY metric names" >}}
 Old Name | New Name|

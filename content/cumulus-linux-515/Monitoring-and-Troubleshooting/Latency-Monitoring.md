@@ -68,12 +68,12 @@ cumulus@switch:~$ nv config apply
 To ensure accurate latency monitoring and appropriate resource utilization, adjust the periodic interval based on the number of traffic classes (TCs) configured with latency monitoring per port. NVIDIA recommends setting the minimum interval according to the total number of TCs enabled per port:<br><br>
 
 
-| # of TCs per-port | Minimum periodic interval |
+| Number (n) of TCs per-port | Minimum periodic interval |
 | ------- | ----------- |
-| ≤ 4 | 1 second |
-| > 4, but ≤ 8 | 2 seconds |
-| > 8, but ≤ 12 | 3 seconds |
-| > 12, but ≤ 16 | 4 seconds |
+| n ≤ 4 | 1 second |
+| 4< n ≤ 8 | 2 seconds |
+| 8< n ≤ 12 | 3 seconds |
+| 12< n ≤ 16 | 4 seconds |
 
 {{%/notice%}}
 

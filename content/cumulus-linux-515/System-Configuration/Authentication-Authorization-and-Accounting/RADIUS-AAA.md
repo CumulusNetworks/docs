@@ -200,6 +200,7 @@ NVUE does not provide commands to enable login without local accounts.
 
 Cumulus Linux creates local user account information such as a home directory, shell, `uid`, and `gid` automatically during a RADIUS authentication attempt. When a new RADIUS-authenticated user first attempts to log into the switch, an unconfirmed user account is created on the switch, pending successful RADIUS authentication. Once authentication is successful, the user's account information is confirmed and the account will be visible in the `/etc/passwd` file.
 
+<!--
 An unconfirmed user entry in `/etc/passwd` for a user who attempted authentication but has not yet successfully logged in will contain the string `Unconfirmed`:
 
 ```
@@ -210,6 +211,7 @@ bla:x:1009:1009:Unconfirmed-1761935427:/home/bla:/bin/bash
 ```
 
 By default, unconfirmed users are aged out after at least 10 minutes expires from the last authentication attempt from that user. 
+-->
 
 ## Local Fallback Authentication
 

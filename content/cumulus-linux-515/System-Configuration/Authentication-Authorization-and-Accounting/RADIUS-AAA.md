@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 190
 toc: 4
 ---
-Cumulus Linux provides add-on packages to enable <span class="a-tooltip">[RADIUS](## "Remote Authentication Dial-In User Service")</span> users to log into the switch transparently with minimal configuration. There is no need to create accounts or directories on the switch. Authentication uses PAM and includes login, `ssh`, `sudo` and `su`.
+Cumulus Linux provides add-on packages to enable <span class="a-tooltip">[RADIUS](## "Remote Authentication Dial-In User Service")</span> users to log into the switch with minimal configuration. There is no need to create accounts or directories on the switch. Authentication uses PAM and includes login, `ssh`, `sudo` and `su`.
 
 ## Install the RADIUS Packages
 
@@ -18,7 +18,7 @@ To install the RADIUS packages:
 
 ```
 cumulus@switch:~$ sudo apt-get update
-cumulus@switch:~$ sudo apt-get install libnss-mapuser libpam-radius-auth
+cumulus@switch:~$ sudo apt-get install libnss-mapuser libpam-radius-auth libnss-radius
 ```
 
 {{%notice note%}}
@@ -105,7 +105,7 @@ You can configure the following global RADIUS settings and server specific setti
 | `source-ipv4`</br>`source-ipv6`| A specific interface to reach all RADIUS servers. To configure the source IP address for a specific RADIUS server, use the `source-ip` option.|
 | `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. You enable the debug option globally for all the servers.|
 | `require-message-authenticator` | Requires authentication packets to have the Message-Authenticator attribute; the switch discards as Access-Reject all packets that do not have the Message-Authenticator attribute.|
-| `auth-type` | The method used for authentication. Options are `pap`, `chap`, and the default value of `mschapv2`. |
+| `auth-type` | The method used for authentication with the RADIUS server. Options are `pap`, `chap`, and the default value of `mschapv2`. If you use multiple RADIUS servers, you can specify a different `auth-type` for each server. |
 
 {{%notice infonopad%}}
 - With the default `auth-type` of `mschapv2`, configure your RADIUS server to use PEAP with MSCHAPv2; do not configure md5 authentication. 
@@ -132,7 +132,7 @@ cumulus@switch:~$ nv set system aaa radius timeout 10
 cumulus@switch:~$ nv set system aaa radius source-ipv4 192.168.1.10
 cumulus@switch:~$ nv set system aaa radius debug enable
 cumulus@switch:~$ nv set system aaa radius require-message-authenticator enabled
-cumulus@switch:~$ nv set system aaa radius auth-type mschapv
+cumulus@switch:~$ nv set system aaa radius auth-type mschapv2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -142,6 +142,7 @@ The following example configures RADIUS settings for a specific RADIUS server:
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ip 192.168.1.10
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 vrf RED
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 timeout 10
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 auth-type pap
 cumulus@switch:~$ nv config apply
 ```
 
@@ -197,30 +198,18 @@ The VSA vendor name (Cisco-AVPair in the example above) can have any content. Th
 NVUE does not provide commands to enable login without local accounts.
 {{%/notice%}}
 
-LDAP is not commonly used with switches and adding accounts locally is cumbersome, Cumulus Linux includes a mapping capability with the `libnss-mapuser` package.
+Cumulus Linux creates local user account information such as a home directory, shell, `uid`, and `gid` automatically during a RADIUS authentication attempt. When a new RADIUS-authenticated user first attempts to log into the switch, an unconfirmed user account is created on the switch, pending successful RADIUS authentication. Once authentication is successful, the user's account information is confirmed and the account will be visible in the `/etc/passwd` file.
 
-Mapping uses two NSS (Name Service Switch) plugins, one for account name, and one for UID lookup. The installation process configures these accounts automatically in the `/etc/nsswitch.conf` file and removes them when you delete the package. See the `nss_mapuser (8)` man page for the full description of this plugin.
-<!-- vale off -->
-A username is mapped at login to a fixed account specified in the configuration file, with the fields of the fixed account used as a template for the user that is logging in.
-<!-- vale on -->
-For example, if you look up the name `dave` and the fixed account in the configuration file is `radius\_user`, and that entry in `/etc/passwd` is:
+An unconfirmed user entry in `/etc/passwd` for a user who attempted authentication but has not yet successfully logged in will contain the string `Unconfirmed`:
 
 ```
-radius_user:x:1017:1002:radius user:/home/radius_user:/bin/bash
+cumulus@switch:~$ sudo cat /etc/passwd
+...
+bla:x:1009:1009:Unconfirmed-1761935427:/home/bla:/bin/bash
+...
 ```
 
-then the matching line that returns when you run `getent passwd dave` is:
-
-```
-cumulus@switch:~$ getent passwd dave
-dave:x:1017:1002:dave mapped user:/home/dave:/bin/bash
-```
-
-The login process creates the home directory `/home/dave` if it does not already exist and populates it with the standard skeleton files by the `mkhomedir_helper` command.
-
-The configuration file `/etc/nss_mapuser.conf` configures the plugins. The file includes the mapped account name, which is `radius_user` by default. You can change the mapped account name by editing the file. The `nss_mapuser (5)` man page describes the configuration file.
-
-A flat file mapping derives from the session number assigned during login, which persists across `su` and `sudo`. Cumulus Linux removes the mapping at logout.
+By default, unconfirmed users are aged out after at least 10 minutes expires from the last authentication attempt from that user. 
 
 ## Local Fallback Authentication
 
@@ -356,21 +345,23 @@ To show all RADIUS configured servers, run the `nv show system aaa radius server
 
 ```
 cumulus@switch:~$ nv show system aaa radius server
-Hostname       Port  Priority  Password  source-ip     Timeout
--------------  ----  --------  --------  ------------  -------
-192.168.0.254  42    1         *         192.168.1.10  10
+Hostname       Port  Auth-type  Priority  Password  source-ip     Timeout
+-------------  ----  ---------  --------  --------  ------------  -------
+192.168.0.254  42    mschapv2   1         *         192.168.1.10  10
 ```
 
 To show configuration for a specific RADIUS server, run the `nv show system aaa radius server <server>` command:
 
 ```
 cumulus@switch:~$ nv show system aaa radius server 192.168.0.254
-           operational   applied     
----------  ------------  ------------
-port       42            42          
-timeout    10            10          
-secret     *             *           
-priority   1             10          
+           operational  applied                                  pending                                
+---------  -----------  ---------------------------------------  ---------------------------------------
+port                    1812                                     1812                                   
+auth-type               mschapv2                                 mschapv2                               
+timeout                 10                                       10                                     
+secret                  $nvsec$e46935725a803cc4864d1c43e84011ef  $nvsec$e46935725a803cc4864d1c43e84011ef
+priority                1                                        1                                      
+source-ip               192.168.1.10                             192.168.1.10  
 ```
 <!-- NOT IN 5.14 - TO ADD FOR 5.15 MAYBE
 ## Show and Clear RADIUS Counters
@@ -403,19 +394,13 @@ Action succeeded
 Remove the RADIUS packages with the following command:
 
 ```
-cumulus@switch:~$ sudo apt-get remove libnss-mapuser libpam-radius-auth
+cumulus@switch:~$ sudo apt-get remove libnss-mapuser libpam-radius-auth libnss-radius
 ```
 
-When you remove the packages, Cumulus Linux deletes the plugins from the `/etc/nsswitch.conf` file and from the PAM files.
-
-To remove all configuration files for these packages, run:
-
-```
-cumulus@switch:~$ sudo apt-get purge libnss-mapuser libpam-radius-auth
-```
+When you remove the packages, Cumulus Linux deletes the plugins from the PAM files.
 
 {{%notice note%}}
-Cumulus Linux does not remove the RADIUS fixed account from the `/etc/passwd` or `/etc/group` file or the home directories. They remain in case of modifications to the account or files in the home directories.
+Cumulus Linux does not remove the RADIUS accounts from the `/etc/passwd` or `/etc/group` file or the home directories. They remain in case of modifications to the account or files in the home directories.
 {{%/notice%}}
 
 To remove the home directories of the RADIUS users, obtain the list by running the following command:
@@ -424,7 +409,7 @@ To remove the home directories of the RADIUS users, obtain the list by running t
 cumulus@switch:~$ sudo ls -l /var/cache/radius/user
 ```
 
-For all users listed, except the `radius_user`, run the following command to remove the home directories:
+For all users listed, run the following command to remove the home directories:
 
 ```
 cumulus@switch:~$ sudo deluser --remove-home USERNAME
@@ -439,7 +424,6 @@ userdel: cannot remove entry 'USERNAME' from /etc/passwd
 
 ## Considerations
 
-- If two or more RADIUS users log in simultaneously, a UID lookup only returns the user that logs in first. Any process that either user runs applies to both, and all files that either user creates apply to the first name matched. This process is similar to adding two local users to the password file with the same UID and GID, and is an inherent limitation of using the UID for the fixed user from the password file. The current algorithm returns the first name matching the UID from the mapping file, which is either the first or second user that logs in.
 - When you install both the TACACS+ and the RADIUS AAA client, Cumulus Linux does not attempt the RADIUS login. As a workaround, do not install both the TACACS+ and the RADIUS AAA client on the same switch.
 - When the RADIUS server is reachable outside of the management VRF, such as the default VRF, you might see the following error message when you try to run `sudo`:
 

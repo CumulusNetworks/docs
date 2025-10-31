@@ -32,7 +32,8 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
    - {{<link url="gNMI-Streaming/#metrics" text="ACL metrics for gNMI streaming">}}
    - {{<link url="gNMI-Streaming/#metrics" text="Packet trimming metrics for gNMI streaming">}}
    - {{<link url="gNMI-Streaming/#metrics" text="PHY metrics for gNMI streaming">}} (Number of bit errors corrected and upper boundary of the bin)
-   - {{<link url="High-Frequency-Telemetry/#streaming-hft-export" text="High frequency telemetry streaming">}} and {{<link url="Open-Telemetry-Export/#congestion-notifications" text="congestion event notifications">}}
+   - {{<link url="High-Frequency-Telemetry/#streaming-hft-export" text="High frequency telemetry streaming">}}
+   - {{<link url="Open-Telemetry-Export/#congestion-notifications" text="Congestion event notifications">}}
    - {{< expand "New gNMI xPaths aligning with OTEL metrics:" >}}
 **New Platform Metrics:**
 

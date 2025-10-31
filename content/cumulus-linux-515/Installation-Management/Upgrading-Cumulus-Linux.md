@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 30
 toc: 3
 ---
-This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to upgrade with minimal disruption to network traffic.
+This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to perform a hitless (sub-second loss of data plane traffic) upgrade.
 
 To upgrade Cumulus Linux, choose one of the three upgrade methods:
 
@@ -13,7 +13,7 @@ To upgrade Cumulus Linux, choose one of the three upgrade methods:
 - Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you will need to manually back up and restore your switch configuration)
 ## Upgrades with ISSU
 
-<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to upgrade the switch software while the network continues to forward packets with minimal disruption to the network, also called a hitless upgrade.
+<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to perform a hitless upgrade of the switch software while the network continues to forward packets. ISSU hitless upgrade minimizes data plane traffic disruption to sub-second levels and automatically translates the switch NVUE configuration to the new version’s schema. During ISSU, the routing control plane is temporarily unavailable; however, the {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} capability maintains traffic flow through the switch.
 
 Cumulus Linux supports two methods that can use ISSU:
 - {{<link url="#optimized-image-upgrade" text="Optimized image upgrade">}}
@@ -53,9 +53,9 @@ Restart the switchd service with the `sudo systemctl restart switchd.service` co
 {{%notice note%}}
 Cumulus Linux supports ISSU and warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. 
 
-The following features are not supported during warm boot:
+The following features are not supported during warm reboot:
 - EVPN MLAG or EVPN multihoming.
-- LACP bonds. LACP control plane sessions might time out before warm boot completes. Use static LAG to keep bonds up with sub-second convergence during warm boot.
+- LACP bonds. LACP control plane sessions might time out before warm reboot completes. Use static LAG to keep bonds up with sub-second convergence during a warm reboot.
 {{%/notice%}}
 
 ## Before You Upgrade
@@ -125,7 +125,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
     cumulus@switch:~$ nv action reboot system mode warm
 ```
 
-If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
 
 ```
     cumulus@switch:~$ nv action reboot system
@@ -146,9 +146,9 @@ current        2
 next           2                        
 partition1                              
   build-id     5.13.0.0026
-  description  Cumulus Linux 5.15.0     
+  description  Cumulus Linux 5.13.0     
   disk         /dev/sda5                
-  release      5.12.0                   
+  release      5.13.0                   
 partition2                              
   build-id     5.15.0.0018
   description  Cumulus Linux 5.15.0     
@@ -192,7 +192,7 @@ cumulus@switch:~$ cl-image-upgrade -a
     cumulus@switch:~$ sudo csmgrctl -wf
 ```
 
-If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
 
 ```
     cumulus@switch:~$ sudo reboot
@@ -256,7 +256,7 @@ If you configured the switch resource mode to half for {{<link url="#issu" text=
 ```
     cumulus@switch:~$ nv action reboot system mode warm
 ```
-If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
 
 ```
     cumulus@switch:~$ nv action reboot system
@@ -336,7 +336,7 @@ If you configured the switch resource mode to half for {{<link url="#issu" text=
 cumulus@switch:~$ sudo csmgrctl -wf
 ```
 
-If you are not using ISSU, reboot with the desired {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot mode">}}. The default is a cold boot:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
 
 ```
 cumulus@switch:~$ sudo reboot
@@ -346,6 +346,79 @@ cumulus@switch:~$ sudo reboot
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Offline Package Upgrade
+
+Cumulus Linux is set up by default to use NVIDIA’s production APT repository, with the configuration defined in `/etc/apt/sources.list`. This allows the switch to directly access and install updates or packages from the internet. For networks without internet access, NVIDIA also provides a docker container that can host an APT repository locally, enabling your switch to retrieve packages from a server within your environment. To obtain the docker container, download it from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}.
+
+{{%notice note%}}
+You can run the docker container on your own server, or use {{<link url="Docker-with-Cumulus-Linux/" text="Docker with Cumulus Linux">}} to run it on a switch.
+{{%/notice%}}
+
+To launch the docker container and configure your switch for offline package upgrade:
+
+1. Copy the docker container tarball to your server. Load the image with the `sudo docker load -i /path/to/tarball/cumulus-linux-apt-mirror-5.15.0.tar` command:
+
+```
+cumulus@switch:~$ sudo docker load -i ./cumulus-linux-apt-mirror-5.15.0.tar 
+36f5f951f60a: Loading layer [==================================================>]  77.89MB/77.89MB
+2351dd6bd33d: Loading layer [==================================================>]  118.7MB/118.7MB
+00cc4f38365c: Loading layer [==================================================>]  3.584kB/3.584kB
+15db5544fc22: Loading layer [==================================================>]  4.608kB/4.608kB
+ce6adb617595: Loading layer [==================================================>]   2.56kB/2.56kB
+1fc99835d6cd: Loading layer [==================================================>]   5.12kB/5.12kB
+ef322fe0300d: Loading layer [==================================================>]  7.168kB/7.168kB
+22fcae930038: Loading layer [==================================================>]  3.072kB/3.072kB
+049771462316: Loading layer [==================================================>]   5.12kB/5.12kB
+ba266af6a60c: Loading layer [==================================================>]  4.096kB/4.096kB
+76333a9a644a: Loading layer [==================================================>]  5.632kB/5.632kB
+599cafa33123: Loading layer [==================================================>]  9.216kB/9.216kB
+346269b5a88b: Loading layer [==================================================>]  8.195MB/8.195MB
+0abaedd440c4: Loading layer [==================================================>]   3.27GB/3.27GB
+Loaded image: cumulus-linux-apt-mirror:5.15.0
+```
+
+2. Run the docker container, publishing ports for HTTP (8080:80) and HTTPS (8443:8443), supplying desired environment variables, and optionally defining volumes to mount for your own CA or server certificates. Supported envrionment variables include:
+
+- `REPO_HOST=<hostname>` - defines the hostname used to connect to the repository and is used for the Common Name (CN) or Subject Alternative Name (SAN) field in certificates.
+- `REPO_IP=<ip-address>` - defines the IP used to connect to the respository if you do not use a hostname.
+- `FORCE_REISSUE=[0 | 1]` - set to 1 to force reissuing the server certificate when the container starts.
+
+The following example runs the container referencing IP address 10.1.1.100, and defines local volumes on the host to mount for a CA certificate:
+
+```
+cumulus@switch:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_IP=10.1.1.100 -e FORCE_REISSUE=1 -v /local/certpath/ca.crt:/etc/nginx/ca/ca.crt:ro -v /local/certpath/ca.key:/etc/nginx/ca/ca.key:ro cumulus-linux-apt-mirror:5.15.0
+```
+
+{{%notice note%}}
+If you do not specify your own CA or server certificate, a self-signed certificate will be used.
+{{%/notice%}}
+
+3. Install the certificate on the switches you want to upgrade:
+
+```
+cumulus@switch:~$ curl -fsSL http://10.1.1.100:8080/ca.crt -o /usr/local/share/ca-certificates/repo-ca.crt
+cumulus@switch:~$ sudo update-ca-certificates 
+Updating certificates in /etc/ssl/certs...
+rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
+rehash: warning: skipping duplicate certificate in repo-ca2.pem
+rehash: warning: skipping duplicate certificate in repo-ca5.pem
+1 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+```
+
+4. Configure `/etc/apt/sources.list` on your switches with your repository:
+
+```
+cumulus@switch:~$ sudo vi /etc/apt/sources.list
+...
+deb https://10.10.10.2:8443 CumulusLinux-5.15.0 cumulus upstream netq
+...
+```
+
+5. Continue with a {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} on your switch. 
+
 
 ## ONIE Image Upgrade
 
@@ -373,7 +446,8 @@ If you manage your switch configuration with NVUE, use the following procedure t
 As Cumulus Linux supports more features and functionality, NVUE syntax might change between releases and the content of snippets and flexible snippets might become invalid. Before you back up and restore configuration across different Cumulus Linux releases, make sure to review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax and other configuration file changes.
 
 {{%notice note%}}
-- If you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release.
+- Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade. You must reimport the certificates after the new image is installed. 
+- If you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release. This method still requires reimporting certificates and CRLs after the image install.
 - If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
 {{%/notice%}}
 
@@ -471,21 +545,27 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
 3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, defines the current NVUE startup configuration to back up and restore in the new image, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.15.0-mlx-amd64.bin -t /etc/nvue.d/startup.yaml && sudo reboot
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.15.0-mlx-amd64.bin && sudo reboot
     ```
 
-4. Restore the configuration files to the new release:
+4. Restore certificates and the configuration files to the new release:
 
-   a. Copy the `/etc/nvue.d/startup.yaml` file from the back up process to the switch.
+   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and/or CRLs that were configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
 
-   b. If required, convert the `startup.yaml` file to the format of the currently running release on the switch. Refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}.
+   b. Copy the `/etc/nvue.d/startup.yaml` file from the back up process to the switch.
 
-   c. Run the `nv config replace` command, then run the `nv config apply` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
+   c. If required, convert the `startup.yaml` file to the format of the currently running release on the switch. Refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}.
+
+   d. Run the `nv config replace` command, then run the `nv config apply` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
 
    ```
    cumulus@switch:~$ nv config replace /home/cumulus/startup.yaml
    cumulus@switch:~$ nv config apply
    ```
+
+{{%notice infonopad%}}
+If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
+{{%/notice%}}
 
 5. Verify correct operation with the old configurations on the new release.
 6. Reinstall third party applications and associated configurations.

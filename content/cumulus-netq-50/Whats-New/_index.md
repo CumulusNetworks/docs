@@ -12,10 +12,10 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 5.0
 
-- You can now {{<link title="NVLink Management" text="monitor NVLink deployments">}} with NetQ. Use the REST API to manage NVLink network configurations and resources, and allocate GPUs for AI workloads. This release introduces {{<link title="Install the NetQ System" text="new deployment options">}} for Ethernet-only environments or hybrid NVLink-Ethernet networks. Previously called NMX-M, this feature retains all existing functionality and introduces expanded deployment options.
+- You can now {{<link title="NVLink Management" text="monitor NVLink deployments">}} with NetQ. Use the REST API to manage NVLink network configurations and resources, and allocate GPUs for AI workloads. This release introduces {{<link title="Install the NetQ System" text="new deployment options">}} for Ethernet-only environments or hybrid NVLink-Ethernet networks. Previously called NMX-M, this feature retains all existing functionality and introduces new workflows, such as lifecycle management for NVOS switches.
 - {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="Create and apply custom labels">}} to organize and filter switches.
 - {{<link title="Integrate NetQ with Grafana/#collect-slurm-telemetry" text="View Slurm data in Grafana">}}.
-- You can now launch the {{<link title="Cable Validations" text="Cable Validation Tool">}} from NetQ.
+- You can now launch the {{<link title="Cable Validations" text="cable validation tool">}} from NetQ.
 - Performance improvements to the duplicate IP address validation (beta)
 - Security enhancements and general performance improvements
 
@@ -26,7 +26,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ### Upgrade Paths
 
-You can upgrade to NetQ 5.0 if your deployment is running version 4.15 or 4.14. For on-premises and cloud deployments, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.0 installation">}}
+NetQ 5.0 is available exclusively for on-premises deployments. You can upgrade to 5.0 if your deployment is running version 4.15 or 4.14. First {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.0 installation">}}
 
 
 ### Compatible Agent Versions

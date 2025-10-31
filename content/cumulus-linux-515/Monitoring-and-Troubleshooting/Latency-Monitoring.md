@@ -70,6 +70,15 @@ cumulus@switch:~$ nv set system telemetry latency-measurement export state enabl
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice note%}}
+When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics are exported, add `latency-measurement` to the `stats-group` configuration to include latency metrics:
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group <name> latency-measurement
+cumulus@switch:~$ nv config apply
+```
+{{%/notice%}}
+
 ## Show Latency Information
 
 To show latency measurement information for an interface, run the `nv show interface swp1 latency-measurement` command:

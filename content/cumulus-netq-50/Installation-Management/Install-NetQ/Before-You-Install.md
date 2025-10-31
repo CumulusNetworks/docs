@@ -22,7 +22,6 @@ Consider the following deployment options and requirements before you install th
 
 *When switches are {{<link title="Integrate NetQ with Grafana/#requirements-and-support" text="configured with both OpenTelemetry (OTLP)">}} and the NetQ agent, switch support per deployment model is reduced by half.
 
-
 ## Deployment Type: On-Premises or Cloud
 
 **On-premises deployments** are hosted at your location and require the in-house skill set to install, configure, back up, and maintain NetQ. This model is a good choice if you want very limited or no access to the internet from switches and hosts in your network. 

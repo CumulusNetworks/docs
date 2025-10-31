@@ -25,7 +25,7 @@ Refer to {{<link title="Install the NetQ System" text="Install NetQ">}} for step
 
 To migrate your existing NMX-M deployment to the latest NetQ version, first uninstall your current version. Then perform a fresh installation and perform a system bringup.
 
-1. Run the following command: <!--from where?-->
+1. Run the following command from the `/opt/netq-admin/nvl/scripts` directory:
 
 ```
 python3 nvlink-uninstall-from-k8s.py --auto-approve

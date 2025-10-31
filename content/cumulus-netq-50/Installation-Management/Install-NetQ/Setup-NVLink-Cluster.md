@@ -9,7 +9,7 @@ Follow these steps to set up and configure your VMs in a cluster of servers. Fir
 
 ## System Requirements
 
-NetQ for NVLink supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
+NetQ NVLink supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
 
 | Resource | Minimum Requirements |
 | :--- | :--- |
@@ -154,7 +154,11 @@ nvidia@<hostname>:~$ netq install cluster master-init
 ```
 9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
-10. Create a JSON template using the installation command for your deployment model. Run the `netq install nvl config generate` command on your master node to generate a template for the cluster configuration JSON file: 
+10. Create a JSON template using the installation command for your deployment model. Run the `netq install nvl config generate` command on your master node to generate a template for the cluster configuration JSON file.
+
+{{<notice tip>}}
+The JSON file is created in the <code>/tmp/nvl-cluster-config.json</code> directory by default. To create the file in a different directory, specify the full path in the command, for example <code>netq install nvl config generate /home/nvidia/nvl-config.json</code>.
+{{</notice>}}
 
 ```
 nvidia@netq-server:~$ netq install nvl config generate
@@ -173,7 +177,6 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
         "version": "v2.0",
         "interface": "<INPUT>",
         "cluster-vip": "<INPUT>",
-        "is-ipv6": "<INPUT>",
         "servers": [
                 {
                         "ip": "<INPUT>"
@@ -188,7 +191,6 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
                         "description": "<SERVER3>"
                 },
                 ],
-        "shared-cluster-install": "<INPUT>",
         "storage-path": "/var/lib/longhorn",
         "alertmanager_webhook_url": "<INPUT>"
 }
@@ -198,9 +200,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 |----- | ----------- |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
-| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
-| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |
 
 {{< /tab >}}
@@ -212,7 +212,6 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
         "version": "v2.0",
         "interface": "eth0",
         "cluster-vip": "10.176.235.101",
-        "is-ipv6": false,
         "servers": [
                 {
                         "ip": "10.176.235.51"
@@ -227,7 +226,6 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
                         "description": "Worker2"
                 },
                 ],
-        "shared-cluster-install": false,
         "storage-path": "/var/lib/longhorn",
         "alertmanager_webhook_url": "http://master_ip:5029/webhook"
 }
@@ -237,9 +235,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 |----- | ----------- |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
-| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
-| `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |
 
 {{< /tab >}}

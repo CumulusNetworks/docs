@@ -54,7 +54,7 @@ cumulus@switch:~$ nv config apply
 Configure the interfaces that HFT monitors to collect data:
 
 ```
-cumulus@switch:~$ nv set interfaces swp1s0-3,swp2s0-3 telemetry hft state enabled
+cumulus@switch:~$ nv set interface swp1s0-3,swp2s0-3 telemetry hft state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -104,11 +104,75 @@ cumulus@switch:~$ nv config apply
 ```
 {{%/notice%}}
 
-You can view HFT status and configured parameters with the `nv show system telemetry hft` command.
+You can view HFT status and configured parameters with the `nv show system telemetry hft` command:
+
+```
+cumulus@switch:mgmt:~# nv show system telemetry hft
+                      operational          applied  pending
+--------------------  -------------------  -------  -------
+export                                                     
+  state                                    enabled  enabled
+duration                                   120      120    
+sample-interval-usec                       1000     1000   
+session-status                                             
+  status              COMPLETED                            
+  timestamp           2025-10-29 08:02:08                  
+
+
+
+Counters
+===========
+    Counter     
+    ------------
+    rx-byte     
+    tc-occupancy
+    tx-byte     
+
+
+
+Egress Buffer
+================
+    Traffic Class
+    -------------
+    0            
+    1            
+    5            
+
+
+
+HFT Interfaces
+=================
+    Interface
+    ---------
+    swp1s0   
+    swp1s1   
+    swp1s2   
+    swp1s3   
+    swp2s0   
+    swp2s1   
+    swp2s2   
+    swp2s3   
+
+
+
+profile
+==========
+    Profile   traffic-class  counter       sample-interval
+    --------  -------------  ------------  ---------------
+    standard  3              rx-byte       5000           
+                             tc-occupancy                 
+                             tx-byte                      
+
+
+
+job
+======
+No Data
+```
 
 ### Considerations and Scale
 
-High-frequency telemetry generates a significant volume of data records. For instance, enabling a single counter for HFT on one port with a sampling interval of 100 microseconds can produce approximately 89 MB of data during a 10-second collection period. At greater interface or counter scales, the required storage capacity on the collector increases substantially. To optimize storage utilization, enable data compression on the collector when handling large telemetry datasets.
+High-frequency telemetry generates a significant volume of data records. For example, enabling a single counter for HFT on one port with a sample interval of 100 microseconds can produce approximately 90 MB of data during a 10-second collection period. At higher interface or counter scales, the required storage capacity on your collector increases substantially. To optimize storage utilization, enable data compression on the collector when handling large telemetry datasets.
 
 ## Collect HFT in JSON File
 

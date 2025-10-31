@@ -27,9 +27,10 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 - {{<link url="Syslog/#selectors-and-filters" text="Rsyslog selector design changes">}}
 - Telemetry
    - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
-   - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="BGP graceful shutdown metric for OLTP">}}
+   - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="BGP graceful shutdown metric for OTLP">}}
    - {{<link url="Open-Telemetry-Export/#acl-statistics" text="ACL metrics for OTLP">}}
    - {{<link url="gNMI-Streaming/#metrics" text="ACL metrics for gNMI streaming">}}
+   - {{<link url="gNMI-Streaming/#metrics" text="Packet trimming metrics for gNMI streaming">}}
    - {{<link url="gNMI-Streaming/#metrics" text="PHY metrics for gNMI streaming">}} (Number of bit errors corrected and upper boundary of the bin)
    - {{<link url="High-Frequency-Telemetry/#streaming-hft-export" text="High frequency telemetry streaming">}} and {{<link url="Open-Telemetry-Export/#congestion-notifications" text="congestion event notifications">}}
    - {{< expand "New gNMI xPaths aligning with OTEL metrics:" >}}

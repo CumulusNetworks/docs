@@ -696,6 +696,39 @@ cumulus@switch:~$ nv show interface swp10 telemetry label
 interface_swp10_label  Server 10 connection
 ```
 
+### Congestion Notifications
+
+You can configure the switch to monitor buffer occupancy for specific traffic classes per-port. When buffered data exceeds a defined threshold, the switch sends a notification to the {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="OpenTelemetry collector">}}. To configure congestion notifications:
+
+1. Configure {{<link url="Open-Telemetry-Export" text="open telemetry">}} and add your collector as a gRPC export destination.
+
+2. Configure the interfaces and traffic classes to monitor for buffer utilization. The following example enables congestion notifications for interface `swp1s0` on traffic classes 1 and 5 when the buffer threshold of 2000 bytes is crossed:
+
+```
+cumulus@switch:~$ nv set interface swp1s0 telemetry congestion-event egress-buffer traffic-class 1,5 buffer-threshold 2000
+cumulus@switch:~$ nv config apply
+```
+
+You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). When a notification is generated, additional congestion events do not trigger a new notification until the interval expires. The throttle duration is configured in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
+
+```
+cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 5000
+cumulus@switch:~$ nv config apply
+```
+
+3. Enable congestion event notifications to export events to your configured {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export destination">}}:
+
+```
+cumulus@switch:~$ nv set system telemetry congestion-event export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+- When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics are exported, add `congestion-event` notifications to the `stats-group` configuration to include congestion notifications.
+- If you configure congestion notifications while the buffer threshold for a traffic class is already exceeded, the switch does not send notifications until buffer occupancy drops below the threshold and then exceeds the threshold again.
+{{%/notice%}}
+
+To show congestion notification configuration, run the `nv show system telemetry congestion-event` command, and do viwe congestion event data for a specific port, run the `nv show interface <interface> telemetry congestion-event` command.
 ## Telemetry Data Format
 
 Cumulus Linux exports statistics and histogram data in the formats defined in this section.

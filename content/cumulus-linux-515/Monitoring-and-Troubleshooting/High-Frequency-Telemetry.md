@@ -10,14 +10,14 @@ High frequency telemetry enables you to collect counters at very short sampling 
 High frequency telemetry data provides time-series data that traditional histograms cannot provide. This data can help you understand the shape of the traffic pattern and identify any variability, or jitter in the traffic.
 
 Cumulus Linux provides two different methods to collect and analyze high frequency telemetry data:
-- {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector such as NVIDIA Nsight Systems through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}}.
+- {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}}.
 - {{<link url="#collect-hft-in-json-file" text="Collect HFT data in a JSON format file">}} on the switch filesystem, and upload the file to an external location for analysis.
 
 {{%notice note%}}
 - Cumulus Linux supports high frequency telemetry on Spectrum-4 and later switches. 
 - Cumulus Linux does not support high frequency telemetry on ports using 8 lanes. On the Spectrum-4 switch, swp1 through swp64 use all 8 lanes; to run high frequency telemetry, you must break out these ports.
 - To correlate counters from different switches, the switches must have the same time (Cumulus Linux adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP; however, NVIDIA recommends using PTP because the timestamp is accurate between switches in the fabric at the microsecond level.
-- The collected data is available on the switch until you trigger the next data collection job or until you reboot the switch.
+- Streaming HFT export produces a high volume of metrics and is supported only with a {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="single gRPC export destination">}}. If you are exporting OTEL data to more than one destination, configure a {{<link url="Open-Telemetry-Export/#customize-export" text="`stats-group`">}} to limit `hft` export to only one destination.
 {{%/notice%}}
 
 ## Streaming HFT Export
@@ -54,14 +54,14 @@ cumulus@switch:~$ nv config apply
 Configure the interfaces that HFT monitors to collect data:
 
 ```
-cumulus@switch:~$ nv set interfaces swp1s0-swp64s2 telemetry hft state enabled
+cumulus@switch:~$ nv set interfaces swp1s0-3,swp2s0-3 telemetry hft state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-You can optionally configure a duration, in seconds, to stop streaming HFT data after a specified period. By default, no duration is configured, and HFT data continues to stream while export remains enabled:
+Configure a duration, in seconds, to stop streaming HFT data after a specified period. The default duration is 1 hour (3600 seconds):
 
 ```
-cumulus@switch:~$ nv set system telemetry hft egress-buffer traffic-class 0,1,5
+cumulus@switch:~$ nv set system telemetry hft duration 120
 cumulus@switch:~$ nv config apply
 ```
 
@@ -72,39 +72,18 @@ cumulus@switch:~$ nv set system telemetry hft export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-### Congestion Notifications
-
-You can configure the switch to monitor buffer occupancy for specific traffic classes per-port. When buffered data exceeds a defined threshold, the switch sends a notification to the {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="OpenTelemetry collector">}}. To configure congestion notifications:
-
-1. Configure {{<link url="Open-Telemetry-Export" text="open telemetry">}} and add your collector as a gRPC export destination.
-
-2. Configure the interfaces and traffic classes to monitor for buffer utilization. The following example enables congestion notifications for interface `swp1s0` on traffic classes 1 and 5 when the buffer threshold of 2000 bytes is crossed:
-
-```
-cumulus@switch:~$ nv set interface swp1s0 telemetry congestion-event egress-buffer traffic-class 1,5 buffer-threshold 2000
-cumulus@switch:~$ nv config apply
-```
-
-You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). When a notification is generated, additional congestion events do not trigger a new notification until the interval expires. The throttle duration is configured in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
-
-```
-cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 5000
-cumulus@switch:~$ nv config apply
-```
-
-3. Enable congestion event notifications to export events to your configured {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export destination">}}:
-
-```
-cumulus@switch:~$ nv set system telemetry congestion-event export state enabled
-cumulus@switch:~$ nv config apply
-```
-
 {{%notice note%}}
-- When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics are exported, add `congestion-event` notifications to the `stats-group` configuration to include congestion notifications.
-- If you configure congestion notifications while the buffer threshold for a traffic class is already exceeded, the switch does not send notifications until buffer occupancy drops below the threshold and then exceeds the threshold again.
+After you enable HFT export and the configured duration expires, you must disable and then reenable HFT export if you want to restart HFT collection and export:
+
+```
+cumulus@switch:~$ nv set system telemetry hft export state disabled
+cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv set system telemetry hft export state enabled
+cumulus@switch:~$ nv config apply
+```
 {{%/notice%}}
 
-To show congestion notification configuration, run the `nv show system telemetry congestion-event` command, and do viwe congestion event data for a specific port, run the `nv show interface <interface> telemetry congestion-event` command.
+You can view HFT status and configured parameters with the `nv show system telemetry hft` command.
 
 ## Collect HFT in JSON File
 
@@ -121,7 +100,7 @@ To configure high frequency telemetry:
 High frequency telemetry uses profiles for JSON file data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).
 
 {{%notice note%}}
-You cannot delete or modify a profile if data collection jobs are already running or scheduled.
+- You cannot delete or modify a profile if data collection jobs are already running or scheduled.
 {{%/notice%}}
 
 To configure data collection:

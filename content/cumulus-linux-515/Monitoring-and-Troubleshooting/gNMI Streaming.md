@@ -825,7 +825,18 @@ The following gNOI RPCs are not supported:
 {{%/notice%}}
 
 
-You can view the number of gNOI RPCs received on the switch with the `nv show system gnmi-server status gnoi-rpc` command.
+You can view the number of gNOI RPCs received on the switch with the `nv show system gnmi-server status gnoi-rpc` command:
+
+```
+cumulus@switch:mgmt:~$ nv show system gnmi-server status gnoi-rpc
+gnoi-rpc-name failed-rpc-requests received-rpc-requests
+------------- ------------------- ---------------------
+File.Get      0                   4
+File.Put      0                   1
+File.Remove   0                   1
+File.Stat     0                   46
+OS.Install    0                   1
+```
 
 #### gNOI Client Requests
 

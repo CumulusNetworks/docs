@@ -805,8 +805,8 @@ The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](#
 
 Cumulus Linux supports the following OpenConfig gNOI RPCs:
 
-- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/system/system.proto#L78" text="System Reboot">}}, supporting warm, fast and cold reboot modes. The `reboot` gNOI RPC maps to the `nv action system reboot mode <mode>` command.
-- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L139" text="Software Image Retrieval">}}, supporting copy operations of images to the switch. The `install` gNOI RPC maps to the `nv action fetch system image <image>` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/system/system.proto#L78" text="System Reboot">}}, supporting warm and cold reboot modes. The `reboot` gNOI RPC maps to the `nv action system reboot mode <mode>` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L139" text="Software Image Install">}}, supporting copy operations of images to the switch. The `install` gNOI RPC maps to the `nv action fetch system image <image>` command.
 - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L145" text="Software Image Activation">}}, supporting optimized image installation and activation. The `activate` gNOI RPC maps to the `nv action install system image files <image>`, `nv action boot-next system image other`, and  `nv action system reboot mode <mode> commands if a reboot is requested.
 - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L46" text="Software Image Installation">}}
 - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto" text="File Management">}}, supporting retrieval, viewing, or deleting files. The following file management gNOI RPCs are supported:
@@ -815,8 +815,115 @@ Cumulus Linux supports the following OpenConfig gNOI RPCs:
   - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L57" text="Stat">}}, the equivalent of the `nv action list system file-path [local-path]` command.  
   - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L62" text="Remove">}}, the equivalent of the `nv action delete system file-path [local-path]` command.
 
+{{%notice note%}}
+The following gNOI RPCs are not supported:
+- system `cancel-reboot`
+- system `reboot-status`
+- system `set-package`
+- system `reboot` with `--method=FAST` (fast reboot mode)
+- file `transfer`
+{{%/notice%}}
+
 
 You can view the number of gNOI RPCs received on the switch with the `nv show system gnmi-server status gnoi-rpc` command.
+
+#### gNOI Client Requests
+
+You can use your gNOI client to send supported RPCs to a switch for operational commands.
+
+The following example uses the `Stat` RPC to view the `/var/support` directory on a switch:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file stat --path /var/support/
++--------------------+----------------------------------------------------------+----------------------+------------+------------+---------+
+|    Target Name     |                           Path                           |     LastModified     |    Perm    |   Umask    |  Size   |
++--------------------+----------------------------------------------------------+----------------------+------------+------------+---------+
+| 10.1.1.100:9339 | /var/support//cl_support_mlx-3700-79_20251031_171813.txz | 2025-10-31T17:18:54Z | -rw-r--r-- | -----w--w- | 9992512 |
+|                    | /var/support//core                                       | 2025-10-30T21:49:56Z | drwxr-xr-x | -----w--w- | 4096    |
++--------------------+----------------------------------------------------------+----------------------+------------+------------+---------+
+cumulus@host:mgmt:~$
+```
+
+The following example uses the file `get` RPC to retrieve the `/var/support/cl_support_mlx-3700-79_20251031_171813.txz` file and copy it to `/tmp/` on the local client system.
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file get --file /var/support/cl_support_mlx-3700-79_20251031_171813.txz --dst /tmp/
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 555328 bytes
+INFO[0001] "10.1.1.100:9339" file "/var/support/cl_support_mlx-3700-79_20251031_171813.txz" saved
+cumulus@host:mgmt:~$
+```
+
+The following example uses the file `remove` RPC to delete the `/var/support/cl_support_mlx-3700-79_20251031_171813.txz` file on the switch.
+
+```
+cumulus@host:mgmt:~$ gnoic  --username root --password NvidiaR0ots! --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file remove --path /var/support/cl_support_mlx-3700-79_20251031_171813.txz
+INFO[0000] "10.1.1.100:9339" file "/var/support/cl_support_mlx-3700-79_20251031_171813.txz" removed successfully
+cumulus@host:mgmt:~$
+```
+
+The following example uses the file `put` RPC to copy the `/tmp/gnmic_ca.crt` file on the local client host to the switch at `/tmp/gnmic.crt`:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file put --file /tmp/gnmic_ca.crt --dst /tmp/gnmi.crt
+INFO[0000] "10.1.1.100:9339" sending file="/tmp/gnmic_ca.crt" hash
+INFO[0000] "10.1.1.100:9339" file "/tmp/gnmic_ca.crt" written successfully
+cumulus@host:mgmt:~$
+```
+
+The following example uses the `install` RPC to copy the `/media/node/cumulus-linux-mlx-amd64-5.15.bin.devsigned` image file on the local client to the switch with the version `5.15.0`:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os install --pkg /media/node/cumulus-linux-mlx-amd64-5.15.bin.devsigned --version 5.15.0
+INFO[0000] starting install RPC
+INFO[0000] target "10.1.1.100:9339": starting Install stream
+INFO[0000] target "10.1.1.100:9339": TransferProgress bytes_received:5242880
+INFO[0000] target "10.1.1.100:9339": TransferProgress bytes_received:10485760
+...
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:980418560
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:985661440
+INFO[0011] target "10.1.1.100:9339": sending TransferEnd
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:990904320
+INFO[0011] target "10.1.1.100:9339": TransferContent done...
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:994600465
+cumulus@host:mgmt:~$
+```
+
+The following example uses the `activate` RPC to activate the `5.15.0` image as the next boot image without reboot the switch:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os activate --version 5.15.0 --no-reboot
+INFO[0190] target "10.1.1.100:9339" activate response "activate_ok:{}"
+cumulus@host:mgmt:~$
+```
+
+The following example uses the `activate` RPC to activate the `5.15.0` image as the next boot image and reboots the switch.
+
+```
+cumulus@host:mgmt:~$ gnoic  --username cumulus --password NvidiaR0cks! --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os activate --version 5.15.0 
+INFO[0182] target "10.1.1.100:9339" activate response "activate_ok:{}"
+cumulus@host:mgmt:~$
+```
+
+The following example uses the system `reboot` RPC to reboot the switch with warm reboot mode:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key system reboot --method WARM
+INFO[0074] "10.1.1.100:9339" System Reboot Request successful
+cumulus@host:mgmt:~$
+```
+
+{{%notice infonopad%}}
+When you issue a switch reboot with the gNOI system `reboot` RPC or the `activate` RPC without the `--no-reboot` option, the switch reboots immediately; no confirmation is required.
+{{%/notice%}}
 
 ## gNMI with NetQ
 

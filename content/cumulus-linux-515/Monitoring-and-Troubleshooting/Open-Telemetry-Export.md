@@ -971,12 +971,12 @@ When you enable control plane statistic telemetry, the switch exports the follow
 | `nvswitch_control_plane_trap_group_rx_packets` | Control plane trap group receive packets. |
 | `nvswitch_control_plane_trap_group_rx_bytes` | Control plane trap group receive bytes. |
 | `nvswitch_control_plane_trap_group_pkt_violations` | Control plane trap group packet violations. |
-| `node_netstat_Ip_InReceives` | Control plane input IPv4 packets |
-| `node_netstat_Ip_InAddrErrors` | Control plane input IPv4 errors. |
-| `node_netstat_Ip_InDelivers ` | Control plane output IPv4 packets.. |
-| `node_netstat_Ip6_InReceives ` | Control plane input IPv6 packets. |
-| `node_netstat_Ip6_InAddrErrors ` | Control plane input IPv6 errors. |
-| `node_netstat_Ip6_InDelivers` | Control plane output IPv6 packets. |
+| `node_netstat_Ip_InReceives` | * Control plane input IPv4 packets |
+| `node_netstat_Ip_InAddrErrors` | * Control plane input IPv4 errors. |
+| `node_netstat_Ip_InDelivers ` | * Control plane output IPv4 packets.. |
+| `node_netstat_Ip6_InReceives ` | * Control plane input IPv6 packets. |
+| `node_netstat_Ip6_InAddrErrors ` | * Control plane input IPv6 errors. |
+| `node_netstat_Ip6_InDelivers` | * Control plane output IPv6 packets. |
 
 {{< expand "Example JSON data for nvswitch_control_plane_trap_rx_drop:" >}}
 ```

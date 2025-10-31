@@ -74,7 +74,7 @@ cumulus@switch:~$ nv config apply
 
 ### Congestion Notifications
 
-You can configure the switch to monitor buffer occupancy for specific traffic classes. When buffered data exceeds a defined threshold, the switch sends a notification to the {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="OpenTelemetry collector">}}. To configure congestion notifications:
+You can configure the switch to monitor buffer occupancy for specific traffic classes per-port. When buffered data exceeds a defined threshold, the switch sends a notification to the {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="OpenTelemetry collector">}}. To configure congestion notifications:
 
 1. Configure {{<link url="Open-Telemetry-Export" text="open telemetry">}} and add your collector as a gRPC export destination.
 
@@ -100,8 +100,11 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-If you enable congestion notifications while the buffer threshold is already exceeded for a traffic class, the switch sends notifications only after congestion clears and the threshold is crossed again.​
+- When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics are exported, add `congestion-event` notifications to the `stats-group` configuration to include congestion notifications.
+- If you configure congestion notifications while the buffer threshold for a traffic class is already exceeded, the switch does not send notifications until buffer occupancy drops below the threshold and then exceeds the threshold again.
 {{%/notice%}}
+
+To show congestion notification configuration, run the `nv show system telemetry congestion-event` command, and do viwe congestion event data for a specific port, run the `nv show interface <interface> telemetry congestion-event` command.
 
 ## Collect HFT in JSON File
 

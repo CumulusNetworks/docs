@@ -667,6 +667,7 @@ As Cumulus Linux supports more features and functionality, NVUE syntax might cha
 
 {{%notice note%}}
 - If you upgrade the switch with package upgrade or optimized image upgrade, or if you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release.
+- Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade, even when staging `startup.yaml` using `onie-install -t`. You must reimport the certificates after the new image is installed. 
 - If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
 {{%/notice%}}
 
@@ -683,19 +684,24 @@ To back up and restore the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-3. After upgrade is complete, restore the configuration.
+3. After upgrade is complete, restore certificates and the configuration.
 
-   a. Copy the `/etc/nvue.d/startup.yaml` file to the switch.
+   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and/or CRLs that were configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
 
-   b. If required, convert the `startup.yaml` file to the format of the currently running release on the switch. Refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}.
+   b. Copy the `/etc/nvue.d/startup.yaml` file from the back up process to the switch.
 
-   c. Run the `nv config replace` command, then run the `nv config apply` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
+   c. If required, convert the `startup.yaml` file to the format of the currently running release on the switch. Refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}.
+
+   d. Run the `nv config replace` command, then run the `nv config apply` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
 
    ```
    cumulus@switch:~$ nv config replace /home/cumulus/startup.yaml
    cumulus@switch:~$ nv config apply
    ```
 
+{{%notice infonopad%}}
+If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
+{{%/notice%}}
 ## Maximum Revisions Limit
 
 You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them. The lower revision number is the oldest; for example revision 10 is older than revision 100.

@@ -790,15 +790,15 @@ The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](#
 Cumulus Linux supports the following gNOI OpenConfig models:
 
 - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/system/system.proto#L78" text="System Reboot">}}, supporting warm, fast and cold reboot modes. The reboot gNOI RPC maps to the `nv action system reboot mode <mode>` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L46" text="Software Image Installation">}}, supporting optimized image installation mapping to the `nv action install system image files <image>` command.
 - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto" text="File Management">}}, supporting retrieval, viewing, or deleting files. The following file management gNOI RPCs are supported:
   - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L34" text="Get">}}, the equivalent of the `nv action upload system file-path [local-path] [remote-url]` command.
   - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L52" text="Put">}}, the equivalent of the `nv action fetch system file-path [local-path][remote-url] [file-permissions]` command.
   - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L57" text="Stat">}}, the equivalent of the `nv action list system file-path [local-path]` command.  
   - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L62" text="Remove">}}, the equivalent of the `nv action delete system file-path [local-path]` command.
-- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L46" text="Software Image Installation">}}, supporting optimized image installation mapping to the `nv action install system image files <image>` command.
+
 
 You can view the number of gNOI RPCs received on the switch with the `nv show system gnmi-server status gnoi-rpc` command.
-
 
 ## gNMI with NetQ
 

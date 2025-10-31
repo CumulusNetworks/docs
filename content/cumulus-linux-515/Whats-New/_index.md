@@ -16,7 +16,6 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 - {{<link url="#new-changed-and-deprecated-nvue-commands" text="NVUE command changes">}}
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet trimming counters">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}. Legacy BFD configuration and routing link state verification with PTMd is now deprecated.
-- {{<link url="Optional-BGP-Configuration/#ecmp" text="Support 256 BGP sessions and 256-way ECMP on Spectrum-4">}}
 - {{<link url="Latency-Monitoring" text="Switch latency monitoring">}}
 - {{<link url="Docker-with-Cumulus-Linux" text="Enhanced NVUE support for docker containers">}}
 - {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Dynamic IPv6 Multi-tenancy">}}

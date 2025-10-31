@@ -90,6 +90,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4621759"></a> [4621759](#4621759) <a name="4621759"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.14.0 | |
 | <a name="4469498"></a> [4469498](#4469498) <a name="4469498"></a> <br /> | When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the <code>sudo systemctl restart frr.service</code> command. | 5.4.0-5.9.3 | 5.9.4-5.14.0, 5.14.0|
 | <a name="4413450"></a> [4413450](#4413450) <a name="4413450"></a> <br /> | When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes.  | 5.0.0-5.11.1, 5.13.0-5.13.1 | 5.11.2, 5.14.0|
 | <a name="4377862"></a> [4377862](#4377862) <a name="4377862"></a> <br /> | When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity. | 5.1.0-5.9.3 | 5.9.4-5.14.0, 5.11.2-5.14.0, 5.13.0-5.14.0|

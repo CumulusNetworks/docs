@@ -6565,16 +6565,26 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>4.3.2-4.4.5</td>
 </tr>
 <tr>
+<td>3364717</td>
+<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
+<td>4.3.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
+</tr>
+<tr>
+<td>3358865</td>
+<td>When you reboot a Broadcom switch with a static default route configured, the route might be installed in hardware without a next hop. This results in forwarded traffic to the CPU and drops. To recover from this issue, remove the default route configuration and reapply it. To prevent this issue, before rebooting the switch, split the default route configuration into two routes as below:
+
+ip route 0.0.0.0/1 10.1.1.1
+ip route 128.0.0.0/1 10.1.1.1
+</td>
+<td>4.3.1</td>
+<td>4.3.2-4.4.5</td>
+</tr>
+<tr>
 <td>3339249</td>
 <td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
 <td>4.2.1-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3336590</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.3.1</td>
-<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3334031</td>
@@ -6603,16 +6613,6 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <tr>
 <td>3288385</td>
 <td>On the EdgeCore AS7326-56X and AS7726-32X switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>4.3.1</td>
-<td>4.3.2-4.4.5</td>
-</tr>
-<tr>
-<td>3288343</td>
-<td>When you reboot a Broadcom switch with a static default route configured, the route might be installed in hardware without a next hop. This results in forwarded traffic to the CPU and drops. To recover from this issue, remove the default route configuration and reapply it. To prevent this issue, before rebooting the switch, split the default route configuration into two routes as below:
-
-ip route 0.0.0.0/1 10.1.1.1
-ip route 128.0.0.0/1 10.1.1.1
-</td>
 <td>4.3.1</td>
 <td>4.3.2-4.4.5</td>
 </tr>
@@ -9196,16 +9196,16 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>4.3.2-4.4.5</td>
 </tr>
 <tr>
+<td>3364717</td>
+<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
+<td>4.3.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
+</tr>
+<tr>
 <td>3339249</td>
 <td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
 <td>4.2.1-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3336590</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.3.1</td>
-<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3334031</td>

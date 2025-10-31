@@ -14,7 +14,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4637200"></a> [4637200](#4637200) <a name="4637200"></a> <br /> | When more than one IPv4 and/or IPv6 addresses are configured on a remote interface, NVUE LLDP commands such as <code>nv show interface lldp-detail</code> only reflect one address. To work around this issue, use <code>lldpctl</code> to view LLDP information. For example, <code>sudo lldpctl -d -f json swp1</code>.  | 5.9.0-5.14.0 | |
 | <a name="4633514"></a> [4633514](#4633514) <a name="4633514"></a> <br /> | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | |
+| <a name="4621759"></a> [4621759](#4621759) <a name="4621759"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.14.0 | |
 | <a name="4582679"></a> [4582679](#4582679) <a name="4582679"></a> <br /> | If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic.  | 5.9.4-5.14.0 | |
 | <a name="4535804"></a> [4535804](#4535804) <a name="4535804"></a> <br /> | If you use a bridge name other than <code>br_default</code>, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.<br>To work around this issue, configure the <code>base-interface</code> for the VLAN interface with the <code>nv set interface <VLAN-id> base-interface <interface-id></code> command. | 5.10.0-5.14.0 | |
 | <a name="4531104"></a> [4531104](#4531104) <a name="4531104"></a> <br /> | On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events. | 5.6.0-5.13.1 | 5.14.0|
@@ -167,7 +169,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4637200"></a> [4637200](#4637200) <a name="4637200"></a> <br /> | When more than one IPv4 and/or IPv6 addresses are configured on a remote interface, NVUE LLDP commands such as <code>nv show interface lldp-detail</code> only reflect one address. To work around this issue, use <code>lldpctl</code> to view LLDP information. For example, <code>sudo lldpctl -d -f json swp1</code>.  | 5.9.0-5.14.0 | |
 | <a name="4633514"></a> [4633514](#4633514) <a name="4633514"></a> <br /> | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | |
+| <a name="4621759"></a> [4621759](#4621759) <a name="4621759"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.14.0 | |
 | <a name="4582679"></a> [4582679](#4582679) <a name="4582679"></a> <br /> | If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic.  | 5.9.4-5.14.0 | |
 | <a name="4535804"></a> [4535804](#4535804) <a name="4535804"></a> <br /> | If you use a bridge name other than <code>br_default</code>, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.<br>To work around this issue, configure the <code>base-interface</code> for the VLAN interface with the <code>nv set interface <VLAN-id> base-interface <interface-id></code> command. | 5.10.0-5.14.0 | |
 | <a name="4531104"></a> [4531104](#4531104) <a name="4531104"></a> <br /> | On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events. | 5.6.0-5.13.1 | 5.14.0|

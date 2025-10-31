@@ -19,6 +19,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4641806</td>
+<td>When gNMI streaming is enabled and clients are subscribed to system information such as the firmware version with xPath {{&apos;/components/component[name=*]/state/firmware-version&apos;}}, the {{nv config replace}} command might take longer than expected to complete.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4641344</td>
 <td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
 <td>5.14.0</td>
@@ -61,6 +67,18 @@
 <td></td>
 </tr>
 <tr>
+<td>4638802</td>
+<td>When you attempt to set a new BGP peer group on a neighbor with a current peer group configured, NVUE fails to apply the new configuration. To work around this issue, remove the existing peer group before configuring the new one.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4637200</td>
+<td>When more than one IPv4 and/or IPv6 addresses are configured on a remote interface, NVUE LLDP commands such as {{nv show interface lldp-detail}} only reflect one address. To work around this issue, use {{lldpctl}} to view LLDP information. For example, {{sudo lldpctl -d -f json swp1}}. </td>
+<td>5.9.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4633514</td>
 <td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
 <td>5.8.0-5.14.0</td>
@@ -73,14 +91,32 @@
 <td></td>
 </tr>
 <tr>
+<td>4625480</td>
+<td>When you configure TACACS+ for the first time on a switch with the {{nv set system aaa tacacs enable on}} command, the {{nvued}} service must be restarted before TACACS+ per-command authorization can be configured with any {{nv set system aaa tacacs authorization} commands.</td>
+<td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4625452</td>
 <td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
 <td>5.12.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
+<td>4622487</td>
+<td>When you configure an {{exclude_users}} line in {{/etc/tacplus_nss.conf}} containing a long list of users, NSS lookups might fail or behave incorrectly when parsing the configuration. </td>
+<td>5.11.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4621759</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4621717</td>
-<td>TACACS authorization configuration changes require you to restart {{nvued}}.</td>
+<td>When you configure TACACS+ for the first time on a switch with the {{nv set system aaa tacacs enable on}} command, the {{nvued}} service must be restarted before TACACS+ per-command authorization can be configured with any {{nv set system aaa tacacs authorization} commands.</td>
 <td>5.14.0</td>
 <td></td>
 </tr>
@@ -205,6 +241,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4556729</td>
+<td>OTEL SRv6 metrics might not be sent in the correct format after a {{switchd}} service restart.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4554858</td>
 <td>The default poll interval for on-change notifications is set to 10 seconds instead of 1 second for gNMI packet trimming metrics.</td>
 <td>5.14.0</td>
@@ -257,9 +299,27 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4535856</td>
+<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
+<td>5.13.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4535843</td>
+<td>After a switch reboot, the {{nv show system health}} command shows incorrect system LED status and color.</td>
+<td>5.13.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4535806</td>
 <td>After a factory reset, the switch does not clear the {{/var/tmp}} directory, which the switch uses for temporary files.</td>
 <td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4535804</td>
+<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
+<td>5.10.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -281,9 +341,21 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>5.9.4</td>
 </tr>
 <tr>
+<td>4534357</td>
+<td>During Cumulus Linux upgrade or downgrade, {{rsyslog}} might crash because the management (eth0) port is unavailable, which triggers a use-after-free fault and  produces a cl-support file as a response.</td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4531960</td>
 <td>The GNMI Subscription to xpath {{interfaces/interface[name=swp61s0]/state/counters/out-pkts}} with a high sample interval results in an initial response of zero but in subsequent updates, the value is correct. You do not see this issue when the sample interval is 1 second.</td>
 <td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4513849</td>
+<td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -354,6 +426,42 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4423368</td>
+<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423360</td>
+<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423352</td>
+<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
+<td>5.11.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423335</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
+<td>5.9.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423277</td>
+<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
+<td>5.11.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423269</td>
+<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.14.0</td>
@@ -366,6 +474,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4423235</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
+<td>5.11.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4423175</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
 <td>5.13.0-5.14.0</td>
@@ -375,6 +489,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4370954</td>
+<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

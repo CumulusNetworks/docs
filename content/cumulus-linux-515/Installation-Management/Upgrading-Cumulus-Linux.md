@@ -349,7 +349,7 @@ cumulus@switch:~$ sudo reboot
 
 ## Offline Package Upgrade
 
-Cumulus Linux is set up to use NVIDIA’s production APT repository by default, with the configuration defined in `/etc/apt/sources.list`. This allows the switch to directly access and install updates or packages from the internet. For networks without internet access, NVIDIA also provides a docker container that can host an APT repository locally, enabling your switch to retrieve packages from a server within your environment. To obtain the docker container, download it from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}.
+Cumulus Linux uses NVIDIA’s production APT repository by default, with the configuration defined in `/etc/apt/sources.list`. This allows the switch to directly access and install updates or packages from the internet. For networks without internet access, NVIDIA also provides a docker container that can host an APT repository locally, enabling your switch to retrieve packages from a server within your environment. To obtain the docker container, download it from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}.
 
 {{%notice note%}}
 You can run the docker container on your own server, or use {{<link url="Docker-with-Cumulus-Linux/" text="Docker with Cumulus Linux">}} to run it on a switch. If you run the container on a switch, run it with the `--network=host` option, and update {{<link url="Firewall-Rules/" text="firewall rules">}} to allow incoming connections.
@@ -405,11 +405,15 @@ The following example runs the container with a self-signed certificate:
 user@server:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_HOST=hostname.domain -e REPO_IP=10.1.100.1 -e FORCE_REISSUE=1 cumulus-linux-apt-mirror:5.15.0
 ```
 
-3. Retrieve and install the certificate on the switches you want to upgrade:
+3. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Import the certificate">}} used for the repository container on the switches you want to upgrade. If you are using a self-signed certificated, you can retrieve it from the container with the curl command: `curl -fsSL http://10.1.1.100:8080/ca.crt`.
+
+
+<!--
+Retrieve and install the certificate on the switches you want to upgrade:
 
 ```
-user@server:~$ curl -fsSL http://10.1.1.100:8080/ca.crt -o /usr/local/share/ca-certificates/repo-ca.crt
-user@server:~$ sudo update-ca-certificates 
+cumulus@switch:~$ sudo curl -fsSL http://10.1.1.100:8080/ca.crt -o /usr/local/share/ca-certificates/repo-ca.crt
+cumulus@switch:~$ sudo update-ca-certificates 
 Updating certificates in /etc/ssl/certs...
 rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
 rehash: warning: skipping duplicate certificate in repo-ca2.pem
@@ -418,16 +422,18 @@ rehash: warning: skipping duplicate certificate in repo-ca5.pem
 Running hooks in /etc/ca-certificates/update.d...
 done.
 ```
+-->
 
-4. Configure `/etc/apt/sources.list` on your switches with your repository, using the hostname or IP address to access the repository container:
+4. Configure {{<link url="Adding-and-Updating-Packages/#configure-additional-repositories" text="your repository on the switches you want to upgrade">}}.
 
+<!--
 ```
 cumulus@switch:~$ sudo vi /etc/apt/sources.list
 ...
 deb https://10.1.100.1:8443 CumulusLinux-5.15.0 cumulus upstream netq
 ...
 ```
-
+-->
 5. Continue with a {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} on your switch. 
 
 

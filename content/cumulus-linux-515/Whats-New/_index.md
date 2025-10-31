@@ -128,14 +128,14 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 
 |  Name | Description |
 |------ | ----------- |
-| `/tables/table[address-family=IPV4][protocol=BGP]/state/route-count` | IPv4 BGP route count. |
-| `/tables/table[address-family=IPV6][protocol=BGP]/state/route-count` | IPv6 BGP route count. |
+| `/tables/table[address-family=IPV4][protocol=BGP]/state/route-count` | IPv4 BGP route count in RIB. |
+| `/tables/table[address-family=IPV6][protocol=BGP]/state/route-count` | IPv6 BGP route count in RIB. |
 | `/tables/table[address-family=IPV4][protocol=DIRECTLY_CONNECTED]/state/route-count` | IPv4 connected route count. |
 | `/tables/table[address-family=IPV6][protocol=DIRECTLY_CONNECTED]/state/route-count` | IPv6 connected route count. |
 | `/tables/table[address-family=IPV4][protocol=STATIC]/state/route-count` | IPv4 static route count. |
 | `/tables/table[address-family=IPV6][protocol=STATIC]/state/route-count` | IPv6 static route count. |
-| `/tables/table[address-family=IPV4][protocol=OSPF]/state/route-count` | IPv4 OSPF route count. |
-| `/tables/table[address-family=IPV6][protocol=OSPF]/state/route-count` | IPv6 OSPF route count. |
+| `/tables/table[address-family=IPV4][protocol=OSPF]/state/route-count` | IPv4 OSPF route count in RIB. |
+| `/tables/table[address-family=IPV6][protocol=OSPF]/state/route-count` | IPv6 OSPF route count in RIB. |
 | `/tables/table[address-family=IPV4][protocol=KERNEL]/state/route-count` | IPv4 kernel route count. |
 | `/tables/table[address-family=IPV6][protocol=KERNEL]/state/route-count` | IPv6 kernel route count. |
 | `/tables/table[address-family=IPV4][protocol=POLICY_BASED_ROUTING]/state/route-count` | IPv4 PBR route count.|

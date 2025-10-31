@@ -783,6 +783,22 @@ supported encodings:
   - JSON_IETF 
   - PROTO 
 ```
+### gNOI Operational Commands
+
+The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](## "gRPC Network Operations Interface")</span> so that you can run operational tasks from a client, such as switch reboot or file transfer. The gNOI server is enabled when you configure {{<link url="gNMI-Streaming/#configure-gnmi-dial-in-mode" text="gNMI dial-in mode">}}. The gNOI server uses the same listening address, port, TLS configuration, and user credentials as your gNMI server configuration.
+
+Cumulus Linux supports the following gNOI OpenConfig models:
+
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/system/system.proto#L78" text="System Reboot">}}, supporting warm, fast and cold reboot modes. The reboot gNOI RPC maps to the `nv action system reboot mode <mode>` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto" text="File Management">}}, supporting retrieval, viewing, or deleting files. The following file management gNOI RPCs are supported:
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L34" text="Get">}}, the equivalent of the `nv action upload system file-path [local-path] [remote-url]` command.
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L52" text="Put">}}, the equivalent of the `nv action fetch system file-path [local-path][remote-url] [file-permissions]` command.
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L57" text="Stat">}}, the equivalent of the `nv action list system file-path [local-path]` command.  
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L62" text="Remove">}}, the equivalent of the `nv action delete system file-path [local-path]` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L46" text="Software Image Installation">}}, supporting optimized image installation mapping to the `nv action install system image files <image>` command.
+
+You can view the number of gNOI RPCs received on the switch with the `nv show system gnmi-server status gnoi-rpc` command.
+
 
 ## gNMI with NetQ
 
@@ -1585,10 +1601,6 @@ received sync response 'true' from '10.209.37.123:9339'
 }
 ```
 <!-- vale on -->
-
-### gNOI Operational Commands
-
-The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](## "gRPC Network Operations Interface")</span> so that you run operational tasks from a client, such as switch reboot or file transfer.
 
 ### Considerations
 

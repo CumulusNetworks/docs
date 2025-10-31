@@ -293,36 +293,6 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/system/adaptive-routing/state/counters/congestion-changes` | The number of adaptive routing change events that triggered due to congestion or link down.|
 
 {{< /tab >}}
-{{< tab "BGP">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp` |Top-level configuration and state for the BGP router. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/installed` | The number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received` | The number of prefixes that are received from the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/sent` | The number of prefixes that are advertised to the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state` | BGP neighbor state.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/description` | BGP neighbor state description.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/established-transitions` | Number of transitions to the Established state for the neighbor session. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/last-established` | The time that the BGP session last transitioned in or out of the Established state. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC). |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/local-as` | The local autonomous system number used when establishing sessions with the remote peer or peer group, if this differs from the global BGP router autonomous system number.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages` | Counters for BGP messages sent and received from the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received` | Counters for BGP messages received from the neighbor. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/last-notification-error-code` | The last BGP error sent or received on the peering session.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent` | Counters relating to BGP messages sent to the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/last-notification-error-code` | The last BGP error sent or received on the peering session.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing or modifying paths exchanged.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/neighbor-address` | Address of the BGP peer, either in IPv4 or IPv6.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-as` | AS number of the peer.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-group` | The peer-group with which this neighbor is associated|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-type` | Explicitly designate the peer or peer group as internal (iBGP) or external (eBGP).|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/input` | The number of messages received from the peer currently queued.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
-
-{{< /tab >}}
 {{< tab "Interface">}}
 
 |  Name | Description |
@@ -463,9 +433,9 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 |  Name | Description |
 |------ | ----------- |
 | `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
-| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-unicast-pkts`| The number packets that were trimmed on the interface.|
-| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts`| The number of packets that were trimmed and sent succesfully on the interface.|
-| `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts`| The number of packets that were trimmed on the interface queue.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-unicast-pkts`| * The number packets that were trimmed on the interface.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts`| * The number of packets that were trimmed and sent succesfully on the interface.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts`| * The number of packets that were trimmed on the interface queue.|
 
 {{< /tab >}}
 {{< tab "Platform">}}
@@ -567,6 +537,52 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/qos/interfaces/interface[interface-id]/output/queues/queue/state/instant-queue-len` | * Transmit queue depth in bytes on traffic class selected by traffic_class of the port selected by local_port. |
 | `/qos/interfaces/interface[interface-id]/output/queues/queue/state/transmit-uc-pkts` | * Number of unicast packets transmitted by this queue.|
 
+{{< /tab >}}
+{{< tab "Routing">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp` |Top-level configuration and state for the BGP router. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/installed` | The number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received` | The number of prefixes that are received from the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/sent` | The number of prefixes that are advertised to the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state` | BGP neighbor state.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/description` | BGP neighbor state description.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/established-transitions` | Number of transitions to the Established state for the neighbor session. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/last-established` | The time that the BGP session last transitioned in or out of the Established state. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC). |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/local-as` | The local autonomous system number used when establishing sessions with the remote peer or peer group, if this differs from the global BGP router autonomous system number.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages` | Counters for BGP messages sent and received from the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received` | Counters for BGP messages received from the neighbor. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/last-notification-error-code` | The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent` | Counters relating to BGP messages sent to the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/last-notification-error-code` | The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/neighbor-address` | Address of the BGP peer, either in IPv4 or IPv6.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-as` | AS number of the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-group` | The peer-group with which this neighbor is associated|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-type` | Explicitly designate the peer or peer group as internal (iBGP) or external (eBGP).|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/input` | The number of messages received from the peer currently queued.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
+| `/tables/table[address-family=IPV4][protocol=BGP]/state/route-count` | * IPv4 BGP route count in RIB. |
+| `/tables/table[address-family=IPV6][protocol=BGP]/state/route-count` | * IPv6 BGP route count in RIB. |
+| `/tables/table[address-family=IPV4][protocol=DIRECTLY_CONNECTED]/state/route-count` | * IPv4 connected route count. |
+| `/tables/table[address-family=IPV6][protocol=DIRECTLY_CONNECTED]/state/route-count` | * IPv6 connected route count. |
+| `/tables/table[address-family=IPV4][protocol=STATIC]/state/route-count` | * IPv4 static route count. |
+| `/tables/table[address-family=IPV6][protocol=STATIC]/state/route-count` | * IPv6 static route count. |
+| `/tables/table[address-family=IPV4][protocol=OSPF]/state/route-count` | * IPv4 OSPF route count in RIB. |
+| `/tables/table[address-family=IPV6][protocol=OSPF]/state/route-count` | * IPv6 OSPF route count in RIB. |
+| `/tables/table[address-family=IPV4][protocol=KERNEL]/state/route-count` | * IPv4 kernel route count. |
+| `/tables/table[address-family=IPV6][protocol=KERNEL]/state/route-count` | * IPv6 kernel route count. |
+| `/tables/table[address-family=IPV4][protocol=POLICY_BASED_ROUTING]/state/route-count` | * IPv4 PBR route count.|
+| `/tables/table[address-family=IPV6][protocol=POLICY_BASED_ROUTING]/state/route-count` | * IPv6 PBR route count.|
+| `/tables/table[address-family=IPV4][protocol=TABLE_CONNECTION]/state/route-count` | * IPv4 table connection route count.|
+| `/tables/table[address-family=IPV6][protocol=TABLE_CONNECTION]/state/route-count` | * IPv6 table connection route count.|
+| `/network-instances/network-instance/tables/state/ipv4-route-count` | * Total IPv4 route count.|
+| `//network-instances/network-instance/tables/state/ipv6-route-count` | * Total IPv6 route count.|
+| `/network-instances/network-instance/tables/state/rib-nexthop-group-count` | * Nexthop group count.|
 {{< /tab >}}
 {{< tab "SRv6">}}
 
@@ -783,6 +799,142 @@ supported encodings:
   - JSON_IETF 
   - PROTO 
 ```
+### gNOI Operational Commands
+
+The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](## "gRPC Network Operations Interface")</span> so that you can run operational tasks from a client, such as switch reboot or file transfer. The gNOI server is enabled when you configure {{<link url="gNMI-Streaming/#configure-gnmi-dial-in-mode" text="gNMI dial-in mode">}}. The gNOI server uses the same listening address, port, TLS configuration, and user credentials as your gNMI server configuration.
+
+Cumulus Linux supports the following OpenConfig gNOI RPCs:
+
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/system/system.proto#L78" text="System Reboot">}}, supporting warm and cold reboot modes. The `reboot` gNOI RPC maps to the `nv action system reboot mode <mode>` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L139" text="Software Image Install">}}, supporting copy operations of images to the switch. The `install` gNOI RPC maps to the `nv action fetch system image <image>` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L145" text="Software Image Activation">}}, supporting optimized image installation and activation. The `activate` gNOI RPC maps to the `nv action install system image files <image>`, `nv action boot-next system image other`, and  `nv action system reboot mode <mode> commands if a reboot is requested.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L46" text="Software Image Installation">}}
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto" text="File Management">}}, supporting retrieval, viewing, or deleting files. The following file management gNOI RPCs are supported:
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L34" text="Get">}}, the equivalent of the `nv action upload system file-path [local-path] [remote-url]` command.
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L52" text="Put">}}, the equivalent of the `nv action fetch system file-path [local-path][remote-url] [file-permissions]` command.
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L57" text="Stat">}}, the equivalent of the `nv action list system file-path [local-path]` command.  
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L62" text="Remove">}}, the equivalent of the `nv action delete system file-path [local-path]` command.
+
+{{%notice note%}}
+The following gNOI RPCs are not supported:
+- system `cancel-reboot`
+- system `reboot-status`
+- system `set-package`
+- system `reboot` with `--method=FAST` (fast reboot mode)
+- file `transfer`
+{{%/notice%}}
+
+
+You can view the number of gNOI RPCs received on the switch with the `nv show system gnmi-server status gnoi-rpc` command:
+
+```
+cumulus@switch:mgmt:~$ nv show system gnmi-server status gnoi-rpc
+gnoi-rpc-name failed-rpc-requests received-rpc-requests
+------------- ------------------- ---------------------
+File.Get      0                   4
+File.Put      0                   1
+File.Remove   0                   1
+File.Stat     0                   46
+OS.Install    0                   1
+```
+
+#### gNOI Client Requests
+
+You can use your gNOI client to send supported RPCs to a switch for operational commands.
+
+The following example uses the `Stat` RPC to view the `/var/support` directory on a switch:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file stat --path /var/support/
++--------------------+----------------------------------------------------------+----------------------+------------+------------+---------+
+|    Target Name     |                           Path                           |     LastModified     |    Perm    |   Umask    |  Size   |
++--------------------+----------------------------------------------------------+----------------------+------------+------------+---------+
+| 10.1.1.100:9339 | /var/support//cl_support_mlx-3700-79_20251031_171813.txz | 2025-10-31T17:18:54Z | -rw-r--r-- | -----w--w- | 9992512 |
+|                    | /var/support//core                                       | 2025-10-30T21:49:56Z | drwxr-xr-x | -----w--w- | 4096    |
++--------------------+----------------------------------------------------------+----------------------+------------+------------+---------+
+cumulus@host:mgmt:~$
+```
+
+The following example uses the file `get` RPC to retrieve the `/var/support/cl_support_mlx-3700-79_20251031_171813.txz` file and copy it to `/tmp/` on the local client system.
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file get --file /var/support/cl_support_mlx-3700-79_20251031_171813.txz --dst /tmp/
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 555328 bytes
+INFO[0001] "10.1.1.100:9339" file "/var/support/cl_support_mlx-3700-79_20251031_171813.txz" saved
+cumulus@host:mgmt:~$
+```
+
+The following example uses the file `remove` RPC to delete the `/var/support/cl_support_mlx-3700-79_20251031_171813.txz` file on the switch.
+
+```
+cumulus@host:mgmt:~$ gnoic  --username root --password NvidiaR0ots! --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file remove --path /var/support/cl_support_mlx-3700-79_20251031_171813.txz
+INFO[0000] "10.1.1.100:9339" file "/var/support/cl_support_mlx-3700-79_20251031_171813.txz" removed successfully
+cumulus@host:mgmt:~$
+```
+
+The following example uses the file `put` RPC to copy the `/tmp/gnmic_ca.crt` file on the local client host to the switch at `/tmp/gnmic.crt`:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file put --file /tmp/gnmic_ca.crt --dst /tmp/gnmi.crt
+INFO[0000] "10.1.1.100:9339" sending file="/tmp/gnmic_ca.crt" hash
+INFO[0000] "10.1.1.100:9339" file "/tmp/gnmic_ca.crt" written successfully
+cumulus@host:mgmt:~$
+```
+
+The following example uses the `install` RPC to copy the `/media/node/cumulus-linux-mlx-amd64-5.15.bin.devsigned` image file on the local client to the switch with the version `5.15.0`:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os install --pkg /media/node/cumulus-linux-mlx-amd64-5.15.bin.devsigned --version 5.15.0
+INFO[0000] starting install RPC
+INFO[0000] target "10.1.1.100:9339": starting Install stream
+INFO[0000] target "10.1.1.100:9339": TransferProgress bytes_received:5242880
+INFO[0000] target "10.1.1.100:9339": TransferProgress bytes_received:10485760
+...
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:980418560
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:985661440
+INFO[0011] target "10.1.1.100:9339": sending TransferEnd
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:990904320
+INFO[0011] target "10.1.1.100:9339": TransferContent done...
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:994600465
+cumulus@host:mgmt:~$
+```
+
+The following example uses the `activate` RPC to activate the `5.15.0` image as the next boot image without reboot the switch:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os activate --version 5.15.0 --no-reboot
+INFO[0190] target "10.1.1.100:9339" activate response "activate_ok:{}"
+cumulus@host:mgmt:~$
+```
+
+The following example uses the `activate` RPC to activate the `5.15.0` image as the next boot image and reboots the switch.
+
+```
+cumulus@host:mgmt:~$ gnoic  --username cumulus --password NvidiaR0cks! --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os activate --version 5.15.0 
+INFO[0182] target "10.1.1.100:9339" activate response "activate_ok:{}"
+cumulus@host:mgmt:~$
+```
+
+The following example uses the system `reboot` RPC to reboot the switch with warm reboot mode:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key system reboot --method WARM
+INFO[0074] "10.1.1.100:9339" System Reboot Request successful
+cumulus@host:mgmt:~$
+```
+
+{{%notice infonopad%}}
+When you issue a switch reboot with the gNOI system `reboot` RPC or the `activate` RPC without the `--no-reboot` option, the switch reboots immediately; no confirmation is required.
+{{%/notice%}}
 
 ## gNMI with NetQ
 
@@ -1585,10 +1737,6 @@ received sync response 'true' from '10.209.37.123:9339'
 }
 ```
 <!-- vale on -->
-
-### gNOI Operational Commands
-
-The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](## "gRPC Network Operations Interface")</span> so that you run operational tasks from a client, such as switch reboot or file transfer.
 
 ### Considerations
 

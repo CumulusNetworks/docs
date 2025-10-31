@@ -349,10 +349,10 @@ cumulus@switch:~$ sudo reboot
 
 ## Offline Package Upgrade
 
-Cumulus Linux is set up by default to use NVIDIA’s production APT repository, with the configuration defined in `/etc/apt/sources.list`. This allows the switch to directly access and install updates or packages from the internet. For networks without internet access, NVIDIA also provides a docker container that can host an APT repository locally, enabling your switch to retrieve packages from a server within your environment. To obtain the docker container, download it from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}.
+Cumulus Linux is set up to use NVIDIA’s production APT repository by default, with the configuration defined in `/etc/apt/sources.list`. This allows the switch to directly access and install updates or packages from the internet. For networks without internet access, NVIDIA also provides a docker container that can host an APT repository locally, enabling your switch to retrieve packages from a server within your environment. To obtain the docker container, download it from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}.
 
 {{%notice note%}}
-You can run the docker container on your own server, or use {{<link url="Docker-with-Cumulus-Linux/" text="Docker with Cumulus Linux">}} to run it on a switch.
+You can run the docker container on your own server, or use {{<link url="Docker-with-Cumulus-Linux/" text="Docker with Cumulus Linux">}} to run it on a switch. If you run the container on a switch, run it with the `--network=host` option, and update {{<link url="Firewall-Rules/" text="firewall rules">}} to allow incoming connections.
 {{%/notice%}}
 
 To launch the docker container and configure your switch for offline package upgrade:
@@ -360,7 +360,7 @@ To launch the docker container and configure your switch for offline package upg
 1. Copy the docker container tarball to your server. Load the image with the `sudo docker load -i /path/to/tarball/cumulus-linux-apt-mirror-5.15.0.tar` command:
 
 ```
-cumulus@switch:~$ sudo docker load -i ./cumulus-linux-apt-mirror-5.15.0.tar 
+user@server:~$ docker load -i ./cumulus-linux-apt-mirror-5.15.0.tar 
 36f5f951f60a: Loading layer [==================================================>]  77.89MB/77.89MB
 2351dd6bd33d: Loading layer [==================================================>]  118.7MB/118.7MB
 00cc4f38365c: Loading layer [==================================================>]  3.584kB/3.584kB
@@ -378,27 +378,38 @@ ba266af6a60c: Loading layer [==================================================>
 Loaded image: cumulus-linux-apt-mirror:5.15.0
 ```
 
-2. Run the docker container, publishing ports for HTTP (8080:80) and HTTPS (8443:8443), supplying desired environment variables, and optionally defining volumes to mount for your own CA or server certificates. Supported envrionment variables include:
+2. Run the docker container, publishing ports for HTTP (8080:80) and HTTPS (8443:8443), defining volumes to mount for your own CA or server certificates.
 
-- `REPO_HOST=<hostname>` - defines the hostname used to connect to the repository and is used for the Common Name (CN) or Subject Alternative Name (SAN) field in certificates.
-- `REPO_IP=<ip-address>` - defines the IP used to connect to the respository if you do not use a hostname.
-- `FORCE_REISSUE=[0 | 1]` - set to 1 to force reissuing the server certificate when the container starts.
+Use the following container paths to supply certificates:
 
-The following example runs the container referencing IP address 10.1.1.100, and defines local volumes on the host to mount for a CA certificate:
+- `/etc/nginx/certs/tls.crt` - used for the TLS server certificate presented on port 8443.
+- `/etc/nginx/certs/tls.key` - the private key for the TLS server certificate.
+- `/etc/nginx/ca/ca.crt` - used for a private CA certificate.
+- `/etc/nginx/ca/ca.key` - the private CA key used to sign the server certificate.
 
-```
-cumulus@switch:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_IP=10.1.1.100 -e FORCE_REISSUE=1 -v /local/certpath/ca.crt:/etc/nginx/ca/ca.crt:ro -v /local/certpath/ca.key:/etc/nginx/ca/ca.key:ro cumulus-linux-apt-mirror:5.15.0
-```
-
-{{%notice note%}}
-If you do not specify your own CA or server certificate, a self-signed certificate will be used.
-{{%/notice%}}
-
-3. Install the certificate on the switches you want to upgrade:
+The following example runs the container, defining volumes to mount for a CA certificate:
 
 ```
-cumulus@switch:~$ curl -fsSL http://10.1.1.100:8080/ca.crt -o /usr/local/share/ca-certificates/repo-ca.crt
-cumulus@switch:~$ sudo update-ca-certificates 
+user@server:~$ docker run -d --name repo -p 8080:80 -p 8443:8443 -v /local/certpath/ca.crt:/etc/nginx/ca/ca.crt:ro -v /local/certpath/ca.key:/etc/nginx/ca/ca.key:ro cumulus-linux-apt-mirror:5.15.0
+```
+
+If you do not specify your own CA or server certificate, a self-signed certificate is used. To run the container with a self-signed certificate, define the following environment variables in your `docker run` command:
+
+- `REPO_HOST=<hostname>` - defines the hostname used to connect to the repository and is added to the Common Name (CN) and Subject Alternative Name (SAN) fields in the self-signed certificates.
+- `REPO_IP=<ip-address>` - defines the IP used to connect to the respository if you do not use a hostname and is also added to the SAN.
+- `FORCE_REISSUE=[0 | 1]` - set to 1 to force reissuing the server certificate when the container starts, applying the configuration defined in the other variables.
+
+The following example runs the container with a self-signed certificate:
+
+```
+user@server:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_HOST=hostname.domain -e REPO_IP=10.1.100.1 -e FORCE_REISSUE=1 cumulus-linux-apt-mirror:5.15.0
+```
+
+3. Retrieve and install the certificate on the switches you want to upgrade:
+
+```
+user@server:~$ curl -fsSL http://10.1.1.100:8080/ca.crt -o /usr/local/share/ca-certificates/repo-ca.crt
+user@server:~$ sudo update-ca-certificates 
 Updating certificates in /etc/ssl/certs...
 rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
 rehash: warning: skipping duplicate certificate in repo-ca2.pem
@@ -408,12 +419,12 @@ Running hooks in /etc/ca-certificates/update.d...
 done.
 ```
 
-4. Configure `/etc/apt/sources.list` on your switches with your repository:
+4. Configure `/etc/apt/sources.list` on your switches with your repository, using the hostname or IP address to access the repository container:
 
 ```
 cumulus@switch:~$ sudo vi /etc/apt/sources.list
 ...
-deb https://10.10.10.2:8443 CumulusLinux-5.15.0 cumulus upstream netq
+deb https://10.1.100.1:8443 CumulusLinux-5.15.0 cumulus upstream netq
 ...
 ```
 

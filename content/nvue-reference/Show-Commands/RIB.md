@@ -92,6 +92,96 @@ route
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> router rib \<afi\> fib-filter</h>
+
+Shows the RIB route map configuration for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ cumulus@leaf23:mgmt:~$ nv show vrf default router rib ipv4 fib-filter
+
+            operational  applied
+
+----------  -----------  ---------
+route-map   v4-rmap      v4-rmap
+[protocol]  bgp          bgp
+[protocol]  connected    connected
+[protocol]  isis         isis
+[protocol]  kernel       kernel
+[protocol]  static       static
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router rib \<afi\> fib-filter protocol</h>
+
+Shows the RIB route map configuration of the routes from each import protocol for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:mgmt:~$ nv show vrf default router rib ipv4 fib-filter protocol
+Protocol   route-map
+---------  ---------
+bgp        RMAP1
+connected  RMAP2
+isis       RMAP3
+kernel     RMAP4
+static     RMAP5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router rib \<afi\> fib-filter protocol \<protocol-id\></h>
+
+Shows the RIB route map configuration of the routes from a specific import protocol for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<protocol-id>` |  The protocol. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:mgmt:~$ nv show vrf default router rib ipv4 fib-filter protocol bgp
+           operational  applied
+---------  -----------  -------
+route-map  RMAP1        RMAP1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router rib \<afi\> route</h>
 
 Shows the routing table for IPv4 routes.

@@ -210,7 +210,7 @@ Old Name | New Name|
   - {{<link url="New-and-Changed-NVUE-Commands" text="Changed command syntax and output">}}
   - `--expand` option for {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff command">}}, {{<link url="NVUE-CLI/#show-switch-configuration" text="nv config show command">}}, and {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="nv config find command">}}
   - `expand=true` parameter for API calls to {{<link url="NVUE-API/#view-differences-between-configurations" text="View differences between configurations">}}, {{<link url="NVUE-API/#view-a-configuration" text="view a configuration">}}, and {{<link url="NVUE-API/#use-filters-in-a-query" text="search for a specific configuration">}}
-  - Aging time added to neighbor information
+  - Aging time added to {{<link url="Address-Resolution-Protocol-ARP/#show-the-arp-table" text="IPv4">}} and {{<link url="Neighbor-Discovery-ND/#show-the-ip-neighbor-table" text="IPv6">}} neighbor tables
   - Timestamp format in `nv show` command output changed from UTC to duration (days, hour:minutes:seconds)
   - {{<link url="NVUE-API/#patch-a-batch-of-configuration-commands" text="Batch execution support for patching in CLI commands through the API">}}. This feature also improves performance when patching in text commands {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="through the CLI">}}.
   - Improved command completion when using tab to view CLI command options

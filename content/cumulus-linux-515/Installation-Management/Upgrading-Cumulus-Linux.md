@@ -443,9 +443,7 @@ ONIE is an open source project (equivalent to PXE on servers) that enables the i
 
 {{%notice note%}}
 - Installing a Cumulus Linux image with ONIE is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
-- You must move configuration data to the new network operating system using ZTP or automation while the operating system is first booted, or soon afterwards using out-of-band management.
-- Moving a configuration file can cause issues.
-- Identifying all the locations that include configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade) above.
+- You must move configuration data to the new network operating system using ZTP or automation while the operating system is first booted, or soon afterwards using out-of-band management. Moving a configuration file can cause issues.
 - Merge conflicts with configuration file changes in the new release sometimes go undetected.
 - If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.

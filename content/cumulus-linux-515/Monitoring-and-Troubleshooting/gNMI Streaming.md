@@ -463,9 +463,9 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/components/component[name]/storage/state/counters/write-seconds` | * Number of seconds spent by all writes. |
 | `/components/component[name]/storage/state/counters/write-ops` | * Number of writes completed successfully. |
 | `/components/component[name]/storage/state/counters/write-merged` | * Number of writes merged. |
-| `/system/mount-points/mount-point[name]/state/inodes` | * Filesystem total file nodes. |
-| `/components/component[name]/state/part-no` | * Part number of the component, keyed by component name.|
-| `/system/mount-points/mount-point[name]/state/inodes-free` | * Filesystem total free file nodes. |
+| `/system/mount-points/mount-point[name]/state/files-total` | * Filesystem total file nodes. |
+| `/components/component[name]/storage/state/counters/write-bytes` | * Number of bytes written successfully..|
+| `/system/mount-points/mount-point[name]/state/files-available` | * Filesystem total free file nodes. |
 | `/system/mount-points/mount-point[name]/state/read-only` | * Filesystem read-only status. |
 | `/system/mount-points/mount-point[name]/state/device-error` | * Whether an error occurred while getting statistics for the given device. |
 | `/components/component[name=<fanid>]/fan/state/direction` | * Fan direction. |

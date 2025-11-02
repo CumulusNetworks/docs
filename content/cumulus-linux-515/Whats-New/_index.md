@@ -29,6 +29,7 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
    - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
    - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="BGP graceful shutdown metric for OTLP">}}
    - {{<link url="Open-Telemetry-Export/#acl-statistics" text="ACL metrics for OTLP">}}
+   - {{<link url="Open-Telemetry-Export/#control-plane-statistic-format" text="Additional control plane metrics for OTLP">}}
    - {{<link url="gNMI-Streaming/#metrics" text="ACL metrics for gNMI streaming">}}
    - {{<link url="gNMI-Streaming/#metrics" text="Packet trimming metrics for gNMI streaming">}}
    - {{<link url="gNMI-Streaming/#metrics" text="PHY metrics for gNMI streaming">}} (Number of bit errors corrected and upper boundary of the bin)
@@ -61,8 +62,9 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 | `/components/component[name]/storage/state/counters/write-seconds` | Number of seconds spent by all writes. |
 | `/components/component[name]/storage/state/counters/write-ops` | Number of writes completed successfully. |
 | `/components/component[name]/storage/state/counters/write-merged` | Number of writes merged. |
-| `/system/mount-points/mount-point[name]/state/inodes` | Filesystem total file nodes. |
-| `/system/mount-points/mount-point[name]/state/inodes-free` | Filesystem total free file nodes. |
+| `/system/mount-points/mount-point[name]/state/files-total` | Filesystem total file nodes. |
+| `/components/component[name]/storage/state/counters/write-bytes` | Number of bytes written successfully..|
+| `/system/mount-points/mount-point[name]/state/files-available` | Filesystem total free file nodes. |
 | `/system/mount-points/mount-point[name]/state/read-only` | Filesystem read-only status. |
 | `/system/mount-points/mount-point[name]/state/device-error` | Whether an error occurred while getting statistics for the given device. |
 | `/components/component[name=<fanid>]/fan/state/direction` | Fan direction. |
@@ -97,7 +99,7 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 | `/interfaces/interface[name]/state/counters/in-link-down-drops` | Number of packets dropped at ingress due to egress link down. |
 | `/interfaces/interface[name]/state/counters/in-vlan-membership-drops` | Number of packets dropped at ingress due to VLAN membership filter. |
 | `/interfaces/interface[name]/state/counters/in-loopback-drops` | Number of packets dropped at ingress due to loopback filter. |
-| `/interfaces/interface[name]/ethernet/state/counters/in-control-unknown-opcodes` | Number of MAC control frames received with an unsupported opcode. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-unknown-protos` | Number of MAC control frames received with an unsupported opcode. |
 | `/interfaces/interface[name]/ethernet/state/counters/pkt_drop_events_probe_resource_lack` | Total number packets dropped by the probe due to lack of resources. |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-1519-2047-octets` | Total number of packets (including bad packets) received that were between 1519 and 2047 octets in length (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-2048-4095-octets` | Total number of packets (including bad packets) received that were between 2048 and 4095 octets in length (excluding framing bits but including FCS octets). |
@@ -124,6 +126,11 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 | `/interfaces/interface[name]/state/counters/tx-wait` | Count of wire-speed, one-byte time intervals during which the port had data ready to transmit but did not send any data. |
 | `/interfaces/interface[name]/phy/histograms/state/rs-num-corr-err[upper-boundary]/count`| Number of bit errors corrected that are less than or equal to upper boundary. |
 | `/interfaces/interface[name]/phy/histograms/state/rs-num-corr-err[upper-boundary]/upper-boundary` | Upper boundary of the bin.|
+| `/interfaces/interface[name]/ethernet/state/counters/out-mac-pause-frames` | Total number of MAC control frames transmitted with an opcode indicating the pause operation. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-maxsize-exceeded` | Total number of frames received that exceed the maximum permitted frame size. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-symbol-error` | Total number of received error frames due to a symbol error. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-fragment-frames` | Total number of packets received that were less than 64 octets in length (excluding framing bits but including FCS octets) and had either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-undersize-frames` | Total number of packets received that were less than 64 octets long (excluding framing bits, but including FCS octets) and were otherwise well formed. |
 
 **New Routing Metrics:**
 
@@ -144,7 +151,7 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 | `/tables/table[address-family=IPV4][protocol=TABLE_CONNECTION]/state/route-count` | IPv4 table connection route count.|
 | `/tables/table[address-family=IPV6][protocol=TABLE_CONNECTION]/state/route-count` | IPv6 table connection route count.|
 | `/network-instances/network-instance/tables/state/ipv4-route-count` | Total IPv4 route count.|
-| `//network-instances/network-instance/tables/state/ipv6-route-count` | Total IPv6 route count.|
+| `/network-instances/network-instance/tables/state/ipv6-route-count` | Total IPv6 route count.|
 | `/network-instances/network-instance/tables/state/rib-nexthop-group-count` | Nexthop group count.|
 {{< /expand >}}
    - {{< expand "Updated gNMI PHY metric names" >}}
@@ -209,7 +216,7 @@ Old Name | New Name|
   - {{<link url="New-and-Changed-NVUE-Commands" text="Changed command syntax and output">}}
   - `--expand` option for {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff command">}}, {{<link url="NVUE-CLI/#show-switch-configuration" text="nv config show command">}}, and {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="nv config find command">}}
   - `expand=true` parameter for API calls to {{<link url="NVUE-API/#view-differences-between-configurations" text="View differences between configurations">}}, {{<link url="NVUE-API/#view-a-configuration" text="view a configuration">}}, and {{<link url="NVUE-API/#use-filters-in-a-query" text="search for a specific configuration">}}
-  - Aging time added to neighbor information
+  - Aging time added to {{<link url="Address-Resolution-Protocol-ARP/#show-the-arp-table" text="IPv4">}} and {{<link url="Neighbor-Discovery-ND/#show-the-ip-neighbor-table" text="IPv6">}} neighbor tables
   - Timestamp format in `nv show` command output changed from UTC to duration (days, hour:minutes:seconds)
   - {{<link url="NVUE-API/#patch-a-batch-of-configuration-commands" text="Batch execution support for patching in CLI commands through the API">}}. This feature also improves performance when patching in text commands {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="through the CLI">}}.
   - Improved command completion when using tab to view CLI command options

@@ -331,12 +331,12 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
 | `/interfaces/interface[name]/ethernet/state/auto-negotiate` | Indicates if the interface is configured for auto-negotiation.|
 | `/interfaces/interface[name]/ethernet/state/negotiated-port-speed` | If auto-negotiation is enabled, this is the negotiated port speed. If auto-negotiation is disabled, you do not see this metric. |
-| `/interfaces/interface[name]/ethernet/state/counters/out-mac-pause-frames` | Total number of MAC control frames transmitted with an opcode indicating the pause operation. |
-| `/interfaces/interface[name]/ethernet/state/counters/in-maxsize-exceeded` | Total number of frames received that exceed the maximum permitted frame size. |
-| `/interfaces/interface[name]/ethernet/state/counters/in-symbol-error` | Total number of received error frames due to a symbol error. |
-| `/interfaces/interface[name]/ethernet/state/counters/in-fragment-frames` | Total number of packets received that were less than 64 octets in length (excluding framing bits but including FCS octets) and had either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error). |
-| `/interfaces/interface[name]/ethernet/state/counters/in-undersize-frames` | Total number of packets received that were less than 64 octets long (excluding framing bits, but including FCS octets) and were otherwise well formed. |
-| `/interfaces/interface[name]/state/counters/carrier-down-transitions` | Total number of carrier down events on the interface. |
+| `/interfaces/interface[name]/ethernet/state/counters/out-mac-pause-frames` | * Total number of MAC control frames transmitted with an opcode indicating the pause operation. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-maxsize-exceeded` | * Total number of frames received that exceed the maximum permitted frame size. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-symbol-error` | * Total number of received error frames due to a symbol error. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-fragment-frames` | * Total number of packets received that were less than 64 octets in length (excluding framing bits but including FCS octets) and had either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-undersize-frames` | * Total number of packets received that were less than 64 octets long (excluding framing bits, but including FCS octets) and were otherwise well formed. |
+| `/interfaces/interface[name]/state/counters/carrier-down-transitions` | * Total number of carrier down events on the interface. |
 | `/interfaces/interface[name]/state/counters/carrier-up-transitions` | * Total number of carrier up events on the interface. |
 | `/interfaces/interface[name]/state/counters/out-hoq-drops` | * Number of packets dropped at egress due to Head-of-Queue Timeout. |
 | `/interfaces/interface[name]/state/counters/out-hoq-stall-drops` | * Number of packets dropped at egress due to Head-of-Queue Timeout. |
@@ -348,7 +348,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/state/counters/in-link-down-drops` | * Number of packets dropped at ingress due to egress link down. |
 | `/interfaces/interface[name]/state/counters/in-vlan-membership-drops` | * Number of packets dropped at ingress due to VLAN membership filter. |
 | `/interfaces/interface[name]/state/counters/in-loopback-drops` | * Number of packets dropped at ingress due to loopback filter. |
-| `/interfaces/interface[name]/ethernet/state/counters/in-control-unknown-opcodes` | * Number of MAC control frames received with an unsupported opcode. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-unknown-protos` | * Number of MAC control frames received with an unsupported opcode. |
 | `/interfaces/interface[name]/ethernet/state/counters/pkt_drop_events_probe_resource_lack` | * Total number packets dropped by the probe due to lack of resources. |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-1519-2047-octets` | * Total number of packets (including bad packets) received that were between 1519 and 2047 octets in length (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-2048-4095-octets` | * Total number of packets (including bad packets) received that were between 2048 and 4095 octets in length (excluding framing bits but including FCS octets). |
@@ -463,9 +463,9 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/components/component[name]/storage/state/counters/write-seconds` | * Number of seconds spent by all writes. |
 | `/components/component[name]/storage/state/counters/write-ops` | * Number of writes completed successfully. |
 | `/components/component[name]/storage/state/counters/write-merged` | * Number of writes merged. |
-| `/system/mount-points/mount-point[name]/state/inodes` | * Filesystem total file nodes. |
-| `/components/component[name]/state/part-no` | * Part number of the component, keyed by component name.|
-| `/system/mount-points/mount-point[name]/state/inodes-free` | * Filesystem total free file nodes. |
+| `/system/mount-points/mount-point[name]/state/files-total` | * Filesystem total file nodes. |
+| `/components/component[name]/storage/state/counters/write-bytes` | * Number of bytes written successfully..|
+| `/system/mount-points/mount-point[name]/state/files-available` | * Filesystem total free file nodes. |
 | `/system/mount-points/mount-point[name]/state/read-only` | * Filesystem read-only status. |
 | `/system/mount-points/mount-point[name]/state/device-error` | * Whether an error occurred while getting statistics for the given device. |
 | `/components/component[name=<fanid>]/fan/state/direction` | * Fan direction. |
@@ -581,7 +581,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/tables/table[address-family=IPV4][protocol=TABLE_CONNECTION]/state/route-count` | * IPv4 table connection route count.|
 | `/tables/table[address-family=IPV6][protocol=TABLE_CONNECTION]/state/route-count` | * IPv6 table connection route count.|
 | `/network-instances/network-instance/tables/state/ipv4-route-count` | * Total IPv4 route count.|
-| `//network-instances/network-instance/tables/state/ipv6-route-count` | * Total IPv6 route count.|
+| `/network-instances/network-instance/tables/state/ipv6-route-count` | * Total IPv6 route count.|
 | `/network-instances/network-instance/tables/state/rib-nexthop-group-count` | * Nexthop group count.|
 {{< /tab >}}
 {{< tab "SRv6">}}

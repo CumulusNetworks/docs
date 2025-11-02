@@ -410,20 +410,43 @@ Run the NVUE `nv show evpn vni <vni>` command or the vtysh `show evpn vni <vni>`
 
 ```
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10
-                   operational  applied
------------------  -----------  -------
-route-advertise                        
-  svi-ip           off                 
-  default-gateway  off                 
-[remote-vtep]      10.0.1.34           
-vlan               10                  
-bridge-domain      br_default          
-tenant-vrf         RED                 
-vxlan-interface    vxlan48             
-mac-count          9                   
-host-count         4                   
-remote-vtep-count  1                   
-local-vtep         10.0.1.12
+                   operational  applied  pending
+-----------------  -----------  -------  -------
+route-advertise                                 
+  svi-ip           disabled                     
+  default-gateway  disabled                     
+route-target                                    
+  [both]           65101:10                     
+vlan               10                           
+bridge-domain      br_default                   
+tenant-vrf         RED                          
+vxlan-interface    vxlan48                      
+mac-count          2                            
+host-count         2                            
+remote-vtep-count  0                            
+local-vtep         10.0.1.12   
+```
+
+Run the `nv show evpn vni <vni> route-target` command to view route target (RT) information for a specific VNI. When route targets are automatically derived and the same route target is exported and imported, the operational value is displayed as `[both]`:
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target
+        operational  applied  pending
+------  -----------  -------  -------
+[both]  65101:10             
+```
+
+When RTs are explicitly configured they the values appear as applied and operational, and any indivdual RTs that are only imported or exported appear more granularly. In the following example, `11:22` is configured for import, `33:44` for export, and `55:66` for both import and export on VNI 101101:
+
+```
+cumulus@switch:mgmt:~$ nv show evpn vni 101101 route-target
+
+          operational  applied
+
+--------  -----------  -------
+[import]  11:22        11:22
+[export]  33:44        33:44
+[both]    55:66        55:66
 ```
 
 ## Show EVPN VNIs Across All VRFs

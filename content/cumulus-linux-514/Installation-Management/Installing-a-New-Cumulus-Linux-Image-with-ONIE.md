@@ -654,6 +654,37 @@ SecureBoot enabled
 On a switch with the Spectrum-4 ASIC, if the ASIC firmware fails to boot, you see a message alerting you to contact NVIDIA Customer Support for further options.
 {{%/notice%}}
 
+### Downgrade a Secure Boot Switch
+
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.14.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (in Cumulus Linux 5.10 or Cumulus Linux 5.9.2 and earlier), which has security vulnerabilities.
+
+After downgrading the switch from Cumulus Linux 5.14.0 with ONIE, follow the steps below to disable, then enable secure boot **before** the switch boots.
+
+You can also follow the steps below to recover a downgraded secure boot switch that does not boot and that shows the following error:
+
+  ```
+  Verifiying shim SBAT data failed: Security Policy Violation
+  Something has gone seriously wrong: SBAT self-check failed: Security Policy Violation
+  ```
+
+1. On the switch, **disable** SecureBoot in BIOS:
+
+   a. Press Ctrl B through the serial console during system boot while the BIOS version prints.
+
+   b. When prompted, provide the BIOS password. The default password is `admin`.
+
+   c. To disable secure boot, navigate to `Security`, and change `Secure Boot` to `Disabled`.
+
+   d. Select `Save & Exit`.
+
+2. Boot into Cumulus Linux.
+
+3. Run the `mokutil --set-sbat-policy delete` command.
+
+4. Reboot the switch.
+
+5. Follow steps a through d above to **enable** secure boot in BIOS. In step c, change `Secure Boot` to `Enabled`.
+
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}

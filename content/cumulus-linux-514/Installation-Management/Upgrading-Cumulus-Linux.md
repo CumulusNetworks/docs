@@ -458,8 +458,8 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 4. Upgrade the switch:
 
-   - To upgrade the switch with optimized image upgrade, see {{<link url="#image-upgrade" text="Optimized Image Upgrade">}}.
-   - To boot the switch into ONIE, see {{<link url="#image-upgrade" text="ONIE Image Install">}}.
+   - To upgrade the switch with optimized image upgrade, see {{<link url="#optimized-image-upgrade" text="Optimized Image Upgrade">}}.
+   - To boot the switch into ONIE, see {{<link url="#onie-image-upgrade" text="ONIE Image Install">}}.
    - To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
 5. If you installed a new image on the switch, restore the configuration files to the new release. If you performed an upgrade with `apt`, bring the uplink and peer link interfaces you shut down in steps 2 and 3 up:
@@ -526,8 +526,8 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 4. Upgrade the switch:
 
-   - To upgrade the switch with optimized image upgrade, see {{<link url="#image-upgrade" text="Optimized Image Upgrade">}}.
-   - To boot the switch into ONIE, see {{<link url="#image-upgrade" text="ONIE Image Upgrade">}}.
+   - To upgrade the switch with optimized image upgrade, see {{<link url="#optimized-image-upgrade" text="Optimized Image Upgrade">}}.
+   - To boot the switch into ONIE, see {{<link url="#onie-image-upgrade" text="ONIE Image Upgrade">}}.
    - To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
 5. Reboot the switch:

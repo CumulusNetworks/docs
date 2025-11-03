@@ -36,15 +36,6 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 1. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 
-{{<notice note>}}
-If you are upgrading to Cumulus Linux 5.9 or later and select the option to roll back to a previous Cumulus Linux version (for unsuccessful upgrade attempts), you must upload a total of four netq-apps and netq-agents packages to NetQ. Cumulus Linux 5.9 or later packages include <b>cld12u5</b>. Prior versions of Cumulus Linux include <b>cl4u</b>.<br><br> For example, you must upload the following packages for amd64 architecture:
-
-- netq-agent_5.0.0-<b>cl4u</b>_amd64.deb
-- netq-apps_5.0.0-<b>cl4u</b>_amd64.deb
-- netq-agent_5.0.0-<b>cld12u5</b>_amd64.deb
-- netq-apps_5.0.0-<b>cld12u5</b>_amd64.deb
-{{</notice>}}
-
 2. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
 3. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.

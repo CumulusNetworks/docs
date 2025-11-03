@@ -133,6 +133,10 @@ If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Re
 
 If the upgrade fails or you want to go back to the Cumulus Linux release from which you upgraded, run the `nv action boot-next system image other rollback` command. The switch boots back to the previous release image and restores the switch configuration.
 
+{{%notice infonopad%}}
+After you perform a rollback, you can repeat steps 1 through 4 above to perform a switch upgrade again.
+{{%/notice%}}
+
 - To rename a Cumulus Linux image on the switch, run the `nv action rename system image files <image> <new-image-name>` command.
 - To delete a Cumulus Linux image from the switch, run the `nv action delete system image files <image>` command.
 

@@ -19,7 +19,6 @@ For switches running *Cumulus Linux*, you need to:
 
 For servers running *Ubuntu*, you need to:
 
-- Verify you installed the minimum package versions
 - Verify the server is running `lldpd`
 - Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
@@ -67,13 +66,15 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upg
 ```
 nvidia@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-latest
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d5 netq-latest
 ...
 ```
-
+<!--
 {{<notice tip>}}
-You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 5.0: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-5.0</pre>
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 5.0: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d5 netq-5.0</pre>
 {{</notice>}}
+
+-->
 
 2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
 
@@ -84,17 +85,6 @@ nvidia@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps
 {{</tab>}}
 
 {{<tab "Ubuntu 24.04">}}
-
-### Verify Service Package Versions
-
-Before you install the NetQ Agent on an Ubuntu server, make sure you install and run at least the minimum versions of the following packages:
-
-<!-- vale off -->
-- iproute 1:4.3.0-1ubuntu3.16.04.1 all
-- iproute2 4.3.0-1ubuntu3 amd64
-- lldpd 0.7.19-1 amd64
-- ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
-<!-- vale on -->
 
 ### Verify the Server is Running lldpd
 
@@ -154,7 +144,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Obtain NetQ Agent Software Package
 
-To install the NetQ Agent you need to install `netq-agent` on each server. This is available from the NVIDIA networking repository.
+To install the NetQ Agent you need to install `netq-agent` on each server. This is available from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}}.
 
 To obtain the NetQ Agent package:
 
@@ -167,32 +157,22 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
 2. Add the Ubuntu repository:
 
 
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-noble.list` and add the following line:
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu24.04.list` and add the following line:
 
 ```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-noble.list
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-ubuntu24.04.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb noble netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb ubuntu24.04 netq-latest
 ...
 ```
+<!--
     {{<notice note>}}
 The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.9</code> &mdash; use that instead.
     {{</notice>}}
-
+-->
 {{</tab>}}
 
 {{<tab "Ubuntu 22.04">}}
-
-### Verify Service Package Versions
-
-Before you install the NetQ Agent on an Ubuntu server, make sure you install and run at least the minimum versions of the following packages:
-
-<!-- vale off -->
-- iproute 1:4.3.0-1ubuntu3.16.04.1 all
-- iproute2 4.3.0-1ubuntu3 amd64
-- lldpd 0.7.19-1 amd64
-- ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
-<!-- vale on -->
 
 ### Verify the Server is Running lldpd
 
@@ -252,7 +232,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Obtain NetQ Agent Software Package
 
-To install the NetQ Agent you need to install `netq-agent` on each server. This is available from the NVIDIA networking repository.
+To install the NetQ Agent you need to install `netq-agent` on each server. This is available from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}}.
 
 To obtain the NetQ Agent package:
 
@@ -265,18 +245,19 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
 2. Add the Ubuntu repository:
 
 
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-jammy.list` and add the following line:
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-ubuntu22.04.list` and add the following line:
 
 ```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-jammy.list
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-ubuntu22.04.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb ubuntu22.04 netq-latest
 ...
 ```
+<!--
     {{<notice note>}}
 The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.9</code> &mdash; use that instead.
     {{</notice>}}
-
+-->
 {{</tab>}}
 
 {{</tabs>}}

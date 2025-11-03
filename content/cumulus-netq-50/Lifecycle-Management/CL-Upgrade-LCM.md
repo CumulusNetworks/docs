@@ -9,7 +9,7 @@ Lifecycle management (LCM) lets you upgrade Cumulus Linux on one or more switche
 
 For deployments running Cumulus Linux versions:
 
-- 5.6.0 to 5.8.0: you can upgrade up to Cumulus Linux version 5.9 or later if your environment is running NetQ 4.10.1 or later. If you are running an earlier NetQ version, you must {{<link title="Upgrade NetQ Agent" text="upgrade NetQ">}} before you upgrade Cumulus Linux.
+- 5.6.0 or later: you can upgrade up to Cumulus Linux version 5.9 or later if your environment is running NetQ 4.10.1 or later. If you are running an earlier NetQ version, you must {{<link title="Upgrade NetQ Agent" text="upgrade NetQ">}} before you upgrade Cumulus Linux.
 - 5.0.1 to 5.7.0: you can upgrade up to Cumulus Linux version 5.8.
 
 
@@ -37,12 +37,12 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 1. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 
 {{<notice note>}}
-If you are upgrading to Cumulus Linux 5.9 or later and select the option to roll back to a previous Cumulus Linux version (for unsuccessful upgrade attempts), you must upload a total of four netq-apps and netq-agents packages to NetQ. Cumulus Linux 5.9 or later packages include <b>cld12</b>. Prior versions of Cumulus Linux include <b>cl4u</b>.<br><br> For example, you must upload the following packages for amd64 architecture:
+If you are upgrading to Cumulus Linux 5.9 or later and select the option to roll back to a previous Cumulus Linux version (for unsuccessful upgrade attempts), you must upload a total of four netq-apps and netq-agents packages to NetQ. Cumulus Linux 5.9 or later packages include <b>cld12u5</b>. Prior versions of Cumulus Linux include <b>cl4u</b>.<br><br> For example, you must upload the following packages for amd64 architecture:
 
-- netq-agent_5.0.0-<b>cl4u</b>53~1753783478.2a97c1dde_amd64.deb
-- netq-apps_5.0.0-<b>cl4u</b>53~1753783478.2a97c1dde_amd64.deb
-- netq-agent_5.0.0-<b>cld12u</b>53~1753783414.2a97c1dde_amd64.deb
-- netq-apps_5.0.0-<b>cld12u</b>53~1753783414.2a97c1dde_amd64.deb
+- netq-agent_5.0.0-<b>cl4u</b>_amd64.deb
+- netq-apps_5.0.0-<b>cl4u</b>_amd64.deb
+- netq-agent_5.0.0-<b>cld12u5</b>_amd64.deb
+- netq-apps_5.0.0-<b>cld12u5</b>_amd64.deb
 {{</notice>}}
 
 2. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.

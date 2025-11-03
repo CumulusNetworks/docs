@@ -578,6 +578,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
+| `network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/graceful-shutdown` | * BGP graceful shutdown state.|
 | `/tables/table[address-family=IPV4][protocol=BGP]/state/route-count` | * IPv4 BGP route count in RIB. |
 | `/tables/table[address-family=IPV6][protocol=BGP]/state/route-count` | * IPv6 BGP route count in RIB. |
 | `/tables/table[address-family=IPV4][protocol=DIRECTLY_CONNECTED]/state/route-count` | * IPv4 connected route count. |

@@ -123,7 +123,9 @@ cumulus@switch:~$ nv set router bgp graceful-restart mode helper-only
 
 ## <h>nv set router bgp graceful-restart path-selection-deferral-time</h>
 
-Configures the number of seconds a restarting neighbor defers path-selection when waiting for the EOR marker from peers. The default is 120 seconds. You can set a value between 0 and 3600.
+Configures the number of seconds a restarting neighbor defers path-selection when waiting for the EOR marker from peers. You can set a value between 0 and 3600.
+- In Cumulus Linux 5.15 and later, the default is 120 seconds.
+- In Cumulus Linux 5.14 and earlier, the default is 360 seconds.
 
 ### Version History
 
@@ -139,7 +141,9 @@ cumulus@switch:~$ nv set router bgp graceful-restart path-selection-deferral-tim
 
 ## <h>nv set router bgp graceful-restart restart-time</h>
 
-Configures the number of seconds to wait for a graceful restart capable neighbor to re-establish BGP peering. The default is 120 seconds. You can set a value between 0 and 4095.
+Configures the number of seconds to wait for a graceful restart capable neighbor to re-establish BGP peering. The default is 120 seconds.
+- In Cumulus Linux 5.15 and later, you can set a value between 0 and 4095.
+- In Cumulus Linux 5.14 and earlier, you can set a value between 1 and 4095.
 
 ### Version History
 

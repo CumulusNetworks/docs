@@ -438,6 +438,18 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts`| * The number of packets that were trimmed on the interface queue.|
 
 {{< /tab >}}
+{{< tab "Performance">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/timestamp`| * The timestamp when the latency measurement was recorded.|
+| `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/error-code`| * The measurement error code. [`0` indicates success, non-zero values indicate an error code] |
+| `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/latency/rtt`| * The measured latency in microseconds for the specified traffic class and protocol.|
+| `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/error-type`| * The type of error encountered, if any, during the latency measurement.|
+| `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/error-message`| * Details about any error encountered.|
+
+
+{{< /tab >}}
 {{< tab "Platform">}}
 
 |  Name | Description |

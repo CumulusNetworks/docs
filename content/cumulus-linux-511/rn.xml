@@ -171,12 +171,6 @@ To work around this issue, power cycle the switch.</td>
 <td>5.13.0-5.14.0</td>
 </tr>
 <tr>
-<td>4343690</td>
-<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). The interface shows screaming emojis and {{Could not render}}. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4328729</td>
 <td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. As this range reflects illegal system ports, do not set these values in the control packet TX base header, as it will be dropped.</td>
 <td>5.10.1-5.12.1</td>
@@ -1181,12 +1175,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.13.0-5.14.0</td>
 </tr>
 <tr>
-<td>4343690</td>
-<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). The interface shows screaming emojis and {{Could not render}}. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4328729</td>
 <td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. As this range reflects illegal system ports, do not set these values in the control packet TX base header, as it will be dropped.</td>
 <td>5.10.1-5.12.1</td>
@@ -1980,16 +1968,16 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>5.14.0</td>
 </tr>
 <tr>
+<td>4531825</td>
+<td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
+<td>5.11.1-5.11.3</td>
+<td>5.9.4, 5.12.0-5.14.0</td>
+</tr>
+<tr>
 <td>4531104</td>
 <td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
 <td>5.14.0</td>
-</tr>
-<tr>
-<td>4522594</td>
-<td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
-<td>5.11.1-5.11.3</td>
-<td>5.9.4, 5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4521203</td>
@@ -2015,16 +2003,16 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
-<td>5.14.0</td>
 </tr>
 <tr>
 <td>4486200</td>
@@ -2103,12 +2091,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>The control plane trap group counters are not associated correctly with the right trap group.</td>
 <td>5.11.0-5.12.1</td>
 <td>5.13.0-5.14.0</td>
-</tr>
-<tr>
-<td>4343690</td>
-<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). The interface shows screaming emojis and {{Could not render}}. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4328729</td>
@@ -2831,20 +2813,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4475074</td>
-<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4472549</td>
-<td>When running tens of thousands of {{nv set}} commands, the {{/var/lib/nvue}} directory might grow to several GBs in size, potentially using all the disk space. To work around this issue, run the following commands to reduce the disk space in the {{/var/lib/nvue}} directory:
-cumulus@switch:~$ sudo su
-cumulus@switch:~$ cd /var/lib/nvue/config
-cumulus@switch:~$ git gc</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4472217</td>
+<td>4475117</td>
 <td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
 sudo chown -R nvue /var/lib/nvue
 sudo chown -R ntpsec /var/lib/ntpsec
@@ -2856,6 +2825,19 @@ systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
 systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </td>
 <td>5.11.1</td>
+</tr>
+<tr>
+<td>4475074</td>
+<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4472549</td>
+<td>When running tens of thousands of {{nv set}} commands, the {{/var/lib/nvue}} directory might grow to several GBs in size, potentially using all the disk space. To work around this issue, run the following commands to reduce the disk space in the {{/var/lib/nvue}} directory:
+cumulus@switch:~$ sudo su
+cumulus@switch:~$ cd /var/lib/nvue/config
+cumulus@switch:~$ git gc</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4458897</td>
@@ -3000,7 +2982,7 @@ switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered I
 <td>5.11.0-5.11.1, 5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4404955</td>
+<td>4408161</td>
 <td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
@@ -3122,16 +3104,16 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>5.14.0</td>
 </tr>
 <tr>
+<td>4531825</td>
+<td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
+<td>5.11.1-5.11.3</td>
+<td>5.9.4, 5.12.0-5.14.0</td>
+</tr>
+<tr>
 <td>4531104</td>
 <td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
 <td>5.14.0</td>
-</tr>
-<tr>
-<td>4522594</td>
-<td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
-<td>5.11.1-5.11.3</td>
-<td>5.9.4, 5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4521203</td>
@@ -3156,13 +3138,7 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>4472414</td>
-<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4472217</td>
+<td>4475117</td>
 <td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
 sudo chown -R nvue /var/lib/nvue
 sudo chown -R ntpsec /var/lib/ntpsec
@@ -3174,7 +3150,13 @@ systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
 systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </td>
 <td>5.11.1</td>
-<td>5.11.2-5.14.0, 5.14.0</td>
+<td>5.11.2-5.14.0</td>
+</tr>
+<tr>
+<td>4472414</td>
+<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
+<td>5.11.0-5.14.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4461102</td>
@@ -3353,12 +3335,6 @@ nv config apply -y</td>
 <td>The control plane trap group counters are not associated correctly with the right trap group.</td>
 <td>5.11.0-5.12.1</td>
 <td>5.13.0-5.14.0</td>
-</tr>
-<tr>
-<td>4343690</td>
-<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). The interface shows screaming emojis and {{Could not render}}. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4341608</td>
@@ -4544,12 +4520,6 @@ nv config apply -y</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.9.2-5.9.3, 5.11.0-5.11.1, 5.12.0-5.12.1</td>
 <td>5.9.4, 5.11.2, 5.13.0-5.14.0</td>
-</tr>
-<tr>
-<td>4343690</td>
-<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). The interface shows screaming emojis and {{Could not render}}. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4341608</td>

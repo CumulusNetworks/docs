@@ -510,6 +510,13 @@ To configure the open telemetry export destination:
    cumulus@switch:~$ nv config apply
    ```
 
+3. Configure the VRF where the export destination is reachable. The `default` VRF is the default value:
+
+   ```
+   cumulus@switch:~$ set system telemetry export vrf RED
+   cumulus@switch:~$ nv config apply
+   ```
+
 By default, OTLP export is in **secure** mode that requires a CA certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
 <!-- POC IN CL5.13
 {{%notice note%}}

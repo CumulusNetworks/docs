@@ -242,7 +242,7 @@ Review the following considerations before you upgrade to Cumulus Linux 5.14.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.14 from Cumulus Linux 5.12.0 and later.
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.14 from Cumulus Linux 5.12.0 and later.
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.14 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 - Cumulus Linux 5.13.1
@@ -250,7 +250,7 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package
 - Cumulus Linux 5.12.1
 - Cumulus Linux 5.12.0
 
-To upgrade to Cumulus Linux 5.14 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="ONIE">}}.
+To upgrade to Cumulus Linux 5.14 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 ### Maximum Number of NVUE Revisions
 

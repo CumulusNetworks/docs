@@ -241,7 +241,7 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package
 - Cumulus Linux 5.13.1
 - Cumulus Linux 5.13.0
 
-To upgrade to Cumulus Linux 5.15 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="ONIE">}}.
+To upgrade to Cumulus Linux 5.15 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 ### Maximum Number of NVUE Revisions
 

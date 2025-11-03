@@ -602,39 +602,53 @@ fe80::4ab0:2dff:fe3f:69d6 dev peerlink.4094 lladdr 48:b0:2d:3f:69:d6 router REAC
 To show all table entries for a specific interface, run the `nv show interface <interface_id> neighbor` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 neighbor 
 ipv4
-=========
-    IPV4         LLADR(MAC)         State      Flag
-    -----------  -----------------  ---------  ----
-    10.5.5.51    00:00:5e:00:53:51  permanent      
-    169.254.0.1  48:b0:2d:a2:4c:79  permanent
+=======
+    IPV4         LLADR(MAC)       
+    -----------  -----------------
+    10.1.10.101  48:b0:2d:60:0b:8e
+
+
+
 ipv6
-=========
-    IPV6                       LLADR(MAC)         State      Flag     
-    -------------------------  -----------------  ---------  ---------
-    fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router
+=======
+    IPV6                      LLADR(MAC)       
+    ------------------------  -----------------
+    fe80::4ab0:2dff:fe60:b8e  48:b0:2d:60:0b:8e
 ```
 
 To show all IPv6 table entries for an interface, run the `nv show interface <interface-id> neighbor ipv6` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 neighbor ipv6
-IPV6                       LLADR(MAC)         State      Flag
--------------------------  -----------------  ---------  ---------
-fe80::1e34:daff:fe6c:dd8   1c:34:da:6c:0d:d8  stale
-fe80::3e2c:30ff:fe4b:800   3c:2c:30:4b:08:00  reachable
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 neighbor ipv6
+IPV6                      LLADR(MAC)       
+------------------------  -----------------
+fe80::4ab0:2dff:fe60:b8e  48:b0:2d:60:0b:8e
 ```
 
-To show table entries for an interface with a specific IPv6 address, run the `nv show interface <interface_id> neighbor ipv6 <ip-address>` command:
+To show all IPv6 table entries for an interface with additional state details, run the `nv show interface <interface-id> neighbor ipv6 detail` command. The following additional fields are provided for the neighbor:
+
+- `State` - The current state of the neighbor entry.
+- `Last Used` - The time since the entry was last used for software forwarding.
+- `Last Confirmed` - The time since the neighbor entry was last resolved.
+- `Last Change` - The time since the neighbor entry state last changed.
+- `Probes`  - The number of probes sent to the neighbor to solicit a response.
+
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 neighbor ipv6 detail
+IPV6                      LLADR(MAC)         State      Flag  Last Used  Last Confirmed  Last Change  Probes
+------------------------  -----------------  ---------  ----  ---------  --------------  -----------  ------
+fe80::4ab0:2dff:fe60:b8e  48:b0:2d:60:0b:8e  reachable        0:15:50    0:01:18         0:15:50      0    
+
+To show table entries for an interface with a specific IPv6 address, run the `nv show interface <interface_id> neighbor ipv6 <ip-address> [detail]` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 neighbor ipv6 fe80::4ab0:2dff:fe60:b8e detail
 lladdr
 =========
-    LLADR(MAC)         State      Flag
-    -----------------  ---------  ----
-    00:00:5E:00:53:51  permanent
+    LLADR(MAC)         State      Flag  Last Used  Last Confirmed  Last Change  Probes
+    -----------------  ---------  ----  ---------  --------------  -----------  ------
+    48:b0:2d:60:0b:8e  reachable        0:16:12    0:01:40         0:16:12      0     
 ```
 
 ## Troubleshooting

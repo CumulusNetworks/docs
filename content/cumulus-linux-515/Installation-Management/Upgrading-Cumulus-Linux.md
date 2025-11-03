@@ -443,9 +443,7 @@ ONIE is an open source project (equivalent to PXE on servers) that enables the i
 
 {{%notice note%}}
 - Installing a Cumulus Linux image with ONIE is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
-- You must move configuration data to the new network operating system using ZTP or automation while the operating system is first booted, or soon afterwards using out-of-band management.
-- Moving a configuration file can cause issues.
-- Identifying all the locations that include configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade) above.
+- You must move configuration data to the new network operating system using ZTP or automation while the operating system is first booted, or soon afterwards using out-of-band management. Moving a configuration file can cause issues.
 - Merge conflicts with configuration file changes in the new release sometimes go undetected.
 - If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
@@ -624,8 +622,8 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 4. Upgrade the switch:
 
-   - To upgrade the switch with optimized image upgrade, see {{<link url="#image-upgrade" text="Optimized Image Upgrade">}}.
-   - To boot the switch into ONIE, see {{<link url="#image-upgrade" text="ONIE Image Install">}}.
+   - To upgrade the switch with optimized image upgrade, see {{<link url="#optimized-image-upgrade" text="Optimized Image Upgrade">}}.
+   - To boot the switch into ONIE, see {{<link url="#onie-image-upgrade" text="ONIE Image Install">}}.
    - To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
 5. If you installed a new image on the switch, restore the configuration files to the new release. If you performed an upgrade with `apt`, bring the uplink and peer link interfaces you shut down in steps 2 and 3 up:

@@ -571,7 +571,7 @@ cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4
 Shows the IPv4 or IPv6 next hop tracking information for all route maps in the specified VRF.
 
 {{%notice note%}}
-You must use `--applied` with this command to show the output.
+You must use `--applied` with this command to show the applied output.
 {{%/notice%}}
 
 ### Command Syntax
@@ -588,10 +588,27 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map --applied
-           Summary       
----------  ------------- 
-routemap1  protocol: bgp 
+cumulus@switch:mgmt:~$ nv show vrf default router nexthop-tracking ipv4 route-map
+ 
+Protocol - nexthop tracking protocol.
+ 
+RoutemapID    Protocol
+------------  --------
+v4-nht-rmap   bgp
+              ospf
+v4-nht-rmap1  static
+```
+
+```
+cumulus@switch:mgmt:~$ nv show vrf default router nexthop-tracking ipv4 route-map --applied
+ 
+Protocol - nexthop tracking protocol.
+ 
+RoutemapID    Protocol
+------------  --------
+v4-nht-rmap   bgp
+              ospf
+v4-nht-rmap1  static
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -601,7 +618,7 @@ routemap1  protocol: bgp
 Shows the IPv4 or IPv6 next hop tracking information for a specific route map in the specified VRF.
 
 {{%notice note%}}
-You must use `--applied` with this command to show the output.
+You must use `--applied` with this command to show the applied output.
 {{%/notice%}}
 
 ### Command Syntax
@@ -619,10 +636,19 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 --applied
-            applied 
-----------  ------- 
-[protocol]  bgp
+cumulus@switch:mgmt:~$ nv show vrf default router nexthop-tracking ipv4 route-map v4-nht-rmap
+            operational  applied
+----------  -----------  -------
+[protocol]  bgp          bgp
+[protocol]  ospf         ospf
+```
+
+```
+cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map v4-nht-rmap --applied
+            Rev ID: applied
+----------  ---------------
+[protocol]  bgp            
+[protocol]  ospf  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -632,7 +658,7 @@ cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROU
 Shows the IPv4 or IPv6 next hop tracking information for all protocols in the route map in the specified VRF.
 
 {{%notice note%}}
-You must use `--applied` with this command to show the output.
+You must use `--applied` with this command to show the applied output.
 {{%/notice%}}
 
 ### Command Syntax
@@ -650,9 +676,19 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
+cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map v4-nht-rmap protocol
+RoutemapProtocol
+----------------
+bgp             
+ospf
+```
+
+```
 cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 protocol --applied
---- 
-Bgp 
+RoutemapProtocol
+----------------
+bgp             
+ospf   
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -662,7 +698,7 @@ Bgp
 Shows the IPv4 or IPv6 next hop tracking information for a specific route map protocol for the specified VRF.
 
 {{%notice note%}}
-You must use `--applied` with this command to show the output.
+You must use `--applied` with this command to show the applied output.
 {{%/notice%}}
 
 ### Command Syntax
@@ -681,5 +717,11 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
+cumulus@switch:mgmt:~$ nv show vrf default router nexthop-tracking ipv4 route-map v4-nht-rmap protocol bgp
+No Data
+```
+
+```
 cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 protocol bgp --applied
+No Data
 ```

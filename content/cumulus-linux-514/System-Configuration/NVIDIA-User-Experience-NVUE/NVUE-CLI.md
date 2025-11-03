@@ -245,7 +245,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
 | `nv config translate` | Translates a revision or YAML file configuration. |
 
-You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="Upgrading-Cumulus-Linux/#back-up-and-restore-configuration-with-nvue" text="Upgrading Cumulus Linux">}}.
+You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="#back-up-and-restore-configuration-with-nvue" text="Back Up and Restore Configuration with NVUE">}}.
 
 ### Action Commands
 
@@ -254,31 +254,31 @@ The NVUE action commands fetch and install image files, upgrade system packages,
 | <div style="width:400px">Command | Description |
 | ------- | ----------- |
 | `nv action abort`| Terminates {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP">}} if it is in the discovery process or is not currently running a script. |
-| `nv action boot-next`| Sets the boot partition for {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized (two partition) upgrade">}}.|
+| `nv action boot-next`| Sets the boot partition for {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized (two partition) upgrade">}}.|
 | `nv action change`| Sets the {{<link title="Setting the Date and Time/#set-the-date-and-time" text="software clock date and time">}}. |
 | `nv action clear` | Provides commands to clear ACL statistics, {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="duplicate addresses">}}, {{<link url="Precision-Time-Protocol-PTP/#clear-ptp-violation-logs" text="PTP violations">}}, {{<link url="Interface-Configuration-and-Management/#clear-the-interface-protodown-state-and-reason" text="interfaces from a protodown state">}}, {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-counters" text="interface counters">}}, {{<link url="Quality-of-Service/#clear-qos-buffers" text="Qos buffers">}}, {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP routes">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="OSPF interface counters">}}, {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="matches against a route map">}}, and remove {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#lacp-partner-mac-address-duplicate-or-mismatch" text="conflicts from protodown MLAG bonds">}}. |
 | `nv action deauthenticate`| {{<link url="802.1X-Interfaces/#deauthenticate-an-8021x-supplicant" text="Deauthenticates the 802.1X supplicant">}} on the specified interface. If you do not want to notify the supplicant when deauthenticating, you can add the silent option; for example, `nv action deauthenticate interface swp1 dot1x authorized-sessions 00:55:00:00:00:09 silent`.|
-| `nv action delete` | Provides commands to delete {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="binary image files">}}, {{<link url="Log-Files-with-NVUE/#delete-system-log-files" text="log files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="packages">}}, {{<link url="NVUE-API/#delete-certificates" text="CA and entity certificates">}} and {{<link url="Understanding-the-cl-support-Output-File/#delete-cl-support-files" text="tech support files">}}. |
+| `nv action delete` | Provides commands to delete {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="binary image files">}}, {{<link url="Log-Files-with-NVUE/#delete-system-log-files" text="log files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="packages">}}, {{<link url="NVUE-API/#delete-certificates" text="CA and entity certificates">}} and {{<link url="Understanding-the-cl-support-Output-File/#delete-cl-support-files" text="tech support files">}}. |
 | `nv action disable`| Provides commands to disable {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}.|
 | `nv action disconnect`|  Provides commands to {{<link url="User-Accounts/#disconnect-user-account-active-terminals" text="disconnect users logged into the switch">}}. |
 | `nv action enable`| Provides commands to enable {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}. |
 | `nv action export`| Exports a system configuration file.|
-| `nv action fetch`| Fetches {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="binary image files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="package files">}}, configuration files, and platform firmware. |
+| `nv action fetch`| Fetches {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="binary image files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="package files">}}, configuration files, and platform firmware. |
 | `nv action generate` | Generates {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}} and {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="hash files">}}.|
 | `nv action import` | Provides commands to import CA and entity certificates, and CRLs. |
-| `nv action install` | Installs {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="system image files">}}. |
+| `nv action install` | Installs {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="system image files">}}. |
 | `nv action list`| Lists the contents of a directory, including files, subdirectories, and other file system objects. |
 | `nv action lookup`| Looks up the {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="route in the routing table">}} for a specific destination. |
 | `nv action ping` | Provides commands to run {{<link url="Network-Troubleshooting/#ping" text="ping">}}.|
 | `nv action reboot` | Reboots the switch in the configured restart mode ({{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="fast, cold, or warm">}}). You must specify the `no-confirm` option with this command. |
-| `nv action rename` | Provides commands to {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="system image files">}}.|
+| `nv action rename` | Provides commands to {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="system image files">}}.|
 | `nv action reset` | Provides commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#reset-a-transceiver" text="reset transceivers">}} and to reset the switch to {{<link url="Factory-Reset" text="factory defaults">}}.|
 | `nv action rotate` | Provides commands to {{<link url="Log-Files-with-NVUE/#rotate-the-system-log-file" text="rotate the system log file">}}.|
 | `nv action run` | Provides commands to run {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}.|
 | `nv action schedule` | Configures the schedule for {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="high frequency telemetry data collection">}}.|
 | `nv action traceroute` | Provides commands to run {{<link url="Network-Troubleshooting/#traceroute" text="traceroute">}}.|
 | `nv action upgrade` | {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Upgrades system packages">}}.|
-| `nv action upload` | Uploads {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="system image files">}}, {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}}, and configuration files to the switch.|
+| `nv action upload` | Uploads {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="system image files">}}, {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}}, and configuration files to the switch.|
 
 ### List All NVUE Commands
 
@@ -590,6 +590,50 @@ cumulus@switch:~$ nv config translate filename /home/cumulus/backup.yaml
 ```
 
 If the revision or yaml file is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.
+
+## Back Up and Restore Configuration with NVUE
+
+Use the following procedure to cleanly reinstall a Cumulus Linux image or move the configuration from one switch to another.
+
+As Cumulus Linux supports more features and functionality, NVUE syntax might change between releases and the content of snippets and flexible snippets might become invalid. Before you back up and restore configuration across different Cumulus Linux releases, make sure to review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax and other configuration file changes.
+
+{{%notice note%}}
+- If you upgrade the switch with package upgrade or optimized image upgrade, or if you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release.
+- Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade, even when staging `startup.yaml` using `onie-install -t`. You must reimport the certificates after the new image is installed. 
+- If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
+{{%/notice%}}
+
+You can back up and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
+
+To back up and restore the configuration file:
+
+1. Save the configuration to the `/etc/nvue.d/startup.yaml` file with the `nv config save` command:
+
+   ```
+   cumulus@switch:~$ nv config save
+   saved
+   ```
+
+2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
+
+3. After upgrade is complete, restore certificates and the configuration.
+
+   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and/or CRLs that were configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
+
+   b. Copy the `/etc/nvue.d/startup.yaml` file from the back up process to the switch.
+
+   c. If required, convert the `startup.yaml` file to the format of the currently running release on the switch. Refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}.
+
+   d. Run the `nv config replace` command, then run the `nv config apply` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
+
+   ```
+   cumulus@switch:~$ nv config replace /home/cumulus/startup.yaml
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{%notice infonopad%}}
+If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
+{{%/notice%}}
 
 ## Maximum Revisions Limit
 

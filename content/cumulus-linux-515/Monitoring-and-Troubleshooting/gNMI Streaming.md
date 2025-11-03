@@ -331,30 +331,30 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
 | `/interfaces/interface[name]/ethernet/state/auto-negotiate` | Indicates if the interface is configured for auto-negotiation.|
 | `/interfaces/interface[name]/ethernet/state/negotiated-port-speed` | If auto-negotiation is enabled, this is the negotiated port speed. If auto-negotiation is disabled, you do not see this metric. |
-| `/interfaces/interface[name]/ethernet/state/counters/out-mac-pause-frames` | Total number of MAC control frames transmitted with an opcode indicating the pause operation. |
-| `/interfaces/interface[name]/ethernet/state/counters/in-maxsize-exceeded` | Total number of frames received that exceed the maximum permitted frame size. |
-| `/interfaces/interface[name]/ethernet/state/counters/in-symbol-error` | Total number of received error frames due to a symbol error. |
-| `/interfaces/interface[name]/ethernet/state/counters/in-fragment-frames` | Total number of packets received that were less than 64 octets in length (excluding framing bits but including FCS octets) and had either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error). |
-| `/interfaces/interface[name]/ethernet/state/counters/in-undersize-frames` | Total number of packets received that were less than 64 octets long (excluding framing bits, but including FCS octets) and were otherwise well formed. |
-| `/interfaces/interface[name]/state/counters/carrier-down-transitions` | Total number of carrier down events on the interface. |
+| `/interfaces/interface[name]/ethernet/state/counters/out-mac-pause-frames` | * Total number of MAC control frames transmitted with an opcode indicating the pause operation. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-maxsize-exceeded` | * Total number of frames received that exceed the maximum permitted frame size. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-symbol-error` | * Total number of received error frames due to a symbol error. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-fragment-frames` | * Total number of packets received that were less than 64 octets in length (excluding framing bits but including FCS octets) and had either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-undersize-frames` | * Total number of packets received that were less than 64 octets long (excluding framing bits, but including FCS octets) and were otherwise well formed. |
+| `/interfaces/interface[name]/state/counters/carrier-down-transitions` | * Total number of carrier down events on the interface. |
 | `/interfaces/interface[name]/state/counters/carrier-up-transitions` | * Total number of carrier up events on the interface. |
 | `/interfaces/interface[name]/state/counters/out-hoq-drops` | * Number of packets dropped at egress due to Head-of-Queue Timeout. |
 | `/interfaces/interface[name]/state/counters/out-hoq-stall-drops` | * Number of packets dropped at egress due to Head-of-Queue Timeout. |
 | `/interfaces/interface[name]/state/counters/out-sll-drops` | * Number of packets dropped at egress due to exceeding switch lifetime limit.|
 | `/interfaces/interface[name]/state/counters/out-acl-drops` | * Number of packets dropped at egress due to ACL policy. |
-| `/interfaces/interface[name]/state/counters/out-stp-filter-drops` | * Number of packets dropped at egress due to STP filter. |
-| `/interfaces/interface[name]/state/counters/out-vlan-membership-drops` | * Number of packets dropped at egress due to VLAN membership filter. |
-| `/interfaces/interface[name]/state/counters/in-vlan-tag-allowance-drops ` | * Number of packets dropped at ingress due to VLAN tag allowance filter. |
-| `/interfaces/interface[name]/state/counters/in-link-down-drops` | * Number of packets dropped at ingress due to egress link down. |
-| `/interfaces/interface[name]/state/counters/in-vlan-membership-drops` | * Number of packets dropped at ingress due to VLAN membership filter. |
-| `/interfaces/interface[name]/state/counters/in-loopback-drops` | * Number of packets dropped at ingress due to loopback filter. |
-| `/interfaces/interface[name]/ethernet/state/counters/in-control-unknown-opcodes` | * Number of MAC control frames received with an unsupported opcode. |
-| `/interfaces/interface[name]/ethernet/state/counters/pkt_drop_events_probe_resource_lack` | * Total number packets dropped by the probe due to lack of resources. |
+| `/interfaces/interface[name]/ethernet/state/counters/out-stp-filter-drops` | * Number of packets dropped at egress due to STP filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/out-vlan-membership-drops` | * Number of packets dropped at egress due to VLAN membership filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-vlan-tag-allowance-drops` | * Number of packets dropped at ingress due to VLAN tag allowance filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-link-down-drops` | * Number of packets dropped at ingress due to egress link down. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-vlan-membership-drops` | * Number of packets dropped at ingress due to VLAN membership filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-loopback-drops` | * Number of packets dropped at ingress due to loopback filter. |
+| `/interfaces/interface[name]/state/counters/in-unknown-protos` | * Number of MAC control frames received with an unsupported opcode. |
+| `/interfaces/interface[name]/ethernet/state/counters/pkt-drop-events-probe-resource-lack` | * Total number packets dropped by the probe due to lack of resources. |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-1519-2047-octets` | * Total number of packets (including bad packets) received that were between 1519 and 2047 octets in length (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-2048-4095-octets` | * Total number of packets (including bad packets) received that were between 2048 and 4095 octets in length (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-4096-8191-octets` | * Total number of packets (including bad packets) received that were between 4096 and 8191 octets in length (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-8192-9216-octets` | * Total number of packets (including bad packets) received that were between 8192 and 10239 octets in length (excluding framing bits but including FCS octets). |
-| `/interfaces/interface[name]/state/counters/no-buffer-mc-dropped-pkts ` | * The number of multicast packets dropped due to lack of egress buffer resources. Valid only for Spectrum switches. |
+| `/interfaces/interface[name]/ethernet/state/counters/no-buffer-multicast-dropped-pkts` | * The number of multicast packets dropped due to lack of egress buffer resources. Valid only for Spectrum switches. |
 | `/interfaces/interface[name]/state/counters/in-buffer-almost-full` | * Number of times that the port Rx buffer passed a buffer utilization threshold. |
 | `/interfaces/interface[name]/state/counters/in-buffer-full` | * Number of times that the port Rx buffer reached 100% utilization. |
 | `/interfaces/interface[name]/state/counters/in-ebp-pkts` | * The number of received EBP packets. |
@@ -438,6 +438,18 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts`| * The number of packets that were trimmed on the interface queue.|
 
 {{< /tab >}}
+{{< tab "Performance">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/timestamp`| * The timestamp when the latency measurement was recorded.|
+| `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/error-code`| * The measurement error code. [`0` indicates success, non-zero values indicate an error code] |
+| `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/latency/rtt`| * The measured latency in microseconds for the specified traffic class and protocol.|
+| `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/error-type`| * The type of error encountered, if any, during the latency measurement.|
+| `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/error-message`| * Details about any error encountered.|
+
+
+{{< /tab >}}
 {{< tab "Platform">}}
 
 |  Name | Description |
@@ -463,9 +475,9 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/components/component[name]/storage/state/counters/write-seconds` | * Number of seconds spent by all writes. |
 | `/components/component[name]/storage/state/counters/write-ops` | * Number of writes completed successfully. |
 | `/components/component[name]/storage/state/counters/write-merged` | * Number of writes merged. |
-| `/system/mount-points/mount-point[name]/state/inodes` | * Filesystem total file nodes. |
-| `/components/component[name]/state/part-no` | * Part number of the component, keyed by component name.|
-| `/system/mount-points/mount-point[name]/state/inodes-free` | * Filesystem total free file nodes. |
+| `/system/mount-points/mount-point[name]/state/files-total` | * Filesystem total file nodes. |
+| `/components/component[name]/storage/state/counters/write-bytes` | * Number of bytes written successfully..|
+| `/system/mount-points/mount-point[name]/state/files-available` | * Filesystem total free file nodes. |
 | `/system/mount-points/mount-point[name]/state/read-only` | * Filesystem read-only status. |
 | `/system/mount-points/mount-point[name]/state/device-error` | * Whether an error occurred while getting statistics for the given device. |
 | `/components/component[name=<fanid>]/fan/state/direction` | * Fan direction. |
@@ -529,13 +541,13 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/time-since-last-clear` | Time since last clear of watermarks in a priority group.|
 | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/in-pause-pkts` | Number of pause packets for the priority class in the ingress queue.|
 | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
-| `/qos/interfaces/interface[interface-id]/priority-group/state/counters/in-pkts` | *  Number of received input packets for a priority group. |
-| `/qos/interfaces/interface[interface-id]/state/priority-group/state/counters/in-octets` | * Number of octets of input data received for a given priority group. |
-| `/qos/interfaces/interface[interface-id]/switch-priority/state/counters/in-discards` | * Number of discarded inbound packets. |
-| `/qos/interfaces/interface[interface-id]/switch-priority/state/in-pause-duration` | * Total time in microseconds packet transmission on the port has been paused. |
-| `/qos/interfaces/interface[interface-id]/switch-priority/state/out-pause-duration` | * Total time in microseconds that the far-end port has been requested to pause. |
-| `/qos/interfaces/interface[interface-id]/output/queues/queue/state/instant-queue-len` | * Transmit queue depth in bytes on traffic class selected by traffic_class of the port selected by local_port. |
-| `/qos/interfaces/interface[interface-id]/output/queues/queue/state/transmit-uc-pkts` | * Number of unicast packets transmitted by this queue.|
+| `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/in-pkts` | *  Number of received input packets for a priority group. |
+| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/state/counters/in-octets` | * Number of octets of input data received for a given priority group. |
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/in-discards` | * Number of discarded inbound packets. |
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/in-pause-duration` | * Total time in microseconds packet transmission on the port has been paused. |
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/out-pause-duration` | * Total time in microseconds that the far-end port has been requested to pause. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/instant-queue-len` | * Transmit queue depth in bytes on traffic class selected by traffic_class of the port selected by local_port. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue/[name]state/transmit-uc-pkts` | * Number of unicast packets transmitted by this queue.|
 
 {{< /tab >}}
 {{< tab "Routing">}}
@@ -566,6 +578,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
+| `network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/graceful-shutdown` | * BGP graceful shutdown state.|
 | `/tables/table[address-family=IPV4][protocol=BGP]/state/route-count` | * IPv4 BGP route count in RIB. |
 | `/tables/table[address-family=IPV6][protocol=BGP]/state/route-count` | * IPv6 BGP route count in RIB. |
 | `/tables/table[address-family=IPV4][protocol=DIRECTLY_CONNECTED]/state/route-count` | * IPv4 connected route count. |
@@ -581,7 +594,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/tables/table[address-family=IPV4][protocol=TABLE_CONNECTION]/state/route-count` | * IPv4 table connection route count.|
 | `/tables/table[address-family=IPV6][protocol=TABLE_CONNECTION]/state/route-count` | * IPv6 table connection route count.|
 | `/network-instances/network-instance/tables/state/ipv4-route-count` | * Total IPv4 route count.|
-| `//network-instances/network-instance/tables/state/ipv6-route-count` | * Total IPv6 route count.|
+| `/network-instances/network-instance/tables/state/ipv6-route-count` | * Total IPv6 route count.|
 | `/network-instances/network-instance/tables/state/rib-nexthop-group-count` | * Nexthop group count.|
 {{< /tab >}}
 {{< tab "SRv6">}}

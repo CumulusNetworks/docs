@@ -427,6 +427,10 @@ Privilege Level  role          command
                                nv  
 ```
 
+{{%notice infonopad%}}
+When you configure per-command authorization on the switch, only define the initial word of the command tree to permit use of any commands starting with that word. For example, permitting the command `nv` allows the use of all NVUE commands beginning with `nv`. For more granular control of specific commands in the tree after the initial word, configure your TACACS+ server to permit or deny specific commands for a user or privilege level. Refer to your TACACS+ server's vendor documentation or vendor support for assistance configuring your server.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -467,6 +471,10 @@ To remove all commands:
 ```
 cumulus@switch:~$ sudo rm ~tacacs0/bin/*
 ```
+
+{{%notice infonopad%}}
+When you configure per-command authorization on the switch, only define the initial word of the command tree to permit use of any commands starting with that word. For example, permitting the command `nv` allows the use of all NVUE commands beginning with `nv`. For more granular control of specific commands in the tree after the initial word, configure your TACACS+ server to permit or deny specific commands for a user or privilege level. Refer to your TACACS+ server's vendor documentation or vendor support for assistance configuring your server.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

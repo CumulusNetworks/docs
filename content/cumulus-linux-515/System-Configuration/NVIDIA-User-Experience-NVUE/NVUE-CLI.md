@@ -233,19 +233,19 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config attach`|  Attaches configuration to a revision. |
 | `nv config delete` |  Deletes a configuration revision. |
 | `nv config detach` | Detaches the configuration from the current pending configuration and uses an integer to identify it; for example, `4`. To list all the current detached pending configurations, run `nv config diff <<press tab>`.|
-| `nv config diff <revision> <revision>` | {{<link url="NVUE-CLI/#view-differences-between-configurations" text="Shows differences between configurations">}}, such as the pending configuration and the applied configuration, or the detached configuration and the pending configuration.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config diff` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each item shows individually), add the `--expand` option (`nv config diff --expand`).|
-| `nv config find <string>`| {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Finds a portion of the applied configuration">}} according to the search string you provide. For example to find swp1 in the applied configuration, run `nv config find swp1`.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config find` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each item shows individually), add the `--expand` option (`nv config find --expand`).|
+| `nv config diff <revision> <revision>` | {{<link url="NVUE-CLI/#view-differences-between-configurations" text="Shows differences between configurations">}}, such as the pending configuration and the applied configuration, or the detached configuration and the pending configuration.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config diff` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each item shows individually), add the `--expand` option (`nv config diff --expand`).|
+| `nv config find <string>`| {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Finds a portion of the applied configuration">}} according to the search string you provide. For example to find swp1 in the applied configuration, run `nv config find swp1`.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config find` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each item shows individually), add the `--expand` option (`nv config find --expand`).|
 | `nv config history` | Enables you to keep track of the configuration changes on the switch and shows a table with the configuration revision ID, the date and time of the change, the user account that made the change, and the type of change (such as CLI or REST API). The `nv config history <revision>` command shows the apply history for a specific revision. |
 | `nv config patch <nvue-file>` | {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Updates the pending configuration">}} with the specified YAML configuration file or text file of NVUE set and unset commands. |
-| `nv config replace <nvue-file>` | {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replaces the pending configuration">}} with the specified YAML configuration file text file of NVUE set and unset commands. |
+| `nv config replace <nvue-file>` | {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replaces the pending configuration">}} with the specified YAML configuration file or text file of NVUE set and unset commands. |
 |`nv config revision` | Shows all the configuration revisions on the switch. |
 | `nv config save` | {{<link url="NVUE-CLI/#auto-save" text="Overwrites the startup configuration">}} with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. Use this command when the auto save option is off.|
-| `nv config show` | Shows the {{<link url="NVUE-CLI/#show-switch-configuration" text="currently applied configuration">}} in `yaml` format. This command also shows NVUE version information.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config show` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each item shows individually), add the `--expand` option (`nv config show --expand`). |
+| `nv config show` | Shows the {{<link url="NVUE-CLI/#show-switch-configuration" text="currently applied configuration">}} in `yaml` format. This command also shows NVUE version information.<br>Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config show` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each item shows individually), add the `--expand` option (`nv config show --expand`). |
 | `nv config show -o commands` | Shows the currently applied configuration commands. |
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
 | `nv config translate` | Translates a revision or YAML file configuration. |
 
-You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="Upgrading-Cumulus-Linux/#back-up-and-restore-configuration-with-nvue" text="Upgrading Cumulus Linux">}}.
+You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="#back-up-and-restore-configuration-with-nvue" text="Back Up and Restore Configuration with NVUE">}}.
 
 ### Action Commands
 
@@ -410,7 +410,7 @@ cumulus@switch:~$ nv config find br_default
             br_default: {}
 ```
 
-Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config find` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each port shows individually), add the `--expand` option:
+Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config find` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each port shows individually), add the `--expand` option:
 
 ```
 cumulus@switch:~$ nv config find br_default --expand
@@ -495,7 +495,7 @@ header:
 - To show the configuration on the switch in YAML format and include all default options, run the `nv config show --all` command.
 - To show the configuration for a specific revision, run the `nv config show -r <rev-id>` command.
 
-Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config show` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each port shows individually), add the `--expand` option:
+Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config show` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each port shows individually), add the `--expand` option:
 
 ```
 cumulus@switch:~$ nv config show --expand
@@ -601,7 +601,7 @@ cumulus@switch:~$ nv config diff applied startup
 
 When you run the `nv config diff` command, NVUE show only the new configuration. Add the `--verbose` option to see the previous configuration and the new configuration.
 
-Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config diff` command displays the range configurations in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each item shows individually), add the `--expand` option.
+Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the `nv config diff` command displays the range configurations in unexpanded format. To show the range configurations in expanded format (each item shows individually), add the `--expand` option.
 
 ## Replace and Patch a Pending Configuration
 
@@ -659,6 +659,49 @@ cumulus@switch:~$ nv config translate filename /home/cumulus/backup.yaml
 
 If the revision or yaml file is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.
 
+## Back Up and Restore Configuration with NVUE
+
+Use the following procedure to cleanly reinstall a Cumulus Linux image or move the configuration from one switch to another.
+
+As Cumulus Linux supports more features and functionality, NVUE syntax might change between releases and the content of snippets and flexible snippets might become invalid. Before you back up and restore configuration across different Cumulus Linux releases, make sure to review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax and other configuration file changes.
+
+{{%notice note%}}
+- If you upgrade the switch with package upgrade or optimized image upgrade, or if you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release.
+- Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade, even when staging `startup.yaml` using `onie-install -t`. You must reimport the certificates after the new image is installed. 
+- If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
+{{%/notice%}}
+
+You can back up and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
+
+To back up and restore the configuration file:
+
+1. Save the configuration to the `/etc/nvue.d/startup.yaml` file with the `nv config save` command:
+
+   ```
+   cumulus@switch:~$ nv config save
+   saved
+   ```
+
+2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
+
+3. After upgrade is complete, restore certificates and the configuration.
+
+   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and/or CRLs that were configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
+
+   b. Copy the `/etc/nvue.d/startup.yaml` file from the back up process to the switch.
+
+   c. If required, convert the `startup.yaml` file to the format of the currently running release on the switch. Refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}.
+
+   d. Run the `nv config replace` command, then run the `nv config apply` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
+
+   ```
+   cumulus@switch:~$ nv config replace /home/cumulus/startup.yaml
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{%notice infonopad%}}
+If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
+{{%/notice%}}
 ## Maximum Revisions Limit
 
 You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them. The lower revision number is the oldest; for example revision 10 is older than revision 100.

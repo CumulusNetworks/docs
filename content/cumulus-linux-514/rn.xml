@@ -7,15 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4641351</td>
-<td>If you enable LACP bypass mode on a bond, the switch removes the member ports from the interface and the {{nv show interface &lt;interface-id&gt; qos roce status}} command shows {{Error: The requested item does not exist}}. To work around this issue, run the {{nv show interface &lt;interface-id&gt; qos roce status}} command on the member physical port. </td>
-<td>5.13.1-5.14.0</td>
+<td>4647325</td>
+<td>Running the {{nv config save}} command while a diff is pending might result in unexpected {{nv config diff}} output. To work around this issue, run the {{nv config diff --verbose}} command.</td>
+<td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
-<td>4641350</td>
-<td>If you enable LACP bypass mode on a bond, the switch removes the member ports from the interface and the {{nv show interface &lt;interface-id&gt; qos roce status}} command shows {{Error: The requested item does not exist}}. To work around this issue, run the {{nv show interface &lt;interface-id&gt; qos roce status}} command on the member physical port. </td>
-<td>5.13.1-5.14.0</td>
+<td>4643537</td>
+<td>The {{nv action clear interface &lt;port&gt;}} command does not clear the in and out packet counters under {{interface/&lt;port&gt;/link/stats}}.</td>
+<td>5.12.1-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -43,9 +43,57 @@
 <td></td>
 </tr>
 <tr>
+<td>4641326</td>
+<td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4641291</td>
+<td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or phy.</td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4640126</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4633514</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4629293</td>
+<td>The {{nv show system telemetry}} command output shows the global port but not the per destination port, which makes it look like the port configured and displayed do not match.</td>
+<td>5.12.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4625452</td>
+<td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4621717</td>
+<td>TACACS authorization configuration changes require you to restart {{nvued}}.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4621451</td>
 <td>Changing the gateway interface IP address on the DHCP relay causes DHCP relay to not forward the packet. To work around this issue, restart the DHCP relay service corresponding to the VRF on which it is running.</td>
 <td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4618809</td>
+<td>When collecting streaming telemetry data for per-process information and statistics from the system, you might see false errors about unavailable process IDs in the logs.</td>
+<td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -67,6 +115,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4607288</td>
+<td>You might see convergence degradation in a remote link failure scenario due to very chatty LTTNG traces that add logging overhead.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4605303</td>
 <td>The downstream VNI software VXLAN encapsulation path does not derive the source IP address of the outer IP header properly. Instead of using the defined {{vxlan-local-tunnelip}} under the loopback interface, it uses the underlay interface on which the packet egresses the VTEP. In a mixed vendor environment, this might lead to a drop on the decapsulating VTEP if it is not an Nvidia Cumulus Linux switch. To work around this issue, use symmetric VNI configuration instead of downstream VNI or use downstream VNI with an unnumbered underlay.</td>
 <td>5.13.0-5.14.0</td>
@@ -76,6 +130,12 @@
 <td>4601056</td>
 <td>The neighbor manager service memory usage increases significantly after the number of entries in the kernel neighbor table exceeds the {{gc_threshold}}.</td>
 <td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4597334</td>
+<td>NVUE shows SRv6 statistics intermittently even though static SID configuration is present.</td>
+<td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -152,7 +212,13 @@
 </tr>
 <tr>
 <td>4551249</td>
-<td>The NVUE service might fail during switch upgrade. To work around this issue, stop the {{sysmonitor}} with the {{sudo systemctl stop sysmonitor}} command, then upgrade the switch with the {{nv action upgrade system packages to latest}} command.</td>
+<td>The NVUE service might fail during switch upgrade on Cumulus Linux 5.13.1. To work around this issue, stop the {{sysmonitor}} with the {{sudo systemctl stop sysmonitor}} command, then upgrade the switch with the {{nv action upgrade system packages to latest}} command.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4550126</td>
+<td>Sometimes NVUE does not show SRv6 statistics even though static SID configuration is present.</td>
 <td>5.14.0</td>
 <td></td>
 </tr>
@@ -193,6 +259,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4546056</td>
 <td>When an ESI changes from remote to local, the switch does not uninstall remote neighbors from the ASIC. To work around this issue, flap the layer 3 VNI associated with the SVI to clean up stale neighbors from the ASIC.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4535806</td>
+<td>After a factory reset, the switch does not clear the {{/var/tmp}} directory, which the switch uses for temporary files.</td>
 <td>5.14.0</td>
 <td></td>
 </tr>
@@ -686,6 +758,14 @@ To work around this issue when using fiber cables:
 <td>
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3414866</td>
+<td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
+sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
+You can ignore this error; it has no impact on switch functionality.</td>
+<td>5.6.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

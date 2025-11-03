@@ -39,6 +39,10 @@ To configure optional settings for gNMI dial-in mode:
   - Cumulus Linux uses a self-signed certificate. You can generate your own TLS server certificate and bind it with the gNMI server application.
   - If you need to use mTLS on the gNMI RPC, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. Specify either `uri` (a local or remote URI from where to retrieve the crl bundle file) or `data` (for a PEM encoded CRL).
 
+{{%notice note%}}
+When you configure a CA certificate, entity certificate, or CRL, the configuration will apply to any new gNMI sessions that establish. Existing dial-in connections will continue to use the prior configuration until they reestablish.
+{{%/notice%}}
+
 The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
 
 ```
@@ -70,6 +74,10 @@ To configure optional settings for each tunnel server:
 - Specify the target name and target application you want to access. The default target application is GNMI-GNOI.
 - Specify the retry interval. The default retry interval is 30 seconds.
 - Import and enable a TLS or mTLS certificate for validation. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. For information about importing certificates and CRLs, refer to {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Security with Certificates and CRLs">}}.
+
+{{%notice note%}}
+When you configure a CA certificate, entity certificate, or CRL, existing dial-out gNMI sessions are disconnected to apply the new certificate configuration.
+{{%/notice%}}
 
 The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10, and enables the tunnel server:
 
@@ -240,42 +248,42 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 |  Name | Description |
 |------ | ----------- |
-| `/acl/interfaces/interface[name]/state/id` | *|
-| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/state/set-name`| *|
-| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/state/type` | *|
-| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id='<entry-id>']/state/sequence-id` | *|
-| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-packets` | *|
-| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-octets` | *|
-| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/state/set-name` | *|
-| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/state/type` | *|
-| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id='<entry-id>']/state/sequence-id` | *|
-| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-packets`| *|
-| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-octets` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/state/name` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/state/type` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/state/sequence-id` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/source-mac` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/source-mac-mask` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/destination-mac` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/destination-mac-mask` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/ethertype` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/source-address` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/destination-address` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/dscp` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/protocol` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/hop-limit` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/icmpv4/state/type` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/source-address` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/destination-address` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/dscp` | * |
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/protocol` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/hop-limit` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/icmpv6/state/type` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/action/state/forwarding-action` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/action/state/log-action` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/source-port` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/destination-port` | *|
-| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/explicit-tcp-flags` | *|
+| `/acl/interfaces/interface[name]/state/id` | * Interface ACL state. |
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/state/set-name`| * Interface ingress ACL set name. |
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/state/type` | * Interface ingress ACL type. |
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id='<entry-id>']/state/sequence-id` | * Interface ingress ACL sequence. |
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-packets` | * Interface ingress ACL sequence matched packets.|
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-octets` | * Interface ingress ACL matched bytes. |
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/state/set-name` | * Interface egress ACL set name. |
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/state/type` | * Interface egress ACL type. |
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id='<entry-id>']/state/sequence-id` | * Interface egress ACL sequence. |
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-packets`| * Interface egress ACL matched packets. |
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-octets` | * Interface egress ACL matched bytes. |
+| `/acl/acl-sets/acl-set[name][acl-type]/state/name` | * ACL name. |
+| `/acl/acl-sets/acl-set[name][acl-type]/state/type` | * ACL type. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/state/sequence-id` | * ACL sequence. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/source-mac` | * ACL sequence L2 source MAC address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/source-mac-mask` | * ACL sequence L2 source MAC mask. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/destination-mac` | * ACL sequence L2 destination MAC address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/destination-mac-mask` | * ACL sequence L2 destination MAC mask. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/ethertype` | * ACL sequence L2 ethertype. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/source-address` | * ACL sequence IPv4 source address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/destination-address` | * ACL sequence IPv4 destination address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/dscp` | * ACL sequence IPv4 DSCP. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/protocol` | * ACL sequence IPv4 protocol. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/hop-limit` | * ACL sequence IPv4 hop limit. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/icmpv4/state/type` | * ACL sequence ICMPv4 type. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/source-address` | * ACL sequence IPv6 source address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/destination-address` | * ACL sequence IPv6 destination address. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/dscp` | * ACL sequence IPv6 DSCP. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/protocol` | * ACL sequence IPv6 protocol. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/hop-limit` | * ACL sequence IPv6 hop limit. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/icmpv6/state/type` | * ACL sequence ICMPv6 type. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/action/state/forwarding-action` | * ACL sequence forwarding action. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/action/state/log-action` | * ACL sequence log action. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/source-port` | * ACL sequence L4 source port. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/destination-port` | * ACL sequence L4 destination port. |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/explicit-tcp-flags` | * ACL sequence L4 TCP flags. |
 
 {{< /tab >}}
 {{< tab "Adaptive Routing">}}
@@ -283,36 +291,6 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 |  Name | Description |
 |------ | ----------- |
 | `/system/adaptive-routing/state/counters/congestion-changes` | The number of adaptive routing change events that triggered due to congestion or link down.|
-
-{{< /tab >}}
-{{< tab "BGP">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp` |Top-level configuration and state for the BGP router. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/installed` | The number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received` | The number of prefixes that are received from the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/sent` | The number of prefixes that are advertised to the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state` | BGP neighbor state.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/description` | BGP neighbor state description.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/established-transitions` | Number of transitions to the Established state for the neighbor session. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/last-established` | The time that the BGP session last transitioned in or out of the Established state. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC). |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/local-as` | The local autonomous system number used when establishing sessions with the remote peer or peer group, if this differs from the global BGP router autonomous system number.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages` | Counters for BGP messages sent and received from the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received` | Counters for BGP messages received from the neighbor. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/last-notification-error-code` | The last BGP error sent or received on the peering session.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent` | Counters relating to BGP messages sent to the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/last-notification-error-code` | The last BGP error sent or received on the peering session.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing or modifying paths exchanged.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/neighbor-address` | Address of the BGP peer, either in IPv4 or IPv6.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-as` | AS number of the peer.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-group` | The peer-group with which this neighbor is associated|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-type` | Explicitly designate the peer or peer group as internal (iBGP) or external (eBGP).|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/input` | The number of messages received from the peer currently queued.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
 
 {{< /tab >}}
 {{< tab "Interface">}}
@@ -353,6 +331,48 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
 | `/interfaces/interface[name]/ethernet/state/auto-negotiate` | Indicates if the interface is configured for auto-negotiation.|
 | `/interfaces/interface[name]/ethernet/state/negotiated-port-speed` | If auto-negotiation is enabled, this is the negotiated port speed. If auto-negotiation is disabled, you do not see this metric. |
+| `/interfaces/interface[name]/ethernet/state/counters/out-mac-pause-frames` | * Total number of MAC control frames transmitted with an opcode indicating the pause operation. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-maxsize-exceeded` | * Total number of frames received that exceed the maximum permitted frame size. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-symbol-error` | * Total number of received error frames due to a symbol error. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-fragment-frames` | * Total number of packets received that were less than 64 octets in length (excluding framing bits but including FCS octets) and had either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-undersize-frames` | * Total number of packets received that were less than 64 octets long (excluding framing bits, but including FCS octets) and were otherwise well formed. |
+| `/interfaces/interface[name]/state/counters/carrier-down-transitions` | * Total number of carrier down events on the interface. |
+| `/interfaces/interface[name]/state/counters/carrier-up-transitions` | * Total number of carrier up events on the interface. |
+| `/interfaces/interface[name]/state/counters/out-hoq-drops` | * Number of packets dropped at egress due to Head-of-Queue Timeout. |
+| `/interfaces/interface[name]/state/counters/out-hoq-stall-drops` | * Number of packets dropped at egress due to Head-of-Queue Timeout. |
+| `/interfaces/interface[name]/state/counters/out-sll-drops` | * Number of packets dropped at egress due to exceeding switch lifetime limit.|
+| `/interfaces/interface[name]/state/counters/out-acl-drops` | * Number of packets dropped at egress due to ACL policy. |
+| `/interfaces/interface[name]/state/counters/out-stp-filter-drops` | * Number of packets dropped at egress due to STP filter. |
+| `/interfaces/interface[name]/state/counters/out-vlan-membership-drops` | * Number of packets dropped at egress due to VLAN membership filter. |
+| `/interfaces/interface[name]/state/counters/in-vlan-tag-allowance-drops ` | * Number of packets dropped at ingress due to VLAN tag allowance filter. |
+| `/interfaces/interface[name]/state/counters/in-link-down-drops` | * Number of packets dropped at ingress due to egress link down. |
+| `/interfaces/interface[name]/state/counters/in-vlan-membership-drops` | * Number of packets dropped at ingress due to VLAN membership filter. |
+| `/interfaces/interface[name]/state/counters/in-loopback-drops` | * Number of packets dropped at ingress due to loopback filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-unknown-protos` | * Number of MAC control frames received with an unsupported opcode. |
+| `/interfaces/interface[name]/ethernet/state/counters/pkt_drop_events_probe_resource_lack` | * Total number packets dropped by the probe due to lack of resources. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-1519-2047-octets` | * Total number of packets (including bad packets) received that were between 1519 and 2047 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-2048-4095-octets` | * Total number of packets (including bad packets) received that were between 2048 and 4095 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-4096-8191-octets` | * Total number of packets (including bad packets) received that were between 4096 and 8191 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-8192-9216-octets` | * Total number of packets (including bad packets) received that were between 8192 and 10239 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/state/counters/no-buffer-mc-dropped-pkts ` | * The number of multicast packets dropped due to lack of egress buffer resources. Valid only for Spectrum switches. |
+| `/interfaces/interface[name]/state/counters/in-buffer-almost-full` | * Number of times that the port Rx buffer passed a buffer utilization threshold. |
+| `/interfaces/interface[name]/state/counters/in-buffer-full` | * Number of times that the port Rx buffer reached 100% utilization. |
+| `/interfaces/interface[name]/state/counters/in-ebp-pkts` | * The number of received EBP packets. |
+| `/interfaces/interface[name]/state/counters/out-ebp-pkts` | * The number of transmitted EBP packets. |
+| `/interfaces/interface[name]/state/counters/pkts-payload-internal-checksum-errors` | * Number of packet payload internal checksum errors. |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-1024-1518-octets` | * Total number of packets (including bad packets) transmitted that were between 1024 and 1518 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-128-255-octets` | * Total number of packets (including bad packets) transmitted that were between 128 and 255 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-1519-2047-octets` | * Total number of packets (including bad packets) transmitted that were between 1519 and 2047 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-2048-4095-octets` | * Total number of packets (including bad packets) transmitted that were between 2048 and 4095 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-256-511-octets` | * Total number of packets (including bad packets) transmitted that were between 256 and 511 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-4096-8191-octets` | * Total number of packets (including bad packets) transmitted that were between 4096 and 8191 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-512-1023-octets` | * Total number of packets (including bad packets) transmitted that were between 512 and 1023 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-64-octets` | * Total number of packets (including bad packets) transmitted that were 64 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-65-127-octets` | * Total number of packets (including bad packets) transmitted that were between 65 and 127 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/out-distribution/out-frames-8192-9216-octets` | * Total number of packets (including bad packets) transmitted that were between 8192 and 10239 octets in length (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/state/counters/ecn-marked-pkts` | * Count of packets marked as ECN or potentially marked as ECN |
+| `/interfaces/interface[name]/state/counters/ece-marked-pkts` | * Count of packets marked as ECE or potentially marked as ECE. |
+| `/interfaces/interface[name]/state/counters/tx-wait` | * Count of wire-speed, one-byte time intervals during which the port had data ready to transmit but did not send any data. |
 | `/interfaces/interface[name]/ethernet/state/port-speed` | If auto-negotiation is enabled, the port speed is the highest advertised speed. If auto-negotiation is disabled, the port speed is the operational speed value.|
 | `/interfaces/interface[name]/rates/state/in-bits-rate` | The calculated received rate of the interface, measured in bits per second.|
 | `/interfaces/interface[name]/rates/state/in-pkts-rate` | The calculated received rate of the interface, measured in packets per second.|
@@ -413,13 +433,45 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 |  Name | Description |
 |------ | ----------- |
 | `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-unicast-pkts`| * The number packets that were trimmed on the interface.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts`| * The number of packets that were trimmed and sent succesfully on the interface.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts`| * The number of packets that were trimmed on the interface queue.|
 
 {{< /tab >}}
 {{< tab "Platform">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name]/state/name` | List of components, keyed by component name.|
+| `/components/component[name]/state/serial-no` | * Serial number of the component, keyed by component name.|
+| `/components/component[name]/state/part-no` | * Part number of the component, keyed by component name.|
+| `/components/component[name]/storage/state/counters/rotation-rate-rpm` | * Disk rotation rate in RPMs (supported only on SATA disks). |
+| `/components/component[name]/storage/state/counters/write-cache` | * Indicates whether the disk has a write cache (supported only on SATA disks). |
+| `/components/component[name]/storage/state/counters/write-cache-enabled` | * Indicates whether the disk write cache is enabled. (supported only on SATA disks) |
+| `/components/component[name]/storage/state/counters/discard-seconds` | * Number of seconds spent by all discards. |
+| `/components/component[name]/storage/state/counters/discard-sectors` | * Number of sectors discarded successfully.|
+| `/components/component[name]/storage/state/counters/discard-completed` | * Number of discards completed successfully. |
+| `/components/component[name]/storage/state/counters/discard-merged` | * Number of discards merged.|
+| `/components/component[name]/storage/state/counters/flush-req-seconds` | Number of seconds spent by all flush requests. |
+| `/components/component[name]/storage/state/counters/flush-req` | * Number of flush requests completed successfully. |
+| `/components/component[name]/storage/state/counters/io-ops-in-progress` | * Number of I/Os currently in progress. |
+| `/components/component[name]/storage/state/counters/io-seconds` | * Total seconds spent doing I/Os. |
+| `/components/component[name]/storage/state/counters/io-weighted-seconds` | * The weighted # of seconds spent doing I/Os. |
+| `/components/component[name]/storage/state/counters/read-bytes` | * Number of bytes read successfully. |
+| `/components/component[name]/storage/state/counters/read-seconds` | * Number of seconds spent by all reads. |
+| `/components/component[name]/storage/state/counters/read-ops` | * Number of reads completed successfully. |
+| `/components/component[name]/storage/state/counters/read-merged` | * Number of reads merged. |
+| `/components/component[name]/storage/state/counters/write-seconds` | * Number of seconds spent by all writes. |
+| `/components/component[name]/storage/state/counters/write-ops` | * Number of writes completed successfully. |
+| `/components/component[name]/storage/state/counters/write-merged` | * Number of writes merged. |
+| `/system/mount-points/mount-point[name]/state/files-total` | * Filesystem total file nodes. |
+| `/components/component[name]/storage/state/counters/write-bytes` | * Number of bytes written successfully..|
+| `/system/mount-points/mount-point[name]/state/files-available` | * Filesystem total free file nodes. |
+| `/system/mount-points/mount-point[name]/state/read-only` | * Filesystem read-only status. |
+| `/system/mount-points/mount-point[name]/state/device-error` | * Whether an error occurred while getting statistics for the given device. |
+| `/components/component[name=<fanid>]/fan/state/direction` | * Fan direction. |
+| `/components/component[name=<fanid>]/fan/state/max-speed` | * Fan Maximum speed capacity. |
+| `/components/component[name=<fanid>]/fan/state/min-speed` | * Fan Minimum speed capacity. |
+| `/components/component[name]/state/software-version` | * The version of the currently running software. |
 | `/components/component[name]/fan/state/speed` | Current (instantaneous) fan speed. |
 | `/components/component[name]/power-supply/state/capacity` | Maximum power capacity of the power supply. |
 | `/components/component[name]/power-supply/state/input-current` | Input current draw of the power supply.|
@@ -477,7 +529,60 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/time-since-last-clear` | Time since last clear of watermarks in a priority group.|
 | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/in-pause-pkts` | Number of pause packets for the priority class in the ingress queue.|
 | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
+| `/qos/interfaces/interface[interface-id]/priority-group/state/counters/in-pkts` | *  Number of received input packets for a priority group. |
+| `/qos/interfaces/interface[interface-id]/state/priority-group/state/counters/in-octets` | * Number of octets of input data received for a given priority group. |
+| `/qos/interfaces/interface[interface-id]/switch-priority/state/counters/in-discards` | * Number of discarded inbound packets. |
+| `/qos/interfaces/interface[interface-id]/switch-priority/state/in-pause-duration` | * Total time in microseconds packet transmission on the port has been paused. |
+| `/qos/interfaces/interface[interface-id]/switch-priority/state/out-pause-duration` | * Total time in microseconds that the far-end port has been requested to pause. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue/state/instant-queue-len` | * Transmit queue depth in bytes on traffic class selected by traffic_class of the port selected by local_port. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue/state/transmit-uc-pkts` | * Number of unicast packets transmitted by this queue.|
 
+{{< /tab >}}
+{{< tab "Routing">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp` |Top-level configuration and state for the BGP router. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/installed` | The number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received` | The number of prefixes that are received from the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/sent` | The number of prefixes that are advertised to the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state` | BGP neighbor state.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/description` | BGP neighbor state description.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/established-transitions` | Number of transitions to the Established state for the neighbor session. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/last-established` | The time that the BGP session last transitioned in or out of the Established state. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC). |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/local-as` | The local autonomous system number used when establishing sessions with the remote peer or peer group, if this differs from the global BGP router autonomous system number.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages` | Counters for BGP messages sent and received from the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received` | Counters for BGP messages received from the neighbor. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/last-notification-error-code` | The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent` | Counters relating to BGP messages sent to the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/last-notification-error-code` | The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/neighbor-address` | Address of the BGP peer, either in IPv4 or IPv6.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-as` | AS number of the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-group` | The peer-group with which this neighbor is associated|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-type` | Explicitly designate the peer or peer group as internal (iBGP) or external (eBGP).|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/input` | The number of messages received from the peer currently queued.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
+| `/tables/table[address-family=IPV4][protocol=BGP]/state/route-count` | * IPv4 BGP route count in RIB. |
+| `/tables/table[address-family=IPV6][protocol=BGP]/state/route-count` | * IPv6 BGP route count in RIB. |
+| `/tables/table[address-family=IPV4][protocol=DIRECTLY_CONNECTED]/state/route-count` | * IPv4 connected route count. |
+| `/tables/table[address-family=IPV6][protocol=DIRECTLY_CONNECTED]/state/route-count` | * IPv6 connected route count. |
+| `/tables/table[address-family=IPV4][protocol=STATIC]/state/route-count` | * IPv4 static route count. |
+| `/tables/table[address-family=IPV6][protocol=STATIC]/state/route-count` | * IPv6 static route count. |
+| `/tables/table[address-family=IPV4][protocol=OSPF]/state/route-count` | * IPv4 OSPF route count in RIB. |
+| `/tables/table[address-family=IPV6][protocol=OSPF]/state/route-count` | * IPv6 OSPF route count in RIB. |
+| `/tables/table[address-family=IPV4][protocol=KERNEL]/state/route-count` | * IPv4 kernel route count. |
+| `/tables/table[address-family=IPV6][protocol=KERNEL]/state/route-count` | * IPv6 kernel route count. |
+| `/tables/table[address-family=IPV4][protocol=POLICY_BASED_ROUTING]/state/route-count` | * IPv4 PBR route count.|
+| `/tables/table[address-family=IPV6][protocol=POLICY_BASED_ROUTING]/state/route-count` | * IPv6 PBR route count.|
+| `/tables/table[address-family=IPV4][protocol=TABLE_CONNECTION]/state/route-count` | * IPv4 table connection route count.|
+| `/tables/table[address-family=IPV6][protocol=TABLE_CONNECTION]/state/route-count` | * IPv6 table connection route count.|
+| `/network-instances/network-instance/tables/state/ipv4-route-count` | * Total IPv4 route count.|
+| `/network-instances/network-instance/tables/state/ipv6-route-count` | * Total IPv6 route count.|
+| `/network-instances/network-instance/tables/state/rib-nexthop-group-count` | * Nexthop group count.|
 {{< /tab >}}
 {{< tab "SRv6">}}
 
@@ -694,6 +799,142 @@ supported encodings:
   - JSON_IETF 
   - PROTO 
 ```
+### gNOI Operational Commands
+
+The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](## "gRPC Network Operations Interface")</span> so that you can run operational tasks from a client, such as switch reboot or file transfer. The gNOI server is enabled when you configure {{<link url="gNMI-Streaming/#configure-gnmi-dial-in-mode" text="gNMI dial-in mode">}}. The gNOI server uses the same listening address, port, TLS configuration, and user credentials as your gNMI server configuration.
+
+Cumulus Linux supports the following OpenConfig gNOI RPCs:
+
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/system/system.proto#L78" text="System Reboot">}}, supporting warm and cold reboot modes. The `reboot` gNOI RPC maps to the `nv action system reboot mode <mode>` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L139" text="Software Image Install">}}, supporting copy operations of images to the switch. The `install` gNOI RPC maps to the `nv action fetch system image <image>` command.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L145" text="Software Image Activation">}}, supporting optimized image installation and activation. The `activate` gNOI RPC maps to the `nv action install system image files <image>`, `nv action boot-next system image other`, and  `nv action system reboot mode <mode> commands if a reboot is requested.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L46" text="Software Image Installation">}}
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto" text="File Management">}}, supporting retrieval, viewing, or deleting files. The following file management gNOI RPCs are supported:
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L34" text="Get">}}, the equivalent of the `nv action upload system file-path [local-path] [remote-url]` command.
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L52" text="Put">}}, the equivalent of the `nv action fetch system file-path [local-path][remote-url] [file-permissions]` command.
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L57" text="Stat">}}, the equivalent of the `nv action list system file-path [local-path]` command.  
+  - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L62" text="Remove">}}, the equivalent of the `nv action delete system file-path [local-path]` command.
+
+{{%notice note%}}
+The following gNOI RPCs are not supported:
+- system `cancel-reboot`
+- system `reboot-status`
+- system `set-package`
+- system `reboot` with `--method=FAST` (fast reboot mode)
+- file `transfer`
+{{%/notice%}}
+
+
+You can view the number of gNOI RPCs received on the switch with the `nv show system gnmi-server status gnoi-rpc` command:
+
+```
+cumulus@switch:mgmt:~$ nv show system gnmi-server status gnoi-rpc
+gnoi-rpc-name failed-rpc-requests received-rpc-requests
+------------- ------------------- ---------------------
+File.Get      0                   4
+File.Put      0                   1
+File.Remove   0                   1
+File.Stat     0                   46
+OS.Install    0                   1
+```
+
+#### gNOI Client Requests
+
+You can use your gNOI client to send supported RPCs to a switch for operational commands.
+
+The following example uses the `Stat` RPC to view the `/var/support` directory on a switch:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file stat --path /var/support/
++--------------------+----------------------------------------------------------+----------------------+------------+------------+---------+
+|    Target Name     |                           Path                           |     LastModified     |    Perm    |   Umask    |  Size   |
++--------------------+----------------------------------------------------------+----------------------+------------+------------+---------+
+| 10.1.1.100:9339 | /var/support//cl_support_mlx-3700-79_20251031_171813.txz | 2025-10-31T17:18:54Z | -rw-r--r-- | -----w--w- | 9992512 |
+|                    | /var/support//core                                       | 2025-10-30T21:49:56Z | drwxr-xr-x | -----w--w- | 4096    |
++--------------------+----------------------------------------------------------+----------------------+------------+------------+---------+
+cumulus@host:mgmt:~$
+```
+
+The following example uses the file `get` RPC to retrieve the `/var/support/cl_support_mlx-3700-79_20251031_171813.txz` file and copy it to `/tmp/` on the local client system.
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file get --file /var/support/cl_support_mlx-3700-79_20251031_171813.txz --dst /tmp/
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 1048576 bytes
+INFO[0001] "10.1.1.100:9339" received 555328 bytes
+INFO[0001] "10.1.1.100:9339" file "/var/support/cl_support_mlx-3700-79_20251031_171813.txz" saved
+cumulus@host:mgmt:~$
+```
+
+The following example uses the file `remove` RPC to delete the `/var/support/cl_support_mlx-3700-79_20251031_171813.txz` file on the switch.
+
+```
+cumulus@host:mgmt:~$ gnoic  --username root --password NvidiaR0ots! --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file remove --path /var/support/cl_support_mlx-3700-79_20251031_171813.txz
+INFO[0000] "10.1.1.100:9339" file "/var/support/cl_support_mlx-3700-79_20251031_171813.txz" removed successfully
+cumulus@host:mgmt:~$
+```
+
+The following example uses the file `put` RPC to copy the `/tmp/gnmic_ca.crt` file on the local client host to the switch at `/tmp/gnmic.crt`:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key file put --file /tmp/gnmic_ca.crt --dst /tmp/gnmi.crt
+INFO[0000] "10.1.1.100:9339" sending file="/tmp/gnmic_ca.crt" hash
+INFO[0000] "10.1.1.100:9339" file "/tmp/gnmic_ca.crt" written successfully
+cumulus@host:mgmt:~$
+```
+
+The following example uses the `install` RPC to copy the `/media/node/cumulus-linux-mlx-amd64-5.15.bin.devsigned` image file on the local client to the switch with the version `5.15.0`:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os install --pkg /media/node/cumulus-linux-mlx-amd64-5.15.bin.devsigned --version 5.15.0
+INFO[0000] starting install RPC
+INFO[0000] target "10.1.1.100:9339": starting Install stream
+INFO[0000] target "10.1.1.100:9339": TransferProgress bytes_received:5242880
+INFO[0000] target "10.1.1.100:9339": TransferProgress bytes_received:10485760
+...
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:980418560
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:985661440
+INFO[0011] target "10.1.1.100:9339": sending TransferEnd
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:990904320
+INFO[0011] target "10.1.1.100:9339": TransferContent done...
+INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:994600465
+cumulus@host:mgmt:~$
+```
+
+The following example uses the `activate` RPC to activate the `5.15.0` image as the next boot image without reboot the switch:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os activate --version 5.15.0 --no-reboot
+INFO[0190] target "10.1.1.100:9339" activate response "activate_ok:{}"
+cumulus@host:mgmt:~$
+```
+
+The following example uses the `activate` RPC to activate the `5.15.0` image as the next boot image and reboots the switch.
+
+```
+cumulus@host:mgmt:~$ gnoic  --username cumulus --password NvidiaR0cks! --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os activate --version 5.15.0 
+INFO[0182] target "10.1.1.100:9339" activate response "activate_ok:{}"
+cumulus@host:mgmt:~$
+```
+
+The following example uses the system `reboot` RPC to reboot the switch with warm reboot mode:
+
+```
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key system reboot --method WARM
+INFO[0074] "10.1.1.100:9339" System Reboot Request successful
+cumulus@host:mgmt:~$
+```
+
+{{%notice infonopad%}}
+When you issue a switch reboot with the gNOI system `reboot` RPC or the `activate` RPC without the `--no-reboot` option, the switch reboots immediately; no confirmation is required.
+{{%/notice%}}
 
 ## gNMI with NetQ
 
@@ -1496,10 +1737,6 @@ received sync response 'true' from '10.209.37.123:9339'
 }
 ```
 <!-- vale on -->
-
-### gNOI Operational Commands
-
-The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](## "gRPC Network Operations Interface")</span> so that you run operational tasks from a client, such as switch reboot or file transfer.
 
 ### Considerations
 

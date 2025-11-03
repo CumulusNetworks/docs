@@ -10,7 +10,7 @@ Latency monitoring enables you to precisely measure and analyze the time it take
 - Plan network topology and capacity expansion.
 - Manage incident responses in latency-sensitive environments.
 
-You can monitor latency on layer 3 and untagged physical links only.
+You can monitor latency on Spectrum-4 and later switches, and on layer 3 and untagged physical links only.
 
 {{%notice note%}}
 Cumulus Linux does not support:
@@ -34,7 +34,7 @@ Cumulus Linux measures the following components:
 
 ## Configure Latency Monitoring
 
-To configure latency monitoring, enable the feature and set options such as the periodic interval, and the interfaces and traffic classes you want to monitor. You can also configure the switch to export latency data to a configured telemetry module, such as gNMI or Open Telemetry.
+To configure latency monitoring, enable the feature and set options such as the periodic probe interval, and the interfaces and traffic classes you want to monitor. You can also configure the switch to export latency data to a configured telemetry module, such as gNMI or Open Telemetry.
 
 To enable latency monitoring, run the `nv set system telemetry latency-measurement state enabled` command:
 
@@ -44,24 +44,38 @@ cumulus@switch:~$ nv config apply
 ```
 
 You can configure the following parameters:
-- The sampling interval in seconds.
+- The periodic probe interval in seconds.
 - The traffic class and port you want to monitor with the source IP address, destination IP address, source MAC address, destination MAC address, VLAN or DSCP.
 
-The following example sets the periodic interval to 10, and monitors traffic class 0, 3, and 6 on swp1 through 128:
+The following example sets the periodic interval to 2 seconds, and monitors traffic class 0, 3, and 6 on swp1 through 128:
 
 ```
-cumulus@switch:~$ nv set system telemetry latency-measurement periodic-interval 10 
+cumulus@switch:~$ nv set system telemetry latency-measurement periodic-interval 2 
 cumulus@switch:~$ nv set interface swp1-128 latency-measurement traffic-class 0,3,6
 cumulus@switch:~$ nv config apply
 ```
 
-The following example sets the periodic interval to 8, and monitors IPv6 packets on swp1 through swp51, traffic class 0 with DSCP af31:
+The following example sets the periodic interval to 5, and monitors IPv6 packets on swp1 through swp51, traffic class 0 with DSCP af31:
 
 ```
-cumulus@switch:~$ nv set system telemetry latency-measurement periodic-interval 8
+cumulus@switch:~$ nv set system telemetry latency-measurement periodic-interval 5
 cumulus@switch:~$ nv set interface swp1-51 latency-measurement traffic-class 0 protocol ipv6 dscp af31
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice infonopad%}}
+
+To ensure accurate latency monitoring and appropriate resource utilization, adjust the periodic interval based on the number of traffic classes (TCs) configured with latency monitoring per port. NVIDIA recommends setting the minimum interval according to the total number of TCs enabled per port:<br><br>
+
+
+| Number (n) of TCs per-port | Minimum periodic interval |
+| ------- | ----------- |
+| n ≤ 4 | 1 second |
+| 4< n ≤ 8 | 2 seconds |
+| 8< n ≤ 12 | 3 seconds |
+| 12< n ≤ 16 | 4 seconds |
+
+{{%/notice%}}
 
 To export latency data to a configured telemetry module:
 
@@ -69,6 +83,15 @@ To export latency data to a configured telemetry module:
 cumulus@switch:~$ nv set system telemetry latency-measurement export state enabled 
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics are exported, add `latency-measurement` to the `stats-group` configuration to include latency metrics:
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group <name> latency-measurement
+cumulus@switch:~$ nv config apply
+```
+{{%/notice%}}
 
 ## Show Latency Information
 

@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4501643"></a> [4501643](#4501643) <a name="4501643"></a> <br /> | Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a <code>switchd</code> service crash. | 4.3.3-4.4.5 | |
 | <a name="4472516"></a> [4472516](#4472516) <a name="4472516"></a> <br /> | When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge. | 4.3.3-4.4.5 | |
 | <a name="4143345"></a> [4143345](#4143345) <a name="4143345"></a> <br /> | On the Trident3 switch, if you use NCLU to configure BGP neighbor shutdown, NCLU stops responding when you include more than 200 neighbors per peer group. If you do <b>not</b> use NCLU to configure BGP neighbor shutdown, you can configure a maximum of 300 neighbors per peer group.  | 4.3.0-4.4.5 | |
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br /> | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1 | 5.9.2-5.14.0, 5.10.0-5.14.0|
@@ -312,6 +313,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4501643"></a> [4501643](#4501643) <a name="4501643"></a> <br /> | Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a <code>switchd</code> service crash. | 4.3.3-4.4.5 | |
 | <a name="4472516"></a> [4472516](#4472516) <a name="4472516"></a> <br /> | When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge. | 4.3.3-4.4.5 | |
 | <a name="4143345"></a> [4143345](#4143345) <a name="4143345"></a> <br /> | On the Trident3 switch, if you use NCLU to configure BGP neighbor shutdown, NCLU stops responding when you include more than 200 neighbors per peer group. If you do <b>not</b> use NCLU to configure BGP neighbor shutdown, you can configure a maximum of 300 neighbors per peer group.  | 4.3.0-4.4.5 | |
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br /> | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1 | 5.9.2-5.14.0, 5.10.0-5.14.0|
@@ -635,6 +637,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4501643"></a> [4501643](#4501643) <a name="4501643"></a> <br /> | Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a <code>switchd</code> service crash. | 4.3.3-4.4.5 | |
 | <a name="4472516"></a> [4472516](#4472516) <a name="4472516"></a> <br /> | When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge. | 4.3.3-4.4.5 | |
 | <a name="4143345"></a> [4143345](#4143345) <a name="4143345"></a> <br /> | On the Trident3 switch, if you use NCLU to configure BGP neighbor shutdown, NCLU stops responding when you include more than 200 neighbors per peer group. If you do <b>not</b> use NCLU to configure BGP neighbor shutdown, you can configure a maximum of 300 neighbors per peer group.  | 4.3.0-4.4.5 | |
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br /> | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1 | 5.9.2-5.14.0, 5.10.0-5.14.0|
@@ -948,6 +951,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4501643"></a> [4501643](#4501643) <a name="4501643"></a> <br /> | Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a <code>switchd</code> service crash. | 4.3.3-4.4.5 | |
 | <a name="4472516"></a> [4472516](#4472516) <a name="4472516"></a> <br /> | When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge. | 4.3.3-4.4.5 | |
 | <a name="4143345"></a> [4143345](#4143345) <a name="4143345"></a> <br /> | On the Trident3 switch, if you use NCLU to configure BGP neighbor shutdown, NCLU stops responding when you include more than 200 neighbors per peer group. If you do <b>not</b> use NCLU to configure BGP neighbor shutdown, you can configure a maximum of 300 neighbors per peer group.  | 4.3.0-4.4.5 | |
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br /> | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1 | 5.9.2-5.14.0, 5.10.0-5.14.0|
@@ -1283,6 +1287,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4501643"></a> [4501643](#4501643) <a name="4501643"></a> <br /> | Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a <code>switchd</code> service crash. | 4.3.3-4.4.5 | |
 | <a name="4472516"></a> [4472516](#4472516) <a name="4472516"></a> <br /> | When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge. | 4.3.3-4.4.5 | |
 | <a name="4143345"></a> [4143345](#4143345) <a name="4143345"></a> <br /> | On the Trident3 switch, if you use NCLU to configure BGP neighbor shutdown, NCLU stops responding when you include more than 200 neighbors per peer group. If you do <b>not</b> use NCLU to configure BGP neighbor shutdown, you can configure a maximum of 300 neighbors per peer group.  | 4.3.0-4.4.5 | |
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br /> | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1 | 5.9.2-5.14.0, 5.10.0-5.14.0|

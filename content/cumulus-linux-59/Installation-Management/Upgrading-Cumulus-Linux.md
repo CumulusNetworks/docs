@@ -179,6 +179,7 @@ The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image
 
 Be aware of the following when installing the Cumulus Linux image:
 - Installing a Cumulus Linux image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
+- Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade, even when staging `startup.yaml` using `onie-install -t`. You must reimport the certificates after the new image is installed. 
 - You must move configuration data to the new OS using ZTP or automation while the OS is first booted, or soon afterwards using out-of-band management.
 - Moving a configuration file can cause issues.
 - Identifying all the locations of configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade) above.
@@ -210,10 +211,14 @@ To upgrade the switch:
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.9.1-mlx-amd64.bin && sudo reboot
     ```
 
-4. Restore the configuration files to the new release (NVIDIA does not recommend restoring files with automation).
-5. Verify correct operation with the old configurations on the new release.
-6. Reinstall third party applications and associated configurations.
+4. Restore {{<link url="NVUE-API/#certificates" text="Reimport all certificates">}} that were configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
+5. Restore the configuration files to the new release (NVIDIA does not recommend restoring files with automation).
+6. Verify correct operation with the old configurations on the new release.
+7. Reinstall third party applications and associated configurations.
 
+{{%notice infonopad%}}
+If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-API/#certificates" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
+{{%/notice%}}
 ### Package Upgrade
 
 {{%notice note%}}

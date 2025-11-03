@@ -215,67 +215,44 @@ Use NVUE commands to show and clear packet trimming counters.
 
 ### Show Packet Trimming Counters
 
-You can show the number of trimmed packets and dropped trimmed packets at the global level and the number of trimmed packets for each interface.  
+You can show the number of trimmed packets at the global level and the number of trimmed packets for each interface.  
 
 {{%notice note%}}
-- You can show packet trimming counters on switches with the Spectrum-4 and Spectrum-5 ASIC.
-- NVUE does not show the number of trimmed packets sent successfully for a queue level or dropped trimmed packets. On Spectrum-4 switches, NVUE does not show the number of trimmed packets dropped on an interface.
+- You can show packet trimming counters on switches with Spectrum-4 and later ASICs.
+- Spectrum-4 switches display only the total number of trimmed packets per port and do not provide counters for the number of trimmed packets that were sent successfully on a port.
 {{%/notice%}}
 
-To show the number of trimmed packets and dropped trimmed packets globally, and the number of trimmed packets for each interface, run the `nv show system forwarding packet-trim counters` command:
+To display the number of trimmed packets at both the global and interface levels, run the `nv show system forwarding packet-trim counters` command:
+
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim counters
 Global 
  trimmed-packets      20,000 
- trimmed-drop-packets 10,000 
 Port-Level 
 ------------- 
-interface  trimmed-packets  
----------  ---------------  
-
-swp1        1000
-swp2        2000  
-swp3        4000
-swp4        5000
+Interface  Trim Eligible Packets Trimmed TxPackets 
+---------  ------------------  ---------------- 
+swp1        1000                  N/A 
+swp2        2000                  N/A 
+swp3        4000                  N/A 
+swp4        5000                  N/A 
 ```
-
-{{%notice note%}}
-On the Spectrum-4 switch, the `trimmed-packets` field shows the number of packets dropped due to shared buffer congestion. On the Spectrum-5 switch, the `trimmed-packets` field shows the number of sent trimmed packets.
-{{%/notice%}}
 
 To show the number of trimmed packets for a specific interface by traffic class, run the `nv show interface <interface-id> packet-trim counters` command. You must specify a specific interface. The NVUE command does not support interface ranges.
 
 ```
-cumulus@switch:~$ nv show interface swp1 packet-trim counters
-traffic-class trimmed-packets-tx  
-------------- ------------------ 
-1                 1000     
-2                 2000
-3                 3000
+cumulus@switch:~$ nv show interface swp1 counters packet-trim
+Traffic Class  Trim Eligible Packets 
+-------------  --------------- 
+1                 1000                
+2                 2000              
+3                 3000 
 ```
 
 ### Clear Packet Trimming Counters
 
-You can clear the global packet trimming counter with the `nv action clear system forwarding packet-trim counters` command. The global packet trimming counter is shown in the `nv show system forwarding packet-trim command` command output.
-
-```
-cumulus@switch:~$ nv show system forwarding packet-trim 
-                           operational  applied            
--------------------------  -----------  -------------------
-state                      enabled      enabled            
-profile                                 packet-trim-default
-service-port               swp65                           
-size                       256                             
-traffic-class              4                               
-switch-priority            4                               
-remark                                                     
- dscp                     port-level   port-level         
-session-info                                               
- session-id               0x0                             
- trimmed-packet-counters  166788                               
-...
-```
+You can clear both the global and interface packet trimming counters with the `nv action clear system forwarding packet-trim counters` command. NVIDIA recommends clearing packet trimming counters when you initially enable the feature or configure a new interface for packet trimming.​
 
 ```
 cumulus@switch:~$ nv action clear system forwarding packet-trim counters

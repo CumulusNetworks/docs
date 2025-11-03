@@ -22,8 +22,12 @@ Cumulus Linux provides these reboot modes:
 
 {{%notice note%}}
 Cumulus Linux supports warm reboot mode with:
-- 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
+- 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN.
 - Optimized image (two partition) upgrade and package upgrade (the switch must be in warm reboot mode before you start the upgrade).
+
+The following features are not supported during warm boot:
+- EVPN MLAG or EVPN multihoming.
+- LACP bonds. LACP control plane sessions might time out before warm boot completes. Use static LAG to keep bonds up with sub-second convergence during warm boot.
 {{%/notice%}}
 <!--
 {{%notice note%}}

@@ -430,40 +430,39 @@ cumulus@leaf01:mgmt:~$ ip -4 neighbor
 ...
 ```
 
-To show all table entries for a specific interface, run the `nv show interface <interface_id> neighbor` command:
+To show all ARP table entries for a specific interface, run the `nv show interface <interface_id> neighbor ipv4` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor
-ipv4
-=========
-    IPV4         LLADR(MAC)         State      Flag
-    -----------  -----------------  ---------  ----
-    10.5.5.51    00:00:5e:00:53:51  permanent      
-    169.254.0.1  48:b0:2d:a2:4c:79  permanent
-ipv6
-=========
-    IPV6                       LLADR(MAC)         State      Flag     
-    -------------------------  -----------------  ---------  ---------
-    fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router
-```
-
-To show all IPv4 table entries for an interface, run the `nv show interface <interface-id> neighbor ipv4` command:
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 neighbor ipv4
+IPV4         LLADR(MAC)       
+-----------  -----------------
+10.1.10.101  48:b0:2d:60:0b:8e
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 neighbor ipv4
-IPV4         LLADR(MAC)         State      Flag
------------  -----------------  ---------  ----
-10.188.52.1  00:00:5e:00:01:22  reachable
-10.188.52.2  1c:34:da:e8:1d:c8  stale
+
+
+To show all IPv4 ARP table entries for an interface with additional state details, run the `nv show interface <interface-id> neighbor ipv4 detail` command. The following additional fields are provided for the neighbor:
+
+- `State` - The current state of the neighbor entry.
+- `Last Used` - The time since the entry was last used for software forwarding.
+- `Last Confirmed` - The time since the neighbor entry was last resolved.
+- `Last Change` - The time since the neighbor entry state last changed.
+- `Probes`  - The number of probes sent to the neighbor to solicit a response.
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 neighbor ipv4 detail
+IPV4         LLADR(MAC)         State      Flag  Last Used  Last Confirmed  Last Change  Probes
+-----------  -----------------  ---------  ----  ---------  --------------  -----------  ------
+10.1.10.101  48:b0:2d:60:0b:8e  reachable        0:11:15    0:00:02         0:11:15      4    
 ```
 
-To show table entries for an interface with a specific IPv4 address, run the `nv show interface <interface_id> neighbor ipv4 <ip-address>` command.
+To show table entries for an interface with a specific IPv4 address, run the `nv show interface <interface_id> neighbor ipv4 <ip-address> [detail]` command.
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor ipv4 169.254.0.1
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 neighbor ipv4 10.1.10.101 detail
 lladdr
 =========
-    LLADR(MAC)         State      Flag
-    -----------------  ---------  ----
-    48:b0:2d:a2:4c:79  permanent
+    LLADR(MAC)         State      Flag  Last Used  Last Confirmed  Last Change  Probes
+    -----------------  ---------  ----  ---------  --------------  -----------  ------
+    48:b0:2d:60:0b:8e  reachable        0:14:10    0:02:57         0:14:10      4    
 ```

@@ -1,6 +1,6 @@
 ---
-title: NVIDIA NetQ 4.5 Release Notes
-author: Cumulus Networks
+title: NVIDIA Cumulus NetQ 4.5 Release Notes
+author: NVIDIA
 weight: 30
 product: Cumulus NetQ
 version: "4.5"

@@ -605,6 +605,8 @@ cumulus@switch:~$ curl -k -u cumulus:cumulus -X GET "https://127.0.0.1:8765/nvue
 ...  
 ```
 
+Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the range configurations show in unexpanded format. To show the range configurations in expanded format (each item shows individually), add the `expand=true` query parameter. For example `curl -k -u cumulus:cumulus -X GET "https://127.0.0.1:8765/nvue_v1/?rev=applied&filled=false&expand=true"`
+
 {{< /tab >}}
 {{< tab "Python Code ">}}
 
@@ -627,8 +629,6 @@ if __name__ == "__main__":
     print("=======Current Applied Revision=======")
     print(json.dumps(r.json(), indent=2))
 ```
-
-Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the range configurations show in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each item shows individually), add the `expand=true` query parameter. For example `curl -k -u cumulus:cumulus -X GET "https://127.0.0.1:8765/nvue_v1/?rev=applied&filled=false&expand=true"`
 
 {{< /tab >}}
 {{< tab "NVUE CLI ">}}
@@ -1403,7 +1403,7 @@ cumulus@switch:~$ curl -u 'cumulus:cumulus' --insecure -X GET /nvue_v1/<resource
 
 You can change the order of the revisions; for example, `GET /nvue_v1/<resource>?rev=2&diff=1`.
 
-Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the range configurations show in unexpanded format. To show the range configurations in expanded format that matches the `startup.yaml` file (each item shows individually), add the `expand=true` query parameter. For example `curl -u 'cumulus:cumulus' --insecure -X GET /nvue_v1/interface?rev=startup&diff=applied&expand=true"`
+Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the range configurations show in unexpanded format. To show the range configurations in expanded format (each item shows individually), add the `expand=true` query parameter. For example `curl -u 'cumulus:cumulus' --insecure -X GET /nvue_v1/interface?rev=startup&diff=applied&expand=true"`
 
 ### Troubleshoot Configuration Changes
 
@@ -1560,6 +1560,24 @@ cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"vlan100":null}' -H 'Content-Ty
 ```
 
 When you unset a change, you must still use the `PATCH` action. The value indicates removal of the entry. The data is `{"vlan100":null}` with the PATCH action.
+
+### Patch a Batch of Configuration Commands
+
+You can patch a batch of NVUE commands into a configuration revision from a plaintext file. The following example patches the list of commands in plaintext file `commands.txt` into revision 10:
+
+```
+curl -u 'cumulus:cumulus' --insecure \ 
+  -X PATCH \ 
+  -H "Content-Type: text/plain" \ 
+  https://localhost:8765/nvue_v1/?rev=10 \ 
+ --data-binary @commands.txt 
+ ```
+
+{{%notice note%}}
+- Only `nv set` and `nv unset` commands are supported when patching commands from a plaintext file.
+- Configuring snippets through this method is unsupported.
+- Commands that result in an interactive prompt are not supported.
+{{%/notice%}}
 
 ### Use the API for Active Monitoring
 

@@ -26,7 +26,7 @@ It is not uncommon to have more than one protocol daemon running at the same tim
 The information in this section does not apply if you use {{<link url="NVUE-CLI" text="NVUE">}} to configure your switch. NVUE manages FRR daemons and configuration automatically. These instructions are only applicable for users managing FRR directly through linux flat file configurations.
 {{%/notice%}}
 
-If you do not configure your system using {{<link url="NVUE-CLI" text="NVUE">}}, FRR does not start by default in Cumulus Linux. Before you run FRR, make sure you have enabled the relevant daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d`, `pimd`, or `pbrd`) in the `/etc/frr/daemons` file.
+If you do not configure your system using {{<link url="NVUE-CLI" text="NVUE">}}, FRR does not start by default in Cumulus Linux. Before you run FRR, make sure you have enabled the relevant daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d`, `pimd`, `bfdd` or `pbrd`) in the `/etc/frr/daemons` file.
 
 {{%notice note%}}
 NVIDIA has not tested <span class="a-tooltip">[RIP](## "Routing Information Protocol RIP")</span>, RIPv6, <span class="a-tooltip">[IS-IS](## "Intermediate System - Intermediate System")</span>, or <span class="a-tooltip">[Babel](## "a loop-avoiding distance-vector routing protocol")</span>.
@@ -41,18 +41,20 @@ Before you start FRR, edit the `/etc/frr/daemons` file to enable each daemon you
 bgpd=yes
 ospfd=no
 ospf6d=no
-ripd=no
-ripngd=no
 isisd=no
-fabricd=no
 pimd=no
 ldpd=no
+pbrd=no
+vrrpd=no
+bfdd=no
+fabricd=no
 nhrpd=no
 eigrpd=no
 babeld=no
 sharpd=no
-pbrd=no
-vrrpd=no
+fabricd=no
+ripngd=no
+ripd=no
 ...
 ```
 

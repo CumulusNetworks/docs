@@ -245,7 +245,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
 | `nv config translate` | Translates a revision or YAML file configuration. |
 
-You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="Upgrading-Cumulus-Linux/#back-up-and-restore-configuration-with-nvue" text="Upgrading Cumulus Linux">}}.
+You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="#back-up-and-restore-configuration-with-nvue" text="Back Up and Restore Configuration with NVUE">}}.
 
 ### Action Commands
 
@@ -590,6 +590,50 @@ cumulus@switch:~$ nv config translate filename /home/cumulus/backup.yaml
 ```
 
 If the revision or yaml file is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.
+
+## Back Up and Restore Configuration with NVUE
+
+Use the following procedure to cleanly reinstall a Cumulus Linux image or move the configuration from one switch to another.
+
+As Cumulus Linux supports more features and functionality, NVUE syntax might change between releases and the content of snippets and flexible snippets might become invalid. Before you back up and restore configuration across different Cumulus Linux releases, make sure to review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax and other configuration file changes.
+
+{{%notice note%}}
+- If you upgrade the switch with package upgrade or optimized image upgrade, or if you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release.
+- Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade, even when staging `startup.yaml` using `onie-install -t`. You must reimport the certificates after the new image is installed. 
+- If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
+{{%/notice%}}
+
+You can back up and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
+
+To back up and restore the configuration file:
+
+1. Save the configuration to the `/etc/nvue.d/startup.yaml` file with the `nv config save` command:
+
+   ```
+   cumulus@switch:~$ nv config save
+   saved
+   ```
+
+2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
+
+3. After upgrade is complete, restore certificates and the configuration.
+
+   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and/or CRLs that were configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
+
+   b. Copy the `/etc/nvue.d/startup.yaml` file from the back up process to the switch.
+
+   c. If required, convert the `startup.yaml` file to the format of the currently running release on the switch. Refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}.
+
+   d. Run the `nv config replace` command, then run the `nv config apply` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
+
+   ```
+   cumulus@switch:~$ nv config replace /home/cumulus/startup.yaml
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{%notice infonopad%}}
+If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
+{{%/notice%}}
 
 ## Maximum Revisions Limit
 

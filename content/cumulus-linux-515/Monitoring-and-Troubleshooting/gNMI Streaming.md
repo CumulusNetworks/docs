@@ -342,19 +342,19 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/state/counters/out-hoq-stall-drops` | * Number of packets dropped at egress due to Head-of-Queue Timeout. |
 | `/interfaces/interface[name]/state/counters/out-sll-drops` | * Number of packets dropped at egress due to exceeding switch lifetime limit.|
 | `/interfaces/interface[name]/state/counters/out-acl-drops` | * Number of packets dropped at egress due to ACL policy. |
-| `/interfaces/interface[name]/state/counters/out-stp-filter-drops` | * Number of packets dropped at egress due to STP filter. |
-| `/interfaces/interface[name]/state/counters/out-vlan-membership-drops` | * Number of packets dropped at egress due to VLAN membership filter. |
-| `/interfaces/interface[name]/state/counters/in-vlan-tag-allowance-drops ` | * Number of packets dropped at ingress due to VLAN tag allowance filter. |
-| `/interfaces/interface[name]/state/counters/in-link-down-drops` | * Number of packets dropped at ingress due to egress link down. |
-| `/interfaces/interface[name]/state/counters/in-vlan-membership-drops` | * Number of packets dropped at ingress due to VLAN membership filter. |
-| `/interfaces/interface[name]/state/counters/in-loopback-drops` | * Number of packets dropped at ingress due to loopback filter. |
-| `/interfaces/interface[name]/ethernet/state/counters/in-unknown-protos` | * Number of MAC control frames received with an unsupported opcode. |
-| `/interfaces/interface[name]/ethernet/state/counters/pkt_drop_events_probe_resource_lack` | * Total number packets dropped by the probe due to lack of resources. |
+| `/interfaces/interface[name]/ethernet/state/counters/out-stp-filter-drops` | * Number of packets dropped at egress due to STP filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/out-vlan-membership-drops` | * Number of packets dropped at egress due to VLAN membership filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-vlan-tag-allowance-drops` | * Number of packets dropped at ingress due to VLAN tag allowance filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-link-down-drops` | * Number of packets dropped at ingress due to egress link down. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-vlan-membership-drops` | * Number of packets dropped at ingress due to VLAN membership filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-loopback-drops` | * Number of packets dropped at ingress due to loopback filter. |
+| `/interfaces/interface[name]/state/counters/in-unknown-protos` | * Number of MAC control frames received with an unsupported opcode. |
+| `/interfaces/interface[name]/ethernet/state/counters/pkt-drop-events-probe-resource-lack` | * Total number packets dropped by the probe due to lack of resources. |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-1519-2047-octets` | * Total number of packets (including bad packets) received that were between 1519 and 2047 octets in length (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-2048-4095-octets` | * Total number of packets (including bad packets) received that were between 2048 and 4095 octets in length (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-4096-8191-octets` | * Total number of packets (including bad packets) received that were between 4096 and 8191 octets in length (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-8192-9216-octets` | * Total number of packets (including bad packets) received that were between 8192 and 10239 octets in length (excluding framing bits but including FCS octets). |
-| `/interfaces/interface[name]/state/counters/no-buffer-mc-dropped-pkts ` | * The number of multicast packets dropped due to lack of egress buffer resources. Valid only for Spectrum switches. |
+| `/interfaces/interface[name]/ethernet/state/counters/no-buffer-multicast-dropped-pkts` | * The number of multicast packets dropped due to lack of egress buffer resources. Valid only for Spectrum switches. |
 | `/interfaces/interface[name]/state/counters/in-buffer-almost-full` | * Number of times that the port Rx buffer passed a buffer utilization threshold. |
 | `/interfaces/interface[name]/state/counters/in-buffer-full` | * Number of times that the port Rx buffer reached 100% utilization. |
 | `/interfaces/interface[name]/state/counters/in-ebp-pkts` | * The number of received EBP packets. |
@@ -529,13 +529,13 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/time-since-last-clear` | Time since last clear of watermarks in a priority group.|
 | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/in-pause-pkts` | Number of pause packets for the priority class in the ingress queue.|
 | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
-| `/qos/interfaces/interface[interface-id]/priority-group/state/counters/in-pkts` | *  Number of received input packets for a priority group. |
-| `/qos/interfaces/interface[interface-id]/state/priority-group/state/counters/in-octets` | * Number of octets of input data received for a given priority group. |
-| `/qos/interfaces/interface[interface-id]/switch-priority/state/counters/in-discards` | * Number of discarded inbound packets. |
-| `/qos/interfaces/interface[interface-id]/switch-priority/state/in-pause-duration` | * Total time in microseconds packet transmission on the port has been paused. |
-| `/qos/interfaces/interface[interface-id]/switch-priority/state/out-pause-duration` | * Total time in microseconds that the far-end port has been requested to pause. |
-| `/qos/interfaces/interface[interface-id]/output/queues/queue/state/instant-queue-len` | * Transmit queue depth in bytes on traffic class selected by traffic_class of the port selected by local_port. |
-| `/qos/interfaces/interface[interface-id]/output/queues/queue/state/transmit-uc-pkts` | * Number of unicast packets transmitted by this queue.|
+| `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/in-pkts` | *  Number of received input packets for a priority group. |
+| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/state/counters/in-octets` | * Number of octets of input data received for a given priority group. |
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/in-discards` | * Number of discarded inbound packets. |
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/in-pause-duration` | * Total time in microseconds packet transmission on the port has been paused. |
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/out-pause-duration` | * Total time in microseconds that the far-end port has been requested to pause. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/instant-queue-len` | * Transmit queue depth in bytes on traffic class selected by traffic_class of the port selected by local_port. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue/[name]state/transmit-uc-pkts` | * Number of unicast packets transmitted by this queue.|
 
 {{< /tab >}}
 {{< tab "Routing">}}

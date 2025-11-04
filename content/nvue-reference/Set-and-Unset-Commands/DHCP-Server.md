@@ -88,6 +88,10 @@ cumulus@switch:~$ nv set service dhcp-server default domain-name-server 192.168.
 
 Configures the DHCP client interface.
 
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 interface <interface-id>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -110,6 +114,10 @@ cumulus@switch:~$ nv set service dhcp-server default interface swp1
 ## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\></h>
 
 Configures a DHCP pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 subnet <subnet-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -134,6 +142,10 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24
 
 Configures a specific URL for the provisioning script.
 
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 subnet <subnet-id> cumulus-provision-url <value>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -157,6 +169,10 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 cumulus-p
 
 Configures the default URL for the DHCP server pool.
 
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 subnet <subnet-id> default-url <value>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -179,6 +195,10 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 default-u
 ## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\></h>
 
 Configures the DHCP domain name you want to use in this pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 subnet <subnet-id> domain-name <domain-name-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -204,6 +224,10 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 domain-na
 
 Configures the remote DHCP domain name server you want to use in this pool.
 
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 subnet <subnet-id> domain-name-server <domain-name-id>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -227,6 +251,10 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 domain-na
 ## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> gateway \<gateway-id\></h>
 
 Configures the DHCP gateway you want to use in this pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 subnet <subnet-id> gateway <gateway-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -252,6 +280,10 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 gateway 1
 
 Configures the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000. The default setting is 600.
 
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 subnet <subnet-id> lease-time`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -275,6 +307,10 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 lease-tim
 
 Configures the DHCP server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range. The default setting is `off`.
 
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 subnet <subnet-id> ping-check`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -294,9 +330,13 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 ping-chec
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> pool-name \<value\></h>
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> pool-name \<pool-id\></h>
 
 Configures the pool name.
+
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 subnet <subnet-id> pool-name <value>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -322,6 +362,10 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 pool-name
 
 Configures the start of the IP address range you want to use in this DHCP server pool.
 
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 subnet <subnet-id> range <range-id>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -339,6 +383,10 @@ Introduced in Cumulus Linux 5.0.0
 ## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\> to \<ipv4\></h>
 
 Configures the end of the IP address range you want to use in this DHCP server pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 subnet <subnet-id> range <range-id> to <ipv4>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -364,6 +412,10 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 range 10.
 
 Configures a static IP address for a resource, such as a server or printer.
 
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 static <static-id>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -387,6 +439,10 @@ cumulus@switch:~$ nv set service dhcp-server default static server1
 
 Configures a URL for a provisioning script.
 
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 static <static-id> cumulus-provision-url <value>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -409,6 +465,10 @@ cumulus@switch:~$ nv set service dhcp-server default static server1 cumulus-prov
 ## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\> host-id-circuit-id \<value\></h>
 
 Configures the host identifier for the agent circuit ID.
+
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 static <static-id> host-id-circuit-id <value>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -434,6 +494,10 @@ cumulus@switch:~$ nv set service dhcp-server default static server1 host-id-circ
 
 Configures the interface name for the DHCP static assignment (IPv4 only) to use instead of the MAC address.
 
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 static <static-id> ifname <interface-name>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -458,6 +522,10 @@ cumulus@switch:~$ nv set service dhcp-server default static server1 ifname swp1
 
 Configures the static IP address for the resource.
 
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 static <static-id> ip-address <ipv4>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -480,6 +548,10 @@ cumulus@switch:~$ nv set service dhcp-server default static server1 ip-address 1
 ## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\> mac-address \<mac-address\></h>
 
 Configures the MAC address of the resource to which you want to assign a static IP address.
+
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v4 static <static-id> mac-address <mac-address>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -928,4 +1000,499 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set service dhcp-server6 default static server1 mac-address 44:38:39:00:01:7e
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 interface \<interface-id\></h>
+
+Configures the DHCP client interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> interface <interface-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<interface-id>` | The DHCP client interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 interface swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 subnet \<subnet-id\></h>
+
+Configures a DHCP pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> pool <pool-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<subnet-id>` | The DHCP pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 subnet \<subnet-id\> domain-name \<domain-name-id\></h>
+
+Configures the DHCP domain name you want to use in this pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<subnet-id>` |  The DHCP pool subnet. |
+| `<domain-name-id>` | The DHCP domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 domain-name example.com
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 subnet \<subnet-id\> domain-name-server \<domain-name-server-id\></h>
+
+Configures the DHCP domain name server you want to use in this pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<subnet-id>` |  The DHCP pool subnet. |
+| `<domain-name-server-id>` | The DHCP domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 domain-name-server example.com
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 subnet \<subnet-id\> cumulus-provision-url \<value\></h>
+
+Configures a specific URL for the provisioning script.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url <value>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<subnet-id>` |  The DHCP pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ vrf default dhcp-server-v4 subnet 10.1.10.0/24 cumulus-provision-url https://www.nvidia.com/provision
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 subnet \<subnet-id\> default-url \<value\></h>
+
+Configures the default URL for the DHCP server pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> pool <pool-id> default-url <value>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<subnet-id>` |  The DHCP pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 default-url https://www.nvidia.com/
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 subnet \<subnet-id\> gateway \<gateway-id\></h>
+
+Configures the DHCP gateway you want to use in this pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<subnet-id>` |  The DHCP pool subnet. |
+| `<gateway-id>` | The DHCP gateway. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 gateway 10.1.10.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 subnet \<subnet-id\> lease-time</h>
+
+Configures the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000. The default setting is 600.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> pool <pool-id> lease-time`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<subnet-id>` |  The DHCP pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 lease-time 200000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 subnet \<subnet-id\> ping-check</h>
+
+Configures the DHCP server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range. The default setting is `off`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> pool <pool-id> ping-check`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<subnet-id>` |  The DHCP pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 ping-check on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 subnet \<subnet-id\> pool-name \<value\></h>
+
+Configures the pool name.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> pool <pool-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<subnet-id>` |  The DHCP pool subnet. |
+| `<value>` |  The DHCP pool name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 pool-name storage-servers
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 subnet \<subnet-id\> range \<range-id\></h>
+
+Configures the start of the IP address range you want to use in this DHCP server pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<subnet-id>` |  The DHCP pool subnet. |
+| `<range-id>` |  The start of the IP address range. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 range 10.1.10.100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 subnet \<subnet-id\> range \<range-id\> to \<ipv4\></h>
+
+Configures the end of the IP address range you want to use in this DHCP server pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> to <ipv4>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<subnet-id>` |  The DHCP pool subnet. |
+| `<range-id>` |  The end of the IP address range. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 range 10.1.10.100 to 10.1.10.199
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static \<static-id\></h>
+
+Configures a static IP address for a resource, such as a server or printer.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` | The name of the resource to which you want to assign a static IP address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static server1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static \<static-id\> cumulus-provision-url \<value\></h>
+
+Configures a URL for a provisioning script.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url <value>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static server1 cumulus-provision-url http://192.0.2.1/myscript.sh
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static \<static-id\> host-id-circuit-id \<value\></h>
+
+Configures the host identifier for the agent circuit ID.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> host-id-circuit-id <value>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+| `<value>` |  The host identifier for the agent circuit ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static server1 host-id-circuit-id 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static \<static-id\> ifname \<interface-name\></h>
+
+Configures the interface name for the DHCP static assignment (IPv4 only) to use instead of the MAC address.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> ifname <interface-name>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+| `<interface-name>` |  The interface name (such as swp1). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static server1 ifname swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static \<static-id\> ip-address \<ipv4\></h>
+
+Configures the static IP address for the resource.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> ip-address <ipv4>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` | The name of the resource. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static server1 ip-address 10.0.0.2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static \<static-id\> mac-address \<mac-address\></h>
+
+Configures the MAC address of the resource to which you want to assign a static IP address.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> mac-address <mac-address>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` | The name of the resource. |
+| `<mac-address>` | The MAC address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static server1 mac-address 44:38:39:00:01:7e
 ```

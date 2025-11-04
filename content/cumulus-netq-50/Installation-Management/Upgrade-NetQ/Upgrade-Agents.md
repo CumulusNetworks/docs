@@ -5,7 +5,7 @@ weight: 420
 toc: 4
 ---
 
-After {{<link title="Upgrade NetQ Virtual Machines" text="upgrading your NetQ VM">}}, upgrade the NetQ Agent:
+After {{<link title="Upgrade NetQ Virtual Machines" text="upgrading your NetQ VM">}}, prepare your switches and hosts for the NetQ Agent upgrade. After completing these steps, {{<link title="Install NetQ Agents/#install-netq-agent" text="re-install the NetQ Agent">}} to complete the upgrade.
 
 1. Log in to your switch or host.
 
@@ -34,8 +34,6 @@ Refer to {{<link title="Install NetQ Agents/#install-netq-agent">}} to complete 
 
 ## Verify NetQ Agent Version
 
-You can verify the version of the agent software you have deployed as described in the following sections.
-
 Run the following command to view the NetQ Agent version.
 
 {{<tabs "Verify Agent Version">}}
@@ -46,8 +44,6 @@ Run the following command to view the NetQ Agent version.
 nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-{{<netq-install/agent-version version="5.0.0" opsys="cl">}}
-
 {{</tab>}}
 
 {{<tab "Ubuntu">}}
@@ -56,13 +52,9 @@ nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-{{<netq-install/agent-version version="5.0.0" opsys="ub">}}
-
 {{</tab>}}
 
 {{</tabs>}}
-
-If you see an older version, upgrade the NetQ Agent, as described above.
 
 ## Next Steps
 

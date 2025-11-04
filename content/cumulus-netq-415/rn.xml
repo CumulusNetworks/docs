@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4298008</td>
-<td>When you upgrade NetQ, any pre-existing validation data will be lost.</td>
-<td>4.13.0-4.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4131550</td>
 <td>When you run a topology validation, the full-screen topology validation view might not display the latest results. To work around this issue, refresh the page.</td>
 <td>4.12.0-4.15.1</td>
@@ -39,12 +33,6 @@
 <tr>
 <td>3993538</td>
 <td>When you re-position a card on your workbench and then manually refresh the workbench, NetQ might reposition the cards.</td>
-<td>4.11.0-4.15.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3985598</td>
-<td>When you configure multiple threshold-crossing events for the same TCA event ID on the same device, NetQ will only display one TCA event for each hostname per TCA event ID, even if both thresholds are crossed or status events are triggered.  </td>
 <td>4.11.0-4.15.1</td>
 <td></td>
 </tr>

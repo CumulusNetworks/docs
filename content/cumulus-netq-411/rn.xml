@@ -43,12 +43,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3985598</td>
-<td>When you configure multiple threshold-crossing events for the same TCA event ID on the same device, NetQ will only display one TCA event for each hostname per TCA event ID, even if both thresholds are crossed or status events are triggered.  </td>
-<td>4.11.0-4.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3981655</td>
 <td>When you upgrade your NetQ VM, some devices in the NetQ inventory might appear as rotten. To work around this issue, restart NetQ agents on devices or upgrade them to the latest agent version after the NetQ VM upgrade is completed.</td>
 <td>4.11.0</td>

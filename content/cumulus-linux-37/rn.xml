@@ -10,7 +10,7 @@
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -26,12 +26,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -72,7 +72,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>3129819</td>
@@ -90,7 +90,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>3120423</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
-<td>4.3.1, 5.2.0-5.14.0</td>
+<td>4.3.1, 5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -108,7 +108,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>3072674</td>
 <td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
 <td>3.7.15-5.1.0</td>
-<td>5.2.0-5.14.0</td>
+<td>5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3072613</td>
@@ -133,7 +133,7 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td>3020254</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
 <td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.14.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3017190</td>
@@ -155,7 +155,7 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed. This is issue is impacting all Cumulus Linux releases. 
 The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issue (this attribute has been available since CL2). It was decided to change ifupdown2's default behavior to automatically purge BUM entries added by ifup/ifreload.   </td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.14.0, 5.2.0-5.14.0</td>
+<td>5.1.0-5.15.0, 5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>2991514</td>
@@ -184,7 +184,7 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -230,7 +230,7 @@ This example assumes no other static routes are present. Otherwise, you might ne
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
-<td>4.4.3-4.4.5, 5.1.0-5.14.0</td>
+<td>4.4.3-4.4.5, 5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2899413</td>
@@ -292,7 +292,7 @@ MemoryError
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.0.1</td>
-<td>4.3.1, 5.1.0-5.14.0</td>
+<td>4.3.1, 5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2853536</td>
@@ -330,7 +330,7 @@ To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>3.7.15-5.1.0</td>
-<td>5.2.0-5.14.0</td>
+<td>5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>2730225</td>
@@ -370,7 +370,7 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.14.0</td>
+<td>5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2687332</td>
@@ -2485,7 +2485,7 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -2501,12 +2501,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2532,7 +2532,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>3135801</td>
@@ -2551,7 +2551,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>3120423</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
-<td>4.3.1, 5.2.0-5.14.0</td>
+<td>4.3.1, 5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -2569,7 +2569,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>3072674</td>
 <td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
 <td>3.7.15-5.1.0</td>
-<td>5.2.0-5.14.0</td>
+<td>5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3072613</td>
@@ -2594,7 +2594,7 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td>3020254</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
 <td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.14.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3017190</td>
@@ -2616,7 +2616,7 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed. This is issue is impacting all Cumulus Linux releases. 
 The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issue (this attribute has been available since CL2). It was decided to change ifupdown2's default behavior to automatically purge BUM entries added by ifup/ifreload.   </td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.14.0, 5.2.0-5.14.0</td>
+<td>5.1.0-5.15.0, 5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>2991514</td>
@@ -2628,7 +2628,7 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 <td>2973714</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
 <td>3.7.15-4.3.0, 4.4.0-4.4.1</td>
-<td>4.3.1, 4.4.2-4.4.5, 5.0.0-5.14.0</td>
+<td>4.3.1, 4.4.2-4.4.5, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2972538</td>
@@ -2688,7 +2688,7 @@ Fixed: 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u4</td>
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2729,7 +2729,7 @@ Fixed: 3.26-1+debu8u16</td>
 <td>2943442</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
 <td>3.7.15-4.3.0, 4.4.2-5.0.1</td>
-<td>4.3.1, 5.1.0-5.14.0</td>
+<td>4.3.1, 5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2941560</td>
@@ -2753,7 +2753,7 @@ The problem is seen on the switch that experiences the {{clagd}} state transitio
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2940052</td>
@@ -2765,7 +2765,7 @@ The problem is seen on the switch that experiences the {{clagd}} state transitio
 <td>2940051</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
-<td>3.7.16, 5.0.0-5.14.0</td>
+<td>3.7.16, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2934940</td>
@@ -2854,7 +2854,7 @@ Fixed: 2.1.5-2+deb8u13</td>
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
-<td>4.4.3-4.4.5, 5.1.0-5.14.0</td>
+<td>4.4.3-4.4.5, 5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2899413</td>
@@ -2963,7 +2963,7 @@ MemoryError
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.0.1</td>
-<td>4.3.1, 5.1.0-5.14.0</td>
+<td>4.3.1, 5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2855881</td>
@@ -3092,13 +3092,13 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15</td>
-<td>3.7.16, 5.0.0-5.14.0</td>
+<td>3.7.16, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-5.0.1</td>
-<td>3.7.16, 4.3.1, 5.1.0-5.14.0</td>
+<td>3.7.16, 4.3.1, 5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2813826</td>
@@ -3131,7 +3131,7 @@ Fixed: 2.4.10-10+deb8u19</td>
 <td>2801262</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-4.4.5</td>
-<td>3.7.16, 4.3.1, 5.0.0-5.14.0</td>
+<td>3.7.16, 4.3.1, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2801126</td>
@@ -3226,7 +3226,7 @@ Fixed: 2.8.9dev1-2+deb8u2</td>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>3.7.15-5.1.0</td>
-<td>5.2.0-5.14.0</td>
+<td>5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>2743132</td>
@@ -3318,7 +3318,7 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.14.0</td>
+<td>5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2705169</td>
@@ -3482,7 +3482,7 @@ username cumulus nopassword
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent FDB entry for the old MAC address.</td>
 <td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.0.1</td>
-<td>4.3.1, 4.4.4-4.4.5, 5.1.0-5.14.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2668477</td>
@@ -5441,7 +5441,7 @@ These messages are harmless and can be ignored.</td>
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -5457,12 +5457,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -5478,7 +5478,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>3135801</td>
@@ -5587,13 +5587,13 @@ The problem is seen on the switch that experiences the {{clagd}} state transitio
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2940051</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
-<td>3.7.16, 5.0.0-5.14.0</td>
+<td>3.7.16, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2934940</td>
@@ -5814,7 +5814,7 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-5.0.1</td>
-<td>3.7.16, 4.3.1, 5.1.0-5.14.0</td>
+<td>3.7.16, 4.3.1, 5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2813826</td>
@@ -5847,7 +5847,7 @@ Fixed: 2.4.10-10+deb8u19</td>
 <td>2801262</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-4.4.5</td>
-<td>3.7.16, 4.3.1, 5.0.0-5.14.0</td>
+<td>3.7.16, 4.3.1, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2801126</td>
@@ -6332,7 +6332,7 @@ Fixed: 6.8.9.9-5+deb8u23</td>
 <td>2599607</td>
 <td>In some corner cases, remote MAC entries may be seen as locally learnt entries in FDB table due to switchd reprogramming it</td>
 <td>3.7.12-4.3.0</td>
-<td>4.3.1-4.4.5, 4.4.4-4.4.5, 5.0.0-5.14.0</td>
+<td>4.3.1-4.4.5, 4.4.4-4.4.5, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2595889</td>
@@ -8141,7 +8141,7 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -8157,12 +8157,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -8178,7 +8178,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>3135801</td>
@@ -8274,7 +8274,7 @@ The problem is seen on the switch that experiences the {{clagd}} state transitio
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2934940</td>
@@ -8489,7 +8489,7 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-5.0.1</td>
-<td>3.7.16, 4.3.1, 5.1.0-5.14.0</td>
+<td>3.7.16, 4.3.1, 5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2813826</td>
@@ -8516,7 +8516,7 @@ Fixed: 2.4.10-10+deb8u19</td>
 <td>2801262</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-4.4.5</td>
-<td>3.7.16, 4.3.1, 5.0.0-5.14.0</td>
+<td>3.7.16, 4.3.1, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2801126</td>
@@ -8972,7 +8972,7 @@ Fixed: 6.8.9.9-5+deb8u23</td>
 <td>2599607</td>
 <td>In some corner cases, remote MAC entries may be seen as locally learnt entries in FDB table due to switchd reprogramming it</td>
 <td>3.7.12-4.3.0</td>
-<td>4.3.1-4.4.5, 4.4.4-4.4.5, 5.0.0-5.14.0</td>
+<td>4.3.1-4.4.5, 4.4.4-4.4.5, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2595889</td>
@@ -11201,7 +11201,7 @@ To work around this issue, modify the routing design or policy such that routes 
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -11217,12 +11217,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -11238,7 +11238,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>3135801</td>
@@ -11334,7 +11334,7 @@ The problem is seen on the switch that experiences the {{clagd}} state transitio
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2934940</td>
@@ -11549,7 +11549,7 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-5.0.1</td>
-<td>3.7.16, 4.3.1, 5.1.0-5.14.0</td>
+<td>3.7.16, 4.3.1, 5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2813826</td>
@@ -11576,7 +11576,7 @@ Fixed: 2.4.10-10+deb8u19</td>
 <td>2801262</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-4.4.5</td>
-<td>3.7.16, 4.3.1, 5.0.0-5.14.0</td>
+<td>3.7.16, 4.3.1, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2801126</td>
@@ -12015,7 +12015,7 @@ Fixed: 6.8.9.9-5+deb8u23</td>
 <td>2599607</td>
 <td>In some corner cases, remote MAC entries may be seen as locally learnt entries in FDB table due to switchd reprogramming it</td>
 <td>3.7.12-4.3.0</td>
-<td>4.3.1-4.4.5, 4.4.4-4.4.5, 5.0.0-5.14.0</td>
+<td>4.3.1-4.4.5, 4.4.4-4.4.5, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2595889</td>
@@ -14321,7 +14321,7 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -14337,12 +14337,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -14358,7 +14358,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>3135801</td>
@@ -14454,7 +14454,7 @@ The problem is seen on the switch that experiences the {{clagd}} state transitio
 <td>2940063</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
-<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2934939</td>
@@ -14662,7 +14662,7 @@ Fixed: 7.38.0-4+deb8u22</td>
 <td>2815592</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-5.0.1</td>
-<td>3.7.16, 4.3.1, 5.1.0-5.14.0</td>
+<td>3.7.16, 4.3.1, 5.1.0-5.15.0</td>
 </tr>
 <tr>
 <td>2813826</td>
@@ -14689,7 +14689,7 @@ Fixed: 2.4.10-10+deb8u19</td>
 <td>2801262</td>
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-4.4.5</td>
-<td>3.7.16, 4.3.1, 5.0.0-5.14.0</td>
+<td>3.7.16, 4.3.1, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2801126</td>
@@ -15122,7 +15122,7 @@ Fixed: 6.8.9.9-5+deb8u23</td>
 <td>2599607</td>
 <td>In some corner cases, remote MAC entries may be seen as locally learnt entries in FDB table due to switchd reprogramming it</td>
 <td>3.7.12-4.3.0</td>
-<td>4.3.1-4.4.5, 4.4.4-4.4.5, 5.0.0-5.14.0</td>
+<td>4.3.1-4.4.5, 4.4.4-4.4.5, 5.0.0-5.15.0</td>
 </tr>
 <tr>
 <td>2595889</td>
@@ -17406,7 +17406,7 @@ net.ipv6.ip6frag_high_thresh = 262144
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -17422,12 +17422,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -17443,7 +17443,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>3017190</td>
@@ -20107,7 +20107,7 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -20123,12 +20123,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -20144,7 +20144,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>3017190</td>
@@ -22334,7 +22334,7 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -22350,12 +22350,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -22371,7 +22371,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -24881,7 +24881,7 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -24897,12 +24897,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -24918,7 +24918,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -26855,7 +26855,7 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -26871,12 +26871,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -26892,7 +26892,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -29168,7 +29168,7 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -29184,12 +29184,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -29205,7 +29205,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -31226,7 +31226,7 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -31242,12 +31242,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -31263,7 +31263,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -32929,7 +32929,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -32945,12 +32945,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -32966,7 +32966,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -34659,7 +34659,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -34675,12 +34675,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -34696,7 +34696,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -36489,7 +36489,7 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -36505,12 +36505,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -36526,7 +36526,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -38362,7 +38362,7 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -38378,12 +38378,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -38399,7 +38399,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -39548,7 +39548,7 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.14.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.15.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -39564,12 +39564,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.14.0</td>
+<td>5.4.0-5.15.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -39585,7 +39585,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.14.0</td>
+<td>4.3.1, 5.3.0-5.15.0</td>
 </tr>
 <tr>
 <td>2959454</td>

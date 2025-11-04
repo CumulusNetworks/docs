@@ -125,11 +125,6 @@ Use the following command:
 ```
 nvidia@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
 ```
-Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost entry. For example:
-
-```
-127.0.0.1 localhost NEW_HOSTNAME
-```
 
 6. Run the installation command on your NetQ server. Follow the steps under _Restore Data and New Install_ if you have a {{<link title="Back Up and Restore NetQ" text="backup data tarball">}} from a previous NetQ installation to restore.
 

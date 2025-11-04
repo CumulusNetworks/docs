@@ -20,52 +20,11 @@ If your network uses a proxy server for external connections, you should first {
 
 For servers running the Ubuntu OS, you need to:
 
-- Verify you installed the minimum service packages versions
-- Verify the server is running `lldpd`
 - Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
 These steps are not required for Cumulus Linux.
 
-### Verify Service Package Versions
-
-{{<tabs "Verify Package Versions">}}
-
-Before you install the NetQ CLI on a server, make sure you install and run at least the minimum versions of the following packages:
-
-{{<tab "Ubuntu">}}
-
-<!-- vale off -->
-- iproute 1:4.3.0-1ubuntu3.16.04.1 all
-- iproute2 4.3.0-1ubuntu3 amd64
-- lldpd 0.7.19-1 amd64
-- ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
-<!-- vale on -->
-
-{{</tab>}}
-
-{{</tabs>}}
-
-### Verify Ubuntu is Running lldpd
-
-For Ubuntu, make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default, even though the installation requires it.
-
-{{<tabs "Configure NetQ CLI">}}
-
-{{<tab "Ubuntu">}}
-
-To install `lldpd`, run the following commands:
-
-```
-root@ubuntu:~# sudo apt-get update
-root@ubuntu:~# sudo apt-get install lldpd
-root@ubuntu:~# sudo systemctl enable lldpd.service
-root@ubuntu:~# sudo systemctl start lldpd.service
-```
-
-{{</tab>}}
-
-{{</tabs>}}
 
 ### Install and Configure NTP
 
@@ -123,7 +82,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Get the NetQ CLI Software Package for Ubuntu
 
-To install the NetQ CLI on an Ubuntu server, you need to install `netq-apps` on each Ubuntu server. This is available from the NetQ repository.
+To install the NetQ CLI on an Ubuntu server, you need to install `netq-apps` on each Ubuntu server. This is available from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}}.
 
 {{<tabs "Get NetQ CLI Ubuntu">}}
 
@@ -137,19 +96,19 @@ To get the NetQ CLI package:
     root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
     ```
 
-2. Add the Ubuntu repository. Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-noble.list` and add the following line:
+2. Add the Ubuntu repository. Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu24.04.list` and add the following line:
 
 ```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-noble.list
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-ubuntu24.04.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb noble netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb ubuntu24.04 netq-latest
 ...
 ```
-
+<!--
 {{<notice note>}}
 The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
 {{</notice>}}
-
+-->
 {{</tab>}}
 
 {{<tab "Ubuntu 22.04">}}
@@ -162,19 +121,19 @@ To get the NetQ CLI package:
     root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
     ```
 
-2. Add the Ubuntu repository. Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-jammy.list` and add the following line:
+2. Add the Ubuntu repository. Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu22.04.list` and add the following line:
 
 ```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-jammy.list
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-ubuntu22.04.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb ubuntu22.04 netq-latest
 ...
 ```
-
+<!--
 {{<notice note>}}
 The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
 {{</notice>}}
-
+-->
 {{</tab>}}
 
 {{</tabs>}}
@@ -194,14 +153,14 @@ Cumulus Linux 4.4 and later includes the `netq-apps` package by default. To upgr
 ```
 nvidia@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-latest
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d5 netq-latest
 ...
 ```
-
+<!--
 {{<notice tip>}}
-You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v5.0: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-5.0</pre>
+You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v5.0: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d5 netq-5.0</pre>
 {{</notice>}}
-
+-->
 
 2. Update the local `apt` repository and install the software on the switch.
 
@@ -215,7 +174,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     ```
     nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
-You should see version 5.0.0 and update 53 in the results: netq-apps_<strong>5.0.0</strong>-cld12u<strong>53</strong>~1753783414.2a97c1dde_amd64.deb
+You should see version 5.0.0 in the results: netq-apps_<strong>5.0.0</strong>-cld12u5_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 

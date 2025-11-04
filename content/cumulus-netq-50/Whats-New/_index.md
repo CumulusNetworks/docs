@@ -17,6 +17,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - {{<link title="Integrate NetQ with Grafana/#collect-slurm-telemetry" text="View Slurm data in Grafana">}}.
 - You can now launch the {{<link title="Cable Validations" text="cable validation tool">}} from NetQ.
 - Performance improvements to the duplicate IP address validation (beta)
+- Performance improvements to the NetQ agent
 - Security enhancements and general performance improvements
 
 

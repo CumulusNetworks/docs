@@ -24,7 +24,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 ## Release Considerations
 
 - The API gateway port for on-premises deployments has changed from 32708 to 32710.
-- We have simplified the package names in the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}} and updated installation and upgrade instructions for NetQ agents and the CLI to match these changes.
+- NVIDIA has simplified the package names in the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}} and updated the installation and upgrade instructions for NetQ agents and the CLI to reflect these changes.
 
 ### Upgrade Paths
 

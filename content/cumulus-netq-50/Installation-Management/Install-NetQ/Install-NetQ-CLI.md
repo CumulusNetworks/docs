@@ -153,12 +153,12 @@ Cumulus Linux 4.4 and later includes the `netq-apps` package by default. To upgr
 ```
 nvidia@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d5 netq-latest
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-5 netq-latest
 ...
 ```
 <!--
 {{<notice tip>}}
-You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v5.0: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d5 netq-5.0</pre>
+You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v5.0: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-5 netq-5.0</pre>
 {{</notice>}}
 -->
 

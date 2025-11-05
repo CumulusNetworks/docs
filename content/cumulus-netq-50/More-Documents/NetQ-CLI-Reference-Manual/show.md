@@ -274,20 +274,33 @@ leaf03            Rotten           no       4.15.0-cld12u52~1744815975.8dbbbd20c
 - ```netq config del agent```
 
 - - -
-<!--
+
 ## netq show bcm
+
+Displays authentication credentials (either basic authentication or certificate-based authentication) and Base Command Manager version. These commands are used to set up and verify your deployment before you begin collecting {{<link title="Integrate NetQ with Grafana/#collect-slurm-telemetry" text="Slurm telemetry">}}.
 
 ### Syntax
 
+```
+netq show bcm auth-status
+netq show bcm tls-cert [json | dump]
+```
+
 ### Required Arguments
 
+None
+
 ### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | json, dump | Display the certificate as a JSON or dump file |
 
 ### Related Commands
 
 - `netq add bcm auth-type`
--->
 
+- - -
 <!-- vale off -->
 ## netq show bgp
 <!-- vale on -->
@@ -4659,7 +4672,7 @@ Displays summary status of a scheduled validation for a given protocol or servic
 ```
 netq show validation summary
     [name <text-validation-name>]
-    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
+    type (addr | agents | bgp | evpn | interfaces | ip | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
     [around <text-time-hr>]
     [json]
 ```
@@ -4668,7 +4681,7 @@ netq show validation summary
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
+| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, ip, mlag, mtu, ntp, roce, sensors, topology, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
 
 ### Options
 

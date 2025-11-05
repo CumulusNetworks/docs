@@ -46,11 +46,15 @@ cumulus@switch:~$ nv set evpn dad duplicate-action warning-only
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set evpn dad enable</h>
+## <h>nv set evpn dad state</h>
 
-Enables and disables duplicate address detection. The default setting is `off`.
+Enables and disables duplicate address detection. The default setting is `disabled`.
 
 The VTEP considers a host MAC or IP address to be duplicate if the address moves across the network more than a certain number of times within a certain number of seconds. In addition to legitimate host or VM mobility scenarios, address movement can occur when you configure IP addresses incorrectly on a host or when packet looping occurs in the network due to faulty configuration or behavior.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -59,7 +63,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set evpn dad enable on
+cumulus@switch:~$ nv set evpn dad state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -96,9 +100,13 @@ cumulus@switch:~$ nv set evpn dad move-window 1200
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set evpn enable</h>
+## <h>nv set evpn state</h>
 
-Enables and disables the EVPN control plane. When enabled, the EVPN service offered is a VLAN-based service and Cumulus Linux creates an EVI automatically for each extended VLAN. The default setting is `off`.
+Enables and disables the EVPN control plane. When enabled, the EVPN service offered is a VLAN-based service and Cumulus Linux creates an EVI automatically for each extended VLAN. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -107,7 +115,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set evpn enable on
+cumulus@switch:~$ nv set evpn state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -170,9 +178,13 @@ cumulus@switch:~$ nv set evpn multihoming ead-evi-route tx off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set evpn multihoming enable</h>
+## <h>nv set evpn multihoming state</h>
 
-Turns EVPN multihoming on or off. The default setting is `off`.
+Enables and disables EVPN multihoming. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -181,7 +193,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set evpn multihoming enable on
+cumulus@switch:~$ nv set evpn multihoming state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -284,7 +296,11 @@ cumulus@switch:~$ nv set evpn multihoming startup-delay 1000
 
 ## <h>nv set evpn route-advertise default-gateway</h>
 
-Configures the gateway VTEPs to advertise their IP and MAC address. Only turn this setting on in a centralized routing deployment and only on the centralized gateway router. When set to `on`, the IP addresses of SVIs in all EVIs announce as type-2 routes with the gateway extended community. The remote layer 2 only VTEPs use ARP suppression and the hosts learn of the gateway's IP to MAC binding. The default setting is `off`.
+Configures the gateway VTEPs to advertise their IP and MAC address. Only turn this setting on in a centralized routing deployment and only on the centralized gateway router. When set to `enabled`, the IP addresses of SVIs in all EVIs announce as type-2 routes with the gateway extended community. The remote layer 2 only VTEPs use ARP suppression and the hosts learn of the gateway's IP to MAC binding. The default setting is `disbled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Version History
 
@@ -293,7 +309,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set evpn route-advertise default-gateway on
+cumulus@switch:~$ nv set evpn route-advertise default-gateway enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -316,7 +332,11 @@ cumulus@switch:~$ nv set evpn route-advertise nexthop-setting shared-ip-mac
 
 ## <h>nv set evpn route-advertise svi-ip</h>
 
-Configures the switch to announce the IP addresses of SVIs in all EVIs as type-2 routes. Only enable this option if you reuse SVI IP addresses in the network. The default setting is `off`.
+Configures the switch to announce the IP addresses of SVIs in all EVIs as type-2 routes. Only enable this option if you reuse SVI IP addresses in the network. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Version History
 
@@ -325,7 +345,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set evpn route-advertise svi-ip on
+cumulus@switch:~$ nv set evpn route-advertise svi-ip enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

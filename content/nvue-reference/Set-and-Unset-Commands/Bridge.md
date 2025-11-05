@@ -202,9 +202,13 @@ Configures IGMP and MLD snooping to prevent hosts on a local network from receiv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> multicast snooping enable</h>
+## <h>nv set bridge domain \<domain-id\> multicast snooping state</h>
 
-Turns IGMP and MLD snooping on or off. The default setting is `off`.
+Enables and disables IGMP and MLD snooping. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -219,16 +223,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default multicast snooping enable on
+cumulus@switch:~$ nv set bridge domain br_default multicast snooping state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> multicast snooping querier enable</h>
+## <h>nv set bridge domain \<domain-id\> multicast snooping querier state</h>
 
-Turns the IGMP and MLD multicast querier on or off. The default setting is `off`.
+Enables and disables the IGMP and MLD multicast querier. The default setting is `disabled`.
 
 Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -243,7 +251,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier enable on
+cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -430,11 +438,15 @@ cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 max-age 6
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> svi-force-up enable</h>
+## <h>nv set bridge domain \<domain-id\> svi-force-up state</h>
 
 Configures the SVIs in a specific bridge to be perpetually UP. The first time you configure a switch, all southbound bridge ports are down; therefore, by default, all SVIs are also down. You can run this command to force the SVIs in a bridge to always be UP even if all member ports are DOWN, which is beneficial if you want to perform connectivity testing.
 
-You can specify `on` or `off`.
+You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -449,7 +461,7 @@ Introduced in Cumulus Linux 5.8.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default svi-force-up enable on
+cumulus@switch:~$ nv set bridge domain br_default svi-force-up state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -521,9 +533,13 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> ptp enable</h>
+## <h>nv set bridge domain \<domain-id\> vlan \<vid\> ptp state</h>
 
-Turns PTP on or off for the specified VLAN. The default setting is `off`.
+Enables and disables PTP for the specified VLAN. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -539,7 +555,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default vlan vlan10 ptp enable on
+cumulus@switch:~$ nv set bridge domain br_default vlan vlan10 ptp state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -644,7 +660,11 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 flooding multic
 
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> mac-learning</h>
 
-Turns MAC learning on or off for the VNI. The default setting is `off`.
+Enables and disables MAC learning for the VNI. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -661,7 +681,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning off
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1040,11 +1060,15 @@ cumulus@switch:~$ nv set interface swp1 bridge domain default vlan 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system global svi-force-up enable</h>
+## <h>nv set system global svi-force-up state</h>
 
 Configures all SVIs in all bridges on the switch to be perpetually UP. The first time you configure a switch, all southbound bridge ports are down; therefore, by default, all SVIs are also down. You can run this command to force all SVIs on all bridges to always be UP even when all member ports are DOWN, which is beneficial if you want to perform connectivity testing.
 
-You can specify `on` or `off`.
+You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 

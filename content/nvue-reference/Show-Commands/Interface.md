@@ -858,99 +858,13 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show interface swp1 link flag
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> link phy-detail</h>
-
-Shows physical layer information, such the error counters for each lane on a port.
-
-{{%notice note%}}
-Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface> link phy-detail` command.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.10.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 link phy-detail 
-                           operational  
--------------------------  -------------
-time-since-last-clear-min  1            
-phy-received-bits          6214400000000
-symbol-errors              0            
-effective-errors           0            
-phy-raw-errors-lane0       747567424
-phy-raw-errors-lane1       215603747
-phy-raw-errors-lane2       158456437
-phy-raw-errors-lane3       30578923
-phy-raw-errors-lane4       121708834
-phy-raw-errors-lane5       29244642
-phy-raw-errors-lane6       79102523
-phy-raw-errors-lane7       96656135            
-raw-ber                    15E-255      
-symbol-ber                 15E-255      
-effective-ber              15E-255      
-raw-ber-lane0              3E-6
-raw-ber-lane1              9E-7
-raw-ber-lane2              6E-7
-raw-ber-lane3              1E-7
-raw-ber-lane4              5E-7
-raw-ber-lane5              1E-7
-raw-ber-lane6              3E-7
-raw-ber-lane7              4E-7            
-rs-num-corr-err-bin0       1216554377   
-rs-num-corr-err-bin1       598244758            
-rs-num-corr-err-bin2       807002            
-rs-num-corr-err-bin3       3371            
-rs-num-corr-err-bin4       180            
-rs-num-corr-err-bin5       1            
-rs-num-corr-err-bin6       0            
-rs-num-corr-err-bin7       0            
-rs-num-corr-err-bin8       0            
-rs-num-corr-err-bin9       0            
-rs-num-corr-err-bin10      0            
-rs-num-corr-err-bin11      0            
-rs-num-corr-err-bin12      0            
-rs-num-corr-err-bin13      0            
-rs-num-corr-err-bin14      0            
-rs-num-corr-err-bin15      0            
-snr-host-lane0             25.12 dB              
-snr-host-lane1             25.25 dB              
-snr-host-lane2             25.37 dB              
-snr-host-lane3             25.37 dB              
-snr-host-lane4             26    dB              
-snr-host-lane5             24.61 dB              
-snr-host-lane6             24.12 dB              
-snr-host-lane7             26    dB              
-snr-media-lane0            25.05 dB              
-snr-media-lane1            24.09 dB              
-snr-media-lane2            25.34 dB              
-snr-media-lane3            23.67 dB              
-snr-media-lane4            26    dB              
-snr-media-lane5            25.05 dB              
-snr-media-lane6            23.12 dB              
-snr-media-lane7            24.05 dB
-```
-
-{{%notice note%}}
-The `nv show interface swp1 link phy-detail` command output shows <span class="a-tooltip">[SNR](## "Signal-to-Noise Ratio")</span> information in Cumulus Linux 5.13 and later.
-{{%/notice%}}
-
-## <h>nv set interface \<interface-id\> link phy-diag</h>
+## <h>nv set interface \<interface-id\> link phy detail</h>
 
 Shows physical layer diagnostic information for a port.
 
 {{%notice note%}}
-Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface> link phy-diag` command.
+- Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface> link phy detail` command.
+- In Cumulus Linux 5.14 and earlier, this command is `nv show interface <interface-id> link phy-diag`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -966,79 +880,88 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch$ nv show interface swp20 link phy-diag 
+cumulus@switch$ nv show interface swp20 link phy detail 
                                   operational
 --------------------------------  -----------
-pd-fsm-state                      0x7
-eth-an-fsm-state                  0x6
-phy-hst-fsm-state                 0x8
-psi-fsm-state                     0x0
-phy-manager-link-enabled          0x9bff0
-core-to-phy-link-enabled          0x9b800
-cable-proto-cap-ext               0x0
-loopback-mode                     0x0
-retran-mode-request               0x0
-retran-mode-active                0x0
-fec-mode-request                  0x1
-profile-fec-in-use                0x4
-pd-link-enabled                   0x80000
-phy-hst-link-enabled              0x80000
-eth-an-link-enabled               0x0
-phy-manager-state                 0x3
-eth-proto-admin                   0x0
-ext-eth-proto-admin               0x0
-eth-proto-capability              0x0
-ext-eth-proto-capability          0x0
-data-rate-oper                    0x0
-an-status                         0x0
-an-disable-admin                  0x0
-proto-mask                        0x2
-module-info-ext                   0x0
-ethernet-compliance-code          0x1c
-ext-ethernet-compliance-code      0x32
-memory-map-rev                    0x40
-linear-direct-drive               0x0
-cable-breakout                    0x0
-cable-rx-amp                      0x1
-cable-rx-pre-emphasis             0x0
-cable-rx-post-emphasis            0x0
-cable-tx-equalization             0x0
-cable-attenuation-53g             0x0
-cable-attenuation-25g             0x0
-cable-attenuation-12g             0x0
-cable-attenuation-7g              0x0
-cable-attenuation-5g              0x0
-tx-input-freq-sync                0x0
-tx-cdr-state                      0xff
-rx-cdr-state                      0xff
-module-fw-version                 0x2e820043
-module-st                         0x3
-dp-st-lane0                       0x4
-dp-st-lane1                       0x4
-dp-st-lane2                       0x4
-dp-st-lane3                       0x4
-dp-st-lane4                       0x4
-dp-st-lane5                       0x4
-dp-st-lane6                       0x4
-dp-st-lane7                       0x4
-rx-output-valid                   0x0
-rx-power-type                     0x1
-active-set-host-compliance-code   0x52
-active-set-media-compliance-code  0x1c
-error-code-response               0x0
-temp-flags                        0x0
-vcc-flags                         0x0
-mod-fw-fault                      0x0
-dp-fw-fault                       0x0
-rx-los-cap                        0x0
-tx-fault                          0x0
-tx-los                            0x0
-tx-cdr-lol                        0x0
-tx-ad-eq-fault                    0x0
-rx-los                            0x0
-rx-cdr-lol                        0x0
-rx-output-valid-change            0x0
-flag-in-use                       0x0
+loopback-mode                     0                   
+fec-mode-request                  4                   
+module-info-ext                   0                   
+ethernet-compliance-code          128                 
+ext-ethernet-compliance-code      24                  
+memory-map-rev                    7                   
+module-fw-version                 538837258           
+module-st                         0                   
+error-code-response               0                   
+cable-proto-cap-ext               0                   
+cable-rx-amp                      0                   
+cable-rx-pre-emphasis             0                   
+cable-rx-post-emphasis            0                   
+cable-tx-equalization             0                   
+cable-attenuation-53g             0                   
+cable-attenuation-25g             0                   
+cable-attenuation-12g             0                   
+cable-attenuation-7g              0                   
+cable-attenuation-5g              0                   
+pd-fsm-state                      8                   
+eth-an-fsm-state                  6                   
+phy-hst-fsm-state                 0                   
+psi-fsm-state                     0                   
+retran-mode-request               0                   
+retran-mode-active                0                   
+profile-fec-in-use                4                   
+pd-link-enabled                   16744453            
+phy-hst-link-enabled              0                   
+eth-an-link-enabled               97452034
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> link phy health</h>
+
+Shows physical layer information, such the error counters for each lane on a port.
+
+{{%notice note%}}
+- Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface> link phy health` command.
+- In Cumulus Linux 5.14 and earlier, this command is `nv show interface <interface-id> link phy-detail`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link phy health
+                           operational
+-------------------------  -------------
+time-since-last-clear-min  1                     
+symbol-errors              0                     
+symbol-ber                 15E-255               
+raw-ber                    15E-255               
+phy-received-bits          6214400000000         
+effective-errors           0                     
+effective-ber              15E-255               
+
+Lane Stats
+=============
+    Lane  raw-ber  snr-host   snr-media  phy-raw-errors
+    ----  -------  ---------  ---------  --------------
+    0     15E-255  22.32 dB   23.14 dB   0             
+    1     15E-255  25.24 dB   22.47 dB   0             
+    2     15E-255  21.18 dB   22.30 dB   0             
+    3     15E-255  25.12 dB   25.01 dB   0             
+    4     15E-255  24.50 dB   24.62 dB   0             
+    5     15E-255  0     dB   0     dB   0             
+    6     15E-255  25    dB   24.62 dB   0             
+    7     15E-255  22.18 dB   23.48 dB   0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

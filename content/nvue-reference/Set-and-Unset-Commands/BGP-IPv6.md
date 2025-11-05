@@ -87,7 +87,11 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast adve
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast aggregate-route \<aggregate-route-id\> as-set</h>
 
-Turns generation of an `AS_SET` for the aggregate on or off for the specified VRF. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the `AS_PATH` attributes of all the individual IPv6 routes to help BGP detect and avoid loops. The default setting is `off`.
+Turns generation of an `AS_SET` for the aggregate on or off for the specified VRF. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the `AS_PATH` attributes of all the individual IPv6 routes to help BGP detect and avoid loops. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -103,7 +107,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast aggregate-route 2001:db8::1/128 as-set on
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast aggregate-route 2001:db8::1/128 as-set enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -133,7 +137,11 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast aggr
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast aggregate-route \<aggregate-route-id\> summary-only</h>
 
-Ensures that BGP suppresses longer IPv6 prefixes inside the aggregate address before sending updates. The default setting is `off`.
+Ensures that BGP suppresses longer IPv6 prefixes inside the aggregate address before sending updates. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -149,14 +157,17 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast aggregate-route 2001:db8::1/128 summary-only on
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast aggregate-route 2001:db8::1/128 summary-only enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast state</h>
 
-Tuns the BGP for IPv6 on or off for the specified VRF. The default setting is `off`.
+Tuns the BGP for IPv6 on or off for the specified VRF. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.{{%/notice%}}
 
 ### Command Syntax
 
@@ -171,14 +182,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast multipaths compare-cluster-length</h>
 
-Turns on cluster length comparison for IPv6 for the specified VRF. When `on` and iBGP paths have a cluster list, their lengths must be equal to be selected as multipaths. The default setting is `off`.
+Turns on cluster length comparison for IPv6 for the specified VRF. When `on` and iBGP paths have a cluster list, their lengths must be equal to be selected as multipaths. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -193,7 +208,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast compare-cluster-length on
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast compare-cluster-length enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -269,11 +284,15 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast nhg-
 -->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected state</h>
 
-Turns route redistribution of IPv6 connected routes on or off for the specified VRF. The default setting is `off`.
+Turns route redistribution of IPv6 connected routes on or off for the specified VRF. The default setting is `disabled`.
 
 Route redistribution allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -288,7 +307,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute connected enable on
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute connected state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -339,9 +358,13 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel state</h>
 
-Turns redistribution of IPv6 kernel routes on or off for the specified VRF. The default setting is `off`.
+Turns redistribution of IPv6 kernel routes on or off for the specified VRF. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -356,7 +379,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute kernel enable on
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute kernel state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -407,11 +430,13 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 state</h>
 
-Turns redistribution of OSPF IPv6 routes on or off for the specified VRF.
+Turns redistribution of OSPF IPv6 routes on or off for the specified VRF. The default setting is `disabled`.
 
-The default setting is `off`.
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -426,7 +451,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute ospf enable on
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute ospf state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -475,9 +500,13 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static state</h>
 
-Turns route redistribution of IPv6 static routes on or off for the specified VRF. The default setting is `off`.
+Turns route redistribution of IPv6 static routes on or off for the specified VRF. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -492,7 +521,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute static enable on
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute static state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -565,7 +594,11 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast rib-
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn default-route-origination</h>
 
-Configures originating EVPN default type-5 routes for the specified VRF. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod). The default setting is `off`.
+Configures originating EVPN default type-5 routes for the specified VRF. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod). The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -580,16 +613,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast route-export to-evpn default-route-origination on
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast route-export to-evpn default-route-origination enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn state</h>
 
-Turns IPv6 prefix-based routing for EVPN type-5 routes on or off for the specified VRF. When `on`, the switch can announce IPv6 prefixes in the BGP RIB as EVPN type-5 routes.
+Enables and disables IPv6 prefix-based routing for EVPN type-5 routes for the specified VRF. When `enabled`, the switch can announce IPv6 prefixes in the BGP RIB as EVPN type-5 routes. The default setting is `disabled`.
 
-The default setting is `off`.
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -604,7 +639,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast route-export to-evpn enable on
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast route-export to-evpn state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -631,9 +666,13 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast rout
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf state</h>
 
-Turns IPv6 route leaking on or off for the specified VRF. The default setting is `off`.
+Enables and disables IPv6 route leaking for the specified VRF. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -648,7 +687,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf RED router bgp address-family ipv6-unicast route-import from-vrf enable on
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv6-unicast route-import from-vrf state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -742,7 +781,11 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath allow-my-asn origin</h>
 
-Configures whether a received AS_PATH containing the ASN of the local system is allowed, but only if it is the originating AS. You can specify `on` or `off`.
+Configures whether a received AS_PATH containing the ASN of the local system is allowed, but only if it is the originating AS. You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -754,14 +797,18 @@ Configures whether a received AS_PATH containing the ASN of the local system is 
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath allow-my-asn origin on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath allow-my-asn origin enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast attribute-mod aspath</h>
 
-Configures BGP to follow normal IPv6 BGP procedures when generating the `AS_PATH` attribute for the neighbor in the specified VRF. You can specify `on` or `off`.
+Configures BGP to follow normal IPv6 BGP procedures when generating the `AS_PATH` attribute for the neighbor in the specified VRF. You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -777,14 +824,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast attribute-mod aspath on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast attribute-mod aspath enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast attribute-mod nexthop</h>
 
-Configures BGP to follow normal BGP procedures when generating the `NEXT_HOP` attribute for the specified neighbor. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change `NEXT_HOP` when sending an update to the neighbor.
+Configures BGP to follow normal BGP procedures when generating the `NEXT_HOP` attribute for the specified neighbor. You can specify `enabled` or `disabled`. If you set this attribute to `disabled`, BGP does not change `NEXT_HOP` when sending an update to the neighbor.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -800,14 +851,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast attribute-mod nexthop on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast attribute-mod nexthop enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast attribute-mod med</h>
 
-Configures BGP to follow normal BGP procedures when generating the `MED` attribute for the specified neighbor. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change the `MED` when sending an update to the neighbor.
+Configures BGP to follow normal BGP procedures when generating the `MED` attribute for the specified neighbor. You can specify `enabled` or `disabled`. If you set this attribute to `disabled`, BGP does not change the `MED` when sending an update to the neighbor.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -823,14 +878,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast attribute-mod med on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast attribute-mod med enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast community-advertise regular</h>
 
-Configures BGP to announce the `COMMUNITIES` attribute to the neighbor for the specified VRF. The default setting is `off`.
+Configures BGP to announce the `COMMUNITIES` attribute to the neighbor for the specified VRF. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -846,14 +905,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast community-advertise regular on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast community-advertise regular enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast community-advertise extended</h>
 
-Configures BGP to announce the `EXT_COMMUNITIES` attribute to the neighbor for the specified VRF. The default setting is `off`.
+Configures BGP to announce the `EXT_COMMUNITIES` attribute to the neighbor for the specified VRF. The default setting is `enabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -869,14 +932,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast community-advertise extended on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast community-advertise extended enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast community-advertise large</h>
 
-Configures BGP to announce the `LARGE_COMMUNITIES` attribute to the neighbor for the specified VRF. The default setting is `off`.
+Configures BGP to announce the `LARGE_COMMUNITIES` attribute to the neighbor for the specified VRF. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -892,7 +959,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast community-advertise large on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast community-advertise large enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -989,9 +1056,13 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast default-route-origination enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast default-route-origination state</h>
 
-Turns IPv6 default route origination on or off for the neighbor. The default setting is `off`.
+Enables and disables IPv6 default route origination for the neighbor. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1007,7 +1078,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast default-route-origination enable on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast default-route-origination state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1035,9 +1106,13 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast state</h>
 
-Turns IPv6 on or off for the neighbor. The default setting is `off`.
+Enables and disables IPv6 for the neighbor. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1053,7 +1128,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast enable on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1337,7 +1412,11 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp1 address-family ipv
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast route-reflector-client</h>
 
-Configures the BGP node as a route reflector for the BGP neighbor. The default setting is `off`.
+Configures the BGP node as a route reflector for the BGP neighbor. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1353,14 +1432,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast route-reflector-client on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast route-reflector-client enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast soft-reconfiguration</h>
 
-Turns on soft configuration so that received IPv6 routes from the neighbor that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP updates. The default setting is `off`.
+Turns on soft configuration so that received IPv6 routes from the neighbor that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP updates. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1376,7 +1459,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast soft-reconfiguration on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast soft-reconfiguration enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1406,7 +1489,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast add-path-tx</h>
 
-Configures BGP to advertise more than just the best path for a prefix. You can specify `all-paths` to advertise all known paths to the peers in the peer group or `best-per-AS` to advertise only the best path learned from each AS. The default setting is `off`.
+Configures BGP to advertise more than just the best path for a prefix. You can specify `all-paths` to advertise all known paths to the peers in the peer group or `best-per-AS` to advertise only the best path learned from each AS. The default setting is disabled.
 
 ### Command Syntax
 
@@ -1544,7 +1627,11 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast attribute-mod aspath</h>
 
-Configures BGP to follow normal IPv6 BGP procedures when generating the `AS_PATH` attribute for the peer group in the specified VRF. You can specify `on` or `off`.
+Configures BGP to follow normal IPv6 BGP procedures when generating the `AS_PATH` attribute for the peer group in the specified VRF. You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1560,13 +1647,13 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod aspath on
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod aspath enabled
 ```
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast attribute-mod med</h>
 
-Configures BGP to follow normal BGP procedures when generating the `MED` attribute for the specified peer group. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change the `MED` when sending an update to the peer group.
+Configures BGP to follow normal BGP procedures when generating the `MED` attribute for the specified peer group. You can specify `enabled` or `disabled`. If you set this attribute to `disabled`, BGP does not change the `MED` when sending an update to the peer group.
 
 ### Command Syntax
 
@@ -1582,14 +1669,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod med on
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod med enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast attribute-mod nexthop</h>
 
-Configures BGP to follow normal BGP procedures when generating the `NEXT_HOP` attribute for the specified peer group. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change `NEXT_HOP` when sending an update to the peer group.
+Configures BGP to follow normal BGP procedures when generating the `NEXT_HOP` attribute for the specified peer group. You can specify `enabled` or `disabled`. If you set this attribute to `disabled`, BGP does not change `NEXT_HOP` when sending an update to the peer group.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1605,14 +1696,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod nexthop on
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod nexthop enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise regular</h>
 
-Configures BGP to announce the `COMMUNITIES` attribute to the peer group for the specified VRF. The default setting is `off`.
+Configures BGP to announce the `COMMUNITIES` attribute to the peer group for the specified VRF. Ypu can specify `enabled` or `disabled`. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1628,14 +1723,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise regular on
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise regular enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise extended</h>
 
-Configures BGP to announce the `EXT_COMMUNITIES` attribute to the peer group for the specified VRF. The default setting is `off`.
+Configures BGP to announce the `EXT_COMMUNITIES` attribute to the peer group for the specified VRF. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1651,14 +1750,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise extended on
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise extended enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise large</h>
 
-Configures BGP to announce the `LARGE_COMMUNITIES` attribute to the peer group for the specified VRF. The default setting is `off`.
+Configures BGP to announce the `LARGE_COMMUNITIES` attribute to the peer group for the specified VRF. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1674,16 +1777,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise large on
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise large enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise state</h>
 
-Turns BGP conditional advertisement on or off for IPv6 for the peer group. The default setting is `off`.
+Enables or disables BGP conditional advertisement for IPv6 for the peer group. The default setting is `disabled`.
 
 BGP conditional advertisement lets you advertise certain routes only if other routes either do or do not exist. BGP conditional advertisement is typically used in multihomed networks where BGP advertises some prefixes to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1699,7 +1806,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise enable on
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1773,9 +1880,13 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination state</h>
 
-Turns IPv6 default route origination on or off. The default setting is `off`.
+Enables and disables IPv6 default route origination. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1791,7 +1902,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination enable on
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1819,9 +1930,13 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast state</h>
 
-Turns IPv6 on or off for the BGP peer group. The default setting is `off`.
+Enables and disables IPv6 for the BGP peer group. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1837,7 +1952,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast enable on
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2097,7 +2212,11 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast route-reflector-client</h>
 
-Configures the BGP node as a route reflector for the BGP peer group. The default setting is `off`.
+Configures the BGP node as a route reflector for the BGP peer group. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2113,14 +2232,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast route-reflector-client on
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast route-reflector-client enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast soft-reconfiguration</h>
 
-Turns on soft configuration so that received IPv6 routes from the peers in the peer group that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP updates. The default setting is `off`.
+Turns on soft configuration so that received IPv6 routes from the peers in the peer group that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP updates. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2136,7 +2259,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast soft-reconfiguration on
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast soft-reconfiguration enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -55,14 +55,13 @@ The following example commands set:
 - The IP address of the RADIUS server to 192.168.0.254 and the port to 42.
 - The secret to `'myradius$key'`.
 - The priority at which Cumulus Linux contacts the RADIUS server to 10.
-- The authentication order to 10 so that RADIUS authentication has priority over local.
+- The authentication order so that RADIUS authentication has priority over local.
 
 ```
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 port 42
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 secret 'myradius$key'
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 10
-cumulus@switch:~$ nv set system aaa authentication-order 10 radius
-cumulus@switch:~$ nv set system aaa authentication-order 20 local
+cumulus@switch:~$ nv set system aaa authentication order radius local
 cumulus@switch:~$ nv config apply
 ```
 
@@ -226,8 +225,7 @@ To configure an account for local fallback authentication:
 {{< tabs "TabID211 ">}}
 {{< tab "NVUE Commands ">}}
 ```
-cumulus@switch:~$ nv set system aaa authentication-order 10 radius
-cumulus@switch:~$ nv set system aaa authentication-order 20 local
+cumulus@switch:~$ nv set system aaa authentication-order radius local
 ```
 
 {{< /tab >}}

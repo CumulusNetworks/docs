@@ -14,9 +14,13 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service ntp \<vrf-id\></h>
+## <h>nv set system ntp vrf \<vrf-id\></h>
 
 Configures the Network Time Protocol (NTP) in a specific VRF. The default VRF is `default`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service ntp <vrf-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -26,35 +30,38 @@ Configures the Network Time Protocol (NTP) in a specific VRF. The default VRF is
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set service ntp default
+cumulus@switch:~$ nv set system ntp vrf default
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service ntp \<vrf-id\> listen \<interface-name\></h>
+## <h>nv set system ntp listen \<interface-name\></h>
 
 Configures the NTP interface on which to listen. The default setting is `eth0`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service ntp <vrf-id> listen <interface-name>`.
+{{%/notice%}}
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
 | `<interface-name>` |  The NTP interface on which to listen. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set service ntp default listen swp10
+cumulus@switch:~$ nv set system ntp listen swp10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -62,6 +69,10 @@ cumulus@switch:~$ nv set service ntp default listen swp10
 ## <h>nv set service ntp \<vrf-id\> pool \<server-id\></h>
 
 Configures the remote NTP server pool.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -82,69 +93,68 @@ cumulus@switch:~$ nv set service ntp default pool 4.cumulusnetworks.pool.ntp.org
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service ntp \<vrf-id\> pool \<server-id\> iburst</h>
+## <h>nv set system ntp server \<server-id\></h>
 
-Configures NTP to send a burst of eight packets instead of the usual one packet when the server pool is unreachable. You can specify `on` or `off`. The default setting is `off`.
+Configures the remote NTP server.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service ntp <vrf-id> server <server-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
+| `<server-id>` | The hostname or IP address of the NTP server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ntp server time.nist.gov
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ntp server \<server-id\> iburst</h>
+
+Configures NTP to send a burst of eight packets instead of the usual one packet when the server pool is unreachable. You can specify `enabled` or `disabled`. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service ntp <vrf-id> server <server-id> iburst` and the value is `on` or `off`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
 | `<server-id>` | The NTP server pool. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set service ntp default pool 4.cumulusnetworks.pool.ntp.org iburst on
+cumulus@switch:~$ nv set system ntp server 192.168.200.1 iburst
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service ntp \<vrf-id\> server \<server-id\></h>
+## <h>nv set system ntp state</h>
 
-Configures the remote NTP server.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-| `<server-id>` | The hostname or IP address of the NTP server. |
+Enables and disables NTP. You can specify `enabled` or `disabled`. The default setting is `enabled`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set service ntp default server time.nist.gov
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set service ntp \<vrf-id\> server \<server-id\> iburst</h>
-
-Configures NTP to send a burst of eight packets instead of the usual one packet when the server is unreachable. You can specify `on` or `off`. The default setting is `off`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-| `<server-id>` | The hostname or IP address of the NTP server. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set service ntp default server 192.168.0.254 iburst on
+cumulus@switch:~$ nv set system ntp state disabled
 ```

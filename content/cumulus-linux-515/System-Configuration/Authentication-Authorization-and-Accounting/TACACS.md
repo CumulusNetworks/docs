@@ -49,14 +49,13 @@ The following example commands set:
   If you include special characters in the password (such as $), you must enclose the password in single quotes (').
   {{%/notice%}}
 - The VRF to `mgmt`.
-- The authentication order so that TACACS+ authentication has priority over local (the lower number has priority).
+- The authentication order so that TACACS+ authentication has priority over local.
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 priority 5
 cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 secret abcdefghijklmnopqrstuvwxyz
 cumulus@switch:~$ nv set system aaa tacacs vrf mgmt 
-cumulus@switch:~$ nv set system aaa authentication-order 5 tacacs
-cumulus@switch:~$ nv set system aaa authentication-order 10 local
+cumulus@switch:~$ nv set system aaa authentication-order tacacs local
 cumulus@switch:~$ nv config apply
 ```
 

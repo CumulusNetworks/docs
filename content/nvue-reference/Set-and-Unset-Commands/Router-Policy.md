@@ -1400,7 +1400,11 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepen
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set atomic-aggregate (on|off)</h>
 
-Configures a set clause in the route map to inform BGP peers that the local router is using a less specific (aggregated) route to a destination. You can specify `on` or `off`. The default setting is `off`.
+Configures a set clause in the route map to inform BGP peers that the local router is using a less specific (aggregated) route to a destination. You can specify `enabled` or `disabled`. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1416,7 +1420,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set atomic-aggregate on
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set atomic-aggregate enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -472,7 +472,11 @@ cumulus@switch:~$ nv set vrf RED evpn enable on
 
 ## <h>nv set vrf \<vrf-id\> evpn prefix-routes-only</h>
 
-Configures the switch to advertise IP prefix routes (type 5 routes) only in the specified VRF. You can specify `on` or `off`.
+Configures the switch to advertise IP prefix routes (type 5 routes) only in the specified VRF. You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -487,7 +491,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf RED evpn prefix-routes-only on
+cumulus@switch:~$ nv set vrf RED evpn prefix-routes-only enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

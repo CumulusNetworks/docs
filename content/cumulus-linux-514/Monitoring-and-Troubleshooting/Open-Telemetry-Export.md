@@ -510,6 +510,13 @@ To configure the open telemetry export destination:
    cumulus@switch:~$ nv config apply
    ```
 
+3. Configure the VRF where the export destination is reachable. The `default` VRF is the default value:
+
+   ```
+   cumulus@switch:~$ set system telemetry export vrf RED
+   cumulus@switch:~$ nv config apply
+   ```
+
 By default, OTLP export is in **secure** mode that requires a CA certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
 <!-- POC IN CL5.13
 {{%notice note%}}
@@ -809,7 +816,7 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_headroom_buffer_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
 | `nvswitch_interface_headroom_buffer_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
 | `nvswitch_interface_headroom_buffer_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
-| `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max_bytes` | * Interface shared buffer traffic class highest recorded watermark counter in bytes.|
+| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_bytes` | * Interface shared buffer traffic class highest recorded watermark counter in bytes.|
 | `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max_timestamp` | * Time when highest shared buffer port group watermark is recorded.|
 | `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_timestamp` | * Time when highest shared buffer traffic class watermark is recorded|
 | `nvswitch_interface_shared_buffer_port_ingress_pool_watermark_recorded_max_timestamp` | * Time when highest shared pool buffer watermark is recorded.|

@@ -634,9 +634,13 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear interface \<interface-id\> link phy-detail</h>
+## <h>nv action clear interface \<interface-id\> link phy health</h>
 
 Clears interface physical layer error counters.
+
+{{%notice note%}}
+In Cumulus Linux 5.14, this command is `nv action clear interface <interface-id> link phy-detail`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -646,12 +650,12 @@ Clears interface physical layer error counters.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.14.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action clear interface swp1 link phy-detail
+cumulus@switch:~$ nv action clear interface swp1 link phy health
 Action executing ... 
 swp1 link phy-detail counters cleared. 
 Action succeeded

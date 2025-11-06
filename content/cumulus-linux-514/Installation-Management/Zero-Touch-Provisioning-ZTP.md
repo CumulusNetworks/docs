@@ -59,7 +59,7 @@ For ZTP using DHCP, provisioning initially takes place over the management netwo
 
 The ZTP process over DHCP follows these steps:
 
-1. The first time you boot Cumulus Linux, eth0 makes a DHCP request. By default, Cumulus Linux sends DHCP option 60 (the vendor class identifier) with the value `cumulus-linux x86_64` to identify itself to the DHCP server.
+1. The first time you boot Cumulus Linux, eth0 makes a DHCP request. By default, Cumulus Linux sends DHCP option 60 (the vendor class identifier) with the value `cumulus-linux  x86_64` to identify itself to the DHCP server. (There are two spaces between `cumulus-linux` and `x86_64`.)
 2. The DHCP server offers a lease to the switch.
 3. If option 239 is in the response, the ZTP process starts.
 4. The ZTP process requests the contents of the script from the URL, sending additional {{<link url="#inspect-http-headers" text="HTTP headers">}} containing details about the switch.

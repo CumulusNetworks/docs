@@ -45,7 +45,9 @@
 {{ end }}
 
 {{ if eq .Page.Params.product "NVIDIA Air" }}
-<script src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js"></script>
+{{ $jsNetguru := resources.Get "js/netguru.js" }}
+
+<script src="{{ $jsNetguru.Permalink }}" id="chainlit-script"></script>
 <script>
 window.mountChainlitWidget({
     chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
@@ -65,7 +67,9 @@ window.mountChainlitWidget({
 {{ end }}
 
 {{ if eq .Page.Params.product "Cumulus Linux" }}
-<script src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js"></script>
+{{ $jsNetguru := resources.Get "js/netguru.js" }}
+
+<script src="{{ $jsNetguru.Permalink }}" id="chainlit-script"></script>
 <script>
 window.mountChainlitWidget({
     chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
@@ -84,8 +88,12 @@ window.mountChainlitWidget({
 </script>
 {{ end }}
 
+
 {{ if eq .Page.Params.product "Cumulus NetQ" }}
-<script src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js"></script>
+
+{{ $jsNetguru := resources.Get "js/netguru.js" }}
+
+<script src="{{ $jsNetguru.Permalink }}" id="chainlit-script"></script>
 <script>
 window.mountChainlitWidget({
     chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
@@ -102,7 +110,8 @@ window.mountChainlitWidget({
     }
 }});
 </script>
-{{ end }}
+{{ end }}   
+
 
 <!-- Canonical link element to prioritize search indexing of current version -->
 {{ if .Page.Params.old }}

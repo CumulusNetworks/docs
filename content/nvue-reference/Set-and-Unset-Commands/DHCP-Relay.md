@@ -14,9 +14,13 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-relay \<vrf-id\> agent enable</h>
+## <h>nv set service dhcp-relay \<vrf-id\> agent state</h>
 
-Enables DHCP Agent Information Option 82, which allows a DHCP relay to insert circuit or relay specific information into a request that the switch forwards to a DHCP server. You can specify `on` or `off`.
+Enables DHCP Agent Information Option 82, which allows a DHCP relay to insert circuit or relay specific information into a request that the switch forwards to a DHCP server. You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -31,7 +35,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service dhcp-relay default agent enable on
+cumulus@switch:~$ nv set service dhcp-relay default agent state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -63,9 +67,13 @@ cumulus@switch:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-relay \<vrf-id\> agent use-pif-circuit-id enable</h>
+## <h>nv set service dhcp-relay \<vrf-id\> agent use-pif-circuit-id state</h>
 
-Enables Circuit ID DHCP Agent Information Option 82, which includes information about the circuit on which the request comes in, such as the SVI or physical port. By default, this is the printable name of the interface that receives the client request. You can specify `on` or `off`.
+Enables Circuit ID DHCP Agent Information Option 82, which includes information about the circuit on which the request comes in, such as the SVI or physical port. By default, this is the printable name of the interface that receives the client request. You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -80,7 +88,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service dhcp-relay default agent use-pif-circuit-id enable on
+cumulus@switch:~$ nv set service dhcp-relay default agent use-pif-circuit-id state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

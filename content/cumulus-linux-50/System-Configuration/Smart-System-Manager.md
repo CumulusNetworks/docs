@@ -22,9 +22,14 @@ You can restart the switch in one of the following modes.
    When you restart the switch in warm mode, BGP performs a graceful restart if the BGP Graceful Restart option is on. To enable BGP Graceful Restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
    {{%notice note%}}
-   A warm boot disrupts bonds, VXLAN traffic, and IP multicast traffic until reboot completes.
+   Warm boot disrupts bonds, VXLAN traffic, and IP multicast traffic until reboot completes.
    {{%/notice%}}
-
+   <!--
+   {{%notice note%}}
+   -  Warm boot disrupts bonds, VXLAN traffic, and IP multicast traffic until reboot completes.
+   - Cumulus Linux does not support LACP bonds during warm boot; the LACP control plane sessions might time out before warm boot completes. Use a static Link Aggregation Group to keep bonds up during warm boot.
+   {{%/notice%}}
+   -->
 The following command restarts the system in cold mode:
 
 {{< tabs "28 ">}}

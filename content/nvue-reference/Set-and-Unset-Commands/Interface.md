@@ -60,7 +60,11 @@ cumulus@switch:~$ nv set interface bond1 bond down-delay 100
 
 ## <h>nv set interface \<interface-id\> bond lacp-bypass</h>
 
-Turns LACP bypass on the specified bond to 802.3ad mode so that it becomes active and forwards traffic even when there is no LACP partner. You can specify on or off. The default setting is off.
+Enables and disables LACP bypass on the specified bond to 802.3ad mode so that it becomes active and forwards traffic even when there is no LACP partner. You can specify `enabled` or `disabled`. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -75,7 +79,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface bond1 bond lacp-bypass on
+cumulus@switch:~$ nv set interface bond1 bond lacp-bypass enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -193,16 +197,20 @@ cumulus@switch:~$ nv set interface swp1 description hypervisor_port_1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip address \<ip-prefix-id\></h>
+## <h>nv set interface \<interface-id\> ipv4 address \<ip-prefix-id\></h>
 
-Configures an IP address with a route prefix for the specified interface.
+Configures an IP address with a route prefix for the specified interface. For IPv6, run the `nv set interface <interface-id> ipv6 address <ip-prefix-id>` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier the command is `nv set interface <interface-id> ip address`.
+{{%/notice%}}
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ip-prefix-id>` | The IPv4 or IPv6 address and route prefix in CIDR notation. |
+| `<ip-prefix-id>` | The IP address and route prefix in CIDR notation. |
 
 ### Version History
 
@@ -211,14 +219,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip address 10.0.0.1/30
+cumulus@switch:~$ nv set interface swp1 ipv4 address 10.0.0.1/30
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip gateway \<ip-address-id\></h>
+## <h>nv set interface \<interface-id\> ipv4 gateway \<ip-address-id\></h>
 
-Configures the gateway IP address on the specified interface.
+Configures the gateway IP address on the specified interface. For IPv6, run the `nv set interface <interface-id> ipv6 gateway <ip-address-id>` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip gateway <ip-address-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -234,14 +246,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip gateway 10.10.10.1
+cumulus@switch:~$ nv set interface swp1 ipv4 gateway 10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip ipv4 forward</h>
+## <h>nv set interface \<interface-id\> ipv4 forward</h>
 
-Turns IPv4 forwarding on or off for the specified interface. The default setting is `off`.
+Enables and disables IPv4 forwarding for the specified interface. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier:
+- the command is `nv set interface <interface-id> ip ipv4 forward`.
+- You specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -256,14 +274,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip ipv4 forward on
+cumulus@switch:~$ nv set interface swp1 ipv4 forward enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip ipv6 enable</h>
+## <h>nv set interface \<interface-id\> ipv6 state</h>
 
-Turns IPv6 on or off. The default setting is `on`.
+Enables and disables IPv6. The default setting is `enabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier:
+- The command is `nv set interface <interface> ip ipv6 state`.
+- You specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -278,14 +302,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip ipv6 enable off
+cumulus@switch:~$ nv set interface swp1 ipv6 state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip ipv6 forward</h>
+## <h>nv set interface \<interface-id\> ipv6 forward</h>
 
-Turns IPv6 forwarding on or off. The default setting is `on`.
+Enables and disables IPv6 forwarding. The default setting is `enabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier:
+- The command is `nv set interface <interface> ip ipv6 forward`.
+- You specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -300,7 +330,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip ipv6 forward off
+cumulus@switch:~$ nv set interface swp1 ipv6 forward disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -408,7 +438,11 @@ cumulus@switch:~$ nv set interface swp1 link duplex half
 
 ## <h>nv set interface \<interface-id\> link fast-linkup</h>
 
-Configures fast linkup on interfaces on NVIDIA Spectrum 1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as certain 100G optical network interface cards. You can specify `on` or `off`. The default setting is `off`.
+Configures fast linkup on interfaces on NVIDIA Spectrum 1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as certain 100G optical network interface cards. You can specify `enabled` or `disabled`. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -423,7 +457,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 link fast-linkup on
+cumulus@switch:~$ nv set interface swp1 link fast-linkup enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -450,9 +484,13 @@ cumulus@switch:~$ nv set interface swp1 link fec baser
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> link flap-protection enable</h>
+## <h>nv set interface \<interface-id\> link flap-protection state</h>
 
-Enable (`on`) and disables (`off`) link flap protection on the specified interface. Cumulus Linux enables link flap detection by default. Link flap detection triggers when there are five link flaps within ten seconds, at which point the interface goes into a protodown state and shows `linkflap` as the reason. The `switchd` service also shows a log message.
+Enables and disables link flap protection on the specified interface. Cumulus Linux enables link flap detection by default. Link flap detection triggers when there are five link flaps within ten seconds, at which point the interface goes into a protodown state and shows `linkflap` as the reason. The `switchd` service also shows a log message.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -467,7 +505,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 link flap-protection enable off
+cumulus@switch:~$ nv set interface swp1 link flap-protection state disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

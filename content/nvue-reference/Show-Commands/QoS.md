@@ -1302,7 +1302,7 @@ cumulus@switch:~$ nv show interface swp5 qos roce status tc-map
 
 ## <h>nv show interface \<interface-id\> qos pfc-watchdog</h>
 
-Shows if the PFC watchdog setting is ON or OFF and shows the state for each traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
+Shows if the PFC watchdog setting is on or off and shows the state for each traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
 
 ### Command Syntax
 

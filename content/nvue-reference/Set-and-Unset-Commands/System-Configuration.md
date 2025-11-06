@@ -110,12 +110,15 @@ cumulus@switch:~$ nv set system config apply overwrite controlled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system config auto-save enable</h>
+## <h>nv set system config auto-save state</h>
 
-Turns auto save on or off. The auto save option lets you save the pending configuration to the startup configuration file automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+Enables and disables auto save. The auto save option lets you save the pending configuration to the startup configuration file automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
 
+{{%notice note%}}
 - In Cumulus Linux 5.9 and later, auto save is `on` by default.
 - In Cumulus Linux 5.8 and earlier, auto save is `off` by default.
+- In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -124,7 +127,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system config auto-save enable on
+cumulus@switch:~$ nv set system config auto-save state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -175,7 +178,11 @@ cumulus@switch:~$ nv set system control-plane policer acl-log rate 5000
 
 ## <h>nv set system control-plane policer \<policer-id\> state</h>
 
-Turns the specified control plane policer on or off.
+Enables and disables the specified control plane policer.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -190,7 +197,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system control-plane policer acl-log state on
+cumulus@switch:~$ nv set system control-plane policer acl-log state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -203,7 +210,11 @@ Configures control plane traps.
 
 ## <h>nv set system control-plane trap \<trap-id\> state</h>
 
-Turns the specified control plane trap on or off.
+Enables and disables the specified control plane trap.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -218,7 +229,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system control-plane trap l3-mtu-err state on
+cumulus@switch:~$ nv set system control-plane trap l3-mtu-err state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

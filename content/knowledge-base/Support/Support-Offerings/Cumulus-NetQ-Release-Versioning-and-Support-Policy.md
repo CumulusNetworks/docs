@@ -8,7 +8,7 @@ toc: 4
 This article outlines the release version numbering structure and support policies for NetQ.
 ## Version Definitions
 
-NetQ software installation file names include a version number, in the form of x.y.z-OS\~TAG\_CPU.
+NetQ software installation file names include a version number, in the form of x.y.z-OS\_CPU.
 
 - **x** represents the major release version number. An increased major release version means that the release might include:
     - New functionality within the existing market.
@@ -25,13 +25,12 @@ NetQ software installation file names include a version number, in the form of x
     - Bug fixes and updates.
     - Security updates.
 - **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb for SONiC, ub for Ubuntu). Cumulus Linux 5.9 or later packages include <b>cld12</b>. Prior versions of Cumulus Linux include <b>cl4u</b>.
-- **TAG** represents a timestamp for the release of the version.
 - **CPU** architecture represents architecture.
 
 For example:
 
-- netq-apps_<strong>4.15.0</strong>-cld12u<strong>52</strong>~1753783414.2a97c1dde_amd64.deb
-- netq-agent_<strong>4.15.0</strong>-cld12u<strong>52</strong>~1753783414.2a97c1dde_amd64.deb
+- netq-apps_5.0.0-cld12u5_amd64.deb
+- netq-agent_5.0.0-cld12u5_amd64.deb
 
 ## Release, Support Lifecycle and Support Policy
 
@@ -48,6 +47,7 @@ The following table depicts the NetQ release support matrix:
 
 | NetQ Release | Release Date | End of Support |
 | :--------: | --------- | --------- |
+| 5.0.z | 03-Nov-2025 | 03-Nov-2027 |
 | 4.15.z | 31-Jul-2025 | 31-Jul-2027 |
 | 4.14.z | 22-Apr-2025 | 22-Apr-2027 |
 | 4.13.z | 18-Feb-2025 | 18-Feb-2027 |

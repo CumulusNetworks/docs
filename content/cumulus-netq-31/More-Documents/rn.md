@@ -1,7 +1,7 @@
 ---
-title: Cumulus NetQ 3.1 Release Notes
-author: Cumulus Networks
-weight: 652
+title: NVIDIA Cumulus NetQ 3.1 Release Notes
+author: NVIDIA
+weight: 30
 product: Cumulus NetQ
 version: "3.1"
 toc: 1
@@ -14,13 +14,13 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="2893000"></a> [2893000](#2893000) <a name="2893000"></a> <br /> | CVE-2021-44228: Apache Log4j2 <=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. | 2.4.0-4.0.1 | 4.1.0-4.15.0|
-| <a name="2553453"></a> [2553453](#2553453) <a name="2553453"></a> <br /> | The <code>netqd</code> daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and <code>netq show</code> commands are run. | 3.1.0-3.3.1 | 4.0.0-4.15.0|
+| <a name="2893000"></a> [2893000](#2893000) <a name="2893000"></a> <br /> | CVE-2021-44228: Apache Log4j2 <=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. | 2.4.0-4.0.1 | 4.1.0-4.15.1|
+| <a name="2553453"></a> [2553453](#2553453) <a name="2553453"></a> <br /> | The <code>netqd</code> daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and <code>netq show</code> commands are run. | 3.1.0-3.3.1 | 4.0.0-4.15.1|
 | <a name="2551790"></a> [2551790](#2551790) <a name="2551790"></a> <br /> | CLI: Upgrade to NetQ 3.1.0 using the CLI fails due to an authentication issue. To work around this issue, run the <code>netq bootstrap master upgrade</code> command as usual, then use the Admin UI to complete the upgrade at _https://\<netq-appl-vm-hostname-or-ipaddr\>:8443_. | 3.1.0-3.1.1 | 3.2.0-3.3.1|
 | <a name="2551641"></a> [2551641](#2551641) <a name="2551641"></a> <br /> | Infra: NetQ VM installation fails if the designated disk size is greater than 2TB. To work around this issue, specify the disk for cloud deployments to be between 256GB and 2TB SSD, and for on-premises deployments to be between 32 GB and 2TB. | 2.4.0-3.1.1 | 3.2.0-3.3.1|
 | <a name="2551569"></a> [2551569](#2551569) <a name="2551569"></a> <br /> | CLI: When a proxy server is configured for NetQ Cloud access and lifecycle management (LCM) is enabled, the associated LCM CLI commands fail due to incorrect port specification. To work around this issue, configure the NetQ Collector to connect directly to NetQ Cloud without a proxy. | 3.1.0-3.1.1 | 3.2.0-3.3.1|
 | <a name="2549344"></a> [2549344](#2549344) <a name="2549344"></a> <br /> | UI: The lifecycle management feature does not present general alarm or info events; however, errors related to the upgrade process are reported within the NetQ UI. | 3.0.0-3.1.1 | 3.2.0-3.3.1|
-| <a name="2549319"></a> [2549319](#2549319) <a name="2549319"></a> <br /> | NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values. | 3.0.0-3.3.1 | 4.0.0-4.15.0|
+| <a name="2549319"></a> [2549319](#2549319) <a name="2549319"></a> <br /> | NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values. | 3.0.0-3.3.1 | 4.0.0-4.15.1|
 | <a name="2549246"></a> [2549246](#2549246) <a name="2549246"></a> <br /> | NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s). | 2.4.0-3.2.1 | 3.3.0-3.3.1|
 
 ### Fixed Issues in 3.1.0

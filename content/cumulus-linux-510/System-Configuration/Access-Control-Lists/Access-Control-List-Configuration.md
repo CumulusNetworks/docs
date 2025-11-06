@@ -538,6 +538,10 @@ To troubleshoot this issue and manage resources with high VLAN and ACL scale, re
 
 NVIDIA Spectrum switches use a <span class="a-tooltip">[TCAM](## "Ternary Content Addressable Memory")</span> or <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
 
+{{%notice note%}}
+When you enable certain switch features, they create additional system ACLs. System ACLs share TCAM resources with user-defined ACLs, which can increase TCAM utilization and reduce available ACL entries. Features that create additional system ACLs include multicast routing, VXLAN tunnels, IGMPv3 Snooping, IPv4-to-IPv6 NAT translation, and layer 2 port isolation.
+{{%/notice%}}
+
 ### TCAM Profiles on Spectrum 1
 
 The NVIDIA Spectrum 1 ASIC (model numbers 2xx0) has one common TCAM space for both ingress and egress ACLs, which the switch also uses for multicast route entries.
@@ -1411,7 +1415,7 @@ Cumulus Linux does not support all `iptables`, `ip6tables`, or `ebtables` rules.
 
 ### ACL Log Policer Limits Traffic
 
-To protect the CPU from overloading, Cumulus Linux limits traffic copied to the CPU to 1 packet per second by an ACL Log Policer.
+To protect the CPU from overloading, Cumulus Linux limits ACL log message traffic copied to the CPU by the ACL Log Policer. For more information, refer to {{<link url="#control-plane-policers" text="Control Plane Policers">}}.
 
 ### Bridge Traffic Limitations
 

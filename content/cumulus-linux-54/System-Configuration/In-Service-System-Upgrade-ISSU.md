@@ -28,6 +28,8 @@ You can restart the switch in one of the following modes.
 
 {{%notice note%}}
 - Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
+
+LACP bonds are not supported during warm boot. LACP control plane sessions might time out before warm boot completes. Use static LAG to keep bonds up with sub-second convergence during warm boot.
 {{%/notice%}}
 
 The following command restarts the system in cold mode:

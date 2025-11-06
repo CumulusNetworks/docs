@@ -10,97 +10,91 @@
 <td>4466349</td>
 <td>When you upgrade an HA cluster deployment from a version that is not part of the supported upgrade path, the upgrade might fail and the UI might not load due to expired control plane certificates on the worker nodes.To check whether the certificates have expired, run &lt;code&gt;sudo su&lt;/code&gt; followed by &lt;code&gt;kubeadm certs check-expiration&lt;/code&gt;. If the output displays a date in the past, your certificates are expired. To update the certificates, run &lt;code&gt;kubeadm certs renew all&lt;/code&gt; on each worker node in the cluster. Next, restart the &lt;a href="https://kubernetes.io/docs/concepts/overview/components/#control-plane-components/"&gt;control plane components&lt;/a&gt; with &lt;code&gt;crictl stop CONTAINER_ID&lt;/code&gt;, followed by &lt;code&gt;systemctl restart kubelet&lt;/code&gt;.</td>
 <td>4.8.0-4.14.0</td>
-<td>4.15.0</td>
+<td>4.15.0-4.15.1</td>
 </tr>
 <tr>
 <td>4371014</td>
 <td>In the full-screen switch card, the interface charts display incorrect values for transmit (Tx) and receive (Rx) byte rates. The actual values are slightly higher than the displayed values.</td>
 <td>4.12.0-4.13.0</td>
-<td>4.14.0-4.15.0</td>
+<td>4.14.0-4.15.1</td>
 </tr>
 <tr>
 <td>4280023</td>
 <td>After backing up and restoring your NetQ data, any modifications to default suppression rules will be lost.</td>
 <td>4.12.0-4.13.0</td>
-<td>4.14.0-4.15.0</td>
+<td>4.14.0-4.15.1</td>
 </tr>
 <tr>
 <td>4181296</td>
 <td>NetQ might become unresponsive when someone with a non-admin (user) role attempts to create or clone workbenches, add cards to a workbench, create validations, or run a flow analysis.</td>
 <td>4.11.0-4.12.0</td>
-<td>4.13.0-4.15.0</td>
+<td>4.13.0-4.15.1</td>
 </tr>
 <tr>
 <td>4162383</td>
 <td>When you upgrade a NetQ VM with devices in the inventory that have been rotten for 7 or more days, NetQ's global search field might fail to return results for individual devices. To work around this issue, decommission rotten devices and ensure they are running the appropriate NetQ agent version.</td>
 <td>4.12.0</td>
-<td>4.13.0-4.15.0</td>
+<td>4.13.0-4.15.1</td>
 </tr>
 <tr>
 <td>4157785</td>
 <td>When you add a new switch to the NetQ inventory, the NetQ UI might not display interface statistics or interface validation data for the new switch for up to one hour.
 To work around this issue, adjust the poll period to 60 seconds on the new switch with the &lt;code&gt;netq config add agent command service-key ports poll-period 60&lt;/code&gt; command. When interface data is displayed in the NetQ UI, change it back to the default value of 3600 with the &lt;code&gt;netq config add agent command service-key ports poll-period 3600&lt;/code&gt; command.</td>
 <td>4.12.0</td>
-<td>4.13.0-4.15.0</td>
+<td>4.13.0-4.15.1</td>
 </tr>
 <tr>
 <td>4155900</td>
 <td>When a fan’s sensor state is “high”, NetQ correctly displays the count information on the sensor health card. When the card is expanded to the detailed view, fans with a “high” sensor state will not be included among the fans with problematic states.</td>
 <td>4.12.0</td>
-<td>4.13.0-4.15.0</td>
+<td>4.13.0-4.15.1</td>
 </tr>
 <tr>
 <td>4131550</td>
 <td>When you run a topology validation, the full-screen topology validation view might not display the latest results. To work around this issue, refresh the page.</td>
-<td>4.12.0-4.15.0</td>
+<td>4.12.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4124724</td>
 <td>External notifications for DPU RoCE threshold-crossing events are not supported. To work around this issue, use the UI or CLI to view DPU RoCE threshold-crossing events.</td>
 <td>4.12.0</td>
-<td>4.13.0-4.15.0</td>
+<td>4.13.0-4.15.1</td>
 </tr>
 <tr>
 <td>4100882</td>
 <td>When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export.</td>
-<td>4.12.0-4.15.0</td>
+<td>4.12.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3993538</td>
 <td>When you re-position a card on your workbench and then manually refresh the workbench, NetQ might reposition the cards.</td>
-<td>4.11.0-4.15.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3985598</td>
-<td>When you configure multiple threshold-crossing events for the same TCA event ID on the same device, NetQ will only display one TCA event for each hostname per TCA event ID, even if both thresholds are crossed or status events are triggered.  </td>
-<td>4.11.0-4.15.0</td>
+<td>4.11.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3800434</td>
 <td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
-<td>4.9.0-4.15.0</td>
+<td>4.9.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3772274</td>
 <td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
-<td>4.9.0-4.15.0</td>
+<td>4.9.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3769936</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
 <td>4.9.0-4.13.0</td>
-<td>4.14.0-4.15.0</td>
+<td>4.14.0-4.15.1</td>
 </tr>
 <tr>
 <td>3613811</td>
 <td>LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the {{mgmt}} VRF on Cumulus Linux switches when interface eth0 is in use.</td>
-<td>4.8.0-4.15.0</td>
+<td>4.8.0-4.15.1</td>
 <td></td>
 </tr>
 </table>

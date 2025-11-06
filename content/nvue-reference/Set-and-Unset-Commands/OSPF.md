@@ -42,9 +42,13 @@ Configures OSPF MD5 authentication for the specified interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router ospf authentication enable</h>
+## <h>nv set interface \<interface-id\> router ospf authentication state</h>
 
-Turns OSPF authentication on or off on the specified interface. The default setting is `off`.
+Enables and disables OSPF authentication on the specified interface. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -59,7 +63,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router ospf authentication enable on
+cumulus@switch:~$ nv set interface swp51 router ospf authentication state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -131,11 +135,15 @@ cumulus@switch:~$ nv set interface swp51 router ospf bfd detect-multiplier 100
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router ospf bfd enable</h>
+## <h>nv set interface \<interface-id\> router ospf bfd state</h>
 
-Turns <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> on and off on the specified OSPF interface. The default setting is `off`.
+Enables and disables <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> on the specified OSPF interface. The default setting is `disabled`.
 
 BFD provides low overhead and rapid detection of failures in the paths between two network devices.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -150,7 +158,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router ospf bfd enable on
+cumulus@switch:~$ nv set interface swp51 router ospf bfd state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -221,9 +229,13 @@ cumulus@switch:~$ nv set interface swp51 router ospf cost 60
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router ospf enable</h>
+## <h>nv set interface \<interface-id\> router ospf state</h>
 
-Turns OSFP on and off on the specified OSPF interface. The default setting is `off`.
+Enables and disables OSFP on the specified OSPF interface. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -238,14 +250,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router ospf enable on
+cumulus@switch:~$ nv set interface swp51 router ospf state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> router ospf mtu-ignore</h>
 
-Configures OSPF to turn MTU value checking in the OSPF DBD packets on or off. The default setting is `on`.
+Enables and disables MTU value checking in OSPF DBD packets. The default setting is `enabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -260,7 +276,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router ospf mtu-ignore off
+cumulus@switch:~$ nv set interface swp51 router ospf mtu-ignore disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -289,7 +305,11 @@ cumulus@switch:~$ nv set interface swp51 router ospf network-type point-to-multi
 
 ## <h>nv set interface \<interface-id\> router ospf passive</h>
 
-Configures the OSPF interface as passive. A passive interface creates a database entry but does not send or receive OSPF hello packets. The default setting is `off`.
+Configures the OSPF interface as passive. A passive interface creates a database entry but does not send or receive OSPF hello packets. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -304,7 +324,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router ospf passive on
+cumulus@switch:~$ nv set interface swp51 router ospf passive enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -441,9 +461,13 @@ cumulus@switch:~$ nv set interface swp51 router ospf timers retransmit-delay 600
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router ospf enable</h>
+## <h>nv set router ospf state</h>
 
-Turns OSPF on or off globally on the switch. The default setting is `off`.
+Enables and disables OSPF globally on the switch. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -452,7 +476,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router ospf enable on
+cumulus@switch:~$ nv set router ospf state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -737,7 +761,11 @@ cumulus@switch:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24 cost
 
 ## <h>nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\> suppress</h>
 
-Configures OSPF to filter out components but not advertise the specified address range. The default setting is `off` (advertise the specified address range).
+Configures OSPF to filter out components but not advertise the specified address range. The default setting is `disabled` (advertise the specified address range).
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -754,7 +782,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24 suppress on
+cumulus@switch:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24 suppress enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -804,9 +832,13 @@ cumulus@switch:~$ nv set vrf default router ospf default-originate always on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf default-originate enable</h>
+## <h>nv set vrf \<vrf-id\> router ospf default-originate state</h>
 
-Turns OSPF default originate on or off. The default value is `off`.
+Enables and disables OSPF default originate. The default value is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -821,7 +853,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf default-originate enable on
+cumulus@switch:~$ nv set vrf default router ospf default-originate state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -962,9 +994,13 @@ cumulus@switch:~$ nv set vrf default router ospf distance intra-area 150
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf enable</h>
+## <h>nv set vrf \<vrf-id\> router ospf state</h>
 
-Turns OSPF on or off on the specified VRF.
+Enables and disables OSPF on the specified VRF.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -979,14 +1015,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf enable on
+cumulus@switch:~$ nv set vrf default router ospf state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router ospf log adjacency-changes</h>
 
-Configures logging for adjacency changes. You can specify `on`, `off`, or `detail`.
+Configures logging for adjacency changes. You can specify `enabled`, `disabled`, or `detail`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on`, `off`, or `detail`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1001,16 +1041,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf log adjacency-changes on
+cumulus@switch:~$ nv set vrf default router ospf log adjacency-changes enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router ospf max-metric administrative</h>
 
-Turns OSPF maximum metric on or off administratively, for an indefinite period. The default setting is `off`.
+Enables and disables OSPF maximum metric administratively, for an indefinite period. The default setting is `disabled`.
 
 OSPF maximum metric notifies neighbors not to use the router as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After you update the network, the max-metric router no longer receives any traffic and you can configure the max-metric setting.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1025,7 +1069,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf max-metric administrative on
+cumulus@switch:~$ nv set vrf default router ospf max-metric administrative enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1074,9 +1118,13 @@ cumulus@switch:~$ nv set vrf default router ospf max-metric on-startup 200
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute bgp enable</h>
+## <h>nv set vrf \<vrf-id\> router ospf redistribute bgp state</h>
 
-Turns OSPF BGP route redistribution on or off. The default setting is `off`.
+Enables and disables OSPF BGP route redistribution. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1091,7 +1139,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf redistribute bgp enable on
+cumulus@switch:~$ nv set vrf default router ospf redistribute bgp state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1163,9 +1211,13 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute bgp route-map ROUT
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute connected enable</h>
+## <h>nv set vrf \<vrf-id\> router ospf redistribute connected state</h>
 
-Turns OSPF connected route redistribution on or off. The default setting is `off`.
+Enables and disables OSPF connected route redistribution. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1180,7 +1232,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf redistribute connected enable on
+cumulus@switch:~$ nv set vrf default router ospf redistribute connected state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1252,9 +1304,13 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute connected route-ma
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute kernel enable</h>
+## <h>nv set vrf \<vrf-id\> router ospf redistribute kernel state</h>
 
-Turns OSPF kernel route redistribution on or off. The default setting is `off`.
+Enables and disables OSPF kernel route redistribution. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1269,7 +1325,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf redistribute kernel enable on
+cumulus@switch:~$ nv set vrf default router ospf redistribute kernel state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1341,9 +1397,13 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute kernel route-map R
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute static enable</h>
+## <h>nv set vrf \<vrf-id\> router ospf redistribute static state</h>
 
-Turns OSPF static route redistribution on or off.
+Enables and disables OSPF static route redistribution.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1358,7 +1418,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf redistribute static enable on
+cumulus@switch:~$ nv set vrf default router ospf redistribute static state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -8,6 +8,10 @@ This document supports the Cumulus Linux 5.14 release, and lists new platforms, 
 - For a list of open and fixed issues in Cumulus Linux 5.14, see the {{<link title="Cumulus Linux 5.14 Release Notes" text="Cumulus Linux 5.14 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.14, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+{{%notice infonopad%}}
+The upcoming Cumulus Linux 5.15.0 release includes updates to NVUE commands. These changes aim to standardize commands across Cumulus Linux, NVIDIA OS (NVOS), and Host-based Networking. To help you prepare, NVIDIA recommends reviewing the [list of NVUE command changes]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/NVUE-Command-Changes-515" >}}) so that you can update any automation accordingly.
+{{%/notice%}}
+
 ## What's New in Cumulus Linux 5.14
 
 Cumulus Linux 5.14.0 contains several new features and improvements, and provides bug fixes.
@@ -238,7 +242,7 @@ Review the following considerations before you upgrade to Cumulus Linux 5.14.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.14 from Cumulus Linux 5.12.0 and later.
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.14 from Cumulus Linux 5.12.0 and later.
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.14 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 - Cumulus Linux 5.13.1
@@ -246,7 +250,7 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package
 - Cumulus Linux 5.12.1
 - Cumulus Linux 5.12.0
 
-To upgrade to Cumulus Linux 5.14 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="ONIE">}}.
+To upgrade to Cumulus Linux 5.14 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 ### Maximum Number of NVUE Revisions
 

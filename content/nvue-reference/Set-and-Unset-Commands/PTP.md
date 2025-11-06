@@ -16,7 +16,11 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set interface \<interface-id\> ptp acceptable-master</h>
 
-Turns the acceptable master table option on or off for the interface. You must configure the clock IDs of known Grandmasters in the acceptable master table before turning on the acceptable master table option. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. The default setting is `off`.
+Enables and disables the acceptable master table option for the interface. You must configure the clock IDs of known Grandmasters in the acceptable master table before turning on the acceptable master table option. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -31,7 +35,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ptp acceptable-master on
+cumulus@switch:~$ nv set interface swp1 ptp acceptable-master enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -58,9 +62,13 @@ cumulus@switch:~$ nv set interface swp1 ptp delay-mechanism end-to-end
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ptp enable</h>
+## <h>nv set interface \<interface-id\> ptp state</h>
 
-Turns PTP on the specified PTP interface on or off. The default setting is `off`.
+Enables and disables PTP on the specified PTP interface. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -75,14 +83,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service ptp enable on
+cumulus@switch:~$ nv set service ptp state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ptp forced-master</h>
 
-Configures PTP interfaces to always be in a master state. The interfaces ignore any Announce messages they receive. The default setting is `off`.
+Configures PTP interfaces to always be in a master state. The interfaces ignore any Announce messages they receive. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -97,7 +109,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ptp forced-master on
+cumulus@switch:~$ nv set interface swp1 ptp forced-master enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -149,7 +161,11 @@ cumulus@switch:~$ nv set interface swp1 ptp ipv6-scope interface-local
 
 ## <h>nv set interface \<interface-id\> ptp mixed-multicast-unicast</h>
 
-Configures the mode in which PTP delay messages transmit for the specified PTP interface; mixed (multicast and unicast) or multicast only. Specify `on` for mixed mode or `off` for multicast mode. The default setting is `off`.
+Configures the mode in which PTP delay messages transmit for the specified PTP interface; mixed (multicast and unicast) or multicast only. Specify `enabled` for mixed mode or `disabled` for multicast mode. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -164,7 +180,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast on
+cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -175,9 +191,9 @@ Configures PTP shaping on the NVIDIA Spectrum 1 switch for PTP-enabled ports wit
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ptp shaper enable</h>
+## <h>nv set interface \<interface-id\> ptp shaper state</h>
 
-Turns a pre-defined traffic shaping profile on or off on the specified interface to improve performance. This command is available for the NVIDIA Spectrum 1 switch only for PTP-enabled ports with speeds lower than 100G. For example, if you see that the PTP timing offset varies widely and is does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
+Enables and disables a pre-defined traffic shaping profile on the specified interface to improve performance. This command is available for the NVIDIA Spectrum 1 switch only for PTP-enabled ports with speeds lower than 100G. For example, if you see that the PTP timing offset varies widely and is does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
 
 - Switches with Spectrum-2 and later do not support PTP shaping.
 - Bonds do not support PTP shaping.
@@ -190,6 +206,10 @@ Turns a pre-defined traffic shaping profile on or off on the specified interface
    cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 6 mode strict
    ```
 
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.5.0
@@ -197,7 +217,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ptp shaper enable on
+cumulus@switch:~$ nv set interface swp1 ptp shaper state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -498,9 +518,13 @@ cumulus@switch:~$ nv set service ptp 1 domain 3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service ptp \<instance-id\> enable</h>
+## <h>nv set service ptp \<instance-id\> state</h>
 
-Turns PTP on or off globally. The default setting is `off`.
+Enables and disables PTP globally. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -515,7 +539,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set service ptp 1 state enabled
 ```
 
 HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1092,10 +1116,14 @@ cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 transport ipv6
 
 ## <h>nv set service ptp \<instance-id\> profile \<profile-id\> two-step</h>
 
-Configures clock correction mode for a custom profile. Specify `off` to use one-step mode or `on` to use two-step mode. The default value is `on`.
+Configures clock correction mode for a custom profile. Specify `disabled` to use one-step mode or `enabled` to use two-step mode. The default value is `enabled`.
 
 In one-step mode, PTP time stamps the packet as it egresses the port and there is no need for a follow-up packet.
 In two-step mode, PTP notes the time when the packet egresses the port and sends it in a separate follow-up message.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1111,17 +1139,21 @@ Introduced in Cumulus Linux 5.6.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 two-step off
+cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 two-step disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service ptp \<instance-id\> two-step</h>
 
-Configures clock correction mode if no profile is set. Specify `off` to use one-step mode or `on` to use two-step mode. The default value is `on`.
+Configures clock correction mode if no profile is set. Specify `disabled` to use one-step mode or `enabled` to use two-step mode. The default value is `enabled`.
 
 In one-step mode, PTP time stamps the packet as it egresses the port and there is no need for a follow-up packet.
 In two-step mode, PTP notes the time when the packet egresses the port and sends it in a separate follow-up message.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1136,7 +1168,7 @@ Introduced in Cumulus Linux 5.6.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service ptp 1 two-step off
+cumulus@switch:~$ nv set service ptp 1 two-step disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1239,9 +1271,13 @@ Configures PTP in the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> ptp enable</h>
+## <h>nv set vrf \<vrf-id\> ptp state</h>
 
-Turns PTP on or off in the specified VRF.
+Enables and disables PTP in the specified VRF.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1256,5 +1292,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf RED ptp enable on
+cumulus@switch:~$ nv set vrf RED ptp state enabled
 ```

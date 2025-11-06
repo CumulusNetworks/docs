@@ -156,7 +156,7 @@ In the output below, the Opta Health Status column displays a healthy status, wh
 
 ```
 nvidia@netq-server:~$ sudo opta-info.py
-[sudo] password for cumulus:
+[sudo] password for nvidia:
 Service IP:  10.102.57.27
 
 Opta Health Status    Opta-Gateway Channel Status
@@ -256,7 +256,7 @@ To fix the issue, log in to the corrupted node using SSH and delete the corrupte
 
 ```
 nvidia@master1scale1:/mnt/cassandra/commitlog$ sudo su
-[sudo] password for cumulus:
+[sudo] password for nvidia:
 root@master1scale1:/mnt/cassandra/commitlog#
 ```
 

@@ -202,9 +202,13 @@ Configures IGMP and MLD snooping to prevent hosts on a local network from receiv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> multicast snooping enable</h>
+## <h>nv set bridge domain \<domain-id\> multicast snooping state</h>
 
-Turns IGMP and MLD snooping on or off. The default setting is `off`.
+Enables and disables IGMP and MLD snooping. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -219,16 +223,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default multicast snooping enable on
+cumulus@switch:~$ nv set bridge domain br_default multicast snooping state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> multicast snooping querier enable</h>
+## <h>nv set bridge domain \<domain-id\> multicast snooping querier state</h>
 
-Turns the IGMP and MLD multicast querier on or off. The default setting is `off`.
+Enables and disables the IGMP and MLD multicast querier. The default setting is `disabled`.
 
 Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -243,7 +251,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier enable on
+cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -430,11 +438,15 @@ cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 max-age 6
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> svi-force-up enable</h>
+## <h>nv set bridge domain \<domain-id\> svi-force-up state</h>
 
 Configures the SVIs in a specific bridge to be perpetually UP. The first time you configure a switch, all southbound bridge ports are down; therefore, by default, all SVIs are also down. You can run this command to force the SVIs in a bridge to always be UP even if all member ports are DOWN, which is beneficial if you want to perform connectivity testing.
 
-You can specify `on` or `off`.
+You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -449,7 +461,7 @@ Introduced in Cumulus Linux 5.8.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default svi-force-up enable on
+cumulus@switch:~$ nv set bridge domain br_default svi-force-up state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -521,9 +533,13 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> ptp enable</h>
+## <h>nv set bridge domain \<domain-id\> vlan \<vid\> ptp state</h>
 
-Turns PTP on or off for the specified VLAN. The default setting is `off`.
+Enables and disables PTP for the specified VLAN. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -539,7 +555,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default vlan vlan10 ptp enable on
+cumulus@switch:~$ nv set bridge domain br_default vlan vlan10 ptp state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -568,9 +584,13 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding enable</h>
+## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding state</h>
 
-Turns <span class="a-tooltip">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling on or off for the specified VNI.
+Enables <span class="a-tooltip">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling for the specified VNI.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -587,7 +607,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 flooding enable on
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 flooding state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -644,7 +664,11 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 flooding multic
 
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> mac-learning</h>
 
-Turns MAC learning on or off for the VNI. The default setting is `off`.
+Enables and disables MAC learning for the VNI. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -661,7 +685,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning off
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -759,7 +783,11 @@ cumulus@switch:~$ nv set interface swp1 bridge domain default access 10
 
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> learning</h>
 
-Turns source MAC address learning on or off for this bridged interface.
+Enables and disables source MAC address learning for this bridged interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -775,14 +803,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain default learning on
+cumulus@switch:~$ nv set interface swp1 bridge domain default learning enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp admin-edge</h>
 
-Turns STP PortAdminEdge on or off on the bridged interface. PortAdminEdge is equivalent to the PortFast feature offered by other vendors. It enables or disables the initial edge state of a port in a bridge. All ports with PortAdminEdge on bypass the listening and learning states and go straight to forwarding.
+Enables and disables STP PortAdminEdge on the bridged interface. PortAdminEdge is equivalent to the PortFast feature offered by other vendors. It enables or disables the initial edge state of a port in a bridge. All ports with PortAdminEdge on bypass the listening and learning states and go straight to forwarding.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -798,16 +830,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain default stp admin-edge on
+cumulus@switch:~$ nv set interface swp1 bridge domain default stp admin-edge enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp auto-edge</h>
 
-Turns STP AutoEdge on or off on the bridged interface. PortAutoEdge is an enhancement to the standard PortAdminEdge (PortFast) mode, which allows for the automatic detection of edge ports. PortAutoEdge enables and disables the auto transition to and from the edge state of a port in a bridge.
+Enables and disables STP AutoEdge on the bridged interface. PortAutoEdge is an enhancement to the standard PortAdminEdge (PortFast) mode, which allows for the automatic detection of edge ports. PortAutoEdge enables and disables the auto transition to and from the edge state of a port in a bridge.
 
 When a port with PortAutoEdge receives a BPDU, the port stops being in the edge port state and transitions into a normal STP port. When the interface no longer receives BPDUs, the port becomes an edge port, and transitions through the discarding and learning states before it resumes forwarding.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -823,14 +859,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain default stp auto-edge on
+cumulus@switch:~$ nv set interface swp1 bridge domain default stp auto-edge enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp bpdu-filter</h>
 
-Turns `bpdufilter` on or off on a bridge domain. When on, `bpdufilter` filters BPDUs in both directions.
+Enables and disables `bpdufilter` on a bridge domain. When enabled, `bpdufilter` filters BPDUs in both directions.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -846,14 +886,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain default stp bpdu-filter on
+cumulus@switch:~$ nv set interface swp1 bridge domain default stp bpdu-filter enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp bpdu-guard</h>
 
-Turns BPDU guard on or off on the bridged interface to protect the spanning tree topology from an unauthorized device affecting the forwarding path. For example, if you add a new host to an access port off a leaf switch and the host sends an STP BPDU, BPDU guard protects against undesirable topology changes in the environment.
+Enables and disables BPDU guard on the bridged interface to protect the spanning tree topology from an unauthorized device affecting the forwarding path. For example, if you add a new host to an access port off a leaf switch and the host sends an STP BPDU, BPDU guard protects against undesirable topology changes in the environment.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -869,14 +913,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain default stp bpdu-guard on
+cumulus@switch:~$ nv set interface swp1 bridge domain default stp bpdu-guard enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp network</h>
 
-Turns bridge assurance capability for a bridged port on or off.
+Enables and disables bridge assurance capability for a bridged port.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -892,14 +940,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain default stp network
+cumulus@switch:~$ nv set interface swp1 bridge domain default stp network enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp restrrole</h>
 
-Turns STP restricted role for the bridged port on or off.
+Enables and disables STP restricted role for the bridged port.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -915,7 +967,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain default stp restrrole
+cumulus@switch:~$ nv set interface swp1 bridge domain default stp restrrole enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1040,11 +1092,15 @@ cumulus@switch:~$ nv set interface swp1 bridge domain default vlan 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system global svi-force-up enable</h>
+## <h>nv set system global svi-force-up state</h>
 
 Configures all SVIs in all bridges on the switch to be perpetually UP. The first time you configure a switch, all southbound bridge ports are down; therefore, by default, all SVIs are also down. You can run this command to force all SVIs on all bridges to always be UP even when all member ports are DOWN, which is beneficial if you want to perform connectivity testing.
 
-You can specify `on` or `off`.
+You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 

@@ -10,9 +10,13 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip igmp</h>
+## <h>nv show interface \<interface-id\> ipv4 igmp</h>
 
 Shows IGMP configuration information on the specified interface. IGMP prevents hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip igmp`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -27,7 +31,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface vlan10 ip igmp
+cumulus@switch:~$ nv show interface vlan10 ipv4 igmp
         operational  applied  pending
 ------  -----------  -------  -------
 enable               on      on
@@ -35,9 +39,13 @@ enable               on      on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip igmp static-group</h>
+## <h>nv show interface \<interface-id\> ipv4 igmp static-group</h>
 
 Shows information about IGMP static multicast groups configured on the interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip igmp static-group`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -52,14 +60,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface vlan10 ip igmp static-group
+cumulus@switch:~$ nv show interface vlan10 ipv4 igmp static-group
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip igmp static-group \<static-group-id\></h>
+## <h>nv show interface \<interface-id\> ipv4 igmp static-group \<static-group-id\></h>
 
 Shows information about IGMP static multicast groups configured on the interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip igmp static-group <static-group-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -75,16 +87,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface vlan10 ip igmp static-group 224.10.0.0
+cumulus@switch:~$ nv show interface vlan10 ipv4 igmp static-group 224.10.0.0
                   operational  applied   
 ----------------  -----------  ----------
 [source-address]               10.10.10.4
 ```
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip igmp group</h>
+## <h>nv show interface \<interface-id\> ipv4 igmp group</h>
 
 Shows information about the IGMP groups configured on the interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip igmp group`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -99,7 +115,7 @@ Introduced in Cumulus Linux 5.6.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp3 ip igmp group
+cumulus@switch:~$ nv show interface swp3 ipv4 igmp group
 StaticGroupID  filter-mode  source-count  timer     uptime    version  Summary
 -------------  -----------  ------------  --------  --------  -------  -------------------------
 225.1.101.1    exclude      1             00:02:43  00:02:56  3        source-address:         *
@@ -112,9 +128,13 @@ StaticGroupID  filter-mode  source-count  timer     uptime    version  Summary
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip igmp group \<group-id\></h>
+## <h>nv show interface \<interface-id\> ipv4 igmp group \<group-id\></h>
 
 Shows information about a specific IGMP multicast group configured on the interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip igmp group <group-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -130,7 +150,7 @@ Introduced in Cumulus Linux 5.6.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp3 ip igmp group 225.1.101.1
+cumulus@switch:~$ nv show interface swp3 ipv4 igmp group 225.1.101.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -179,7 +179,11 @@ cumulus@switch:~$ nv set router bgp graceful-restart stale-routes-time 400
 
 ## <h>nv set router bgp graceful-shutdown</h>
 
-Turns BGP graceful shutdown on or off on the switch to reduce packet loss during planned maintenance of a router or link. BGP graceful shutdown forces traffic to route around the BGP node.
+Enables and disables BGP graceful shutdown on the switch to reduce packet loss during planned maintenance of a router or link. BGP graceful shutdown forces traffic to route around the BGP node.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Version History
 
@@ -188,7 +192,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router bgp graceful-shutdown on
+cumulus@switch:~$ nv set router bgp graceful-shutdown enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -259,7 +263,11 @@ cumulus@switch:~$ nv set router bgp router-id 10.10.10.1
 
 ## <h>nv set router bgp wait-for-install</h>
 
-Turns BGP wait for install on or off. When BGP *wait for install* is on, BGP waits for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
+Enables and disables BGP wait for install. When you enable BGP *wait for install*, BGP waits for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Version History
 
@@ -268,7 +276,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router bgp wait-for-install on
+cumulus@switch:~$ nv set router bgp wait-for-install enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -381,7 +389,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast aggregate-route \<aggregate-route-id\> as-set</h>
 
-Turns generation of an `AS_SET` for route aggregate on or off for the specified VRF. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the `AS_PATH` attributes of all the individual routes to help BGP detect and avoid loops. The default setting is `disabled`.
+Enables and disables generation of an `AS_SET` for route aggregate for the specified VRF. When `enabled`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the `AS_PATH` attributes of all the individual routes to help BGP detect and avoid loops. The default setting is `disabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
@@ -670,7 +678,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast rout
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn state</h>
 
-Turns IPv4 prefix-based routing using EVPN type-5 routes on or off for the specified VRF. When `on`, the switch can announce IP prefixes in the BGP RIB as EVPN type-5 routes. The default setting is `disabled`.
+Enables and disables IPv4 prefix-based routing using EVPN type-5 routes for the specified VRF. When `enabled`, the switch can announce IP prefixes in the BGP RIB as EVPN type-5 routes. The default setting is `disabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
@@ -904,9 +912,13 @@ cumulus@switch:~$ nv set vrf default router bgp dynamic-neighbor listen-range 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp state</h>
 
-Turns BGP on or off for the specified VRF.
+Enables and disables BGP for the specified VRF.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -921,7 +933,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp enable on
+cumulus@switch:~$ nv set vrf default router bgp state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -951,7 +963,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd detect-multip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd enable</h>
 
-Turns BFD on or off to configure tracking BGP peering sessions using this configuration.
+Enables and disables BFD to configure tracking BGP peering sessions using this configuration.
 
 ### Command Syntax
 
@@ -1043,7 +1055,11 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 capabilities
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> capabilities extended-nexthop</h>
 
-Turns on or off advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings. You must add the extended nexthop capability to the global IPv6 neighbor statements on each end of the BGP sessions.
+Enables and disables advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings. You must add the extended nexthop capability to the global IPv6 neighbor statements on each end of the BGP sessions.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1059,7 +1075,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 capabilities extended-nexthop on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 capabilities extended-nexthop enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1166,9 +1182,13 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 local-as asn 6553
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as state</h>
 
-Turns BGP local AS on or off, which allows the switch to appear to be a member of a second autonomous system (AS), in addition to its real AS.
+Enables and disables BGP local AS, which allows the switch to appear to be a member of a second autonomous system (AS), in addition to its real AS.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1184,14 +1204,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 local-as enable on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 local-as state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as prepend</h>
 
-Turns local AS prepend on or off. When on, BGP prepends the configured local AS to received updates.
+Enables and disables local AS prepend. When on, BGP prepends the configured local AS to received updates.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1207,7 +1231,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 local-as prepend on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 local-as prepend enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1237,7 +1261,11 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 multihop-ttl 25
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> nexthop-connected-check</h>
 
-Turns next hop connected check on or off. If you set the value to `on`, BGP disables checking that a non-multihop eBGP neighbor is directly connected and only announces connected next hops.
+Enables and disables next hop connected check. If you enable next hop connected check, BGP does not check that a non-multihop eBGP neighbor is directly connected and only announces connected next hops.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1253,7 +1281,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 nexthop-connected-check on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 nexthop-connected-check enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1287,7 +1315,11 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 passive-mode enab
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as replace</h>
 
-Turns local AS replace on or off. When on, BGP attaches only the configured local AS to generated updates, *replacing* the AS number configured for the BGP instance with the local AS applicable for the peering. When off, BGP attach the AS number of the BGP instance and then prepends it with the configured local AS.
+Enables and disables local AS replace. When enabled, BGP attaches only the configured local AS to generated updates, *replacing* the AS number configured for the BGP instance with the local AS applicable for the peering. When disabled, BGP attach the AS number of the BGP instance and then prepends it with the configured local AS.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1303,7 +1335,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 local-as replace on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 local-as replace enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1336,9 +1368,13 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 graceful-restart 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ttl-security enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ttl-security state</h>
 
-Turns TTL security (RFC 5082) on or off for the neighbor session.
+Enables and disables TTL security (RFC 5082) for the neighbor session.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1354,7 +1390,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 ttl-security enable on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 ttl-security state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1616,9 +1652,13 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> state</h>
 
-Turns the exchange of information with a BGP neighbor on or off in the specified VRF. The default value is `on`.
+Enables and disables the exchange of information with a BGP neighbor in the specified VRF. The default value is `enabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1634,7 +1674,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 enable on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1985,7 +2025,11 @@ cumulus@switch:~$ nv set vrf default router bgp path-selection med compare-confe
 
 ## <h>nv set vrf \<vrf-id\> router bgp path-selection med missing-as-max</h>
 
-Turns BGP MED missing-as-max on or off for the specified VRF.
+Enables and disables BGP MED missing-as-max for the specified VRF.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2000,7 +2044,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example 
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp path-selection med missing-as-max on
+cumulus@switch:~$ nv set vrf default router bgp path-selection med missing-as-max enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2033,7 +2077,7 @@ cumulus@switch:~$ nv set vrf default router bgp path-selection multipath aspath-
 
 ## <h>nv set vrf \<vrf-id\> router bgp path-selection multipath generate-asset</h>
 
-Turns BGP multipath generate asset on or off for the specified VRF. The default setting is `disabled`.
+Enables and disables BGP multipath generate asset for the specified VRF. The default setting is `disabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
@@ -2384,7 +2428,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast conditional-advertise state</h>
 
-Turns BGP conditional advertisement for IPv4 on or off. The default setting is `disabled`.
+Enables and disables BGP conditional advertisement for IPv4. The default setting is `disabled`.
 
 BGP conditional advertisement lets you advertise certain routes only if other routes either do or do not exist. BGP conditional advertisement is typically used in multihomed networks where BGP advertises some prefixes to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
 
@@ -2935,7 +2979,11 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd min-tx-int
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities extended-nexthop</h>
 
-Turns the extended next hop capability defined in RFC 5549 on or off in the specified VRF. The extended nexthop is advertised to peers in the peer group. If you specify `auto`, extended next hop is enabled for unnumbered peers and disabled otherwise. The default setting is `auto`.
+Enables and disables the extended next hop capability defined in RFC 5549 in the specified VRF. The extended nexthop is advertised to peers in the peer group. If you specify `auto`, extended next hop is enabled for unnumbered peers and disabled otherwise. The default setting is `auto`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -3245,11 +3293,15 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES timers route-a
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security enable</h>
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security state</h>
 
-Turns BGP TTL security on or off in the specified VRF.
+Enables and disables BGP TTL security in the specified VRF.
 
 Use this option to prevent attacks against eBGP, such as denial of service (DoS). By default, BGP messages to eBGP neighbors have an IP time-to-live (TTL) of 1, which requires the neighbor to be directly connected, otherwise, the packets expire along the way. An attacker can adjust the TTL of packets so that they look like they originate from a directly connected neighbor. The BGP TTL security hops option inverts the direction in which BGP counts the TTL. Instead of accepting only packets with a TTL of 1, Cumulus Linux accepts BGP messages with a TTL greater than or equal to 255 minus the specified hop count.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -3265,7 +3317,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES ttl-security enable on 
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES ttl-security state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

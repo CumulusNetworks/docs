@@ -20,10 +20,11 @@ In Cumulus Linux 5.10 and earlier, `nv set system snmp-server` commands are `nv 
 
 ## <h>nv set system snmp-server state</h>
 
-Turns the SNMP server on or off. You can specify `enabled` or `disabled`.
+Enables and disables the SNMP server. You can specify `enabled` or `disabled`.
 
 {{%notice note%}}
-In Cumulus Linux 5.10 and earlier, this command is `nv set service snmp-server enable on` and `nv set service snmp-server enable off`.
+- In Cumulus Linux 5.10 and earlier, this command is `nv set service snmp-server enable on` and `nv set service snmp-server enable off`.
+- In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
 {{%/notice%}}
 
 ### Version History

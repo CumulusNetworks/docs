@@ -814,7 +814,11 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match community-li
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match evpn-default-route</h>
 
-Configures Cumulus Linux to match the EVPN default route in the route map. You can set the value to `on` or `off`.
+Configures Cumulus Linux to match the EVPN default route in the route map. You can set the value to `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -830,7 +834,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match evpn-default-route on
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match evpn-default-route enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

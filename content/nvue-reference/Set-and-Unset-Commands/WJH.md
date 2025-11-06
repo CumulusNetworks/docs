@@ -64,9 +64,13 @@ cumulus@switch:~$ nv set system wjh channel forwarding trigger l3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system wjh enable</h>
+## <h>nv set system wjh state</h>
 
-Turns the WJH service on or off. The default value is `on`.
+Enables and disables the WJH service. The default value is `enabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -75,5 +79,5 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system wjh enable off
+cumulus@switch:~$ nv set system wjh state enabled
 ```

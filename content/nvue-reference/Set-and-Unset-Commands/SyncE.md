@@ -33,11 +33,15 @@ cumulus@switch:~$ nv set interface swp1 synce bundle-id 0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> synce enable</h>
+## <h>nv set interface \<interface-id\> synce state</h>
 
-Turns <span class="a-tooltip">[SynCe](## "Synchronous Ethernet")</span> on or off on the specified interface. The default setting is `off`.
+Enables and enables <span class="a-tooltip">[SynCe](## "Synchronous Ethernet")</span> on the specified interface. The default setting is `disabled`.
 
 SyncE is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, (ESMC), manages this synchronization.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -52,7 +56,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 synce enable on
+cumulus@switch:~$ nv set interface swp1 synce state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -79,15 +83,19 @@ cumulus@switch:~$ nv set interface swp1 synce provider-priority 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system synce enable</h>
+## <h>nv set system synce state</h>
 
-Turns the SyncE service on or off. The default setting is `off`.
+Enables and disables the SyncE service. The default setting is `disabled`.
 
 The SyncE service (`synced.service`) manages:
 - Transmitting and receiving <span class="a-tooltip">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the <span class="a-tooltip">[ESMC](## "Ethernet Synchronization Messaging Channel")</span>.
 - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the QL in the SSM.
 - Using to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
 - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -96,7 +104,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system synce enable on
+cumulus@switch:~$ nv set system synce state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

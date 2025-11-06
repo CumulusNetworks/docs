@@ -111,7 +111,11 @@ cumulus@switch:~$ nv set vrf default router nexthop-tracking ipv4
 
 ## <h>nv set vrf \<vrf-id\> router nexthop-tracking \<afi\> resolved-via-default</h>
 
-Turns nexthop tracking resolved via default on or off.
+Enables and disables nexthop tracking resolved via default.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -127,7 +131,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router nexthop-tracking ipv4 resolved-via-default on
+cumulus@switch:~$ nv set vrf default router nexthop-tracking ipv4 resolved-via-default enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

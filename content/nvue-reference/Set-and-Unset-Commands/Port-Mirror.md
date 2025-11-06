@@ -79,9 +79,13 @@ cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system port-mirror session \<session-id\> span enable</h>
+## <h>nv set system port-mirror session \<session-id\> span state</h>
 
-Turns port mirroring on or off. The default setting is `off`.
+Enables and disables port mirroring. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -96,7 +100,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system port-mirror session 1 span enable on
+cumulus@switch:~$ nv set system port-mirror session 1 span state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -124,15 +128,13 @@ cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system port-mirror session \<session-id\> span truncate</h>
+## <h>nv set system port-mirror session \<session-id\> span truncate state</h>
 
-Configures truncation to decrease bandwidth by reducing the size of monitored packets.
+Enables and disables truncation. The default setting is `disabled`.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system port-mirror session \<session-id\> span truncate enable</h>
-
-Turns truncation on or off. The default setting is `off`.
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -147,7 +149,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system port-mirror session 1 span truncate enable on
+cumulus@switch:~$ nv set system port-mirror session 1 span truncate state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -254,9 +256,13 @@ cumulus@switch:~$ nv set system port-mirror session 1 direction ingress
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system port-mirror session \<session-id\> erspan enable</h>
+## <h>nv set system port-mirror session \<session-id\> erspan state</h>
 
-Turns ERSPAN on or off. The default setting is `off`.
+Enables and disables ERSPAN. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -271,7 +277,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system port-mirror session 1 erspan enable on
+cumulus@switch:~$ nv set system port-mirror session 1 erspan state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -305,9 +311,9 @@ Configures truncation to decrease bandwidth by reducing the size of monitored pa
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system port-mirror session \<session-id\> erspan truncate enable</h>
+## <h>nv set system port-mirror session \<session-id\> erspan truncate state</h>
 
-Turns truncation on or off. The default setting is `off`.
+Enables and disables truncation. The default setting is `disabled`.
 
 ### Command Syntax
 
@@ -322,7 +328,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system port-mirror session 1 erspan truncate enable on
+cumulus@switch:~$ nv set system port-mirror session 1 erspan truncate state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

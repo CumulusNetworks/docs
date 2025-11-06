@@ -468,9 +468,13 @@ cumulus@switch:~$ nv set evpn vni 10 route-target import 65102:10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> evpn enable</h>
+## <h>nv set vrf \<vrf-id\> evpn state</h>
 
-Turns the EVPN control plane on or off in the specified VRF.
+Enables and disables the EVPN control plane in the specified VRF.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -485,7 +489,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf RED evpn enable on
+cumulus@switch:~$ nv set vrf RED evpn state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

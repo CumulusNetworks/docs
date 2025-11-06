@@ -316,10 +316,11 @@ cumulus@switch:~$ nv set system aaa user ADMIN1 ssh cert-auth state enabled
 
 ## <h>nv set system aaa user \<user-id\> state</h>
 
-Turns the user account for the switch on or off. You can specify `enabled` or `disabled`.
+Enables and disables the user account for the switch. You can specify `enabled` or `disabled`.
 
 {{%notice note%}}
-In Cumulus Linux 5.10 and earlier, this command is `nv set system aaa user <user-id> enable on` or `nv set system aaa user <user-id> enable off`.
+- In Cumulus Linux 5.10 and earlier, this command is `nv set system aaa user <user-id> enable on` or `nv set system aaa user <user-id> enable off`.
+- In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
 {{%/notice%}}
 
 ### Command Syntax

@@ -635,6 +635,10 @@ To show all IPv6 table entries for an interface with additional state details, r
 - `Last Change` - The time since the neighbor entry state last changed.
 - `Probes`  - The number of probes sent to the neighbor to solicit a response.
 
+{{%notice note%}}
+The displayed neighbor details are based on control plane forwarding and status; they do not reflect hardware data path forwarding or when a neighbor was last used or changed in hardware.
+{{%/notice%}}
+
 cumulus@leaf01:mgmt:~$ nv show interface vlan10 neighbor ipv6 detail
 IPV6                      LLADR(MAC)         State      Flag  Last Used  Last Confirmed  Last Change  Probes
 ------------------------  -----------------  ---------  ----  ---------  --------------  -----------  ------

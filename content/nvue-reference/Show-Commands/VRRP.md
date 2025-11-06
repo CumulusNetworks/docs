@@ -10,9 +10,13 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip vrrp</h>
+## <h>nv show interface \<interface-id\> ipv4 vrrp</h>
 
-Shows VRRP configuration for the specified interface.
+Shows VRRP configuration for the specified interface. For IPv6, run the `nv show interface <interface-id> ipv6 vrrp` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip vrrp`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -27,7 +31,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip vrrp
+cumulus@switch:~$ nv show interface swp1 ipv4 vrrp
                   operational  applied
 ----------------  -----------  -------
 enable                         on     
@@ -36,9 +40,14 @@ enable                         on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip vrrp virtual-router</h>
+## <h>nv show interface \<interface-id\> ipv4 vrrp virtual-router</h>
 
-Shows the virtual gateways implemented with VRRP for the specified interface.
+Shows the virtual gateways implemented with VRRP for the specified interface. For IPv6, run the `nv show interface <interface-id> ipv6 vrrp virtual-router` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip vrrp virtual-router`.
+{{%/notice%}}
+
 
 {{%notice note%}}
 Add `-o json` at the end of the command to see the output in a more readable format.
@@ -57,7 +66,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router -o json
+cumulus@switch:~$ nv show interface swp1 ipv4 vrrp virtual-router -o json
 {
   "44": {
     "accept-mode": "off",
@@ -111,9 +120,13 @@ cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router -o json
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\></h>
+## <h>nv show interface \<interface-id\> ipv4 vrrp virtual-router \<virtual-router-id\></h>
 
-Shows information about a specific virtual gateway implemented with VRRP for the specified interface.
+Shows information about a specific virtual gateway implemented with VRRP for the specified interface. For IPv6, run the `nv show interface <interface-id> ipv6 vrrp virtual-router <virtual-router-id>` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -129,7 +142,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44
+cumulus@switch:~$ nv show interface swp1 ipv4 vrrp virtual-router 44
                         operational  applied     
 ----------------------  -----------  ------------
 version                 3            3 
@@ -148,9 +161,13 @@ interface               vlan101
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address</h>
+## <h>nv show interface \<interface-id\> ipv4 vrrp virtual-router \<virtual-router-id\> address</h>
 
-Shows the IP addresses of the virtual gateway implemented with VRRP for the specified interface.
+Shows the IP addresses of the virtual gateway implemented with VRRP for the specified interface. For IPv6, run the `nv show interface <interface-id> ipv6 vrrp virtual-router <virtual-router-id> address` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -166,7 +183,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44 address
+cumulus@switch:~$ nv show interface swp1 ipv4 vrrp virtual-router 44 address
 IP address 
 ---------- 
 10.0.0.1 
@@ -175,9 +192,13 @@ IP address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address\<ip-address-id\></h>
+## <h>nv show interface \<interface-id\> ipv4 vrrp virtual-router \<virtual-router-id\> address\<ip-address-id\></h>
 
-Shows information about the IP address of the virtual gateway implemented with VRRP for the specified interface.
+Shows information about the IP address of the virtual gateway implemented with VRRP for the specified interface. For IPv6, run the `nv show interface <interface-id> ipv6 vrrp virtual-router <virtual-router-id> address <address-id>` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <address-ip>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -194,18 +215,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44 address 10.0.0.1
+cumulus@switch:~$ nv show interface swp1 ipv4 vrrp virtual-router 44 address 10.0.0.1
 No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address-family</h>
+## <h>nv show interface \<interface-id\> ipv4 vrrp virtual-router \<virtual-router-id\> address-family</h>
 
 Shows the IP addresses for all address families for the virtual gateway implemented with VRRP for the specified interface.
 
-{{%notice note%}}
 Add `-o json` at the end of the command to see the output in a more readable format.
+
+{{%notice note%}}
+Cumulus Linux 5.15 no longer supports this command.
 {{%/notice%}}
 
 ### Command Syntax
@@ -268,6 +291,10 @@ cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44 address-famil
 ## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address-family \<afi\></h>
 
 Shows the IP addresses for a specific address family (IPv4 or IPv6) for the virtual gateway implemented with VRRP for the specified interface.
+
+{{%notice note%}}
+Cumulus Linux 5.15 no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 

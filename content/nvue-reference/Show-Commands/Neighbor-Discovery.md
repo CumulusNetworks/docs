@@ -10,41 +10,12 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip neighbor-discovery</h>
+## <h>nv show interface \<interface-id\> ipv6 neighbor-discovery</h>
 
 Shows <span class="a-tooltip">[ND](## "Neighbor Discovery")</span> settings for an interface.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery
-                      applied
---------------------  -------
-enable                on     
-router-advertisement         
-  enable              off    
-home-agent                   
-  enable              off 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> ip neighbor-discovery dnssl</h>
-
-Shows the <span class="a-tooltip">[DNSSL](## "DNS search list")</span>domain suffixes configured on the specified interface.
-
 {{%notice note%}}
-You must use `--applied` with this command to show the output.
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip neighbor-discovery`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -60,18 +31,59 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery dnssl --applied
+cumulus@switch:~$ nv show interface swp1 ipv6 neighbor-discovery
+                      applied
+--------------------  -------
+enable                on     
+router-advertisement         
+  enable              off    
+home-agent                   
+  enable              off 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> ipv6 neighbor-discovery dnssl</h>
+
+Shows the <span class="a-tooltip">[DNSSL](## "DNS search list")</span>domain suffixes configured on the specified interface.
+
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip neighbor-discovery dnssl`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 ipv6 neighbor-discovery dnssl --applied
 No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\></h>
+## <h>nv show interface \<interface-id\> ipv6 neighbor-discovery dnssl \<domain-name-id\></h>
 
 Shows configuration information for the specified <span class="a-tooltip">[DNSSL](## "DNS search list")</span>domain suffix.
 
 {{%notice note%}}
 You must use `--applied` with this command to show the output.
+{{%/notice%}}
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip neighbor-discovery dnssl <domain-name-id>`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -88,46 +100,19 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com --applied
+cumulus@switch:~$ nv show interface swp1 ipv6 neighbor-discovery dnssl accounting.nvidia.com --applied
 --------  --------
 lifetime  infinite
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip neighbor-discovery home-agent</h>
+## <h>nv show interface \<interface-id\> ipv6 neighbor-discovery home-agent</h>
 
 Shows Home Agent configuration for an interface, such as the maximum amount of time the router acts as a Home Agent and the router preference.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery home-agent
-            applied
-----------  -------
-enable      on     
-lifetime    200    
-preference  0
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> ip neighbor-discovery prefix</h>
-
-Shows the ND prefixes for the specified interface.
-
 {{%notice note%}}
-You must use `--applied` with this command to show the output.
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip neighbor-discovery home-agent`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -143,15 +128,54 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery prefix --applied
+cumulus@switch:~$ nv show interface swp1 ipv6 neighbor-discovery home-agent
+            applied
+----------  -------
+enable      on     
+lifetime    200    
+preference  0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> ipv6 neighbor-discovery prefix</h>
+
+Shows the ND prefixes for the specified interface.
+
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip neighbor-discovery prefix`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 ipv6 neighbor-discovery prefix --applied
 No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\></h>
+## <h>nv show interface \<interface-id\> ipv6 neighbor-discovery prefix \<prefix-id\></h>
 
 Shows ND prefix configuration for the specified interface, such as the amount of time the prefix is valid for on-link determination, the amount of time that addresses generated from a prefix remain preferred, and if the specified prefix uses the IPv6 autoconfiguration setting.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -167,7 +191,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32
+cumulus@switch:~$ nv show interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32
                     applied   
 ------------------  ----------
 autoconfig          on        
@@ -179,12 +203,16 @@ valid-lifetime      2000000000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip neighbor-discovery rdnss</h>
+## <h>nv show interface \<interface-id\> ipv6 neighbor-discovery rdnss</h>
 
 Shows the <span class="a-tooltip">[RDNSS](## "recursive DNS servers")</span> configured on the specified interface.
 
 {{%notice note%}}
 You must use `--applied` with this command to show the output.
+{{%/notice%}}
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip neighbor-discovery rdnss`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -200,18 +228,22 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss --applied
+cumulus@switch:~$ nv show interface swp1 ipv6 neighbor-discovery rdnss --applied
 No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\></h>
+## <h>nv show interface \<interface-id\> ipv6 neighbor-discovery rdnss \<address-id\></h>
 
 Shows configuration for the specified <span class="a-tooltip">[RDNSS](## "recursive DNS server")</span> configured on the specified interface.
 
 {{%notice note%}}
 You must use `--applied` with this command to show the output.
+{{%/notice%}}
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id>`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -228,15 +260,19 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100 --applied
+cumulus@switch:~$ nv show interface swp1 ipv6 neighbor-discovery rdnss 2001:db8:1::100 --applied
 No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip neighbor-discovery router-advertisement</h>
+## <h>nv show interface \<interface-id\> ipv6 neighbor-discovery router-advertisement</h>
 
 Shows router advertisement configuration for an interface, such as the hop limit value advertised in a router advertisement message, the maximum amount of time that router advertisement messages can exist on the route, the interval at which neighbor solicitation messages retransmit, and if fast transmit mode is on.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip neighbor-discovery router-advertisement`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -251,7 +287,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery router-advertisement
+cumulus@switch:~$ nv show interface swp1 ipv6 neighbor-discovery router-advertisement
                    applied
 -----------------  -------
 enable             off    

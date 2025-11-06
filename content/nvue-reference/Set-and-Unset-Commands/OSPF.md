@@ -117,6 +117,10 @@ cumulus@switch:~$ nv set interface swp51 router ospf authentication message-dige
 
 Configures the detection time multiplier on the specified OSPF interface. You can specify a value between 2 and 255.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -135,14 +139,14 @@ cumulus@switch:~$ nv set interface swp51 router ospf bfd detect-multiplier 100
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router ospf bfd state</h>
+## <h>nv set interface \<interface-id\> router ospf bfd enable</h>
 
-Enables and disables <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> on the specified OSPF interface. The default setting is `disabled`.
+Enables and disables <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> on the specified OSPF interface. The default setting is `disable`.
 
 BFD provides low overhead and rapid detection of failures in the paths between two network devices.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+Cumulus Linux 5.15 and later no longer supports this command.
 {{%/notice%}}
 
 ### Command Syntax
@@ -158,7 +162,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router ospf bfd state enabled
+cumulus@switch:~$ nv set interface swp51 router ospf bfd state enable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -166,6 +170,10 @@ cumulus@switch:~$ nv set interface swp51 router ospf bfd state enabled
 ## <h>nv set interface \<interface-id\> router ospf bfd min-receive-interval</h>
 
 Configures the required minimum interval between received BFD control packets on the specified OSPF interface. You can specify a value between 50 and 60000.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -188,6 +196,10 @@ cumulus@switch:~$ nv set interface swp51 router ospf bfd min-receive-interval 40
 ## <h>nv set interface \<interface-id\> router ospf bfd min-transmit-interval</h>
 
 Configures the minimum transmit interval in milliseconds on the specified OSPF interface. You can specify a value between 50 and 60000.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 

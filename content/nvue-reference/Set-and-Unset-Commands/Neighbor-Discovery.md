@@ -379,10 +379,14 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1:
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\></h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery rdnss \<address-id\></h>
 
 Configures recursive DNS servers (RDNSS). You must specify the IPv6 address of each RDNSS you want to advertise.
 
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip neighbor-discovery rdnss <address-id`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -397,15 +401,19 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery rdnss 2001:db8:1::100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\> lifetime</h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery rdnss \<address-id\> lifetime</h>
 
 Configures the maximum amount of time you want to use the RDNSS for domain name resolution. You can specify a value between 0 and 4294967295, or specify `infinite` to use the RDNSS for domain name resolution indefinitely. If you set the value to 0, the RDNSS address no longer advertises.
 
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip neighbor-discovery rdnss <address-id lifetime`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -420,18 +428,22 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100 lifetime infinite
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery rdnss 2001:db8:1::100 lifetime infinite
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement state</h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement state</h>
 
 Enables and disables router advertisement for the interface. The default setting is `disabled`.
 
 {{%notice note%}}
 - In Cumulus Linux 5.4 and earlier, the NVUE command to enable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable off` and the NVUE command to disable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable on`.
 - In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement state`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -447,14 +459,20 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement state enabled
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement fast-retransmit</h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement fast-retransmit</h>
 
-Configures the specified interface to allow consecutive router advertisement packets to transmit more frequently than every three seconds (fast retransmit). The default setting is `on`.
+Configures the specified interface to allow consecutive router advertisement packets to transmit more frequently than every three seconds (fast retransmit). The default setting is `enabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier:
+- The command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement fast-retransmit`.
+- You specify `on` or `off` instead of `enabled` or `disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -469,14 +487,18 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement fast-retransmit off
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement fast-retransmit disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement hop-limit</h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement hop-limit</h>
 
 Configures the hop limit value in the IP header of the outgoing router advertisement packet. You can set a value between 0 and 255. The default setting is 64.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement hop-limit`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -491,14 +513,18 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement hop-limit 100
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement hop-limit 100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval</h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement interval</h>
 
 Configures the maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface. You can set a value between 70 and 1800000 milliseconds. The default setting is 600000.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement interval`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -513,7 +539,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval 60000
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement interval 60000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -523,7 +549,9 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertiseme
 Configures the specified interface to indicate to hosts that the router uses an advertisement interval to send router advertisements. The default setting is `disabled`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+In Cumulus Linux 5.14 and earlier:
+- The command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement interval-option`.
+- You specify `on` or `off` instead of `enabled` or `disabled`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -539,14 +567,18 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval-option enabled
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement interval-option enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement lifetime</h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement lifetime</h>
 
 Configures the maximum amount of time that router advertisement messages can exist on the route. You can specify a value between 0 and 9000. The default setting is 1800.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement lifetime`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -561,17 +593,19 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement lifetime 4000
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement lifetime 4000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement managed-config</h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement managed-config</h>
 
 Configures the specified interface to allow a dynamic host to use a managed protocol, such as DHCPv6, to configure IP addresses automatically (managed configuration). The default setting is `disabled`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+In Cumulus Linux 5.14 and earlier:
+- The command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement managed-config`.
+- You specify `on` or `off` instead of `enabled` or `disabled`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -587,17 +621,19 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement managed-config enabled
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement managed-config enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement other-config</h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement other-config</h>
 
 Configures the specified interface to allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. The default setting is `disabled`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+In Cumulus Linux 5.14 and earlier:
+- The command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement other-config`.
+- You specify `on` or `off` instead of `enabled` or `disabled`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -613,14 +649,18 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement other-config enabled
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement other-config enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement reachable-time</h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement reachable-time</h>
 
 Configures the amount of time that an IPv6 node is reachable. You can set a value between 0 and 3600000 milliseconds. The default setting is 0.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement reachable-time`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -635,15 +675,19 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement reachable-time 3600000
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement reachable-time 3600000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement retransmit-time</h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement retransmit-time</h>
 
 Configures the interval at which neighbor solicitation messages retransmit. You can set a value between 0 and 4294967295 milliseconds. The default setting is 0.
 
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement retransmit-time`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -657,14 +701,18 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement retransmit-time 4294967295
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement retransmit-time 4294967295
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement router-preference</h>
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement router-preference</h>
 
 Configures the specified interface to allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default setting is `medium`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement router-preference`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -679,7 +727,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement router-preference high
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement router-preference high
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -38,7 +38,7 @@ link-utilization-threshold  70
 
 ## <h>nv show router adaptive-routing</h>
 
-Shows if adaptive routing is `on` or `off` on the switch.
+Shows if adaptive routing is enabled on the switch.
 
 {{%notice note%}}
 Cumulus Linux 5.6 supports adaptive routing on Spectrum-4.

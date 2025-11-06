@@ -14,9 +14,13 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip igmp enable</h>
+## <h>nv set interface \<interface-id\> ip igmp state</h>
 
-Turns <span class="a-tooltip">[IGMP](## "Internet Group Management Protocol")</span> on or off on the specified interface. The default setting is `off`.
+Enables and disables <span class="a-tooltip">[IGMP](## "Internet Group Management Protocol")</span> on the specified interface. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -31,14 +35,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip igmp enable on
+cumulus@switch:~$ nv set interface swp1 ip igmp state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ip igmp fast-leave</h>
 
-Turns fast leave processing on or off on the interface. The default setting is `off`.
+Enables and disables fast leave processing on the interface. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -53,7 +61,7 @@ Introduced in Cumulus Linux 5.6.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave on
+cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -218,9 +226,9 @@ cumulus@switch:~$ nv set interface swp1 ip igmp version 2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router igmp enable</h>
+## <h>nv set router igmp state</h>
 
-Turns IGMP on or off globally. The default setting is `off`.
+Enables and disables IGMP globally. The default setting is `disabled`.
 
 ### Version History
 
@@ -229,5 +237,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router igmp enable on
+cumulus@switch:~$ nv set router igmp state enabled
 ```

@@ -132,11 +132,15 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.n
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery enable</h>
+## <h>nv set interface \<interface-id\> ip neighbor-discovery state</h>
 
-Turns ND on or off. The default setting is `on`.
+Enables and disables ND. The default setting is `enabled`.
 
 ND allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -151,14 +155,18 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery enable off
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery state disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery home-agent enable</h>
+## <h>nv set interface \<interface-id\> ip neighbor-discovery home-agent state</h>
 
-Turns the Home Agent on or off. The default setting is `off`.
+Enables and disables the Home Agent. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -173,7 +181,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery home-agent enable on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery home-agent state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -246,7 +254,11 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery mtu 1500
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> autoconfig</h>
 
-Configures automatic configuration to indicate to hosts on the local link that they can use the specified prefix for IPv6 auto configuration. The default setting is `off`.
+Configures automatic configuration to indicate to hosts on the local link that they can use the specified prefix for IPv6 auto configuration. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -262,14 +274,18 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 autoconfig on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 autoconfig disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> off-link</h>
 
-Configures advertisement to make no statement about prefix on-link or off-link properties. The default setting is `off`.
+Configures advertisement to make no statement about prefix on-link or off-link properties. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -285,7 +301,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 off-link on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 off-link disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -315,9 +331,11 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1:
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> router-address</h>
 
-Configures advertisement to indicate to hosts on the local link that the specified prefix contains a complete IP address by setting R flag.
+Configures advertisement to indicate to hosts on the local link that the specified prefix contains a complete IP address by setting R flag. The default setting is `disabled`.
 
-The default setting is `off`.
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -333,7 +351,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 router-address on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 router-address enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -407,12 +425,13 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement enable</h>
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement state</h>
 
-Enables router advertisement (`on`) or disables router advertisement (`off`) for the interface. The default setting is `off`.
+Enables and disables router advertisement for the interface. The default setting is `disabled`.
 
 {{%notice note%}}
-In Cumulus Linux 5.4 and earlier, the NVUE command to enable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable off` and the NVUE command to disable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable on`.
+- In Cumulus Linux 5.4 and earlier, the NVUE command to enable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable off` and the NVUE command to disable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable on`.
+- In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -428,7 +447,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement enable on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -501,7 +520,11 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertiseme
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval-option</h>
 
-Configures the specified interface to indicate to hosts that the router uses an advertisement interval to send router advertisements. The default setting is `off`.
+Configures the specified interface to indicate to hosts that the router uses an advertisement interval to send router advertisements. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -516,7 +539,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval-option on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval-option enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -545,7 +568,11 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertiseme
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement managed-config</h>
 
-Configures the specified interface to allow a dynamic host to use a managed protocol, such as DHCPv6, to configure IP addresses automatically (managed configuration). The default setting is `off`.
+Configures the specified interface to allow a dynamic host to use a managed protocol, such as DHCPv6, to configure IP addresses automatically (managed configuration). The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -560,14 +587,18 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement managed-config on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement managed-config enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement other-config</h>
 
-Configures the specified interface to allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. The default setting is `off`.
+Configures the specified interface to allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -582,7 +613,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement other-config on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement other-config enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

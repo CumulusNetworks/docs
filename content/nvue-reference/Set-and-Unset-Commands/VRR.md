@@ -37,11 +37,15 @@ cumulus@switch:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip vrr enable</h>
+## <h>nv set interface \<interface-id\> ip vrr state</h>
 
-Turns VRR on or off on the interface. The default setting is `off`.
+Enables and disables VRR on the interface. The default setting is `disabled`.
 
 Virtual Router Redundancy (VRR) enables hosts to communicate with any redundant switch without reconfiguration by running dynamic router protocols or router redundancy protocols. Redundant switches respond to ARP requests from hosts. The switches respond in an identical manner, but if one fails, the other redundant switches continue to respond. You use VRR with MLAG.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -56,7 +60,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface vlan10 ip vrr enable on 
+cumulus@switch:~$ nv set interface vlan10 ip vrr state enabled 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -129,9 +133,13 @@ cumulus@switch:~$ nv set interface vlan10 ip vrr state up
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router vrr enable</h>
+## <h>nv set router vrr state</h>
 
-Turns VRR on or off. The default setting is `off`.
+Enables and disables VRR. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -140,5 +148,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router vrr enable on
+cumulus@switch:~$ nv set router vrr state enabled
 ```

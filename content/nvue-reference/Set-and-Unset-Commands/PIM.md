@@ -16,7 +16,11 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set interface \<interface-id\> router pim active-active</h>
 
-Turns PIM active-active on or off on the interface. The default setting is `off`.
+Enables and disables PIM active-active on the interface. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -31,7 +35,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router pim active-active on
+cumulus@switch:~$ nv set interface swp51 router pim active-active enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -46,15 +50,13 @@ In Cumulus Linux 5.6 and earlier, the `nv set interface <interface-id> router pi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router pim address-family ipv4 allow-rp</h>
+## <h>nv set interface \<interface-id\> router pim address-family ipv4 allow-rp state</h>
 
-Configures the PIM interface to ignore the RP check for all upstream neighbors. The default value is `off`.
+Configures the PIM interface to ignore the RP check for all upstream neighbors. The default setting is `disabled`.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> router pim address-family ipv4 allow-rp enable</h>
-
-Configures the PIM interface to ignore the RP check for all upstream neighbors. The default setting is `off`.
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -69,7 +71,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4 allow-rp enable on
+cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4 allow-rp state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -168,6 +170,10 @@ cumulus@switch:~$ nv set interface swp51 router pim bfd detect-multiplier  10
 
 Turns BFD on or off on the PIM interface. The default setting is `off`.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -181,7 +187,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface router pim bfd on
+cumulus@switch:~$ nv set interface swp1 router pim bfd on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -252,9 +258,13 @@ cumulus@switch:~$ nv set interface swp1 router pim dr-priority 100
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router pim enable</h>
+## <h>nv set interface \<interface-id\> router pim state</h>
 
-Turns PIM on or off for an interface. The default setting is `off`.
+Enables and disables PIM for an interface. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -269,7 +279,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router pim enable on
+cumulus@switch:~$ nv set interface swp51 router pim state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -296,9 +306,13 @@ cumulus@switch:~$ nv set interface router pim timers hello-interval 100
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router pim enable</h>
+## <h>nv set router pim state</h>
 
-Turns PIM on or off globally on the switch. The default setting is `off`.
+Enables and disables PIM globally on the switch. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -307,7 +321,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router pim enable on
+cumulus@switch:~$ nv set router pim state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -498,7 +512,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ## <h>nv set vrf \<vrf-id\> router pim address-family ipv4 send-v6-secondary</h>
 
-Turns sending IPv6 addresses as secondary addresses on or off on the specified VRF. The default setting is `off`.
+Enables and disables sending IPv6 addresses as secondary addresses on the specified VRF. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -513,7 +531,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4 send-v6-secondary on
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4 send-v6-secondary enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -599,9 +617,13 @@ Configures PIM ECMP on the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim ecmp enable</h>
+## <h>nv set vrf \<vrf-id\> router pim ecmp state</h>
 
-Turns ECMP for PIM on or off on the specified VRF. PIM uses RPF to choose an upstream interface to build a forwarding state. If you configure ECMP, PIM chooses the RPF based on the ECMP hash algorithm. The default value is `off`.
+Enables and disables ECMP for PIM on the specified VRF. PIM uses RPF to choose an upstream interface to build a forwarding state. If you configure ECMP, PIM chooses the RPF based on the ECMP hash algorithm. The default value is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -616,14 +638,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router pim ecmp enable on
+cumulus@switch:~$ nv set vrf default router pim ecmp state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router pim ecmp rebalance</h>
 
-Turns ECMP rebalance on or off on the specified VRF. ECMP rebalance recalculate all stream paths over one of the ECMP paths if the switch loses a path.
+Enables and disables ECMP rebalance on the specified VRF. ECMP rebalance recalculate all stream paths over one of the ECMP paths if the switch loses a path.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -638,14 +664,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router pim ecmp rebalance on 
+cumulus@switch:~$ nv set vrf default router pim ecmp rebalance enabled 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim enable</h>
+## <h>nv set vrf \<vrf-id\> router pim state</h>
 
-Turns PIM on or off in the specified VRF. The default setting is `off`.
+Enables and disables PIM in the specified VRF. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -660,7 +690,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router pim enable on
+cumulus@switch:~$ nv set vrf default router pim state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

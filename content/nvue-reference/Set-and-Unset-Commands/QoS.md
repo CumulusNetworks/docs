@@ -1542,7 +1542,7 @@ Configures traffic class settings for the specified ECN profile.
 
 ## <h>nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> ecn</h>
 
-Turns ECN bit marking on or off for the traffic class in the specified ECN profile.
+Enables and disables ECN bit marking for the traffic class in the specified ECN profile.
 
 ### Command Syntax
 
@@ -1558,7 +1558,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 ecn enable
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 ecn enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1634,7 +1634,7 @@ cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5
 
 ## <h>nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> red</h>
 
-Turns <span class="a-tooltip">[RED](## "Random Early Detection")</span> on or off. 
+Enables and disables <span class="a-tooltip">[RED](## "Random Early Detection")</span>. 
 
 ECN prevents packet drops in the network due to congestion by signaling hosts to transmit less. However, if congestion continues after ECN marking, packets drop after the switch buffer is full. By default, Cumulus Linux tail-drops packets when the buffer is full. You can enable RED to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
 
@@ -1652,7 +1652,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 red enable
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 red enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2370,9 +2370,13 @@ cumulus@switch:~$ nv set qos roce cable-length 1000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos roce enable</h>
+## <h>nv set qos roce state</h>
 
-Turns QoS RoCE on or off on the switch. The default setting is `off`.
+Enables and disables QoS RoCE on the switch. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -2381,7 +2385,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos roce enable off
+cumulus@switch:~$ nv set qos roce state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

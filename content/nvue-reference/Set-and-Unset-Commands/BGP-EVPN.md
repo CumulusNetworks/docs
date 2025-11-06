@@ -219,7 +219,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn state</h>
 
-Tuns the EVPN address family on or off for the specified neighbor. The default setting is `disabled`.
+Enables and disables the EVPN address family for the specified neighbor. The default setting is `disabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
@@ -701,7 +701,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group underlay address-fami
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn state</h>
 
-Turns EVPN on or off for the BGP peer group. The default setting is `disabled`.
+Enables and disables EVPN for the BGP peer group. The default setting is `disabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.

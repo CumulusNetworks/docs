@@ -87,7 +87,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast adve
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast aggregate-route \<aggregate-route-id\> as-set</h>
 
-Turns generation of an `AS_SET` for the aggregate on or off for the specified VRF. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the `AS_PATH` attributes of all the individual IPv6 routes to help BGP detect and avoid loops. The default setting is `disabled`.
+Enables and disables generation of an `AS_SET` for the aggregate for the specified VRF. When `enabled`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the `AS_PATH` attributes of all the individual IPv6 routes to help BGP detect and avoid loops. The default setting is `disabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
@@ -164,7 +164,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast aggr
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast state</h>
 
-Tuns the BGP for IPv6 on or off for the specified VRF. The default setting is `disabled`.
+Enables and disables BGP for IPv6 for the specified VRF. The default setting is `disabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.{{%/notice%}}
@@ -286,7 +286,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast nhg-
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected state</h>
 
-Turns route redistribution of IPv6 connected routes on or off for the specified VRF. The default setting is `disabled`.
+Enables and disables route redistribution of IPv6 connected routes for the specified VRF. The default setting is `disabled`.
 
 Route redistribution allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
 
@@ -360,7 +360,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redi
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel state</h>
 
-Turns redistribution of IPv6 kernel routes on or off for the specified VRF. The default setting is `disabled`.
+Enables and disables redistribution of IPv6 kernel routes for the specified VRF. The default setting is `disabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
@@ -432,7 +432,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redi
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 state</h>
 
-Turns redistribution of OSPF IPv6 routes on or off for the specified VRF. The default setting is `disabled`.
+Enables and disables redistribution of OSPF IPv6 routes for the specified VRF. The default setting is `disabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
@@ -502,7 +502,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redi
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static state</h>
 
-Turns route redistribution of IPv6 static routes on or off for the specified VRF. The default setting is `disabled`.
+Enables and disables route redistribution of IPv6 static routes for the specified VRF. The default setting is `disabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.

@@ -14,9 +14,13 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> bond mlag enable</h>
+## <h>nv set interface \<interface-id\> bond mlag state</h>
 
-Turns <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> on or off on the bond interface. The default setting is `off`.
+Enables and disables <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> on the bond interface. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -31,7 +35,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface bond1 bond mlag enable on
+cumulus@switch:~$ nv set interface bond1 bond mlag state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -104,7 +108,11 @@ cumulus@switch:~$ nv set mlag backup 10.10.10.2 vrf RED
 
 ## <h>nv set mlag debug</h>
 
-Turns MLAG debugging on or off. The default setting is `off`.
+Enables and disables MLAG debugging. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Version History
 
@@ -113,14 +121,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set mlag debug on
+cumulus@switch:~$ nv set mlag debug enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set mlag enable</h>
+## <h>nv set mlag state</h>
 
-Turns MLAG on or off. The default setting is `off`.
+Enables and disables MLAG. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -129,7 +141,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set mlag enable on
+cumulus@switch:~$ nv set mlag state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

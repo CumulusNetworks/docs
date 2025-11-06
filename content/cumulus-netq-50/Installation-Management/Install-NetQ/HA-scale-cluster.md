@@ -149,11 +149,6 @@ Set the new hostname using the following command. Replace `NEW_HOSTNAME` with th
 ```
 nvidia@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
 ```
-Add the same `NEW_HOSTNAME` value to **/etc/hosts** on your VM for the localhost entry. For example:
-
-```
-127.0.0.1 localhost NEW_HOSTNAME
-```
 
 6. Open your hypervisor and set up the VM for the additional nodes in the same manner as for the master node.
 

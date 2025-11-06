@@ -27,12 +27,12 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 - {{<link url="Syslog/#selectors-and-filters" text="Rsyslog selector design changes">}}
 - Telemetry
    - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
-   - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="BGP graceful shutdown metric for OTLP">}}
+   - BGP graceful shutdown metric for {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="OTLP">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI">}}
    - {{<link url="Open-Telemetry-Export/#acl-statistics" text="ACL metrics for OTLP">}}
    - {{<link url="Open-Telemetry-Export/#control-plane-statistic-format" text="Additional control plane metrics for OTLP">}}
    - {{<link url="gNMI-Streaming/#metrics" text="ACL metrics for gNMI streaming">}}
    - {{<link url="gNMI-Streaming/#metrics" text="Packet trimming metrics for gNMI streaming">}}
-   - {{<link url="gNMI-Streaming/#metrics" text="PHY metrics for gNMI streaming">}} (Number of bit errors corrected and upper boundary of the bin)
+   - {{<link url="gNMI-Streaming/#metrics" text="Interface PHY metrics for gNMI streaming">}} (Number of bit errors corrected and upper boundary of the bin)
    - {{<link url="High-Frequency-Telemetry/#streaming-hft-export" text="High frequency telemetry streaming">}}
    - {{<link url="Open-Telemetry-Export/#congestion-notifications" text="Congestion event notifications">}}
    - {{< expand "New gNMI xPaths aligning with OTEL metrics:" >}}
@@ -76,13 +76,13 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 
 |  Name | Description |
 |------ | ----------- |
-| `/qos/interfaces/interface[interface-id]/priority-group/state/counters/in-pkts` | Number of received input packets for a priority group. |
-| `/qos/interfaces/interface[interface-id]/state/priority-group/state/counters/in-octets` | Number of octets of input data received for a given priority group. |
-| `/qos/interfaces/interface[interface-id]/switch-priority/state/counters/in-discards` | Number of discarded inbound packets. |
-| `/qos/interfaces/interface[interface-id]/switch-priority/state/in-pause-duration` | Total time in microseconds packet transmission on the port has been paused. |
-| `/qos/interfaces/interface[interface-id]/switch-priority/state/out-pause-duration` | Total time in microseconds that the far-end port has been requested to pause. |
-| `/qos/interfaces/interface[interface-id]/output/queues/queue/state/instant-queue-len` | Transmit queue depth in bytes on traffic class selected by traffic_class of the port selected by local_port. |
-| `/qos/interfaces/interface[interface-id]/output/queues/queue/state/transmit-uc-pkts` | Number of unicast packets transmitted by this queue.|
+| `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/in-pkts` | Number of received input packets for a priority group. |
+| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/state/counters/in-octets` | Number of octets of input data received for a given priority group. |
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/in-discards` | Number of discarded inbound packets. |
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/in-pause-duration` | Total time in microseconds packet transmission on the port has been paused. |
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/out-pause-duration` | Total time in microseconds that the far-end port has been requested to pause. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/instant-queue-len` | Transmit queue depth in bytes on traffic class selected by traffic_class of the port selected by local_port. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue/[name]state/transmit-uc-pkts` | Number of unicast packets transmitted by this queue.|
 
 **New Interface Metrics:**
 
@@ -93,19 +93,19 @@ Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fi
 | `/interfaces/interface[name]/state/counters/out-hoq-stall-drops` | Number of packets dropped at egress due to Head-of-Queue Timeout. |
 | `/interfaces/interface[name]/state/counters/out-sll-drops` | Number of packets dropped at egress due to exceeding switch lifetime limit.|
 | `/interfaces/interface[name]/state/counters/out-acl-drops` | Number of packets dropped at egress due to ACL policy. |
-| `/interfaces/interface[name]/state/counters/out-stp-filter-drops` | Number of packets dropped at egress due to STP filter. |
-| `/interfaces/interface[name]/state/counters/out-vlan-membership-drops` | Number of packets dropped at egress due to VLAN membership filter. |
-| `/interfaces/interface[name]/state/counters/in-vlan-tag-allowance-drops ` | Number of packets dropped at ingress due to VLAN tag allowance filter. |
-| `/interfaces/interface[name]/state/counters/in-link-down-drops` | Number of packets dropped at ingress due to egress link down. |
-| `/interfaces/interface[name]/state/counters/in-vlan-membership-drops` | Number of packets dropped at ingress due to VLAN membership filter. |
-| `/interfaces/interface[name]/state/counters/in-loopback-drops` | Number of packets dropped at ingress due to loopback filter. |
-| `/interfaces/interface[name]/ethernet/state/counters/in-unknown-protos` | Number of MAC control frames received with an unsupported opcode. |
-| `/interfaces/interface[name]/ethernet/state/counters/pkt_drop_events_probe_resource_lack` | Total number packets dropped by the probe due to lack of resources. |
+| `/interfaces/interface[name]/ethernet/state/counters/out-stp-filter-drops` | Number of packets dropped at egress due to STP filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/out-vlan-membership-drops` | Number of packets dropped at egress due to VLAN membership filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-vlan-tag-allowance-drops` | Number of packets dropped at ingress due to VLAN tag allowance filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-link-down-drops` | Number of packets dropped at ingress due to egress link down. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-vlan-membership-drops` | Number of packets dropped at ingress due to VLAN membership filter. |
+| `/interfaces/interface[name]/ethernet/state/counters/in-loopback-drops` | Number of packets dropped at ingress due to loopback filter. |
+| `/interfaces/interface[name]/state/counters/in-unknown-protos` | Number of MAC control frames received with an unsupported opcode. |
+| `/interfaces/interface[name]/ethernet/state/counters/pkt-drop-events-probe-resource-lack` | Total number packets dropped by the probe due to lack of resources. |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-1519-2047-octets` | Total number of packets (including bad packets) received that were between 1519 and 2047 octets in length (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-2048-4095-octets` | Total number of packets (including bad packets) received that were between 2048 and 4095 octets in length (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-4096-8191-octets` | Total number of packets (including bad packets) received that were between 4096 and 8191 octets in length (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-8192-9216-octets` | Total number of packets (including bad packets) received that were between 8192 and 10239 octets in length (excluding framing bits but including FCS octets). |
-| `/interfaces/interface[name]/state/counters/no-buffer-mc-dropped-pkts ` | The number of multicast packets dropped due to lack of egress buffer resources. Valid only for Spectrum switches. |
+| `/interfaces/interface[name]/ethernet/state/counters/no-buffer-multicast-dropped-pkts` | The number of multicast packets dropped due to lack of egress buffer resources. Valid only for Spectrum switches. |
 | `/interfaces/interface[name]/state/counters/in-buffer-almost-full` | Number of times that the port Rx buffer passed a buffer utilization threshold. |
 | `/interfaces/interface[name]/state/counters/in-buffer-full` | Number of times that the port Rx buffer reached 100% utilization. |
 | `/interfaces/interface[name]/state/counters/in-ebp-pkts` | The number of received EBP packets. |
@@ -217,6 +217,7 @@ Old Name | New Name|
   - `--expand` option for {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff command">}}, {{<link url="NVUE-CLI/#show-switch-configuration" text="nv config show command">}}, and {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="nv config find command">}}
   - `expand=true` parameter for API calls to {{<link url="NVUE-API/#view-differences-between-configurations" text="View differences between configurations">}}, {{<link url="NVUE-API/#view-a-configuration" text="view a configuration">}}, and {{<link url="NVUE-API/#use-filters-in-a-query" text="search for a specific configuration">}}
   - Aging time added to {{<link url="Address-Resolution-Protocol-ARP/#show-the-arp-table" text="IPv4">}} and {{<link url="Neighbor-Discovery-ND/#show-the-ip-neighbor-table" text="IPv6">}} neighbor tables
+  - {{<link url="System-Power-and-Switch-Reboot/" text="Switch reboot options changed">}} from configured reboot modes to NVUE reboot action commands
   - Timestamp format in `nv show` command output changed from UTC to duration (days, hour:minutes:seconds)
   - {{<link url="NVUE-API/#patch-a-batch-of-configuration-commands" text="Batch execution support for patching in CLI commands through the API">}}. This feature also improves performance when patching in text commands {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="through the CLI">}}.
   - Improved command completion when using tab to view CLI command options
@@ -233,14 +234,14 @@ To align with a long-term vision of a common interface between Cumulus Linux, Nv
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.15 from Cumulus Linux 5.12 and later.
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.15 from Cumulus Linux 5.12 and later.
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.15 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 - Cumulus Linux 5.14.0
 - Cumulus Linux 5.13.1
 - Cumulus Linux 5.13.0
 
-To upgrade to Cumulus Linux 5.15 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="ONIE">}}.
+To upgrade to Cumulus Linux 5.15 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 ### Maximum Number of NVUE Revisions
 

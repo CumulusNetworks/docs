@@ -199,7 +199,6 @@ You can adjust the LLDP statistics sample interval (in seconds). You can specify
 cumulus@switch:~$ nv set system telemetry lldp sample-interval 10
 cumulus@switch:~$ nv config apply
 ```
-
 ### Platform Statistics
 
 When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, and transceiver information. To enable all [platform statistics](#platform-statistic-format) globally:
@@ -533,6 +532,15 @@ To configure the open telemetry export destination:
    ```
 
 By default, OTLP export is in **secure** mode that requires a CA certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
+
+3. Configure the VRF where the export destination is reachable. The `default` VRF is the default value:
+
+    ```
+    cumulus@switch:~$ set system telemetry export vrf RED
+    cumulus@switch:~$ nv config apply
+    ```
+
+
 <!-- POC IN CL5.13
 {{%notice note%}}
 When you make changes to the open telemetry export destination, connections to the destination do not reset.
@@ -2657,6 +2665,17 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 }
 ```
 {{< /expand >}}
+
+### Performance Statistics
+
+When you enable {{<link url="Latency-Monitoring/" text="latency monitoring">}}, the switch exports the following statistics:
+
+| Name | Description |
+|----- | ----------- |
+| `nvswitch_interface_latency_measurement_timestamp` | * The timestamp when the latency measurement was recorded. |
+| `nvswitch_interface_latency_measurement_rtt_usec` | * * The measured latency in microseconds for the specified traffic class and protocol. |
+| `nvswitch_interface_latency_measurement_error_code` | * The measurement error code. [`0` indicates success, non-zero values indicate an error code] |
+| `nvswitch_interface_latency_measurement_error_info` | * The type of error encountered, if any, during the latency measurement. |
 
 ### Platform Statistic Format
 

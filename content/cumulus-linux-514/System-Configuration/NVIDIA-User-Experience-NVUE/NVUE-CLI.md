@@ -254,31 +254,31 @@ The NVUE action commands fetch and install image files, upgrade system packages,
 | <div style="width:400px">Command | Description |
 | ------- | ----------- |
 | `nv action abort`| Terminates {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP">}} if it is in the discovery process or is not currently running a script. |
-| `nv action boot-next`| Sets the boot partition for {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized (two partition) upgrade">}}.|
+| `nv action boot-next`| Sets the boot partition for {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized (two partition) upgrade">}}.|
 | `nv action change`| Sets the {{<link title="Setting the Date and Time/#set-the-date-and-time" text="software clock date and time">}}. |
 | `nv action clear` | Provides commands to clear ACL statistics, {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="duplicate addresses">}}, {{<link url="Precision-Time-Protocol-PTP/#clear-ptp-violation-logs" text="PTP violations">}}, {{<link url="Interface-Configuration-and-Management/#clear-the-interface-protodown-state-and-reason" text="interfaces from a protodown state">}}, {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-counters" text="interface counters">}}, {{<link url="Quality-of-Service/#clear-qos-buffers" text="Qos buffers">}}, {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP routes">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="OSPF interface counters">}}, {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="matches against a route map">}}, and remove {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#lacp-partner-mac-address-duplicate-or-mismatch" text="conflicts from protodown MLAG bonds">}}. |
 | `nv action deauthenticate`| {{<link url="802.1X-Interfaces/#deauthenticate-an-8021x-supplicant" text="Deauthenticates the 802.1X supplicant">}} on the specified interface. If you do not want to notify the supplicant when deauthenticating, you can add the silent option; for example, `nv action deauthenticate interface swp1 dot1x authorized-sessions 00:55:00:00:00:09 silent`.|
-| `nv action delete` | Provides commands to delete {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="binary image files">}}, {{<link url="Log-Files-with-NVUE/#delete-system-log-files" text="log files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="packages">}}, {{<link url="NVUE-API/#delete-certificates" text="CA and entity certificates">}} and {{<link url="Understanding-the-cl-support-Output-File/#delete-cl-support-files" text="tech support files">}}. |
+| `nv action delete` | Provides commands to delete {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="binary image files">}}, {{<link url="Log-Files-with-NVUE/#delete-system-log-files" text="log files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="packages">}}, {{<link url="NVUE-API/#delete-certificates" text="CA and entity certificates">}} and {{<link url="Understanding-the-cl-support-Output-File/#delete-cl-support-files" text="tech support files">}}. |
 | `nv action disable`| Provides commands to disable {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}.|
 | `nv action disconnect`|  Provides commands to {{<link url="User-Accounts/#disconnect-user-account-active-terminals" text="disconnect users logged into the switch">}}. |
 | `nv action enable`| Provides commands to enable {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}. |
 | `nv action export`| Exports a system configuration file.|
-| `nv action fetch`| Fetches {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="binary image files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="package files">}}, configuration files, and platform firmware. |
+| `nv action fetch`| Fetches {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="binary image files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="package files">}}, configuration files, and platform firmware. |
 | `nv action generate` | Generates {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}} and {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="hash files">}}.|
 | `nv action import` | Provides commands to import CA and entity certificates, and CRLs. |
-| `nv action install` | Installs {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="system image files">}}. |
+| `nv action install` | Installs {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="system image files">}}. |
 | `nv action list`| Lists the contents of a directory, including files, subdirectories, and other file system objects. |
 | `nv action lookup`| Looks up the {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="route in the routing table">}} for a specific destination. |
 | `nv action ping` | Provides commands to run {{<link url="Network-Troubleshooting/#ping" text="ping">}}.|
 | `nv action reboot` | Reboots the switch in the configured restart mode ({{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="fast, cold, or warm">}}). You must specify the `no-confirm` option with this command. |
-| `nv action rename` | Provides commands to {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="system image files">}}.|
+| `nv action rename` | Provides commands to {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="system image files">}}.|
 | `nv action reset` | Provides commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#reset-a-transceiver" text="reset transceivers">}} and to reset the switch to {{<link url="Factory-Reset" text="factory defaults">}}.|
 | `nv action rotate` | Provides commands to {{<link url="Log-Files-with-NVUE/#rotate-the-system-log-file" text="rotate the system log file">}}.|
 | `nv action run` | Provides commands to run {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}.|
 | `nv action schedule` | Configures the schedule for {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="high frequency telemetry data collection">}}.|
 | `nv action traceroute` | Provides commands to run {{<link url="Network-Troubleshooting/#traceroute" text="traceroute">}}.|
 | `nv action upgrade` | {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Upgrades system packages">}}.|
-| `nv action upload` | Uploads {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="system image files">}}, {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}}, and configuration files to the switch.|
+| `nv action upload` | Uploads {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="system image files">}}, {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}}, and configuration files to the switch.|
 
 ### List All NVUE Commands
 

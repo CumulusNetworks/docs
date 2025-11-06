@@ -74,12 +74,6 @@ To work around this issue, adjust the poll period to 60 seconds on the new switc
 <td></td>
 </tr>
 <tr>
-<td>3985598</td>
-<td>When you configure multiple threshold-crossing events for the same TCA event ID on the same device, NetQ will only display one TCA event for each hostname per TCA event ID, even if both thresholds are crossed or status events are triggered.  </td>
-<td>4.11.0-4.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3800434</td>
 <td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
 <td>4.9.0-4.15.1</td>

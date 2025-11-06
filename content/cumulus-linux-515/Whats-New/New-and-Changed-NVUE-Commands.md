@@ -792,12 +792,6 @@ nv show mlag
 The following NVUE commands are deprecated in Cumulus Linux 5.15.
 
 {{< tabs "TabID857 ">}}
-{{< tab "nv show ">}}
-
-```
-```
-
-{{< /tab >}}
 {{< tab "nv set ">}}
 
 ```

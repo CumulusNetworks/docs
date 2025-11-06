@@ -462,9 +462,15 @@ vrf                                  default  default
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip address</h>
+## <h>nv show interface \<interface-id\> ipv4 address</h>
 
 Shows the IP addresses configured for the specified interface.
+
+For IPv6, the command is `nv show interface <interface> ipv6 address`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip address`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -479,8 +485,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface lo ip address
-
+cumulus@switch:~$ nv show interface lo ipv4 address
 -------------
 10.10.10.1/32
 127.0.0.1/8  
@@ -489,16 +494,22 @@ cumulus@switch:~$ nv show interface lo ip address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip address \<ip-prefix-id\></h>
+## <h>nv show interface \<interface-id\> ipv4 address \<ip-prefix-id\></h>
 
 Shows details about a specific IP address for the specified interface.
+
+For IPv6, the command is `nv show interface <interface> ipv6 address <ip-prefix-id>`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip address <ip-prefix-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
-| `<ip-prefix-id>`  | The IPv4 or IPv6 address and route prefix in CIDR notation.|
+| `<ip-prefix-id>`  | The address and route prefix in CIDR notation.|
 
 ### Version History
 
@@ -507,14 +518,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface lo ip address 10.10.10.1/32
+cumulus@switch:~$ nv show interface lo ipv4 address 10.10.10.1/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip gateway</h>
+## <h>nv show interface \<interface-id\> ipv4 gateway</h>
 
 Shows the gateway IP address for the specified interface.
+
+For IPv6, the command is `nv show interface <interface> ipv6 gateway`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip gateway`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -529,14 +546,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip gateway
+cumulus@switch:~$ nv show interface swp1 ipv4 gateway
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip gateway \<ip-address-id\></h>
+## <h>nv show interface \<interface-id\> ipv4 gateway \<ip-address-id\></h>
 
 Shows information about a specific gateway IP address for the specified interface
+
+For IPv6, the command is `nv show interface <interface> ipv6 gateway <gateway>`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip gateway <gateway>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -552,65 +575,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip gateway 10.10.10.1
+cumulus@switch:~$ nv show interface swp1 ipv4 gateway 10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip ipv4</h>
-
-Shows IPv4 information for the specified interface.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 ip ipv4
-         operational  applied  pending
--------  -----------  -------  -------
-forward               on       on
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> ip ipv6</h>
-
-Shows IPv6 information for the specified interface.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 ip ipv6
-        operational  applied  pending
--------  -----------  -------  -------
-enable                on       on     
-forward               on       on
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> ip neighbor</h>
+## <h>nv show interface \<interface-id\> ipv4 neighbor</h>
 
 Shows information about the IP neighbors configured for the specified interface.
+
+For IPv6, the command is `nv show interface <interface> ipv6 neighbor`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip neighbor ipv4`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -625,7 +603,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp51 ip neighbor
+cumulus@switch:~$ nv show interface swp51 ipv4 neighbor
         operational                applied  pending
 ------  -------------------------  -------  -------
 [ipv4]  169.254.0.1                                
@@ -634,34 +612,15 @@ cumulus@switch:~$ nv show interface swp51 ip neighbor
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip neighbor ipv4</h>
-
-Shows the IPv4 neighbors for the specified interface.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp51 ip neighbor ipv4
-             lladdr             state    
------------  -----------------  ---------
-169.254.0.1  48:b0:2d:08:98:98  permanent
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> ip neighbor ipv4 \<neighbor-id\></h>
+## <h>nv show interface \<interface-id\> ipv4 neighbor \<neighbor-id\></h>
 
 Shows information about a specific IPv4 neighbor for the specified interface.
+
+For IPv6, the command is `nv show interface <interface> ipv6 neighbor <neighbor-id>`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip neighbor ipv4 <neighbor-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -677,63 +636,11 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp51 ip neighbor ipv4 169.254.0.1
+cumulus@switch:~$ nv show interface swp51 ipv4 neighbor 169.254.0.1
         operational        applied  pending
 ------  -----------------  -------  -------
 lladdr  48:b0:2d:08:98:98                  
 state   permanent
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> ip neighbor ipv6</h>
-
-Shows the IPv6 neighbors for the specified interface.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp51 ip neighbor ipv6
-                           lladdr             state    
--------------------------  -----------------  ---------
-fe80::4ab0:2dff:fe08:9898  48:b0:2d:08:98:98  reachable
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> ip neighbor ipv6 \<neighbor-id\></h>
-
-Shows information about a specific IPv6 neighbor for the specified interface.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-| `<neighbor-id>`  | The IPv4 address of the neighbor.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp51 ip neighbor ipv6 fe80::4ab0:2dff:fe08:9898
-        operational        applied  pending
-------  -----------------  -------  -------
-lladdr  48:b0:2d:08:98:98                  
-state   reachable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

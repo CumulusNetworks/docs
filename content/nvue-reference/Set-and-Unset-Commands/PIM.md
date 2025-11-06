@@ -148,6 +148,10 @@ cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4 use-sour
 
 Configures the BFD detect multiplier value for a PIM interface. You can set a value between 2 and 255.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -196,6 +200,10 @@ cumulus@switch:~$ nv set interface swp1 router pim bfd on
 
 Configures the BFD minimum receive interval in milliseconds for a PIM interface. You can set a value between 50 and 60000.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -217,6 +225,10 @@ cumulus@switch:~$ nv set interface swp51 router pim bfd min-receive-interval 300
 ## <h>nv set interface \<interface-id\> router pim bfd min-transmit-interval</h>
 
 Configures the BFD minimum transmit interval in milliseconds for a PIM interface. You can set a value between 50 and 60000.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 

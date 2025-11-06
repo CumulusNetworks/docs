@@ -2881,12 +2881,12 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd state</h>
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd enable</h>
 
-Enables and disables BFD for the BGP peer group in the specified VRF. The default setting is `disabled`.
+Enables and disables BFD for the BGP peer group in the specified VRF. The default setting is `disable`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+Cumulus Linux 5.15 and later no longer supports this command.
 {{%/notice%}}
 
 ### Command Syntax
@@ -2903,7 +2903,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example 
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd state enabled
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd state enable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2911,6 +2911,10 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd state enab
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd detect-multiplier</h>
 
 Configures the BFD interval multiplier for the BGP peer group in the specified VRF. You can specify a value between 2 and 255.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2935,6 +2939,10 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd detect-mul
 
 Configures the minimum interval between received BFD control packets for the BGP peer group in the specified VRF. You can specify a value between 50 and 60000.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -2957,6 +2965,10 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd min-rx-int
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd min-tx-interval</h>
 
 Configures the minimum interval between sending BFD control packets for the BGP peer group in the specified VRF. You can specify a value between 50 and 60000.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 

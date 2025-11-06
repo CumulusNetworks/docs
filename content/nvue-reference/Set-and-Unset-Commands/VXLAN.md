@@ -32,7 +32,11 @@ cumulus@switch:~$ nv set nve vxlan ageing 4096
 
 ## <h>nv set nve vxlan arp-nd-suppress</h>
 
-Turns VXLAN ARP and ND suppression on or off. The default setting is `on`.
+Enables and disables VXLAN ARP and ND suppression. The default setting is `enabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Version History
 
@@ -41,7 +45,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set nve vxlan arp-nd-suppress off
+cumulus@switch:~$ nv set nve vxlan arp-nd-suppress disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -61,9 +65,13 @@ cumulus@switch:~$ nv set nve vxlan decapsulation dscp action derive
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set nve vxlan enable</h>
+## <h>nv set nve vxlan state</h>
 
-Turns VXLAN on or off globally.
+Enables and disables VXLAN globally.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -72,7 +80,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set nve vxlan enable on
+cumulus@switch:~$ nv set nve vxlan state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -114,13 +122,17 @@ cumulus@switch:~$ nv set nve vxlan encapsulation dscp 16
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set nve vxlan flooding enable</h>
+## <h>nv set nve vxlan flooding state</h>
 
-Turns VXLAN flooding `on` or `off`.
+Enables and disables VXLAN flooding.
 
 In Cumulus Linux 5.13 and later, enabling VXLAN flooding requires head-end replication and, or a configured multicast group. Make sure to set head-end replication on with the `nv set nve vxlan flooding head-end-replication evpn` command and, or a configured multicast group with the `nv set nve vxlan flooding multicast-group <ip-address>`.
 
 In Cumulus Linux 5.12 and earlier, enabling VXLAN flooding requires head-end replication. Make sure to set head-end replication on with the `nv set nve vxlan flooding head-end-replication evpn` command when you enable VXLAN flooding.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -129,7 +141,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set nve vxlan flooding enable on
+cumulus@switch:~$ nv set nve vxlan flooding state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -182,7 +194,11 @@ cumulus@switch:~$ nv set nve vxlan flooding multicast-group 224.0.0.10
 
 ## <h>nv set nve vxlan mac-learning</h>
 
-Turns VXLAN MAC learning on or off.
+Enables and disables VXLAN MAC learning.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Version History
 
@@ -191,7 +207,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set nve vxlan mac-learning on
+cumulus@switch:~$ nv set nve vxlan mac-learning enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

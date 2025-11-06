@@ -115,7 +115,7 @@ timers
 
 ## <h>nv show interface \<interface-id\> ptp shaper</h>
 
-Shows if PTP shaper is ON or OFF on the specified PTP interface.
+Shows if PTP shaper is on or off on the specified PTP interface.
 
 {{%notice note%}}
 This command is available for the NVIDIA Spectrum 1 switch only for PTP-enabled ports with speeds lower than 100G.

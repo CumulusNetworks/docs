@@ -460,9 +460,13 @@ cumulus@switch:~$ nv show interface swp1 lldp neighbor leaf02 bridge vlan 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service lldp</h>
+## <h>nv show system lldp</h>
 
 Shows global LLDP configuration, such as the LLDP mode, and LLDP timers and if 802.1 TLV transmission is on or off. By default, 802.1 TLV transmission is off and the switch sends all LLDP frames without 802.1 TLVs.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service lldp`.
+{{%/notice%}}
 
 ### Version History
 
@@ -471,7 +475,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service lldp
+cumulus@switch:~$ nv show system lldp
                         operational  applied  pending
 ----------------------  -----------  -------  -------
 dot1-tlv                off          off      off    
@@ -483,9 +487,13 @@ tx-interval             30           30       30
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service lldp application-tlv</h>
+## <h>nv show system lldp application-tlv</h>
 
 Shows all application priority TLV configuration on the switch.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service lldp application-tlv`.
+{{%/notice%}}
 
 ### Version History
 
@@ -494,7 +502,7 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service lldp application-tlv
+cumulus@switch:~$ nv show system lldp application-tlv
 udp-port
 ===========
     Port  priority
@@ -517,9 +525,13 @@ app
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service lldp application-tlv app</h>
+## <h>nv show system lldp application-tlv app</h>
 
 Shows the application priority mapping.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service llldp application-tlv app`.
+{{%/notice%}}
 
 ### Version History
 
@@ -528,7 +540,7 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service lldp application-tlv app
+cumulus@switch:~$ nv show system lldp application-tlv app
 AppName    priority
 ---------  --------
 NVME_4420  5       
@@ -538,9 +550,13 @@ iSCSI      3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service lldp application-tlv app \<app-id\></h>
+## <h>nv show system lldp application-tlv app \<app-id\></h>
 
 Shows the priority mapping for the specified application.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service llldp application-tlv app <app-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -555,7 +571,7 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service lldp application-tlv app iSCSI
+cumulus@switch:~$ nv show system lldp application-tlv app iSCSI
           operational  applied
 --------  -----------  -------
 priority  3            3 
@@ -563,9 +579,13 @@ priority  3            3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service lldp application-tlv tcp-port</h>
+## <h>nv show system lldp application-tlv tcp-port</h>
 
 Shows the TCP port priority mapping.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service llldp application-tlv tcp-port`.
+{{%/notice%}}
 
 ### Version History
 
@@ -574,7 +594,7 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service lldp application-tlv tcp-port
+cumulus@switch:~$ nv show system lldp application-tlv tcp-port
 Port  priority
 ----  --------
 4217  6
@@ -582,9 +602,13 @@ Port  priority
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service lldp application-tlv tcp-port \<port-id\>
+## <h>nv show system lldp application-tlv tcp-port \<port-id\>
 
 Shows the priority mapping for the specified TCP port.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service llldp application-tlv tcp-port <port-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -599,7 +623,7 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service lldp application-tlv tcp-port 4217
+cumulus@switch:~$ nv show system lldp application-tlv tcp-port 4217
           operational  applied
 --------  -----------  -------
 priority  6            6 
@@ -607,9 +631,13 @@ priority  6            6
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service lldp application-tlv udp-port</h>
+## <h>nv show system lldp application-tlv udp-port</h>
 
 Shows the UDP port priority mapping.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service llldp application-tlv udp-port`.
+{{%/notice%}}
 
 ### Version History
 
@@ -618,7 +646,7 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service lldp application-tlv udp-port
+cumulus@switch:~$ nv show system lldp application-tlv udp-port
 Port  priority
 ----  --------
 4317  4
@@ -626,9 +654,13 @@ Port  priority
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service lldp application-tlv udp-port \<port-id\></h>
+## <h>nv show system lldp application-tlv udp-port \<port-id\></h>
 
 Shows the priority mapping for the specified UDP port.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service llldp application-tlv udp-port <port-id>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -643,7 +675,7 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service lldp application-tlv udp-port 4317
+cumulus@switch:~$ nv show system lldp application-tlv udp-port 4317
           operational  applied
 --------  -----------  -------
 priority  4            4

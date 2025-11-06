@@ -60,7 +60,11 @@ cumulus@switch:~$ nv set interface bond1 bond down-delay 100
 
 ## <h>nv set interface \<interface-id\> bond lacp-bypass</h>
 
-Turns LACP bypass on the specified bond to 802.3ad mode so that it becomes active and forwards traffic even when there is no LACP partner. You can specify on or off. The default setting is off.
+Enables and disables LACP bypass on the specified bond to 802.3ad mode so that it becomes active and forwards traffic even when there is no LACP partner. You can specify `enabled` or `disabled`. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -75,7 +79,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface bond1 bond lacp-bypass on
+cumulus@switch:~$ nv set interface bond1 bond lacp-bypass enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -239,9 +243,13 @@ cumulus@switch:~$ nv set interface swp1 ip gateway 10.10.10.1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip ipv4 forward</h>
+## <h>nv set interface \<interface-id\> ipv4 forward</h>
 
-Turns IPv4 forwarding on or off for the specified interface. The default setting is `off`.
+Enables and disables IPv4 forwarding for the specified interface. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -256,14 +264,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip ipv4 forward on
+cumulus@switch:~$ nv set interface swp1 ipv4 forward enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip ipv6 enable</h>
+## <h>nv set interface \<interface-id\> ipv6 state</h>
 
-Turns IPv6 on or off. The default setting is `on`.
+Enables and disables IPv6. The default setting is `enabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -278,14 +290,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip ipv6 enable off
+cumulus@switch:~$ nv set interface swp1 ipv6 state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ip ipv6 forward</h>
 
-Turns IPv6 forwarding on or off. The default setting is `on`.
+Enables and disables IPv6 forwarding. The default setting is `enabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -300,7 +316,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip ipv6 forward off
+cumulus@switch:~$ nv set interface swp1 ipv6 forward disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -454,9 +470,13 @@ cumulus@switch:~$ nv set interface swp1 link fec baser
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> link flap-protection enable</h>
+## <h>nv set interface \<interface-id\> link flap-protection state</h>
 
-Enable (`on`) and disables (`off`) link flap protection on the specified interface. Cumulus Linux enables link flap detection by default. Link flap detection triggers when there are five link flaps within ten seconds, at which point the interface goes into a protodown state and shows `linkflap` as the reason. The `switchd` service also shows a log message.
+Enables and disables link flap protection on the specified interface. Cumulus Linux enables link flap detection by default. Link flap detection triggers when there are five link flaps within ten seconds, at which point the interface goes into a protodown state and shows `linkflap` as the reason. The `switchd` service also shows a log message.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -471,7 +491,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 link flap-protection enable off
+cumulus@switch:~$ nv set interface swp1 link flap-protection state disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

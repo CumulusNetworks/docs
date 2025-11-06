@@ -14,11 +14,15 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa tacacs accounting enable</h>
+## <h>nv set system aaa tacacs accounting state</h>
 
-Turns TACACS+ accounting on or off.
+Enables and disables TACACS+ accounting.
 
 TACACS+ accounting uses the `audisp` module, with an additional plugin for `auditd` and `audisp`. The plugin maps the `auid` in the accounting record to a TACACS login, which it bases on the `auid` and `sessionid`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -27,7 +31,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs accounting enable on
+cumulus@switch:~$ nv set system aaa tacacs accounting state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -92,7 +96,11 @@ cumulus@switch:~$ nv set system aaa authentication-order 1 tacacs
 
 ## <h>nv set system aaa tacacs authentication per-user-homedir</h>
 
-Turns per user home directory on or off to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in. The default setting is `off`.
+Enables and disables per user home directory to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
 
 ### Version History
 
@@ -101,7 +109,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs authentication per-user-homedir on
+cumulus@switch:~$ nv set system aaa tacacs authentication per-user-homedir enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

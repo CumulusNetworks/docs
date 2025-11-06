@@ -540,6 +540,7 @@ Configures the restart mode for the switch. You can restart the switch in one of
 - `warm` restarts the system with minimal impact to traffic and without affecting the data plane. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
 
 {{%notice note%}}
+- Cumulus Linux 5.15 no longer supports this command.
 - Cumulus Linux 5.7 and earlier supports fast mode for all protocols and warm boot for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
 - Cumulus Linux 5.8 supports fast mode for all protocols and warm mode for 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, and static routing. Warm mode for VXLAN routing with EVPN is available for beta and open to customer feedback. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
 {{%/notice%}}

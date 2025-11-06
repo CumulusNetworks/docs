@@ -10,9 +10,13 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip vrr</h>
+## <h>nv show interface \<interface-id\> ipv4 vrr</h>
 
-Shows VRR configuration for the specified interface.
+Shows VRR configuration for the specified interface. For IPv6, run the `nv show interface <interface-id> ipv6 vrr` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip vrr`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -27,7 +31,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface vlan10 ip vrr
+cumulus@switch:~$ nv show interface vlan10 ipv4 vrr
              operational        applied     
 -----------  -----------------  ------------
 enable                          on          
@@ -39,9 +43,13 @@ state        up                 up
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip vrr address</h>
+## <h>nv show interface \<interface-id\> ipv4 vrr address</h>
 
-Shows the VRR IP addresses on the specified interface.
+Shows the VRR IP addresses on the specified interface. For IPv6, run the `nv show interface <interface-id> ipv6 vrr address` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip vrr address`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -56,7 +64,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface vlan10 ip vrr address
+cumulus@switch:~$ nv show interface vlan10 ipv4 vrr address
 -------------------------- 
 11.0.1.1/24 
 2001:aa:0:1::1/64 
@@ -65,9 +73,13 @@ fe80::200:5eff:fe00:101/64
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip vrr address \<ip-prefix-id\></h>
+## <h>nv show interface \<interface-id\> ipv4 vrr address \<ip-prefix-id\></h>
 
-Shows information about a specific VRR IP address on the specified interface.
+Shows information about a specific VRR IP address on the specified interface. For IPv6, run the `nv show interface <interface-id> ipv6 vrr address <ip-prefix-id\>` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip vrr address <ip-prefix-id\>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -83,15 +95,19 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@switch:~$ nv show interface vlan10 ipv4 vrr address 10.1.10.1/24
 No Data 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip vrr state</h>
+## <h>nv show interface \<interface-id\> ipv4 vrr vrr-state</h>
 
-Shows the state of the specified VRR interface.
+Shows the state of the specified VRR interface. For IPv6, run the `nv show interface <interface-id> ipv6 vrr vrr-state` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip vrr vrr-state`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -106,7 +122,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface vlan10 ip vrr state
+cumulus@switch:~$ nv show interface vlan10 ipv4 vrr vrr-state
   operational  applied
   -----------  -------
   up           up

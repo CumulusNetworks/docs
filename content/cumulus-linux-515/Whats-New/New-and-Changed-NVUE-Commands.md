@@ -860,49 +860,49 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-nv show system docker
-nv show system docker image
-nv show system docker container
-nv show system docker container stats
-nv show system docker engine
-nv show interface dot1x-summary
-nv show interface dot1x-ipv6-summary
-nv show interface dot1x-counters
-nv show interface <interface-id> ipv4 dhcp-client 
-nv show interface <interface-id> ipv4 dhcp-client lease
-nv show interface <interface-id> ipv6 dhcp-client 
-nv show interface <interface-id> ipv6 dhcp-client lease
+nv show interface <interface-id> latency-measurement
+nv show interface <interface-id> latency-measurement traffic-class
+nv show interface <interface-id> latency-measurement traffic-class <traffic-class>
+nv show interface <interface-id> latency-measurement traffic-class <traffic-class> protocol <protocol>
 nv show interface <interface-id> link phy health native 
 nv show interface <interface-id> link phy health histogram 
 nv show interface <interface-id> link phy health histogram native
-nv show interface <interface> telemetry congestion-event
+nv show interface dot1x-summary
+nv show interface dot1x-ipv6-summary
+nv show interface dot1x-counters
 nv show system aaa authentication restrictions
 nv show system control-plane acl <acl-id> inbound 
 nv show system control-plane acl <acl-id> outbound
 nv show system dns search
 nv show system dns search <dns-search-id>
+nv show system docker
+nv show system docker image
+nv show system docker container
+nv show system docker container stats
+nv show system docker engine
 nv show system forwarding packet-trim
 nv show system forwarding packet-trim counters
 nv show system gnmi-server status gnoi-rpc
 nv show system health history 
 nv show system health history files 
 nv show system health history files <file-name>
-nv show system telemetry congestion-event
-nv show system telemetry latency-measurement
-nv show system telemetry latency-measurement export
-nv show interface <interface> latency-measurement
-nv show interface <interface> latency-measurement traffic-class
-nv show interface <interface> latency-measurement traffic-class <traffic-class>
-nv show interface <interface> latency-measurement traffic-class <traffic-class> protocol <protocol>
 nv show system ntp brief
 nv show system ntp server 
 nv show system ntp listen 
 nv show system ntp listen <interface-id  
+nv show system telemetry congestion-event
+nv show system telemetry latency-measurement
+nv show system telemetry latency-measurement export
+nv show interface <interface> telemetry congestion-event
 nv show system serial-console
 nv show vrf <vrf-id> dhcp-server-v4 static-host <host-id> ifname
 nv show vrf <vrf-id> dhcp-server-v4 static-host <host-id> ifname <interface-name>
 nv show vrf <vrf-id> dhcp-server-v6 static-host <host-id> ifname
 nv show vrf <vrf-id> dhcp-server-v6 static-host <host-id> ifname <interface-name>
+nv show interface <interface-id> ipv4 dhcp-client 
+nv show interface <interface-id> ipv4 dhcp-client lease
+nv show interface <interface-id> ipv6 dhcp-client 
+nv show interface <interface-id> ipv6 dhcp-client lease
 nv show router bfd profile <profile-name>  
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd 
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd 
@@ -918,34 +918,21 @@ nv show vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> b
 {{< tab "nv set ">}}
 
 ```
+nv set interface <interface-id> dot1x ipv6-profile <profile-name>
+nv set interface <interface-id> dot1x ipv6-profile <profile-name>
 nv set interface <interface-id> ipv4 dhcp-client set-hostname (enabled|disabled) 
 nv set interface <interface-id> ipv6 dhcp-client set-hostname (enabled|disabled) 
-nv set interface <interface-id> router ospf bfd profile <profile-name> 
-nv set interface <interface-id> router pim bfd profile <profile-name>
-nv set platform ps-redundancy policy <arg> 
+nv set interface <interface-id> latency-measurement traffic-class <traffic-class> protocol <protocol-id> dscp <dscp>
 nv set router bfd state
 nv set router bfd profile <profile-name>
-nv set router bfd profile <profile-name> 
+nv set router bfd profile <profile-name> detect-multiplier
 nv set router bfd profile <profile-name> min-rx-interval 
+nv set router bfd profile <profile-name> min-tx-interval
 nv set router bfd profile <profile-name> shutdown
 nv set router bfd profile <profile-name> passive-mode 
 nv set router bfd profile <profile-name> minimum-ttl
-nv set system dns server <dns-server-ip> vrf <vrf-id> | nv set system dns server <server-id> vrf mgmt
-nv set system dns server <dns-server-id> priority <integer> | nv set system dns server <server-id> priority <priority>
-nv set system dns search <dns-search-id> priority <integer> | nv set system dns search <serach-domain> priority <priority>
-nv set system dns domain <dns-domain-def> | nv set system dns domain <domain>
-nv set system ntp server <server-id> state (enabled|disabled) 
-nv set system ntp server <server-id> version (3|4) 
-nv set system ntp server <server-id> association-type (server|pool) 
-nv set system ntp state (enabled|disabled) 
-nv set system ntp vrf <vrf-name> 
-nv set system serial-console sysrq-capabilities <arg> 
-nv set system ssh-server ciphers
-nv set system ssh-server macs
-nv set system ssh-server kex-algorithms
-nv set system ssh-server pubkey-accepted-algorithms 
-nv set system ssh-server host-key-algorithms
-nv set system forwarding resource-mode
+nv set interface <interface-id> router ospf bfd profile <profile-name> 
+nv set interface <interface-id> router pim bfd profile <profile-name>
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd profile <profile-name> 
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd profile <profile-name>
 nv set vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd profile <profile-name>
@@ -953,47 +940,73 @@ nv set vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bf
 nv set vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd source
 nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd profile <profile-name> 
 nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd multi-hop
-nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd source  
-```
-
-{{< /tab >}}
-{{< tab "nv unset ">}}
-
-```
-nv unset interface <interface-id> router ospf bfd  
-nv unset interface <interface-id> router pim bfd 
-nv unset router bfd profile <profile-name> detect-multiplier 
-nv unset router bfd profile <profile-name> min-tx-interval 
-nv unset router bfd profile <profile-name> min-rx-interval  
-nv unset router bfd profile <profile-name> shutdown 
-nv unset router bfd profile <profile-name> passive-mode 
-nv unset router bfd profile <profile-name> minimum-ttl
-nv unset system ssh-server ciphers
-nv unset system ssh-server macs
-nv unset system ssh-server kex-algorithms
-nv unset system ssh-server pubkey-accepted-algorithms 
-nv unset system ssh-server host-key-algorithms
-nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd  
-nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> bfd  
-nv unset vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd  
-nv unset vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd multi-hop 
-nv unset vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd source
-nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd 
-nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd multi-hop 
-nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd source 
+nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd source 
+nv set system aaa authentication restrictions lockout-state
+nv set system aaa authentication restrictions lockout-attempts
+nv set system aaa authentication restrictions fail-delay
+nv set system aaa authentication restrictions lockout-reattempt
+nv set system dns server <dns-server-ip> vrf <vrf-id> 
+nv set system dns server <dns-server-id> priority <integer> 
+nv set system dns domain <dns-domain-def> 
+nv set system docker state
+nv set system docker vrf <vrf-name>
+nv set system dot1x dynamic-ipv6-multi-tenant state
+nv set system dot1x ipv6-profile <profile-id>
+nv set system dot1x ipv6-profile <profile-id> property
+nv set system dot1x ipv6-profile <profile-id> route-map
+nv set system ntp server <server-id> state (enabled|disabled) 
+nv set system ntp server <server-id> version (3|4) 
+nv set system ntp server <server-id> association-type (server|pool) 
+nv set system ntp state (enabled|disabled) 
+nv set system ntp vrf <vrf-name> 
+nv set system serial-console sysrq-capabilities <arg> 
+nv set system security encryption folder-encrypt storage
+nv set system security encryption folder-encrypt encrypted-folder
+nv set system ssh-server ciphers
+nv set system ssh-server macs
+nv set system ssh-server kex-algorithms
+nv set system ssh-server pubkey-accepted-algorithms 
+nv set system ssh-server host-key-algorithms
+nv set system syslog selector ifreload
+nv set system syslog selector ifreload filter
+nv set system syslog selector ifreload program-name
+nv set system telemetry congestion-event export state
+nv set system telemetry congestion-event throttle-duration
+nv set interface <interface-id> telemetry congestion-event egress-buffer traffic-class <traffic-class> buffer-threshold
+nv set system telemetry hft sample-interval-usec
+nv set system telemetry hft counter
+nv set system telemetry hft egress-buffer
+nv set system telemetry hft duration
+nv set interface <interface-id> telemetry hft state
+nv set system telemetry hft export state
+nv set system telemetry stats-group <name> hft export state
+nv set system telemetry latency-measurement export state
+nv set system telemetry stats-group <name> latency-measurement export state
+nv set system telemetry latency-measurement state
+nv set system telemetry latency-measurement sample-interval
+nv set system forwarding resource-mode 
 ```
 
 {{< /tab >}}
 {{< tab "nv action ">}}
 
 ```
+nv action clear system aaa authentication restrictions user <user-id>
+nv action clear system aaa authentication restrictions
+nv action enable system security encryption folder-encrypt password <passsword>
+nv action enable system security encryption folder-encrypt force
 nv action reboot system
 nv action release interface <interface-id> ipv4 dhcp-client
+nv action release interface <interface-id> ipv6 dhcp-client
 nv action renew interface <interface-id> ipv4 dhcp-client
-nv action release interface <interface-id> ipv6 dhcp-client 
 nv action renew interface <interface-id> ipv6 dhcp-client
 nv action delete system health history files <file-name>
 nv action upload system health history files <file-name> <remote-url> 
+nv action pull system docker image
+nv action remove system docker image
+nv action remove system docker container <container-id>
+nv action run system docker container <container-id> image <image>
+nv action stop system docker container <container-id>
 ```
 
 {{< /tab >}}

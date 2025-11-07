@@ -164,6 +164,29 @@ cumulus@switch:~$ nv show system gnmi-server status client 10.1.1.10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system gnmi-server status gnoi-rpc</h>
+
+Shows the number of gNOI RPCs received on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system gnmi-server status gnoi-rpc
+gnoi-rpc-name failed-rpc-requests received-rpc-requests
+------------- ------------------- ---------------------
+File.Get      0                   4
+File.Put      0                   1
+File.Remove   0                   1
+File.Stat     0                   46
+OS.Install    0                   1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system grpc-tunnel</h>
 
 Shows the gRCP-tunnel servers configured on the switch.

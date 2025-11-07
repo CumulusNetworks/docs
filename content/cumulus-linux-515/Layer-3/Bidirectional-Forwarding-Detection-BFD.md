@@ -356,13 +356,7 @@ passive-mode       enabled
 minimum-ttl        1 
 ```
 
-To show information about BFD connected devices, run the following commands:
-- `nv show vrf <vrf-id> router bfd peers` shows
-- `nv show vrf <vrf-id> router bfd peers --view brief` shows
-- `nv show vrf <vrf-id> router bfd peers --view standard` shows
-- `nv show vrf <vrf-id> router bfd peers --view detail` shows
-- `nv show vrf <vrf-id> router bfd peers --view counters` shows
-- `nv show vrf <vrf-id> router bfd peers <session-id>` shows
+To show information about BFD connected devices, run the `nv show vrf <vrf-id> router bfd peers` command. You can use the `--view brief` option to show summarized information, `--view standard` to show detailed information, or `--view counters` to see counters.
 
 ```
 cumulus@switch:~$ nv show vrf default router bfd peers --view brief

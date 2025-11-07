@@ -35,6 +35,33 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> counters packet-trim</h>
+
+Shows the number of trimmed packets for a specific interface by traffic class.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1-3 counters packet-trim
+Traffic Class  Trim Eligible Packets 
+-------------  --------------- 
+1                 1000                
+2                 2000              
+3                 3000 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> packet-trim egress-eligibility</h>
 
 Shows packet trimming eligibility information for an interface.
@@ -166,3 +193,30 @@ cumulus@switch:~$ nv show system forwarding packet-trim remark
 ----  -----------  -------
 dscp               11
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system forwarding packet-trim counters</h>
+
+Shows the number of trimmed packets at both the global and interface levels.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim counters
+Global 
+ trimmed-packets      20,000 
+Port-Level 
+------------- 
+Interface  Trim Eligible Packets Trimmed TxPackets 
+---------  ------------------  ---------------- 
+swp1        1000                  N/A 
+swp2        2000                  N/A 
+swp3        4000                  N/A 
+swp4        5000                  N/A
+```
+

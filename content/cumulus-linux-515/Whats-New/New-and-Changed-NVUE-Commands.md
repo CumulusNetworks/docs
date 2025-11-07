@@ -860,7 +860,6 @@ nv show interface <interface-id> latency-measurement traffic-class <traffic-clas
 nv show interface <interface-id> link phy health native 
 nv show interface <interface-id> link phy health histogram 
 nv show interface <interface-id> link phy health histogram native
-nv show interface dot1x-summary
 nv show interface dot1x-ipv6-summary
 nv show interface dot1x-counters
 nv show system aaa authentication restrictions
@@ -873,8 +872,8 @@ nv show system docker image
 nv show system docker container
 nv show system docker container stats
 nv show system docker engine
-nv show system forwarding packet-trim
 nv show system forwarding packet-trim counters
+nv show interface <interface-id> counters packet-trim
 nv show system gnmi-server status gnoi-rpc
 nv show system health history 
 nv show system health history files 

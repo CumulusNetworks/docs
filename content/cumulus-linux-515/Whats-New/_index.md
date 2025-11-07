@@ -177,8 +177,6 @@ Old Name | New Name|
    - {{< expand "Deprecated OTEL Metrics" >}}
 |  Name | Removal Reason |
 |------ | ----------- |
-| `nvswitch_interface_discards_egress_link_down` | Unsupported on Spectrum switches. |
-| `nvswitch_interface_discards_ingress_discard_all` | Unsupported on Spectrum switches. |
 | `nvswitch_interface_discards_port_isolation` | Unsupported on Spectrum switches. |
 | `nvswitch_interface_dot3_stats_alignment_errors` | Unsupported on Spectrum switches. |
 | `nvswitch_interface_dot3_stats_excessive_collisions` | Unsupported on Spectrum switches. |

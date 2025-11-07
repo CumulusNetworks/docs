@@ -782,7 +782,7 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 | `nvswitch_ar_congestion_changes`  | Number of adaptive routing change events triggered due to congestion or link-down.|
 | `nvswitch_srv6_no_sid_drops`| Number of packets dropped due to no matching SID. |
 | `nvswitch_srv6_in_pkts` | Number of packets received for this SID. |
-| `nvswitch_qos_trimmed_unicast_pkts`| Number of packets that were trimmed.|
+| `nvswitch_qos_trimmed_unicast_pkts`| Number of packets that were trimmed. To see this metric you must enable packet trimming. Spectrum-3 switches do not support this metric.|
 | `nvswitch_interface_trimmed_unicast_pkts [interface]`| * Number of packets that were trimmed on the interface.|
 | `nvswitch_interface_trimmed_tx_unicast_pkts [interface] `| * Number of packets that were trimmed and sent successfully on the interface.|
 | `nvswitch_interface_tc_trimmed_unicast_pkts [interface][tc]`| * Number of packets that were trimmed on the interface and traffic class.|
@@ -925,7 +925,7 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_headroom_buffer_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
 | `nvswitch_interface_headroom_buffer_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
 | `nvswitch_interface_headroom_buffer_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
-| `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max_bytes` | Interface shared buffer traffic class highest recorded watermark counter in bytes.|
+| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_bytes` | Interface shared buffer traffic class highest recorded watermark counter in bytes.|
 | `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max_timestamp` | Time when highest shared buffer port group watermark is recorded.|
 | `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_timestamp` | Time when highest shared buffer traffic class watermark is recorded|
 | `nvswitch_interface_shared_buffer_port_ingress_pool_watermark_recorded_max_timestamp` | Time when highest shared pool buffer watermark is recorded.|

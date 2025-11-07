@@ -127,7 +127,7 @@ LocalId     MHop   Local       Peer        Interface  State  Passive  Time      
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bfd peers \<session-id\></h>
+## <h>nv show vrf \<vrf-id\> router bfd peers \<local-id\></h>
 
 Shows BFD peer information for the specified vrf and session.
 
@@ -136,7 +136,7 @@ Shows BFD peer information for the specified vrf and session.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf>` | The VRF name. |
-| `<session-ID>` | The session ID (integer). |
+| `<local-ID>` | The session ID (integer). |
 
 ### Version History
 

@@ -788,7 +788,6 @@ The following NVUE commands are deprecated in Cumulus Linux 5.15.
 {{< tab "nv set ">}}
 
 ```
-nv set system message post-logout <value>
 nv set system ssh-server strict
 nv set system reboot mode
 nv set interface <interface-id> router ospf bfd enable
@@ -813,6 +812,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval
 {{< tab "nv unset ">}}
 
 ```
+nv unset system ssh-server strict
 nv unset system reboot
 nv unset interface <interface-id> router ospf bfd enable 
 nv unset interface <interface-id> router ospf bfd detect-multiplier 

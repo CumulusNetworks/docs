@@ -942,6 +942,10 @@ cumulus@switch:~$ nv set vrf default router bgp state enabled
 
 Configures the BFD detect multiplier that determines the maximum number of concurrent BFD packets (including control packets and echo packets) that BGP can discard. You can set a value between 2 and 255.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command. 
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -964,6 +968,10 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd detect-multip
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd enable</h>
 
 Enables and disables BFD to configure tracking BGP peering sessions using this configuration.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command. 
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -988,6 +996,10 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd enable on
 
 Configures the minimum interval for receiving single-hop BFD control packets. You can specify a value between 50 and 60000.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1010,6 +1022,10 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd min-rx-interv
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd min-tx-interval</h>
 
 Configures the minimum interval for transmitting single-hop BFD control packets. You can specify a value between 50 and 60000. The actual value used is the smaller of this value or the value that the neighbor expects.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command. 
+{{%/notice%}}
 
 ### Command Syntax
 

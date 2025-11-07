@@ -873,6 +873,146 @@ Lane Stats
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> link phy health histogram</h>
+
+Shows physical layer histogram information.
+
+{{%notice note%}}
+Switches with the Spectrum 1 ASIC do not support this command.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link phy health histogram
+rs-fec-corrected-errors
+==========================
+    Bin  count       Upper boundary
+    ---  ----------  --------------
+    0    1216554377  0             
+    1    0           1             
+    2    0           2             
+    3    0           3             
+    4    0           4             
+    5    0           5             
+    6    0           6             
+    7    0           7             
+    8    0           8             
+    9    0           9             
+    10   0           10            
+    11   0           11            
+    12   0           12            
+    13   0           13            
+    14   0           14            
+    15   0           15
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> link phy health histogram</h>
+
+Shows physical layer filtered histogram information.
+
+{{%notice note%}}
+Switches with the Spectrum 1 ASIC do not support this command.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link phy health histogram native
+rs-fec-corrected-errors
+==========================
+    Bin  count       Upper boundary
+    ---  ----------  --------------
+    0    1216554377  0             
+    1    0           1             
+    2    0           2             
+    3    0           3             
+    4    0           4             
+    5    0           5             
+    6    0           6             
+    7    0           7             
+    8    0           8             
+    9    0           9             
+    10   0           10            
+    11   0           11            
+    12   0           12            
+    13   0           13            
+    14   0           14            
+    15   0           15
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> link phy health native</h>
+
+Shows filtered physical layer information.
+
+{{%notice note%}}
+Switches with the Spectrum 1 ASIC do not support this command.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link phy health native
+                           operational    
+-------------------------  -------------
+time-since-last-clear-min  1                     
+symbol-errors              0                     
+symbol-ber                 15E-255               
+raw-ber                    15E-255               
+phy-received-bits          6214400000000         
+effective-errors           0                     
+effective-ber              15E-255               
+
+Lane Stats
+=============
+    Lane  raw-ber  snr-host   snr-media  phy-raw-errors
+    ----  -------  ---------  ---------  --------------
+    0     15E-255  22.32 dB   23.14 dB   0             
+    1     15E-255  25.24 dB   22.47 dB   0             
+    2     15E-255  21.18 dB   22.30 dB   0             
+    3     15E-255  25.12 dB   25.01 dB   0             
+    4     15E-255  24.50 dB   24.62 dB   0             
+    5     15E-255  0     dB   0     dB   0             
+    6     15E-255  25    dB   24.62 dB   0             
+    7     15E-255  22.18 dB   23.48 dB   0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> link protodown-reason</h>
 
 Shows the link protodown reason details for an interface.

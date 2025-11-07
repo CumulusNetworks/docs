@@ -195,3 +195,45 @@ cumulus@switch:~$ nv show system dns server 192.0.2.44
 ---  -----------
 vrf  mgmt 
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system dns search</h>
+
+Shows the DNS search IDs and priorities.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system dns search
+DNS Search id  priority
+-------------  --------
+simulation 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system dns search \<dns-search-id\></h>
+
+Shows the information about the DNS search ID.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<dns-search-id>` | The DNS search ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system dns search simulation
+no data 
+```

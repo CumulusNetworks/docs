@@ -3750,7 +3750,7 @@ Power cycles the switch remotely to recover from certain conditions, such as a t
 When you run the `nv action power-cycle system` command, the switch prompts you for confirmation before power cycling. To power cycle the switch without being prompted for confirmation, run the `nv action power-cycle system force` command
 
 {{%notice note%}}
-Cumulus Linux 5.15 and later no longer supports this command.
+Cumulus Linux 5.15 and later no longer supports this command. Use the `nv action reboot system mode power-cycle` command instead.
 {{%/notice%}}
 
 ### Version History

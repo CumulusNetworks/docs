@@ -645,6 +645,128 @@ state   permanent
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> latency-measurement</h>
+
+Shows latency measurement information for an interface.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>`  | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 latency-measurement
+traffic-class   protocol  DSCP   Latency   Status       Timestamp 
+------------------------------------------------------------------------------- 
+1               ipv4      12     19         SUCCESS     2025-01-25 10:15:32
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class</h>
+
+Shows latency measurement information for all traffic classes.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>`  | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 latency-measurement traffic-class
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<traffic-class\></h>
+
+Shows latency measurement information for a specific traffic class.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>`  | The interface name.|
+| `<traffic-class>`  | The traffic class.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 latency-measurement traffic-class 0
+protocol
+===========
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol</h>
+
+Shows latency measurement information for a specific traffic class for both IPv4 and IPv6.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>`  | The interface name.|
+| `<traffic-class>`  | The traffic class.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 latency-measurement traffic-class 0 protocol
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol \<protocol\></h>
+
+Shows latency measurement information for a specific traffic class and protocol (IPv4 or IPv6).
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>`  | The interface name.|
+| `<traffic-class>`  | The traffic class.|
+| `<protocol>`  | IPv4 or IPv6.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 latency-measurement traffic-class 0 protocol ipv4
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> link</h>
 
 Shows configuration and statistics for the specified interface.
@@ -662,7 +784,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show interface swp1 link
+cumulus@switch:~$ nv show interface swp1 link
                          operational              applied
 -----------------------  -----------------------  -------
 admin-status             up                              
@@ -763,6 +885,31 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 link flag
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> link flap-protection</h>
+
+Shows if link flap protection is enabled for the interface.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link flap-protection
+       operational  applied  pending
+-----  -----------  -------  -------
+state               enabled  enabled
 ```
 
 ## <h>nv set interface \<interface-id\> link phy detail</h>
@@ -1064,6 +1211,10 @@ operational  applied  pending
 
 Shows statistics for the specified interface, such as packet size, packet drops, and packet errors.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1096,6 +1247,10 @@ out-pkts             501951
 ## <h>nv show interface \<interface-id\> link traffic-engineering</h>
 
 Shows traffic engineering statistics for the specified interface.
+
+{{%notice note%}}
+Cumulus Linux 5.14 and later no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 

@@ -58,6 +58,31 @@ enable  on           on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> telemetry congestion-event</h>
+
+Shows congestion event data for a specific interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry congestion-event
+Interface Congestion Event
+=============================
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> telemetry histogram</h>
 
 Shows histogram details for the specified interface.
@@ -628,6 +653,35 @@ cumulus@switch:~$ nv show system telemetry bw-gauge interface
 Interface  Tx (Mbps)  Rx (Mbps)
 ---------  ---------  ---------
 swp1       4          4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry congestion-event</h>
+
+Shows congestion notification configuration.
+
+{{%notice note%}}
+Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry congestion-event
+                   operational  applied   pending 
+-----------------  -----------  --------  --------
+export                                            
+  state            disabled     disabled  disabled
+throttle-duration  10000        10000     10000   
+
+Congestion Event Interfaces
+==============================
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

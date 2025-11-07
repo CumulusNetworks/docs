@@ -271,6 +271,131 @@ Mount Point  Filesystem  Size  Used  Avail  Use%
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system docker</h>
+
+Shows Docker information on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system docker
+       operational  applied
+-----  -----------  -------
+vrf    mgmt         mgmt   
+state  enabled      enabled
+
+Docker Containers
+====================
+    Container Name      Image                            Container ID  Status               Ports  Summary
+    ------------------  -------------------------------  ------------  -------------------  -----  -------
+    repo                cumulus-linux-apt-mirror:5.15.0  a941e1e51c3e  Up 6 days (healthy)                
+    what-just-happened  docker-wjh:latest                f834edf7fd3c  Up 7 days 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system docker image</h>
+
+Shows Docker images present on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system docker image
+Image Id      Image Name                Tag     Size    Date                           Summary
+------------  ------------------------  ------  ------  -----------------------------  -------
+283e2bf92e80  docker-wjh                latest  716MB   2025-10-29 21:47:09 -0400 EDT         
+d839322a5483  cumulus-linux-apt-mirror  5.15.0  3.47GB  2025-10-30 02:35:30 -0400 EDT 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system docker container</h>
+
+Shows all containers and their status, including stopped containers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system docker container
+Container Name      Image                            Container ID  Status               Ports  Summary
+------------------  -------------------------------  ------------  -------------------  -----  -------
+repo                cumulus-linux-apt-mirror:5.15.0  a941e1e51c3e  Up 6 days (healthy)                
+what-just-happened  docker-wjh:latest                f834edf7fd3c  Up 7 days
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system docker container stats</h>
+
+Shows all container statistics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system docker container stats
+Container Name      CPU%   MEM USAGE  MEM LIMIT  MEM%   NET I/O  BLOCK I/O       PIDS
+------------------  -----  ---------  ---------  -----  -------  --------------  ----
+repo                0.00%  8.102MiB   15.02GiB   0.05%  0B / 0B  160kB / 41kB    9   
+what-just-happened  0.05%  81.96MiB   15.02GiB   0.53%  0B / 0B  496kB / 16.4kB  9
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system docker engine</h>
+
+Shows Docker engine configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system docker engine
+                operational                                                                                    
+--------------  -----------------------------------------------------------------------------------------------
+client                                                                                                         
+  name          Docker Engine - Community                                                                      
+  version       28.5.1                                                                                         
+  context       default                                                                                        
+server                                                                                                         
+  containers    2                                                                                              
+  running       2                                                                                              
+  paused        0                                                                                              
+  stopped       0                                                                                              
+plugins                                                                                                        
+  volume        ['local']                                                                                      
+  network       ['bridge', 'host', 'ipvlan', 'macvlan', 'null', 'overlay']                                     
+  log           ['awslogs', 'fluentd', 'gcplogs', 'gelf', 'journald', 'json-file', 'local', 'splunk', 'syslog']
+images          2                                                                                              
+server-version  28.5.1                                                                                         
+id              ae4be5b9-6806-435d-80cb-5e4548a9c11a                                                           
+init-binary     docker-init                                                                                    
+data-root       /docker                                                                                        
+debug-mode      False                                                                                          
+log-level       json-file
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system forwarding profile-option</h>
 
 Shows forwarding profile information.

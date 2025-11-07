@@ -871,6 +871,8 @@ nv show system control-plane acl <acl-id> inbound
 nv show system control-plane acl <acl-id> outbound
 nv show system dns search
 nv show system dns search <dns-search-id>
+nv show system forwarding packet-trim
+nv show system forwarding packet-trim counters
 nv show system health history 
 nv show system health history files 
 nv show system health history files <file-name>

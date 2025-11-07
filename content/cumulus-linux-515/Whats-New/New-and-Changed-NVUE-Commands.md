@@ -867,21 +867,17 @@ nv show interface <interface-id> ipv6 dhcp-client lease
 nv show interface <interface-id> link phy health native 
 nv show interface <interface-id> link phy health histogram 
 nv show interface <interface-id> link phy health histogram native
-nv show platform asic <asic-id> 
-nv show platform asic <asic-id> resource 
-nv show platform asic <asic-id> resource global 
-nv show platform asic <asic-id> resource acl 
-nv show platform ps-redundancy
-nv show router bfd profile <profile-name>  
 nv show system control-plane acl <acl-id> inbound 
 nv show system control-plane acl <acl-id> outbound
 nv show system dns search
 nv show system dns search <dns-search-id>
-nv show system forwarding resource-mode
+nv show system forwarding packet-trim
+nv show system forwarding packet-trim counters
 nv show system health history 
 nv show system health history files 
 nv show system health history files <file-name>
-nv show system ntp server detail 
+nv show system ntp brief
+nv show system ntp server 
 nv show system ntp listen 
 nv show system ntp listen <interface-id  
 nv show system serial-console
@@ -889,13 +885,10 @@ nv show vrf <vrf-id> dhcp-server-v4 static-host <host-id> ifname
 nv show vrf <vrf-id> dhcp-server-v4 static-host <host-id> ifname <interface-name>
 nv show vrf <vrf-id> dhcp-server-v6 static-host <host-id> ifname
 nv show vrf <vrf-id> dhcp-server-v6 static-host <host-id> ifname <interface-name>
+nv show router bfd profile <profile-name>  
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd 
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd 
 nv show vrf <vrf-id> router bfd peers 
-nv show vrf <vrf-id> router bfd peers --view brief 
-nv show vrf <vrf-id> router bfd peers --view standard 
-nv show vrf <vrf-id> router bfd peers --view detail 
-nv show vrf <vrf-id> router bfd peers --view counters 
 nv show vrf <vrf-id> router bfd peers <session-id> 
 nv show interface <interface-id> router ospf bfd  
 nv show interface <interface-id> router pim bfd  

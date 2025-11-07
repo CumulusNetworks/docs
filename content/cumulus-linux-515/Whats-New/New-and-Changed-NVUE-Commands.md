@@ -860,6 +860,14 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
+nv show system docker
+nv show system docker image
+nv show system docker container
+nv show system docker container stats
+nv show system docker engine
+nv show interface dot1x-summary
+nv show interface dot1x-ipv6-summary
+nv show interface dot1x-counters
 nv show interface <interface-id> ipv4 dhcp-client 
 nv show interface <interface-id> ipv4 dhcp-client lease
 nv show interface <interface-id> ipv6 dhcp-client 
@@ -867,15 +875,25 @@ nv show interface <interface-id> ipv6 dhcp-client lease
 nv show interface <interface-id> link phy health native 
 nv show interface <interface-id> link phy health histogram 
 nv show interface <interface-id> link phy health histogram native
+nv show interface <interface> telemetry congestion-event
+nv show system aaa authentication restrictions
 nv show system control-plane acl <acl-id> inbound 
 nv show system control-plane acl <acl-id> outbound
 nv show system dns search
 nv show system dns search <dns-search-id>
 nv show system forwarding packet-trim
 nv show system forwarding packet-trim counters
+nv show system gnmi-server status gnoi-rpc
 nv show system health history 
 nv show system health history files 
 nv show system health history files <file-name>
+nv show system telemetry congestion-event
+nv show system telemetry latency-measurement
+nv show system telemetry latency-measurement export
+nv show interface <interface> latency-measurement
+nv show interface <interface> latency-measurement traffic-class
+nv show interface <interface> latency-measurement traffic-class <traffic-class>
+nv show interface <interface> latency-measurement traffic-class <traffic-class> protocol <protocol>
 nv show system ntp brief
 nv show system ntp server 
 nv show system ntp listen 

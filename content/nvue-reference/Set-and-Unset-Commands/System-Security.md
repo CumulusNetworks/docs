@@ -30,6 +30,42 @@ cumulus@switch:~$ nv set system security encryption db state disabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system security encryption folder-encrypt encrypted-folder</h>
+
+Configures the absolute path to other directories you want to encrypt when you enable secure mount directory encryption. by default the switch encrypts the `/var/log`, `/var/home`, and `/var/lib` directories.
+
+You enable secure mount directory encryption with the `nv action enable system security encryption folder-encrypt password <password>` command.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system security encryption folder-encrypt encrypted-folder /my_user/my_data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system security encryption folder-encrypt storage</h>
+
+Configures the storage type for the folder encryption key. To protect sensitive data at rest, you can configure secure mount directory encryption on the switch with a USB device.
+
+You enable secure mount directory encryption with the `nv action enable system security encryption folder-encrypt password <password>` command.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system security encryption folder-encrypt storage usb
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system security password-hardening digits-class</h>
 
 Configures the password policy so that passwords must include at least one digit. You can specify `enabled` or `disabled`. The default setting is `enabled` when password security is enabled.

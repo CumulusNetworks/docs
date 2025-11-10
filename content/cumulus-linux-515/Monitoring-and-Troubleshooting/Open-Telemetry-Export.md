@@ -877,7 +877,7 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 
 ### Buffer Statistic Format
 
-The switch collects and exports the following interface and switch, buffer occupancy and watermark statistics when you configure the `nv set system telemetry buffer-stats export state enable` command:
+The switch collects and exports the following interface and switch, buffer occupancy and watermark statistics when you configure the `nv set system telemetry buffer-stats export state enabled` command:
 
 |  Name | Description |
 |------ | ----------- |

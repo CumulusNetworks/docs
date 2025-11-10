@@ -77,7 +77,7 @@ cumulus@switch:~$ nv config apply
 Otherwise, configure a new statistic group to enable only HFT export to a destination:
 
 ```
-cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state enable
+cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state enabled
 cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group ONLY-HFT
 cumulus@switch:~$ nv config apply
 ```
@@ -97,9 +97,9 @@ cumulus@switch:~$ nv config apply
 If you have a statistics group configured to enable HFT only for a single destination:
 
 ```
-cumulus@switch:~$ cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state disable
+cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state disabled
 cumulus@switch:~$ nv config apply
-cumulus@switch:~$ cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state enable
+cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state enabled
 cumulus@switch:~$ nv config apply
 ```
 {{%/notice%}}

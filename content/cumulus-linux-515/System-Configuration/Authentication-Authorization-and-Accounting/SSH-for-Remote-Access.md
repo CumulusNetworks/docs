@@ -673,7 +673,7 @@ The following example adds an authorized key file from the account `cumulus` on 
 To use PKA authentication only and block password authentication for users with a private key, run the `nv set system ssh-server pka-only enable` command:
 
 ```
-cumulus@switch:~$ nv set system ssh-server pka-only enable
+cumulus@switch:~$ nv set system ssh-server pka-only enabled
 cumulus@switch:~$ nv config apply
 ```
 

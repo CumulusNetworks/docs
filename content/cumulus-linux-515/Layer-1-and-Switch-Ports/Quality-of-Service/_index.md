@@ -686,7 +686,7 @@ cumulus@switch:~$ nv set interface swp3 qos pfc-watchdog
 cumulus@switch:~$ nv config apply
 ```
 
-To disable PFC watchdog, run the `nv unset interface <interface-id> qos pfc-watchdog` command or the `nv set interface <interface-id> qos pfc-watchdog state disable` command.
+To disable PFC watchdog, run the `nv unset interface <interface-id> qos pfc-watchdog` command or the `nv set interface <interface-id> qos pfc-watchdog state disabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

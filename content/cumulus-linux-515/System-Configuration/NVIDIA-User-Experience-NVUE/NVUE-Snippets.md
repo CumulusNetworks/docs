@@ -349,7 +349,7 @@ To add Cumulus Linux SNMP agent configuration not yet available with NVUE comman
 The following example creates a file called `snmpd.conf_snippet.yaml`, and sets the read only community string and the listening address to run in the mgmt VRF.
 
 {{%notice note%}}
-SNMP snippets do not take effect unless you first enable SNMP with the NVUE `nv set system snmp-server state enable` and `nv set system snmp-server listening-address` commands (or with the equivalent REST API methods).
+SNMP snippets do not take effect unless you first enable SNMP with the NVUE `nv set system snmp-server state enabled` and `nv set system snmp-server listening-address` commands (or with the equivalent REST API methods).
 {{%/notice%}}
 
 1. Create a `.yaml` file and add the following traditional snippet:

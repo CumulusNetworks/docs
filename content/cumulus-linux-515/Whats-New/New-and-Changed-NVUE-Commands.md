@@ -911,9 +911,8 @@ nv show vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> b
 
 ```
 nv set interface <interface-id> dot1x ipv6-profile <profile-name>
-nv set interface <interface-id> dot1x ipv6-profile <profile-name>
-nv set interface <interface-id> ipv4 dhcp-client set-hostname (enabled|disabled) 
-nv set interface <interface-id> ipv6 dhcp-client set-hostname (enabled|disabled) 
+nv set interface <interface-id> ipv4 dhcp-client set-hostname
+nv set interface <interface-id> ipv6 dhcp-client set-hostname
 nv set interface <interface-id> latency-measurement traffic-class <traffic-class> protocol <protocol-id> dscp <dscp>
 nv set router bfd state
 nv set router bfd profile <profile-name>

@@ -41,6 +41,29 @@ cumulus@switch:~$ nv set interface swp1 telemetry bw-gauge state enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> telemetry congestion-event egress-buffer traffic-class \<traffic-class\> buffer-threshold</h>
+
+Configures the buffer threshold that must be crossed before the switch monitors the interfaces and traffic classes for buffer utilization.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<traffic-class>` |  The traffic class you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1s0 telemetry congestion-event egress-buffer traffic-class 1,5 buffer-threshold 2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> telemetry hft state</h>
 
 Enables and disables high frequency telemetry on the specified interfaces. You can specify `enabled` or `disabled`.
@@ -710,6 +733,38 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv set system telemetry buffer-stats sample-interval 100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry congestion-event export state</h>
+
+Enables and disables congestion event notifications to export events to your configured open telemetry export destination. You can specify `enabled` or `disabled`. The default value is `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry congestion-event export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry congestion-event throttle-duration</h>
+
+Configures the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). When a notification generates, additional congestion events do not trigger a new notification until the interval expires. The throttle duration is in milliseconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 5000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

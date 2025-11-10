@@ -167,6 +167,54 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear system aaa authentication restrictions</h>
+
+Clears the restriction state for all users that are locked out.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system aaa authentication restrictions
+Action executing ...
+Clearing restrictions for all users
+Action executing ...
+Successfully cleared all users
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system aaa authentication restrictions user \<user-id\></h>
+
+Clears the restriction state for a user that is locked out.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>` |  The user name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system aaa authentication restrictions user USER1
+Action executing ...
+Clearing restrictions for user USER1
+Action executing ...
+Successfully cleared user name USER1
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear acl counters</h>
 
 Clears all ACL counters.
@@ -2746,6 +2794,29 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action delete system health history files \<file-name\></h>
+
+Deletes the specified health history report file on the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<file-name>` | The system health history report file you want to delete. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system health history files FILE1
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action delete system log file \<file-name\></h>
 
 Deletes the specified system log file.
@@ -3008,6 +3079,30 @@ System maintenance ports has been enabled successfully
  switchd         : Maintenance, cold, down, up time: 13:11:12
  System Services : Maintenance, cold, down, up time: 13:11:31
 Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action enable system security encryption folder-encrypt password \<passsword\></h>
+
+Enables and disables secure mount directory encryption with a password or changes the existing secure mount directory encryption password.
+
+Make sure the USB device is plugged in before running the command. The switch reboots after you run the command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<passsword>` |  The password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action enable system security encryption folder-encrypt password MYPASSWORD
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3811,6 +3906,72 @@ cumulus@switch:~$ nv action reboot system
 Rebooting System in cold mode
 True
 Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action release interface \<interface-id\> ipv4 dhcp-client</h>
+
+Releases the IPv4 DHCP client for an interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<nterface-id>` |  The interface ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action release interface swp1 ipv4 dhcp-client
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action renew interface \<interface-id\> ipv4 dhcp-client</h>
+
+Renews the current DHCPv4 lease for an interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<nterface-id>` |  The interface ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action renew interface swp1 ipv4 dhcp-client
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action renew interface \<interface-id\> ipv6 dhcp-client</h>
+
+Renews the current DHCPv6 lease for an interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<nterface-id>` |  The interface ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action renew interface swp1 ipv6 dhcp-client
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

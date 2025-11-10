@@ -52,6 +52,26 @@ cumulus@switch:~$ nv set system ssh-server authentication-retries 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system ssh-server ciphers</h>
+
+Configures SSH ciphers. You can specify `aes256-ctr`, `aes192-ctr`, `aes128-ctr`, `aes128-gcm@openssh.com`, or `aes256-gcm@openssh.com`. The default value is `aes256-ctr`.
+
+{{%notice note%}}
+SSH cipher configuration replaces SSH strict mode that is available in Cumulus Linux 5.14 and earlier.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server ciphers aes192-ctr 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system ssh-server deny-users \<user-id\></h>
 
 Configures the user accounts that are **not** allowed to establish an SSH session.
@@ -74,6 +94,22 @@ cumulus@switch:~$ nv set system ssh-server deny-users user3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system ssh-server host-key-algorithms</h>
+
+Configures SSH strict SSH host key algorithms. You can specify `ecdsa-sha2-nistp256`, `rsa-sha2-256`, or `rsa-sha2-512`. The default value is `ecdsa-sha2-nistp256`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server host-key-algorithms rsa-sha2-256
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system ssh-server inactive-timeout</h>
 
 Configures the amount of time a session can be inactive before the SSH server terminates the connection.
@@ -86,6 +122,22 @@ Introduced in Cumulus Linux 5.6.0
 
 ```
 cumulus@switch:~$ nv set system ssh-server inactive-timeout 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server kex-algorithms</h>
+
+Configures strict SSH key exchange algorithms. You can specify `curve25519-sha256`, `curve25519-sha256@libssh.org`, `diffie-hellman-group16-sha512`, `diffie-hellman-group18-sha512`, or `diffie-hellman-group14-sha256`. The default value is `curve25519-sha256`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server kex-algorithms curve25519-sha256@libssh.org
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -118,6 +170,22 @@ Introduced in Cumulus Linux 5.6.0
 
 ```
 cumulus@switch:~$ nv set system ssh-server login-timeout 200
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server macs</h>
+
+Configures strict SSH MACs. You can specify `hmac-sha2-256`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, or `hmac-sha2-256-etm@openssh.com`. The default value is `hmac-sha2-256`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server macs hmac-sha2-512
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -223,6 +291,22 @@ Introduced in Cumulus Linux 5.6.0
 
 ```
 cumulus@switch:~$ nv set system ssh-server port 443
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server pubkey-accepted-algorithms</h>
+
+Configures strict SSH public key accepted algorithms. You can specify `ecdsa-sha2-nistp256-cert-v01@openssh.com`, `ecdsa-sha2-nistp384-cert-v01@openssh.com`, `ecdsa-sha2-nistp521-cert-v01@openssh.com`, `rsa-sha2-512-cert-v01@openssh.com`, `rsa-sha2-256-cert-v01@openssh.com`, `rsa-sha2-512`, `rsa-sha2-256`, `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`, `ssh-ed25519`, or `ssh-ed25519-cert-v01@openssh.com`. The default value is `ecdsa-sha2-nistp256-cert-v01@openssh.com`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server pubkey-accepted-algorithms ecdsa-sha2-nistp256-cert-v01@openssh.com
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

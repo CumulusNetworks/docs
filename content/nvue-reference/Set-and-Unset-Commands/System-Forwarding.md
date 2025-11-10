@@ -611,3 +611,19 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set system forwarding programming log-level error
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system forwarding resource-mode</h>
+
+Configures the system forwarding resource mode to be full or half. The default value is `full`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system forwarding resource-mode half
+```

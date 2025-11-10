@@ -14,6 +14,50 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> ipv4 dhcp-client set-hostname</h>
+
+Enables and disables the DHCPv4 client to update system hostname from the DHCP server. You can specify `enabled` or `disabled`. The default value is `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp5 ipv4 dhcp-client set-hostname enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> ipv6 dhcp-client set-hostname</h>
+
+Enables and disables the DHCPv6 client to update system hostname from the DHCP server. You can specify `enabled` or `disabled`. The default value is `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp5 ipv6 dhcp-client set-hostname enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set service dhcp-server \<vrf-id\> domain-name \<domain-name-id\></h>
 
 Configures the Dynamic Host Configuration Protocol Server (DHCP server) domain name.

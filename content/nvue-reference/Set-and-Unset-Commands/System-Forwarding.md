@@ -611,3 +611,21 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set system forwarding programming log-level error
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system forwarding resource-mode</h>
+
+Configures the system forwarding resource mode to be full or half. The default value is `full`.
+
+ISSU requires the use of {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="warm reboot mode">}}. You must configure the switch in half-resource mode to perform a warm reboot. When the switch operates in half-resource mode, performing a warm reboot (using the `nv action reboot system mode warm` command) results in a hitless upgrade. For more information about reboot modes, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system forwarding resource-mode half
+```

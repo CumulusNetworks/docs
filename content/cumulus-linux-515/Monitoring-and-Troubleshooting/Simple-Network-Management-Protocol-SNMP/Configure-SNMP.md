@@ -496,7 +496,7 @@ sysname CumulusBox-1,543,567
 
 SNMP supports routing MIBs in {{<link url="FRRouting" text="FRR">}}. If you are running Linux commands to configure the switch, you need to configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR.
 
-The NVUE `nv set system snmp-server state enable` command automatically configures {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR; you do not need to run any additional commands.
+The NVUE `nv set system snmp-server state enabled` command automatically configures {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR; you do not need to run any additional commands.
 
 1. Enable AgentX:
 
@@ -579,10 +579,10 @@ Cumulus Linux enables all the scripts by default except for `bgp4_pp.py`, which 
 
 ## Disable SNMP
 
-To disable SNMP, run the `nv set system snmp-server state disable` command:
+To disable SNMP, run the `nv set system snmp-server state disabled` command:
 
 ```
-cumulus@switch:~$ nv set system snmp-server state disable
+cumulus@switch:~$ nv set system snmp-server state disabled
 cumulus@switch:~$ nv config apply
 ```
 

@@ -219,7 +219,7 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 
 The <span class="a-tooltip">[SNMP](## "Simple Network Management Protocol")</span> subagent allows SNMP queries to retrieve LLDP information from the `lldpd` service.
 
-If you enable SNMP with NVUE commands, NVUE enables the SNMP subagent automatically. To disable the SNMP subagent, disable SNMP with the NVUE `nv set system snmp-server state disable` command.
+If you enable SNMP with NVUE commands, NVUE enables the SNMP subagent automatically. To disable the SNMP subagent, disable SNMP with the NVUE `nv set system snmp-server state disabled` command.
 
 If you use Linux commands to configure the switch, Cumulus Linux does not enable the SNMP subagent by default. To enable the SNMP subagent, edit the `/etc/default/lldpd` file and add the `-x` option:
 

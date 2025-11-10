@@ -129,7 +129,7 @@ cumulus@switch:~$ nv set system aaa radius privilege-level 10
 cumulus@switch:~$ nv set system aaa radius retransmit 8
 cumulus@switch:~$ nv set system aaa radius timeout 10
 cumulus@switch:~$ nv set system aaa radius source-ipv4 192.168.1.10
-cumulus@switch:~$ nv set system aaa radius debug enable
+cumulus@switch:~$ nv set system aaa radius debug enabled
 cumulus@switch:~$ nv set system aaa radius require-message-authenticator enabled
 cumulus@switch:~$ nv set system aaa radius auth-type mschapv2
 cumulus@switch:~$ nv config apply

@@ -618,6 +618,8 @@ cumulus@switch:~$ nv set system forwarding programming log-level error
 
 Configures the system forwarding resource mode to be full or half. The default value is `full`.
 
+ISSU requires the use of {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="warm reboot mode">}}. You must configure the switch in half-resource mode to perform a warm reboot. When the switch operates in half-resource mode, performing a warm reboot (using the `nv action reboot system mode warm` command) results in a hitless upgrade. For more information about reboot modes, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.15.0

@@ -116,6 +116,55 @@ cumulus@switch:~$ nv set system dns server 192.0.2.44
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system dns server \<dns-server-id\> priority</h>
+
+Configures a remote DNS server priority.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<dns-server-id>`  | The IPv4 or IPv6 address of the remote DNS server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system dns server 192.0.2.44 priority 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system dns server \<dns-server-id\> vrf \<vrf-id\></h>
+
+Configures a remote DNS server under a specific VRF.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dns <vrf-id> server <dns-server-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<dns-server-id>`  | The IPv4 or IPv6 address of the remote DNS server. |
+| `<vrf-id>`  | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system dns server 192.0.2.44 vrf RED
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system dns search \<dns-search-id\></h>
 
 Configures the domains you want to search for name matches.

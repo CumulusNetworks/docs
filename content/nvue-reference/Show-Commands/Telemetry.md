@@ -797,12 +797,12 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry congestion-event
-                   operational  applied   pending 
------------------  -----------  --------  --------
-export                                            
-  state            disabled     disabled  disabled
-throttle-duration  10000        10000     10000   
+cumulus@leaf01:mgmt:~$ nv show system telemetry congestion-event
+                   operational  applied 
+-----------------  -----------  --------
+export                                  
+  state            disabled     disabled
+throttle-duration  10000        10000   
 
 Congestion Event Interfaces
 ==============================

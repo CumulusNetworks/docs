@@ -944,9 +944,9 @@ rs-fec-corrected-errors
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> link phy health histogram</h>
+## <h>nv show interface \<interface-id\> link phy health histogram native</h>
 
-Shows physical layer filtered histogram information.
+Shows filtered physical layer  histogram information.
 
 {{%notice note%}}
 Switches with the Spectrum 1 ASIC do not support this command.

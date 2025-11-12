@@ -2,7 +2,6 @@
 title: Docker
 author: Cumulus Networks
 weight: 165
-draft: true
 
 type: nojsscroll
 ---
@@ -52,8 +51,8 @@ Introduced in Cumulus Linux 5.15.0
 cumulus@switch:~$ nv show system docker container
 Container Name      Image                            Container ID  Status               Ports  Summary
 ------------------  -------------------------------  ------------  -------------------  -----  -------
-repo                cumulus-linux-apt-mirror:5.15.0  a941e1e51c3e  Up 6 days (healthy)                
-what-just-happened  docker-wjh:latest                f834edf7fd3c  Up 7 days
+repo                cumulus-linux-apt-mirror:5.15.0  container1  Up 6 days (healthy)                
+what-just-happened  docker-wjh:latest                container2  Up 7 days
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -66,7 +65,7 @@ Shows details for a specific container.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<container-id>` | The container name or hexadecimal string. |
+| `<container-id>` | The container name. |
 
 ### Version History
 
@@ -78,7 +77,7 @@ Introduced in Cumulus Linux 5.15.0
 cumulus@switch:~$ nv show system docker container repo
                operational                    
 -------------  -------------------------------
-id             a941e1e51c3e                   
+id             f834edf7fd3c                   
 status         Up 6 days (healthy)            
 image-name     cumulus-linux-apt-mirror:5.15.0
 port                                          

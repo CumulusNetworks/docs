@@ -3877,7 +3877,7 @@ Downloads a Docker image from a registry.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+| `<image-id>` |  The Docker image ID.|
 
 ### Version History
 
@@ -3886,7 +3886,32 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action pull system docker image 97662d24417b
+cumulus@switch:~$ nv action pull system docker image nginx
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action pull system docker image \<image-id\> tag</h>
+
+Downloads a Docker image from a registry with the specified tag name.
+
+If you do not specify a tag name, NVUE uses the latest image.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-id>` |  The image ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action pull system docker image nginx tag latest
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4032,7 +4057,7 @@ Removes a Docker image from the switch.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+| `<image-id>` |  The image ID.|
 
 ### Version History
 
@@ -4041,7 +4066,31 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action remove system docker image 97662d24417b
+cumulus@switch:~$ nv action remove system docker image nginx
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action remove system docker image \<image-id\> tag</h>
+
+Removes a Docker image with a specific tag from the switch.
+
+If you do not specify a tag name, NVUE removes the latest tagged image.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-id>` |  The image ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action remove system docker image nginx tag latest
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4220,7 +4269,7 @@ Creates and runs a new Docker container from an image.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<continer-id>` |  The docker container ID.|
-| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+| `<image-id>` |  The image ID.|
 
 ### Version History
 
@@ -4229,7 +4278,7 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action run system docker container CONTAINER1 image 97662d24417b options '\-\-storage-opt size=120G'
+cumulus@switch:~$ nv action run system docker container CONTAINER1 image nginx options '\-\-storage-opt size=120G'
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4302,17 +4351,17 @@ Creates and runs a new Docker container from an image.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
-| `<container-name>` |  The hexadecimal string or name of the container.|
+| `<image-id>` |  The image ID.|
+| `<container-name>` |  The container name.|
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action start system docker container CONTAINER1 image 97662d24417b
+cumulus@switch:~$ nv action start system docker container CONTAINER1 image nginx
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

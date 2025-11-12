@@ -499,7 +499,8 @@ cumulus@switch:~$ nv set vrf RED evpn state enabled
 Configures the switch to advertise IP prefix routes (type 5 routes) only in the specified VRF. You can specify `enabled` or `disabled`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+- In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+- When you enable `prefix-routes-only` for a VRF where the VNI is already present, NVUE blocks the configuration and returns a constraint error, which prevents the VRF-VNI from going down and ensures that the VRF remains UP. However, when you enable `prefix-routes-only` together with other VRF EVPN configuration (such as VLAN configuration), NVUE applies the configuration normally and the VRF-VNI state remains UP.
 {{%/notice%}}
 
 ### Command Syntax

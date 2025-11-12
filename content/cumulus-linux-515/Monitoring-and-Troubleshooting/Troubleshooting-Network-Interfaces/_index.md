@@ -75,7 +75,8 @@ out-pkts-rate    822.40 kpps
 ```
 
 {{%notice note%}}
-The `nv show interface <interface-id> rates` command only supports a range of interfaces with the filter option; for example, `nv show interface rates --filter "Interface=swp1|Interface=swp2"`.
+- The `nv show interface rates` command and `nv show interface <interface-id> rates` command only support interfaces configured with NVUE.
+- The `nv show interface <interface-id> rates` command only supports a range of interfaces with the filter option; for example, `nv show interface rates --filter "Interface=swp1|Interface=swp2"`.
 {{%/notice%}}
 
 You can configure the load interval you want to use to calculate interface rates with the `nv set system counter rates load-interval` command. You can specify a value between 1 and 600. The default load interval is 60 seconds.

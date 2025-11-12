@@ -857,6 +857,8 @@ nv show interface <interface-id> latency-measurement
 nv show interface <interface-id> latency-measurement traffic-class
 nv show interface <interface-id> latency-measurement traffic-class <traffic-class>
 nv show interface <interface-id> latency-measurement traffic-class <traffic-class> protocol <protocol>
+nv show system telemetry latency-measurement
+nv show system telemetry latency-measurement export
 nv show interface <interface-id> link phy health native 
 nv show interface <interface-id> link phy health histogram 
 nv show interface <interface-id> link phy health histogram native
@@ -872,8 +874,8 @@ nv show system docker image
 nv show system docker container
 nv show system docker container stats
 nv show system docker engine
-nv show system forwarding packet-trim counters
 nv show interface <interface-id> counters packet-trim
+nv show system forwarding packet-trim counters
 nv show system gnmi-server status gnoi-rpc
 nv show system health history 
 nv show system health history files 
@@ -882,26 +884,24 @@ nv show system ntp brief
 nv show system ntp server 
 nv show system ntp listen 
 nv show system ntp listen <interface-id  
-nv show system telemetry congestion-event
-nv show system telemetry latency-measurement
-nv show system telemetry latency-measurement export
 nv show interface <interface> telemetry congestion-event
+nv show system telemetry congestion-event
 nv show system serial-console
-nv show vrf <vrf-id> dhcp-server-v4 static-host <host-id> ifname
-nv show vrf <vrf-id> dhcp-server-v4 static-host <host-id> ifname <interface-name>
-nv show vrf <vrf-id> dhcp-server-v6 static-host <host-id> ifname
-nv show vrf <vrf-id> dhcp-server-v6 static-host <host-id> ifname <interface-name>
 nv show interface <interface-id> ipv4 dhcp-client 
 nv show interface <interface-id> ipv4 dhcp-client lease
 nv show interface <interface-id> ipv6 dhcp-client 
 nv show interface <interface-id> ipv6 dhcp-client lease
+nv show vrf <vrf-id> dhcp-server-v4 static-host <host-id> ifname
+nv show vrf <vrf-id> dhcp-server-v4 static-host <host-id> ifname <interface-name>
+nv show vrf <vrf-id> dhcp-server-v6 static-host <host-id> ifname
+nv show vrf <vrf-id> dhcp-server-v6 static-host <host-id> ifname <interface-name>
+nv show interface <interface-id> router ospf bfd  
+nv show interface <interface-id> router pim bfd
 nv show router bfd profile <profile-name>  
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd 
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd 
 nv show vrf <vrf-id> router bfd peers 
 nv show vrf <vrf-id> router bfd peers <session-id> 
-nv show interface <interface-id> router ospf bfd  
-nv show interface <interface-id> router pim bfd  
 nv show vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd 
 nv show vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd
 ```
@@ -916,6 +916,15 @@ nv set interface <interface-id> ipv6 dhcp-client set-hostname
 nv set interface <interface-id> latency-measurement traffic-class <traffic-class>
 nv set interface <interface-id> latency-measurement traffic-class <traffic-class> protocol <protocol-id>
 nv set interface <interface-id> latency-measurement traffic-class <traffic-class> protocol <protocol-id> dscp <dscp>
+nv set system telemetry latency-measurement export state
+nv set system telemetry stats-group <name> latency-measurement export state
+nv set system telemetry latency-measurement state
+nv set system telemetry latency-measurement sample-interval
+nv set interface <interface-id> telemetry congestion-event egress-buffer traffic-class <traffic-class> buffer-threshold
+nv set system telemetry congestion-event export state
+nv set system telemetry congestion-event throttle-duration
+nv set interface <interface-id> router ospf bfd profile <profile-name> 
+nv set interface <interface-id> router pim bfd profile <profile-name>
 nv set router bfd state
 nv set router bfd profile <profile-name>
 nv set router bfd profile <profile-name> detect-multiplier
@@ -924,8 +933,6 @@ nv set router bfd profile <profile-name> min-tx-interval
 nv set router bfd profile <profile-name> shutdown
 nv set router bfd profile <profile-name> passive-mode 
 nv set router bfd profile <profile-name> minimum-ttl
-nv set interface <interface-id> router ospf bfd profile <profile-name> 
-nv set interface <interface-id> router pim bfd profile <profile-name>
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd profile <profile-name> 
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd profile <profile-name>
 nv set vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd profile <profile-name>
@@ -963,20 +970,13 @@ nv set system ssh-server host-key-algorithms
 nv set system syslog selector ifreload
 nv set system syslog selector ifreload filter
 nv set system syslog selector ifreload program-name
-nv set system telemetry congestion-event export state
-nv set system telemetry congestion-event throttle-duration
-nv set interface <interface-id> telemetry congestion-event egress-buffer traffic-class <traffic-class> buffer-threshold
+nv set interface <interface-id> telemetry hft state
 nv set system telemetry hft sample-interval-usec
 nv set system telemetry hft counter
 nv set system telemetry hft egress-buffer
 nv set system telemetry hft duration
-nv set interface <interface-id> telemetry hft state
 nv set system telemetry hft export state
 nv set system telemetry stats-group <name> hft export state
-nv set system telemetry latency-measurement export state
-nv set system telemetry stats-group <name> latency-measurement export state
-nv set system telemetry latency-measurement state
-nv set system telemetry latency-measurement sample-interval
 nv set system forwarding resource-mode 
 ```
 

@@ -63,6 +63,32 @@ ldap
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system aaa authentication restrictions</h>
+
+Shows the current AAA restriction configuration.
+
+AAA authentication restrictions are enabled by default to limit login attempts and prevent unauthorized access. After five consecutive failed login attempts, the user account is locked out.
+
+A reattempt timer controls when additional login attempts can be made. Following each failed login, the user must wait 15 seconds before retrying. This restriction remains in effect until the maximum number of consecutive failures is reached, triggering a lockout condition.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system aaa authentication restrictions 
+                   operational  applied
+-----------------  -----------  -------
+lockout-state      enabled      enabled
+fail-delay         0            0      
+lockout-reattempt  15           15     
+lockout-attempts   5            5 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system aaa authentication-order</h>
 
 Shows the authentication order for the user accounts configured on the switch.

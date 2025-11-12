@@ -3230,7 +3230,7 @@ Shows BFD configuration for the specified BGP neighbor.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
@@ -4423,7 +4423,7 @@ Shows BFD configuration for the specified BGP peer group.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 

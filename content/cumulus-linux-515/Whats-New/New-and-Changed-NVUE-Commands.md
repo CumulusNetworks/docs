@@ -947,7 +947,6 @@ nv set system aaa authentication restrictions fail-delay
 nv set system aaa authentication restrictions lockout-reattempt
 nv set system dns server <dns-server-ip> vrf <vrf-id> 
 nv set system dns server <dns-server-id> priority <integer> 
-nv set system dns domain <dns-domain-def> 
 nv set system docker state
 nv set system docker vrf <vrf-name>
 nv set system dot1x dynamic-ipv6-multi-tenant state

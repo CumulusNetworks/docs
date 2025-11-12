@@ -13,7 +13,7 @@ Monitoring the traffic rate and <span class="a-tooltip">[PPS](## "Packets per Se
 By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
 
 {{%notice note%}}
-- You can monitor the traffic rate and PPS of physical ports only.
+- You can monitor the traffic rate and PPS of physical ports that are configured with NVUE.
 - The command outputs provide approximate values.
 {{%/notice%}}
 
@@ -75,7 +75,6 @@ out-pkts-rate    822.40 kpps
 ```
 
 {{%notice note%}}
-- The `nv show interface rates` command and `nv show interface <interface-id> rates` command only support interfaces configured with NVUE.
 - The `nv show interface <interface-id> rates` command only supports a range of interfaces with the filter option; for example, `nv show interface rates --filter "Interface=swp1|Interface=swp2"`.
 {{%/notice%}}
 

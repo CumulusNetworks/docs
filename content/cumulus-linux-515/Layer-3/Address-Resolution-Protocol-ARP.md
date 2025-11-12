@@ -451,6 +451,11 @@ To show all IPv4 ARP table entries for an interface with additional state detail
 - `Last Change` - The time since the neighbor entry state last changed.
 - `Probes`  - The number of probes sent to the neighbor to solicit a response.
 
+{{%notice note%}}
+The displayed neighbor details are based on control plane forwarding and status; they do not reflect hardware data path forwarding or when a neighbor was last used or changed in hardware.
+{{%/notice%}}
+
+
 ```
 cumulus@leaf01:mgmt:~$ nv show interface vlan10 neighbor ipv4 detail
 IPV4         LLADR(MAC)         State      Flag  Last Used  Last Confirmed  Last Change  Probes

@@ -3881,7 +3881,7 @@ Downloads a Docker image from a registry.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
@@ -3893,7 +3893,7 @@ cumulus@switch:~$ nv action pull system docker image 97662d24417b
 
 ## <h>nv action reboot system</h>
 
-Reboots the switch.
+Reboots the switch in cold mode.
 
 ### Version History
 
@@ -3903,6 +3903,32 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action reboot system
+Rebooting System in cold mode
+True
+Action succeeded
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reboot system mode \<mode\></h>
+
+Reboots the switch in the mode you select: `cold`, `fast`, `halt`, `immediate`, `power-cycle`, or `warm`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<mode-id>` |  The reboot mode.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reboot system mode warm
 Rebooting System in cold mode
 True
 Action succeeded
@@ -3918,7 +3944,7 @@ Releases the IPv4 DHCP client for an interface.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<nterface-id>` |  The interface ID.|
+| `<interface-id>` |  The interface ID.|
 
 ### Version History
 
@@ -3932,6 +3958,28 @@ cumulus@switch:~$ nv action release interface swp1 ipv4 dhcp-client
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action release interface \<interface-id\> ipv6 dhcp-client</h>
+
+Releases the IPv6 DHCP client for an interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action release interface swp1 ipv6 dhcp-client
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action renew interface \<interface-id\> ipv4 dhcp-client</h>
 
 Renews the current DHCPv4 lease for an interface.
@@ -3940,7 +3988,7 @@ Renews the current DHCPv4 lease for an interface.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<nterface-id>` |  The interface ID.|
+| `<interface-id>` |  The interface ID.|
 
 ### Version History
 
@@ -3962,7 +4010,7 @@ Renews the current DHCPv6 lease for an interface.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<nterface-id>` |  The interface ID.|
+| `<interface-id>` |  The interface ID.|
 
 ### Version History
 
@@ -3988,7 +4036,7 @@ Removes a Docker image from the switch.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
@@ -4163,6 +4211,29 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action run system docker <container-id> image <image></h>
+
+Creates and runs a new Docker container from an image.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<continer-id>` |  The docker container ID.|
+| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action run system docker container CONTAINER1 image 97662d24417b options '\-\-storage-opt size=120G'
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action run system ztp</h>
 
 Manually runs ZTP from the beginning. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
@@ -4258,7 +4329,7 @@ Deletes a Docker container.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
@@ -4557,6 +4628,28 @@ Introduced in Cumulus Linux 5.10.0
 
 ```
 cumulus@switch:~$ nv action upload tech-support files cl_support_leaf01_20240725_225811.txz scp://root@host1:/home/tech-support/
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action upload system health history files \<file-name\></h>
+
+Uploads the specified health history report file.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<file-name>` | The name of the system health history report file. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action upload system health history files FILE1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

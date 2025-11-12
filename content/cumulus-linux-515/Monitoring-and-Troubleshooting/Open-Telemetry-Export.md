@@ -736,7 +736,8 @@ cumulus@switch:~$ nv config apply
 - If you configure congestion notifications while the buffer threshold for a traffic class is already exceeded, the switch does not send notifications until buffer occupancy drops below the threshold and then exceeds the threshold again.
 {{%/notice%}}
 
-To show congestion notification configuration, run the `nv show system telemetry congestion-event` command, and do view congestion event data for a specific port, run the `nv show interface <interface> telemetry congestion-event` command.
+To show congestion notification configuration, run the `nv show system telemetry congestion-event` command, and to view congestion event data for a specific port, run the `nv show interface <interface> telemetry congestion-event` command.
+
 ## Telemetry Data Format
 
 Cumulus Linux exports statistics and histogram data in the formats defined in this section.

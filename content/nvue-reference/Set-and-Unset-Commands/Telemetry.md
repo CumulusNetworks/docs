@@ -624,6 +624,51 @@ cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-c
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> latency-measurement traffic-class</h>
+
+Configures latency monitoring for all traffic classes on an interface for IPv4 and IPv6 traffic.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1-51 latency-measurement traffic-class
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<traffic-class\></h>
+
+Configures latency monitoring for a specific traffic class on an interface for IPv4 and IPv6 traffic.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+|`<traffic-class>` |  The traffic class to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1-51 latency-measurement traffic-class 0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol \<protocol-id\></h>
 
 Configures latency monitoring for a specific traffic class on an interface for IPv4 or IPv6 traffic.

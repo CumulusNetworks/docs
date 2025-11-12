@@ -168,9 +168,9 @@ cumulus@switch:~$ nv set router bfd profile BFD1 min-tx-interval 100
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router bfd profile \<profile-name\> shutdown</h>
+## <h>nv set router bfd profile \<profile-name\> minimum-ttl</h>
 
-Configures the BFD shutdown, which enables or disables the peer. When the peer is disabled, the switch sends an administrative down message to the remote peer. The default value is disabled.
+Configures the minimum expected TTL for an incoming BFD control packet (for multi hop sessions only). This feature tightens the packet validation requirements to avoid receiving BFD control packets from other sessions. You can set a value between 1 and 254. The default value is 254 (only expect one hop between this system and the peer).
 
 ### Command Syntax
 
@@ -185,7 +185,7 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router bfd profile BFD1 shutdown enabled
+cumulus@switch:~$ nv set router bfd profile BFD1 minimum-ttl 1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -212,9 +212,9 @@ cumulus@switch:~$ nv set router bfd profile BFD1 passive-mode enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router bfd profile \<profile-name\> minimum-ttl</h>
+## <h>nv set router bfd profile \<profile-name\> shutdown</h>
 
-Configures the minimum expected TTL for an incoming BFD control packet (for multi hop sessions only). This feature tightens the packet validation requirements to avoid receiving BFD control packets from other sessions. You can set a value between 1 and 254. The default value is 254 (only expect one hop between this system and the peer).
+Configures the BFD shutdown, which enables or disables the peer. When the peer is disabled, the switch sends an administrative down message to the remote peer. The default value is disabled.
 
 ### Command Syntax
 
@@ -229,7 +229,7 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router bfd profile BFD1 minimum-ttl 1
+cumulus@switch:~$ nv set router bfd profile BFD1 shutdown enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

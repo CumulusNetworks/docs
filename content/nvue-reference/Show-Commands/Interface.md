@@ -1183,7 +1183,7 @@ Monitoring the traffic rate and PPS for an interface ensures optimal network per
 By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
 
 {{%notice note%}}
-- You can monitor the traffic rate and PPS of physical ports only.
+- You can monitor the traffic rate and PPS of physical ports and interfaces configured with NVUE.
 - The command outputs provide approximate values.
 {{%/notice%}}
 
@@ -1344,7 +1344,7 @@ Monitoring the traffic rate and PPS for your interfaces ensures optimal network 
 By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
 
 {{%notice note%}}
-- You can monitor the traffic rate and PPS of physical ports only.
+- You can monitor the traffic rate and PPS of physical ports and interfaces configured with NVUE.
 - The command outputs provide approximate values.
 {{%/notice%}}
 

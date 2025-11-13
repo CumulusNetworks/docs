@@ -150,7 +150,7 @@ Shows docker engine configuration.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
@@ -188,7 +188,7 @@ Shows the docker images present on the switch.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 

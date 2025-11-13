@@ -3442,7 +3442,7 @@ Imports a Certificate Revocation List to verify server certificates. You can spe
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
@@ -4426,7 +4426,7 @@ Stops a Docker container.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 

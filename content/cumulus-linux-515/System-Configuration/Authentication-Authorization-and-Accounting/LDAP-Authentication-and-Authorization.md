@@ -110,15 +110,14 @@ To set the authentication order to start with LDAP before local authentication:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system aaa authentication-order 1 ldap
+cumulus@switch:~$ nv set system aaa authentication order ldap
 cumulus@switch:~$ nv config apply
 ```
 
 To set the authentication order to start with local authentication before querying LDAP:
 
 ```
-cumulus@switch:~$ nv set system aaa authentication-order 1 local
-cumulus@switch:~$ nv set system aaa authentication-order 2 ldap
+cumulus@switch:~$ nv set system aaa authentication order local ldap
 cumulus@switch:~$ nv config apply
 ```
 

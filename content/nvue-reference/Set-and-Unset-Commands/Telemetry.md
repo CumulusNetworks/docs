@@ -1745,7 +1745,7 @@ cumulus@switch:~$ nv set system telemetry router sample-interval 40
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry router vrf \<vrf\> bgp export state</h>
+## <h>nv set system telemetry router vrf \<vrf-id\> bgp export state</h>
 
 Enables and disables open telemetry BGP statistics for a VRF.
 
@@ -1767,7 +1767,7 @@ cumulus@switch:~$ nv set system telemetry router vrf RED bgp export state enable
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry router vrf \<vrf\> bgp peer \<peer-id\> export state</h>
+## <h>nv set system telemetry router vrf \<vrf-id\> bgp peer \<peer-id\> export state</h>
 
 Enables and disables open telemetry specific BGP peer statistics for a VRF.
 
@@ -1789,7 +1789,7 @@ cumulus@switch:~$ nv set system telemetry router vrf RED bgp peer swp51 export s
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry router vrf \<vrf\> rib export state</h>
+## <h>nv set system telemetry router vrf \<vrf-id\> rib export state</h>
 
 Enables and disables open telemetry routing table statistics for a VRF.
 

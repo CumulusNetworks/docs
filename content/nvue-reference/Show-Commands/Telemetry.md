@@ -108,7 +108,7 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol \<protocol\></h>
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol \<protocol-id\></h>
 
 Shows latency measurement information for a specific traffic class and protocol (IPv4 or IPv6).
 
@@ -118,7 +118,7 @@ Shows latency measurement information for a specific traffic class and protocol 
 | --------- | -------------- |
 | `<interface-id>`  | The interface name.|
 | `<traffic-class>`  | The traffic class.|
-| `<protocol>`  | IPv4 or IPv6.|
+| `<protocol-id>`  | IPv4 or IPv6.|
 
 ### Version History
 

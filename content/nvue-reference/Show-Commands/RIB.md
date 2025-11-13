@@ -227,7 +227,7 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf\> router rib \<afi\> route-count</h>
+## <h>nv show vrf \<vrf-id\> router rib \<afi\> route-count</h>
 
 Shows the total number of routes in the routing table.
 
@@ -255,7 +255,7 @@ total-routes    34
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf\> router rib \<afi\> route-count protocol</h>
+## <h>nv show vrf \<vrf-id\> router rib \<afi\> route-count protocol</h>
 
 Shows the total number of routes per protocol in the routing table.
 
@@ -665,7 +665,7 @@ cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protoco
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf\> router rib \<afi\> fib-filter protocol \<protocol-id\></h>
+## <h>nv show vrf \<vrf-id\> router rib \<afi\> fib-filter protocol \<protocol-id\></h>
 
 Shows the route map configuration for the routes of the import protocol specified.
 

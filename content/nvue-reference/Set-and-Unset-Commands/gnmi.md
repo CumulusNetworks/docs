@@ -186,7 +186,7 @@ cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CERT1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system grpc-tunnel server \<server\> certificate self-signed</h>
+## <h>nv set system grpc-tunnel server \<server-id\> certificate self-signed</h>
 
 Configures the self-signed certificate you want to use for the gRPC tunnel server.
 

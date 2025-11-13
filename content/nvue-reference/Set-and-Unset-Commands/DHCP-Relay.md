@@ -207,7 +207,7 @@ cumulus@switch:~$ nv set service dhcp-relay default interface swp51
 Configures the DHCP server.
 
 {{%notice note%}}
-Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay <vrf> server` command. You must configure server groups with the `nv set service dhcp-relay <vrf-id> server-group <server-group-id\>` command.
+Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay <vrf-id> server` command. You must configure server groups with the `nv set service dhcp-relay <vrf-id> server-group <server-group-id\>` command.
 {{%/notice%}}
 
 ### Command Syntax
@@ -240,7 +240,7 @@ Cumulus Linux uses server groups to receive different DHCP requests on separate 
 - You must associate a downstream interface with the server group.
 
 {{%notice note%}}
-In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 and later no longer provides the `nv show service dhcp-relay <vrf> server` commands.
+In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 and later no longer provides the `nv show service dhcp-relay <vrf-id> server` commands.
 {{%/notice%}}
 
 ### Command Syntax
@@ -266,7 +266,7 @@ cumulus@switch:~$ nv set service dhcp-relay default server-group type1-server-gr
 Configures the DHCP servers in the server group. A server group must contain at least one DHCP server for a specific VRF.
 
 {{%notice note%}}
-In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 and later no longer provides the `nv show service dhcp-relay <vrf> server` commands.
+In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 and later no longer provides the `nv show service dhcp-relay <vrf-id> server` commands.
 {{%/notice%}}
 
 ### Command Syntax
@@ -292,7 +292,7 @@ cumulus@switch:~$
 Configures the DHCP relay server facing (upstream) interface for the server group. You can specify multiple interfaces.
 
 {{%notice note%}}
-In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 and later no longer provides the `nv show service dhcp-relay <vrf> server` commands.
+In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 and later no longer provides the `nv show service dhcp-relay <vrf-id> server` commands.
 {{%/notice%}}
 
 ### Command Syntax
@@ -346,7 +346,7 @@ cumulus@switch:~$ nv set service dhcp-relay default source-ip gateway
 Configures the DHCP relay downstream interface.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you must associate the downstream interface with a server group using the `nv set service dhcp-relay <vrf> downstream-interface <interface> server-group-name` command.
+In Cumulus Linux 5.14 and earlier, you must associate the downstream interface with a server group using the `nv set service dhcp-relay <vrf-id> downstream-interface <interface> server-group-name` command.
 {{%/notice%}}
 
 ### Command Syntax

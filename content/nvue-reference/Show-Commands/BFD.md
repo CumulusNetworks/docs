@@ -18,7 +18,7 @@ Shows the BFD configuration profile associated with the OSPF interface.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf>` | The VRF name. |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -103,7 +103,7 @@ You can use the following command options:
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf>` | The VRF name. |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -135,7 +135,7 @@ Shows BFD peer information for the specified vrf and session.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf>` | The VRF name. |
+| `<vrf-id>` | The VRF name. |
 | `<local-ID>` | The session ID (integer). |
 
 ### Version History
@@ -150,7 +150,7 @@ cumulus@switch:~$ nv show vrf default router bfd peers 2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor\> bfd</h>
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd</h>
 
 Shows the BFD configuration profile associated with a BGP neighbor.
 
@@ -158,8 +158,8 @@ Shows the BFD configuration profile associated with a BGP neighbor.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf>` | The VRF name. |
-| `<neighbor>` | The neighbor ID. |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>` | The neighbor ID. |
 
 ### Version History
 
@@ -184,7 +184,7 @@ Shows the BFD configuration profile associated with a BGP peer group.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf>` | The VRF name. |
+| `<vrf-id>` | The VRF name. |
 | `<peer-group>` | The peer group name. |
 
 ### Version History

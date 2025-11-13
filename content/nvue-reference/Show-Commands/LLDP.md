@@ -142,7 +142,7 @@ dcbx-pfc-tlv         off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> lldp application-tlv</h>
+## <h>nv show interface \<interface-id\> lldp application-tlv</h>
 
 Shows all application priority TLV configuration on the switch.
 
@@ -171,7 +171,7 @@ cumulus@switch:~$ nv show interface swp1 lldp application-tlv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> lldp application-tlv app</h>
+## <h>nv show interface \<interface-id\> lldp application-tlv app</h>
 
 Shows the application names that have application priority TLVs enabled for the interface.
 
@@ -221,7 +221,7 @@ cumulus@switch:~$ nv show interface swp1 lldp application-tlv app iSCSI
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> lldp application-tlv tcp-port
+## <h>nv show interface \<interface-id\> lldp application-tlv tcp-port
 
 Shows the TCP port priority mapping for the interface.
 
@@ -246,7 +246,7 @@ Ports
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> lldp application-tlv tcp-port \<port-id\></h>
+## <h>nv show interface \<interface-id\> lldp application-tlv tcp-port \<port-id\></h>
 
 Shows information about the TCP port priority mapping for the interface.
 
@@ -269,7 +269,7 @@ cumulus@switch:~$ nv show interface swp1 lldp application-tlv tcp-port 4217
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> lldp application-tlv udp-port</h>
+## <h>nv show interface \<interface-id\> lldp application-tlv udp-port</h>
 
 Shows the UDP port priority mapping for the interface.
 
@@ -294,7 +294,7 @@ Ports
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> lldp application-tlv udp-port \<port-id\></h>
+## <h>nv show interface \<interface-id\> lldp application-tlv udp-port \<port-id\></h>
 
 Shows information about the UDP port priority mapping for the interface.
 

@@ -52,7 +52,7 @@ Changing the Docker VRF restarts the Docker service, which disrupts all running 
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 

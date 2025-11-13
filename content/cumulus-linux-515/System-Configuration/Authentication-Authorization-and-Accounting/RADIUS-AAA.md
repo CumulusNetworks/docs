@@ -225,7 +225,7 @@ To configure an account for local fallback authentication:
 {{< tabs "TabID211 ">}}
 {{< tab "NVUE Commands ">}}
 ```
-cumulus@switch:~$ nv set system aaa authentication-order radius local
+cumulus@switch:~$ nv set system aaa authentication order radius local
 ```
 
 {{< /tab >}}

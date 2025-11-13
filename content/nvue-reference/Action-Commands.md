@@ -3410,6 +3410,32 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action import system docker image \<image-url\> repository \<repository-name\> tag \<tag-name\></h>
+
+Imports a Docker image from an archive.
+
+Supported archive formats include `.tar`, `.tar.gz`, `.tgz`, `.bzip`, `.tar.xz`, and `.txz`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-url>`  |  The URL for the image. |
+| `<repository-name>` | The name of the repository. |
+| `<tag-name>`  |  The tag name. If you do not specify a tag name, the name defaults to `latest`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action import system docker image /path/to/exampleimage.tgz repository xyz tag imported
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action import system security crl</h>
 
 Imports a Certificate Revocation List to verify server certificates. You can specify either `uri` (a local or remote URI from where to retrieve the crl bundle file) or `data` (for a PEM encoded CRL).

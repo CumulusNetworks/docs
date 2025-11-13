@@ -238,7 +238,7 @@ cumulus@switch:~$ nv show interface swp1 bond member bond1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> counters</h>
+## <h>nv show interface \<interface-id\> counters</h>
 
 Shows all counters for a specific interface, such as packet drop, error, and distribution counts.
 
@@ -324,7 +324,7 @@ Ingress Buffer Statistics
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> counters drops</h>
+## <h>nv show interface \<interface-id\> counters drops</h>
 
 Shows packet drop counters for a specific interface.
 
@@ -353,7 +353,7 @@ Total Drops      0        0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> counters errors</h>
+## <h>nv show interface \<interface-id\> counters errors</h>
 
 Shows error counters for a specific interface.
 
@@ -385,7 +385,7 @@ Undersize Errors  0        n/a
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> counters pktdist</h>
+## <h>nv show interface \<interface-id\> counters pktdist</h>
 
 Shows packet distribution counters for a specific interface.
 

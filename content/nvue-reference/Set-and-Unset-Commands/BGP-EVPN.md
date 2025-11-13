@@ -433,7 +433,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn route-reflector-client</h>
 
-Configures the BGP node as a route reflector for the BGP neighbor for EVPN. The default setting is off`.
+Configures the BGP node as a route reflector for the BGP neighbor for EVPN. The default setting is `disabled`.
 
 ### Command Syntax
 
@@ -449,7 +449,7 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn route-reflector-client on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn route-reflector-client enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -865,7 +865,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group underlay address-fami
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn prefix-limits inbound warning-only</h>
-
+ßßß
 Configures the switch to generate a warning syslog message only when the number of BGP prefixes from the peers in the peer group exceeds a percentage of the maximum limit but does not bring down the BGP session. You can specify `enabled` or `disabled`.
 
 {{%notice note%}}
@@ -893,7 +893,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group underlay address-fami
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn prefix-limits warning-threshold</h>
 
-Configures when to generate a warning syslog message and bring down the BGP session (if `warning-only` is set to off) when the number of BGP prefixes from the peers in the peer group exceeds a percentage of the maximum limit. For example, if the maximum prefix limit is 3 and the warning threshold is 60, the switch generates a warning message when the number of BGP prefixes from the BGP peers is more than 60 percent of 20 (12 prefixes). You can set a value between 0 and 100.
+Configures when to generate a warning syslog message and bring down the BGP session (if `warning-only` is disabled) when the number of BGP prefixes from the peers in the peer group exceeds a percentage of the maximum limit. For example, if the maximum prefix limit is 3 and the warning threshold is 60, the switch generates a warning message when the number of BGP prefixes from the BGP peers is more than 60 percent of 20 (12 prefixes). You can set a value between 0 and 100.
 
 ### Command Syntax
 

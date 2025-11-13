@@ -434,14 +434,14 @@ AAA authentication restrictions apply to authentication attempts to access the s
 
 To disable AAA authentication restrictions, set the `lockout-state` parameter to `disabled`:
 ```
-cumulus@switch:mgmt:~$ nv set aaa authentication restrictions lockout-state disabled
+cumulus@switch:mgmt:~$ nv set system aaa authentication restrictions lockout-state disabled
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
 To modify the default reattempt timer (15 seconds), configure the `lockout-reattempt` value in seconds:
 
 ```
-cumulus@switch:mgmt:~$ nv set aaa authentication restrictions lockout-reattempt 5
+cumulus@switch:mgmt:~$ nv set system aaa authentication restrictions lockout-reattempt 5
 cumulus@switch:mgmt:~$ nv config apply
 ```
 

@@ -151,7 +151,7 @@ interface listen swp10
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- RM 4724124 REMOVED as NOT SUPPORTED 
 ## Use NTP in a DHCP Environment
 
 You can use DHCP to specify your NTP servers. Ensure that the DHCP-generated configuration file `/run/ntp.conf.dhcp` exists. The `/etc/dhcp/dhclient-exit-hooks.d/ntp` script generates this file, which is a copy of the default `/etc/ntpsec/ntp.conf` file with a modified server list from the DHCP server. If this file does not exist and you plan on using DHCP in the future, you can copy your current `/etc/ntpsec/ntp.conf` file to the location of the DHCP file.
@@ -177,7 +177,7 @@ cumulus@switch:~$ sudo systemctl status -n0 ntpsec.service
 ```
 
 If the state is not *Active*, or the alternate configuration file does not appear in the `ntp` command line, it is likely that you made a configuration mistake. Correct the mistake and rerun the commands above to verify.
-
+-->
 ## Configure NTP with Authorization Keys
 
 For added security, you can configure NTP to use authorization keys.
@@ -278,6 +278,12 @@ The NTP client is the Cumulus Linux switch.
     ```
 
 ## Considerations
+
+### NTP in a DHCP Environment
+
+Cumulus Linux does not support using DHCP to specify your NTP servers.
+
+### Expiration Log Messages
 
 NTP in Cumulus Linux uses the `/usr/share/zoneinfo/leap-seconds.list` file, which expires periodically and results in generated log messages about the expiration. When the file expires, update it from {{<exlink url="https://www.ietf.org/timezones/data/leap-seconds.list" text="https://www.ietf.org/timezones/data/leap-seconds.list">}} or upgrade the `tzdata` package to the newest version.
 

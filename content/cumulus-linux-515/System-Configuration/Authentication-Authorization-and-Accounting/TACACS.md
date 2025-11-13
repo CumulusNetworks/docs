@@ -55,7 +55,7 @@ The following example commands set:
 cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 priority 5
 cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 secret abcdefghijklmnopqrstuvwxyz
 cumulus@switch:~$ nv set system aaa tacacs vrf mgmt 
-cumulus@switch:~$ nv set system aaa authentication-order tacacs local
+cumulus@switch:~$ nv set system aaa authentication order tacacs local
 cumulus@switch:~$ nv config apply
 ```
 

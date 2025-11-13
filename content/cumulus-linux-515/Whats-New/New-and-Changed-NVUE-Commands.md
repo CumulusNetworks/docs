@@ -273,6 +273,13 @@ The syntax for the following commands has changed in Cumulus Linux 5.15.
 | `nv set system telemetry export otlp grpc destination <destination-id> cert-id <value>` | `nv set system telemetry export otlp grpc destination <destination-id> certificate <cert-id>` |
 
 {{< /tab >}}
+{{< tab "Authentication ">}}
+
+| CL5.14.0 and Earlier | CL5.15 and Later |
+| --- | --- |
+| `nv set system aaa authentication-order <priority-id> (local\|radius\|tacacs\|ldap)`| `nv set system aaa authentication order (local\|radius\|tacacs\|ldap)`|
+
+{{< /tab >}}
 {{< tab "On/Off ">}}
 
 | CL5.14.0 and Earlier | CL5.15 and Later |
@@ -785,6 +792,14 @@ nv show mlag
 The following NVUE commands are deprecated in Cumulus Linux 5.15.
 
 {{< tabs "TabID857 ">}}
+{{< tab "nv show ">}}
+
+```
+nv show system aaa authentication-order 
+nv show system aaa authentication-order <priority-id>
+```
+
+{{< /tab >}}
 {{< tab "nv set ">}}
 
 ```

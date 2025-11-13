@@ -9,7 +9,7 @@ type: nojsscroll
 h { color: RGB(118,185,0)}
 </style>
 
-All NVUE commands have `-h` and `--help` options that provide command description and usage.
+All NVUE commands include the `-h` option that provides command description and usage.
 
 The NVUE `nv show` commands have these common options.
 
@@ -23,7 +23,7 @@ The NVUE `nv show` commands have these common options.
 |`--startup` | Shows the saved configuration.|
 |`--operational` | Shows the running configuration (the actual system state). For example, `nv show --operational interface bond1` shows the running configuration for bond1. The running and applied configuration should be the same. If different, inspect the logs.|
 
-## View Options
+## Show Options
 
 | <div style="width:200px">Option | Description |
 | ------ | ----------- |
@@ -35,5 +35,5 @@ The NVUE `nv show` commands have these common options.
 | <div style="width:200px">Option | Description |
 | ------ | ----------- |
 | `--output <format>`<br> `-o <format>`| Shows command output in table (`auto`), `json`, `yaml`, or plain text (`native`) format such as vtysh native output. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`<br>`nv show evpn multihoming esi --output native`|
-| `--color` (`on`, `off`, or `auto`) |  Turns colored output on or off. The default is auto. For example<br>`nv show --color on interface bond1`. |
-| `--paginate` (`on`, `off`, or `auto`) | Paginates the output. The default is `off`. For example<br>`nv show --paginate on interface bond1`.  |
+| `--color` (`on`, `off`, or `auto`) |  Turns colored output on or off. The default is auto. For example<br>`nv show interface bond1 --color on`. |
+| `--paginate` (`on`, `off`, or `auto`) | Paginates the output. The default is `off`. For example<br>`nv show interface bond1 --paginate on`.  |

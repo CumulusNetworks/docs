@@ -264,7 +264,7 @@ Configures BGP prefix independent convergence (PIC) for IPv6 to reduce data plan
 
 When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
 
-You enable the next hop group per source option on all switches (leaf, spine and super spine), so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source. On a leaf switch, you enable the BGP advertise origin option (`nv set vrf <vrf> router bgp address-family ipv6-unicast advertise-origin`) so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
+You enable the next hop group per source option on all switches (leaf, spine and super spine), so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source. On a leaf switch, you enable the BGP advertise origin option (`nv set vrf <vrf-id> router bgp address-family ipv6-unicast advertise-origin`) so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
 
 ### Command Syntax
 
@@ -1389,7 +1389,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp1 address-family ipv
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound warning-threshold</h>
 
-Configures when to generate a warning syslog message and bring down the BGP session. This is a percentage of the maximum inbound prefix limit. You can set a value between 0 and 100. Alternatively, you can configure the switch to generate a warning syslog message only without bringing down the BGP session with the `nv set vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound warning-only on` command.
+Configures when to generate a warning syslog message and bring down the BGP session. This is a percentage of the maximum inbound prefix limit. You can set a value between 0 and 100. Alternatively, you can configure the switch to generate a warning syslog message only without bringing down the BGP session with the `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound warning-only on` command.
 
 ### Command Syntax
 
@@ -2143,7 +2143,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound warning-threshold</h>
 
-Configures when to generate a warning syslog message and bring down the BGP session. This is a percentage of the maximum inbound prefix limit. You can set a value between 0 and 100. Alternatively, you can configure the switch to generate a warning syslog message only without bringing down the BGP session with the `nv set vrf <vrf> router bgp peer-group <peeer-group> address-family ipv6-unicast prefix-limits inbound warning-only on` command.
+Configures when to generate a warning syslog message and bring down the BGP session. This is a percentage of the maximum inbound prefix limit. You can set a value between 0 and 100. Alternatively, you can configure the switch to generate a warning syslog message only without bringing down the BGP session with the `nv set vrf <vrf-id> router bgp peer-group <peeer-group> address-family ipv6-unicast prefix-limits inbound warning-only on` command.
 
 ### Command Syntax
 

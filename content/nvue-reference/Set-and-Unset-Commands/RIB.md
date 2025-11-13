@@ -19,7 +19,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 Configures a route map to apply on the routes of the import protocol.
 
 {{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use `nv set vrf <vrf> router rib <address-family> fib-filter route-map <route-map-id>` instead.
+Cumulus Linux 5.11 and later no longer provides this command. Use `nv set vrf <vrf-id> router rib <address-family> fib-filter route-map <route-map-id>` instead.
 {{%/notice%}}
 
 ### Command Syntax
@@ -42,7 +42,7 @@ cumulus@switch:~$ nv set vrf default router rib ipv4 protocol bgp fib-filter rou
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf\> router rib \<afi\> fib-filter protocol \<protocol-id\> route-map \<route-map\></h>
+## nv set vrf \<vrf-id\> router rib \<afi\> fib-filter protocol \<protocol-id\> route-map \<route-map\></h>
 
 Configures the protocol you want to import from the RIB to the FIB.
 
@@ -67,7 +67,7 @@ cumulus@switch:~$ nv set vrf default router rib ipv4 fib-filter protocol bgp rou
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf\> router rib \<afi\> fib-filter route-map \<route-map\></h>
+## nv set vrf \<vrf-id\> router rib \<afi\> fib-filter route-map \<route-map\></h>
 
 Configures a route map to apply on the routes of the import protocol.
 

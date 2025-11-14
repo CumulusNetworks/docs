@@ -27,7 +27,6 @@ pdfhidden: True
 ### Fixed Issues in 4.1.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| <a name="2921628"></a> [2921628](#2921628) <a name="2921628"></a> <br /> | CVE-2021-45046: It was found that the fix to address CVE-2021-44228 in Apache Log4j 2.15.0 was incomplete in certain non-default configurations<br />CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12.3 and 2.3.1) did not protect from uncontrolled recursion from self-referential lookups.  |  | |
 
 ## 4.1.0 Release Notes
 ### Open Issues in 4.1.0
@@ -46,6 +45,5 @@ pdfhidden: True
 ### Fixed Issues in 4.1.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| <a name="2893000"></a> [2893000](#2893000) <a name="2893000"></a> <br /> | CVE-2021-44228: Apache Log4j2 <=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. | 2.4.0-4.0.1 | |
 | <a name="2690469"></a> [2690469](#2690469) <a name="2690469"></a> <br /> | While upgrading an on-premises deployment from version 2.4.x to 3.x.y then to 4.x, the upgrade fails during the NetQ application stage<br />To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:'netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==' | 3.2.1-4.0.1 | |
 

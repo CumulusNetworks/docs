@@ -385,6 +385,7 @@ This command does not clear sticky entries, permanent entries, and EVPN MAC entr
 | `<bridge-id>` |  The bridge name.|
 | `<mac-address>` |  The MAC address.|
 | `<VLAN-id>` |  The VLAN ID.|
+| `<interface-id>` |  The interface name.|
 
 ### Version History
 
@@ -564,6 +565,7 @@ Clears the BPDU guard violation from the specified interface and recovers the in
 | Syntax   |  Description  |
 | ----------    | ------------  |
 | `<interface-id>` | The interface on which you want to clear the BPDU guard violation. |
+| `<domain-id>` | The bridge name. |
 
 ### Version History
 
@@ -2794,7 +2796,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system health history files \<file-name\></h>
+## <h>nv action delete system health history files \<filename\></h>
 
 Deletes the specified health history report file on the switch.
 
@@ -2802,7 +2804,7 @@ Deletes the specified health history report file on the switch.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<file-name>` | The system health history report file you want to delete. |
+| `<filename>` | The system health history report file you want to delete. |
 
 ### Version History
 
@@ -2817,7 +2819,7 @@ cumulus@switch:~$ nv action delete system health history files FILE1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system log file \<file-name\></h>
+## <h>nv action delete system log file \<filename\></h>
 
 Deletes the specified system log file.
 
@@ -2827,7 +2829,7 @@ Deleting log files enables you to manage storage space and ensure that only rele
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<file-name>` | The system log file you want to delete. |
+| `<filename>` | The system log file you want to delete. |
 
 ### Version History
 
@@ -2864,7 +2866,7 @@ cumulus@switch:~$ nv action delete system log component nvue file nvued.log
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system packages key \<key\></h>
+## <h>nv action delete system packages key \<key-id\></h>
 
 Deletes a package repository key.
 
@@ -3184,7 +3186,7 @@ cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action fetch system packages key \<key\></h>
+## <h>nv action fetch system packages key \<key-id\></h>
 
 Fetches a repository key and saves it globally in the `/etc/apt/trusted.gpg.d/` directory.
 
@@ -3192,7 +3194,7 @@ Fetches a repository key and saves it globally in the `/etc/apt/trusted.gpg.d/` 
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<key>` |  The repository key.|
+| `<key-id>` |  The repository key.|
 
 ### Version History
 
@@ -3206,7 +3208,7 @@ cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action fetch system packages key \<key\> scope repository</h>
+## <h>nv action fetch system packages key \<key-id\> scope repository</h>
 
 Fetches and saves the repository key in the `/etc/apt/keyrings/` directory.
 
@@ -3214,7 +3216,7 @@ Fetches and saves the repository key in the `/etc/apt/keyrings/` directory.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<key>` |  The repository key.|
+| `<key-id>` |  The repository key.|
 
 ### Version History
 
@@ -3228,7 +3230,7 @@ cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate file-hash md5 <filename></h>
+## <h>nv action generate file-hash md5 \<filename\></h>
 
 Calculates and generates a unique hash value (checksum) for a file using md5.
 
@@ -3255,7 +3257,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate file-hash sha1 <filename></h>
+## <h>nv action generate file-hash sha1 \<filename\></h>
 
 Calculates and generates a unique hash value (checksum) for a file using sha1.
 
@@ -3282,7 +3284,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate file-hash sha224 <filename></h>
+## <h>nv action generate file-hash sha224 \<filename\></h>
 
 Calculates and generates a unique hash value (checksum) for a file using sha224.
 
@@ -3309,7 +3311,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate file-hash sha256 <filename></h>
+## <h>nv action generate file-hash sha256 \<filename\></h>
 
 Calculates and generates a unique hash value (checksum) for a file using sha256.
 
@@ -3336,7 +3338,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate file-hash sha512 <filename></h>
+## <h>nv action generate file-hash sha512 \<filename\></h>
 
 Calculates and generates a unique hash value (checksum) for a file using sha512.
 
@@ -3465,6 +3467,12 @@ NVIDIA recommends you use your own certificates and keys.
 - If the certificate is passphrase protected, you need to include the passphrase.
 - You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<cert-id>`  |  The CA certificate you want to import. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -3490,6 +3498,12 @@ NVIDIA recommends you use your own certificates and keys.
 - If the certificate is passphrase protected, you need to include the passphrase.
 - A certificate bundle must be in .PFX or .P12 format.
 - You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<cert-id>`  |  The entity certificate you want to import. |
 
 ### Version History
 
@@ -3962,7 +3976,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action reboot system mode \<mode\></h>
+## <h>nv action reboot system mode \<mode-id\></h>
 
 Reboots the switch in the mode you select: `cold`, `fast`, `halt`, `immediate`, `power-cycle`, or `warm`.
 
@@ -4334,7 +4348,7 @@ If you add the force option (`nv action run system ztp force`), ZTP runs without
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action schedule system telemetry hft job \<date-time\> duration \<duration\> profile \<profile\> ports \<port-id\> description \<text\></h>
+## <h>nv action schedule system telemetry hft job \<date-time\> duration \<duration\> profile \<profile-id\> ports \<port-id\> description \<text\></h>
 
 Configures the schedule for a high frequency telemetry data collection.
 
@@ -4377,8 +4391,8 @@ Creates and runs a new Docker container from an image.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<image-id>` |  The image ID.|
 | `<container-name>` |  The container name.|
+| `<image-id>` |  The image ID.|
 
 ### Version History
 
@@ -4707,7 +4721,7 @@ cumulus@switch:~$ nv action upload tech-support files cl_support_leaf01_20240725
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action upload system health history files \<file-name\></h>
+## <h>nv action upload system health history files \<filename\></h>
 
 Uploads the specified health history report file.
 
@@ -4715,7 +4729,7 @@ Uploads the specified health history report file.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<file-name>` | The name of the system health history report file. |
+| `<filename>` | The name of the system health history report file. |
 
 ### Version History
 

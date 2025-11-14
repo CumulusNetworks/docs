@@ -10,7 +10,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 ## What's New in Cumulus Linux 5.11.4
 
-Cumulus Linux 5.11.4 provides a security fix.
+Cumulus Linux 5.11.4 provides security updates.
 
 - You can use optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.11.4 from Cumulus Linux 5.11.3 (without ISSU support).
 - You can use package upgrade to upgrade the switch to Cumulus Linux 5.11.4 from:

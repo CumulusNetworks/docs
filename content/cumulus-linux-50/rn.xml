@@ -70,13 +70,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>5.6.0-5.15.0</td>
 </tr>
 <tr>
-<td>3554231</td>
-<td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P ''). For Cumulus Linux 5.7.0, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
-<td>4.3.2-4.4.5, 5.7.0-5.15.0</td>
-</tr>
-<tr>
 <td>3491259</td>
 <td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
 <td>5.0.0-5.5.1</td>
@@ -335,12 +328,6 @@ To avoid allocating next hop counters for any new ECMP next hop list update, set
 <td>5.2.0-5.15.0</td>
 </tr>
 <tr>
-<td>3136905</td>
-<td>When you upgrade from Cumulus Linux 5.0.1 to Cumulus Linux 5.1.0, the upgrade adds {{KexAlgorithms}} and {{MACs}} configuration to  the {{/etc/ssh/sshd_config}} file without prompting for confirmation.  This might cause the {{/etc/ssh/sshd_config}} file to be incorrect if there is a {{Match}} section; {{KexAlgorithms}} and {{MACs}} must come before {{Match}}. To work around this issue, move the lines that start with {{KexAlgorithms}} and {{MACs}} before {{Match}} or remove them, then restart the SSH service with the {{sudo systemctl restart ssh}} command. If you have already specified {{KexAlgorithms}} or {{MACs}}, you can remove the newly added lines after upgrade.</td>
-<td>5.0.1-5.1.0</td>
-<td>5.2.0-5.15.0</td>
-</tr>
-<tr>
 <td>3131423</td>
 <td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-5.1.0</td>
@@ -356,22 +343,16 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td>5.2.0-5.15.0</td>
 </tr>
 <tr>
-<td>3123556</td>
+<td>3120423</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
-<td>3.7.15-4.3.0, 4.4.0-4.4.5, 5.0.0-5.15.0</td>
-<td>4.3.1</td>
+<td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
+<td>4.3.1, 5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3119673</td>
 <td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
 <td>5.0.0-5.1.0</td>
 <td>5.2.0-5.15.0</td>
-</tr>
-<tr>
-<td>3119615</td>
-<td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.15.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3117340</td>
@@ -452,6 +433,12 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 </td>
 <td>5.0.1-5.3.1</td>
 <td>5.4.0-5.15.0</td>
+</tr>
+<tr>
+<td>3072674</td>
+<td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3066664</td>
@@ -597,10 +584,10 @@ resq_pp: EXCEPTION=invalid literal for int() with base 10: 'v4-lpm-heavy'
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
-<td>3021693</td>
+<td>3020254</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
-<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.15.0</td>
-<td>4.3.1, 4.4.4-4.4.5</td>
+<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3017127</td>
@@ -752,14 +739,6 @@ To work around this issue, create a snippet in yaml format and add the configura
 <td>5.1.0-5.15.0</td>
 </tr>
 <tr>
-<td>2932083</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>5.0.0-5.15.0</td>
-<td>4.4.3-4.4.5</td>
-</tr>
-<tr>
 <td>2914835</td>
 <td>NVUE flexible snippets create invalid YAML files.</td>
 <td>5.0.0-5.0.1</td>
@@ -810,22 +789,6 @@ Unrecoverable internal error
 </td>
 <td>5.0.0-5.0.1</td>
 <td>5.1.0-5.15.0</td>
-</tr>
-<tr>
-<td>2891255</td>
-<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
-Vulnerable: &lt;= 2.6.20-0+deb10u1
-Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2890681</td>
-<td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
-Vulnerable: 2.6.0+dfsg.1-1
-Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2886488</td>
@@ -1054,13 +1017,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>5.6.0-5.15.0</td>
 </tr>
 <tr>
-<td>3554231</td>
-<td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P ''). For Cumulus Linux 5.7.0, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
-<td>4.3.2-4.4.5, 5.7.0-5.15.0</td>
-</tr>
-<tr>
 <td>3491259</td>
 <td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
 <td>5.0.0-5.5.1</td>
@@ -1278,22 +1234,16 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td>5.2.0-5.15.0</td>
 </tr>
 <tr>
-<td>3123556</td>
+<td>3120423</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
-<td>3.7.15-4.3.0, 4.4.0-4.4.5, 5.0.0-5.15.0</td>
-<td>4.3.1</td>
+<td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
+<td>4.3.1, 5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3119673</td>
 <td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
 <td>5.0.0-5.1.0</td>
 <td>5.2.0-5.15.0</td>
-</tr>
-<tr>
-<td>3119615</td>
-<td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.15.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3117340</td>
@@ -1342,6 +1292,12 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3072674</td>
+<td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3066664</td>
@@ -1424,10 +1380,10 @@ resq_pp: EXCEPTION=invalid literal for int() with base 10: 'v4-lpm-heavy'
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
-<td>3021693</td>
+<td>3020254</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
-<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.15.0</td>
-<td>4.3.1, 4.4.4-4.4.5</td>
+<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.15.0</td>
 </tr>
 <tr>
 <td>3017127</td>
@@ -1549,14 +1505,6 @@ To work around this issue, create a snippet in yaml format and add the configura
 <td>5.1.0-5.15.0</td>
 </tr>
 <tr>
-<td>2932083</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>5.0.0-5.15.0</td>
-<td>4.4.3-4.4.5</td>
-</tr>
-<tr>
 <td>2914835</td>
 <td>NVUE flexible snippets create invalid YAML files.</td>
 <td>5.0.0-5.0.1</td>
@@ -1614,22 +1562,6 @@ Unrecoverable internal error
 </td>
 <td>5.0.0-5.0.1</td>
 <td>5.1.0-5.15.0</td>
-</tr>
-<tr>
-<td>2891255</td>
-<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
-Vulnerable: &lt;= 2.6.20-0+deb10u1
-Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2890681</td>
-<td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
-Vulnerable: 2.6.0+dfsg.1-1
-Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2886488</td>
@@ -1816,11 +1748,6 @@ You can safely ignore this warning.</td>
 <td>After you upgrade Cumulus Linux on one of the MLAG peers, the bonds do not come up and the reason shows {{anycast-ip-mismatch}} even though there is no VXLAN configuration on the switch.  
 To work around this issue, configure an anycast IP address under the loopback interface on both switches in the MLAG pair.</td>
 <td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2840817</td>
-<td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
-<td></td>
 </tr>
 <tr>
 <td>2839140</td>

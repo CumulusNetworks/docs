@@ -3164,6 +3164,29 @@ Would you like to proceed? [y/N]
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action fetch platform firmware \<platform-component-id\> \<remote-url\></h>
+
+Copies the remote firmware file to the local filesystem from the specified URL.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<platform-component-id>` | The platform component: BIOS or SSD|
+| `<remote-url>` |  The remote URL.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action fetch platform firmware SSD http://10.0.1.251/firmware-file
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action fetch system image \<remote-url\></h>
 
 Fetches a binary image from the specified URL.

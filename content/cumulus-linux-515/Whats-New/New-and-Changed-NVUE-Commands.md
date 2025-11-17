@@ -277,7 +277,7 @@ The syntax for the following commands has changed in Cumulus Linux 5.15.
 
 | CL5.14.0 and Earlier | CL5.15 and Later |
 | --- | --- |
-| `nv set system aaa authentication-order <priority-id> (local\|radius\|tacacs\|ldap)`| `nv set system aaa authentication order (local\|radius\|tacacs\|ldap)`|
+| `nv set system aaa authentication-order <priority-id> [local radius tacacs ldap]` | `nv set system aaa authentication order [local radius tacacs ldap]` |
 
 {{< /tab >}}
 {{< tab "On/Off ">}}

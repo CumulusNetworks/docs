@@ -7,6 +7,12 @@ version: "4.3"
 toc: 1
 pdfhidden: True
 ---
+## 4.3.4 Packages
+
+Cumulus Linux 4.3.4 provides the same SDK and kernel versions as those listed in Cumulus Linux 4.3.3.
+
+The open source software licenses are the same as those listed in Cumulus Linux 4.3.2 Open Source Software Licenses, below.
+
 ## 4.3.3 Packages
 
 Cumulus Linux 4.3.3 provides a new SDK and kernel version:

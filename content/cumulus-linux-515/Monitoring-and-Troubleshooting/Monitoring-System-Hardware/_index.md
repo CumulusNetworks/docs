@@ -268,6 +268,55 @@ realtime = no
 priority = -2
 ```
 
+## Health Monitoring Reference
+
+The following table summarizes the events that Cumulus Linux monitors for system health:
+
+| Event Category      | Component Name        | Severity   | Event Description                        | Threshold/Condition                          | States            |
+|---------------------|----------------------|------------|------------------------------------------|----------------------------------------------|-------------------|
+| Temperature Sensor  | Temp1-Temp8          | WARNING    | Temperature sensor state is HIGH         | temp ≥ max_hyst but < max                    | HIGH              |
+| Temperature Sensor  | Temp1-Temp8          | WARNING    | Temperature sensor state is LOW          | temp ≤ min but > lcrit                       | LOW               |
+| Temperature Sensor  | Temp1-Temp8          | CRITICAL   | Temperature sensor state is CRITICAL     | temp ≥ max                                   | CRITICAL          |
+| Temperature Sensor  | Temp1-Temp8          | CRITICAL   | Temperature sensor state is LCRITICAL    | temp ≤ lcrit                                 | LCRITICAL         |
+| Temperature Sensor  | Temp1-Temp8          | ERROR      | Temperature sensor state is BAD          | Sensor data outside limits or read failure    | BAD               |
+| Temperature Sensor  | Temp1-Temp8          | INFO       | Temperature sensor state is ABSENT       | Sensor not present in system                  | ABSENT            |
+| Temperature Sensor  | Temp1-Temp8          | INFO       | Temperature sensor state is OK           | temp within normal range                      | OK                |
+| ASIC Temperature    | ASIC1                | WARNING    | ASIC temperature is too hot              | Temperature exceeds threshold                 | Not OK            |
+| Fan Status          | Fan1-FanN            | WARNING    | Fan speed is out of range                | Speed not within min-max range                | BAD               |
+| Fan Status          | Fan1-FanN            | WARNING    | Fan is not working                       | Fan status check failed                       | BAD               |
+| Fan Status          | Fan1-FanN            | ERROR      | Failed to get fan speed data             | Unable to read fan metrics                    | BAD               |
+| Fan Status          | Fan1-FanN            | INFO       | Fan is missing                           | Fan hardware not detected                     | ABSENT            |
+| Fan Status          | Fan1-FanN            | CRITICAL   | Fan direction mismatch                   | Mix of B2F and F2B fans                      | BAD               |
+| Fan Status          | Fan1-FanN            | INFO       | Fan state is OK                          | Fan operating normally                        | OK                |
+| Power Supply        | PSU1, PSU2           | ERROR      | PSU state is BAD                         | PSU failure or malfunction                    | BAD               |
+| Power Supply        | PSU1, PSU2           | INFO       | PSU is ABSENT                            | PSU not installed or detected                 | ABSENT            |
+| Power Supply        | PSU1, PSU2           | INFO       | PSU state is OK                          | PSU operating normally                        | OK                |
+| PSU Fan             | PSU1Fan1, PSU2Fan1   | WARNING    | PSU fan failure                          | Fan in PSU module failed                      | BAD               |
+| PSU Temperature     | PSU1Temp1, PSU2Temp1 | WARNING    | PSU temperature out of range             | Temperature sensor in PSU reporting issues    | HIGH/CRITICAL     |
+| CPU Utilization     | CpuStatus            | ALERT      | High CPU use                             | 80% ≤ CPU < 95%                              | Alert             |
+| CPU Utilization     | CpuStatus            | CRITICAL   | Critically high CPU use                  | CPU ≥ 95%                                    | Critical          |
+| CPU Utilization     | CpuStatus            | INFO       | CPU use no longer high                   | CPU < 80% (recovered)                        | OK                |
+| CPU Status          | cpu                  | WARNING    | CPU status is Not OK                     | Critically high CPU in last 5 min             | Not OK            |
+| Memory Usage        | MemoryStatus         | ALERT      | Low free memory                          | 90% ≤ Memory < 95%                           | Alert             |
+| Memory Usage        | MemoryStatus         | CRITICAL   | Critically low free memory               | Memory ≥ 95%                                 | Critical          |
+| Memory Usage        | MemoryStatus         | INFO       | Free memory no longer low                | Memory < 90% (recovered)                     | OK                |
+| Root Filesystem     | disk                 | ALERT      | Filesystem nearly full                   | 90% ≤ Disk < 95%                             | Alert             |
+| Root Filesystem     | disk                 | CRITICAL   | Filesystem critically full               | Disk ≥ 95%                                   | Critical          |
+| /var/log Partition  | var-log              | ALERT      | /var/log partition nearly full           | /var/log usage ≥ 90%                         | Alert             |
+| System Load         | LoadAverage          | ALERT      | High load average                        | 95% ≤ Load < 125% (5-min avg per core)       | Alert             |
+| System Load         | LoadAverage          | CRITICAL   | Critically high load average             | Load ≥ 125% (5-min avg per core)             | Critical          |
+| ASIC Status         | ASIC                 | ERROR      | ASIC state is Not OK                     | ASIC not detected via lspci                   | Not OK            |
+| ASIC Status         | ASIC                 | CRITICAL   | ASIC thermal reset detected              | System rebooted due to ASIC thermal shutdown  | Not OK (Thermal Reset) |
+| ASIC Status         | ASIC                 | INFO       | ASIC state is OK                         | ASIC detected and functioning                 | OK                |
+| Service Status      | switchd              | ERROR      | switchd service not active               | switchd is inactive or failed                 | inactive/failed   |
+| Service Status      | frr                  | ERROR      | FRR routing service not active           | frr service is inactive                       | inactive          |
+| Service Status      | nvued                | ERROR      | NVUE daemon not active                   | nvued is inactive or failed                   | inactive/failed   |
+| Service Status      | lldpd, smond, etc.   | WARNING    | Service not active                       | Service is inactive                           | inactive          |
+| Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature high alarm       | Module temp high alarm/warning ON             | Not OK            |
+| Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature low alarm        | Module temp low alarm/warning ON              | Not OK            |
+| Transceiver Status  | transceiver          | INFO       | Transceiver status is OK                 | All transceivers operating normally           | OK                |
+
+
 ## Related Information
 
 - {{<exlink url="http://packages.debian.org/search?keywords=lshw" text="packages.debian.org/search?keywords=lshw">}}

@@ -78,7 +78,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-The {{<link title="What Just Happened (WJH)" text="What Just Happened">}} (WJH) service relies on Docker. If you disable Docker, WJH must also be disabled.
+The {{<link title="What Just Happened (WJH)" text="What Just Happened">}} (WJH) service relies on Docker. If you disable Docker, WJH must also be disabled with the `nv set system wjh state disabled` command.
 {{%/notice%}}
 
 
@@ -170,6 +170,8 @@ cumulus@switch:~$ nv set system docker vrf RED
 cumulus@switch:~$ nv config apply
 ```
 
+This example assumes that the `RED` VRF is already configured with NVUE. To learn more about configuring VRFs, reference {{<link url="Virtual-Routing-and-Forwarding-VRF" text="Virtual Routing and Forwarding">}}. 
+
 To reset the Docker container to run in the management VRF (the default setting), run the `nv unset system docker vrf` command.
 
 {{< /tab >}}
@@ -198,23 +200,31 @@ NVUE provides commands to:
 
 ### Docker Images
 
-To download a Docker image from a registry or remove a Docker image from the switch, run the following commands.
-
-In the following commands, `image-id` is the hexadecimal string representing the docker internal identifier for an image.
+To download a Docker image from a registry, import an image from an archive, or remove a Docker image from the switch, run the following commands.
 
 {{< tabs "TabID180">}}
 {{< tab "NVUE Commands">}}
 
-To download a Docker image from a registry, run the `nv action pull system docker image <image-id>` command:
+To download a Docker image from a registry, run the `nv action pull system docker image <image-id> tag <tag-name>` command. If you do not specify a `tag` name, the name defaults to `latest`. 
 
 ```
-cumulus@switch:~$ nv action pull system docker image 97662d24417b
+cumulus@switch:~$ nv action pull system docker image nginx tag latest
 ```
+
+To import a Docker image from an archive, run the `nv action import system docker image <image-url> repository <repository-name> [tag <tag-name>]` command:
+
+```
+cumulus@switch:~$ nv action import system docker image /path/to/exampleimage.tgz repository xyz tag imported
+```
+
+{{%notice note%}}
+Supported archive formats for `nv action import system docker` include `.tar`, `.tar.gz`, `.tgz`, `.bzip`, `.tar.xz`, and `.txz`.
+{{%/notice%}}
 
 To delete a Docker image from the switch, run the `nv action remove system docker image <image-id>` command:
 
 ```
-cumulus@switch:~$ nv action remove system docker image 97662d24417b
+cumulus@switch:~$ nv action remove system docker image nginx tag latest
 ```
 
 {{< /tab >}}
@@ -223,13 +233,19 @@ cumulus@switch:~$ nv action remove system docker image 97662d24417b
 To download a Docker image from a registry, run the `docker pull <image-id>` command:
 
 ```
-cumulus@switch:~$ docker pull 97662d24417b
+cumulus@switch:~$ docker pull nginx
+```
+
+To import a Docker image from an archive run the `docker load <image-path>` command:
+
+```
+cumulus@switch:~$ docker load -i /path/to/tarball/filename.tgz
 ```
 
 To delete a Docker image from the switch, run the `docker rmi <image-id>` command:
 
 ```
-cumulus@switch:~$ docker rmi 97662d24417b
+cumulus@switch:~$ docker rmi nginx
 ```
 
 {{< /tab >}}
@@ -250,23 +266,19 @@ You must escape special characters used in any Docker `options` and `args` speci
 
 
 ```
-cumulus@switch:~$ nv action run system docker container CONTAINER1 image 97662d24417b options '\-\-storage-opt size=120G'
-```
-
-```
-cumulus@switch:~$ nv action run system docker container CONTAINER2 image 97662d24417b options '\-\-storage-opt size=120G' args '\-\-enable\-cache`
+cumulus@switch:~$ nv action run system docker container nginx-demo image nginx:alpine option '\-\-hostname nginx-demo \-p 8080:80 \-\-restart unless-stopped \-e NGINX_ENTRYPOINT_QUIET_LOGS=1 \-v site:/usr/share/nginx/html:ro \-\-log-opt max-size=10m \-\-log-opt max-file=3' args "nginx -g 'daemon off; worker_processes auto; error_log /var/log/nginx/error.log warn;'"
 ```
 
 To stop a container, run the `nv action stop system docker container <container-name>` command:
 
 ```
-cumulus@switch:~$ nv action stop system docker container CONTAINER1
+cumulus@switch:~$ nv action stop system docker container nginx-demo
 ```
 
 To delete a Docker container from the switch, run the `nv action remove system docker container <container-id>` command:
 
 ```
-cumulus@switch:~$ nv action remove system docker container CONTAINER1
+cumulus@switch:~$ nv action remove system docker container nginx-demo
 ```
 
 {{< /tab >}}
@@ -275,19 +287,19 @@ cumulus@switch:~$ nv action remove system docker container CONTAINER1
 To create and run a new container from an image, run the `sudo docker run -d <image-id> --name <container-name>` command. 
 
 ```
-cumulus@switch:~$ sudo docker run -d 97662d24417b --name CONTAINER1
+cumulus@switch:~$ sudo docker run -d nginx --name nginx-demo
 ```
 
 To stop a container, run the `sudo docker stop <container-name>` command:
 
 ```
-cumulus@switch:~$ sudo docker stop CONTAINER1
+cumulus@switch:~$ sudo docker stop nginx-demo
 ```
 
 To delete a Docker container from the switch, run the `sudo docker rm <container-name>` command:
 
 ```
-cumulus@switch:~$ sudo docker rm CONTAINER1 
+cumulus@switch:~$ sudo docker rm nginx-demo 
 ```
 
 {{< /tab >}}
@@ -314,7 +326,7 @@ Docker Containers
     what-just-happened  docker-wjh:latest                f834edf7fd3c  Up 7 days  
 ```
 
-To show Docker images present on the switch, run the `nv show system docker image` command:
+To show Docker images present on the switch, run the `nv show system docker image` command. Add the `-o native` option to display additional data from Docker inspect.
 
 ```
 cumulus@switch:~$ nv show system docker image
@@ -324,7 +336,7 @@ Image Id      Image Name                Tag     Size    Date                    
 d839322a5483  cumulus-linux-apt-mirror  5.15.0  3.47GB  2025-10-30 02:35:30 -0400 EDT      
 ```
 
-To list all containers and their status, including stopped containers, run the `nv show system docker container` command:
+To list all containers and their status, including stopped containers, run the `nv show system docker container` command. Add the `-o native` option to display additional data from Docker inspect.
 
 ```
 cumulus@switch:~$ nv show system docker container
@@ -381,7 +393,7 @@ pids         9
 
 ```
 
-To show Docker engine configuration, run the `nv show system docker engine` command:
+To show Docker engine configuration, run the `nv show system docker engine` command. Add the `-o native` option to display additional data from Docker inspect.
 
 ```
 cumulus@switch:~$ nv show system docker engine

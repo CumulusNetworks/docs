@@ -8,6 +8,15 @@ This document supports the Cumulus Linux 4.3 release, and lists new platforms an
 - For a list of open and fixed issues in Cumulus Linux 4.3, see the {{<link title="Cumulus Linux 4.3 Release Notes" text="Cumulus Linux 4.3 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.3, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
+## What's New in Cumulus Linux 4.3.4
+
+Cumulus Linux 4.3.4 provides security updates and bug fixes.
+
+{{%notice note%}}
+Cumulus Linux 4.3.4 is supported on Broadcom switches only. You cannot upgrade to Cumulus Linux 4.3.4 on a Mellanox switch.
+- NVIDIA does not provide a Cumulus Linux 4.3.4 image for Mellanox switches.
+- To upgrade a Broadcom switch to Cumulus Linux 4.3.4 with `apt upgrade`, see {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text=" Upgrade to Cumulus Linux 4.3.1 and later">}}.
+{{%/notice%}}
 
 ## What's New in Cumulus Linux 4.3.3
 

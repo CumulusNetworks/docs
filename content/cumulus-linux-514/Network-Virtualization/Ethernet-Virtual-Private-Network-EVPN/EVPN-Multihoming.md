@@ -438,7 +438,7 @@ To configure a MAC hold time for 1000 seconds, run the following commands:
 {{<tab "NVUE Commands">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn multihoming mac-holdtime 1000
+cumulus@leaf01:~$ nv set evpn multihoming mac-holdtime 1080
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -448,7 +448,7 @@ cumulus@leaf01:~$ nv config apply
 ```
 cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
-leaf01(config)# evpn mh mac-holdtime 1000
+leaf01(config)# evpn mh mac-holdtime 1080
 leaf01(config)# exit
 leaf01# write memory
 ```
@@ -458,7 +458,7 @@ The vtysh commands create the following configuration in the `/etc/frr/frr.conf`
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
-evpn mh mac-holdtime 1000
+evpn mh mac-holdtime 1080
 ```
 
 {{</tab>}}
@@ -470,7 +470,7 @@ To configure a neighbor hold time for 600 seconds, run the following commands:
 {{<tab "NVUE Commands">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn multihoming neighbor-holdtime 600
+cumulus@leaf01:~$ nv set evpn multihoming neighbor-holdtime 1080
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -480,7 +480,7 @@ cumulus@leaf01:~$ nv config apply
 ```
 cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
-leaf01(config)# evpn mh neigh-holdtime 600
+leaf01(config)# evpn mh neigh-holdtime 1080
 leaf01(config)# exit
 leaf01# write memory
 ```
@@ -490,7 +490,7 @@ The vtysh commands create the following configuration in the `/etc/frr/frr.conf`
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
-evpn mh neigh-holdtime 600
+evpn mh neigh-holdtime 1080
 ```
 
 {{</tab>}}
@@ -502,7 +502,7 @@ To configure a startup delay for 1800 seconds, run the following commands:
 {{<tab "NVUE Commands">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn multihoming startup-delay 1800
+cumulus@leaf01:~$ nv set evpn multihoming startup-delay 180
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -512,7 +512,7 @@ cumulus@leaf01:~$ nv config apply
 ```
 cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
-leaf01(config)# evpn mh startup-delay 1800
+leaf01(config)# evpn mh startup-delay 180
 leaf01(config)# exit
 leaf01# write memory
 ```
@@ -522,7 +522,7 @@ The vtysh commands create the following configuration in the `/etc/frr/frr.conf`
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
-evpn mh startup-delay 1800
+evpn mh startup-delay 180
 ```
 
 {{</tab>}}

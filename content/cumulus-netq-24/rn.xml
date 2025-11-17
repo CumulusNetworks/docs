@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>2893000</td>
-<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
-<td>2.4.0-4.0.1</td>
-<td>4.1.0-4.15.1</td>
-</tr>
-<tr>
 <td>2551641</td>
 <td>Infra: NetQ VM installation fails if the designated disk size is greater than 2TB. To work around this issue, specify the disk for cloud deployments to be between 256GB and 2TB SSD, and for on-premises deployments to be between 32 GB and 2TB.</td>
 <td>2.4.0-3.1.1</td>
@@ -65,12 +59,6 @@
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
-</tr>
-<tr>
-<td>2893000</td>
-<td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
-<td>2.4.0-4.0.1</td>
-<td>4.1.0-4.15.1</td>
 </tr>
 <tr>
 <td>2551641</td>

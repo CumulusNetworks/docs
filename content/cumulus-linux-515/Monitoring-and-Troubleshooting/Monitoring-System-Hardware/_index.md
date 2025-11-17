@@ -20,6 +20,7 @@ You can run NVUE commands to monitor your system hardware.
 | ----------- | ----------- |
 | `nv show system health`| Shows information about the health of the switch including the status of the ASIC, hardware, and process and describes any issues. Run this command to check real-time health metrics and view historical health data.<ul><li>To show system health information for a specific configuration revision, run the `nv show system health --rev <revision-id>` command.</li><li>To show system health information in `json` format, run the `nv show system health -o json` command.</li></ul>|
 | `nv show platform`| Shows platform hardware information on the switch, such as the model and manufacturer, memory, serial number and system MAC address. |
+| `nv show platform firmware`| Shows switch firmware information, such as the name (BIOS or SSD), part number, and firmware source. |
 |`nv show platform environment fan` | Shows information about the fans on the switch, such as the minimum, maximum and current speed, the fan state, and the fan direction.|
 | `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|
 | `nv show platform environment psu` | Shows information about the PSUs on the switch, such as the PSU name and state.|

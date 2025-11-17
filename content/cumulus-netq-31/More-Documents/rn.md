@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="2893000"></a> [2893000](#2893000) <a name="2893000"></a> <br /> | CVE-2021-44228: Apache Log4j2 <=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. | 2.4.0-4.0.1 | 4.1.0-4.15.1|
 | <a name="2553453"></a> [2553453](#2553453) <a name="2553453"></a> <br /> | The <code>netqd</code> daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and <code>netq show</code> commands are run. | 3.1.0-3.3.1 | 4.0.0-4.15.1|
 | <a name="2551790"></a> [2551790](#2551790) <a name="2551790"></a> <br /> | CLI: Upgrade to NetQ 3.1.0 using the CLI fails due to an authentication issue. To work around this issue, run the <code>netq bootstrap master upgrade</code> command as usual, then use the Admin UI to complete the upgrade at _https://\<netq-appl-vm-hostname-or-ipaddr\>:8443_. | 3.1.0-3.1.1 | 3.2.0-3.3.1|
 | <a name="2551641"></a> [2551641](#2551641) <a name="2551641"></a> <br /> | Infra: NetQ VM installation fails if the designated disk size is greater than 2TB. To work around this issue, specify the disk for cloud deployments to be between 256GB and 2TB SSD, and for on-premises deployments to be between 32 GB and 2TB. | 2.4.0-3.1.1 | 3.2.0-3.3.1|

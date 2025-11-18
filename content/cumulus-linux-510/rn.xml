@@ -67,7 +67,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.3</td>
+<td>5.9.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -115,44 +115,44 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.3</td>
+<td>5.8.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4271207</td>
 <td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
-<td>5.10.1-5.11.3</td>
+<td>5.10.1-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4260012</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.3</td>
+<td>5.10.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4259980</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.9.3, 5.10.0-5.11.3</td>
+<td>5.8.0-5.9.3, 5.10.0-5.11.4</td>
 <td>5.9.4, 5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4200961</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.11.3</td>
+<td>5.10.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -165,20 +165,20 @@ This happens in async mode, where the end notification expected after an end of 
 <td>4175217</td>
 <td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
 netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.11.3</td>
+<td>5.10.1-5.11.4</td>
 <td>5.9.4, 5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4174646</td>
 <td>On the NVIDIA SN5400 and SN5600 switch, the fans might run at full speed when it is not necessary.</td>
-<td>5.10.1-5.11.3</td>
+<td>5.10.1-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4173602</td>
 <td>On the Spectrum-4 switch, {{switchd}} might crash with the following log message:
 CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
-<td>5.10.1-5.11.3</td>
+<td>5.10.1-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -276,7 +276,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4081784</td>
-<td>If you configure an inbound route policy that drops prefixes, then run a vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command, the BGP service might crash.&gt;br&gt;Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes.</td>
+<td>If you configure an inbound route policy that drops prefixes, then run the vtysh {{show bgp vrf neighbours received-routes brief json}} command, the BGP service might crash. Avoid running a vtysh received routes brief json show command if you configure an inbound route policy that drops prefixes. Another option to avoid the issue is to run just {{show ip bgp neighbors received-routes}} without json.</td>
 <td>5.9.1-5.9.3, 5.10.0-5.10.1</td>
 <td>5.9.4, 5.11.0-5.15.0</td>
 </tr>
@@ -313,7 +313,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -811,36 +811,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2932083</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>5.0.0-5.15.0</td>
-<td>4.4.3-4.4.5</td>
-</tr>
-<tr>
 <td>2904450</td>
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
 <td>4.4.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2891255</td>
-<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
-Vulnerable: &lt;= 2.6.20-0+deb10u1
-Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2890681</td>
-<td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
-Vulnerable: 2.6.0+dfsg.1-1
-Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2885305</td>
@@ -1015,7 +991,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.3</td>
+<td>5.9.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -1045,38 +1021,38 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.3</td>
+<td>5.8.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4260012</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.3</td>
+<td>5.10.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4259980</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.9.3, 5.10.0-5.11.3</td>
+<td>5.8.0-5.9.3, 5.10.0-5.11.4</td>
 <td>5.9.4, 5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4200961</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.11.3</td>
+<td>5.10.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -1192,7 +1168,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4081784</td>
-<td>If you configure an inbound route policy that drops prefixes, then run a vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command, the BGP service might crash.&gt;br&gt;Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes.</td>
+<td>If you configure an inbound route policy that drops prefixes, then run the vtysh {{show bgp vrf neighbours received-routes brief json}} command, the BGP service might crash. Avoid running a vtysh received routes brief json show command if you configure an inbound route policy that drops prefixes. Another option to avoid the issue is to run just {{show ip bgp neighbors received-routes}} without json.</td>
 <td>5.9.1-5.9.3, 5.10.0-5.10.1</td>
 <td>5.9.4, 5.11.0-5.15.0</td>
 </tr>
@@ -1241,7 +1217,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -1770,36 +1746,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2932083</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>5.0.0-5.15.0</td>
-<td>4.4.3-4.4.5</td>
-</tr>
-<tr>
 <td>2904450</td>
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
 <td>4.4.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2891255</td>
-<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
-Vulnerable: &lt;= 2.6.20-0+deb10u1
-Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2890681</td>
-<td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
-Vulnerable: 2.6.0+dfsg.1-1
-Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2885305</td>

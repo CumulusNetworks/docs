@@ -106,13 +106,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>5.6.0-5.15.0</td>
 </tr>
 <tr>
-<td>3554231</td>
-<td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P ''). For Cumulus Linux 5.7.0, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
-<td>4.3.2-4.4.5, 5.7.0-5.15.0</td>
-</tr>
-<tr>
 <td>3541912</td>
 <td>Collecting a {{cl-support}} file in a high VNI and interface environment can result in an out-of-memory (OOM) event on the switch. An OOM event can cause critical services to restart and might impact traffic.</td>
 <td>5.1.0-5.5.1</td>
@@ -836,36 +829,12 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <td>5.3.0-5.15.0</td>
 </tr>
 <tr>
-<td>2932083</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>5.0.0-5.15.0</td>
-<td>4.4.3-4.4.5</td>
-</tr>
-<tr>
 <td>2904450</td>
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
 <td>4.4.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2891255</td>
-<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
-Vulnerable: &lt;= 2.6.20-0+deb10u1
-Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2890681</td>
-<td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
-Vulnerable: 2.6.0+dfsg.1-1
-Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2885305</td>
@@ -1024,13 +993,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>When you configure a route distinguisher (RD) or a route target (RT) manually for layer 2 VNIs, type-1 routes are not properly updated, type-1 EVI routes with the old RD are not properly withdrawn, and type-1 ES routes do not have the corresponding layer 2 VNI route target updated.</td>
 <td>5.0.0-5.5.1</td>
 <td>5.6.0-5.15.0</td>
-</tr>
-<tr>
-<td>3554231</td>
-<td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P ''). For Cumulus Linux 5.7.0, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
-<td>4.3.2-4.4.5, 5.7.0-5.15.0</td>
 </tr>
 <tr>
 <td>3541912</td>
@@ -1768,36 +1730,12 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <td>5.3.0-5.15.0</td>
 </tr>
 <tr>
-<td>2932083</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>5.0.0-5.15.0</td>
-<td>4.4.3-4.4.5</td>
-</tr>
-<tr>
 <td>2904450</td>
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
 <td>4.4.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2891255</td>
-<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
-Vulnerable: &lt;= 2.6.20-0+deb10u1
-Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2890681</td>
-<td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
-Vulnerable: 2.6.0+dfsg.1-1
-Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2885305</td>
@@ -1909,11 +1847,6 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 <tr>
 <td>3136983</td>
 <td>When a layer 3 neighbor entry resolves to a bridge FDB entry that does not exist in the kernel, {{switchd}} might contribute to high CPU load while it continues to try to sync and resolve the neighbor entry. This results in many {{sync_l3_nexthop}} messages printed to {{/var/log/switchd.log}}.</td>
-<td>5.0.1-5.1.0</td>
-</tr>
-<tr>
-<td>3136905</td>
-<td>When you upgrade from Cumulus Linux 5.0.1 to Cumulus Linux 5.1.0, the upgrade adds {{KexAlgorithms}} and {{MACs}} configuration to  the {{/etc/ssh/sshd_config}} file without prompting for confirmation.  This might cause the {{/etc/ssh/sshd_config}} file to be incorrect if there is a {{Match}} section; {{KexAlgorithms}} and {{MACs}} must come before {{Match}}. To work around this issue, move the lines that start with {{KexAlgorithms}} and {{MACs}} before {{Match}} or remove them, then restart the SSH service with the {{sudo systemctl restart ssh}} command. If you have already specified {{KexAlgorithms}} or {{MACs}}, you can remove the newly added lines after upgrade.</td>
 <td>5.0.1-5.1.0</td>
 </tr>
 <tr>

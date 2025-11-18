@@ -123,7 +123,7 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set qos`<br>`nv unset qos` | Configures {{<link title="RDMA over Converged Ethernet - RoCE" text="QoS RoCE">}}. |
 | `nv set router`<br>`nv unset router` | Configures {{<link url="Route-Filtering-and-Redistribution" text="router policies">}} (prefix list rules and route maps), sets {{<link url="Basic-BGP-Configuration" text="global BGP options">}} (enable and disable, ASN and router ID, BGP graceful restart and shutdown), {{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="global OSPF options">}} (enable and disable, router ID, and OSPF timers) {{<link url="Protocol-Independent-Multicast-PIM" text="PIM">}}, {{<link url="IGMP-and-MLD-Snooping" text="IGMP">}}, {{<link url="Policy-based-Routing" text="PBR">}}, {{<link url="Virtual-Router-Redundancy-VRR" text="VRR">}}, and {{<link url="Virtual-Router-Redundancy-Protocol-VRRP" text="VRRP">}}. |
 | `nv set service`<br>`nv unset service` | Configures {{<link url="DHCP-Relays" text="DHCP relays">}} and {{<link url="DHCP-Servers" text="DHCP servers">}}, and {{<link url="Precision-Time-Protocol-PTP" text="PTP">}}. |
-| `nv set system`<br>`nv unset system` | Configures system settings, such as the {{<link title="Quick Start Guide/#configure-the-hostname" text="hostname of the switch">}}, pre and post login messages, {{<link title="Setting the Date and Time/#set-the-time-zone" text="time zone ">}}, {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}, {{<link url="Network-Time-Protocol-NTP" text="NTP">}}, and DNS and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure {{<link url="gNMI-Streaming" text="gNMI streaming">}}, {{<link url="Open-Telemetry-Export" text="Open telemtry export">}},{{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN sessions">}}, {{<link url="Configure-SNMP" text="SNMP">}}, {{<link url="Log-Files-with-NVUE" text="syslog">}}, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
+| `nv set system`<br>`nv unset system` | Configures system settings, such as the {{<link title="Quick Start Guide/#configure-the-hostname" text="hostname of the switch">}}, pre and post login messages, {{<link title="Setting the Date and Time/#set-the-time-zone" text="time zone ">}}, {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}, {{<link url="Network-Time-Protocol-NTP" text="NTP">}}, and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure {{<link url="gNMI-Streaming" text="gNMI streaming">}}, {{<link url="Open-Telemetry-Export" text="Open telemtry export">}},{{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN sessions">}}, {{<link url="Configure-SNMP" text="SNMP">}}, {{<link url="Log-Files-with-NVUE" text="syslog">}}, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures {{<link url="VRFs" text="VRFs">}}. This is where you configure VRF-level configuration for PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
@@ -369,10 +369,12 @@ To show if password encryption is `on`, run the `nv show system security encrypt
 
 ```
 cumulus@switch:~$ nv show system security encryption
-         operational  applied
--------  -----------  -------
-db                           
-  state               enabled
+                operational  applied
+--------------  -----------  -------
+db                                  
+  state         enabled      enabled
+folder-encrypt                      
+  storage       usb          usb 
 ```
 
 ## Configuration Files that NVUE Manages

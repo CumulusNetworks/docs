@@ -933,18 +933,18 @@ Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-
 selected, x - failed                                                            
                                                                                 
 Route            Protocol  Distance  Uptime                NHGId  Metric  Flags
----------------  --------  --------  --------------------  -----  ------  -----
-10.0.1.34/32     bgp       20        2024-12-17T10:24:14Z  127    0       *Si  
-10.0.1.255/32    bgp       20        2024-12-17T10:24:10Z  127    0       *Si  
-10.10.10.2/32    bgp       20        2024-12-17T10:24:10Z  62     0       *Si  
-10.10.10.3/32    bgp       20        2024-12-17T10:24:17Z  127    0       *Si  
-10.10.10.4/32    bgp       20        2024-12-17T10:24:10Z  127    0       *Si  
-10.10.10.63/32   bgp       20        2024-12-17T10:24:10Z  127    0       *Si  
-10.10.10.64/32   bgp       20        2024-12-17T10:24:17Z  127    0       *Si  
-10.10.10.101/32  bgp       20        2024-12-17T10:24:10Z  102    0       *Si  
-10.10.10.102/32  bgp       20        2024-12-17T10:24:10Z  115    0       *Si  
-10.10.10.103/32  bgp       20        2024-12-17T10:24:10Z  121    0       *Si  
-10.10.10.104/32  bgp       20        2024-12-17T10:24:10Z  113    0       *Si  
+---------------  --------  --------  -----------  -----  ------  -----
+10.0.1.34/32     bgp       20        0:59:50      127    0       *Si  
+10.0.1.255/32    bgp       20        0:59:50      127    0       *Si  
+10.10.10.2/32    bgp       20        23:38:14     62     0       *Si  
+10.10.10.3/32    bgp       20        0:59:50      127    0       *Si  
+10.10.10.4/32    bgp       20        0:59:50      127    0       *Si  
+10.10.10.63/32   bgp       20        0:59:50      127    0       *Si  
+10.10.10.64/32   bgp       20        0:59:50      127    0       *Si  
+10.10.10.101/32  bgp       20        0:59:50      102    0       *Si  
+10.10.10.102/32  bgp       20        23:43:21     115    0       *Si  
+10.10.10.103/32  bgp       20        23:43:21     121    0       *Si  
+10.10.10.104/32  bgp       20        23:43:21     113    0       *Si  
 ```
 
 You can filter BGP and EVPN received routes by a specific neighbor (numbered or unnumbered) with the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4, `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6, or `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` for EVPN.
@@ -969,7 +969,7 @@ You can also filter EVPN routes by a specific RD with the `nv show vrf <vrf-id> 
 You can filter the `nv show vrf <vrf-id> router bgp neighbor` command output by state (established or non-established); for example, to show all BGP established neighbors:
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor
+cumulus@switch:~$ nv show vrf default router bgp neighbor --filter="state=established"
 
 AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
 UTC format, UpTime - Last connection reset time in days,hours:min:sec, Afi-Safi
@@ -990,47 +990,20 @@ swp54          65199  established  2025-06-15T09:45:16Z  4:16:59  34059    34051
                                                                                     l2vpn-evpn    81       57 
 ```
 
-To show all BGP non-established neighbors:
-
-```
-cumulus@switch:~$ 
-AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
-UTC format, UpTime - Last connection reset time in days,hours:min:sec, Afi-Safi
-- Address family, PfxSent - Transmitted prefix counter, PfxRcvd - Recieved
-prefix counter
-
-Neighbor       AS     State        PeerEstablishedTime   UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
--------------  -----  -----------  --------------------  -------  -------  -------  ------------  -------  -------
-swp53          65199  established  2025-06-15T09:45:17Z  4:16:59  34062    34050    ipv4-unicast  13       9      
-                                                                                    l2vpn-evpn    81       57     
-swp54          65199  established  2025-06-15T09:45:16Z  4:16:59  34059    34051    ipv4-unicast  13       9      
-                                                                                    l2vpn-evpn    81       57
-```
-
 To show a summary of the connection information for all BGP neighbors:
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor --view=detail
 
-AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
-UTC format, UpTime - Last connection reset time in days,hours:min:sec, Afi-Safi
-- Address family, PfxSent - Transmitted prefix counter, PfxRcvd - Recieved
-prefix counter
+AS - Remote Autonomous System, Uptime - BGP session up time, ResetTime - Last
+connection reset time, Afi-Safi - Address family, PfxSent - Transmitted prefix
+counter, PfxRcvd - Recieved prefix counter
 
-Neighbor  AS     State        PeerEstablishedTime   UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
---------  -----  -----------  --------------------  -------  -------  -------  ------------  -------  -------
-swp1      65101  established  2025-06-15T09:45:14Z  4:22:37  34147    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      27     
-swp2      65102  established  2025-06-15T09:45:15Z  4:22:37  34148    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      27     
-swp3      65103  established  2025-06-15T09:45:15Z  4:22:37  34160    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      27     
-swp4      65104  established  2025-06-15T09:45:15Z  4:22:37  34161    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      27     
-swp5      65253  established  2025-06-15T09:45:15Z  4:22:37  34188    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      6      
-swp6      65254  established  2025-06-15T09:45:15Z  4:22:37  34194    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      6                    
+Neighbor       AS  State  Uptime  ResetTime  MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+-------------  --  -----  ------  ---------  -------  -------  ------------  -------  -------
+peerlink.4094      idle           23:41:41   0        0        ipv4-unicast  0        0      
+swp51              idle           23:41:41   0        0        ipv4-unicast  0        0      
+swp52              idle           23:41:41   0        0        ipv4-unicast  0        0                    
 ```
 
 To show a summary of the connection information for all BGP neighbors in json format, run the `nv show vrf default router bgp neighbor -o json` command.
@@ -1047,41 +1020,38 @@ The following example shows the `nv show vrf default router rib ipv4 route` comm
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route
+
 Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-
 selected, x - failed
 
-Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
----------------  ---------  --------  --------------------  -----  ------  -----
-10.0.1.12/32     connected  0         2025-02-08T16:26:22Z  12     0       *Sio 
-10.0.1.34/32     bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.0.1.255/32    bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.10.10.1/32    connected  0         2025-02-08T16:26:13Z  12     0       *Sio 
-10.10.10.2/32    bgp        20        2025-02-11T16:05:22Z  62     0       *Si  
-10.10.10.3/32    bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.10.10.4/32    bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.10.10.63/32   bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.10.10.64/32   bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.10.10.101/32  bgp        20        2025-02-11T16:05:22Z  100    0       *Si  
-10.10.10.102/32  bgp        20        2025-02-11T16:05:22Z  120    0       *Si 
+Route          Protocol   Distance  Uptime    NHGId  Metric  Flags
+-------------  ---------  --------  --------  -----  ------  -----
+10.1.10.0/24   connected  0         0:58:51   20     0       *Si  
+10.1.10.1/32   local      0         0:58:51   20     0       i    
+               local      0         23:37:15  20     0       *Si  
+10.1.20.0/24   connected  0         0:58:51   45     0       *Si  
+10.1.20.2/32   local      0         0:58:51   45     0       *Si  
+10.1.30.0/24   connected  0         0:58:51   46     0       *Si  
+10.1.30.2/32   local      0         0:58:51   46     0       *Si  
+10.10.10.1/32  connected  0         23:42:22  9      0       *Si  
+               local      0         23:42:22  9      0       i 
 ```
 
 The following example shows the `nv show vrf default router rib ipv4 route` command with the option to only include the `Route`, `Protocol`, `Uptime`, and `NHGID` (next hop group ID) columns in the output:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route --view "include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime"
-Route            Protocol   Uptime                NHGId
----------------  ---------  --------------------  -----
-10.0.1.12/32     connected  2025-02-08T16:26:22Z  12   
-10.0.1.34/32     bgp        2025-02-11T16:05:22Z  124  
-10.0.1.255/32    bgp        2025-02-11T16:05:22Z  124  
-10.10.10.1/32    connected  2025-02-08T16:26:13Z  12   
-10.10.10.2/32    bgp        2025-02-11T16:05:22Z  62   
-10.10.10.3/32    bgp        2025-02-11T16:05:22Z  124  
-10.10.10.4/32    bgp        2025-02-11T16:05:22Z  124  
-10.10.10.63/32   bgp        2025-02-11T16:05:22Z  124  
-10.10.10.64/32   bgp        2025-02-11T16:05:22Z  124  
-10.10.10.101/32  bgp        2025-02-11T16:05:22Z  100  
-10.10.10.102/32  bgp        2025-02-11T16:05:22Z  120
+Route          Protocol   Uptime    NHGId
+-------------  ---------  --------  -----
+10.1.10.0/24   connected  0:59:20   20   
+10.1.10.1/32   local      0:59:20   20   
+               local      23:37:44  20   
+10.1.20.0/24   connected  0:59:20   45   
+10.1.20.2/32   local      0:59:20   45   
+10.1.30.0/24   connected  0:59:20   46   
+10.1.30.2/32   local      0:59:20   46   
+10.10.10.1/32  connected  23:42:51  9    
+               local      23:42:51  9
 ```
 
 The following example shows the `nv show vrf default router rib ipv4 route` command with the option to omit all columns (except Route) in the output:

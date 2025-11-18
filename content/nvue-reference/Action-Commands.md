@@ -81,13 +81,17 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action change system time</h>
+## <h>nv action change system date-time</h>
 
 Configures the Cumulus Linux software clock. The switch contains a battery backed hardware clock that maintains the date and time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
 
 During boot up, the switch copies the date and time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
 
 The format is YYYY-MM-DD HH:MM:SS
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv action change system time`.
+{{%/notice%}}
 
 ### Version History
 
@@ -96,7 +100,7 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action change system time 2023-12-04 02:33:30
+cumulus@switch:~$ nv action change system date-time 2023-12-04 02:33:30
 System Date-time changed successfully
 Local Time is now Mon 2023-12-04 02:33:30 UTC
 Action succeeded

@@ -573,18 +573,22 @@ cumulus@switch:~$ nv set system serial-console sysrq-capabilities enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system timezone</h>
+## <h> nv set system date-time timezone</h>
 
 Configures the switch time zone.
 
-To see all the available time zones, run `nv set system timezone` and press the Tab key.
+To see all the available time zones, run `nv set system date-time timezone` and press the Tab key.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show system timezone`.
+{{%/notice%}}
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set system timezone US/Eastern
+cumulus@switch:~$ nv set system date-time timezone US/Eastern
 ```

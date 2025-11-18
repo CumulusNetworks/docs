@@ -8,6 +8,10 @@ This document supports the Cumulus Linux 5.15 release, and lists new features an
 - For a list of open and fixed issues in Cumulus Linux 5.15, see the {{<link title="Cumulus Linux 5.15 Release Notes" text="Cumulus Linux 5.15 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.15, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+## What's New in Cumulus Linux 5.15.1
+
+Cumulus Linux 5.15.1 provides a new SDK and firmware version.
+
 ## What's New in Cumulus Linux 5.15
 
 Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fixes.

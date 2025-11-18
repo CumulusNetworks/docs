@@ -797,14 +797,16 @@ The following NVUE commands are deprecated in Cumulus Linux 5.15.
 ```
 nv show system aaa authentication-order 
 nv show system aaa authentication-order <priority-id>
+nv show system time
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
-nv set system ssh-server strict
 nv set system reboot mode
+nv set system ssh-server strict
+nv set system timezone
 nv set interface <interface-id> router ospf bfd enable
 nv set interface <interface-id> router ospf bfd detect-multiplier
 nv set interface <interface-id> router ospf bfd min-receive-interval 
@@ -852,6 +854,7 @@ nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval
 {{< tab "nv action ">}}
 
 ```
+nv action change system time
 nv action power-cycle system
 ```
 
@@ -882,6 +885,7 @@ nv show interface dot1x-counters
 nv show system aaa authentication restrictions
 nv show system control-plane acl <acl-id> inbound 
 nv show system control-plane acl <acl-id> outbound
+nv show system date-time
 nv show system dns search
 nv show system dns search <dns-search-id>
 nv show system docker
@@ -960,6 +964,7 @@ nv set system aaa authentication restrictions lockout-state
 nv set system aaa authentication restrictions lockout-attempts
 nv set system aaa authentication restrictions fail-delay
 nv set system aaa authentication restrictions lockout-reattempt
+nv set system date-time timezone
 nv set system dns server <dns-server-ip> vrf <vrf-id> 
 nv set system dns server <dns-server-id> priority <integer> 
 nv set system docker state
@@ -998,6 +1003,7 @@ nv set system forwarding resource-mode
 {{< tab "nv action ">}}
 
 ```
+nv action change system date-time
 nv action clear system aaa authentication restrictions user <user-id>
 nv action clear system aaa authentication restrictions
 nv action enable system security encryption folder-encrypt password <passsword>

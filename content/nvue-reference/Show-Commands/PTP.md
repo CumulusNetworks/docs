@@ -916,7 +916,7 @@ IP or MAC Address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service ptp \<instance-id\> unicast-master \<table-id\> address \<ip-mac-address-id\></h>
+## <h>nv show service ptp \<instance-id\> unicast-master \<table-id\> address \<ip-mac-address\></h>
 
 Shows information about a specific IP or MAC address for the specified PTP unicast master table.
 
@@ -926,7 +926,7 @@ Shows information about a specific IP or MAC address for the specified PTP unica
 | --------- | -------------- |
 | `<instance-id>`  | The PTP instance number.|
 | `<table-id>`  | The unicast master table ID.|
-| `<ip-mac-address-id>`  | The IP or MAC address.|
+| `<ip-mac-address>`  | The IP or MAC address.|
 
 ### Version History
 

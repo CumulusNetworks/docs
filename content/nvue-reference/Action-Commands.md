@@ -2869,7 +2869,7 @@ cumulus@switch:~$ nv action delete system security certificate cert-1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system tech-support files \<file-id\></h>
+## <h>nv action delete system tech-support files \<filename\></h>
 
 Deletes the specified technical support file (a compressed archive file of useful information for troubleshooting). 
 
@@ -2877,7 +2877,7 @@ Deletes the specified technical support file (a compressed archive file of usefu
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<file-id>`  |  The technical support file name and location. |
+| `<filename>`  |  The technical support file name and location. |
 
 ### Version History
 
@@ -4635,7 +4635,7 @@ cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action upload tech-support files \<file-id\> \<remote-url\></h>
+## <h>nv action upload tech-support files \<filename\> \<remote-url\></h>
 
 Uploads a technical support file (`cl-support`) off the switch to an external location.
 
@@ -4643,7 +4643,7 @@ Uploads a technical support file (`cl-support`) off the switch to an external lo
 
 | Syntax   |  Description  |
 | ----------    | ------------  |
-| `<file-id>` |  The technical support file you want to upload.  |
+| `<filenamea>` |  The technical support file you want to upload.  |
 | `<remote-url>` |  The URL to where you want to upload the technical support file.  |
 
 ### Version History

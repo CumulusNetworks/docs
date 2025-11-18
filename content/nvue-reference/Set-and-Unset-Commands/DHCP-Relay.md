@@ -261,7 +261,7 @@ cumulus@switch:~$ nv set service dhcp-relay default server-group type1-server-gr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-relay \<vrf-id\> server-group \<server-group-id\> server <server-id></h>
+## <h>nv set service dhcp-relay \<vrf-id\> server-group \<server-group-id\> server \<server-id\></h>
 
 Configures the DHCP servers in the server group. A server group must contain at least one DHCP server for a specific VRF.
 
@@ -287,7 +287,7 @@ cumulus@switch:~$
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-relay \<vrf-id\> server-group \<server-group-id\> upstream-interface <interface-id></h>
+## <h>nv set service dhcp-relay \<vrf-id\> server-group \<server-group-id\> upstream-interface \<interface-id\></h>
 
 Configures the DHCP relay server facing (upstream) interface for the server group. You can specify multiple interfaces.
 

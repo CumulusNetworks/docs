@@ -4323,7 +4323,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action run system docker <container-id> image <image></h>
+## <h>nv action run system docker \<container-id\> image \<image-id\></h>
 
 Creates and runs a new Docker container from an image.
 
@@ -4406,29 +4406,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action start system docker container \<container-name\> image \<image-id\></h>
-
-Creates and runs a new Docker container from an image.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<container-name>` |  The container name.|
-| `<image-id>` |  The image ID.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action start system docker container CONTAINER1 image nginx
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action remove system docker container \<container-name\></h>
 
 Deletes a Docker container.
@@ -4437,7 +4414,7 @@ Deletes a Docker container.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<container-name>` |  The hexadecimal string or name of the container.|
+| `<container-name>` |  The name of the container.|
 
 ### Version History
 
@@ -4459,7 +4436,7 @@ Stops a Docker container.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<container-name>` |  The hexadecimal string or name of the container.|
+| `<container-name>` |  The name of the container.|
 
 ### Version History
 

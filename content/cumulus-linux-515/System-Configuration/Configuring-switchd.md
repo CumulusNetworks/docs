@@ -209,46 +209,47 @@ The following example command shows that the polling interval setting for logica
 
 ```
 cumulus@switch:~$ nv show system counter polling-interval
-                   applied  description
------------------  -------  -----------------------------------------------------
-logical-interface  0:00:06  Config polling-interval for logical interface(in sec)
+                    operational  applied
+------------------  -----------  -------
+logical-interface                0:00:05
+physical-interface               0:00:02
 ```
 
 The following example command shows that the log level setting for data plane programming logs is `warning`:
 
 ```
 cumulus@switch:~$ nv show system forwarding programming
-           applied  description
----------  -------  -------------------
-log-level  warning  configure Log-level
+           operational   applied
+---------  -----------   ------- 
+log-level  warning       warning
 ```
 
 The following example command shows that the DSCP action setting for the outer header in VXLAN encapsulation is `set` and the value is `af12`.
 
 ```
 cumulus@switch:~$ nv show nve vxlan encapsulation dscp
-        operational  applied  description
-------  -----------  -------  --------------------------------------------------
-action  set          set      DSCP encapsulation action
-value   af12         af12     Configured DSCP value to put in outer Vxlan packet
+        operational  applied  
+------  -----------  ------- 
+action  set          set     
+value   af12         af12    
 ```
 
 The following command example shows that ACL mode is `atomic`:
 
 ```
 cumulus@switch:~$ nv show system acl
-      applied  description
-----  -------  -----------------------------------------
-mode  atomic   configure Atomic or Non-Atomic ACL update
+      operational  applied
+----  -----------  ------- 
+mode               atomic
 ```
 
 The following command example shows that the reserved VLAN range is between 4064 and 4094:
 
 ```
 cumulus@switch:~$ nv show system global reserved vlan internal
-       operational  applied    description
------  -----------  ---------  -------------------
-range  4064-4094    4064-4094  Reserved Vlan range
+       operational  applied    
+-----  -----------  --------- 
+range  3725-3999    3725-3999
 ```
 
 {{%notice note%}}

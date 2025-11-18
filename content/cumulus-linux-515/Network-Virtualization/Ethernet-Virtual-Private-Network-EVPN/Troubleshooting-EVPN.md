@@ -709,15 +709,17 @@ cumulus@leaf01:mgmt:~$ nv show vrf RED router rib ipv4 route
 Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-        
 selected, x - failed                                                            
                                                                                 
-Route           Protocol   Distance  Uptime                NHGId  Metric  Flags
---------------  ---------  --------  --------------------  -----  ------  -----
-0.0.0.0/0       kernel     255       2024-10-25T14:02:23Z  21     8192    *Si  
-10.1.10.0/24    connected  0         2024-10-25T14:02:33Z  100    1024    io   
-                connected  0         2024-10-25T14:02:33Z  88     0       *Sio 
-10.1.20.0/24    connected  0         2024-10-25T14:02:33Z  103    1024    io   
-                connected  0         2024-10-25T14:02:33Z  92     0       *Sio 
-10.1.20.105/32  bgp        20        2024-10-25T14:02:46Z  166    0       *Si  
-10.1.30.0/24    bgp        20        2024-10-25T14:02:39Z  154    0       *Si
+Route          Protocol   Distance  Uptime          NHGId  Metric  Flags
+-------------  ---------  --------  --------------  -----  ------  -----
+10.1.10.0/24   connected  0         1:26:33         20     0       *Si  
+10.1.10.1/32   local      0         1:26:33         20     0       i    
+               local      0         1 day, 0:04:57  20     0       *Si  
+10.1.20.0/24   connected  0         1:26:33         45     0       *Si  
+10.1.20.2/32   local      0         1:26:33         45     0       *Si  
+10.1.30.0/24   connected  0         1:26:33         46     0       *Si  
+10.1.30.2/32   local      0         1:26:33         46     0       *Si  
+10.10.10.1/32  connected  0         1 day, 0:10:04  9      0       *Si  
+               local      0         1 day, 0:10:04  9      0       i 
 ```
 
 ```

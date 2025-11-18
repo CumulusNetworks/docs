@@ -169,10 +169,10 @@ To update the time zone:
 {{< tabs "TabID19 ">}}
 {{< tab "NVUE Commands ">}}
 <!-- vale off -->
-Run the `nv set system timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key. The following example sets the time zone to US/Eastern:
+Run the `nv set system date-time timezone <timezone>` command. To see all the available time zones, run `nv set system date-time timezone` and press the Tab key. The following example sets the time zone to US/Eastern:
 
 ```
-cumulus@switch:~$ nv set system timezone US/Eastern
+cumulus@switch:~$ nv set system date-time timezone US/Eastern
 cumulus@switch:~$ nv config apply
 ```
 
@@ -205,7 +205,7 @@ To show the current date and time, run the `nv show system date-time` command:
 
 ```
 cumulus@switch:~$ nv show system date-time
-                          operational         
+                           operational         
 -------------------------  -------------------
 local-time                 2025-10-02 11:07:34                  
 universal-time             2025-10-02 11:07:34                  
@@ -220,7 +220,7 @@ unix-time                  1759403254.3559468
 To set the software clock according to the configured time zone, run the `nv action change system time <YYYY-MM-DD> <HH:MM:SS>` command; for example:
 
 ```
-cumulus@switch:~$ nv action change system time 2023-12-04 2:33:30
+cumulus@switch:~$ nv action change system date-time 2023-12-04 2:33:30
 System Date-time changed successfully
 Local Time is now Mon 2023-12-04 02:33:30 UTC
 Action succeeded
@@ -233,7 +233,7 @@ To show the current date and time on the switch, run the `date` command:
 
 ```
 cumulus@switch:~$ date
-Wed 11 Oct 2023 12:18:33 PM UTC
+Tue Nov 18 12:18:33 PM UTC 2025
 ```
 
 To set the software clock according to the configured time zone, run the `sudo date -s` command:

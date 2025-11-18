@@ -2276,21 +2276,18 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-To show if graceful shutdown is `on` a peer, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor>` command:
+To show if graceful shutdown is enabled on a peer, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor>` command:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51
-                                    operational                     applied   
-----------------------------------  ------------------------------  ----------
-password                                                            *         
-enforce-first-as                                                    on       
-passive-mode                                                        off       
-nexthop-connected-check                                             on        
-description                                                         none      
-bfd                                                                           
-  enable                                                            off       
-...
-graceful-shutdown                                                   on      
+                               operational                applied                                
+-----------------------------  -------------------------  ---------------------------------------
+password                                                  $nvsec$d1a028e8c7f97db92876c2a30fcc403f
+enforce-first-as                                          enabled                                
+passive-mode                                              disabled                               
+nexthop-connected-check                                   enabled                                
+description                                               none                                   
+graceful-shutdown                                         disabled                               
 ...
 ```
 

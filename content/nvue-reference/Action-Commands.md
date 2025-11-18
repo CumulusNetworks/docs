@@ -16,69 +16,6 @@ Resets counters for interfaces, BGP, QoS buffers and pools, removes conflicts fr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show action</h>
-
-Shows the action jobs.
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show action
-'1':
-  detail: acl counters cleared.
-  http_status: 200
-  issue: []
-  percentage: ''
-  state: action_success
-  status: acl counters cleared.
-  timeout: 60
-  type: ''
-'2':
-  detail: Local Time is now Wed 2024-05-29 09:47:30 UTC
-  http_status: 200
-  issue: []
-  percentage: ''
-  state: action_success
-  status: Local Time is now Wed 2024-05-29 09:47:30 UTC
-  timeout: 60
-  type: ''
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show action \<action-job-id\></h>
-
-Shows information about the specified action.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ----------    | ------------  |
-| `<action-job-id>` | The action ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show action 3
-detail: acl counters cleared.
-http_status: 200
-issue: []
-state: action_success
-status: acl counters cleared.
-timeout: 60
-type: ''
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action abort system ztp</h>
 
 Terminates ZTP if it is in the discovery process or is not currently running a script.
@@ -144,13 +81,17 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action change system time</h>
+## <h>nv action change system date-time</h>
 
 Configures the Cumulus Linux software clock. The switch contains a battery backed hardware clock that maintains the date and time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
 
 During boot up, the switch copies the date and time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
 
 The format is YYYY-MM-DD HH:MM:SS
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv action change system time`.
+{{%/notice%}}
 
 ### Version History
 
@@ -159,57 +100,9 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action change system time 2023-12-04 02:33:30
+cumulus@switch:~$ nv action change system date-time 2023-12-04 02:33:30
 System Date-time changed successfully
 Local Time is now Mon 2023-12-04 02:33:30 UTC
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear system aaa authentication restrictions</h>
-
-Clears the restriction state for all users that are locked out.
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear system aaa authentication restrictions
-Action executing ...
-Clearing restrictions for all users
-Action executing ...
-Successfully cleared all users
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear system aaa authentication restrictions user \<user-id\></h>
-
-Clears the restriction state for a user that is locked out.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<user-id>` |  The user name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear system aaa authentication restrictions user USER1
-Action executing ...
-Clearing restrictions for user USER1
-Action executing ...
-Successfully cleared user name USER1
 Action succeeded
 ```
 
@@ -793,6 +686,54 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv action clear mlag lacp-conflict 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system aaa authentication restrictions</h>
+
+Clears the restriction state for all users that are locked out.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system aaa authentication restrictions
+Action executing ...
+Clearing restrictions for all users
+Action executing ...
+Successfully cleared all users
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system aaa authentication restrictions user \<user-id\></h>
+
+Clears the restriction state for a user that is locked out.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>` |  The user name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system aaa authentication restrictions user USER1
+Action executing ...
+Clearing restrictions for user USER1
+Action executing ...
+Successfully cleared user name USER1
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2932,6 +2873,31 @@ cumulus@switch:~$ nv action delete system security certificate cert-1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action delete system tech-support files \<filename\></h>
+
+Deletes the specified technical support file (a compressed archive file of useful information for troubleshooting). 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system tech-support files /var/support/cl_support_leaf01_20240725_221237.txz
+Action executing ...
+File Delete Succeeded
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action disable system maintenance mode</h>
 
 Disables maintenance mode and restores normal operation.
@@ -3388,26 +3354,22 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system tech-support files \<file-id\></h>
+## <h>nv action generate system file-hash</h>
 
-Deletes the specified technical support file (a compressed archive file of useful information for troubleshooting). 
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<file-id>`  |  The technical support file name and location. |
+Calculates and generates a unique hash value (checksum) for a file using md5, sha1, sha224, ssa256, and sha512 algorithms. A hash file checksum is a unique string of characters generated by a cryptographic hash function to represent the contents of a file allowing you to verify the integrity of the file.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.10.0
+Introduced in Cumulus Linux 5.13.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action delete system tech-support files /var/support/cl_support_leaf01_20240725_221237.txz
-Action executing ...
-File Delete Succeeded
+cumulus@switch:~$ nv action generate system file-hash md5 /var/log/text.txt  
+Action executing ... 
+Generated Hash Checksum  
+5073306b0629c047d090e2c96b5eec4b /var/log/text.txt
+
 Action succeeded
 ```
 
@@ -3558,27 +3520,6 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action install system image files cumulus-linux-5.12.0-mlx-amd64.bin
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action generate system file-hash</h>
-
-Calculates and generates a unique hash value (checksum) for a file using md5, sha1, sha224, ssa256, and sha512 algorithms. A hash file checksum is a unique string of characters generated by a cryptographic hash function to represent the contents of a file allowing you to verify the integrity of the file.
-
-### Version History
-
-Introduced in Cumulus Linux 5.13.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action generate system file-hash md5 /var/log/text.txt  
-Action executing ... 
-Generated Hash Checksum  
-5073306b0629c047d090e2c96b5eec4b /var/log/text.txt
-
-Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4112,6 +4053,28 @@ cumulus@switch:~$ nv action renew interface swp1 ipv6 dhcp-client
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action remove system docker container \<container-name\></h>
+
+Deletes a Docker container.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<container-name>` |  The name of the container.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action remove system docker container CONTAINER1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action remove system docker image \<image-id\></h>
 
 Removes a Docker image from the switch.
@@ -4323,7 +4286,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action run system docker <container-id> image <image></h>
+## <h>nv action run system docker \<container-id\> image \<image-id\></h>
 
 Creates and runs a new Docker container from an image.
 
@@ -4406,51 +4369,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action start system docker container \<container-name\> image \<image-id\></h>
-
-Creates and runs a new Docker container from an image.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<container-name>` |  The container name.|
-| `<image-id>` |  The image ID.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action start system docker container CONTAINER1 image nginx
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action remove system docker container \<container-name\></h>
-
-Deletes a Docker container.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<container-name>` |  The hexadecimal string or name of the container.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action remove system docker container CONTAINER1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action stop system docker container \<container-name\></h>
 
 Stops a Docker container.
@@ -4459,7 +4377,7 @@ Stops a Docker container.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<container-name>` |  The hexadecimal string or name of the container.|
+| `<container-name>` |  The name of the container.|
 
 ### Version History
 
@@ -4721,7 +4639,7 @@ cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action upload tech-support files \<file-id\> \<remote-url\></h>
+## <h>nv action upload tech-support files \<filename\> \<remote-url\></h>
 
 Uploads a technical support file (`cl-support`) off the switch to an external location.
 
@@ -4729,7 +4647,7 @@ Uploads a technical support file (`cl-support`) off the switch to an external lo
 
 | Syntax   |  Description  |
 | ----------    | ------------  |
-| `<file-id>` |  The technical support file you want to upload.  |
+| `<filenamea>` |  The technical support file you want to upload.  |
 | `<remote-url>` |  The URL to where you want to upload the technical support file.  |
 
 ### Version History
@@ -4809,4 +4727,33 @@ id  state
 4   action_success 
 5   action_success
 6   action_success
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show action \<action-job-id\></h>
+
+Shows information about the specified action.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<action-job-id>` | The action ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show action 3
+detail: acl counters cleared.
+http_status: 200
+issue: []
+state: action_success
+status: acl counters cleared.
+timeout: 60
+type: ''
 ```

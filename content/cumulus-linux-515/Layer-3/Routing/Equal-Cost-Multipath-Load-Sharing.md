@@ -25,53 +25,53 @@ cumulus@leaf01:mgmt:~$ nv show router nexthop rib
 Installed - Install state 
 ID   Installed  Uptime                Vrf      Valid  Via                        ViaIntf        ViaVrf   Depends
 ---  ---------  --------------------  -------  -----  -------------------------  -------------  -------  -------
-12              2024-10-22T18:35:53Z  default  on     swp53                                     default         
-13              2024-10-22T18:35:53Z  default  on     swp51                                     default         
-14   on         2024-10-22T18:35:53Z  default  on     swp54                                     default         
-15   on         2024-10-22T18:36:00Z  default  on     lo                                        default         
-16   on         2024-10-22T18:35:53Z  default  on     eth0                                      mgmt            
-17   on         2024-10-22T18:35:53Z  default  on     eth0                                      mgmt            
-18              2024-10-22T18:36:00Z  default  on                                                               
-19   on         2024-10-22T18:36:00Z  default  on     192.168.200.1              eth0           mgmt            
-20   on         2024-10-22T18:36:00Z  default  on                                                               
-21   on         2024-10-22T18:36:00Z  default  on                                                               
-22   on         2024-10-22T18:36:00Z  default  on                                                               
-24              2024-10-22T18:35:53Z  default  on     swp52                                     default         
-52              2024-10-22T18:35:55Z  default  on     peerlink.4094                             default         
-62   on         2024-10-22T18:36:02Z  default  on     fe80::4ab0:2dff:feb5:3daa  peerlink.4094  default         
-74              2024-10-22T18:35:59Z  default  on     br_default                                default         
-75              2024-10-22T18:35:59Z  default  on     vlan10v0                                  RED             
-76   on         2024-10-22T18:35:59Z  default  on     vlan10                                    RED             
-77              2024-10-22T18:35:59Z  default  on     vlan10v0                                  RED             
-78              2024-10-22T18:35:59Z  default  on     vlan4063_l3                               RED             
-79              2024-10-22T18:35:59Z  default  on     vlan20                                    RED             
-80   on         2024-10-22T18:35:59Z  default  on     vlan10                                    RED             
-81   on         2024-10-22T18:35:59Z  default  on     vlan20                                    RED             
-82   on         2024-10-22T18:35:59Z  default  on     vlan30                                    BLUE            
-83              2024-10-22T18:35:59Z  default  on     vlan4006_l3                               BLUE            
-84   on         2024-10-22T18:35:59Z  default  on     vlan30                                    BLUE            
-91              2024-10-22T18:35:59Z  default  on     vlan20v0                                  RED             
-92              2024-10-22T18:35:59Z  default  on     vlan4063_l3v0                             RED             
-93              2024-10-22T18:35:59Z  default  on     vlan20v0                                  RED             
-94              2024-10-22T18:35:59Z  default  on     vlan30v0                                  BLUE            
-95              2024-10-22T18:35:59Z  default  on     vlan4006_l3v0                             BLUE            
-96              2024-10-22T18:35:59Z  default  on     vlan30v0                                  BLUE            
-100             2024-10-22T18:36:01Z  default  on     vxlan48                                   default         
-107  on         2024-10-22T18:36:04Z  default  on     fe80::4ab0:2dff:fe32:2a3f  swp52          default         
-110  on         2024-10-22T18:36:04Z  default  on     10.10.10.63                vlan4063_l3    RED             
-111  on         2024-10-22T18:36:04Z  default  on     10.10.10.63                vlan4006_l3    BLUE            
-115  on         2024-10-22T18:36:04Z  default  on     fe80::4ab0:2dff:fe41:6b79  swp51          default         
-125  on         2024-10-22T18:42:21Z  default  on                                                        107    
+12              23:19:32              default  on     swp53                                     default         
+13              23:19:32              default  on     swp51                                     default         
+14   on         23:19:32              default  on     swp54                                     default         
+15   on         23:19:32              default  on     lo                                        default         
+16   on         23:19:32              default  on     eth0                                      mgmt            
+17   on         0:36:06               default  on     eth0                                      mgmt            
+18              0:36:06               default  on                                                               
+19   on         0:36:06               default  on     192.168.200.1              eth0           mgmt            
+20   on         0:36:06               default  on                                                               
+21   on         0:36:06               default  on                                                               
+22   on         0:36:06               default  on                                                               
+24              21:08:25              default  on     swp52                                     default         
+52              0:36:0                default  on     peerlink.4094                             default         
+62   on         0:36:0                default  on     fe80::4ab0:2dff:feb5:3daa  peerlink.4094  default         
+74              0:36:0                default  on     br_default                                default         
+75              0:36:0                default  on     vlan10v0                                  RED             
+76   on         0:36:0                default  on     vlan10                                    RED             
+77              0:36:0                default  on     vlan10v0                                  RED             
+78              0:36:0                default  on     vlan4063_l3                               RED             
+79              0:36:0                default  on     vlan20                                    RED             
+80   on         0:36:0                default  on     vlan10                                    RED             
+81   on         0:36:0                default  on     vlan20                                    RED             
+82   on         0:36:0                default  on     vlan30                                    BLUE            
+83              0:36:0                default  on     vlan4006_l3                               BLUE            
+84   on         0:36:0                default  on     vlan30                                    BLUE            
+91              0:36:0                default  on     vlan20v0                                  RED             
+92              0:36:0                default  on     vlan4063_l3v0                             RED             
+93              0:36:0                default  on     vlan20v0                                  RED             
+94              0:36:0                default  on     vlan30v0                                  BLUE            
+95              0:36:0                default  on     vlan4006_l3v0                             BLUE            
+96              0:36:0                default  on     vlan30v0                                  BLUE            
+100             0:36:0                default  on     vxlan48                                   default         
+107  on         0:36:0                default  on     fe80::4ab0:2dff:fe32:2a3f  swp52          default         
+110  on         0:36:0                default  on     10.10.10.63                vlan4063_l3    RED             
+111  on         0:36:0                default  on     10.10.10.63                vlan4006_l3    BLUE            
+115  on         0:36:0                default  on     fe80::4ab0:2dff:fe41:6b79  swp51          default         
+125  on         0:36:0                default  on                                                        107    
                                                                                                          115    
-126  on         2024-10-22T18:36:04Z  default  on                                                        111    
+126  on         21:08:25              default  on                                                        111    
                                                                                                          127    
-127  on         2024-10-22T18:36:04Z  default  on     10.10.10.64                vlan4006_l3    BLUE            
-128  on         2024-10-22T18:36:04Z  default  on                                                        110    
+127  on         21:08:25              default  on     10.10.10.64                vlan4006_l3    BLUE            
+128  on         21:08:25              default  on                                                        110    
                                                                                                          129    
-129  on         2024-10-22T18:36:04Z  default  on     10.10.10.64                vlan4063_l3    RED             
-140  on         2024-10-22T18:42:34Z  default  on     10.0.1.34                  vlan4006_l3    BLUE            
-142  on         2024-10-22T18:42:36Z  default  on     10.0.1.34                  vlan4063_l3    RED
-...
+129  on         21:08:25              default  on     10.10.10.64                vlan4063_l3    RED             
+140  on         21:08:25              default  on     10.0.1.34                  vlan4006_l3    BLUE            
+142  on         21:08:25              default  on     10.0.1.34                  vlan4063_l3    RED
+...           
 ```
 
 The following example shows information for next hop group 108:
@@ -86,7 +86,7 @@ vrf              default
 valid            on                  
 installed        on                  
 interface-index  74                  
-uptime           2024-10-22T18:36:04Z
+uptime           21:08:25
 
 Via
 ======

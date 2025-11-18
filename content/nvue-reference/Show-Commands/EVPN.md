@@ -1003,7 +1003,7 @@ MAC address        Type    State  LocMobSeq  RemMobSeq  Interface  RemoteVtep  E
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show evpn vni \<vni-id\> mac \<mac-address-id\></h>
+## <h>nv show evpn vni \<vni-id\> mac \<mac-address\></h>
 
 Shows configuration information about a specific VNI MAC address.
 
@@ -1012,7 +1012,7 @@ Shows configuration information about a specific VNI MAC address.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vni-id>` | The VNI name. |
-| `<mac-address-id>` | The MAC address. |
+| `<mac-address>` | The MAC address. |
 
 ### Version History
 
@@ -1695,7 +1695,7 @@ MAC address        remote-vtep
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> evpn remote-router-mac \<mac-address-id\></h>
+## <h>nv show vrf \<vrf-id\> evpn remote-router-mac \<mac-address\></h>
 
 Shows information about a specific EVPN remote router MAC address in the specified VRF.
 
@@ -1704,7 +1704,7 @@ Shows information about a specific EVPN remote router MAC address in the specifi
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
-| `<mac-address-id>` | The MAC address.|
+| `<mac-address>` | The MAC address.|
 
 ### Version History
 

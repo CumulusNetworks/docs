@@ -26,9 +26,59 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl
-          type  Summary 
---------  ----  --------
-EXAMPLE1  ipv4  rule: 10
+                       Type  Summary   
+---------------------  ----  ----------
+EXAMPLE                mac   rule:   10
+EXAMPLE1               ipv4  rule:   10
+EXAMPLE3               ipv4  rule:   10
+acl-default-dos        ipv4  rule:   30
+                             rule:   40
+                             rule:   50
+                             rule:   60
+                             rule:   70
+                             rule:   80
+                             rule:   90
+                             rule:  100
+                             rule:  110
+                             rule:  120
+                             rule:  130
+acl-default-whitelist  ipv4  rule:    5
+                             rule:   10
+                             rule:   15
+                             rule:   20
+                             rule:   25
+                             rule:   30
+                             rule:   35
+                             rule:   40
+                             rule:   45
+                             rule:   50
+                             rule:   55
+                             rule:   60
+                             rule:   65
+                             rule:   70
+                             rule:   75
+                             rule:   80
+                             rule:   85
+                             rule:   90
+                             rule:   95
+                             rule:  100
+                             rule:  105
+                             rule:  110
+                             rule:  115
+                             rule:  120
+                             rule:  125
+                             rule:  130
+                             rule:  135
+                             rule:  140
+                             rule:  145
+                             rule:  150
+                             rule:  155
+                             rule:  160
+                             rule:  165
+                             rule:  170
+                             rule:  175
+                             rule:  180
+                             rule: 9999
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -259,12 +309,17 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1
-      operational  applied
-----  -----------  -------
-type               ipv4
+      applied
+----  -------
+type  ipv4   
 
 rule
 =======
+    Number  Summary                      
+    ------  -----------------------------
+    10      match.ip.protocol:        tcp
+            match.ip.tcp.dest-port:   123
+            match.ip.tcp.source-port: 123
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -317,15 +372,14 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10
-                   operational   applied     
------------------  ------------  ------------
-match                                        
-  ip                                         
-    dest-ip        10.0.15.8/32  10.0.15.8/32
-    protocol       tcp           tcp         
-    source-ip      10.0.14.2/32  10.0.14.2/32
-    [dest-port]    ANY           ANY         
-    [source-port]  ANY           ANY
+                     operational  applied
+-------------------  -----------  -------
+match                                    
+  ip                                     
+    protocol         tcp          tcp    
+    tcp                                  
+      [source-port]  123          123    
+      [dest-port]    123          123
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -452,10 +506,13 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match
-            operational  applied
-----------  -----------  -------
-ip                              
-  protocol               tcp 
+                   operational  applied
+-----------------  -----------  -------
+ip                                     
+  protocol         tcp          tcp    
+  tcp                                  
+    [source-port]  123          123    
+    [dest-port]    123          123 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -479,10 +536,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip
-             operational  applied
------------  -----------  -------
-protocol                  tcp    
-[dest-port]               200
+                 operational  applied
+---------------  -----------  -------
+protocol         tcp          tcp    
+tcp                                  
+  [source-port]  123          123    
+  [dest-port]    123          123
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -672,7 +731,7 @@ source-mac-mask               ff:ff:ff:ff:ff:ff
 
 ## <h>nv show interface \<interface-id\> acl</h>
 
-Shows the <span class="a-tooltip">[ACLs](## "Access Control Lists")</span> on the specified interface. You use ACLs to match packets and take actions.
+Shows information about the <span class="a-tooltip">[ACLs](## "Access Control Lists")</span> configured on the specified interface. You use ACLs to match packets and take actions.
 
 ### Command Syntax
 
@@ -714,13 +773,15 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1
-Statistics
-=============
-    Rule  In Packet  In Byte  Out Packet  Out Byte  Summary                
-    ----  ---------  -------  ----------  --------  -----------------------
-    10                        0           0 Bytes   match.ip.dest-port: 200
-                                                    match.ip.protocol:  tcp
+cumulus@switch:~$ Statistics
+===============
+Rule  In Packet   In Byte          Out Packet  Out Byte         Action                  Match
+----  ----------  ---------------  ----------  ---------------  ----------------------  ----------------------------
+10    0           0 Bytes                                       deny                    mac                                     
+                                                                                           dest-mac          : 08:9e:01:ce:e2:04   
+                                                                                           dest-mac-mask     : ff:ff:ff:ff:ff:ff   
+                                                                                           source-mac        : 00:00:00:00:00:12   
+                                                                                           source-mac-mask   : ff:ff:ff:ff:ff:ff 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -766,7 +827,15 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 inbound control-plane
+cumulus@switch:~$ 
+Statistics
+===============
+Rule  In Packet   In Byte           Action                                        Match
+----  ----------  ----------------  --------------------------------------------  ----------------------------
+10    0           0 Bytes           deny                                          ip                                      
+                                                                                     protocol          : udp                 
+                                                                                     udp                                     
+                                                                                       dest-port       : 50
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -789,11 +858,14 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 statistics
-Rule  In Packet  In Byte  Out Packet  Out Byte  Summary                
-----  ---------  -------  ----------  --------  -----------------------
-10                        0           0 Bytes   match.ip.dest-port: 200
-                                                match.ip.protocol:  tcp
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE statistics
+Rule  In Packet   In Byte          Out Packet  Out Byte         Action                 Match
+----  ----------  ---------------  ----------  ---------------  --------------------   ----------------------------
+10    0           0 Bytes                                       deny                   mac                                     
+                                                                                          dest-mac          :   08:9e:01:ce:e2:04   
+                                                                                          dest-mac-mask     :   ff:ff:ff:ff:ff:ff   
+                                                                                          source-mac        :   00:00:00:00:00:12   
+                                                                                          source-mac-mask   :   ff:ff:ff:ff:ff:ff 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -816,16 +888,18 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 statistics 10
-                 operational  applied
----------------  -----------  -------
-match                                
-  ip                                 
-    protocol     tcp                 
-    [dest-port]  200                 
-outbound                             
-  byte           0 Bytes             
-  packet         0
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE statistics 10
+                     operational        applied
+-------------------  -----------------  -------
+match                                          
+  mac                                          
+    source-mac       00:00:00:00:00:12         
+    source-mac-mask  ff:ff:ff:ff:ff:ff         
+    dest-mac         08:9e:01:ce:e2:04         
+    dest-mac-mask    ff:ff:ff:ff:ff:ff         
+inbound                                        
+  packet             0                         
+  byte               0 Bytes
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -844,7 +918,30 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@switch:~$ nv show interface acl-statistics
 Interface  ACL Name  Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
 ---------  --------  -------  ----------  --------  -----------  ---------
-swp1       EXAMPLE1  10       0           0 Bytes
+swp1       EXAMPLE   10       0           0 Bytes                         
+swp2       EXAMPLE3  10       0           0 Bytes                         
+           EXAMPLE1  10                             0            0 Bytes  
+           EXAMPLE   10       0           0 Bytes                         
+swp3       EXAMPLE   10       0           0 Bytes                         
+swp4       EXAMPLE   10       0           0 Bytes                         
+swp5       EXAMPLE   10       0           0 Bytes                         
+swp6       EXAMPLE   10       0           0 Bytes                         
+swp7       EXAMPLE   10       0           0 Bytes                         
+swp8       EXAMPLE   10       0           0 Bytes                         
+swp9       EXAMPLE   10       0           0 Bytes                         
+swp10      EXAMPLE   10       0           0 Bytes                         
+swp11      EXAMPLE   10       0           0 Bytes                         
+swp12      EXAMPLE   10       0           0 Bytes                         
+swp13      EXAMPLE   10       0           0 Bytes                         
+swp14      EXAMPLE   10       0           0 Bytes                         
+swp15      EXAMPLE   10       0           0 Bytes                         
+swp16      EXAMPLE   10       0           0 Bytes                         
+swp17      EXAMPLE   10       0           0 Bytes                         
+swp18      EXAMPLE   10       0           0 Bytes                         
+swp19      EXAMPLE   10       0           0 Bytes                         
+swp20      EXAMPLE   10       0           0 Bytes                         
+swp21      EXAMPLE   10       0           0 Bytes
+...
 ```
 <!--
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

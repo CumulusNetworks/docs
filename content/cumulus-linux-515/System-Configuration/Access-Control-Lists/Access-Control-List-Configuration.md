@@ -1374,49 +1374,24 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-### Combined Rules
 
-{{< tabs "1118 ">}}
-{{< tab "iptables Rule ">}}
-
-The following rule blocks any TCP traffic with source port 123 and destination port 123 going from any switch port egress or generated from the switch.
+To show information about an ACL, run the `nv show acl <acl-id>` command:
 
 ```
-[iptables] 
--A OUTPUT,FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP
+cumulus@switch:~$ nv show acl EXAMPLE1
+      applied
+----  -------
+type  ipv4   
+
+rule
+=======
+    Number  Summary                      
+    ------  -----------------------------
+    10      match.ip.protocol:        tcp
+            match.ip.tcp.dest-port:   123
+            match.ip.tcp.source-port: 123
 ```
 
-This also becomes two ACLs and is the same as:
-
-```
-[iptables]
--A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
--A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp source-port 123
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp dest-port 123
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
-cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 outbound
-cumulus@switch:~$ nv set acl EXAMPLE2 type ipv4
-cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip tcp source-port 123
-cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip tcp dest-port 123
-cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 action deny
-cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE2 outbound control-plane
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 ### Layer 2 Rules (ebtables)
 
 The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress or ingress.
@@ -1443,6 +1418,133 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Show ACL Information
+
+To show a list of all the ACL rules configured on the switch, run the `nv show acl` command:
+
+```
+cumulus@switch:~$ nv show acl
+                       Type  Summary   
+---------------------  ----  ----------
+EXAMPLE                mac   rule:   10
+EXAMPLE1               ipv4  rule:   10
+EXAMPLE3               ipv4  rule:   10
+acl-default-dos        ipv4  rule:   30
+                             rule:   40
+                             rule:   50
+                             rule:   60
+                             rule:   70
+                             rule:   80
+                             rule:   90
+                             rule:  100
+                             rule:  110
+                             rule:  120
+                             rule:  130
+acl-default-whitelist  ipv4  rule:    5
+                             rule:   10
+                             rule:   15
+                             rule:   20
+                             rule:   25
+                             rule:   30
+                             rule:   35
+                             rule:   40
+                             rule:   45
+                             rule:   50
+                             rule:   55
+                             rule:   60
+                             rule:   65
+                             rule:   70
+                             rule:   75
+                             rule:   80
+                             rule:   85
+                             rule:   90
+                             rule:   95
+                             rule:  100
+                             rule:  105
+                             rule:  110
+                             rule:  115
+                             rule:  120
+                             rule:  125
+                             rule:  130
+                             rule:  135
+                             rule:  140
+                             rule:  145
+                             rule:  150
+                             rule:  155
+                             rule:  160
+                             rule:  165
+                             rule:  170
+                             rule:  175
+                             rule:  180
+                             rule: 9999
+```
+
+To show information about ACL rules for an interface, run the `nv show interface <interface-id> acl` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 acl
+ACL Name  Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
+--------  -------  ----------  --------  -----------  ---------
+EXAMPLE   10       0           0 Bytes 
+```
+
+To show the match, action, and statistics for an ACL rule on an interface, run the `nv show interface <interface> acl <acl-id>` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE
+Statistics
+===============
+Rule  In Packet   In Byte          Out Packet  Out Byte         Action                                        Match
+----  ----------  ---------------  ----------  ---------------  --------------------------------------------  ----------------------------
+10    0           0 Bytes                                       deny                                          mac                                     
+                                                                                                                 dest-mac          : 08:9e:01:ce:e2:04   
+                                                                                                                 dest-mac-mask     : ff:ff:ff:ff:ff:ff   
+                                                                                                                 source-mac        : 00:00:00:00:00:12   
+                                                                                                                 source-mac-mask   : ff:ff:ff:ff:ff:ff
+```
+
+To show the match, action, and statistics for an inbound rule, run the `nv show interface <interface> acl <acl-id> inbound` command. For an outbound rule, run the `nv show interface <interface> acl <acl-id> outbound` command.
+
+```
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE inbound
+Statistics
+===============
+Rule  In Packet   In Byte           Action                                        Match
+----  ----------  ----------------  --------------------------------------------  ----------------------------
+10    0           0 Bytes           deny                                          mac                                     
+                                                                                     dest-mac          : 08:9e:01:ce:e2:04   
+                                                                                     dest-mac-mask     : ff:ff:ff:ff:ff:ff   
+                                                                                     source-mac        : 00:00:00:00:00:12   
+                                                                                     source-mac-mask   : ff:ff:ff:ff:ff:ff
+```
+
+To show the match or action configuration for an ACL rule, run the `nv show acl <acl-id> rule <rule-id> match` or `nv show acl <acl-id> rule <rule-id> action` command:
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE rule 10 match
+                   operational        applied            pending          
+-----------------  -----------------  -----------------  -----------------
+mac                                                                       
+  source-mac       00:00:00:00:00:12  00:00:00:00:00:12  00:00:00:00:00:12
+  source-mac-mask  ff:ff:ff:ff:ff:ff  ff:ff:ff:ff:ff:ff  ff:ff:ff:ff:ff:ff
+  dest-mac         08:9e:01:ce:e2:04  08:9e:01:ce:e2:04  08:9e:01:ce:e2:04
+  dest-mac-mask    ff:ff:ff:ff:ff:ff  ff:ff:ff:ff:ff:ff  ff:ff:ff:ff:ff:ff
+```
+
+To show the match, action, and statistics for an inbound control plane rule, or an outbound control plane rule, run the `nv show interface <interface> acl <acl-id> inbound control-plane` or `nv show interface <interface> acl <acl-id> outbound control-plane`command.
+
+```
+cumulus@switch:~$ nv show interface swp2 acl EXAMPLE3 inbound control-plane 
+Statistics
+===============
+Rule  In Packet   In Byte           Action                                        Match
+----  ----------  ----------------  --------------------------------------------  ----------------------------
+10    0           0 Bytes           deny                                          ip                                      
+                                                                                     protocol          : udp                 
+                                                                                     udp                                     
+                                                                                       dest-port       : 50
+```
 
 ## Considerations
 

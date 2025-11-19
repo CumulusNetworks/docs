@@ -8,10 +8,10 @@
 </tr>
 <tr>
 <td>4731804</td>
-<td>NVUE might fail to apply a configuration due to a mishandling of ranges during a race condition and shows a message similar to the following (the issue is not limited to the transceiver ID or swp ranges:
-{{ "Invalid config [rev_id: 2]
+<td>NVUE might fail to apply a configuration due to a mishandling of ranges during a race condition and shows a message similar to the following (the issue is not limited to the transceiver ID or swp ranges):
+{{ Invalid config [rev_id: 2]
   The transceiver id[swp1-64] is not valid.}} 
-To work around this issue, restart the {{nvued.service}}. Too avoid this issue, call each interface in the configuration instead of using ranges.</td>
+To work around this issue, restart the {{nvued.service}}. To avoid this issue, call each interface in the configuration instead of using ranges.</td>
 <td>5.14.0</td>
 <td>5.15.0</td>
 </tr>

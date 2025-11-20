@@ -881,6 +881,7 @@ nv show interface <interface-id> link phy health native
 nv show interface <interface-id> link phy health histogram 
 nv show interface <interface-id> link phy health histogram native
 nv show interface dot1x-ipv6-summary
+nv show system dot1x ipv6-profile
 nv show interface dot1x-counters
 nv show system aaa authentication restrictions
 nv show system control-plane acl <acl-id> inbound 
@@ -974,7 +975,12 @@ nv set system docker vrf <vrf-name>
 nv set system dot1x dynamic-ipv6-multi-tenant state
 nv set system dot1x ipv6-profile <profile-id>
 nv set system dot1x ipv6-profile <profile-id> property
-nv set system dot1x ipv6-profile <profile-id> route-map
+nv set system dot1x ipv6-profile <profile-id> property <property-ID> isolation-property
+nv set system dot1x ipv6-profile <profile-id> property <property-ID> length
+nv set system dot1x ipv6-profile <profile-id> property <property-ID> offset
+nv set system dot1x ipv6-profile <profile-id> property <property-ID> summarize-out
+nv set system dot1x ipv6-profile <profile-id> property <property-ID> value
+nv set system dot1x ipv6-profile <profile-id> route-tag
 nv set system ntp server <server-id> state (enabled|disabled) 
 nv set system ntp server <server-id> version (3|4) 
 nv set system ntp server <server-id> association-type (server|pool) 

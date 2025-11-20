@@ -8,33 +8,6 @@ This document supports the Cumulus Linux 5.15 release, and lists new features an
 - For a list of open and fixed issues in Cumulus Linux 5.15, see the {{<link title="Cumulus Linux 5.15 Release Notes" text="Cumulus Linux 5.15 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.15, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
-<!-- ## What's New in Cumulus Linux 5.15
-- DHCP relay vrf-aware
-- 802.1x on router ports with dynamic VRF assignment
-- Security features 
-- Routing convergence enhancement for EVPN
-- Support RFC5837 
-- FIPS
-- Dynamic IPv6 multi tenancy EVPN VXLAN encap in IPv6 header
-- BFD offload
-- Clear COPP counters
-- ACL to use header fields for ip-inip encap packets
-- add multiple interfaces for clearing buffer usage data "nv action clear interface swp1s0 qos buffer
-- activate authorization without rbash
-- 802.1x Related Metric / X-paths support
-- Parity between OpenTelemetry and gNMI (Phase 2)
-- Same user created locally and on Tacacs server, need NVUE support
-- BGP conditional disaggregation for multi-planed GPUs
-- BGP Prefix Independent Convergence for Anycast Scenarios
-- Enable OTLP and gNMI to coexist and be usable at the same time(GA)
-- managing cl-support cyclic collection
-- Health Event and SDK Driver Monitoring for Multi ASIC
-- Add Bulk option for route
-- Scale up number of BGP paths supported on Cumulus Linux to enable 16K GPU cluster with 128-way ECMP
-- NVUE
-  - check kernel FIB
-  - map port to connector
--->
 ## What's New in Cumulus Linux 5.15
 
 Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fixes.

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4721298</td>
+<td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
+<td>5.11.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4647646</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
@@ -917,6 +923,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4721298</td>
+<td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
+<td>5.11.0-5.15.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -1832,6 +1844,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4721298</td>
+<td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
+<td>5.11.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4647646</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
@@ -1953,16 +1971,16 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.11.4-5.15.0</td>
 </tr>
 <tr>
-<td>4499025</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.15.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.15.0</td>
 <td></td>
+</tr>
+<tr>
+<td>4486668</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
+<td>5.14.0-5.15.0</td>
 </tr>
 <tr>
 <td>4486200</td>
@@ -2739,20 +2757,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>4475117</td>
-<td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
-sudo chown -R nvue /var/lib/nvue
-sudo chown -R ntpsec /var/lib/ntpsec
-sudo chown -R Debian-snmp /var/lib/snmp
-To restart the services, either reboot the switch, or run the following commands:
-sudo systemctl restart nvued.service
-sudo systemctl restart nvue-startup.service
-systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
-systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
-</td>
-<td>5.11.1</td>
-</tr>
-<tr>
 <td>4475074</td>
 <td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
 <td>5.13.0-5.13.1</td>
@@ -2764,6 +2768,20 @@ cumulus@switch:~$ sudo su
 cumulus@switch:~$ cd /var/lib/nvue/config
 cumulus@switch:~$ git gc</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4472217</td>
+<td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+To restart the services, either reboot the switch, or run the following commands:
+sudo systemctl restart nvued.service
+sudo systemctl restart nvue-startup.service
+systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
+systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
+</td>
+<td>5.11.1</td>
 </tr>
 <tr>
 <td>4458897</td>
@@ -2908,7 +2926,7 @@ switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered I
 <td>5.11.0-5.11.1, 5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4408161</td>
+<td>4404955</td>
 <td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
@@ -2960,6 +2978,12 @@ nv config apply -y</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4721298</td>
+<td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
+<td>5.11.0-5.15.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -3070,7 +3094,13 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>4475117</td>
+<td>4472414</td>
+<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
+<td>5.11.0-5.14.0</td>
+<td>5.15.0</td>
+</tr>
+<tr>
+<td>4472217</td>
 <td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
 sudo chown -R nvue /var/lib/nvue
 sudo chown -R ntpsec /var/lib/ntpsec
@@ -3082,13 +3112,7 @@ systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
 systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </td>
 <td>5.11.1</td>
-<td>5.11.2-5.15.0</td>
-</tr>
-<tr>
-<td>4472414</td>
-<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
-<td>5.11.0-5.14.0</td>
-<td>5.15.0</td>
+<td>5.11.2-5.15.0, 5.14.0-5.15.0</td>
 </tr>
 <tr>
 <td>4461102</td>
@@ -4153,6 +4177,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4721298</td>
+<td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
+<td>5.11.0-5.15.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4647646</td>

@@ -881,6 +881,7 @@ nv show interface <interface-id> link phy health native
 nv show interface <interface-id> link phy health histogram 
 nv show interface <interface-id> link phy health histogram native
 nv show interface dot1x-ipv6-summary
+nv show system dot1x ipv6-profile
 nv show interface dot1x-counters
 nv show system aaa authentication restrictions
 nv show system control-plane acl <acl-id> inbound 

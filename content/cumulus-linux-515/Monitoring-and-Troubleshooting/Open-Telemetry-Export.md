@@ -6115,3 +6115,6 @@ otlp/global     0                              1000             0            708
 ```
 <!-- vale on -->
 
+## Scale Considerations
+
+When you use OTEL at scale on Cumulus Linux, you must update a configuration parameter on the OTEL server to accept the export from the switch after decompression. For more information, refer to {{<exlink url="https://enterprise-support.nvidia.com/s/article/NVIDIA-Cumulus-Linux-OTEL-Export-Not-Seen-On-Collector---grpc-received-message-after-decompression-larger-than-max" text="this KB article" >}}.

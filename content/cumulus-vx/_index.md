@@ -18,7 +18,8 @@ Welcome to NVIDIA&#174; Cumulus VX.
 Cumulus VX is a free virtual machine (VM) that provides all the features of Cumulus Linux. Use Cumulus VX to learn and test Cumulus Linux in your own environment, at your own pace, without organizational and economic barriers. You can also produce sandbox environments for prototype assessment, pre-production rollouts, and script development. Read the {{<link url="/Overview" text="Cumulus VX overview">}} for additional information about Cumulus VX and to understand the support policy.
 
 {{%notice note%}}
-NVIDIA also offers {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA Air">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA Networking technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
+Starting with Cumulus 5.13.0 NVIDIA no longer releases Cumulus VX as a standalone image. To simulate a Cumulus Linux switch, use NVIDIA AIR.
+{{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA Air">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA Networking technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
 {{%/notice%}}
 
 <!-- vale off -->

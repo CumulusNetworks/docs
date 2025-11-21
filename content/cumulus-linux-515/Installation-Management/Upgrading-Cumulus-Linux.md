@@ -20,7 +20,7 @@ Cumulus Linux supports two methods that can use ISSU:
 - {{<link url="#optimized-image-upgrade" text="Optimized image upgrade">}}
 - {{<link url="#package-upgrade" text="Package upgrade">}}
 
-To upgrade with ISSU, you must:
+Before you perform an upgrade with ISSU, you must:
 - Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch.
 - Set the {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}} to warm (`nv action reboot system mode warm`).
 - Configure the switch in half-resource mode to perform a warm reboot. When the switch operates in half-resource mode, performing a warm reboot results in a hitless upgrade.

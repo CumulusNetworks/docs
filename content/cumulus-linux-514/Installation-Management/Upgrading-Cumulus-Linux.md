@@ -28,8 +28,6 @@ Before you perform an upgrade with ISSU, you must:
 
 ## Before You Upgrade
 
-### Create a cl-support File
-
 **Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
 
 1. Create the `cl-support` archive file with either the NVUE `nv action generate system tech-support` command or the Linux `sudo cl-support` command:

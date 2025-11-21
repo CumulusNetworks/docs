@@ -8,18 +8,22 @@ This guide describes the three methods for upgrading Cumulus Linux. Two of these
 
 To upgrade Cumulus Linux, choose one of the three upgrade methods:
 
-- Install a new Cumulus Linux image with {{<link url="#optimized-image-upgrade" text="optimized image upgrade">}}, (ISSU support and maintains the current switch configuration)
-- Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}} (ISSU support and maintains the current switch configuration)
-- Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you will need to manually back up and restore your switch configuration)
+- Install a new Cumulus Linux image with {{<link url="#optimized-image-upgrade" text="optimized image upgrade">}}, (ISSU support and maintains the current switch configuration).
+- Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}} (ISSU support and maintains the current switch configuration).
+- Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you need to manually back up and restore your switch configuration).
+
 ## Upgrades with ISSU
 
-<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to perform a hitless upgrade of the switch software while the network continues to forward packets. ISSU hitless upgrade minimizes data plane traffic disruption to sub-second levels and automatically translates the switch NVUE configuration to the new version’s schema. During ISSU, the routing control plane is temporarily unavailable; however, the {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} capability maintains traffic flow through the switch.
+<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to perform a hitless upgrade of the switch software while the network continues to forward packets. ISSU hitless upgrade minimizes data plane traffic disruption to sub-second levels and automatically translates the switch NVUE configuration to the schema of the new version. During ISSU, the routing control plane is temporarily unavailable; however, the {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} capability maintains traffic flow through the switch.
 
 Cumulus Linux supports two methods that can use ISSU:
 - {{<link url="#optimized-image-upgrade" text="Optimized image upgrade">}}
 - {{<link url="#package-upgrade" text="Package upgrade">}}
 
-ISSU requires the use of {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="warm reboot mode">}}. You must configure the switch in half-resource mode to perform a warm reboot. When the switch operates in half-resource mode, performing a warm reboot (using the `nv action reboot system mode warm` command) results in a hitless upgrade. For more information about reboot modes, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
+Before you perform an upgrade with ISSU, you must:
+- Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch.
+- Set the {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}} to warm (`nv action reboot system mode warm`).
+- Configure the switch in half-resource mode to perform a warm reboot. When the switch operates in half-resource mode, performing a warm reboot results in a hitless upgrade.
 
 To configure the switch in half resource mode:
 
@@ -33,7 +37,7 @@ cumulus@switch:~$ nv set system forwarding resource-mode half
 To set the resource-mode back to the default value (full) run the `nv unset system forwarding resource-mode` command.
 
 {{%notice infonopad%}}
-Changing the resource mode on the switch requires a `switchd` restart, which impacts traffic forwarding. 
+Changing the resource mode on the switch requires a `switchd` restart, which impacts traffic forwarding.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -51,15 +55,14 @@ Restart the switchd service with the `sudo systemctl restart switchd.service` co
 {{< /tabs >}}
 
 {{%notice note%}}
-Cumulus Linux supports ISSU and warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. 
+Cumulus Linux supports ISSU and warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN.
 
-The following features are not supported during warm reboot:
+Cumulus Linux does *not* support the following features during warm reboot:
 - EVPN MLAG or EVPN multihoming.
 - LACP bonds. LACP control plane sessions might time out before warm reboot completes. Use static LAG to keep bonds up with sub-second convergence during a warm reboot.
 {{%/notice%}}
 
 ## Before You Upgrade
-### Create a cl-support File
 
 **Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
 

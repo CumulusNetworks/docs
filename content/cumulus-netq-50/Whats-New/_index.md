@@ -16,7 +16,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - NetQ NVLink supports Arm-based deployments that you can install using NVIDIA Mission Control.
 - {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="Create and apply custom labels">}} to organize and filter switches.
 - {{<link title="Integrate NetQ with Grafana/#collect-slurm-telemetry" text="View Slurm data in Grafana">}}.
-- You can now launch the {{<link title="Cable Validations" text="cable validation tool">}} from NetQ.
+- You can now launch the {{<link title="Cable Validations" text="cable validation tool">}} (CVT) from NetQ.
 - NetQ now collects and correlates telemetry data across compute, fabric, and workload layers using OpenTelemetry and time-series databases. This architecture update enables AI-based troubleshooting features in upcoming releases.
 - Performance improvements to the duplicate IP address validation (beta)
 - Performance improvements to the NetQ agent

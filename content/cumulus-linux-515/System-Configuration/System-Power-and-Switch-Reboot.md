@@ -68,14 +68,9 @@ Restart the switchd service with the `sudo systemctl restart switchd.service` co
 {{< /tab >}}
 {{< /tabs >}}
 
-
-
-
-
-
 ### Reboot
 
-To reboot the switch, run the `nv action reboot system <mode>` command. To force the reboot without prompting for confirmation, add the `force` option (`nv action reboot system <mode> force`).
+To reboot the switch, run the `nv action reboot system mode <mode>` command. To force the reboot without prompting for confirmation, add the `force` option (`nv action reboot system mode <mode> force`).
 
 The following command reboots the switch immediately without notifying any running processes:
 
@@ -173,7 +168,7 @@ cumulus@switch:~$ sudo csmgrctl -cf
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv action reboot system fast
+cumulus@switch:~$ nv action reboot system mode fast
 
 Do you want to continue? [y/N]  
 Action executing ... 
@@ -196,7 +191,7 @@ The following command reboots the switch in warm mode without prompting for conf
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv action reboot system warm force
+cumulus@switch:~$ nv action reboot system mode warm force
 ```
 
 {{< /tab >}}

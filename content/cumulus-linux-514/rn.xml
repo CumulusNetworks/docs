@@ -7,6 +7,33 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4731804</td>
+<td>NVUE might fail to apply a configuration due to a mishandling of ranges during a race condition and shows a message similar to the following (the issue is not limited to the transceiver ID or swp ranges):
+{{ Invalid config [rev_id: 2]
+  The transceiver id[swp1-64] is not valid.}} 
+To work around this issue, restart the {{nvued.service}}. To avoid this issue, call each interface in the configuration instead of using ranges.</td>
+<td>5.14.0</td>
+<td>5.15.0</td>
+</tr>
+<tr>
+<td>4722369</td>
+<td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
+<td>5.14.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4721298</td>
+<td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
+<td>5.11.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4704406</td>
+<td>In Cumulus Linux 5.14 and earlier, TACACS authentication mode is not configured correctly in PAM common authentication and TACACS configuration files, which makes {{login}} the authentication mode regardless of the NVUE configuration.</td>
+<td>5.14.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4681608</td>
 <td>gNMI {{/system/mount-point/}} xPaths unexpectedly return data for {{/dev}}. As {{/dev}} is not a persistent disk, unexpected storage monitoring alerts might be generated.</td>
 <td>5.14.0</td>

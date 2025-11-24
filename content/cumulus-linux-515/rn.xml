@@ -7,8 +7,32 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4722369</td>
+<td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
+<td>5.14.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4721298</td>
+<td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
+<td>5.11.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4704406</td>
+<td>In Cumulus Linux 5.14 and earlier, TACACS authentication mode is not configured correctly in PAM common authentication and TACACS configuration files, which makes {{login}} the authentication mode regardless of the NVUE configuration.</td>
+<td>5.14.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4702667</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4662854</td>
-<td>If the DSCP match is configured as "ANY," the gNMI subscription will not show DSCP as "ANY." The OpenConfig model supports only integer DSCP values.</td>
+<td>If you configure a DSCP match as {{ANY}}, the gNMI subscription does not show DSCP as {{ANY}}. The OpenConfig model supports only integer DSCP values.</td>
 <td>5.15.0</td>
 <td></td>
 </tr>
@@ -20,8 +44,7 @@
 </tr>
 <tr>
 <td>4648833</td>
-<td>Interfaces using PAM4 DAC cables on Spectrum 4 switches and later might not come up after a link flap or reboot if auto-negotiation is not enabled. Auto-negotiation is required for PAM4 DAC cables on these switches.
-</td>
+<td>Interfaces using PAM4 DAC cables on switches with Spectrum-4 and later might not come up after a link flap or reboot if auto-negotiation is disabled. Auto-negotiation is required for PAM4 DAC cables on these switches.</td>
 <td>5.15.0</td>
 <td></td>
 </tr>
@@ -760,6 +783,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>4731804</td>
+<td>NVUE might fail to apply a configuration due to a mishandling of ranges during a race condition and shows a message similar to the following (the issue is not limited to the transceiver ID or swp ranges):
+{{ Invalid config [rev_id: 2]
+  The transceiver id[swp1-64] is not valid.}} 
+To work around this issue, restart the {{nvued.service}}. To avoid this issue, call each interface in the configuration instead of using ranges.</td>
+<td>5.14.0</td>
 </tr>
 <tr>
 <td>4681608</td>

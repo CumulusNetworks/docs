@@ -965,6 +965,8 @@ nv set system aaa authentication restrictions lockout-state
 nv set system aaa authentication restrictions lockout-attempts
 nv set system aaa authentication restrictions fail-delay
 nv set system aaa authentication restrictions lockout-reattempt
+nv set system aaa radius auth-type <auth-type>
+nv set system aaa radius server <server-id> auth-type <auth-type>
 nv set system date-time timezone
 nv set system dns server <dns-server-ip> vrf <vrf-id> 
 nv set system dns server <dns-server-id> priority <integer> 

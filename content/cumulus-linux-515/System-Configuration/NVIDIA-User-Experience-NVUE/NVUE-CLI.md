@@ -51,7 +51,7 @@ NVUE also indicates if you need to provide specific values for the command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain ?
-    domain                 Bridge domains on this interface
+    domain                 Domain (bridge-name)
 ```
 
 ## Command Abbreviation
@@ -122,8 +122,8 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set platform`<br>`nv unset platform`|  Configures {{<link url="Pulse-Per-Second-PPS" text="Pulse per Second">}}; the simplest form of synchronization for the physical hardware clock.|
 | `nv set qos`<br>`nv unset qos` | Configures {{<link title="RDMA over Converged Ethernet - RoCE" text="QoS RoCE">}}. |
 | `nv set router`<br>`nv unset router` | Configures {{<link url="Route-Filtering-and-Redistribution" text="router policies">}} (prefix list rules and route maps), sets {{<link url="Basic-BGP-Configuration" text="global BGP options">}} (enable and disable, ASN and router ID, BGP graceful restart and shutdown), {{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="global OSPF options">}} (enable and disable, router ID, and OSPF timers) {{<link url="Protocol-Independent-Multicast-PIM" text="PIM">}}, {{<link url="IGMP-and-MLD-Snooping" text="IGMP">}}, {{<link url="Policy-based-Routing" text="PBR">}}, {{<link url="Virtual-Router-Redundancy-VRR" text="VRR">}}, and {{<link url="Virtual-Router-Redundancy-Protocol-VRRP" text="VRRP">}}. |
-| `nv set service`<br>`nv unset service` | Configures {{<link url="DHCP-Relays" text="DHCP relays">}} and {{<link url="DHCP-Servers" text="DHCP servers">}}, and {{<link url="Precision-Time-Protocol-PTP" text="PTP">}}. |
-| `nv set system`<br>`nv unset system` | Configures system settings, such as the {{<link title="Quick Start Guide/#configure-the-hostname" text="hostname of the switch">}}, pre and post login messages, {{<link title="Setting the Date and Time/#set-the-time-zone" text="time zone ">}}, {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}, {{<link url="Network-Time-Protocol-NTP" text="NTP">}}, and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure {{<link url="gNMI-Streaming" text="gNMI streaming">}}, {{<link url="Open-Telemetry-Export" text="Open telemtry export">}},{{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN sessions">}}, {{<link url="Configure-SNMP" text="SNMP">}}, {{<link url="Log-Files-with-NVUE" text="syslog">}}, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
+| `nv set service`<br>`nv unset service` | Configures {{<link url="DHCP-Relays" text="DHCP relays">}}, {{<link url="DHCP-Servers" text="DHCP servers">}}, and {{<link url="Precision-Time-Protocol-PTP" text="PTP">}}. |
+| `nv set system`<br>`nv unset system` | Configures system settings, such as the {{<link title="Quick Start Guide/#configure-the-hostname" text="hostname of the switch">}}, pre and post login messages, {{<link title="Setting the Date and Time/#set-the-time-zone" text="time zone ">}}, {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}, {{<link url="Network-Time-Protocol-NTP" text="NTP">}}, and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure {{<link url="gNMI-Streaming" text="gNMI streaming">}}, {{<link url="Open-Telemetry-Export" text="Open telemtry export">}}, {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN sessions">}}, {{<link url="Configure-SNMP" text="SNMP">}}, {{<link url="Log-Files-with-NVUE" text="syslog">}}, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures {{<link url="VRFs" text="VRFs">}}. This is where you configure VRF-level configuration for PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
@@ -133,7 +133,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
 | `nv show acl` | Shows {{<link url="Access-Control-Lists" text="Access Control List">}} configuration. |
-| `nv show action`| Shows information about the action commands that reset counters and remove conflicts.|
+| `nv show action`| Shows information about the action jobs.|
 | `nv show bridge` | Shows {{<link url="VLAN-aware-Bridge-Mode/#troubleshooting" text="bridge">}} configuration.|
 | `nv show evpn` |Shows {{<link url="EVPN-Enhancements/#show-current-evpn-configuration" text="EVPN">}} configuration. |
 | `nv show interface` | Shows {{<link url="Interface-Configuration-and-Management/#show-interface-information" text="interface">}} configuration and counters. |
@@ -143,18 +143,18 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show platform` | Shows {{<link url="Monitoring-Best-Practices/#hardware" text="platform configuration">}}, such as environment, transceiver, and firmware components. |
 | `nv show qos` | Shows {{<link title="RDMA over Converged Ethernet - RoCE/#verify-roce-configuration" text="QoS RoCE">}} configuration.|
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
-| `nv show service` | Shows {{<link url="DHCP-Relays/#troubleshooting" text="DHCP-Relays">}} and {{<link url="DHCP-Servers/#troubleshooting" text="DHCP server">}} configuration, {{<link url="Precision-Time-Protocol-PTP/#troubleshooting" text="PTP">}}. |
-| `nv show system` | Shows all system settings including {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} and {{<link url="Network-Time-Protocol-NTP" text="NTP">}}. |
+| `nv show service` | Shows {{<link url="DHCP-Relays/#troubleshooting" text="DHCP-Relays">}}, {{<link url="DHCP-Servers/#troubleshooting" text="DHCP server">}} configuration, and {{<link url="Precision-Time-Protocol-PTP/#troubleshooting" text="PTP">}}. |
+| `nv show system` | Shows all system settings. |
 | `nv show vrf` | Shows {{<link url="VRFs" text="VRFs">}} configuration.|
 
 The following example shows the `nv show router` commands after pressing the tab key, then shows the output of the `nv show router bgp` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router <<tab>>
-adaptive-routing  igmp              pim               vrr
-bfd               nexthop           policy            vrrp
-bgp               ospf              ptm               
-graceful-restart  pbr               segment-routing               
+adaptive-routing  igmp              pim               vrrp
+bfd               nexthop           policy            
+bgp               ospf              segment-routing   
+graceful-restart  pbr               vrr               
 
 cumulus@leaf01:mgmt:~$ nv show router bgp
                                 operational  applied    
@@ -216,16 +216,22 @@ The following example shows the views available for the `nv show interface` comm
 
 ```
 cumulus@switch:~$ nv show interface --view <<TAB>>
-acl-statistics            down                      qos-roce-counters
-bond-members              lldp                      qos-roce-status
-bonds                     lldp-detail               qos-roce-status-pool-map
-brief                     mac                       rates
-carrier-stats             mlag-cc                   small
-counters                  neighbor                  status
-description               physical                  svi
-detail                    port-security             synce-counters
-dot1x-counters            qos-congestion-control    up
-dot1x-summary             qos-profile               vrf
+acl-statistics            neighbor
+bond-members              neighbor-detail
+bonds                     physical
+brief                     port-security
+carrier-stats             qos-congestion-control
+counters                  qos-profile
+description               qos-roce-counters
+detail                    qos-roce-status
+dot1x-counters            qos-roce-status-pool-map
+dot1x-ipv6-summary        rates
+dot1x-summary             small
+down                      status
+lldp                      svi
+lldp-detail               synce-counters
+mac                       up
+mlag-cc                   vrf
 ```
 
 ### Configuration Management Commands

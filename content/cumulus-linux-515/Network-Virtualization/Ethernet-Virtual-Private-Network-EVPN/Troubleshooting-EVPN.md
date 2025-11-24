@@ -73,68 +73,66 @@ The following example shows the `nv show interface neighbor` command output:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface neighbor
-Interface      IP/IPV6                    LLADR(MAC)         Neighbor State  Flag     
--------------  -------------------------  -----------------  --------------  ---------
-eth0           192.168.200.251            48:b0:2d:00:00:01  stale                    
-               192.168.200.1              48:b0:2d:7a:a5:cb  reachable                
-               fe80::4ab0:2dff:fe00:1     48:b0:2d:00:00:01  reachable       router   
-peerlink.4094  169.254.0.1                48:b0:2d:52:13:fd  permanent                
-               fe80::4ab0:2dff:fe52:13fd  48:b0:2d:52:13:fd  reachable       router   
-swp51          169.254.0.1                48:b0:2d:3a:75:22  permanent                
-               fe80::4ab0:2dff:fe3a:7522  48:b0:2d:3a:75:22  reachable       router   
-swp52          169.254.0.1                48:b0:2d:b6:62:a4  permanent                
-               fe80::4ab0:2dff:feb6:62a4  48:b0:2d:b6:62:a4  reachable       router   
-swp53          169.254.0.1                48:b0:2d:83:10:5c  permanent                
-               fe80::4ab0:2dff:fe83:105c  48:b0:2d:83:10:5c  reachable       router   
-swp54          169.254.0.1                48:b0:2d:d4:6a:cf  permanent                
-               fe80::4ab0:2dff:fed4:6acf  48:b0:2d:d4:6a:cf  reachable       router   
-vlan10         10.1.10.101                48:b0:2d:5b:5f:9d  reachable                
-               10.1.10.3                  44:38:39:22:01:78  permanent                
-               10.1.10.104                48:b0:2d:a1:ea:d0  noarp           ext_learn
-               fe80::4ab0:2dff:fea1:ead0  48:b0:2d:a1:ea:d0  noarp           ext_learn
-               fe80::4ab0:2dff:fe5b:5f9d  48:b0:2d:5b:5f:9d  reachable                
-               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent                
-vlan10-v0      10.1.10.101                48:b0:2d:5b:5f:9d  stale                    
-               fe80::4ab0:2dff:fea1:ead0  48:b0:2d:a1:ea:d0  stale                    
-               fe80::4ab0:2dff:fe5b:5f9d  48:b0:2d:5b:5f:9d  stale                    
-vlan20         10.1.20.102                48:b0:2d:5b:d5:c8  reachable                
-               10.1.20.3                  44:38:39:22:01:78  permanent                
-               10.1.20.105                48:b0:2d:8c:b3:8a  noarp           ext_learn
-               fe80::4ab0:2dff:fe8c:b38a  48:b0:2d:8c:b3:8a  noarp           ext_learn
-               fe80::4ab0:2dff:fe5b:d5c8  48:b0:2d:5b:d5:c8  reachable                
-               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent                
-vlan20-v0      10.1.20.102                48:b0:2d:5b:d5:c8  stale                    
-               fe80::4ab0:2dff:fe5b:d5c8  48:b0:2d:5b:d5:c8  stale                    
-               fe80::4ab0:2dff:fe8c:b38a  48:b0:2d:8c:b3:8a  stale                    
-vlan30         10.1.30.106                48:b0:2d:00:df:e9  noarp           ext_learn
-               10.1.30.3                  44:38:39:22:01:78  permanent                
-               10.1.30.103                48:b0:2d:a7:ef:72  reachable                
-               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent                
-               fe80::4ab0:2dff:fe00:dfe9  48:b0:2d:00:df:e9  noarp           ext_learn
-               fe80::4ab0:2dff:fea7:ef72  48:b0:2d:a7:ef:72  reachable                
-vlan30-v0      10.1.30.103                48:b0:2d:a7:ef:72  stale                    
-               fe80::4ab0:2dff:fea7:ef72  48:b0:2d:a7:ef:72  stale                    
-               fe80::4ab0:2dff:fe00:dfe9  48:b0:2d:00:df:e9  stale                    
-vlan4006_l3    10.0.1.34                  44:38:39:be:ef:bb  noarp           ext_learn
-               10.10.10.4                 44:38:39:22:01:8a  noarp           ext_learn
-               10.10.10.2                 44:38:39:22:01:78  noarp           ext_learn
-               10.10.10.63                44:38:39:22:01:74  noarp           ext_learn
-               10.10.10.64                44:38:39:22:01:7c  noarp           ext_learn
-               10.10.10.3                 44:38:39:22:01:84  noarp           ext_learn
-               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent                
-vlan4063_l3    10.0.1.34                  44:38:39:be:ef:bb  noarp           ext_learn
-               10.10.10.63                44:38:39:22:01:74  noarp           ext_learn
-               10.10.10.3                 44:38:39:22:01:84  noarp           ext_learn
-               10.10.10.4                 44:38:39:22:01:8a  noarp           ext_learn
-               10.10.10.2                 44:38:39:22:01:78  noarp           ext_learn
-               10.10.10.64                44:38:39:22:01:7c  noarp           ext_learn
-               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent                
-vxlan48        10.10.10.3                 44:38:39:22:01:84  noarp           ext_learn
-               10.10.10.4                 44:38:39:22:01:8a  noarp           ext_learn
-               10.0.1.34                  44:38:39:be:ef:bb  noarp           ext_learn
-               10.10.10.2                 44:38:39:22:01:78  noarp           ext_learn
-               10.10.10.64                44:38:39:22:01:7c  noarp           ext_learn
-               10.10.10.63                44:38:39:22:01:74  noarp           ext_learn
+Interface     IP/IPV6                   LLADR(MAC)        Neighbor State Flag      Last Used
+------------- ------------------------- ----------------- -------------- --------- ---------
+
+eth0          192.168.200.1             48:b0:2d:51:ae:cb reachable                0:42:41  
+              fe80::4ab0:2dff:fe00:1    48:b0:2d:00:00:01 reachable      router    0:09:32  
+peerlink.4094 169.254.0.1               48:b0:2d:46:79:68 permanent                0:29:34  
+              fe80::4ab0:2dff:fe46:7968 48:b0:2d:46:79:68 reachable      router    12:29:12 
+swp51         169.254.0.1               48:b0:2d:c4:46:12 permanent                0:29:34  
+              fe80::4ab0:2dff:fec4:4612 48:b0:2d:c4:46:12 reachable      router    23:21:07 
+swp52         169.254.0.1               48:b0:2d:1e:ac:31 permanent                0:29:34  
+              fe80::4ab0:2dff:fe1e:ac31 48:b0:2d:1e:ac:31 reachable      router    23:21:07 
+swp53         169.254.0.1               48:b0:2d:aa:66:73 permanent                0:29:34  
+              fe80::4ab0:2dff:feaa:6673 48:b0:2d:aa:66:73 reachable      router    23:21:07 
+swp54         169.254.0.1               48:b0:2d:a6:f5:c5 permanent                0:29:34  
+              fe80::4ab0:2dff:fea6:f5c5 48:b0:2d:a6:f5:c5 reachable      router    23:21:07 
+vlan10        10.1.10.3                 44:38:39:22:01:78 permanent                12:29:17 
+              10.1.10.101               48:b0:2d:e4:ef:73 reachable                12:28:47 
+              10.1.10.104               48:b0:2d:28:9d:0f noarp          ext_learn 12:28:02 
+              fe80::4ab0:2dff:fe28:9d0f 48:b0:2d:28:9d:0f noarp          ext_learn 12:28:02 
+              fe80::4ab0:2dff:fee4:ef73 48:b0:2d:e4:ef:73 reachable                12:29:07 
+              fe80::4638:39ff:fe22:178  44:38:39:22:01:78 permanent                12:29:17 
+vlan10-v0     10.1.10.101               48:b0:2d:e4:ef:73 stale                    12:28:48 
+              fe80::4ab0:2dff:fe28:9d0f 48:b0:2d:28:9d:0f stale                    12:08:34 
+              fe80::4ab0:2dff:fee4:ef73 48:b0:2d:e4:ef:73 stale                    12:08:25 
+vlan20        10.1.20.3                 44:38:39:22:01:78 permanent                12:29:17 
+              10.1.20.102               48:b0:2d:05:4e:36 reachable                12:29:07 
+              10.1.20.105               48:b0:2d:a3:01:75 noarp          ext_learn 12:28:03 
+              fe80::4ab0:2dff:fe05:4e36 48:b0:2d:05:4e:36 reachable                12:29:07 
+              fe80::4ab0:2dff:fea3:175  48:b0:2d:a3:01:75 noarp          ext_learn 12:28:03 
+              fe80::4638:39ff:fe22:178  44:38:39:22:01:78 permanent                12:29:17 
+vlan20-v0     fe80::4ab0:2dff:fe05:4e36 48:b0:2d:05:4e:36 stale                    12:10:36 
+              fe80::4ab0:2dff:fea3:175  48:b0:2d:a3:01:75 stale                    11:53:16 
+vlan30        10.1.30.3                 44:38:39:22:01:78 permanent                12:29:17 
+              10.1.30.103               48:b0:2d:bb:11:f0 reachable                12:29:07 
+              10.1.30.106               48:b0:2d:85:d9:d0 noarp          ext_learn 12:28:02 
+              fe80::4ab0:2dff:fe85:d9d0 48:b0:2d:85:d9:d0 noarp          ext_learn 12:28:02 
+              fe80::4ab0:2dff:febb:11f0 48:b0:2d:bb:11:f0 reachable                12:28:57 
+              fe80::4638:39ff:fe22:178  44:38:39:22:01:78 permanent                12:29:17 
+vlan30-v0     fe80::4ab0:2dff:fe85:d9d0 48:b0:2d:85:d9:d0 stale                    11:42:20 
+              fe80::4ab0:2dff:febb:11f0 48:b0:2d:bb:11:f0 stale                    11:46:44 
+vlan4006_l3   10.0.1.34                 44:38:39:be:ef:bb noarp          ext_learn 12:28:02 
+              10.10.10.2                44:38:39:22:01:78 noarp          ext_learn 12:29:08 
+              10.10.10.3                44:38:39:22:01:84 noarp          ext_learn 12:29:08 
+              10.10.10.4                44:38:39:22:01:8a noarp          ext_learn 12:29:08 
+              10.10.10.63               44:38:39:22:01:74 noarp          ext_learn 12:29:08 
+              10.10.10.64               44:38:39:22:01:7c noarp          ext_learn 12:29:08 
+              fe80::4638:39ff:fe22:178  44:38:39:22:01:78 permanent                12:29:17 
+vlan4063_l3   10.0.1.34                 44:38:39:be:ef:bb noarp          ext_learn 12:28:03 
+              10.10.10.2                44:38:39:22:01:78 noarp          ext_learn 12:29:08 
+              10.10.10.3                44:38:39:22:01:84 noarp          ext_learn 12:29:08 
+              10.10.10.4                44:38:39:22:01:8a noarp          ext_learn 12:29:08 
+              10.10.10.63               44:38:39:22:01:74 noarp          ext_learn 12:29:08 
+              10.10.10.64               44:38:39:22:01:7c noarp          ext_learn 12:29:08 
+              fe80::4638:39ff:fe22:178  44:38:39:22:01:78 permanent                12:29:17 
+vxlan48       10.0.1.34                 44:38:39:be:ef:bb noarp          ext_learn 12:28:03 
+              10.10.10.2                44:38:39:22:01:78 noarp          ext_learn 12:29:08 
+              10.10.10.3                44:38:39:22:01:84 noarp          ext_learn 12:29:08 
+              10.10.10.4                44:38:39:22:01:8a noarp          ext_learn 12:29:08 
+              10.10.10.63               44:38:39:22:01:74 noarp          ext_learn 12:29:08 
+              10.10.10.64               44:38:39:22:01:7c noarp          ext_learn 12:29:08
 ```
 
 The following command shows the VLAN to VNI mapping for all bridges:
@@ -169,41 +167,37 @@ If you use BGP for the underlay routing, run the vtysh `show bgp summary` comman
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# show bgp summary
-IPv4 Unicast Summary
-BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
-BGP table version 13
-RIB entries 25, using 4800 bytes of memory
-Peers 5, using 106 KiB of memory
+IPv4 Unicast Summary:
+BGP router identifier 10.10.10.1, local AS number 65101 VRF default vrf-id 0
+BGP table version 126
+RIB entries 25, using 3200 bytes of memory
+Peers 5, using 100 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
-Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
-spine01(swp51)        4      65199       814       805        0    0    0 00:37:34            7
-spine02(swp52)        4      65199       814       805        0    0    0 00:37:34            7
-spine03(swp53)        4      65199       814       805        0    0    0 00:37:34            7
-spine04(swp54)        4      65199       814       805        0    0    0 00:37:34            7
-leaf02(peerlink.4094) 4      65101       766       768        0    0    0 00:37:35           12
+Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+leaf02(peerlink.4094) 4      65102     28196     28210      126    0    0 12:27:35           12       13 FRRouting/10.0.3
+spine01(swp51)        4      65199     28187     28195      126    0    0 23:19:30            9       13 FRRouting/10.0.3
+spine02(swp52)        4      65199     28216     28222      126    0    0 12:27:36            9       13 FRRouting/10.0.3
+spine03(swp53)        4      65199     28185     28195      126    0    0 23:19:30            9       13 FRRouting/10.0.3
+spine04(swp54)        4      65199     28217     28222      126    0    0 12:27:34            9       13 FRRouting/10.0.3
 
 Total number of neighbors 5
 
-show bgp ipv6 unicast summary
-=============================
-% No BGP neighbors found
-
-show bgp l2vpn evpn summary
-===========================
-BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
+L2VPN EVPN Summary:
+BGP router identifier 10.10.10.1, local AS number 65101 VRF default vrf-id 0
 BGP table version 0
-RIB entries 23, using 4416 bytes of memory
-Peers 4, using 85 KiB of memory
+RIB entries 47, using 6016 bytes of memory
+Peers 5, using 100 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
-Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
-spine01(swp51)  4      65199       814       805        0    0    0 00:37:35           34
-spine02(swp52)  4      65199       814       805        0    0    0 00:37:35           34
-spine03(swp53)  4      65199       814       805        0    0    0 00:37:35           34
-spine04(swp54)  4      65199       814       805        0    0    0 00:37:35           34
+Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+leaf02(peerlink.4094) 4      65102     28196     28210       46    0    0 12:27:35           57       81 FRRouting/10.0.3
+spine01(swp51)        4      65199     28187     28195       46    0    0 23:19:30           57       81 FRRouting/10.0.3
+spine02(swp52)        4      65199     28216     28222       46    0    0 12:27:36           57       81 FRRouting/10.0.3
+spine03(swp53)        4      65199     28185     28195       46    0    0 23:19:30           57       81 FRRouting/10.0.3
+spine04(swp54)        4      65199     28217     28222       46    0    0 12:27:34           57       81 FRRouting/10.0.3
 
-Total number of neighbors 4
+Total number of neighbors 5
 ```
 
 Run the vtysh `show ip route` command to examine the underlay routing and determine how the switch reaches remote VTEPs. The following example shows output from a leaf switch:
@@ -267,11 +261,11 @@ Peers 5, using 100 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
 Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
-leaf02(peerlink.4094) 4      65102     30648     30648       32    0    0 1d01h27m           57       81 FRRouting/10.0.3
-spine01(swp51)        4      65199     30667     30645       32    0    0 1d01h27m           57       81 FRRouting/10.0.3
-spine02(swp52)        4      65199     30662     30643       32    0    0 1d01h27m           57       81 FRRouting/10.0.3
-spine03(swp53)        4      65199     30669     30644       32    0    0 1d01h27m           57       81 FRRouting/10.0.3
-spine04(swp54)        4      65199     30666     30644       32    0    0 1d01h27m           57       81 FRRouting/10.0.3
+leaf02(peerlink.4094) 4      65102     28280     28294       46    0    0 12:31:48           57       81 FRRouting/10.0.3
+spine01(swp51)        4      65199     28271     28279       46    0    0 23:23:43           57       81 FRRouting/10.0.3
+spine02(swp52)        4      65199     28301     28307       46    0    0 12:31:49           57       81 FRRouting/10.0.3
+spine03(swp53)        4      65199     28270     28279       46    0    0 23:23:43           57       81 FRRouting/10.0.3
+spine04(swp54)        4      65199     28301     28306       46    0    0 12:31:47           57       81 FRRouting/10.0.3
 
 Total number of neighbors 5
 ```
@@ -417,13 +411,14 @@ route-advertise
   default-gateway  disabled                     
 route-target                                    
   [both]           65101:10                     
+[remote-vtep]      10.0.1.34                    
 vlan               10                           
 bridge-domain      br_default                   
 tenant-vrf         RED                          
 vxlan-interface    vxlan48                      
-mac-count          2                            
-host-count         2                            
-remote-vtep-count  0                            
+mac-count          9                            
+host-count         4                            
+remote-vtep-count  1                            
 local-vtep         10.0.1.12   
 ```
 
@@ -465,8 +460,8 @@ EVPN type-5 routes, not with EVPN type-2 routes.
 
 Name  Vni   State  Svi          RouterMac          SystemMac          Vlan  NexthopCount  RouterMacCount  VXLANIntf  PrefixRoutesOnly
 ----  ----  -----  -----------  -----------------  -----------------  ----  ------------  --------------  ---------  ----------------
-BLUE  4002  up     vlan4006_l3  44:38:39:be:ef:aa  44:38:39:22:01:7a  4006  6             6               vxlan48    off             
-RED   4001  up     vlan4063_l3  44:38:39:be:ef:aa  44:38:39:22:01:7a  4063  6             6               vxlan48    off
+BLUE  4002  up     vlan4006_l3  44:38:39:be:ef:aa  44:38:39:22:01:7a  4006  6             6               vxlan48    disabled             
+RED   4001  up     vlan4063_l3  44:38:39:be:ef:aa  44:38:39:22:01:7a  4063  6             6               vxlan48    disabled
 ```
 
 ## Show EVPN Information for a Specific VRF
@@ -487,7 +482,7 @@ svi                 vlan4063_l3
 router-mac          44:38:39:be:ef:aa         
 vxlan-interface     vxlan48                   
 system-mac          44:38:39:22:01:7a         
-prefix-routes-only  off                off
+prefix-routes-only  disabled            disabled
 ```
 
 To show details for a layer 3 VRF for a specific VNI, run the vtysh `show vrf <vrf-id> vni` and the `show evpn vni <vni>` command.
@@ -558,18 +553,23 @@ mac-vrf-soo
 Run the NVUE `nv show evpn vni <vni> mac` command or the vtysh `show evpn mac vni <vni>` command to examine all local and remote MAC addresses for a VNI. This command is only relevant for a layer 2 VNI:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac                                                                               
-LocMobSeq - local mobility sequence, RemMobSeq - remote mobility sequence,      
-RemoteVtep - Remote Vtep address, Esi - Remote Esi                              
-MAC address        Type    LocMobSeq  RemMobSeq  Interface  RemoteVtep  Esi
------------------  ------  ---------  ---------  ---------  ----------  ---
-44:38:39:22:01:8a  remote  0          0                     10.0.1.34      
-44:38:39:22:01:78  local   0          0          peerlink                  
-44:38:39:22:01:84  remote  0          0                     10.0.1.34      
-48:b0:2d:5c:8a:ee  local   0          0          bond1                     
-48:b0:2d:29:c0:bb  remote  0          0                     10.0.1.34      
-48:b0:2d:c9:f8:14  remote  0          0                     10.0.1.34      
-48:b0:2d:fa:72:e7  local   0          0          bond      
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10
+                   operational  applied  pending
+-----------------  -----------  -------  -------
+route-advertise                                 
+  svi-ip           disabled                     
+  default-gateway  disabled                     
+route-target                                    
+  [both]           65101:10                     
+[remote-vtep]      10.0.1.34                    
+vlan               10                           
+bridge-domain      br_default                   
+tenant-vrf         RED                          
+vxlan-interface    vxlan48                      
+mac-count          9                            
+host-count         4                            
+remote-vtep-count  1                            
+local-vtep         10.0.1.12      
 ```
 
 Run the vtysh `show evpn mac vni all` command to examine MAC addresses for all VNIs.

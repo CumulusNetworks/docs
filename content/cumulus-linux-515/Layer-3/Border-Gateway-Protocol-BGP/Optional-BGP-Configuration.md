@@ -2348,17 +2348,39 @@ To show if graceful shutdown is `on` a peer group, run the `nv show vrf <vrf-id>
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp peer-group underlay
-                             operational  applied   
-------------------------  --------------  ----------
-password                                  *         
-enforce-first-as                          on       
-passive-mode                              off       
-nexthop-connected-check                   on        
-description                               none      
-bfd                                                 
-  enable                                  off       
-...
-graceful-shutdown                         on      
+                               operational  applied                                                                  
+-----------------------------  -----------  ---------------------------------------
+password                                    $nvsec$d1a028e8c7f97db92876c2a30fcc403f
+enforce-first-as                            enabled                               
+passive-mode                                disabled                             
+nexthop-connected-check                     enabled                              
+description                                 none                                 
+graceful-shutdown                           disabled                             
+ttl-security                                                                     
+  state                                     disabled                             
+local-as                                                                         
+  state                                     disabled                             
+timers                                                                           
+  keepalive                                 auto                                 
+  hold                                      auto                                 
+  connection-retry                          auto                                 
+  route-advertisement                       auto                                 
+address-family                                                                   
+  ipv4-unicast                                                                   
+    state                                   enabled                              
+    route-reflector-client                  disabled                             
+    soft-reconfiguration                    disabled                             
+    nexthop-setting                         auto                                 
+    add-path-tx                             off                                  
+    attribute-mod                                                                
+      aspath                                disabled                             
+      med                                   disabled                             
+      nexthop                               disabled                             
+    aspath                                                                       
+      replace-peer-as                       disabled                             
+      private-as                            none                                 
+      allow-my-asn                                                                                                          
+        state      
 ...
 ```
 

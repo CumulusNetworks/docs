@@ -328,65 +328,139 @@ To show detailed information about all BGP neighbors, run the `nv show vrf <vrf-
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor --view=detail -o json
 {
-  "swp1": {
+  "peerlink.4094": {
     "address-family": {
       "ipv4-unicast": {
         "aspath": {
           "allow-my-asn": {
-            "enable": "off"
+            "state": "disabled"
           },
           "private-as": "none",
-          "replace-peer-as": "off"
+          "replace-peer-as": "disabled"
         },
         "attribute-mod": {
-          "aspath": "off",
-          "med": "off",
-          "nexthop": "off"
+          "aspath": "disabled",
+          "med": "disabled",
+          "nexthop": "disabled"
         },
-        "capabilities": {},
+        "capabilities": {
+          "rx-addpath": "on",
+          "rx-graceful-restart": "on",
+          "rx-mpbgp": "on",
+          "rx-restart-f-bit": "off",
+          "tx-addpath": "off",
+          "tx-mpbgp": "on"
+        },
         "community-advertise": {
-          "extended": "on",
-          "large": "on",
-          "regular": "on"
+          "extended": "enabled",
+          "large": "enabled",
+          "regular": "enabled"
         },
         "graceful-restart": {
-          "rx-eof-rib": "off",
-          "tx-eof-rib": "off"
+          "rx-eof-rib": "on",
+          "timers": {
+            "stale-path": {
+              "timer-sec": 360
+            }
+          },
+          "tx-eof-rib": "on",
+          "tx-eof-rib-sent-after-update": "off"
         },
         "prefix-limits": {
           "inbound": {
-            "warning-only": "off"
+            "warning-only": "disabled"
           }
         },
-        "rx-prefix": 0,
-        "tx-prefix": 0
+        "rx-prefix": 12,
+        "tx-prefix": 13,
+        "update-group": 1
       },
       "l2vpn-evpn": {
         "aspath": {
           "allow-my-asn": {
-            "enable": "off"
+            "state": "disabled"
           },
           "private-as": "none",
-          "replace-peer-as": "off"
+          "replace-peer-as": "disabled"
         },
         "attribute-mod": {
-          "aspath": "off",
-          "med": "off",
-          "nexthop": "on"
+          "aspath": "disabled",
+          "med": "disabled",
+          "nexthop": "enabled"
         },
-        "capabilities": {},
+        "capabilities": {
+          "rx-addpath": "on",
+          "rx-graceful-restart": "on",
+          "rx-mpbgp": "on",
+          "rx-restart-f-bit": "off",
+          "tx-addpath": "off",
+          "tx-mpbgp": "on"
+        },
         "graceful-restart": {
-          "rx-eof-rib": "off",
-          "tx-eof-rib": "off"
+          "rx-eof-rib": "on",
+          "timers": {
+            "stale-path": {
+              "timer-sec": 360
+            }
+          },
+          "tx-eof-rib": "on",
+          "tx-eof-rib-sent-after-update": "off"
         },
         "prefix-limits": {
           "inbound": {
-            "warning-only": "off"
+            "warning-only": "disabled"
           }
         },
-        "rx-prefix": 0,
-        "tx-prefix": 0
+        "rx-prefix": 57,
+        "tx-prefix": 81,
+        "update-group": 2
       }
+    },
+    "bgp-version": 4,
+    "capabilities": {
+      "extended-nexthop": "enabled",
+      "rx-asn32": "off",
+      "rx-extended-nexthop": "off",
+      "rx-graceful-restart": "on",
+      "rx-restart-r-bit": "off",
+      "rx-route-refresh": "on",
+      "tx-asn32": "on",
+      "tx-graceful-restart": "on",
+      "tx-route-refresh": "on"
+    },
+    "connection-type": "shared-network",
+    "connections-dropped": 1,
+    "connections-established": 2,
+    "ebgp-policy": {},
+    "graceful-restart": {
+      "mode": "auto",
+      "remote-mode": "helper-only",
+      "rx-restart-time": 120
+    },
+    "last-reset-code": 32,
+    "last-reset-reason": "Waiting for peer OPEN",
+    "last-reset-time": 46204000,
+    "local-as": {
+      "asn": 65101,
+      "prepend": "enabled",
+      "replace": "disabled"
+    },
+    "local-domain": "n/a",
+    "local-hostname": "leaf01",
+    "local-ip": "fe80::4ab0:2dff:fed4:bb2d",
+    "local-port": 179,
+    "message-stats": {
+      "input-queue": 0,
+      "output-queue": 0,
+      "rx-keepalives": 28435,
+      "rx-opens": 3,
+      "rx-route-refreshes": 0,
+      "rx-total": 28644,
+      "tx-keepalives": 28436,
+      "tx-opens": 4,
+      "tx-route-refreshes": 0,
+      "tx-total": 28657
+...
 ```
 
 To see a summary of the connection information for all BGP peers, such as the state (`established`, `idle`), uptime, number of messages received and sent, and the time the connections establish, run the `nv show vrf <vrf-id> router bgp neighbor` command.
@@ -398,11 +472,18 @@ AS - Remote Autonomous System, Uptime - BGP session up time, ResetTime - Last
 connection reset time, Afi-Safi - Address family, PfxSent - Transmitted prefix
 counter, PfxRcvd - Recieved prefix counter
 
-Neighbor       AS  State  Uptime  ResetTime  MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
--------------  --  -----  ------  ---------  -------  -------  ------------  -------  -------
-peerlink.4094      idle           23:31:45   0        0        ipv4-unicast  0        0      
-swp51              idle           23:31:45   0        0        ipv4-unicast  0        0      
-swp52              idle           23:31:45   0        0        ipv4-unicast  0        0
+Neighbor       AS     State        Uptime    ResetTime  MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+-------------  -----  -----------  --------  ---------  -------  -------  ------------  -------  -------
+peerlink.4094  65102  established  12:53:26  12:53:31   28713    28726    ipv4-unicast  13       12     
+                                                                          l2vpn-evpn    81       57     
+swp51          65199  established  23:45:21  23:45:22   28703    28712    ipv4-unicast  13       9      
+                                                                          l2vpn-evpn    81       57     
+swp52          65199  established  12:53:27  12:53:28   28733    28739    ipv4-unicast  13       9      
+                                                                          l2vpn-evpn    81       57     
+swp53          65199  established  23:45:21  23:45:22   28702    28712    ipv4-unicast  13       9      
+                                                                          l2vpn-evpn    81       57     
+swp54          65199  established  12:53:25  12:53:26   28733    28738    ipv4-unicast  13       9      
+                                                                          l2vpn-evpn    81       57
 ```
 
 Run the `nv show vrf default router bgp neighbor -o json` command to show a summary of the connection information for all BGP neighbors in json format.
@@ -431,24 +512,18 @@ To check BGP address family redistribute settings, such as the BGP redistribute 
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute
-             operational  applied
------------  -----------  -------
-static
-  enable     on           on
-  metric     1            1
-  route-map  rmap1        rmap1
-connected
-  enable     on           on
-  metric     2            2
-  route-map  rmap2        rmap2
-kernel
-  enable     on           on
-  metric     3            3
-  route-map  rmap3        rmap3
-ospf
-  enable     on           on
-  metric     4            4
-  route-map  rmap4        rmap4
+             operational  applied   pending 
+-----------  -----------  --------  --------
+static                                      
+  state      disabled     disabled  disabled
+connected                                   
+  state      enabled      enabled   enabled 
+  metric     auto         auto      auto    
+  route-map  none         none      none    
+kernel                                      
+  state      disabled     disabled  disabled
+ospf                                        
+  state      disabled     disabled  disabled
 ```
 
 ```
@@ -504,37 +579,38 @@ To show information about a specific update group, such as the number of peer re
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 1 -o json
 {
-  "create-time": "2025-07-02T17:53:06Z",
+  "create-time": 85630,
   "min-route-advertisement-interval": 0,
   "sub-group": {
     "1": {
-      "adjacency-count": 7,
-      "coalesce-time": 1350,
+      "adjacency-count": 13,
+      "coalesce-time": 1300,
       "counters": {
-        "join-events": 14,
+        "join-events": 8,
         "merge-check-events": 0,
         "merge-events": 3,
         "peer-refresh-events": 0,
-        "prune-events": 10,
+        "prune-events": 3,
         "split-events": 0,
         "switch-events": 0
       },
-      "create-time": "2025-07-02T17:53:06Z",
+      "create-time": 85630,
       "needs-refresh": "off",
       "neighbor": {
-        "swp3": {},
-        "swp4": {},
-        "swp5": {},
-        "swp6": {}
+        "peerlink.4094": {},
+        "swp51": {},
+        "swp52": {},
+        "swp53": {},
+        "swp54": {}
       },
       "packet-counters": {
         "queue-hwm-len": 4,
         "queue-len": 0,
-        "queue-total": 34,
-        "total-enqueued": 34
+        "queue-total": 22,
+        "total-enqueued": 22
       },
       "sub-group-id": 1,
-      "version": 94
+      "version": 126
     }
   },
   "update-group-id": "1"
@@ -624,23 +700,25 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast rou
                  operational
 ---------------  -----------
 path-count       5          
-multipath-count  4
+multipath-count  4          
 
 path
-=======                                                                           
-    Origin - Route origin, Local - Locally originated route, Sourced - Sourced      
-    route, Weight - Route weight, Metric - Route metric, LocalPref - Route local    
-    preference, PathFrom - Route path origin, LastUpdate - Route last update,       
+=======
+
+    Origin - Route origin, Local - Locally originated route, Sourced - Sourced
+    route, Weight - Route weight, Metric - Route metric, LocalPref - Route local
+    preference, PathFrom - Route path origin, LastUpdate - Route last update,
     NexthopCnt - Number of nexthops, Flags - = - multipath, * - bestpath, v - valid,
-    s - suppressed, R - removed, S - stale                                          
-                                                                                
-    Path  Origin      Local  Sourced  Weight  Metric  LocalPref  PathFrom  LastUpdate            NexthopCnt  Flags
-    ----  ----------  -----  -------  ------  ------  ---------  --------  --------------------  ----------  -----
-    1     incomplete                                             external  2024-10-25T14:02:33Z  2           =*v  
-    2     incomplete                                             external  2024-10-25T14:02:42Z  2           =v   
-    3     incomplete                                             external  2024-10-25T14:02:36Z  2           =v   
-    4     incomplete                                             external  2024-10-25T14:02:36Z  2           =v   
-    5     incomplete                                             external  2024-10-25T14:02:33Z  2           *v   
+    s - suppressed, R - removed, S - stale
+
+    Path  Origin      Local  Sourced  Weight  Metric  LocalPref  PathFrom  LastUpdate  NexthopCnt  Flags
+    ----  ----------  -----  -------  ------  ------  ---------  --------  ----------  ----------  -----
+    1     incomplete                                             external  23:48:16    2           =*v  
+    2     incomplete                                             external  12:56:31    2           =v   
+    3     incomplete                                             external  23:48:16    2           =v   
+    4     incomplete                                             external  12:56:29    2           =v   
+    5     incomplete                                             external  12:56:31    2           *v   
+
 advertised-to
 ================
     Neighbor       hostname
@@ -715,8 +793,8 @@ path
                                                                                 
     Path  Origin      Local  Sourced  Weight  Metric  LocalPref  PathFrom  LastUpdate            NexthopCnt  Flags
     ----  ----------  -----  -------  ------  ------  ---------  --------  --------------------  ----------  -----
-    1     IGP         on     on       32768   0                            2024-07-18T21:55:54Z  1           *v   
-    2     incomplete         on       32768   0                            2024-07-18T21:55:54Z  1           v 
+    1     IGP         on     on       32768   0                            23:50:58              1           *v   
+    2     incomplete         on       32768   0                            23:50:58              1           v 
 ...
 ```
 
@@ -732,46 +810,46 @@ To show a summary of all the BGP IPv4 or IPv6 next hops, run the `nv show vrf <v
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4
 Nexthops
 ===========
-                                                                                 
-    PathCnt - Number of paths pointing to this Nexthop, ResolvedVia - Resolved via   
-    address or interface, Interface - Resolved via interface                         
-                                                                                 
+
+    PathCnt - Number of paths pointing to this Nexthop, ResolvedVia - Resolved via
+    address or interface, Interface - Resolved via interface
+
     Address      IGPMetric  Valid  PathCnt  ResolvedVia                Interface    
     -----------  ---------  -----  -------  -------------------------  -------------
-    10.0.1.34    0          on     160      fe80::4ab0:2dff:fe60:910e  swp54        
-                                            fe80::4ab0:2dff:fea7:7852  swp53        
-                                            fe80::4ab0:2dff:fec8:8fb9  swp52        
-                                            fe80::4ab0:2dff:feff:e147  swp51        
-    10.10.10.2   0          on     15       fe80::4ab0:2dff:fe2d:495c  peerlink.4094
-    10.10.10.3   0          on     15       fe80::4ab0:2dff:fe60:910e  swp54        
-                                            fe80::4ab0:2dff:fea7:7852  swp53        
-                                            fe80::4ab0:2dff:fec8:8fb9  swp52        
-                                            fe80::4ab0:2dff:feff:e147  swp51        
-    10.10.10.4   0          on     15       fe80::4ab0:2dff:fe60:910e  swp54        
-                                            fe80::4ab0:2dff:fea7:7852  swp53        
-                                            fe80::4ab0:2dff:fec8:8fb9  swp52        
-                                            fe80::4ab0:2dff:feff:e147  swp51        
-    10.10.10.63  0          on     15       fe80::4ab0:2dff:fe60:910e  swp54        
-                                            fe80::4ab0:2dff:fea7:7852  swp53        
-                                            fe80::4ab0:2dff:fec8:8fb9  swp52        
-                                            fe80::4ab0:2dff:feff:e147  swp51        
-    10.10.10.64  0          on     15       fe80::4ab0:2dff:fe60:910e  swp54        
-                                            fe80::4ab0:2dff:fea7:7852  swp53        
-                                            fe80::4ab0:2dff:fec8:8fb9  swp52        
-                                            fe80::4ab0:2dff:feff:e147  swp51    
+    10.0.1.34    0          yes    210      fe80::4ab0:2dff:fe1e:ac31  swp52        
+                                                                       swp54        
+                                                                       swp53        
+                                                                       swp51        
+    10.10.10.2   0          yes    15       fe80::4ab0:2dff:fe46:7968  peerlink.4094
+    10.10.10.3   0          yes    15       fe80::4ab0:2dff:fe1e:ac31  swp52        
+                                                                       swp54        
+                                                                       swp53        
+                                                                       swp51        
+    10.10.10.4   0          yes    15       fe80::4ab0:2dff:fe1e:ac31  swp52        
+                                                                       swp54        
+                                                                       swp53        
+                                                                       swp51        
+    10.10.10.63  0          yes    15       fe80::4ab0:2dff:fe1e:ac31  swp52        
+                                                                       swp54        
+                                                                       swp53        
+                                                                       swp51        
+    10.10.10.64  0          yes    15       fe80::4ab0:2dff:fe1e:ac31  swp52        
+                                                                       swp54        
+                                                                       swp53        
+                                                                       swp51    
 ```
 
 To show information about a specific next hop, run the vtysh NVUE `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address>` command for IPv4 or `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address>` for IPv6. You can also run the vtysh `show bgp vrf default nexthop <ip-address>` command.
 
 ```
-cumulus@leaf01:mgmt:~$  nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2
                   operational              
 ----------------  -------------------------
 valid             yes                      
 complete          on                       
 igp-metric        0                        
 path-count        15                       
-last-update-time  2024-10-25T14:02:32Z     
+last-update-time  13:00:52    
 [resolved-via]    fe80::4ab0:2dff:fee8:57ba
 ```
 
@@ -793,18 +871,18 @@ To check BGP path selection for a specific VRF, such as the aspath, med and mult
 cumulus@leaf01:~$ nv show vrf default router bgp path-selection
                          operational  applied    pending  
 -----------------------  -----------  ---------  ---------
-routerid-compare         off          off        off      
+routerid-compare         disabled     disabled   disabled 
 aspath                                                    
-  compare-lengths        on           on         on       
-  compare-confed         off          off        off      
+  compare-lengths        enabled      enabled    enabled  
+  compare-confed         disabled     disabled   disabled 
 med                                                       
-  compare-always         off          off        off      
-  compare-deterministic  on           on         on       
-  compare-confed         off          off        off      
-  missing-as-max         off          off        off      
+  compare-always         disabled     disabled   disabled 
+  compare-deterministic  enabled      enabled    enabled  
+  compare-confed         disabled     disabled   disabled 
+  missing-as-max         disabled     disabled   disabled 
 multipath                                                 
-  aspath-ignore          off          off        off      
-  generate-asset         off          off        off      
+  aspath-ignore          disabled     disabled   disabled 
+  generate-asset         disabled     disabled   disabled 
   bandwidth              all-paths    all-paths  all-paths
 ```
 
@@ -830,31 +908,29 @@ leaf01# show bgp vrf default bestpath json
 }
 ```
 
-
 ## Check BGP local-as and aspath Settings
 
 To check BGP local-as and aspath for a specific neighbour, run the NVUE `nv show vrf <vrf-id> router bgp neighbor <neighbour>  address-family <afi> aspath` command or the vtysh `show bgp vrf <vrf-id> neighbors <neighbor> json` command:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 local-as
-         operational  applied  pending
--------  -----------  -------  -------
-enable                off      off    
+         operational  applied   pending
+-------  -----------  -------   -------
+state                 disabled  disabled    
 asn      65101                        
-prepend  on                           
-replace  off 
+prepend  enabled                           
+replace  disabled 
 ```
 
 ```
 ``
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath
-                 operational  applied
----------------  -----------  -------
-replace-peer-as  on           on
-private-as       replace      replace
-allow-my-asn
-  enable         on           on
-  origin         on           on
+                 operational  applied   pending 
+---------------  -----------  --------  --------
+replace-peer-as  disabled     disabled  disabled
+private-as       none         none      none    
+allow-my-asn                                    
+  state          disabled     disabled  disabled
 ```
 
 ```
@@ -1262,7 +1338,7 @@ To check BGP BFD settings for a specific neighbour, such as the Detect Multiplie
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 bfd
                    operational  applied
 -----------------  -----------  -------
-enable             on           on
+state              enabled      enabled
 detect-multiplier  5            5
 min-rx-interval    100          100
 min-tx-interval    120          120
@@ -1584,42 +1660,69 @@ To clear and refresh all IPv4 inbound routes:
 
 ```
 cumulus@leaf01:~$ nv action clear vrf default router bgp address-family ipv4-unicast soft in
+Action executing ...
+Sent default afi ipv4-unicast route-refresh unless using 'soft-reconfiguration inbound'
+Action executing ...
+Action succeeded
 ```
 
 To clear and resend all IPv6 outbound routes:
 
 ```
 cumulus@leaf01:~$ nv action clear vrf default router bgp address-family ipv6-unicast soft out
+Action executing ...
+Resent default afi ipv6-unicast outbound updates
+Action executing ...
+Action succeeded
 ```
 
 To clear and refresh all EVPN inbound routes:
 
 ```
 cumulus@leaf01:~$ nv action clear vrf default router bgp address-family l2vpn-evpn soft in
+Action executing ...
+Sent default afi l2vpn-evpn route-refresh unless using 'soft-reconfiguration inbound'
+Action executing ...
+Action succeeded
 ```
 
 To clear and resend all outbound IPv4 routes:
 
 ```
 cumulus@leaf01:~$ nv action clear vrf default router bgp address-family ipv4-unicast soft out
+Action executing ...
+Resent default afi ipv4-unicast outbound updates
+Action executing ...
+Action succeeded
 ```
 
 To clear and resend all IPv6 outbound routes to BGP neighbor 10.10.10.101:
 
 ```
 cumulus@leaf01:~$ nv action clear vrf default router bgp neighbor 10.10.10.101 address-family ipv6-unicast out
+Action executing ...
+Resent default neighbor 10.10.10.101 afi ipv6-unicast outbound updates
+Action executing ...
+Action succeeded
 ```
 
 To clear and resend outbound routes for all address families (IPv4, IPv6, and l2vpn-evpn) for the BGP peer group SPINES:
 
 ```
 cumulus@leaf01:~$ nv action clear vrf default router bgp peer-group SPINES out
+Action executing ...
+Resent default peer-group SPINES outbound updates
+Action executing ...
+Action succeeded
 ```
 
 To clear and refresh all IPv4 inbound routes for all VRFs and address families:
 
 ```
 cumulus@switch:~$ nv action clear router bgp soft in
+Action executing ...
+Sent route-refresh unless using 'soft-reconfiguration inbound'
+Action executing ...
 Action succeeded
 ```
 
@@ -1627,6 +1730,9 @@ To clear and refresh inbound routes for all neighbors, address families, and VRF
 
 ```
 cumulus@switch:~$ nv action clear router bgp in prefix-filter
+Action executing ...
+sent route-refresh updates prefix_filter=True
+Action executing ...
 Action succeeded
 ```
 
@@ -1634,6 +1740,9 @@ To clear BGP sessions with all neighbors, forcing the neighbors to restart:
 
 ```
 cumulus@switch:~$ nv action clear router bgp
+Action executing ...
+Cleared all peers
+Action executing ...
 Action succeeded
 ```
 

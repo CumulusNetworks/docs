@@ -217,7 +217,7 @@ timezone                   Etc/UTC
 unix-time                  1759403254.3559468  
 ```
 
-To set the software clock according to the configured time zone, run the `nv action change system time <YYYY-MM-DD> <HH:MM:SS>` command; for example:
+To set the software clock according to the configured time zone, run the `nv action change system date-time <YYYY-MM-DD> <HH:MM:SS>` command; for example:
 
 ```
 cumulus@switch:~$ nv action change system date-time 2023-12-04 2:33:30

@@ -2725,7 +2725,7 @@ if __name__ == "__main__":
 
 ```
 cumulus@switch:~$ nv set system hostname switch01
-cumulus@switch:~$ nv set system timezone America/Los_Angeles
+cumulus@switch:~$ nv set system date-time timezone America/Los_Angeles
 cumulus@switch:~$ nv set system message pre-login "Welcome to NVIDIA Cumulus Linux"
 cumulus@switch:~$ nv set system message post-login "You have successfully logged into switch01"
 ```

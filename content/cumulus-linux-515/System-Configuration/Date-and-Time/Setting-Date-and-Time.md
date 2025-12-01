@@ -58,10 +58,10 @@ You can use one of these methods to set the time zone on the switch:
 {{< tabs "TabID58 ">}}
 {{< tab "NVUE Command ">}}
 <!-- vale off -->
-Run the `nv set system timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key. The following example sets the time zone to US/Eastern:
+Run the `nv set system date-time timezone <timezone>` command. To see all the available time zones, run `nv set system date-time timezone` and press the Tab key. The following example sets the time zone to US/Eastern:
 
 ```
-cumulus@switch:~$ nv set system timezone US/Eastern
+cumulus@switch:~$ nv set system date-time timezone US/Eastern
 cumulus@switch:~$ nv config apply
 ```
 

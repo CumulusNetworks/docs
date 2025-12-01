@@ -14,9 +14,9 @@ toc: 3
 Cumulus Linux uses server groups to receive different DHCP requests on separate interfaces from different end hosts and to relay the requests to specific DHCP servers in a VRF. Server groups provide load balancing and <span class="a-tooltip">[HA](## "high availability")</span>, ensuring more resilient DHCP service delivery in case of server failure or maintenance and prevents broadcasting requests to all servers.
 
 {{%notice note%}}
-In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay <vrf-id> server` commands.
-
-If you have configured DHCP relay in Cumulus Linux 5.13 or earlier, the upgrade process migrates the configuration to a new default config file called `isc-dhcp-relay-<server-group-id>-<vrf-id>` in the `/etc/default` directory and selects the uplink and downlink interfaces automatically. After upgrade, make sure to review the new configuration and adjust as needed.
+- In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. 
+- Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay <vrf-id> server` commands.
+- If you have configured DHCP relay in Cumulus Linux 5.13 or earlier, the upgrade process migrates the configuration to a new default config file called `isc-dhcp-relay-<server-group-id>-<vrf-id>` in the `/etc/default` directory and selects the uplink and downlink interfaces automatically. After upgrade, make sure to review the new configuration and adjust as needed.
 {{%/notice%}}
 
 To set up DHCP relay, configure:

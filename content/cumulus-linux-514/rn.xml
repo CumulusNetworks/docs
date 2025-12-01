@@ -214,6 +214,12 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <td>5.15.0</td>
 </tr>
 <tr>
+<td>4607997</td>
+<td>The values returned by the gNMI metrics {{/components/component/power-supply/state/input-voltage}} and {{power-supply/state/input-current}} do not match the power consumption values in the NVUE command output.</td>
+<td>5.14.0</td>
+<td>5.15.0</td>
+</tr>
+<tr>
 <td>4607838</td>
 <td>You might see convergence degradation in remote link failure scenarios due to very chatty LTTng traces.   </td>
 <td>5.14.0</td>

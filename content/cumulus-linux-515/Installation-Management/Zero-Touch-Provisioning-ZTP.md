@@ -509,7 +509,7 @@ nv config apply
 To set the system time zone, include the following commands in your ZTP script. This example sets the time zone to `US/Eastern`.
 
 ```
-nv set system timezone US/Eastern
+nv set system date-time timezone US/Eastern
 nv config apply
 ```
 

@@ -291,7 +291,8 @@ Enables and disables route redistribution of IPv6 connected routes for the speci
 Route redistribution allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+- In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+- This command does not export link-local IPv6 addresses.
 {{%/notice%}}
 
 ### Command Syntax

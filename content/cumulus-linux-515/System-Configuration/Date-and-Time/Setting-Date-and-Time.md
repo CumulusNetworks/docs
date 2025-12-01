@@ -118,10 +118,10 @@ To set the software clock according to the configured time zone:
 {{< tabs "TabID120 ">}}
 {{< tab "NVUE Command ">}}
 
-Run the `nv action change system time <clock-date> <clock-time>` command. Specify `<clock-date>` in YYYY-MM-DD format and `<clock-time>` in HH:MM:SS format.
+Run the `nv action change system date-time <clock-date> <clock-time>` command. Specify `<clock-date>` in YYYY-MM-DD format and `<clock-time>` in HH:MM:SS format.
 
 ```
-cumulus@switch:~$ nv action change system time 2023-12-04 2:33:30
+cumulus@switch:~$ nv action change system date-time 2023-12-04 2:33:30
 System Date-time changed successfully
 Local Time is now Mon 2023-12-04 02:33:30 UTC
 Action succeeded

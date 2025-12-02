@@ -10,16 +10,18 @@ This document supports the Cumulus Linux 5.16 release, and lists new features an
 
 ## What's New in Cumulus Linux 5.16
 
-Cumulus Linux 5.16.0 contains new features and improvements, and provides bug fixes.
+Cumulus Linux 5.16 contains new features and improvements, and provides bug fixes.
 
 ### New Features and Enhancements
 
+- {{<link url="FIPS" text="FIPS">}}
+- {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
+- You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
 - DHCP relay vrf-aware
 - 802.1x on router ports with dynamic VRF assignment
-- Security features 
+- Security features
 - Routing convergence enhancement for EVPN
 - Support RFC5837 
-- FIPS
 - Dynamic IPv6 multi tenancy EVPN VXLAN encap in IPv6 header
 - BFD offload
 - SPC-1 Alligator PSID and CPLD update
@@ -33,8 +35,7 @@ Cumulus Linux 5.16.0 contains new features and improvements, and provides bug fi
 - LAG - Random Hash support for Adaptive Routing Eligible Traffic???
 - BGP conditional disaggregation for multi-planed GPUs
 - BGP Prefix Independent Convergence for Anycast Scenarios
-- Enable OTLP and gNMI to coexist and be usable at the same time(GA)
-- managing cl-support cyclic collection
+- Manage cl-support cyclic collection
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Add Bulk option for route
 - Scale up number of BGP paths supported on Cumulus Linux to enable 16K GPU cluster with 128-way ECMP
@@ -49,7 +50,7 @@ Review the following considerations before you upgrade to Cumulus Linux 5.16.
 ### New, Changed, and Deprecated NVUE Commands
 
 {{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, many NVUE commands in Cumulus Linux 5.16 have changed. Before you upgrade to 5.16, review the list of {{<link url="New-and-Changed-NVUE-Commands" text="New, Changed, and Deprecated NVUE Commands">}} and be sure to make any necessary changes to your automation.
+To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, many NVUE commands in Cumulus Linux 5.16 have changed. Before you upgrade to 5.16, review the following list and be sure to make any necessary changes to your automation.
 {{%/notice%}}
 
 ### Upgrade Requirements

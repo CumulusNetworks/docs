@@ -3,8 +3,7 @@ title: FIPS
 author: NVIDIA
 weight: 192
 toc: 4
-bookhidden: true
-draft: true
+
 ---
 <span class="a-tooltip">[FIPS](## "Federal Information Processing Standards")</span> are standards for federal computer systems and information developed by the U.S. government and published by the National Institute of Standards and Technology (NIST).
 

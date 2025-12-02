@@ -199,6 +199,7 @@ You can adjust the LLDP statistics sample interval (in seconds). You can specify
 cumulus@switch:~$ nv set system telemetry lldp sample-interval 10
 cumulus@switch:~$ nv config apply
 ```
+
 ### Platform Statistics
 
 When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, and transceiver information. To enable all [platform statistics](#platform-statistic-format) globally:

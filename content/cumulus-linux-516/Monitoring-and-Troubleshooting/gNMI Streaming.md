@@ -19,10 +19,14 @@ To use both gNMI streaming with Cumulus Linux and gNMI streaming with NetQ, you 
 This section discusses how to configure and use gNMI with Cumulus Linux. To configure and use gNMI with NetQ, see {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}.
 
 {{%notice note%}}
+Switches with the Spectrum 1 ASIC do not support gNMI streaming.
+{{%/notice%}}
+<!--
+{{%notice note%}}
 - When you enable gNMI with Cumulus Linux, do **not** enable and use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
 - Switches with the Spectrum 1 ASIC do not support gNMI streaming.
 {{%/notice%}}
-
+-->
 Cumulus Linux supports both gNMI dial-in mode, where a collector can start a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
 
 ### Configure gNMI Dial-in Mode

@@ -39,7 +39,7 @@ The `nvshow` group includes the `radius_user` account, and the `nvset` and `nvap
 
 After you install the required RADIUS packages, configure the following required settings on the switch (the RADIUS client):
 - Set the IP address or hostname of at least one RADIUS server. You can specify a port for the server (optional). The default port number is 1812.
-- Set the secret key shared between the RADIUS server and client. If you include special characters in the key (such as $), you must enclose the key in single quotes (').
+- Set the secret key shared between the RADIUS server and client. The secret key can have a maximum number of 32 characters. If you include special characters in the key (such as $), you must enclose the key in single quotes (').
 - If you use NVUE commands to configure RADIUS, you must also:
   - Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
   - Set the priority for the authentication order for local and RADIUS users. You can set a value between 1 and 100. The lower value is the higher priority.

@@ -25,24 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4717503</td>
-<td>fill in</td>
-<td>5.13.1-5.15.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4717502</td>
-<td>fill in</td>
-<td>5.13.1-5.15.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4717501</td>
-<td>fill in</td>
-<td>5.13.1-5.15.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4704406</td>
 <td>In Cumulus Linux 5.14 and earlier, TACACS authentication mode is not configured correctly in PAM common authentication and TACACS configuration files, which makes {{login}} the authentication mode regardless of the NVUE configuration.</td>
 <td>5.14.0-5.15.0</td>
@@ -118,12 +100,6 @@
 <td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.3-5.15.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4556982</td>
-<td>fill in</td>
-<td>5.13.1-5.15.0</td>
 <td></td>
 </tr>
 <tr>

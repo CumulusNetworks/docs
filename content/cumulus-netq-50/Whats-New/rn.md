@@ -21,7 +21,6 @@ pdfhidden: True
 | <a name="4668341"></a> [4668341](#4668341) <a name="4668341"></a> <br /> | When you a create an LDAP server configuration, the NetQ UI incorrectly allows you to modify the default server ports. Only the standard ports (389 for insecure and 636 for secure) are permitted. | 5.0.0 | |
 | <a name="4573427"></a> [4573427](#4573427) <a name="4573427"></a> <br /> | The link health view utilization chart might display incorrect values for the top 5 links when multiple links share the same value. | 5.0.0 | |
 | <a name="4399074"></a> [4399074](#4399074) <a name="4399074"></a> <br /> | When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected. | 5.0.0 | |
-| <a name="4126632"></a> [4126632](#4126632) <a name="4126632"></a> <br /> | In scale deployments with 1,000 or more switches, BGP validations might take up to five minutes to display results in the UI or CLI. | 4.13.0-4.15.1, 5.0.0 | |
 | <a name="4100882"></a> [4100882](#4100882) <a name="4100882"></a> <br /> | When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export. | 4.12.0-4.15.1, 5.0.0 | |
 
 ### Fixed Issues in 5.0.0

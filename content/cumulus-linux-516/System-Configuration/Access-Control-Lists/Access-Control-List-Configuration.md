@@ -1298,29 +1298,13 @@ cumulus@switch:~$ nv config apply
 
 #### Match on Inner Header
 
-Cumulus Linux supports matching based on inner packet headers, such as source and destination IP address, UDP and TCP source and destination port, and ECN flags inside encapsulated IPv4 and IPv6 payloads.
+Cumulus Linux supports ACL matches based on inner packet headers inside encapsulated IPv4 and IPv6 payloads, such as source or destination IP address, UDP or TCP source or destination port, and ECN flags.
 
 {{%notice note%}}
-You cannot match on both inner and outer packet headers in the same ACL.
+- You cannot match on both inner and outer packet headers in the same ACL.
+- You cannot combine a VLAN match with inner packet matches.
+- Inner packet matches support hardware forwarded packets only.
 {{%/notice%}}
-
-You can use the following matching options:
-
-| Option | Description|
-|---------|-----------|
-| `dscp` | Inner DSCP value. |
-| `source-ip` | Inner source IP address. |
-| `dest-ip` | Inner destination IP address. |
-| `protocol` | Inner IP protocol. |
-| `udp` | UDP matches. |
-| `tcp` | TCP matches. |
-| `dest-port` | Inner UDP or TCP destination port. |
-| `source-port` | Inner UDP or TCP source port. |
-| `ecn` | Inner ECN. |
-| `flags` | Inner ECN flag |
-| `tcp-cwr` | TCP congestion window reduced flag. |
-| `tcp-ece` | TCP ECN echo flag |
-| `ip-ect` | IP ECT value (0-3) |
 
 {{< tabs "TabID1307 ">}}
 {{< tab "iptables rule">}}
@@ -1328,8 +1312,9 @@ You can use the following matching options:
 Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/???
-
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-inner-header.rules
+[iptables]
+-t mangle -A PREROUTING -i swp1 -s 10.10.10.10 -m mark --mark 100 -j ACCEPT
 ```
 
 Apply the rule:
@@ -1341,8 +1326,21 @@ cumulus@switch:~$ sudo cl-acltool -i
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
+You can use the following inner packet matching options:
+
+| Option | Description|
+|---------|-----------|
+| `dscp` | The inner DSCP value. |
+| `source-ip` | The inner source IP address. |
+| `dest-ip` | The inner destination IP address. |
+| `protocol` | The inner IP protocol: `udp` or `tcp`.<br>`dest-port` is the inner UDP or TCP destination port. `source-port` is the inner UDP or TCP source port. |
+| `ecn` | Inner ECN.<br>`flags` is the inner ECN flag.<br>`tcp-cwr` is the TCP congestion window reduced flag. `tcp-ece` is the TCP ECN echo flag.<br>`ip-ect` is IP ECT value between 0 and 3. |
+
+The following example creates an ACL permit rule for inbound packets on swp1 that matches the inner header DSCP value 10, source IP address 10.10.10.10, destination IP address 20.20.20.20, UDP source 1000, and UDP destination port 2000.
+
 ```
 cumulus@switch:~$ nv set acl example3 type ipv4
+cumulus@switch:~$ nv set acl example rule 10 action permit 
 cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip dscp 10
 cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip source-ip 10.10.10.10
 cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip dest-ip 20.20.20.20
@@ -1357,6 +1355,62 @@ cumulus@switch:~$ nv config apply
 {{< /tabs >}}
 
 #### Match on Packet Offset
+
+Cumulus Linux supports ACL rule matches based on the packet offset.
+
+{{%notice note%}}
+- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which is not considered an extra offset match.
+- You can configure offset matches only for ACL type ipv4 and ipv6.
+- The Spectrum1 switch does not support matches based on the packet offset.
+- Matches based on the packet offset support hardware forwarded packets only.
+{{%/notice%}}
+
+{{< tabs "TabID1307 ">}}
+{{< tab "iptables rule">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-offset-header.rules
+[iptables]
+-A INPUT -m u32 --u32 "0x64 & 0xFFFF =0x1234"
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+You can use the following packet offset matching options:
+
+| Option | Description|
+|---------|-----------|
+| `offset` | The relative position in the packet from where the value needs to be matched. The maximum value is 478 bytes. |
+| `value` | The value to be matched at the offset position. The offset match value must be two bytes long and in hexadecimal.|
+| `mask` | The mask to be used while matching the value. The mask must be two bytes long and in hexadecimal. The default value is 0xFFFF. |
+| `match-from`| The extraction point for the offset position. The only option is `start-of-packet`, which is the start of the layer 2 header that is first byte of the destination MAC address. |
+
+The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x12 and first two bytes of UDP header as 0xabcd:
+
+```
+cumulus@switch:~$ nv set acl OFFSET type ipv4
+cumulus@switch:~$ nv set acl example rule 10 action permit 
+cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 value 0x1200 
+cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 mask 0xFF00 
+cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 match-from start-of-packet 
+cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 54 value 0xabcd 
+cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 54 mask 0xFFFF 
+cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 54 match-from start-of-packet 
+cumulus@switch:~$ nv set interface swp1 acl OFFSET inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Example Configuration
 

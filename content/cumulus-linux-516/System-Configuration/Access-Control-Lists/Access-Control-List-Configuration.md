@@ -1296,7 +1296,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Match on Inner Header
+### Match on Inner Header
 
 Cumulus Linux supports ACL matches based on inner packet headers inside encapsulated IPv4 and IPv6 payloads, such as source or destination IP address, UDP or TCP source or destination port, and ECN flags.
 
@@ -1354,7 +1354,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-#### Match on Packet Offset
+### Match on Packet Offset
 
 Cumulus Linux supports ACL rule matches based on the packet offset.
 

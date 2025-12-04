@@ -16,7 +16,7 @@ Cumulus Linux 4.3.x is supported on Broadcom switches only.
 <!-- vale off -->
 ## What's New in Cumulus Linux 4.3.4
 
-Cumulus Linux 4.3.4 provides security updates.
+Cumulus Linux 4.3.4 provides bug fixes.
 
 ## What's New in Cumulus Linux 4.3.3
 

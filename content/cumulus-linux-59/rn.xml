@@ -61,7 +61,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.3</td>
+<td>5.9.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -91,20 +91,20 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.3</td>
+<td>5.8.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -152,7 +152,7 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -747,7 +747,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4531829</td>
 <td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
-<td>5.11.1-5.11.3</td>
+<td>5.11.1-5.11.4</td>
 </tr>
 <tr>
 <td>4513850</td>
@@ -832,7 +832,7 @@ cumulus@switch:~$ nv config apply</td>
 <tr>
 <td>4271232</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0-5.11.3</td>
+<td>5.11.0-5.11.4</td>
 </tr>
 <tr>
 <td>4271228</td>
@@ -1083,7 +1083,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.3</td>
+<td>5.9.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -1133,7 +1133,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.3</td>
+<td>5.8.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -1176,7 +1176,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -1194,7 +1194,7 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -1317,7 +1317,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -1964,7 +1964,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.3</td>
+<td>5.9.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -2014,7 +2014,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.3</td>
+<td>5.8.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -2057,7 +2057,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -2075,7 +2075,7 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -2198,7 +2198,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.3</td>
+<td>5.9.2-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -3072,7 +3072,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.3</td>
+<td>5.9.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -3116,7 +3116,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.3</td>
+<td>5.8.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -4168,7 +4168,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.3</td>
+<td>5.9.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>
@@ -4212,7 +4212,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.3</td>
+<td>5.8.0-5.11.4</td>
 <td>5.12.0-5.15.0</td>
 </tr>
 <tr>

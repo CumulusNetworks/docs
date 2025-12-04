@@ -23,13 +23,13 @@ It is not uncommon to have more than one protocol daemon running at the same tim
 ## Configure FRR
 
 {{%notice warning%}}
-The information in this section does not apply if you use {{<link url="NVUE-CLI" text="NVUE">}} to configure your switch. NVUE manages FRR daemons and configuration automatically. These instructions are only applicable for users managing FRR directly through linux flat file configurations.
+The information in this section does not apply if you use {{<link url="NVUE-CLI" text="NVUE">}} to configure your switch. NVUE manages FRR daemons and configuration automatically. These instructions are only applicable if you manage FRR directly by editing Linux files.
 {{%/notice%}}
 
-If you do not configure your system using {{<link url="NVUE-CLI" text="NVUE">}}, FRR does not start by default in Cumulus Linux. Before you run FRR, make sure you have enabled the relevant daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d`, `pimd`, `bfdd` or `pbrd`) in the `/etc/frr/daemons` file.
+If you do not configure your system using {{<link url="NVUE-CLI" text="NVUE">}}, FRR does not start by default in Cumulus Linux. Before you run FRR, make sure you enable the daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d`, `pimd`, `bfdd` or `pbrd`) in the `/etc/frr/daemons` file.
 
 {{%notice note%}}
-NVIDIA has not tested <span class="a-tooltip">[RIP](## "Routing Information Protocol RIP")</span>, RIPv6, <span class="a-tooltip">[IS-IS](## "Intermediate System - Intermediate System")</span>, or <span class="a-tooltip">[Babel](## "a loop-avoiding distance-vector routing protocol")</span>.
+NVIDIA does not test <span class="a-tooltip">[RIP](## "Routing Information Protocol RIP")</span>, RIPv6, <span class="a-tooltip">[IS-IS](## "Intermediate System - Intermediate System")</span>, or <span class="a-tooltip">[Babel](## "a loop-avoiding distance-vector routing protocol")</span>.
 {{%/notice%}}
 
 Cumulus Linux enables the `zebra` daemon by default. You can enable the other daemons according to how you plan to route your network.
@@ -565,6 +565,51 @@ pref: medium
 
 Action succeeded
 ```
+
+## Show FIB Table Entries
+
+You can show the IPv4 and IPv6 FIB table entries for a VRF and the FIB table entries by prefix for a VRF.
+
+To show both IPv4 and IPv6 FIB table entries for a VRF, run the `nv show vrf <vrf-id> router fib` command:
+
+```
+cumulus@leaf01:~$ nv show vrf BLUE router fib
+```
+
+To show only IPv4 FIB table entries for a VRF, run the `nv show vrf <vrf-id> router fib ipv4` command.
+
+```
+cumulus@leaf01:~$ nv show vrf BLUE router fib ipv4
+```
+
+To show only IPv6 FIB table entries for a VRF, run the `nv show vrf <vrf-id> router fib ipv6` command.
+
+```
+cumulus@leaf01:~$ nv show vrf BLUE router fib ipv6
+```
+
+To show IPv4 FIB table entries for a specific prefix in a VRF, run the `nv show vrf <vrf-id> router fib ipv4 route <prefix>` command.
+
+```
+cumulus@leaf01:~$ nv show vrf default router fib ipv4 route 10.10.10.1/32 
+
+Prefix             Next-hop               Proto  Scope  Summary 
+------------------ ---------------------- ------ ------ ----------------------- 
+10.10.10.1/32      nhid 68                bgp    global Metric: 20
+```
+
+To show IPv6 FIB table entries for a specific prefix in a VRF, run the `nv show vrf <vrf-id> router fib ipv6 route <prefix>` command.
+
+```
+cumulus@leaf01:~$ nv show vrf RED router fib ipv6 route 228:35::0/64
+```
+
+{{%notice note%}}
+- Command output does not show the members of a next hop group or the resolved details of a next hop. To show this information, run the `nv show router nexthop rib <nhid>` command.
+- SRv6 routes only show the next hop ID.
+- Downstream VNI routes only show the gateway and source.
+- If the same prefix is present multiple times in the kernel FIB, the command output only shows the first match.
+{{%/notice%}}
 
 ## Next Hop Tracking
 

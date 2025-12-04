@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4771785</td>
+<td>NVUE drop counters and ethtool output doesn't show the packets discarded due to dest-mac not matching with the router-mac.
+
+
+</td>
+<td>5.14.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4731804</td>
 <td>NVUE might fail to apply a configuration due to a mishandling of ranges during a race condition and shows a message similar to the following (the issue is not limited to the transceiver ID or swp ranges):
 {{ Invalid config [rev_id: 2]
@@ -1079,36 +1088,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2932083</td>
-<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
-Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
-Fixed: 9.27~dfsg-2+deb10u5</td>
-<td>5.0.0-5.15.0</td>
-<td>4.4.3-4.4.5</td>
-</tr>
-<tr>
 <td>2904450</td>
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
 <td>4.4.0-4.4.5, 5.0.0-5.15.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2891255</td>
-<td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
-Vulnerable: &lt;= 2.6.20-0+deb10u1
-Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2890681</td>
-<td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
-Vulnerable: 2.6.0+dfsg.1-1
-Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0-5.15.0</td>
-<td>4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2885305</td>
@@ -1176,11 +1161,6 @@ To work around this issue, disable SNMP with the {{nv set system snmp-server sta
 <td>4544433</td>
 <td>When you enable bandwidth gauge on an interface, the {{asic-monitor}} leaks memory steadily over time. The memory leak rate depends on how many interfaces have the bandwidth gauge enabled and the snapshot rate. </td>
 <td>5.13.1</td>
-</tr>
-<tr>
-<td>4540986</td>
-<td>The sudo program included with Cumulus Linux is vulnerable to a local privilege escalation attack CVE-2025-32463.</td>
-<td>5.9.2</td>
 </tr>
 <tr>
 <td>4540985</td>

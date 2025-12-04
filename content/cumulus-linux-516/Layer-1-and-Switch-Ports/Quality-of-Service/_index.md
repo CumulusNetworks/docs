@@ -1998,9 +1998,7 @@ Qos Port Statistics
 
 ## Clear QoS Buffers
 
-- To clear the Qos pool buffers, run the `nv action clear qos buffer pool` command.
-- To clear the QoS multicast switch priority buffers, run the `nv action clear qos buffer multicast-switch-priority` command.
-- To clear the Qos buffers on an interface, run the `nv action clear interface <interface-id> qos buffer` command.
+To clear the Qos pool buffers, run the `nv action clear qos buffer pool` command.
 
 ```
 cumulus@switch:~$ nv action clear qos buffer pool
@@ -2008,17 +2006,33 @@ QoS pool buffers cleared.
 Action succeeded
 ```
 
+To clear the QoS multicast switch priority buffers, run the `nv action clear qos buffer multicast-switch-priority` command.
+
 ```
 cumulus@switch:~$ nv action clear qos buffer multicast-switch-priority
 QoS multicast buffers cleared.
 Action succeeded
 ```
 
+To clear the Qos buffers on an interface, run the `nv action clear interface <interface-id> qos buffer` command.
+
 ```
 cumulus@switch:~$ nv action clear interface swp1 qos buffer
 QoS buffers cleared on swp1.
 Action succeeded
 ```
+
+To clear the Qos buffers on a set of interfaces, run the `nv action clear interface <interface-list> qos buffer` command. You can specify the list of interfaces in a range or in coma seperated list.
+
+```
+cumulus@switch:~$ nv action clear interface swp1-5,swp20,swp25 qos buffer
+QoS buffers cleared on swp1-5.
+Action succeeded
+```
+
+{{%notice note%}}
+Depending on the number of interfaces on which you want to clear QoS buffers, the `nv action clear interface <interface-list> qos buffer` command might take longer to complete. For example, for more than 1000 interfaces, the command might take 5 or more seconds to complete.
+{{%/notice%}}
 
 ## Default Configuration Files
 

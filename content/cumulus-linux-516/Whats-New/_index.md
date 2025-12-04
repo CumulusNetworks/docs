@@ -17,6 +17,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="FIPS" text="FIPS">}}
 - {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
 - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
+- {{<link url="Access-Control-List-Configuration/#clear-control-plane-policer-counters" text="Clear control plane policer counters">}}
 - DHCP relay vrf-aware
 - 802.1x on router ports with dynamic VRF assignment
 - Security features
@@ -25,7 +26,6 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Dynamic IPv6 multi tenancy EVPN VXLAN encap in IPv6 header
 - BFD offload
 - SPC-1 Alligator PSID and CPLD update
-- Clear COPP counters
 - ACL to use header fields for ip-inip encap packets
 - add multiple interfaces for clearing buffer usage data "nv action clear interface swp1s0 qos buffer
 - activate authorization without rbash
@@ -40,7 +40,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Add Bulk option for route
 - Scale up number of BGP paths supported on Cumulus Linux to enable 16K GPU cluster with 128-way ECMP
 - NVUE
-  - {{<link url="FRRouting#show-fib-table-entries" text="Show FIB table entries">}}
+  - {{<link url="FRRouting/#show-fib-table-entries" text="Show FIB table entries">}}
   - map port to connector
 
 ## Release Considerations

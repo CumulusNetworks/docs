@@ -782,7 +782,9 @@ cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=brief` command:
+#### Show Control Plane Policer Configuration and Statistics
+
+To show the control plane policer configuration and statistics, run the NVUE `nv show system control-plane policer --view=brief` command:
 
 ```
 cumulus@switch:~$ nv show system control-plane policer --view=brief
@@ -924,6 +926,40 @@ copp.unknown_ipmc.burst = 1000
 ```
 
 {{< /expand >}}
+
+To show control plane policer configuration and statistics in the same format as the vtysh command output, run the `nv show system control-plane policer native` command:
+
+```
+cumulus@switch:~$ nv show system control-plane policer native
+```
+
+To show configuration and statistics for a specific control plane policer in the same format as the vtysh command output, run the `nv show system control-plane policer <policer-id> native` command:
+
+```
+cumulus@switch:~$ nv show system control-plane policer bfd native
+```
+
+To show only the control plane policer statistics in the same format as the vtysh command output, run the `nv show system control-plane policer <policer-id> statistics native` command:
+
+```
+cumulus@switch:~$ nv show system control-plane policer bfd statistics native
+```
+
+#### Clear Control Plane Policer Counters
+
+To aid in troubleshoooting control plane traffic issues, you can clear all control plane policer counters and counters for a specific policer ID.
+
+To clear all control plane policer counters, run the `nv action clear system control-plane policer statistics` command:
+
+```
+cumulus@switch:~$ nv action clear system control-plane policer statistics
+```
+
+To clear counters for a specific control plane policer ID, run the `nv action clear system control-plane policer <policer-id> statistics` command:
+
+```
+cumulus@switch:~$ nv action clear system control-plane policer bfd statistics
+```
 
 ### Control Plane ACLs
 
@@ -1260,9 +1296,71 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+#### Match on Inner Header
+
+Cumulus Linux supports matching based on inner packet headers, such as source and destination IP address, UDP and TCP source and destination port, and ECN flags inside encapsulated IPv4 and IPv6 payloads.
+
+{{%notice note%}}
+You cannot match on both inner and outer packet headers in the same ACL.
+{{%/notice%}}
+
+You can use the following matching options:
+
+| Option | Description|
+|---------|-----------|
+| `dscp` | Inner DSCP value. |
+| `source-ip` | Inner source IP address. |
+| `dest-ip` | Inner destination IP address. |
+| `protocol` | Inner IP protocol. |
+| `udp` | UDP matches. |
+| `tcp` | TCP matches. |
+| `dest-port` | Inner UDP or TCP destination port. |
+| `source-port` | Inner UDP or TCP source port. |
+| `ecn` | Inner ECN. |
+| `flags` | Inner ECN flag |
+| `tcp-cwr` | TCP congestion window reduced flag. |
+| `tcp-ece` | TCP ECN echo flag |
+| `ip-ect` | IP ECT value (0-3) |
+
+{{< tabs "TabID1307 ">}}
+{{< tab "iptables rule">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/???
+
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
+{{< /tab >}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl example3 type ipv4
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip dscp 10
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip source-ip 10.10.10.10
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip dest-ip 20.20.20.20
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip protocol udp
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip udp source-port 1000
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip udp dest-port 2000
+cumulus@switch:~$ nv set interface swp1 acl example3 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+#### Match on Packet Offset
+
 ## Example Configuration
 
-The following example demonstrates how Cumulus Linux applies several different rules.
+The following example shows how Cumulus Linux applies several different rules.
 
 {{< img src = "/images/cumulus-linux/acl-config-example.png" >}}
 

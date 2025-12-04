@@ -1012,7 +1012,7 @@ Rule  In Packet  In Byte  Out Packet  Out Byte  Summary
 
 The following examples use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
 
-{{< tabs "730 ">}}
+{{< tabs "1015 ">}}
 {{< tab "iptables rule ">}}
 
 ```
@@ -1095,7 +1095,7 @@ To specify all ports on the switch in NVUE (swp+ in an iptables rule), you must 
 
 The example rule below drops ingress IPv4 TCP packets when you set the SYN bit and reset the RST, ACK, and FIN bits. The rule applies inbound on interface swp1. After configuring this rule, you cannot establish new TCP sessions that originate from ingress port swp1. You can establish TCP sessions that originate from any other port.
 
-{{< tabs "991 ">}}
+{{< tabs "1098 ">}}
 {{< tab "iptables rule ">}}
 
 ```
@@ -1132,7 +1132,7 @@ cumulus@switch:~$ nv config apply
 Run the following commands to control who can SSH into the switch.
 In the following example, 10.10.10.1/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
 
-{{< tabs "852 ">}}
+{{< tabs "1135 ">}}
 {{< tab "iptables rule ">}}
 
 ```
@@ -1188,7 +1188,7 @@ After an endpoint receives a packet with the <span class="a-tooltip">[CE](## "Co
 
 To match on the ECE bit:
 
-{{< tabs "TabID947 ">}}
+{{< tabs "TabID1191 ">}}
 {{< tab "iptables rule">}}
 
 Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
@@ -1226,7 +1226,7 @@ The **CWR** bit notifies the other endpoint of the connection that it received a
 
 To match on the CWR bit:
 
-{{< tabs "TabID915 ">}}
+{{< tabs "TabID1229 ">}}
 {{< tab "iptables rule ">}}
 
 Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
@@ -1264,7 +1264,7 @@ The **ECT** codepoints negotiate if the connection is ECN capable by setting one
 
 To match on the ECT bit:
 
-{{< tabs "TabID979 ">}}
+{{< tabs "TabID1267 ">}}
 {{< tab "iptables rule">}}
 
 Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
@@ -1306,10 +1306,10 @@ Cumulus Linux supports ACL matches based on inner packet headers inside encapsul
 - Inner packet matches support hardware forwarded packets only.
 {{%/notice%}}
 
-{{< tabs "TabID1307 ">}}
+{{< tabs "TabID1309 ">}}
 {{< tab "iptables rule">}}
 
-Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add a rule under `[iptables]`. The following example creates an ACL permit rule for inbound packets on swp1 that matches the source IP address 10.10.10.10.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-inner-header.rules
@@ -1365,10 +1365,10 @@ Cumulus Linux supports ACL rule matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
 {{%/notice%}}
 
-{{< tabs "TabID1307 ">}}
+{{< tabs "TabID1368 ">}}
 {{< tab "iptables rule">}}
 
-Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add a rule under `[iptables]`. The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x64.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-offset-header.rules

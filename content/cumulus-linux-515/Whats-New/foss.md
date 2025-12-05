@@ -19,7 +19,9 @@ Cumulus Linux 5.15.1 contains the following core switch package versions:
 | NVUE (`python3-nvue`) | 1.11.0.89 | NVUE core package. |
 | kernel (`linux-image`) | 6.1.123 | Linux kernel package. |
 
-## 5.15 Packages
+To obtain a complete list of open source packages included in Cumulus Linux 5.15.1, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
+
+## 5.15.0 Packages
 
 Cumulus Linux 5.15.0 contains the following core switch package versions:
 
@@ -31,4 +33,4 @@ Cumulus Linux 5.15.0 contains the following core switch package versions:
 | NVUE (`python3-nvue`) | 1.11.0.89 | NVUE core package. |
 | kernel (`linux-image`) | 6.1.123 | Linux kernel package. |
 
-To obtain a complete list of open source packages included in Cumulus Linux 5.15, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
+To obtain a complete list of open source packages included in Cumulus Linux 5.15.0, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.

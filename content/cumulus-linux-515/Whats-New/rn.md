@@ -15,6 +15,8 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4771785"></a> [4771785](#4771785) <a name="4771785"></a> <br /> | NVUE drop counters and ethtool output do not show the packets discarded because the destination MAC address does not match the router MAC address. | 5.14.0-5.15.1 | |
+| <a name="4769275"></a> [4769275](#4769275) <a name="4769275"></a> <br /> | During power cycles and GPIO events, link initialization might fail due to a race condition during switch configuration. To work around this issue, set the service port to <code>admin UP</code>. | 5.15.0-5.15.1 | |
+| <a name="4769255"></a> [4769255](#4769255) <a name="4769255"></a> <br /> | When using the CPU port as the SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port. | 5.14.0-5.15.1 | |
 | <a name="4722369"></a> [4722369](#4722369) <a name="4722369"></a> <br /> | Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue. | 5.14.0-5.15.1 | |
 | <a name="4721298"></a> [4721298](#4721298) <a name="4721298"></a> <br /> | When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database. | 5.11.0-5.15.1 | |
 | <a name="4704406"></a> [4704406](#4704406) <a name="4704406"></a> <br /> | TACACS authentication mode is not configured correctly in PAM common authentication and TACACS configuration files, which makes <code>login</code> the authentication mode regardless of the NVUE configuration. | 5.14.0-5.15.1 | |
@@ -138,6 +140,7 @@ pdfhidden: True
 ### Fixed Issues in 5.15.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="4769256"></a> [4769256](#4769256) <a name="4769256"></a> <br /> | Low fan speed alarm events occur while the corresponding fan modules are amber physically.  | 5.15.0 | |
 
 ## 5.15.0 Release Notes
 ### Open Issues in 5.15.0

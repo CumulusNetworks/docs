@@ -13,6 +13,18 @@
 <td></td>
 </tr>
 <tr>
+<td>4769275</td>
+<td>During power cycles and GPIO events, link initialization might fail due to a race condition during switch configuration. To work around this issue, set the service port to {{admin UP}}.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4769255</td>
+<td>When using the CPU port as the SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4722369</td>
 <td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
 <td>5.14.0-5.15.1</td>
@@ -789,6 +801,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>4769256</td>
+<td>Low fan speed alarm events occur while the corresponding fan modules are amber physically. </td>
+<td>5.15.0</td>
 </tr>
 </table>
 <table name="Open Issues in 5.15.0">

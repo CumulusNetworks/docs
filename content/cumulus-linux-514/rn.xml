@@ -8,10 +8,7 @@
 </tr>
 <tr>
 <td>4771785</td>
-<td>NVUE drop counters and ethtool output doesn't show the packets discarded due to dest-mac not matching with the router-mac.
-
-
-</td>
+<td>NVUE drop counters and ethtool output do not show the packets discarded because the destination MAC address does not match the router MAC address.</td>
 <td>5.14.0-5.15.0</td>
 <td></td>
 </tr>
@@ -38,7 +35,7 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 </tr>
 <tr>
 <td>4704406</td>
-<td>In Cumulus Linux 5.14 and earlier, TACACS authentication mode is not configured correctly in PAM common authentication and TACACS configuration files, which makes {{login}} the authentication mode regardless of the NVUE configuration.</td>
+<td>TACACS authentication mode is not configured correctly in PAM common authentication and TACACS configuration files, which makes {{login}} the authentication mode regardless of the NVUE configuration.</td>
 <td>5.14.0-5.15.0</td>
 <td></td>
 </tr>
@@ -332,7 +329,7 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 </tr>
 <tr>
 <td>4551249</td>
-<td>The NVUE service might fail during switch upgrade on Cumulus Linux 5.13.1. To work around this issue, stop the {{sysmonitor}} with the {{sudo systemctl stop sysmonitor}} command, then upgrade the switch with the {{nv action upgrade system packages to latest}} command.</td>
+<td>The NVUE service might fail during switch upgrade. To work around this issue, stop the {{sysmonitor}} with the {{sudo systemctl stop sysmonitor}} command, then upgrade the switch with the {{nv action upgrade system packages to latest}} command.</td>
 <td>5.14.0-5.15.0</td>
 <td></td>
 </tr>

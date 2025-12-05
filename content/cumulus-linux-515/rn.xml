@@ -803,6 +803,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>4769258</td>
+<td>After upgrading the switch with {{onie-install -t}}, NTP configuration is missing and does not work. This issue does not occur with package or optimized image upgrade.</td>
+<td>5.15.0</td>
+</tr>
+<tr>
 <td>4769256</td>
 <td>Low fan speed alarm events occur while the corresponding fan modules are amber physically. </td>
 <td>5.15.0</td>

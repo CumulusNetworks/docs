@@ -140,6 +140,7 @@ pdfhidden: True
 ### Fixed Issues in 5.15.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="4769258"></a> [4769258](#4769258) <a name="4769258"></a> <br /> | After upgrading the switch with <code>onie-install -t</code>, NTP configuration is missing and does not work. This issue does not occur with package or optimized image upgrade. | 5.15.0 | |
 | <a name="4769256"></a> [4769256](#4769256) <a name="4769256"></a> <br /> | Low fan speed alarm events occur while the corresponding fan modules are amber physically.  | 5.15.0 | |
 
 ## 5.15.0 Release Notes

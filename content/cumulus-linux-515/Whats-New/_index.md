@@ -10,7 +10,7 @@ This document supports the Cumulus Linux 5.15 release, and lists new features an
 
 ## What's New in Cumulus Linux 5.15.1
 
-Cumulus Linux 5.15.1 provides a new SDK and new firmware.
+Cumulus Linux 5.15.1 provides bug fixes.
 
 ## What's New in Cumulus Linux 5.15.0
 

@@ -7,9 +7,27 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4771875</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4721298</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4714845</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -925,9 +943,27 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4771875</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4721298</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4714845</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1844,9 +1880,27 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4771875</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4721298</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4714845</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2980,9 +3034,27 @@ nv config apply -y</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4771875</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4721298</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4714845</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4182,6 +4254,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>4721298</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4714845</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.0</td>
 <td></td>
 </tr>
 <tr>

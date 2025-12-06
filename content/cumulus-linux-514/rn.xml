@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4771875</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4771785</td>
 <td>NVUE drop counters and ethtool output do not show the packets discarded because the destination MAC address does not match the router MAC address.</td>
 <td>5.14.0-5.15.0</td>
@@ -15,6 +27,31 @@
 <tr>
 <td>4769255</td>
 <td>When using the CPU port as the SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
+<td>5.14.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4751060</td>
+<td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
+sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>
+<td>5.12.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4748176</td>
+<td>Unsupported hardware modules might cause SDK and firmware health event and traffic loss.</td>
+<td>5.12.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4734374</td>
+<td>The SNMP AgentX subsystem crashes with a segmentation fault when trying to cancel events from within event callbacks due to multiple Agentx reconnecting one after the other on the device.</td>
+<td>5.14.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4732177</td>
+<td>On the NVIDIA SN5610 switch, the {{nv show platform transceiver}} command output for 3rd party optics is missing fields such as {{rx-los}} and {{tx-los}}.</td>
 <td>5.14.0-5.15.0</td>
 <td></td>
 </tr>
@@ -40,6 +77,12 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <td></td>
 </tr>
 <tr>
+<td>4714845</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4704406</td>
 <td>TACACS authentication mode is not configured correctly in PAM common authentication and TACACS configuration files, which makes {{login}} the authentication mode regardless of the NVUE configuration.</td>
 <td>5.14.0-5.15.0</td>
@@ -56,6 +99,12 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <td>In extremely rare circumstances, during a GNMI subscription change for interface or QoS data, a Spectrum ASIC SDK health event ({{SX_HEALTH_FATAL: Health-Check: new failure }}) is observed and the process might become unresponsive. To recover from this issue, reboot the switch.</td>
 <td>5.14.0</td>
 <td>5.15.0</td>
+</tr>
+<tr>
+<td>4667792</td>
+<td>Usernames longer than 32 characters do not authenticate against the switch. Avoid using long usernames.</td>
+<td>5.14.0-5.15.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4667010</td>
@@ -310,6 +359,12 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <td>5.9.4, 5.15.0</td>
 </tr>
 <tr>
+<td>4567894</td>
+<td>ACL statistics in {{nv show interface acl statistics}} and {{cl-acltool}} command output count packets twice. If packets are transiting the switch, the ACL statistics are correct.</td>
+<td>5.13.1-5.14.0</td>
+<td>5.15.0</td>
+</tr>
+<tr>
 <td>4566678</td>
 <td>If you enable LACP bypass mode on a bond, the switch removes the member ports from the interface and the {{nv show interface &lt;interface-id&gt; qos roce status}} command shows {{Error: The requested item does not exist}}. To work around this issue, run the {{nv show interface &lt;interface-id&gt; qos roce status}} command on the member physical port. </td>
 <td>5.13.1-5.14.0</td>
@@ -326,6 +381,12 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <td>Incorrect prefix boundaries are set for traffic class, switch priority, and port groups for the {{qos/interfaces/interface[interface-id]}} metrics, which sends redundant data.</td>
 <td>5.14.0</td>
 <td>5.15.0</td>
+</tr>
+<tr>
+<td>4556982</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.13.1-5.15.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4556729</td>

@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4776470</td>
+<td>In Cumulus Linux 5.15.0, NTP and DNS configuration commands changed from {{nv set service}} to {{nv set system}}. However, after upgrading the switch to Cumulus Linux 5.15.1, the {{nv set service}} command might still appear in the configuration output because a stale {{nv set service}} command remains after the configuration is translated during the upgrade. If you save the configuration with the {{nv config show -o commands}}, then reapply the configuration with {{nv config replace}}, the command fails if the stale {{nv set service}} command is present.To workaround this issue, before applying the configuration with {{nv config replace}}, remove any stale {{nv set service}} commands from the saved configuration file, then reapply the configuration with the {{nv config replace &lt;config-file&gt;}} command.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4771875</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4771785</td>
 <td>NVUE drop counters and ethtool output do not show the packets discarded because the destination MAC address does not match the router MAC address.</td>
 <td>5.14.0-5.15.1</td>
@@ -25,6 +43,52 @@
 <td></td>
 </tr>
 <tr>
+<td>4751060</td>
+<td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
+sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>
+<td>5.12.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4748176</td>
+<td>Unsupported hardware modules might cause SDK and firmware health event and traffic loss.</td>
+<td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4740606</td>
+<td>When you configure a port with a 802.1x IPv6 profile, then remove 802.1x, the port might block all ingress and egress traffic, including LLDP frames. This behavior is unintended and might impact network visibility and connectivity.To restore normal traffic flow on the affected port, remove the residual traffic-control filters by running the following commands:
+tc qdisc del dev &lt;swp port&gt; clsact 2&gt;/dev/null
+tc qdisc del dev &lt;swp port&gt; ingress 2&gt;/dev/null
+tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4734606</td>
+<td>Physical interface based static IPv6 address assignment does not work for DHCPv6 with inbound DHCP requests (discover packets) on an SVI interface. To work around this issue, configure the IPv6 pool for the subnet to assign the IPv6 address from the pool.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4734374</td>
+<td>The SNMP AgentX subsystem crashes with a segmentation fault when trying to cancel events from within event callbacks due to multiple Agentx reconnecting one after the other on the device.</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4732298</td>
+<td>If you enable debugging for graceful-restart, the BGP service crashes during restart.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4732177</td>
+<td>On the NVIDIA SN5610 switch, the {{nv show platform transceiver}} command output for 3rd party optics is missing fields such as {{rx-los}} and {{tx-los}}.</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4722369</td>
 <td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
 <td>5.14.0-5.15.1</td>
@@ -37,6 +101,43 @@
 <td></td>
 </tr>
 <tr>
+<td>4714845</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4709579</td>
+<td>Using package upgrade in Cumulus Linux 5.15 and earlier might show syslog errors similar to {{BTF: failed to validate kernel module -22}}. These syslog errors are largely inconsequential and occur when loading new modules on an older kernel. Kernel modules still function correctly but BTF debug information might be unavailable until the switch reboots after upgrade.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4707967</td>
+<td>When you use NVUE to configure a user with a username that is used as a group name in the system, you see the following error message:
+User name {} is already in use as OS group name 'and could not be used as username.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4707930</td>
+<td>When you configure a high number of 802.1x IPv6 profiles, the {{nv show system dot1x ipv6-profile}} command might return {{no data}}. To work around this issue, run the {{nv show system dot1x ipv6-profile --applied}} command.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4706305</td>
+<td>The gNMI interface statistics collector reports the error {{Failed to get SRv6 no sid drop counter: No-SID counter not available in syslog}} even when SRv6 is disabled.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4706274</td>
+<td>When {{switchd}} terminates (on system shutdown or service restart), the switch does not clean up PBR ACL rules that reference ECMP groups before the SDK de-initializes. This causes SDK errors in the cleanup sequence.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4704406</td>
 <td>TACACS authentication mode is not configured correctly in PAM common authentication and TACACS configuration files, which makes {{login}} the authentication mode regardless of the NVUE configuration.</td>
 <td>5.14.0-5.15.1</td>
@@ -46,6 +147,30 @@
 <td>4702667</td>
 <td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
 <td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4692400</td>
+<td>You see the error {{Failed to get SRv6 no sid drop counter: No-SID counter not available in syslog}} even when SRv6 is disabled.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4691719</td>
+<td>NVUE allows you create more than the maximum of 64 destination NAT rules, which results in a configuration error.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4687371</td>
+<td>On the spectrum-5, switch when a single traffic class is given 100% dwrr, the default global scheduler profile shows traffic class 5,6,7 as dwrr even though the scheduling mode is strict priority. There is no functional impact with this issue.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4667792</td>
+<td>Usernames longer than 32 characters do not authenticate against the switch. Avoid using long usernames.</td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -82,6 +207,12 @@
 <td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.3-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4556982</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.13.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -821,6 +952,24 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4776470</td>
+<td>In Cumulus Linux 5.15.0, NTP and DNS configuration commands changed from {{nv set service}} to {{nv set system}}. However, after upgrading the switch to Cumulus Linux 5.15.1, the {{nv set service}} command might still appear in the configuration output because a stale {{nv set service}} command remains after the configuration is translated during the upgrade. If you save the configuration with the {{nv config show -o commands}}, then reapply the configuration with {{nv config replace}}, the command fails if the stale {{nv set service}} command is present.To workaround this issue, before applying the configuration with {{nv config replace}}, remove any stale {{nv set service}} commands from the saved configuration file, then reapply the configuration with the {{nv config replace &lt;config-file&gt;}} command.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4771875</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4771785</td>
 <td>NVUE drop counters and ethtool output do not show the packets discarded because the destination MAC address does not match the router MAC address.</td>
 <td>5.14.0-5.15.0</td>
@@ -829,12 +978,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4769275</td>
 <td>During power cycles and GPIO events, link initialization might fail due to a race condition during switch configuration. To work around this issue, set the service port to {{admin UP}}.</td>
-<td>5.15.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4769258</td>
-<td>After upgrading the switch with {{onie-install -t}}, NTP configuration is missing and does not work. This issue does not occur with package or optimized image upgrade.</td>
 <td>5.15.0</td>
 <td></td>
 </tr>
@@ -851,6 +994,52 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>4751060</td>
+<td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
+sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>
+<td>5.12.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4748176</td>
+<td>Unsupported hardware modules might cause SDK and firmware health event and traffic loss.</td>
+<td>5.12.1-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4740606</td>
+<td>When you configure a port with a 802.1x IPv6 profile, then remove 802.1x, the port might block all ingress and egress traffic, including LLDP frames. This behavior is unintended and might impact network visibility and connectivity.To restore normal traffic flow on the affected port, remove the residual traffic-control filters by running the following commands:
+tc qdisc del dev &lt;swp port&gt; clsact 2&gt;/dev/null
+tc qdisc del dev &lt;swp port&gt; ingress 2&gt;/dev/null
+tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4734606</td>
+<td>Physical interface based static IPv6 address assignment does not work for DHCPv6 with inbound DHCP requests (discover packets) on an SVI interface. To work around this issue, configure the IPv6 pool for the subnet to assign the IPv6 address from the pool.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4734374</td>
+<td>The SNMP AgentX subsystem crashes with a segmentation fault when trying to cancel events from within event callbacks due to multiple Agentx reconnecting one after the other on the device.</td>
+<td>5.14.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4732298</td>
+<td>If you enable debugging for graceful-restart, the BGP service crashes during restart.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4732177</td>
+<td>On the NVIDIA SN5610 switch, the {{nv show platform transceiver}} command output for 3rd party optics is missing fields such as {{rx-los}} and {{tx-los}}.</td>
+<td>5.14.0-5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4722369</td>
 <td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
 <td>5.14.0-5.15.0</td>
@@ -863,6 +1052,49 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>4716836</td>
+<td>After upgrading the switch with {{onie-install -t}}, NTP configuration is missing and does not work. This issue does not occur with package or optimized image upgrade.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4714845</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4709579</td>
+<td>Using package upgrade in Cumulus Linux 5.15 and earlier might show syslog errors similar to {{BTF: failed to validate kernel module -22}}. These syslog errors are largely inconsequential and occur when loading new modules on an older kernel. Kernel modules still function correctly but BTF debug information might be unavailable until the switch reboots after upgrade.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4707967</td>
+<td>When you use NVUE to configure a user with a username that is used as a group name in the system, you see the following error message:
+User name {} is already in use as OS group name 'and could not be used as username.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4707930</td>
+<td>When you configure a high number of 802.1x IPv6 profiles, the {{nv show system dot1x ipv6-profile}} command might return {{no data}}. To work around this issue, run the {{nv show system dot1x ipv6-profile --applied}} command.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4706305</td>
+<td>The gNMI interface statistics collector reports the error {{Failed to get SRv6 no sid drop counter: No-SID counter not available in syslog}} even when SRv6 is disabled.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4706274</td>
+<td>When {{switchd}} terminates (on system shutdown or service restart), the switch does not clean up PBR ACL rules that reference ECMP groups before the SDK de-initializes. This causes SDK errors in the cleanup sequence.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4704406</td>
 <td>TACACS authentication mode is not configured correctly in PAM common authentication and TACACS configuration files, which makes {{login}} the authentication mode regardless of the NVUE configuration.</td>
 <td>5.14.0-5.15.0</td>
@@ -872,6 +1104,30 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4702667</td>
 <td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
 <td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4692400</td>
+<td>You see the error {{Failed to get SRv6 no sid drop counter: No-SID counter not available in syslog}} even when SRv6 is disabled.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4691719</td>
+<td>NVUE allows you create more than the maximum of 64 destination NAT rules, which results in a configuration error.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4687371</td>
+<td>On the spectrum-5, switch when a single traffic class is given 100% dwrr, the default global scheduler profile shows traffic class 5,6,7 as dwrr even though the scheduling mode is strict priority. There is no functional impact with this issue.</td>
+<td>5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4667792</td>
+<td>Usernames longer than 32 characters do not authenticate against the switch. Avoid using long usernames.</td>
+<td>5.14.0-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -908,6 +1164,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.3-5.15.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4556982</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.13.1-5.15.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1814,6 +2076,11 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <tr>
 <td>4570105</td>
 <td>During initial configuration of an MLAG switch with no MLAG peer or if both MLAG peers go down and only one recovers, VXLAN traffic arriving on the MLAG switch with a local IP destination might see packet loss. </td>
+<td>5.13.1-5.14.0</td>
+</tr>
+<tr>
+<td>4567894</td>
+<td>ACL statistics in {{nv show interface acl statistics}} and {{cl-acltool}} command output count packets twice. If packets are transiting the switch, the ACL statistics are correct.</td>
 <td>5.13.1-5.14.0</td>
 </tr>
 <tr>

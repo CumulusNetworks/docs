@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4714845"></a> [4714845](#4714845) <a name="4714845"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.15.0 | |
 | <a name="4647646"></a> [4647646](#4647646) <a name="4647646"></a> <br /> | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0|
 | <a name="4637200"></a> [4637200](#4637200) <a name="4637200"></a> <br /> | When more than one IPv4 and/or IPv6 addresses are configured on a remote interface, NVUE LLDP commands such as <code>nv show interface lldp-detail</code> only reflect one address. To work around this issue, use <code>lldpctl</code> to view LLDP information. For example, <code>sudo lldpctl -d -f json swp1</code>.  | 5.9.0-5.14.0 | 5.15.0|
 | <a name="4633514"></a> [4633514](#4633514) <a name="4633514"></a> <br /> | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | 5.15.0|
@@ -167,6 +168,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4714845"></a> [4714845](#4714845) <a name="4714845"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.15.0 | |
 | <a name="4647646"></a> [4647646](#4647646) <a name="4647646"></a> <br /> | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0|
 | <a name="4637200"></a> [4637200](#4637200) <a name="4637200"></a> <br /> | When more than one IPv4 and/or IPv6 addresses are configured on a remote interface, NVUE LLDP commands such as <code>nv show interface lldp-detail</code> only reflect one address. To work around this issue, use <code>lldpctl</code> to view LLDP information. For example, <code>sudo lldpctl -d -f json swp1</code>.  | 5.9.0-5.14.0 | 5.15.0|
 | <a name="4633514"></a> [4633514](#4633514) <a name="4633514"></a> <br /> | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | 5.15.0|

@@ -14,7 +14,7 @@ The switch creates the `cl-support` file automatically:
 
 To prevent the switch from creating a `cl-support` file multiple times in rapid succession when a chain of faults like service failures occur, which burdens the system resources and can trigger broader system instability, Cumulus Linux preserves the `cl-support` file with the first fault that triggers the chain (the first file typically contains all relevant diagnostic information) and deactivates automatic `cl-support` file generation.
 
-Automatic `cl-support` file generation is deactivated until you reactivate it manually or when the switch reboots.
+Automatic `cl-support` file generation reactivates when the switch reboots. You can also reactivate automatic `cl-support` file generation manually.
 
 To reactivate automatic `cl-support` file generation manually, run the `nv set system tech-support auto-generation state enabled` command:
 
@@ -23,7 +23,7 @@ cumulus@switch:~$ nv set system tech-support auto-generation state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-You can also configure the number of seconds during which failures are counted and the maximum number of failures allowed during that time before automatic `cl-support` file generation deactivates.
+You can configure the number of seconds during which failures are counted and the maximum number of failures allowed during that time before automatic `cl-support` file generation deactivates.
 
 The following example sets number of seconds during which failures are counted to 120 and the maximum number of failures allowed
 to 5.

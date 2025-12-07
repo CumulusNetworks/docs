@@ -8,9 +8,54 @@ The `cl-support` script generates a compressed archive file of useful informatio
 <!-- vale off -->
 ## Automatic cl-support File
 <!-- vale on -->
-The system creates the `cl-support` file automatically:
+The switch creates the `cl-support` file automatically:
 - When there is a {{<exlink url="http://linux.die.net/man/5/core" text="core dump file">}} for any application (not specific to Cumulus Linux, but something all Linux distributions support), located in `/var/support/core`.
 - When one of the monitored services fails for the first time after you reboot or power cycle the switch.
+
+To prevent the switch from creating a `cl-support` file multiple times in rapid succession when a chain of faults like service failures occur, which burdens the system resources and can trigger broader system instability, Cumulus Linux preserves the `cl-support` file with the first fault that triggers the chain (the first file typically contains all relevant diagnostic information) and deactivates automatic `cl-support` file generation.
+
+Automatic `cl-support` file generation reactivates when the switch reboots. You can also reactivate automatic `cl-support` file generation manually.
+
+To reactivate automatic `cl-support` file generation manually, run the `nv set system tech-support auto-generation state enabled` command:
+
+```
+cumulus@switch:~$ nv set system tech-support auto-generation state enabled
+cumulus@switch:~$ nv config apply
+```
+
+You can configure the number of seconds during which failures are counted and the maximum number of failures allowed during that time before automatic `cl-support` file generation deactivates.
+
+The following example sets number of seconds during which failures are counted to 120 and the maximum number of failures allowed
+to 5.
+
+```
+cumulus@switch:~$ nv set system system tech-support auto-generation burst-duration 120
+cumulus@switch:~$ nv set system system tech-support auto-generation burst-size 5
+cumulus@switch:~$ nv config apply 
+```
+
+When Cumulus Linux deactivates automatic `cl-support` file generation, the `cl-support` file includes the reason for the failure, the state of `cl-support` file auto generation (`auto-generation” (deactivated)`), and indicates that the `cl-support` file is due to the first fault in a chain of faults.
+
+In addition, a `syslog` log message generates indicating that auto generation is deactivated and you see a banner when you log into the switch (`WARNING: Automatic tech-support auto collection has been DEACTIVATED due to repeated failures.`)
+
+To show if automatic `cl-support` file generation is active or inactive, and the reason for deactivation, run the `nv show system tech-support status` command.
+
+```
+cumulus@switch:~$ nv show system tech-support status 
+                                      operational
+-----------------------------------   -------------------------------------------- 
+
+auto-generation                       inactive 
+reason                                sudo process crashed 
+support-file                          /var/support/cl_support_mlx-4600c-11_20251120_175242.txz
+
+Recovery Steps 
+=============== 
+1. Verify system health (CPU, memory, storage) 
+2. Collect the support files 
+3. Activate the tech-support auto generation service manually “nv action activate system tech-support” 
+```
+
 <!-- vale off -->
 ## Manual cl-support File
 <!-- vale on -->

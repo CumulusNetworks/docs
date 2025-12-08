@@ -77,12 +77,12 @@ If you are an NVUE-managed user, you can update your own password with the Linux
 {{%/notice%}}
 
 {{%notice note%}}
-Usernames created with NVUE have the following limitations:
+Usernames created with NVUE have the following requirements:
 
 *Max length is 32. 
 *Must begin with a letter or an underscore.
 *May contain letters, digits, underscores, or dashes. 
-*Can contain or end with (but not begin with) a dollar sign ('$').
+*May contain or end with, but not begin with, a dollar sign ('$').
 
 Examples of invalid user names:
 nv set system aaa user 1test_user

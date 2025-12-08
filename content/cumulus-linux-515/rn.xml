@@ -37,18 +37,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4769275</td>
-<td>During power cycles and GPIO events, link initialization might fail due to a race condition during switch configuration. To work around this issue, set the service port to {{admin UP}}.</td>
-<td>5.15.0-5.15.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4769255</td>
-<td>When using the CPU port as the SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
-<td>5.14.0-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4751060</td>
 <td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
 sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>

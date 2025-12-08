@@ -77,22 +77,13 @@ If you are an NVUE-managed user, you can update your own password with the Linux
 {{%/notice%}}
 
 {{%notice note%}}
-Usernames created with NVUE have the following requirements:
+Usernames you create with NVUE:
+- Can be a maximum of is 32 charcters in length.
+- Must begin with a letter or underscore.
+- Can contain letters, digits, underscores, or dashes.
+- Can contain or end with, but not begin with, a dollar sign ('$').
 
-*Max length is 32. 
-*Must begin with a letter or an underscore.
-*May contain letters, digits, underscores, or dashes. 
-*May contain or end with, but not begin with, a dollar sign ('$').
-
-Examples of invalid user names:
-nv set system aaa user 1test_user
-nv set system aaa user $test_user
-nv set system aaa user test.user
-
-Examples of valid user names:
-nv set system aaa user t3st_user
-nv set system aaa user test_user$
-nv set system aaa user _test_user
+These usernames are **invalid**: `1test_user`, `$test_user`, `test.user`. These usernames are **valid**: `1test_user`, `$test_user`, `_test_user`.
 {{%/notice%}}
 
 To configure a <span class="a-tooltip">[SPIFFE](## "Secure Production Identity Framework for Everyone")</span> ID for the user account instead of a password, run the `nv set system aaa user cumulus spiffe-id <id>` command.

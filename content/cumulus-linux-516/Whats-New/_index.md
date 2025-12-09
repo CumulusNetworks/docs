@@ -21,11 +21,11 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Access-Control-List-Configuration/#match-on-inner-header" text="ACL matches on packet inner header">}} and {{<link url="Access-Control-List-Configuration/#match-on-packet-offset" text="ACL matches on packet offset">}}
 - {{<link url="Quality-of-Service/#clear-qos-buffers" text="Clear QoS buffers on multiple interfaces">}}
 - {{<link url="Understanding-the-cl-support-Output-File/#automatic-cl-support-file" text="Manage cl-support file cyclic collection">}}
+- {{<link url="Network-Troubleshooting/#extended-traceroute" text="Extended traceroute (RFC 5837)">}}
 - DHCP relay vrf-aware
 - 802.1x on router ports with dynamic VRF assignment
 - Security features
 - Routing convergence enhancement for EVPN
-- Support RFC5837 
 - Dynamic IPv6 multi tenancy EVPN VXLAN encap in IPv6 header
 - BFD offload
 - SPC-1 Alligator PSID and CPLD update

@@ -769,6 +769,84 @@ traceroute to 10.10.10.2 (10.10.10.2), 30 hops max, 60 byte packets
 {{< /tab >}}
 {{< /tabs >}}
 
+## Extended traceroute
+
+Cumulus Linux supports RFC 5837, which extends ICMP error messages with interface information, enabling more meaningful traceroute results in unnumbered networks where router interfaces use link-local addresses.
+
+In unnumbered networks, router interfaces are assigned IPv6 link-local addresses (such as fe80::1/64) while only the loopback interface has globally unique addresses. When parallel links exist between routers, traditional traceroute cannot identify which physical interface a packet traverses because ICMP error messages use the loopback address as the source. With extended traceroute, you can see the name, index, MTU, and IP address (if present) of the interface that received the packet, enabling accurate path tracing.
+
+{{%notice note%}}
+- You can enable or disable RFC 5837 globally.
+- Cumulus Linux supports incoming interface information only.
+- ICMP rate limiting applies (1000 messages per second by default).
+{{%/notice%}}
+
+Extended traceroute is disabled by default.
+
+To enable extended traceroute for unnumbered IPv6, run the `nv set system global icmp ipv6 errors-extension ingress-interface` command:
+
+```
+cumulus@switch:~$ nv set system global icmp ipv6 errors-extension ingress-interface
+```
+
+To disable extended traceroute for IPv6 unnumbered, run the `nv unset system global icmp ipv6 errors-extension ingress-interface` command.
+
+To enable extended traceroute for IPv4 over IPv6 unnumbered, run the `nv set system global icmp ipv4 errors-extension ingress-interface` command:
+
+```
+cumulus@switch:~$ nv set system global icmp ipv4 errors-extension ingress-interface
+```
+
+To disable extended traceroute for IPv4 over IPv6 unnumbered, run the `nv unset system global icmp ipv4 errors-extension ingress-interface` command.
+
+To show if extended traceroute is enabled, run the `nv show system` global command.
+
+```
+cumulus@switch:~$ nv show system global
+                                operational        applied     pending 
+------------------------------  -----------------  ----------  ---------- 
+... 
+
+arp 
+
+  base-reachable-time           1080               auto        auto 
+  garbage-collection-threshold 
+    minimum                     128 
+    effective                   36178 
+    maximum                     41347 
+nd 
+  base-reachable-time           1080               auto        auto 
+  garbage-collection-threshold 
+    minimum                     128 
+    effective                   18088 
+    maximum                     20673 
+icmp 
+  ipv4 
+    errors-extension 
+ingress-interface 
+  ipv6 
+    errors-extension 
+      ingress-interface 
+```
+
+The following example shows extended traceroute for IPv6 unnumbered:
+
+```
+cumulus@switch:~$ traceroute6 -e 2001:db8:1::3 
+ traceroute to 2001:db8:1::3 (2001:db8:1::3), 30 hops max, 80 byte packets 
+  1  2001:db8:1::2 (2001:db8:1::2) <INC:11,"eth1",mtu=1500>  0.214 ms  0.171 ms  0.162 ms 
+  2  2001:db8:1::3 (2001:db8:1::3) <INC:12,"eth2",mtu=1500>  0.154 ms  0.135 ms  0.127 ms 
+```
+
+The following example shows extended traceroute for IPv4 over IPv6 unnumbered:
+
+```
+cumulus@switch:~$ traceroute -e 192.0.2.3 
+ traceroute to 192.0.2.3 (192.0.2.3), 30 hops max, 60 byte packets 
+  1  192.0.2.2 (192.0.2.2) <INC:11,"eth1",mtu=1500>  0.191 ms  0.148 ms  0.144 ms 
+  2  192.0.2.3 (192.0.2.3) <INC:12,"eth2",mtu=1500>  0.137 ms  0.122 ms  0.114 ms 
+```
+
 ## tcpdump
 
 You can use the Linux `tcpdump` command to monitor control plane traffic (traffic sent to and coming from the switch CPUs). `tcpdump` does **not** monitor data plane traffic; use `cl-acltool` instead.

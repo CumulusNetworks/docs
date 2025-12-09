@@ -40,7 +40,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Add Bulk option for route
 - Scale up number of BGP paths supported on Cumulus Linux to enable 16K GPU cluster with 128-way ECMP
 - NVUE
-  - {{<link url="FRRouting/#show-fib-table-entries" text="Show FIB table entries">}}
+  - {{<link url="Routing-Tables/#show-fib-table-entries" text="Show FIB table entries">}}
   - map port to connector
 
 ## Release Considerations

@@ -443,6 +443,123 @@ nv show vrf default router rib ipv6
 In Cumulus Linux 5.12 and earlier the `--output native` option is `--output raw`.
 {{%/notice%}}
 
+## Next Hop Tracking
+
+Routing daemons track the validity of next hops through notifications from the `zebra` daemon. For example, FRR uninstalls BGP routes that resolve to a next hop over a connected route in `zebra` when `bgpd` receives a next hop tracking (NHT) notification after `zebra` removes the connected route if the associated interface goes down.
+
+The `zebra` daemon does not consider next hops that resolve to a default route as valid by default. You can configure NHT to consider a longest prefix match lookup for next hop addresses resolving to the default route as a valid next hop. The following example configures the default route to be valid for NHT in the default VRF:
+
+{{< tabs "410">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf default router nexthop-tracking ipv4 resolved-via-default on
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# ip nht resolve-via-default
+leaf01(config)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+You can apply a route map to NHT for specific routing daemons to permit or deny routes from consideration as valid next hops. The following example applies `ROUTEMAP1` to BGP, preventing NHT from considering next hops resolving to 10.0.0.0/8 in the default VRF as valid:
+
+{{< tabs "436">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set router policy prefix-list PREFIX1 type ipv4
+cumulus@leaf01:~$ nv set router policy prefix-list PREFIX1 rule 1 match 10.0.0.0/8
+cumulus@leaf01:~$ nv set router policy prefix-list PREFIX1 rule 1 action permit
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 1 match ip-prefix-list PREFIX1
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 1 action deny 
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 2 action permit
+cumulus@leaf01:~$ nv set vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 protocol bgp
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf02# configure terminal
+leaf02(config)# ip prefix-list PREFIX1 seq 1 permit 10.0.0.0/8
+leaf02(config)# route-map ROUTEMAP1 deny 1
+leaf02(config-route-map)#  match ip address prefix-list PREFIX1
+leaf02(config-route-map)# route-map ROUTEMAP1 permit 2
+leaf02(config-route-map)# ip nht bgp route-map ROUTEMAP1
+leaf02(config)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+You can show tracked next hops with the following NVUE commands:
+- `nv show vrf <vrf-id> router nexthop-tracking ipv4`
+- `nv show vrf <vrf-id> router nexthop-tracking ipv4 <ip-address>`
+- `nv show vrf <vrf-id> router nexthop-tracking ipv6`
+- `nv show vrf <vrf-id> router nexthop-tracking ipv6 <ip-address>`
+
+```
+cumulus@leaf01:~$  nv show vrf default router nexthop-tracking ipv4
+                      operational  applied  pending
+--------------------  -----------  -------  -------
+resolved-via-default                        on
+
+route-map
+============
+No Data
+
+ip-address
+=============
+                                                                                
+    DirectlyConnected - Indicates if nexthop is directly connected or not,          
+    ResolvedProtocol - Resolved via protocol, Interface - Resolved via interface,   
+    ProtocolFiltered - Indicates whether protocol filtered or not, Flags - o -      
+    onlink, c - directly-connected, A - active                                      
+                                                                                
+    IPAddress    DirectlyConnected  ResolvedProtocol  Interface      VRF      Weight  ProtocolFiltered  Flags
+    -----------  -----------------  ----------------  -------------  -------  ------  ----------------  -----
+    10.0.1.34    off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
+                                                      swp51          default  1                         A    
+    10.10.10.2   off                bgp               peerlink.4094  default  1       off               A    
+    10.10.10.3   off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
+                                                      swp51          default  1                         A    
+    10.10.10.4   off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
+                                                      swp51          default  1                         A    
+    10.10.10.63  off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
+                                                      swp51          default  1                         A    
+    10.10.10.64  off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
+                                                      swp51          default  1                         A
+```
+
+You can also run the vtysh `show ip nht vrf <vrf-id> <ip-address>` command.
+
 ## Reload the FRR Configuration
 
 {{%notice warning%}}

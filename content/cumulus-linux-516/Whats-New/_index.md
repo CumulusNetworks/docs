@@ -28,7 +28,6 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Security features
 - Routing convergence enhancement for EVPN
 - Dynamic IPv6 multi tenancy EVPN VXLAN encap in IPv6 header
-- BFD offload
 - SPC-1 Alligator PSID and CPLD update
 - activate authorization without rbash
 - 802.1x Related Metric / X-paths support

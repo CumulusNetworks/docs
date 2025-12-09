@@ -1402,7 +1402,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepen
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set atomic-aggregate (on|off)</h>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set atomic-aggregate</h>
 
 Configures a set clause in the route map to inform BGP peers that the local router is using a less specific (aggregated) route to a destination. You can specify `enabled` or `disabled`. The default setting is `disabled`.
 

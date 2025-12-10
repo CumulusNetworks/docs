@@ -565,7 +565,7 @@ table-map MAP1
 {{< /tabs >}}
 
 {{%notice note%}}
-To apply an outbound route map to a route reflector client, you must run the NVUE `nv set vrf <vrf-id> router bgp route-reflection outbound-policy on` command or the vtysh `neighbor <neighbor> route-map SET_IBGP_ORIG out` command under the address family, before you apply the route map.
+To apply an outbound route map to a route reflector client, you must run the NVUE `nv set vrf <vrf-id> router bgp route-reflection outbound-policy enabled` command or the vtysh `neighbor <neighbor> route-map SET_IBGP_ORIG out` command under the address family, before you apply the route map.
 {{%/notice%}}
 
 ### Route Map Description
@@ -1002,14 +1002,14 @@ cumulus@leaf01:~$
 
 ### Set IPv6 Prefer Global
 <!-- vale off -->
-With multiple BGP peerings to the same router when {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="adaptive routing">}} is `on`, or with multiple peerings to the same router on interfaces that share the same MAC address or physical interface, you can configure a route map to prefer the global IPv6 address when a route contains both link-local and global next hop addresses.
+With multiple BGP peerings to the same router when {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="adaptive routing">}} is enabled, or with multiple peerings to the same router on interfaces that share the same MAC address or physical interface, you can configure a route map to prefer the global IPv6 address when a route contains both link-local and global next hop addresses.
 <!-- vale on -->
 {{< tabs "TabID947 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
 cumulus@leaf01:~$ nv set router policy route-map IPV6-PREFER-GLOBAL rule 10 action permit
-cumulus@leaf01:~$ nv set router policy route-map IPV6-PREFER-GLOBAL rule 10 set ipv6-nexthop-prefer-global on
+cumulus@leaf01:~$ nv set router policy route-map IPV6-PREFER-GLOBAL rule 10 set ipv6-nexthop-prefer-global enabled
 cumulus@leaf01:~$ nv config apply
 ```
 

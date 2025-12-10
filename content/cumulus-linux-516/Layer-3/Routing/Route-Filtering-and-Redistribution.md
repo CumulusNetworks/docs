@@ -565,7 +565,7 @@ table-map MAP1
 {{< /tabs >}}
 
 {{%notice note%}}
-To apply an outbound route map to a route reflector client, you must run the NVUE `nv set vrf <vrf-id> router bgp route-reflection outbound-policy on` command or the vtysh `neighbor <neighbor> route-map SET_IBGP_ORIG out` command under the address family, before you apply the route map.
+To apply an outbound route map to a route reflector client, you must run the NVUE `nv set vrf <vrf-id> router bgp route-reflection outbound-policy enabled` command or the vtysh `neighbor <neighbor> route-map SET_IBGP_ORIG out` command under the address family, before you apply the route map.
 {{%/notice%}}
 
 ### Route Map Description
@@ -1009,7 +1009,7 @@ With multiple BGP peerings to the same router when {{<link url="Equal-Cost-Multi
 
 ```
 cumulus@leaf01:~$ nv set router policy route-map IPV6-PREFER-GLOBAL rule 10 action permit
-cumulus@leaf01:~$ nv set router policy route-map IPV6-PREFER-GLOBAL rule 10 set ipv6-nexthop-prefer-global on
+cumulus@leaf01:~$ nv set router policy route-map IPV6-PREFER-GLOBAL rule 10 set ipv6-nexthop-prefer-global enabled
 cumulus@leaf01:~$ nv config apply
 ```
 

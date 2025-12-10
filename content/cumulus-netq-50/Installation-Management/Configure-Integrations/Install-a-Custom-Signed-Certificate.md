@@ -54,40 +54,42 @@ You need the following items to perform the certificate installation:
 
     2. Copy and add the following content to the file. Replace `<your-hostname>` with the FQDN of the NetQ VM.
 
-      ```
-      apiVersion: networking.k8s.io/v1
-      kind: Ingress
-      metadata:
-        annotations:
-          nginx.ingress.kubernetes.io/ssl-redirect: "true"
-          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-          nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-          nginx.ingress.kubernetes.io/proxy-body-size: 10g
-          nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-        name: netq-gui-ingress-external
-        namespace: default
-      spec:
-        ingressClassName: ingress-nginx-class
-        rules:
-        - host: <your-hostname>
-          http:
-            paths:
-            - path: /
-              pathType: Prefix
-              backend:
-                service:
-                  name: netq-gui
-                  port:
-                    number: 80
-              path: /
-              pathType: Prefix
-        tls:
-        - hosts:
-          - <your-hostname>
-          secretName: netq-gui-ingress-tls
-      ```
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10g
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+  name: netq-gui-ingress-external
+  namespace: default
+spec:
+  ingressClassName: ingress-nginx-class
+  rules:
+  - host: <your-hostname>
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: netq-gui
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - <your-hostname>
+    secretName: netq-gui-ingress-tls
+```
+
 
 5. Apply the new rule:
 
@@ -104,37 +106,38 @@ You need the following items to perform the certificate installation:
 
     2. Copy and add the following content to the file. Replace `<your-hostname>` with the FQDN of the NetQ VM.
 
-      ```
-      apiVersion: networking.k8s.io/v1
-      kind: Ingress
-      metadata:
-        annotations:
-          nginx.ingress.kubernetes.io/ssl-redirect: "true"
-          nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
-          nginx.ingress.kubernetes.io/proxy-body-size: 10g
-          nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-        name: netq-swagger-ingress-external
-        namespace: default
-      spec:
-        ingressClassName: ingress-nginx-class
-        rules:
-        - host: <your-hostname>
-          http:
-            paths:
-            - path: "/swagger"
-              pathType: Prefix
-              backend:
-                service:
-                  name: swagger-ui
-                  port:
-                    number: 8080
-        tls:
-        - hosts:
-          - <your-hostname>
-          secretName: netq-gui-ingress-tls
-      ```
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10g
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+  name: netq-swagger-ingress-external
+  namespace: default
+spec:
+  ingressClassName: ingress-nginx-class
+  rules:
+  - host: <your-hostname>
+    http:
+      paths:
+      - path: "/swagger"
+        pathType: Prefix
+        backend:
+          service:
+            name: swagger-ui
+            port:
+              number: 8080
+  tls:
+  - hosts:
+    - <your-hostname>
+    secretName: netq-gui-ingress-tls
+```
 
 7. Apply the new rule:
 

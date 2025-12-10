@@ -311,12 +311,12 @@ To unset the MAC address for an interface, remove the mac address from the inter
 
 The physical name for an interface maps the interface to the connector to show actual physical connections within the system and correlate software interface names with the physical layout of the hardware.
 
-- When a logical port (such as swp1) does not break out out but electrically spans two physical connectors, the physical name reflects both connector indices using the format `swp<N>c<A>c<B>`. For example, `swp1c1c2`.
-- When the logical port breaks out into two interfaces, each resulting lane or interface is associated with one connector and one serdes group. The format is `swp<id>c<A>s<X> swp<id>c<B>s<Y>`. For example, `swp1c1s1 swp1c2s1`.
-- When the logical port is broken out into four or eight child interfaces, lanes map 1:1 or 2:1 to connectors depending on the hardware. For a symmetric two-connector case, the format for 4x is `swp<N>c<A>s1 swp<N>c<A>s2 swp<N>c<B>s1 swp<N>c<B>s2`. For example, `swp1c1s1 swp1c1s2 swp1c2s1 swp1c2s2` and the format for 8x is` swp<N>c<A>s1 swp<N>c<A>s2 swp<N>c<A>s3 swp<N>c<A>s4 swp<N>c<B>s1 swp<N>c<B>s2 swp<N>c<B>s3 swp<N>c<B>s4`. For example, `swp1c1s1 swp1c1s2 swp1c1s3 swp1c1s4 swp1c2s1 swp1c2s2 swp1c2s3 swp1c2s4`.
+- When a logical port (such as swp1) does not break out but electrically spans two physical connectors, the physical name reflects both connector indices using the format `swp<N>c<A>c<B>`. For example, `swp1c1c2`.
+- When the logical port breaks out into two interfaces (2x), each resulting lane or interface is associated with one connector and one serdes group. The format is `swp<N>c<A>s<X> swp<N>c<B>s<Y>`. For example, `swp1c1s1 swp1c2s1`.
+- When the logical port breaks out into four (4x) or eight (8x) interfaces, lanes map 1:1 or 2:1 to connectors depending on the hardware. For a symmetric two-connector example, the format for 4x is `swp<N>c<A>s1 swp<N>c<A>s2 swp<N>c<B>s1 swp<N>c<B>s2`; for example, `swp1c1s1 swp1c1s2 swp1c2s1 swp1c2s2` and the format for 8x is` swp<N>c<A>s1 swp<N>c<A>s2 swp<N>c<A>s3 swp<N>c<A>s4 swp<N>c<B>s1 swp<N>c<B>s2 swp<N>c<B>s3 swp<N>c<B>s4`; for example, `swp1c1s1 swp1c1s2 swp1c1s3 swp1c1s4 swp1c2s1 swp1c2s2 swp1c2s3 swp1c2s4`.
 
 {{%notice note%}}
-You can show the physical name for the interfaces on switches with Spectrum-4 and later.
+You can show the physical name for the interfaces on a switch with Spectrum-4 and later.
 {{%/notice%}}
 
 To show the physical name for an interface, run the `nv show interface <interface>` command or the `nv show interface <interface> link` command:
@@ -385,7 +385,8 @@ swp4s0     swp4c1s1            down          down                9216          n
 swp4s1     swp4c1s2            down          down                9216          none 
 swp4s2     swp4c2s1            down          down                9216          none 
 swp4s3     swp4c2s2            down          down                9216          none 
-swp5s0     swp5c1s1            down          down                9216          none 
+swp5s0     swp5c1s1            down          down                9216          none
+...
 ```
 
 ## Interface Descriptions

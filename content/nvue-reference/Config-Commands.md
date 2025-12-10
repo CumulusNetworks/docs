@@ -295,9 +295,9 @@ Rev ID                State              Apply ID                          Apply
 
 Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot.
 
-In Cumulus Linux 5.9 and later, auto save is on by default; NVUE saves the configuration to the `/etc/nvue.d/startup.yaml` file automatically. Run this command to save the applied configuration if NVUE auto save if off.
+In Cumulus Linux 5.9 and later, auto save is enabled by default; NVUE saves the configuration to the `/etc/nvue.d/startup.yaml` file automatically. Run this command to save the applied configuration if NVUE auto save if disabled.
 
-In Cumulus Linux 5.8 and earlier, auto save is off by default.
+In Cumulus Linux 5.8 and earlier, auto save is disabled by default.
 
 ### Version History
 

@@ -160,7 +160,6 @@ pdfhidden: True
 ### Fixed Issues in 5.15.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| <a name="4783639"></a> [4783639](#4783639) <a name="4783639"></a> <br /> | The <code>mlxlink_ext</code> command contains a memory leak, causing the process memory usage to increase continuously until it is eventually killed. | 5.14.0-5.15.0 | |
 | <a name="4769275"></a> [4769275](#4769275) <a name="4769275"></a> <br /> | During power cycles and GPIO events, link initialization might fail due to a race condition during switch configuration. To work around this issue, set the service port to <code>admin UP</code>. | 5.15.0 | |
 | <a name="4769258"></a> [4769258](#4769258) <a name="4769258"></a> <br /> | After upgrading the switch with <code>onie-install -t</code>, NTP configuration is missing and does not work. This issue does not occur with package or optimized image upgrade. | 5.15.0 | |
 | <a name="4769256"></a> [4769256](#4769256) <a name="4769256"></a> <br /> | Low fan speed alarm events occur while the corresponding fan modules are amber physically.  | 5.15.0 | |

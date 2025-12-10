@@ -928,11 +928,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
-<td>4783639</td>
-<td>The {{mlxlink_ext}} command contains a memory leak, causing the process memory usage to increase continuously until it is eventually killed.</td>
-<td>5.14.0-5.15.0</td>
-</tr>
-<tr>
 <td>4769275</td>
 <td>During power cycles and GPIO events, link initialization might fail due to a race condition during switch configuration. To work around this issue, set the service port to {{admin UP}}.</td>
 <td>5.15.0</td>

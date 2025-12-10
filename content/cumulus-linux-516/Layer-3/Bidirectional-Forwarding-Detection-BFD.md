@@ -8,7 +8,6 @@ toc: 3
 
 Cumulus Linux supports BFD with BGP, OSPF, PIM, and static routes and on interfaces, subinterfaces, and bonds.
 
-
 {{%notice note%}}
 Cumulus Linux does not support BFD demand mode, BFD echo mode, or BGP BFD strict mode.
 {{%/notice%}}
@@ -42,8 +41,6 @@ When you change the BFD state, the FRR service will restart, affecting all confi
 
 {{< /tab >}}
 {{< /tabs >}}
-
-
 
 ## Configure BFD
 
@@ -295,6 +292,7 @@ Showing BFD monitored static routes:
 - BFD with static routes is supported only when a next-hop IP address is specified.
 - BFD operates in single hop mode by default. You must configure `multi-hop enabled` to use BFD for multihop next-hop tracking through static routes.
 {{%/notice%}}
+
 <!--
 ## Echo Function
 
@@ -337,6 +335,42 @@ You configure the echo function by setting the following parameters in the topol
 - A BFP profile applied to an interface can be changed, but you can not unset a profile while BFD is still enabled on the interface. To remove BFD completely from an interface, use the `nv unset interface <if-name> router <protocol> bfd` command. To change the profile, set a new profile with the `nv set interface <if-name> router <protocol> bfd profile <profile>` command.
 - BFD is supported in the `default` VRF and non-default VRFs.
 - A single BFD session is established per interface, regardless of how many protocols use BFD on that interface. If you configure different BFD profiles for multiple protocols on the same interface, the most recently applied profile takes precedence for the BFD session on that interface.
+
+## BFD Offload
+
+BFD offload improves BFD session scale by offloading BFD to a kernel driver called `sx_bfd`, which is responsible for maintaining BFD sessions. BFD offload is disabled by default.
+
+{{%notice note%}}
+BFD offload does not support BFD sessions based on the IPv6 link-local address.
+{{%/notice%}}
+
+To enable BFD offload, run the `nv set router bfd offload enabled` command:
+
+```
+cumulus@switch:~$ nv set router bfd offload enabled
+cumulus@switch:~$ nv config apply
+```
+
+To disable BFD offload, run the `nv set router bfd offload disabled` command.
+
+{{%notice note%}}
+When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode including BFD sessions based on the IPv6 link-local address (even though BFD offload does not support BFD sessions based on the IPv6 link-local address).
+{{%/notice%}}
+
+To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view standard` command. The `Offloaded` field shows `control-plane` if the session is offloaded.
+
+```
+cumulus@switch:~$ nv show vrf default router bfd peers --view standard 
+MHop - Multihop, Local - Local, Peer - Peer, Interface - Interface, State - 
+State, Passive - Passive Mode, Time - Up/Down Time, Type - Config Type, 
+Offloaded - Offloaded, MinTTL - Minimum TTL, Multiplier - Detect Multiplier, 
+MinRx - Min Rx Interval, MinTx - Min Tx Interval, CtrlIn - Control Packet Input, 
+CtrlOut - Control Packet Output 
+
+LocalId     MHop   Local   Peer    Interface  State  Passive  Time     Type     Offloaded      MinTTL  Multiplier  MinRx  MinTx  CtrlIn  CtrlOut 
+----------  -----  ------  ------  ---------  -----  -------  -------  -------  -------------  ------  ----------  -----  -----  ------  ------- 
+1862087280  False  500::1  500::2  vlan500    up     False    0:03:53  dynamic  control-plane          3           50     50     1476    1463 
+```
 
 ## Show BFD Information
 

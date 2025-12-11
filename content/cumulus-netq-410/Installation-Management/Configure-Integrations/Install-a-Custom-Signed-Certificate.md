@@ -33,7 +33,7 @@ You need the following items to perform the certificate installation:
 2. Generate a Kubernetes secret called `netq-gui-ingress-tls`:
 
     ```
-    cumulus@netq-ts:~$ kubectl create secret tls netq-gui-ingress-tls \
+    nvidia@netq-ts:~$ kubectl create secret tls netq-gui-ingress-tls \
         --namespace default \
         --key <name of your key file>.key \
         --cert <name of your cert file>.crt
@@ -42,7 +42,7 @@ You need the following items to perform the certificate installation:
 3. Verify that you created the secret successfully:
 
     ```
-    cumulus@netq-ts:~$ kubectl get secret
+    nvidia@netq-ts:~$ kubectl get secret
 
     NAME                               TYPE                                  DATA   AGE
     netq-gui-ingress-tls               kubernetes.io/tls                     2      5s
@@ -52,48 +52,49 @@ You need the following items to perform the certificate installation:
 
     1. Create a new file called `ingress.yaml`
 
-    2. Copy and add the following content to the file:
+    2. Copy and add the following content to the file. Replace `<your-hostname>` with the FQDN of the NetQ VM.
 
-      ```
-      apiVersion: networking.k8s.io/v1
-      kind: Ingress
-      metadata:
-        annotations:
-          nginx.ingress.kubernetes.io/ssl-redirect: "true"
-          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-          nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-          nginx.ingress.kubernetes.io/proxy-body-size: 10g
-          nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-        name: netq-gui-ingress-external
-        namespace: default
-      spec:
-        ingressClassName: ingress-nginx-class
-        rules:
-        - host: <your-hostname>
-          http:
-            paths:
-            - path: /
-              pathType: Prefix
-              backend:
-                service:
-                  name: netq-gui
-                  port:
-                    number: 80
-              path: /
-              pathType: Prefix
-        tls:
-        - hosts:
-          - <your-hostname>
-          secretName: netq-gui-ingress-tls
-      ```
-    3. Replace `<your-hostname>` with the FQDN of the NetQ VM. <br>
-    <br>
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10g
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+  name: netq-gui-ingress-external
+  namespace: default
+spec:
+  ingressClassName: ingress-nginx-class
+  rules:
+  - host: <your-hostname>
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: netq-gui
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - <your-hostname>
+    secretName: netq-gui-ingress-tls
+```
+
+
 5. Apply the new rule:
 
     ```
-    cumulus@netq-ts:~$ kubectl apply -f ingress.yaml
+    nvidia@netq-ts:~$ kubectl apply -f ingress.yaml
     ingress.extensions/netq-gui-ingress-external configured
     ```
     
@@ -103,45 +104,45 @@ You need the following items to perform the certificate installation:
 
     1. Create a new file called `swagger-ingress.yaml`
 
-    2. Copy and add the following content to the file:
+    2. Copy and add the following content to the file. Replace `<your-hostname>` with the FQDN of the NetQ VM.
 
-      ```
-      apiVersion: networking.k8s.io/v1
-      kind: Ingress
-      metadata:
-        annotations:
-          nginx.ingress.kubernetes.io/ssl-redirect: "true"
-          nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
-          nginx.ingress.kubernetes.io/proxy-body-size: 10g
-          nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-        name: netq-swagger-ingress-external
-        namespace: default
-      spec:
-        ingressClassName: ingress-nginx-class
-        rules:
-        - host: <your-hostname>
-          http:
-            paths:
-            - path: "/swagger"
-              pathType: Prefix
-              backend:
-                service:
-                  name: swagger-ui
-                  port:
-                    number: 8080
-        tls:
-        - hosts:
-          - <your-hostname>
-          secretName: netq-gui-ingress-tls
-      ```
-    3. Replace `<your-hostname>` with the FQDN of the NetQ VM. <br>
-    <br>
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10g
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+  name: netq-swagger-ingress-external
+  namespace: default
+spec:
+  ingressClassName: ingress-nginx-class
+  rules:
+  - host: <your-hostname>
+    http:
+      paths:
+      - path: "/swagger"
+        pathType: Prefix
+        backend:
+          service:
+            name: swagger-ui
+            port:
+              number: 8080
+  tls:
+  - hosts:
+    - <your-hostname>
+    secretName: netq-gui-ingress-tls
+```
+
 7. Apply the new rule:
 
     ```
-    cumulus@netq-ts:~$ kubectl apply -f swagger-ingress.yaml
+    nvidia@netq-ts:~$ kubectl apply -f swagger-ingress.yaml
     ```
  
 

@@ -307,6 +307,88 @@ To unset the MAC address for an interface, remove the mac address from the inter
 {{< /tab >}}
 {{< /tabs >}}
 
+## Interface Physical Name
+
+The physical name for an interface maps the interface to the connector to show actual physical connections within the system and correlate software interface names with the physical layout of the hardware.
+
+- When a logical port (such as swp1) does not break out but electrically spans two physical connectors, the physical name reflects both connector indices using the format `swp<N>c<A>c<B>`. For example, `swp1c1c2`.
+- When the logical port breaks out into two interfaces (2x), each resulting lane or interface is associated with one connector and one serdes group. The format is `swp<N>c<A>s<X> swp<N>c<B>s<Y>`. For example, `swp1c1s1 swp1c2s1`.
+- When the logical port breaks out into four (4x) or eight (8x) interfaces, lanes map 1:1 or 2:1 to connectors depending on the hardware. For a symmetric two-connector example, the format for 4x is `swp<N>c<A>s1 swp<N>c<A>s2 swp<N>c<B>s1 swp<N>c<B>s2`; for example, `swp1c1s1 swp1c1s2 swp1c2s1 swp1c2s2` and the format for 8x is` swp<N>c<A>s1 swp<N>c<A>s2 swp<N>c<A>s3 swp<N>c<A>s4 swp<N>c<B>s1 swp<N>c<B>s2 swp<N>c<B>s3 swp<N>c<B>s4`; for example, `swp1c1s1 swp1c1s2 swp1c1s3 swp1c1s4 swp1c2s1 swp1c2s2 swp1c2s3 swp1c2s4`.
+
+{{%notice note%}}
+You can show the physical name for the interfaces on a switch with Spectrum-4 and later.
+{{%/notice%}}
+
+To show the physical name for an interface, run the `nv show interface <interface>` command or the `nv show interface <interface> link` command:
+
+```
+cumulus@switch:~$ nv show interface swp1s0
+                          operational              applied 
+-------------------------  -----------------------  ------- 
+type                       swp 
+lldp 
+  dcbx-pfc-tlv             disabled 
+  dcbx-ets-config-tlv      disabled 
+  dcbx-ets-recomm-tlv      disabled 
+  state                    enabled 
+  [neighbor] 
+ptp 
+  state                    disabled 
+sflow 
+  sample-rate              0 
+  state                    disabled 
+ipv4 
+  [address] 
+ipv6 
+  [address] 
+link 
+  auto-negotiate           enabled 
+  mac-address              cc:40:f3:59:eb:d0 
+  fec                      none 
+  mtu                      9216 
+  fast-linkup              disabled 
+  [flag]                   broadcast 
+  [flag]                   multicast 
+  protodown                disabled 
+  oper-status              down 
+  admin-status             down 
+  oper-status-last-change  2025/11/27 06:12:27.131 
+  physical-name            swp1c1s1 
+  eyes                     0, 0, 0, 0, 0, 0, 0, 0 
+  grade                    0, 0, 0, 0, 0, 0, 0, 0 
+  troubleshooting-info     Cable is unplugged 
+counters 
+  link 
+    carrier-transitions    1 
+    carrier-up-count       0 
+    carrier-down-count     1 
+ifindex                    88 
+physical-name              swp1c1s1
+```
+
+To show the physical names for all interfaces on the switch, run the `nv show interface physical` command:
+
+```
+cumulus@switch:~$ nv show interface physical 
+Interface  Physical Interface  Admin Status  Oper Status  Speed  MTU   Duplex  FEC 
+---------  ------------------  ------------  -----------  -----  ----  ------  ---- 
+eth0                           up            up           1G     1500  full 
+swp1s0     swp1c1s1            down          down                9216          none 
+swp1s1     swp1c2s1            down          down                9216          none 
+swp2s0     swp2c1s1            down          down                9216          none 
+swp2s1     swp2c2s1            down          down                9216          none 
+swp3s0     swp3c1s1            down          down                9216          none 
+swp3s1     swp3c1s2            down          down                9216          none 
+swp3s2     swp3c1s3            down          down                9216          none 
+swp3s3     swp3c1s4            down          down                9216          none 
+swp4s0     swp4c1s1            down          down                9216          none 
+swp4s1     swp4c1s2            down          down                9216          none 
+swp4s2     swp4c2s1            down          down                9216          none 
+swp4s3     swp4c2s2            down          down                9216          none 
+swp5s0     swp5c1s1            down          down                9216          none
+...
+```
+
 ## Interface Descriptions
 
 You can add a description (alias) to an interface.

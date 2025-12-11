@@ -949,7 +949,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>4738956</td>
-<td>When a Spectrum-4 or Spectrum-5 switch interface is connected to a ConnectX-7 NIC that performs a soft reset, adaptive routing and Spectrum-X features fail to start on the interface. To work around this issue, flap the interface on the Spectrum-4/Spectrum-5 end.</td>
+<td>When a Spectrum-4 or Spectrum-5 switch (local device) is connected to a ConnectX-7 or ConnectX-8 NIC, or a Spectrum-4 or Spectrum-5 (peer device) that performs a soft reset, adaptive routing and Spectrum-X features fail to start on the interface. To work around this issue, flap the interface on the Spectrum-4 or Spectrum-5 switch.</td>
 <td>5.15.0</td>
 </tr>
 </table>
@@ -1026,7 +1026,7 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 </tr>
 <tr>
 <td>4738956</td>
-<td>When a Spectrum-4 or Spectrum-5 switch interface is connected to a ConnectX-7 NIC that performs a soft reset, adaptive routing and Spectrum-X features fail to start on the interface. To work around this issue, flap the interface on the Spectrum-4/Spectrum-5 end.</td>
+<td>When a Spectrum-4 or Spectrum-5 switch (local device) is connected to a ConnectX-7 or ConnectX-8 NIC, or a Spectrum-4 or Spectrum-5 (peer device) that performs a soft reset, adaptive routing and Spectrum-X features fail to start on the interface. To work around this issue, flap the interface on the Spectrum-4 or Spectrum-5 switch.</td>
 <td>5.15.0</td>
 <td>5.15.1</td>
 </tr>

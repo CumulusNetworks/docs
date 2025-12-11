@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1050
 toc: 3
 ---
-The `cl-support` script generates a compressed archive file of useful information for troubleshooting. The system either creates the file automatically or you can create the file manually.
+The `cl-support` script generates a compressed archive file of useful information for troubleshooting. The system creates the file automatically or you can create the file manually.
 <!-- vale off -->
 ## Automatic cl-support File
 <!-- vale on -->
@@ -16,11 +16,10 @@ To prevent the switch from creating a `cl-support` file multiple times in rapid 
 
 Automatic `cl-support` file generation reactivates when the switch reboots. You can also reactivate automatic `cl-support` file generation manually.
 
-To reactivate automatic `cl-support` file generation manually, run the `nv set system tech-support auto-generation state enabled` command:
+To reactivate automatic `cl-support` file generation manually, run the `nv action activate system tech-support auto-generation` command:
 
 ```
-cumulus@switch:~$ nv set system tech-support auto-generation state enabled
-cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv action activate system tech-support auto-generation
 ```
 
 You can configure the number of seconds during which failures are counted and the maximum number of failures allowed during that time before automatic `cl-support` file generation deactivates.
@@ -29,8 +28,8 @@ The following example sets number of seconds during which failures are counted t
 to 5.
 
 ```
-cumulus@switch:~$ nv set system system tech-support auto-generation burst-duration 120
-cumulus@switch:~$ nv set system system tech-support auto-generation burst-size 5
+cumulus@switch:~$ nv set system tech-support auto-generation burst-duration 120
+cumulus@switch:~$ nv set system tech-support auto-generation burst-size 5
 cumulus@switch:~$ nv config apply 
 ```
 
@@ -41,7 +40,7 @@ In addition, a `syslog` log message generates indicating that auto generation is
 To show if automatic `cl-support` file generation is active or inactive, and the reason for deactivation, run the `nv show system tech-support status` command.
 
 ```
-cumulus@switch:~$ nv show system tech-support status 
+cumulus@switch:~$ nv show system tech-support auto-generation 
                                       operational
 -----------------------------------   -------------------------------------------- 
 

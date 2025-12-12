@@ -2,7 +2,7 @@
 title: Account Setup
 author: NVIDIA
 weight: 15
-product: NVIDIA Air
+product: NVIDIA Air NGC
 ---
 
 NVIDIA Air uses {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html" text="NVIDIA NGC">}} for authentication and organization management.

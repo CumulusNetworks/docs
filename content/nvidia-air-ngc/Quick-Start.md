@@ -2,7 +2,7 @@
 title: Quick Start
 author: NVIDIA
 weight: 20
-product: NVIDIA Air
+product: NVIDIA Air NGC
 ---
 
 ## Supported Browsers

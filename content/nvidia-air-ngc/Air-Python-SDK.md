@@ -1,5 +1,5 @@
 ---
-product: NVIDIA Air
+product: NVIDIA Air NGC
 title: Air API & Python SDK
 author: NVIDIA
 weight: 999

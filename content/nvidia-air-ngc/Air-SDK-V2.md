@@ -1,5 +1,5 @@
 ---
-product: NVIDIA Air
+product: NVIDIA Air NGC
 title: Air SDK V2
 author: NVIDIA
 weight: 999

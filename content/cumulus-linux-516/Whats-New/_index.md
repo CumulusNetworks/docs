@@ -26,7 +26,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Routing-Tables/#show-fib-table-entries" text="Show FIB table entries">}}
 - {{<link url="Interface-Configuration-and-Management/#interface-physical-name" text="Physical interface names that map the port to the connector">}}
 - {{<link url="NVUE-CLI/#command-completion" text="Restricted bash enhancements for NVUE commands include command history with arrow key navigation, context-aware tab completion, and inline help with ? to list valid options">}}
-- DHCP relay vrf-aware
+- {{<link url="DHCP-Relays/#vrf-aware-dhcp-relay" text="VRF-aware DHCP relay">}}
 - 802.1x on router ports with dynamic VRF assignment
 - Security features
 - Routing convergence enhancement for EVPN

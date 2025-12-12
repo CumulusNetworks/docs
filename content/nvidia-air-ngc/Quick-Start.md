@@ -2,7 +2,7 @@
 title: Quick Start
 author: NVIDIA
 weight: 20
-product: NVIDIA Air NGC
+product: NVIDIA Air
 ---
 
 ## Supported Browsers
@@ -17,13 +17,9 @@ NVIDIA Air supports the following browsers on a best-effort basis:
 
 ## Log in to Air
 
-To log in, go to [air.nvidia.com](https://air.nvidia.com/). Enter your business email address, then click **Next**. <!--include air inside login path?-->
+Go to {{<exlink url="https://air-ngc.nvidia.com" text="air-ngc.nvidia.com">}} and click **Login**. Air uses NGC for authentication—sign in with your business email and select your NGC organization.
 
-{{<img src="/images/guides/nvidia-air/Login.png" alt="" width="800px">}}
-
-{{%notice note%}}
-If your email address is not accepted as a valid business email address, and you think this is an error, contact [air-support@nvidia.com](mailto:air-support@nvidia.com).
-{{%/notice%}}
+For first-time setup, free trials, and troubleshooting access issues, see {{<link title="Account Setup">}}.
 
 ## Network Simulations
 
@@ -159,5 +155,3 @@ If you need to expand the resources for an organization beyond the default resou
 ## Related Information
 
 - [Cumulus Linux in a Virtual Environment](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Cumulus-Linux-in-a-Virtual-Environment/)
-
-

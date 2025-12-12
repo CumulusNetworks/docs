@@ -26,13 +26,11 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Routing-Tables/#show-fib-table-entries" text="Show FIB table entries">}}
 - {{<link url="Interface-Configuration-and-Management/#interface-physical-name" text="Physical interface names that map the port to the connector">}}
 - {{<link url="NVUE-CLI/#command-completion" text="Restricted bash enhancements for NVUE commands include command history with arrow key navigation, context-aware tab completion, and inline help with ? to list valid options">}}
-- DHCP relay vrf-aware
+- {{<link url="DHCP-Relays/#vrf-aware-dhcp-relay" text="VRF-aware DHCP relay">}}
 - 802.1x on router ports with dynamic VRF assignment
 - Security features
 - Routing convergence enhancement for EVPN
 - Dynamic IPv6 multi tenancy EVPN VXLAN encap in IPv6 header
-- SPC-1 Alligator PSID and CPLD update
-- activate authorization without rbash
 - 802.1x Related Metric / X-paths support
 - Parity between OpenTelemetry and gNMI (Phase 2)
 - Same user created locally and on Tacacs server, need NVUE support
@@ -40,9 +38,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - BGP conditional disaggregation for multi-planed GPUs
 - BGP Prefix Independent Convergence for Anycast Scenarios
 - Health Event and SDK Driver Monitoring for Multi ASIC
-- Add Bulk option for route
 - Scale up number of BGP paths supported on Cumulus Linux to enable 16K GPU cluster with 128-way ECMP
-
 
 ## Release Considerations
 

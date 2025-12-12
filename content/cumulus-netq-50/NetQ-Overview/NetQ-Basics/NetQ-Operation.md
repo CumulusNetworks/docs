@@ -50,6 +50,8 @@ For example, the following diagram shows issues on spine01, leaf04, and server03
 
 An administrator can run the following commands from any switch in the network to determine the cause of a BGP error on spine01:
 
+{{< expand "Example BGP commands" >}}
+
     nvidia@switch:~$ netq check bgp around 30m
     Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
     Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
@@ -99,6 +101,8 @@ An administrator can run the following commands from any switch in the network t
     exit-1            swp7.3                       DataVrf1081     655537     -          NotEstd      Fri Feb 15 17:28:48 2019
     exit-1            swp7.4                       DataVrf1082     655537     -          NotEstd      Fri Feb 15 17:28:48 2019
 
+{{< /expand >}}
+
 ### Manage Network Events
 
 The NetQ notifier lets you capture and filter events for devices, components, protocols, and services. This is especially useful when an interface or routing protocol goes down and you want to get them back up and running as quickly as possible. You can improve resolution time significantly by creating filters that focus on topics appropriate for a particular group of users. You can create filters for events related to BGP and MLAG session states, interfaces, links, NTP and other services, fans, power supplies, and physical sensor measurements.
@@ -117,12 +121,11 @@ Interface state, IP addresses, routes, ARP/ND table (IP neighbor) entries and MA
 
 Data that is captured and saved based on polling has a timestamp according to when the information was *captured* rather than when the event *actually happened*, though NetQ compensates for this if the data extracted provides additional information to compute a more precise time of the event. For example, BGP uptime can be used to determine when the event actually happened in conjunction with the timestamp.
 
-<!--- 
-When retrieving the timestamp, command outputs display the time in three ways:
+Command outputs display timestamps in three different formats:
 
-- For non-JSON output when the timestamp represents the Last Changed time, time is displayed in actual date and time when the time change occurred
-- For non-JSON output when the timestamp represents an Uptime, time is displayed as days, hours, minutes, and seconds from the current time
-- For JSON output, time is displayed in microseconds that have passed since the Epoch time (January 1, 1970 at 00:00:00 GMT)
+- For non-JSON output where the timestamp indicates the Last Changed time, it is shown as the actual date and time when the change occurred.
+- For non-JSON output where the timestamp represents an Uptime, time is displayed as days, hours, minutes, and seconds from the current time.
+- For JSON output, the timestamp is shown as the number of microseconds elapsed since the Unix epoch (January 1, 1970 at 00:00:00 GMT).
 
 {{< expand "Example of timestamp formats" >}}
 
@@ -385,7 +388,7 @@ When retrieving the timestamp, command outputs display the time in three ways:
 
 {{< /expand >}}
 
---->
+
 {{%notice note%}}
 
 Restarting a NetQ Agent on a device does not update the timestamps for existing objects to reflect this new restart time. NetQ preserves their timestamps relative to the original start time of the Agent. A rare exception is if you reboot the device between the time it takes the Agent to stop and restart; in this case, the time is still relative to the start time of the Agent.
@@ -394,7 +397,7 @@ Restarting a NetQ Agent on a device does not update the timestamps for existing 
 
 ## Exporting NetQ Data
 
-You can export data from the NetQ Platform in the CLI or UI:
+You can export data from using the CLI or UI:
 
 - In the CLI, use the `json` option to output command results to JSON format for parsing in other applications
 - In the UI, expand the cards to a full-screen, tabular view and select <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> **Export**. 

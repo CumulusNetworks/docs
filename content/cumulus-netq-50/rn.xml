@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4784336</td>
+<td>The NetQ for NVLink and Ethernet deployment is not supported in air-gapped environments.</td>
+<td>5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4687477</td>
 <td>When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters.</td>
 <td>5.0.0</td>

@@ -80,8 +80,9 @@ The network services component monitors protocols and services operation individ
 
 NetQ data is available through several interfaces:
 
-  - NetQ CLI (command-line interface)
-  - NetQ GUI (graphical user interface)
-  - NetQ RESTful API (representational state transfer application programming interface)
+  - {{<link title="NetQ Command Line Overview" text="NetQ command-line interface">}} 
+  - {{<link title="NetQ User Interface Overview" text="NetQ graphical user interface">}} 
+  - {{<link title="API User Guide" text="NetQ-Ethernet RESTful API">}}
+  - {{<link title="NetQ NVLink API User Guide" text="NetQ-NVLink RESTful API">}} 
 
-The CLI and UI query the {{<link title="API User Guide" text="RESTful API">}} to present data. NetQ can integrate with event notification applications and third-party analytics tools.
+The CLI and UI query the NetQ-Ethernet API to present data. NetQ can integrate with event notification applications and third-party analytics tools.

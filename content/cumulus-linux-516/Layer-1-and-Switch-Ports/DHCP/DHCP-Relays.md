@@ -91,6 +91,45 @@ cumulus@switch:~$ sudo systemctl restart dhcrelay-type1-server-group-default.ser
 - When you configure DHCP relay with VRR, the DHCP relay client must run on the SVI; not on the -v0 interface.
 {{%/notice%}}
 
+## VRF-aware DHCP Relay
+
+You can configure Cumulus Linux to use a single DHCP relay instance to relay DHCP requests from the multiple clients connected to different VRFs towards DHCP servers and to relay responses back from the DHCP server to clients across multiple VRFs.
+
+To enable the DHCP relay to process DHCP requests from clients connected to interfaces in different VRFs, you must configure the relay with downstream interfaces that belong to each client VRF, while the gateway interface and uplink interface remain part of the DHCP Relay VRF.
+
+{{< tabs "TabID175 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface vlan10 vrf RED 
+cumulus@switch:~$ nv set interface vlan20 vrf BLUE 
+cumulus@switch:~$ nv set service dhcp-relay default downstream-interface vlan10,20 server-group-name SG1 
+cumulus@switch:~$ nv unset service dhcp-relay default downstream-interface vlan10
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `/etc/default` directory, create a file with the name of the server group in the format `isc-dhcp-relay-<server-group-id>-<vrf-id>`. Add the DHCP server IP addresses and the interfaces participating in DHCP relay associated with the server group (upstream and downstream interfaces).
+
+```
+cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-type1-server-group-default
+SERVERS="172.16.1.102"
+INTF_CMD="-i swp51-52 -i vlan10"
+OPTIONS=""
+```
+
+Restart the DHCP relay service for the server group with the `dhcrelay-<server-group>-<vrf-id>.service` command:
+
+```
+cumulus@switch:~$ sudo systemctl enable dhcrelay-type1-server-group-default.service
+cumulus@switch:~$ sudo systemctl restart dhcrelay-type1-server-group-default.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Optional Configuration
 
 This section describes optional DHCP relay configurations. The steps provided in this section assume that you have already configured basic DHCP relay, as described above.
@@ -162,45 +201,6 @@ cumulus@switch:~$ nv config apply
    ```
    cumulus@switch:~$ sudo systemctl restart dhcrelay-type1-server-group-default.service
    ```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### VRF-aware DHCP Relay
-
-You can configure Cumulus Linux to use a single DHCP relay instance to relay DHCP requests from the multiple clients connected to different VRFs towards DHCP servers and to relay responses back from the DHCP server to clients across multiple VRFs.
-
-To enable the DHCP relay to process DHCP requests from clients connected to interfaces in different VRFs, you must configure the relay with downstream interfaces that belong to each client VRF, while the gateway interface and uplink interface remain part of the DHCP Relay VRF.
-
-{{< tabs "TabID175 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface vlan1002 vrf vrf1 
-cumulus@switch:~$ nv set interface vlan1006 vrf vrf2 
-cumulus@switch:~$ nv set interface vlan1007 vrf vrf3 
-cumulus@switch:~$ nv set service dhcp-relay vrf4002 downstream-interface vlan1002,1006-1007 server-group-name sg1 
-cumulus@switch:~$ nv unset service dhcp-relay vrf4002 downstream-interface vlan1002 
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-In the `/etc/default` directory, create a file with the name of the server group in the format `isc-dhcp-relay-<server-group-id>-<vrf-id>`. Add the DHCP server IP addresses and the interfaces participating in DHCP relay associated with the server group (upstream and downstream interfaces).
-
-```
-cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-type1-server-group-default
-SERVERS="172.16.1.102"
-INTF_CMD="-i swp51-52 -i vlan10"
-OPTIONS=""
-```
-
-Restart the DHCP relay service for the server group with the `dhcrelay-<server-group>-<vrf-id>.service` command:
-
-```
-cumulus@switch:~$ sudo systemctl enable dhcrelay-type1-server-group-default.service
-cumulus@switch:~$ sudo systemctl restart dhcrelay-type1-server-group-default.service
-```
 
 {{< /tab >}}
 {{< /tabs >}}

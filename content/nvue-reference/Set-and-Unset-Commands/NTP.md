@@ -119,6 +119,28 @@ cumulus@switch:~$ nv set system ntp server time.nist.gov
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system ntp server \<server-id\> association-type</h>
+
+Configures the NTP server association type. You can specify `server` or `pool`. The default value is `server`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<server-id>` | The NTP server pool. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ntp server 192.168.200.1 association-type pool
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system ntp server \<server-id\> iburst</h>
 
 Configures NTP to send a burst of eight packets instead of the usual one packet when the server pool is unreachable. You can specify `enabled` or `disabled`. The default setting is `disabled`.
@@ -145,6 +167,50 @@ cumulus@switch:~$ nv set system ntp server 192.168.200.1 iburst
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system ntp server \<server-id\> state</h>
+
+Enables and disables the NTP server. You can specify `enabled` or `disabled`. The default setting is `enabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<server-id>` | The NTP server pool. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ntp server 192.168.200.1 state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ntp server \<server-id\> version</h>
+
+Configure the NTP server version. You can specify `3` or `4`. The default setting is `4`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<server-id>` | The NTP server pool. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ntp server 192.168.200.1 version 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system ntp state</h>
 
 Enables and disables NTP. You can specify `enabled` or `disabled`. The default setting is `enabled`.
@@ -157,4 +223,26 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv set system ntp state disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ntp vrf \<vrf-id\></h>
+
+Configures the VRF for NTP.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ntp vrf RED
 ```

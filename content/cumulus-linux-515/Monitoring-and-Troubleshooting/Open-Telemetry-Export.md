@@ -736,7 +736,8 @@ cumulus@switch:~$ nv config apply
 - If you configure congestion notifications while the buffer threshold for a traffic class is already exceeded, the switch does not send notifications until buffer occupancy drops below the threshold and then exceeds the threshold again.
 {{%/notice%}}
 
-To show congestion notification configuration, run the `nv show system telemetry congestion-event` command, and do viwe congestion event data for a specific port, run the `nv show interface <interface> telemetry congestion-event` command.
+To show congestion notification configuration, run the `nv show system telemetry congestion-event` command, and to view congestion event data for a specific port, run the `nv show interface <interface> telemetry congestion-event` command.
+
 ## Telemetry Data Format
 
 Cumulus Linux exports statistics and histogram data in the formats defined in this section.
@@ -782,7 +783,7 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 | `nvswitch_ar_congestion_changes`  | Number of adaptive routing change events triggered due to congestion or link-down.|
 | `nvswitch_srv6_no_sid_drops`| Number of packets dropped due to no matching SID. |
 | `nvswitch_srv6_in_pkts` | Number of packets received for this SID. |
-| `nvswitch_qos_trimmed_unicast_pkts`| Number of packets that were trimmed.|
+| `nvswitch_qos_trimmed_unicast_pkts`| Number of packets that were trimmed. To see this metric you must enable packet trimming. Spectrum-3 switches do not support this metric.|
 | `nvswitch_interface_trimmed_unicast_pkts [interface]`| * Number of packets that were trimmed on the interface.|
 | `nvswitch_interface_trimmed_tx_unicast_pkts [interface] `| * Number of packets that were trimmed and sent successfully on the interface.|
 | `nvswitch_interface_tc_trimmed_unicast_pkts [interface][tc]`| * Number of packets that were trimmed on the interface and traffic class.|
@@ -877,7 +878,7 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 
 ### Buffer Statistic Format
 
-The switch collects and exports the following interface and switch, buffer occupancy and watermark statistics when you configure the `nv set system telemetry buffer-stats export state enable` command:
+The switch collects and exports the following interface and switch, buffer occupancy and watermark statistics when you configure the `nv set system telemetry buffer-stats export state enabled` command:
 
 |  Name | Description |
 |------ | ----------- |
@@ -925,7 +926,7 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_headroom_buffer_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
 | `nvswitch_interface_headroom_buffer_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
 | `nvswitch_interface_headroom_buffer_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
-| `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max_bytes` | Interface shared buffer traffic class highest recorded watermark counter in bytes.|
+| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_bytes` | Interface shared buffer traffic class highest recorded watermark counter in bytes.|
 | `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max_timestamp` | Time when highest shared buffer port group watermark is recorded.|
 | `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_timestamp` | Time when highest shared buffer traffic class watermark is recorded|
 | `nvswitch_interface_shared_buffer_port_ingress_pool_watermark_recorded_max_timestamp` | Time when highest shared pool buffer watermark is recorded.|
@@ -6114,3 +6115,6 @@ otlp/global     0                              1000             0            708
 ```
 <!-- vale on -->
 
+## Scale Considerations
+
+When you use OTEL at scale on Cumulus Linux, you must update a configuration parameter on the OTEL server to accept the export from the switch after decompression. For more information, refer to {{<exlink url="https://enterprise-support.nvidia.com/s/article/NVIDIA-Cumulus-Linux-OTEL-Export-Not-Seen-On-Collector---grpc-received-message-after-decompression-larger-than-max" text="this KB article" >}}.

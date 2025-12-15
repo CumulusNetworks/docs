@@ -22,7 +22,7 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://stage.d1l3582pfvms7p.amplifyapp.com/networking-ethernet-software/ x x ; fi
         #
         # If branch is defined below, manually update the Netguru copilot js
-        - if [ "${AWS_BRANCH}" = "master" ]; then wget -O themes/netDocs/assets/js/netguru.js https://copilot-netguru.nvidia.com/chainlit/copilot/index.js ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then wget --no-check-certificate -O themes/netDocs/assets/js/netguru.js https://copilot-netguru.nvidia.com/chainlit/copilot/index.js ; fi
         # Don't minify in non-prod branches to simplify troubleshooting
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo -D --baseURL $BASEURL -d public/networking-ethernet-software/ ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi

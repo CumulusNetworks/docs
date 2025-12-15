@@ -16,69 +16,6 @@ Resets counters for interfaces, BGP, QoS buffers and pools, removes conflicts fr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show action</h>
-
-Shows the action jobs.
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show action
-'1':
-  detail: acl counters cleared.
-  http_status: 200
-  issue: []
-  percentage: ''
-  state: action_success
-  status: acl counters cleared.
-  timeout: 60
-  type: ''
-'2':
-  detail: Local Time is now Wed 2024-05-29 09:47:30 UTC
-  http_status: 200
-  issue: []
-  percentage: ''
-  state: action_success
-  status: Local Time is now Wed 2024-05-29 09:47:30 UTC
-  timeout: 60
-  type: ''
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show action \<action-job-id\></h>
-
-Shows information about the specified action.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ----------    | ------------  |
-| `<action-job-id>` | The action ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show action 3
-detail: acl counters cleared.
-http_status: 200
-issue: []
-state: action_success
-status: acl counters cleared.
-timeout: 60
-type: ''
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action abort system ztp</h>
 
 Terminates ZTP if it is in the discovery process or is not currently running a script.
@@ -144,13 +81,17 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action change system time</h>
+## <h>nv action change system date-time</h>
 
 Configures the Cumulus Linux software clock. The switch contains a battery backed hardware clock that maintains the date and time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
 
 During boot up, the switch copies the date and time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
 
 The format is YYYY-MM-DD HH:MM:SS
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv action change system time`.
+{{%/notice%}}
 
 ### Version History
 
@@ -159,7 +100,7 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action change system time 2023-12-04 02:33:30
+cumulus@switch:~$ nv action change system date-time 2023-12-04 02:33:30
 System Date-time changed successfully
 Local Time is now Mon 2023-12-04 02:33:30 UTC
 Action succeeded
@@ -337,6 +278,7 @@ This command does not clear sticky entries, permanent entries, and EVPN MAC entr
 | `<bridge-id>` |  The bridge name.|
 | `<mac-address>` |  The MAC address.|
 | `<VLAN-id>` |  The VLAN ID.|
+| `<interface-id>` |  The interface name.|
 
 ### Version History
 
@@ -441,7 +383,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear evpn vni \<vni\> mac \<mac-address\></h>
+## <h>nv action clear evpn vni \<vni-id\> mac \<mac-address\></h>
 
 Clears the duplicate MAC address for the specified VNI.
 
@@ -485,7 +427,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear interface \<interface\> bond mlag lacp-conflict</h>
+## <h>nv action clear interface \<interface-id\> bond mlag lacp-conflict</h>
 
 Clears the MLAG LACP conflict on the specified interface bond. A conflict can be an LACP partner MAC address mismatch or a duplicate LACP partner MAC address.
 
@@ -516,6 +458,7 @@ Clears the BPDU guard violation from the specified interface and recovers the in
 | Syntax   |  Description  |
 | ----------    | ------------  |
 | `<interface-id>` | The interface on which you want to clear the BPDU guard violation. |
+| `<domain-id>` | The bridge name. |
 
 ### Version History
 
@@ -529,7 +472,7 @@ cumulus@switch:~$ nv action clear interface swp1 bridge domain br_default stp bp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear interface \<interface\> counters</h>
+## <h>nv action clear interface \<interface-id\> counters</h>
 
 Clears all interface-specific counters from the specified interface. Interface counters provide information about an interface, such as the number of packets intentionally or intentionally dropped, the number of inbound and outbound packets discarded even though the switch detected no errors, the number of inbound and outbound packets not transmitted because of errors, and so on.
 
@@ -743,6 +686,54 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv action clear mlag lacp-conflict 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system aaa authentication restrictions</h>
+
+Clears the restriction state for all users that are locked out.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system aaa authentication restrictions
+Action executing ...
+Clearing restrictions for all users
+Action executing ...
+Successfully cleared all users
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system aaa authentication restrictions user \<user-id\></h>
+
+Clears the restriction state for a user that is locked out.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>` |  The user name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system aaa authentication restrictions user USER1
+Action executing ...
+Clearing restrictions for user USER1
+Action executing ...
+Successfully cleared user name USER1
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2746,7 +2737,30 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system log file \<file-name\></h>
+## <h>nv action delete system health history files \<filename\></h>
+
+Deletes the specified health history report file on the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>` | The system health history report file you want to delete. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system health history files FILE1
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action delete system log file \<filename\></h>
 
 Deletes the specified system log file.
 
@@ -2756,7 +2770,7 @@ Deleting log files enables you to manage storage space and ensure that only rele
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<file-name>` | The system log file you want to delete. |
+| `<filename>` | The system log file you want to delete. |
 
 ### Version History
 
@@ -2793,7 +2807,7 @@ cumulus@switch:~$ nv action delete system log component nvue file nvued.log
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system packages key \<key\></h>
+## <h>nv action delete system packages key \<key-id\></h>
 
 Deletes a package repository key.
 
@@ -2855,6 +2869,31 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv action delete system security certificate cert-1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action delete system tech-support files \<filename\></h>
+
+Deletes the specified technical support file (a compressed archive file of useful information for troubleshooting). 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system tech-support files /var/support/cl_support_leaf01_20240725_221237.txz
+Action executing ...
+File Delete Succeeded
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3012,6 +3051,30 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action enable system security encryption folder-encrypt password \<passsword\></h>
+
+Enables and disables secure mount directory encryption with a password or changes the existing secure mount directory encryption password.
+
+Make sure the USB device is plugged in before running the command. The switch reboots after you run the command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<passsword>` |  The password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action enable system security encryption folder-encrypt password MYPASSWORD
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action enable system ztp</h>
 
 Enables ZTP and activates the provisioning process. ZTP tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if you made manual configuration changes, ZTP exits without trying to look for a script.
@@ -3067,6 +3130,29 @@ Would you like to proceed? [y/N]
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action fetch platform firmware \<platform-component-id\> \<remote-url\></h>
+
+Copies the remote firmware file to the local filesystem from the specified URL.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<platform-component-id>` | The platform component: BIOS or SSD|
+| `<remote-url>` |  The remote URL.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action fetch platform firmware SSD http://10.0.1.251/firmware-file
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action fetch system image \<remote-url\></h>
 
 Fetches a binary image from the specified URL.
@@ -3089,7 +3175,7 @@ cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action fetch system packages key \<key\></h>
+## <h>nv action fetch system packages key \<key-id\></h>
 
 Fetches a repository key and saves it globally in the `/etc/apt/trusted.gpg.d/` directory.
 
@@ -3097,7 +3183,7 @@ Fetches a repository key and saves it globally in the `/etc/apt/trusted.gpg.d/` 
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<key>` |  The repository key.|
+| `<key-id>` |  The repository key.|
 
 ### Version History
 
@@ -3111,7 +3197,7 @@ cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action fetch system packages key \<key\> scope repository</h>
+## <h>nv action fetch system packages key \<key-id\> scope repository</h>
 
 Fetches and saves the repository key in the `/etc/apt/keyrings/` directory.
 
@@ -3119,7 +3205,7 @@ Fetches and saves the repository key in the `/etc/apt/keyrings/` directory.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<key>` |  The repository key.|
+| `<key-id>` |  The repository key.|
 
 ### Version History
 
@@ -3133,7 +3219,7 @@ cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate file-hash md5 <filename></h>
+## <h>nv action generate file-hash md5 \<filename\></h>
 
 Calculates and generates a unique hash value (checksum) for a file using md5.
 
@@ -3160,7 +3246,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate file-hash sha1 <filename></h>
+## <h>nv action generate file-hash sha1 \<filename\></h>
 
 Calculates and generates a unique hash value (checksum) for a file using sha1.
 
@@ -3187,7 +3273,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate file-hash sha224 <filename></h>
+## <h>nv action generate file-hash sha224 \<filename\></h>
 
 Calculates and generates a unique hash value (checksum) for a file using sha224.
 
@@ -3214,7 +3300,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate file-hash sha256 <filename></h>
+## <h>nv action generate file-hash sha256 \<filename\></h>
 
 Calculates and generates a unique hash value (checksum) for a file using sha256.
 
@@ -3241,7 +3327,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate file-hash sha512 <filename></h>
+## <h>nv action generate file-hash sha512 \<filename\></h>
 
 Calculates and generates a unique hash value (checksum) for a file using sha512.
 
@@ -3268,26 +3354,22 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system tech-support files \<file-id\></h>
+## <h>nv action generate system file-hash</h>
 
-Deletes the specified technical support file (a compressed archive file of useful information for troubleshooting). 
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<file-id>`  |  The technical support file name and location. |
+Calculates and generates a unique hash value (checksum) for a file using md5, sha1, sha224, ssa256, and sha512 algorithms. A hash file checksum is a unique string of characters generated by a cryptographic hash function to represent the contents of a file allowing you to verify the integrity of the file.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.10.0
+Introduced in Cumulus Linux 5.13.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action delete system tech-support files /var/support/cl_support_leaf01_20240725_221237.txz
-Action executing ...
-File Delete Succeeded
+cumulus@switch:~$ nv action generate system file-hash md5 /var/log/text.txt  
+Action executing ... 
+Generated Hash Checksum  
+5073306b0629c047d090e2c96b5eec4b /var/log/text.txt
+
 Action succeeded
 ```
 
@@ -3315,13 +3397,39 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action import system docker image \<image-url\> repository \<repository-name\> tag \<tag-name\></h>
+
+Imports a Docker image from an archive.
+
+Supported archive formats include `.tar`, `.tar.gz`, `.tgz`, `.bzip`, `.tar.xz`, and `.txz`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-url>`  |  The URL for the image. |
+| `<repository-name>` | The name of the repository. |
+| `<tag-name>`  |  The tag name. If you do not specify a tag name, the name defaults to `latest`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action import system docker image /path/to/exampleimage.tgz repository xyz tag imported
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action import system security crl</h>
 
 Imports a Certificate Revocation List to verify server certificates. You can specify either `uri` (a local or remote URI from where to retrieve the crl bundle file) or `data` (for a PEM encoded CRL).
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
@@ -3343,6 +3451,12 @@ NVIDIA recommends you use your own certificates and keys.
 - The CA certificate you import contains sensitive private key information. NVIDIA recommends that you use a secure transport such as SFTP, SCP, or HTTPS.
 - If the certificate is passphrase protected, you need to include the passphrase.
 - You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<cert-id>`  |  The CA certificate you want to import. |
 
 ### Version History
 
@@ -3369,6 +3483,12 @@ NVIDIA recommends you use your own certificates and keys.
 - If the certificate is passphrase protected, you need to include the passphrase.
 - A certificate bundle must be in .PFX or .P12 format.
 - You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<cert-id>`  |  The entity certificate you want to import. |
 
 ### Version History
 
@@ -3400,27 +3520,6 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action install system image files cumulus-linux-5.12.0-mlx-amd64.bin
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action generate system file-hash</h>
-
-Calculates and generates a unique hash value (checksum) for a file using md5, sha1, sha224, ssa256, and sha512 algorithms. A hash file checksum is a unique string of characters generated by a cryptographic hash function to represent the contents of a file allowing you to verify the integrity of the file.
-
-### Version History
-
-Introduced in Cumulus Linux 5.13.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action generate system file-hash md5 /var/log/text.txt  
-Action executing ... 
-Generated Hash Checksum  
-5073306b0629c047d090e2c96b5eec4b /var/log/text.txt
-
-Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3749,6 +3848,10 @@ Power cycles the switch remotely to recover from certain conditions, such as a t
 
 When you run the `nv action power-cycle system` command, the switch prompts you for confirmation before power cycling. To power cycle the switch without being prompted for confirmation, run the `nv action power-cycle system force` command
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command. Use the `nv action reboot system mode power-cycle` command instead.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.13.0
@@ -3778,23 +3881,48 @@ Downloads a Docker image from a registry.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+| `<image-id>` |  The Docker image ID.|
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action pull system docker image 97662d24417b
+cumulus@switch:~$ nv action pull system docker image nginx
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action pull system docker image \<image-id\> tag</h>
+
+Downloads a Docker image from a registry with the specified tag name.
+
+If you do not specify a tag name, NVUE uses the latest image.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-id>` |  The image ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action pull system docker image nginx tag latest
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action reboot system</h>
 
-Reboots the switch.
+Reboots the switch in cold mode.
 
 ### Version History
 
@@ -3809,6 +3937,142 @@ True
 Action succeeded
 ```
 
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reboot system mode \<mode-id\></h>
+
+Reboots the switch in the mode you select: `cold`, `fast`, `halt`, `immediate`, `power-cycle`, or `warm`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<mode-id>` |  The reboot mode.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reboot system mode warm
+Rebooting System in cold mode
+True
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action release interface \<interface-id\> ipv4 dhcp-client</h>
+
+Releases the IPv4 DHCP client for an interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action release interface swp1 ipv4 dhcp-client
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action release interface \<interface-id\> ipv6 dhcp-client</h>
+
+Releases the IPv6 DHCP client for an interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action release interface swp1 ipv6 dhcp-client
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action renew interface \<interface-id\> ipv4 dhcp-client</h>
+
+Renews the current DHCPv4 lease for an interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action renew interface swp1 ipv4 dhcp-client
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action renew interface \<interface-id\> ipv6 dhcp-client</h>
+
+Renews the current DHCPv6 lease for an interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action renew interface swp1 ipv6 dhcp-client
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action remove system docker container \<container-name\></h>
+
+Deletes a Docker container.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<container-name>` |  The name of the container.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action remove system docker container CONTAINER1
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action remove system docker image \<image-id\></h>
@@ -3819,16 +4083,40 @@ Removes a Docker image from the switch.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+| `<image-id>` |  The image ID.|
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action remove system docker image 97662d24417b
+cumulus@switch:~$ nv action remove system docker image nginx
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action remove system docker image \<image-id\> tag</h>
+
+Removes a Docker image with a specific tag from the switch.
+
+If you do not specify a tag name, NVUE removes the latest tagged image.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-id>` |  The image ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action remove system docker image nginx tag latest
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3998,6 +4286,29 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action run system docker \<container-id\> image \<image-id\></h>
+
+Creates and runs a new Docker container from an image.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<continer-id>` |  The docker container ID.|
+| `<image-id>` |  The image ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action run system docker container CONTAINER1 image nginx options '\-\-storage-opt size=120G'
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action run system ztp</h>
 
 Manually runs ZTP from the beginning. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
@@ -4023,7 +4334,7 @@ If you add the force option (`nv action run system ztp force`), ZTP runs without
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action schedule system telemetry hft job \<date-time\> duration \<duration\> profile \<profile\> ports \<port-id\> description \<text\></h>
+## <h>nv action schedule system telemetry hft job \<date-time\> duration \<duration\> profile \<profile-id\> ports \<port-id\> description \<text\></h>
 
 Configures the schedule for a high frequency telemetry data collection.
 
@@ -4058,51 +4369,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action start system docker container \<container-name\> image \<image-id\></h>
-
-Creates and runs a new Docker container from an image.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
-| `<container-name>` |  The hexadecimal string or name of the container.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.13.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action start system docker container CONTAINER1 image 97662d24417b
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action remove system docker container \<container-name\></h>
-
-Deletes a Docker container.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<container-name>` |  The hexadecimal string or name of the container.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.13.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action remove system docker container CONTAINER1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action stop system docker container \<container-name\></h>
 
 Stops a Docker container.
@@ -4111,11 +4377,11 @@ Stops a Docker container.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<container-name>` |  The hexadecimal string or name of the container.|
+| `<container-name>` |  The name of the container.|
 
 ### Version History
 
-Introduced in Cumulus Linux 5.13.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
@@ -4349,7 +4615,7 @@ cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action upgrade system packages to latest use-vrf \<vrf\> dry-run</h>
+## <h>nv action upgrade system packages to latest use-vrf \<vrf-id\> dry-run</h>
 
 Fetches the latest update metadata from the repository so you can review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies).
 
@@ -4373,7 +4639,7 @@ cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action upload tech-support files \<file-id\> \<remote-url\></h>
+## <h>nv action upload tech-support files \<filename\> \<remote-url\></h>
 
 Uploads a technical support file (`cl-support`) off the switch to an external location.
 
@@ -4381,7 +4647,7 @@ Uploads a technical support file (`cl-support`) off the switch to an external lo
 
 | Syntax   |  Description  |
 | ----------    | ------------  |
-| `<file-id>` |  The technical support file you want to upload.  |
+| `<filenamea>` |  The technical support file you want to upload.  |
 | `<remote-url>` |  The URL to where you want to upload the technical support file.  |
 
 ### Version History
@@ -4392,6 +4658,28 @@ Introduced in Cumulus Linux 5.10.0
 
 ```
 cumulus@switch:~$ nv action upload tech-support files cl_support_leaf01_20240725_225811.txz scp://root@host1:/home/tech-support/
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action upload system health history files \<filename\></h>
+
+Uploads the specified health history report file.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>` | The name of the system health history report file. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action upload system health history files FILE1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4439,4 +4727,33 @@ id  state
 4   action_success 
 5   action_success
 6   action_success
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show action \<action-job-id\></h>
+
+Shows information about the specified action.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<action-job-id>` | The action ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show action 3
+detail: acl counters cleared.
+http_status: 200
+issue: []
+state: action_success
+status: acl counters cleared.
+timeout: 60
+type: ''
 ```

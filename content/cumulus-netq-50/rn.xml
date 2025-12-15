@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4784336</td>
+<td>The NetQ for NVLink and Ethernet deployment is not supported in air-gapped environments.</td>
+<td>5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4687477</td>
 <td>When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters.</td>
 <td>5.0.0</td>
@@ -46,12 +52,6 @@
 <td>4399074</td>
 <td>When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected.</td>
 <td>5.0.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4126632</td>
-<td>In scale deployments with 1,000 or more switches, BGP validations might take up to five minutes to display results in the UI or CLI.</td>
-<td>4.13.0-4.15.1, 5.0.0</td>
 <td></td>
 </tr>
 <tr>

@@ -78,10 +78,6 @@ listen    swp10                           swp10
 
 Shows the NTP listen interfaces.
 
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service ntp <vrf-id> listen`.
-{{%/notice%}}
-
 ### Version History
 
 Introduced in Cumulus Linux 5.15.0
@@ -100,10 +96,6 @@ eth0
 ## <h>nv show system ntp listen \<interface-id\></h>
 
 Shows specific NTP interface configuration.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service ntp <vrf-id> listen <interface-name>`.
-{{%/notice%}}
 
 ### Command Syntax
 
@@ -156,10 +148,6 @@ iburst  on           on
 ## <h>nv show system ntp server \<server-id\></h>
 
 Shows information about the specified remote NTP server.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv show service ntp <vrf-id> server <server-id>`.
-{{%/notice%}}
 
 ### Command Syntax
 

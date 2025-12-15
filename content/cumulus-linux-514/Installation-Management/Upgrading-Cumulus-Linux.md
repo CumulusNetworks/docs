@@ -22,12 +22,11 @@ Cumulus Linux supports two methods that can use ISSU:
 
 Optimized image upgrade and package upgrade supports ISSU when you upgrade to Cumulus Linux 5.14 from Cumulus Linux 5.12 and later.
 
-The switch must be in warm reboot mode before you start the software upgrade. When the switch is in warm reboot mode, restarting the switch after an upgrade results in no traffic loss (this is a hitless upgrade).
-
-To configure the switch to reboot in warm mode, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
+Before you perform an upgrade with ISSU, you must:
+- Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch.
+- Set the {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}} to warm (`nv set system reboot mode warm`).
 
 ## Before You Upgrade
-### Create a cl-support File
 
 **Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
 

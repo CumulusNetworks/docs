@@ -11,6 +11,131 @@ h { color: RGB(118,185,0)}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> latency-measurement</h>
+
+Shows latency measurement information for an interface.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>`  | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 latency-measurement
+traffic-class   protocol  DSCP   Latency   Status       Timestamp 
+------------------------------------------------------------------------------- 
+1               ipv4      12     19         SUCCESS     2025-01-25 10:15:32
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class</h>
+
+Shows latency measurement information for all traffic classes.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>`  | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 latency-measurement traffic-class
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<traffic-class\></h>
+
+Shows latency measurement information for a specific traffic class.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>`  | The interface name.|
+| `<traffic-class>`  | The traffic class.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 latency-measurement traffic-class 0
+protocol
+===========
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol</h>
+
+Shows latency measurement information for a specific traffic class for both IPv4 and IPv6.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>`  | The interface name.|
+| `<traffic-class>`  | The traffic class.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 latency-measurement traffic-class 0 protocol
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol \<protocol-id\></h>
+
+Shows latency measurement information for a specific traffic class and protocol (IPv4 or IPv6).
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>`  | The interface name.|
+| `<traffic-class>`  | The traffic class.|
+| `<protocol-id>`  | IPv4 or IPv6.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 latency-measurement traffic-class 0 protocol ipv4
+DSCP: 0 
+ Current Latency: 12.3 μs 
+ Status: SUCCESS 
+ Last Update: 2025-01-25 10:15:32 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> telemetry</h>
 
 Shows the histogram configuration settings for the specified interface and operational data.
@@ -54,6 +179,31 @@ cumulus@switch:~$ nv show interface swp1 telemetry bw-gauge
         operational  applied
 ------  -----------  -------
 enable  on           on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry congestion-event</h>
+
+Shows congestion event data for a specific interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry congestion-event
+Interface Congestion Event
+=============================
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -628,6 +778,35 @@ cumulus@switch:~$ nv show system telemetry bw-gauge interface
 Interface  Tx (Mbps)  Rx (Mbps)
 ---------  ---------  ---------
 swp1       4          4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry congestion-event</h>
+
+Shows congestion notification configuration.
+
+{{%notice note%}}
+Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry congestion-event
+                   operational  applied 
+-----------------  -----------  --------
+export                                  
+  state            disabled     disabled
+throttle-duration  10000        10000   
+
+Congestion Event Interfaces
+==============================
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1314,6 +1493,47 @@ Introduced in Cumulus Linux 5.10.0
 
 ```
 cumulus@switch:~$ nv show system telemetry interface-stats ingress-buffer
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry latency-measurement</h>
+
+Shows latency measurement configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry latency-measurement 
+                 operational  applied
+---------------  -----------  -------
+state                         enabled
+sample-interval               2      
+export                               
+  state                       enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry latency-measurement export</h>
+
+Shows if latency measurement export is enabled for so that you can export latency data to a configured telemetry module
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry latency-measurement export
+                 operational  applied
+---------------  -----------  -------
+state                         enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

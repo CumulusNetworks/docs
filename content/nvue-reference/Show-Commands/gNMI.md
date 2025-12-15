@@ -61,7 +61,7 @@ localhost
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system gnmi-server listening-address <listening-address-id></h>
+## <h>nv show system gnmi-server listening-address \<listening-address-id\></h>
 
 Shows information about the specified gNMI server listening address.
 
@@ -142,7 +142,7 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system gnmi-server status client <client-address-id></h>
+## <h>nv show system gnmi-server status client \<client-address-id\></h>
 
 Shows status information for the specified gNMI server client.
 
@@ -160,6 +160,29 @@ Introduced in Cumulus Linux 5.13.0
 
 ```
 cumulus@switch:~$ nv show system gnmi-server status client 10.1.1.10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system gnmi-server status gnoi-rpc</h>
+
+Shows the number of gNOI RPCs received on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system gnmi-server status gnoi-rpc
+gnoi-rpc-name failed-rpc-requests received-rpc-requests
+------------- ------------------- ---------------------
+File.Get      0                   4
+File.Put      0                   1
+File.Remove   0                   1
+File.Stat     0                   46
+OS.Install    0                   1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -202,7 +225,7 @@ SERVER1  10.1.1.10  CERT1                        443   30              disabled 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system grpc-tunnel server <server-name-id></h>
+## <h>nv show system grpc-tunnel server \<server-name-id\></h>
 
 Shows configuration and status information for the specified gRCP-tunnel server.
 

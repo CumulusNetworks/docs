@@ -1,5 +1,5 @@
 ---
-title: Cumulus Networks Community Support Policy
+title: Community Support Policy
 author: NVIDIA
 weight: 710
 toc: 4

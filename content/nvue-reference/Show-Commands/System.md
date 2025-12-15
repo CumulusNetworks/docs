@@ -271,6 +271,131 @@ Mount Point  Filesystem  Size  Used  Avail  Use%
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system docker</h>
+
+Shows Docker information on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system docker
+       operational  applied
+-----  -----------  -------
+vrf    mgmt         mgmt   
+state  enabled      enabled
+
+Docker Containers
+====================
+    Container Name      Image                            Container ID  Status               Ports  Summary
+    ------------------  -------------------------------  ------------  -------------------  -----  -------
+    repo                cumulus-linux-apt-mirror:5.15.0  a941e1e51c3e  Up 6 days (healthy)                
+    what-just-happened  docker-wjh:latest                f834edf7fd3c  Up 7 days 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system docker image</h>
+
+Shows Docker images present on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system docker image
+Image Id      Image Name                Tag     Size    Date                           Summary
+------------  ------------------------  ------  ------  -----------------------------  -------
+283e2bf92e80  docker-wjh                latest  716MB   2025-10-29 21:47:09 -0400 EDT         
+d839322a5483  cumulus-linux-apt-mirror  5.15.0  3.47GB  2025-10-30 02:35:30 -0400 EDT 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system docker container</h>
+
+Shows all containers and their status, including stopped containers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system docker container
+Container Name      Image                            Container ID  Status               Ports  Summary
+------------------  -------------------------------  ------------  -------------------  -----  -------
+repo                cumulus-linux-apt-mirror:5.15.0  a941e1e51c3e  Up 6 days (healthy)                
+what-just-happened  docker-wjh:latest                f834edf7fd3c  Up 7 days
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system docker container stats</h>
+
+Shows all container statistics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system docker container stats
+Container Name      CPU%   MEM USAGE  MEM LIMIT  MEM%   NET I/O  BLOCK I/O       PIDS
+------------------  -----  ---------  ---------  -----  -------  --------------  ----
+repo                0.00%  8.102MiB   15.02GiB   0.05%  0B / 0B  160kB / 41kB    9   
+what-just-happened  0.05%  81.96MiB   15.02GiB   0.53%  0B / 0B  496kB / 16.4kB  9
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system docker engine</h>
+
+Shows Docker engine configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system docker engine
+                operational                                                                                    
+--------------  -----------------------------------------------------------------------------------------------
+client                                                                                                         
+  name          Docker Engine - Community                                                                      
+  version       28.5.1                                                                                         
+  context       default                                                                                        
+server                                                                                                         
+  containers    2                                                                                              
+  running       2                                                                                              
+  paused        0                                                                                              
+  stopped       0                                                                                              
+plugins                                                                                                        
+  volume        ['local']                                                                                      
+  network       ['bridge', 'host', 'ipvlan', 'macvlan', 'null', 'overlay']                                     
+  log           ['awslogs', 'fluentd', 'gcplogs', 'gelf', 'journald', 'json-file', 'local', 'splunk', 'syslog']
+images          2                                                                                              
+server-version  28.5.1                                                                                         
+id              ae4be5b9-6806-435d-80cb-5e4548a9c11a                                                           
+init-binary     docker-init                                                                                    
+data-root       /docker                                                                                        
+debug-mode      False                                                                                          
+log-level       json-file
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system forwarding profile-option</h>
 
 Shows forwarding profile information.
@@ -501,6 +626,93 @@ Health issues
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system health history</h>
+
+Shows system health history. Press q to exit the history.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system health history
+[2025-11-01T15:45:49.265284] INFO: Fan1 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.291928] INFO: Fan2 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.293223] INFO: Fan3 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.294401] INFO: Fan4 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.295561] INFO: Fan5 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.297519] INFO: Fan6 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.298587] INFO: PSU1Fan1 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.302107] INFO: PSU2Fan1 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.303410] INFO: Temp1 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.304783] INFO: Temp2 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.306142] INFO: Temp3 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.307599] INFO: Temp4 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.308990] INFO: Temp5 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.310387] INFO: PSU1Temp1 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.311783] INFO: PSU2Temp1 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.313159] INFO: PSU1 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.314894] INFO: PSU2 initialized to OK: Value: N/A
+[2025-11-01T15:45:49.616534] INFO: ThermalAlarm initialized to OK
+[2025-11-01T15:45:49.629542] INFO: CpuStatus initialized to OK
+[2025-11-01T15:45:49.636946] INFO: MemoryStatus initialized to OK: Memory usage: 49%
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system health history files</h>
+
+Shows a list of the health history report files on the switch and their location.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system health history files
+Health history file report  File path                  Summary
+--------------------------  -------------------------  -------
+health_history              /var/log/health_history           
+health_history.1            /var/log/health_history.1         
+health_history.2            /var/log/health_history.2         
+health_history.3            /var/log/health_history.3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system health history files \<file-name\></h>
+
+Shows the health history report in the specified file.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<file-name>` | The name of the health report file you want to see.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system health history files health_history
+[2025-11-01T15:45:49.648197] INFO: ASIC initial state is Not OK: ASIC state: Not OK
+[2025-11-01T16:44:51.539021] ERROR: MemoryStatus changed from OK to BAD: Memory usage: 91%
+[2025-11-01T16:45:21.830564] Cleared: MemoryStatus changed from BAD to OK: Memory usage: 90%
+[2025-11-01T16:47:02.825350] ERROR: MemoryStatus changed from OK to BAD: Memory usage: 91%
+[2025-11-01T16:52:05.538832] Cleared: MemoryStatus changed from BAD to OK: Memory usage: 84%
+[2025-11-03T15:05:02.640429] ERROR: MemoryStatus changed from OK to BAD: Memory usage: 92%
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system maintenance</h>
 
 Show the current system maintenance mode.
@@ -646,6 +858,25 @@ Introduced in Cumulus Linux 5.9.0
 ```
 cumulus@switch:~$ nv show system reboot required
 yes
+```
+
+<HR HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system serial-console</h>
+
+Shows serial console configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system serial-console
+                    operational  applied    
+------------------  -----------  --------
+sysrq-capabilities  disabled     disabled 
 ```
 
 <HR HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

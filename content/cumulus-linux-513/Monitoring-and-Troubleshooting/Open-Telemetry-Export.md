@@ -703,13 +703,13 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_shared_buffer_port_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded after running sdk_stats. |
 | `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for multicast port. |
 | `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for multicast port. |
-| `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for multicast port recorded after running sdk_stats. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark_recorded_max` | Highest maximum buffer occupancy for multicast port recorded after running sdk_stats. |
 | `nvswitch_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for multicast switch priority. |
 | `nvswitch_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for multicast switch priority. |
-| `nvswitch_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for multicast switch priority recorded after running sdk_stats. |
+| `nvswitch_shared_buffer_mc_sp_watermark_recorded_max` | Highest maximum buffer occupancy for multicast switch priority recorded after running sdk_stats. |
 | `nvswitch_shared_buffer_pool_curr_occupancy` | Current pool buffer occupancy. |
 | `nvswitch_shared_buffer_pool_watermark` | Maximum pool buffer occupancy |
-| `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded after running sdk_stats. |
+| `nvswitch_shared_buffer_pool_watermark_recorded_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded after running sdk_stats. |
 | `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current headroom buffer occupancy for port buffer. |
 | `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum pool headroom buffer occupancy for port buffer. |
 | `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port buffer recorded after running sdk_stats. |
@@ -2287,13 +2287,8 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | Name | Description |
 |----- | ----------- |
 | `node_cpu_core_throttles_total` | Number of times a CPU core has been throttled. |
-| `node_cpu_frequency_max_hertz` | Maxiumum CPU thread frequency in hertz. |
-| `node_cpu_frequency_min_hertz` | Minimum CPU thread frequency in hertz. |
 | `node_cpu_guest_seconds_total` | Seconds the CPUs spent in guests for each mode. |
 | `node_cpu_package_throttles_total` | Number of times the CPU package has been throttled. |
-| `node_cpu_scaling_frequency_hertz` | Current scaled CPU thread frequency in hertz. |  
-| `node_cpu_scaling_frequency_max_hertz` | Maximum scaled CPU thread frequency in hertz. |  
-| `node_cpu_scaling_frequency_min_hertz` | Minimum scaled CPU thread frequency in hertz. | 
 | `node_cpu_seconds_total` | Seconds the CPU spent in each mode. | 
 
 {{< /tab >}}

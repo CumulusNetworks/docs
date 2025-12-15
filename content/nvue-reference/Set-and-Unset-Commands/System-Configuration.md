@@ -540,6 +540,7 @@ Configures the restart mode for the switch. You can restart the switch in one of
 - `warm` restarts the system with minimal impact to traffic and without affecting the data plane. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
 
 {{%notice note%}}
+- Cumulus Linux 5.15 no longer supports this command.
 - Cumulus Linux 5.7 and earlier supports fast mode for all protocols and warm boot for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
 - Cumulus Linux 5.8 supports fast mode for all protocols and warm mode for 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, and static routing. Warm mode for VXLAN routing with EVPN is available for beta and open to customer feedback. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
 {{%/notice%}}
@@ -556,18 +557,38 @@ cumulus@switch:~$ nv set system reboot mode fast
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system timezone</h>
+## <h>nv set system serial-console sysrq-capabilities</h>
 
-Configures the switch time zone.
-
-To see all the available time zones, run `nv set system timezone` and press the Tab key.
+Enables and disables serial console SysRq key capabilities. You can specify `enabled` or `disabled`. The default value is `disabled`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set system timezone US/Eastern
+cumulus@switch:~$ nv set system serial-console sysrq-capabilities enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h> nv set system date-time timezone</h>
+
+Configures the switch time zone.
+
+To see all the available time zones, run `nv set system date-time timezone` and press the Tab key.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show system timezone`.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system date-time timezone US/Eastern
 ```

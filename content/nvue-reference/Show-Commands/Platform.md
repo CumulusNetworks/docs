@@ -898,7 +898,7 @@ swp31        QSFP28      Mellanox     MCP1600-C001E30N  MT2039VB01191  A3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform transceiver \<interface\></h>
+## <h>nv show platform transceiver \<interface-id\></h>
 
 Shows hardware capabilities and measurement information on the SFP or QSFP module in a particular port.
 
@@ -970,7 +970,7 @@ channel:
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform transceiver \<interface\> channel</h>
+## <h>nv show platform transceiver \<interface-id\> channel</h>
 
 Shows channel information for the SFP or QSFP module in a particular port.
 
@@ -1031,7 +1031,7 @@ channel:
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform transceiver \<interface\> channel \<channel-id\></h>
+## <h>nv show platform transceiver \<interface-id\> channel \<channel-id\></h>
 
 Shows specific channel information for the SFP or QSFP module in a particular port.
 
@@ -1054,7 +1054,7 @@ cumulus@switch:~$ nv show platform transceiver swp25 channel 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> transceiver</h>
+## <h>nv show interface \<interface-id\> transceiver</h>
 
 Shows transceiver data for an interface in a condensed format.
 
@@ -1104,7 +1104,7 @@ ch-4-tx-bias-current   : 6.750 mA
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform transceiver \<interface\> temperature</h>
+## <h>nv show platform transceiver \<interface-id\> temperature</h>
 
 Shows the temperature threshold configuration for a port.
 

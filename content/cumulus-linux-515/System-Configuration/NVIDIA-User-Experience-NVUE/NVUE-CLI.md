@@ -26,8 +26,9 @@ As you enter commands, you can get help with the valid keywords or options using
 <!-- vale on -->
 ```
 cumulus@switch:~$ nv set <<press tab>>
-acl        evpn       mlag       platform   router     system     
-bridge     interface  nve        qos        service    vrf
+acl          interface    nve          router       vrf          
+bridge       maintenance  platform     service      
+evpn         mlag         qos          system
 cumulus@switch:~$ nv set
 ```
 
@@ -36,22 +37,21 @@ cumulus@switch:~$ nv set
 You can type a question mark (`?`) after a command to display required information quickly and concisely. When you type `?`, NVUE specifies the value type, range, and options with a brief description of each; for example:
 
 ```
-cumulus@switch:~$ nv set interface swp1 link state ?
-    [Enter]               
+cumulus@switch:~$ nv set interface swp1 link state ?               
     down                   The interface is not ready
     up                     The interface is ready
 cumulus@switch:~$ nv set interface swp1 link mtu ?
     <arg>                  Interface MTU (default:9216 | integer:552 - 9216)
 cumulus@switch:~$ nv set interface swp1 link speed ?
     <arg>                  Link speed (default:auto | enum:auto, 10M, 100M, 1G, 10G, 25G,
-                           40G, 50G, 100G, 200G, 400G, 800G | string)
+                           40G, 50G, 100G, 200G, 400G, 800G)
 ```
 
 NVUE also indicates if you need to provide specific values for the command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain ?
-    <domain-id>            Domain (bridge-name)
+    domain                 Domain (bridge-name)
 ```
 
 ## Command Abbreviation
@@ -122,8 +122,8 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set platform`<br>`nv unset platform`|  Configures {{<link url="Pulse-Per-Second-PPS" text="Pulse per Second">}}; the simplest form of synchronization for the physical hardware clock.|
 | `nv set qos`<br>`nv unset qos` | Configures {{<link title="RDMA over Converged Ethernet - RoCE" text="QoS RoCE">}}. |
 | `nv set router`<br>`nv unset router` | Configures {{<link url="Route-Filtering-and-Redistribution" text="router policies">}} (prefix list rules and route maps), sets {{<link url="Basic-BGP-Configuration" text="global BGP options">}} (enable and disable, ASN and router ID, BGP graceful restart and shutdown), {{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="global OSPF options">}} (enable and disable, router ID, and OSPF timers) {{<link url="Protocol-Independent-Multicast-PIM" text="PIM">}}, {{<link url="IGMP-and-MLD-Snooping" text="IGMP">}}, {{<link url="Policy-based-Routing" text="PBR">}}, {{<link url="Virtual-Router-Redundancy-VRR" text="VRR">}}, and {{<link url="Virtual-Router-Redundancy-Protocol-VRRP" text="VRRP">}}. |
-| `nv set service`<br>`nv unset service` | Configures {{<link url="DHCP-Relays" text="DHCP relays">}} and {{<link url="DHCP-Servers" text="DHCP servers">}}, {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}, {{<link url="Network-Time-Protocol-NTP" text="NTP">}}, {{<link url="Precision-Time-Protocol-PTP" text="PTP">}}, and DNS. |
-| `nv set system`<br>`nv unset system` | Configures system settings, such as the {{<link title="Quick Start Guide/#configure-the-hostname" text="hostname of the switch">}}, pre and post login messages, {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="reboot options (warm, cold, fast)">}}, {{<link title="Setting the Date and Time/#set-the-time-zone" text="time zone ">}} and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure {{<link url="gNMI-Streaming" text="gNMI streaming">}}, {{<link url="Open-Telemetry-Export" text="Open telemtry export">}},{{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN sessions">}}, {{<link url="Configure-SNMP" text="SNMP">}}, {{<link url="Log-Files-with-NVUE" text="syslog">}}, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
+| `nv set service`<br>`nv unset service` | Configures {{<link url="DHCP-Relays" text="DHCP relays">}}, {{<link url="DHCP-Servers" text="DHCP servers">}}, and {{<link url="Precision-Time-Protocol-PTP" text="PTP">}}. |
+| `nv set system`<br>`nv unset system` | Configures system settings, such as the {{<link title="Quick Start Guide/#configure-the-hostname" text="hostname of the switch">}}, pre and post login messages, {{<link title="Setting the Date and Time/#set-the-time-zone" text="time zone ">}}, {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}, {{<link url="Network-Time-Protocol-NTP" text="NTP">}}, and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure {{<link url="gNMI-Streaming" text="gNMI streaming">}}, {{<link url="Open-Telemetry-Export" text="Open telemtry export">}}, {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN sessions">}}, {{<link url="Configure-SNMP" text="SNMP">}}, {{<link url="Log-Files-with-NVUE" text="syslog">}}, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures {{<link url="VRFs" text="VRFs">}}. This is where you configure VRF-level configuration for PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
@@ -133,47 +133,49 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
 | `nv show acl` | Shows {{<link url="Access-Control-Lists" text="Access Control List">}} configuration. |
-| `nv show action`| Shows information about the action commands that reset counters and remove conflicts.|
+| `nv show action`| Shows information about the action jobs.|
 | `nv show bridge` | Shows {{<link url="VLAN-aware-Bridge-Mode/#troubleshooting" text="bridge">}} configuration.|
 | `nv show evpn` |Shows {{<link url="EVPN-Enhancements/#show-current-evpn-configuration" text="EVPN">}} configuration. |
-| `nv show interface` |Shows {{<link url="Interface-Configuration-and-Management/#show-interface-information" text="interface">}} configuration and counters. |
+| `nv show interface` | Shows {{<link url="Interface-Configuration-and-Management/#show-interface-information" text="interface">}} configuration and counters. |
+| `nv show maintenance`| Shows the current maintenance configuration on the switch for all protocols and all interfaces. |
 | `nv show mlag` | Shows {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#troubleshooting" text="MLAG">}} configuration. |
 | `nv show nve` | Shows {{<link url="Network-Virtualization" text="network virtualization (VXLAN)">}} configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
-| `nv show platform` | Shows {{<link url="Monitoring-Best-Practices/#hardware" text="platform configuration">}}, such as hardware and firmware components. |
+| `nv show platform` | Shows {{<link url="Monitoring-Best-Practices/#hardware" text="platform configuration">}}, such as environment, transceiver, and firmware components. |
 | `nv show qos` | Shows {{<link title="RDMA over Converged Ethernet - RoCE/#verify-roce-configuration" text="QoS RoCE">}} configuration.|
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
-| `nv show service` | Shows {{<link url="DHCP-Relays/#troubleshooting" text="DHCP-Relays">}} and {{<link url="DHCP-Servers/#troubleshooting" text="DHCP server">}} configuration, {{<link url="Network-Time-Protocol-NTP" text="NTP">}}, {{<link url="Precision-Time-Protocol-PTP/#troubleshooting" text="PTP">}}, {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}, and syslog configuration. |
-| `nv show system` | Shows system settings. |
+| `nv show service` | Shows {{<link url="DHCP-Relays/#troubleshooting" text="DHCP-Relays">}}, {{<link url="DHCP-Servers/#troubleshooting" text="DHCP server">}} configuration, and {{<link url="Precision-Time-Protocol-PTP/#troubleshooting" text="PTP">}}. |
+| `nv show system` | Shows all system settings. |
 | `nv show vrf` | Shows {{<link url="VRFs" text="VRFs">}} configuration.|
 
 The following example shows the `nv show router` commands after pressing the tab key, then shows the output of the `nv show router bgp` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router <<tab>>
-adaptive-routing  igmp              pbr               ptm               
-bgp               nexthop           pim               vrr               
-graceful-restart  ospf              policy            vrrp               
+adaptive-routing  igmp              pim               vrrp
+bfd               nexthop           policy            
+bgp               ospf              segment-routing   
+graceful-restart  pbr               vrr               
 
 cumulus@leaf01:mgmt:~$ nv show router bgp
-                                applied    
-------------------------------  -----------
-enable                          on         
-autonomous-system               65101      
-router-id                       10.10.10.1 
-policy-update-timer             5          
-graceful-shutdown               off        
-wait-for-install                off        
-graceful-restart                           
-  mode                          helper-only
-  restart-time                  120        
-  path-selection-deferral-time  360        
-  stale-routes-time             360        
-convergence-wait                           
-  time                          0          
-  establish-wait-time           0          
-queue-limit                                
-  input                         10000      
-  output                        10000 
+                                operational  applied    
+------------------------------  -----------  -----------
+state                           enabled      enabled    
+autonomous-system               65101        65101      
+router-id                       10.10.10.1   10.10.10.1 
+policy-update-timer             5            5          
+graceful-shutdown               disabled     disabled   
+wait-for-install                disabled     disabled   
+graceful-restart                                        
+  mode                          helper-only  helper-only
+  restart-time                  120          120        
+  path-selection-deferral-time  120          120        
+  stale-routes-time             360          360        
+convergence-wait                                        
+  time                          0            0          
+  establish-wait-time           0            0          
+queue-limit                                             
+  input                         10000        10000      
+  output                        10000        10000      
 ```
 
 {{%notice note%}}
@@ -214,13 +216,22 @@ The following example shows the views available for the `nv show interface` comm
 
 ```
 cumulus@switch:~$ nv show interface --view <<TAB>>
-acl-statistics  detail          mlag-cc         status
-bond-members    dot1x-counters  neighbor        svi
-bonds           dot1x-summary   physical        synce-counters
-brief           down            port-security   up
-carrier-stats   lldp            qos-profile     vrf
-counters        lldp-detail     rates           
-description     mac             small
+acl-statistics            neighbor
+bond-members              neighbor-detail
+bonds                     physical
+brief                     port-security
+carrier-stats             qos-congestion-control
+counters                  qos-profile
+description               qos-roce-counters
+detail                    qos-roce-status
+dot1x-counters            qos-roce-status-pool-map
+dot1x-ipv6-summary        rates
+dot1x-summary             small
+down                      status
+lldp                      svi
+lldp-detail               synce-counters
+mac                       up
+mlag-cc                   vrf
 ```
 
 ### Configuration Management Commands
@@ -255,6 +266,7 @@ The NVUE action commands fetch and install image files, upgrade system packages,
 | ------- | ----------- |
 | `nv action abort`| Terminates {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP">}} if it is in the discovery process or is not currently running a script. |
 | `nv action boot-next`| Sets the boot partition for {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized (two partition) upgrade">}}.|
+| `nv action cancel`| Cancels system telemetry jobs.|
 | `nv action change`| Sets the {{<link title="Setting the Date and Time/#set-the-date-and-time" text="software clock date and time">}}. |
 | `nv action clear` | Provides commands to clear ACL statistics, {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="duplicate addresses">}}, {{<link url="Precision-Time-Protocol-PTP/#clear-ptp-violation-logs" text="PTP violations">}}, {{<link url="Interface-Configuration-and-Management/#clear-the-interface-protodown-state-and-reason" text="interfaces from a protodown state">}}, {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-counters" text="interface counters">}}, {{<link url="Quality-of-Service/#clear-qos-buffers" text="Qos buffers">}}, {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP routes">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="OSPF interface counters">}}, {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="matches against a route map">}}, and remove {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#lacp-partner-mac-address-duplicate-or-mismatch" text="conflicts from protodown MLAG bonds">}}. |
 | `nv action deauthenticate`| {{<link url="802.1X-Interfaces/#deauthenticate-an-8021x-supplicant" text="Deauthenticates the 802.1X supplicant">}} on the specified interface. If you do not want to notify the supplicant when deauthenticating, you can add the silent option; for example, `nv action deauthenticate interface swp1 dot1x authorized-sessions 00:55:00:00:00:09 silent`.|
@@ -271,7 +283,9 @@ The NVUE action commands fetch and install image files, upgrade system packages,
 | `nv action lookup`| Looks up the {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="route in the routing table">}} for a specific destination. |
 | `nv action ping` | Provides commands to run {{<link url="Network-Troubleshooting/#ping" text="ping">}}.|
 | `nv action reboot` | Reboots the switch in the configured restart mode ({{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="fast, cold, or warm">}}). You must specify the `no-confirm` option with this command. |
+| `nv action release`| Releases the DHCPv4 or DHCP6 client for an interface. |
 | `nv action rename` | Provides commands to {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="system image files">}}.|
+| `nv action renew` | Renews the current DHCPv4 or DHCP6 lease for an interface.|
 | `nv action reset` | Provides commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#reset-a-transceiver" text="reset transceivers">}} and to reset the switch to {{<link url="Factory-Reset" text="factory defaults">}}.|
 | `nv action rotate` | Provides commands to {{<link url="Log-Files-with-NVUE/#rotate-the-system-log-file" text="rotate the system log file">}}.|
 | `nv action run` | Provides commands to run {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}.|
@@ -361,10 +375,12 @@ To show if password encryption is `on`, run the `nv show system security encrypt
 
 ```
 cumulus@switch:~$ nv show system security encryption
-         operational  applied
--------  -----------  -------
-db                           
-  state               enabled
+                operational  applied
+--------------  -----------  -------
+db                                  
+  state         enabled      enabled
+folder-encrypt                      
+  storage       usb          usb 
 ```
 
 ## Configuration Files that NVUE Manages
@@ -933,18 +949,18 @@ Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-
 selected, x - failed                                                            
                                                                                 
 Route            Protocol  Distance  Uptime                NHGId  Metric  Flags
----------------  --------  --------  --------------------  -----  ------  -----
-10.0.1.34/32     bgp       20        2024-12-17T10:24:14Z  127    0       *Si  
-10.0.1.255/32    bgp       20        2024-12-17T10:24:10Z  127    0       *Si  
-10.10.10.2/32    bgp       20        2024-12-17T10:24:10Z  62     0       *Si  
-10.10.10.3/32    bgp       20        2024-12-17T10:24:17Z  127    0       *Si  
-10.10.10.4/32    bgp       20        2024-12-17T10:24:10Z  127    0       *Si  
-10.10.10.63/32   bgp       20        2024-12-17T10:24:10Z  127    0       *Si  
-10.10.10.64/32   bgp       20        2024-12-17T10:24:17Z  127    0       *Si  
-10.10.10.101/32  bgp       20        2024-12-17T10:24:10Z  102    0       *Si  
-10.10.10.102/32  bgp       20        2024-12-17T10:24:10Z  115    0       *Si  
-10.10.10.103/32  bgp       20        2024-12-17T10:24:10Z  121    0       *Si  
-10.10.10.104/32  bgp       20        2024-12-17T10:24:10Z  113    0       *Si  
+---------------  --------  --------  -----------  -----  ------  -----
+10.0.1.34/32     bgp       20        0:59:50      127    0       *Si  
+10.0.1.255/32    bgp       20        0:59:50      127    0       *Si  
+10.10.10.2/32    bgp       20        23:38:14     62     0       *Si  
+10.10.10.3/32    bgp       20        0:59:50      127    0       *Si  
+10.10.10.4/32    bgp       20        0:59:50      127    0       *Si  
+10.10.10.63/32   bgp       20        0:59:50      127    0       *Si  
+10.10.10.64/32   bgp       20        0:59:50      127    0       *Si  
+10.10.10.101/32  bgp       20        0:59:50      102    0       *Si  
+10.10.10.102/32  bgp       20        23:43:21     115    0       *Si  
+10.10.10.103/32  bgp       20        23:43:21     121    0       *Si  
+10.10.10.104/32  bgp       20        23:43:21     113    0       *Si  
 ```
 
 You can filter BGP and EVPN received routes by a specific neighbor (numbered or unnumbered) with the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4, `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6, or `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` for EVPN.
@@ -969,7 +985,7 @@ You can also filter EVPN routes by a specific RD with the `nv show vrf <vrf-id> 
 You can filter the `nv show vrf <vrf-id> router bgp neighbor` command output by state (established or non-established); for example, to show all BGP established neighbors:
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor
+cumulus@switch:~$ nv show vrf default router bgp neighbor --filter="state=established"
 
 AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
 UTC format, UpTime - Last connection reset time in days,hours:min:sec, Afi-Safi
@@ -990,47 +1006,20 @@ swp54          65199  established  2025-06-15T09:45:16Z  4:16:59  34059    34051
                                                                                     l2vpn-evpn    81       57 
 ```
 
-To show all BGP non-established neighbors:
-
-```
-cumulus@switch:~$ 
-AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
-UTC format, UpTime - Last connection reset time in days,hours:min:sec, Afi-Safi
-- Address family, PfxSent - Transmitted prefix counter, PfxRcvd - Recieved
-prefix counter
-
-Neighbor       AS     State        PeerEstablishedTime   UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
--------------  -----  -----------  --------------------  -------  -------  -------  ------------  -------  -------
-swp53          65199  established  2025-06-15T09:45:17Z  4:16:59  34062    34050    ipv4-unicast  13       9      
-                                                                                    l2vpn-evpn    81       57     
-swp54          65199  established  2025-06-15T09:45:16Z  4:16:59  34059    34051    ipv4-unicast  13       9      
-                                                                                    l2vpn-evpn    81       57
-```
-
 To show a summary of the connection information for all BGP neighbors:
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor --view=detail
 
-AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
-UTC format, UpTime - Last connection reset time in days,hours:min:sec, Afi-Safi
-- Address family, PfxSent - Transmitted prefix counter, PfxRcvd - Recieved
-prefix counter
+AS - Remote Autonomous System, Uptime - BGP session up time, ResetTime - Last
+connection reset time, Afi-Safi - Address family, PfxSent - Transmitted prefix
+counter, PfxRcvd - Recieved prefix counter
 
-Neighbor  AS     State        PeerEstablishedTime   UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
---------  -----  -----------  --------------------  -------  -------  -------  ------------  -------  -------
-swp1      65101  established  2025-06-15T09:45:14Z  4:22:37  34147    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      27     
-swp2      65102  established  2025-06-15T09:45:15Z  4:22:37  34148    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      27     
-swp3      65103  established  2025-06-15T09:45:15Z  4:22:37  34160    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      27     
-swp4      65104  established  2025-06-15T09:45:15Z  4:22:37  34161    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      27     
-swp5      65253  established  2025-06-15T09:45:15Z  4:22:37  34188    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      6      
-swp6      65254  established  2025-06-15T09:45:15Z  4:22:37  34194    34170    ipv4-unicast  10       3      
-                                                                               l2vpn-evpn    102      6                    
+Neighbor       AS  State  Uptime  ResetTime  MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+-------------  --  -----  ------  ---------  -------  -------  ------------  -------  -------
+peerlink.4094      idle           23:41:41   0        0        ipv4-unicast  0        0      
+swp51              idle           23:41:41   0        0        ipv4-unicast  0        0      
+swp52              idle           23:41:41   0        0        ipv4-unicast  0        0                    
 ```
 
 To show a summary of the connection information for all BGP neighbors in json format, run the `nv show vrf default router bgp neighbor -o json` command.
@@ -1047,41 +1036,38 @@ The following example shows the `nv show vrf default router rib ipv4 route` comm
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route
+
 Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-
 selected, x - failed
 
-Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
----------------  ---------  --------  --------------------  -----  ------  -----
-10.0.1.12/32     connected  0         2025-02-08T16:26:22Z  12     0       *Sio 
-10.0.1.34/32     bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.0.1.255/32    bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.10.10.1/32    connected  0         2025-02-08T16:26:13Z  12     0       *Sio 
-10.10.10.2/32    bgp        20        2025-02-11T16:05:22Z  62     0       *Si  
-10.10.10.3/32    bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.10.10.4/32    bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.10.10.63/32   bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.10.10.64/32   bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
-10.10.10.101/32  bgp        20        2025-02-11T16:05:22Z  100    0       *Si  
-10.10.10.102/32  bgp        20        2025-02-11T16:05:22Z  120    0       *Si 
+Route          Protocol   Distance  Uptime    NHGId  Metric  Flags
+-------------  ---------  --------  --------  -----  ------  -----
+10.1.10.0/24   connected  0         0:58:51   20     0       *Si  
+10.1.10.1/32   local      0         0:58:51   20     0       i    
+               local      0         23:37:15  20     0       *Si  
+10.1.20.0/24   connected  0         0:58:51   45     0       *Si  
+10.1.20.2/32   local      0         0:58:51   45     0       *Si  
+10.1.30.0/24   connected  0         0:58:51   46     0       *Si  
+10.1.30.2/32   local      0         0:58:51   46     0       *Si  
+10.10.10.1/32  connected  0         23:42:22  9      0       *Si  
+               local      0         23:42:22  9      0       i 
 ```
 
 The following example shows the `nv show vrf default router rib ipv4 route` command with the option to only include the `Route`, `Protocol`, `Uptime`, and `NHGID` (next hop group ID) columns in the output:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route --view "include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime"
-Route            Protocol   Uptime                NHGId
----------------  ---------  --------------------  -----
-10.0.1.12/32     connected  2025-02-08T16:26:22Z  12   
-10.0.1.34/32     bgp        2025-02-11T16:05:22Z  124  
-10.0.1.255/32    bgp        2025-02-11T16:05:22Z  124  
-10.10.10.1/32    connected  2025-02-08T16:26:13Z  12   
-10.10.10.2/32    bgp        2025-02-11T16:05:22Z  62   
-10.10.10.3/32    bgp        2025-02-11T16:05:22Z  124  
-10.10.10.4/32    bgp        2025-02-11T16:05:22Z  124  
-10.10.10.63/32   bgp        2025-02-11T16:05:22Z  124  
-10.10.10.64/32   bgp        2025-02-11T16:05:22Z  124  
-10.10.10.101/32  bgp        2025-02-11T16:05:22Z  100  
-10.10.10.102/32  bgp        2025-02-11T16:05:22Z  120
+Route          Protocol   Uptime    NHGId
+-------------  ---------  --------  -----
+10.1.10.0/24   connected  0:59:20   20   
+10.1.10.1/32   local      0:59:20   20   
+               local      23:37:44  20   
+10.1.20.0/24   connected  0:59:20   45   
+10.1.20.2/32   local      0:59:20   45   
+10.1.30.0/24   connected  0:59:20   46   
+10.1.30.2/32   local      0:59:20   46   
+10.10.10.1/32  connected  23:42:51  9    
+               local      23:42:51  9
 ```
 
 The following example shows the `nv show vrf default router rib ipv4 route` command with the option to omit all columns (except Route) in the output:

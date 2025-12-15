@@ -395,6 +395,45 @@ cumulus@switch:~$ nv set system syslog server 192.168.0.254 vrf mgmt
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system syslog selector ifreload program-name</h>
+
+Configures the switch to filter logs based on the application or program generating them.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system syslog selector ifreload program-name ifreload
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system syslog selector ifreload filter \<filter-id\>
+
+Configures filters for syslog messages. You can specify `action` or `match` to filter on specific text.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<filter-id>` |  The filter name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system syslog selector ifreload filter 1 match 'ip link set'
+cumulus@switch:~$ nv set system syslog selector ifreload filter 1 action include
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system syslog severity</h>
 
 Sets the global severity level of logs to `debug`, `info`, `notice`, `warn`, `error`, `critical`, or `none`. The default setting is `none`.

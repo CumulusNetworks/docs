@@ -41,6 +41,51 @@ cumulus@switch:~$ nv set interface swp1 telemetry bw-gauge state enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> telemetry congestion-event egress-buffer traffic-class \<traffic-class\> buffer-threshold</h>
+
+Configures the buffer threshold that must be crossed before the switch monitors the interfaces and traffic classes for buffer utilization.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<traffic-class>` |  The traffic class you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1s0 telemetry congestion-event egress-buffer traffic-class 1,5 buffer-threshold 2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> telemetry hft state</h>
+
+Enables and disables high frequency telemetry on the specified interfaces. You can specify `enabled` or `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry hft state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> telemetry histogram counter counter-type \<counter-type-id\></h>
 
 Configures the counter type you want to monitor. You can specify:
@@ -579,6 +624,100 @@ cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-c
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> latency-measurement traffic-class</h>
+
+Configures latency monitoring for all traffic classes on an interface for IPv4 and IPv6 traffic.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1-51 latency-measurement traffic-class
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<traffic-class\></h>
+
+Configures latency monitoring for a specific traffic class on an interface for IPv4 and IPv6 traffic.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+|`<traffic-class>` |  The traffic class to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1-51 latency-measurement traffic-class 0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol \<protocol-id\></h>
+
+Configures latency monitoring for a specific traffic class on an interface for IPv4 or IPv6 traffic.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+|`<traffic-class>` |  The traffic class to configure. |
+|`<protocol-id>` |  IPv4 or IPv6 traffic. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1-51 latency-measurement traffic-class 0 protocol ipv4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol \<protocol-id\> dscp <dscp></h>
+
+Configures latency monitoring for a specific traffic class DSCP on an interface for IPv4 or IPv6 traffic.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+|`<traffic-class>` |  The traffic class to configure. |
+|`<protocol-id>` |  IPv4 or IPv6 traffic. |
+|`<dscp>` |  The DSCP you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1-51 latency-measurement traffic-class 0 protocol ipv6 dscp 26
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry adaptive-routing-stats export state</h>
 
 Enables and disables export for adaptive routing statistics. You can specify `enabled` or `disabled`.
@@ -643,6 +782,38 @@ cumulus@switch:~$ nv set system telemetry buffer-stats sample-interval 100
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry congestion-event export state</h>
+
+Enables and disables congestion event notifications to export events to your configured open telemetry export destination. You can specify `enabled` or `disabled`. The default value is `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry congestion-event export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry congestion-event throttle-duration</h>
+
+Configures the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). When a notification generates, additional congestion events do not trigger a new notification until the interval expires. The throttle duration is in milliseconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 5000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry export otlp state</h>
 
 Enables and disables open telemetry export so that you can export interface counters and histogram collection data to an external collector. You can specify `enabled` or `disabled`.
@@ -660,6 +831,92 @@ Introduced in Cumulus Linux 5.10.0
 
 ```
 cumulus@switch:~$ nv set system telemetry export otlp state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry hft counter</h>
+
+Configures the high frequency telemetry counters sampled at the defined interval. The options for sampling are received bytes (rx-byte), transmitted bytes (tx-byte), received packets (rx-packet), transmitted packets (tx-packet), and traffic class buffer occupancy (tc-occupancy).
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft counter rx-byte
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry hft duration</h>
+
+Configures the duration, in seconds, to stop streaming HFT data after a specified period. The maximum duration is 1 hour (3600 seconds).
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft duration 120
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry hft egress-buffer</h>
+
+Configures the traffic classes to monitor for high frequency telemetry.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft egress-buffer traffic-class 0,1,5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry hft export state</h>
+
+Enables and disables HFT export globally if you are only exporting OTEL data to a single collector from your switch. You can specify `enabled` or `disabled`. The default value is `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<name\> hft export state</h>
+
+Enables or disables a statistic group to export high frequency telemetry data to a destination. You can specify `enabled` or `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<name>` |  The name of the statistic group. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -753,6 +1010,22 @@ Introduced in Cumulus Linux 5.10.0
 
 ```
 cumulus@switch:~$ nv set system telemetry hft profile profile1 traffic-class 0,3,7
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry hft sample-interval-usec</h>
+
+Configures the sampling interval for HFT data. The default value is 5000 microseconds. The interval must be specified in microseconds, with a valid range between 100 to 12,750 and in multiples of 50.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft sample-interval-usec 1000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1280,6 +1553,84 @@ cumulus@switch:~$ nv set system telemetry histogram latency histogram-size 12288
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry latency-measurement export state</h>
+
+Configures the switch to export latency data to a configured telemetry module.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry latency-measurement export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<name\> latency-measurement export state</h>
+
+When using statistic groups to specify which metrics are exported, add latency-measurement to the stats-group configuration to include latency metrics.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<name>` |  The name of the statistic group. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group GROUP1 latency-measurement export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry latency-measurement sample-interval</h>
+
+Configures the latency-measurement probe sample interval in seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry latency-measurement sample-interval 2 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry latency-measurement state</h>
+
+Enables and disables latency monitoring.
+
+Latency monitoring enables you to precisely measure and analyze the time it takes for data packets to traverse between switches in a data center network fabric and helps to:
+- Identify performance bottlenecks in large-scale data centers.
+- Support real-time network health monitoring and proactive management.
+- Plan network topology and capacity expansion.
+- Manage incident responses in latency-sensitive environments.
+
+You can monitor latency on Spectrum-4 and later switches, and on layer 3 and untagged physical links only.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry latency-measurement state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry lldp export state</h>
 
 Enables and disables open telemetry LLDP statistics. You can specify `enabled` or `disabled`.
@@ -1394,7 +1745,7 @@ cumulus@switch:~$ nv set system telemetry router sample-interval 40
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry router vrf \<vrf\> bgp export state</h>
+## <h>nv set system telemetry router vrf \<vrf-id\> bgp export state</h>
 
 Enables and disables open telemetry BGP statistics for a VRF.
 
@@ -1416,7 +1767,7 @@ cumulus@switch:~$ nv set system telemetry router vrf RED bgp export state enable
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry router vrf \<vrf\> bgp peer \<peer-id\> export state</h>
+## <h>nv set system telemetry router vrf \<vrf-id\> bgp peer \<peer-id\> export state</h>
 
 Enables and disables open telemetry specific BGP peer statistics for a VRF.
 
@@ -1438,7 +1789,7 @@ cumulus@switch:~$ nv set system telemetry router vrf RED bgp peer swp51 export s
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry router vrf \<vrf\> rib export state</h>
+## <h>nv set system telemetry router vrf \<vrf-id\> rib export state</h>
 
 Enables and disables open telemetry routing table statistics for a VRF.
 

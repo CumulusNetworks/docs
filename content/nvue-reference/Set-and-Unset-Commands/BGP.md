@@ -363,7 +363,7 @@ BGP prefix independent convergence (PIC) reduces convergence times and improves 
 
 When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises a route with a prefix derived from the router ID. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
 
-You enable the next hop group per source option on all switches (leaf, spine and super spine), so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source. On a leaf switch, you enable the BGP advertise origin option (`nv set vrf <vrf> router bgp address-family ipv4-unicast advertise-origin`) so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
+You enable the next hop group per source option on all switches (leaf, spine and super spine), so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source. On a leaf switch, you enable the BGP advertise origin option (`nv set vrf <vrf-id> router bgp address-family ipv4-unicast advertise-origin`) so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
 
 {{%notice note%}}
 On a spine and super spine, you must set the read-only mode BGP convergence wait time to 30 (`nv set router bgp convergence-wait time 30`)and the convergence wait establish wait time to 15 (`nv set router bgp convergence-wait establish-wait-time 15`). These are the minimum recommended timer settings to ensure optimal convergence when using PIC.
@@ -942,6 +942,10 @@ cumulus@switch:~$ nv set vrf default router bgp state enabled
 
 Configures the BFD detect multiplier that determines the maximum number of concurrent BFD packets (including control packets and echo packets) that BGP can discard. You can set a value between 2 and 255.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command. 
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -964,6 +968,10 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd detect-multip
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd enable</h>
 
 Enables and disables BFD to configure tracking BGP peering sessions using this configuration.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command. 
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -988,6 +996,10 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd enable on
 
 Configures the minimum interval for receiving single-hop BFD control packets. You can specify a value between 50 and 60000.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1010,6 +1022,10 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd min-rx-interv
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd min-tx-interval</h>
 
 Configures the minimum interval for transmitting single-hop BFD control packets. You can specify a value between 50 and 60000. The actual value used is the smaller of this value or the value that the neighbor expects.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command. 
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2881,12 +2897,12 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd state</h>
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd enable</h>
 
-Enables and disables BFD for the BGP peer group in the specified VRF. The default setting is `disabled`.
+Enables and disables BFD for the BGP peer group in the specified VRF. The default setting is `disable`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+Cumulus Linux 5.15 and later no longer supports this command.
 {{%/notice%}}
 
 ### Command Syntax
@@ -2903,7 +2919,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example 
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd state enabled
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd state enable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2911,6 +2927,10 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd state enab
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd detect-multiplier</h>
 
 Configures the BFD interval multiplier for the BGP peer group in the specified VRF. You can specify a value between 2 and 255.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2935,6 +2955,10 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd detect-mul
 
 Configures the minimum interval between received BFD control packets for the BGP peer group in the specified VRF. You can specify a value between 50 and 60000.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -2957,6 +2981,10 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd min-rx-int
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd min-tx-interval</h>
 
 Configures the minimum interval between sending BFD control packets for the BGP peer group in the specified VRF. You can specify a value between 50 and 60000.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 

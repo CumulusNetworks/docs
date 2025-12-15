@@ -19,7 +19,7 @@ You can also perform the steps outlined on this page using the <code>/v1/switch-
 ssh nvidia@<IP_Address>
 ```
 
-2. Run the `opt/netq-admin/nvl/scripts/reate-certificate.sh` script as the root user. When prompted, provide a certificate name (typically the switch’s hostname or IP address):
+2. Run the `/opt/netq-admin/nvl/scripts/create-certificate.sh` script as the root user. When prompted, provide a certificate name (typically the switch’s hostname or IP address):
 
 ```
 nvidia@ubuntu:~$ su

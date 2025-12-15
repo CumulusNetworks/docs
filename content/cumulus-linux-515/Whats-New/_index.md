@@ -8,7 +8,11 @@ This document supports the Cumulus Linux 5.15 release, and lists new features an
 - For a list of open and fixed issues in Cumulus Linux 5.15, see the {{<link title="Cumulus Linux 5.15 Release Notes" text="Cumulus Linux 5.15 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.15, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
-## What's New in Cumulus Linux 5.15
+## What's New in Cumulus Linux 5.15.1
+
+Cumulus Linux 5.15.1 provides bug fixes.
+
+## What's New in Cumulus Linux 5.15.0
 
 Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fixes.
 ### New Features and Enhancements
@@ -177,8 +181,6 @@ Old Name | New Name|
    - {{< expand "Deprecated OTEL Metrics" >}}
 |  Name | Removal Reason |
 |------ | ----------- |
-| `nvswitch_interface_discards_egress_link_down` | Unsupported on Spectrum switches. |
-| `nvswitch_interface_discards_ingress_discard_all` | Unsupported on Spectrum switches. |
 | `nvswitch_interface_discards_port_isolation` | Unsupported on Spectrum switches. |
 | `nvswitch_interface_dot3_stats_alignment_errors` | Unsupported on Spectrum switches. |
 | `nvswitch_interface_dot3_stats_excessive_collisions` | Unsupported on Spectrum switches. |

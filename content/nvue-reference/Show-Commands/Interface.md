@@ -238,7 +238,7 @@ cumulus@switch:~$ nv show interface swp1 bond member bond1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> counters</h>
+## <h>nv show interface \<interface-id\> counters</h>
 
 Shows all counters for a specific interface, such as packet drop, error, and distribution counts.
 
@@ -324,7 +324,7 @@ Ingress Buffer Statistics
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> counters drops</h>
+## <h>nv show interface \<interface-id\> counters drops</h>
 
 Shows packet drop counters for a specific interface.
 
@@ -353,7 +353,7 @@ Total Drops      0        0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> counters errors</h>
+## <h>nv show interface \<interface-id\> counters errors</h>
 
 Shows error counters for a specific interface.
 
@@ -385,7 +385,7 @@ Undersize Errors  0        n/a
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface\> counters pktdist</h>
+## <h>nv show interface \<interface-id\> counters pktdist</h>
 
 Shows packet distribution counters for a specific interface.
 
@@ -662,7 +662,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show interface swp1 link
+cumulus@switch:~$ nv show interface swp1 link
                          operational              applied
 -----------------------  -----------------------  -------
 admin-status             up                              
@@ -763,6 +763,31 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 link flag
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> link flap-protection</h>
+
+Shows if link flap protection is enabled for the interface.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link flap-protection
+       operational  applied  pending
+-----  -----------  -------  -------
+state               enabled  enabled
 ```
 
 ## <h>nv set interface \<interface-id\> link phy detail</h>
@@ -873,6 +898,146 @@ Lane Stats
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> link phy health histogram</h>
+
+Shows physical layer histogram information.
+
+{{%notice note%}}
+Switches with the Spectrum 1 ASIC do not support this command.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link phy health histogram
+rs-fec-corrected-errors
+==========================
+    Bin  count       Upper boundary
+    ---  ----------  --------------
+    0    1216554377  0             
+    1    0           1             
+    2    0           2             
+    3    0           3             
+    4    0           4             
+    5    0           5             
+    6    0           6             
+    7    0           7             
+    8    0           8             
+    9    0           9             
+    10   0           10            
+    11   0           11            
+    12   0           12            
+    13   0           13            
+    14   0           14            
+    15   0           15
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> link phy health histogram native</h>
+
+Shows filtered physical layer  histogram information.
+
+{{%notice note%}}
+Switches with the Spectrum 1 ASIC do not support this command.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link phy health histogram native
+rs-fec-corrected-errors
+==========================
+    Bin  count       Upper boundary
+    ---  ----------  --------------
+    0    1216554377  0             
+    1    0           1             
+    2    0           2             
+    3    0           3             
+    4    0           4             
+    5    0           5             
+    6    0           6             
+    7    0           7             
+    8    0           8             
+    9    0           9             
+    10   0           10            
+    11   0           11            
+    12   0           12            
+    13   0           13            
+    14   0           14            
+    15   0           15
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> link phy health native</h>
+
+Shows filtered physical layer information.
+
+{{%notice note%}}
+Switches with the Spectrum 1 ASIC do not support this command.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link phy health native
+                           operational    
+-------------------------  -------------
+time-since-last-clear-min  1                     
+symbol-errors              0                     
+symbol-ber                 15E-255               
+raw-ber                    15E-255               
+phy-received-bits          6214400000000         
+effective-errors           0                     
+effective-ber              15E-255               
+
+Lane Stats
+=============
+    Lane  raw-ber  snr-host   snr-media  phy-raw-errors
+    ----  -------  ---------  ---------  --------------
+    0     15E-255  22.32 dB   23.14 dB   0             
+    1     15E-255  25.24 dB   22.47 dB   0             
+    2     15E-255  21.18 dB   22.30 dB   0             
+    3     15E-255  25.12 dB   25.01 dB   0             
+    4     15E-255  24.50 dB   24.62 dB   0             
+    5     15E-255  0     dB   0     dB   0             
+    6     15E-255  25    dB   24.62 dB   0             
+    7     15E-255  22.18 dB   23.48 dB   0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> link protodown-reason</h>
 
 Shows the link protodown reason details for an interface.
@@ -924,6 +1089,10 @@ operational  applied  pending
 
 Shows statistics for the specified interface, such as packet size, packet drops, and packet errors.
 
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -956,6 +1125,10 @@ out-pkts             501951
 ## <h>nv show interface \<interface-id\> link traffic-engineering</h>
 
 Shows traffic engineering statistics for the specified interface.
+
+{{%notice note%}}
+Cumulus Linux 5.14 and later no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1010,7 +1183,7 @@ Monitoring the traffic rate and PPS for an interface ensures optimal network per
 By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
 
 {{%notice note%}}
-- You can monitor the traffic rate and PPS of physical ports only.
+- You can monitor the traffic rate and PPS of physical ports and interfaces configured with NVUE.
 - The command outputs provide approximate values.
 {{%/notice%}}
 
@@ -1171,7 +1344,7 @@ Monitoring the traffic rate and PPS for your interfaces ensures optimal network 
 By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
 
 {{%notice note%}}
-- You can monitor the traffic rate and PPS of physical ports only.
+- You can monitor the traffic rate and PPS of physical ports and interfaces configured with NVUE.
 - The command outputs provide approximate values.
 {{%/notice%}}
 

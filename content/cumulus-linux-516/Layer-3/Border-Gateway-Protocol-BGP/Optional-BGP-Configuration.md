@@ -1641,6 +1641,53 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
+### BGP PIC in a Multiplane Topology
+
+Fast route convergence in case of remote link failures between leaf and spine, and spine and superspine layers in a multiplane topology requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in {{<link url="#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
+
+{{%notice note%}}
+The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
+{{%/notice%}}
+
+To configure PIC in a multiplane topology, set the SOO source IP address on a leaf. Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
+
+{{< tabs "1654 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp soo-source 10.1.1.1
+cumulus@leaf01:~$ nv config apply
+```
+
+To unset the SOO source IP address, run the `nv set vrf default router bgp soo-source` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+   ```
+   cumulus@leaf01:~$ sudo vtysh
+   ...
+   leaf01# configure terminal
+   leaf01(config)# router bgp 65101
+   leaf01(config-router)# bgp soo-source 10.1.1.1
+   leaf01(config-router)# end
+   leaf01# write memory
+   leaf01# exit
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+If you set the SOO source IP address on a leaf switch before you enable the BGP advertise origin option, the switch starts advertising SOO routes using the configured SOO source IP address.
+
+If you set the SOO source IP address on a leaf switch after enable the BGP advertise origin option:
+- The leaf withdraws the old SOO route (the one with the router ID).
+- The leaf announces a new SOO route using the SOO-source IP address.  
+- All prefix routes are readvertised with the new SOO tag.  
+- All network switches detect this change, remove references to the old SOO route, and install the new SOO route in their routing tables.
+
+### Show BGP PIC Information
+
 Cumulus Linux provides several show commands to help you troubleshoot BGP PIC. Refer to {{<link url="Troubleshooting-BGP/#show-prefix-independent-convergence-information" text="Show Prefix Independent Convergence Information">}}.
 
 ## BGP Timers

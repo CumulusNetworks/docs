@@ -97,6 +97,36 @@ cumulus@switch:~$ nv config apply
 
 To show control plane statistics configuration, run the `nv show system telemetry control-plane-stats` command.
 
+### 802.1X Statistics
+
+When you enable open telemetry for 802.1X statistics, the switch exports [802.1X](#802.1x-statistic-format) operational non-counter statistics for all interfaces configured for 802.1X:
+
+```
+cumulus@switch:~$ nv set system telemetry dot1x-stats export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To enable open telemetry for 802.1X operational counters:
+
+```
+cumulus@switch:~$ nv set system telemetry dot1x-stats class supplicant-counters state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To enable open telemetry for informational 802.1X statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry dot1x-stats class dot1x-info state enabled 
+cumulus@switch:~$ nv config apply
+```
+
+You can adjust the 802.1X statistics sample interval (in seconds). You can specify a value between 1 and 86400 (86400 seconds is one day). The default value is 60.
+
+```
+cumulus@switch:~$ nv set system telemetry dot1x-stats sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
 ### Histogram Data
 
 When you enable open telemetry for histogram data, your buffer, counter, and latency {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports:
@@ -541,12 +571,6 @@ By default, OTLP export is in **secure** mode that requires a CA certificate. Fo
     cumulus@switch:~$ nv config apply
     ```
 
-
-<!-- POC IN CL5.13
-{{%notice note%}}
-When you make changes to the open telemetry export destination, connections to the destination do not reset.
-{{%/notice%}}
--->
 ### Customize Export
 
 By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to all configured OTLP destinations. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group to control which statistics you export and the sample interval for a destination.
@@ -633,6 +657,18 @@ The following example:
 ```
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP7 acl-stats class acl-set export state enabled
 cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30 stats-group STAT-GROUP7
+cumulus@switch:~$ nv config apply
+```
+
+The following example:
+- Configures STAT-GROUP8 to export 802.1X statistics.
+- Applies the STAT-GROUP8 configuration to the OTLP destination 10.1.1.100.
+- Sets the sample interval of the 802.1X set statistics to 30.
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP8 dot1x-stats export state enabled
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group STAT-GROUP8
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP8 dot1x-stats sample-interval 30 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1121,6 +1157,29 @@ When you enable control plane statistic telemetry, the switch exports the follow
 }
 ```
 
+{{< /expand >}}
+
+### 802.1X Statistic Format
+
+When you enable 802.1X statistic telemetry, the switch exports the following statistics:
+
+| Name | Description |
+|----- | ----------- |
+| `nvswitch_dot1x_system_info` | *Global 802.1X configuration information. |
+| `nvswitch_dot1x_radius_client_info` | *Radius client configuration. Cumulus Linux is the radius client. |
+| `nvswitch_dot1x_radius_server_info` | *Radius server configuration. |
+| `nvswitch_dot1x_supplicant_summary` | *Summary showing the MAC address of the supplicant and interface on which it is on. |
+| `nvswitch_dot1x_supplicant_eapol_counters` | *802.1X EAPOL counters to track authentication traffic, showing EAP request frames sent, EAP response frames received from the supplicant (client device), invalid EAPOL frames, and errors like length issues. |  
+| `nvswitch_dot1x_interface_info` | *802.1X interface configuration.|
+| `nvswitch_dot1x_supplicant_status` | *Operational status of the supplicant. |
+| `nvswitch_dot1x_ipv6_profile_info` | *IPv6 profile level configuration. | 
+| `nvswitch_dot1x_ipv6_profile_property_info` | *IPv6 profile property level configuration. |
+| `nvswitch_dot1x_ipv6_profile_summary` | *IPv6 profile summary with the IPv6 prefix. |
+| `nvswitch_dot1x_reauth_timeouts` | *Supplicant counters when the `reauth-timeout-ignore` option is enabled. |
+
+{{< expand "Example JSON data for 802.1X:" >}}
+```
+```
 {{< /expand >}}
 
 ### Histogram Data Format

@@ -342,8 +342,8 @@ BFD offload improves BFD session scale by offloading BFD numbered sessions to a 
 
 {{%notice note%}}
 - BFD offload does not support BFD sessions based on the IPv6 link-local address.
-- When you change timer or profile settings, there is a transient spike in CPU usage with BFD session scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
-- If a BFD peer is down due to path failures or other reasons, (this is not admin-down), the received BFD packets from the peer are trapped to the BFD daemon. When there is a scale of sessions, the volume of trap packets increase, which might cause an increase in CPU usage for the BFD daemon.
+- When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
+- If a BFD peer is down; for example, due to path failures, (not admin-down), the received BFD packets from the peer are trapped to the BFD daemon. With sessions at scale, the volume of trap packets increase, which might cause an increase in CPU usage for the BFD daemon.
 {{%/notice%}}
 
 To enable BFD offload:

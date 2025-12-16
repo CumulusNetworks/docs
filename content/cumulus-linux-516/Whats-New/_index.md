@@ -27,16 +27,17 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Interface-Configuration-and-Management/#interface-physical-name" text="Physical interface names that map the port to the connector">}}
 - {{<link url="NVUE-CLI/#command-completion" text="Restricted bash enhancements for NVUE commands include command history with arrow key navigation, context-aware tab completion, and inline help with ? to list valid options">}}
 - {{<link url="DHCP-Relays/#vrf-aware-dhcp-relay" text="VRF-aware DHCP relay">}}
+- {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
+- 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
 - 802.1x on router ports with dynamic VRF assignment
 - Security features
+  - Yubikey authentication over RADIUS
 - Routing convergence enhancement for EVPN
 - Dynamic IPv6 multi tenancy EVPN VXLAN encap in IPv6 header
-- 802.1x Related Metric / X-paths support
 - Parity between OpenTelemetry and gNMI (Phase 2)
 - Same user created locally and on Tacacs server, need NVUE support
 - LAG - Random Hash support for Adaptive Routing Eligible Traffic???
 - BGP conditional disaggregation for multi-planed GPUs
-- BGP Prefix Independent Convergence for Anycast Scenarios
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Scale up number of BGP paths supported on Cumulus Linux to enable 16K GPU cluster with 128-way ECMP
 

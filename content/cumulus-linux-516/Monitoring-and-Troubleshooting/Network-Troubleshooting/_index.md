@@ -667,7 +667,7 @@ You send traceroute packets to a destination with the `traceroute` command. The 
 | `-w` | The maximum number of nanoseconds to wait for a response from each hop. You can specify a value between 0.1 and 10.|
 | `-i` | The VRF to use. |
 | `<layer3-protocol>` | The layer 3 protocol; `-4` for IPv4 or `-6` for IPv6. The default is IPv4.|
-| `<layer4-protocol>` | The layer 4 protocol packets to send; `-I` for ICMP, `-T` for TCP, or `-U` for UDP.|
+| `<layer4-protocol>` | The layer 4 protocol packets to send; `-I` for ICMP, `-T` for TCP, or `-U` for UDP. The last hop information might not show with the `-I` or `-T` option.|
 | `-F` | Do not fragment. Trace the route to the destination without fragmentation. |
 
 The following example validates the route path to IPv4 destination 10.10.10.2.

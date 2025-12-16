@@ -172,3 +172,5 @@ For information about active-active VTEPs and anycast IP behavior, and for failu
 - You must configure the overlay (tenants) in a specific VRF and separate from the underlay, which resides in the default VRF. Layer 3 VNI mapping for the default VRF is not supported.
 - EVPN is not supported when {{<link title="Redistribute Neighbor" >}} is also configured. Enabling both features simultaneously causes instability in IPv4 and IPv6 neighbor entries.
 - Cumulus Linux implements a stricter check on a received type-3 route to ensure that it has the PMSI attribute with the replication type set to *ingress-replication* in order to conform to {{<exlink url="https://tools.ietf.org/html/rfc6514#section-5" text="RFC 6514">}}.
+- The switch does not export IPv6 link-local addresses as global addresses but treats them as neighbor entries in the EVPN fabric.
+

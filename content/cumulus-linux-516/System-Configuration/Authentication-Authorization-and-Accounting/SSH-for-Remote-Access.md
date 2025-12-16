@@ -355,7 +355,9 @@ You can configure the following SSH timeout and session options:
 - The number of seconds allowed before login times out. You can specify a value between 1 and 600. The default value is 120 seconds.
 - The TCP port numbers that listen for incoming SSH sessions. You can specify a value between 1 and 65535.
 - The number of minutes a session can be inactive before the SSH server terminates the connection. The default value is 0 minutes.
-- The maximum number of SSH sessions allowed per TCP connection. You can specify a value between 1 and 100. The default value is 10.
+- The maximum number of SSH sessions allowed for each TCP connection. You can specify a value between 1 and 100. The default value is 10.
+- The maximum number of SSH sessions allowed for a specific user. You can specify a value between 1 and 100. The default value is 10.
+- The maximum number of SSH sessions allowed for a specific user group.  You can specify a value between 1 and 100. The default value is 10.
 - Unauthenticated SSH sessions:
   - The maximum number of unauthenticated SSH sessions allowed. You can specify a value between 1 and 10000. The default value is 100.
   - The number of unauthenticated SSH sessions allowed before throttling starts. You can specify a value between 1 and 10000. The default value is 10.
@@ -363,7 +365,7 @@ You can configure the following SSH timeout and session options:
 
 The following example configures the number of login attempts allowed before rejecting the SSH session to 10 and the number of seconds allowed before login times out to 200:
 
-{{< tabs "TabID216 ">}}
+{{< tabs "TabID368 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -394,7 +396,7 @@ MaxSessions 10
 
 The following example configures the TCP port that listens for incoming SSH sessions to 443:
 
-{{< tabs "TabID233 ">}}
+{{< tabs "TabID399 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -422,7 +424,7 @@ Port 443
 
 The following example configures the amount of time a session can be inactive before the SSH server terminates the connection to 5 minutes (300 seconds) and the maximum number of SSH sessions allowed per TCP connection to 5. The default `inactive-timeout` is 15 minutes and the default `max-sessions-per-connection` is 10:
 
-{{< tabs "TabID249 ">}}
+{{< tabs "TabID427 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -468,12 +470,37 @@ ClientAliveInterval 300
 {{< /tab >}}
 {{< /tabs >}}
 
+The following example configures the maximum number of concurrent sessions allowed for the user USER1 and for the user group GROUP1:
+
+{{< tabs "TabID475 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system security user USER1 max-logins 15
+cumulus@switch:~$ nv set system security group GROUP1 max-logins 15
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `/etc/security/limits.d` directory, create a file with the following lines:
+
+```
+cumulus@switch:~$ sudo nano /etc/security/limits.d/user-usergroup
+USER1 - maxlogins 10 
+@GROUP1 - maxlogins 10
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 The following example configures:
 - The number of unauthenticated SSH sessions allowed before throttling starts to 5.
 - The starting percentage of connections to reject above the throttle start count before reaching the session count limit to 22.
 - The maximum number of unauthenticated SSH sessions allowed to 20.
 
-{{< tabs "TabID269 ">}}
+{{< tabs "TabID503 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -776,4 +803,43 @@ cumulus@switch:~$ nv show system ssh-server max-unauthenticated
 session-count     20     
 throttle-percent  22     
 throttle-start    5
+```
+
+To show the number of concurrent sessions allowed for all users, run the `nv show system security user` command:
+
+```
+cumulus@switch:~$ nv show system security user
+Username  Max logins for user 
+--------  ------------------- 
+USER1     15 
+USER2     10 
+```
+
+To show the number of concurrent sessions allowed for a specific user, run the `nv show system security user <username>` command:
+
+```
+cumulus@switch:~$ nv show system security user USER1
+            operational  applied 
+
+----------  -----------  ------- 
+max-logins  15           15 
+```
+
+To show the number of concurrent sessions allowed for all user groups, run the `nv show system security group` command:
+
+```
+cumulus@switch:~$ nv show system security group
+Group         Max logins for group 
+------------  -------------------- 
+GROUP1        15 
+GROUP2        5 
+```
+
+To show the number of concurrent sessions allowed for a specific user group, run the `nv show system security group <group-name>` command:
+
+```
+cumulus@switch:~$ nv show system security group GROUP1
+            operational  applied 
+----------  -----------  ------- 
+max-logins  15           15  
 ```

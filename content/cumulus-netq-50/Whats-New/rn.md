@@ -14,7 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4784336"></a> [4784336](#4784336) <a name="4784336"></a> <br /> | The NetQ for NVLink deployment option is not supported in air-gapped environments. | 5.0.0 | |
+| <a name="4784336"></a> [4784336](#4784336) <a name="4784336"></a> <br /> | The NetQ for NVLink and Ethernet deployment is not supported in air-gapped environments. | 5.0.0 | |
 | <a name="4687477"></a> [4687477](#4687477) <a name="4687477"></a> <br /> | When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters. | 5.0.0 | |
 | <a name="4687241"></a> [4687241](#4687241) <a name="4687241"></a> <br /> | The activity log in the UI might display multiple entries with “unknown” or “anonymous” usernames.  | 5.0.0 | |
 | <a name="4683830"></a> [4683830](#4683830) <a name="4683830"></a> <br /> | The Cable Validation Tool might fail to load in the NetQ UI. To work around this issue,  log out of NetQ and then log back in. | 5.0.0 | |

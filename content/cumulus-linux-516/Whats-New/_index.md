@@ -26,12 +26,13 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Routing-Tables/#show-fib-table-entries" text="Show FIB table entries">}}
 - {{<link url="Interface-Configuration-and-Management/#interface-physical-name" text="Physical interface names that map the port to the connector">}}
 - {{<link url="NVUE-CLI/#command-completion" text="Restricted bash enhancements for NVUE commands include command history with arrow key navigation, context-aware tab completion, and inline help with ? to list valid options">}}
-- {{<link url="DHCP-Relays/#vrf-aware-dhcp-relay" text="VRF-aware DHCP relay">}}
+- {{<link url="DHCP-Relays/#dhcp-relay-for-ipv4-in-an-evpn-symmetric-environment-with-mlag" text="VRF-aware DHCP relay">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
 - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
 - 802.1x on router ports with dynamic VRF assignment
 - Security features
-  - Yubikey authentication over RADIUS
+  - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and for a user group">}}
+  - {{<link url="RADIUS-AAA" text="Yubikey authentication over RADIUS">}}
 - Routing convergence enhancement for EVPN
 - Dynamic IPv6 multi tenancy EVPN VXLAN encap in IPv6 header
 - Parity between OpenTelemetry and gNMI (Phase 2)

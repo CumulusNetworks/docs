@@ -991,18 +991,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.15.1</td>
 </tr>
 <tr>
-<td>4769256</td>
-<td>Low fan speed alarm events occur while the corresponding fan modules are amber physically. </td>
-<td>5.15.0</td>
-<td>5.15.1</td>
-</tr>
-<tr>
-<td>4769255</td>
-<td>When using the CPU port as the SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
-<td>5.14.0-5.15.0</td>
-<td>5.15.1</td>
-</tr>
-<tr>
 <td>4751060</td>
 <td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
 sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>
@@ -1014,6 +1002,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>Unsupported hardware modules might cause SDK and firmware health event and traffic loss.</td>
 <td>5.12.1-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4740671</td>
+<td>Low fan speed alarm events occur while the corresponding fan modules are amber physically. </td>
+<td>5.15.0</td>
+<td>5.15.1</td>
 </tr>
 <tr>
 <td>4740606</td>
@@ -1055,6 +1049,12 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 <td></td>
 </tr>
 <tr>
+<td>4722449</td>
+<td>NVUE uses a git repository to store configurations, which over time, can grow very large, sometimes filling up all available disk space on the system. When this happens, NVUE commands become very slow or fail entirely due to lack of disk space. In severe cases, NVUE stops working completely. To work around this issue, restart the {{nvued}} service to trigger a deep cleanup of the git repository.</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4722369</td>
 <td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
 <td>5.14.0-5.15.1</td>
@@ -1065,6 +1065,12 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4717888</td>
+<td>When using the CPU port as a SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
+<td>5.14.0-5.15.0</td>
+<td>5.15.1</td>
 </tr>
 <tr>
 <td>4716836</td>
@@ -1137,6 +1143,12 @@ User name {} is already in use as OS group name 'and could not be used as userna
 <td>4687371</td>
 <td>On the spectrum-5, switch when a single traffic class is given 100% dwrr, the default global scheduler profile shows traffic class 5,6,7 as dwrr even though the scheduling mode is strict priority. There is no functional impact with this issue.</td>
 <td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4683602</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>

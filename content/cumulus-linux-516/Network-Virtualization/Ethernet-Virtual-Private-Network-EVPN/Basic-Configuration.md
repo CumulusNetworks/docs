@@ -322,6 +322,10 @@ You only need to set the `advertise-all-vni` option on leafs that are VTEPs. The
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+The switch does not export IPv6 link-local addresses as global addresses but treats them as neighbor entries in the EVPN fabric.
+{{%/notice%}}
+
 ## Show EVPN Configuration
 
 To show the current EVPN configuration on the switch, run the `nv show evpn` command:

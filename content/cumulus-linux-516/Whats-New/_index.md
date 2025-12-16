@@ -31,6 +31,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
 - 802.1x on router ports with dynamic VRF assignment
 - Security features
+  - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and for a user group">}}
   - Yubikey authentication over RADIUS
 - Routing convergence enhancement for EVPN
 - Dynamic IPv6 multi tenancy EVPN VXLAN encap in IPv6 header

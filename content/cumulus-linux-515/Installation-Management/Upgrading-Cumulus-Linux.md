@@ -15,20 +15,20 @@ To upgrade Cumulus Linux, choose one of the three upgrade methods:
 ## Upgrades with ISSU
 
 {{%notice note%}}
-Cumulus Linux versions prior to 5.15.x have a different work flow for warm boot/ISSU. Review these changes carefully as they impact the upgrade steps and syntax used.
+The workflow for warm boot (ISSU) has changed in Cumulus Linux 5.15. Review these changes carefully as they impact the upgrade steps and syntax you use.
 {{%/notice%}}
 
-<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to perform a hitless upgrade of the switch software while the network continues to forward packets. ISSU hitless upgrade minimizes data plane traffic disruption to sub-second levels and automatically translates the switch NVUE configuration to the schema of the new version. During ISSU, the routing control plane is temporarily unavailable; however, the {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} capability maintains traffic flow through the switch.
+<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to perform a hitless upgrade of the switch software while the network continues to forward packets. ISSU hitless upgrade minimizes data plane traffic disruption to sub-second levels and automatically translates the switch NVUE configuration to the schema of the new version. During ISSU, the routing control plane is temporarily unavailable; however, {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} maintains traffic flow through the switch.
 
 Cumulus Linux supports two methods that can use ISSU:
 - {{<link url="#optimized-image-upgrade" text="Optimized image upgrade">}}
 - {{<link url="#package-upgrade" text="Package upgrade">}}
 
 Before you perform an upgrade with ISSU, you must:
-- Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch. This change is disruptive due to BGP neighbor reset and should be a day-0 configuration.
-- Configure the switch in half-resource mode to perform a warm reboot. This change is disruptive due to switchd restart and should be a day-0 configuration.
+- Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch. This change is disruptive due to BGP neighbor reset and must be a day 0 configuration.
+- Configure the switch in half-resource mode to perform a warm reboot. This change is disruptive due to `switchd` restart and must be a day 0 configuration.
 
-After setting BGP restart and half-resource mode, warm reboot can be invoked using the reboot CLI {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}} (`nv action reboot system mode warm`).
+After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}}.
 
 To configure the switch in half resource mode:
 

@@ -65,4 +65,5 @@ password-hardening
 encryption
   db
     state                               enabled
+...
 ```

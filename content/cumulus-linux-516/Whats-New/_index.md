@@ -16,7 +16,6 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload">}}
 - {{<link url="Routing-Tables/#show-fib-table-entries" text="Show FIB table entries">}}
-- {{<link url="FIPS" text="FIPS">}}
 - {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
 - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
 - {{<link url="Access-Control-List-Configuration/#clear-control-plane-policer-counters" text="Clear control plane policer counters">}}
@@ -32,6 +31,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
 - 802.1x on router ports with dynamic VRF assignment
 - Security features
+  - {{<link url="FIPS" text="FIPS mode">}}
   - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and for a user group">}}
   - {{<link url="RADIUS-AAA" text="Yubikey authentication over RADIUS">}}
 - Routing convergence enhancement for EVPN

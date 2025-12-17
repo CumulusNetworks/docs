@@ -1354,6 +1354,17 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+With inner IP matches configured, any IPv4 or IPv6 `deny all` or `permit all` ACL rule must include an inner IP match (Source IP ANY, Destination IP ANY, or both). If the rule does not include an inner IP match, the switch interprets it as an outer rule, and does not evaluate the inner match. For Example:
+
+```
+cumulus@switch:~$ nv set acl deny-all-rule type ipv4 
+cumulus@switch:~$ nv set acl deny-all-rule action deny 
+cumulus@switch:~$ nv set acl deny-all-rule match inner-ip source-ip ANY 
+```
+
+{{%/notice%}}
+
 ### Match on Packet Offset
 
 Cumulus Linux supports ACL rule matches based on the packet offset.

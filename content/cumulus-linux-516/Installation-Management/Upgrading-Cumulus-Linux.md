@@ -21,9 +21,14 @@ Cumulus Linux supports two methods that can use ISSU:
 - {{<link url="#package-upgrade" text="Package upgrade">}}
 
 Before you perform an upgrade with ISSU, you must:
-- Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch.
-- Set the {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}} to warm (`nv action reboot system mode warm`).
-- Configure the switch in half-resource mode to perform a warm reboot. When the switch operates in half-resource mode, performing a warm reboot results in a hitless upgrade.
+- Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch. This change is disruptive due to BGP neighbor reset and must be a day 0 configuration.
+- Configure the switch in half-resource mode to perform a warm reboot. This change is disruptive due to `switchd` restart and must be a day 0 configuration.
+
+After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}}.
+
+{{%notice note%}}
+Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode these are reduced by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
+{{%/notice%}}
 
 To configure the switch in half resource mode:
 

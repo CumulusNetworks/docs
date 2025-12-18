@@ -17,7 +17,7 @@ The NetQ API provides endpoints for:
 - **Services**: Services
 - **Interfaces**: Interface, Port
 - **Trace and validation**: Trace, Check
-- **Inventory and Devices**: Address, Inventory, MAC Address tables, Node, Sensors
+- **Inventory and devices**: Address, Inventory, MAC Address tables, Node, Sensors
 - **Events**: Events
 
 Each endpoint has its own API. You can make requests for all data and all devices or you can filter the request by a given hostname. Each API returns a predetermined set of data as defined in the API models.
@@ -38,7 +38,7 @@ You can access the API gateway and execute requests from the Swagger UI or a ter
 
 1. Open the Swagger interface by entering one of the following in your browser's address bar:
 
-    - Cloud deployments:  https://api.netq.nvidia.com/swagger/
+    - Cloud deployments: https://api.netq.nvidia.com/swagger/
     - On-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
     - NVIDIA Air: https://api.air.netq.nvidia.com/swagger/
 

@@ -18,6 +18,7 @@ Cumulus Linux 5.15.1 contains the following core switch package versions:
 | Hardware management (`hw-management`) | 7.0050.2100 | Hardware management package.|
 | NVUE (`python3-nvue`) | 1.11.0.89 | NVUE core package. |
 | kernel (`linux-image`) | 6.1.123 | Linux kernel package. |
+| Telemetry | 91.1.11.1| Telemetry package. |
 
 To obtain a complete list of open source packages included in Cumulus Linux 5.15.1, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
 
@@ -32,5 +33,6 @@ Cumulus Linux 5.15.0 contains the following core switch package versions:
 | Hardware management (`hw-management`) | 7.0050.2000 | Hardware management package.|
 | NVUE (`python3-nvue`) | 1.11.0.89 | NVUE core package. |
 | kernel (`linux-image`) | 6.1.123 | Linux kernel package. |
+| Telemetry | 91.1.11.1| Telemetry package. |
 
 To obtain a complete list of open source packages included in Cumulus Linux 5.15.0, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.

@@ -343,7 +343,9 @@ BFD offload improves BFD session scale by offloading BFD numbered sessions to a 
 {{%notice note%}}
 - BFD offload does not support BFD sessions based on the IPv6 link-local address.
 - When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
-- If a BFD peer is down; for example, due to path failures, (not admin-down), the received BFD packets from the peer are trapped to the BFD daemon. With sessions at scale, the volume of trap packets increase, which might cause an increase in CPU usage for the BFD daemon.
+- If a BFD peer is down; for example, due to path failures, (not admin-down), the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might cause an increase in CPU usage.
+- When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode.
+- If you have a mix of BFD sessions to non-link-local IPv4 or IPv6 destinations, NVIDIA recommends that you do *not* enable BFD offload.
 {{%/notice%}}
 
 To enable BFD offload:
@@ -377,10 +379,6 @@ switch# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode including BFD sessions based on the IPv6 link-local address (even though BFD offload does not support BFD sessions based on the IPv6 link-local address).
-{{%/notice%}}
-
 To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view standard` command or the vtysh `show bfd peer` command.
 
 ```
@@ -396,7 +394,7 @@ LocalId     MHop   Local   Peer    Interface  State  Passive  Time     Type     
 1862087280  False  500::1  500::2  vlan500    up     False    0:03:53  dynamic  control-plane          3           50     50     1476    1463 
 ```
 
-The `Offloaded` field shows `control-plane` if the session is offloaded.
+The `Offloaded` field shows `offloaded` if the session is offloaded.
 
 ## Show BFD Information
 

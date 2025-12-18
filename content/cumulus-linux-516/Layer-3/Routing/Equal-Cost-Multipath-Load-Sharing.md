@@ -595,6 +595,26 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 - Ensure that traffic intended for adaptive routing is routed over ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
 {{%/notice%}}
 
+### LAG Hash Randomizer
+
+When you enable adaptive routing, Cumulus Linux enables the LAG hash randomizer, which enables packet spraying on layer 3 bonds on the switch for adaptive routing eligible packets coming from the network and destined towards the NICs. This switch functionality aids the packet load balancer on the NICs for end-to-end performance and fully integrates with adaptive routing for congestion avoidance and load balancing, preserving in-order delivery for non-adaptive routing traffic while maximizing bandwidth utilization for adaptive routing flows.
+
+The LAG hash randomizer is used for leaf switches if there is more than one link connected between the switch and the NIC, and there is a bond configured between the switch and the NIC.
+
+LAG hash randomizer is supported on a Spectrum-4 or Spectrum-5 switch and only for static layer 3 bonds.
+
+To disable the lag hash randomizer, in the `/etc/cumulus/switchd.d/switchd_misc.conf` file, change the `adaptive_routing.lag_hash_random_enable` variable to FALSE, then restart the `switchd` service:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/switchd_misc.conf 
+adaptive_routing.lag_hash_random_enable = FALSE
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
 ### Link Utilization
 
 Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `custom-profile`, you can change the percentage to a value between 1 and 100.

@@ -436,9 +436,9 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit `Authentication` section of the `/etc/ssh/sshd_config` file.
+Edit the `Authentication` section of the `/etc/ssh/sshd_config` file.
 - To configure the amount of time (in seconds) a session can be inactive before the SSH server terminates the connection, change the `ClientAliveInterval` parameter. 
-- To configure the maximum number of SSH sessions allowed per TCP connection, change the `MaxSessions` parameter.
+- To configure the maximum number of SSH sessions allowed for each TCP connection, change the `MaxSessions` parameter.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
@@ -484,10 +484,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the `/etc/security/limits.d` directory, create a file with the following lines:
+In the `/etc/security/limits.d/98-max-logins.conf` file, add the following lines:
 
 ```
-cumulus@switch:~$ sudo nano /etc/security/limits.d/user-usergroup
+cumulus@switch:~$ sudo nano /etc/security/limits.d/98-max-logins.conf
 USER1 - maxlogins 10 
 @GROUP1 - maxlogins 10
 ```

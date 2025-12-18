@@ -29,6 +29,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
 - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
 - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#lag-hash-randomizer" text="LAG hash randomizer for adaptive routing">}}
 - 802.1x on router ports with dynamic VRF assignment
 - Security features
   - {{<link url="FIPS" text="FIPS mode">}}
@@ -37,7 +38,6 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Routing convergence enhancement for EVPN
 - Parity between OpenTelemetry and gNMI (Phase 2)
 - Same user created locally and on Tacacs server, need NVUE support
-- LAG - Random Hash support for Adaptive Routing Eligible Traffic???
 - BGP conditional disaggregation for multi-planed GPUs
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Scale up number of BGP paths supported on Cumulus Linux to enable 16K GPU cluster with 128-way ECMP

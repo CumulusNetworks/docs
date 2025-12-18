@@ -35,12 +35,10 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
   - {{<link url="FIPS" text="FIPS mode">}}
   - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and for a user group">}}
   - {{<link url="RADIUS-AAA" text="Yubikey authentication over RADIUS">}}
-- Routing convergence enhancement for EVPN
 - Parity between OpenTelemetry and gNMI (Phase 2)
 - Same user created locally and on Tacacs server, need NVUE support
 - BGP conditional disaggregation for multi-planed GPUs
 - Health Event and SDK Driver Monitoring for Multi ASIC
-- Scale up number of BGP paths supported on Cumulus Linux to enable 16K GPU cluster with 128-way ECMP
 
 ## Release Considerations
 

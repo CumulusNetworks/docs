@@ -31,7 +31,7 @@ Before you perform an upgrade with ISSU, you must:
 After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}}.
 
 {{%notice note%}}
-Forwarding resources pertain to hardware TCAM/KVD resources used for MAC addresses, Layer 3 neighbors and LPM (IPv4/IPv6 unicast + multicast) entries. In half-resource mode these are reduced by 50%. Refer to {{<link url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-515/Layer-3/Routing/Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform specific details.
+Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode these are reduced by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
 {{%/notice%}}
 
 To configure the switch in half resource mode:

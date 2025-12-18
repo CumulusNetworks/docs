@@ -618,10 +618,10 @@ cumulus@switch:~$ nv set system forwarding programming log-level error
 
 Configures the system forwarding resource mode to be full or half. The default value is `full`.
 
-ISSU requires the use of warm reboot mode. You must configure the switch in half-resource mode to perform a warm reboot. When the switch operates in half-resource mode, performing a warm reboot (using the `nv action reboot system mode warm` command) results in a hitless upgrade for supported protocols and features.
+ISSU requires reboot mode. You must configure the switch in half-resource mode to perform a warm reboot. When the switch operates in half-resource mode, performing a warm reboot (using the `nv action reboot system mode warm` command) results in a hitless upgrade for supported protocols and features.
 
 {{%notice note%}}
-Forwarding resources pertain to hardware TCAM/KVD resources used for MAC addresses, Layer 3 neighbors and LPM (IPv4/IPv6 unicast + multicast) entries. In half-resource mode these are reduced by 50%.
+Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode these are reduced by 50 percent.
 {{%/notice%}}
 
 ### Version History

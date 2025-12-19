@@ -6,6 +6,10 @@ toc: 4
 ---
 Cumulus Linux provides add-on packages to enable <span class="a-tooltip">[RADIUS](## "Remote Authentication Dial-In User Service")</span> users to log into the switch with minimal configuration. There is no need to create accounts or directories on the switch. Authentication uses PAM and includes login, `ssh`, `sudo` and `su`.
 
+{{%notice note%}}
+Cumulus Linux 5.16 and later supports yubikey <span class="a-tooltip">[OTP](## "One-Time Password")</span> authentication with RADIUS. No configuration is needed on the switch. Log into the switch with the password concatenated with the YubiKey OTP (`<password> <yubikey_OTP>`).
+{{%/notice%}}
+
 ## Install the RADIUS Packages
 
 {{%notice note%}}

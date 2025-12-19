@@ -6,13 +6,11 @@ subsection: true
 toc: 1
 ---
 
-This page summarizes new features and improvements for the NetQ {{<version>}} release. 
-
-- For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.0 Release Notes" text="release notes">}}.
+This page summarizes new features and improvements for the NetQ {{<version>}} release. For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.0 Release Notes" text="release notes">}}.
 
 ## What's New in NetQ 5.0.1
 
-NetQ 5.0.1 includes bug fixes and provides updated URL paths for both the {{<link title="Access the NetQ UI" text="NetQ GUI">}} and {{<link title="API User Guide/#get-started" text="NetQ API">}}.
+- NetQ 5.0.1 includes bug fixes and provides updated URL paths for both the {{<link title="Access the NetQ UI" text="NetQ GUI">}} and {{<link title="API User Guide/#get-started" text="NetQ API">}}.
 
 ## What's New in NetQ 5.0.0
 

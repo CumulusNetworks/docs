@@ -12,13 +12,13 @@ This guide provides an overview of the NetQ API framework, including the basics 
 
 The NetQ API provides endpoints for:
 
-- **Network protocols**: BGP, EVPN, LLDP, CLAG, MSTP, Neighbors, NTP, Routes
+- **Network protocols**: BGP, EVPN, LLDP, CLAG, MSTP, neighbors, NTP, routes
 - **Virtual networks**: VLAN
-- **Services**: Services
-- **Interfaces**: Interface, Port
-- **Trace and validation**: Trace, Check
-- **Inventory and devices**: Address, Inventory, MAC Address tables, Node, Sensors
-- **Events**: Events
+- **Services**: services
+- **Interfaces**: interface, port
+- **Trace and validation**: trace, check
+- **Inventory and devices**: address, inventory, MAC address tables, node, sensors
+- **Events**: events
 
 Each endpoint has its own API. You can make requests for all data and all devices or you can filter the request by a given hostname. Each API returns a predetermined set of data as defined in the API models.
 
@@ -39,7 +39,8 @@ You can access the API gateway and execute requests from the Swagger UI or a ter
 1. Open the Swagger interface by entering one of the following in your browser's address bar:
 
     - Cloud deployments: https://api.netq.nvidia.com/swagger/
-    - On-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
+    - 5.0.1 on-premises deployments: https://\<hostname-or-ipaddr\>/netq-gui/swagger/
+    - 5.0.0 on-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
     - NVIDIA Air: https://api.air.netq.nvidia.com/swagger/
 
 2. Select *auth* from the **Select a definition** dropdown at the top right of the window. This opens the authorization API.

@@ -27,18 +27,21 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="NVUE-CLI/#command-completion" text="Restricted bash enhancements for NVUE commands include command history with arrow key navigation, context-aware tab completion, and inline help with ? to list valid options">}}
 - {{<link url="DHCP-Relays/#dhcp-relay-for-ipv4-in-an-evpn-symmetric-environment-with-mlag" text="VRF-aware DHCP relay">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
-- 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
 - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#lag-hash-randomizer" text="LAG hash randomizer for adaptive routing">}}
 - 802.1x on router ports with dynamic VRF assignment
+- Same user created locally and on Tacacs server, need NVUE support
+- BGP conditional disaggregation for multi-planed GPUs
+- Health Event and SDK Driver Monitoring for Multi ASIC
+- Telemetry
+  - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
+  - Parity between OpenTelemetry and gNMI (Phase 2)
+  - YANG Browser Tool for YANG models
 - Security features
   - {{<link url="FIPS" text="FIPS mode">}}
   - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and for a user group">}}
   - {{<link url="RADIUS-AAA" text="Yubikey authentication over RADIUS">}}
-- Parity between OpenTelemetry and gNMI (Phase 2)
-- Same user created locally and on Tacacs server, need NVUE support
-- BGP conditional disaggregation for multi-planed GPUs
-- Health Event and SDK Driver Monitoring for Multi ASIC
+  - Audit records for loading and unloading dynamic kernel modules, establishing the source of events and when (date and time) the events occurred, and the identity of any individual or process associated with an event
 
 ## Release Considerations
 

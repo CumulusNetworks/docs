@@ -1,4 +1,72 @@
 <tables>
+<table name="Open Issues in 5.0.1">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+<th> Fixed </th>
+</tr>
+<tr>
+<td>4687477</td>
+<td>When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4687241</td>
+<td>The activity log in the UI might display multiple entries with “unknown” or “anonymous” usernames. </td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4683830</td>
+<td>The Cable Validation Tool might fail to load in the NetQ UI. To work around this issue,  log out of NetQ and then log back in.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4681581</td>
+<td>The {{netq bootstrap reset purge-db}} command might take up to 60 minutes to complete on Base Command Manager scale deployments.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4668341</td>
+<td>When you a create an LDAP server configuration, the NetQ UI incorrectly allows you to modify the default server ports. Only the standard ports (389 for insecure and 636 for secure) are permitted.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4573427</td>
+<td>The link health view utilization chart might display incorrect values for the top 5 links when multiple links share the same value.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4399074</td>
+<td>When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4100882</td>
+<td>When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export.</td>
+<td>4.12.0-4.15.1, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+</table>
+<table name="Fixed Issues in 5.0.1">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+</tr>
+<tr>
+<td>4784336</td>
+<td>The NetQ for NVLink deployment option is not supported in air-gapped environments.</td>
+<td>5.0.0</td>
+</tr>
+</table>
 <table name="Open Issues in 5.0.0">
 <tr>
 <th> Issue ID </th>

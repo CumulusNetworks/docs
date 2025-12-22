@@ -223,7 +223,7 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>2875296</td>
 <td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
 To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.3.3</td>
+<td>4.2.1-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -297,7 +297,7 @@ Reboot the affected switches.</td>
 <tr>
 <td>2736260</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.3.3</td>
+<td>3.7.12-3.7.15, 4.2.1-4.3.4</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -398,25 +398,25 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2682780</td>
 <td>Adding a route map configuration after a MAC access list configuration line causes the route map configuration to be applied incorrectly.
 To work around this issue, add the MAC access list configuration to the end of the {{/etc/frr/frr.conf}} file.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2654715</td>
 <td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.3</td>
+<td>3.7.15-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2614016</td>
 <td>The switch firmware incorrectly identifies Lenovo LR4 transceivers (part number 00YD278) and does not set the laser levels properly, which can prevent the link from coming up or might cause the transceiver to be identified as a 1G module.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -440,13 +440,13 @@ To work around this issue, run the {{/usr/bin/clagctl verifyvlans}} command or t
 <tr>
 <td>2556764</td>
 <td>In a configuration with both traditional and VLAN-aware bridges, the VLAN membership check on a VLAN-aware bridge does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.3</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.4</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.3.3</td>
+<td>4.0.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -625,7 +625,7 @@ To work around this issue, use Mellanox ethernet modules with the Mellanox SN342
 <tr>
 <td>2554798</td>
 <td>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -760,7 +760,7 @@ To work around this issue, use both PSUs.</td>
 <tr>
 <td>2554299</td>
 <td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -1226,7 +1226,7 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <tr>
 <td>2550601</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.3</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.4</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -1350,7 +1350,7 @@ To work around this issue, manually edit the {{etc/frr/frr.conf}} file to define
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -1591,7 +1591,7 @@ To work around this issue, run the {{net add time ntp server &lt;server&gt; ibur
 <tr>
 <td>2545239</td>
 <td>On the Mellanox switch with the Spectrum-2 ASIC, Precision Time Protocol (PTP) is not currently supported. </td>
-<td>4.0.0-4.3.3</td>
+<td>4.0.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -2608,25 +2608,25 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2682780</td>
 <td>Adding a route map configuration after a MAC access list configuration line causes the route map configuration to be applied incorrectly.
 To work around this issue, add the MAC access list configuration to the end of the {{/etc/frr/frr.conf}} file.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2654715</td>
 <td>The {{cl-acltool}} takes a significant amount of time to run, which can slow down automation scripts.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.3</td>
+<td>3.7.15-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2614016</td>
 <td>The switch firmware incorrectly identifies Lenovo LR4 transceivers (part number 00YD278) and does not set the laser levels properly, which can prevent the link from coming up or might cause the transceiver to be identified as a 1G module.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -2639,13 +2639,13 @@ To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/
 <tr>
 <td>2556764</td>
 <td>In a configuration with both traditional and VLAN-aware bridges, the VLAN membership check on a VLAN-aware bridge does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.3</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.4</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.3.3</td>
+<td>4.0.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -2715,7 +2715,7 @@ To work around this issue, either shut down one side of the MLAG bond or prune o
 <tr>
 <td>2554798</td>
 <td>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -2803,7 +2803,7 @@ To work around this issue, ensure that the peer link trunks all VLANs that exist
 <tr>
 <td>2554299</td>
 <td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -3336,7 +3336,7 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <tr>
 <td>2550601</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.3</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.4</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -3491,7 +3491,7 @@ To work around this issue, manually edit the {{etc/frr/frr.conf}} file to define
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -3744,7 +3744,7 @@ To work around this issue, run the {{net add time ntp server &lt;server&gt; ibur
 <tr>
 <td>2545239</td>
 <td>On the Mellanox switch with the Spectrum-2 ASIC, Precision Time Protocol (PTP) is not currently supported. </td>
-<td>4.0.0-4.3.3</td>
+<td>4.0.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>

@@ -428,7 +428,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.3</td>
+<td>3.7.15-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -796,7 +796,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -2503,7 +2503,7 @@ sudo systemctl restart clagd.service</td>
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.3</td>
+<td>3.7.15-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -2889,7 +2889,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -4697,7 +4697,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -6373,7 +6373,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -8463,7 +8463,7 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -10511,7 +10511,7 @@ To work around this issue, revert the configuration change.</td>
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -12151,7 +12151,7 @@ To work around this issue, revert the configuration change.</td>
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>

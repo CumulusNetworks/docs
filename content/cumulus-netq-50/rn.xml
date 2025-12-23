@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4786996</td>
+<td>To use lifecycle management in NMC or BCM environments, you must edit the master node IP address in the configuration manager to match the cluster’s head node IP address. Use the &lt;code&gt;kubectl edit cm -n netq-eth netq-master-node-ip&lt;/code&gt; command to edit the configuration. In the configuration file, change the &lt;code&gt;data/master_node&lt;/code&gt; field to the cluster’s head node IP address. </td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4687477</td>
 <td>When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters.</td>
 <td>5.0.0-5.0.1</td>
@@ -73,6 +79,12 @@
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4786996</td>
+<td>To use lifecycle management in NMC or BCM environments, you must edit the master node IP address in the configuration manager to match the cluster’s head node IP address. Use the &lt;code&gt;kubectl edit cm -n netq-eth netq-master-node-ip&lt;/code&gt; command to edit the configuration. In the configuration file, change the &lt;code&gt;data/master_node&lt;/code&gt; field to the cluster’s head node IP address. </td>
+<td>5.0.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4784336</td>

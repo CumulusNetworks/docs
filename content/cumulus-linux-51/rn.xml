@@ -493,22 +493,16 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td>5.2.0-5.15.1</td>
 </tr>
 <tr>
-<td>3123556</td>
+<td>3120423</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
-<td>3.7.15-4.3.0, 4.4.0-4.4.5, 5.0.0-5.15.1</td>
-<td>4.3.1</td>
+<td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
+<td>4.3.1, 5.2.0-5.15.1</td>
 </tr>
 <tr>
 <td>3119673</td>
 <td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
 <td>5.0.0-5.1.0</td>
 <td>5.2.0-5.15.1</td>
-</tr>
-<tr>
-<td>3119615</td>
-<td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.15.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3117340</td>
@@ -621,6 +615,12 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 </td>
 <td>5.0.1-5.3.1</td>
 <td>5.4.0-5.15.1</td>
+</tr>
+<tr>
+<td>3072674</td>
+<td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.15.1</td>
 </tr>
 <tr>
 <td>3071652</td>
@@ -784,10 +784,10 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 <td>5.2.0-5.15.1</td>
 </tr>
 <tr>
-<td>3021693</td>
+<td>3020254</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
-<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.15.1</td>
-<td>4.3.1, 4.4.4-4.4.5</td>
+<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.15.1</td>
 </tr>
 <tr>
 <td>3016882</td>
@@ -1220,7 +1220,7 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 
 thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 </td>
-<td>4.3.0-4.3.3</td>
+<td>4.3.0-4.3.4</td>
 </tr>
 <tr>
 <td>2815646</td>

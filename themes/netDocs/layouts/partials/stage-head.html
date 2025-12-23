@@ -1,0 +1,127 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{ if .Page.GitInfo }}
+<meta name="nv-pub-date" content="{{ .Page.GitInfo.AuthorDate.Format "2006-01-02T15:04:05.000Z" }}">
+{{ end }}
+{{ if .Page.Params.version }}
+<meta name="docs_version" content="{{ .Page.Params.version }}">
+{{ end }}
+{{ if .Page.Params.keywords }}
+<meta name="keywords" content="{{ .Page.Params.keywords }}">
+{{ end }}
+{{ if .Page.Params.description }}
+<meta name="description" content="{{ .Page.Params.description }}">
+{{ end }}
+<meta name="products" content={{.Page.Params.product | htmlUnescape }}>
+{{$prodVersion := print .Page.Params.product " " (.Page.Params.version | default "") }}
+<title>{{ .Page.Title }} | {{ $prodVersion | default .Site.Title -}}</title>
+
+<!-- Fonts for the theme -->
+<link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+
+{{ $styles := resources.Get "book.scss" | resources.ExecuteAsTemplate "book.scss" . | toCSS | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $styles.Permalink }}">
+
+<!-- Add noindex / search visibility to all pages on stage servers. Only included in this file, stage-head.html and moved to overwrite theme head.html during deploy of non-master branches. See /amplify.yml -->
+<meta content="hidden" name="search_visibility">
+<meta content="noindex" name="robots">
+
+<!-- The PDF page has a custom CSS sheet to control PDF output formatting -->
+{{if eq .Params.layout "pdf"}}
+    {{ partial "pdf-head" . }}
+{{ end }}
+
+<!-- Favicon and font-awesome -->
+<link rel="icon" href="{{ "icons/favicon.png" | absURL }}" type="image/x-icon">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+{{ "<!--" | safeHTML }}
+    Made with Book Theme
+    https://github.com/alex-shpak/hugo-book
+{{ "-->" | safeHTML }}
+
+<!-- clipboard.js and other js support -->
+{{if ne .Params.layout "pdf"}}
+    {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
+    <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    {{ $jsAir := resources.Get "js/air.js" }}
+    <script type="application/javascript" src="{{ $jsAir.Permalink }}"></script>
+{{ end }}
+
+{{ if eq .Page.Params.product "NVIDIA Air" }}
+{{ $jsNetguru := resources.Get "js/netguru.js" }}
+
+<script src="{{ $jsNetguru.Permalink }}" id="chainlit-script"></script>
+<script>
+window.mountChainlitWidget({
+    chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
+    button: {
+    position: {
+        bottom: 1,      // Distance from bottom of the screen (rem)
+        right: 1,        // Distance from right edge (rem)      },
+        size: 3           // Diameter of the floating button (rem)    },
+    },
+    popup: {
+        normalWidth: 300,     // Default width in pixels
+        expandedWidth: 800,   // Width when expanded
+        height: 800           // Height of the popup in pixels    }
+    }
+}});
+</script>
+{{ end }}
+
+{{ if eq .Page.Params.product "Cumulus Linux" }}
+{{ $jsNetguru := resources.Get "js/netguru.js" }}
+
+<script src="{{ $jsNetguru.Permalink }}" id="chainlit-script"></script>
+<script>
+window.mountChainlitWidget({
+    chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
+    button: {
+    position: {
+        bottom: 1,      // Distance from bottom of the screen (rem)
+        right: 1,        // Distance from right edge (rem)      },
+        size: 3           // Diameter of the floating button (rem)    },
+    },
+    popup: {
+        normalWidth: 300,     // Default width in pixels
+        expandedWidth: 800,   // Width when expanded
+        height: 800           // Height of the popup in pixels    }
+    }
+}});
+</script>
+{{ end }}
+
+
+{{ if eq .Page.Params.product "Cumulus NetQ" }}
+
+{{ $jsNetguru := resources.Get "js/netguru.js" }}
+
+<script src="{{ $jsNetguru.Permalink }}" id="chainlit-script"></script>
+<script>
+window.mountChainlitWidget({
+    chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
+    button: {
+    position: {
+        bottom: 1,      // Distance from bottom of the screen (rem)
+        right: 1,        // Distance from right edge (rem)      },
+        size: 3           // Diameter of the floating button (rem)    },
+    },
+    popup: {
+        normalWidth: 300,     // Default width in pixels
+        expandedWidth: 800,   // Width when expanded
+        height: 800           // Height of the popup in pixels    }
+    }
+}});
+</script>
+{{ end }}   
+
+
+<!-- Canonical link element to prioritize search indexing of current version -->
+{{ if .Page.Params.old }}
+{{ $prod := (index (sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc") 0).Section }}
+<link rel="canonical" href=https://docs.nvidia.com/{{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }} />
+    {{else}}
+    {{ $prod := (index (sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc") 0).Section }}
+    <link rel="canonical" href=https://docs.nvidia.com/{{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }} />
+{{ end }}

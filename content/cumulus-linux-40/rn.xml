@@ -234,19 +234,19 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.3</td>
+<td>3.7.15-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2556764</td>
 <td>In a configuration with both traditional and VLAN-aware bridges, the VLAN membership check on a VLAN-aware bridge does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.3</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.4</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.3.3</td>
+<td>4.0.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -600,7 +600,7 @@ To work around this issue, either do not set {{acl.non_atomic_update_mode = TRUE
 <tr>
 <td>2550601</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.3</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.4</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -718,7 +718,7 @@ To work around this issue, when you manually configure the {{rd}} or {{route-tar
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -1511,7 +1511,7 @@ To avoid this issue, wait 15 seconds before insertion and before removal of the 
 <tr>
 <td>2545239</td>
 <td>On the Mellanox switch with the Spectrum-2 ASIC, Precision Time Protocol (PTP) is not currently supported. </td>
-<td>4.0.0-4.3.3</td>
+<td>4.0.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -2604,19 +2604,19 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.3</td>
+<td>3.7.15-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2556764</td>
 <td>In a configuration with both traditional and VLAN-aware bridges, the VLAN membership check on a VLAN-aware bridge does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.3</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.4</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.3.3</td>
+<td>4.0.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -2970,7 +2970,7 @@ To work around this issue, either do not set {{acl.non_atomic_update_mode = TRUE
 <tr>
 <td>2550601</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.3</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.4</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -3088,7 +3088,7 @@ To work around this issue, when you manually configure the {{rd}} or {{route-tar
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -3881,7 +3881,7 @@ To avoid this issue, wait 15 seconds before insertion and before removal of the 
 <tr>
 <td>2545239</td>
 <td>On the Mellanox switch with the Spectrum-2 ASIC, Precision Time Protocol (PTP) is not currently supported. </td>
-<td>4.0.0-4.3.3</td>
+<td>4.0.0-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>

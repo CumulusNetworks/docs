@@ -1050,7 +1050,7 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 </tr>
 <tr>
 <td>4722449</td>
-<td>NVUE uses a git repository to store configurations, which over time, can grow very large, sometimes filling up all available disk space on the system. When this happens, NVUE commands become very slow or fail entirely due to lack of disk space. In severe cases, NVUE stops working completely. To work around this issue, restart the {{nvued}} service to trigger a deep cleanup of the git repository.</td>
+<td>NVUE uses a git repository to store configurations, which over time, can grow very large, sometimes filling up all available disk space on the system. When this happens, NVUE commands become very slow or fail entirely due to lack of disk space. In severe cases, NVUE stops working completely. To work around this issue, restart the nvued service to trigger a deep cleanup of the git repository.</td>
 <td>5.14.0-5.15.1</td>
 <td></td>
 </tr>

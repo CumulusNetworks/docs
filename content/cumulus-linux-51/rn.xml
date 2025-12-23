@@ -1220,7 +1220,7 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 
 thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 </td>
-<td>4.3.0-4.3.3</td>
+<td>4.3.0-4.3.4</td>
 </tr>
 <tr>
 <td>2815646</td>

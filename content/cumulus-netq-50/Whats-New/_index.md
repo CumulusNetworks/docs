@@ -6,11 +6,13 @@ subsection: true
 toc: 1
 ---
 
-This page summarizes new features and improvements for the NetQ {{<version>}} release. 
+This page summarizes new features and improvements for the NetQ {{<version>}} release. For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.0 Release Notes" text="release notes">}}.
 
-- For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.0 Release Notes" text="release notes">}}.
+## What's New in NetQ 5.0.1
 
-## What's New in NetQ 5.0
+- NetQ 5.0.1 includes bug fixes and provides updated URL paths for both the {{<link title="Access the NetQ UI" text="NetQ GUI">}} and {{<link title="API User Guide/#get-started" text="NetQ API">}}.
+
+## What's New in NetQ 5.0.0
 
 - You can now {{<link title="NVLink Management" text="monitor NVLink deployments">}} with NetQ. Use the REST API to manage NVLink network configurations and resources, and allocate GPUs for AI workloads. This release introduces {{<link title="Install the NetQ System" text="new deployment options">}} for Ethernet-only environments or hybrid NVLink-Ethernet networks. Previously called NMX-M, this feature retains all existing functionality and introduces new workflows, such as lifecycle management for NVOS switches.
 - NetQ NVLink supports Arm-based deployments that you can install using NVIDIA Mission Control.

@@ -104,6 +104,7 @@ The syntax for the following commands has changed in Cumulus Linux 5.15.
 | `nv set service ntp <vrf-id> server <server-id>` | `nv set system ntp server <server-id>` |
 | `nv set service ntp <vrf-id> server <server-id> iburst (on\|off)` | `nv set system ntp server <server-id> iburst (enabled\|disabled)` |
 | `nv set service ntp <vrf-id> listen <interface-name>` | `nv set system ntp listen <interface-id>` |
+| `nv set service ntp vrf mgmt` | `nv set system ntp vrf mgmt` |
 | `nv show service ntp` | `nv show system ntp` |
 | `nv show service ntp <vrf-id> server`| `nv show system ntp server` |
 | `nv show service ntp <vrf-id> server <server-id>` | `nv show system ntp server <server-id>` |

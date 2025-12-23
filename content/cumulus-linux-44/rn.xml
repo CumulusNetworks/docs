@@ -13,18 +13,6 @@
 <td>5.15.0-5.15.1</td>
 </tr>
 <tr>
-<td>4501643</td>
-<td>Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a {{switchd}} service crash.</td>
-<td>4.3.3-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>4472516</td>
-<td>When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge.</td>
-<td>4.3.3-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>4143345</td>
 <td>On the Trident3 switch, if you use NCLU to configure BGP neighbor shutdown, NCLU stops responding when you include more than 200 neighbors per peer group. If you do &lt;b&gt;not&lt;/b&gt; use NCLU to configure BGP neighbor shutdown, you can configure a maximum of 300 neighbors per peer group. </td>
 <td>4.3.0-4.4.5</td>
@@ -2112,18 +2100,6 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
 <td>5.15.0-5.15.1</td>
-</tr>
-<tr>
-<td>4501643</td>
-<td>Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a {{switchd}} service crash.</td>
-<td>4.3.3-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>4472516</td>
-<td>When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge.</td>
-<td>4.3.3-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>4143345</td>
@@ -4352,18 +4328,6 @@ resq_pp: EXCEPTION=invalid literal for int() with base 10: 'v4-lpm-heavy'
 <td>5.15.0-5.15.1</td>
 </tr>
 <tr>
-<td>4501643</td>
-<td>Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a {{switchd}} service crash.</td>
-<td>4.3.3-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>4472516</td>
-<td>When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge.</td>
-<td>4.3.3-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>4143345</td>
 <td>On the Trident3 switch, if you use NCLU to configure BGP neighbor shutdown, NCLU stops responding when you include more than 200 neighbors per peer group. If you do &lt;b&gt;not&lt;/b&gt; use NCLU to configure BGP neighbor shutdown, you can configure a maximum of 300 neighbors per peer group. </td>
 <td>4.3.0-4.4.5</td>
@@ -6527,18 +6491,6 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
 <td>5.15.0-5.15.1</td>
-</tr>
-<tr>
-<td>4501643</td>
-<td>Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a {{switchd}} service crash.</td>
-<td>4.3.3-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>4472516</td>
-<td>When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge.</td>
-<td>4.3.3-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>4143345</td>
@@ -8748,18 +8700,6 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4501643</td>
-<td>Sometimes, the switch does not clean up meta data in double tagged interface VLAN translation, which results in duplicate entries and a {{switchd}} service crash.</td>
-<td>4.3.3-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>4472516</td>
-<td>When you add two double tagged ports to a bridge with the same base interface (for example, swp2.11.1501 and swp2.33.1501), only one of the tagged ports egresses BUM traffic received on the associated bridge.</td>
-<td>4.3.3-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>4143345</td>
 <td>On the Trident3 switch, if you use NCLU to configure BGP neighbor shutdown, NCLU stops responding when you include more than 200 neighbors per peer group. If you do &lt;b&gt;not&lt;/b&gt; use NCLU to configure BGP neighbor shutdown, you can configure a maximum of 300 neighbors per peer group. </td>
 <td>4.3.0-4.4.5</td>
@@ -10822,7 +10762,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 
 thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 </td>
-<td>4.3.0-4.3.3</td>
+<td>4.3.0-4.3.4</td>
 </tr>
 <tr>
 <td>2734173</td>
@@ -10842,7 +10782,7 @@ sx_sdk: LAG: Can't add port (0x00012400) to lag. Port has vports configured for 
 switchd[4529]: hal_mlx_bond.c:582 ERR bond32 member swp32 add failed: Parameter Error
 
 To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-4.3.3</td>
+<td>4.3.0-4.3.4</td>
 </tr>
 <tr>
 <td>2684418</td>
@@ -10853,7 +10793,7 @@ To work around this issue, restart {{switchd}}.</td>
 <td>2682780</td>
 <td>Adding a route map configuration after a MAC access list configuration line causes the route map configuration to be applied incorrectly.
 To work around this issue, add the MAC access list configuration to the end of the {{/etc/frr/frr.conf}} file.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 </tr>
 <tr>
 <td>2679936</td>
@@ -10863,18 +10803,18 @@ To work around this issue, add the MAC access list configuration to the end of t
 <tr>
 <td>2669873</td>
 <td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.3.3</td>
+<td>4.3.0-4.3.4</td>
 </tr>
 <tr>
 <td>2669073</td>
 <td>On Spectrum, Spectrum-2, and Spectrum-3 switches, the {{l1-show}} command shows the wrong data when the MST service is stopped.
 To work around this issue, start the MST service with the {{sudo mst start}} command.</td>
-<td>4.3.0-4.3.3</td>
+<td>4.3.0-4.3.4</td>
 </tr>
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.3</td>
+<td>3.7.15-4.3.4</td>
 </tr>
 <tr>
 <td>2648587</td>
@@ -10905,7 +10845,7 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <tr>
 <td>2632379</td>
 <td>When you upgrade the switch with {{apt-get upgrade}}, the {{kexec-tools}} package is not installed, which causes the Smart System Manager fast restart mode to work incorrectly.</td>
-<td>4.3.0-4.3.3</td>
+<td>4.3.0-4.3.4</td>
 </tr>
 <tr>
 <td>2628693</td>
@@ -10920,12 +10860,12 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <tr>
 <td>2614016</td>
 <td>The switch firmware incorrectly identifies Lenovo LR4 transceivers (part number 00YD278) and does not set the laser levels properly, which can prevent the link from coming up or might cause the transceiver to be identified as a 1G module.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 </tr>
 <tr>
 <td>2582639</td>
 <td>On NVIDIA Spectrum switches, BUM traffic might be dropped during VXLAN decapsulation in an EVPN multihoming environment after multiple PIM uplink interfaces flap.</td>
-<td>4.3.0-4.3.3</td>
+<td>4.3.0-4.3.4</td>
 </tr>
 <tr>
 <td>2578845</td>
@@ -10935,7 +10875,7 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <tr>
 <td>2577499</td>
 <td>QSFP+ 40G optics do not work on Spectrum platforms.</td>
-<td>4.3.0-4.3.3</td>
+<td>4.3.0-4.3.4</td>
 </tr>
 <tr>
 <td>2556814</td>
@@ -10961,22 +10901,22 @@ To work around this issue, disable ARP suppression.</td>
 <tr>
 <td>2554299</td>
 <td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
-<td>4.2.0-4.3.3</td>
+<td>4.2.0-4.3.4</td>
 </tr>
 <tr>
 <td>2550704</td>
 <td>On the Mellanox SN3420 switch, 25G SR optics only link up in force mode.</td>
-<td>4.3.0-4.3.3</td>
+<td>4.3.0-4.3.4</td>
 </tr>
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.3</td>
+<td>3.7.11-4.3.4</td>
 </tr>
 <tr>
 <td>2545239</td>
 <td>On the Mellanox switch with the Spectrum-2 ASIC, Precision Time Protocol (PTP) is not currently supported. </td>
-<td>4.0.0-4.3.3</td>
+<td>4.0.0-4.3.4</td>
 </tr>
 </table>
 </tables>

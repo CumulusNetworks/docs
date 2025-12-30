@@ -35,7 +35,7 @@ The following example configures a channel to monitor buffer packet drops and a 
 
 ```
 cumulus@switch:~$ nv set system wjh channel buffer trigger buffer
-cumulus@switch:~$ nv set system wjh channel acl trigger acl
+cumulus@switch:~$ nv set system wjh channel acl1 trigger acl
 cumulus@switch:~$ nv config apply
 ```
 
@@ -100,7 +100,7 @@ cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
             "buffer": {
                 "drop_category_list": ["buffer"]
             },
-            "acl": {
+            "acl1": {
                 "drop_category_list": ["acl"]
             }
         }

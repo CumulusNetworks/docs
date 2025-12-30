@@ -16,6 +16,10 @@ WJH runs in Docker. If you exhaust the Docker ten percent global limit of overal
 
 You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories (layer 1, layer 2, layer 3, tunnel, buffer and ACL) you want to monitor.
 
+{{%notice note%}}
+A channel name must be between 4 and 16 characters long.
+{{%/notice%}}
+
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
 

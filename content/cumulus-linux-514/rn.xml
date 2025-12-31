@@ -7,6 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4804084</td>
+<td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
+{{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
+interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
+interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4783824</td>
+<td>RoCE ingress reserved pools do not display correct values for ports that are not operationally UP. Switch ports that were never operational or not operational after setting RoCE mode do not have RoCE reserved pool buffers allocated but the {{nv show interface &lt;interface&gt; qos roce status}} command displays an invalid buffer size.</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4771875</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
 <td>5.11.1-5.15.1</td>
@@ -22,6 +37,12 @@
 <td>4771785</td>
 <td>NVUE drop counters and ethtool output do not show the packets discarded because the destination MAC address does not match the router MAC address.</td>
 <td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4771521</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -86,6 +107,15 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4714618</td>
+<td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
+{{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
+interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
+interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>

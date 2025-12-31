@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4771521</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
@@ -935,6 +941,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4771521</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4714845</td>

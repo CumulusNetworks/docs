@@ -784,7 +784,11 @@ cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/
 
 #### Show Control Plane Policer Configuration and Statistics
 
-To show the control plane policer configuration and statistics, run the NVUE `nv show system control-plane policer --view=brief` command:
+To show the control plane policer configuration and statistics, run the NVUE `nv show system control-plane policer` command:
+
+{{%notice note%}}
+The NVUE `nv show system control-plane policer` command show the current hardware snapshot values. To see native hardware data counters from the time the switch booted or `switchd` restarted, use the `native` option.
+{{%/notice%}}
 
 ```
 cumulus@switch:~$ nv show system control-plane policer --view=brief
@@ -817,7 +821,7 @@ unknown-ipmc   1000         10           0            0             0
 ...
 ```
 
-In the command output:
+In the above command output:
 - `Policer` is the name of the control plane rule that describes the traffic to match.
 - `Policer CIR` (Committed Information Rate) is the maximum number of packets per second for this rule allowed to reach the CPU.
 - `Policer CBS` (Committed Burst Size) is the maximum burst of packets above the CIR for this rule allowed to reach the CPU. In units of 2 raised to this power packets. For example, a CBS value of 8 means 2^8 = 256 packets.
@@ -927,19 +931,19 @@ copp.unknown_ipmc.burst = 1000
 
 {{< /expand >}}
 
-To show control plane policer configuration and statistics in the same format as the vtysh command output, run the `nv show system control-plane policer native` command:
+To show control plane policer configuration and native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer native` command:
 
 ```
 cumulus@switch:~$ nv show system control-plane policer native
 ```
 
-To show configuration and statistics for a specific control plane policer in the same format as the vtysh command output, run the `nv show system control-plane policer <policer-id> native` command:
+To show configuration and native hardware data counters for a specific control plane policer from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> native` command:
 
 ```
 cumulus@switch:~$ nv show system control-plane policer bfd native
 ```
 
-To show only the control plane policer statistics in the same format as the vtysh command output, run the `nv show system control-plane policer <policer-id> statistics native` command:
+To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command:
 
 ```
 cumulus@switch:~$ nv show system control-plane policer bfd statistics native

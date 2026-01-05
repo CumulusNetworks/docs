@@ -29,6 +29,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
 - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#lag-hash-randomizer" text="LAG hash randomizer for adaptive routing">}}
+- {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx Squelch Control">}}
 - 802.1x on router ports with dynamic VRF assignment
 - Same user created locally and on Tacacs server, need NVUE support
 - BGP conditional disaggregation for multi-planed GPUs
@@ -40,7 +41,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Security features
   - {{<link url="FIPS" text="FIPS mode">}}
   - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and for a user group">}}
-  - {{<link url="RADIUS-AAA" text="Yubikey authentication over RADIUS">}}
+  - {{<link url="RADIUS-AAA/#required-radius-client-configuration" text="Yubikey authentication over RADIUS">}}
   - Audit records for loading and unloading dynamic kernel modules, establishing the source of events and when (date and time) the events occurred, and the identity of any individual or process associated with an event
 
 ## Release Considerations

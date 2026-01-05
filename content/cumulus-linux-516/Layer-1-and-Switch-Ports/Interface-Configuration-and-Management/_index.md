@@ -756,6 +756,65 @@ cumulus@switch:~$ nv show interface swp1 link flap-protection
 state   disabled
 ```
 
+## Tx Squelch Control
+
+Tx squelch control is a PHY‑level feature that controls if the local port continues transmitting when the remote side is logically down (for example, when the remote side is in a fault state or needs to restart auto-negotiation).
+
+{{%notice note%}}
+- Switches with Spectrum-4 and later support Tx squelch control.
+- Cumulus Linux supports Tx squelch control on physical ports only (including breakout ports).
+- Enabling or disabling Tx squelch control is disruptive on admin UP ports. The switch performs a port admin‑status down, then port admin‑status up for the changes to take effect.
+- Enabling or disabling Tx squelch control is not disruptive on admin DOWN ports. When you enable or disable Tx squelch control on an admin DOWN port, the new setting becomes effective the next time the port is admin UP.
+{{%/notice%}}
+
+{{< tabs "TabID773 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable Tx squelch control, run the `nv set interface <interface> link tx-squelch on` command. The default setting is `auto`, which enables the switch to decide the correct configuration.
+
+```
+cumulus@switch:~$ nv set interface swp1 link tx-squelch on 
+cumulus@switch:~$ nv config apply
+```
+
+To disable Tx squelch control, run the `nv set interface <interface> link tx-squelch off` command.
+
+To show if Tx squelch control is enabled, run the `nv show interface <interface> link` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 link
+                         operational              applied
+-----------------------  -----------------------  -------
+admin-status             up                              
+oper-status              up                              
+oper-status-last-change  2024/10/11 19:12:16.339         
+protodown                disabled                        
+auto-negotiate           disabled                 enabled
+duplex                   full                     full   
+speed                    1G                       auto   
+mac-address              48:b0:2d:fa:a1:14               
+fec                                               auto   
+mtu                      9000                     9216   
+fast-linkup              disabled
+tx-squelch               on                       on   
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To enable Tx squelch control, edit the `/etc/cumulus/switchd.conf` file, and set the `interface.swp61s0.tx_squelch` parameter to `on`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+interface.swp61s0.tx_squelch = on 
+```
+
+To disable Tx squelch control, set the `interface.swp61s0.tx_squelch` parameter to `off`.
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Source Interface File Snippets
 
 Sourcing interface files helps organize and manage the `/etc/network/interfaces` file. For example:

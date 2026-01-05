@@ -6,10 +6,6 @@ toc: 4
 ---
 Cumulus Linux provides add-on packages to enable <span class="a-tooltip">[RADIUS](## "Remote Authentication Dial-In User Service")</span> users to log into the switch with minimal configuration. There is no need to create accounts or directories on the switch. Authentication uses PAM and includes login, `ssh`, `sudo` and `su`.
 
-{{%notice note%}}
-Cumulus Linux 5.16 and later supports yubikey <span class="a-tooltip">[OTP](## "One-Time Password")</span> authentication with RADIUS. No configuration is needed on the switch. Log into the switch with the password concatenated with the YubiKey OTP (`<password> <yubikey_OTP>`).
-{{%/notice%}}
-
 ## Install the RADIUS Packages
 
 {{%notice note%}}
@@ -43,7 +39,9 @@ The `nvshow` group includes the `radius_user` account, and the `nvset` and `nvap
 
 After you install the required RADIUS packages, configure the following required settings on the switch (the RADIUS client):
 - Set the IP address or hostname of at least one RADIUS server. You can specify a port for the server (optional). The default port number is 1812.
-- Set the secret key shared between the RADIUS server and client. If you include special characters in the key (such as $), you must enclose the key in single quotes ('). NVUE restricts the secret key to a maximum of 32 characters.
+- Set the secret key shared between the RADIUS server and client.
+  - If you include special characters in the key (such as $), you must enclose the key in single quotes ('). NVUE restricts the secret key to a maximum of 32 characters.
+  - Cumulus Linux 5.16 and later supports yubikey <span class="a-tooltip">[OTP](## "One-Time Password")</span> authentication with RADIUS. Log into the switch then touch the YubiKey to generate the OTP. Depending on the configuration, the password field requires you to provide the password and touch the YubiKeyOTP or the touch the YubiKey without the password.
 - If you use NVUE commands to configure RADIUS, you must also:
   - Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
   - Set the priority for the authentication order for local and RADIUS users. You can set a value between 1 and 100. The lower value is the higher priority.

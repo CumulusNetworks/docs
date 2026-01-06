@@ -37,12 +37,12 @@ cumulus@switch:~$ nv set
 You can type a question mark (`?`) after a command to display required information quickly and concisely. When you type `?`, NVUE specifies the value type, range, and options with a brief description of each; for example:
 
 ```
-cumulus@switch:~$ nv set interface swp1 link state ?               
+cumulus@switch:~$ nv set interface swp1 link state?               
     down                   The interface is not ready
     up                     The interface is ready
-cumulus@switch:~$ nv set interface swp1 link mtu ?
+cumulus@switch:~$ nv set interface swp1 link mtu?
     <arg>                  Interface MTU (default:9216 | integer:552 - 9216)
-cumulus@switch:~$ nv set interface swp1 link speed ?
+cumulus@switch:~$ nv set interface swp1 link speed?
     <arg>                  Link speed (default:auto | enum:auto, 10M, 100M, 1G, 10G, 25G,
                            40G, 50G, 100G, 200G, 400G, 800G)
 ```
@@ -50,8 +50,8 @@ cumulus@switch:~$ nv set interface swp1 link speed ?
 NVUE also indicates if you need to provide specific values for the command:
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain ?
-    domain                 Domain (bridge-name)
+cumulus@switch:~$ nv set interface swp1 bridge domain?
+    domain                 Bridge domains on this interface
 ```
 
 ## Command Abbreviation

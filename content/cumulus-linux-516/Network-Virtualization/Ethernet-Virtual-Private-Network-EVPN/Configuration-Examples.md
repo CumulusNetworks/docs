@@ -216,7 +216,7 @@ cumulus@spine01:~$ nv set interface swp1-6
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine01:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine01:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
@@ -238,7 +238,7 @@ cumulus@spine02:~$ nv set interface swp1-6
 cumulus@spine02:~$ nv set router bgp autonomous-system 65199
 cumulus@spine02:~$ nv set router bgp router-id 10.10.10.102
 cumulus@spine02:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine02:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine02:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
@@ -260,7 +260,7 @@ cumulus@spine03:~$ nv set interface swp1-6
 cumulus@spine03:~$ nv set router bgp autonomous-system 65199
 cumulus@spine03:~$ nv set router bgp router-id 10.10.10.103
 cumulus@spine03:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine03:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine03:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine03:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine03:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine03:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
@@ -282,7 +282,7 @@ cumulus@spine04:~$ nv set interface swp1-6
 cumulus@spine04:~$ nv set router bgp autonomous-system 65199
 cumulus@spine04:~$ nv set router bgp router-id 10.10.10.104
 cumulus@spine04:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine04:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine04:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine04:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine04:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine04:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
@@ -3105,7 +3105,7 @@ cumulus@spine01:~$ nv set interface swp1-6
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine01:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine01:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
@@ -3127,7 +3127,7 @@ cumulus@spine02:~$ nv set interface swp1-6
 cumulus@spine02:~$ nv set router bgp autonomous-system 65199
 cumulus@spine02:~$ nv set router bgp router-id 10.10.10.102
 cumulus@spine02:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine02:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine02:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
@@ -3149,7 +3149,7 @@ cumulus@spine03:~$ nv set interface swp1-6
 cumulus@spine03:~$ nv set router bgp autonomous-system 65199
 cumulus@spine03:~$ nv set router bgp router-id 10.10.10.103
 cumulus@spine03:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine03:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine03:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine03:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine03:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine03:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
@@ -3171,7 +3171,7 @@ cumulus@spine04:~$ nv set interface swp1-6
 cumulus@spine04:~$ nv set router bgp autonomous-system 65199
 cumulus@spine04:~$ nv set router bgp router-id 10.10.10.104
 cumulus@spine04:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine04:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine04:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine04:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine04:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine04:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
@@ -6168,7 +6168,7 @@ cumulus@spine01:~$ nv set interface swp1-6
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine01:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine01:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
@@ -6190,7 +6190,7 @@ cumulus@spine02:~$ nv set interface swp1-6
 cumulus@spine02:~$ nv set router bgp autonomous-system 65199
 cumulus@spine02:~$ nv set router bgp router-id 10.10.10.102
 cumulus@spine02:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine02:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine02:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
@@ -6212,7 +6212,7 @@ cumulus@spine03:~$ nv set interface swp1-6
 cumulus@spine03:~$ nv set router bgp autonomous-system 65199
 cumulus@spine03:~$ nv set router bgp router-id 10.10.10.103
 cumulus@spine03:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine03:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine03:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine03:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine03:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine03:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
@@ -6234,7 +6234,7 @@ cumulus@spine04:~$ nv set interface swp1-6
 cumulus@spine04:~$ nv set router bgp autonomous-system 65199
 cumulus@spine04:~$ nv set router bgp router-id 10.10.10.104
 cumulus@spine04:~$ nv set vrf default router bgp peer-group underlay remote-as external
-cumulus@spine04:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@spine04:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@spine04:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay
 cumulus@spine04:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine04:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay

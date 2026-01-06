@@ -762,7 +762,7 @@ The following example allows a received AS path containing the ASN of the local 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin enabled
 cumulus@switch:~$ nv config apply
 ```
 

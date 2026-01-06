@@ -1604,8 +1604,12 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast default-route-origination
         operational  applied  pending
 ------  -----------  -------  -------
-enable                        on
+state                         enabled
 ```
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command output shows `enabled on` or `enabled off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2370,8 +2374,12 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination
         applied
 ------  -------
-enable  off
+state   disabled
 ```
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command output shows `enabled on` or `enabled off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

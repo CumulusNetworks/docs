@@ -70,7 +70,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.0.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.0.0 VMware** image<br>
+    e. For deployments using KVM, download the **NetQ SW 5.1.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.1.0 VMware** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -186,11 +186,11 @@ The HA cluster virtual IP must be:
 {{</notice>}}
 
 ```
-nvidia@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-5.0.0.tgz workers <worker-1-ip> <worker-2-ip> cluster-vip <vip-ip>
+nvidia@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz workers <worker-1-ip> <worker-2-ip> cluster-vip <vip-ip>
 ```
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class=“copy-code-img”></div>nvidia@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-5.0.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;&nbsp;&nbsp;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-5.0.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class=“copy-code-img”></div>nvidia@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;&nbsp;&nbsp;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-5.1.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -209,12 +209,12 @@ The HA cluster virtual IP must be:
 {{</notice>}}
 
 ```
-nvidia@netq-server:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-5.0.0.tgz workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/nvidia/combined_backup_20241211111316.tar
+nvidia@netq-server:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/nvidia/combined_backup_20241211111316.tar
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-5.0.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; restore /home/nvidia/combined_backup_20241211111316.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-5.0.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; restore /home/nvidia/combined_backup_20241211111316.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; restore /home/nvidia/combined_backup_20241211111316.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-5.1.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; restore /home/nvidia/combined_backup_20241211111316.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
@@ -230,8 +230,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 5.0.0
-    Installer Version: 5.0.0
+    Version: 5.1.0
+    Installer Version: 5.1.0
     Installation Type: Cluster
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC

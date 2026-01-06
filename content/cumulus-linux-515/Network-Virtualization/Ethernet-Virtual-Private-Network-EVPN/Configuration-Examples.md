@@ -37,8 +37,8 @@ cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2
 cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@leaf01:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf01:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf01:~$ nv set interface bond1-2 bridge domain br_default
@@ -57,7 +57,7 @@ cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ nv set nve vxlan mlag shared-address 10.0.1.12
 cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
-cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress enabled 
 cumulus@leaf01:~$ nv set evpn state enabled
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
@@ -82,8 +82,8 @@ cumulus@leaf02:~$ nv set interface bond1 bond member swp1
 cumulus@leaf02:~$ nv set interface bond2 bond member swp2
 cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ nv set interface bond2 bond mlag id 2
-cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@leaf02:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf02:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf02:~$ nv set interface bond1-2 bridge domain br_default
@@ -102,7 +102,7 @@ cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf02:~$ nv set nve vxlan mlag shared-address 10.0.1.12
 cumulus@leaf02:~$ nv set nve vxlan source address 10.10.10.2
-cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress enabled 
 cumulus@leaf02:~$ nv set evpn state enabled
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
@@ -127,8 +127,8 @@ cumulus@leaf03:~$ nv set interface bond1 bond member swp1
 cumulus@leaf03:~$ nv set interface bond2 bond member swp2
 cumulus@leaf03:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf03:~$ nv set interface bond2 bond mlag id 2
-cumulus@leaf03:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf03:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@leaf03:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf03:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@leaf03:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf03:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf03:~$ nv set interface bond1-2 bridge domain br_default
@@ -147,7 +147,7 @@ cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf03:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf03:~$ nv set nve vxlan mlag shared-address 10.0.1.34
 cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
-cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@leaf03:~$ nv set evpn state enabled
 cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
@@ -172,8 +172,8 @@ cumulus@leaf04:~$ nv set interface bond1 bond member swp1
 cumulus@leaf04:~$ nv set interface bond2 bond member swp2
 cumulus@leaf04:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf04:~$ nv set interface bond2 bond mlag id 2
-cumulus@leaf04:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf04:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@leaf04:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf04:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@leaf04:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf04:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf04:~$ nv set interface bond1-2 bridge domain br_default
@@ -192,7 +192,7 @@ cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf04:~$ nv set nve vxlan mlag shared-address 10.0.1.34
 cumulus@leaf04:~$ nv set nve vxlan source address 10.10.10.4
-cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@leaf04:~$ nv set evpn state enabled
 cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
@@ -303,7 +303,7 @@ cumulus@border01:~$ nv set interface lo ip address 10.10.10.63/32
 cumulus@border01:~$ nv set interface swp3,swp49-54
 cumulus@border01:~$ nv set interface bond3 bond member swp3
 cumulus@border01:~$ nv set interface bond3 bond mlag id 1
-cumulus@border01:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@border01:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@border01:~$ nv set interface bond3 link mtu 9000
 cumulus@border01:~$ nv set interface bond3 bridge domain br_default
 cumulus@border01:~$ nv set interface peerlink bond member swp49-50
@@ -319,7 +319,7 @@ cumulus@border01:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@border01:~$ nv set interface bond3 bridge domain br_default vlan 10,20
 cumulus@border01:~$ nv set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border01:~$ nv set nve vxlan source address 10.10.10.63
-cumulus@border01:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@border01:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@border01:~$ nv set evpn state enabled
 cumulus@border01:~$ nv set router bgp autonomous-system 65253
 cumulus@border01:~$ nv set router bgp router-id 10.10.10.63
@@ -342,7 +342,7 @@ cumulus@border02:~$ nv set interface lo ip address 10.10.10.64/32
 cumulus@border02:~$ nv set interface swp3,swp49-54
 cumulus@border02:~$ nv set interface bond3 bond member swp3
 cumulus@border02:~$ nv set interface bond3 bond mlag id 1
-cumulus@border02:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@border02:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@border02:~$ nv set interface bond3 link mtu 9000
 cumulus@border02:~$ nv set interface bond3 bridge domain br_default
 cumulus@border02:~$ nv set interface peerlink bond member swp49-50
@@ -358,7 +358,7 @@ cumulus@border02:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@border02:~$ nv set interface bond3 bridge domain br_default vlan 10,20
 cumulus@border02:~$ nv set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border02:~$ nv set nve vxlan source address 10.10.10.64
-cumulus@border02:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@border02:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@border02:~$ nv set evpn state enabled
 cumulus@border02:~$ nv set router bgp autonomous-system 65254
 cumulus@border02:~$ nv set router bgp router-id 10.10.10.64
@@ -2927,8 +2927,8 @@ cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2
 cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
-cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@leaf01:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf01:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf01:~$ nv set interface bond1-2 bridge domain br_default
@@ -2947,7 +2947,7 @@ cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ nv set nve vxlan mlag shared-address 10.0.1.12
 cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
-cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@leaf01:~$ nv set evpn state enabled
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
@@ -2972,8 +2972,8 @@ cumulus@leaf02:~$ nv set interface bond1 bond member swp1
 cumulus@leaf02:~$ nv set interface bond2 bond member swp2
 cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ nv set interface bond2 bond mlag id 2
-cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@leaf02:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf02:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf02:~$ nv set interface bond1-2 bridge domain br_default
@@ -2991,7 +2991,7 @@ cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf02:~$ nv set nve vxlan mlag shared-address 10.0.1.12
 cumulus@leaf02:~$ nv set nve vxlan source address 10.10.10.2
-cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@leaf02:~$ nv set evpn state enabled
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
@@ -3016,8 +3016,8 @@ cumulus@leaf03:~$ nv set interface bond1 bond member swp1
 cumulus@leaf03:~$ nv set interface bond2 bond member swp2
 cumulus@leaf03:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf03:~$ nv set interface bond2 bond mlag id 2
-cumulus@leaf03:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf03:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@leaf03:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf03:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@leaf03:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf03:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf03:~$ nv set interface bond1-2 bridge domain br_default
@@ -3036,7 +3036,7 @@ cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf03:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf03:~$ nv set nve vxlan mlag shared-address 10.0.1.34
 cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
-cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@leaf03:~$ nv set evpn state enabled
 cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
@@ -3061,8 +3061,8 @@ cumulus@leaf04:~$ nv set interface bond1 bond member swp1
 cumulus@leaf04:~$ nv set interface bond2 bond member swp2
 cumulus@leaf04:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf04:~$ nv set interface bond2 bond mlag id 2
-cumulus@leaf04:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf04:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@leaf04:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf04:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@leaf04:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf04:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf04:~$ nv set interface bond1-2 bridge domain br_default
@@ -3081,7 +3081,7 @@ cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf04:~$ nv set nve vxlan mlag shared-address 10.0.1.34
 cumulus@leaf04:~$ nv set nve vxlan source address 10.10.10.4
-cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@leaf04:~$ nv set evpn state enabled
 cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
@@ -3192,7 +3192,7 @@ cumulus@border01:~$ nv set interface lo ip address 10.10.10.63/32
 cumulus@border01:~$ nv set interface swp1-3,swp49-54
 cumulus@border01:~$ nv set interface bond3 bond member swp3
 cumulus@border01:~$ nv set interface bond3 bond mlag id 1
-cumulus@border01:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@border01:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@border01:~$ nv set interface bond3 link mtu 9000
 cumulus@border01:~$ nv set interface bond3 bridge domain br_default
 cumulus@border01:~$ nv set interface peerlink bond member swp49-50
@@ -3214,7 +3214,7 @@ cumulus@border01:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@border01:~$ nv set interface bond3 bridge domain br_default vlan 10,20
 cumulus@border01:~$ nv set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border01:~$ nv set nve vxlan source address 10.10.10.63
-cumulus@border01:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@border01:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@border01:~$ nv set evpn state enabled
 cumulus@border01:~$ nv set router bgp autonomous-system 65253
 cumulus@border01:~$ nv set router bgp router-id 10.10.10.63
@@ -3226,7 +3226,7 @@ cumulus@border01:~$ nv set vrf default router bgp neighbor swp53 peer-group unde
 cumulus@border01:~$ nv set vrf default router bgp neighbor swp54 peer-group underlay
 cumulus@border01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn state enabled
 cumulus@border01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@border01:~$ nv set evpn route-advertise default-gateway on
+cumulus@border01:~$ nv set evpn route-advertise default-gateway enabled
 cumulus@border01:~$ nv config apply
 ```
 
@@ -3238,7 +3238,7 @@ cumulus@border02:~$ nv set interface lo ip address 10.10.10.64/32
 cumulus@border02:~$ nv set interface swp1-3,swp49-54
 cumulus@border02:~$ nv set interface bond3 bond member swp3
 cumulus@border02:~$ nv set interface bond3 bond mlag id 1
-cumulus@border02:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@border02:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@border02:~$ nv set interface bond3 link mtu 9000
 cumulus@border02:~$ nv set interface bond3 bridge domain br_default
 cumulus@border02:~$ nv set interface peerlink bond member swp49-50
@@ -3260,7 +3260,7 @@ cumulus@border02:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@border02:~$ nv set interface bond3 bridge domain br_default vlan 10,20
 cumulus@border02:~$ nv set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border02:~$ nv set nve vxlan source address 10.10.10.64
-cumulus@border02:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@border02:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@border02:~$ nv set evpn state enabled
 cumulus@border02:~$ nv set router bgp autonomous-system 65254
 cumulus@border02:~$ nv set router bgp router-id 10.10.10.64
@@ -3272,7 +3272,7 @@ cumulus@border02:~$ nv set vrf default router bgp neighbor swp53 peer-group unde
 cumulus@border02:~$ nv set vrf default router bgp neighbor swp54 peer-group underlay
 cumulus@border02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn state enabled
 cumulus@border02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@border02:~$ nv set evpn route-advertise default-gateway on
+cumulus@border02:~$ nv set evpn route-advertise default-gateway enabled
 cumulus@border02:~$ nv config apply
 ```
 
@@ -5879,9 +5879,9 @@ cumulus@leaf01:~$ nv set interface bond3 bond member swp3
 cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf01:~$ nv set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf01:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf01:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf01:~$ nv set interface bond3 link mtu 9000
@@ -5914,7 +5914,7 @@ cumulus@leaf01:~$ nv set interface vlan20 vrf RED
 cumulus@leaf01:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf01:~$ nv set nve vxlan mlag shared-address 10.0.1.12
 cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
-cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf01:~$ nv set vrf BLUE evpn vni 4002
 cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
@@ -5952,9 +5952,9 @@ cumulus@leaf02:~$ nv set interface bond3 bond member swp3
 cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf02:~$ nv set interface bond3 bond mlag id 3
-cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf02:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf02:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf02:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf02:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf02:~$ nv set interface bond3 link mtu 9000
@@ -5987,7 +5987,7 @@ cumulus@leaf02:~$ nv set interface vlan20 vrf RED
 cumulus@leaf02:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf02:~$ nv set nve vxlan mlag shared-address 10.0.1.12
 cumulus@leaf02:~$ nv set nve vxlan source address 10.10.10.2
-cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@leaf02:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf02:~$ nv set vrf BLUE evpn vni 4002
 cumulus@leaf02:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
@@ -6025,9 +6025,9 @@ cumulus@leaf03:~$ nv set interface bond3 bond member swp3
 cumulus@leaf03:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf03:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf03:~$ nv set interface bond3 bond mlag id 3
-cumulus@leaf03:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf03:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf03:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf03:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf03:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf03:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf03:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf03:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf03:~$ nv set interface bond3 link mtu 9000
@@ -6060,7 +6060,7 @@ cumulus@leaf03:~$ nv set interface vlan20 vrf RED
 cumulus@leaf03:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf03:~$ nv set nve vxlan mlag shared-address 10.0.1.34
 cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
-cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@leaf03:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf03:~$ nv set vrf BLUE evpn vni 4002
 cumulus@leaf03:~$ nv set system global anycast-mac 44:38:39:FF:00:BB
@@ -6098,9 +6098,9 @@ cumulus@leaf04:~$ nv set interface bond3 bond member swp3
 cumulus@leaf04:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf04:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf04:~$ nv set interface bond3 bond mlag id 3
-cumulus@leaf04:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf04:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf04:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf04:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf04:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf04:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf04:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf04:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf04:~$ nv set interface bond3 link mtu 9000
@@ -6133,7 +6133,7 @@ cumulus@leaf04:~$ nv set interface vlan20 vrf RED
 cumulus@leaf04:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf04:~$ nv set nve vxlan mlag shared-address 10.0.1.34
 cumulus@leaf04:~$ nv set nve vxlan source address 10.10.10.4
-cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@leaf04:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf04:~$ nv set vrf BLUE evpn vni 4002
 cumulus@leaf04:~$ nv set system global anycast-mac 44:38:39:FF:00:BB
@@ -6255,7 +6255,7 @@ cumulus@border01:~$ nv set interface lo ip address 10.10.10.63/32
 cumulus@border01:~$ nv set interface swp3,swp49-54
 cumulus@border01:~$ nv set interface bond3 bond member swp3
 cumulus@border01:~$ nv set interface bond3 bond mlag id 1
-cumulus@border01:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@border01:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@border01:~$ nv set interface bond3 link mtu 9000
 cumulus@border01:~$ nv set interface bond3 bridge domain br_default
 cumulus@border01:~$ nv set interface bond3 bridge domain br_default vlan 101,102
@@ -6277,7 +6277,7 @@ cumulus@border01:~$ nv set interface vlan101 vrf RED
 cumulus@border01:~$ nv set interface vlan102 vrf BLUE
 cumulus@border01:~$ nv set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border01:~$ nv set nve vxlan source address 10.10.10.63
-cumulus@border01:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@border01:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@border01:~$ nv set vrf RED evpn vni 4001
 cumulus@border01:~$ nv set vrf BLUE evpn vni 4002
 cumulus@border01:~$ nv set system global anycast-mac 44:38:39:FF:00:FF
@@ -6314,7 +6314,7 @@ cumulus@border02:~$ nv set interface lo ip address 10.10.10.64/32
 cumulus@border02:~$ nv set interface swp3,swp49-54
 cumulus@border02:~$ nv set interface bond3 bond member swp3
 cumulus@border02:~$ nv set interface bond3 bond mlag id 1
-cumulus@border02:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@border02:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@border02:~$ nv set interface bond3 link mtu 9000
 cumulus@border02:~$ nv set interface bond3 bridge domain br_default
 cumulus@border02:~$ nv set interface bond3 bridge domain br_default vlan 101,102
@@ -6336,7 +6336,7 @@ cumulus@border02:~$ nv set interface vlan101 vrf RED
 cumulus@border02:~$ nv set interface vlan102 vrf BLUE
 cumulus@border02:~$ nv set nve vxlan mlag shared-address 10.0.1.255
 cumulus@border02:~$ nv set nve vxlan source address 10.10.10.64
-cumulus@border02:~$ nv set nve vxlan arp-nd-suppress on
+cumulus@border02:~$ nv set nve vxlan arp-nd-suppress enabled
 cumulus@border02:~$ nv set vrf RED evpn vni 4001
 cumulus@border02:~$ nv set vrf BLUE evpn vni 4002
 cumulus@border02:~$ nv set system global anycast-mac 44:38:39:FF:00:FF

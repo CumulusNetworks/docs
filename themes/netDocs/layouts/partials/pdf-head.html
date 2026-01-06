@@ -1,52 +1,71 @@
 
-<script>
-    // Track pending asynchronous tasks
-    window.__docraptorPending = 0;
-  
-    // Helper to wrap fetch/XHR
-    function trackedFetch(input, init) {
-      window.__docraptorPending++;
-      return fetch(input, init)
-        .finally(() => { window.__docraptorPending--; });
-    }
-  
-    // Helper to wrap setTimeout / setInterval work
-    function trackedTask(fn) {
-      window.__docraptorPending++;
-      Promise.resolve()
-        .then(fn)
-        .finally(() => { window.__docraptorPending--; });
-    }
-  
-    // Example usage
-    trackedFetch('/data.json')
-      .then(r => r.json())
-      .then(data => {
-        // update DOM...
-      });
-  
-    trackedTask(() => new Promise(res => {
-      setTimeout(() => {
-        // delayed DOM work...
-        res();
-      }, 250);
-    }));
-  
-    // If you trigger other async flows (images, fonts), track them too:
-    function trackImage(img) {
-      if (img.complete) return; // already loaded/errored
-      window.__docraptorPending++;
-      const done = () => { window.__docraptorPending--; };
-      img.addEventListener('load', done, { once: true });
-      img.addEventListener('error', done, { once: true });
-    }
-    document.querySelectorAll('img').forEach(trackImage);
-  
-    // The function DocRaptor looks for. Must return a boolean.
-    function docraptorJavaScriptFinished() {
-      return window.__docraptorPending === 0;
-    }
-  </script>
+<!-- Place this as the FIRST non-module, non-deferred inline script in <head> -->
+    <script>
+        // Global counter
+        (function () {
+          // Use a single place on window
+          window.__docraptorPending = window.__docraptorPending || 0;
+      
+          // Safe fetch patch (only if present)
+          try {
+            const _fetch = typeof window.fetch === 'function' ? window.fetch : null;
+            if (_fetch) {
+              window.fetch = function (...args) {
+                window.__docraptorPending++;
+                // Ensure decrement always happens
+                return _fetch(...args)
+                  .catch(err => { throw err; })
+                  .finally(() => { window.__docraptorPending--; });
+              };
+            }
+          } catch (e) {
+            // Never let the tracker kill the page
+            console.warn('DocRaptor tracker: fetch patch skipped', e);
+          }
+      
+          // Track images present at install time (no heavy work)
+          function trackImage(img) {
+            try {
+              if (img && !img.complete) {
+                window.__docraptorPending++;
+                const done = () => { window.__docraptorPending--; };
+                img.addEventListener('load', done, { once: true });
+                img.addEventListener('error', done, { once: true });
+              }
+            } catch (e) {}
+          }
+          try {
+            document.querySelectorAll('img').forEach(trackImage);
+          } catch (e) {}
+      
+          // Track fonts if supported (guarded)
+          try {
+            if (document.fonts && document.fonts.status !== 'loaded') {
+              window.__docraptorPending++;
+              document.fonts.ready
+                .catch(() => {})
+                .finally(() => { window.__docraptorPending--; });
+            }
+          } catch (e) {}
+      
+          // Track future <img> insertions with a lightweight observer
+          try {
+            new MutationObserver(muts => {
+              for (const m of muts) {
+                for (const node of m.addedNodes) {
+                  if (node && node.tagName === 'IMG') trackImage(node);
+                }
+              }
+            }).observe(document.documentElement, { childList: true, subtree: true });
+          } catch (e) {}
+      
+          // The only function DocRaptor cares about—must be global and boolean
+          window.docraptorJavaScriptFinished = function () {
+            return window.__docraptorPending === 0;
+          };
+        })();
+      </script>
+      
   
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

@@ -36,6 +36,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Telemetry
   - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
+  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI interface and platform metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`, and `/components/component[name]/transceiver/state/serial-number`)
   - Parity between OpenTelemetry and gNMI (Phase 2)
   - YANG Browser Tool for YANG models
 - Security features
@@ -47,12 +48,6 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.16.
-
-### New, Changed, and Deprecated NVUE Commands
-
-{{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, many NVUE commands in Cumulus Linux 5.16 have changed. Before you upgrade to 5.16, review the following list and be sure to make any necessary changes to your automation.
-{{%/notice%}}
 
 ### Upgrade Requirements
 
@@ -67,7 +62,7 @@ To upgrade to Cumulus Linux 5.16 from a release that does not support package up
 
 ### Maximum Number of NVUE Revisions
 
-Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.16 from 5.12, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
+Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.16 from 5.12or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
 
 ### Linux Configuration Files Overwritten
 

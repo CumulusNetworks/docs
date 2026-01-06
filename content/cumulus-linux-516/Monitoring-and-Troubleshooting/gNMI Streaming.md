@@ -405,7 +405,9 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/state/name​` | The name of the interface.|
 | `/interfaces/interface[name]/state/oper-status` | Current operational state of an interface. |
 | `/interfaces/interface[name]/state/protodown​` | Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
-| `/interfaces/interface[name]/state/type​` | The type of the interface. |
+| `/interfaces/interface[name]/state/type​` | The inteface type. |
+| `/interfaces/interface[name]/state/description`| *The interface description.|
+| `/interfaces/interface[name]/state/transceiver` | *The transceiver on the interface. |
 
 {{< /tab >}}
 {{< tab "802.1X">}}
@@ -495,7 +497,6 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/error-type`| The type of error encountered, if any, during the latency measurement.|
 | `/performance/interfaces/interface[name=<interface>]/ measurements/measurement[traffic-class=<tc>][protocol=<proto>]/state/error-message`| Details about any error encountered.|
 
-
 {{< /tab >}}
 {{< tab "Platform">}}
 
@@ -571,6 +572,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/components/component[name]/transceiver/state/vendor​` | Full name of transceiver vendor. |
 | `/components/component[name]/transceiver/state/vendor-part​` | Transceiver vendor part number.|
 | `/components/component[name]/transceiver/state/vendor-rev​` | Transceiver vendor revision number. |
+| `/components/component[name]/transceiver/state/serial-number` | *Transceiver serial number.|
 
 {{< /tab >}}
 {{< tab "QoS">}}

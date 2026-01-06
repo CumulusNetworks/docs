@@ -1,70 +1,83 @@
 
-<!-- Place this as the FIRST non-module, non-deferred inline script in <head> -->
-    <script>
-        // Global counter
-        (function () {
-          // Use a single place on window
-          window.__docraptorPending = window.__docraptorPending || 0;
-      
-          // Safe fetch patch (only if present)
-          try {
-            const _fetch = typeof window.fetch === 'function' ? window.fetch : null;
-            if (_fetch) {
-              window.fetch = function (...args) {
-                window.__docraptorPending++;
-                // Ensure decrement always happens
-                return _fetch(...args)
-                  .catch(err => { throw err; })
-                  .finally(() => { window.__docraptorPending--; });
-              };
-            }
-          } catch (e) {
-            // Never let the tracker kill the page
-            console.warn('DocRaptor tracker: fetch patch skipped', e);
-          }
-      
-          // Track images present at install time (no heavy work)
-          function trackImage(img) {
-            try {
-              if (img && !img.complete) {
-                window.__docraptorPending++;
-                const done = () => { window.__docraptorPending--; };
-                img.addEventListener('load', done, { once: true });
-                img.addEventListener('error', done, { once: true });
-              }
-            } catch (e) {}
-          }
-          try {
-            document.querySelectorAll('img').forEach(trackImage);
-          } catch (e) {}
-      
-          // Track fonts if supported (guarded)
-          try {
-            if (document.fonts && document.fonts.status !== 'loaded') {
-              window.__docraptorPending++;
-              document.fonts.ready
-                .catch(() => {})
-                .finally(() => { window.__docraptorPending--; });
-            }
-          } catch (e) {}
-      
-          // Track future <img> insertions with a lightweight observer
-          try {
-            new MutationObserver(muts => {
-              for (const m of muts) {
-                for (const node of m.addedNodes) {
-                  if (node && node.tagName === 'IMG') trackImage(node);
-                }
-              }
-            }).observe(document.documentElement, { childList: true, subtree: true });
-          } catch (e) {}
-      
-          // The only function DocRaptor cares about—must be global and boolean
-          window.docraptorJavaScriptFinished = function () {
-            return window.__docraptorPending === 0;
-          };
-        })();
-      </script>
+<script>
+    (function () {
+      // Baseline counts at install time
+      const baselineSheets = document.styleSheets.length;
+      let finished = false;
+      const START = Date.now();
+      const MAX_WAIT_MS = 15000; // safety cap
+    
+      // Optional: if your CSS-in-JS inserts a marker, set this to match it.
+      // e.g., styled-components: style[data-styled="active"]
+      //       emotion: style[data-emotion]
+      const MARKERS = [
+        'style[data-styled]',
+        'style[data-styled="active"]',
+        'style[data-emotion]',
+        'style[data-docs-generated]', // add this if you control the injector
+      ];
+    
+      function hasMarker() {
+        for (const sel of MARKERS) {
+          if (document.querySelector(sel)) return true;
+        }
+        return false;
+      }
+    
+      function cssReady() {
+        // New stylesheet appeared OR we see a known marker
+        const newSheets = document.styleSheets.length > baselineSheets;
+        return newSheets || hasMarker();
+      }
+    
+      // Mutation observer to detect <style>/<link rel="stylesheet"> inserts
+      const observer = new MutationObserver(() => {
+        if (cssReady()) {
+          finished = true;
+          observer.disconnect();
+        }
+      });
+    
+      // Observe head (most CSS injectors target <head>)
+      try {
+        observer.observe(document.head || document.documentElement, {
+          childList: true,
+          subtree: true
+        });
+      } catch (e) {
+        // Do not let this break page execution
+      }
+    
+      // Fallback: keep polling lightly (handles cases where styleSheets updates
+      // without a DOM mutation we can catch)
+      const poll = () => {
+        if (!finished && cssReady()) finished = true;
+        if (!finished && (Date.now() - START) < MAX_WAIT_MS) {
+          setTimeout(poll, 100);
+        }
+      };
+      poll();
+    
+      // Fonts (optional; guard to avoid errors)
+      try {
+        if (document.fonts && document.fonts.status !== 'loaded') {
+          document.fonts.ready.then(() => {
+            if (cssReady()) finished = true;
+          }).catch(() => {});
+        }
+      } catch (e) {}
+    
+      // The only function DocRaptor reads. Must return a strict boolean.
+      window.docraptorJavaScriptFinished = function () {
+        if (!finished && (Date.now() - START) > MAX_WAIT_MS) {
+          // Don't hang forever; you can tighten/loosen this cap
+          finished = cssReady();
+        }
+        return finished === true;
+      };
+    })();
+    </script>
+    
       
   
 

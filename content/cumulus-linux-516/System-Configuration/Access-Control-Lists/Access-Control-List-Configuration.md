@@ -784,7 +784,11 @@ cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/
 
 #### Show Control Plane Policer Configuration and Statistics
 
-To show the control plane policer configuration and statistics, run the NVUE `nv show system control-plane policer --view=brief` command:
+To show the control plane policer configuration and statistics, run the NVUE `nv show system control-plane policer` command:
+
+{{%notice note%}}
+The NVUE `nv show system control-plane policer` command show the current hardware snapshot values. To see native hardware data counters from the time the switch booted or `switchd` restarted, use the `native` option.
+{{%/notice%}}
 
 ```
 cumulus@switch:~$ nv show system control-plane policer --view=brief
@@ -817,7 +821,7 @@ unknown-ipmc   1000         10           0            0             0
 ...
 ```
 
-In the command output:
+In the above command output:
 - `Policer` is the name of the control plane rule that describes the traffic to match.
 - `Policer CIR` (Committed Information Rate) is the maximum number of packets per second for this rule allowed to reach the CPU.
 - `Policer CBS` (Committed Burst Size) is the maximum burst of packets above the CIR for this rule allowed to reach the CPU. In units of 2 raised to this power packets. For example, a CBS value of 8 means 2^8 = 256 packets.
@@ -927,19 +931,19 @@ copp.unknown_ipmc.burst = 1000
 
 {{< /expand >}}
 
-To show control plane policer configuration and statistics in the same format as the vtysh command output, run the `nv show system control-plane policer native` command:
+To show control plane policer configuration and native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer native` command:
 
 ```
 cumulus@switch:~$ nv show system control-plane policer native
 ```
 
-To show configuration and statistics for a specific control plane policer in the same format as the vtysh command output, run the `nv show system control-plane policer <policer-id> native` command:
+To show configuration and native hardware data counters for a specific control plane policer from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> native` command:
 
 ```
 cumulus@switch:~$ nv show system control-plane policer bfd native
 ```
 
-To show only the control plane policer statistics in the same format as the vtysh command output, run the `nv show system control-plane policer <policer-id> statistics native` command:
+To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command:
 
 ```
 cumulus@switch:~$ nv show system control-plane policer bfd statistics native
@@ -1013,31 +1017,6 @@ Rule  In Packet  In Byte  Out Packet  Out Byte  Summary
 The following examples use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
 
 {{< tabs "1015 ">}}
-{{< tab "iptables rule ">}}
-
-```
-[iptables]
-
-#Set SSH as high priority traffic.
--t mangle -A PREROUTING -i swp+ -p tcp -m multiport --dports 22 -j SETQOS --set-dscp 46
-
-#Set everything coming in swp1 as AF13
--t mangle -A PREROUTING -i swp1  -j SETQOS --set-dscp 14
-
-#Set Packets destined for 10.0.100.27 as best effort
--t mangle -A PREROUTING -i swp+ -d 10.0.100.27/32 -j SETQOS --set-dscp 0
-
-#Example using a range of ports for TCP traffic
--t mangle -A PREROUTING -i swp+ -s 10.0.0.17/32 -d 10.0.100.27/32 -p tcp -m multiport --sports 10000:20000 -m multiport --dports 10000:20000 -j SETQOS --set-dscp 34
-```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 To set SSH as high priority traffic:
@@ -1089,17 +1068,22 @@ To specify all ports on the switch in NVUE (swp+ in an iptables rule), you must 
 {{%/notice%}}
 
 {{< /tab >}}
-{{< /tabs >}}
-
-### Filter Specific TCP Flags
-
-The example rule below drops ingress IPv4 TCP packets when you set the SYN bit and reset the RST, ACK, and FIN bits. The rule applies inbound on interface swp1. After configuring this rule, you cannot establish new TCP sessions that originate from ingress port swp1. You can establish TCP sessions that originate from any other port.
-
-{{< tabs "1098 ">}}
 {{< tab "iptables rule ">}}
 
 ```
--t mangle -A PREROUTING -i swp1 -p tcp --tcp-flags  ACK,SYN,FIN,RST SYN -j DROP
+[iptables]
+
+#Set SSH as high priority traffic.
+-t mangle -A PREROUTING -i swp+ -p tcp -m multiport --dports 22 -j SETQOS --set-dscp 46
+
+#Set everything coming in swp1 as AF13
+-t mangle -A PREROUTING -i swp1  -j SETQOS --set-dscp 14
+
+#Set Packets destined for 10.0.100.27 as best effort
+-t mangle -A PREROUTING -i swp+ -d 10.0.100.27/32 -j SETQOS --set-dscp 0
+
+#Example using a range of ports for TCP traffic
+-t mangle -A PREROUTING -i swp+ -s 10.0.0.17/32 -d 10.0.100.27/32 -p tcp -m multiport --sports 10000:20000 -m multiport --dports 10000:20000 -j SETQOS --set-dscp 34
 ```
 
 Apply the rule:
@@ -1109,6 +1093,13 @@ cumulus@switch:~$ sudo cl-acltool -i
 ```
 
 {{< /tab >}}
+{{< /tabs >}}
+
+### Filter Specific TCP Flags
+
+The example rule below drops ingress IPv4 TCP packets when you set the SYN bit and reset the RST, ACK, and FIN bits. The rule applies inbound on interface swp1. After configuring this rule, you cannot establish new TCP sessions that originate from ingress port swp1. You can establish TCP sessions that originate from any other port.
+
+{{< tabs "1098 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1125,19 +1116,10 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< /tabs >}}
-
-### Control Who Can SSH into the Switch
-
-Run the following commands to control who can SSH into the switch.
-In the following example, 10.10.10.1/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
-
-{{< tabs "1135 ">}}
 {{< tab "iptables rule ">}}
 
 ```
--A INPUT -i swp+ -s 10.255.4.0/24 -d 10.10.10.1/32 -j ACCEPT
--A INPUT -i swp+ -d 10.10.10.1/32 -j DROP
+-t mangle -A PREROUTING -i swp1 -p tcp --tcp-flags  ACK,SYN,FIN,RST SYN -j DROP
 ```
 
 Apply the rule:
@@ -1147,6 +1129,15 @@ cumulus@switch:~$ sudo cl-acltool -i
 ```
 
 {{< /tab >}}
+{{< /tabs >}}
+
+### Control Who Can SSH into the Switch
+
+Run the following commands to control who can SSH into the switch.
+
+In the following example, 10.10.10.1/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
+
+{{< tabs "1135 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1159,6 +1150,20 @@ cumulus@switch:~$ nv set acl example2 rule 20 match ip dest-ip 10.10.10.1/32
 cumulus@switch:~$ nv set acl example2 rule 20 action deny
 cumulus@switch:~$ nv set system control-plane acl example2 inbound
 cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "iptables rule ">}}
+
+```
+-A INPUT -i swp+ -s 10.255.4.0/24 -d 10.10.10.1/32 -j ACCEPT
+-A INPUT -i swp+ -d 10.10.10.1/32 -j DROP
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
 ```
 
 {{< /tab >}}
@@ -1189,7 +1194,19 @@ After an endpoint receives a packet with the <span class="a-tooltip">[CE](## "Co
 To match on the ECE bit:
 
 {{< tabs "TabID1191 ">}}
-{{< tab "iptables rule">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set acl example2 type ipv4
+cumulus@switch:~$ nv set acl example2 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl example2 rule 10 match ip ecn flags tcp-ece
+cumulus@switch:~$ nv set acl example2 rule 10 action permit
+cumulus@switch:~$ nv set interface swp1 acl example2 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "iptables rule ">}}
 
 Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
 
@@ -1206,18 +1223,6 @@ cumulus@switch:~$ sudo cl-acltool -i
 ```
 
 {{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set acl example2 type ipv4
-cumulus@switch:~$ nv set acl example2 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl example2 rule 10 match ip ecn flags tcp-ece
-cumulus@switch:~$ nv set acl example2 rule 10 action permit
-cumulus@switch:~$ nv set interface swp1 acl example2 inbound
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
 {{< /tabs >}}
 
 #### Match on the CWR Bit
@@ -1227,6 +1232,18 @@ The **CWR** bit notifies the other endpoint of the connection that it received a
 To match on the CWR bit:
 
 {{< tabs "TabID1229 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set acl example2 type ipv4
+cumulus@switch:~$ nv set acl example2 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl example2 rule 10 match ip ecn flags tcp-cwr
+cumulus@switch:~$ nv set acl example2 rule 10 action permit
+cumulus@switch:~$ nv set interface swp1 acl example2 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
 {{< tab "iptables rule ">}}
 
 Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
@@ -1244,18 +1261,6 @@ cumulus@switch:~$ sudo cl-acltool -i
 ```
 
 {{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set acl example2 type ipv4
-cumulus@switch:~$ nv set acl example2 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl example2 rule 10 match ip ecn flags tcp-cwr
-cumulus@switch:~$ nv set acl example2 rule 10 action permit
-cumulus@switch:~$ nv set interface swp1 acl example2 inbound
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
 {{< /tabs >}}
 
 #### Match on the ECT Bit
@@ -1265,7 +1270,19 @@ The **ECT** codepoints negotiate if the connection is ECN capable by setting one
 To match on the ECT bit:
 
 {{< tabs "TabID1267 ">}}
-{{< tab "iptables rule">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set acl example2 type ipv4
+cumulus@switch:~$ nv set acl example2 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl example2 rule 10 match ip ecn ip-ect 1
+cumulus@switch:~$ nv set acl example2 rule 10 action permit
+cumulus@switch:~$ nv set interface swp1 acl example2 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "iptables rule ">}}
 
 Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add the following rule under `[iptables]`:
 
@@ -1282,18 +1299,6 @@ cumulus@switch:~$ sudo cl-acltool -i
 ```
 
 {{< /tab >}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set acl example2 type ipv4
-cumulus@switch:~$ nv set acl example2 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl example2 rule 10 match ip ecn ip-ect 1
-cumulus@switch:~$ nv set acl example2 rule 10 action permit
-cumulus@switch:~$ nv set interface swp1 acl example2 inbound
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
 {{< /tabs >}}
 
 ### Match on Inner Header
@@ -1307,23 +1312,6 @@ Cumulus Linux supports ACL matches based on inner packet headers inside encapsul
 {{%/notice%}}
 
 {{< tabs "TabID1309 ">}}
-{{< tab "iptables rule">}}
-
-Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add a rule under `[iptables]`. The following example creates an ACL permit rule for inbound packets on swp1 that matches the source IP address 10.10.10.10.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-inner-header.rules
-[iptables]
--t mangle -A PREROUTING -i swp1 -s 10.10.10.10 -m mark --mark 100 -j ACCEPT
-```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
 You can use the following inner packet matching options:
@@ -1336,11 +1324,11 @@ You can use the following inner packet matching options:
 | `protocol` | The inner IP protocol: `udp` or `tcp`.<br>`dest-port` is the inner UDP or TCP destination port. `source-port` is the inner UDP or TCP source port. |
 | `ecn` | Inner ECN.<br>`flags` is the inner ECN flag.<br>`tcp-cwr` is the TCP congestion window reduced flag. `tcp-ece` is the TCP ECN echo flag.<br>`ip-ect` is IP ECT value between 0 and 3. |
 
-The following example creates an ACL permit rule for inbound packets on swp1 that matches the inner header DSCP value 10, source IP address 10.10.10.10, destination IP address 20.20.20.20, UDP source 1000, and UDP destination port 2000.
+The following example creates an ACL permit rule for inbound packets on swp1 that matches the inner header DSCP value 10, source IP address 10.10.10.10, destination IP address 20.20.20.20, UDP source port 1000, and UDP destination port 2000.
 
 ```
 cumulus@switch:~$ nv set acl example3 type ipv4
-cumulus@switch:~$ nv set acl example rule 10 action permit 
+cumulus@switch:~$ nv set acl example3 rule 10 action permit 
 cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip dscp 10
 cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip source-ip 10.10.10.10
 cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip dest-ip 20.20.20.20
@@ -1349,6 +1337,25 @@ cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip udp source-port 100
 cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip udp dest-port 2000
 cumulus@switch:~$ nv set interface swp1 acl example3 inbound
 cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "iptables rule ">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add a rule under `[iptables]`. The following example creates an ACL permit rule for inbound packets on swp1 that matches the inner header DSCP value 10, source IP address 10.10.10.10, destination IP address 20.20.20.20, UDP source port 1000, and UDP destination port 2000.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-inner-header.rules
+[iptables]
+## ACL example3 in dir inbound on interface swp1 ##
+# rule-id #10:  #
+-t mangle -A PREROUTING -i swp1 -m comment --comment rule_id:10,acl_name:example3,dir:inbound,interface_id:swp1 -s 10.10.10.10 -d 20.20.20.20 -p udp --sport 1000 --dport 2000 -m dscp --dscp 10 -m mark --mark 100 -j ACCEPT
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
 ```
 
 {{< /tab >}}
@@ -1362,7 +1369,6 @@ cumulus@switch:~$ nv set acl deny-all-rule type ipv4
 cumulus@switch:~$ nv set acl deny-all-rule action deny 
 cumulus@switch:~$ nv set acl deny-all-rule match inner-ip source-ip ANY 
 ```
-
 {{%/notice%}}
 
 ### Match on Packet Offset
@@ -1377,24 +1383,7 @@ Cumulus Linux supports ACL rule matches based on the packet offset.
 {{%/notice%}}
 
 {{< tabs "TabID1368 ">}}
-{{< tab "iptables rule">}}
-
-Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add a rule under `[iptables]`. The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x64.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-offset-header.rules
-[iptables]
--A INPUT -m u32 --u32 "0x64 & 0xFFFF =0x1234"
-```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< tab "NVUE Commands ">}}
+{{< tab "NVUE Commands">}}
 
 You can use the following packet offset matching options:
 
@@ -1409,7 +1398,7 @@ The following example creates an ACL permit rule for inbound packets on swp1 tha
 
 ```
 cumulus@switch:~$ nv set acl OFFSET type ipv4
-cumulus@switch:~$ nv set acl example rule 10 action permit 
+cumulus@switch:~$ nv set acl OFFSET rule 10 action permit 
 cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 value 0x1200 
 cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 mask 0xFF00 
 cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 match-from start-of-packet 
@@ -1418,6 +1407,25 @@ cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 54 mask 0xFFFF
 cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 54 match-from start-of-packet 
 cumulus@switch:~$ nv set interface swp1 acl OFFSET inbound
 cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "iptables rule ">}}
+
+Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add a rule under `[iptables]`. The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x64.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-offset-header.rules
+[iptables]
+## ACL OFFSET in dir inbound on interface swp1 ##
+# rule-id #10:  #
+-t mangle -A PREROUTING -i swp1 -m comment --comment rule_id:10,acl_name:OFFSET,dir:inbound,interface_id:swp1 -m u32 --u32 "0x00010022 & 0xFF00 = 0x1200  &&  0x00010036 & 0xFFFF = 0xabcd" -j ACCEPT
+```
+
+Apply the rule:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
 ```
 
 {{< /tab >}}
@@ -1433,15 +1441,7 @@ The following example shows how Cumulus Linux applies several different rules.
 
 The following rule blocks any TCP traffic with destination port 200 going through leaf01 to server01 (rule 1 in the diagram above).
 
-{{< tabs "1179 ">}}
-{{< tab "iptables Rule ">}}
-
-```
-[iptables]
--t mangle -A POSTROUTING -o swp1 -p tcp -m multiport --dports 200 -j DROP
-```
-
-{{< /tab >}}
+{{< tabs "1440 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1454,21 +1454,21 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
+{{< tab "iptables Rule ">}}
+
+```
+[iptables]
+-t mangle -A POSTROUTING -o swp1 -p tcp -m multiport --dports 200 -j DROP
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 ### Ingress Rule
 
 The following rule blocks any UDP traffic with source port 200 going from server01 through leaf01 (rule 2 in the diagram above).
 
-{{< tabs "1206 ">}}
-{{< tab "iptables Rule ">}}
-
-```
-[iptables] 
--t mangle -A PREROUTING -i swp1 -p udp -m multiport --sports 200 -j DROP
-```
-
-{{< /tab >}}
+{{< tabs "1467 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1481,21 +1481,21 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
+{{< tab "iptables Rule ">}}
+
+```
+[iptables] 
+-t mangle -A PREROUTING -i swp1 -p udp -m multiport --sports 200 -j DROP
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 ### Input Rule
 
 The following rule blocks any UDP traffic with source port 200 and destination port 50 going from server02 to the leaf02 control plane (rule 3 in the diagram above).
 
-{{< tabs "1065 ">}}
-{{< tab "iptables Rule ">}}
-
-```
-[iptables] 
--A INPUT -i swp2 -p udp -m multiport --dports 50 -j DROP
-```
-
-{{< /tab >}}
+{{< tabs "1494 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1508,21 +1508,21 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
+{{< tab "iptables Rule ">}}
+
+```
+[iptables] 
+-A INPUT -i swp2 -p udp -m multiport --dports 50 -j DROP
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 ### Output Rule
 
 The following rule blocks any TCP traffic with source port 123 and destination port 123 going from leaf02 to server02 (rule 4 in the diagram above).
 
-{{< tabs "1092 ">}}
-{{< tab "iptables Rule ">}}
-
-```
-[iptables] 
--A OUTPUT -o swp2 -p tcp -m multiport --sports 123 -m multiport --dports 123 -j DROP
-```
-
-{{< /tab >}}
+{{< tabs "1521 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1533,6 +1533,14 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp dest-port 123
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
 cumulus@switch:~$ nv set interface swp2 acl EXAMPLE1 outbound control-plane
 cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "iptables Rule ">}}
+
+```
+[iptables] 
+-A OUTPUT -o swp2 -p tcp -m multiport --sports 123 -m multiport --dports 123 -j DROP
 ```
 
 {{< /tab >}}
@@ -1559,15 +1567,7 @@ rule
 
 The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 and destination MAC address 08:9e:01:ce:e2:04 going from any switch port egress or ingress.
 
-{{< tabs "1118 ">}}
-{{< tab "iptables Rule ">}}
-
-```
-[ebtables]
--A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
-```
-
-{{< /tab >}}
+{{< tabs "1566 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1577,6 +1577,14 @@ cumulus@switch:~$ nv set acl EXAMPLE rule 10 match mac dest-mac 08:9e:01:ce:e2:0
 cumulus@switch:~$ nv set acl EXAMPLE rule 10 action deny
 cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE inbound
 cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "iptables Rule ">}}
+
+```
+[ebtables]
+-A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
 ```
 
 {{< /tab >}}

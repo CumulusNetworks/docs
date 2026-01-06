@@ -29,29 +29,25 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
 - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#lag-hash-randomizer" text="LAG hash randomizer for adaptive routing">}}
+- {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx Squelch Control">}}
 - 802.1x on router ports with dynamic VRF assignment
 - Same user created locally and on Tacacs server, need NVUE support
 - BGP conditional disaggregation for multi-planed GPUs
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Telemetry
   - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
+  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI interface and platform metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`, and `/components/component[name]/transceiver/state/serial-number`)
   - Parity between OpenTelemetry and gNMI (Phase 2)
   - YANG Browser Tool for YANG models
 - Security features
   - {{<link url="FIPS" text="FIPS mode">}}
   - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and for a user group">}}
-  - {{<link url="RADIUS-AAA" text="Yubikey authentication over RADIUS">}}
+  - {{<link url="RADIUS-AAA/#required-radius-client-configuration" text="Yubikey authentication over RADIUS">}}
   - Audit records for loading and unloading dynamic kernel modules, establishing the source of events and when (date and time) the events occurred, and the identity of any individual or process associated with an event
 
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.16.
-
-### New, Changed, and Deprecated NVUE Commands
-
-{{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, many NVUE commands in Cumulus Linux 5.16 have changed. Before you upgrade to 5.16, review the following list and be sure to make any necessary changes to your automation.
-{{%/notice%}}
 
 ### Upgrade Requirements
 
@@ -66,7 +62,7 @@ To upgrade to Cumulus Linux 5.16 from a release that does not support package up
 
 ### Maximum Number of NVUE Revisions
 
-Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.16 from 5.12, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
+Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.16 from 5.12or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
 
 ### Linux Configuration Files Overwritten
 

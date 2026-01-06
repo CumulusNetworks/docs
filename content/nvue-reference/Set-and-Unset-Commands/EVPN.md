@@ -144,10 +144,11 @@ cumulus@switch:~$ nv set evpn mac-vrf-soo 10.0.1.12:10
 
 ## <h>nv set evpn multihoming ead-evi-route rx</h>
 
-Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes for EVPN multihoming at the receiving end.
+Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes for EVPN multihoming at the receiving end. You can specify `enabled` or `disabled`. The default setting is `enabled`.
 
 {{%notice note%}}
-Some third-party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.  The default setting is `on`.
+- Some third-party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
+- In Cumulus Linux 5.14 and earlier, you specify `on` or `off` instead of `enabled` or `disabled`.
 {{%/notice%}}
 
 ### Version History
@@ -157,14 +158,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set evpn multihoming ead-evi-route rx off
+cumulus@switch:~$ nv set evpn multihoming ead-evi-route rx disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set evpn multihoming ead-evi-route tx</h>
 
-Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes for EVPN multihoming at egress. The default setting is `on`.
+Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes for EVPN multihoming at egress. The default setting is `enabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off` instead of `enabled` or `disabled`.
+{{%/notice%}}
 
 ### Version History
 
@@ -173,7 +178,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set evpn multihoming ead-evi-route tx off
+cumulus@switch:~$ nv set evpn multihoming ead-evi-route tx disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

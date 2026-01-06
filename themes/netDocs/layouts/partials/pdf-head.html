@@ -1,3 +1,54 @@
+
+<script>
+    // Track pending asynchronous tasks
+    window.__docraptorPending = 0;
+  
+    // Helper to wrap fetch/XHR
+    function trackedFetch(input, init) {
+      window.__docraptorPending++;
+      return fetch(input, init)
+        .finally(() => { window.__docraptorPending--; });
+    }
+  
+    // Helper to wrap setTimeout / setInterval work
+    function trackedTask(fn) {
+      window.__docraptorPending++;
+      Promise.resolve()
+        .then(fn)
+        .finally(() => { window.__docraptorPending--; });
+    }
+  
+    // Example usage
+    trackedFetch('/data.json')
+      .then(r => r.json())
+      .then(data => {
+        // update DOM...
+      });
+  
+    trackedTask(() => new Promise(res => {
+      setTimeout(() => {
+        // delayed DOM work...
+        res();
+      }, 250);
+    }));
+  
+    // If you trigger other async flows (images, fonts), track them too:
+    function trackImage(img) {
+      if (img.complete) return; // already loaded/errored
+      window.__docraptorPending++;
+      const done = () => { window.__docraptorPending--; };
+      img.addEventListener('load', done, { once: true });
+      img.addEventListener('error', done, { once: true });
+    }
+    document.querySelectorAll('img').forEach(trackImage);
+  
+    // The function DocRaptor looks for. Must return a boolean.
+    function docraptorJavaScriptFinished() {
+      return window.__docraptorPending === 0;
+    }
+  </script>
+  
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 

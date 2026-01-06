@@ -468,6 +468,8 @@ When you configure per-command authorization on the switch, only define the init
 {{< /tab >}}
 {{< /tabs >}}
 
+TACACS per command authorization supports {{<link url="NVUE-CLI/#command-completion" text="NVUE tab completion, option listing (?), and command history navigation">}}.
+
 ## Remove the TACACS+ Client Packages
 
 To remove all the TACACS+ client packages, use the following commands:

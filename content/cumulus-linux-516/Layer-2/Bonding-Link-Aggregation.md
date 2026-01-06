@@ -161,7 +161,7 @@ To enable LACP bypass:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface bond1 bond lacp-bypass on 
+cumulus@switch:~$ nv set interface bond1 bond lacp-bypass enabled 
 cumulus@switch:~$ nv config apply
 ```
 

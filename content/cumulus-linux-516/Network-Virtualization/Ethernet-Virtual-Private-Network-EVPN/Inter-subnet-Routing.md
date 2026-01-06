@@ -26,7 +26,7 @@ To enable centralized routing, you must configure the gateway VTEPs to advertise
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn route-advertise default-gateway on
+cumulus@leaf01:~$ nv set evpn route-advertise default-gateway enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -358,8 +358,8 @@ To originate a default type-5 route in EVPN:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn default-route-origination on
-cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv6-unicast route-export to-evpn default-route-origination on
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn default-route-origination enabled
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv6-unicast route-export to-evpn default-route-origination enabled
 ```
 
 {{< /tab >}}
@@ -586,9 +586,9 @@ cumulus@leaf01:~$ nv set interface swp1-3,swp51-52
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2
 cumulus@leaf01:~$ nv set interface bond3 bond member swp3
-cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf01:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf01:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf01:~$ nv set interface bond3 link mtu 9000
@@ -618,7 +618,7 @@ cumulus@leaf01:~$ nv set interface vlan10 vrf RED
 cumulus@leaf01:~$ nv set interface vlan20 vrf RED
 cumulus@leaf01:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
-cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress enabled 
 cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf01:~$ nv set vrf BLUE evpn vni 4002
 cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
@@ -646,7 +646,7 @@ cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
-cumulus@leaf01:~$ nv set interface swp51-52 evpn multihoming uplink on
+cumulus@leaf01:~$ nv set interface swp51-52 evpn multihoming uplink enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -659,9 +659,9 @@ cumulus@border01:~$ nv set interface swp1-3,swp51-52
 cumulus@border01:~$ nv set interface bond1 bond member swp1
 cumulus@border01:~$ nv set interface bond2 bond member swp2
 cumulus@border01:~$ nv set interface bond3 bond member swp3
-cumulus@border01:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@border01:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@border01:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@border01:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@border01:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@border01:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@border01:~$ nv set interface bond1 link mtu 9000
 cumulus@border01:~$ nv set interface bond2 link mtu 9000
 cumulus@border01:~$ nv set interface bond3 link mtu 9000
@@ -683,7 +683,7 @@ cumulus@border01:~$ nv set interface vlan2001 vrf EXTERNAL1
 cumulus@border01:~$ nv set interface vlan2002 vrf EXTERNAL2
 cumulus@border01:~$ nv set interface vlan2010 vrf VRF10
 cumulus@border01:~$ nv set nve vxlan source address 10.10.10.63
-cumulus@border01:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@border01:~$ nv set nve vxlan arp-nd-suppress enabled 
 cumulus@border01:~$ nv set vrf VRF10 evpn vni 6000
 cumulus@border01:~$ nv set system global anycast-mac 44:38:39:FF:00:FF
 cumulus@border01:~$ nv set evpn state enabled

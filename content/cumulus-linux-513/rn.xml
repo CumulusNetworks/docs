@@ -38,6 +38,16 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>4722539</td>
+<td>Optimized image upgrade with warm boot mode is supported in Cumulus Linux 5.13 and later. When you try to run the {{nv action boot-next}} command during optimized image upgrade in Cumulus Linux 5.12 and earlier to any target release while the system is in warm boot mode, the {{boot-next}} operation fails with the following error:
+cumulus@switch:~$ nv action boot-next system image other
+Error: Action failed with the following issue:&gt;br&gt;
+  Failed to set boot-next due to Unknown error
+To work around this issue, verify system boot mode with the {{nv show system reboot}} command before you perform optimized image upgrade and switch to cold boot mode if necessary with the {{nv set system reboot mode cold}} command. You can then proceed with the optimized image upgrade {{boot-next}} operation.</td>
+<td>5.11.4-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4721298</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
@@ -1386,6 +1396,16 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>4748176</td>
 <td>Unsupported hardware modules might cause SDK and firmware health event and traffic loss.</td>
 <td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4722539</td>
+<td>Optimized image upgrade with warm boot mode is supported in Cumulus Linux 5.13 and later. When you try to run the {{nv action boot-next}} command during optimized image upgrade in Cumulus Linux 5.12 and earlier to any target release while the system is in warm boot mode, the {{boot-next}} operation fails with the following error:
+cumulus@switch:~$ nv action boot-next system image other
+Error: Action failed with the following issue:&gt;br&gt;
+  Failed to set boot-next due to Unknown error
+To work around this issue, verify system boot mode with the {{nv show system reboot}} command before you perform optimized image upgrade and switch to cold boot mode if necessary with the {{nv set system reboot mode cold}} command. You can then proceed with the optimized image upgrade {{boot-next}} operation.</td>
+<td>5.11.4-5.15.1</td>
 <td></td>
 </tr>
 <tr>

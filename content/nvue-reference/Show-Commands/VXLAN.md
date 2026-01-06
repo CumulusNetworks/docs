@@ -24,9 +24,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show nve vxlan
                           operational  applied 
 ------------------------  -----------  --------
-enable                    on           on      
-arp-nd-suppress           on           on      
-mac-learning              off          off     
+state                     enabled      enabled      
+arp-nd-suppress           enabled      enabled      
+mac-learning              disabled     disabled    
 mtu                       9216         9216    
 port                      4789         4789    
 decapsulation                                  
@@ -43,6 +43,10 @@ mlag
 source                                         
   address                 10.0.0.1     10.0.0.1
 ```
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command output for configuration options shows `on` or `off` instead of `enabled` or `disabled`.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

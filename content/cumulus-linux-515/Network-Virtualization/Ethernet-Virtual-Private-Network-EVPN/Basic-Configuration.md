@@ -333,16 +333,16 @@ cumulus@leaf01:~$ nv show evpn
 enable                               on           
 route-advertise                                   
   nexthop-setting                    system-ip-mac
-  svi-ip               off           off          
-  default-gateway      off           off          
+  svi-ip               disabled      disabled          
+  default-gateway      disabled      disabled          
 dad                                               
-  enable               on            on           
+  state                enabled       enabled           
   mac-move-threshold   5             5            
   move-window          180           180          
   duplicate-action     warning-only  warning-only 
 [vni]                                             
 multihoming                                       
-  enable                             off          
+  state                disabled          
   mac-holdtime         1080                       
   neighbor-holdtime    1080                       
   startup-delay        180                        

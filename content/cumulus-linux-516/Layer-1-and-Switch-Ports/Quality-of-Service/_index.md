@@ -1998,7 +1998,7 @@ Qos Port Statistics
 
 ## Clear QoS Buffers
 
-To clear the Qos pool buffers, run the `nv action clear qos buffer pool` command.
+To clear the QoS pool buffers, run the `nv action clear qos buffer pool` command.
 
 ```
 cumulus@switch:~$ nv action clear qos buffer pool

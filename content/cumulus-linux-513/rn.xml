@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4789562</td>
+<td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
+<td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789097</td>
+<td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
+<td>5.9.4-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4771875</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
 <td>5.11.1-5.15.1</td>
@@ -1366,6 +1378,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4789562</td>
+<td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
+<td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789097</td>
+<td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
+<td>5.9.4-5.15.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4771875</td>

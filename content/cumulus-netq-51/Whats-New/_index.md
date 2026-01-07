@@ -13,6 +13,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 ## What's New in NetQ 5.1
 
 
+- Check which version of NetQ you are running using the NetQ for NVLink API <!--Swagger link-->
 - Performance improvements to the account management page in the UI
 - Decreased time to install NetQ
 - Added Arm support <!--at risk-->

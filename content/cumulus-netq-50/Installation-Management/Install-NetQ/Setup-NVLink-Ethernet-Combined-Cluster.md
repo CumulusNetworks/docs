@@ -163,7 +163,7 @@ nvidia@<hostname>:~$ netq install cluster master-init
 
 ```
 nvidia@netq-server:~$ netq install cluster config generate
-2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
+2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/combined-cluster-config.json
 ```
 
 11. Edit the cluster configuration JSON file with the values for each attribute.
@@ -173,7 +173,7 @@ nvidia@netq-server:~$ netq install cluster config generate
 {{< tab "Default JSON Template">}}
 
 ```
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
 {
         "version": "v2.0",
         "interface": "<INPUT>",
@@ -209,7 +209,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 {{< tab "Completed JSON Example">}}
 
 ``` 
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
 {
         "version": "v2.0",
         "interface": "eth0",

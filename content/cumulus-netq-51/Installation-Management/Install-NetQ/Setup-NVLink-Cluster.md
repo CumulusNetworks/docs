@@ -260,6 +260,7 @@ State: Active
     Version: 5.1.0
     Installer Version: 5.1.0
     Installation Type: Cluster
+    Installation Mode: NVLink
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC
     Is Cloud: False

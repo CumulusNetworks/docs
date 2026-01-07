@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | |
 | <a name="4771875"></a> [4771875](#4771875) <a name="4771875"></a> <br /> | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.15.1 | |
 | <a name="4771874"></a> [4771874](#4771874) <a name="4771874"></a> <br /> | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.15.1 | |
 | <a name="4771521"></a> [4771521](#4771521) <a name="4771521"></a> <br /> | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port. | 5.9.2-5.15.1 | |
@@ -170,6 +171,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | |
 | <a name="4771875"></a> [4771875](#4771875) <a name="4771875"></a> <br /> | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.15.1 | |
 | <a name="4771874"></a> [4771874](#4771874) <a name="4771874"></a> <br /> | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.15.1 | |
 | <a name="4771521"></a> [4771521](#4771521) <a name="4771521"></a> <br /> | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port. | 5.9.2-5.15.1 | |
@@ -325,6 +327,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | |
 | <a name="4771875"></a> [4771875](#4771875) <a name="4771875"></a> <br /> | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.15.1 | |
 | <a name="4771874"></a> [4771874](#4771874) <a name="4771874"></a> <br /> | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.15.1 | |
 | <a name="4771521"></a> [4771521](#4771521) <a name="4771521"></a> <br /> | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port. | 5.9.2-5.15.1 | |
@@ -519,6 +522,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | |
 | <a name="4771875"></a> [4771875](#4771875) <a name="4771875"></a> <br /> | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.15.1 | |
 | <a name="4771874"></a> [4771874](#4771874) <a name="4771874"></a> <br /> | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.15.1 | |
 | <a name="4771521"></a> [4771521](#4771521) <a name="4771521"></a> <br /> | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port. | 5.9.2-5.15.1 | |
@@ -723,6 +727,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | |
 | <a name="4771521"></a> [4771521](#4771521) <a name="4771521"></a> <br /> | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port. | 5.9.2-5.15.1 | |
 | <a name="4721298"></a> [4721298](#4721298) <a name="4721298"></a> <br /> | When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database. | 5.11.0-5.15.1 | |
 | <a name="4714845"></a> [4714845](#4714845) <a name="4714845"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.15.1 | |

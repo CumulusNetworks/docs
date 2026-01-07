@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | |
 | <a name="4771521"></a> [4771521](#4771521) <a name="4771521"></a> <br /> | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port. | 5.9.2-5.15.1 | |
 | <a name="4714845"></a> [4714845](#4714845) <a name="4714845"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.15.1 | |
 | <a name="4647646"></a> [4647646](#4647646) <a name="4647646"></a> <br /> | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.15.1|

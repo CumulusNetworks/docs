@@ -1,87 +1,280 @@
 
-<script>
-    (function () {
-      // Baseline counts at install time
-      const baselineSheets = document.styleSheets.length;
-      let finished = false;
-      const START = Date.now();
-      const MAX_WAIT_MS = 15000; // safety cap
-    
-      // Optional: if your CSS-in-JS inserts a marker, set this to match it.
-      // e.g., styled-components: style[data-styled="active"]
-      //       emotion: style[data-emotion]
-      const MARKERS = [
-        'style[data-styled]',
-        'style[data-styled="active"]',
-        'style[data-emotion]',
-        'style[data-docs-generated]', // add this if you control the injector
-      ];
-    
-      function hasMarker() {
-        for (const sel of MARKERS) {
-          if (document.querySelector(sel)) return true;
-        }
-        return false;
-      }
-    
-      function cssReady() {
-        // New stylesheet appeared OR we see a known marker
-        const newSheets = document.styleSheets.length > baselineSheets;
-        return newSheets || hasMarker();
-      }
-    
-      // Mutation observer to detect <style>/<link rel="stylesheet"> inserts
-      const observer = new MutationObserver(() => {
-        if (cssReady()) {
-          finished = true;
-          observer.disconnect();
-        }
-      });
-    
-      // Observe head (most CSS injectors target <head>)
-      try {
-        observer.observe(document.head || document.documentElement, {
-          childList: true,
-          subtree: true
-        });
-      } catch (e) {
-        // Do not let this break page execution
-      }
-    
-      // Fallback: keep polling lightly (handles cases where styleSheets updates
-      // without a DOM mutation we can catch)
-      const poll = () => {
-        if (!finished && cssReady()) finished = true;
-        if (!finished && (Date.now() - START) < MAX_WAIT_MS) {
-          setTimeout(poll, 100);
-        }
-      };
-      poll();
-    
-      // Fonts (optional; guard to avoid errors)
-      try {
-        if (document.fonts && document.fonts.status !== 'loaded') {
-          document.fonts.ready.then(() => {
-            if (cssReady()) finished = true;
-          }).catch(() => {});
-        }
-      } catch (e) {}
-    
-      // The only function DocRaptor reads. Must return a strict boolean.
-      window.docraptorJavaScriptFinished = function () {
-        if (!finished && (Date.now() - START) > MAX_WAIT_MS) {
-          // Don't hang forever; you can tighten/loosen this cap
-          finished = cssReady();
-        }
-        return finished === true;
-      };
-    })();
-    </script>
-    
-      
+<style id="netdocs-print-css">
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  display: block;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+a {
+  background-color: initial;
+}
+
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline dotted;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+img {
+  border-style: none;
+}
+
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+
+progress {
+  vertical-align: baseline;
+}
+
+textarea {
+  overflow: auto;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+@font-face {
+  font-family: nvidiasans;
+  src: url(https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/nvidia-sans/GLOBAL/var/NVIDIASansVF_W_Wght.woff2) format("woff2 supports variations"),
+       url(https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/nvidia-sans/GLOBAL/var/NVIDIASansVF_W_Wght.woff2) format("woff2-variations");
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+  font-style: normal;
+}
+
+.markdown {
+  color: #5f6a72;
+  font-size: 1rem;
+  line-height: 1.85rem;
+  letter-spacing: -0.1px;
+  position: relative;
+}
+
+.markdown h1 {
+  color: #36424a;
+  font-size: 2.235rem;
+  font-weight: 300;
+  letter-spacing: -0.7px;
+  line-height: 3rem;
+  margin-top: 0;
+  margin-bottom: 1.1rem;
+}
+
+@media only screen and (min-width: 1200px) {
+  .markdown h1 {
+    font-size: 2.235rem;
+    line-height: 3.06rem;
+  }
+}
+
+.markdown h2 {
+  color: #000;
+  font-size: 1.294rem;
+  font-weight: 300;
+  letter-spacing: -0.15px;
+  line-height: 2rem;
+}
+
+
+/* Utility classes */
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.mx-auto {
+  margin: 0 auto;
+}
+
+.hide {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media only screen and (min-width: 768px) {
+  .mobile-center {
+    text-align: left;
+  }
+}
+
+
+
+</style>
   
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 
 <script>
@@ -339,3 +532,5 @@
       prince-bookmark-level: none;
   }
 </style>
+
+<script>window.docraptorJavaScriptFinished = function(){ return true; };</script>

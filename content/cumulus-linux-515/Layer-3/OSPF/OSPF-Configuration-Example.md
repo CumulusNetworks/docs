@@ -68,9 +68,9 @@ cumulus@leaf01:~$ nv set interface swp52 router ospf timers dead-interval 60
 cumulus@leaf01:~$ nv set interface vlan10 router ospf area 0
 cumulus@leaf01:~$ nv set interface vlan20 router ospf area 0
 cumulus@leaf01:~$ nv set interface vlan30 router ospf area 0
-cumulus@leaf01:~$ nv set interface vlan10 router ospf passive on
-cumulus@leaf01:~$ nv set interface vlan20 router ospf passive on
-cumulus@leaf01:~$ nv set interface vlan30 router ospf passive on
+cumulus@leaf01:~$ nv set interface vlan10 router ospf passive enabled
+cumulus@leaf01:~$ nv set interface vlan20 router ospf passive enabled
+cumulus@leaf01:~$ nv set interface vlan30 router ospf passive enabled
 cumulus@leaf01:~$ nv set router ospf timers spf delay 80
 cumulus@leaf01:~$ nv set router ospf timers spf holdtime 100
 cumulus@leaf01:~$ nv set router ospf timers spf max-holdtime 6000
@@ -128,9 +128,9 @@ cumulus@leaf02:~$ nv set interface swp52 router ospf timers dead-interval 60
 cumulus@leaf02:~$ nv set interface vlan10 router ospf area 0
 cumulus@leaf02:~$ nv set interface vlan20 router ospf area 0
 cumulus@leaf02:~$ nv set interface vlan30 router ospf area 0
-cumulus@leaf02:~$ nv set interface vlan10 router ospf passive on
-cumulus@leaf02:~$ nv set interface vlan20 router ospf passive on
-cumulus@leaf02:~$ nv set interface vlan30 router ospf passive on
+cumulus@leaf02:~$ nv set interface vlan10 router ospf passive enabled
+cumulus@leaf02:~$ nv set interface vlan20 router ospf passive enabled
+cumulus@leaf02:~$ nv set interface vlan30 router ospf passive enabled
 cumulus@leaf02:~$ nv set router ospf timers spf delay 80
 cumulus@leaf02:~$ nv set router ospf timers spf holdtime 100
 cumulus@leaf02:~$ nv set router ospf timers spf max-holdtime 6000

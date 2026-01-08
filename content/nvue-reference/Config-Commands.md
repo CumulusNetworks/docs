@@ -360,9 +360,9 @@ cumulus@switch:~$ nv config show
               access: 10
       bond1-3:
         bond:
-          lacp-bypass: on
+          lacp-bypass: enabled
           mlag:
-            enable: on
+            state: enabled
         link:
           mtu: 9000
         type: bond

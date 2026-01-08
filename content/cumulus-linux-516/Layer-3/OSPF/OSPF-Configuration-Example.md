@@ -30,9 +30,9 @@ cumulus@leaf01:~$ nv set interface bond3 bond member swp3
 cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf01:~$ nv set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf01:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
 cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:FF:00:AA
@@ -90,9 +90,9 @@ cumulus@leaf02:~$ nv set interface bond3 bond member swp3
 cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf02:~$ nv set interface bond3 bond mlag id 3
-cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf02:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf02:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf02:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
 cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:FF:00:AA
@@ -214,8 +214,8 @@ cumulus@border01:~$ nv set interface bond1 bond member swp1
 cumulus@border01:~$ nv set interface bond2 bond member swp2
 cumulus@border01:~$ nv set interface bond1 bond mlag id 1
 cumulus@border01:~$ nv set interface bond2 bond mlag id 2
-cumulus@border01:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@border01:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@border01:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@border01:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@border01:~$ nv set interface bond1 bridge domain br_default access 2001
 cumulus@border01:~$ nv set interface bond2 bridge domain br_default access 2001
 cumulus@border01:~$ nv set interface bond1-2 bridge domain br_default
@@ -257,8 +257,8 @@ cumulus@border02:~$ nv set interface bond1 bond member swp1
 cumulus@border02:~$ nv set interface bond2 bond member swp2
 cumulus@border02:~$ nv set interface bond1 bond mlag id 1
 cumulus@border02:~$ nv set interface bond2 bond mlag id 2
-cumulus@border02:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@border02:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@border02:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@border02:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@border02:~$ nv set interface bond1 bridge domain br_default access 2001
 cumulus@border02:~$ nv set interface bond2 bridge domain br_default access 2001
 cumulus@border02:~$ nv set interface bond1-2 bridge domain br_default

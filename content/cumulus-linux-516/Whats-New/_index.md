@@ -24,7 +24,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Understanding-the-cl-support-Output-File/#automatic-cl-support-file" text="Manage automatic cl-support file generation">}}
 - {{<link url="Network-Troubleshooting/#extended-traceroute" text="Extended traceroute (RFC 5837)">}}
 - {{<link url="Interface-Configuration-and-Management/#interface-physical-name" text="Physical interface names that map the port to the connector">}}
-- {{<link url="NVUE-CLI/#command-completion" text="Restricted bash enhancements for NVUE commands include command history with arrow key navigation, context-aware tab completion, and inline help with ? to list valid options">}}
+- {{<link url="TACACS/#tacacs-per-command-authorization" text="TACACS per-command authorization supports NVUE tab completion, option listing (?), and command history navigation">}}
 - {{<link url="DHCP-Relays/#dhcp-relay-for-ipv4-in-an-evpn-symmetric-environment-with-mlag" text="VRF-aware DHCP relay">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
 - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
@@ -37,6 +37,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Telemetry
   - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI interface and platform metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`, and `/components/component[name]/transceiver/state/serial-number`)
+  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI QoS buffer metrics">}}
   - Parity between OpenTelemetry and gNMI (Phase 2)
   - YANG Browser Tool for YANG models
 - Security features
@@ -51,12 +52,7 @@ Review the following considerations before you upgrade to Cumulus Linux 5.16.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.16 from Cumulus Linux 5.12 and later.
-
-You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.16 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
-- Cumulus Linux 5.15
-- Cumulus Linux 5.14
-- Cumulus Linux 5.13
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.16 from Cumulus Linux 5.13 and later. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 
 To upgrade to Cumulus Linux 5.16 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 

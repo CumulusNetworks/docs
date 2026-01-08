@@ -347,7 +347,7 @@ If you configure EVPN-MH without MH uplinks, BUM traffic duplicates or loops bac
 {{<tab "NVUE Commands">}}
 
 ```
-cumulus@leaf01:~$ nv set interface swp51-54 evpn multihoming uplink on
+cumulus@leaf01:~$ nv set interface swp51-54 evpn multihoming uplink enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -662,14 +662,14 @@ To remove the dependency on EAD-per-EVI routes and activate the VTEP upon receiv
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set evpn multihoming ead-evi-route rx off
+cumulus@switch:~$ nv set evpn multihoming ead-evi-route rx disabled
 cumulus@switch:~$ nv config apply
 ```
 
 To suppress the advertisement of EAD-per-EVI routes, run:
 
 ```
-cumulus@switch:~$ nv set evpn multihoming ead-evi-route tx off
+cumulus@switch:~$ nv set evpn multihoming ead-evi-route tx disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1179,9 +1179,9 @@ cumulus@leaf01:~$ nv set interface swp1-3,swp51-52
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2
 cumulus@leaf01:~$ nv set interface bond3 bond member swp3
-cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf01:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf01:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf01:~$ nv set interface bond3 link mtu 9000
@@ -1208,7 +1208,7 @@ cumulus@leaf01:~$ nv set interface vlan10 vrf RED
 cumulus@leaf01:~$ nv set interface vlan20 vrf RED
 cumulus@leaf01:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
-cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress enabled 
 cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf01:~$ nv set vrf BLUE evpn vni 4002
 cumulus@leaf01:~$ nv set evpn state enabled
@@ -1233,7 +1233,7 @@ cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
-cumulus@leaf01:~$ nv set interface swp51-52 evpn multihoming uplink on
+cumulus@leaf01:~$ nv set interface swp51-52 evpn multihoming uplink enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1246,9 +1246,9 @@ cumulus@leaf02:~$ nv set interface swp1-3,swp51-52
 cumulus@leaf02:~$ nv set interface bond1 bond member swp1
 cumulus@leaf02:~$ nv set interface bond2 bond member swp2
 cumulus@leaf02:~$ nv set interface bond3 bond member swp3
-cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf02:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf02:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf02:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf02:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf02:~$ nv set interface bond3 link mtu 9000
@@ -1275,7 +1275,7 @@ cumulus@leaf02:~$ nv set interface vlan10 vrf RED
 cumulus@leaf02:~$ nv set interface vlan20 vrf RED
 cumulus@leaf02:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf02:~$ nv set nve vxlan source address 10.10.10.2
-cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress enabled 
 cumulus@leaf02:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf02:~$ nv set vrf BLUE evpn vni 4002
 cumulus@leaf02:~$ nv set evpn state enabled
@@ -1300,7 +1300,7 @@ cumulus@leaf02:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf02:~$ nv set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf02:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:FF:00:AA
 cumulus@leaf02:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
-cumulus@leaf02:~$ nv set interface swp51-52 evpn multihoming uplink on
+cumulus@leaf02:~$ nv set interface swp51-52 evpn multihoming uplink enabled
 cumulus@leaf02:~$ nv config apply
 ```
 
@@ -1313,9 +1313,9 @@ cumulus@leaf03:~$ nv set interface swp1-3,swp51-52
 cumulus@leaf03:~$ nv set interface bond1 bond member swp1
 cumulus@leaf03:~$ nv set interface bond2 bond member swp2
 cumulus@leaf03:~$ nv set interface bond3 bond member swp3
-cumulus@leaf03:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf03:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf03:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf03:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf03:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf03:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf03:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf03:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf03:~$ nv set interface bond3 link mtu 9000
@@ -1342,7 +1342,7 @@ cumulus@leaf03:~$ nv set interface vlan10 RED
 cumulus@leaf03:~$ nv set interface vlan20 vrf RED
 cumulus@leaf03:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
-cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress enabled 
 cumulus@leaf03:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf03:~$ nv set vrf BLUE evpn vni 4002
 cumulus@leaf03:~$ nv set evpn state enabled
@@ -1367,7 +1367,7 @@ cumulus@leaf03:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf03:~$ nv set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf03:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:FF:00:BB
 cumulus@leaf03:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
-cumulus@leaf03:~$ nv set interface swp51-52 evpn multihoming uplink on
+cumulus@leaf03:~$ nv set interface swp51-52 evpn multihoming uplink enabled
 cumulus@leaf03:~$ nv config apply
 ```
 
@@ -1380,9 +1380,9 @@ cumulus@leaf04:~$ nv set interface swp1-3,swp51-52
 cumulus@leaf04:~$ nv set interface bond1 bond member swp1
 cumulus@leaf04:~$ nv set interface bond2 bond member swp2
 cumulus@leaf04:~$ nv set interface bond3 bond member swp3
-cumulus@leaf04:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf04:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf04:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf04:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf04:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf04:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf04:~$ nv set interface bond1 link mtu 9000
 cumulus@leaf04:~$ nv set interface bond2 link mtu 9000
 cumulus@leaf04:~$ nv set interface bond3 link mtu 9000
@@ -1409,7 +1409,7 @@ cumulus@leaf04:~$ nv set interface vlan10 vrf RED
 cumulus@leaf04:~$ nv set interface vlan20 vrf RED
 cumulus@leaf04:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf04:~$ nv set nve vxlan source address 10.10.10.4
-cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress enabled 
 cumulus@leaf04:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf04:~$ nv set vrf BLUE evpn vni 4002
 cumulus@leaf04:~$ nv set evpn state enabled
@@ -1434,7 +1434,7 @@ cumulus@leaf04:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf04:~$ nv set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf04:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:FF:00:BB
 cumulus@leaf04:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
-cumulus@leaf04:~$ nv set interface swp51-52 evpn multihoming uplink on
+cumulus@leaf04:~$ nv set interface swp51-52 evpn multihoming uplink enabled
 cumulus@leaf04:~$ nv config apply
 ```
 

@@ -51,7 +51,7 @@ NVUE also indicates if you need to provide specific values for the command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain ?
-    domain                 Domain (bridge-name)
+    <domain-id>            Domain (bridge-name)
 ```
 
 ## Command Abbreviation

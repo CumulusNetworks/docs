@@ -34,7 +34,7 @@ cumulus@switch:~$ nv show evpn vni 10 bgp-info
 rd                         10.10.10.1:6
 local-vtep                 10.0.1.12   
 advertise-svi-ip           off         
-advertise-default-gateway  off         
+advertise-default-gateway  disabled         
 in-kernel                  on          
 type                       L2          
 mac-vrf-soo                            
@@ -584,9 +584,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn
                        operational  applied
 ---------------------  -----------  -------
-enable                              on     
+state                               enabled     
 attribute-mod                              
-  aspath               off                 
+  aspath               disabled                 
   med                  off                 
   nexthop              on                  
 graceful-restart                           
@@ -598,6 +598,10 @@ prefix-limits
     warning-threshold  75                  
     warning-only       off
 ```
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command output shows `enabled on` or `enabled off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

@@ -1689,8 +1689,7 @@ Cumulus Linux provides several show commands to help you troubleshoot BGP PIC. R
 ## BGP Conditional Disaggregation
 
 In large scale deployments, route aggregation keeps BGP routing tables manageable by reducing the number of paths. However, when used in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer), each leaf advertises one aggregate route covering all its connected hosts. When a single link fails and an individual host becomes unreachable, the aggregate remains advertised and the switch continues to send traffic to the failed path with no mechanism to reroute through healthy planes.
-
-BGP conditional disaggregation signals specific prefix unreachability while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes only when needed to indicate that a destination within the aggregate is unreachable.
+BGP conditional disaggregation advertises specific prefixes when a failure is detected, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
 
 BGP conditional disaggregation requires you to enable:
 - {{<link url="/#bgp-pic-" text="BGP PIC">}}.

@@ -1132,7 +1132,7 @@ You can use a multicast sender or receiver over a dual-attached MLAG bond. On th
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set interface vlan10 router pim active-active on
+cumulus@leaf01:~$ nv set interface vlan10 router pim active-active enabled
 cumulus@leaf01:~$ nv set interface vlan10 ipv4 igmp
 cumulus@leaf01:~$ nv config apply
 ```

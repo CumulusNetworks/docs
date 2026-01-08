@@ -252,7 +252,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.3 address-fami
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.4 address-family l2vpn-evpn state enabled
 cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
-cumulus@leaf01:~$ nv set interface lo router ospf passive on
+cumulus@leaf01:~$ nv set interface lo router ospf passive enabled
 cumulus@leaf01:~$ nv set interface swp49 router ospf area 0.0.0.0
 cumulus@leaf01:~$ nv set interface swp50 router ospf area 0.0.0.0
 cumulus@leaf01:~$ nv set interface swp51 router ospf area 0.0.0.0

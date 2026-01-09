@@ -171,6 +171,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4829842"></a> [4829842](#4829842) <a name="4829842"></a> <br /> | If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes. | 5.12.1-5.15.1 | |
 | <a name="4804084"></a> [4804084](#4804084) <a name="4804084"></a> <br /> | On switches at scale with OTEL enabled, an <code>interface_stats_collector</code> crash might occur with the following logs:<br><pre><code>interface_stats_collector&#91;3429270&#93;: ERROR<br> buffer_stats_collector.go:1875 SDK bulk counter read failed<br>interface_stats_collector&#91;3429270&#93;: fatal error: concurrent map iteration and map write<br>interface_stats_collector&#91;3429270&#93;: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 &#91;running&#93;:</code></pre> | 5.14.0-5.15.1 | |
 | <a name="4789562"></a> [4789562](#4789562) <a name="4789562"></a> <br /> | If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes. | 5.12.1-5.15.1 | |
 | <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | |

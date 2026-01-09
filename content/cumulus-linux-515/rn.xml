@@ -961,6 +961,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4829842</td>
+<td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
+<td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4804084</td>
 <td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
 {{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed

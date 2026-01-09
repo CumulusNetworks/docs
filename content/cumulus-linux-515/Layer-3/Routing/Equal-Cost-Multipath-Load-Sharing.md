@@ -611,7 +611,7 @@ Link utilization is off by default; you must enable the global link utilization 
 The following example enables link utilization and uses the default link utilization threshold percentage of 70:
 
 ```
-cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on
+cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -619,7 +619,7 @@ The following example changes the link utilization threshold percentage to 100 o
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing link-utilization-threshold 100
-cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on
+cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -670,7 +670,7 @@ cumulus@switch:~$ nv set interface swp51 router adaptive-routing state enabled
 cumulus@switch:~$ nv set interface swp52 router adaptive-routing state enabled
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing link-utilization-threshold 100
 cumulus@switch:~$ nv set interface swp52 router adaptive-routing link-utilization-threshold 100
-cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on
+cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold enabled
 cumulus@switch:~$ nv config apply 
 ```
 

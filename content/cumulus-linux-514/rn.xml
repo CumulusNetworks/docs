@@ -7,12 +7,30 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4829842</td>
+<td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
+<td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4804084</td>
 <td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
 {{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
 interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
 interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
 <td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789562</td>
+<td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
+<td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789097</td>
+<td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
+<td>5.9.4-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -56,6 +74,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>4748176</td>
 <td>Unsupported hardware modules might cause SDK and firmware health event and traffic loss.</td>
 <td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4734395</td>
+<td>{{mlxlink}} output sometimes displays additional special characters while still reporting valid data.</td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -193,6 +217,12 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td>The {{nv action clear interface &lt;port&gt;}} command does not clear the in and out packet counters under {{interface/&lt;port&gt;/link/stats}}.</td>
 <td>5.12.1-5.14.0</td>
 <td>5.15.0-5.15.1</td>
+</tr>
+<tr>
+<td>4643073</td>
+<td>Concurrent {{mlxfwmanager --query}} executions triggered by gNMI telemetry polling might cause MFT deadlock, resulting in repeated core dumps, {{nvued}} restarts, and control plane unresponsiveness. </td>
+<td>5.14.0-5.15.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4641806</td>

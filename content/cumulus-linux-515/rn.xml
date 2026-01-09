@@ -961,12 +961,30 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4829842</td>
+<td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
+<td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4804084</td>
 <td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
 {{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
 interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
 interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
 <td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789562</td>
+<td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
+<td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789097</td>
+<td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
+<td>5.9.4-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -978,6 +996,12 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <tr>
 <td>4781499</td>
 <td>The 802.1X RADIUS shared secret is limited to 32 characters instead of 256 characters.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4776471</td>
+<td>In Cumulus Linux 5.15.0, NTP and DNS configuration commands changed from {{nv set service}} to {{nv set system}}. However, after upgrading the switch to Cumulus Linux 5.15.1, the {{nv set service}} command might still appear in the configuration output because a stale {{nv set service}} command remains after the configuration is translated during the upgrade. If you save the configuration with the {{nv config show -o commands}}, then reapply the configuration with {{nv config replace}}, the command fails if the stale {{nv set service}} command is present.To workaround this issue, before applying the configuration with {{nv config replace}}, remove any stale {{nv set service}} commands from the saved configuration file, then reapply the configuration with the {{nv config replace &lt;config-file&gt;}} command.</td>
 <td>5.15.0-5.15.1</td>
 <td></td>
 </tr>
@@ -1055,6 +1079,12 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 <td>4734606</td>
 <td>Physical interface based static IPv6 address assignment does not work for DHCPv6 with inbound DHCP requests (discover packets) on an SVI interface. To work around this issue, configure the IPv6 pool for the subnet to assign the IPv6 address from the pool.</td>
 <td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4734395</td>
+<td>{{mlxlink}} output sometimes displays additional special characters while still reporting valid data.</td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1204,6 +1234,12 @@ User name {} is already in use as OS group name 'and could not be used as userna
 <td></td>
 </tr>
 <tr>
+<td>4683616</td>
+<td>When you configure the same 802.1X port ID on multiple ports using the same IPv6 profile, the switch might assign duplicate IPv6 addresses to those ports. To work around this issue, configure a unique port ID for each port with an IPv6 profile or omit the explicit port ID configuration to allow the system to assign a unique 802.1X port ID automatically.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4683602</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
 <td>5.11.1-5.15.1</td>
@@ -1237,6 +1273,12 @@ User name {} is already in use as OS group name 'and could not be used as userna
 <td>4648833</td>
 <td>Interfaces using PAM4 DAC cables on switches with Spectrum-4 and later might not come up after a link flap or reboot if auto-negotiation is disabled. Auto-negotiation is required for PAM4 DAC cables on these switches.</td>
 <td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4643073</td>
+<td>Concurrent {{mlxfwmanager --query}} executions triggered by gNMI telemetry polling might cause MFT deadlock, resulting in repeated core dumps, {{nvued}} restarts, and control plane unresponsiveness. </td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>

@@ -13,7 +13,9 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 ## What's New in NetQ 5.1
 
 
-- Check which version of NetQ you are running using the NetQ for NVLink API <!--Swagger link-->
+- You can now increase the TTL of your time-series database by configuring a list of metrics that NetQ ignores.
+- NetQ for NVLink API:
+    - Added endpoint to query NetQ version
 - Performance improvements to the account management page in the UI
 - Decreased time to install NetQ
 - Added Arm support <!--at risk-->

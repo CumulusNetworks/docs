@@ -29,7 +29,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#lag-hash-randomizer" text="LAG hash randomizer for adaptive routing">}}
 - {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx squelch control">}}
-- 802.1x on router ports with dynamic VRF assignment
+- {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1x dynamic VRF assignment">}}
 - Same user created locally and on Tacacs server, need NVUE support
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Telemetry

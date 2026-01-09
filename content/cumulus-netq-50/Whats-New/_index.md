@@ -11,6 +11,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 ## What's New in NetQ 5.0.1
 
 - NetQ 5.0.1 includes bug fixes and provides updated URL paths for both the {{<link title="Access the NetQ UI" text="NetQ GUI">}} and {{<link title="API User Guide/#get-started" text="NetQ API">}}.
+- The steps to {{<link title="Install a Custom Signed Certificate" text="install a custom-signed certificate">}} have been revised and updated.
 
 ## What's New in NetQ 5.0.0
 

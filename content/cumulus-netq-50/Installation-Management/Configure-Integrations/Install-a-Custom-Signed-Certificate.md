@@ -7,6 +7,9 @@ toc: 3
 
 When you first log in to the NetQ UI as part of an on-premises deployment, your browser will display a warning indicating that the default certificate is not trusted. You can avoid this warning by installing your own, custom-signed certificate using the steps outlined on this page. The self-signed certificate is sufficient for non-production environments or cloud deployments. 
 
+{{<notice info>}}
+Custom-signed certificates are supported in NetQ 5.0.1. The steps as outlined in this section are not supported in NetQ 5.0.0.
+{{</notice>}}
 {{%notice note%}}
 If you already have a certificate installed and want to change or update it, run the `kubectl delete secret netq-gui-ingress-tls [name] --namespace default` command before following the steps outlined in this section. After making your updates, restart nginx with the `kubectl delete pod -l app.kubernetes.io/name=ingress-nginx --namespace ingress-nginx` command.
 {{%/notice%}}
@@ -34,7 +37,7 @@ You need the following items to perform the certificate installation:
 
     ```
     nvidia@netq-ts:~$ kubectl create secret tls netq-gui-ingress-tls \
-        --namespace default \
+        --namespace netq-infra \
         --key <name of your key file>.key \
         --cert <name of your cert file>.crt
     ```
@@ -42,7 +45,7 @@ You need the following items to perform the certificate installation:
 3. Verify that you created the secret successfully:
 
     ```
-    nvidia@netq-ts:~$ kubectl get secret
+    nvidia@netq-ts:~$ kubectl get secret -n netq-infra | grep netq-gui-ingress-tls
 
     NAME                               TYPE                                  DATA   AGE
     netq-gui-ingress-tls               kubernetes.io/tls                     2      5s
@@ -58,32 +61,23 @@ You need the following items to perform the certificate installation:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: kong-dp-kong-proxy
+  namespace: netq-infra
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-body-size: 10g
-    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
     nginx.ingress.kubernetes.io/ssl-passthrough: "false"
-  name: netq-gui-ingress-external
-  namespace: default
 spec:
   ingressClassName: ingress-nginx-class
   rules:
   - host: <your-hostname>
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - path: /(api/netq|netq|netq-gui|nmx).*
+        pathType: ImplementationSpecific
         backend:
           service:
-            name: netq-gui
+            name: kong-dp-kong-proxy
             port:
-              number: 80
-        path: /
-        pathType: Prefix
+              number: 8443
   tls:
   - hosts:
     - <your-hostname>
@@ -100,54 +94,9 @@ spec:
     
     The message above appears if your ingress rule is successfully configured.
 
-6. Configure the NetQ API to use the new certificate by updating the Swagger ingress rule file.
-
-    1. Create a new file called `swagger-ingress.yaml`
-
-    2. Copy and add the following content to the file. Replace `<your-hostname>` with the FQDN of the NetQ VM.
-
-```
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
-    nginx.ingress.kubernetes.io/proxy-body-size: 10g
-    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-    nginx.ingress.kubernetes.io/ssl-passthrough: "false"
-  name: netq-swagger-ingress-external
-  namespace: default
-spec:
-  ingressClassName: ingress-nginx-class
-  rules:
-  - host: <your-hostname>
-    http:
-      paths:
-      - path: "/swagger"
-        pathType: Prefix
-        backend:
-          service:
-            name: swagger-ui
-            port:
-              number: 8080
-  tls:
-  - hosts:
-    - <your-hostname>
-    secretName: netq-gui-ingress-tls
-```
-
-7. Apply the new rule:
-
-    ```
-    nvidia@netq-ts:~$ kubectl apply -f swagger-ingress.yaml
-    ```
  
-
 {{</tab>}}
 
 {{</tabs>}}
 
-Your custom certificate should now be working. Verify this by opening the NetQ UI at `https://<your-hostname-or-ipaddr>` in your browser.
+Your custom certificate should now be working. Verify this by opening the NetQ UI at `https://<your-hostname>/netq-gui/` in your browser.

@@ -15,6 +15,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 ### New Features and Enhancements
 
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload">}}
+- {{<link url="Optional-BGP-Configuration/#bgp-conditional-disaggregation" text="BGP conditional disaggregation">}}
 - {{<link url="Routing-Tables/#show-fib-table-entries" text="Show FIB table entries">}}
 - {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
 - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
@@ -31,7 +32,6 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx squelch control">}}
 - 802.1x on router ports with dynamic VRF assignment
 - Same user created locally and on Tacacs server, need NVUE support
-- {{<link url="Optional-BGP-Configuration/#bgp-conditional-disaggregation" text="BGP conditional disaggregation">}}
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Telemetry
   - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}

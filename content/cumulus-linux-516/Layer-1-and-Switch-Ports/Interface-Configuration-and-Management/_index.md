@@ -306,7 +306,7 @@ To unset the MAC address for an interface, remove the mac address from the inter
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- MOVE TO 5.17
 ## Interface Physical Name
 
 The physical name for an interface maps the interface to the connector to show actual physical connections within the system and correlate software interface names with the physical layout of the hardware.
@@ -388,7 +388,7 @@ swp4s3     swp4c2s2            down          down                9216          n
 swp5s0     swp5c1s1            down          down                9216          none
 ...
 ```
-
+-->
 ## Interface Descriptions
 
 You can add a description (alias) to an interface.

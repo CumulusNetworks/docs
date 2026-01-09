@@ -16,9 +16,9 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-conditional-disaggregation" text="BGP conditional disaggregation">}}
+- {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
 - {{<link url="Routing-Tables/#show-fib-table-entries" text="Show FIB table entries">}}
 - {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
-- You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
 - {{<link url="Access-Control-List-Configuration/#clear-control-plane-policer-counters" text="Clear control plane policer counters">}}
 - {{<link url="Access-Control-List-Configuration/#match-on-inner-header" text="ACL matches on packet inner header">}} and {{<link url="Access-Control-List-Configuration/#match-on-packet-offset" text="ACL matches on packet offset">}}
 - {{<link url="Quality-of-Service/#clear-qos-buffers" text="Clear QoS buffers on multiple interfaces">}}
@@ -26,14 +26,14 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Network-Troubleshooting/#extended-traceroute" text="Extended traceroute (RFC 5837)">}}
 - {{<link url="TACACS/#tacacs-per-command-authorization" text="TACACS per-command authorization supports NVUE tab completion, option listing (?), and command history navigation">}}
 - {{<link url="DHCP-Relays/#dhcp-relay-for-ipv4-in-an-evpn-symmetric-environment-with-mlag" text="VRF-aware DHCP relay">}}
-- {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
 - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#lag-hash-randomizer" text="LAG hash randomizer for adaptive routing">}}
 - {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx squelch control">}}
-- 802.1x on router ports with dynamic VRF assignment
+- {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1x dynamic VRF assignment">}}
 - Same user created locally and on Tacacs server, need NVUE support
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Telemetry
+  - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
   - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI interface and platform metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`, and `/components/component[name]/transceiver/state/serial-number`)
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI QoS buffer metrics">}}

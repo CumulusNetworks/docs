@@ -745,35 +745,50 @@ def fix_internal_heading_anchors(soup: BeautifulSoup) -> None:
             a["href"] = f"#{frag}"
             a.attrs.pop("target", None)
             continue
-
+        
         # --- NEW: handle links that end in '/#' with NO fragment, using final path segment ---
         # Accept both absolute and relative links; treat staging host as well.
-        ends_with_empty_hash = href.endswith("/#") or (not frag and path and href.strip().endswith("#"))
+        ends_with_empty_hash = href.endswith('/#') or (not frag and path and href.strip().endswith('#'))
         if ends_with_empty_hash:
-            # Take final non-empty segment before the trailing '/#'
-            # E.g., '/.../NVIDIA-User-Experience-NVUE/#' -> 'NVIDIA-User-Experience-NVUE'
-            trimmed = path.rstrip("/")
-            candidate = trimmed.split("/")[-1] if trimmed else ""
-            # If we have a candidate, try to resolve to an element id.
+            trimmed = path.rstrip('/')
+            candidate = trimmed.split('/')[-1] if trimmed else ''
             if candidate:
-                # Prefer an exact id match first.
+                # 1. Exact id match
                 target_el = soup.find(id=candidate)
-                # If not found, try heading slug derived from text as fallback
+                # 2. Heading id set membership
                 if not target_el:
                     heading_ids = {h.get('id') for h in soup.find_all(re.compile(r'^h[1-6]$')) if h.get('id')}
                     if candidate in heading_ids:
                         target_el = True
+                # 3. Prefix match (case-sensitive)
+                if not target_el:
+                    for h in soup.find_all(re.compile(r'^h[1-6]$')):
+                        hid = h.get('id')
+                        if hid and hid.startswith(candidate):
+                            target_el = h
+                            candidate = hid
+                            break
+                # 4. Case-insensitive match
+                if not target_el:
+                    for h in soup.find_all(re.compile(r'^h[1-6]$')):
+                        hid = h.get('id')
+                        if hid and hid.lower() == candidate.lower():
+                            target_el = h
+                            candidate = hid
+                            break
+                # 5. Slugified match
+                if not target_el:
+                    slug_candidate = _slugify(candidate)
+                    for h in soup.find_all(re.compile(r'^h[1-6]$')):
+                        hid = h.get('id')
+                        if hid and _slugify(hid) == slug_candidate:
+                            target_el = h
+                            candidate = hid
+                            break
                 if target_el:
                     a['href'] = f'#{candidate}'
                     a.attrs.pop('target', None)
                     continue
-                else:
-                    # Optional: attempt normalized match (lowercase, slugified)
-                    slug_candidate = _slugify(candidate)
-                    if slug_candidate and soup.find(id=slug_candidate):
-                        a['href'] = f'#{slug_candidate}'
-                        a.attrs.pop('target', None)
-                        continue
         # --- END NEW BLOCK ---
 
     # 3) Legacy anchors: also get ids

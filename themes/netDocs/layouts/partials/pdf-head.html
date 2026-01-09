@@ -2,32 +2,64 @@
 
 
 <script>
-
-    function expand_tabs() {
-        // Break tabs into separate sections
-        $.each( $('.book-tabs'), function() {
-            var html = $(this).html();
-            var htmlDelimited = html.replace('</div><input type="radio"', '</div>§<input type="radio"');
-            var htmlSeparated = htmlDelimited.split('§');
-            for (let i in htmlSeparated) {
-            htmlSeparated[i] = '<div class="book-tabs">' + htmlSeparated[i] + '</div>';
-            }
-            $(this).replaceWith(htmlSeparated);
+    function expand_tabs_singlepage() {
+      // For every tab group on the page
+      $('.book-tabs').each(function () {
+        const $group = $(this);
+        const sections = [];
+  
+        // Each radio represents one tab; pair it with its label and content
+        $group.find('input[type=radio]').each(function () {
+          const $input = $(this);
+          const $label = $input.next('label');
+          const $content = $input.nextAll('.book-tabs-content').first();
+  
+          if ($label.length && $content.length) {
+            // Clone to avoid reparenting original nodes (safer for other scripts)
+            const $labelClone = $label.clone();
+            const $contentClone = $content.clone();
+  
+            // Make sure content is visible in single-page mode
+            $contentClone.show();
+  
+            // Normalize label styling for a header feel in single-page mode
+            $labelClone
+              .removeAttr('for')                // not a control anymore
+              .css({
+                display: 'block',
+                'border-bottom': '0',
+                'font-weight': 600,
+                'margin': '24px 0 8px',
+                'cursor': 'default'
+              })
+              .addClass('tab-title');           // optional hook if you want custom CSS
+  
+            // Assemble a new section with label ABOVE content
+            const $section = $('<div class="book-tabs section"></div>');
+            $section.append($labelClone).append($contentClone);
+  
+            sections.push($section);
+          }
         });
-        // Loop through .book-tabs again; adjust CSS where needed and replace input.name attribute values with a random hash
-        $.each( $('.book-tabs'), function() {
-            $(this).find('input[type=radio]:checked+label').css('border-bottom', '0');
-            $(this).find('.book-tabs-content').show();
-            $(this).find('input[type="radio"]').attr('name', Math.floor(Math.random() * 100000000000000));
-        });
-        tabs_finished = true;
+  
+        // Replace the original tab group with the new stacked sections
+        // (If you prefer a single container, wrap sections in one div instead.)
+        if (sections.length) {
+          $group.replaceWith(sections);
+        } else {
+          // Fallback: if no radios found, still show content in-place
+          $group.find('.book-tabs-content').show();
+          $group.find('input[type=radio]:checked+label').css('border-bottom', '0');
+        }
+      });
+  
+      // Optional: clean up any stray inputs (if cloning isn't used)
+      // $('.book-tabs input[type=radio]').remove();
     }
-
-    window.onload = function() {
-        expand_tabs();
-
-    }
-</script>
+  
+    // Run on load
+    window.addEventListener('load', expand_tabs_singlepage);
+  </script>
 <meta name="author" content="Cumulus Networks" />
 <meta name="keywords" content="COMMIT_INFO" />
 <meta name="search_visibility" content="hidden" />

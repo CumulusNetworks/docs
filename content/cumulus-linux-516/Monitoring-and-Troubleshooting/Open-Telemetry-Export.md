@@ -801,16 +801,6 @@ The switch collects and exports statistics for IPv4, IPv6, layer 2, and layer 4 
 | `nvswitch_acl_set_l2_info` | Layer 2 ACL information. |
 | `nvswitch_acl_set_l4_info` | Layer 4 ACL information. |
 
-{{< expand "Example JSON data for nvswitch_acl_interface_matched_pkts:" >}}
-```
-```
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for nvswitch_acl_set_ipv4_info:" >}}
-```
-```
-{{< /expand >}}
-
 ### AI Ethernet Statistic Format
 
 The switch collects and exports the adaptive routing, SRv6, and packet trimming statistics when you configure the `nv set system telemetry ai-ethernet-stats export state enabled` command.

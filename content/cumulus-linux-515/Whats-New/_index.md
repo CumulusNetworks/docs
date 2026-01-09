@@ -1,8 +1,8 @@
 ---
 title: What's New
 author: NVIDIA
-weight: 5
-toc: 2
+weight: -35
+toc: 1
 ---
 This document supports the Cumulus Linux 5.15 release, and lists new features and enhancements.
 - For a list of open and fixed issues in Cumulus Linux 5.15, see the {{<link title="Cumulus Linux 5.15 Release Notes" text="Cumulus Linux 5.15 Release Notes">}}.

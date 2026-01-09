@@ -199,6 +199,7 @@ You can adjust the LLDP statistics sample interval (in seconds). You can specify
 cumulus@switch:~$ nv set system telemetry lldp sample-interval 10
 cumulus@switch:~$ nv config apply
 ```
+
 ### Platform Statistics
 
 When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, and transceiver information. To enable all [platform statistics](#platform-statistic-format) globally:
@@ -540,12 +541,6 @@ By default, OTLP export is in **secure** mode that requires a CA certificate. Fo
     cumulus@switch:~$ nv config apply
     ```
 
-
-<!-- POC IN CL5.13
-{{%notice note%}}
-When you make changes to the open telemetry export destination, connections to the destination do not reset.
-{{%/notice%}}
--->
 ### Customize Export
 
 By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to all configured OTLP destinations. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group to control which statistics you export and the sample interval for a destination.
@@ -763,16 +758,6 @@ The switch collects and exports statistics for IPv4, IPv6, layer 2, and layer 4 
 | `nvswitch_acl_set_ipv6_info` | IPv6 ACL information. |
 | `nvswitch_acl_set_l2_info` | Layer 2 ACL information. |
 | `nvswitch_acl_set_l4_info` | Layer 4 ACL information. |
-
-{{< expand "Example JSON data for nvswitch_acl_interface_matched_pkts:" >}}
-```
-```
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for nvswitch_acl_set_ipv4_info:" >}}
-```
-```
-{{< /expand >}}
 
 ### AI Ethernet Statistic Format
 

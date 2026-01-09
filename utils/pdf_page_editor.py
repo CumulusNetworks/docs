@@ -6,36 +6,40 @@ from bs4 import BeautifulSoup
 import sys
 import os
 from os import path
+from urllib.parse import urlparse
 
 def rewrite_urls(soup, product):
-    '''
-    Modifies all links on a page to become local anchors
+    """
+    Modifies links that point into the product content, but ONLY if they
+    contain a non-empty fragment (#something). External links and links
+    without fragments are left untouched.
 
     soup - BeautifulSoup object to modify
-    product - The product string of the PDF being modified. Must match the content directory name, e.g., cumulus-linux-42
+    product - Product string, e.g., "cumulus-linux-42"
 
     Returns a modified BeautifulSoup object
-    '''
-    for link in soup.find_all("a"):
-        href = link.get("href")
+    """
+    for link in soup.find_all("a", href=True):
+        href = link["href"].strip()
 
-        if not href:
+        # Skip obvious external or special schemes
+        if href.startswith(("http://", "https://", "mailto:", "tel:")):
             continue
 
-        path_parts = href.split("/")
+        parsed = urlparse(href)
 
-        if len(path_parts) < 2:
+        # Only touch links that target the product path
+        if product not in parsed.path:
             continue
 
-        if product not in path_parts:
+        # Only rewrite when there is a NON-empty fragment (i.e., #something)
+        # urlparse puts the fragment (text after "#") in parsed.fragment
+        if not parsed.fragment:
+            # This covers cases like "...#", or no "#" at all => skip
             continue
 
-        if path_parts[len(path_parts) - 1] == "#":
-            anchor = "#" + path_parts[len(path_parts) - 2]
-        else:
-            anchor = path_parts[len(path_parts) - 1]
-
-        link["href"] = anchor
+        # Rewrite to a local anchor: "#fragment"
+        link["href"] = f"#{parsed.fragment}"
 
     return soup
 

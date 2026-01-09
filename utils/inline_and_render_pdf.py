@@ -3,16 +3,25 @@
 """
 Inline HTML for DocRaptor/Prince PDF with:
 - CSS/JS inlining (JS stripped)
-- Host rewrite (staging -> production)
+- Host rewrite (for anchors/non-asset cases)
 - Tight margins
 - Robust table fragmentation using native <table> (no clones)
-- Merge inline code runs into single <pre><code>...</code></pre>
-- Normalize existing <pre> blocks (remove nested chips)
+- Merge inline code runs into single <pre><code>…</code></pre>
+- Normalize existing <pre><code>…</code></pre> blocks
 - Embed NVIDIASans as data URI via @font-face (variable woff2)
 - Print-only font override (configurable scope)
-- Anchor fix: rewrite absolute /pdf/#... links to local #... and ensure heading IDs
+- Anchor fix: rewrite absolute /pdf/#... links to local #...
 - TEST mode kept (DocRaptor watermark remains)
+
+New:
+- Playwright downloader to render JS and save fully-populated HTML
+- Dynamic path overrides based on slug (HTML_FILE/ASSET_DIR/INLINED_HTML/OUTPUT_PDF)
+- Fast asset download (requests.Session + parallel workers)
+- UTF-8 enforced on all reads/writes to prevent mojibake
+- Prince baseurl set to original source URL to avoid file:// links in PDFs
+- Asset host rewrite DISABLED by default throughout discovery, download, and inlining
 """
+
 import os
 import re
 import time
@@ -21,12 +30,22 @@ import base64
 import pathlib
 import unicodedata
 import urllib.parse as urlparse
+import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 import requests
 from bs4 import BeautifulSoup, Tag, NavigableString
 import docraptor
 
+# Playwright (JS-rendering)
+try:
+    from playwright.sync_api import sync_playwright
+    PLAYWRIGHT_AVAILABLE = True
+except Exception:
+    PLAYWRIGHT_AVAILABLE = False
+
 # =========================
-# CONFIG
+# CONFIG (defaults; overridden when --url is used)
 # =========================
 HTML_FILE = "html-save/cumulus-linux-515-pdf.html"
 ASSET_DIR = "html-save/cumulus-linux-515-pdf_files"
@@ -38,37 +57,41 @@ API_KEY = os.getenv("DOCRAPTOR_API_KEY", API_KEY_FALLBACK)
 
 EMBED_CSS_IMAGES = True
 EMBED_HTML_IMAGES = True
-EMBED_FONTS = True  # — ensure font embedding via @font-face happens
+EMBED_FONTS = True  # ensure font embedding via @font-face happens
 
 # Font override scope:
-#   "print" => PDF only (recommended, keeps browser/inlined HTML untouched)
-#   "all"   => both screen & print (forces NVIDIASans everywhere)
+# "print" => PDF only (recommended)
+# "all"   => both screen & print
 FONT_SCOPE = "print"
-
-FORCE_FONT_FAMILY = "'NVIDIASans'"  # logical name used in @font-face
+FORCE_FONT_FAMILY = "'NVIDIASans'"
 PRESERVE_MONOSPACE_FOR_CODE = True
 EMBED_FAVICON = False
 
+# Host rewrite map (used only when explicitly desired)
 ENABLE_HOST_REWRITE = True
 HOST_REWRITE_MAP = {
     "https://pdf-testing.d5j8yik1ci5ec.amplifyapp.com/networking-ethernet-software":
-    "https://docs.nvidia.com/networking-ethernet-software",
+        "https://docs.nvidia.com/networking-ethernet-software",
 }
-ALLOWED_HOSTS = {"images.nvidia.com"}
 
-REQUEST_HEADERS = {"User-Agent": "NVIDIA-Docs-Inliner/2.5 (+DocRaptor/Prince)"}
+# NEW: disable host rewrite for assets end-to-end
+ENABLE_HOST_REWRITE_FOR_ASSETS = False  # set True only when production has matching hashed assets
+
+ALLOWED_HOSTS = {"images.nvidia.com"}  # allowed external asset host for font embedding
+REQUEST_HEADERS = {"User-Agent": "NVIDIA-Docs-Inliner/2.7 (+DocRaptor/Prince)"}
 REQUEST_TIMEOUT = 25
 POLL_INTERVAL = 5
 
-# Use print media so @media print rules apply
+# Prince/DocRaptor
 PRINCE_MEDIA = "print"
 PRINCE_COLOR_SPACE = "rgb"
+ORIGINAL_URL = None  # set at runtime from --url
 
-# Tight page margins
-PAGE_MARGIN_TOP_MM = 11
-PAGE_MARGIN_RIGHT_MM = 6
-PAGE_MARGIN_BOTTOM_MM = 11  # +2 mm to keep content above TEST watermark band
-PAGE_MARGIN_LEFT_MM = 6
+# Page margins
+PAGE_MARGIN_TOP_MM = 9
+PAGE_MARGIN_RIGHT_MM = 8
+PAGE_MARGIN_BOTTOM_MM = 9  # +2 mm to keep content above TEST watermark band
+PAGE_MARGIN_LEFT_MM = 8
 
 FONT_MIME = {
     ".woff2": "font/woff2",
@@ -103,7 +126,6 @@ def host_allowed(href: str) -> bool:
     return host in ALLOWED_HOSTS
 
 def infer_mime(u: str, default: str = "application/octet-stream") -> str:
-    ext = pathlib.Path(urlparse.urlparse(u).path).suffix.lower()
     guessed, _ = mimetypes.guess_type(u)
     return guessed or default
 
@@ -111,7 +133,7 @@ def to_data_uri(raw: bytes, mime: str) -> str:
     return f"data:{mime};base64,{base64.b64encode(raw).decode('ascii')}"
 
 def normalize_and_rewrite_url(u: str) -> str:
-    # Leave pure fragments alone
+    """Host rewrite for non-asset cases (e.g., anchors) only."""
     if not u or u.startswith("#"):
         return u
     if not ENABLE_HOST_REWRITE:
@@ -120,6 +142,12 @@ def normalize_and_rewrite_url(u: str) -> str:
         if u.startswith(old):
             return new + u[len(old):]
     return u
+
+def maybe_rewrite_for_asset(u: str) -> str:
+    """Apply host rewrite to assets only if explicitly enabled."""
+    if not ENABLE_HOST_REWRITE_FOR_ASSETS:
+        return u
+    return normalize_and_rewrite_url(u)
 
 def read_local_bytes(base_dir: str, href: str) -> bytes:
     clean = urlparse.urlparse(href)
@@ -139,13 +167,13 @@ def read_local_bytes(base_dir: str, href: str) -> bytes:
     raise FileNotFoundError(f"Local asset not found: {href}")
 
 def fetch_http_bytes(url: str) -> bytes:
-    url = normalize_and_rewrite_url(url)
+    url = maybe_rewrite_for_asset(url)
     resp = requests.get(url, headers=REQUEST_HEADERS, timeout=REQUEST_TIMEOUT)
     resp.raise_for_status()
     return resp.content
 
 def get_resource_bytes(href: str, base_dir: str) -> bytes:
-    href = normalize_and_rewrite_url(href)
+    href = maybe_rewrite_for_asset(href)
     key = f"BYTES::{href}"
     if key in resource_cache:
         return resource_cache[key][0]
@@ -156,7 +184,7 @@ def get_resource_bytes(href: str, base_dir: str) -> bytes:
     return raw
 
 def get_resource_text(href: str, base_dir: str) -> str:
-    href = normalize_and_rewrite_url(href)
+    href = maybe_rewrite_for_asset(href)
     key = f"TEXT::{href}"
     if key in resource_cache:
         return resource_cache[key][0].decode("utf-8", errors="replace")
@@ -165,7 +193,7 @@ def get_resource_text(href: str, base_dir: str) -> str:
     return raw.decode("utf-8", errors="replace")
 
 def to_data_uri_from(href: str, base_dir: str) -> str:
-    href = normalize_and_rewrite_url(href)
+    href = maybe_rewrite_for_asset(href)
     raw = get_resource_bytes(href, base_dir)
     mime = infer_mime(href)
     return to_data_uri(raw, mime)
@@ -174,7 +202,7 @@ def to_data_uri_from(href: str, base_dir: str) -> str:
 # CSS rewriting
 # =========================
 IMPORT_RE = re.compile(r'@import\s+(?:url\()?["\']?([^"\'\)]+)["\']?\)?\s*;', re.I)
-URL_RE    = re.compile(r'url\(\s*["\']?([^"\'\)]+)["\']?\s*\)', re.I)
+URL_RE = re.compile(r'url\(\s*["\']?([^"\'\)]+)["\']?\s*\)', re.I)
 
 def inline_css_imports(css_text: str, base_dir: str) -> str:
     out = css_text
@@ -182,7 +210,8 @@ def inline_css_imports(css_text: str, base_dir: str) -> str:
         m = IMPORT_RE.search(out)
         if not m:
             break
-        import_url = normalize_and_rewrite_url(m.group(1).strip())
+        import_url = m.group(1).strip()
+        import_url = maybe_rewrite_for_asset(import_url)
         try:
             imported = get_resource_text(import_url, base_dir)
             imported = inline_css_imports(imported, base_dir)
@@ -194,7 +223,8 @@ def inline_css_imports(css_text: str, base_dir: str) -> str:
 
 def rewrite_css_urls(css_text: str, base_dir: str) -> str:
     def repl(m: re.Match) -> str:
-        u = normalize_and_rewrite_url(m.group(1).strip())
+        u = m.group(1).strip()
+        u = maybe_rewrite_for_asset(u)
         if u.startswith("data:") or u.startswith("#"):
             return m.group(0)
         try:
@@ -205,7 +235,7 @@ def rewrite_css_urls(css_text: str, base_dir: str) -> str:
     return URL_RE.sub(repl, css_text)
 
 def inline_stylesheet_href(href: str, base_dir: str) -> str:
-    href = normalize_and_rewrite_url(href)
+    href = maybe_rewrite_for_asset(href)
     css = get_resource_text(href, base_dir)
     css = inline_css_imports(css, base_dir)
     css = rewrite_css_urls(css, base_dir)
@@ -247,7 +277,7 @@ def extract_site_style_hints(soup: BeautifulSoup):
                 else:
                     hints[key] = val
 
-    html_block = re.search(r"html\s*\{[^\}]*font-size\s*:\s*([^\};]+)", big, re.I | re.S)
+    html_block = re.search(r"html\s*\{[^\}]*font-size\s*:\s*([^};]+)", big, re.I | re.S)
     if html_block:
         pxm = re.search(r"([\d.]+)\s*px", html_block.group(0), re.I)
         if pxm:
@@ -280,8 +310,6 @@ html, body {{
   background: var(--color-bg);
 }}
 a, a:visited {{ color: var(--color-link); text-decoration: underline; }}
-
-/* Tight page box */
 @page {{
   size: Letter;
   margin: {PAGE_MARGIN_TOP_MM}mm {PAGE_MARGIN_RIGHT_MM}mm {PAGE_MARGIN_BOTTOM_MM}mm {PAGE_MARGIN_LEFT_MM}mm;
@@ -295,9 +323,8 @@ def inline_link_styles(soup: BeautifulSoup, base_dir: str):
     for link in list(soup.find_all("link")):
         rel = [r.lower() for r in (link.get("rel") or [])]
         href = link.get("href")
-        if href:
-            href = normalize_and_rewrite_url(href)
-            link["href"] = href
+
+        # DO NOT host-rewrite <link> href here; we embed styles directly
         if href and ("stylesheet" in rel):
             try:
                 css = inline_stylesheet_href(href, base_dir)
@@ -307,9 +334,11 @@ def inline_link_styles(soup: BeautifulSoup, base_dir: str):
             except Exception:
                 link.decompose()
                 continue
+
         if any(r in {"preload", "prefetch", "preconnect"} for r in rel):
             link.decompose()
             continue
+
         if any(r in {"icon", "shortcut icon"} for r in rel):
             if not EMBED_FAVICON:
                 link.decompose()
@@ -338,6 +367,7 @@ def expand_hidden_content(soup: BeautifulSoup):
     reveal = soup.new_tag("style")
     reveal.string = "details > summary { display: list-item; }"
     head.append(reveal)
+    # Ensure UTF-8 meta is present
     if not soup.find("meta", attrs={"charset": True}):
         meta = soup.new_tag("meta", charset="utf-8")
         head.insert(0, meta)
@@ -345,9 +375,7 @@ def expand_hidden_content(soup: BeautifulSoup):
 def embed_inline_style_attrs(soup: BeautifulSoup, base_dir: str):
     for tag in soup.find_all(style=True):
         style_text = tag.get("style") or ""
-        if ENABLE_HOST_REWRITE:
-            for old, new in HOST_REWRITE_MAP.items():
-                style_text = style_text.replace(old, new)
+        # Optional: host rewrite inside inline styles (rare for assets)
         try:
             tag["style"] = rewrite_css_urls(style_text, base_dir)
         except Exception:
@@ -358,13 +386,14 @@ def _embed_srcset(srcset: str, base_dir: str) -> str:
     out = []
     for part in parts:
         tokens = part.split()
-        url = normalize_and_rewrite_url(tokens[0])
+        url = tokens[0]
+        url = maybe_rewrite_for_asset(url)
         desc = " ".join(tokens[1:]) if len(tokens) > 1 else ""
         if url.startswith("data:"):
             out.append(part); continue
         try:
             data_uri = to_data_uri_from(url, base_dir)
-            out.append((data_uri + (" " + desc if desc else "")))
+            out.append(data_uri + (" " + desc if desc else ""))
         except Exception:
             out.append(part)
     return ", ".join(out)
@@ -373,7 +402,8 @@ def embed_html_images(soup: BeautifulSoup, base_dir: str):
     if not EMBED_HTML_IMAGES:
         return
     for img in soup.find_all("img", src=True):
-        src = normalize_and_rewrite_url(img["src"])
+        src = img["src"]
+        src = maybe_rewrite_for_asset(src)
         img["src"] = src
         if not src.startswith("data:"):
             try:
@@ -395,7 +425,7 @@ def embed_html_images(soup: BeautifulSoup, base_dir: str):
                 pass
         src = source.get("src")
         if src:
-            src = normalize_and_rewrite_url(src)
+            src = maybe_rewrite_for_asset(src)
             source["src"] = src
             if not src.startswith("data:"):
                 try:
@@ -407,44 +437,32 @@ def embed_html_images(soup: BeautifulSoup, base_dir: str):
 # Embed NVIDIASans via @font-face (data URI)
 # =========================
 def inject_nvidia_sans_fontface(soup: BeautifulSoup, base_dir: str, scope: str = "print"):
-    """
-    Fetch the NVIDIASans variable WOFF2 from images.nvidia.com, convert to data URI,
-    and embed as @font-face. Scope can be "print" or "all".
-    """
     if not EMBED_FONTS:
         return
-
     head = soup.head or soup.new_tag("head")
     if not soup.head:
         soup.insert(0, head)
-
-    # Fetch & embed as data URI
     try:
         font_data_uri = to_data_uri_from(NVIDIASANS_VAR_WGHT_URL, base_dir)
     except Exception as e:
-        # If fetch fails, do nothing—Prince will fall back to system fonts
         warn = soup.new_tag("!--")
         warn.string = f" Failed to fetch NVIDIASans WOFF2: {e} "
         head.append(warn)
         return
-
     face_css = f"""
 @font-face {{
   font-family: {FORCE_FONT_FAMILY};
   src: url('{font_data_uri}') format('woff2');
-  font-weight: 100 1000;   /* variable weight range */
-  font-stretch: 25% 151%;  /* variable stretch range */
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
   font-style: normal;
 }}
 """
-
     override_prefix = "" if scope == "all" else "@media print {\n"
     override_suffix = "" if scope == "all" else "\n}"
-
     mono = "'Oxygen Mono','Fira Mono','SFMono-Regular',Menlo,Consolas,'Liberation Mono',monospace"
     use_css = f"""
 {override_prefix}
-/* Use embedded NVIDIASans (scope: {scope}) */
 html, body, .content, article, section, p, li, td, th {{
   font-family: {FORCE_FONT_FAMILY}, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
   font-synthesis: none !important;
@@ -454,19 +472,14 @@ code, pre, kbd, samp {{
 }}
 {override_suffix}
 """
-
     style_tag = soup.new_tag("style")
     style_tag.string = face_css + "\n" + use_css
     head.append(style_tag)
 
 # =========================
-# Merge contiguous inline code lines to a single pre block
+# Merge contiguous inline code lines to a single <pre>
 # =========================
 def merge_inline_code_runs_into_pre(soup: BeautifulSoup):
-    """
-    Merge contiguous runs of <p><code>...</code></p> or <div><code>...</code></div>
-    into a single <pre><code>...</code></pre> to restore a consecutive block.
-    """
     def is_code_para(tag: Tag) -> bool:
         if not isinstance(tag, Tag): return False
         if tag.name not in ("p", "div"): return False
@@ -481,31 +494,33 @@ def merge_inline_code_runs_into_pre(soup: BeautifulSoup):
             run = []
             while i < len(kids) and isinstance(kids[i], Tag) and is_code_para(kids[i]):
                 run.append(kids[i]); i += 1
-            if len(run) >= 2:  # merge 2+ lines
+            if len(run) >= 2:
                 lines = [r.find("code", recursive=False).get_text() for r in run]
                 pre = soup.new_tag("pre")
                 code = soup.new_tag("code")
                 code.string = "\n".join(lines)
                 pre.append(code)
                 run[0].insert_before(pre)
-                for r in run: r.decompose()
+                for r in run:
+                    r.decompose()
                 kids = list(container.children)
             else:
                 i += 1
 
 # =========================
-# Normalize existing <pre> blocks (remove nested chips, ensure single <code>)
+# Normalize <pre><code> blocks
 # =========================
 def normalize_pre_code_blocks(soup: BeautifulSoup):
     for pre in soup.find_all("pre"):
         txt = pre.get_text("\n")
-        for c in list(pre.children): c.extract()
+        for c in list(pre.children):
+            c.extract()
         code = soup.new_tag("code")
         code.string = txt
         pre.append(code)
 
 # =========================
-# Unhide tab content: remove hidden flags & attributes that suppress tables
+# Unhide tab content
 # =========================
 def unhide_tab_content(soup: BeautifulSoup):
     for el in soup.select(".book-tabs, .book-tabs-content, .markdown-inner, .tab-content, .tab-pane"):
@@ -517,8 +532,10 @@ def unhide_tab_content(soup: BeautifulSoup):
         st = re.sub(r"(visibility\s*:\s*hidden\s*;?)", "", st, flags=re.I)
         st = re.sub(r"(opacity\s*:\s*0\s*;?)", "", st, flags=re.I)
         st = re.sub(r"\s{2,}", " ", st).strip().strip(";")
-        if st: el["style"] = st
-        else: el.attrs.pop("style", None)
+        if st:
+            el["style"] = st
+        else:
+            el.attrs.pop("style", None)
 
 # =========================
 # Inline style stripping (avoid clamps)
@@ -529,7 +546,7 @@ _BLOCKING_INLINE_PROPS = [
     r"height\s*:\s*[^;]+;?",
     r"visibility\s*:\s*hidden\s*;?",
     r"opacity\s*:\s*0\s*;?",
-    r"display\s*:\s*none\s*;?",          # NEW: strip inline display:none
+    r"display\s*:\s*none\s*;?",
     r"transform\s*:\s*[^;]+;?",
     r"clip-path\s*:\s*[^;]+;?",
     r"filter\s*:\s*[^;]+;?",
@@ -546,13 +563,16 @@ _BLOCKING_INLINE_PROPS = [
 
 def _strip_blocking_inline_styles(tag) -> None:
     style = tag.get("style")
-    if not style: return
+    if not style:
+        return
     new_style = style
     for pat in _BLOCKING_INLINE_PROPS:
         new_style = re.sub(pat, "", new_style, flags=re.I)
     new_style = re.sub(r"\s{2,}", " ", new_style).strip().strip(";")
-    if new_style: tag["style"] = new_style
-    else: tag.attrs.pop("style", None)
+    if new_style:
+        tag["style"] = new_style
+    else:
+        tag.attrs.pop("style", None)
 
 def strip_blocking_inline_styles(soup: BeautifulSoup) -> None:
     for tag in soup.find_all(["table", "thead", "tbody", "tr", "td", "th", "pre", "code"]):
@@ -562,25 +582,18 @@ def strip_blocking_inline_styles(soup: BeautifulSoup) -> None:
 # Anchor utilities & fix
 # =========================
 def _slugify(text: str) -> str:
-    """
-    Make a URL-friendly slug from heading text.
-    Lowercase, hyphens, ASCII-only, compact multiple hyphens.
-    """
     if not text:
         return ""
     t = unicodedata.normalize("NFKD", text)
     t = "".join(ch for ch in t if not unicodedata.combining(ch))
     t = re.sub(r"[^A-Za-z0-9\-\_\s]", "", t)
     t = re.sub(r"\s+", "-", t.strip().lower())
-    t = re.sub(r"-{2,}", "-", t)
+    t = re.sub(r"\-+", "-", t)
     return t
 
+
 def fix_internal_heading_anchors(soup: BeautifulSoup) -> None:
-    """
-    Ensure all headings have ids, and rewrite absolute same-document PDF anchors
-    to local fragments so Prince/DocRaptor creates proper internal destinations.
-    """
-    # 1) Ensure headings are linkable: add missing ids via slugified text
+    # 1) Ensure headings have ids
     for h in soup.find_all(re.compile(r"^h[1-6]$")):
         if not h.get("id"):
             inner_id = None
@@ -596,43 +609,50 @@ def fix_internal_heading_anchors(soup: BeautifulSoup) -> None:
         href = (a["href"] or "").strip()
         if not href:
             continue
-
-        # Already a fragment: normalize
         if href.startswith("#"):
             a.attrs.pop("target", None)
             continue
-
         parsed = urlparse.urlparse(href)
         host = parsed.hostname or ""
         frag = parsed.fragment or ""
         path = parsed.path or ""
-
-        # Rewrite /pdf/#frag to local #frag
         if host == DOCS_HOST and "/pdf" in path and frag:
             a["href"] = f"#{frag}"
             a.attrs.pop("target", None)
             continue
-
-        # If same host and fragment exists locally, rewrite to local fragment
         if host == DOCS_HOST and frag and soup.find(id=frag):
             a["href"] = f"#{frag}"
             a.attrs.pop("target", None)
             continue
 
-    # 3) Legacy anchors: <a name="..."> also get ids
+    # 3) Legacy anchors: also get ids
     for a in soup.find_all("a", attrs={"name": True}):
         name = a.get("name")
         if name and not a.get("id"):
             a["id"] = name
 
+    # 4) NEW: Rewrite general anchor links from staging to docs.nvidia.com
+    for a in soup.find_all("a", href=True):
+        href = (a["href"] or "").strip()
+        if not href or href.startswith("#"):
+            continue
+        # Only rewrite if the link starts with the staging host
+        for old, new in HOST_REWRITE_MAP.items():
+            if href.startswith(old):
+                # Replace only the host part, preserve path/query/fragment
+                new_href = new + href[len(old):]
+                a["href"] = new_href
+                break
+
 # =========================
-# FINAL CSS (print enforcement + fragmentation + table/background fixes)
+# FINAL CSS (print enforcement)
 # =========================
 def inject_pdf_enforcement_css(soup: BeautifulSoup, hints):
     head = soup.head or soup.new_tag("head")
-    if not soup.head: soup.insert(0, head)
+    if not soup.head:
+        soup.insert(0, head)
+
     css = f"""
-/* --- PDF enforcement (last, !important) --- */
 html, body, * {{
   print-color-adjust: exact;
   -webkit-print-color-adjust: exact;
@@ -644,8 +664,6 @@ a, a:link, a:visited {{
   border-bottom: none !important;
 }}
 a[href^="#"] {{ color: {hints['color_link']} !important; }}
-
-/* Base text: keep theme weight, enforce color/size only */
 body, p, li, td, th {{
   color: {hints['color_fg']} !important;
   font-size: {hints['base_px']}px !important;
@@ -653,8 +671,6 @@ body, p, li, td, th {{
 h1, h2, h3, h4, h5, h6 {{
   color: {hints['color_heading']} !important;
 }}
-
-/* Unhide all tab panes/wrappers in print */
 .book-tabs, .book-tabs-content, .markdown-inner,
 .tab-content, .tab-pane {{
   display: block !important;
@@ -665,8 +681,6 @@ h1, h2, h3, h4, h5, h6 {{
   max-height: none !important;
   overflow: visible !important;
 }}
-
-/* Native tables: allow splitting, keep header/footer repeat */
 table, thead, tbody, tr, td, th {{
   position: static !important;
   float: none !important;
@@ -682,14 +696,13 @@ table, thead, tbody, tr, td, th {{
 thead {{ display: table-header-group !important; }}
 tfoot {{ display: table-footer-group !important; }}
 tbody {{ display: table-row-group !important; }}
-tr    {{ display: table-row !important; page-break-inside: auto !important; }}
+tr {{ display: table-row !important; page-break-inside: auto !important; }}
 td, th{{ display: table-cell !important; }}
 
-/* Table box rules */
 table {{
   page-break-inside: auto !important;
   width: 100%;
-  border-collapse: separate !important;   /* avoid outer frame fighting breaks */
+  border-collapse: separate !important;
   border-spacing: 0 !important;
   border: none !important;
   break-inside: auto !important;
@@ -697,18 +710,17 @@ table {{
   page-break-after: auto !important;
 }}
 td, th {{
-  page-break-inside: auto !important;     /* allow cell content fragmentation */
+  page-break-inside: auto !important;
   white-space: normal !important;
   word-break: break-word !important;
   overflow-wrap: anywhere !important;
-  border: 0.6pt solid #C0C7CF !important; /* thin grid */
+  border: 0.6pt solid #C0C7CF !important;
   background: transparent !important;
   background-color: transparent !important;
   box-shadow: none !important;
   outline: none !important;
 }}
 
-/* --- Table background resets (neutralize common zebra patterns) --- */
 tbody tr:nth-child(odd),
 tbody tr:nth-child(even),
 tbody td:nth-child(odd),
@@ -723,7 +735,6 @@ table tr:nth-child(even) th {{
   background-color: transparent !important;
 }}
 
-/* Inline code chips (fragment-safe) — used outside block code */
 code {{
   background: #eef2f6 !important;
   color: inherit !important;
@@ -734,8 +745,6 @@ code {{
   -webkit-box-decoration-break: clone !important;
   box-decoration-break: clone !important;
 }}
-
-/* Keep chip look inside table cells without painting the whole cell */
 td code, th code {{
   background: #eef2f6 !important;
   display: inline !important;
@@ -744,8 +753,6 @@ td code, th code {{
   white-space: normal !important;
   font-size: 0.95rem !important;
 }}
-
-/* Fix: inside block code, remove per-line chips completely */
 pre code, .highlight code, .code-block code,
 pre code *, .highlight code *, .code-block code * {{
   background: transparent !important;
@@ -755,8 +762,6 @@ pre code *, .highlight code *, .code-block code * {{
   -webkit-box-decoration-break: slice !important;
   box-decoration-break: slice !important;
 }}
-
-/* Block code (fragment-safe single frame) */
 pre, .highlight, .code-block {{
   display: block !important;
   page-break-before: auto !important;
@@ -771,14 +776,11 @@ pre, .highlight, .code-block {{
   border: 1px solid #d9dee5 !important;
   border-radius: 4px !important;
 }}
-
 img, svg, video, figure {{
   max-width: 100% !important;
   page-break-inside: auto !important;
 }}
 :root {{ orphans: 2; widows: 2; }}
-
-/* Print dominance backstop (if a theme leaks screen-only styles) */
 @media print {{
   .book-tabs, .book-tabs-content, .markdown-inner,
   .tab-content, .tab-pane {{
@@ -788,93 +790,55 @@ img, svg, video, figure {{
   }}
 }}
 """
-
-    # Print sizing & table layout fixes
     css += """
 @media print {
-  /* Slightly smaller base type for PDF to reduce overflows */
   html, body, .content, article, section, p, li, td, th {
     font-size: 14px !important;
   }
-
-  /* Predictable column widths and better wrapping */
   table {
     table-layout: fixed !important;
     width: 100% !important;
   }
-
-  /* More breathing room and robust wrapping in cells */
   td, th {
     padding: 6px 8px !important;
     word-break: break-word !important;
     overflow-wrap: anywhere !important;
   }
-
-  /* Long inline code in table cells should wrap and not overflow */
   td code, th code {
     white-space: pre-wrap !important;
     word-break: break-word !important;
     overflow-wrap: anywhere !important;
     font-size: 0.95rem !important;
   }
-}
-"""
-
-    # Universal multi-column widths (first column wider; 2nd/3rd/4th sized if present)
-    css += """
-@media print {
-  /* Make the first column wider for code, up to 55% if possible */
   td:first-child, th:first-child {
     width: 55% !important;
     max-width: 0 !important;
     word-break: break-all !important;
     overflow-wrap: anywhere !important;
   }
-  /* For 2-column tables, second column gets 45% */
-  td:nth-child(2), th:nth-child(2) {
-    width: 45% !important;
-    max-width: 0 !important;
-    word-break: break-word !important;
-    overflow-wrap: anywhere !important;
-  }
-  /* For 3-column tables, third column gets 30% */
-  td:nth-child(3), th:nth-child(3) {
-    width: 30% !important;
-    max-width: 0 !important;
-    word-break: break-word !important;
-    overflow-wrap: anywhere !important;
-  }
-  /* For 4-column tables, fourth column gets 25% */
-  td:nth-child(4), th:nth-child(4) {
-    width: 25% !important;
-    max-width: 0 !important;
-    word-break: break-word !important;
-    overflow-wrap: anywhere !important;
-  }
+  td:nth-child(2), th:nth-child(2) { width: 45% !important; max-width: 0 !important; }
+  td:nth-child(3), th:nth-child(3) { width: 30% !important; max-width: 0 !important; }
+  td:nth-child(4), th:nth-child(4) { width: 25% !important; max-width: 0 !important; }
 }
 """
-
-    style_tag = soup.new_tag("style"); style_tag.string = css; head.append(style_tag)
+    style_tag = soup.new_tag("style")
+    style_tag.string = css
+    head.append(style_tag)
 
 # =========================
 # Pipeline
 # =========================
 def process_html(html_path: str, asset_dir: str) -> str:
     html = pathlib.Path(html_path).read_text(encoding="utf-8", errors="replace")
-    if ENABLE_HOST_REWRITE:
-        for old, new in HOST_REWRITE_MAP.items():
-            html = html.replace(old, new)
+    # (Optional) If you had screen-level host rewrite needs, apply carefully.
+    # Avoid broad HTML-wide host rewrites that could affect asset URLs.
     soup = BeautifulSoup(html, "html.parser")
-
     hints = extract_site_style_hints(soup)
     inject_nonfont_brand_css(soup, hints)
     inline_link_styles(soup, asset_dir)
 
     for style in soup.find_all("style"):
         if style.string:
-            if ENABLE_HOST_REWRITE:
-                for old, new in HOST_REWRITE_MAP.items():
-                    style.string = style.string.replace(old, new)
             style.string = rewrite_css_urls(style.string, base_dir=asset_dir)
 
     strip_scripts_and_handlers(soup)
@@ -882,22 +846,12 @@ def process_html(html_path: str, asset_dir: str) -> str:
     embed_inline_style_attrs(soup, asset_dir)
     embed_html_images(soup, asset_dir)
 
-    # 1) Merge many <p><code>...</code></p> into one <pre><code>...</code></pre>
     merge_inline_code_runs_into_pre(soup)
-    # 2) Normalize all existing <pre> blocks to a single inner <code> (plain text)
     normalize_pre_code_blocks(soup)
-    # 3) Ensure tab panes/wrappers are not hidden
     unhide_tab_content(soup)
-    # 4) Strip inline style clamps from key content
     strip_blocking_inline_styles(soup)
-
-    # 5) NEW: Fix heading IDs and rewrite absolute PDF anchors to local fragments
     fix_internal_heading_anchors(soup)
-
-    # --- Embed NVIDIASans and force usage (print-only by default) ---
     inject_nvidia_sans_fontface(soup, asset_dir, scope=FONT_SCOPE)
-
-    # Enforcement CSS (fragmentation, backgrounds, etc.)
     inject_pdf_enforcement_css(soup, hints)
 
     return str(soup)
@@ -910,17 +864,22 @@ def submit_to_docraptor(inlined_html: str, output_pdf: str):
     configuration.username = API_KEY
     doc_api = docraptor.DocApi(docraptor.ApiClient(configuration))
 
-    print(f"Submitting async job to DocRaptor (TEST mode, media={PRINCE_MEDIA}, color_space={PRINCE_COLOR_SPACE})...")
+    opts = {
+        "media": PRINCE_MEDIA,
+        "color_space": PRINCE_COLOR_SPACE,
+    }
+    # Critical: set baseurl so relative links don't become file:// in the PDF
+    if ORIGINAL_URL:
+        opts["baseurl"] = ORIGINAL_URL
+
+    print(f"Submitting async job to DocRaptor (TEST mode, media={PRINCE_MEDIA}, color_space={PRINCE_COLOR_SPACE}, baseurl={opts.get('baseurl', 'None')})...")
     async_doc = doc_api.create_async_doc({
-        "test": True,  # keep watermark overlays for now
+        "test": True,  # keep watermark overlays
         "name": output_pdf,
         "document_type": "pdf",
         "document_content": inlined_html,
         "javascript": False,
-        "prince_options": {
-            "media": PRINCE_MEDIA,
-            "color_space": PRINCE_COLOR_SPACE
-        }
+        "prince_options": opts
     })
     print(f"Async job created: status_id={async_doc.status_id}")
 
@@ -934,7 +893,7 @@ def submit_to_docraptor(inlined_html: str, output_pdf: str):
                 pdf_data = doc_api.get_async_doc(async_doc.status_id)
                 pathlib.Path(output_pdf).write_bytes(pdf_data)
                 final_mb = pathlib.Path(output_pdf).stat().st_size / (1024 * 1024)
-                print(f"✅ PDF saved as {OUTPUT_PDF} ({final_mb:.2f} MB)")
+                print(f"✅ PDF saved as {output_pdf} ({final_mb:.2f} MB)")
                 break
             elif status.status == "failed":
                 print(f"❌ Failed after {elapsed:.1f}s: {status}")
@@ -946,11 +905,301 @@ def submit_to_docraptor(inlined_html: str, output_pdf: str):
         time.sleep(POLL_INTERVAL)
 
 # =========================
+# Downloader helpers (URL -> slug -> dynamic paths)
+# =========================
+def slug_from_url(u: str) -> str:
+    parsed = urlparse.urlparse(u)
+    path = (parsed.path or "").rstrip("/")
+    parts = [p for p in path.split("/") if p]
+    if "pdf" not in parts:
+        raise ValueError("URL must include a trailing '/<slug>/pdf/' segment")
+    i = parts.index("pdf")
+    if i < 1:
+        raise ValueError("Cannot find slug immediately before '/pdf/'")
+    return parts[i - 1]
+
+def derive_paths_from_slug(slug: str):
+    base = pathlib.Path("html-save")
+    html_file    = str(base / f"{slug}-pdf.html")
+    asset_dir    = str(base / f"{slug}-pdf_files")
+    inlined_html = f"{slug}-inlined.html"
+    output_pdf   = f"{slug}.pdf"
+    return html_file, asset_dir, inlined_html, output_pdf
+
+def _ensure_dirs(html_file: str, asset_dir: str):
+    pathlib.Path(html_file).parent.mkdir(parents=True, exist_ok=True)
+    pathlib.Path(asset_dir).mkdir(parents=True, exist_ok=True)
+
+def _collect_asset_urls(main_html: str, base_url: str):
+    soup = BeautifulSoup(main_html, "html.parser")
+    urls = set()
+
+    def add(u: str):
+        if not u:
+            return
+        # Build absolute URL relative to the source page; DO NOT host-rewrite assets here
+        u_abs = urlparse.urljoin(base_url, u)
+        if u_abs.startswith("#") or u_abs.startswith("data:"):
+            return
+        urls.add(u_abs)
+
+    for link in soup.find_all("link", href=True):
+        rel = [r.lower() for r in (link.get("rel") or [])]
+        if any(r in {"stylesheet", "icon", "shortcut icon"} for r in rel):
+            add(link["href"])
+
+    for img in soup.find_all("img", src=True):
+        add(img["src"])
+        srcset = img.get("srcset")
+        if srcset:
+            for part in [p.strip() for p in srcset.split(",") if p.strip()]:
+                add(part.split()[0])
+
+    for source in soup.find_all("source"):
+        if source.get("src"):
+            add(source["src"])
+        srcset = source.get("srcset")
+        if srcset:
+            for part in [p.strip() for p in srcset.split(",") if p.strip()]:
+                add(part.split()[0])
+
+    for tag in soup.find_all(style=True):
+        style_text = tag.get("style") or ""
+        for m in URL_RE.finditer(style_text):
+            add(m.group(1).strip())
+
+    return soup, urls
+
+def _save_asset_to_dir_with_session(u: str, asset_dir: str, session: requests.Session):
+    # DO NOT host-rewrite assets here; keep original host (staging)
+    path = urlparse.urlparse(u).path.lstrip("/")
+    if not path:
+        return
+    local_path = pathlib.Path(asset_dir) / path
+    local_path.parent.mkdir(parents=True, exist_ok=True)
+    resp = session.get(u, timeout=REQUEST_TIMEOUT)
+    resp.raise_for_status()
+    local_path.write_bytes(resp.content)
+
+def _rewrite_html_links_to_local(soup: BeautifulSoup, base_url: str):
+    """
+    Rewrite href/src attributes for assets to local path-only references so
+    inlining prefers local assets via ASSET_DIR.
+    NOTE: We intentionally do NOT rewrite <a href=...> anchors here.
+    """
+    def path_only(u: str) -> str:
+        # Resolve only against the source page; NO host-rewrite for assets
+        u_abs = urlparse.urljoin(base_url, u)
+        parsed = urlparse.urlparse(u_abs)
+        base_host = urlparse.urlparse(base_url).hostname
+        if parsed.hostname and parsed.hostname != base_host:
+            # External assets: leave absolute URL untouched
+            return u_abs
+        p = parsed.path
+        return p if p.startswith("/") else f"/{p}"
+
+    for link in soup.find_all("link", href=True):
+        rel = [r.lower() for r in (link.get("rel") or [])]
+        if any(r in {"stylesheet", "icon", "shortcut icon"} for r in rel):
+            link["href"] = path_only(link["href"])
+
+    for img in soup.find_all("img", src=True):
+        img["src"] = path_only(img["src"])
+        if img.get("srcset"):
+            parts = []
+            for part in [p.strip() for p in img["srcset"].split(",") if p.strip()]:
+                tks = part.split()
+                url = path_only(tks[0])
+                desc = " ".join(tks[1:]) if len(tks) > 1 else ""
+                parts.append(url + (f" {desc}" if desc else ""))
+            img["srcset"] = ", ".join(parts)
+
+    for source in soup.find_all("source"):
+        if source.get("src"):
+            source["src"] = path_only(source["src"])
+        if source.get("srcset"):
+            parts = []
+            for part in [p.strip() for p in source["srcset"].split(",") if p.strip()]:
+                tks = part.split()
+                url = path_only(tks[0])
+                desc = " ".join(tks[1:]) if len(tks) > 1 else ""
+                parts.append(url + (f" {desc}" if desc else ""))
+            source["srcset"] = ", ".join(parts)
+
+    return soup
+
+# =========================
+# Playwright downloader (JS-rendered HTML)
+# =========================
+def render_html_with_playwright(url: str) -> str:
+    if not PLAYWRIGHT_AVAILABLE:
+        raise RuntimeError("Playwright is not available. Install with 'pip install playwright' and 'playwright install chromium'.")
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+        # IMPORTANT: navigate to the exact source URL, do not rewrite here
+        target = url
+        page.set_default_timeout(30000)  # 30s
+
+        page.goto(target, wait_until="networkidle")
+        page.wait_for_load_state("domcontentloaded")
+
+        # Wait for JS to populate canonical/external anchors (if the app hydrates late)
+        try:
+            page.wait_for_function(
+                """
+                () => {
+                  const anchors = Array.from(document.querySelectorAll('a[rel="canonical"]'));
+                  return anchors.length === 0 || anchors.every(a => a.href && /^https?:/.test(a.href));
+                }
+                """,
+                timeout=5000
+            )
+        except Exception:
+            pass
+
+        # Promote computed absolute href back into attribute, but do NOT write the page URL or javascript: links.
+        page.evaluate("""
+        () => {
+          const pageUrl = location.href.split('#')[0];
+          document.querySelectorAll('a').forEach(a => {
+            try {
+              const attr = (a.getAttribute('href') || '').trim();
+              const abs  = (a.href || '').trim();
+              if (!abs || abs.startsWith('javascript:')) return;
+              if (attr && attr.startsWith('#')) return;
+              const absNoFrag = abs.split('#')[0];
+              if (absNoFrag === pageUrl) return;  // don't write the page URL back
+              const isAttrAbsoluteHttp = /^https?:/i.test(attr);
+              const isAbsAbsoluteHttp  = /^https?:/i.test(abs);
+              if ((!attr || !isAttrAbsoluteHttp) && isAbsAbsoluteHttp) {
+                a.setAttribute('href', abs);
+              }
+            } catch (e) {}
+          });
+        }
+        """)
+
+        html = page.content()
+        browser.close()
+        return html
+
+def download_site_playwright(url: str, html_file: str, asset_dir: str):
+    _ensure_dirs(html_file, asset_dir)
+
+    html_text = render_html_with_playwright(url)
+    soup, asset_urls = _collect_asset_urls(html_text, base_url=url)
+
+    # Inject <base> so relative links resolve correctly when opened locally
+    head = soup.head or soup.new_tag("head")
+    if not soup.head:
+        soup.insert(0, head)
+    if not soup.find("base", attrs={"href": True}):
+        base_tag = soup.new_tag("base", href=url)
+        meta_charset = head.find("meta", attrs={"charset": True})
+        if meta_charset:
+            meta_charset.insert_after(base_tag)
+        else:
+            head.insert(0, base_tag)
+
+    session = requests.Session()
+    session.headers.update(REQUEST_HEADERS)
+    max_workers = min(16, max(4, len(asset_urls)))
+    if asset_urls:
+        print(f"Downloading {len(asset_urls)} assets (parallel={max_workers})...")
+    with ThreadPoolExecutor(max_workers=max_workers) as ex:
+        futs = {ex.submit(_save_asset_to_dir_with_session, u, asset_dir, session): u for u in asset_urls}
+        for fut in as_completed(futs):
+            u = futs[fut]
+            try:
+                fut.result()
+            except Exception as e:
+                print(f"⚠️  Asset fetch failed: {u} ({e})")
+
+    soup = _rewrite_html_links_to_local(soup, base_url=url)
+    pathlib.Path(html_file).write_text(str(soup), encoding="utf-8")
+
+# =========================
+# Python static downloader (fallback, no JS)
+# =========================
+def download_site_python(url: str, html_file: str, asset_dir: str):
+    _ensure_dirs(html_file, asset_dir)
+
+    session = requests.Session()
+    session.headers.update(REQUEST_HEADERS)
+
+    resp = session.get(url, timeout=REQUEST_TIMEOUT)  # no host rewrite for page fetch
+    resp.encoding = resp.apparent_encoding or "utf-8"
+    html_text = resp.text
+
+    soup, asset_urls = _collect_asset_urls(html_text, base_url=url)
+
+    head = soup.head or soup.new_tag("head")
+    if not soup.head:
+        soup.insert(0, head)
+    if not soup.find("base", attrs={"href": True}):
+        base_tag = soup.new_tag("base", href=url)
+        meta_charset = head.find("meta", attrs={"charset": True})
+        if meta_charset:
+            meta_charset.insert_after(base_tag)
+        else:
+            head.insert(0, base_tag)
+
+    max_workers = min(16, max(4, len(asset_urls)))
+    if asset_urls:
+        print(f"Downloading {len(asset_urls)} assets (parallel={max_workers})...")
+    with ThreadPoolExecutor(max_workers=max_workers) as ex:
+        futs = {ex.submit(_save_asset_to_dir_with_session, u, asset_dir, session): u for u in asset_urls}
+        for fut in as_completed(futs):
+            u = futs[fut]
+            try:
+                fut.result()
+            except Exception as e:
+                print(f"⚠️  Asset fetch failed: {u} ({e})")
+
+    soup = _rewrite_html_links_to_local(soup, base_url=url)
+    pathlib.Path(html_file).write_text(str(soup), encoding="utf-8")
+
+# =========================
 # Main
 # =========================
 def main():
     if not API_KEY or API_KEY.strip() == "":
         raise SystemExit("Missing DOCRAPTOR_API_KEY. Set it in your env or edit API_KEY_FALLBACK.")
+
+    parser = argparse.ArgumentParser(description="Inline HTML and render PDF via DocRaptor/Prince.")
+    parser.add_argument("--url", help="Source URL ending with '/<slug>/pdf/' to download before processing.")
+    parser.add_argument("--download", choices=["playwright", "python"], default="playwright",
+                        help="Downloader to use when --url is provided (default: playwright).")
+    parser.add_argument("--output", help="Override output PDF filename (defaults to '<slug>.pdf' when --url is used).")
+    args = parser.parse_args()
+
+    if args.url:
+        slug = slug_from_url(args.url)
+        global HTML_FILE, ASSET_DIR, INLINED_HTML, OUTPUT_PDF, ORIGINAL_URL
+        HTML_FILE, ASSET_DIR, INLINED_HTML, OUTPUT_PDF = derive_paths_from_slug(slug)
+
+        # Base URL for Prince must be the original source URL you passed in
+        ORIGINAL_URL = args.url
+
+        if args.output:
+            OUTPUT_PDF = args.output
+
+        print(f"▶ Using slug '{slug}'")
+        print(f"   HTML_FILE    = {HTML_FILE}")
+        print(f"   ASSET_DIR    = {ASSET_DIR}")
+        print(f"   INLINED_HTML = {INLINED_HTML}")
+        print(f"   OUTPUT_PDF   = {OUTPUT_PDF}")
+
+        if args.download == "playwright":
+            if not PLAYWRIGHT_AVAILABLE:
+                print("⚠️  Playwright is not installed; falling back to Python static downloader.")
+                download_site_python(args.url, HTML_FILE, ASSET_DIR)
+            else:
+                download_site_playwright(args.url, HTML_FILE, ASSET_DIR)
+        else:
+            download_site_python(args.url, HTML_FILE, ASSET_DIR)
+
     inlined = process_html(HTML_FILE, ASSET_DIR)
     pathlib.Path(INLINED_HTML).write_text(inlined, encoding="utf-8")
     total_mb = len(inlined.encode("utf-8")) / (1024 * 1024)
@@ -960,4 +1209,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

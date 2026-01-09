@@ -1695,7 +1695,7 @@ BGP conditional disaggregation advertises specific prefixes when a failure is de
 ### Configure BGP Conditional Disaggregation
 
 To configure BGP conditional disaggregation on a leaf:
-- Required: Enable both {{<link url="/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}and {{<link url="/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}.
+- Required: Enable both {{<link url="/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} and {{<link url="/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}.
 - Required: Enable BGP conditional disaggregation.
 - Required: Enable BGP unreachability (failure signaling) globally and on relevant neighbors or peer groups.
 - Optional: Set the prefix limits for a neighbor or peer group; see the table below.
@@ -1721,7 +1721,7 @@ The following table describes the `prefix limit` options.
 {{< tabs "TabID1711 ">}}
 {{< tab "Leaf Configuration ">}}
 
-The following example configures BGP conditional disaggregation on a **leaf** for IPv6. For IPv4 run the `nv set vrf <vrf> router bgp address-family ip4-unicast` and `nv set vrf <vrf> router bgp address-family ipv4-unreachability` commands.
+The following example configures BGP conditional disaggregation on a **leaf** for IPv6. For IPv4, run the `nv set vrf <vrf> router bgp address-family ip4-unicast` and `nv set vrf <vrf> router bgp address-family ipv4-unreachability` commands.
 
 To configure PIC, refer to {{<link url="/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}. To configure PIC in a multiplane topology, refer to {{<link url="/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}.
 
@@ -1743,7 +1743,7 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "Spine Configuration ">}}
 
-The following example configures BGP conditional disaggregation on a spine for IPv6. For IPv4 run the `nv set vrf <vrf> router bgp address-family ip4-unicast` and `nv set vrf <vrf> router bgp address-family ipv4-unreachability` commands.
+The following example configures BGP conditional disaggregation on a spine for IPv6. For IPv4, run the `nv set vrf <vrf> router bgp address-family ip4-unicast` and `nv set vrf <vrf> router bgp address-family ipv4-unreachability` commands.
 
 The example enables BGP unreachability globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE. For peer group UNDERLAY-LEAF, the prefix limit is set to a maximum of 6.
 
@@ -1763,7 +1763,7 @@ cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-SUPERSPINE 
 {{< tabs "TabID1751 ">}}
 {{< tab "Leaf Configuration ">}}
 
-The following example configures BGP conditional disaggregation on a leaf for IPv6. For IPv4 run the `address-family ipv4 unreachability` command.
+The following example configures BGP conditional disaggregation on a leaf for IPv6. For IPv4, run the `address-family ipv4 unreachability` command.
 
 The example enables BGP PIC and BGP PIC in a multiplane topology, enables BGP unreachability globally and on neighbors swp51 and swp52. For neighbor swp51, the prefix limit is set to a maximum of 6 and the route map ROUTEMAP1 controls which routes enter BGP. For neighbor swp52, the prefix limit is set to a maximum of 6 and the route map ROUTEMAP2 controls which routes enter BGP.
 
@@ -1791,7 +1791,7 @@ leaf01# exit
 {{< /tab >}}
 {{< tab "Spine Configuration">}}
 
-The following example configures BGP conditional disaggregation on a spine for IPv6. For IPv4 run the `address-family ipv4 unreachability` command.
+The following example configures BGP conditional disaggregation on a spine for IPv6. For IPv4, run the `address-family ipv4 unreachability` command.
 
 The example enables BGP unreachability globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE. For peer group UNDERLAY-LEAF, the prefix limit is set to a maximum of 6.
 

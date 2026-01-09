@@ -1651,7 +1651,7 @@ To configure PIC in a multiplane topology, set the SOO source IP address on a le
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp soo-source 10.1.1.1
+cumulus@leaf01:~$ nv set vrf default router bgp soo-source 10.10.10.1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1665,7 +1665,7 @@ To unset the SOO source IP address, run the `nv set vrf default router b
    ...
    leaf01# configure terminal
    leaf01(config)# router bgp 65101
-   leaf01(config-router)# bgp soo-source 10.1.1.1
+   leaf01(config-router)# bgp soo-source 10.10.10.1
    leaf01(config-router)# end
    leaf01# write memory
    leaf01# exit
@@ -1752,6 +1752,7 @@ cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unreachabil
 cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability state enabled
 cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits maximum 6
 cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-SUPERSPINE address-family ipv6-unreachability state enabled
+cumulus@spine01:~$ nv config apply
 ```
 
 {{< /tab >}}

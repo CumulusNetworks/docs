@@ -346,6 +346,7 @@ BFD offload improves BFD session scale by offloading BFD numbered sessions to a 
 - If a BFD peer is down; for example, due to path failures, (not admin-down), the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might cause an increase in CPU usage.
 - When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode.
 - If you have a mix of BFD sessions to non-link-local IPv4 or IPv6 destinations, NVIDIA recommends that you do *not* enable BFD offload.
+- Depending on the configured BFD intervals and the number of BFD sessions, enabling and disabling BFD offload might result in session flaps, especially with aggressive timers on lower-end platforms. BFD sessions are expected to run in offload mode in a steady state and moving offloaded sessions back to non-offload (control-plane) mode is rare. In the unlikely event that such a transition is required, you must set the BFD session timers to values appropriate for non-offload mode to avoid flaps. When running multiple BFD sessions in non-offload mode, the minimum recommended timer values are 3 for the detect multiplier, 300 milliseconds for the transmit interval, and 900 milliseconds for the receive interval.
 {{%/notice%}}
 
 To enable BFD offload:
@@ -358,6 +359,12 @@ Run the `nv set router bfd offload enabled` command.
 ```
 cumulus@switch:~$ nv set router bfd offload enabled
 cumulus@switch:~$ nv config apply
+```
+
+For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` command; for example:
+
+```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd source 10.10.10.3
 ```
 
 To disable BFD offload, run the `nv set router bfd offload disabled` command.
@@ -394,7 +401,7 @@ LocalId     MHop   Local   Peer    Interface  State  Passive  Time     Type     
 1862087280  False  500::1  500::2  vlan500    up     False    0:03:53  dynamic  control-plane          3           50     50     1476    1463 
 ```
 
-The `Offloaded` field shows `offloaded` if the session is offloaded.
+The `Offloaded` field shows `offloaded` if the session is offloaded and `control-plane` if the session is not offloaded.
 
 ## Show BFD Information
 

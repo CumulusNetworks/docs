@@ -22,6 +22,12 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td></td>
 </tr>
 <tr>
+<td>4797691</td>
+<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
+<td>5.0.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4789562</td>
 <td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
 <td>5.12.1-5.15.1</td>
@@ -162,6 +168,15 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td>4683602</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
 <td>5.11.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4683370</td>
+<td>On scale systems with OTEL enabled, you might see an {{interface_stats_collector}} crash with the following logs:
+{{interface_stats_collector[41358]: unexpected fault address 0x7fbb941d9110
+interface_stats_collector[41358]: fatal error: fault
+interface_stats_collector[41358]: [signal SIGSEGV: segmentation violation code=0x1addr=0x7fbb941d9110 pc=0x55124a]}}</td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>

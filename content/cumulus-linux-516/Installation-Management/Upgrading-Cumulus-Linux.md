@@ -419,7 +419,6 @@ user@server:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_HO
 
 3. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Import the certificate">}} used for the repository container on the switches you want to upgrade. If you are using a self-signed certificated, you can retrieve it from the container with the curl command: `curl -fsSL http://10.1.1.100:8080/ca.crt`.
 
-
 <!--
 Retrieve and install the certificate on the switches you want to upgrade:
 
@@ -447,7 +446,6 @@ deb https://10.1.100.1:8443 CumulusLinux-5.15.0 cumulus upstream netq
 ```
 -->
 5. Continue with a {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} on your switch. 
-
 
 ## ONIE Image Upgrade
 
@@ -489,9 +487,7 @@ To back up the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
-
 
 {{< /tab >}}
 
@@ -518,7 +514,6 @@ As with other Linux distributions, the `/etc` directory is the primary location 
 | `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
-
 
 **Commonly Used Files:**
 
@@ -589,6 +584,18 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
    cumulus@switch:~$ nv config replace /home/cumulus/startup.yaml
    cumulus@switch:~$ nv config apply
    ```
+
+{{%notice note%}}
+Cumulus Linux 5.16 and later uses IPv6 address normalization, where it stores and looks up all IPv6 addresses in their normalized (canonical) form (for example, 2001:db8::1 instead of 2001:0db8::0001). When you copy the `startup.yaml` file manually from Cumulus Linux 5.15 or earlier to Cumulus Linux 5.16, the file bypasses the standard upgrade translation process. As a result, the configuration might contain unnormalized IPv6 addresses that are valid in earlier Cumulus Linux releases, which might cause failed lookups during NVUE show commands, unexpected configuration mismatches and failed or silent misconfigurations.
+
+Before you run the `nv config apply startup` command after the upgrade, first translate the file to ensure all IPv6 addresses are normalized, then replace the `startup.yaml` with the normalized version:
+
+```
+cumulus@switch:~$ nv config translate filename /home/cumulus/startup.yaml > /home/cumulus/ipv6_normalized_startup.yaml
+cumulus@switch:~$ sudo cp /home/cumulus/ipv6_normalized_startup.yaml /etc/nvue.d/startup.yaml
+cumulus@switch:~$ nv config apply startup
+```
+{{%/notice%}}
 
 {{%notice infonopad%}}
 If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.

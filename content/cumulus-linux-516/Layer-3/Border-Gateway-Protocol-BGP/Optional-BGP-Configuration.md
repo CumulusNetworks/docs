@@ -1651,7 +1651,7 @@ To configure PIC in a multiplane topology, set the SOO source IP address on a le
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp soo-source 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp soo-source 10.10.10.1
 cumulus@leaf01:~$ nv config apply
 ```
 

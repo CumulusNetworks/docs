@@ -20,7 +20,7 @@
 </tr>
 <tr>
 <td>4789562</td>
-<td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
+<td>A switch running Nvidia Cumulus Linux may improperly forward routed packets out of an access port or on the native vlan of a trunk with an 802.1Q tag imposed on the packet.</td>
 <td>5.12.1-5.15.1</td>
 <td></td>
 </tr>
@@ -1405,7 +1405,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>4789562</td>
-<td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
+<td>A switch running Nvidia Cumulus Linux may improperly forward routed packets out of an access port or on the native vlan of a trunk with an 802.1Q tag imposed on the packet.</td>
 <td>5.12.1-5.15.1</td>
 <td></td>
 </tr>

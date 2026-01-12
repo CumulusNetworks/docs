@@ -11,7 +11,7 @@ When you first log in to the NetQ UI as part of an on-premises deployment, your 
 Custom-signed certificates are supported in NetQ 5.0.1. The steps as outlined in this section are not supported in NetQ 5.0.0.
 {{</notice>}}
 {{%notice note%}}
-If you already have a certificate installed and want to change or update it, run the `kubectl delete secret netq-gui-ingress-tls [name] --namespace default` command before following the steps outlined in this section. After making your updates, restart nginx with the `kubectl delete pod -l app.kubernetes.io/name=ingress-nginx --namespace ingress-nginx` command.
+If you already have a certificate installed and want to change or update it, run the `kubectl delete secret netq-gui-ingress-tls [name] --namespace netq-infra` command before following the steps outlined in this section. After making your updates, restart nginx with the `kubectl delete pod -l app.kubernetes.io/name=ingress-nginx --namespace ingress-nginx` command.
 {{%/notice%}}
 
 You need the following items to perform the certificate installation:

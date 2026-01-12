@@ -603,18 +603,6 @@ The LAG hash randomizer is used for leaf switches if there is more than one link
 
 LAG hash randomizer is supported on a Spectrum-4 or Spectrum-5 switch and only for static layer 3 bonds.
 
-To disable the lag hash randomizer, in the `/etc/cumulus/switchd.d/switchd_misc.conf` file, change the `adaptive_routing.lag_hash_random_enable` variable to FALSE, then restart the `switchd` service:
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/switchd_misc.conf 
-adaptive_routing.lag_hash_random_enable = FALSE
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
-
 ### Link Utilization
 
 Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `custom-profile`, you can change the percentage to a value between 1 and 100.

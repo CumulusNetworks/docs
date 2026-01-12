@@ -181,6 +181,18 @@ og: [udp sum ok] SYSLOG, length: 113
 `.N..y.@............... ...............).....y.i<85>Apr 17 09:14:00 leaf-11 sudo:     nvue : PWD=/var/lib/nvue ; USER=root ; COMMAND=/usr/bin/cat /var/log/syslog
 ```
 
+## Enable Secured Logs
+
+Secured logs include the date and time events occur, the source IP and the username for NVUE commands, and when dynamic kernel modules load and unload.
+
+To enable secured logs, run the `nv set system log secured-logs state enabled` command:
+
+```
+cumulus@switch:~$ nv set system log secured-logs state enabled
+```
+
+To disable secured logs, run the `nv set system log secured-logs state disabled` command.
+
 ## Selectors and Filters
 
 You can control which logs to capture using selectors. A selector enables you to choose options such as facility, program name, severity, filters (with match conditions and actions for log selection), and rate limit, for precise and targeted log management. You define the selectors you want to use for a specific server.
@@ -229,7 +241,6 @@ if (
 {{< /tab >}}
 {{< /tabs >}}
 
-
 ### Selector with Rate-Limit
 
 To restrict log forwarding to five messages per minute, apply rate-limiting:
@@ -257,7 +268,6 @@ action(
 {{< /tab >}}
 {{< /tabs >}}
 
-
 ### Selector with Filter
 
 To filter and forward only logs containing a specific string (for example, 'ip link set'):
@@ -281,7 +291,6 @@ if (
 ```
 {{< /tab >}}
 {{< /tabs >}}
-
 
 ### Selector with Facility
 

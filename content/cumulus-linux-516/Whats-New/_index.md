@@ -36,6 +36,11 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Request to reauthenticate dot1x supplicant
 - PPS mode for egress shapers
 - Allow gNMI to export current egress buffer occupancy, preferable buffer occupancy histogram
+- Security features:
+  - {{<link url="FIPS" text="FIPS mode">}}
+  - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and     for a user group">}}
+  - {{<link url="RADIUS-AAA/#required-radius-client-configuration" text="Yubikey authentication over RADIUS">}}
+  - {{<link url="Syslog/#enable-secured-logs" text="configure syslog messages">}} include the date and time events occur, the source IP and username for NVUE commands, and when dynamic kernel modules load and unload
 - Telemetry
   - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
   - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
@@ -43,11 +48,6 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI QoS buffer metrics">}}
   - Parity between OpenTelemetry and gNMI (Phase 2)
   - YANG Browser Tool for YANG models
-- Security features
-  - {{<link url="FIPS" text="FIPS mode">}}
-  - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and for a user group">}}
-  - {{<link url="RADIUS-AAA/#required-radius-client-configuration" text="Yubikey authentication over RADIUS">}}
-  - Audit records for loading and unloading dynamic kernel modules, establishing the source of events and when (date and time) the events occurred, and the identity of any individual or process associated with an event
 
 ## Release Considerations
 

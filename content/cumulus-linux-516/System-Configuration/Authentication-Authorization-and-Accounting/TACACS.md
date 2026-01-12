@@ -389,6 +389,7 @@ The first `adduser` command prompts for information and a password. You can skip
 
 TACACS+ per-command authorization lets you configure the commands that TACACS+ users at different privilege levels can run.
 <!-- vale on -->
+TACACS per-command authorization supports {{<link url="NVUE-CLI/#command-completion" text="NVUE tab completion, option listing (?), and command history navigation">}}.
 
 The following command allows TACACS+ users at privilege level 0 to run the `nv` and `ip` commands.
 
@@ -467,8 +468,6 @@ When you configure per-command authorization on the switch, only define the init
 
 {{< /tab >}}
 {{< /tabs >}}
-
-TACACS per-command authorization supports {{<link url="NVUE-CLI/#command-completion" text="NVUE tab completion, option listing (?), and command history navigation">}}.
 
 ## Remove the TACACS+ Client Packages
 

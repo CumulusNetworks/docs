@@ -820,13 +820,11 @@ nd
     minimum                     128 
     effective                   18088 
     maximum                     20673 
-icmp 
-  ipv4 
-    errors-extension 
-ingress-interface 
-  ipv6 
-    errors-extension 
-      ingress-interface 
+icmp                                                                
+  ipv4                                                              
+    [errors-extension]          ingress-interface  ingress-interface
+  ipv6                                                              
+    [errors-extension]          ingress-interface  ingress-interface 
 ```
 
 The following example shows extended traceroute for IPv6 unnumbered:

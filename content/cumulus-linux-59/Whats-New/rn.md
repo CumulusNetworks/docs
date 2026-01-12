@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.15.1 | |
 | <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | |
 | <a name="4771521"></a> [4771521](#4771521) <a name="4771521"></a> <br /> | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port. | 5.9.2-5.15.1 | |
 | <a name="4714845"></a> [4714845](#4714845) <a name="4714845"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.15.1 | |
@@ -183,6 +184,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.15.1 | |
 | <a name="4771521"></a> [4771521](#4771521) <a name="4771521"></a> <br /> | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port. | 5.9.2-5.15.1 | |
 | <a name="4714845"></a> [4714845](#4714845) <a name="4714845"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.15.1 | |
 | <a name="4647646"></a> [4647646](#4647646) <a name="4647646"></a> <br /> | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.15.1|
@@ -328,6 +330,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.15.1 | |
 | <a name="4771521"></a> [4771521](#4771521) <a name="4771521"></a> <br /> | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port. | 5.9.2-5.15.1 | |
 | <a name="4714845"></a> [4714845](#4714845) <a name="4714845"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.15.1 | |
 | <a name="4647646"></a> [4647646](#4647646) <a name="4647646"></a> <br /> | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.15.1|
@@ -520,6 +523,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.15.1 | |
 | <a name="4647646"></a> [4647646](#4647646) <a name="4647646"></a> <br /> | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.15.1|
 | <a name="4637200"></a> [4637200](#4637200) <a name="4637200"></a> <br /> | When more than one IPv4 and/or IPv6 addresses are configured on a remote interface, NVUE LLDP commands such as <code>nv show interface lldp-detail</code> only reflect one address. To work around this issue, use <code>lldpctl</code> to view LLDP information. For example, <code>sudo lldpctl -d -f json swp1</code>.  | 5.9.0-5.14.0 | 5.15.0-5.15.1|
 | <a name="4633514"></a> [4633514](#4633514) <a name="4633514"></a> <br /> | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | 5.15.0-5.15.1|
@@ -699,6 +703,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.15.1 | |
 | <a name="4647646"></a> [4647646](#4647646) <a name="4647646"></a> <br /> | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.15.1|
 | <a name="4637200"></a> [4637200](#4637200) <a name="4637200"></a> <br /> | When more than one IPv4 and/or IPv6 addresses are configured on a remote interface, NVUE LLDP commands such as <code>nv show interface lldp-detail</code> only reflect one address. To work around this issue, use <code>lldpctl</code> to view LLDP information. For example, <code>sudo lldpctl -d -f json swp1</code>.  | 5.9.0-5.14.0 | 5.15.0-5.15.1|
 | <a name="4633514"></a> [4633514](#4633514) <a name="4633514"></a> <br /> | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | 5.15.0-5.15.1|

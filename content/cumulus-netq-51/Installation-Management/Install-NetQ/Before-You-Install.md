@@ -39,7 +39,7 @@ The **cluster** implementation comprises three servers: one master and two worke
 
 The **scale cluster** deployment supports large networks and allows you to adjust NetQ's network monitoring capacity by adding additional nodes to your cluster as your network expands. For example, you can deploy a three-node scale cluster that accommodates up to 1,000 switches. When you add switches to your network, the extensible framework allows you to add additional nodes to support a greater number of switches. NVIDIA recommends this option for networks comprising 100 or more switches with 100 or more interfaces per switch.
 
-In both cluster deployments, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure. Similarly, a 5-node cluster can tolerate a two-node failure, but not a three-node failure. If the majority of failed nodes are Kubernetes control plane nodes, NetQ will no longer function. For more information, refer to the {{<exlink url="https://etcd.io/docs/v3.3/faq/" text="etcd documentation">}}.
+In both cluster deployments, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure. Similarly, a five-node cluster can tolerate a two-node failure, but not a three-node failure. If the majority of failed nodes are Kubernetes control plane nodes, NetQ will no longer function. For more information, refer to the {{<exlink url="https://etcd.io/docs/v3.3/faq/" text="etcd documentation">}}.
 
 
 {{%notice note%}}

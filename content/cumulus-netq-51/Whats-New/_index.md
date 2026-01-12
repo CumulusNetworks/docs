@@ -14,11 +14,12 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 
 - You can now increase the TTL of your time-series database by configuring a list of metrics that NetQ ignores.
-- NetQ for NVLink API:
-    - Added endpoint to query NetQ version
 - Performance improvements to the account management page in the UI
 - Decreased time to install NetQ
 - Added Arm support <!--at risk-->
+- NetQ for NVLink:
+    - Added a fault tolerance mechanism that allows NVLink switches with at least two out-of-band management ports to maintain connectivity to NMX controller and telemetry services in case of port failure
+    - Added endpoint to query NetQ version
 
 
 ## Release Considerations

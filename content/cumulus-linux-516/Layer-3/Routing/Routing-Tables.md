@@ -133,18 +133,46 @@ To show both IPv4 and IPv6 FIB table entries for a VRF, run the `nv show vrf <vr
 
 ```
 cumulus@leaf01:~$ nv show vrf BLUE router fib
+AFI   Prefix
+----  ---------
+ipv4  0.0.0.0/0
+      10.1.10.0/24
+      10.1.20.0/24
+      10.1.30.0/24
+      10.1.30.106/32
+      127.0.0.0/8
+ipv6  ::/0
+      ::1/128
+      fe80::/128
+      fe80::/64
+      ff00::/8
 ```
 
 To show only IPv4 FIB table entries for a VRF, run the `nv show vrf <vrf-id> router fib ipv4` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf BLUE router fib ipv4
+Prefix          Next-hop     Protocol  Scope   Summary
+--------------  -----------  --------  ------  ------------------
+0.0.0.0/0       unreachable  boot      global  Metric: 4278198272
+10.1.10.0/24    nhid 460     bgp       global  Metric: 20
+10.1.20.0/24    nhid 460     bgp       global  Metric: 20
+10.1.30.0/24    dev vlan30   kernel    link    PrefSrc: 10.1.30.3
+10.1.30.106/32  nhid 459     bgp       global  Metric: 20
+127.0.0.0/8     dev BLUE     kernel    link    PrefSrc: 127.0.0.1
 ```
 
 To show only IPv6 FIB table entries for a VRF, run the `nv show vrf <vrf-id> router fib ipv6` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf BLUE router fib ipv6
+Prefix      Next-hop       Protocol  Scope   Summary
+----------  -------------  --------  ------  ------------------
+::/0        unreachable    boot      global  Metric: 4278198272
+::1/128     dev BLUE       kernel    global  Metric: 256
+fe80::/128  dev vlan30-v0  kernel    global  Metric: 0
+fe80::/64   dev vlan30     kernel    global  Metric: 256
+ff00::/8    dev vlan30     kernel    global  Metric: 256
 ```
 
 To show IPv4 FIB table entries for a specific prefix in a VRF, run the `nv show vrf <vrf-id> router fib ipv4 route <prefix>` command.
@@ -160,7 +188,10 @@ Prefix             Next-hop               Proto  Scope  Summary
 To show IPv6 FIB table entries for a specific prefix in a VRF, run the `nv show vrf <vrf-id> router fib ipv6 route <prefix>` command.
 
 ```
-cumulus@leaf01:~$ nv show vrf RED router fib ipv6 route 228:35::0/64
+cumulus@leaf01:~$ nv show vrf RED router fib ipv6 route fe80::/64
+Prefix     Next-hop    Protocol  Scope   Summary
+---------  ----------  --------  ------  -----------
+fe80::/64  dev vlan10  kernel    global  Metric: 256
 ```
 
 {{%notice note%}}

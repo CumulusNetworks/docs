@@ -3363,7 +3363,7 @@ Version                              Uptime                    Reinitialize Time
 
 ## netq show otlp
 
-Displays OpenTelemetry health, status, security, or certificate information. Several forms of this command are available.
+Displays OpenTelemetry health, status, security, whitelist, or certificate information. Several forms of this command are available.
 
 ### Syntax
 
@@ -3387,12 +3387,17 @@ netq show otlp tls-ca-cert
 
 netq show otlp tls-cert 
     [json | dump]
+
+netq show otlp whitelist (default | custom)
+    [json]
 ```
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | tsdb-name | \<text-tsdb-endpoint\> | Specify the name of your time series database |
+| default | NA | Display the OTLP whitelist metrics that are enabled by default. You cannot modify these values. |
+| custom | NA | Display the OTLP whitelist metrics that are not part of the default metrics. |
 
 ### Options
 

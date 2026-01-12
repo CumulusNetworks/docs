@@ -961,8 +961,96 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4829842</td>
+<td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
+<td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4813804</td>
+<td>The {{nv config show}} command output shows each egress buffer, ingress buffer and latency configuration separately for each traffic class or port group instead of being collapsed in single line configuration.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4813159</td>
+<td>The {{nv config show}} command output shows each egress buffer, ingress buffer and latency configuration separately for each traffic class or port group instead of being collapsed in single line configuration.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4807528</td>
+<td>On certain platforms, the {{nv show platform transceiver &lt;port&gt;}} command shows module flags (for example, CMIS‑style fault/LOS flags) as False for legacy, non‑CMIS optics (such as older QSFP+, QSFP28, and QSFP56 modules) even when the module does not implement these flags. This issue has no functional impact.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4804084</td>
+<td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
+{{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
+interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
+interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4797691</td>
+<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
+<td>5.0.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789562</td>
+<td>If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes.</td>
+<td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789097</td>
+<td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
+<td>5.9.4-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4783824</td>
+<td>RoCE ingress reserved pools do not display correct values for ports that are not operationally UP. Switch ports that were never operational or not operational after setting RoCE mode do not have RoCE reserved pool buffers allocated but the {{nv show interface &lt;interface&gt; qos roce status}} command displays an invalid buffer size.</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4781499</td>
+<td>The 802.1X RADIUS shared secret is limited to 32 characters instead of 256 characters.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4781498</td>
+<td>When you use a text-based patch file with {{nv config patch cmd.txt}} or {{nv config replace cmd.txt}}, if the {{cmd.txt}} file contains any of the following CLI commands, the patch operation fails and triggers an exception in NVUE:
+nv set system aaa auth order radius &lt;array&gt;
+nv set system ssh-server ciphers &lt;array&gt;
+nv set system ssh-server macs &lt;array&gt;
+nv set system ssh-server kex-algorithms &lt;array&gt;
+nv set system ssh-server pubkey-accepted-algorithms &lt;array&gt;
+nv set system ssh-server host-key-algorithms &lt;array&gt; 
+To work around this issue, use a YAML file instead of a text-based patch file or run the {{nv set}} commands manually.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4776471</td>
+<td>In Cumulus Linux 5.15.0, NTP and DNS configuration commands changed from {{nv set service}} to {{nv set system}}. However, after upgrading the switch to Cumulus Linux 5.15.1, the {{nv set service}} command might still appear in the configuration output because a stale {{nv set service}} command remains after the configuration is translated during the upgrade. If you save the configuration with the {{nv config show -o commands}}, then reapply the configuration with {{nv config replace}}, the command fails if the stale {{nv set service}} command is present.To workaround this issue, before applying the configuration with {{nv config replace}}, remove any stale {{nv set service}} commands from the saved configuration file, then reapply the configuration with the {{nv config replace &lt;config-file&gt;}} command.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4776470</td>
 <td>In Cumulus Linux 5.15.0, NTP and DNS configuration commands changed from {{nv set service}} to {{nv set system}}. However, after upgrading the switch to Cumulus Linux 5.15.1, the {{nv set service}} command might still appear in the configuration output because a stale {{nv set service}} command remains after the configuration is translated during the upgrade. If you save the configuration with the {{nv config show -o commands}}, then reapply the configuration with {{nv config replace}}, the command fails if the stale {{nv set service}} command is present.To workaround this issue, before applying the configuration with {{nv config replace}}, remove any stale {{nv set service}} commands from the saved configuration file, then reapply the configuration with the {{nv config replace &lt;config-file&gt;}} command.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4776390</td>
+<td>gNMI subscription changes for interface counters, buffer, packet trim, latency or any other statistics produced by the {{prometheus-sdk-stats}} service leads to a change in the service configuration file causing the load interval configuration to be removed. This results in a rate calculation done with an interval of 60s instead of the interval configured in NVUE.</td>
 <td>5.15.0-5.15.1</td>
 <td></td>
 </tr>
@@ -982,6 +1070,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4771785</td>
 <td>NVUE drop counters and ethtool output do not show the packets discarded because the destination MAC address does not match the router MAC address.</td>
 <td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4771521</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1019,15 +1113,15 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 <td></td>
 </tr>
 <tr>
-<td>4738956</td>
-<td>When a Spectrum-4 or Spectrum-5 switch (local device) is connected to a ConnectX-7 or ConnectX-8 NIC, or a Spectrum-4 or Spectrum-5 (peer device) that performs a soft reset, adaptive routing and Spectrum-X features fail to start on the interface. To work around this issue, flap the interface on the Spectrum-4 or Spectrum-5 switch.</td>
-<td>5.15.0</td>
-<td>5.15.1</td>
-</tr>
-<tr>
 <td>4734606</td>
 <td>Physical interface based static IPv6 address assignment does not work for DHCPv6 with inbound DHCP requests (discover packets) on an SVI interface. To work around this issue, configure the IPv6 pool for the subnet to assign the IPv6 address from the pool.</td>
 <td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4734395</td>
+<td>{{mlxlink}} output sometimes displays additional special characters while still reporting valid data.</td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1046,6 +1140,22 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 <td>4732177</td>
 <td>On the NVIDIA SN5610 switch, the {{nv show platform transceiver}} command output for 3rd party optics is missing fields such as {{rx-los}} and {{tx-los}}.</td>
 <td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4726412</td>
+<td>When a Spectrum-4 or Spectrum-5 switch interface is connected to a ConnectX-7 NIC that performs a soft reset, adaptive routing and Spectrum-X features fail to start on the interface. To work around this issue, flap the interface.</td>
+<td>5.15.0</td>
+<td>5.15.1</td>
+</tr>
+<tr>
+<td>4722539</td>
+<td>Optimized image upgrade with warm boot mode is supported in Cumulus Linux 5.13 and later. When you try to run the {{nv action boot-next}} command during optimized image upgrade in Cumulus Linux 5.12 and earlier to any target release while the system is in warm boot mode, the {{boot-next}} operation fails with the following error:
+cumulus@switch:~$ nv action boot-next system image other
+Error: Action failed with the following issue:&gt;br&gt;
+  Failed to set boot-next due to Unknown error
+To work around this issue, verify system boot mode with the {{nv show system reboot}} command before you perform optimized image upgrade and switch to cold boot mode if necessary with the {{nv set system reboot mode cold}} command. You can then proceed with the optimized image upgrade {{boot-next}} operation.</td>
+<td>5.11.4-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1082,6 +1192,15 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4714618</td>
+<td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
+{{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
+interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
+interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1128,6 +1247,12 @@ User name {} is already in use as OS group name 'and could not be used as userna
 <td></td>
 </tr>
 <tr>
+<td>4693175</td>
+<td>There is a mismatch between NVUE and gNMI telemetry for latency-measurement data on network interfaces with high sample intervals. For example, when you remove traffic class configurations from interfaces, NVUE correctly updates to reflect only active traffic classes; however, gNMI telemetry continues to report stale latency-measurement entries for the removed traffic classes. The stale entries include outdated error-type responses (TIMEOUT) with timestamps from previous runs. These stale entries persist across multiple polling cycles.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4692400</td>
 <td>You see the error {{Failed to get SRv6 no sid drop counter: No-SID counter not available in syslog}} even when SRv6 is disabled.</td>
 <td>5.15.0-5.15.1</td>
@@ -1146,9 +1271,24 @@ User name {} is already in use as OS group name 'and could not be used as userna
 <td></td>
 </tr>
 <tr>
+<td>4683616</td>
+<td>When you configure the same 802.1X port ID on multiple ports using the same IPv6 profile, the switch might assign duplicate IPv6 addresses to those ports. To work around this issue, configure a unique port ID for each port with an IPv6 profile or omit the explicit port ID configuration to allow the system to assign a unique 802.1X port ID automatically.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4683602</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
 <td>5.11.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4683370</td>
+<td>On scale systems with OTEL enabled, you might see an {{interface_stats_collector}} crash with the following logs:
+{{interface_stats_collector[41358]: unexpected fault address 0x7fbb941d9110
+interface_stats_collector[41358]: fatal error: fault
+interface_stats_collector[41358]: [signal SIGSEGV: segmentation violation code=0x1addr=0x7fbb941d9110 pc=0x55124a]}}</td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1170,9 +1310,21 @@ User name {} is already in use as OS group name 'and could not be used as userna
 <td></td>
 </tr>
 <tr>
+<td>4650961</td>
+<td>When you bring a bond down, then up with the {{ifdown}} and {{ifup}} commands, the sflow rate is not configured correctly after the bond comes up and the sflow sample is not generated. To work around this issue, bring the member port down, then up.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4648833</td>
 <td>Interfaces using PAM4 DAC cables on switches with Spectrum-4 and later might not come up after a link flap or reboot if auto-negotiation is disabled. Auto-negotiation is required for PAM4 DAC cables on these switches.</td>
 <td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4643073</td>
+<td>Concurrent {{mlxfwmanager --query}} executions triggered by gNMI telemetry polling might cause MFT deadlock, resulting in repeated core dumps, {{nvued}} restarts, and control plane unresponsiveness. </td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>

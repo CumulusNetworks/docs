@@ -41,20 +41,20 @@ The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in
 
 1. Log in to your NetQ VM via SSH.
 
-2. Edit the Prometheus ConfigMap with the `kubectl edit cm prometheus-config` command.
+2. Edit the Prometheus ConfigMap with the `kubectl edit cm prometheus-config -n netq-eth` command.
 
 3. Edit the `scrape_interval` parameter. 
 
-4. Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
+4. Retrieve the current pod name with the `kubectl get pods -n netq-eth | grep netq-prom` command:
 
 ```
-nvidia@netq-server:~$ kubectl get pods | grep netq-prom
+nvidia@netq-server:~$ kubectl get pods -n netq-eth | grep netq-prom
 netq-prom-adapter-ffd9b874d-hxhbz                    2/2     Running   0          3h50m
 ```
 5. Restart the pod by deleting the running pod:
 
 ```
-kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz
+kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz -n netq-eth
 ```
 
 ## Install DTS on DPUs

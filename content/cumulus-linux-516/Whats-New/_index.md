@@ -32,9 +32,9 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1x dynamic VRF assignment">}}
 - {{<link url="TACACS/#local-fallback-authentication" text="NVUE support for TACACS local fallback authentication">}}
 - {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
-- Health Event and SDK Driver Monitoring for Multi ASIC
-- Preserve interface IPs on link flap for BGP Conditional Disaggregation
+- {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
 - PPS mode for egress shapers
+- Health Event and SDK Driver Monitoring for Multi ASIC
 - Allow gNMI to export current egress buffer occupancy, preferable buffer occupancy histogram
 - Security features:
   - {{<link url="FIPS" text="FIPS mode">}}

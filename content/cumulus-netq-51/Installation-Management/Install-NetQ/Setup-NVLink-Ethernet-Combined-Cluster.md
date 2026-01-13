@@ -9,7 +9,7 @@ Follow these steps to set up and configure your VMs in a cluster of servers. Fir
 
 ## System Requirements
 
-NetQ for Ethernet and NVLink supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
+This deployment model requires a cluster comprising a minimum of three nodes. Verify that *each node* in your cluster meets the VM requirements:
 
 | Resource | Minimum Requirements |
 | :--- | :--- |
@@ -159,11 +159,11 @@ nvidia@<hostname>:~$ netq install cluster master-init
 ```
 9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
-10. Create a JSON template using the installation command for your deployment model. Run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file: 
+10. Create a JSON template using the installation command for your deployment model. Run `netq install combined config generate` on your master node to generate a template for the cluster configuration JSON file. This command creates a template with three nodes by default. To change the number of nodes, specify the number in the command itself. For example, `netq install combined config generate 6` creates a JSON template with fields for six nodes.
 
 ```
-nvidia@netq-server:~$ netq install cluster config generate
-2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
+nvidia@netq-server:~$ netq install combined config generate
+2025-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/combined-cluster-config.json
 ```
 
 11. Edit the cluster configuration JSON file with the values for each attribute.
@@ -173,9 +173,9 @@ nvidia@netq-server:~$ netq install cluster config generate
 {{< tab "Default JSON Template">}}
 
 ```
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {
-        "version": "v2.0",
+        "version": "v3.0",
         "interface": "<INPUT>",
         "cluster-vip": "<INPUT>",
         "master-ip": "<INPUT>",
@@ -209,9 +209,9 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 {{< tab "Completed JSON Example">}}
 
 ``` 
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
 {
-        "version": "v2.0",
+        "version": "v3.0",
         "interface": "eth0",
         "cluster-vip": "10.176.235.101",
         "master-ip": "10.176.235.51",
@@ -250,7 +250,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 {{< tab "New Install">}}
 
 ```
-nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/cluster-install-config.json
+nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/combined-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -288,6 +288,70 @@ Run the `netq show opta-health` command to verify that all applications are oper
 {{%notice note%}}
 If any of the applications or services display a DOWN status after 30 minutes, open a support ticket and attach the output of the `opta-support` command.
 {{%/notice%}}
+<!--need Shyamala instructions
+## Add Additional Worker Nodes
+
+When the number of devices in your network grows, you can add additional nodes to your cluster deployment so that NetQ remains operational and can accommodate the additional devices. Refer to the {{<link title="Before You Install/#installation-overview" text="Installation Overview">}} for device support information.
+
+To add additional nodes to an existing cluster, generate a JSON configuration template referencing the number of additional worker nodes you want to add. For example, to expand a 3-node cluster to a 5-node cluster, run `netq install cluster extend-cluster bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/combined-cluster-config.json` command to generate the JSON configuration template, `/tmp/cluster-install-config.json`:
+
+```
+nvidia@netq-server:~$ cat /tmp/cluster-install-config.json
+{
+        "version": "v2.0",
+        "interface": "<INPUT>",
+        "cluster-vip": "<INPUT>",
+        "master-ip": "<INPUT>",
+        "is-ipv6": false,
+        "ha-nodes": [
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+        ],
+        "worker-nodes": [
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+        ]
+}
+```
+
+Edit this file and configure the parameters, including the existing nodes in your cluster and the new worker IP addresses.
+
+```
+{
+        "version": "v2.0",
+        "interface": "eth0",
+        "cluster-vip": "10.176.235.101",
+        "master-ip": "10.176.235.50",
+        "is-ipv6": false,
+        "ha-nodes": [
+                {
+                        "ip": "10.176.235.51"
+                },
+                {
+                        "ip": "10.176.235.52"
+                }
+        ]
+        "worker-nodes": [
+                {
+                        "ip": "10.176.235.53"
+                },
+                {
+                        "ip": "10.176.235.54"
+                }
+        ]
+}
+```
+
+Install the new workers using the `netq install cluster worker add /tmp/cluster-install-config.json` command.
+-->
 
 ## Next Steps
 

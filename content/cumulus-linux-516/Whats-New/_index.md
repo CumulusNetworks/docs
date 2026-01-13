@@ -44,7 +44,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Telemetry
   - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
   - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI interface and platform metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`, and `/components/component[name]/transceiver/state/serial-number`)
+  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI interface and platform metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`, and `/components/component[name]/transceiver/state/serial-no`)
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI QoS buffer metrics">}}
   - Parity between OpenTelemetry and gNMI (Phase 2)
   - YANG Browser Tool for YANG models

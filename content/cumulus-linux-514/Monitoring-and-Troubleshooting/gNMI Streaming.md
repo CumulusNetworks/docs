@@ -419,7 +419,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/components/component[name]/transceiver/state/ethernet-pmd`| * Ethernet PMD (physical medium dependent sublayer) that the transceiver supports. |
 | `/components/component[name]/transceiver/state/form-factor​` | * Type of optical transceiver used on this port. If the client port is built into the device and not pluggable, `non-pluggable` is the corresponding state. If a device port supports multiple form factors, the value of the transceiver installed is reported. If no transceiver is present, the value of the highest rate form factor is reported. |
 | `/components/component[name]/transceiver/state/present​` | * Indicates if a transceiver is present in the specified client port.|
-| `/components/component[name]/transceiver/state/serial-number​` | * Transceiver serial number. 16-octet field that contains ASCII characters, left-aligned and padded on the right with ASCII spaces (20h). If part serial number is undefined, all 16 octets = 0h.|
+| `/components/component[name]/transceiver/state/serial-no​` | * Transceiver serial number. 16-octet field that contains ASCII characters, left-aligned and padded on the right with ASCII spaces (20h). If part serial number is undefined, all 16 octets = 0h.|
 | `/components/component[name]/transceiver/state/supply-voltage/instant` | * Input voltage as measured by the transceiver.|
 | `/components/component[name]/transceiver/state/vendor​` | * Full name of transceiver vendor. |
 | `/components/component[name]/transceiver/state/vendor-part​` | * Transceiver vendor part number.|

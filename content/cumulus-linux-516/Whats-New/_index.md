@@ -30,10 +30,10 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#lag-hash-randomizer" text="LAG hash randomizer for adaptive routing">}}
 - {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx squelch control">}}
 - {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1x dynamic VRF assignment">}}
-- Same user created locally and on Tacacs server, need NVUE support
+- {{<link url="TACACS/#local-fallback-authentication" text="NVUE support for TACACS local fallback authentication">}}
+- {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Preserve interface IPs on link flap for BGP Conditional Disaggregation
-- Request to reauthenticate dot1x supplicant
 - PPS mode for egress shapers
 - Allow gNMI to export current egress buffer occupancy, preferable buffer occupancy histogram
 - Security features:
@@ -44,7 +44,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Telemetry
   - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
   - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI interface and platform metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`, and `/components/component[name]/transceiver/state/serial-no`)
+  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI interface metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`)
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI QoS buffer metrics">}}
   - Parity between OpenTelemetry and gNMI (Phase 2)
   - YANG Browser Tool for YANG models

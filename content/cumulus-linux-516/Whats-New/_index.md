@@ -40,7 +40,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
   - {{<link url="FIPS" text="FIPS mode">}}
   - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and     for a user group">}}
   - {{<link url="RADIUS-AAA/#required-radius-client-configuration" text="Yubikey authentication over RADIUS">}}
-  - {{<link url="Syslog/#enable-secured-logs" text="configure syslog messages">}} include the date and time events occur, the source IP and username for NVUE commands, and when dynamic kernel modules load and unload
+  - {{<link url="Syslog/#enable-secured-logs" text="Configure syslog messages">}} to include the date and time events occur, the source IP and username for NVUE commands, and when dynamic kernel modules load and unload
 - Telemetry
   - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
   - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}

@@ -171,7 +171,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4829842"></a> [4829842](#4829842) <a name="4829842"></a> <br /> | If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes. | 5.12.1-5.15.1 | |
 | <a name="4813804"></a> [4813804](#4813804) <a name="4813804"></a> <br /> | The <code>nv config show</code> command output shows each egress buffer, ingress buffer and latency configuration separately for each traffic class or port group instead of being collapsed in single line configuration. | 5.15.0-5.15.1 | |
 | <a name="4813159"></a> [4813159](#4813159) <a name="4813159"></a> <br /> | The <code>nv config show</code> command output shows each egress buffer, ingress buffer and latency configuration separately for each traffic class or port group instead of being collapsed in single line configuration. | 5.15.0-5.15.1 | |
 | <a name="4807528"></a> [4807528](#4807528) <a name="4807528"></a> <br /> | On certain platforms, the <code>nv show platform transceiver <port></code> command shows module flags (for example, CMIS‑style fault/LOS flags) as False for legacy, non‑CMIS optics (such as older QSFP+, QSFP28, and QSFP56 modules) even when the module does not implement these flags. This issue has no functional impact. | 5.15.0-5.15.1 | |

@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4829842"></a> [4829842](#4829842) <a name="4829842"></a> <br /> | If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes. | 5.12.1-5.15.1 | |
 | <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.15.1 | |
 | <a name="4789562"></a> [4789562](#4789562) <a name="4789562"></a> <br /> | A switch running Nvidia Cumulus Linux may improperly forward routed packets out of an access port or on the native vlan of a trunk with an 802.1Q tag imposed on the packet. | 5.12.1-5.15.1 | |
 | <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | |
@@ -238,7 +237,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4829842"></a> [4829842](#4829842) <a name="4829842"></a> <br /> | If you configure a port VLAN membership after creating egress router interfaces on a switch with more than 32 router interfaces, the routed packet does not contain the port configuration changes. | 5.12.1-5.15.1 | |
 | <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.15.1 | |
 | <a name="4789562"></a> [4789562](#4789562) <a name="4789562"></a> <br /> | A switch running Nvidia Cumulus Linux may improperly forward routed packets out of an access port or on the native vlan of a trunk with an 802.1Q tag imposed on the packet. | 5.12.1-5.15.1 | |
 | <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | |

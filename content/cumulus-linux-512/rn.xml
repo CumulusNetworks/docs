@@ -264,16 +264,16 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.15.1</td>
 <td></td>
-</tr>
-<tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
-<td>5.14.0-5.15.1</td>
 </tr>
 <tr>
 <td>4486200</td>
@@ -1424,16 +1424,16 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.15.1</td>
 <td></td>
-</tr>
-<tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
-<td>5.14.0-5.15.1</td>
 </tr>
 <tr>
 <td>4486200</td>

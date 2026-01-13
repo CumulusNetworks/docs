@@ -212,14 +212,6 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | Buffer drop aggregate upper | TCA_WJH_BUFFER_DROP_AGG_UPPER | Buffer | Port TC Congestion Threshold Crossed | Percentage of the occupancy buffer exceeded or dropped below the specified high or low threshold |
 | Buffer drop aggregate upper | TCA_WJH_BUFFER_DROP_AGG_UPPER | Buffer | Tail drop | Tail drop is enabled, and buffer queue is filled to maximum capacity |
 | Buffer drop aggregate upper | TCA_WJH_BUFFER_DROP_AGG_UPPER | Buffer | WRED | Weighted Random Early Detection is enabled, and buffer queue is filled to maximum capacity or the RED engine dropped the packet as of random congestion prevention |
-| CRC error upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Auto-negotiation failure | Negotiation of port speed with peer has failed |
-| CRC error upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Bad signal integrity | Integrity of the signal on port is not sufficient for good communication |
-| CRC error upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Cable/transceiver is not supported | The attached cable or transceiver is not supported by this port |
-| CRC error upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Cable/transceiver is unplugged | A cable or transceiver is missing or not fully inserted into the port |
-| CRC error upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Calibration failure | Calibration failure |
-| CRC error upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Link training failure | Link is not able to go operational up due to link training failure |
-| CRC error upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Peer is sending remote faults | Peer node is not operating correctly |
-| CRC error upper | TCA_WJH_CRC_ERROR_UPPER | L1 | Port admin down | Port has been purposely set down by user |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | L2 | Destination MAC is reserved (DMAC=01-80-C2-00-00-0x) | The address cannot be used by this link |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | L2 | Ingress spanning tree filter | Port is in Spanning Tree blocking state |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | L2 | Ingress VLAN filtering | Frames whose port is not a member of the VLAN are discarded |
@@ -257,12 +249,4 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Decapsulation error | Decapsulation produced incorrect format of packet. For example, encapsulation of packet with many VLANs or IP options on the underlay can cause decapsulation to result in a short packet. |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Overlay switch - Source MAC equals destination MAC | Overlay packet's source MAC address is the same as the destination MAC address |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Overlay switch - Source MAC is multicast | Overlay packet's source MAC address is multicast |
-| Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Auto-negotiation failure | Negotiation of port speed with peer has failed |
-| Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Bad signal integrity | Integrity of the signal on port is not sufficient for good communication |
-| Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Cable/transceiver is not supported | The attached cable or transceiver is not supported by this port |
-| Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Cable/transceiver is unplugged | A cable or transceiver is missing or not fully inserted into the port |
-| Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Calibration failure | Calibration failure |
-| Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Link training failure | Link is not able to go operational up due to link training failure |
-| Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Peer is sending remote faults | Peer node is not operating correctly |
-| Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Port admin down | Port has been purposely set down by user |
 <!-- vale on -->

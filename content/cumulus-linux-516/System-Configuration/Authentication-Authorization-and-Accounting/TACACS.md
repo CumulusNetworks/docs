@@ -328,11 +328,24 @@ You can configure the switch to allow local fallback authentication for a user w
 
 To allow local fallback authentication for a user, add a local privileged user account on the switch with the same username as a TACACS user. A local user is always active even when the TACACS service is not running.
 
-{{%notice note%}}
-NVUE does not provide commands to configure local fallback authentication.
-{{%/notice%}}
-
 To configure local fallback authentication:
+
+{{< tabs "TabID333 ">}}
+{{< tab "NVUE Commands ">}}
+
+Add a local privileged user account on the switch with the same username as a TACACS user. The following example enables the local privileged user to run `sudo` and NVUE commands. The TACACS account name is `tacadmin`. 
+
+```
+cumulus@switch:~$ nv set system aaa user tacadmin role system-admin
+cumulus@switch:~$ nv set system aaa user tacadmin password
+Enter new password:
+Confirm password:
+cumulus@switch:~$ nv set system aaa user tacadmin full-name "FIRST LAST"
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/nsswitch.conf` file to remove the keyword `tacplus` from the line starting with `passwd`. (You need to add the keyword back in step 3.)
 
@@ -384,6 +397,10 @@ The first `adduser` command prompts for information and a password. You can skip
     ```
     cumulus@switch:~$ sudo systemctl restart nvued
     ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 <!-- vale off -->
 ## TACACS+ Per-command Authorization
 

@@ -73,9 +73,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.0">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.1">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="5.0">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="5.1">}}
 
 3. Log in to the VM and change the password.
 
@@ -172,6 +172,8 @@ nvidia@netq-server:~$ netq install combined config generate
 
 {{< tab "Default JSON Template">}}
 
+The `netq install combined config generate` command creates a JSON template for a three-node cluster.
+
 ```
 nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {
@@ -182,10 +184,12 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
         "is-ipv6": "<INPUT>",
         "ha-nodes": [
                 {
-                        "ip": "<INPUT>"
+                        "ip": "<INPUT>
+                        "description": "HA Node 1"
                 },
                 {
                         "ip": "<INPUT>"
+                        "description": "HA Node 2"
                 }
                 ],
         "shared-cluster-install": "<INPUT>"
@@ -197,16 +201,19 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 
 | Attribute | Description |
 |----- | ----------- |
+| `version` | The version of the JSON template. For NetQ 5.0, specify "v2.0". For NetQ 5.1, specify "v3.0". |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
-| `ha-nodes`, `ip` | The IP addresses of the two worker nodes in your cluster. |
+| `ha-nodes`, `ip` | The IP addresses of the two high-availability nodes in your cluster. |
 | `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` | Enter the URL of the Alertmanager webhook. You can add multiple URLs as a comma-separated list. Note that you must manually add this line to the JSON template to receive NVLink alerts. |
 
 {{< /tab >}}
 {{< tab "Completed JSON Example">}}
+
+The following example uses the `netq install combined config generate 6` command to create a JSON template for a six-node cluster.
 
 ``` 
 nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
@@ -219,27 +226,45 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
         "ha-nodes": [
                 {
                         "ip": "10.176.235.52"
+                        "description": "HA Node 1"
                 },
                 {
                         "ip": "10.176.235.53"
+                        "description": "HA Node 2"
                 },
                 ],
         "shared-cluster-install": false,
         "storage-path": "/var/lib/longhorn",
-        "alertmanager_webhook_url": "http://alert.example.com:9093/webhook"
-
+        "alertmanager_webhook_url": "",
+        "worker-nodes": [
+                {
+                        "ip": "<INPUT_REQUIRED>",
+                        "description": "Worker Node 1"
+                },
+                {
+                        "ip": "<INPUT_REQUIRED>",
+                        "description": "Worker Node 2"
+                },
+                {
+                        "ip": "<INPUT_REQUIRED>",
+                        "description": "Worker Node 3"
+                }
+        ]
 }
+
 ```
 
 | Attribute | Description |
 |----- | ----------- |
+| `version` | The version of the JSON template. For NetQ 5.0, specify "v2.0". For NetQ 5.1, specify "v3.0". |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
-| `ha-nodes`, `ip` | The IP addresses of the two worker nodes in your cluster. |
+| `ha-nodes`, `ip` | The IP addresses of the two high-availability nodes in your cluster. |
 | `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` | Enter the URL of the Alertmanager webhook. You can add multiple URLs as a comma-separated list. Note that you must manually add this line to the JSON template to receive NVLink alerts. |
+| `worker-nodes`, `ip` | The IP addresses of the worker nodes in your cluster. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -288,70 +313,6 @@ Run the `netq show opta-health` command to verify that all applications are oper
 {{%notice note%}}
 If any of the applications or services display a DOWN status after 30 minutes, open a support ticket and attach the output of the `opta-support` command.
 {{%/notice%}}
-<!--need Shyamala instructions
-## Add Additional Worker Nodes
-
-When the number of devices in your network grows, you can add additional nodes to your cluster deployment so that NetQ remains operational and can accommodate the additional devices. Refer to the {{<link title="Before You Install/#installation-overview" text="Installation Overview">}} for device support information.
-
-To add additional nodes to an existing cluster, generate a JSON configuration template referencing the number of additional worker nodes you want to add. For example, to expand a 3-node cluster to a 5-node cluster, run `netq install cluster extend-cluster bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/combined-cluster-config.json` command to generate the JSON configuration template, `/tmp/cluster-install-config.json`:
-
-```
-nvidia@netq-server:~$ cat /tmp/cluster-install-config.json
-{
-        "version": "v2.0",
-        "interface": "<INPUT>",
-        "cluster-vip": "<INPUT>",
-        "master-ip": "<INPUT>",
-        "is-ipv6": false,
-        "ha-nodes": [
-                {
-                        "ip": "<INPUT>"
-                },
-                {
-                        "ip": "<INPUT>"
-                }
-        ],
-        "worker-nodes": [
-                {
-                        "ip": "<INPUT>"
-                },
-                {
-                        "ip": "<INPUT>"
-                }
-        ]
-}
-```
-
-Edit this file and configure the parameters, including the existing nodes in your cluster and the new worker IP addresses.
-
-```
-{
-        "version": "v2.0",
-        "interface": "eth0",
-        "cluster-vip": "10.176.235.101",
-        "master-ip": "10.176.235.50",
-        "is-ipv6": false,
-        "ha-nodes": [
-                {
-                        "ip": "10.176.235.51"
-                },
-                {
-                        "ip": "10.176.235.52"
-                }
-        ]
-        "worker-nodes": [
-                {
-                        "ip": "10.176.235.53"
-                },
-                {
-                        "ip": "10.176.235.54"
-                }
-        ]
-}
-```
-
-Install the new workers using the `netq install cluster worker add /tmp/cluster-install-config.json` command.
--->
 
 ## Next Steps
 

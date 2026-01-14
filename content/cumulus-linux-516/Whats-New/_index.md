@@ -34,7 +34,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
 - {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
 - Docker
-- PPS mode for egress shapers
+- {{<link url="Quality-of-Service/#shaping" text="PPS mode for QoS egress shapers">}}
 - Extra threshold for QoS lossy priority groups
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Security features:

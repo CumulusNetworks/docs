@@ -247,7 +247,50 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 {{%/notice%}}
 
 <!-- vale off -->
-{{< tabs "TabID233 ">}}
+{{< tabs "TabID250 ">}}
+{{< tab "802.1X">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/priority` | *RADIUS server priority 1, 2 or 3. |
+| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/auth-port` | *The port used for authentication and authorization. |
+| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/acct-port` | *The port used for RADIUS accounting. |
+| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/vrf` | *The VRF that contains the RADIUS server.|
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/auth-type` | *MD5 (Message Digest algorithm 5) or TLS (Transport Layer Security). |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/vlan` | *VLAN on which the supplicant connects to the switch and tries to authenticate. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/session-id` | *64 bytes/512 bit session ID. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/status` | *Supplicant status. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/out-eapol-req-frames` | *A count of all EAP request frames sent from the switch to the supplicant. Includes EAP request or OTP and any other challenge messages forwarded from the RADIUS Access Challenge. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-resp-frames` | *Counts all EAP response frames received from the Supplicant identified by the MAC address to the switch. Includes responses carrying credentials, leading to RADIUS Access request and eventual Access accept. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/out-eapol-req-id-frames` | *Counts EAP request identity frames sent from the switch to the Supplicant. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-start-frames` | *Counts EAPOL start frames received from this Supplicant. This is the very first message when the client initiates the authentication process for the session. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-logoff-frames` | *Counts EAPOL logoff frames received from this Supplicant. The client terminates the authenticated session, causing the port to transition from an `Authorized` to an `Unauthorized` state. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-invalid-frames` | *Counts malformed or invalid EAPOL frames received from the Supplicant. These are error counters for frames that do not comply with the protocol. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-len-err-frames` | *Counts EAPOL frames received from this Supplicant that have an incorrect length. These frames are discarded and counted as protocol errors for this session. |
+| `/system/dot1x/state/reauth-timeout-ignore` | *If enabled and if there is a reauthentication timeout with the RADIUS server, the timeout is ignored as long as the supplicant is currently in the authenticated state. |
+| `/system/dot1x/state/dynamic-vlan` | *Indicates if the RADIUS server must assign a VLAN dynamically for the supplicant to be authorized or if Dynamic VLAN is `disabled`. Dynamic VLAN is `disabled` by default. |
+| `/system/dot1x/state/max-stations` | *The maximum number of authenticated MAC addresses allowed on a port. The default is 6. The range is between 1 and 255. |
+| `/system/dot1x/state/dynamic-ipv6-multi-tenant` | *Must be set to `enabled` for dynamic IPv6 multi-tenancy to be enabled. | 
+| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/source-address` | The fixed source IP address that the switch as a RADIUS client uses to send authentication requests to the RADIUS server on behalf of supplicants. |  
+| `/system/dot1x/radius/state/nas-ip-address` | *The IP address used for accounting purposes by Cumulus Linux as a RADIUS client or NAS (Network Access Server) while communicating when a RADIUS server. This IP address is used in the initial Access-Request packet and is useful on the RADIUS server for accounting and not as a source IP address in packet to the RADIUS server. |
+| `/system/dot1x/radius/state/nas-identifier` | *Identifies the RADIUS client to a RADIUS server together with the NAS IP address. The NAS IP address is useful for accounting on the RADIUS server. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/eap` | *If 802.1X is enabled or disabled on the interface. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/mba` | *If MAC-based authentication (MBA) is enabled or disabled on the interface. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/host-mode` | *If multi host mode is enabled or disabled on the interface. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/port-id` | *The 802.1X port ID. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/ipv6-profile-name` | *The IPv6 profile associated with this interface. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/reauthenticate-interval` | * The recurring interval in seconds after which all already authenticated supplicants reauthenticate. By default, the interval is 0 (no reauthentication). |
+| `/interfaces/interface[name]/ethernet/dot1x/state/auth-fail-vlan` | *If auth-fail VLAN is configured. |
+| `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/offset-in-bits` | *Offset in bits from the beginning of the 64 bit IPv6 profile. |
+| `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/length-in-bits` | *The length of the property in bits. |
+| `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/property-value` | *The VSA ID, port ID, an integer or a hexadecimal value. |
+| `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/isolation-property` | *Enabled if this property is used for isolation (multi-tenancy). Setting this flag causes ACLs to be programmed. |
+| `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/summarize-out` | *If enabled, the summary route be advertised. There can be only one property in an IPv6 profile with the `summarize-out` label enabled. |
+| `/system/dot1x/ipv6-profiles/profile[name]/state/route-tag` | *Associates a policy tag with routes learned through this 802.1X IPv6 profile, allowing routing policy, redistribution control, and tenant isolation for the authenticated sessions. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/ipv6-prefix` | * The IPv6 prefix generated from all the IPv6 profile properties. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/counters/reauth-timeouts` | *Counter that keeps track of authentication failures because the RADIUS server is unreachable after a successful authentication when the `reauth-timeout-ignore` option is enabled. |
+
+{{< /tab >}}
 {{< tab "ACLs ">}}
 
 |  Name | Description |
@@ -295,6 +338,34 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 |  Name | Description |
 |------ | ----------- |
 | `/system/adaptive-routing/state/counters/congestion-changes` | The number of adaptive routing change events that triggered due to congestion or link down.|
+
+{{< /tab >}}
+{{< tab "Control Plane Policer">}}
+
+|  Name | Description |
+|------ | ----------- |
+|`/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/ingress/counters/buffer-drops` | *Control plane receive buffer drops.|
+| `/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/ingress/counters/rx-bytes` | *Control plane receive bytes.|
+| `/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/ingress/counters/rx-packets` | *Control plane trap group receive packets.|
+| `/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/egress/counters/types/type[type]/tx-bytes` | *Control plane transmit bytes.|
+| `/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/egress/counters/types/type[type]/tx-packets` | *Control plane receive packets.|
+| `/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/ingress/trap-groups/trap-group[name]/counters/pkt-violations` | *Control plane trap group packet violations.|
+| `/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/ingress/trap-groups/trap-group[name]/counters/rx-bytes` | *Control plane trap group receive bytes.|
+| `/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/ingress/trap-groups/trap-group[name]/counters/rx-packets` | *Control plane trap group receive packets.|
+| `/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/ingress/trap-groups/trap-group[name]/traps/trap[id]/counters/rx-bytes` | *Control plane trap group receive bytes.|
+| `/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/ingress/trap-groups/trap-group[name]/traps/trap[id]/counters/rx-drops` | *Control plane trap group receive drops.|
+| `/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/ingress/trap-groups/trap-group[name]/traps/trap[id]/counters/event-count` | *Control plane trap group receive events.|
+| `/components/component/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/state/ingress/trap-groups/trap-group[name]/traps/trap[id]/counters/rx-packets` | *Control plane trap group receive packets.|
+
+{{< /tab >}}
+{{< tab "Histogram">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/performance/interfaces/interface[name]/histograms/egress-buffer/traffic-class[tc][upper-boundary]/count`  | *Histogram interface egress buffer queue depth.|
+| `/performance/interfaces/interface[name]/histograms/ingress-buffer/priority-group[pg][upper-boundary]/count` | *Histogram interface ingress buffer queue depth.|
+| `/performance/interfaces/interface[name]/histograms/counter/counter-type[type][upper-boundary]/count` | *Histogram interface counter data.|
+| `/performance/interfaces/interface[name]/histograms/latency/traffic-class[tc][upper-boundary]/count` | *Histogram interface latency data.|
 
 {{< /tab >}}
 {{< tab "Interface">}}
@@ -407,49 +478,6 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/state/type​` | The inteface type. |
 | `/interfaces/interface[name]/state/description`| *The interface description.|
 | `/interfaces/interface[name]/state/transceiver` | *The transceiver on the interface. |
-
-{{< /tab >}}
-{{< tab "802.1X">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/priority` | *RADIUS server priority 1, 2 or 3. |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/auth-port` | *The port used for authentication and authorization. |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/acct-port` | *The port used for RADIUS accounting. |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/vrf` | *The VRF that contains the RADIUS server.|
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/auth-type` | *MD5 (Message Digest algorithm 5) or TLS (Transport Layer Security). |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/vlan` | *VLAN on which the supplicant connects to the switch and tries to authenticate. |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/session-id` | *64 bytes/512 bit session ID. |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/status` | *Supplicant status. |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/out-eapol-req-frames` | *A count of all EAP request frames sent from the switch to the supplicant. Includes EAP request or OTP and any other challenge messages forwarded from the RADIUS Access Challenge. |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-resp-frames` | *Counts all EAP response frames received from the Supplicant identified by the MAC address to the switch. Includes responses carrying credentials, leading to RADIUS Access request and eventual Access accept. |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/out-eapol-req-id-frames` | *Counts EAP request identity frames sent from the switch to the Supplicant. |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-start-frames` | *Counts EAPOL start frames received from this Supplicant. This is the very first message when the client initiates the authentication process for the session. |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-logoff-frames` | *Counts EAPOL logoff frames received from this Supplicant. The client terminates the authenticated session, causing the port to transition from an `Authorized` to an `Unauthorized` state. |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-invalid-frames` | *Counts malformed or invalid EAPOL frames received from the Supplicant. These are error counters for frames that do not comply with the protocol. |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-len-err-frames` | *Counts EAPOL frames received from this Supplicant that have an incorrect length. These frames are discarded and counted as protocol errors for this session. |
-| `/system/dot1x/state/reauth-timeout-ignore` | *If enabled and if there is a reauthentication timeout with the RADIUS server, the timeout is ignored as long as the supplicant is currently in the authenticated state. |
-| `/system/dot1x/state/dynamic-vlan` | *Indicates if the RADIUS server must assign a VLAN dynamically for the supplicant to be authorized or if Dynamic VLAN is `disabled`. Dynamic VLAN is `disabled` by default. |
-| `/system/dot1x/state/max-stations` | *The maximum number of authenticated MAC addresses allowed on a port. The default is 6. The range is between 1 and 255. |
-| `/system/dot1x/state/dynamic-ipv6-multi-tenant` | *Must be set to `enabled` for dynamic IPv6 multi-tenancy to be enabled. | 
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/source-address` | The fixed source IP address that the switch as a RADIUS client uses to send authentication requests to the RADIUS server on behalf of supplicants. |  
-| `/system/dot1x/radius/state/nas-ip-address` | *The IP address used for accounting purposes by Cumulus Linux as a RADIUS client or NAS (Network Access Server) while communicating when a RADIUS server. This IP address is used in the initial Access-Request packet and is useful on the RADIUS server for accounting and not as a source IP address in packet to the RADIUS server. |
-| `/system/dot1x/radius/state/nas-identifier` | *Identifies the RADIUS client to a RADIUS server together with the NAS IP address. The NAS IP address is useful for accounting on the RADIUS server. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/eap` | *If 802.1X is enabled or disabled on the interface. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/mba` | *If MAC-based authentication (MBA) is enabled or disabled on the interface. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/host-mode` | *If multi host mode is enabled or disabled on the interface. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/port-id` | *The 802.1X port ID. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/ipv6-profile-name` | *The IPv6 profile associated with this interface. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/reauthenticate-interval` | * The recurring interval in seconds after which all already authenticated supplicants reauthenticate. By default, the interval is 0 (no reauthentication). |
-| `/interfaces/interface[name]/ethernet/dot1x/state/auth-fail-vlan` | *If auth-fail VLAN is configured. |
-| `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/offset-in-bits` | *Offset in bits from the beginning of the 64 bit IPv6 profile. |
-| `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/length-in-bits` | *The length of the property in bits. |
-| `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/property-value` | *The VSA ID, port ID, an integer or a hexadecimal value. |
-| `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/isolation-property` | *Enabled if this property is used for isolation (multi-tenancy). Setting this flag causes ACLs to be programmed. |
-| `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/summarize-out` | *If enabled, the summary route be advertised. There can be only one property in an IPv6 profile with the `summarize-out` label enabled. |
-| `/system/dot1x/ipv6-profiles/profile[name]/state/route-tag` | *Associates a policy tag with routes learned through this 802.1X IPv6 profile, allowing routing policy, redistribution control, and tenant isolation for the authenticated sessions. |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/ipv6-prefix` | * The IPv6 prefix generated from all the IPv6 profile properties. |
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/counters/reauth-timeouts` | *Counter that keeps track of authentication failures because the RADIUS server is unreachable after a successful authentication when the `reauth-timeout-ignore` option is enabled. |
 
 {{< /tab >}}
 {{< tab "LLDP">}}

@@ -1032,9 +1032,10 @@ Cumulus Linux supports two levels of hierarchical traffic shaping: one at the eg
 
 The following example configuration:
 - Sets the profile name (port group) to use with the traffic shaping settings to `shaper1`.
-- Sets the minimum bandwidth for egress queue 2 to 100 kbps. The default minimum bandwidth is 0 kbps.
-- Sets the maximum bandwidth for egress queue 2 to 500 kbps. The default minimum bandwidth is 2147483647 kbps.
-- Sets the maximum packet shaper rate for the port group to 200000. The default maximum packet shaper rate is 2147483647 kbps.
+- Sets the mode to packets per second. You can set this option to either packets per second or kilobits per second.
+- Sets the minimum bandwidth for egress queue 2 to 100 packets per second. The default minimum bandwidth is 0.
+- Sets the maximum bandwidth for egress queue 2 to 500 packets per second. The default minimum bandwidth is 2147483647.
+- Sets the maximum packet shaper rate for the port group to 200000 packets per second. The default maximum packet shaper rate is 2147483647.
 - Applies the traffic shaping configuration to swp1, swp2, swp3, and swp5.
 
 {{% notice note %}}
@@ -1048,6 +1049,7 @@ The following example configuration:
 {{< tab "NVUE Commands ">}}
 
 ```
+cumulus@switch:~$ nv set qos egress-shaper shaper1 mode pps
 cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 min-rate 100
 cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 max-rate 500
 cumulus@switch:~$ nv set qos egress-shaper shaper1 port-max-rate 200000

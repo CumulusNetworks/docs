@@ -1696,7 +1696,7 @@ BGP conditional disaggregation advertises specific prefixes when a failure is de
 
 To configure BGP conditional disaggregation on a leaf:
 - Required: Enable both {{<link url="/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} and {{<link url="/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}.
-- Required for 802.1X: If you are using 802.1X, you must enable the `preserve-on-link-down` option with the `nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down enabled` command to preserve IPv6 addresses when the switch reboots or a link flaps.
+- Required for 802.1X: If you are using 802.1X, you must enable the `preserve-on-link-down` option with the `nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down enabled` command to preserve IPv6 addresses when the switch reboots or a link flaps. For more information, refer to {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="Preserve Dynamically Assigned IPv6 Addresses">}}.
 - Required: Enable BGP conditional disaggregation.
 - Required: Enable BGP unreachability (failure signaling) globally and on relevant neighbors or peer groups.
 - Optional: Set the prefix limits for a neighbor or peer group; see the table below.

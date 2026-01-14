@@ -1,5 +1,5 @@
 ---
-title: Cumulus® Linux 5.16 User Guide
+title: Cumulus Linux 5.16 User Guide
 author: NVIDIA
 weight: -42
 subsection: true
@@ -9,7 +9,7 @@ cascade:
     draft: true
 toc: 1
 ---
-NVIDIA® Cumulus Linux is the first full-featured {{<exlink url="https://www.debian.org/releases/bookworm/" text="Debian bookworm" >}}-based, Linux operating system for the networking industry.
+NVIDIA® Cumulus® Linux is the first full-featured {{<exlink url="https://www.debian.org/releases/bookworm/" text="Debian bookworm" >}}-based, Linux operating system for the networking industry.
 
 This user guide provides in-depth documentation on the Cumulus Linux installation process, system configuration and management, network solutions, and monitoring and troubleshooting recommendations. In addition, the quick start guide provides an end-to-end setup process to get you started.
 

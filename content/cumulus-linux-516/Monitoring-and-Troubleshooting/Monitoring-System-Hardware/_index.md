@@ -277,7 +277,7 @@ The following table summarizes the events that Cumulus Linux monitors for system
 | Temperature Sensor  | Temp1-Temp8          | WARNING    | Temperature sensor state is HIGH         | temp ≥ max_hyst but < max                    | HIGH              |
 | Temperature Sensor  | Temp1-Temp8          | WARNING    | Temperature sensor state is LOW          | temp ≤ min but > lcrit                       | LOW               |
 | Temperature Sensor  | Temp1-Temp8          | CRITICAL   | Temperature sensor state is CRITICAL     | temp ≥ max                                   | CRITICAL          |
-| Temperature Sensor  | Temp1-Temp8          | CRITICAL   | Temperature sensor state is LCRITICAL    | temp ≤ lcrit                                 | LCRITICAL         |
+| Temperature Sensor  | Temp1-Temp8          | CRITICAL   | Temperature sensor state is LCRITICAL    | temp ≤ lcrit                                 | CRITICAL         |
 | Temperature Sensor  | Temp1-Temp8          | ERROR      | Temperature sensor state is BAD          | Sensor data outside limits or read failure    | BAD               |
 | Temperature Sensor  | Temp1-Temp8          | INFO       | Temperature sensor state is ABSENT       | Sensor not present in system                  | ABSENT            |
 | Temperature Sensor  | Temp1-Temp8          | INFO       | Temperature sensor state is OK           | temp within normal range                      | OK                |
@@ -315,8 +315,20 @@ The following table summarizes the events that Cumulus Linux monitors for system
 | Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature high alarm       | Module temp high alarm/warning ON             | Not OK            |
 | Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature low alarm        | Module temp low alarm/warning ON              | Not OK            |
 | Transceiver Status  | transceiver          | INFO       | Transceiver status is OK                 | All transceivers operating normally           | OK                |
+<!--
+| SDK |  ASIC  | CRITICAL | Issuing switchd restart due to FATAL event | Fatal event detected | Critical |
+| SDK |  ASIC  | CRITICAL | Successfully recovery | Fatal event recovered | Critical |
+| SDK |  ASIC  | CRITICAL | FATAL health event received |  FATAL health event | Critical |
+| SDK |  ASIC  | INFO | Generating MLX SDK debug dump for critical event| Critical SDK event detected | Critical |
+| SDK |  ASIC  | INFO | Disabled fatal failure detection | Fatal failure disabled | OK |
+| SDK |  ASIC  | WARNING | WARNING health event received - Device: 1, Cause: 8 | Health event received | Not OK |
+| SDK |  ASIC  | WARNING | Handling WARNING health event |Health event handled | OK |
+| SDK |  ASIC  | WARNING | WARNING event on device 1 - monitoring closely | WARNING event | Not OK |
+| SDK |  ASIC  | INFO | Generating debug dump for health event | Health event | Not OK |
+| SDK |  ASIC  | INFO | Generating MLX SDK debug dump | SDK event | Not OK |
+| SDK |  ASIC  | INFO | MLX SDK debug dump generated successfully for device 1 |  | OK |
 
-
+-->
 ## Related Information
 
 - {{<exlink url="http://packages.debian.org/search?keywords=lshw" text="packages.debian.org/search?keywords=lshw">}}

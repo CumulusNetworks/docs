@@ -171,7 +171,7 @@ netq-appliance  /20.1.1.10:44717  UP                        1234  2023-02-14 00:
 
 {{</tab>}}
 
-{{<tab "On-premises server" >}}
+{{<tab "On-premises Server" >}}
 
 ```
 nvidia@sm-telem-06:~$ sudo opta-info.py

@@ -50,7 +50,7 @@ cumulus@switch:~$ nv show system security
                            operational  applied
 -------------------------  -----------  -------
 fips
-  mode                     disabled     enabled
+  mode                     enabled      enabled
 password-hardening
   state                    enabled      enabled
   reject-user-passw-match  enabled      enabled

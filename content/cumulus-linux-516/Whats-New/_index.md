@@ -30,20 +30,24 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#lag-hash-randomizer" text="LAG hash randomizer for adaptive routing">}}
 - {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx squelch control">}}
 - {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1x dynamic VRF assignment">}}
-- Same user created locally and on Tacacs server, need NVUE support
+- {{<link url="TACACS/#local-fallback-authentication" text="NVUE support for TACACS local fallback authentication">}}
+- {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
+- {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
+- {{<link url="Quality-of-Service/#shaping" text="PPS mode for QoS egress shapers">}}
+- {{<link url="Quality-of-Service/#extra-lossy-headroom" text="Extra threshold for QoS lossy priority groups">}}
+- {{<link url="Docker-with-Cumulus-Linux/#manage-docker-container-resources" text="Manage Docker container resources">}}
 - Health Event and SDK Driver Monitoring for Multi ASIC
+- Security features:
+  - {{<link url="FIPS" text="FIPS mode">}}
+  - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and     for a user group">}}
+  - {{<link url="RADIUS-AAA/#required-radius-client-configuration" text="Yubikey authentication over RADIUS">}}
+  - {{<link url="Syslog/#enable-secured-logs" text="Configure syslog messages">}} to include the date and time events occur, the source IP and username for NVUE commands, and when dynamic kernel modules load and unload
 - Telemetry
   - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
   - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI interface and platform metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`, and `/components/component[name]/transceiver/state/serial-number`)
-  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI QoS buffer metrics">}}
-  - Parity between OpenTelemetry and gNMI (Phase 2)
+  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI QoS buffer, control plane, and histogram metrics">}}
+  - {{<link url="gNMI-Streaming/#metrics" text="Two new gNMI interface metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`)
   - YANG Browser Tool for YANG models
-- Security features
-  - {{<link url="FIPS" text="FIPS mode">}}
-  - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and for a user group">}}
-  - {{<link url="RADIUS-AAA/#required-radius-client-configuration" text="Yubikey authentication over RADIUS">}}
-  - Audit records for loading and unloading dynamic kernel modules, establishing the source of events and when (date and time) the events occurred, and the identity of any individual or process associated with an event
 
 ## Release Considerations
 

@@ -9,7 +9,7 @@ The `cl-support` script generates a compressed archive file of useful informatio
 ## Automatic cl-support File
 <!-- vale on -->
 The switch creates the `cl-support` file automatically:
-- When there is a {{<exlink url="http://linux.die.net/man/5/core" text="core dump file">}} for any application (not specific to Cumulus Linux, but something all Linux distributions support), located in `/var/support/core`.
+- When there is a {{<exlink url="http://linux.die.net/man/5/core" text="core dump file">}} for any application (not specific to Cumulus Linux, but an application that all Linux distributions support), located in `/var/support/core`.
 - When one of the monitored services fails for the first time after you reboot or power cycle the switch.
 
 To prevent the switch from creating a `cl-support` file multiple times in rapid succession when a chain of faults like service failures occur, which burdens the system resources and can trigger broader system instability, Cumulus Linux preserves the `cl-support` file with the first fault that triggers the chain (the first file typically contains all relevant diagnostic information) and deactivates automatic `cl-support` file generation.
@@ -37,7 +37,7 @@ When Cumulus Linux deactivates automatic `cl-support` file generation, the `cl-s
 
 In addition, a `syslog` log message generates indicating that auto generation is deactivated and you see a banner when you log into the switch (`WARNING: Automatic tech-support auto collection has been DEACTIVATED due to repeated failures.`)
 
-To show if automatic `cl-support` file generation is active or inactive, and the reason for deactivation, run the `nv show system tech-support status` command.
+To show if automatic `cl-support` file generation is active or inactive, and the reason for deactivation, run the `nv show system tech-support auto-generation` command.
 
 ```
 cumulus@switch:~$ nv show system tech-support auto-generation 

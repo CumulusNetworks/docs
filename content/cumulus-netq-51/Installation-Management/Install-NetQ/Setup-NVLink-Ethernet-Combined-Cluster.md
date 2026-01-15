@@ -36,11 +36,14 @@ Confirm that the required ports are open for communications.
 |6443	|TCP|	kube-apiserver|
 |9100	|TCP|	Prometheus node exporter|
 |30001	|TCP|	DPU communication|
-|30008	|TCP|	gRPC OTLP export |
-|30009	|TCP|	HTTPS OTLP export|
+|30008	|TCP|	gRPC OTLP receiver|
+|30009	|TCP|	HTTPS OTLP receiver|
 |31980	|TCP|	NetQ Agent communication|
 |31982	|TCP|	NetQ Agent SSL communication|
 |32710	|TCP|	API Gateway|
+
+{{< expand "Internal communication ports" >}}
+
 
 Additionally, for internal cluster communication, you must open these ports:
 
@@ -58,6 +61,8 @@ Additionally, for internal cluster communication, you must open these ports:
 |7000|	TCP|	Cassandra cluster communication|
 |9042|	TCP|	Cassandra client|
 |36443|	TCP|	Kubernetes control plane|
+
+{{< /expand >}}
 
 ## Installation and Configuration
 

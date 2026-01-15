@@ -34,6 +34,8 @@ Confirm that the required ports are open for communication.
 |5000	|TCP|	Docker registry|
 |6443	|TCP|	kube-apiserver|
 
+{{< expand "Internal communication ports" >}}
+
 Additionally, for internal cluster communication, you must open these ports:
 
 | Port or Protocol Number | Protocol | Component Access |
@@ -44,6 +46,8 @@ Additionally, for internal cluster communication, you must open these ports:
 |2379|	TCP|	etcd|
 |2380|	TCP|	etcd|
 |36443|	TCP|	Kubernetes control plane|
+
+{{< /expand >}}
 
 ## Installation and Configuration
 

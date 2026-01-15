@@ -38,8 +38,8 @@ Confirm that the required ports are open for communications.
 |6443	|TCP|	kube-apiserver|
 |9100	|TCP|	Prometheus node exporter|
 |30001	|TCP|	DPU communication|
-|30008	|TCP|	gRPC OTLP export |
-|30009	|TCP|	HTTPS OTLP export|
+|30008	|TCP|	gRPC OTLP receiver|
+|30009	|TCP|	HTTPS OTLP receiver|
 |31980	|TCP|	NetQ Agent communication|
 |31982	|TCP|	NetQ Agent SSL communication|
 |32710	|TCP|	API Gateway|

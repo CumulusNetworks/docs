@@ -421,6 +421,71 @@ debug-mode      False
 log-level       json-file   
 ```
 
+## Manage Docker Container Resources
+
+By default, the switch restricts unknown containers to 20 percent of host resources and limited containers to 50 percent. You can customize these values by editing the `/etc/cumulus/docker/resources.conf` file.
+
+```
+cumulus@switch: sudo nano /etc/cumulus/docker/resources.conf
+RESTRICTED_PERCENT=10  # Tighter jail for unknown apps
+LIMITED_PERCENT=60     # Slightly more room for limited apps
+```
+
+After editing the `/etc/cumulus/docker/resources.conf` file, you must restart `cumulus-docker-resource-limit-calculator.service`.
+
+```
+cumulus@switch: systemctl restart cumulus-docker-resource-limit-calculator.service
+```
+
+The docker image whitelist maintains the list of trusted and limited images and is located in the `/etc/cumulus/docker/whitelist.json` file.
+
+By default, the `/etc/cumulus/docker/whitelist.json` file ships with the following content.
+
+```
+cumulus@switch: sudo cat /etc/cumulus/docker/whitelist.json
+{
+  "trusted_images": [ ],
+  "limited_images": ["docker-wjh"]
+}
+```
+
+You can edit this file to add trusted and limited images.
+
+```
+cumulus@switch: sudo nano /etc/cumulus/docker/whitelist.json
+{
+  "trusted_images": [
+    "internal-app",
+    "postgres"
+  ],
+  "limited_images": [
+    "jenkins-agent",
+    "python-worker"
+  ]
+}
+```
+
+To show memory resource usage for containers, run the Linux `sudo cat /sys/fs/cgroup/cumulus-docker-trusted/memory.current` command.
+
+```
+cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-trusted/memory.current
+
+```
+
+To show CPU resource usage for containers, run the Linux `sudo cat sys/fs/cgroup/cumulus-docker-trusted/cpu.stat` command and `sudo cat /sys/fs/cgroup/cumulus-docker-limited/cpu.stat` command.
+
+```
+cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-limited/cpu.stat
+
+```
+
+To show which container processes are trusted and which are limited, run the `sudo cat /sys/fs/cgroup/cumulus-docker-trusted/cgroup.procs` command or the `sudo cat /sys/fs/cgroup/cumulus-docker-limited/cgroup.procs` command:
+
+```
+cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-limited/cgroup.procs
+
+```
+
 ## Considerations
 
 - Be mindful of the types of applications you want to run in containers on a Cumulus Linux switch. Depending on the configuration of the container, DHCP servers, custom scripts, and other lightweight services run well. However, VPN, NAT and encryption-type services are CPU-intensive and lead to undesirable effects on critical applications.

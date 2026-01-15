@@ -586,7 +586,7 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
    ```
 
 {{%notice note%}}
-Cumulus Linux 5.16 and later uses IPv6 address normalization, where it stores and looks up all IPv6 addresses in their normalized (canonical) form (for example, 2001:db8::1 instead of 2001:0db8::0001). When you copy the `startup.yaml` file manually from Cumulus Linux 5.15 or earlier to Cumulus Linux 5.16, the file bypasses the standard upgrade translation process. As a result, the configuration might contain unnormalized IPv6 addresses that are valid in earlier Cumulus Linux releases, which might cause failed lookups during NVUE show commands, unexpected configuration mismatches and failed or silent misconfigurations.
+In Cumulus Linux 5.16 and later, NVUE uses IPv6 address normalization, where it stores and looks up all IPv6 addresses in their normalized (canonical) form (for example, 2001:db8::1 instead of 2001:0db8::0001). When you copy the `startup.yaml` file manually from Cumulus Linux 5.15 or earlier to Cumulus Linux 5.16, the file bypasses the standard upgrade translation process. As a result, the configuration might contain unnormalized IPv6 addresses that are valid in earlier Cumulus Linux releases, which might cause failed lookups during NVUE show commands, unexpected configuration mismatches and failed or silent misconfigurations.
 
 Before you run the `nv config apply startup` command after the upgrade, first translate the file to ensure all IPv6 addresses are normalized, then replace the `startup.yaml` with the normalized version:
 
@@ -595,6 +595,9 @@ cumulus@switch:~$ nv config translate filename /home/cumulus/startup.yaml > /hom
 cumulus@switch:~$ sudo cp /home/cumulus/ipv6_normalized_startup.yaml /etc/nvue.d/startup.yaml
 cumulus@switch:~$ nv config apply startup
 ```
+
+NVUE normalizes IPv6 addresses to their canonical form. However, for IPv4-mapped IPv6 addresses, NUE normalizes only the IPv6 portion of the address. The IPv4 portion of the address is retained in the IETF-recommended mixed-notation format and remains unchanged. For example, NVUE normalizes the IPv4-mapped IPv6 address 0::ffff:10.0.0.1 to ::ffff:10.0.0.1.
+
 {{%/notice%}}
 
 {{%notice infonopad%}}

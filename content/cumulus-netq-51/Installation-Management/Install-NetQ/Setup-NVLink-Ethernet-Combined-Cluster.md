@@ -34,7 +34,6 @@ Confirm that the required ports are open for communications.
 |4789	|UDP|	Calico networking (VxLAN)|
 |5000	|TCP|	Docker registry|
 |6443	|TCP|	kube-apiserver|
-|9100	|TCP|	Prometheus node exporter|
 |30001	|TCP|	DPU communication|
 |30008	|TCP|	gRPC OTLP receiver|
 |30009	|TCP|	HTTPS OTLP receiver|
@@ -72,8 +71,8 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.1.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.1.0 VMware** image<br>
-    f. If prompted, read the license agreement and proceed with the download.<br> <!--need to check if these are scale images-->
+    e. For deployments using KVM, download the **NetQ SW 5.1.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.1.0 VMware Scale** image<br>
+    f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
 NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.licensing.nvidia.com/" text="NVIDIA Licensing Portal">}}.
@@ -193,11 +192,11 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
         "ha-nodes": [
                 {
                         "ip": "<INPUT>
-                        "description": "HA Node 1"
+                        "description": "Control Plane Node 1"
                 },
                 {
                         "ip": "<INPUT>"
-                        "description": "HA Node 2"
+                        "description": "Control Plane Node 2"
                 }
                 ],
         "shared-cluster-install": "<INPUT>"
@@ -214,7 +213,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
-| `ha-nodes`, `ip` | The IP addresses of the two high-availability nodes in your cluster. |
+| `ha-nodes`, `ip` | The IP addresses of the two high-availability control plane nodes in your cluster. |
 | `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` | Enter the URL of the Alertmanager webhook. You can add multiple URLs as a comma-separated list. Note that you must manually add this line to the JSON template to receive NVLink alerts. |
 
@@ -234,11 +233,11 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
         "ha-nodes": [
                 {
                         "ip": "10.176.235.52"
-                        "description": "HA Node 1"
+                        "description": "Control Plane Node 1"
                 },
                 {
                         "ip": "10.176.235.53"
-                        "description": "HA Node 2"
+                        "description": "Control Plane Node 2"
                 },
                 ],
         "shared-cluster-install": false,
@@ -246,15 +245,15 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
         "alertmanager_webhook_url": "",
         "worker-nodes": [
                 {
-                        "ip": "<INPUT_REQUIRED>",
+                        "ip": "10.176.235.54",
                         "description": "Worker Node 1"
                 },
                 {
-                        "ip": "<INPUT_REQUIRED>",
+                        "ip": "10.176.235.55",
                         "description": "Worker Node 2"
                 },
                 {
-                        "ip": "<INPUT_REQUIRED>",
+                        "ip": "10.176.235.56",
                         "description": "Worker Node 3"
                 }
         ]
@@ -269,7 +268,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
-| `ha-nodes`, `ip` | The IP addresses of the two high-availability nodes in your cluster. |
+| `ha-nodes`, `ip` | The IP addresses of the two high-availability control plane nodes in your cluster. |
 | `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` | Enter the URL of the Alertmanager webhook. You can add multiple URLs as a comma-separated list. Note that you must manually add this line to the JSON template to receive NVLink alerts. |
 | `worker-nodes`, `ip` | The IP addresses of the worker nodes in your cluster. |

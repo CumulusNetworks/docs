@@ -1734,10 +1734,10 @@ cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast cond
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability state enabled
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits maximum 6
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unreachability aspath allow-my-asn route-map ROUTEMAP1
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath allow-my-asn route-map ROUTEMAP1
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability state enabled
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability prefix-limits maximum 6
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv4-unreachability aspath allow-my-asn route-map ROUTEMAP2
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability aspath allow-my-asn route-map ROUTEMAP2
 cumulus@leaf01:~$ nv config apply
 ```
 

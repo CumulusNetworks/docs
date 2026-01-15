@@ -39,7 +39,6 @@ Confirm that the required ports are open for communications.
 |4789	|UDP|	Calico networking (VxLAN)|
 |5000	|TCP|	Docker registry|
 |6443	|TCP|	kube-apiserver|
-|9100	|TCP|	Prometheus node exporter|
 |30001	|TCP|	DPU communication|
 |30008	|TCP|	gRPC OTLP receiver|
 |30009	|TCP|	HTTPS OTLP receiver|

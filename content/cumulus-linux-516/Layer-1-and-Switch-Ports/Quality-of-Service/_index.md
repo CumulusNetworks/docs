@@ -1719,6 +1719,40 @@ To unset the lossy headroom for a priority group, comment out the `priority_grou
 {{< /tab >}}
 {{< /tabs >}}
 
+### Extra Lossy Headroom
+
+In certain cases, higher forwarding latency and a high probability of small packets increase the risk of headroom buffer exhaustion on lossy traffic and the current default maximum headroom of 150 KB per port might be insufficient.
+
+To configure additional headroom for lossy priority groups before the switch drops packets, run the `nv set interface <interface-id> qos headroom lossy extra-threshold` command. You can specify a value between 192 and 1236480 bytes.
+
+The following example configures the extra lossy headroom to 50000 bytes for swp1:
+
+{{< tabs "TabID1728 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 qos headroom lossy extra-threshold 50000
+cumulus@switch:~$ nv config apply
+```
+
+To unset the additional headroom for lossy priority groups, run the `nv unset interface <interface-id> qos headroom lossy extra-threshold` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to adjust the `<interface>.headroom.lossy.extra-threshold` parameter.
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
+...
+swp1.headroom.lossy.extra-threshold = 50000
+```
+
+To unset the extra lossy headroom for a priority group, comment out the `<interface>.headroom.lossy.extra-threshold` parameter.
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Ingress and Egress Management Buffers
 
 Management traffic consists of control traffic originating from or destined to the switch CPU.

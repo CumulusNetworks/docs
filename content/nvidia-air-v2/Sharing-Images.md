@@ -13,6 +13,17 @@ When you upload a custom image to NVIDIA Air, that image is private to your orga
 
 Image share requests expire after 24 hours by default.
 
+## Required Permissions
+
+Image sharing requires specific roles assigned to your account:
+
+| Action | Required Role | Scope |
+|--------|---------------|-------|
+| Share an image (create claim code) | `AIR_IMAGE_SHARER` | `air:image_sharing` |
+| Claim a shared image | `AIR_IMAGE_UPLOADER` or `AIR_IMAGE_PUBLISHER` | `air:image_write` |
+
+For information on how roles are assigned, see {{<link title="API Authentication">}}.
+
 ## Sharing an Image
 
 To share an image with another organization:

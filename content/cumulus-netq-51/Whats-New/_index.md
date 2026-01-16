@@ -13,6 +13,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 ## What's New in NetQ 5.1
 
 - The NetQ integration with Grafana is generally available
+- Updated installation instructions for NetQ for Ethernet and NVLink 
 - You can now increase the TTL of your time-series database by configuring a list of metrics that NetQ ignores.
 - Multiplane support: topology, TCA events, UI filters
 - TCA event de-duplication and flood control

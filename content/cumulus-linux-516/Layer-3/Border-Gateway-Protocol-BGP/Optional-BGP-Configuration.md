@@ -1734,10 +1734,10 @@ cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast cond
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability state enabled
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits maximum 6
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unreachability aspath allow-my-asn route-map ROUTEMAP1
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath allow-my-asn route-map ROUTEMAP1
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability state enabled
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability prefix-limits maximum 6
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv4-unreachability aspath allow-my-asn route-map ROUTEMAP2
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability aspath allow-my-asn route-map ROUTEMAP2
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1824,6 +1824,7 @@ To show if BGP conditional disaggregation configuration, run the `nv show vrf <v
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unicast conditional-disaggregation
+No Data
 ```
 
 To show if BGP unreachability is enabled on the switch, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability` command or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability` command:
@@ -1851,12 +1852,13 @@ To show BGP unreachability routes, run the `nv show vrf <vrf> router bgp address
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability route
-```
+PathCount - Number of paths present for the prefix, MultipathCount - Number of
+paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait-
+for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed
 
-To show BGP unreachability advertise-origin information, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability advertise-origin` command or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability advertise-origin` command:
-
-```
-cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability advertise-origin
+Prefix            PathCount  MultipathCount  DestFlags
+----------------  ---------  --------------  ---------
+2001:1:1:1::/127  4          0               *
 ```
 
 ## BGP Timers

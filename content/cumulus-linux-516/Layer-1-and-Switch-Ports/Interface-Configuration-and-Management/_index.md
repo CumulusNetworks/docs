@@ -770,14 +770,14 @@ Tx squelch control is a PHY‑level feature that controls if the local port cont
 {{< tabs "TabID773 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable Tx squelch control, run the `nv set interface <interface> link tx-squelch on` command. The default setting is `auto`, which enables the switch to decide the correct configuration.
+To enable Tx squelch control, run the `nv set interface <interface> link tx-squelch enabled` command. The default setting is `auto`, which enables the switch to decide the correct configuration.
 
 ```
-cumulus@switch:~$ nv set interface swp1 link tx-squelch on 
+cumulus@switch:~$ nv set interface swp1 link tx-squelch enabled 
 cumulus@switch:~$ nv config apply
 ```
 
-To disable Tx squelch control, run the `nv set interface <interface> link tx-squelch off` command.
+To disable Tx squelch control, run the `nv set interface <interface> link tx-squelch disabled` command.
 
 To show if Tx squelch control is enabled, run the `nv show interface <interface> link` command:
 
@@ -796,21 +796,25 @@ mac-address              48:b0:2d:fa:a1:14
 fec                                               auto   
 mtu                      9000                     9216   
 fast-linkup              disabled
-tx-squelch               on                       on   
+tx-squelch               auto                     enabled  
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To enable Tx squelch control, edit the `/etc/cumulus/switchd.conf` file, and set the `interface.swp61s0.tx_squelch` parameter to `on`:
+To enable Tx squelch control, edit the `/etc/cumulus/switchd.conf` file to set the `interface.<interface-id>.tx_squelch` parameter to `enabled`, then reload `switchd`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
-interface.swp61s0.tx_squelch = on 
+interface.swp1.tx_squelch = enabled 
 ```
 
-To disable Tx squelch control, set the `interface.swp61s0.tx_squelch` parameter to `off`.
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
+```
+
+To disable Tx squelch control, set the `interface.<interface-id>.tx_squelch` parameter to `disabled`.
 
 {{< /tab >}}
 {{< /tabs >}}

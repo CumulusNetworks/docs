@@ -783,21 +783,46 @@ In unnumbered networks, router interfaces are assigned IPv6 link-local addresses
 
 Extended traceroute is disabled by default.
 
-To enable extended traceroute for unnumbered IPv6, run the `nv set system global icmp ipv6 errors-extension ingress-interface` command:
+{{< tabs "TabID788 ">}}
+{{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ nv set system global icmp ipv6 errors-extension ingress-interface
-```
-
-To disable extended traceroute for IPv6 unnumbered, run the `nv unset system global icmp ipv6 errors-extension ingress-interface` command.
-
-To enable extended traceroute for IPv4 over IPv6 unnumbered, run the `nv set system global icmp ipv4 errors-extension ingress-interface` command:
+To enable extended traceroute for IPv4, run the `nv set system global icmp ipv4 errors-extension ingress-interface` command:
 
 ```
 cumulus@switch:~$ nv set system global icmp ipv4 errors-extension ingress-interface
 ```
 
-To disable extended traceroute for IPv4 over IPv6 unnumbered, run the `nv unset system global icmp ipv4 errors-extension ingress-interface` command.
+To disable extended traceroute for IPv4, run the `nv unset system global icmp ipv4 errors-extension ingress-interface` command.
+
+To enable extended traceroute for IPv6, run the `nv set system global icmp ipv6 errors-extension ingress-interface` command:
+
+```
+cumulus@switch:~$ nv set system global icmp ipv6 errors-extension ingress-interface
+```
+
+To disable extended traceroute for IPv6, run the `nv unset system global icmp ipv6 errors-extension ingress-interface` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To enable extended traceroute for IPv4, run the following command:
+
+```
+cumulus@switch:~$ sudo sysctl -w net.ipv4.icmp_errors_extension_mask=1 
+```
+
+To enable extended traceroute for IPv6:
+
+```
+cumulus@switch:~$ sudo sysctl -w net.ipv6.icmp.errors_extension_mask=1
+```
+
+{{%notice note%}}
+The `sysctl` configuration is not persistent. Use NVUE for persistent configuration.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To show if extended traceroute is enabled, run the `nv show system` global command.
 
@@ -827,7 +852,7 @@ icmp
     [errors-extension]          ingress-interface  ingress-interface 
 ```
 
-The following example shows extended traceroute for IPv6 unnumbered:
+The following example shows extended traceroute for IPv6:
 
 ```
 cumulus@switch:~$ traceroute6 -e 2001:db8:1::3 
@@ -836,7 +861,7 @@ cumulus@switch:~$ traceroute6 -e 2001:db8:1::3
   2  2001:db8:1::3 (2001:db8:1::3) <INC:12,"eth2",mtu=1500>  0.154 ms  0.135 ms  0.127 ms 
 ```
 
-The following example shows extended traceroute for IPv4 over IPv6 unnumbered:
+The following example shows extended traceroute for IPv4:
 
 ```
 cumulus@switch:~$ traceroute -e 192.0.2.3 

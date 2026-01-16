@@ -23,13 +23,11 @@ nv show system security fips
 nv show system tech-support auto-generation
 nv show vrf <vrf-id> router bgp address-family <address-family> conditional-disaggregation
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability
-nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-origin
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route-count
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route-count
-nv show vrf <vrf-id> router bgp address-family ipv4-unreachability advertise-origin
 nv show vrf <vrf-id> router fib
 nv show vrf <vrf-id> router fib ipv4
 nv show vrf <vrf-id> router fib ipv6

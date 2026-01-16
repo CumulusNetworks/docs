@@ -1024,7 +1024,7 @@ Traffic shaping typically occurs at egress and traffic policing at ingress.
 
 ### Shaping
 
-Traffic shaping allows a switch to send traffic at an average bitrate lower than the physical interface. Traffic shaping prevents a receiving device from dropping bursty traffic if the device is either not capable of that rate of traffic or has a policer that limits what it accepts.
+Traffic shaping allows a switch to send traffic at an average rate lower than the physical interface. Traffic shaping prevents a receiving device from dropping bursty traffic if the device is either not capable of that rate of traffic or has a policer that limits what it accepts.
 
 Traffic shaping works by holding packets in the buffer and releasing them at specific time intervals.
 
@@ -1032,9 +1032,10 @@ Cumulus Linux supports two levels of hierarchical traffic shaping: one at the eg
 
 The following example configuration:
 - Sets the profile name (port group) to use with the traffic shaping settings to `shaper1`.
-- Sets the minimum bandwidth for egress queue 2 to 100 kbps. The default minimum bandwidth is 0 kbps.
-- Sets the maximum bandwidth for egress queue 2 to 500 kbps. The default minimum bandwidth is 2147483647 kbps.
-- Sets the maximum packet shaper rate for the port group to 200000. The default maximum packet shaper rate is 2147483647 kbps.
+- Sets the mode to packets per second. You can set this option to either packets per second or kilobits per second. The default setting is kilobits per second.
+- Sets the minimum bandwidth for egress queue 2 to 100 packets per second. The default minimum bandwidth is 0.
+- Sets the maximum bandwidth for egress queue 2 to 500 packets per second. The default maximum bandwidth is 2147483647.
+- Sets the maximum packet shaper rate for the port group to 200000 packets per second. The default maximum packet shaper rate is 2147483647.
 - Applies the traffic shaping configuration to swp1, swp2, swp3, and swp5.
 
 {{% notice note %}}
@@ -1048,6 +1049,7 @@ The following example configuration:
 {{< tab "NVUE Commands ">}}
 
 ```
+cumulus@switch:~$ nv set qos egress-shaper shaper1 mode pps
 cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 min-rate 100
 cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 max-rate 500
 cumulus@switch:~$ nv set qos egress-shaper shaper1 port-max-rate 200000
@@ -1064,13 +1066,41 @@ Cumulus Linux bases the `egr_queue` value on the configured [egress queue](#egre
 
 ```
 shaping.port_group_list = [shaper1]
+shaping.shaper_port_group.mode = 1 
 shaping.shaper1.port_set = swp1-swp3,swp5
 shaping.shaper1.egr_queue_0.shaper = [50000, 100000]
 shaping.shaper1.port.shaper = 900000
 ```
 
+To set the mode to kilobits per second, set `shaping.shaper_port_group.mode = 0`.
+
 {{< /tab >}}
 {{< /tabs >}}
+
+To show traffic shaping configuration for an interface, run the `nv show interface <interface-id> qos egress-shaper` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 qos egress-shaper
+                       operational  applied
+---------------------  -----------  -------
+profile                shaper1      shaper1
+port-max-rate          200000
+port-max-shaper-state  enable
+mode                   pps
+
+Shaper Min/Max Rate
+======================
+    traffic-class  min-shaper-state  min-rate(kbps/pps)  max-shaper-state  max-rate(kbps/pps)
+    -------------  ----------------  ------------------  ----------------  ------------------
+    0              disable           0                   disable           0
+    1              disable           0                   disable           0
+    2              enable            100                 enable            500
+    3              disable           0                   disable           0
+    4              disable           0                   disable           0
+    5              disable           0                   disable           0
+    6              disable           0                   disable           0
+    7              disable           0                   disable           0
+```
 
 ### Policing
 
@@ -1685,6 +1715,40 @@ priority_group.service1.ingress_buffer.lossy_headroom = 50000
 ```
 
 To unset the lossy headroom for a priority group, comment out the `priority_group.<priority-group>.ingress_buffer.lossy_headroom` parameter.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Extra Lossy Headroom
+
+In certain cases, higher forwarding latency and a high probability of small packets increase the risk of headroom buffer exhaustion on lossy traffic and the current default maximum headroom of 150 KB per port might be insufficient.
+
+To configure additional headroom for lossy priority groups before the switch drops packets, run the `nv set interface <interface-id> qos headroom lossy extra-threshold` command. You can specify a value between 192 and 1236480 bytes.
+
+The following example configures the extra lossy headroom to 50000 bytes for swp1:
+
+{{< tabs "TabID1728 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 qos headroom lossy extra-threshold 50000
+cumulus@switch:~$ nv config apply
+```
+
+To unset the additional headroom for lossy priority groups, run the `nv unset interface <interface-id> qos headroom lossy extra-threshold` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to adjust the `<interface>.headroom.lossy.extra-threshold` parameter.
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
+...
+swp1.headroom.lossy.extra-threshold = 50000
+```
+
+To unset the extra lossy headroom for a priority group, comment out the `<interface>.headroom.lossy.extra-threshold` parameter.
 
 {{< /tab >}}
 {{< /tabs >}}

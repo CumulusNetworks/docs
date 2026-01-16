@@ -449,39 +449,44 @@ Send traceroute packets to a destination with the `nv action traceroute system <
 | `l3protocol` | The layer 3 protocol to use for the traceroute; `ipv4` or `ipv6`. The default is `ipv4`.|
 | `l4protocol` | The layer 4 protocol to use for the traceroute; `icmp`, `tcp`, or `udp`. The default is `icmp`.|
 | `do-not-fragment` | Do not fragment. Trace the route to the destination without fragmentation. |
+| `errors-extension`| The ICMP errors extension to use for the traceroute. See {{<link url="#extended-traceroute" text="Extended traceroute">}} below.|
 
 The following example validates the route path to IPv4 destination 10.10.10.2.
 
 ```
 cumulus@switch:~$ nv action traceroute system 10.10.10.2
+nv action traceroute system 10.10.10.2
 Action executing ...
-traceroute response 
 {
-  "destination_name": "10.10.10.2",
-  "destination_address": "10.10.10.2",
-  "hops": 30,
-  "packet_size": 60,
-  "trace": {
-    "1": {
-      "hop": 1,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
-    "2": {
-      "hop": 2,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
-    "3": {
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
+    "destination_name": "10.10.10.2",
+    "destination_address": "10.10.10.2",
+    "hops": 30,
+    "packet_size": 60,
+    "trace": {
+        "1": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
+        "2": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
+        "3": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
 ...
 ```
 
@@ -492,17 +497,17 @@ cumulus@switch:~$ nv action traceroute system 2001:DB8::1 l3protocol ipv6
 Action executing ...
 traceroute response 
 {
-  "destination_name": "",
-  "destination_address": "",
+  "destination_name": "2001:DB8::1",
+  "destination_address": "2001:DB8::1",
   "hops": 1,
   "packet_size": 60,
   "trace": {
-    "1": {
-      "hop": 0,
-      "address": "",
-      "name": "",
-      "rtt": [],
-      "state": "DEFAULT"
+      "1": {
+          "probe-1": {
+              "address": "",
+              "name": "",
+              "rtt": [],
+              "state": "DEFAULT"
     }
   }
 }
@@ -514,34 +519,28 @@ The following example validates the path to destination 10.10.10.2 with 5 minimu
 ```
 cumulus@switch:~$ nv action traceroute system 10.10.10.2 initial-ttl 5 max-ttl 10
 Action executing ...
-traceroute response 
 {
-  "destination_name": "10.10.10.2",
-  "destination_address": "10.10.10.2",
-  "hops": 6,
-  "packet_size": 60,
-  "trace": {
-    "1": {
-      "hop": 5,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
-    "2": {
-      "hop": 6,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
-    "3": {
-      "hop": 7,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
+    "destination_name": "10.10.10.2",
+    "destination_address": "10.10.10.2",
+    "hops": 6,
+    "packet_size": 60,
+    "trace": {
+        "5": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
+        "6": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
 ...
 ```
 
@@ -550,34 +549,36 @@ The following example sends UDP packets to validate the path to destination 10.1
 ```
 cumulus@switch:~$ nv action traceroute system 10.10.10.2 l4protocol udp wait 2
 Action executing ...
-traceroute response 
 {
-  "destination_name": "10.10.10.2",
-  "destination_address": "10.10.10.2",
-  "hops": 30,
-  "packet_size": 60,
-  "trace": {
-    "1": {
-      "hop": 1,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
-    "2": {
-      "hop": 2,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
-    "3": {
-      "hop": 3,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
+    "destination_name": "10.10.10.2",
+    "destination_address": "10.10.10.2",
+    "hops": 30,
+    "packet_size": 60,
+    "trace": {
+        "1": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
+        "2": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
+        "3": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
 ...
 ```
 
@@ -586,35 +587,36 @@ The following example validates the path to destination 10.10.10.2 from the sour
 ```
 cumulus@switch:~$ nv action traceroute system 10.10.10.2 source 10.10.10.1
 Action executing ...
-traceroute response 
 {
-  "destination_name": "10.10.10.2",
-  "destination_address": "10.10.10.2",
-  "hops": 30,
-  "packet_size": 60,
-  "trace": {
-    "1": {
-      "hop": 1,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
-    "2": {
-      "hop": 2,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
-    "3": {
-      "hop": 3,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
-    "4":
+    "destination_name": "10.10.10.2",
+    "destination_address": "10.10.10.2",
+    "hops": 30,
+    "packet_size": 60,
+    "trace": {
+        "1": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
+        "2": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
+        "3": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
 ...
 ```
 
@@ -623,34 +625,36 @@ The following example validates the path to destination 10.10.10.2 from the sour
 ```
 cumulus@switch:~$ nv action traceroute system 10.10.10.2 source 10.10.10.1 vrf mgmt
 Action executing ...
-traceroute response 
 {
-  "destination_name": "10.10.10.2",
-  "destination_address": "10.10.10.2",
-  "hops": 30,
-  "packet_size": 60,
-  "trace": {
-    "1": {
-      "hop": 1,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
-    "2": {
-      "hop": 2,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
-    "3": {
-      "hop": 3,
-      "address": "*",
-      "name": "*",
-      "rtt": [],
-      "state": "NONE"
-    },
+    "destination_name": "10.10.10.2",
+    "destination_address": "10.10.10.2",
+    "hops": 30,
+    "packet_size": 60,
+    "trace": {
+        "1": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
+        "2": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
+        "3": {
+            "probe-1": {
+                "address": "*",
+                "name": "*",
+                "rtt": [],
+                "state": "NONE"
+            }
+        },
 ...
 ```
 
@@ -779,25 +783,104 @@ In unnumbered networks, router interfaces are assigned IPv6 link-local addresses
 - You can enable or disable RFC 5837 globally.
 - Cumulus Linux supports incoming interface information only.
 - ICMP rate limiting applies (1000 messages per second by default).
+- If you add multiple IP addresses to the ingress interface, the first address you add is considered the primary and the switch only reports that address in the ICMP extended error information. For example, if swp1 is the ingress interface and you add 10.0.0.1 to swp1, then add 10.0.1.1, the switch only reports 11.0.0.1.
+- The source of the traceroute must have Traceroute package 2.1.5 if it is not a Cumulus Linux switch.
 {{%/notice%}}
 
 Extended traceroute is disabled by default.
 
-To enable extended traceroute for unnumbered IPv6, run the `nv set system global icmp ipv6 errors-extension ingress-interface` command:
+{{< tabs "TabID788 ">}}
+{{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ nv set system global icmp ipv6 errors-extension ingress-interface
-```
-
-To disable extended traceroute for IPv6 unnumbered, run the `nv unset system global icmp ipv6 errors-extension ingress-interface` command.
-
-To enable extended traceroute for IPv4 over IPv6 unnumbered, run the `nv set system global icmp ipv4 errors-extension ingress-interface` command:
+- To enable extended traceroute for IPv4, run the `nv set system global icmp ipv4 errors-extension ingress-interface` command.
+- To enable extended traceroute for IPv6, run the `nv set system global icmp ipv6 errors-extension ingress-interface` command.
 
 ```
 cumulus@switch:~$ nv set system global icmp ipv4 errors-extension ingress-interface
+cumulus@switch:~$ nv set system global icmp ipv6 errors-extension ingress-interface
 ```
 
-To disable extended traceroute for IPv4 over IPv6 unnumbered, run the `nv unset system global icmp ipv4 errors-extension ingress-interface` command.
+- To disable extended traceroute for IPv4, run the `nv unset system global icmp ipv4 errors-extension ingress-interface` command.
+- To disable extended traceroute for IPv6, run the `nv unset system global icmp ipv6 errors-extension ingress-interface` command.
+
+```
+cumulus@switch:~$ nv unset system global icmp ipv4 errors-extension ingress-interface
+cumulus@switch:~$ nv unset system global icmp ipv6 errors-extension ingress-interface
+```
+
+To send extended traceroute packets to a destination, run the `nv action traceroute system <destination> errors-extension` command. The destination can be either an IPv4 or IPv6 address, or a domain name. You can also specify the `do-not-fragment` option to trace the route to the destination without fragmentation.
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.1 errors-extension do-not-fragment
+Action executing ...
+{
+    "destination_name": "10.10.10.1",
+    "destination_address": "10.10.10.1",
+    "hops": 1,
+    "packet_size": 60,
+    "trace": {
+        "1": {
+            "probe-1": {
+                "address": "10.10.10.1",
+                "name": "test.test.com",
+                "rtt": [
+                    24000,
+                    6000,
+                    42000
+                ],
+                "state": "DEFAULT",
+                "errors_extension": {
+                    "ifindex": 1,
+                    "ifaddr": "10.10.10.1",
+                    "ifname": "lo",
+                    "mtu": 65536
+                }
+            }
+        }
+    }
+}
+Action succeeded
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To enable extended traceroute for IPv4:
+
+```
+cumulus@switch:~$ sudo sysctl -w net.ipv4.icmp_errors_extension_mask=1 
+```
+
+To enable extended traceroute for IPv6:
+
+```
+cumulus@switch:~$ sudo sysctl -w net.ipv6.icmp.errors_extension_mask=1
+```
+
+{{%notice note%}}
+The `sysctl` configuration is not persistent. Use NVUE for persistent configuration.
+{{%/notice%}}
+
+The following example shows extended traceroute for IPv4:
+
+```
+cumulus@switch:~$ traceroute -e 192.0.2.3 
+ traceroute to 192.0.2.3 (192.0.2.3), 30 hops max, 60 byte packets 
+  1  192.0.2.2 (192.0.2.2) <INC:11,"eth1",mtu=1500>  0.191 ms  0.148 ms  0.144 ms 
+  2  192.0.2.3 (192.0.2.3) <INC:12,"eth2",mtu=1500>  0.137 ms  0.122 ms  0.114 ms 
+```
+
+The following example shows extended traceroute for IPv6:
+
+```
+cumulus@switch:~$ traceroute6 -e 2001:db8:1::3 
+ traceroute to 2001:db8:1::3 (2001:db8:1::3), 30 hops max, 80 byte packets 
+  1  2001:db8:1::2 (2001:db8:1::2) <INC:11,"eth1",mtu=1500>  0.214 ms  0.171 ms  0.162 ms 
+  2  2001:db8:1::3 (2001:db8:1::3) <INC:12,"eth2",mtu=1500>  0.154 ms  0.135 ms  0.127 ms 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To show if extended traceroute is enabled, run the `nv show system` global command.
 
@@ -806,9 +889,7 @@ cumulus@switch:~$ nv show system global
                                 operational        applied     pending 
 ------------------------------  -----------------  ----------  ---------- 
 ... 
-
 arp 
-
   base-reachable-time           1080               auto        auto 
   garbage-collection-threshold 
     minimum                     128 
@@ -825,24 +906,6 @@ icmp
     [errors-extension]          ingress-interface  ingress-interface
   ipv6                                                              
     [errors-extension]          ingress-interface  ingress-interface 
-```
-
-The following example shows extended traceroute for IPv6 unnumbered:
-
-```
-cumulus@switch:~$ traceroute6 -e 2001:db8:1::3 
- traceroute to 2001:db8:1::3 (2001:db8:1::3), 30 hops max, 80 byte packets 
-  1  2001:db8:1::2 (2001:db8:1::2) <INC:11,"eth1",mtu=1500>  0.214 ms  0.171 ms  0.162 ms 
-  2  2001:db8:1::3 (2001:db8:1::3) <INC:12,"eth2",mtu=1500>  0.154 ms  0.135 ms  0.127 ms 
-```
-
-The following example shows extended traceroute for IPv4 over IPv6 unnumbered:
-
-```
-cumulus@switch:~$ traceroute -e 192.0.2.3 
- traceroute to 192.0.2.3 (192.0.2.3), 30 hops max, 60 byte packets 
-  1  192.0.2.2 (192.0.2.2) <INC:11,"eth1",mtu=1500>  0.191 ms  0.148 ms  0.144 ms 
-  2  192.0.2.3 (192.0.2.3) <INC:12,"eth2",mtu=1500>  0.137 ms  0.122 ms  0.114 ms 
 ```
 
 ## tcpdump

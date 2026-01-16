@@ -15,9 +15,11 @@ If you do not have an NGC account, go to {{<exlink url="https://ngc.nvidia.com/s
 
 {{%notice note%}}
 - **Individual orgs** are single-user only.
-- **Enterprise orgs** support multiple users, teams, and role-based access.
+- **Enterprise orgs** support multiple users, teams, and role-based access. This plan is available to paying customers. Contact your NVIDIA sales representative for more information.
 
-To add other users to your organization, you need an enterprise org. For more information, see {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html#adding-ngc-users-to-an-org" text="Adding NGC Users to an Org">}}.
+
+
+To add additional users to your organization, you need an enterprise org. For more information, see {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html#adding-ngc-users-to-an-org" text="Adding NGC Users to an Org">}}.
 {{%/notice%}}
 
 ## Log In to Air
@@ -31,7 +33,7 @@ To add other users to your organization, you need an enterprise org. For more in
 {{<img src="/images/guides/nvidia-air-v2/ngc-login.png" alt="NGC login page" width="800px">}}
 
 {{%notice note%}}
-You must use a business email address. Personal email addresses (such as gmail.com) are not accepted. If your business email is not accepted and you think this is an error, contact {{<exlink url="mailto:air-support@nvidia.com" text="air-support@nvidia.com">}}.
+You must use a business email address. Personal email addresses (such as gmail.com) are not accepted. If your business email is not accepted and you think this is in error, contact {{<exlink url="mailto:air-support@nvidia.com" text="air-support@nvidia.com">}}.
 {{%/notice%}}
 
 3. Select the NGC organization you want to use with Air and click **Continue**.
@@ -44,22 +46,18 @@ Air subscriptions and free trials are tied to your NGC organization, not individ
 
 If your organization does not have an Air subscription, you may be eligible for a free trial. The trial includes:
 
-| Resource | Enterprise Org | Individual Org |
-|----------|----------------|----------------|
-| Concurrent vCPUs | 300 | 60 |
-| Concurrent memory | 300 GiB | 60 GiB |
-| Compute hours | 50,000 | 10,000 |
-| Duration | 1 year | 1 year |
+| Resource | Individual Org |
+|----------|----------------|
+| Concurrent vCPUs | 60 |
+| Concurrent memory | 60 GiB |
+| Compute hours (credits) | 10,000 |
+| Duration | 1 year |
 
 Only NGC organization owners can start a free trial. If you are the org owner, Air prompts you to start the trial after you log in:
 
 {{<img src="/images/guides/nvidia-air-v2/free-trial-offer.png" alt="Free trial offer for org owners" width="800px">}}
 
-Click **Start Trial** to activate the free trial for your organization.
-
-{{<img src="/images/guides/nvidia-air-v2/free-trial-success.png" alt="Free trial successfully created" width="800px">}}
-
-If you are not the organization owner, contact your NGC organization admin to start the trial.
+Click **Start Trial** to activate the free trial for your organization. If you are not the organization owner, contact your NGC organization admin to start the trial.
 
 ## Troubleshooting
 

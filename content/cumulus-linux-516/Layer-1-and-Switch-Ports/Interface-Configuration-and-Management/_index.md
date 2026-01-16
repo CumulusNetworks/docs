@@ -802,19 +802,19 @@ tx-squelch               auto                     enabled
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To enable Tx squelch control, edit the `/etc/cumulus/switchd.conf` file to set the `interface.<interface-id>.tx_squelch` parameter to `TRUE`, then reload `switchd`.
+To enable Tx squelch control, edit the `/etc/cumulus/switchd.conf` file to set the `interface.<interface-id>.tx_squelch` parameter to `enabled`, then reload `switchd`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
-interface.swp1.tx_squelch = TRUE 
+interface.swp1.tx_squelch = enabled 
 ```
 
 ```
 cumulus@switch:~$ sudo systemctl reload switchd.service
 ```
 
-To disable Tx squelch control, set the `interface.<interface-id>.tx_squelch` parameter to `FALSE`.
+To disable Tx squelch control, set the `interface.<interface-id>.tx_squelch` parameter to `disabled`.
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -784,7 +784,7 @@ In unnumbered networks, router interfaces are assigned IPv6 link-local addresses
 - Cumulus Linux supports incoming interface information only.
 - ICMP rate limiting applies (1000 messages per second by default).
 - If you add multiple IP addresses to the ingress interface, the first address you add is considered the primary and the switch only reports that address in the ICMP extended error information. For example, if swp1 is the ingress interface and you add 10.0.0.1 to swp1, then add 10.0.1.1, the switch only reports 11.0.0.1.
-- If the source of the traceroute is not a Cumulus Linux switch, it must have Traceroute package 2.1.5 installed.
+- If the source of the traceroute is not a Cumulus Linux switch, it must have the Traceroute 2.1.5 package installed.
 {{%/notice%}}
 
 Extended traceroute is disabled by default.

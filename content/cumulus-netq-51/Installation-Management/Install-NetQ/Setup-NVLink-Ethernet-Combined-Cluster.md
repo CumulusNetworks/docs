@@ -48,18 +48,23 @@ Additionally, for internal cluster communication, you must open these ports:
 
 | Port or Protocol Number | Protocol | Component Access |
 | --- | --- | --- |
-|8080|	TCP|	Admin API|
-|5000|	TCP|	Docker registry|
-|6443|	TCP|	Kubernetes API server|
-|10250|	TCP|	kubelet health probe|
+|2181|	TCP|	Zookeeper client|
 |2379|	TCP|	etcd|
 |2380|	TCP|	etcd|
-|7072|	TCP|	Kafka JMX monitoring|
-|9092|	TCP|	Kafka client|
-|7071|	TCP|	Cassandra JMX monitoring|
+|2888|	TCP|	Zookeeper cluster communication|
+|3888|	TCP|	Zookeeper cluster communication|
+|5000|	TCP|	Docker registry|
+|6443|	TCP|	Kubernetes API server|
 |7000|	TCP|	Cassandra cluster communication|
+|7071|	TCP|	Cassandra JMX monitoring|
+|7072|	TCP|	Kafka JMX monitoring|
+|7073|	TCP|	Zookeeper JMX monitoring|
+|8080|	TCP|	Admin API|
 |9042|	TCP|	Cassandra client|
+|9092|	TCP|	Kafka client|
+|10250|	TCP|	kubelet health probe|
 |36443|	TCP|	Kubernetes control plane|
+|54321|	TCP|	OPTA communication|
 
 {{< /expand >}}
 

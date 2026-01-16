@@ -40,11 +40,11 @@ Additionally, for internal cluster communication, you must open these ports:
 
 | Port or Protocol Number | Protocol | Component Access |
 | --- | --- | --- |
+|2379|	TCP|	etcd|
+|2380|	TCP|	etcd|
 |5000|	TCP|	Docker registry|
 |6443|	TCP|	Kubernetes API server|
 |10250|	TCP|	kubelet health probe|
-|2379|	TCP|	etcd|
-|2380|	TCP|	etcd|
 |36443|	TCP|	Kubernetes control plane|
 
 {{< /expand >}}

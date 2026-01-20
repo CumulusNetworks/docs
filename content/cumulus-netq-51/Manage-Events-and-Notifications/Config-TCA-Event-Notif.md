@@ -302,7 +302,7 @@ The hostname, reason/port down reason, ingress port, and drop type scope paramet
 
 5. Click **Next**.
 
-6. On the **Set threshold** step, enter a threshold value.
+6. On the **Set threshold** step, enter a threshold value and unit of measurement.
 
     {{<figure src="/images/netq/set-threshold-fan.png" alt="" width="600">}}
 

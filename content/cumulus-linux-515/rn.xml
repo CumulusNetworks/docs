@@ -962,7 +962,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>4813804</td>
-<td>The {{nv config show}} command output shows each egress buffer, ingress buffer and latency configuration separately for each traffic class or port group instead of being collapsed in single line configuration.</td>
+<td>The {{nv config show}} command output shows each egress buffer, configuration separately for each traffic class instead of being collapsed in single line configuration.</td>
 <td>5.15.0-5.15.1</td>
 <td></td>
 </tr>

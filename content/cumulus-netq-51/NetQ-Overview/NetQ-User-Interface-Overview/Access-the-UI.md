@@ -13,7 +13,7 @@ This page describes how to log in and out of NetQ.
     - NetQ on-premises VM: *https://\<hostname-or-ipaddress>/netq-gui* 
     - NetQ cloud VM: *https://netq.nvidia.com*
 
-    {{<figure src="/images/netq/netq-splash-50.png" alt="NetQ login screen" ewidth="700">}}
+    {{<figure src="/images/netq/netq-splash-51.png" alt="NetQ login screen" ewidth="700">}}
 
 3. Log in.
 

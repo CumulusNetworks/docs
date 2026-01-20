@@ -35,7 +35,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
 - {{<link url="Quality-of-Service/#shaping" text="PPS mode for QoS egress shapers">}}
 - {{<link url="Quality-of-Service/#extra-lossy-headroom" text="Extra threshold for QoS lossy priority groups">}}
-- {{<link url="Docker-with-Cumulus-Linux/#manage-docker-container-resources" text="Manage Docker container resources">}}
+- {{<link url="Docker-with-Cumulus-Linux/#container-resources" text="Manage Docker container resources">}}
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Security features:
   - {{<link url="FIPS" text="FIPS mode">}}

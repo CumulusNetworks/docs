@@ -563,13 +563,13 @@ The TACACS client on the switch and the TACACS server must have the same shared 
 <!-- vale off -->
 ### Debug Issues with Per-command Authorization
 <!-- vale on -->
-To debug TACACS user command authorization, have the TACACS+ user enter the following command at a shell prompt, then try the command again:
+To debug TACACS user authentication and command authorization, have the TACACS+ user enter the following command at a shell prompt, then try the command again:
 
 ```
 tacuser0@switch:~$ export TACACSAUTHDEBUG=1
 ```
 
-The `export TACACSAUTHDEBUG=1` command outputs error messages for commands authorized for the TACACS+ user running the command.
+The `export TACACSAUTHDEBUG=1` command outputs error messages for authentication and authorized commands for the TACACS+ user.
 
 To disable debugging:
 

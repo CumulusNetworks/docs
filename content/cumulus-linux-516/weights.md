@@ -4,7 +4,7 @@ layout: weights
 bookhidden: true
 weight: 1400
 product: Cumulus Linux
-version: "5.15"
+version: "5.16"
 bookhidden: true
 pdfhidden: true
 draft: true

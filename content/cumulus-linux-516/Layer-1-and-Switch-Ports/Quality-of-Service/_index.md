@@ -1753,6 +1753,17 @@ To unset the extra lossy headroom for a priority group, comment out the `<interf
 {{< /tab >}}
 {{< /tabs >}}
 
+To show extra lossy headroom configuration, run the `nv show interface <interface-id> qos headroom lossy` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 qos headroom lossy 
+                        operational  applied 
+----------------------  -----------  ------- 
+extra-threshold         9984         50000   
+default-headroom        153600       153600 
+effective-max-headroom  163584
+```
+
 ### Ingress and Egress Management Buffers
 
 Management traffic consists of control traffic originating from or destined to the switch CPU.

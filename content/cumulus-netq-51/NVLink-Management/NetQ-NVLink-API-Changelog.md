@@ -61,7 +61,7 @@ toc: 3
     <tr><td><code>DELETE /settings/{name}</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Deletes a named setting</td></tr>
     <tr><td><code>GET /support-packages</code></td><td><strong>Added</strong>: Query parameter <code>domainIDs</code> and property <code>/items/domainID</code></td><td>Supports domain filtering</td></tr>
     <tr><td><code>GET /support-packages</code></td><td><strong>Added</strong>: Response 404 non-success status</td><td>New response code</td></tr>
-    <tr><td><code>POST /support-packages</code></td><td><strong>Added</strong>: Optional request property <code>Domains</code>.Use the <code>profileID</code> from <code>PATCH /domains/{id}</code> or <code>PUT /switch-nodes{id}</code> to perform this request.</td><td>Adds domain linking</td></tr>
+    <tr><td><code>POST /support-packages</code></td><td><strong>Added</strong>: Optional request property <code>Domains</code>.</td><td>Adds domain linking. Use the <code>profileID</code> from <code>PATCH /domains/{id}</code> or <code>PUT /switch-nodes{id}</code> to perform this request.</td></tr>
     <tr><td><code>POST /support-packages</code></td><td><strong>Changed</strong>: Property <code>Switches</code> became optional</td><td>Improved request flexibility</td></tr>
     <tr><td><code>POST /support-packages</code></td><td><strong>Added</strong>: Response 404 non-success status</td><td>New response code</td></tr>
     <tr><td><code>GET /switch-nodes</code></td><td><strong>Added</strong>: Optional query parameter <code>hostname</code></td><td>Enables hostname filtering</td></tr>

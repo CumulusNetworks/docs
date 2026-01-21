@@ -968,19 +968,19 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>4830305</td>
-<td>After an optimized image upgrade, certain disabled {{systemd}} services that are replaced with VRF-based services are reenabled. This results in multiple instances of the applications running, where they either fail to start or run with incorrect configuration. This issue occurs with, but is not limited to SSH, NTP and streaming telemetry services running with a custom VRF configuration. To work around this issue, after the upgrade, stop and disable the incorrect services, the restart the correct ones as required.</td>
+<td>After an optimized image upgrade, certain disabled {{systemd}} services that are replaced with VRF-based services are reenabled. This results in multiple instances of the applications running, where they either fail to start or run with incorrect configuration. This issue occurs with, but is not limited to SSH, NTP and streaming telemetry services running with a custom VRF configuration. To work around this issue, after the upgrade, stop and disable the incorrect services, then restart the correct ones as required.</td>
 <td>5.15.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4813804</td>
-<td>The {{nv config show}} command output shows each egress buffer, configuration separately for each traffic class instead of being collapsed in single line configuration.</td>
+<td>The {{nv config show}} command output shows each egress buffer configuration separately for each traffic class instead of in a single line configuration.</td>
 <td>5.15.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4813159</td>
-<td>The {{nv config show}} command output shows each egress buffer, ingress buffer and latency configuration separately for each traffic class or port group instead of being collapsed in single line configuration.</td>
+<td>The {{nv config show}} command output shows each egress buffer, ingress buffer, and latency configuration separately for each traffic class or port group instead of in single line configuration.</td>
 <td>5.15.0-5.15.1</td>
 <td></td>
 </tr>
@@ -1317,7 +1317,7 @@ interface_stats_collector[41358]: [signal SIGSEGV: segmentation violation code=0
 </tr>
 <tr>
 <td>4657192</td>
-<td>On NVIDIA SN5640 switches, after you configure a port as unsplit, links do not come up while optics are in use. To work around this issue, use copper cables.</td>
+<td>On the NVIDIA SN5640 switch, after you configure a port as unsplit, links do not come up while optics are in use. To work around this issue, use copper cables.</td>
 <td>5.15.0-5.15.1</td>
 <td></td>
 </tr>
@@ -1371,13 +1371,13 @@ interface_stats_collector[41358]: [signal SIGSEGV: segmentation violation code=0
 </tr>
 <tr>
 <td>4549896</td>
-<td>When you try to set a VXLAN with a bridge, you see the error {{sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge}}. You can safely ignore this error as it doesn't impact switch functionality. </td>
+<td>When you try to set a VXLAN with a bridge, you see the error {{sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge}}. You can safely ignore this error.</td>
 <td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4548514</td>
-<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+<td>When FRR installs a connected route for an SVI interface with VRR, the route might install with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
 &lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
@@ -1525,7 +1525,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4329931</td>
-<td>In previous releases, Cumulus Linux incorrectly allowed SyncE and PPS In features to be enabled at the same time. Upgrading systems with both features configured using NVUE to 5.12.0 or higher results in a failure to apply the startup configuration as part of the first boot of the upgraded version. To work around the issue, unset one of the features before you upgrade.</td>
+<td>Cumulus Linux incorrectly allows SyncE and PPS to be enabled at the same time. Upgrading systems with both features configured using NVUE to 5.12.0 or later results in a failure to apply the startup configuration as part of the first boot of the upgraded version. To work around the issue, unset one of the features before you upgrade.</td>
 <td>5.12.0-5.15.1</td>
 <td></td>
 </tr>

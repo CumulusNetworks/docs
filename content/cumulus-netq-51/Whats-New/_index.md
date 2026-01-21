@@ -19,7 +19,9 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - You can now create threshold-crossing rules in different units of measurement in both the UI and CLI. Additionally, NetQ no longer broadcasts multiple events for breaches to the same threshold-crossing rule.
 - Performance improvements to the account management page in the UI
 - Decreased time to install NetQ
-- NetQ for NVLink API changes
+- NetQ for NVLink API changes:
+    - Added ability to download support packages and upgrade NVOS for all switches within an NVLink domain.
+    - Refer to the NetQ NVLink API changelog for a comprehensive list of changes
 
 
 ## Release Considerations

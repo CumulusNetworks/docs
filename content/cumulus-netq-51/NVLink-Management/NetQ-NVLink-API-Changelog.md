@@ -41,7 +41,7 @@ toc: 3
     <tr><td><code>GET /domains</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Provides domain listing</td></tr>
     <tr><td><code>GET /domains/count</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns domain count</td></tr>
     <tr><td><code>GET /domains/{id}</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Retrieves domain details</td></tr>
-    <tr><td><code>PATCH /domains/{id}</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Updates domain properties</td></tr>
+    <tr><td><code>PATCH /domains/{id}</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Updates domain properties. Use this endpoint to create an association between a domain and a profile ID. Then use the profile ID to access the switches within the domain.</td></tr>
     <tr><td><code>GET /partitions</code></td><td><strong>Changed ⚠️</strong>: Added <code>subschema #3</code> to <code>/items/Members</code> list</td><td>Schema update for 200 responses</td></tr>
     <tr><td><code>GET /partitions</code></td><td><strong>Changed ⚠️</strong>: Added enum value <code>DEVICE_UID_BASED</code> to <code>/items/Type</code></td><td>Expands partition type options</td></tr>
     <tr><td><code>GET /partitions</code></td><td><strong>Added</strong>: Response properties <code>/items/MultiCastGroupLimit</code>, <code>/items/ResiliencyMode</code></td><td>Returned with status 200</td></tr>
@@ -61,7 +61,7 @@ toc: 3
     <tr><td><code>DELETE /settings/{name}</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Deletes a named setting</td></tr>
     <tr><td><code>GET /support-packages</code></td><td><strong>Added</strong>: Query parameter <code>domainIDs</code> and property <code>/items/domainID</code></td><td>Supports domain filtering</td></tr>
     <tr><td><code>GET /support-packages</code></td><td><strong>Added</strong>: Response 404 non-success status</td><td>New response code</td></tr>
-    <tr><td><code>POST /support-packages</code></td><td><strong>Added</strong>: Optional request property <code>Domains</code></td><td>Adds domain linking</td></tr>
+    <tr><td><code>POST /support-packages</code></td><td><strong>Added</strong>: Optional request property <code>Domains</code>.Use the <code>profileID</code> from <code>PATCH /domains/{id}</code> or <code>PUT /switch-nodes{id}</code> to perform this request.</td><td>Adds domain linking</td></tr>
     <tr><td><code>POST /support-packages</code></td><td><strong>Changed</strong>: Property <code>Switches</code> became optional</td><td>Improved request flexibility</td></tr>
     <tr><td><code>POST /support-packages</code></td><td><strong>Added</strong>: Response 404 non-success status</td><td>New response code</td></tr>
     <tr><td><code>GET /switch-nodes</code></td><td><strong>Added</strong>: Optional query parameter <code>hostname</code></td><td>Enables hostname filtering</td></tr>
@@ -72,9 +72,9 @@ toc: 3
     <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Changed ⚠️</strong>: Changed request body type/format from <code>object</code>/"" to empty</td><td>Breaking request definition change</td></tr>
     <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Removed</strong>: Request properties <code>Description</code>, <code>Name</code></td><td>Streamlined payload</td></tr>
     <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Added</strong>: Request schemas <code>UpdateSwitchNodePayload</code>, <code>UpdateAdminStateRequest</code></td><td>Extended payload flexibility</td></tr>
-    <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Added</strong>: Response properties <code>AdminState</code>, <code>Hostname</code>, <code>ManagementIPs</code>, <code>ProfileID</code></td><td>Returned with status 200</td></tr>
+    <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Added</strong>: Response properties <code>AdminState</code>, <code>Hostname</code>, <code>ManagementIPs</code>, <code>ProfileID</code></td><td>Returned with status 200. Use the endpoint fo modify </td></tr>
     <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Added</strong>: Success response 202</td><td>New accepted response code</td></tr>
-    <tr><td><code>POST /upgrade-switch</code></td><td><strong>Added</strong>: Optional request property <code>Domains</code></td><td>Links domains to upgrade</td></tr>
+    <tr><td><code>POST /upgrade-switch</code></td><td><strong>Added</strong>: Optional request property <code>Domains</code></td><td>Upgrades the OS of switches within a domain. Use the <code>profileID</code> from <code>PATCH /domains/{id}</code> or <code>PUT /switch-nodes{id}</code> to perform this request.</td></tr>
     <tr><td><code>POST /upgrade-switch</code></td><td><strong>Changed</strong>: Property <code>Switches</code> became optional</td><td>Improved request flexibility</td></tr>
     <tr><td><code>POST /upgrade-switch</code></td><td><strong>Added</strong>: Response 404 non-success status</td><td>Error handling addition</td></tr>
     <tr><td><code>GET /version</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Retrieves API version info</td></tr>

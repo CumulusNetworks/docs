@@ -30,7 +30,7 @@ toc: 3
       <th data-type="string">Endpoint</th>
       <th data-type="string">Change Type</th>
       <th data-type="string">Change Summary</th>
-      <th data-type="string">Notes / Details</th>
+      <th data-type="string">Notes and Details</th>
     </tr>
   </thead>
   <tbody>

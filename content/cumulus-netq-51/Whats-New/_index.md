@@ -13,7 +13,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 ## What's New in NetQ 5.1
 
 - The NetQ integration with Grafana is generally available
-- You can now deploy NetQ for Ethernet and NVLink and with an unlimited number of nodes. To get started, perform a fresh installation.
+- You can now deploy NetQ for Ethernet and NVLink and with an unlimited number of nodes. To get started, {{<link title="Install NetQ for Ethernet and NVLink" text="perform a fresh installation">}}. This deployment type is supported at the beta level.
 - You can now increase the TTL of your time-series database by configuring a list of metrics that NetQ ignores.
 - Multiplane support: topology, TCA events, UI filters
 - You can now create threshold-crossing rules in different units of measurement in both the UI and CLI. Additionally, NetQ no longer broadcasts multiple events for breaches to the same threshold-crossing rule.
@@ -21,7 +21,8 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Decreased time to install NetQ
 - NetQ for NVLink API changes:
     - Added ability to download support packages and upgrade NVOS for all switches within an NVLink domain.
-    - Refer to the NetQ NVLink API changelog for a comprehensive list of changes
+    - Added a fault tolerance mechanism that allows NVLink switches with at least two out-of-band management ports to maintain connectivity to NMX controller and telemetry services in case of port failure.
+    - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
 
 
 ## Release Considerations

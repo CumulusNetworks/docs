@@ -2450,3 +2450,4 @@ To validate the configuration, run the PIM show commands listed in the troublesh
 - Cumulus Linux does not build an S,G mroute when forwarding over an \*,G tree.
 - On Spectrum-4 switches, multicast flows with packets smaller than 512 bytes might not reach full line rate. Cumulus Linux supports 512 byte and larger multicast packets.
 - When the switch is the FHR, Cumulus Linux does not install the mroute in hardware until it receives a `Register-Stop` from the RP. Without a hardware entry, packet forwarding does not occur. In a virtual environment such as NVIDIA Air, there is no hardware component so multicast routing occurs without the need for the `Register-Stop`.
+- Cumulus Linux does not support tenant routed multicast (TRM).

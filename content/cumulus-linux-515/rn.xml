@@ -1086,7 +1086,7 @@ To work around this issue, use a YAML file instead of a text-based patch file or
 </tr>
 <tr>
 <td>4771521</td>
-<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port.</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
 </tr>
@@ -1278,7 +1278,7 @@ User name {} is already in use as OS group name 'and could not be used as userna
 </tr>
 <tr>
 <td>4687371</td>
-<td>On the spectrum-5, switch when a single traffic class is given 100% dwrr, the default global scheduler profile shows traffic class 5,6,7 as dwrr even though the scheduling mode is strict priority. There is no functional impact with this issue.</td>
+<td>On the spectrum-5 switch when a single traffic class is given 100% dwrr, the default global scheduler profile shows traffic class 5,6,7 as dwrr even though the scheduling mode is strict priority. There is no functional impact with this issue.</td>
 <td>5.15.0-5.15.1</td>
 <td></td>
 </tr>

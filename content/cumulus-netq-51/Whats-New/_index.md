@@ -20,9 +20,10 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Performance improvements to the account management page in the UI
 - Decreased time to install NetQ
 - NetQ for NVLink API changes:
-    - Added ability to download support packages and upgrade NVOS for all switches within an NVLink domain.
-    - Added endpoint to retrieve NetQ's version
+    - Added the ability to download support packages and upgrade NVOS for all switches within an NVLink domain.
+    - Added an endpoint to retrieve NetQ's version
     - Added a fault tolerance mechanism that allows NVLink switches with at least two out-of-band management ports to maintain connectivity to NMX controller and telemetry services in case of port failure.
+    - Performance improvements to scale deployments
     - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
 
 

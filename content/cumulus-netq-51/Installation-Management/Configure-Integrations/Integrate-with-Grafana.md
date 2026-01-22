@@ -201,7 +201,7 @@ open-telemetry-transport=grpc
 open-telemetry-receiver=<TS-IP>:30008/v1/metrics
 ```
 
-3. To support telemetry at a scale of up to 4K devices on hosts with ConnectX NICs or DPUs in NIC mode, configure {{<exlink url="https://docs.nvidia.com/doca/sdk/doca+telemetry+service+guide/index.html#src-3879575060_id-.DOCATelemetryServiceGuidev3.1.0-counterset-and-fieldset-filesCountersetandFieldsetFiles" text="counterset and fieldset">}} files to control the telemetry data exported from DTS.
+3. To support telemetry at a scale of up to 4K devices on hosts with ConnectX NICs or DPUs in NIC mode, configure {{<exlink url="https://docs.nvidia.com/doca/sdk/doca-telemetry-service-guide/index.html#src-4464438559_id-.DOCATelemetryServiceGuidev3.2.1Nov_LTS-counterset-and-fieldset-filesCountersetandFieldsetFiles" text="counterset and fieldset">}} files to control the telemetry data exported from DTS.
 
 Download {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-50/DTS/gb200.cset" text="gb200.cset">}} and {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-50/DTS/gb200.fset" text="gb200.fset">}}, then copy the files to `/opt/mellanox/doca/services/telemetry/config/prometheus_configs/cset/` on your host.
 

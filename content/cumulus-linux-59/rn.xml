@@ -20,7 +20,7 @@
 </tr>
 <tr>
 <td>4771521</td>
-<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port.</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
 </tr>
@@ -1014,7 +1014,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4771521</td>
-<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port.</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
 </tr>
@@ -1919,7 +1919,7 @@ You can safely ignore this warning.</td>
 </tr>
 <tr>
 <td>4771521</td>
-<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port.</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
 </tr>

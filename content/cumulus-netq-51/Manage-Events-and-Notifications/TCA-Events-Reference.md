@@ -46,26 +46,26 @@ This reference lists the threshold-based events that NetQ supports. You can view
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| Laser Rx power alarm upper | TCA_DOM_RX_POWER_ALARM_UPPER | Transceiver input power (mW) for the digital optical module on a given switch or host interface exceeded user-defined the maximum alarm threshold |
-| Laser Rx power alarm lower | TCA_DOM_RX_POWER_ALARM_LOWER | Transceiver input power (mW) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
-| Laser Rx power warning upper | TCA_DOM_RX_POWER_WARNING_UPPER | Transceiver input power (mW) for the digital optical module on a given switch or host exceeded user-defined specified warning threshold |
-| Laser Rx power warning lower | TCA_DOM_RX_POWER_WARNING_LOWER | Transceiver input power (mW) for the digital optical module on a given switch or host exceeded user-defined minimum warning threshold |
-| Laser bias current alarm upper | TCA_DOM_BIAS_CURRENT_ALARM_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined maximum alarm threshold |
-| Laser bias current alarm lower | TCA_DOM_BIAS_CURRENT_ALARM_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
-| Laser bias current warning upper | TCA_DOM_BIAS_CURRENT_WARNING_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined maximum warning threshold |
-| Laser bias current warning lower | TCA_DOM_BIAS_CURRENT_WARNING_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined minimum warning threshold |
-| Laser output power alarm upper | TCA_DOM_OUTPUT_POWER_ALARM_UPPER | Laser output power (mW) for the digital optical module on a given switch or host exceeded user-defined maximum alarm threshold |
-| Laser output power alarm lower | TCA_DOM_OUTPUT_POWER_ALARM_LOWER | Laser output power (mW) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
-| Laser output power alarm upper | TCA_DOM_OUTPUT_POWER_WARNING_UPPER | Laser output power (mW) for the digital optical module on a given switch or host exceeded user-defined maximum warning threshold |
-| Laser output power warning lower | TCA_DOM_OUTPUT_POWER_WARNING_LOWER | Laser output power (mW) for the digital optical module on a given switch or host exceeded user-defined minimum warning threshold |
+| Laser Rx power alarm upper | TCA_DOM_RX_POWER_ALARM_UPPER | Transceiver input power (µW, mW, W) for the digital optical module on a given switch or host interface exceeded user-defined the maximum alarm threshold |
+| Laser Rx power alarm lower | TCA_DOM_RX_POWER_ALARM_LOWER | Transceiver input power (µW, mW, W) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
+| Laser Rx power warning upper | TCA_DOM_RX_POWER_WARNING_UPPER | Transceiver input power (µW, mW, W) for the digital optical module on a given switch or host exceeded user-defined specified warning threshold |
+| Laser Rx power warning lower | TCA_DOM_RX_POWER_WARNING_LOWER | Transceiver input power (µW, mW, W) for the digital optical module on a given switch or host exceeded user-defined minimum warning threshold |
+| Laser bias current alarm upper | TCA_DOM_BIAS_CURRENT_ALARM_UPPER | Laser bias current (µA, mA, A) for the digital optical module on a given switch or host exceeded user-defined maximum alarm threshold |
+| Laser bias current alarm lower | TCA_DOM_BIAS_CURRENT_ALARM_LOWER | Laser bias current (µA, mA, A) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
+| Laser bias current warning upper | TCA_DOM_BIAS_CURRENT_WARNING_UPPER | Laser bias current (µA, mA, A) for the digital optical module on a given switch or host exceeded user-defined maximum warning threshold |
+| Laser bias current warning lower | TCA_DOM_BIAS_CURRENT_WARNING_LOWER | Laser bias current (µA, mA, A) for the digital optical module on a given switch or host exceeded user-defined minimum warning threshold |
+| Laser output power alarm upper | TCA_DOM_OUTPUT_POWER_ALARM_UPPER | Laser output power (µW, mW, W) for the digital optical module on a given switch or host exceeded user-defined maximum alarm threshold |
+| Laser output power alarm lower | TCA_DOM_OUTPUT_POWER_ALARM_LOWER | Laser output power (µW, mW, W) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
+| Laser output power alarm upper | TCA_DOM_OUTPUT_POWER_WARNING_UPPER | Laser output power (µW, mW, W) for the digital optical module on a given switch or host exceeded user-defined maximum warning threshold |
+| Laser output power warning lower | TCA_DOM_OUTPUT_POWER_WARNING_LOWER | Laser output power (µW, mW, W) for the digital optical module on a given switch or host exceeded user-defined minimum warning threshold |
 | Laser module temperature alarm upper | TCA_DOM_MODULE_TEMPERATURE_ALARM_UPPER | Digital optical module temperature (&deg;C) on a given switch or host exceeded user-defined maximum alarm threshold |
 | Laser module temperature alarm lower | TCA_DOM_MODULE_TEMPERATURE_ALARM_LOWER | Digital optical module temperature (&deg;C) on a given switch or host exceeded user-defined minimum alarm threshold |
 | Laser module temperature warning upper | TCA_DOM_MODULE_TEMPERATURE_WARNING_UPPER | Digital optical module temperature (&deg;C) on a given switch or host exceeded user-defined maximum warning threshold |
 | Laser module temperature warning lower | TCA_DOM_MODULE_TEMPERATURE_WARNING_LOWER | Digital optical module temperature (&deg;C) on a given switch or host exceeded user-defined minimum warning threshold |
-| Laser module voltage alarm upper | TCA_DOM_MODULE_VOLTAGE_ALARM_UPPER | Transceiver voltage (V) on a given switch or host exceeded user-defined maximum alarm threshold |
-| Laser module voltage alarm lower | TCA_DOM_MODULE_VOLTAGE_ALARM_LOWER | Transceiver voltage (V) on a given switch or host exceeded user-defined minimum alarm threshold |
-| Laser module voltage warning upper | TCA_DOM_MODULE_VOLTAGE_WARNING_UPPER | Transceiver voltage (V) on a given switch or host exceeded user-defined maximum warning threshold |
-| Laser module voltage warning lower | TCA_DOM_MODULE_VOLTAGE_WARNING_LOWER | Transceiver voltage (V) on a given switch or host exceeded user-defined minimum warning threshold |
+| Laser module voltage alarm upper | TCA_DOM_MODULE_VOLTAGE_ALARM_UPPER | Transceiver voltage (µV, mV, V) on a given switch or host exceeded user-defined maximum alarm threshold |
+| Laser module voltage alarm lower | TCA_DOM_MODULE_VOLTAGE_ALARM_LOWER | Transceiver voltage (µV, mV, V) on a given switch or host exceeded user-defined minimum alarm threshold |
+| Laser module voltage warning upper | TCA_DOM_MODULE_VOLTAGE_WARNING_UPPER | Transceiver voltage (µV, mV, V) on a given switch or host exceeded user-defined maximum warning threshold |
+| Laser module voltage warning lower | TCA_DOM_MODULE_VOLTAGE_WARNING_LOWER | Transceiver voltage (µV, mV, V) on a given switch or host exceeded user-defined minimum warning threshold |
 
 ## DPU RoCE
 
@@ -144,12 +144,12 @@ This reference lists the threshold-based events that NetQ supports. You can view
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| Broadcast received bytes | TCA_RXBROADCAST_UPPER  |  Number of broadcast receive bytes per second exceeded user-defined maximum threshold on a switch interface |
-| Received bytes | TCA_RXBYTES_UPPER |  Number of receive bytes exceeded user-defined maximum threshold on a switch interface |
-| Multicast received bytes | TCA_RXMULTICAST_UPPER |  Number of multicast receive bytes per second exceeded user-defined maximum threshold on a switch interface |
-| Broadcast transmitted bytes | TCA_TXBROADCAST_UPPER |  Number of broadcast transmit bytes per second exceeded user-defined maximum threshold on a switch interface |
-| Transmitted bytes | TCA_TXBYTES_UPPER | Number of transmit bytes exceeded user-defined maximum threshold on a switch interface |
-| Multicast transmitted bytes | TCA_TXMULTICAST_UPPER | Number of multicast transmit bytes per second exceeded user-defined maximum threshold on a switch interface |
+| Broadcast received bytes | TCA_RXBROADCAST_UPPER  |  Number of broadcast receive bytes (KB, MB, GB, TB) per second exceeded user-defined maximum threshold on a switch interface |
+| Received bytes | TCA_RXBYTES_UPPER |  Number of receive bytes (KB, MB, GB, TB) exceeded user-defined maximum threshold on a switch interface |
+| Multicast received bytes | TCA_RXMULTICAST_UPPER |  Number of multicast receive bytes (KB, MB, GB, TB) per second exceeded user-defined maximum threshold on a switch interface |
+| Broadcast transmitted bytes | TCA_TXBROADCAST_UPPER |  Number of broadcast transmit bytes (KB, MB, GB, TB) per second exceeded user-defined maximum threshold on a switch interface |
+| Transmitted bytes | TCA_TXBYTES_UPPER | Number of transmit bytes (KB, MB, GB, TB) exceeded user-defined maximum threshold on a switch interface |
+| Multicast transmitted bytes | TCA_TXMULTICAST_UPPER | Number of multicast transmit bytes (KB, MB, GB, TB) per second exceeded user-defined maximum threshold on a switch interface |
 
 ## Link Flaps
 
@@ -194,8 +194,8 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
 | Fan speed | TCA_SENSOR_FAN_UPPER  |  Fan speed exceeded user-defined maximum threshold on a switch |
-| Power supply watts | TCA_SENSOR_POWER_UPPER| Power supply output exceeded user-defined maximum threshold on a switch |
-| Power supply volts | TCA_SENSOR_VOLTAGE_UPPER  | Power supply voltage exceeded user-defined maximum threshold on a switch |
+| Power supply watts | TCA_SENSOR_POWER_UPPER| Power supply output in watts (µW, mW, W) exceeded user-defined maximum threshold on a switch |
+| Power supply volts | TCA_SENSOR_VOLTAGE_UPPER  | Power supply voltage (µV, mV, V) exceeded user-defined maximum threshold on a switch |
 | Switch temperature | TCA_SENSOR_TEMPERATURE_UPPER  | Temperature (&deg; C) exceeded user-defined maximum threshold on a switch |
 | Sensor state | TCA_SENSOR_STATE | Sensor state changed from good to either bad or absent |
 

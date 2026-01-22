@@ -304,10 +304,6 @@ The hostname, reason/port down reason, ingress port, and drop type scope paramet
 
 6. On the **Set threshold** step, enter a threshold value and unit of measurement.
 
-    {{<figure src="/images/netq/set-threshold-fan.png" alt="" width="600">}}
-
-<div style="padding-left: 18px;">For digital optics, you can choose to use the thresholds defined by the optics vendor (default) or specify your own.</div>
-
 7. Define the scope of the rule.
 
     - If you want to restrict the rule based on a particular parameter, enter values for one or more of the available attributes. For What Just Happened rules, select a reason from the available list.
@@ -368,7 +364,7 @@ nvidia@switch:~$ netq add tca event_id TCA_WJH_ACL_DROP_AGG_UPPER scope leaf04,'
 
 For a Slack channel, the event messages should be similar to this:
 
-{{<figure src="/images/netq/tca-events-slack-example-240.png" width="500">}}
+{{<figure src="/images/netq/tca-slack-51.png" width="500">}}
 
 ### Set the Severity of a Threshold-crossing Event
 

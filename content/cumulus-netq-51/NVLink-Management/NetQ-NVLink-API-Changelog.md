@@ -58,7 +58,7 @@ toc: 3
     <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Changed ⚠️</strong>: Changed request body type/format from <code>object</code>/"" to empty</td><td>Breaking request definition change</td></tr>
     <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Removed</strong>: Request properties <code>Description</code>, <code>Name</code></td><td>Streamlined payload</td></tr>
     <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Added</strong>: Request schemas <code>UpdateSwitchNodePayload</code>, <code>UpdateAdminStateRequest</code></td><td>Extended payload flexibility</td></tr>
-    <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Added</strong>: Response properties <code>AdminState</code>, <code>Hostname</code>, <code>ManagementIPs</code>, <code>ProfileID</code></td><td>Returned with status 200. Use the endpoint fo modify </td></tr>
+    <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Added</strong>: Response properties <code>AdminState</code>, <code>Hostname</code>, <code>ManagementIPs</code>, <code>ProfileID</code></td><td>Returned with status 200.</td></tr>
     <tr><td><code>PUT /switch-nodes/{id}</code></td><td><strong>Added</strong>: Success response 202</td><td>New accepted response code</td></tr>
     <tr><td><code>POST /upgrade-switch</code></td><td><strong>Added</strong>: Optional request property <code>Domains</code></td><td>Upgrades the OS of switches within a domain. Use the <code>profileID</code> from <code>PATCH /domains/{id}</code> or <code>PUT /switch-nodes{id}</code> to perform this request.</td></tr>
     <tr><td><code>POST /upgrade-switch</code></td><td><strong>Changed</strong>: Property <code>Switches</code> became optional</td><td>Improved request flexibility</td></tr>

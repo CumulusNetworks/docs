@@ -215,7 +215,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `version` | The version of the JSON template. For NetQ 5.0, specify "v2.0". For NetQ 5.1, specify "v3.0". |
+| `version` | The version of the JSON template. For NetQ 5.1, specify "v3.0". |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
@@ -270,7 +270,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `version` | The version of the JSON template. For NetQ 5.0, specify "v2.0". For NetQ 5.1, specify "v3.0". |
+| `version` | The version of the JSON template. For NetQ 5.1, specify "v3.0". |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |

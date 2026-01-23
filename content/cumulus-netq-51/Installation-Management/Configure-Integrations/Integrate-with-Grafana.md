@@ -681,8 +681,6 @@ nvidia@netq-server:~$ netq show otlp whitelist custom
 - nvswitch_interface_tx_stats_pkts64octets
 ```
 
-To disable OTLP whitelists on the default internal TSDB, run the `netq modify otlp endpoint tsdb-name default whitelist_enabled false` command.
-
 The OTLP whitelist is disabled on external TSDB endpoints by default. To configure a custom whitelist to limit the metrics sent to an external TSDB, create a YAML file as in step 1 above, but reference the external TSDB endpoint name in the `netq set otlp whitelist file` command and then enable the whitelist for the external TSDB with the `netq modify otlp endpoint tsdb-name` command:
 
 ```

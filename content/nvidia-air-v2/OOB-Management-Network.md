@@ -138,6 +138,6 @@ Standard images (Cumulus Linux, Ubuntu cloud images) work out of the box. If you
 **Note on interface naming:** Modern Linux distributions use predictable interface naming (`enp0s3`, `ens3`, etc.) instead of traditional naming (`eth0`). AIR attaches the management interface first, so:
 
 - With traditional naming (`net.ifnames=0 biosdevname=0`), the management interface will be `eth0`
-- With predictable naming, the interface name depends on your OS and virtualization drivers
+- With predictable naming enabled, the OS assigns a name based on the interface's PCI slot (e.g., `enp0s3`). The exact name depends on how the hypervisor presents the virtual hardware and may vary between environments.
 
 It is the image provider's responsibility to ensure DHCP runs on the correct interface.

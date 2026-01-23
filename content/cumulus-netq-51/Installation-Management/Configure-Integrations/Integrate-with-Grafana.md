@@ -681,6 +681,8 @@ nvidia@netq-server:~$ netq show otlp whitelist custom
 - nvswitch_interface_tx_stats_pkts64octets
 ```
 
+To disable OTLP whitelists on the default internal TSDB, run the `netq modify otlp endpoint tsdb-name default whitelist_enabled false` command.
+
 The OTLP whitelist is disabled on external TSDB endpoints by default. To configure a custom whitelist to limit the metrics sent to an external TSDB, create a YAML file as in step 1 above, but reference the external TSDB endpoint name in the `netq set otlp whitelist file` command and then enable the whitelist for the external TSDB with the `netq modify otlp endpoint tsdb-name` command:
 
 ```
@@ -693,6 +695,8 @@ Validate the custom whitelist with the `netq show otlp whitelist tsdb-name EXTER
 {{%notice note%}}
 When you enable the OTLP whitelist for an external TSDB endpoint, the `default` whitelist applied to the internal NetQ TSDB is not applied to external TSDBs. Configure all desired metrics in the YAML file applied to external TSDBs when you enable the whitelist.
 {{%/notice%}}
+
+To disable OTLP whitelists on the default internal TSDB, run the `netq modify otlp endpoint tsdb-name default whitelist_enabled false` command. To disable the OTLP whitelist on an external TSDB, replace the `tsdb-name default` in the command with the name of your external TSDB, such as `netq modify otlp endpoint tsdb-name EXTERNAL_DB_NAME whitelist_enabled false`.
 ## Collect Slurm Telemetry
 
 {{<exlink url="https://slurm.schedmd.com/quickstart.html" text="Slurm">}} (Simple Linux Utility for Resource Management) is an open-source job scheduler used in high-performance computing (HPC) environments. It manages and allocates compute resources, schedules jobs, and distributes workloads across a cluster.

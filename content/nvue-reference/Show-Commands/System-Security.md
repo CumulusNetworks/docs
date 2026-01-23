@@ -25,18 +25,28 @@ Introduced in Cumulus Linux 5.9.0
 cumulus@switch:~$ nv show system security
                            operational  applied
 -------------------------  -----------  -------
-password-hardening                             
+fips
+  mode                     enabled      enabled
+password-hardening
   state                    enabled      enabled
   reject-user-passw-match  enabled      enabled
   lower-class              enabled      enabled
   upper-class              enabled      enabled
   digits-class             enabled      enabled
   special-class            enabled      enabled
-  expiration-warning       15           15     
-  expiration               180          180    
-  history-cnt              10           10     
+  expiration-warning       15           15
+  expiration               180          180
+  history-cnt              10           10
   len-min                  8            8
+encryption
+  db
+    state                               enabled
+...
 ```
+
+{{%notice note%}}
+Cumulus Linux 5.16.0 introduce FIPS mode. If you are running Cumulus Linux 5.15 or earlier, the `nv show system security` command output does not show FIPS mode configuration.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

@@ -14,6 +14,22 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system log secured-logs state</h>
+
+Configures secured logs, which include the date and time events occur, the source IP and the username for NVUE commands, and when dynamic kernel modules load and unload.
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system log secured-logs state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set service syslog \<vrf-id\> server \<server-id\></h>
 
 Configures the remote `syslog` server.

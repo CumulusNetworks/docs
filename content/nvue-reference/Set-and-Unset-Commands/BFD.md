@@ -25,7 +25,7 @@ When you enable BFD on an OSPF interface, a neighbor registers with BFD when two
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `\<profile-name\>` |  The profile name. |
+| `<profile-name>` |  The profile name. |
 
 ### Version History
 
@@ -48,7 +48,7 @@ Configures the BFD profile to use for a PIM interface.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `\<profile-name\>` |  The profile name. |
+| `<profile-name>` |  The profile name. |
 
 ### Version History
 
@@ -59,6 +59,35 @@ Introduced in Cumulus Linux 5.15.0
 ```
 cumulus@switch:~$ nv set interface swp1 router pim bfd profile BFD1
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set router bfd offload</h>
+
+Sets BFD offload, which improves BFD session scale by offloading BFD numbered sessions to a kernel driver called `sx_bfd`. The kernel driver is responsible for maintaining BFD sessions. BFD offload is disabled by default.
+
+{{%notice note%}}
+- BFD offload does not support BFD sessions based on the IPv6 link-local address.
+- When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
+- If a BFD peer is down; for example, due to path failures, (not admin-down), the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might cause an increase in CPU usage.
+- When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode.
+- If you have a mix of BFD sessions to non-link-local IPv4 or IPv6 destinations, NVIDIA recommends that you do not enable BFD offload.
+- Depending on the configured BFD intervals and the number of BFD sessions, enabling and disabling BFD offload might result in session flaps, especially with aggressive timers on lower-end platforms. BFD sessions are expected to run in offload mode in a steady state and moving offloaded sessions back to non-offload (control-plane) mode is rare. In the unlikely event that such a transition is required, you must set the BFD session timers to values appropriate for non-offload mode to avoid flaps. When running multiple BFD sessions in non-offload mode, the minimum recommended timer values are 3 for the detect multiplier, 300 milliseconds for the transmit interval, and 900 milliseconds for the receive interval.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router bfd offload enabled
+```
+
+{{%notice note%}}
+For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` command.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -88,7 +117,7 @@ Configures the BFD profile.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `\<profile-name\>` |  The profile name. |
+| `<profile-name>` |  The profile name. |
 
 ### Version History
 
@@ -110,7 +139,7 @@ Configures the detection time multiplier to determine packet loss. The detection
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `\<profile-name\>` |  The profile name. |
+| `<profile-name>` |  The profile name. |
 
 ### Version History
 
@@ -132,7 +161,7 @@ Configures the minimum interval between the received BFD control packets. You ca
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `\<profile-name\>` |  The profile name. |
+| `<profile-name>` |  The profile name. |
 
 ### Version History
 
@@ -154,7 +183,7 @@ Configures the minimum interval for transmitting BFD control packets. You can se
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `\<profile-name\>` |  The profile name. |
+| `<profile-name>` |  The profile name. |
 
 ### Version History
 
@@ -176,7 +205,7 @@ Configures the minimum expected TTL for an incoming BFD control packet (for mult
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `\<profile-name\>` |  The profile name. |
+| `<profile-name>` |  The profile name. |
 
 ### Version History
 
@@ -198,7 +227,7 @@ Configures passive mode, which marks the session as passive. A passive session d
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `\<profile-name\>` |  The profile name. |
+| `<profile-name>` |  The profile name. |
 
 ### Version History
 
@@ -220,7 +249,7 @@ Configures the BFD shutdown, which enables or disables the peer. When the peer i
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `\<profile-name\>` |  The profile name. |
+| `<profile-name>` |  The profile name. |
 
 ### Version History
 

@@ -40,30 +40,37 @@ Confirm that the required ports are open for communications.
 |5000	|TCP|	Docker registry|
 |6443	|TCP|	kube-apiserver|
 |30001	|TCP|	DPU communication|
+|30008	|TCP|	gRPC OTLP receiver|
+|30009	|TCP|	HTTPS OTLP receiver|
 |31980	|TCP|	NetQ Agent communication|
 |31982	|TCP|	NetQ Agent SSL communication|
 |32710	|TCP|	API Gateway|
+
+{{< expand "Internal communication ports" >}}
 
 Additionally, for internal cluster communication, you must open these ports:
 
 | Port or Protocol Number | Protocol | Component Access |
 | --- | --- | --- |
-|8080|	TCP|	Admin API|
-|5000|	TCP|	Docker registry|
-|6443|	TCP|	Kubernetes API server|
-|10250|	TCP|	kubelet health probe|
+|2181|	TCP|	Zookeeper client|
 |2379|	TCP|	etcd|
 |2380|	TCP|	etcd|
-|7072|	TCP|	Kafka JMX monitoring|
-|9092|	TCP|	Kafka client|
-|7071|	TCP|	Cassandra JMX monitoring|
-|7000|	TCP|	Cassandra cluster communication|
-|9042|	TCP|	Cassandra client|
-|7073|	TCP|	Zookeeper JMX monitoring|
 |2888|	TCP|	Zookeeper cluster communication|
 |3888|	TCP|	Zookeeper cluster communication|
-|2181|	TCP|	Zookeeper client|
+|5000|	TCP|	Docker registry|
+|6443|	TCP|	Kubernetes API server|
+|7000|	TCP|	Cassandra cluster communication|
+|7071|	TCP|	Cassandra JMX monitoring|
+|7072|	TCP|	Kafka JMX monitoring|
+|7073|	TCP|	Zookeeper JMX monitoring|
+|8080|	TCP|	Admin API|
+|9042|	TCP|	Cassandra client|
+|9092|	TCP|	Kafka client|
+|10250|	TCP|	kubelet health probe|
 |36443|	TCP|	Kubernetes control plane|
+|54321|	TCP|	OPTA communication|
+
+{{< /expand >}}
 
 ## Installation and Configuration
 
@@ -82,9 +89,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.0">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.1">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="5.0">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="5.1">}}
 
 3. Log in to the VM and change the password.
 

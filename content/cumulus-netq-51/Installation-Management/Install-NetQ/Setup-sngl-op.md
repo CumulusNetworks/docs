@@ -37,6 +37,8 @@ Confirm that the required ports are open for communications.
 |5000	|TCP|	Docker registry|
 |6443	|TCP|	kube-apiserver|
 |30001	|TCP|	DPU communication|
+|30008	|TCP|	gRPC OTLP receiver|
+|30009	|TCP|	HTTPS OTLP receiver|
 |31980	|TCP|	NetQ Agent communication|
 |31982	|TCP|	NetQ Agent SSL communication|
 |32710	|TCP|	API Gateway|
@@ -59,8 +61,8 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
-{{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="5.0">}}
-{{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="5.0">}}
+{{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="5.1">}}
+{{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="5.1">}}
 
 3. Log in to the VM and change the password.
 

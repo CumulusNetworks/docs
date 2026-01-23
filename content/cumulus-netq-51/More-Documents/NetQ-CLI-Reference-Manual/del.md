@@ -85,6 +85,37 @@ Successfully deleted Events Config eventsconfig_10
 - ```netq show events-config```
 
 - - -
+## netq del global tca config
+
+Deletes the global TCA broadcast frequency configuration that was configured using the `netq add global tca config` command.
+
+### Syntax
+
+```
+netq del global tca config
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+None
+
+### Sample Usage
+
+```
+nvidia@switch:~$ nnetq del global  tca config
+Successfully deleted global TCA config
+```
+
+### Related Commands
+
+- `netq add global tca config`
+- `netq show global tca config`
+
+- - -
 
 ## netq del notification
 

@@ -1820,7 +1820,7 @@ leaf01# exit
 
 ### Show BGP Conditional Disaggregation Information
 
-To show if BGP conditional disaggregation configuration, run the `nv show vrf <vrf> router bgp address-family <address-family> conditional-disaggregation` command:
+To show BGP conditional disaggregation configuration, run the `nv show vrf <vrf> router bgp address-family <address-family> conditional-disaggregation` command:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unicast conditional-disaggregation

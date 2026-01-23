@@ -411,7 +411,8 @@ TACACS per-command authorization supports {{<link url="NVUE-CLI/#command-complet
 The following command allows TACACS+ users at privilege level 0 to run the `nv` and `ip` commands.
 
 {{%notice note%}}
-After configuring TACACS+ per-command authorization, you must restart the NVUE service.
+- Ensure that TACACS+ servers are reachable before setting new command authorization rules.
+- After configuring TACACS+ per-command authorization, you must restart the NVUE service.
 {{%/notice%}}
 
 {{< tabs "TabID392 ">}}
@@ -434,7 +435,7 @@ Privilege Level  role          command
                                nv  
 ```
 
-{{%notice infonopad%}}
+{{%notice info%}}
 When you configure per-command authorization on the switch, only define the initial word of the command tree to permit use of any commands starting with that word. For example, permitting the command `nv` allows the use of all NVUE commands beginning with `nv`. For more granular control of specific commands in the tree after the initial word, configure your TACACS+ server to permit or deny specific commands for a user or privilege level. Refer to your TACACS+ server's vendor documentation or vendor support for assistance configuring your server.
 {{%/notice%}}
 
@@ -478,10 +479,6 @@ To remove all commands:
 ```
 cumulus@switch:~$ sudo rm ~tacacs0/bin/*
 ```
-
-{{%notice info%}}
-When you configure per-command authorization on the switch, only define the initial word of the command tree to permit use of any commands starting with that word. For example, permitting the command `nv` allows the use of all NVUE commands beginning with `nv`. For more granular control of specific commands in the tree after the initial word, configure your TACACS+ server to permit or deny specific commands for a user or privilege level. Refer to your TACACS+ server's vendor documentation or vendor support for assistance configuring your server.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

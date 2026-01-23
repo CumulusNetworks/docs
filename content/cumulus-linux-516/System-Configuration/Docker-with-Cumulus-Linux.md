@@ -303,7 +303,7 @@ cumulus@switch:~$ sudo docker rm nginx-demo
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!--
 ### Container Resources
 
 By default, the switch restricts unknown containers to 20 percent of host resources and limited containers to 50 percent. You can customize these values by editing the `/etc/cumulus/docker/resources.conf` file.
@@ -368,7 +368,7 @@ To show which container processes are trusted and which are limited, run the `su
 cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-limited/cgroup.procs
 
 ```
-
+-->
 ## Show Docker Information
 
 To show Docker information on the switch, run the `nv show system docker` command:
@@ -379,8 +379,6 @@ cumulus@switch:~$ nv show system docker
 -----  -----------  -------
 vrf    mgmt         mgmt   
 state  enabled      enabled
-
-
 
 Docker Containers
 ====================

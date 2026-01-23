@@ -157,6 +157,30 @@ cumulus@switch:~$ nv set interface swp1 qos egress-shaper profile MYPROFILE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> qos headroom lossy extra-threshold</h>
+
+Configures additional headroom for lossy priority groups before the switch drops packets. You can specify a value between 192 and 1236480 bytes.
+
+In certain cases, higher forwarding latency and a high probability of small packets increase the risk of headroom buffer exhaustion on lossy traffic and the current default maximum headroom of 150 KB per port might be insufficient.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 qos headroom lossy extra-threshold 50000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> qos link-pause</h>
 
 Configures QoS link pause on the specified interface.
@@ -1759,6 +1783,28 @@ cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 2,6 m
 Configures traffic shaping, which allows a switch to send traffic at an average bitrate lower than the physical interface. Traffic shaping prevents a receiving device from dropping bursty traffic if the device is either not capable of that rate of traffic or has a policer that limits what it accepts.
 
 Traffic shaping works by holding packets in the buffer and releasing them at specific time intervals.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos egress-shaper \<profile-id\> mode</h>
+
+Configures the packet shaper mode. You can set this option to either packets per second (`pps`) or kilobits per second (`kbps`). The default setting is kilobits per second.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos egress-shaper shaper1 mode pps
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

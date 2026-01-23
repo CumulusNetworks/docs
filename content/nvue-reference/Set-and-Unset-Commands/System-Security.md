@@ -66,6 +66,34 @@ cumulus@switch:~$ nv set system security encryption folder-encrypt storage usb
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system security fips mode</h>
+
+Configures FIPS mode.
+
+FIPS are standards for federal computer systems developed by the U.S. government and published by the National Institute of Standards and Technology (NIST).
+
+When you enable FIPS mode, the switch enforces FIPS 140-2 and 140-3 compliant cryptographic operations, making it suitable for high-security and regulated environments.
+
+{{%notice note%}}
+- Enabling or disabling FIPS mode takes approximately one to two minutes and requires a switch reboot to take full effect.
+NVUE prevents you from enabling FIPS if non-compliant configuration exists on the switch and provides details of the violations.
+- When FIPS mode is enabled and you apply LDAP, TACACS, RADIUS, or authentication order configuration, all logged-in user sessions terminate and users must re-authenticate (except for root user).
+- Factory reset returns FIPS mode to disabled mode (except when you use the factory reset `keep all-config` option).
+- If FIPS is enabled when you upgrade the switch with `onie-install -t`, an additional reboot is required after the upgrade for FIPS mode to take full effect.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system security fips mode enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system security password-hardening digits-class</h>
 
 Configures the password policy so that passwords must include at least one digit. You can specify `enabled` or `disabled`. The default setting is `enabled` when password security is enabled.

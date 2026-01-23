@@ -621,6 +621,39 @@ cumulus@switch:~$ nv set interface swp1 link state up
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> link tx-squelch</h>
+
+{{%notice note%}}
+Tx squelch control is a Beta feature.
+{{%/notice%}}
+
+Configures Tx squelch control that controls if the local port continues transmitting when the remote side is logically down (for example, when the remote side is in a fault state or needs to restart auto-negotiation).
+
+{{%notice note%}}
+- Switches with Spectrum-4 and later support Tx squelch control.
+- Cumulus Linux supports Tx squelch control on physical ports only (including breakout ports).
+- Enabling or disabling Tx squelch control is disruptive on admin UP ports. The switch performs a port admin‑status down, then port admin‑status up for the changes to take effect.
+- Enabling or disabling Tx squelch control is not disruptive on admin DOWN ports. When you enable or disable Tx squelch control on an admin DOWN port, the new setting becomes effective the next time the port is admin UP.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 link tx-squelch enabled 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> storm-control broadcast</h>
 
 Configures the number of broadcast packets per second (pps) that signifies a broadcast storm. You can set a value between 1 and 4294967295.

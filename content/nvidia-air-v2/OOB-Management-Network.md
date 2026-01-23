@@ -122,22 +122,27 @@ ssh server1
 
 ## Requirements
 
-For nodes to receive their OOB IP address automatically, they must:
+For nodes to receive their OOB IP address automatically:
 
-- Have DHCP enabled on their management interface
-- Be connected to the OOB network (handled automatically when OOB is enabled)
+- The node must have DHCP enabled on its management interface
+- The node must be connected to the OOB network (handled automatically when OOB is enabled)
 
-{{%notice note%}}
-If your node image does not have DHCP enabled on its management interface, the node will not automatically receive an IP address. The IP is still reserved for that node's MAC address, but the node must request it via DHCP.
-{{%/notice%}}
+Standard images (Cumulus Linux, Ubuntu cloud images) work out of the box. For custom images, ensure DHCP is configured on the management interface.
 
-### Custom Images
+## Interface Naming
 
-Standard images (Cumulus Linux, Ubuntu cloud images) work out of the box. If you provide custom images, ensure DHCP is enabled on the management interface.
+For standard nodes (nodes without `emulation_type` in the topology), AIR handles interface naming via UDEV rules. Before boot, AIR injects rules into the VM filesystem that rename each interface based on its MAC address to match the topology name. The flow is:
 
-**Note on interface naming:** Modern Linux distributions use predictable interface naming (`enp0s3`, `ens3`, etc.) instead of traditional naming (`eth0`). AIR attaches the management interface first, so:
+1. AIR injects UDEV rules mapping MAC addresses to topology names
+2. VM boots, UDEV renames interfaces (management interface becomes `eth0`)
+3. Image runs DHCP on the management interface
+4. Node receives its reserved IP
 
-- With traditional naming (`net.ifnames=0 biosdevname=0`), the management interface will be `eth0`
-- With predictable naming enabled, the OS assigns a name based on the interface's PCI slot (e.g., `enp0s3`). The exact name depends on how the hypervisor presents the virtual hardware and may vary between environments.
+AIR-provided images are pre-configured to work with this system. For custom images, your image must:
 
-It is the image provider's responsibility to ensure DHCP runs on the correct interface.
+- Use kernel parameters: `net.ifnames=4 biosdevname=1`
+- Set `AlternativeNamesPolicy=` (empty) in systemd network configuration
+
+With these settings, your management interface will be named `eth0`.
+
+Emulated nodes (nodes with `emulation_type` in the topology) use their simulator engine's logic for interface naming—see the simulator's documentation for details.

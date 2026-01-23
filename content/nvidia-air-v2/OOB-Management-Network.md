@@ -124,9 +124,20 @@ ssh server1
 
 For nodes to receive their OOB IP address automatically, they must:
 
-- Have DHCP enabled on their management interface (`eth0`)
+- Have DHCP enabled on their management interface
 - Be connected to the OOB network (handled automatically when OOB is enabled)
 
 {{%notice note%}}
-If your node image does not have DHCP enabled on `eth0`, the node will not automatically receive an IP address. The IP is still reserved for that node's MAC address, but the node must request it via DHCP.
+If your node image does not have DHCP enabled on its management interface, the node will not automatically receive an IP address. The IP is still reserved for that node's MAC address, but the node must request it via DHCP.
 {{%/notice%}}
+
+### Custom Images
+
+Standard images (Cumulus Linux, Ubuntu cloud images) work out of the box. If you provide custom images, ensure DHCP is enabled on the management interface.
+
+**Note on interface naming:** Modern Linux distributions use predictable interface naming (`enp0s3`, `ens3`, etc.) instead of traditional naming (`eth0`). AIR attaches the management interface first, so:
+
+- With traditional naming (`net.ifnames=0 biosdevname=0`), the management interface will be `eth0`
+- With predictable naming, the interface name depends on your OS and virtualization drivers
+
+It is the image provider's responsibility to ensure DHCP runs on the correct interface.

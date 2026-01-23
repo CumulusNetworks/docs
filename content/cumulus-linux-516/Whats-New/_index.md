@@ -25,17 +25,14 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Quality-of-Service/#clear-qos-buffers" text="Clear QoS buffers on multiple interfaces">}}
 - {{<link url="TACACS/#tacacs-per-command-authorization" text="TACACS per-command authorization supports NVUE tab completion, option listing (?), and command history navigation">}}
 - {{<link url="DHCP-Relays/#dhcp-relay-for-ipv4-in-an-evpn-symmetric-environment-with-mlag" text="VRF-aware DHCP relay">}}
-- {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
 - {{<link url="Access-Control-List-Configuration/#clear-control-plane-policer-counters" text="Clear control plane policer counters">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#lag-hash-randomizer" text="LAG hash randomizer for adaptive routing">}}
-- {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx squelch control">}}
-- {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1x dynamic VRF assignment">}}
+- {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx squelch control">}} (Beta)
 - {{<link url="TACACS/#local-fallback-authentication" text="NVUE support for TACACS local fallback authentication">}}
 - {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
 - {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
 - {{<link url="Quality-of-Service/#shaping" text="PPS mode for QoS egress shapers">}}
 - {{<link url="Quality-of-Service/#extra-lossy-headroom" text="Extra threshold for QoS lossy priority groups">}}
-- {{<link url="Docker-with-Cumulus-Linux/#manage-docker-container-resources" text="Manage Docker container resources">}}
 - Health Event and SDK Driver Monitoring for Multi ASIC
 - Security features:
   - {{<link url="FIPS" text="FIPS mode">}}
@@ -47,8 +44,13 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
   - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI QoS buffer, control plane, and histogram metrics">}}
   - {{<link url="gNMI-Streaming/#metrics" text="Two new gNMI interface metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`)
-  - YANG Browser Tool for YANG models
 
+For a list of new NVUE commands, refer to {{<link url="New-NVUE-Commands" text="New NVUE Commands">}}.
+<!-- 
+- {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
+- {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1x dynamic VRF assignment">}}
+- {{<link url="Docker-with-Cumulus-Linux/#container-resources" text="Manage Docker container resources">}} 
+- YANG Browser Tool for YANG models -->
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.16.

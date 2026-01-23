@@ -12,11 +12,12 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 5.1
 
-- The NetQ integration with Grafana is generally available
-- You can now deploy NetQ for Ethernet and NVLink with an increased number of nodes to support large networks. To get started, {{<link title="Install NetQ for Ethernet and NVLink" text="perform a fresh installation">}}. This deployment type is currently in beta, and installations with more than five nodes will not support upgrades to future NetQ versions.
-- You can now increase the TTL of your time-series database by configuring a list of metrics that NetQ ignores.
-- Multiplane support: topology, TCA events, UI filters
-- You can now create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}} with a wider range of measurement units in both the UI and the CLI. Additionally, NetQ no longer broadcasts multiple events for breaches to the same threshold-crossing rule. <!--link to change new default behavior-->
+- The {{<link title="Integrate NetQ with Grafana" text="NetQ integration with Grafana">}} is generally available.
+- NetQ now retains OTLP metrics data for 15 days instead of the previous three-day retention period. Additionally, you can now {{<link title="Integrate NetQ with Grafana/#customize-metric-collection" text="create a customizable list of metrics">}} that are forwarded to your time-series database.
+- You can now deploy NetQ for Ethernet and NVLink with an increased number of nodes to support large networks. To get started, {{<link title="Install NetQ for Ethernet and NVLink (Beta)" text="perform a fresh installation">}}. This deployment type is currently in beta.
+<!--- Multiplane support: topology, TCA events, UI filters-->
+- You can now create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}} with a wider range of measurement units in both the UI and the CLI. 
+- NetQ no longer broadcasts multiple, successive events for breaches to the same threshold-crossing rule. You can change this new default behavior using the CLI.
 - Performance improvements to the account management page in the UI
 - The time required to install NetQ has been reduced.
 - NetQ for NVLink API changes:

@@ -1,13 +1,14 @@
 ---
-title: Install NetQ for Ethernet and NVLink
+title: Install NetQ for Ethernet and NVLink (Beta)
 author: NVIDIA
 weight: 227
 toc: 5
 bookhidden: true
 ---
-
-Follow these steps to set up and configure your VMs in a cluster of servers. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
-
+Follow these steps to set up and configure your VMs in a cluster of servers. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure.
+{{<notice info>}}
+This deployment type is currently in beta, and installations with more than five nodes will not support upgrades to future NetQ versions.
+{{</notice>}}
 ## System Requirements
 
 This deployment model requires a cluster comprising a minimum of three nodes. Verify that *each node* in your cluster meets the VM requirements:
@@ -86,9 +87,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.0">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.1">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="5.0">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="5.1">}}
 
 3. Log in to the VM and change the password.
 
@@ -172,11 +173,11 @@ nvidia@<hostname>:~$ netq install cluster master-init
 ```
 9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
-10. Create a JSON template using the installation command for your deployment model. Run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file: 
+10. Create a JSON template using the installation command for your deployment model. Run `netq install combined config generate` on your master node to generate a template for the cluster configuration JSON file. This command creates a template with three nodes by default. To change the number of nodes, specify the number in the command itself. For example, `netq install combined config generate 6` creates a JSON template with fields for six nodes.
 
 ```
-nvidia@netq-server:~$ netq install cluster config generate
-2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
+nvidia@netq-server:~$ netq install combined config generate
+2025-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/combined-cluster-config.json
 ```
 
 11. Edit the cluster configuration JSON file with the values for each attribute.
@@ -185,20 +186,24 @@ nvidia@netq-server:~$ netq install cluster config generate
 
 {{< tab "Default JSON Template">}}
 
+The `netq install combined config generate` command creates a JSON template for a three-node cluster.
+
 ```
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {
-        "version": "v2.0",
+        "version": "v3.0",
         "interface": "<INPUT>",
         "cluster-vip": "<INPUT>",
         "master-ip": "<INPUT>",
         "is-ipv6": "<INPUT>",
         "ha-nodes": [
                 {
-                        "ip": "<INPUT>"
+                        "ip": "<INPUT>
+                        "description": "Control Plane Node 1"
                 },
                 {
                         "ip": "<INPUT>"
+                        "description": "Control Plane Node 2"
                 }
                 ],
         "shared-cluster-install": "<INPUT>"
@@ -210,21 +215,24 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 
 | Attribute | Description |
 |----- | ----------- |
+| `version` | The version of the JSON template. For NetQ 5.0, specify "v2.0". For NetQ 5.1, specify "v3.0". |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
-| `ha-nodes`, `ip` | The IP addresses of the two worker nodes in your cluster. |
+| `ha-nodes`, `ip` | The IP addresses of the two high-availability control plane nodes in your cluster. |
 | `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` | Enter the URL of the Alertmanager webhook. You can add multiple URLs as a comma-separated list. Note that you must manually add this line to the JSON template to receive NVLink alerts. |
 
 {{< /tab >}}
 {{< tab "Completed JSON Example">}}
 
+The following example uses the `netq install combined config generate 6` command to create a JSON template for a six-node cluster.
+
 ``` 
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
 {
-        "version": "v2.0",
+        "version": "v3.0",
         "interface": "eth0",
         "cluster-vip": "10.176.235.101",
         "master-ip": "10.176.235.51",
@@ -232,71 +240,59 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
         "ha-nodes": [
                 {
                         "ip": "10.176.235.52"
+                        "description": "Control Plane Node 1"
                 },
                 {
                         "ip": "10.176.235.53"
+                        "description": "Control Plane Node 2"
                 },
                 ],
         "shared-cluster-install": false,
         "storage-path": "/var/lib/longhorn",
-        "alertmanager_webhook_url": "http://alert.example.com:9093/webhook"
-
+        "alertmanager_webhook_url": "",
+        "worker-nodes": [
+                {
+                        "ip": "10.176.235.54",
+                        "description": "Worker Node 1"
+                },
+                {
+                        "ip": "10.176.235.55",
+                        "description": "Worker Node 2"
+                },
+                {
+                        "ip": "10.176.235.56",
+                        "description": "Worker Node 3"
+                }
+        ]
 }
+
 ```
 
 | Attribute | Description |
 |----- | ----------- |
+| `version` | The version of the JSON template. For NetQ 5.0, specify "v2.0". For NetQ 5.1, specify "v3.0". |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
-| `ha-nodes`, `ip` | The IP addresses of the two worker nodes in your cluster. |
+| `ha-nodes`, `ip` | The IP addresses of the two high-availability control plane nodes in your cluster. |
 | `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` | Enter the URL of the Alertmanager webhook. You can add multiple URLs as a comma-separated list. Note that you must manually add this line to the JSON template to receive NVLink alerts. |
+| `worker-nodes`, `ip` | The IP addresses of the worker nodes in your cluster. |
 
 {{< /tab >}}
 {{< /tabs >}}
 
-12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step. Follow the steps under _Restore Data and New Install_ if you have a {{<link title="Back Up and Restore NetQ" text="backup data tarball">}} from a previous NetQ installation to restore.
+12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step.
 
 {{< tabs "TabID268">}}
 {{< tab "New Install">}}
 
 ```
-nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/cluster-install-config.json
+nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/combined-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
-{{< /tab >}}
-{{< tab "Restore Data and New Install">}}
-1. Add the `config-key` parameter to the JSON template from step 11 using the key created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}. Edit the file with values for each attribute.
-
-```
-nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
-{
-        "version": "v2.0",
-        "config-key": "<INPUT>",
-        "interface": "<INPUT>",
-        "cluster-vip": "<INPUT>",
-        "master-ip": "<INPUT>",
-        "is-ipv6": false,
-        "ha-nodes":
-                {
-                        "ip": "<INPUT>"
-                },
-                {
-                        "ip": "<INPUT>"
-                }
-}
-```
-
-2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
-
-```
-nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/cluster-install-config.json restore /home/nvidia/combined_backup_20241211111316.tar
-```
-
-<div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
 {{< /tab >}}
 {{< /tabs >}}
 

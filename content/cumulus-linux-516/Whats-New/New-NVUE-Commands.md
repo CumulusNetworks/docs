@@ -16,7 +16,6 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 ```
 nv show system dot1x tx-identity-request
-nv show system global
 nv show system security fips
 nv show system tech-support auto-generation
 nv show vrf <vrf-id> router bgp address-family <address-family> conditional-disaggregation

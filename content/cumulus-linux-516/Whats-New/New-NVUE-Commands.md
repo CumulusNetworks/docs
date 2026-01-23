@@ -46,7 +46,6 @@ nv set acl <acl-id> rule <rule-id> match offset <offset> value
 nv set acl <acl-id> rule <rule-id> match offset <offset> mask
 nv set acl <acl-id> rule <rule-id> match offset <offset> match-from start-of-packet 
 nv set router bfd offload
-nv set system dot1x dynamic-vrf
 nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down
 nv set system dot1x tx-identity-request state
 nv set system dot1x tx-identity-request delay
@@ -127,3 +126,7 @@ nv action clear system control-plane policer <policer-id> statistics
 
 {{< /tab >}}
 {{< /tabs >}}
+
+<!-- REMOVED FROM 5.16
+nv set system dot1x dynamic-vrf 
+>

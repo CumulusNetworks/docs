@@ -140,8 +140,10 @@ For standard nodes (nodes without `emulation_type` in the topology), AIR handles
 
 AIR-provided images are pre-configured to work with this system. For custom images, your image must:
 
-- Use kernel parameters: `net.ifnames=4 biosdevname=1`
+- Use kernel parameters: `net.ifnames=1 biosdevname=1` (or any non-zero value for `net.ifnames`)
+  - These enable predictable interface naming, which prevents collisions with AIR's UDEV rules that use traditional names like `eth0`
 - Set `AlternativeNamesPolicy=` (empty) in systemd network configuration
+  - This prevents systemd from assigning alternate names that conflict with UDEV
 
 With these settings, your management interface will be named `eth0`.
 

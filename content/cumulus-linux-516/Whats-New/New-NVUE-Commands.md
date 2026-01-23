@@ -123,7 +123,7 @@ nv set vrf <vrf-id> router bgp soo-source
 nv action traceroute system <destination-id> errors-extension do-not-fragment
 nv action activate system tech-support auto-generation
 nv clear system control-plane policer statistics
-nv action clear system control-plane policer bfd statistics
+nv action clear system control-plane policer <policer-id> statistics
 ```
 
 {{< /tab >}}

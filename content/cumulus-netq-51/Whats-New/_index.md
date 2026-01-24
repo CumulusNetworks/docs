@@ -15,7 +15,11 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - The {{<link title="Integrate NetQ with Grafana" text="NetQ integration with Grafana">}} is generally available.
 - NetQ now retains OTLP metrics data for 15 days instead of the previous three-day retention period. Additionally, you can now {{<link title="Integrate NetQ with Grafana/#customize-metric-collection" text="create a customizable list of metrics">}} that are forwarded to your time-series database.
 - You can now deploy NetQ for Ethernet and NVLink with an increased number of nodes to support large networks. To get started, {{<link title="Install NetQ for Ethernet and NVLink (Beta)" text="perform a fresh installation">}}. This deployment type is currently in beta.
-<!--- Multiplane support: topology, TCA events, UI filters-->
+- You can now use NetQ to monitor multiplane networking environments. With this enhancement, you can: 
+    - Filter and display telemetry data associated with individual planes. 
+    - Perform validations, such as BGP router-ID checks, within the appropriate plane context. 
+    - Include plane parameters across telemetry, topology, and validation workflows.
+    - To get started, configure {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="device labels">}}.
 - You can now create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}} with a wider range of measurement units in both the UI and the CLI. 
 - NetQ no longer broadcasts multiple, successive events for breaches to the same threshold-crossing rule. You can change this new default behavior using the CLI.
 - Performance improvements to the account management page in the UI
@@ -27,11 +31,6 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
     - Queries to the `compute-nodes` endpoint now return hostnames within the response
     - Performance improvements to scale deployments
     - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
-
-
-## Release Considerations
-
-
 
 ### Upgrade Paths
 

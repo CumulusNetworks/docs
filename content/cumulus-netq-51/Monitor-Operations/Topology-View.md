@@ -5,7 +5,7 @@ weight: 890
 toc: 3
 ---
 
-The network topology dashboard displays a visual representation of your network, showing connections and device information for all monitored nodes. The view allows you to understand your network's architecture at a high-level, but also lets you isolate individual devices or network tiers.
+The network topology dashboard displays a visual representation of your network, showing connections and device information for all monitored nodes. The view allows you to understand your network's architecture at a high-level, but also lets you isolate individual devices, network planes, or network tiers.
 ## Access the Topology View
 
 To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg" height="18" width="18"/> **Topology** in the workbench header. The UI displays the highest-level view of your network's topology, showing devices as part of tiers corresponding to your network's architecture: a two-tier architecture is made up of leaf and spine devices; a three-tier architecture is made up of leaf, spine, and super-spine devices. The bottom-most tier is reserved for devices which do not have a role assigned to them.

@@ -41,7 +41,7 @@ Labels are key-value pairs that you can assign to switches. You can use labels t
 
 You can apply a maximum of 24 labels per hostname. From the menu, select **Manage labels** to view the label management dashboard.
 
-{{<img src="/images/netq/label-management-50.png" alt="" width="1200">}}
+{{<img src="/images/netq/switch-labels-51.png" alt="" width="1200">}}
 ### Assign a Custom Label
 {{<tabs "TabID56" >}}
 

@@ -44,7 +44,8 @@ toc: 3
 
 | Server Arrangement | Hypervisor | Requirements & Installation |
 | :--- | --- | :---: |
-| High-availability scale cluster | KVM or VMware | {{<link title="Install NetQ for Ethernet and NVLink" text="Start install">}} |
+| High-availability scale cluster: three-nodes | KVM or VMware | {{<link title="Install NetQ for Ethernet and NVLink" text="Start install">}} |
+| High-availability scale cluster: unlimited nodes (beta) | KVM or VMware | {{<link title="Install NetQ for Ethernet and NVLink (Beta)" text="Start install">}} |
 
 {{</tab>}}
 

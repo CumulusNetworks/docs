@@ -7,9 +7,10 @@ toc: 5
 
 Installing NetQ telemetry agents on your hosts with {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-adapters/" text="NVIDIA ConnectX adapters">}} and {{<exlink url="https://www.nvidia.com/en-us/networking/products/data-processing-unit/" text="NVIDIA BlueField data processing units">}} (DPUs) allows you to track inventory data and statistics across devices. The DOCA Telemetry Service (DTS) is the agent that runs on hosts and DPUs to collect data.
 
-## Supported Versions
+## Requirements
 
-NetQ is compatible with DTS version 1.19.1.
+- NetQ is compatible with DTS version 1.19.1.
+- By default, NetQ expects port 9100 to be open on hosts to collect Prometheus metrics from ConnectX hosts and DPUs. If port 9100 is unavailable, you can configure NetQ to use an alternate port. This example updates the port to 9101: `netq install update-settings DYNAMIC_SCRAPE_PORT 9101`
 
 ## Install DTS on ConnectX Hosts
 

@@ -1860,7 +1860,9 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachabil
 [interfaces-match]  2001:1:1::/48  2001:1:1::/48
 ```
 
-To show the BGP unreachability route count, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability route-count` command or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability route-count` command:
+- To show the global BGP unreachability route count, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability route-count` command or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability route-count` command. 
+- For a specific neighbor, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv6-unreachability route-count` command.
+- For a specific peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family ipv6-unreachability route-count` command
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability route-count
@@ -1870,7 +1872,24 @@ total-routes  1
 total-paths   1 
 ```
 
-To show BGP unreachability routes, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability route` command or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability route` command:
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability route-count
+             operational
+-----------  -----------
+route-count     0                   
+adj-rib-in      0                   
+damped          0                   
+removed         0                   
+history         0                   
+stale           0                   
+valid           0                   
+all-rib         0                   
+routes-counted  0                   
+best-routes     0                   
+usable          0
+```
+
+To show global BGP unreachability routes, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability route` command or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability route` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability route
@@ -1881,6 +1900,34 @@ for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed
 Prefix            PathCount  MultipathCount  DestFlags
 ----------------  ---------  --------------  ---------
 2001:1:1:1::/127  4          0               *
+```
+
+To show the BGP unreachability prefix limits for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv6-unreachability prefix-limits` command for IPv6 or the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv4-unreachability prefix-limits` command for IPv4.
+
+For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family ipv6-unreachability prefix-limits` command or the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits` command.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits 
+                   operational  applied
+-----------------  -----------  ------- 
+maximum                         6   
+warning-threshold               75
+```
+
+To show the BGP unreachability AS path configuration for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv6-unreachability aspath` command for IPv6 or the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv4-unreachability aspath` command for IPv4.
+
+For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family ipv6-unreachability aspath` command or the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family ipv4-unreachability aspath` command.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath
+                 operational  applied    pending  
+---------------  -----------  ---------  ---------
+replace-peer-as  disabled     disabled   disabled 
+private-as       none         none       none     
+allow-my-asn                                      
+  state          enabled      enabled    enabled  
+  occurrences    3                                
+  route-map                   ROUTEMAP1  ROUTEMAP1
 ```
 
 ## BGP Timers

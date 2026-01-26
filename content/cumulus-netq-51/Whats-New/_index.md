@@ -18,7 +18,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - You can now use NetQ to monitor multiplane networking environments. With this enhancement, you can: 
     - Filter and display telemetry data associated with individual planes. 
     - Perform validations, such as BGP router-ID checks, within the appropriate plane context. 
-    - Include plane parameters across telemetry, topology, and validation workflows.
+    - Include plane parameters across network topology, monitoring, and validation workflows.
     - To get started, configure {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="system labels">}} using NVUE commands.
 - You can now create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}} with a wider range of measurement units in both the UI and the CLI. 
 - NetQ no longer broadcasts multiple, successive events for breaches to the same threshold-crossing rule. You can change this new default behavior using the CLI.

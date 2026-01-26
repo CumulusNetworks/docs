@@ -44,6 +44,10 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unrea
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability received-routes
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability route-counters
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability graceful-restart
+nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability aspath
+nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits
+nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unreachability aspath
+nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unreachability prefix-limits  
 nv show vrf <vrf-id> router fib
 nv show vrf <vrf-id> router fib ipv4
 nv show vrf <vrf-id> router fib ipv6

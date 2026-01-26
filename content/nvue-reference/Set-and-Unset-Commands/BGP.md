@@ -1317,7 +1317,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability aspath allow-my-asn route-map</h>
 
-Applies the route map to filter routes with my AS in the AS_PATH. Allows selective application of `allowas-in` based on route map matching.
+Applies the route map to filter IPv6 routes with my AS in the AS_PATH. Allows selective application of `allowas-in` based on route map matching.
 
 ### Command Syntax
 

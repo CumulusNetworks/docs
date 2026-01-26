@@ -1698,23 +1698,31 @@ To configure BGP conditional disaggregation on a leaf:
 - Required: Enable both {{<link url="/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} and {{<link url="/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}.
 - Required for 802.1X: If you are using 802.1X, you must enable the `preserve-on-link-down` option with the `nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down enabled` command to preserve IPv6 addresses when the switch reboots or a link flaps. For more information, refer to {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="Preserve Dynamically Assigned IPv6 Addresses">}}.
 - Required: Enable BGP conditional disaggregation.
-- Required: Enable BGP unreachability (failure signaling) globally and on relevant neighbors or peer groups.
-- Optional: Set the prefix limits for a neighbor or peer group; see the table below.
-- Optional: Attach a route map to filter routes with my AS in AS_PATH, which allows selective application of allowas-in based on route map matching.
+- Required: Enable BGP unreachability (failure signaling) globally and on relevant peers or peer groups.
+- Optional: Set the prefix limits for a peer or peer group; see the table below.
+- Optional: Set the AS path options for a peer or peer group; see the table below.
 
 To configure BGP conditional disaggregation on a spine or super spine:
 - Required: Enable BGP unreachability (failure signaling) globally and on relevant neighbors or peer groups.
-- Optional: Set the prefix limits for a neighbor or peer group; see the table below.
-- Optional: Attach a route map to filter routes with my AS in AS_PATH, which allows selective application of allowas-in based on route map matching.
+- Optional: Set the prefix limits for a peer or peer group; see the table below.
+- Optional: Set the AS path options for a peer or peer group; see the table below.
 
 The following table describes the `prefix limit` options.
 
 | Option | Description |
 | -------- | ------------ |
-| `maximum` |  The maximum number of unreachability prefixes that the switch can receive from the peer. This is critical for security to prevent state exhaustion. |
-| `reestablish-wait` | The time in minutes to wait before establishing the BGP session again with the peer. The default value is `auto`, which uses standard BGP timers and processing. |
+| `maximum` |  The maximum number of unreachability prefixes that the switch can receive from the peer or peer group. This is critical for security to prevent state exhaustion. |
+| `reestablish-wait` | The time in minutes to wait before establishing the BGP session again with the peer or peer group. You can specify a value between 1 and 65535, or `auto`. The default value is `auto`, which uses standard BGP timers and processing. |
 | `warning-only` | When enabled, the switch only generates a syslog warning if the number of received unreachability prefixes exceeds the limit. |
-| `warning-threshold` | Percentage of the maximum at which a syslog warning is generated.|
+| `warning-threshold` | The percentage of the maximum at which a syslog warning is generated. You can specify a value between 1 and 100. The default value is 75.|
+
+The following table describes the `AS path` options.
+
+| Option | Description |
+| -------- | ------------ |
+| `allow-my-asn` | Configures the switch to accept BGP updates containing its own ASN in the AS path. Set this option to:<br>- `state` to allow a received AS path to contain the ASN of the local system. You can specify `enabled` or `disabled`. The default value is `disabled`.<br>- `occurrences` to specify the maximum number of times the local system AS number is allowed in the received AS path. You can specify a value between 1 and 10.<br>- `origin` to allow a received AS path containing the ASN of the local system only if it is the originating AS. You can specify `enabled` or `disabled`. The default value is `disabled`.<br>- `route-map` to attach a route map that filters routes with the local AS in the AS path. This option allows selective application of `allowas-in` based on route map matching.|
+| `private-as` | Configures BGP to remove or replace private ASNs in the update to the peer or peer group. Set this option to:<br>- `none` to take no action.<br>- `remove` to remove private ASNs.<br>- `replace` to replace any private ASNs with the ASN of the local system.|
+| `replace-peer-as` |  Configures BGP to replace the ASN of the peer or peer group in an outgoing update with the ASN of the local system. You can specify `enabled` or `disabled`. The default is `disabled`.|
 
 {{< tabs "TabID1702 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1831,11 +1839,12 @@ To show if BGP unreachability is enabled on the switch, run the `nv show vrf <vr
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability 
-       operational  applied         
------  -----------  ----------------
-state               enabled         
-                    state           
-                    advertise-origin
+       operational       applied         
+-----  -----------       ----------------
+state                    enabled          
+                         state            
+                         advertise-unreach
+                         advertise-origin
 ```
 
 To show the BGP unreachability route count, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability route-count` command or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability route-count` command:
@@ -1844,7 +1853,8 @@ To show the BGP unreachability route count, run the `nv show vrf <vrf> router bg
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability route-count
              operational
 -----------  -----------
-total-paths  1
+total-routes  1          
+total-paths   1 
 ```
 
 To show BGP unreachability routes, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability route` command or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability route` command:

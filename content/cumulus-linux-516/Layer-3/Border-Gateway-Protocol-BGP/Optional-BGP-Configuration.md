@@ -1699,6 +1699,7 @@ To configure BGP conditional disaggregation on a leaf:
 - Required for 802.1X: If you are using 802.1X, you must enable the `preserve-on-link-down` option with the `nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down enabled` command to preserve IPv6 addresses when the switch reboots or a link flaps. For more information, refer to {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="Preserve Dynamically Assigned IPv6 Addresses">}}.
 - Required: Enable BGP conditional disaggregation.
 - Required: Enable BGP unreachability (failure signaling) globally and on relevant peers or peer groups.
+- Required: Define the aggregate prefix and the included interfaces for which to conditionally advertise unreachability.
 - Optional: Set the prefix limits for a peer or peer group; see the table below.
 - Optional: Set the AS path options for a peer or peer group; see the table below.
 
@@ -1734,12 +1735,13 @@ The following example configures BGP conditional disaggregation on a **leaf** fo
 
 To configure PIC, refer to {{<link url="/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}. To configure PIC in a multiplane topology, refer to {{<link url="/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}.
 
-The example enables BGP unreachability globally and on neighbors swp51 and swp52. For neighbor swp51, the prefix limit is set to a maximum of 6 and the route map ROUTEMAP1 controls which routes enter BGP. For neighbor swp52, the prefix limit is set to a maximum of 6 and the route map ROUTEMAP2 controls which routes enter BGP.
+The example enables BGP unreachability globally and on neighbors swp51 and swp52. For neighbor swp51, the prefix limit is set to a maximum of 6 and the route map ROUTEMAP1 controls which routes enter BGP. For neighbor swp52, the prefix limit is set to a maximum of 6 and the route map ROUTEMAP2 controls which routes enter BGP. The example enables unreachability advertisements for interfaces matching the network 2001:1:1::/48.
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-origin 
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast conditional-disaggregation
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-unreach interfaces-match 2001:1:1::/48
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability state enabled
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits maximum 6
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath allow-my-asn route-map ROUTEMAP1
@@ -1845,6 +1847,17 @@ state                    enabled
                          state            
                          advertise-unreach
                          advertise-origin
+advertise-unreach                                   
+  [interfaces-match]     2001:1:1::/48
+```
+
+To show the aggregate prefix and the included interfaces for which unreachability is conditionally advertised, run the `nv show vrf default router bgp address-family ipv6-unreachability advertise-unreach` command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability advertise-unreach
+                    operational    applied      
+------------------  -------------  -------------
+[interfaces-match]  2001:1:1::/48  2001:1:1::/48
 ```
 
 To show the BGP unreachability route count, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability route-count` command or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability route-count` command:

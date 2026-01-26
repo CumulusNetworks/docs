@@ -64,9 +64,9 @@ You can rearrange the topology's tiers by selecting **Edit** at the top of the s
 
 You can create queries to segment a topology into smaller, more manageable parts. This can be especially helpful when you need to view a particular section of a very large topology or when you want to find and view connections between two or more devices. To create a query, select **Queries** on the left side of the screen, then **Add query**. The name of the query is pre-populated with a unique identifier that you can edit by expanding the query.
 
-{{<figure src="/images/netq/topo-query-412.png" alt="" width="700">}}
+{{<figure src="/images/netq/query-topo-51.png" alt="" width="700">}}
 
-Select *node_name* and enter the parameters to display a subsection of nodes based on their hostnames. To combine multiple queries with logical operators, select **Add filter group**. 
+You can create queries based on device hostnames or labels {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="labels">}}. To combine multiple queries with logical operators, select **Add filter group**. 
 
 Select the three-dot menu on a given query to either delete or remove the query.
 

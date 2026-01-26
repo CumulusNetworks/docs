@@ -19,7 +19,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
     - Filter and display telemetry data associated with individual planes. 
     - Perform validations, such as BGP router-ID checks, within the appropriate plane context. 
     - Include plane parameters across telemetry, topology, and validation workflows.
-    - To get started, configure {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="device labels">}}.
+    - To get started, configure {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="system labels">}} using NVUE commands.
 - You can now create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}} with a wider range of measurement units in both the UI and the CLI. 
 - NetQ no longer broadcasts multiple, successive events for breaches to the same threshold-crossing rule. You can change this new default behavior using the CLI.
 - Performance improvements to the account management page in the UI

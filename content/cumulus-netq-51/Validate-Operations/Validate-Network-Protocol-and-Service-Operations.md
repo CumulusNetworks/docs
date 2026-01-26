@@ -22,12 +22,13 @@ Select **View details** in the bottom-right corner to view a more detailed summa
 
 From this view, you can select **View details** on a specific validation to view a time series of all the validations that NetQ ran for that particular protocol or service. The following dashboard displays the results from BGP validations from the past 24 hours. 
 
- - Use the dropdown menus in the side navigation to limit or expand the time range of the data displayed (limited to 600 results). 
+ - Use the dropdown menus in the side navigation to limit or expand the time range of the data displayed (limited to 600 results).
+ - Select the **Plane** dropdown to filter results by planes (this option does not appear across all validations).
  - Use the filters to display all validation results, or only on-demand or scheduled validations.
  - Select **Re-run** to run a new, on-demand validation.
 
 
-{{<figure src="/images/netq/bgp-validation-415.png" height="600" width="1100" alt="BGP validation summary with time series data">}}
+{{<figure src="/images/netq/bgp-validation-51.png" height="500" width="1100" alt="BGP validation summary with time series data">}}
 
 ## Create and Run Validations
 

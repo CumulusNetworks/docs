@@ -13,7 +13,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 Cumulus Linux 5.11.5 provides bug fixes and security updates.
 - You can use optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.11.5 from Cumulus Linux 5.11.3 and 5.11.4 (without ISSU support).
 - You can use package upgrade to upgrade the switch to Cumulus Linux 5.11.5 from:
-  - 5.11.4, 5.11.3, 5.11.2, 5.11.1 or 5.11.0
+  - 5.11.4 and 5.11.3 (ISSU support)
   - 5.10.1 or 5.10.0 (without ISSU support)
   - 5.9.4 (without ISSU support)
 

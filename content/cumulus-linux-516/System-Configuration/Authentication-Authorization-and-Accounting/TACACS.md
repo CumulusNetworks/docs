@@ -328,12 +328,16 @@ You can configure the switch to allow local fallback authentication for a user w
 
 To allow local fallback authentication for a user, add a local privileged user account on the switch with the same username as a TACACS user. A local user is always active even when the TACACS service is not running.
 
+{{%notice note%}}
+If the TACACS server is unreachable when you use local fallback authentication, the login process might take a long time. To work around this issue, set the TACACS timeout to a low value (such as 1) with the `nv set system aaa tacacs timeout` command. Even with a low timeout value, you might experience a delay of approximately tens of seconds when logging in.
+{{%/notice%}}
+
 To configure local fallback authentication:
 
 {{< tabs "TabID333 ">}}
 {{< tab "NVUE Commands ">}}
 
-Add a local privileged user account on the switch with the same username as a TACACS user. The following example enables the local privileged user to run `sudo` and NVUE commands. The TACACS account name is `tacadmin`. 
+Add a local privileged user account on the switch with the same username as a TACACS user. The following example enables the local privileged user to run `sudo` and NVUE commands. The TACACS account name is `tacadmin`.
 
 ```
 cumulus@switch:~$ nv set system aaa user tacadmin role system-admin

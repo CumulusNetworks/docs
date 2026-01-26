@@ -1830,8 +1830,7 @@ No Data
 To show if BGP unreachability is enabled on the switch, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability` command or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability` command:
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability
-nv show vrf default router bgp address-family ipv6-unreachability 
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability 
        operational  applied         
 -----  -----------  ----------------
 state               enabled         

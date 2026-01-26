@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4850551"></a> [4850551](#4850551) <a name="4850551"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.15.1 | |
 | <a name="4835058"></a> [4835058](#4835058) <a name="4835058"></a> <br /> | When you add or remove bond members, the sflow state and rate are incorrect.  | 5.13.1-5.15.1 | |
 | <a name="4804084"></a> [4804084](#4804084) <a name="4804084"></a> <br /> | On switches at scale with OTEL enabled, an <code>interface_stats_collector</code> crash might occur with the following logs:<br><pre><code>interface_stats_collector&#91;3429270&#93;: ERROR<br> buffer_stats_collector.go:1875 SDK bulk counter read failed<br>interface_stats_collector&#91;3429270&#93;: fatal error: concurrent map iteration and map write<br>interface_stats_collector&#91;3429270&#93;: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 &#91;running&#93;:</code></pre> | 5.14.0-5.15.1 | |
 | <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.15.1 | |

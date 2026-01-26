@@ -171,6 +171,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4850551"></a> [4850551](#4850551) <a name="4850551"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.15.1 | |
 | <a name="4835058"></a> [4835058](#4835058) <a name="4835058"></a> <br /> | When you add or remove bond members, the sflow state and rate are incorrect.  | 5.13.1-5.15.1 | |
 | <a name="4830305"></a> [4830305](#4830305) <a name="4830305"></a> <br /> | After an optimized image upgrade, certain disabled <code>systemd</code> services that are replaced with VRF-based services are reenabled. This results in multiple instances of the applications running, where they either fail to start or run with incorrect configuration. This issue occurs with, but is not limited to SSH, NTP and streaming telemetry services running with a custom VRF configuration. To work around this issue, after the upgrade, stop and disable the incorrect services, then restart the correct ones as required. | 5.15.0-5.15.1 | |
 | <a name="4813804"></a> [4813804](#4813804) <a name="4813804"></a> <br /> | The <code>nv config show</code> command output shows each egress buffer configuration separately for each traffic class instead of in a single line configuration. | 5.15.0-5.15.1 | |

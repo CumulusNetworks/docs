@@ -6,11 +6,11 @@ product: Cumulus Linux
 version: "5.16"
 toc: 1
 ---
+For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
+
 ## New NVUE Commands
 
 The following NVUE commands are new in Cumulus Linux 5.16.
-
-For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 
 {{< tabs "TabID49 ">}}
 {{< tab "nv show ">}}

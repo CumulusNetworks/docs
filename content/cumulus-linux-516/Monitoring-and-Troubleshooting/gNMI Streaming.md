@@ -658,11 +658,16 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/qos/shared-buffer/switch-priority[priority]/state/max-occupancy` | *Maximum shared‑buffer occupancy in bytes for multicast traffic in the specified switch priority since the last watermark reset; software‑maintained.|
 | `/qos/shared-buffer/switch-priority[priority]/state/max-occupancy-timestamp` | *Timestamp at which the highest shared‑buffer occupancy for multicast traffic in the specified switch priority was recorded since the last watermark reset. Value is Unix epoch seconds (UTC).|
 | `/qos/shared-buffer/switch-priority[priority]/state/time-since-last-clear` | *Elapsed time in milliseconds since watermark counters for multicast traffic in the specified switch priority were last cleared.|
-| `/qos/shared-buffer/pools/pool[id]/state/instant-occupancy` | *Instantaneous shared‑buffer occupancy in bytes for the given pool.|
-| `/qos/shared-buffer/pools/pool[id]/state/max-occupancy-since-last-sample` | *Maximum shared‑buffer occupancy in bytes for the given pool during the most recent sampling interval.|
-| `/qos/shared-buffer/pools/pool[id]/state/max-occupancy` | *Maximum shared‑buffer occupancy in bytes for the given pool since the last watermark reset; software‑maintained.|
-| `/qos/shared-buffer/pools/pool[id]/state/max-occupancy-timestamp` | *Timestamp at which the highest shared‑buffer occupancy for the given pool was recorded since the last watermark reset. Value is Unix epoch seconds (UTC).|
-| `/qos/shared-buffer/pools/pool[id]/state/time-since-last-clear` | *Elapsed time in milliseconds since watermark counters for the given pool were last cleared.|
+| `/qos/shared-buffer/pools/pool[id]/state/data/instant-occupancy` | *Instantaneous shared‑buffer occupancy in bytes for the given pool.|
+| `/qos/shared-buffer/pools/pool[id]/state/data/max-occupancy-since-last-sample` | *Maximum shared‑buffer occupancy in bytes for the given pool during the most recent sampling interval.|
+| `/qos/shared-buffer/pools/pool[id]/state/data/max-occupancy` | *Maximum shared‑buffer occupancy in bytes for the given pool since the last watermark reset; software‑maintained.|
+| `/qos/shared-buffer/pools/pool[id]/state/data/max-occupancy-timestamp` | *Timestamp at which the highest shared‑buffer occupancy for the given pool was recorded since the last watermark reset. Value is Unix epoch seconds (UTC).|
+| `/qos/shared-buffer/pools/pool[id]/state/data/time-since-last-clear` | *Elapsed time in milliseconds since watermark counters for the given pool were last cleared.|
+| `/qos/shared-buffer/pools/pool[id]/state/descriptors/instant-occupancy` | * |
+| `/qos/shared-buffer/pools/pool[id]/state/descriptors/max-occupancy-since-last-sample` | * |
+| `/qos/shared-buffer/pools/pool[id]/state/descriptors/max-occupancy` | * |
+| `/qos/shared-buffer/pools/pool[id]/state/descriptors/max-occupancy-timestamp` | * |
+| `/qos/shared-buffer/pools/pool[id]/state/descriptors/time-since-last-clear` | * |
 | `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/priority-group[pg-id]/state/instant-occupancy` | *Instantaneous headroom-buffer occupancy in bytes for the specified buffer type (primary or secondary) in the priority group on the interface.|
 | `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/priority-group[pg-id]/state/max-occupancy-since-last-sample` | *Maximum headroom‑buffer occupancy in bytes for the specified buffer type (primary or secondary) in the priority group on the interface during the most recent sampling interval.|
 | `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/priority-group[pg-id]/state/max-occupancy` | *Maximum headroom‑buffer occupancy in bytes for the specified buffer type (primary or secondary) in the priority group on the interface since the last watermark reset; software‑maintained.|

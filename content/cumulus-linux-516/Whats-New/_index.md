@@ -45,7 +45,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI QoS buffer, control plane, and histogram metrics">}}
   - {{<link url="gNMI-Streaming/#metrics" text="Two new gNMI interface metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`)
 
-For a list of new NVUE commands, refer to {{<link url="New-NVUE-Commands" text="New NVUE Commands">}}.
+For a list of new NVUE commands, refer to {{<link url="New-and-Removed-NVUE-Commands" text="New and Removed NVUE Commands">}}.
 <!-- 
 - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
 - {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1x dynamic VRF assignment">}}

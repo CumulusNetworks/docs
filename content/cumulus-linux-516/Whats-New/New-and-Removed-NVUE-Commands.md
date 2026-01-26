@@ -1,15 +1,16 @@
 ---
-title: New NVUE Commands
+title: New and Removed NVUE Commands
 author: Cumulus Networks
 weight: -30
 product: Cumulus Linux
 version: "5.16"
 toc: 1
 ---
+For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
+
+## New NVUE Commands
 
 The following NVUE commands are new in Cumulus Linux 5.16.
-
-For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 
 {{< tabs "TabID49 ">}}
 {{< tab "nv show ">}}
@@ -20,11 +21,33 @@ nv show system security fips
 nv show system tech-support auto-generation
 nv show vrf <vrf-id> router bgp address-family <address-family> conditional-disaggregation
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability
+nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-origin
+nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-unreach
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route-count
+nv show vrf <vrf-id> router bgp address-family ipv4-unreachability advertise-origin
+nv show vrf <vrf-id> router bgp address-family ipv4-unreachability advertise-unreach
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route-count
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability advertised-routes
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability aspath
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability capabilities
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability graceful-restart
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability prefix-limits 
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability received-routes
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability route-counters
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability advertised-routes
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability aspath
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability capabilities
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability prefix-limits 
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability received-routes
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability route-counters
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability graceful-restart
+nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability aspath
+nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits
+nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unreachability aspath
+nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unreachability prefix-limits  
 nv show vrf <vrf-id> router fib
 nv show vrf <vrf-id> router fib ipv4
 nv show vrf <vrf-id> router fib ipv6
@@ -129,4 +152,11 @@ nv action clear system control-plane policer <policer-id> statistics
 
 <!-- REMOVED FROM 5.16
 nv set system dot1x dynamic-vrf 
->
+-->
+## Removed NVUE Commands
+
+Cumulus Linux 5.16 no longer supports the following NVUE commands:
+
+```
+nv set system telemetry stats-group <group-id> acl-stats class acl-set export stat
+```

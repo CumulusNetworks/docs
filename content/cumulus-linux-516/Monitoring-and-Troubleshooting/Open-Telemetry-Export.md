@@ -651,16 +651,6 @@ cumulus@switch:~$ nv config apply
 ```
 
 The following example:
-- Configures STAT-GROUP7 to export ACL set statistics.
-- Applies the STAT-GROUP7 configuration to the OTLP destination 10.1.1.200.
-
-```
-cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP7 acl-stats class acl-set export state enabled
-cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30 stats-group STAT-GROUP7
-cumulus@switch:~$ nv config apply
-```
-
-The following example:
 - Configures STAT-GROUP8 to export 802.1X statistics.
 - Applies the STAT-GROUP8 configuration to the OTLP destination 10.1.1.100.
 - Sets the sample interval of the 802.1X set statistics to 30.
@@ -957,6 +947,12 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max_timestamp` | Time when highest shared buffer port group watermark is recorded.|
 | `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_timestamp` | Time when highest shared buffer traffic class watermark is recorded|
 | `nvswitch_interface_shared_buffer_port_ingress_pool_watermark_recorded_max_timestamp` | Time when highest shared pool buffer watermark is recorded.|
+| `nvswitch_shared_buffer_pool_desc_curr_occupancy` | * |
+| `nvswitch_shared_buffer_pool_desc_watermark` | * |
+| `nvswitch_shared_buffer_pool_desc_watermark_recorded_max` | * |
+| `nvswitch_shared_buffer_pool_desc_watermark_recorded_max_timeastamp` | * |
+| `nvswitch_shared_buffer_pool_desc_time_since_clear` | * |
+
 
 <!-- vale off -->
 <br>

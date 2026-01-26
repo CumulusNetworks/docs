@@ -7,9 +7,9 @@ product: NVIDIA Air
 
 ## Overview
 
-The Out-of-Band (OOB) management network is an optional feature that creates a dedicated management plane for your simulation, separate from your data plane. When enabled, AIR provisions and configures the entire management network for you.
+The out-of-band (OOB) management network is an optional feature that creates a dedicated management plane for your simulation, separate from your data plane. When enabled, Air provisions and configures the entire management network for you.
 
-The OOB network gives you a single entry point to access all nodes in your simulation. From the `oob-mgmt-server`, you can SSH to any node by hostname (for example, `ssh leaf01`). Nodes can also use the OOB network to reach external networks—useful for downloading packages, pulling configurations, or other outbound connectivity.
+The OOB network gives you a single entry point to access all nodes in your simulation. From the `oob-mgmt-server`, you can SSH into any node by hostname (for example, `ssh leaf01`). Nodes can also use the OOB network to reach external networks, which is useful for downloading packages, pulling configurations, or other outbound connectivity tasks.
 
 This separation mirrors real-world data center design, where management traffic is isolated from production traffic. Your simulation nodes have two network identities: a management interface (typically `eth0`) on the OOB network, and data interfaces (such as `swp1`, `eth1`) that you configure for your simulation traffic.
 
@@ -19,7 +19,7 @@ The OOB network uses a leaf-spine topology that scales automatically based on th
 
 ### Basic Topology (up to 226 nodes)
 
-For simulations with 226 or fewer nodes, AIR creates a single leaf switch:
+For simulations with 226 or fewer nodes, Air creates a single leaf switch:
 
 ```
                      ┌───────────────────────┐
@@ -47,7 +47,7 @@ For simulations with 226 or fewer nodes, AIR creates a single leaf switch:
 
 ### Scaled Topology (227+ nodes)
 
-For larger simulations, AIR automatically adds additional leaf switches and spine switches to interconnect them:
+For larger simulations, Air automatically adds additional leaf switches and spine switches to interconnect them:
 
 ```
                           oob-mgmt-server
@@ -94,7 +94,7 @@ The OOB network uses the `192.168.0.0/16` private address space. Each leaf switc
 
 ## What Gets Configured Automatically
 
-When you enable the OOB network, AIR automatically configures:
+When you enable the OOB network, Air automatically configures:
 
 - **DHCP server** on the `oob-mgmt-server` with static IP assignments for each node based on MAC address
 - **DNS server** (dnsmasq) so you can reach nodes by hostname (for example, `ssh spine01`)
@@ -102,11 +102,11 @@ When you enable the OOB network, AIR automatically configures:
 - **IP routing** between subnets using BGP on the leaf and spine switches
 - **NAT gateway** on the `oob-mgmt-server` for outbound internet access
 - **DHCP relay** on leaf switches to forward DHCP requests to the server
-- **SSH key injection** so your AIR SSH keys work on the `oob-mgmt-server`
+- **SSH key injection** so your Air SSH keys work on the `oob-mgmt-server`
 
 ## Accessing Your Nodes
 
-The `oob-mgmt-server` is the entry point to your simulation. When you connect via SSH (using the service URL provided by AIR), you land on this server.
+The `oob-mgmt-server` is the entry point to your simulation. When you connect via SSH (using the service URL provided by Air), you land on this server.
 
 From there, SSH to any node by hostname:
 
@@ -131,20 +131,20 @@ Standard images (Cumulus Linux, Ubuntu cloud images) work out of the box. For cu
 
 ## Interface Naming
 
-For standard nodes (nodes without `emulation_type` in the topology), AIR handles interface naming via UDEV rules. Before boot, AIR injects rules into the VM filesystem that rename each interface based on its MAC address to match the topology name. The flow is:
+For standard nodes (nodes without `emulation_type` in the topology), Air handles interface naming via UDEV rules. Before boot, Air injects rules into the VM filesystem that rename each interface based on its MAC address to match the topology name. The flow is:
 
-1. AIR injects UDEV rules mapping MAC addresses to topology names
+1. Air injects UDEV rules mapping MAC addresses to topology names
 2. VM boots, UDEV renames interfaces (management interface becomes `eth0`)
 3. Image runs DHCP on the management interface
 4. Node receives its reserved IP
 
-AIR-provided images are pre-configured to work with this system. For custom images, your image must:
+Air-provided images are pre-configured to work with this system. For custom images, your image must:
 
 - Use kernel parameters: `net.ifnames=1 biosdevname=1` (or any non-zero value for `net.ifnames`)
-  - These enable predictable interface naming, which prevents collisions with AIR's UDEV rules that use traditional names like `eth0`
+  - These enable predictable interface naming, which prevents collisions with Air's UDEV rules that use traditional names like `eth0`
 - Set `AlternativeNamesPolicy=` (empty) in systemd network configuration
   - This prevents systemd from assigning alternate names that conflict with UDEV
 
 With these settings, your management interface will be named `eth0`.
 
-Emulated nodes (nodes with `emulation_type` in the topology) use their simulator engine's logic for interface naming—see the simulator's documentation for details.
+Emulated nodes (nodes with `emulation_type` in the topology) use their simulator engine's logic for interface naming. Refer to the simulator's documentation for details.

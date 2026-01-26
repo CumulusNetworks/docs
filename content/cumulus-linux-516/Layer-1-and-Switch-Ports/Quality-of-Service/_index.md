@@ -1721,9 +1721,13 @@ To unset the lossy headroom for a priority group, comment out the `priority_grou
 
 ### Extra Lossy Headroom
 
-In certain cases, higher forwarding latency and a high probability of small packets increase the risk of headroom buffer exhaustion on lossy traffic and the current default maximum headroom of 150 KB per port might be insufficient.
+In certain cases, higher forwarding latency and a high probability of small packets increase the risk of headroom buffer exhaustion on lossy traffic and the current default maximum headroom of 150 KB (153600 bytes) per port might be insufficient.
 
-To configure additional headroom for lossy priority groups before the switch drops packets, run the `nv set interface <interface-id> qos headroom lossy extra-threshold` command. You can specify a value between 192 and 1236480 bytes.
+To configure additional headroom (on top of the default threshold of 153600 bytes) for lossy priority groups before the switch drops packets, run the `nv set interface <interface-id> qos headroom lossy extra-threshold` command. You can specify a value between 192 and 1236480 bytes.
+
+{{%notice note%}}
+Switches with Spectrum-2 and later support extra lossy headroom.
+{{%/notice%}}
 
 The following example configures the extra lossy headroom to 50000 bytes for swp1:
 

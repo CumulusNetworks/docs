@@ -1,11 +1,12 @@
 ---
-title: New NVUE Commands
+title: New and Removed NVUE Commands
 author: Cumulus Networks
 weight: -30
 product: Cumulus Linux
 version: "5.16"
 toc: 1
 ---
+## New NVUE Commands
 
 The following NVUE commands are new in Cumulus Linux 5.16.
 
@@ -129,4 +130,11 @@ nv action clear system control-plane policer <policer-id> statistics
 
 <!-- REMOVED FROM 5.16
 nv set system dot1x dynamic-vrf 
->
+-->
+## Removed NVUE Commands
+
+Cumulus Linux 5.16 no longer supports the following NVUE commands:
+
+```
+nv set system telemetry stats-group <group-id> acl-stats class acl-set export stat
+```

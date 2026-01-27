@@ -69,6 +69,7 @@ nv set acl <acl-id> rule <rule-id> match offset <offset> value
 nv set acl <acl-id> rule <rule-id> match offset <offset> mask
 nv set acl <acl-id> rule <rule-id> match offset <offset> match-from start-of-packet 
 nv set router bfd offload
+nv set system api compression gzip
 nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down
 nv set system dot1x tx-identity-request state
 nv set system dot1x tx-identity-request delay
@@ -87,6 +88,7 @@ nv set interface <interface-id> qos headroom lossy extra-threshold
 nv set interface <interface-id> link tx-squelch
 nv set vrf <vrf-id> router bgp address-family <address-family> conditional-disaggregation
 nv set vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-origin
+nv set vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-unreach interfaces-match
 nv set vrf <vrf-id> router bgp address-family ipv6-unreachability state
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability state
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability prefix-limits

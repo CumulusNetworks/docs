@@ -1321,7 +1321,8 @@ You can use the following inner packet matching options:
 | `dscp` | The inner DSCP value. |
 | `source-ip` | The inner source IP address. |
 | `dest-ip` | The inner destination IP address. |
-| `protocol` | The inner IP protocol: `udp` or `tcp`.<br>`dest-port` is the inner UDP or TCP destination port. `source-port` is the inner UDP or TCP source port. |
+| `protocol` | The inner IP protocol: `icmp`, `icmpv6`,`udp` or `tcp`.|
+| `dest-port`<br><br>`source-port`&nbsp; | The inner UDP or TCP destination port.<br><br>The inner UDP or TCP source port. |
 | `ecn` | Inner ECN.<br>`flags` is the inner ECN flag.<br>`tcp-cwr` is the TCP congestion window reduced flag. `tcp-ece` is the TCP ECN echo flag.<br>`ip-ect` is IP ECT value between 0 and 3. |
 
 The following example creates an ACL permit rule for inbound packets on swp1 that matches the inner header DSCP value 10, source IP address 10.10.10.10, destination IP address 20.20.20.20, UDP source port 1000, and UDP destination port 2000.
@@ -1376,7 +1377,7 @@ cumulus@switch:~$ nv set acl deny-all-rule match inner-ip source-ip ANY
 Cumulus Linux supports ACL rule matches based on the packet offset.
 
 {{%notice note%}}
-- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which is not considered an extra offset match.
+- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which is not considered an extra offset match. The combination of an offset location and a `match-from` value is considered as one offset.
 - You can configure offset matches only for ACL type ipv4 and ipv6.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
@@ -1389,12 +1390,22 @@ You can use the following packet offset matching options:
 
 | Option | Description|
 |---------|-----------|
-| `offset` | The relative position in the packet from where the value needs to be matched. The maximum value is 478 bytes. |
+| `offset` | The relative position in the packet from which the value needs to be matched. The maximum value is 126 bytes. The value must be an even number. |
 | `value` | The value to be matched at the offset position. The offset match value must be two bytes long and in hexadecimal.|
 | `mask` | The mask to be used while matching the value. The mask must be two bytes long and in hexadecimal. The default value is 0xFFFF. |
-| `match-from`| The extraction point for the offset position. The only option is `start-of-packet`, which is the start of the layer 2 header that is first byte of the destination MAC address. |
+| `match-from`| The extraction point for the offset position. You can specify `start-of-packet` (the start of the layer 2 header, which is first byte of the destination MAC address), `start-of-inner-ipv4-header` or `start-of-inner-ipv6-header`.|
 
-The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x12 and first two bytes of UDP header as 0xabcd:
+The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x12 and first two bytes of UDP header as 0xabcd. The format of the packet is shown below:
+
+```
+0         14        34        54        62
+|---------|---------|---------|---------|
+| ETH(14) |IPv4(20) | IPv4(20)| UDP(8)  | PAYLOAD
+|---------|---------|---------|---------|
+```
+
+- The inner IPv4 header is at offset 34 (14 bytes of Ethernet header plus 20 bytes of IPv4 header ).
+- The inner UDP is at offset of 54 (14 bytes of Ethernet header plus 20 bytes of outer IPv4 plus 20 bytes of inner IPv4 header).
 
 ```
 cumulus@switch:~$ nv set acl OFFSET type ipv4
@@ -1408,6 +1419,11 @@ cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 54 match-from start-of-
 cumulus@switch:~$ nv set interface swp1 acl OFFSET inbound
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+- NVIDIA recommends that you configure the offset match with an IP or inner IP match. If no extra match is required, you can add a wildcard match, such as `nv set acl <acl-id> match inner-ip source-ip ANY` or `nv set acl <acl-id> match ip source-ip ANY`.
+- An offset match in the egress direction might not work if matched data is overwritten.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "iptables rule ">}}

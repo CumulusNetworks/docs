@@ -270,7 +270,11 @@ priority = -2
 
 ## Health Monitoring Reference
 
-The following table summarizes the events that Cumulus Linux monitors for system health:
+The following table summarizes the events that Cumulus Linux monitors for system health.
+
+{{%notice note%}}
+An asterix (*) indicates that the event is new for Cumulus Linux 5.16.
+{{%/notice%}}
 
 | Event Category      | Component Name        | Severity   | Event Description                        | Threshold/Condition                          | States            |
 |---------------------|----------------------|------------|------------------------------------------|----------------------------------------------|-------------------|
@@ -315,20 +319,12 @@ The following table summarizes the events that Cumulus Linux monitors for system
 | Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature high alarm       | Module temp high alarm/warning ON             | Not OK            |
 | Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature low alarm        | Module temp low alarm/warning ON              | Not OK            |
 | Transceiver Status  | transceiver          | INFO       | Transceiver status is OK                 | All transceivers operating normally           | OK                |
-<!--
-| SDK |  ASIC  | CRITICAL | Issuing switchd restart due to FATAL event | Fatal event detected | Critical |
-| SDK |  ASIC  | CRITICAL | Successfully recovery | Fatal event recovered | Critical |
-| SDK |  ASIC  | CRITICAL | FATAL health event received |  FATAL health event | Critical |
-| SDK |  ASIC  | INFO | Generating MLX SDK debug dump for critical event| Critical SDK event detected | Critical |
-| SDK |  ASIC  | INFO | Disabled fatal failure detection | Fatal failure disabled | OK |
-| SDK |  ASIC  | WARNING | WARNING health event received - Device: 1, Cause: 8 | Health event received | Not OK |
-| SDK |  ASIC  | WARNING | Handling WARNING health event |Health event handled | OK |
-| SDK |  ASIC  | WARNING | WARNING event on device 1 - monitoring closely | WARNING event | Not OK |
-| SDK |  ASIC  | INFO | Generating debug dump for health event | Health event | Not OK |
-| SDK |  ASIC  | INFO | Generating MLX SDK debug dump | SDK event | Not OK |
-| SDK |  ASIC  | INFO | MLX SDK debug dump generated successfully for device 1 |  | OK |
+| *SDK Health Event FATAL |  Cumulus SDK Health Monitor  | CRITICAL | FATAL health event received |  Fatal notification received | FAILED - Immediate SDK restart initiated. |
+| *SDK Health Event FATAL |  Cumulus SDK Health Monitor   | INFO | Generating MLX SDK debug dump for critical event| Critical SDK event detected | Critical |
+| *Monitor State Change |  Cumulus SDK Health Monitor  | INFO | Disabled fatal failure detection | Part of shutdown or restart sequence | TRANSITIONING - Preparing for SDK restart |
+| *Recovery Action |  Cumulus SDK Health Monitor  | CRITICAL | Issuing `switchd` restart due to FATAL event | Triggered by prior FATAL event or health check failure | RECOVERY - SDK restart command issued |
+| *Recovery Action |  Cumulus SDK Health Monitor   | CRITICAL | Successfully recovery | Triggered by prior FATAL event or health check failure| RECOVERY - SDK restart command issued |
 
--->
 ## Related Information
 
 - {{<exlink url="http://packages.debian.org/search?keywords=lshw" text="packages.debian.org/search?keywords=lshw">}}

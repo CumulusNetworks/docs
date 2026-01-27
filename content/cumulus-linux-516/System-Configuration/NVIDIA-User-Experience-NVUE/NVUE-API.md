@@ -4550,7 +4550,7 @@ To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/mark
 
 ## Resources
 
-For more information about using the NVUE REST API, reference the {{<exlink url="https://api-dev.nvidia.com/openapi-browser?spec=openapi+5.15.0.json" text="NVUE API browser tool">}}. This tool is still under development. Please report any issues or feedback to nvue-openapi-browser-support@nvidia.com.
+For more information about using the NVUE REST API, reference the {{<exlink url="https://api-prod.nvidia.com/openapi-browser" text="NVUE API browser tool">}}. This tool is still under development. Please report any issues or feedback to nvue-openapi-browser-support@nvidia.com.
 
 ## Considerations
 

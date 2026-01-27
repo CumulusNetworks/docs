@@ -9,8 +9,8 @@ The following sections describe how to back up and restore your NetQ data and VM
 
 {{%notice note%}}
 - You must run backup and restore scripts with sudo privileges.
-- NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM. *This caveat does not apply to NVLink clusters.*
-- The backup and restore process does not retain several configurations necessary for the Grafana integration, including switch TLS certificates, authentication tokens (vm-tokens), OpenTelemetry configurations, and external time-series database configurations. After reinstalling NetQ, you must {{<link title="Integrate NetQ with Grafana" text="reconfigure these components">}}. Grafana will not display data from previous NetQ versions. *This caveat does not apply to NVLink clusters.*
+- NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
+- The backup and restore process does not retain several configurations necessary for the Grafana integration, including switch TLS certificates, authentication tokens (vm-tokens), OpenTelemetry configurations, and external time-series database configurations. After reinstalling NetQ, you must {{<link title="Integrate NetQ with Grafana" text="reconfigure these components">}}. Grafana will not display data from previous NetQ versions.
 {{%/notice%}}
 
 ## Back Up Your NetQ Data
@@ -19,6 +19,10 @@ Follow the process below for your deployment type to back up your NetQ data.
 
 {{<tabs "TabID19" >}}
 {{<tab "Ethernet-only and Combined (Ethernet + NVLink)" >}}
+
+{{%notice note%}}
+If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
+{{%/notice%}}
 
 1. Retrieve the `vm-backuprestore.sh` script:
 
@@ -141,7 +145,7 @@ To restore your NetQ data, perform a {{<link title="Install the NetQ System" tex
 ```
 nvidia@<hostname>: netq nvl cluster restore /tmp/data-infra/nvlink_cluster_backup_20250617063052/ drop-mongo-collections
 ```
-If this step fails, run `netq nvl bootstrap rest` and then try again.
+If this step fails for any reason, run `netq nvl bootstrap reset` and then try again.
 
 {{</tab >}}
 {{</tabs>}}

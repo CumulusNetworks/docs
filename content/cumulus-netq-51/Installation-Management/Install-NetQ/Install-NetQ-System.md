@@ -42,7 +42,7 @@ The following deployment model uses NetQ to monitor NVLink-only networks.
 
 ## NetQ for Ethernet and NVLink
 
-The following deployment models use NetQ to monitor networks that use both Ethernet and NVLink. NetQ 5.1 introduces a new option that lets you deploy NetQ on as many nodes as you wish to include in your server cluster. This deployment option is in beta and will require a fresh installation upon subsequent NetQ releases.
+The following deployment models use NetQ to monitor networks that use both Ethernet and NVLink. NetQ 5.1 introduces a new option that lets you deploy NetQ on as many nodes as you wish to include in your server cluster. *This deployment option is in beta and will require a fresh installation upon subsequent NetQ releases.*
 
 {{<tabs "TabID56" >}}
 

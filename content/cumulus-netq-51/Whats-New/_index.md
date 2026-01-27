@@ -32,12 +32,16 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
     - Performance improvements to scale deployments
     - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
 
-### Upgrade Paths
+
+## Upgrade Paths
 
 NetQ 5.1 is available exclusively for on-premises deployments. You can upgrade to 5.1 if your deployment is running version 5.0 or 4.15. First {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.0 installation">}}.
 
+{{%notice note%}}
+If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
+{{%/notice%}}
 
-### Compatible Agent Versions
+## Compatible Agent Versions
 
 The NetQ 5.1 server is compatible with NetQ agents 5.1 and 5.0. You can install NetQ agents on switches and servers running:
 

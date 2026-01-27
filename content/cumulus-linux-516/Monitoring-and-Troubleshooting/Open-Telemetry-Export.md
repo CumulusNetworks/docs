@@ -947,6 +947,12 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max_timestamp` | Time when highest shared buffer port group watermark is recorded.|
 | `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_timestamp` | Time when highest shared buffer traffic class watermark is recorded|
 | `nvswitch_interface_shared_buffer_port_ingress_pool_watermark_recorded_max_timestamp` | Time when highest shared pool buffer watermark is recorded.|
+| `nvswitch_shared_buffer_pool_desc_curr_occupancy` | * |
+| `nvswitch_shared_buffer_pool_desc_watermark` | * |
+| `nvswitch_shared_buffer_pool_desc_watermark_recorded_max` | * |
+| `nvswitch_shared_buffer_pool_desc_watermark_recorded_max_timeastamp` | * |
+| `nvswitch_shared_buffer_pool_desc_time_since_clear` | * |
+
 
 <!-- vale off -->
 <br>

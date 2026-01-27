@@ -318,12 +318,12 @@ An asterisk (*) indicates that the event is new for Cumulus Linux 5.16.
 | Service Status      | lldpd, smond, etc.   | WARNING    | Service not active                       | Service is inactive                           | inactive          |
 | Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature high alarm       | Module temp high alarm/warning ON             | Not OK            |
 | Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature low alarm        | Module temp low alarm/warning ON              | Not OK            |
-| Transceiver Status  | transceiver          | INFO       | Transceiver status is OK                 | All transceivers operating normally           | OK                |
-| *SDK Health Event FATAL |  Cumulus SDK Health Monitor  | CRITICAL | FATAL health event received |  Fatal notification received | FAILED - Immediate SDK restart initiated. |
-| *SDK Health Event FATAL |  Cumulus SDK Health Monitor   | INFO | Generating MLX SDK debug dump for critical event| Critical SDK event detected | Critical |
-| *Monitor State Change |  Cumulus SDK Health Monitor  | INFO | Disabled fatal failure detection | Part of shutdown or restart sequence | TRANSITIONING - Preparing for SDK restart |
-| *Recovery Action |  Cumulus SDK Health Monitor  | CRITICAL | Issuing `switchd` restart due to FATAL event | Triggered by prior FATAL event or health check failure | RECOVERY - SDK restart command issued |
-| *Recovery Action |  Cumulus SDK Health Monitor   | CRITICAL | Successfully recovery | Triggered by prior FATAL event or health check failure| RECOVERY - SDK restart command issued |
+| Transceiver&nbsp;Status  | transceiver          | INFO       | Transceiver status is OK                 | All transceivers operating normally           | OK                |
+| *SDK&nbsp;Health&nbsp;Event&nbsp;FATAL |  Cumulus SDK Health Monitor  | CRITICAL | FATAL health event received |  Fatal notification received | FAILED - Immediate SDK restart initiated. |
+| *SDK&nbsp;Health&nbsp;Event&nbsp;FATAL |  Cumulus SDK Health Monitor   | INFO | Generating MLX SDK debug dump for critical event| Critical SDK event detected | CRITICAL |
+| *Monitor&nbsp;State&nbsp;Change |  Cumulus SDK Health Monitor  | INFO | Disabled fatal failure detection | Part of shutdown or restart sequence | TRANSITIONING - Preparing for SDK restart |
+| *Recovery&nbsp;Action |  Cumulus SDK Health Monitor  | CRITICAL | Issuing switchd restart due to FATAL event | Triggered by prior FATAL event or health check failure | RECOVERY - SDK restart command issued |
+| *Recovery&nbsp;Action |  Cumulus SDK Health Monitor   | CRITICAL | Successfully recovery | Triggered by prior FATAL event or health check failure| RECOVERY - SDK restart command issued |
 
 ## Related Information
 

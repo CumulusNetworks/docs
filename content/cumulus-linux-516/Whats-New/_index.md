@@ -33,7 +33,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
 - {{<link url="Quality-of-Service/#shaping" text="PPS mode for QoS egress shapers">}}
 - {{<link url="Quality-of-Service/#extra-lossy-headroom" text="Extra threshold for QoS lossy priority groups">}}
-- {{<link url="Monitoring-System-Hardware/#health-monitoring-reference" text="New health event and SDK driver monitoring">}}
+- {{<link url="Monitoring-System-Hardware/#health-monitoring-reference" text="New system health monitoring events">}}
 - Security features:
   - {{<link url="FIPS" text="FIPS mode">}}
   - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and     for a user group">}}

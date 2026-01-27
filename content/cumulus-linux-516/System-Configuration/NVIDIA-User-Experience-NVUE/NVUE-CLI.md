@@ -636,7 +636,7 @@ cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 ```
 
 {{%notice note%}}
-A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed; NVUE does not support both unset and set commands for the same object in a single patch.
+A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed.
 {{%/notice%}}
 
 You can also replace or patch against a plain text file of `nv set` and `nv unset` commands instead of a yaml file with the `nv config replace <textfile.txt>` and `nv config patch <textfile.txt>` commands.
@@ -644,6 +644,10 @@ You can also replace or patch against a plain text file of `nv set` and `nv unse
 NVUE automatically detects if the file contains only comments, blank lines, `nv set` or `nv unset` commands, and acts accordingly. If the file contains anything else, NVUE treats the file as a YAML file.
 
 If there are any issues with the `nv set` or `nv unset` commands, NVUE prints the line number and the command that has the error.
+
+{{%notice note%}}
+In Cumulus Linux 5.16 and later, NVUE supports both unset and set commands for the same object in a single patch.
+{{%/notice%}}
 
 ## Translate a Configuration Revision or File
 

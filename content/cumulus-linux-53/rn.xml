@@ -601,12 +601,6 @@ Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID.
 <td>5.7.0-5.15.1</td>
 </tr>
 <tr>
-<td>3192808</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.3.1, 4.4.0-4.4.5, 5.0.1-5.15.1</td>
-<td>4.3.2</td>
-</tr>
-<tr>
 <td>3187469</td>
 <td>At high scale with 160 VRFs and 10 VLANs per VRF (a total of 1600 VLANs), you see traffic loss during primary switch reboot. To work around this issue, reduce the scale to 40 VRFs with no more than 400 VLANs in the configuration, and use a common MAC address.</td>
 <td>5.1.0-5.5.1</td>

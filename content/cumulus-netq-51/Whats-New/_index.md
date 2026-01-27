@@ -21,7 +21,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
     - Include plane parameters across network topology, monitoring, and validation workflows.
     - To get started, configure {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="system labels">}} using NVUE commands.
 - You can now create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}} with a wider range of measurement units in both the UI and the CLI. 
-- NetQ no longer broadcasts multiple, successive events for breaches to the same threshold-crossing rule. You can change this new default behavior using the CLI.
+- NetQ no longer broadcasts multiple, successive events for breaches to the same threshold-crossing rule. You can {{<link title="Configure and Monitor Threshold-Crossing Events/#adjust-the-time-between-notifications" text="change this new default behavior">}} using the CLI.
 - Performance improvements to the account management page in the UI
 - The time required to install NetQ has been reduced.
 - NetQ for NVLink API changes:

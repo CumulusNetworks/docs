@@ -704,6 +704,19 @@ Successfully added/updated tca TCA_CPU_UTILIZATION_UPPER_2
 
 {{</tabs>}}
 
+### Adjust the Time Between Notifications
+
+When a threshold-crossing rule is breached, NetQ periodically sends an event notification until the issue is resolved. You can adjust the time between notifications using the following commands, which configure global settings that apply to all TCAs.
+
+This example configures NetQ to repeat TCA notifications after 30 minutes:
+
+```
+nvidia@switch:~$ netq add global tca config repeat_after 30m
+Successfully added global TCA config with repeat_after: 30 minutes
+```
+
+You can view this configuration with {{<link title="show/#netq-show-global-tca-config" text="netq show global tca config">}} or delete it and resume the default notification frequency with {{<link title="del/#netq-del-global-tca-config" text="netq del global tca config">}}.
+
 ### Disable a Rule
 
 Whereas suppression temporarily disables a rule, you can also disable a rule indefinitely.

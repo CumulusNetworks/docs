@@ -1725,6 +1725,12 @@ To work around this issue, power cycle the switch.</td>
 <td>5.9.4, 5.14.0-5.15.1</td>
 </tr>
 <tr>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495383</td>
 <td>NVUE configuration yaml file translation converts unset commands to set commands because the translation logic expects only set commands. </td>
 <td>5.13.0-5.15.1</td>
@@ -1741,12 +1747,6 @@ To work around this issue, power cycle the switch.</td>
 <td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.9.4, 5.14.0-5.15.1</td>
-</tr>
-<tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
-<td>5.14.0-5.15.1</td>
 </tr>
 <tr>
 <td>4486200</td>

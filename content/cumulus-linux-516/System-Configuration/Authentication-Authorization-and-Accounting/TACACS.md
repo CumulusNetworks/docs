@@ -329,7 +329,7 @@ You can configure the switch to allow local fallback authentication for a user w
 To allow local fallback authentication for a user, add a local privileged user account on the switch with the same username as a TACACS user. A local user is always active even when the TACACS service is not running.
 
 {{%notice note%}}
-If the TACACS server is unreachable when you use local fallback authentication, the login process might take a long time. To work around this issue, set the TACACS timeout to a low value (such as 1) with the `nv set system aaa tacacs timeout` command. Even with a low timeout value, you might experience a delay of approximately tens of seconds when logging in.
+If the TACACS server is unreachable when you use local fallback authentication, the login process might take a long time. To work around this issue, set the TACACS timeout to a low value (such as 1) with the `nv set system aaa tacacs timeout` command. Even with a low timeout value, you might experience a delay of approximately 20 to 30 seconds when logging in. The number of seconds might vary depending on the number of configured TACACS servers.
 {{%/notice%}}
 
 To configure local fallback authentication:

@@ -273,7 +273,7 @@ priority = -2
 The following table summarizes the events that Cumulus Linux monitors for system health.
 
 {{%notice note%}}
-An asterix (*) indicates that the event is new for Cumulus Linux 5.16.
+An asterisk (*) indicates that the event is new for Cumulus Linux 5.16.
 {{%/notice%}}
 
 | Event Category      | Component Name        | Severity   | Event Description                        | Threshold/Condition                          | States            |

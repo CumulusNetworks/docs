@@ -1735,7 +1735,11 @@ The following example configures BGP conditional disaggregation on a **leaf** fo
 
 To configure PIC, refer to {{<link url="/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}. To configure PIC in a multiplane topology, refer to {{<link url="/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}.
 
-The example enables BGP unreachability globally and on neighbors swp51 and swp52. For neighbor swp51, the prefix limit is set to a maximum of 6 and the route map ROUTEMAP1 controls which routes enter BGP. For neighbor swp52, the prefix limit is set to a maximum of 6 and the route map ROUTEMAP2 controls which routes enter BGP. The example enables unreachability advertisements for interfaces matching the network 2001:1:1::/48.
+The following example:
+- Enables BGP unreachability globally and on neighbors swp51 and swp52. 
+- Enables unreachability advertisements for interfaces matching the network 2001:1:1::/48.
+- Sets the prefix limit to a maximum of 6 for neighbors swp51 and swp52 .
+- Sets the `allow-my-asn` option for neighbors swp51 and swp52 to `origin` to allow a received AS path containing the ASN of the local system only if it is the originating AS.
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-origin 

@@ -199,7 +199,7 @@ cumulus@switch:~$ nv set system api compression gzip
 cumulus@switch:~$ nv config apply
 ```
 
-To disable HTTP response compression, run the `nv set system api compression` command.
+To disable HTTP response compression, run the `nv unset system api compression` command.
 
 To show if HTTP response compression is enabled, run the `nv show system api` command. The command output shows `compression  enabled` when HTTP response compression is enabled.
 

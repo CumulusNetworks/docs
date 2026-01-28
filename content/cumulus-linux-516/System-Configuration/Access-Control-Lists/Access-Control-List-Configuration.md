@@ -1309,10 +1309,8 @@ Cumulus Linux supports ACL matches based on inner packet headers inside encapsul
 - You cannot match on both inner and outer packet headers in the same ACL.
 - You cannot combine a VLAN match with inner packet matches.
 - Inner packet matches support hardware forwarded packets only.
+- You can configure matches on inner packet headers with NVUE commmands only. 
 {{%/notice%}}
-
-{{< tabs "TabID1309 ">}}
-{{< tab "NVUE Commands ">}}
 
 You can use the following inner packet matching options:
 
@@ -1340,28 +1338,6 @@ cumulus@switch:~$ nv set interface swp1 acl example3 inbound
 cumulus@switch:~$ nv config apply
 ```
 
-{{< /tab >}}
-{{< tab "iptables rule ">}}
-
-Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add a rule under `[iptables]`. The following example creates an ACL permit rule for inbound packets on swp1 that matches the inner header DSCP value 10, source IP address 10.10.10.10, destination IP address 20.20.20.20, UDP source port 1000, and UDP destination port 2000.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-inner-header.rules
-[iptables]
-## ACL example3 in dir inbound on interface swp1 ##
-# rule-id #10:  #
--t mangle -A PREROUTING -i swp1 -m comment --comment rule_id:10,acl_name:example3,dir:inbound,interface_id:swp1 -s 10.10.10.10 -d 20.20.20.20 -p udp --sport 1000 --dport 2000 -m dscp --dscp 10 -m mark --mark 100 -j ACCEPT
-```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 {{%notice note%}}
 With inner IP matches configured, any IPv4 or IPv6 `deny all` or `permit all` ACL rule must include an inner IP match (Source IP ANY, Destination IP ANY, or both). If the rule does not include an inner IP match, the switch interprets it as an outer rule, and does not evaluate the inner match. For Example:
 
@@ -1381,10 +1357,8 @@ Cumulus Linux supports ACL rule matches based on the packet offset.
 - You can configure offset matches only for ACL type ipv4 and ipv6.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
+- You can configure matches based on the packet offset with NVUE commmands only. 
 {{%/notice%}}
-
-{{< tabs "TabID1368 ">}}
-{{< tab "NVUE Commands">}}
 
 You can use the following packet offset matching options:
 
@@ -1424,28 +1398,6 @@ cumulus@switch:~$ nv config apply
 - NVIDIA recommends that you configure the offset match with an IP or inner IP match. If no extra match is required, you can add a wildcard match, such as `nv set acl <acl-id> match inner-ip source-ip ANY` or `nv set acl <acl-id> match ip source-ip ANY`.
 - An offset match in the egress direction might not work if matched data is overwritten.
 {{%/notice%}}
-
-{{< /tab >}}
-{{< tab "iptables rule ">}}
-
-Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add a rule under `[iptables]`. The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x64.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-offset-header.rules
-[iptables]
-## ACL OFFSET in dir inbound on interface swp1 ##
-# rule-id #10:  #
--t mangle -A PREROUTING -i swp1 -m comment --comment rule_id:10,acl_name:OFFSET,dir:inbound,interface_id:swp1 -m u32 --u32 "0x00010022 & 0xFF00 = 0x1200  &&  0x00010036 & 0xFFFF = 0xabcd" -j ACCEPT
-```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Example Configuration
 

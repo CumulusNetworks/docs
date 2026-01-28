@@ -1019,7 +1019,7 @@ A dual-attached **multicast receiver** sends an IGMP join on the attached VLAN. 
 Traditionally, the PIM DR is the only node to send the PIM *,G Join. To provide resiliency in case of failure, both MLAG switches send PIM *,G Joins towards the RP to receive the multicast stream.
 {{%/notice%}}
 
-To prevent duplicate multicast packets, PIM elects a [DF](## "PIM Designated Forwarder"), which is the `primary` member of the MLAG pair. The MLAG secondary switch puts the VLAN in the [OIL](## "Outgoing Interface List"), preventing duplicate multicast traffic.
+To prevent duplicate multicast packets, PIM elects a [DF](## "PIM Designated Forwarder"), which is the `primary` member of the MLAG pair. The MLAG secondary switch does not put the VLAN in the [OIL](## "Outgoing Interface List"), preventing duplicate multicast traffic.
 
 ### Example Traffic Flow
 

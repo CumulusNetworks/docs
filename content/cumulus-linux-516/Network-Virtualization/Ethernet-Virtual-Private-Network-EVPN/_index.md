@@ -27,8 +27,11 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for 
 - IPv6 tenant routing.
 - <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span> for overlay networks on NVIDIA Spectrum-A1 ASICs. ECMP occurs in the overlay when there are multiple next hops.
 - Head end replication is on by default.
-- EVPN VXLAN over an IPv6 underlay on switches with Spectrum-2 and later (Beta). The network fabric supports either an IPv4 or IPv6 underlay network but not both at the same time. MLAG, MAC mobility, and interoperability with an IPv4-based VTEP are not supported.
-
+- EVPN VXLAN over an IPv6 underlay on switches with Spectrum-2 and later. The network fabric supports either an IPv4 or IPv6 underlay network but not both at the same time. MLAG, MAC mobility, and interoperability with an IPv4-based VTEP are not supported.
+  {{%notice note%}}
+  EVPN VXLAN over an IPv6 underlay is a Beta feature.
+  {{%/notice%}}
+  
 Cumulus Linux supports the EVPN address family with both <span class="a-tooltip">[eBGP](## "external BGP")</span> and <span class="a-tooltip">[iBGP](## "internal BGP")</span> peering. If you configure underlay routing with eBGP, you can use the same eBGP session to carry EVPN routes. In a typical 2-tier Clos network where the leafs are VTEPs, if you use eBGP sessions between the leafs and spines for underlay routing, the same sessions exchange EVPN routes. The spine switches act as *route forwarders* and do not install any forwarding state as they are not VTEPs. When the switch exchanges EVPN routes over iBGP peering, you can use OSPF as the IGP or resolve next hops using iBGP.
 
 {{%notice note%}}

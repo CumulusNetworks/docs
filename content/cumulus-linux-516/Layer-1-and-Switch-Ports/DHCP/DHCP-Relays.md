@@ -264,14 +264,15 @@ In a multi-tenant EVPN symmetric routing environment with MLAG, you must enable 
 {{< img src = "/images/cumulus-linux/dhcp-relay-server-groups-cl515.png" width = "1050" >}}
 
 The following example:
-- Configures VRF `UPLINK_VRF` with IPv4 address 20.20.20.1/32 and sets the VRF loopback as the gateway interface.
+- Configures VRF `UPLINK_VRF` with IPv4 loopback address 20.20.20.1/32 and sets the VRF interface as the gateway interface.
 - Configures the tenant SVIs vlan10, vlan20, and vlan30 as downstream interfaces.
 - Configures the layer 3 VNI VLAN interface for VRF `UPLINK_VRF` vlan4024_l3 as an upstream interface. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-id> evpn` command.
 - Sets the DHCP server to 10.1.100.104.
 - Configures VRF UPLINK_VRF to advertise connected routes as type-5 so that the VRF UPLINK_VRF loopback IPv4 address is reachable.
 
 {{%notice note%}}
-You do not need to add physical uplinks in the EVPN relay configuration. Only layer 3 VNI VLAN interface configuration is required for uplinks.
+- You do not need to add physical uplinks in the EVPN relay configuration. Only layer 3 VNI VLAN interface configuration is required for uplinks.
+- DHCP relay supports multiple server groups. The example below only shows one server group for simplicity.
 {{%/notice%}}
 
 {{< tabs "TabID366 ">}}
@@ -412,7 +413,7 @@ For IPv6 DHCP relay in a symmetric routing environment, you must assign a unique
 {{%/notice%}}
 
 The following example:
-- Configures VRF UPLINK_VRF with the unique IPv6 address 2001:db8:666::1/128.
+- Configures VRF UPLINK_VRF with the unique loopback address 2001:db8:666::1/128.
 - Configures VLAN 10 and 20 in VRF RED to service DHCP requests from downstream hosts.
 - Sets the DHCP server to 2001:db8:199::2.
 - Configures the layer 3 VNI interface for VRF UPLINK_VRF vlan4024_l3 to process DHCP packets from the upstream server.

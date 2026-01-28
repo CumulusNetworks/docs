@@ -37,11 +37,12 @@ Expand the Inventory/Switches card to full-screen to view, filter or export info
 Labels are key-value pairs that you can assign to switches. You can use labels to group, filter, and organize switches. You can also run validations against a set of switches that share a common label. There are two types of labels: system-generated labels and user-generated, or custom, labels.
 
 - System-generated labels reflect the static labels {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/#static-labels" text="applied to switches using NVUE commands">}}. System-generated labels include an icon in the NetQ UI. These labels can only be deleted using NVUE commands. These switches must be running the NetQ Agent for labels to appear in NetQ.
+    - To create plane labels, run the `nv set system telemetry label plane description <plane_id>` command on each switch that belongs to a given plane.
 - User-generated labels can be created and deleted using the NetQ UI.
 
 You can apply a maximum of 24 labels per hostname. From the menu, select **Manage labels** to view the label management dashboard.
 
-{{<img src="/images/netq/label-management-50.png" alt="" width="1200">}}
+{{<img src="/images/netq/switch-labels-51.png" alt="" width="1200">}}
 ### Assign a Custom Label
 {{<tabs "TabID56" >}}
 

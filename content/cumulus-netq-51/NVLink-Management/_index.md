@@ -16,6 +16,7 @@ NetQ NVLink was previously packaged as NMX-M.
 - {{<link title="NVLink Bringup">}}
 - {{<link title="Register Services">}}
 - {{<link title="NetQ NVLink API User Guide">}}
+- {{<link title="NetQ NVLink API Changelog">}}
 - {{<link title="Collect KPIs">}}
 - {{<link title="Manage Alerts">}}
 - {{<link title="Manage Licenses">}}

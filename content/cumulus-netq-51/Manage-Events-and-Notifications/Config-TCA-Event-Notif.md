@@ -193,8 +193,6 @@ In this example, three attributes are available. For one or more of these attrib
 
 *Note that you should leave the drop type attribute blank.*
 
-{{<figure src="/images/netq/tca-create-rule-scope-define-330.png" width="450">}}
-
 | Create rule to show events from a ... | Attribute | Operation | Value |
 | --- | --- | --- |  --- |
 | Single device | hostname | Equals | \<hostname\> such as *spine01* |
@@ -214,7 +212,6 @@ Each attribute is displayed on the rule card as a regular expression equivalent 
 - Starts with is displayed as a caret (^)
 - Blank (all) is displayed as an asterisk (*)
 
-{{<figure src="/images/netq/tca-create-rule-resulting-rule-card-330.png" width="200">}}
 
 {{</tab>}}
 
@@ -296,17 +293,11 @@ The hostname, reason/port down reason, ingress port, and drop type scope paramet
 
 3. Click **Create a rule**. Enter a name for the rule and assign a severity, then click **Next**.
 
-    {{<figure src="/images/netq/create-tca-rule.png" alt="" width="600">}}
-
 4. Select the attribute you want to monitor. The listed attributes change depending on the type of event you chose in the previous step.
 
 5. Click **Next**.
 
-6. On the **Set threshold** step, enter a threshold value.
-
-    {{<figure src="/images/netq/set-threshold-fan.png" alt="" width="600">}}
-
-<div style="padding-left: 18px;">For digital optics, you can choose to use the thresholds defined by the optics vendor (default) or specify your own.</div>
+6. On the **Set threshold** step, enter a threshold value and unit of measurement.
 
 7. Define the scope of the rule.
 
@@ -368,7 +359,7 @@ nvidia@switch:~$ netq add tca event_id TCA_WJH_ACL_DROP_AGG_UPPER scope leaf04,'
 
 For a Slack channel, the event messages should be similar to this:
 
-{{<figure src="/images/netq/tca-events-slack-example-240.png" width="500">}}
+{{<figure src="/images/netq/tca-slack-51.png" height="200" width="500">}}
 
 ### Set the Severity of a Threshold-crossing Event
 
@@ -446,11 +437,9 @@ Now you have four rules created (the original one, plus these three new ones) al
 
 This example indicates that the rule applies across all interfaces on the exit-1 switch.
 
-{{<img src="/images/netq/interface-tca-470.png" width="200">}}
+{{<img src="/images/netq/interface-tca-470.png" height="300" width="200">}}
 
 After creating a rule, you can use the filters that appear above the rule cards to filter by status, severity, channel, and/or events.
-
-{{<img src="/images/netq/threshold-filters-450.png" alt="" width="500">}}
 
 {{</tab>}}
 
@@ -512,8 +501,6 @@ To modify the threshold:
 1. Locate the rule you want to modify and hover over the top of the card.
 
 2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> **Edit**.
-
-    {{<figure src="/images/netq/edit-tca-card.png" alt="" width="200">}}
 
 3. Enter a new threshold value, then select **Update rule**.
 
@@ -683,7 +670,7 @@ During troubleshooting or switch maintenance, you might want to suppress a rule 
 <li>The <strong>Disable</strong> button changes to <strong>Disable forever</strong>.</li>
 </div>
 
-{{<img src="/images/netq/suppress-tca-470.png" width="200">}}
+{{<img src="/images/netq/suppress-tca-470.png" height="325" width="200">}}
 
 {{</tab>}}
 
@@ -707,6 +694,19 @@ Successfully added/updated tca TCA_CPU_UTILIZATION_UPPER_2
 {{</tab>}}
 
 {{</tabs>}}
+
+### Adjust the Time Between Notifications
+
+When a threshold-crossing rule is breached, NetQ periodically sends an event notification until the issue is resolved. You can adjust the time between notifications using the following commands, which configure global settings that apply to all TCAs.
+
+This example configures NetQ to re-broadcast TCA notifications every 30 minutes until the issue is resolved. The {{<link title="add/#netq-add-global-tca-config" text="netq add global tca config">}} command accepts time values in minutes (`m`), hours (`h`), or days (`d`).
+
+```
+nvidia@switch:~$ netq add global tca config repeat_after 30m
+Successfully added global TCA config with repeat_after: 30 minutes
+```
+
+You can view this configuration with {{<link title="show/#netq-show-global-tca-config" text="netq show global tca config">}} or delete it and resume the default notification frequency with {{<link title="del/#netq-del-global-tca-config" text="netq del global tca config">}}.
 
 ### Disable a Rule
 

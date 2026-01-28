@@ -9,7 +9,7 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux 5.15, 5.14, 5.11.3, 5.9.4
+- Cumulus Linux 5.16, 5.15, 5.11.3, 5.9.4
 - Ubuntu 24.04, 22.04
 
 {{<notice note>}}
@@ -174,7 +174,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     ```
     nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
-You should see version 5.0.0 in the results: netq-apps_<strong>5.0.0</strong>-cld12u5_amd64.deb
+You should see version 5.1.0 in the results: netq-apps_<strong>5.1.0</strong>-cld12u5_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 

@@ -16,19 +16,41 @@ The following NVUE commands are new in Cumulus Linux 5.16.
 {{< tab "nv show ">}}
 
 ```
+nv show acl <acl-id> rule <rule-id> match inner-ip
+nv show acl <acl-id> rule <rule-id> match inner-ip ecn
+nv show acl <acl-id> rule <rule-id> match inner-ip ecn flags
+nv show acl <acl-id> rule <rule-id> match inner-ip tcp
+nv show acl <acl-id> rule <rule-id> match inner-ip tcp dest-port
+nv show acl <acl-id> rule <rule-id> match inner-ip tcp dest-port <dest-port-id>
+nv show acl <acl-id> rule <rule-id> match inner-ip tcp source-port
+nv show acl <acl-id> rule <rule-id> match inner-ip tcp source-port <source-port-id>
+nv show acl <acl-id> rule <rule-id> match inner-ip udp
+nv show acl <acl-id> rule <rule-id> match inner-ip udp dest-port
+nv show acl <acl-id> rule <rule-id> match inner-ip udp dest-port <dest-port-id>
+nv show acl <acl-id> rule <rule-id> match inner-ip udp source-port
+nv show acl <acl-id> rule <rule-id> match inner-ip udp source-port <source-port-id>
+nv show acl <acl-id> rule <rule-id> match offset
+nv show acl <acl-id> rule <rule-id> match offset <offset-id>
 nv show system dot1x tx-identity-request
+nv show system logs secured-logs
 nv show system security fips
+nv show system security group <group-id>
+nv show system security user <user-id>
 nv show system tech-support auto-generation
 nv show vrf <vrf-id> router bgp address-family <address-family> conditional-disaggregation
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-origin
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-unreach
+nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-unreach interfaces-match
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route
+nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route <route-id>
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route-count
+nv show vrf <vrf-id> router bgp address-family ipv4-unreachability
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability advertise-origin
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability advertise-unreach
-nv show vrf <vrf-id> router bgp address-family ipv4-unreachability
+nv show vrf <vrf-id> router bgp address-family ipv4-unreachability advertise-unreach interfaces-match
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route
+nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route <route-id>
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route-count
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability advertised-routes
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability aspath
@@ -50,8 +72,8 @@ nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-u
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unreachability prefix-limits  
 nv show vrf <vrf-id> router fib
 nv show vrf <vrf-id> router fib ipv4
-nv show vrf <vrf-id> router fib ipv6
 nv show vrf <vrf-id> router fib ipv4 route <route-id>
+nv show vrf <vrf-id> router fib ipv6
 nv show vrf <vrf-id> router fib ipv6 route <route-id>
 ```
 

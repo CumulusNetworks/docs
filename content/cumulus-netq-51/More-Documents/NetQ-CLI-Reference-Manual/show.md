@@ -1372,7 +1372,7 @@ Displays how often NetQ rebroadcasts the same TCA event.
 ### Syntax
 
 ```
-netq add global tca config repeat_after <text-repeat-after>
+netq show global tca config
 ```
 
 ### Required Arguments

@@ -16,6 +16,7 @@ Several NetQ features function exclusively on NVIDIA Spectrum switches. The foll
 |Multiplane support | No | No | No | Yes |
 |Process monitoring| Yes | Yes | Yes | Yes |
 |Sensor monitoring| Partial support; no PSU data for SN2100 and SN2010 | Yes | Yes | Yes |
+|Switch labels| No | Yes | Yes | Yes |
 |PTP monitoring| Yes | Yes | Yes | Yes |
 |Queue length histograms| Yes | Yes | Yes | Yes |
 |RoCE monitoring| Yes | Yes | Yes | Yes |

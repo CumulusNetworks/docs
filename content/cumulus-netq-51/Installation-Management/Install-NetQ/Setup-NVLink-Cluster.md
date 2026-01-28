@@ -242,54 +242,10 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 
 12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step. Specify the passwords for the read-write user and the read-only user in the `rw-password` and `ro-password` fields, respectively. The passwords must each include a minimum of eight characters.
 
-{{< tabs "TabID268">}}
-{{< tab "New Install">}}
-
 ```
 nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.1.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
-
-{{< /tab >}}
-{{< tab "Restore Data and New Install">}}
-<!--need to check this with QA-->
-1. Add the `config-key` parameter to the JSON template from step 11 using the key created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}. Edit the file with values for each attribute.
-
-```
-nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
-{
-        "version": "v2.0",
-        "interface": "<INPUT>",
-        "config-key": "<INPUT>",
-        "cluster-vip": "<INPUT>",
-        "servers": [
-                {
-                        "ip": "<INPUT>"
-                        "description": "<SERVER1>"
-                },
-                {
-                        "ip": "<INPUT>"
-                        "description": "<SERVER2>"
-                },
-                {
-                        "ip": "<INPUT>"
-                        "description": "<SERVER3>"
-                },
-                ],
-        "storage-path": "/var/lib/longhorn",
-        "alertmanager_webhook_url": "<INPUT>"
-}
-```
-
-2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
-
-```
-nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/nvl-cluster-config.json restore /home/nvidia/combined_backup_20241211111316.tar
-```
-
-<div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Verify Installation Status
 

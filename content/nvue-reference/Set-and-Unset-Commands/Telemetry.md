@@ -1274,6 +1274,61 @@ Introduced in Cumulus Linux 5.15.0
 cumulus@switch:~$ nv set system telemetry export otlp grpc certificate CERT....
 ```
 
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export otlp grpc certificate \<certificate-id\></h>
+
+Configures an X.509 client certificate to secure the <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> connection for telemetry export.
+
+{{%notice note%}}
+Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<certificate>` | The X.509 client certificate. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp grpc client certificate CERT....
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export otlp grpc destination \<destination\> client-certificate \<certificate-id\></h>
+
+Configures the X.509 destination client certificate for mTLS authentication.
+
+{{%notice note%}}
+Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<destination>` | The IP address of the collector. |
+| `<certificate>` | The X.509 client certificate. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 client-certificate CERT....
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system telemetry export otlp grpc destination \<destination\> port \<port-id\></h>
@@ -1301,6 +1356,7 @@ Introduced in Cumulus Linux 5.10.0
 ```
 cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 port 4317
 ```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system telemetry export otlp grpc destination \<destination\> stats-group</h>
@@ -1879,6 +1935,8 @@ cumulus@switch:~$ nv set system telemetry snapshot-interval 5
 
 ## <h>nv set system telemetry snapshot port-group \<port-group-id\></h>
 
+Configures the port group for all interface packet and buffer statistics.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1919,7 +1977,7 @@ cumulus@switch:~$ nv set system telemetry snapshot port-group all-packet-pg snap
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry snapshot port-group \<port-group-id\>snapshot-file count</h>
+## <h>nv set system telemetry snapshot port-group \<port-group-id\> snapshot-file count</h>
 
 Configures the number of snapshots that you can create before the first snapshot file is overwritten.
 
@@ -1937,6 +1995,28 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv set system telemetry snapshot port-group all-packet-pg snapshot-file count 80
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry snapshot port-group \<port-group-id\> stats-type</h>
+
+Configures the snapshot port group statistics type.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry snapshot port-group all-packet-pg stats-type packet-extended
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

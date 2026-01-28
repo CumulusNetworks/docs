@@ -59,12 +59,6 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td></td>
 </tr>
 <tr>
-<td>4683602</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4647646</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
@@ -961,6 +955,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.11.4</td>
 </tr>
 </table>
 <table name="Open Issues in 5.11.4">

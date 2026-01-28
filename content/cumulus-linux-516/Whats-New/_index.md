@@ -17,22 +17,22 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-conditional-disaggregation" text="BGP conditional disaggregation">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
+- {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
 - {{<link url="Understanding-the-cl-support-Output-File/#automatic-cl-support-file" text="Manage automatic cl-support file generation">}}
 - {{<link url="Network-Troubleshooting/#extended-traceroute" text="Extended traceroute (RFC 5837)">}}
+- {{<link url="DHCP-Relays/#dhcp-relay-for-ipv4-in-an-evpn-symmetric-environment-with-mlag" text="VRF-aware DHCP relay">}}
 - {{<link url="Routing-Tables/#show-fib-table-entries" text="Show FIB table entries">}}
-- {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
 - {{<link url="Access-Control-List-Configuration/#match-on-inner-header" text="ACL matches on packet inner header">}} and {{<link url="Access-Control-List-Configuration/#match-on-packet-offset" text="ACL matches on packet offset">}}
 - {{<link url="Quality-of-Service/#clear-qos-buffers" text="Clear QoS buffers on multiple interfaces">}}
 - {{<link url="TACACS/#tacacs-per-command-authorization" text="TACACS per-command authorization supports NVUE tab completion, option listing (?), and command history navigation">}}
-- {{<link url="DHCP-Relays/#dhcp-relay-for-ipv4-in-an-evpn-symmetric-environment-with-mlag" text="VRF-aware DHCP relay">}}
 - {{<link url="Access-Control-List-Configuration/#clear-control-plane-policer-counters" text="Clear control plane policer counters">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#lag-hash-randomizer" text="LAG hash randomizer for adaptive routing">}}
 - {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx squelch control">}} (Beta)
 - {{<link url="TACACS/#local-fallback-authentication" text="NVUE support for TACACS local fallback authentication">}}
 - {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
-- {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
 - {{<link url="Quality-of-Service/#shaping" text="PPS mode for QoS egress shapers">}}
 - {{<link url="Quality-of-Service/#extra-lossy-headroom" text="Extra threshold for QoS lossy priority groups">}}
+- {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
 - {{<link url="Monitoring-System-Hardware/#health-monitoring-reference" text="New system health monitoring events">}}
 - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="NVUE support for both unset and set commands for the same object in a single patch">}}
 - Security features:

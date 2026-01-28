@@ -4476,7 +4476,6 @@ Introduced in Cumulus Linux 5.12.0
 cumulus@switch:~$ nv action traceroute system 10.10.10.10
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action traceroute system \<destination\> errors-extension</h>

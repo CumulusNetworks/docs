@@ -3425,6 +3425,9 @@ netq show otlp tls-cert
 
 netq show otlp whitelist (default | custom)
     [json]
+
+netq show otlp whitelist tsdb-name <text-tsdb-name> 
+    [json]
 ```
 ### Required Arguments
 

@@ -172,7 +172,7 @@ nvidia@<hostname>:~$ netq install cluster master-init
 ```
 9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
-10. Create a JSON template using the installation command for your deployment model. Run `netq install combined config generate` on your master node to generate a template for the cluster configuration JSON file. This command creates a template with three nodes by default. To change the number of nodes, specify the number in the command itself. For example, `netq install combined config generate 6` creates a JSON template with fields for six nodes.
+10. Create a JSON template using the installation command for your deployment model. Run `netq install combined config generate` on your master node to generate a template for the cluster configuration JSON file. This command creates a template with three nodes by default. To change the number of nodes, specify the number in the command itself. For example, `netq install combined config generate nodes 6` creates a JSON template with fields for six nodes.
 
 ```
 nvidia@netq-server:~$ netq install combined config generate
@@ -226,7 +226,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {{< /tab >}}
 {{< tab "Completed JSON Example">}}
 
-The following example uses the `netq install combined config generate 6` command to create a JSON template for a six-node cluster.
+The following example uses the `netq install combined config generate nodes 6` command to create a JSON template for a six-node cluster.
 
 ``` 
 nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 

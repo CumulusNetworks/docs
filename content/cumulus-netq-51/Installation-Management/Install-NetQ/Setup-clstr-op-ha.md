@@ -64,7 +64,6 @@ Additionally, for internal cluster communication, you must open these ports:
 |9092|	TCP|	Kafka client|
 |10250|	TCP|	kubelet health probe|
 |36443|	TCP|	Kubernetes control plane|
-|54321|	TCP|	OPTA communication|
 
 {{< /expand >}}
 

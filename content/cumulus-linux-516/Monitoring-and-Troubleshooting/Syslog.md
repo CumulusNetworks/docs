@@ -200,7 +200,7 @@ You can control which logs to capture using selectors. A selector enables you to
 {{%notice infonopad%}}
 In Cumulus Linux 5.14 and earlier, syslog selector configuration applies default values for facility (`daemon`) and severity (`notice`) if they are not explicitly configured. If a selector includes a program name, only logs from that program and matching other conditions (`facility`, `severity`, `filter`, `rate-limit`) are forwarded; logs from other programs are dropped. When a selector is defined with only rate-limit or severity, the respective defaults are still applied unless you explicitly configure otherwise.<br><br>
 
-In Cumulus Linux 5.15 and later, selector behavior has changed as follows:
+In Cumulus Linux 5.15 and later, selector behavior is as follows:
 
 - **No Default Facility or Severity**: Selectors now require explicit facility and severity values; no defaults are applied. If left unspecified, all facilities and severities are included for log forwarding.
 - **Expanded Program Matching**: When a selector specifies a program name alongside other conditions, logs from the targeted program are forwarded according to those conditions, and logs from all other programs are also forwarded unless excluded by other selectors.

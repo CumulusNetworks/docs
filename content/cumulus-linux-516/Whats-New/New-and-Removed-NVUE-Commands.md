@@ -108,6 +108,8 @@ nv set system security user <user-id> max-logins
 nv set system tech-support auto-generation burst-duration
 nv set system tech-support auto-generation burst-size
 nv set system tech-support auto-generation state
+nv set system telemetry export otlp grpc client-certificate <value> 
+nv set system telemetry export otlp grpc destination <destination-id>
 nv set qos egress-shaper <profile-id> mode
 nv set interface <interface-id> qos headroom lossy extra-threshold
 nv set interface <interface-id> link tx-squelch
@@ -161,6 +163,7 @@ nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-un
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability aspath allow-my-asn state
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability aspath private-as
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability aspath replace-peer-as
+nv set vrf <vrf-id> router bgp path-selection use-imported-attributes
 nv set vrf <vrf-id> router bgp soo-source
 ```
 

@@ -24,7 +24,7 @@ For simulations with 226 or fewer nodes, Air creates a single leaf switch:
 ```
                      ┌───────────────────────┐
                      │   oob-mgmt-server     │
-                     │   192.168.0.253       │
+                     │   192.168.200.1       │
                      │                       │
                      │  • DHCP server        │
                      │  • DNS server         │
@@ -34,14 +34,14 @@ For simulations with 226 or fewer nodes, Air creates a single leaf switch:
                      ┌───────────┴───────────┐
                      │   oob-mgmt-switch     │
                      │   (leaf switch)       │
-                     │   192.168.0.254       │
+                     │   192.168.200.254     │
                      └───────────┬───────────┘
                                  │
               ┌──────────────────┼──────────────────┐
               │                  │                  │
         ┌─────┴─────┐      ┌─────┴─────┐      ┌─────┴─────┐
         │  node1    │      │  node2    │      │  node3    │
-        │  .0.1     │      │  .0.2     │      │  .0.3     │
+        │  .200.2   │      │  .200.3   │      │  .200.4   │
         └───────────┘      └───────────┘      └───────────┘
 ```
 
@@ -75,21 +75,21 @@ The OOB network can scale up to approximately 23,000 nodes.
 
 ## IP Addressing
 
-The OOB network uses the `192.168.0.0/16` private address space. Each leaf switch serves a `/24` subnet:
+The OOB network uses the `192.168.0.0/16` private address space. Each leaf switch serves a `/24` subnet, starting at `192.168.200.0/24` and allocating downward:
 
 | Subnet | Leaf Switch | Node IP Range | Gateway (Leaf SVI) |
 |--------|-------------|---------------|-------------------|
-| 192.168.0.0/24 | leaf-1 | 192.168.0.1 - 192.168.0.252 | 192.168.0.254 |
-| 192.168.1.0/24 | leaf-2 | 192.168.1.1 - 192.168.1.252 | 192.168.1.254 |
-| 192.168.2.0/24 | leaf-3 | 192.168.2.1 - 192.168.2.252 | 192.168.2.254 |
+| 192.168.200.0/24 | leaf-1 | 192.168.200.2 - 192.168.200.253 | 192.168.200.254 |
+| 192.168.199.0/24 | leaf-2 | 192.168.199.1 - 192.168.199.253 | 192.168.199.254 |
+| 192.168.198.0/24 | leaf-3 | 192.168.198.1 - 192.168.198.253 | 192.168.198.254 |
 | ... | ... | ... | ... |
 
 ### Reserved Addresses
 
 | Address | Purpose |
 |---------|---------|
-| .253 | OOB management server (on 192.168.0.0/24 only) |
-| .254 | Leaf switch gateway |
+| 192.168.200.1 | OOB management server |
+| .254 | Leaf switch gateway (per subnet) |
 | .255 | Broadcast |
 
 ## What Gets Configured Automatically

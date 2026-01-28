@@ -59,15 +59,19 @@ nv show vrf <vrf-id> router fib ipv6 route <route-id>
 {{< tab "nv set ">}}
 
 ```
-nv set acl <acl-id> rule <rule-id> match inner-ip dscp
-nv set acl <acl-id> rule <rule-id> match inner-ip source-ip
 nv set acl <acl-id> rule <rule-id> match inner-ip dest-ip
+nv set acl <acl-id> rule <rule-id> match inner-ip dscp
+nv set acl <acl-id> rule <rule-id> match inner-ip ecn flags
+nv set acl <acl-id> rule <rule-id> match inner-ip ecn ip-ect
 nv set acl <acl-id> rule <rule-id> match inner-ip protocol
+nv set acl <acl-id> rule <rule-id> match inner-ip source-ip
+nv set acl <acl-id> rule <rule-id> match inner-ip tcp source-port
+nv set acl <acl-id> rule <rule-id> match inner-ip tcp dest-port
 nv set acl <acl-id> rule <rule-id> match inner-ip udp source-port
 nv set acl <acl-id> rule <rule-id> match inner-ip udp dest-port
-nv set acl <acl-id> rule <rule-id> match offset <offset> value
 nv set acl <acl-id> rule <rule-id> match offset <offset> mask
 nv set acl <acl-id> rule <rule-id> match offset <offset> match-from start-of-packet 
+nv set acl <acl-id> rule <rule-id> match offset <offset> value
 nv set router bfd offload
 nv set system api compression gzip
 nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down

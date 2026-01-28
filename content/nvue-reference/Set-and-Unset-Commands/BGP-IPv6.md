@@ -736,6 +736,52 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf RED router bgp address-family ipv6-unicast route-import from-vrf route-map BLUEtoRED
 ```
 
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unreachability advertise-origin</h>
+
+Configures BGP conditional disaggregation to attach the SOO for BGP unreachability information signaling for IPv6.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-origin
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unreachability state</h>
+
+Enables and disables BGP unreachability (failure signaling) globally for BGP conditional disaggregation for IPv6.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath allow-my-asn enable</h>
@@ -1488,6 +1534,251 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability aspath allow-my-asn occurrences</h>
+
+Configures the maximum number of occurrences of the local system's AS number in the received AS_PATH. You can set a value between 1 and 10.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath allow-my-asn occurrences 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability aspath allow-my-asn origin</h>
+
+Configures BGP to allow a received AS_PATH containing the ASN of the local system but only if it is the originating AS. You can specify `enabled` or `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath allow-my-asn origin enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability aspath allow-my-asn route-map</h>
+
+Applies the route map to filter IPv6 routes with my AS in the AS_PATH. Allows selective application of `allowas-in` based on route map matching.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath allow-my-asn route-map ROUTEMAP1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability aspath allow-my-asn state</h>
+
+Enables and disables the local system's AS number in the received AS_PATH. You can specify `enabled` or `disabled`. The default setting is `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath allow-my-asn state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability aspath private-as</h>
+
+Configures how to handle private ASNs in the update to the peer. You can specify:
+- `none` to take no action. This is the default setting.
+- `remove` to remove any private ASNs in the update to the peer
+- `replace` to replace any private ASNs in the update to the peer  with the ASN of the local system.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath private-as replace
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability aspath replace-peer-as</h>
+
+Configures BGP to replace the ASN of the peer in the AS_PATH of an outgoing update with the ASN of the local system. You can specify `enabled` or `disabled`. The default setting is `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath replace-peer-as enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability prefix-limits maximum </h>
+
+Configures the maximum number of unreachability prefixes that can be received from the peer. This is CRITICAL for security to prevent state exhaustion.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits maximum 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability prefix-limits reestablish-wait</h>
+
+Configures the time in minutes to wait before establishing the BGP session again with the peer for unreachability. The default value is `auto`, which uses standard BGP timers and processing.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits reestablish-wait 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability prefix-limits warning-only</h>
+
+Configures the switch to only generate a warning syslog if the number of received unreachability prefixes exceeds the limit, but does not bring down the BGP session. You can set this option to `enabled` or `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits warning-only enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability prefix-limits warning-threshold</h>
+
+Configures the prefix limits for a neighbor for BGP conditional disaggregation. Sets the percentage of the maximum at which a syslog warning is generated. You can set the value between 1 and 100. The default value is 75.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits warning-threshold 50
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability state</h>
+
+Enables and disables BGP unreachability (failure signaling) on the neighbor. The default value is disabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast add-path-tx</h>
 
 Configures BGP to advertise more than just the best path for a prefix. You can specify `all-paths` to advertise all known paths to the peers in the peer group or `best-per-AS` to advertise only the best path learned from each AS. The default setting is disabled.
@@ -1853,7 +2144,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise exist-map EXIST  
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise exist-map EXIST  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1876,7 +2167,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise non-exist-map NONEXIST 
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise non-exist-map NONEXIST 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2045,7 +2336,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound aspath-list MYASPATHLIST
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy inbound aspath-list MYASPATHLIST
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2284,4 +2575,261 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast weight 5000
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath allow-my-asn occurrences</h>
+
+Configures the maximum number of occurrences of the local system's AS number in the received AS_PATH for the peer group. You can set a value between 1 and 10.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability aspath allow-my-asn occurrences 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath allow-my-asn origin</h>
+
+Configures BGP to allow a received AS_PATH containing the ASN of the local system but only if it is the originating AS for the peer group. You can specify `enabled` or `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability aspath allow-my-asn origin enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath allow-my-asn route-map</h>
+
+Applies the route map to filter IPv6 routes with my AS in the AS_PATH. Allows selective application of `allowas-in` based on route map matching. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability aspath allow-my-asn route-map ROUTEMAP1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath allow-my-asn state</h>
+
+Enables and disables the local system's AS number in the received AS_PATH for the peer group. You can specify `enabled` or `disabled`. The default setting is `disabled`. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability aspath allow-my-asn state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath private-as</h>
+
+Configures how to handle private ASNs in the update to the peer group. You can specify:
+- `none` to take no action. This is the default setting.
+- `remove` to remove any private ASNs in the update to the peer.
+- `replace` to replace any private ASNs in the update to the peer  with the ASN of the local system.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability aspath private-as replace
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath replace-peer-as</h>
+
+Configures BGP to replace the ASN of the peer in the AS_PATH of an outgoing update with the ASN of the local system for the peer group. You can specify `enabled` or `disabled`. The default setting is `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability aspath replace-peer-as enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits maximum</h>
+
+Configures the maximum number of unreachability IPv6 prefixes that can be received from the peer group. This is CRITICAL for security to prevent state exhaustion.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits maximum 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits reestablish-wait</h>
+
+Configures the time in minutes to wait before establishing the BGP session again with the peer group for unreachability. The default value is `auto`, which uses standard BGP timers and processing. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits reestablish-wait 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits warning-only</h>
+
+Configures the switch to only generate a warning syslog if the number of received unreachability IPv6 prefixes exceeds the limit, but does not bring down the BGP session. You can set this option to `enabled` or `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits warning-only enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits warning-threshold</h>
+
+Configures the prefix limits for a peer group for BGP conditional disaggregation. Sets the percentage of the maximum at which a syslog warning is generated. You can set the value between 1 and 100. The default value is 75.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits warning-threshold 50
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability state</h>
+
+Enables and disables IPv6 BGP unreachability (failure signaling) for the peer group. The default value is disabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability state enabled
 ```

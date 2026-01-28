@@ -104,7 +104,7 @@ ff00::/8    dev vlan30     kernel    global  Metric: 256
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router fib ipv4 route</h>
+## <h>nv show vrf \<vrf-id\> router fib ipv4 route \<route-id\></h>
 
 Shows IPv4 FIB table entries for a specific prefix in a VRF.
 
@@ -112,7 +112,8 @@ Shows IPv4 FIB table entries for a specific prefix in a VRF.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 or IPv6 prefix. |
 
 ### Version History
 
@@ -130,7 +131,7 @@ Prefix             Next-hop               Proto  Scope  Summary
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router fib ipv6 route</h>
+## <h>nv show vrf \<vrf-id\> router fib ipv6 route \<route-id\></h>
 
 Shows IPv6 FIB table entries for a specific prefix in a VRF.
 
@@ -139,6 +140,7 @@ Shows IPv6 FIB table entries for a specific prefix in a VRF.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
+| `<route-id>` | The IPv4 or IPv6 prefix. |
 
 ### Version History
 

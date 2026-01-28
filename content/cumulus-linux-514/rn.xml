@@ -58,12 +58,6 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td></td>
 </tr>
 <tr>
-<td>4771874</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4771785</td>
 <td>NVUE drop counters and ethtool output do not show the packets discarded because the destination MAC address does not match the router MAC address.</td>
 <td>5.14.0-5.15.1</td>

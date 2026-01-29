@@ -1,9 +1,9 @@
 ---
-title: NetQ 5.0 Open Source Packages
+title: NetQ 5.1 Open Source Packages
 author: Cumulus Networks
 weight: -30
 product: Cumulus NetQ
-version: "5.0"
+version: "5.1"
 toc: 1
 pdfhidden: True
 ---

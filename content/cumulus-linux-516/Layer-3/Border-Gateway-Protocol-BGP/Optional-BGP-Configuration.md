@@ -1639,7 +1639,7 @@ spine01# exit
 
 ### BGP PIC Anycast
 
-Fast route convergence in case of remote link failures between leaf and spine, and spine and superspine layers in a multiplane topology requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in {{<link url="#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
+Fast route convergence in case of remote link failures between leaf and spine, and spine and superspine layers requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in {{<link url="#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
 
 {{%notice note%}}
 The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.

@@ -101,7 +101,9 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 {{< tabs "TabID569 ">}}
 {{< tab "NVUE Commands ">}}
 
-1. Download the Cumulus Linux image with the `nv action fetch system image <remote-url>` command:
+1. Download the Cumulus Linux image with the `nv action fetch system image <remote-url>` command.
+
+   The image files are downloaded to your enterprise support account in a convenient location in your infrasructure. The image location below is just an example; use your remote URL for the download.
 
    ```
    cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.16.0-mlx-amd64.bin
@@ -563,7 +565,7 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
 
 {{< /tabs >}}
 
-2. Download the Cumulus Linux image.
+2. {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="Download the Cumulus Linux image.">}}
 3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, defines the current NVUE startup configuration to back up and restore in the new image, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
 
     ```
@@ -759,3 +761,9 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 - The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.15, followed by a package upgrade to 5.16, the `/etc/image-release` file continues to display Cumulus Linux 5.15, which is the originally installed base image.
 - To downgrade a switch with Secure Boot enabled, see {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}}.
 - If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch. After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages. Package upgrade does **not** replace or remove third-party applications.
+
+## Related Information
+
+- {{<exlink url="https://enterprise-support.nvidia.com/s/article/NVIDIA-Enterprise-Support-Guide-for-New-Users#NVIDIA-Enterprise-Support-Portal" text="NVIDIA Enterprise Support Portal User Guide">}}
+- {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}
+- {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="Managing Cumulus Linux Disk Images with ONIE">}}

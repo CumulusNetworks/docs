@@ -976,6 +976,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>4805286</td>
+<td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
+<td>5.11.3-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4797691</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
 <td>5.0.0-5.15.1</td>
@@ -997,6 +1003,22 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4771521</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4729839</td>
+<td>In an MLAG configuration, when you reboot the primary MLAG switch with PVRST spanning tree mode configured on both MLAG switches, PVRST mode briefly changes to RSTP, then back to PVRST when the primary switch comes back up.</td>
+<td>5.11.3-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4722680</td>
+<td>If you install RADIUS client packages when rolling back a two partition upgrade, the {{/var/lib/nvue}}, {{/var/lib/ntpsec}}, and {{/var/lib/snmp}} directories might have incorrect ownership after rollback and the {{nvued}} service might fail to start up. To work around this issue, run the following commands:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+sudo reboot</td>
+<td>5.11.4-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1946,6 +1968,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4805286</td>
+<td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
+<td>5.11.3-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4797691</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
 <td>5.0.0-5.15.1</td>
@@ -1967,6 +1995,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4771521</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4729839</td>
+<td>In an MLAG configuration, when you reboot the primary MLAG switch with PVRST spanning tree mode configured on both MLAG switches, PVRST mode briefly changes to RSTP, then back to PVRST when the primary switch comes back up.</td>
+<td>5.11.3-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3070,16 +3104,16 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.11.4-5.15.1</td>
 </tr>
 <tr>
-<td>4499025</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4486668</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
+<td>5.14.0-5.15.1</td>
 </tr>
 <tr>
 <td>4486200</td>
@@ -3856,20 +3890,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>4475117</td>
-<td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
-sudo chown -R nvue /var/lib/nvue
-sudo chown -R ntpsec /var/lib/ntpsec
-sudo chown -R Debian-snmp /var/lib/snmp
-To restart the services, either reboot the switch, or run the following commands:
-sudo systemctl restart nvued.service
-sudo systemctl restart nvue-startup.service
-systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
-systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
-</td>
-<td>5.11.1</td>
-</tr>
-<tr>
 <td>4475074</td>
 <td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
 <td>5.13.0-5.13.1</td>
@@ -3881,6 +3901,20 @@ cumulus@switch:~$ sudo su
 cumulus@switch:~$ cd /var/lib/nvue/config
 cumulus@switch:~$ git gc</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4472217</td>
+<td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+To restart the services, either reboot the switch, or run the following commands:
+sudo systemctl restart nvued.service
+sudo systemctl restart nvue-startup.service
+systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
+systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
+</td>
+<td>5.11.1</td>
 </tr>
 <tr>
 <td>4458897</td>
@@ -4025,7 +4059,7 @@ switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered I
 <td>5.11.0-5.11.1, 5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4408161</td>
+<td>4404955</td>
 <td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
@@ -4235,7 +4269,13 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>4475117</td>
+<td>4472414</td>
+<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
+<td>5.11.0-5.14.0</td>
+<td>5.15.0-5.15.1</td>
+</tr>
+<tr>
+<td>4472217</td>
 <td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
 sudo chown -R nvue /var/lib/nvue
 sudo chown -R ntpsec /var/lib/ntpsec
@@ -4247,13 +4287,7 @@ systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
 systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </td>
 <td>5.11.1</td>
-<td>5.11.2-5.15.1</td>
-</tr>
-<tr>
-<td>4472414</td>
-<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
-<td>5.11.0-5.14.0</td>
-<td>5.15.0-5.15.1</td>
+<td>5.11.2-5.15.1, 5.14.0-5.15.1</td>
 </tr>
 <tr>
 <td>4461102</td>

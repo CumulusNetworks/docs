@@ -19,6 +19,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4805286</td>
+<td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
+<td>5.11.3-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4797691</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
 <td>5.0.0-5.15.1</td>
@@ -28,6 +34,12 @@
 <td>4789562</td>
 <td>A switch running Nvidia Cumulus Linux may improperly forward routed packets out of an access port or on the native vlan of a trunk with an 802.1Q tag imposed on the packet.</td>
 <td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789339</td>
+<td>The {{interface_stats}} process might crash when a transceiver has non-ASCII data in EEPROM fields, such as vendor name or part number. </td>
+<td>5.13.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -56,9 +68,31 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>4748963</td>
+<td>In an MLAG configuration with PVRST spanning tree mode configured on both switches, when the primary switch comes back up after a reboot, PVRST mode briefly changes to RSTP, then back to PVRST.</td>
+<td>5.13.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4748176</td>
 <td>Unsupported hardware modules might cause SDK and firmware health event and traffic loss.</td>
 <td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4729839</td>
+<td>In an MLAG configuration, when you reboot the primary MLAG switch with PVRST spanning tree mode configured on both MLAG switches, PVRST mode briefly changes to RSTP, then back to PVRST when the primary switch comes back up.</td>
+<td>5.11.3-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4722680</td>
+<td>If you install RADIUS client packages when rolling back a two partition upgrade, the {{/var/lib/nvue}}, {{/var/lib/ntpsec}}, and {{/var/lib/snmp}} directories might have incorrect ownership after rollback and the {{nvued}} service might fail to start up. To work around this issue, run the following commands:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+sudo reboot</td>
+<td>5.11.4-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -78,10 +112,22 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td></td>
 </tr>
 <tr>
+<td>4717502</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.13.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4686865</td>
+<td>An invalid hashed-password string for a local NVUE user causes all {{nv config apply}} operations (including unrelated changes) to fail health checks and raise tracebacks when NVUE attempts to recreate the user. </td>
+<td>5.12.0-5.14.0</td>
+<td>5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4683602</td>
@@ -1398,6 +1444,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>4805286</td>
+<td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
+<td>5.11.3-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4797691</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
 <td>5.0.0-5.15.1</td>
@@ -1441,6 +1493,22 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>4729839</td>
+<td>In an MLAG configuration, when you reboot the primary MLAG switch with PVRST spanning tree mode configured on both MLAG switches, PVRST mode briefly changes to RSTP, then back to PVRST when the primary switch comes back up.</td>
+<td>5.11.3-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4722680</td>
+<td>If you install RADIUS client packages when rolling back a two partition upgrade, the {{/var/lib/nvue}}, {{/var/lib/ntpsec}}, and {{/var/lib/snmp}} directories might have incorrect ownership after rollback and the {{nvued}} service might fail to start up. To work around this issue, run the following commands:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+sudo reboot</td>
+<td>5.11.4-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4722539</td>
 <td>Optimized image upgrade with warm boot mode is supported in Cumulus Linux 5.13 and later. When you try to run the {{nv action boot-next}} command during optimized image upgrade in Cumulus Linux 5.12 and earlier to any target release while the system is in warm boot mode, the {{boot-next}} operation fails with the following error:
 cumulus@switch:~$ nv action boot-next system image other
@@ -1461,6 +1529,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4686865</td>
+<td>An invalid hashed-password string for a local NVUE user causes all {{nv config apply}} operations (including unrelated changes) to fail health checks and raise tracebacks when NVUE attempts to recreate the user. </td>
+<td>5.12.0-5.14.0</td>
+<td>5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4683602</td>

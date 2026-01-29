@@ -13,9 +13,35 @@
 <td></td>
 </tr>
 <tr>
+<td>4838527</td>
+<td>On a high port scale system, streaming telemetry for interface and buffer statistics (GNMI or OTEL) together with the PFC watchdog feature, causes samples of telemetry data to fail to export from the system periodically and kernel memory use might increase.</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4835058</td>
 <td>When you add or remove bond members, the sflow state and rate are incorrect. </td>
 <td>5.13.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4826181</td>
+<td>When you apply EVPN layer 3 VNI and BGP AS configurations together for a VRF, an internal AS number inconsistency might occur between the FRR running configuration and the {{/etc/frr/frr.conf}} file. When you try to apply any configuration using f{{rr-reload}}, NVUE detects this pre-existing inconsistency and triggers an unnecessary FRR restart, causing BGP session flaps. To work around this issue, apply BGP configuration before EVPN layer 3 VNI configuration in separate commits. </td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4823999</td>
+<td>When making interface changes with NVUE, you might see the following message after you run the {{nv config apply}} command:
+ update-ports returned with error (code 254): switchd ports.conf node status not ready switchd validate_node is absent/not ready 
+ports configuration(ports.conf/ports_width.conf) is invalid</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4805286</td>
+<td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
+<td>5.11.3-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -37,6 +63,12 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td>4789562</td>
 <td>A switch running Nvidia Cumulus Linux may improperly forward routed packets out of an access port or on the native vlan of a trunk with an 802.1Q tag imposed on the packet.</td>
 <td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789339</td>
+<td>The {{interface_stats}} process might crash when a transceiver has non-ASCII data in EEPROM fields, such as vendor name or part number. </td>
+<td>5.13.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -77,9 +109,21 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>4748963</td>
+<td>In an MLAG configuration with PVRST spanning tree mode configured on both switches, when the primary switch comes back up after a reboot, PVRST mode briefly changes to RSTP, then back to PVRST.</td>
+<td>5.13.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4748176</td>
 <td>Unsupported hardware modules might cause SDK and firmware health event and traffic loss.</td>
 <td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4743814</td>
+<td>The switch clears the QoS buffer max usage values in the {{nv show interface &lt;interface&gt; qos buffer egress-traffic-class}} command output when a gNMI client subscribes to any QoS buffer metrics.</td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -108,6 +152,22 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 To work around this issue, restart the {{nvued.service}}. To avoid this issue, call each interface in the configuration instead of using ranges.</td>
 <td>5.14.0</td>
 <td>5.15.0-5.15.1</td>
+</tr>
+<tr>
+<td>4729839</td>
+<td>In an MLAG configuration, when you reboot the primary MLAG switch with PVRST spanning tree mode configured on both MLAG switches, PVRST mode briefly changes to RSTP, then back to PVRST when the primary switch comes back up.</td>
+<td>5.11.3-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4722680</td>
+<td>If you install RADIUS client packages when rolling back a two partition upgrade, the {{/var/lib/nvue}}, {{/var/lib/ntpsec}}, and {{/var/lib/snmp}} directories might have incorrect ownership after rollback and the {{nvued}} service might fail to start up. To work around this issue, run the following commands:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+sudo reboot</td>
+<td>5.11.4-5.15.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4722539</td>
@@ -144,6 +204,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.15.1</td>
 </tr>
 <tr>
+<td>4717502</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.13.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
@@ -163,6 +229,12 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td>TACACS authentication mode is not configured correctly in PAM common authentication and TACACS configuration files, which makes {{login}} the authentication mode regardless of the NVUE configuration.</td>
 <td>5.14.0-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4686865</td>
+<td>An invalid hashed-password string for a local NVUE user causes all {{nv config apply}} operations (including unrelated changes) to fail health checks and raise tracebacks when NVUE attempts to recreate the user. </td>
+<td>5.12.0-5.14.0</td>
+<td>5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4683602</td>

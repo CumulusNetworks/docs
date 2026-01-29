@@ -18,10 +18,6 @@ Cumulus Linux uses two configuration files for QoS:
 - `/etc/cumulus/datapath/qos/qos_features.conf` includes all standard QoS configuration, such as marking, shaping and flow control.
 - `/etc/mlx/datapath/qos/qos_infra.conf` includes all platform specific configurations, such as buffer allocations and [Alpha values](https://enterprise-support.nvidia.com/s/article/understanding-the-alpha-parameter-in-the-buffer-configuration-of-mellanox-spectrum-switches).
 
-{{% notice note %}}
-Cumulus Linux 5.0 and later does not use the `traffic.conf` and `datapath.conf` files but uses the `qos_features.conf` and `qos_infra.conf` files instead. Before upgrading Cumulus Linux, review your existing QoS configuration to determine the changes you need to make.
-{{% /notice %}}
-
 ## switchd and QoS
 
 When you run **Linux commands** to configure QoS, you must apply QoS changes to the ASIC with the following command:
@@ -1060,7 +1056,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `shaping` section of the `qos_features.conf` file.
+Edit the `shaping` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 Cumulus Linux bases the `egr_queue` value on the configured [egress queue](#egress-queues).
 
@@ -1072,7 +1068,7 @@ shaping.shaper1.egr_queue_0.shaper = [50000, 100000]
 shaping.shaper1.port.shaper = 900000
 ```
 
-To set the mode to kilobits per second, set `shaping.shaper_port_group.mode = 0`.
+To set the mode to kilobits per second, set `shaping.shaper_port_group.mode = 0`. To set the mode to packets per second, set `shaping.shaper_port_group.mode = 1`.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1192,7 +1188,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-You define profiles with the `source.port_group_list` configuration in the `qos_features.conf` file. A `source.port_group_list` is one or more names used for a group of settings.
+You define profiles with the `source.port_group_list` configuration in the `/etc/cumulus/datapath/qos/qos_features.conf` file. A `source.port_group_list` is one or more names used for a group of settings.
 
 The following example configures two profiles. `customer1` applies to swp1, swp4, and swp6. `customer2` applies to swp5 and swp7.
 
@@ -1989,7 +1985,7 @@ shared-bytes   13.53 KB         13.53 KB
 
 ## Syntax Checker
 
-Cumulus Linux provides a syntax checker for the `qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.
+Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/qos/qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.
 
 The syntax checker runs automatically with every `switchd reload`.
 
@@ -2002,11 +1998,11 @@ The `cl-consistency-check --datapath-syntax-check` command takes the following o
 | `-h` | Displays this list of command options. |
 | `-q` | Runs the command in quiet mode. Errors write to the `/var/log/switchd.log` file instead of `stderr`. |
 | `-qi` | Runs the syntax checker against a specified `qos_infra.conf` file. |
-| `-qf` | Runs the syntax checker against a specified `qos_features.conf` file. |
+| `-qf` | Runs the syntax checker against a specified `/etc/cumulus/datapath/qos/qos_features.conf` file. |
 
 By default the syntax checker assumes:
-- `qos_infra.conf` is in `/etc/mlx/datapath/qos/qos_infra.conf`
-- `qos_features.conf` is in `/etc/cumulus/datapath/qos/qos_features.conf`
+- The `qos_infra.conf` file is in the `/etc/mlx/datapath/qos/qos_infra.conf` directory.
+- The `qos_features.conf` file is in the `/etc/cumulus/datapath/qos/qos_features.conf` directory.
 
 You can run the syntax checker when `switchd` is either running or stopped.
 
@@ -2626,7 +2622,7 @@ cos_egr_queue.cos_7.cpu = 7
 
 If you configure btoh breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
 
-You must apply breakout port configuration before QoS configuration on the breakout ports. If you are using NVUE, configure breakout ports and perform an `nv config apply` first, then configure QoS settings on the breakout ports followed by another `nv config apply`. If you are using linux file configuration, modify `ports.conf` first, `reload switchd`, then modify `qos_features.conf` and `reload switchd` a second time.
+You must apply breakout port configuration before QoS configuration on the breakout ports. If you are using NVUE, configure breakout ports and perform an `nv config apply` first, then configure QoS settings on the breakout ports followed by another `nv config apply`. If you are using linux file configuration, modify `ports.conf` first, `reload switchd`, then modify `/etc/cumulus/datapath/qos/qos_features.conf` and `reload switchd` a second time.
 
 ### QoS Settings on Bond Member Interfaces
 
@@ -2639,4 +2635,4 @@ NVUE rejects QoS configurations on bond member interfaces and shows an error whe
 <!-- vale off -->
 ### Cut-through Switching
 <!-- vale on -->
-You cannot disable cut-through switching on Spectrum ASICs. Cumulus Linux ignores the `cut_through_enable = false` setting in the `qos_features.conf` file.
+You cannot disable cut-through switching on Spectrum ASICs. Cumulus Linux ignores the `cut_through_enable = false` setting in the `/etc/cumulus/datapath/qos/qos_features.conf` file.

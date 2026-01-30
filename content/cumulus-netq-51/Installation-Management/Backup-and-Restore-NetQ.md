@@ -110,10 +110,10 @@ nvidia@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718
 
 These steps apply exclusively to {{<link title="Install NetQ for NVLink" text="NetQ NVLink">}} three-node cluster deployments.
 
-1. Run the {{<link title="nvl/#netq-nvl-cluster-backup" text="netq nvl cluster backup">}} command on each node in your cluster:
+1. Run the {{<link title="nvl/#netq-nvl-cluster-backup" text="netq nvl cluster backup">}} command on each node in your cluster, specifying the path to the directory where the backup file is stored. Make sure that the path ends with `backup`:
 
 ```
-nvidia@<hostname>: netq nvl cluster backup
+nvidia@<hostname>:~$ netq nvl cluster backup backup-path /home/nvidia/backup
 2025-06-17 06:30:52,717 - INFO - Parsed arguments: Namespace(action='backup', backup_path='nvlink_cluster_backup', drop_mongo_collections=False, cm_op_ns='infra', cm_target_ns=['infra', 'kafka', 'nmx'], mongo_db_name=None, mongo_collections=None, mongo_k8s_ns='infra', mongo_statefulset='mongodb', mongo_container='mongodb', mongo_replicaset='rs0')
 2025-06-17 06:30:52,717 - INFO - Action: Full Backup selected.
 2025-06-17 06:30:52,717 - INFO - --- Starting NVLINK Cluster Full Backup to: nvlink_cluster_backup_20250617063052 ---
@@ -121,7 +121,9 @@ nvidia@<hostname>: netq nvl cluster backup
 2025-06-17 06:30:55,159 - INFO - Full backup completed to: nvlink_cluster_backup_20250617063052
 ```
 
-2. Copy the newly-created file to the `/tmp/data-infra/` directory:
+2. Run `netq bootstrap rest purge-db` on each node in your cluster.
+
+3. Copy the newly-created file to the `/tmp/data-infra/` directory:
 
 ```
 cp -r /home/nvidia/nvlink_cluster_backup_20250617063052 /tmp/data-infra
@@ -140,10 +142,16 @@ To restore your NetQ data, perform a {{<link title="Install the NetQ System" tex
 {{</tab>}}
 {{<tab "NVLink-only" >}}
 
-1. Restore your data by running the {{<link title="nvl/#netq-nvl-cluster-restore" text="netq nvl cluster restore">}} command with the `drop-mongo-collections` option. This option prevents NetQ from re-installing duplicate data.
+1. Run the installation command on your master node and include the file that you created in the previous step. Specify the passwords for the read-write user and the read-only user in the `rw-password` and `ro-password` fields, respectively. This command upgrades your NetQ deployment to 5.1.0:
 
 ```
-nvidia@<hostname>: netq nvl cluster restore /tmp/data-infra/nvlink_cluster_backup_20250617063052/ drop-mongo-collections
+nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.1.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /home/nvidia/nvl-cluster-config.json
+```
+
+2. Restore your data by running the {{<link title="nvl/#netq-nvl-cluster-restore" text="netq nvl cluster restore">}} command with the `drop-mongo-collections` option. This option prevents NetQ from re-installing duplicate data entries.
+
+```
+nvidia@<hostname>:~$ netq nvl cluster restore /tmp/data-infra/nvlink_cluster_backup_20250617063052/ drop-mongo-collections
 ```
 If this step fails for any reason, run `netq nvl bootstrap reset` and then try again.
 

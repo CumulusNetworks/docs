@@ -135,12 +135,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4640757</td>
-<td>The enhanced duplicate IP address validation does not support filters.</td>
-<td>5.0.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4637749</td>
 <td>When the master node is down,  the {{netq show status}} command might report an incorrect status.</td>
 <td>5.0.0</td>

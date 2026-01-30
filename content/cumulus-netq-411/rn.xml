@@ -25,6 +25,12 @@
 <td>4.13.0-4.15.1</td>
 </tr>
 <tr>
+<td>4023716</td>
+<td>NetQ might display duplicate validations results.</td>
+<td>4.11.0-4.15.1</td>
+<td>5.0.0</td>
+</tr>
+<tr>
 <td>4001098</td>
 <td>When you use NetQ LCM to upgrade a Cumulus Linux switch from version 5.9 to 5.10, and if the upgrade fails, NetQ rolls back to version 5.9 and reverts the {{cumulus}} user password to the default password. After rollback, reconfigure the password with the {{nv set system aaa user cumulus password &lt;password&gt;}} command.  </td>
 <td>4.11.0</td>

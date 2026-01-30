@@ -16,7 +16,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-conditional-disaggregation" text="BGP conditional disaggregation">}}
-- {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
+- {{<link url="Optional-BGP-Configuration/#bgp-pic-anycast" text="BGP PIC Anycast">}}
 - {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
 - {{<link url="Understanding-the-cl-support-Output-File/#automatic-cl-support-file" text="Manage automatic cl-support file generation">}}
 - {{<link url="Network-Troubleshooting/#extended-traceroute" text="Extended traceroute (RFC 5837)">}}

@@ -212,7 +212,7 @@ In Cumulus Linux 5.15 and later, selector behavior is as follows:
 
 ### Selector with Program and Conditions
 
-To forward syslog messages only from the `ifreload` program containing the text 'ip link set', and to allow logging from other programs unless restricted:
+To forward syslog messages only from the `ifreload` program containing the text `ip link set`, and to allow logging from other programs unless restricted:
 
 {{< tabs "Example2Tabs" >}}
 {{< tab "NVUE Commands" >}}

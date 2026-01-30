@@ -200,16 +200,6 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 | `/performance/interfaces/interface[name]/histograms/ingress-buffer/priority-group[pg][upper-boundary]/count` | Histogram interface ingress buffer queue depth.|
 | `/performance/interfaces/interface[name]/histograms/counter/counter-type[type][upper-boundary]/count` | Histogram interface counter data.|
 | `/performance/interfaces/interface[name]/histograms/latency/traffic-class[tc][upper-boundary]/count` | Histogram interface latency data.|
-
-{{< /expand >}}
-   - {{< expand "Updated gNMI Metrics" >}}
-Old Name | New Name|
-| -------- | --------- |
-| `/qos/shared-buffer/pools/pool[id]/state/data/instant-occupancy` |  `/qos/shared-buffer/pools/pool[id]/state/instant-occupancy` |
-| `/qos/shared-buffer/pools/pool[id]/state/data/max-occupancy-since-last-sample` | `/qos/shared-buffer/pools/pool[id]/state/max-occupancy-since-last-sample` |
-| `/qos/shared-buffer/pools/pool[id]/state/data/max-occupancy` | `/qos/shared-buffer/pools/pool[id]/state/max-occupancy` |
-| `/qos/shared-buffer/pools/pool[id]/state/data/max-occupancy-timestamp` | `/qos/shared-buffer/pools/pool[id]/state/max-occupancy-timestamp` |
-| `/qos/shared-buffer/pools/pool[id]/state/data/time-since-last-clear` |  `/qos/shared-buffer/pools/pool[id]/state/time-since-last-clear`|
 {{< /expand >}}
    - {{< expand "Deprecated gNMI Metrics" >}}
 |  Name | Removal Reason |

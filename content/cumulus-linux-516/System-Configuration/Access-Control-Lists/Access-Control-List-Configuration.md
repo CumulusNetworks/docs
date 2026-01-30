@@ -784,7 +784,7 @@ cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/
 
 #### Show Control Plane Policer Configuration and Statistics
 
-To show the control plane policer configuration and statistics, run the NVUE `nv show system control-plane policer` command.
+To show the control plane policer configuration and statistics, run the NVUE `nv show system control-plane policer` command:
 
 {{%notice note%}}
 The NVUE `nv show system control-plane policer` command show the current hardware snapshot values. To see native hardware data counters from the time the switch booted or `switchd` restarted, use the `native` option.
@@ -935,60 +935,34 @@ To show control plane policer configuration and native hardware data counters fr
 
 ```
 cumulus@switch:~$ nv show system control-plane policer native
-Policer             Policer CIR  Policer CBS  To CPU Pkts  To CPU Bytes  Violated Packets
-------------------  -----------  -----------  -----------  ------------  ----------------
-acl-log             100          128          0            0             0
-arp                 800          1024         0            0             0
-bfd                 2000         2048         0            0             0
-bgp                 4000         4096         0            0             0
-catch-all           100          128          0            0             0
-clag                2000         2048         0            0             0
-dhcp                2000         2048         0            0             0
-eapol               2000         2048         0            0             0
-icmp6-def-mld       300          128          159          19866         0              ===>hardware counters are not cleared
-icmp6-neigh         500          512          18           1620          0
-icmp-def            100          64           0            0             0
-igmp                1000         1024         0            0             0
-ip2me               1000         1024         0            0             0
-l3-local            400          128          0            0             0
-lacp                2000         2048         0            0             0
-lldp-ptp            2500         4096         0            0             0
-nat                 200          256          0            0             0
-nve-decap-igmp-mld  1000         1024         0            0             0
-pim-ospf-rip        2000         2048         0            0             0
-rpvst               2000         2048         0            0             0
-sflow               1000         1024         0            0             0
-span-cpu            100          128          0            0             0
-ssh                 1000         1024         0            0             0
-stp                 2000         2048         0            0             0
-unknown-ipmc        1000         1024         0            0             0
 ```
 
-- To show configuration and native hardware data counters for a specific control plane policer from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> native` command.
-- To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command.
+To show configuration and native hardware data counters for a specific control plane policer from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> native` command:
+
+```
+cumulus@switch:~$ nv show system control-plane policer bfd native
+```
+
+To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command:
+
+```
+cumulus@switch:~$ nv show system control-plane policer bfd statistics native
+```
 
 #### Clear Control Plane Policer Counters
 
 To aid in troubleshoooting control plane traffic issues, you can clear all control plane policer counters and counters for a specific policer ID.
 
-The switch only clears software (NVUE) counters; hardware counters remain intact.
-
 To clear all control plane policer counters, run the `nv action clear system control-plane policer statistics` command:
 
 ```
 cumulus@switch:~$ nv action clear system control-plane policer statistics
-Action executing ...
-Control-plane policer counters cleared.
-Action succeeded
 ```
 
 To clear counters for a specific control plane policer ID, run the `nv action clear system control-plane policer <policer-id> statistics` command:
 
 ```
 cumulus@switch:~$ nv action clear system control-plane policer bfd statistics
-Action executing ...
-Control-plane policer bfd counters cleared.
-Action succeeded
 ```
 
 ### Control Plane ACLs

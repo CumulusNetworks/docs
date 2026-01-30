@@ -8,7 +8,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - For a list of open and fixed issues in Cumulus Linux 5.11, see the {{<link title="Cumulus Linux 5.11 Release Notes" text="Cumulus Linux 5.11 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.11, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
-# What's New in Cumulus Linux 5.11.5
+## What's New in Cumulus Linux 5.11.5
 
 Cumulus Linux 5.11.5 provides bug fixes and security updates.
 - You can use optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.11.5 from Cumulus Linux 5.11.3 and 5.11.4 (without ISSU support).

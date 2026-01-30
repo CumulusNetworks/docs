@@ -31,16 +31,16 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Added an endpoint to retrieve NetQ's version
 - Added a fault tolerance mechanism that allows NVLink switches with at least two out-of-band management ports to maintain connectivity to NMX controller and telemetry services in case of port failure.
 - Queries to the `compute-nodes` endpoint now return hostnames within the response
-- Performance improvements to scale deployments
 - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
 
 
 ## Upgrade Paths
 
-NetQ 5.1 is available exclusively for on-premises deployments. You can upgrade to 5.1 if your deployment is running version 5.0 or 4.15. First {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.0 installation">}}.
+NetQ 5.1 is available exclusively for on-premises deployments. You can upgrade to 5.1 if your deployment is running version 5.0 or 4.15. First {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.1 installation">}}.
 
 {{%notice note%}}
-If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
+- If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
+- NetQ does not support performing a backup on version 5.1.0 and restoring it to the same version (5.1.0).
 {{%/notice%}}
 
 ## Compatible Agent Versions

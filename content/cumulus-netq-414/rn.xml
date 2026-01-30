@@ -70,6 +70,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4023716</td>
+<td>NetQ might display duplicate validations results.</td>
+<td>4.11.0-4.15.1</td>
+<td>5.0.0</td>
+</tr>
+<tr>
 <td>3993538</td>
 <td>When you re-position a card on your workbench and then manually refresh the workbench, NetQ might reposition the cards.</td>
 <td>4.11.0-4.15.1</td>

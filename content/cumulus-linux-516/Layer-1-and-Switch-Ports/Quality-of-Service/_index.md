@@ -2101,7 +2101,7 @@ To clear the Qos buffers on a set of interfaces, run the `nv action clear interf
 
 ```
 cumulus@switch:~$ nv action clear interface swp1-5,swp20,swp25 qos buffer
-QoS buffers cleared on swp1-5.
+QoS buffers cleared on swp1,swp2,swp3,swp4,swp5,swp20,swp25.
 Action succeeded
 ```
 

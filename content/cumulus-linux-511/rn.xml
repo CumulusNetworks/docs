@@ -527,7 +527,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology. </td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>
@@ -982,6 +982,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
 <td>5.11.1-5.11.4</td>
 </tr>
+<tr>
+<td>4717753</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+</tr>
 </table>
 <table name="Open Issues in 5.11.4">
 <tr>
@@ -1056,6 +1061,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>4721298</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717753</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1523,7 +1534,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology. </td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>
@@ -2031,6 +2042,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4717753</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
@@ -2502,7 +2519,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology. </td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>
@@ -2992,6 +3009,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>4717753</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
@@ -3445,7 +3468,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology. </td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>
@@ -4170,6 +4193,12 @@ nv config apply -y</td>
 <td></td>
 </tr>
 <tr>
+<td>4717753</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
@@ -4725,7 +4754,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology. </td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>
@@ -5402,6 +5431,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>4721298</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717753</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -6108,7 +6143,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology. </td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>

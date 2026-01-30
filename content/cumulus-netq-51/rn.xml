@@ -7,6 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4854041</td>
+<td>When you upgrade a NetQ for NVLink and Ethernet deployment using the data backup and restoration workflow, NetQ does not preserve NVLink data.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4850991</td>
+<td>The NetQ NVLink Swagger REST API enforces a minimum telemetry collection interval of 30 seconds, but values below 30 seconds are accepted without being flagged as invalid in the Swagger interface.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4845405</td>
+<td>NetQ does not support performing a backup on version 5.1.0 and restoring it to the same version (5.1.0).</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4839716</td>
+<td>You cannot perform lifecycle management operations immediately after backing up an HA scale cluster deployment. To work around this issue, wait several hours before initiating LCM operations.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4794266</td>
+<td>Power sensor (PSU) events might show inconsistent sensor names. Additionally, NetQ might not generate PSU events reliably.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4784336</td>
 <td>The NetQ for NVLink deployment option is not supported in air-gapped environments.</td>
 <td>5.0.0-5.1.0</td>
@@ -49,6 +79,16 @@
 <td>5.0.0</td>
 </tr>
 <tr>
+<td>4693161</td>
+<td>In cluster and scale cluster deployments, the snapshot comparison feature may time out when comparing MAC addresses.</td>
+<td>5.0.0</td>
+</tr>
+<tr>
+<td>4689932</td>
+<td>Node reservation for NetQ is not supported in shared multi-node clusters. To work around this issue, deploy NetQ in a dedicated single-node or three-node cluster first, and then scale the deployment by adding nodes for other applications.</td>
+<td>5.0.0</td>
+</tr>
+<tr>
 <td>4687241</td>
 <td>The activity log in the UI might display multiple entries with “unknown” or “anonymous” usernames. </td>
 <td>5.0.0</td>
@@ -64,9 +104,24 @@
 <td>5.0.0</td>
 </tr>
 <tr>
+<td>4667571</td>
+<td>NetQ might return inconsistent results when queries use the regular expression wildcard.</td>
+<td>5.0.0</td>
+</tr>
+<tr>
+<td>4637749</td>
+<td>When the master node is down,  the {{netq show status}} command might report an incorrect status.</td>
+<td>5.0.0</td>
+</tr>
+<tr>
 <td>4573427</td>
 <td>The link health view utilization chart might display incorrect values for the top 5 links when multiple links share the same value.</td>
 <td>5.0.0</td>
+</tr>
+<tr>
+<td>4527529</td>
+<td>When there is a high volume of concurrent API requests to NetQ, some requests may fail.</td>
+<td>4.15.0-5.0.0</td>
 </tr>
 </table>
 </tables>

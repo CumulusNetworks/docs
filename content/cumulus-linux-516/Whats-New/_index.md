@@ -16,7 +16,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-conditional-disaggregation" text="BGP conditional disaggregation">}}
-- {{<link url="Optional-BGP-Configuration/#bgp-pic-anycast" text="BGP PIC Anycast">}}
+- {{<link url="Optional-BGP-Configuration/#bgp-pic-anycast" text="BGP PIC anycast">}}
 - {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
 - {{<link url="Understanding-the-cl-support-Output-File/#automatic-cl-support-file" text="Manage automatic cl-support file generation">}}
 - {{<link url="Network-Troubleshooting/#extended-traceroute" text="Extended traceroute (RFC 5837)">}}
@@ -30,8 +30,6 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx squelch control">}} (Beta)
 - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}} (Beta)
 - {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1x dynamic VRF assignment">}} (Beta)
-- {{<link url="TACACS/#local-fallback-authentication" text="NVUE support for TACACS local fallback authentication">}}
-- {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
 - {{<link url="Quality-of-Service/#shaping" text="PPS mode for QoS egress shapers">}}
 - {{<link url="Quality-of-Service/#extra-lossy-headroom" text="Extra threshold for QoS lossy priority groups">}}
 - {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
@@ -40,6 +38,8 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - Security features:
   - {{<link url="FIPS" text="FIPS mode">}}
   - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and     for a user group">}}
+  - {{<link url="TACACS/#local-fallback-authentication" text="NVUE support for TACACS local fallback authentication">}}
+  - {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
   - {{<link url="RADIUS-AAA/#required-radius-client-configuration" text="Yubikey authentication over RADIUS">}}
   - {{<link url="Syslog/#enable-secured-logs" text="Configure syslog messages">}} to include the date and time events occur, the source IP and username for NVUE commands, and when dynamic kernel modules load and unload
   - {{<link url="NVUE-API/#http-response-compression" text="HTTP response compression for API reponses">}}

@@ -7,7 +7,10 @@ toc: 4
 
 NetQ and network operating system images are managed with LCM. This section explains how to check for missing images, upgrade images, and specify default images.
 
-The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}} according to the version of Cumulus Linux you are running. {{<netq-install/agent-version version="5.0.0" opsys="cl">}}
+The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}}:
+
+- netq-agent_5.1.0-cld12u5_amd64.deb
+- netq-apps_5.1.0-cld12u5_amd64.deb
 
 ## View and Upload Missing Images
 

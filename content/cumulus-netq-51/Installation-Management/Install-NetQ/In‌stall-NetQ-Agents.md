@@ -286,7 +286,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="5.0.0" opsys="cl">}}
+    {{<netq-install/agent-version version="5.1.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -315,7 +315,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="5.0.0" opsys="ub">}}
+    {{<netq-install/agent-version version="5.1.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 

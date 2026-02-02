@@ -141,7 +141,7 @@ You can configure the following optional TACACS+ settings:
 - The users you do not want to send to the TACACS+ server for authentication; for example, local user accounts that exist on the switch, such as the cumulus user.
 - A separate home directory for each TACACS+ user when the TACACS+ user first logs in. By default, the switch uses the home directory in the mapping accounts in `/etc/passwd`. If the home directory does not exist, the `mkhomedir_helper` program creates it. This option does not apply to accounts with restricted shells (users mapped to a TACACS privilege level that has enforced per-command authorization).
   {{%notice note%}}
-When you enable a separate home directory and the TACACS user exists and has connected before, the user home directory already exists under `tacacs_template_user`. Therefore, when adding a local user, the user does not have permissions or ownership of the home directory.
+If a TACACS user exists and has already connected before you enable a separate home directory for that user, the user home directory already exists under `tacacs_template_user`. Therefore, when adding a local user, the user does not have permissions or ownership of the home directory.
 {{%/notice%}}
 <!-- - The output debugging information level through syslog(3) to use for troubleshooting. You can specify a value between 0 and 2. The default is 0. A value of 1 enables debug logging. A value of 2 increases the verbosity of some debug logs.
 

@@ -1150,17 +1150,17 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_dot1x_system_info` | *Global 802.1X configuration information. |
-| `nvswitch_dot1x_radius_client_info` | *Radius client configuration. Cumulus Linux is the radius client. |
-| `nvswitch_dot1x_radius_server_info` | *Radius server configuration. |
-| `nvswitch_dot1x_supplicant_summary` | *Summary showing the MAC address of the supplicant and interface on which it is on. |
-| `nvswitch_dot1x_supplicant_eapol_counters` | *802.1X EAPOL counters to track authentication traffic, showing EAP request frames sent, EAP response frames received from the supplicant (client device), invalid EAPOL frames, and errors like length issues. |  
-| `nvswitch_dot1x_interface_info` | *802.1X interface configuration.|
-| `nvswitch_dot1x_supplicant_status` | *Operational status of the supplicant. |
-| `nvswitch_dot1x_ipv6_profile_info` | *IPv6 profile level configuration. | 
+| `nvswitch_dot1x_system_info` | *Global 802.1X configuration (dynamic VLAN mode, dynamic IPv6 multi-tenant state, max stations per port, auth-fail VLAN ID, reauth-timeout-ignore state, reauthentication interval). |
+| `nvswitch_dot1x_radius_client_info` | *RADIUS client configuration (NAS identifier, NAS IP address, source IP). |
+| `nvswitch_dot1x_radius_server_info` | *RADIUS server configuration (IP address, authentication port, accounting port, priority, VRF). |
+| `nvswitch_dot1x_supplicant_summary` | *Summary showing MAC address, interface, authentication type, VLAN assignment, and session ID of each authenticated supplicant. |
+| `nvswitch_dot1x_supplicant_eapol_counters` | *EAPOL frame counters per supplicant, including start, logoff, request, response, invalid, and length-errored frames. |  
+| `nvswitch_dot1x_interface_info` | *Per-interface 802.1X configuration (EAP, MBA, host mode, port-id, IPv6 profile, auth-fail VLAN).|
+| `nvswitch_dot1x_supplicant_status` | *Authentication status of the supplicant. |
+| `nvswitch_dot1x_ipv6_profile_info` | *IPv6 profile configuration (profile name and route tag). | 
 | `nvswitch_dot1x_ipv6_profile_property_info` | *IPv6 profile property level configuration. |
-| `nvswitch_dot1x_ipv6_profile_summary` | *IPv6 profile summary with the IPv6 prefix. |
-| `nvswitch_dot1x_reauth_timeouts` | *Supplicant counters when the `reauth-timeout-ignore` option is enabled. |
+| `nvswitch_dot1x_ipv6_profile_summary` | *IPv6 prefix generated for each layer 3 authenticated session that is using an IPv6 profile. |
+| `nvswitch_dot1x_reauth_timeouts` | *Counter of reauthentication attempts with the RADIUS server that timed out but were ignored, keeping the supplicant in Authorized state when the `reauth-timeout-ignore` flag is enabled. |
 
 {{< expand "Example JSON data for 802.1X:" >}}
 ```

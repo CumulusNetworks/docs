@@ -66,20 +66,20 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upg
 ```
 nvidia@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-5 netq-latest
+deb https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/ CumulusLinux-5 netq-latest
 ...
 ```
 <!--
 {{<notice tip>}}
-You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 5.0: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-5 netq-5.0</pre>
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 5.0: <pre>https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/ CumulusLinux-5 netq-5.0</pre>
 {{</notice>}}
 
 -->
 
-2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
+2. Add the local `apt` repository authentication key to Cumulus Linux:
 
 ```
-nvidia@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
+nvidia@switch:~$ sudo wget -qO -  https://edge.urm.nvidia.com/artifactory/api/gpg/key/public | apt-key add -
 ```
 
 {{</tab>}}
@@ -151,7 +151,7 @@ To obtain the NetQ Agent package:
 1. Reference and update the local `apt` repository.
 
 ```
-root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+root@ubuntu:~# sudo wget -qO -  https://edge.urm.nvidia.com/artifactory/api/gpg/key/public | apt-key add -
 ```
 
 2. Add the Ubuntu repository:
@@ -162,7 +162,7 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu24.04.list` and add 
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-ubuntu24.04.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb ubuntu24.04 netq-latest
+deb [arch=amd64] https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/ ubuntu24.04 netq-latest
 ...
 ```
 <!--
@@ -239,7 +239,7 @@ To obtain the NetQ Agent package:
 1. Reference and update the local `apt` repository.
 
 ```
-root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+root@ubuntu:~# sudo wget -qO -  https://edge.urm.nvidia.com/artifactory/api/gpg/key/public | apt-key add -
 ```
 
 2. Add the Ubuntu repository:
@@ -250,7 +250,7 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-ubuntu22.04.list` a
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-ubuntu22.04.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb ubuntu22.04 netq-latest
+deb [arch=amd64] https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/ ubuntu22.04 netq-latest
 ...
 ```
 <!--

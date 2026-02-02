@@ -122,11 +122,11 @@ netq lcm show netq-images
 
 2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 5.0.0 for a NetQ VM running Ubuntu 24.04 with an AMD 64 architecture.
+3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 5.1.0 for a NetQ VM running Ubuntu 24.04 with an AMD 64 architecture.
 
     ```
-    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_5.0.0-ub24.04u6_amd64.deb	
-    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_5.0.0-ub24.04u6_amd64.deb
+    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_5.1.0-ub24.04u6_amd64.deb	
+    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_5.1.0-ub24.04u6_amd64.deb
     ```
 
 {{</tab>}}

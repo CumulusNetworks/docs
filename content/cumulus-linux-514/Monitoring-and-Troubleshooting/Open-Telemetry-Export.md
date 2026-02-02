@@ -1381,7 +1381,7 @@ The switch collects and exports the following additional interface priority grou
 |------ | ----------- |
 | `nvswitch_interface_pg_rx_buffer_discard` | Interface ingress priority group receive buffer discard counter. |
 | `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
-| `nvswitch_interface_pg_rx_octets` | Interface ingress priority group receive bytes counter. |
+| `nvswitch_interface_pg_rx_octet` | Interface ingress priority group receive bytes counter. |
 | `nvswitch_interface_pg_rx_shared_buffer_discard` | Interface ingress priority group receive shared buffer discard counter. |
 
 {{< /tab >}}

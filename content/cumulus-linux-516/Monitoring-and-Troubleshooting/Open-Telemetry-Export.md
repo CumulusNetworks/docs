@@ -1521,7 +1521,7 @@ The switch collects and exports the following additional interface priority grou
 |  Name | Description |
 |------ | ----------- |
 | `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
-| `nvswitch_interface_pg_rx_octets` | Interface ingress priority group receive bytes counter. |
+| `nvswitch_interface_pg_rx_octet` | Interface ingress priority group receive bytes counter. |
 
 {{< /tab >}}
 {{< tab "Switch Priority ">}}

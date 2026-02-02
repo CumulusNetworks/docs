@@ -51,7 +51,6 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 
 |  Name | Description |
 |------ | ----------- |
-
 | `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/priority` | Radius server priority 1, 2 or 3. Lower number indicates higher priority. |
 | `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/auth-port` | The port used for authentication and authorization. |
 | `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/acct-port` | The port used for RADIUS accounting. |

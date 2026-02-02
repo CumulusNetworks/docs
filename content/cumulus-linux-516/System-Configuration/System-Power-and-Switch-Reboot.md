@@ -18,23 +18,8 @@ Cumulus Linux provides these reboot modes:
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
 - **warm** restarts the switch with no interruption to traffic for existing route entries and without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. Warm reboot requires configuring the switch {{<link url="#resource-allocation" text="resource mode">}} to `half` to reduce the available {{<link title="Forwarding Table Size and Profiles" text="forwarding table entries">}} on the switch by half to accommodate traffic forwarding during a reboot.
 
-  When you restart the switch in warm reboot mode, BGP only performs a graceful restart if the BGP graceful restart option is set to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
+  Review {{<link url="#warm-reboot-and-issu-considerations" text="Warm Reboot and ISSU Considerations">}} to understand support limitations and requirements for warm reboot and ISSU. 
 
-  In an eBGP multihop configuration with warm reboot mode, you must set the {{<link url="Optional-BGP-Configuration/#restart-timers" text="BGP graceful restart timer">}} to 180 seconds or more.
-
-{{%notice note%}}
-Cumulus Linux supports warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. 
-
-The following features are not supported during warm reboot:
-- EVPN MLAG or EVPN multihoming.
-- LACP bonds. LACP control plane sessions might time out before warm reboot completes. Use static LAG to keep bonds up with sub-second convergence during a warm reboot.
-{{%/notice%}}
-<!--
-Ania's original draft below? reformatted the note box to separate supported vs. unsupported with the number of caveats.
-{{%notice note%}}
-Cumulus Linux does not support LACP bonds during warm boot; the LACP control plane sessions might time out before warm boot completes. Use a static Link Aggregation Group to keep bonds up during warm boot.
-{{%/notice%}}
--->
 ### Resource Allocation
 
 To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is set to `full`. Warm reboot and hitless ISSU-based software upgrade requires the resource mode to be `half`.
@@ -235,6 +220,47 @@ cumulus@switch:~$ nv show system forwarding resource-mode
 cumulus@switch:~$ nv config apply
 ```
 -->
+
+## Warm Reboot and ISSU Considerations
+
+### Warm Reboot Support
+
+Cumulus Linux supports warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. 
+
+The following features are not supported during warm reboot:
+- EVPN MLAG or EVPN multihoming.
+- LACP bonds. LACP control plane sessions might time out before warm reboot completes. Use static LAG to keep bonds up with sub-second convergence during a warm reboot.
+
+### BGP Graceful Restart
+
+When you restart the switch in warm reboot mode, BGP only performs a graceful restart if the BGP graceful restart option is set to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
+
+ You must set the {{<link url="Optional-BGP-Configuration/#restart-timers" text="BGP graceful restart timer">}} to 180 seconds or more to accommodate ISSU.
+
+### ARP Handling
+
+The control plane is responsible for Address Resolution Protocol (ARP) processing. During In-Service Software Upgrade (ISSU) and warm reboot operations, the control plane becomes temporarily unavailable.
+
+If the switch has connected hosts configured with ARP timeout values shorter than approximately 180 seconds, these hosts might experience traffic disruption when gateway ARP entries expire during ISSU. To prevent host connectivity issues during the ISSU process, use one of the following methods:
+
+- Increase ARP parameters such as `base_reachable_time_ms` and `gc_stale_time` on linux hosts so that ARP entries remain valid for a duration longer than the ISSU window.
+
+- Configure static ARP entries. Create required static ARP mappings on the affected hosts before initiating ISSU to ensure uninterrupted ARP resolution.
+
+### Static Routes
+
+When a switch uses a static default route or specific static prefix routes configured only within FRR or through NVUE using the `nv set vrf <vrf-name> router static` command, these routes become temporarily unavailable after a warm reboot while FRR services restart. This can lead to a brief loss of reachability to remote networks.
+
+To maintain connectivity immediately following a warm reboot, configure a kernel  default route with the `nv set interface eth0 ipv4 gateway <gateway-ip>` command, or define the `gateway` parameter under `eth0` in `/etc/network/interfaces` when managing your configuration through linux configuration files.
+
+To add more specific prefix routes directly into the kernel routing table at interface initialization, use ifupdown2 `post-up` hooks in the `/etc/network/interfaces` file:
+
+```
+auto eth0
+iface eth0
+ address 10.100.156.254/24
+ post-up ip route add 10.100.200.0/24 via 10.100.156.1 vrf mgmt
+```
 
 ## Power Off
 

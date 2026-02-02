@@ -221,7 +221,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 | `nvswitch_dot1x_interface_info` | Per-interface 802.1X configuration (EAP, MBA, host mode, port-id, IPv6 profile, auth-fail VLAN).|
 | `nvswitch_dot1x_supplicant_status` | Authentication status of the supplicant. |
 | `nvswitch_dot1x_ipv6_profile_info` | IPv6 profile configuration (profile name and route tag). | 
-| `nvswitch_dot1x_ipv6_profile_property_info` | IPv6 profile property level configuration. |
+| `nvswitch_dot1x_ipv6_profile_property_info` | IPv6 profile property configuration (offset, length, value, isolation, summarization). |
 | `nvswitch_dot1x_ipv6_profile_summary` | IPv6 prefix generated for each layer 3 authenticated session that is using an IPv6 profile. |
 | `nvswitch_dot1x_reauth_timeouts` | Counter of reauthentication attempts with the RADIUS server that timed out but were ignored, keeping the supplicant in Authorized state when the `reauth-timeout-ignore` flag is enabled. |
 

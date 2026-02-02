@@ -252,11 +252,12 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 |  Name | Description |
 |------ | ----------- |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/priority` | *RADIUS server priority 1, 2 or 3. |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/auth-port` | *The port used for authentication and authorization. |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/acct-port` | *The port used for RADIUS accounting. |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/vrf` | *The VRF that contains the RADIUS server.|
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/auth-type` | *MD5 (Message Digest algorithm 5) or TLS (Transport Layer Security). |
+| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/priority` | *Radius server priority 1, 2 or 3. Lower number indicates higher priority. |
+| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/auth-port` | *The port used for authentication and authorization. |
+| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/acct-port` | *The port used for RADIUS accounting. |
+| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/vrf` | *The VRF that contains the RADIUS server.|
+| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/source-address` | The source IP address for RADIUS authentication requests. If not configured, the address defaults to the IP address of the interface used to reach the RADIUS server, as determined by the kernel routing table. You can configure the address with the NVUE `client-src-ip` parameter. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/auth-type` | *EAP authentication method (MD5, TLS, TTLS, PEAP, and so on). |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/vlan` | *VLAN on which the supplicant connects to the switch and tries to authenticate. |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/session-id` | *64 bytes/512 bit session ID. |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/status` | *Supplicant status. |
@@ -268,7 +269,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-invalid-frames` | *Counts malformed or invalid EAPOL frames received from the Supplicant. These are error counters for frames that do not comply with the protocol. |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-len-err-frames` | *Counts EAPOL frames received from this Supplicant that have an incorrect length. These frames are discarded and counted as protocol errors for this session. |
 | `/system/dot1x/state/reauth-timeout-ignore` | *If enabled and if there is a reauthentication timeout with the RADIUS server, the timeout is ignored as long as the supplicant is currently in the authenticated state. |
-| `/system/dot1x/state/dynamic-vlan` | *Indicates if the RADIUS server must assign a VLAN dynamically for the supplicant to be authorized or if Dynamic VLAN is `disabled`. Dynamic VLAN is `disabled` by default. |
+| `/system/dot1x/state/dynamic-vlan` | *Dynamic VLAN assignment mode with three states: required (RADIUS must assign a VLAN for authorization), optional (VLAN assignment is optional), or disabled (Dynamic VLAN feature is off). Default is disabled. |
 | `/system/dot1x/state/max-stations` | *The maximum number of authenticated MAC addresses allowed on a port. The default is 6. The range is between 1 and 255. |
 | `/system/dot1x/state/dynamic-ipv6-multi-tenant` | *Must be set to `enabled` for dynamic IPv6 multi-tenancy to be enabled. | 
 | `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/source-address` | The fixed source IP address that the switch as a RADIUS client uses to send authentication requests to the RADIUS server on behalf of supplicants. |  
@@ -276,9 +277,9 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/system/dot1x/radius/state/nas-identifier` | *Identifies the RADIUS client to a RADIUS server together with the NAS IP address. The NAS IP address is useful for accounting on the RADIUS server. |
 | `/interfaces/interface[name]/ethernet/dot1x/state/eap` | *If 802.1X is enabled or disabled on the interface. |
 | `/interfaces/interface[name]/ethernet/dot1x/state/mba` | *If MAC-based authentication (MBA) is enabled or disabled on the interface. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/host-mode` | *If multi host mode is enabled or disabled on the interface. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/port-id` | *The 802.1X port ID. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/ipv6-profile-name` | *The IPv6 profile associated with this interface. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/host-mode` | *The mode can be either multi-host or multi-host-authenticated. In multi-host mode, only the first host that connects to a dot1x (eap enabled) interface needs to be authenticated and any subsequent hosts do not. In multi-host-authenticated (MHA) mode, each and every host connecting to an interface needs to be authorized. MHA is the default host-mode. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/port-id` | *The port ID is a unique 16-bit identifier for each interface that defaults to the last two bytes of the interface's MAC address or can be user-configured. The port ID is encoded into dynamically generated IPv6 addresses at the profile-specified offset, allowing the IPv6 address to identify which physical port authenticated each client for per-port tenant segmentation and routing policies. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/ipv6-profile` | *The IPv6 profile associated with this interface. |
 | `/interfaces/interface[name]/ethernet/dot1x/state/reauthenticate-interval` | * The recurring interval in seconds after which all already authenticated supplicants reauthenticate. By default, the interval is 0 (no reauthentication). |
 | `/interfaces/interface[name]/ethernet/dot1x/state/auth-fail-vlan` | *If auth-fail VLAN is configured. |
 | `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/offset-in-bits` | *Offset in bits from the beginning of the 64 bit IPv6 profile. |

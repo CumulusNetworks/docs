@@ -730,4 +730,4 @@ The TACACS+ client implementation that forwards or retries a request with an alt
 
 ### Local Fallback and User Home Directory
 
-To avoid home directory permission issues, NVIDIA recommends you do not configure local fallback authentication and enable a home directory for a user.
+To avoid home directory permission issues, NVIDIA recommends you do not both configure local fallback authentication and enable a home directory for a user.

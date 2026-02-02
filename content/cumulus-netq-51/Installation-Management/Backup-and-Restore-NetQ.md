@@ -110,7 +110,7 @@ nvidia@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718
 
 These steps apply exclusively to {{<link title="Install NetQ for NVLink" text="NetQ NVLink">}} three-node cluster deployments.
 
-1. Run the {{<link title="nvl/#netq-nvl-cluster-backup" text="netq nvl cluster backup">}} command on each node in your cluster, specifying the path to the directory where the backup file is stored. Make sure that the path ends with `backup`:
+1. Run the {{<link title="nvl/#netq-nvl-cluster-backup" text="netq nvl cluster backup">}} command on your cluster's master node, specifying the path to the directory where the backup file is stored. Make sure that the path ends with `backup`:
 
 ```
 nvidia@<hostname>:~$ netq nvl cluster backup backup-path /home/nvidia/backup
@@ -121,13 +121,12 @@ nvidia@<hostname>:~$ netq nvl cluster backup backup-path /home/nvidia/backup
 2025-06-17 06:30:55,159 - INFO - Full backup completed to: nvlink_cluster_backup_20250617063052
 ```
 
-2. Run `netq bootstrap rest purge-db` on each node in your cluster.
-
-3. Copy the newly-created file to the `/tmp/data-infra/` directory:
+2. Copy the newly-created file to the `/tmp/data-infra/` directory:
 
 ```
 cp -r /home/nvidia/nvlink_cluster_backup_20250617063052 /tmp/data-infra
 ```
+3. Run `netq bootstrap rest purge-db` on your cluster's master node.
 
 {{</tab >}}
 {{</tabs>}}
@@ -142,7 +141,11 @@ To restore your NetQ data, perform a {{<link title="Install the NetQ System" tex
 {{</tab>}}
 {{<tab "NVLink-only" >}}
 
-1. Run the installation command on your master node and include the file that you created in the previous step. Specify the passwords for the read-write user and the read-only user in the `rw-password` and `ro-password` fields, respectively. This command upgrades your NetQ deployment to 5.1.0:
+1. Run the installation command on your master node and specify the following within the command itself: 
+
+- The tarball of the latest NetQ release. This command upgrades NetQ to the release specified in the command.
+- The passwords for the read-write user (`rw-password`) and the read-only user (`ro-password`)
+- The `/home/nvidia/nvl-cluster-config.json` backup file
 
 ```
 nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.1.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /home/nvidia/nvl-cluster-config.json

@@ -156,7 +156,7 @@ nvidia@<hostname>:~$ netq install cluster master-init
 10. Create a JSON template using the installation command for your deployment model. Run the `netq install nvl config generate` command on your master node to generate a template for the cluster configuration JSON file.
 
 {{<notice tip>}}
-The JSON file is created in the <code>/tmp/nvl-cluster-config.json</code> directory by default. To create the file in a different directory, specify the full path in the command, for example <code>netq install nvl config generate /home/nvidia/nvl-config.json</code>.
+The JSON file is created in the <code>/tmp/nvl-cluster-config.json</code> directory by default. To create the file in a different directory, specify the full path in the command, for example <code>netq install nvl config generate /home/nvidia/nvl-cluster-config.json</code>.
 {{</notice>}}
 
 ```

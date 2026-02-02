@@ -33,7 +33,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Quality-of-Service/#shaping" text="PPS mode for QoS egress shapers">}}
 - {{<link url="Quality-of-Service/#extra-lossy-headroom" text="Extra threshold for QoS lossy priority groups">}}
 - {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
-- {{<link url="Monitoring-System-Hardware/#health-monitoring-reference" text="New system health monitoring events">}}
+- {{<link url="Monitoring-System-Hardware/#health-monitoring-reference" text="The SDK health monitoring service handles recovery and debug dump collection when detecting SDK health issues">}}
 - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="NVUE support for both unset and set commands for the same object in a single patch">}}
 - Security features:
   - {{<link url="FIPS" text="FIPS mode">}}

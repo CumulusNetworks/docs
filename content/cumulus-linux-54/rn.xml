@@ -15,8 +15,8 @@
 <tr>
 <td>4717753</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.15.1</td>
-<td></td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>

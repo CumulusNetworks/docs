@@ -147,7 +147,7 @@ netq lcm upgrade netq-image
 The following example creates a NetQ agent upgrade job called *upgrade-example*. It upgrades NetQ agents on the *spine01* and *spine02* switches.
 
 ```
-nvidia@switch:~$ netq lcm upgrade netq-image job-name upgrade-example netq-version 5.0.0 hostnames spine01,spine02
+nvidia@switch:~$ netq lcm upgrade netq-image job-name upgrade-example netq-version 5.1.0 hostnames spine01,spine02
 ```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:

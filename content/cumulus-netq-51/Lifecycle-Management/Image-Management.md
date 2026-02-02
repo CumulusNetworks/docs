@@ -175,8 +175,8 @@ nvidia@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.13.1-mlx-a
 NetQ images:
 
 ```
-nvidia@switch:~$ netq lcm add image /path/to/download/netq-agent_5.0.0-cld12u5_amd64.deb
-nvidia@switch:~$ netq lcm add image /path/to/download/netq-apps_5.0.0-cld12u5_amd64.deb
+nvidia@switch:~$ netq lcm add image /path/to/download/netq-agent_5.1.0-cld12u5_amd64.deb
+nvidia@switch:~$ netq lcm add image /path/to/download/netq-apps_5.1.0-cld12u5_amd64.deb
 ```
 
 {{</tab>}}

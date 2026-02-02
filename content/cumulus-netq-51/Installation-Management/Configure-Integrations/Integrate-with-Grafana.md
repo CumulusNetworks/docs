@@ -7,10 +7,6 @@ toc: 3
 
 The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network devices. To view data in Grafana, first configure security between NetQ and OTel clients, configure OpenTelemetry (OTel) on the devices in your network, then configure the data sources in Grafana. <!--test-->
 
-{{%notice note%}}
-The Grafana integration is in beta and supported for on-premises deployments only.
-{{%/notice%}}
-
 ## Requirements and Support
 
 - Switches must have a Spectrum-2 or later ASIC. The number of supported switches varies based on the deployment model and reflects an environment where each switch is configured with OpenTelemetry and running the NetQ agent.

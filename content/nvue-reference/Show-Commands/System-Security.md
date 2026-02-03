@@ -233,7 +233,11 @@ state  enabled      enabled
 
 ## <h>nv show system security fips</h>
 
-Shows if FIPS mode is enabled. The default mode is `disabled`.
+Shows if FIPS mode is enabled. FIPS are standards for federal computer systems developed by the U.S. government and published by the National Institute of Standards and Technology (NIST).
+
+When you enable FIPS mode, the switch enforces FIPS 140-2 and 140-3 compliant cryptographic operations, making it suitable for high-security and regulated environments.
+
+The default FIPS mode is `disabled`.
 
 ### Version History
 

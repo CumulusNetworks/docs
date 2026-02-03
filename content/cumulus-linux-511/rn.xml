@@ -1004,8 +1004,8 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4805286</td>
 <td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
-<td>5.11.3-5.15.1</td>
-<td></td>
+<td>5.11.3-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4797691</td>
@@ -1066,8 +1066,8 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <tr>
 <td>4717753</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.15.1</td>
-<td></td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4714845</td>
@@ -1078,8 +1078,8 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <tr>
 <td>4683602</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td></td>
+<td>5.11.1-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -1144,7 +1144,7 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <tr>
 <td>4558846</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1194,7 +1194,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4522594</td>
 <td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
-<td>5.11.1-5.11.4</td>
+<td>5.11.1-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1312,49 +1312,43 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4270957</td>
 <td>Optimized (two partition) upgrade from Cumulus Linux 5.11.0 requires approximately 2.4 Gbytes of free space in {{/var}} after downloading the image with NVUE commands instead of 1.6 Gbytes of free space. Upgrade needs the extra space for an additional copy of the downloaded image in {{/var}} .</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4220393</td>
 <td>The default GRUB timeout style changed from menu to countdown. When booting, a countdown displays on the console and you can use the escape key to break out of the countdown and show the GRUB menu. This reduces the chance of console noise halting the reboot process. If you press the escape key twice, you might go to the GRUB command line. In this case, type {{normal}} to get back to the GRUB menu or {{reboot}} to reboot the switch.</td>
-<td>5.11.0-5.11.4</td>
-<td>5.12.0-5.15.1</td>
-</tr>
-<tr>
-<td>4209429</td>
-<td>Unreachable or reject routes might not get installed into the SDK.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4205060</td>
 <td>Debian 12 does not support LDAP SSL CRL check. Cumulus Linux now uses CRL file.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4199125</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4198683</td>
 <td>Configuring the listening-address for the SNMP server fails for IP addresses associated with VRFs other than the management VRF.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4183214</td>
 <td>If you upgrade the switch from Cumulus Linux 5.9.x or 5.10.x with package upgrade and Radius is enabled, you see configuration and commit errors. To avoid this issue,  either disable Radius during package upgrade or disable Radius before package upgrade with the {{sudo adduser --system --group --home /run/nslcd --no-create-home  --gecos 'nslcd name service LDAP connection daemon' nslcd}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1368,19 +1362,19 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <tr>
 <td>4176931</td>
 <td>The {{nv show platform firmware}} command results in a Python traceback and takes a long time to complete because the VX image does not support the {{smartctl}} utility.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4174646</td>
 <td>On the NVIDIA SN5400 and SN5600 switch, the fans might run at full speed when it is not necessary.</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4155957</td>
 <td>Logs from the OTLP exporter process ({{nv-telemetry}}) grow uncontrolled and result in excessive disk space usage. You can remove the large files in the {{/var/log/nv-telemetry}} folder or modify them to reduce their size.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1423,13 +1417,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>4134174</td>
 <td>If you configure a route map by attaching it to a specific protocol, then you detach it from that protocol, if you then attach the same route map to all protocols, then detach it from all protocols, Cumulus Linux deletes routes from the forwarding table.To work around this issue, either attach the route map to all protocols or attach the route map to each protocol you want to use. For example, to attach the route map to all protocols, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter route-map &lt;route-map&gt;}} command. To attach the route map to each protocol you want to use, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4130022</td>
 <td>LDAP does not support per-command authorization.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1456,13 +1450,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 cumulus@switch:~$ sudo mount --make-rslave /var/installer/sys
 cumulus@switch:~$ sudo umount -R /var/installer/sys
 cumulus@switch:~$ sudo umount tmpfs-installer</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4127315</td>
 <td>If you set BGP community-advertise large to off with NVUE, large communities are still sent to BGP peers. To resolve this issue, NVUE has changed the default value of community-advertise large from off to on.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1475,7 +1469,7 @@ cumulus@switch:~$ sudo umount tmpfs-installer</td>
 <td>4122591</td>
 <td>The NVUE {{nv set system aaa ldap ssl ca-list}} command shows the following error if you use the {{string}} option:
 Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none']</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1493,7 +1487,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <tr>
 <td>4101560</td>
 <td>The {{nv set vrf &lt;vrf&gt; router rib &lt;address-family&gt; fib-filter route-map &lt;route-map&gt;}} command only works if you restart FRR after you run the command. To work around this issue, attach the route map to each needed protocol; for example, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1517,7 +1511,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2002,8 +1996,8 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4805286</td>
 <td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
-<td>5.11.3-5.15.1</td>
-<td></td>
+<td>5.11.3-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4797691</td>
@@ -2044,8 +2038,8 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4717753</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.15.1</td>
-<td></td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4714845</td>
@@ -2056,8 +2050,8 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4683602</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td></td>
+<td>5.11.1-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -2122,7 +2116,7 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4558846</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2172,7 +2166,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4522594</td>
 <td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
-<td>5.11.1-5.11.4</td>
+<td>5.11.1-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2297,49 +2291,43 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4270957</td>
 <td>Optimized (two partition) upgrade from Cumulus Linux 5.11.0 requires approximately 2.4 Gbytes of free space in {{/var}} after downloading the image with NVUE commands instead of 1.6 Gbytes of free space. Upgrade needs the extra space for an additional copy of the downloaded image in {{/var}} .</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4220393</td>
 <td>The default GRUB timeout style changed from menu to countdown. When booting, a countdown displays on the console and you can use the escape key to break out of the countdown and show the GRUB menu. This reduces the chance of console noise halting the reboot process. If you press the escape key twice, you might go to the GRUB command line. In this case, type {{normal}} to get back to the GRUB menu or {{reboot}} to reboot the switch.</td>
-<td>5.11.0-5.11.4</td>
-<td>5.12.0-5.15.1</td>
-</tr>
-<tr>
-<td>4209429</td>
-<td>Unreachable or reject routes might not get installed into the SDK.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4205060</td>
 <td>Debian 12 does not support LDAP SSL CRL check. Cumulus Linux now uses CRL file.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4199125</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4198683</td>
 <td>Configuring the listening-address for the SNMP server fails for IP addresses associated with VRFs other than the management VRF.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4183214</td>
 <td>If you upgrade the switch from Cumulus Linux 5.9.x or 5.10.x with package upgrade and Radius is enabled, you see configuration and commit errors. To avoid this issue,  either disable Radius during package upgrade or disable Radius before package upgrade with the {{sudo adduser --system --group --home /run/nslcd --no-create-home  --gecos 'nslcd name service LDAP connection daemon' nslcd}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2353,19 +2341,19 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <tr>
 <td>4176931</td>
 <td>The {{nv show platform firmware}} command results in a Python traceback and takes a long time to complete because the VX image does not support the {{smartctl}} utility.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4174646</td>
 <td>On the NVIDIA SN5400 and SN5600 switch, the fans might run at full speed when it is not necessary.</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4155957</td>
 <td>Logs from the OTLP exporter process ({{nv-telemetry}}) grow uncontrolled and result in excessive disk space usage. You can remove the large files in the {{/var/log/nv-telemetry}} folder or modify them to reduce their size.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2408,13 +2396,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>4134174</td>
 <td>If you configure a route map by attaching it to a specific protocol, then you detach it from that protocol, if you then attach the same route map to all protocols, then detach it from all protocols, Cumulus Linux deletes routes from the forwarding table.To work around this issue, either attach the route map to all protocols or attach the route map to each protocol you want to use. For example, to attach the route map to all protocols, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter route-map &lt;route-map&gt;}} command. To attach the route map to each protocol you want to use, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4130022</td>
 <td>LDAP does not support per-command authorization.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2441,13 +2429,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 cumulus@switch:~$ sudo mount --make-rslave /var/installer/sys
 cumulus@switch:~$ sudo umount -R /var/installer/sys
 cumulus@switch:~$ sudo umount tmpfs-installer</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4127315</td>
 <td>If you set BGP community-advertise large to off with NVUE, large communities are still sent to BGP peers. To resolve this issue, NVUE has changed the default value of community-advertise large from off to on.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2460,7 +2448,7 @@ cumulus@switch:~$ sudo umount tmpfs-installer</td>
 <td>4122591</td>
 <td>The NVUE {{nv set system aaa ldap ssl ca-list}} command shows the following error if you use the {{string}} option:
 Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none']</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2478,7 +2466,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <tr>
 <td>4101560</td>
 <td>The {{nv set vrf &lt;vrf&gt; router rib &lt;address-family&gt; fib-filter route-map &lt;route-map&gt;}} command only works if you restart FRR after you run the command. To work around this issue, attach the route map to each needed protocol; for example, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2502,7 +2490,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3011,8 +2999,8 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4717753</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.15.1</td>
-<td></td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4714845</td>
@@ -3023,8 +3011,8 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4683602</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td></td>
+<td>5.11.1-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -3077,7 +3065,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4558846</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3121,7 +3109,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4522594</td>
 <td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
-<td>5.11.1-5.11.4</td>
+<td>5.11.1-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3148,16 +3136,16 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.11.4-5.15.1</td>
 </tr>
 <tr>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.15.1</td>
 <td></td>
-</tr>
-<tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
-<td>5.14.0-5.15.1</td>
 </tr>
 <tr>
 <td>4486200</td>
@@ -3246,49 +3234,43 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4270957</td>
 <td>Optimized (two partition) upgrade from Cumulus Linux 5.11.0 requires approximately 2.4 Gbytes of free space in {{/var}} after downloading the image with NVUE commands instead of 1.6 Gbytes of free space. Upgrade needs the extra space for an additional copy of the downloaded image in {{/var}} .</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4220393</td>
 <td>The default GRUB timeout style changed from menu to countdown. When booting, a countdown displays on the console and you can use the escape key to break out of the countdown and show the GRUB menu. This reduces the chance of console noise halting the reboot process. If you press the escape key twice, you might go to the GRUB command line. In this case, type {{normal}} to get back to the GRUB menu or {{reboot}} to reboot the switch.</td>
-<td>5.11.0-5.11.4</td>
-<td>5.12.0-5.15.1</td>
-</tr>
-<tr>
-<td>4209429</td>
-<td>Unreachable or reject routes might not get installed into the SDK.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4205060</td>
 <td>Debian 12 does not support LDAP SSL CRL check. Cumulus Linux now uses CRL file.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4199125</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4198683</td>
 <td>Configuring the listening-address for the SNMP server fails for IP addresses associated with VRFs other than the management VRF.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4183214</td>
 <td>If you upgrade the switch from Cumulus Linux 5.9.x or 5.10.x with package upgrade and Radius is enabled, you see configuration and commit errors. To avoid this issue,  either disable Radius during package upgrade or disable Radius before package upgrade with the {{sudo adduser --system --group --home /run/nslcd --no-create-home  --gecos 'nslcd name service LDAP connection daemon' nslcd}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3302,19 +3284,19 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <tr>
 <td>4176931</td>
 <td>The {{nv show platform firmware}} command results in a Python traceback and takes a long time to complete because the VX image does not support the {{smartctl}} utility.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4174646</td>
 <td>On the NVIDIA SN5400 and SN5600 switch, the fans might run at full speed when it is not necessary.</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4155957</td>
 <td>Logs from the OTLP exporter process ({{nv-telemetry}}) grow uncontrolled and result in excessive disk space usage. You can remove the large files in the {{/var/log/nv-telemetry}} folder or modify them to reduce their size.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3357,13 +3339,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>4134174</td>
 <td>If you configure a route map by attaching it to a specific protocol, then you detach it from that protocol, if you then attach the same route map to all protocols, then detach it from all protocols, Cumulus Linux deletes routes from the forwarding table.To work around this issue, either attach the route map to all protocols or attach the route map to each protocol you want to use. For example, to attach the route map to all protocols, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter route-map &lt;route-map&gt;}} command. To attach the route map to each protocol you want to use, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4130022</td>
 <td>LDAP does not support per-command authorization.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3390,13 +3372,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 cumulus@switch:~$ sudo mount --make-rslave /var/installer/sys
 cumulus@switch:~$ sudo umount -R /var/installer/sys
 cumulus@switch:~$ sudo umount tmpfs-installer</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4127315</td>
 <td>If you set BGP community-advertise large to off with NVUE, large communities are still sent to BGP peers. To resolve this issue, NVUE has changed the default value of community-advertise large from off to on.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3409,7 +3391,7 @@ cumulus@switch:~$ sudo umount tmpfs-installer</td>
 <td>4122591</td>
 <td>The NVUE {{nv set system aaa ldap ssl ca-list}} command shows the following error if you use the {{string}} option:
 Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none']</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3427,7 +3409,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <tr>
 <td>4101560</td>
 <td>The {{nv set vrf &lt;vrf&gt; router rib &lt;address-family&gt; fib-filter route-map &lt;route-map&gt;}} command only works if you restart FRR after you run the command. To work around this issue, attach the route map to each needed protocol; for example, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3451,7 +3433,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3934,20 +3916,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>4475074</td>
-<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4472549</td>
-<td>When running tens of thousands of {{nv set}} commands, the {{/var/lib/nvue}} directory might grow to several GBs in size, potentially using all the disk space. To work around this issue, run the following commands to reduce the disk space in the {{/var/lib/nvue}} directory:
-cumulus@switch:~$ sudo su
-cumulus@switch:~$ cd /var/lib/nvue/config
-cumulus@switch:~$ git gc</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4472217</td>
+<td>4475117</td>
 <td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
 sudo chown -R nvue /var/lib/nvue
 sudo chown -R ntpsec /var/lib/ntpsec
@@ -3959,6 +3928,19 @@ systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
 systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </td>
 <td>5.11.1</td>
+</tr>
+<tr>
+<td>4475074</td>
+<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4472549</td>
+<td>When running tens of thousands of {{nv set}} commands, the {{/var/lib/nvue}} directory might grow to several GBs in size, potentially using all the disk space. To work around this issue, run the following commands to reduce the disk space in the {{/var/lib/nvue}} directory:
+cumulus@switch:~$ sudo su
+cumulus@switch:~$ cd /var/lib/nvue/config
+cumulus@switch:~$ git gc</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4458897</td>
@@ -4103,7 +4085,7 @@ switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered I
 <td>5.11.0-5.11.1, 5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4404955</td>
+<td>4408161</td>
 <td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
@@ -4195,8 +4177,8 @@ nv config apply -y</td>
 <tr>
 <td>4717753</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.15.1</td>
-<td></td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4714845</td>
@@ -4207,8 +4189,8 @@ nv config apply -y</td>
 <tr>
 <td>4683602</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td></td>
+<td>5.11.1-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -4249,7 +4231,7 @@ nv config apply -y</td>
 <tr>
 <td>4558846</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4293,7 +4275,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4522594</td>
 <td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
-<td>5.11.1-5.11.4</td>
+<td>5.11.1-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4319,13 +4301,7 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>4472414</td>
-<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
-<td>5.11.0-5.14.0</td>
-<td>5.15.0-5.15.1</td>
-</tr>
-<tr>
-<td>4472217</td>
+<td>4475117</td>
 <td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
 sudo chown -R nvue /var/lib/nvue
 sudo chown -R ntpsec /var/lib/ntpsec
@@ -4337,7 +4313,13 @@ systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
 systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </td>
 <td>5.11.1</td>
-<td>5.11.2-5.15.1, 5.14.0-5.15.1</td>
+<td>5.11.2-5.15.1</td>
+</tr>
+<tr>
+<td>4472414</td>
+<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
+<td>5.11.0-5.14.0</td>
+<td>5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4461102</td>
@@ -4354,7 +4336,7 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4423365</td>
 <td>When you enable NAT dynamic mode and NAT rules with NVUE in a single commit, you see the error {{error: hw sync failed (Dynamic NAT is not enabled. Ignoring rules..)}}. To work around this issue, enable dynamic NAT with NVUE in one commit, then add NAT ACL rules in a subsequent commit.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4366,7 +4348,7 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.4</td>
+<td>5.9.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4532,49 +4514,43 @@ nv config apply -y</td>
 <tr>
 <td>4270957</td>
 <td>Optimized (two partition) upgrade from Cumulus Linux 5.11.0 requires approximately 2.4 Gbytes of free space in {{/var}} after downloading the image with NVUE commands instead of 1.6 Gbytes of free space. Upgrade needs the extra space for an additional copy of the downloaded image in {{/var}} .</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4220393</td>
 <td>The default GRUB timeout style changed from menu to countdown. When booting, a countdown displays on the console and you can use the escape key to break out of the countdown and show the GRUB menu. This reduces the chance of console noise halting the reboot process. If you press the escape key twice, you might go to the GRUB command line. In this case, type {{normal}} to get back to the GRUB menu or {{reboot}} to reboot the switch.</td>
-<td>5.11.0-5.11.4</td>
-<td>5.12.0-5.15.1</td>
-</tr>
-<tr>
-<td>4209429</td>
-<td>Unreachable or reject routes might not get installed into the SDK.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4205060</td>
 <td>Debian 12 does not support LDAP SSL CRL check. Cumulus Linux now uses CRL file.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4199125</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4198683</td>
 <td>Configuring the listening-address for the SNMP server fails for IP addresses associated with VRFs other than the management VRF.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4183214</td>
 <td>If you upgrade the switch from Cumulus Linux 5.9.x or 5.10.x with package upgrade and Radius is enabled, you see configuration and commit errors. To avoid this issue,  either disable Radius during package upgrade or disable Radius before package upgrade with the {{sudo adduser --system --group --home /run/nslcd --no-create-home  --gecos 'nslcd name service LDAP connection daemon' nslcd}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4588,19 +4564,19 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <tr>
 <td>4176931</td>
 <td>The {{nv show platform firmware}} command results in a Python traceback and takes a long time to complete because the VX image does not support the {{smartctl}} utility.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4174646</td>
 <td>On the NVIDIA SN5400 and SN5600 switch, the fans might run at full speed when it is not necessary.</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4155957</td>
 <td>Logs from the OTLP exporter process ({{nv-telemetry}}) grow uncontrolled and result in excessive disk space usage. You can remove the large files in the {{/var/log/nv-telemetry}} folder or modify them to reduce their size.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4643,13 +4619,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>4134174</td>
 <td>If you configure a route map by attaching it to a specific protocol, then you detach it from that protocol, if you then attach the same route map to all protocols, then detach it from all protocols, Cumulus Linux deletes routes from the forwarding table.To work around this issue, either attach the route map to all protocols or attach the route map to each protocol you want to use. For example, to attach the route map to all protocols, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter route-map &lt;route-map&gt;}} command. To attach the route map to each protocol you want to use, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4130022</td>
 <td>LDAP does not support per-command authorization.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4676,13 +4652,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 cumulus@switch:~$ sudo mount --make-rslave /var/installer/sys
 cumulus@switch:~$ sudo umount -R /var/installer/sys
 cumulus@switch:~$ sudo umount tmpfs-installer</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4127315</td>
 <td>If you set BGP community-advertise large to off with NVUE, large communities are still sent to BGP peers. To resolve this issue, NVUE has changed the default value of community-advertise large from off to on.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4695,7 +4671,7 @@ cumulus@switch:~$ sudo umount tmpfs-installer</td>
 <td>4122591</td>
 <td>The NVUE {{nv set system aaa ldap ssl ca-list}} command shows the following error if you use the {{string}} option:
 Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none']</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4713,7 +4689,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <tr>
 <td>4101560</td>
 <td>The {{nv set vrf &lt;vrf&gt; router rib &lt;address-family&gt; fib-filter route-map &lt;route-map&gt;}} command only works if you restart FRR after you run the command. To work around this issue, attach the route map to each needed protocol; for example, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4737,7 +4713,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -5338,6 +5314,11 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.9.1-5.9.3</td>
 </tr>
 <tr>
+<td>4245849</td>
+<td>Unreachable or reject routes might not get installed into the SDK.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
 <td>4245819</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
 <td>5.11.0</td>
@@ -5436,8 +5417,8 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <tr>
 <td>4717753</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.15.1</td>
-<td></td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1</td>
 </tr>
 <tr>
 <td>4714845</td>
@@ -5478,7 +5459,7 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <tr>
 <td>4558846</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -5552,7 +5533,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423365</td>
 <td>When you enable NAT dynamic mode and NAT rules with NVUE in a single commit, you see the error {{error: hw sync failed (Dynamic NAT is not enabled. Ignoring rules..)}}. To work around this issue, enable dynamic NAT with NVUE in one commit, then add NAT ACL rules in a subsequent commit.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -5564,7 +5545,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.4</td>
+<td>5.9.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -5730,7 +5711,7 @@ nv config apply -y</td>
 <tr>
 <td>4309885</td>
 <td>Replacing a configuration using a revision ID ({{nv config apply &lt;revision-id&gt;}}) might take more than three minutes in certain cases. This issue has no functional impact.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -5763,19 +5744,19 @@ cumulus@switch:~$ nv config apply</td>
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.4</td>
+<td>5.8.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4278870</td>
 <td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4271229</td>
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.9.3, 5.11.0-5.11.4</td>
+<td>5.9.1-5.9.3, 5.11.0-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -5788,25 +5769,25 @@ cumulus@switch:~$ nv config apply</td>
 <tr>
 <td>4271207</td>
 <td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4270957</td>
 <td>Optimized (two partition) upgrade from Cumulus Linux 5.11.0 requires approximately 2.4 Gbytes of free space in {{/var}} after downloading the image with NVUE commands instead of 1.6 Gbytes of free space. Upgrade needs the extra space for an additional copy of the downloaded image in {{/var}} .</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4268260</td>
 <td>Due to hardware limitations in the MPS2975, the minimum threshold for PMIC-12-COMEX-VCORE-OUT is fixed and cannot be set to zero. While a threshold violation warning might appear, system functionality remains unaffected, and the current configuration is maintained to ensure device compatibility.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4260019</td>
 <td>NVUE prevents you from setting the IPv6 RA lifetime to 0 (zero). Use vtysh mode to apply the setting.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -5816,43 +5797,43 @@ cumulus@switch:~$ nv config apply</td>
 &lt;&lt;sudo: tac_author_read: reply timeout after 5 secs&gt;&gt;
 
 To work around this issue, manually add the {{debian-snmp}} user to the TACACS configuration {{exclude_users}} list so that TACACS ignores this user.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4260012</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.4</td>
+<td>5.10.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4259980</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.9.3, 5.10.0-5.11.4</td>
+<td>5.8.0-5.9.3, 5.10.0-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4248634</td>
 <td>When you add a new MLAG bond, the BPDU guard state of its peer is initialized to False and immediately updated correctly after resync if the bond is up. If the bond is down, resync is not done and the peer PBDU guard state is not updated, which leads to a conflict if the local PBDU guard is enabled.Even though it seems that PBDU configuration does not match between MLAG peers, this issue does not have any functional impact. It gets cleared when the bond becomes up.</td>
-<td>5.9.2-5.9.3, 5.11.0-5.11.4</td>
+<td>5.9.2-5.9.3, 5.11.0-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4248626</td>
 <td>The {{nv show system ztp}} command might report an error when you use a system local that represents time differently from {{%a %b %d %H:%M:%S %Y %Z}}.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4246858</td>
 <td>The {{nv show service ntp &lt;vrf&gt;}} command shows the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the applied and operational columns have different values, which causes confusion.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4245856</td>
 <td>The {{nv show platform transceiver &lt;interface&gt;}} command sometimes does not show transceiver data for layer 3 Dot1q subinterfaces (such as swp2.10). To work around this issue, run the {{ethtool -m &lt;interface&gt;}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -5862,58 +5843,58 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.9.4, 5.13.0-5.15.1</td>
 </tr>
 <tr>
+<td>4245849</td>
+<td>Unreachable or reject routes might not get installed into the SDK.</td>
+<td>5.11.0-5.11.5</td>
+<td>5.9.4, 5.12.0-5.15.1</td>
+</tr>
+<tr>
 <td>4245819</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4223450</td>
 <td>Under unique hardware failure conditions, when the ASIC temperature sensor read fails repeatedly, the fans are set to twenty percent, which might not be high enough to maintain proper ASIC cooling, resulting in a thermal shutdown.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4223449</td>
 <td>On rare occasions, platform drivers capture the firmware state as being in ISSU when it is not the case. This causes the ASIC temperature to be read as 0, which causes the thermal algorithm to set fan speeds to low. As a result, the switch can get overheated and undergo a thermal shutdown. To work around this issue, reboot or powercycle the switch.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4223448</td>
 <td>When there is significant traffic generated from the CPU to the network, the health check might report a critical issue. </td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4220393</td>
 <td>The default GRUB timeout style changed from menu to countdown. When booting, a countdown displays on the console and you can use the escape key to break out of the countdown and show the GRUB menu. This reduces the chance of console noise halting the reboot process. If you press the escape key twice, you might go to the GRUB command line. In this case, type {{normal}} to get back to the GRUB menu or {{reboot}} to reboot the switch.</td>
-<td>5.11.0-5.11.4</td>
-<td>5.12.0-5.15.1</td>
-</tr>
-<tr>
-<td>4209429</td>
-<td>Unreachable or reject routes might not get installed into the SDK.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4205060</td>
 <td>Debian 12 does not support LDAP SSL CRL check. Cumulus Linux now uses CRL file.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4200961</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.11.4</td>
+<td>5.10.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -5925,25 +5906,25 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4199125</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4198683</td>
 <td>Configuring the listening-address for the SNMP server fails for IP addresses associated with VRFs other than the management VRF.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4183214</td>
 <td>If you upgrade the switch from Cumulus Linux 5.9.x or 5.10.x with package upgrade and Radius is enabled, you see configuration and commit errors. To avoid this issue,  either disable Radius during package upgrade or disable Radius before package upgrade with the {{sudo adduser --system --group --home /run/nslcd --no-create-home  --gecos 'nslcd name service LDAP connection daemon' nslcd}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -5963,33 +5944,33 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <tr>
 <td>4176931</td>
 <td>The {{nv show platform firmware}} command results in a Python traceback and takes a long time to complete because the VX image does not support the {{smartctl}} utility.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4175217</td>
 <td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
 netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4174646</td>
 <td>On the NVIDIA SN5400 and SN5600 switch, the fans might run at full speed when it is not necessary.</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4173602</td>
 <td>On the Spectrum-4 switch, {{switchd}} might crash with the following log message:
 CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4155957</td>
 <td>Logs from the OTLP exporter process ({{nv-telemetry}}) grow uncontrolled and result in excessive disk space usage. You can remove the large files in the {{/var/log/nv-telemetry}} folder or modify them to reduce their size.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -6032,13 +6013,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>4134174</td>
 <td>If you configure a route map by attaching it to a specific protocol, then you detach it from that protocol, if you then attach the same route map to all protocols, then detach it from all protocols, Cumulus Linux deletes routes from the forwarding table.To work around this issue, either attach the route map to all protocols or attach the route map to each protocol you want to use. For example, to attach the route map to all protocols, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter route-map &lt;route-map&gt;}} command. To attach the route map to each protocol you want to use, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4130022</td>
 <td>LDAP does not support per-command authorization.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -6065,13 +6046,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 cumulus@switch:~$ sudo mount --make-rslave /var/installer/sys
 cumulus@switch:~$ sudo umount -R /var/installer/sys
 cumulus@switch:~$ sudo umount tmpfs-installer</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4127315</td>
 <td>If you set BGP community-advertise large to off with NVUE, large communities are still sent to BGP peers. To resolve this issue, NVUE has changed the default value of community-advertise large from off to on.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -6084,7 +6065,7 @@ cumulus@switch:~$ sudo umount tmpfs-installer</td>
 <td>4122591</td>
 <td>The NVUE {{nv set system aaa ldap ssl ca-list}} command shows the following error if you use the {{string}} option:
 Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none']</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -6102,7 +6083,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <tr>
 <td>4101560</td>
 <td>The {{nv set vrf &lt;vrf&gt; router rib &lt;address-family&gt; fib-filter route-map &lt;route-map&gt;}} command only works if you restart FRR after you run the command. To work around this issue, attach the route map to each needed protocol; for example, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -6126,7 +6107,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>

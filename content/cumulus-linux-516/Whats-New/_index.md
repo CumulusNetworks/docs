@@ -234,7 +234,11 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 | `nvswitch_shared_buffer_pool_desc_watermark_recorded_max` | Highest maximum shared buffer watermark for descriptors. |
 | `nvswitch_shared_buffer_pool_desc_watermark_recorded_max_timestamp` | Time when the highest shared buffer descriptor watermark is recorded. |
 | `nvswitch_shared_buffer_pool_desc_time_since_clear` | Time in milliseconds after shared buffer descriptor watermarks are last cleared.  |
-
+{{< /expand >}}
+   - {{< expand "Deprecated OTEL Metrics" >}}
+|  Name | Removal Reason |
+|------ | ----------- |
+| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_bytes` | Deprecated.|
 {{< /expand >}}
 
 For a list of new NVUE commands, refer to {{<link url="New-and-Removed-NVUE-Commands" text="New and Removed NVUE Commands">}}.

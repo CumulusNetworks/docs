@@ -33,7 +33,7 @@ If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethern
 <p style="text-indent: 40px">e. Locate the latest <i>NetQ Upgrade Backup Restore</i> file and select <b>Download</b>.</p>
 <p style="text-indent: 40px">f. If prompted, read the license agreement and proceed with the download.<br></p>
 
-2. Copy the `vm-backuprestore.sh` script to your NetQ server in standalone deployments, or to each node in cluster deployments:
+2. Copy the `vm-backuprestore.sh` script to your NetQ server in standalone deployments, or to the master node in cluster deployments:
 
 ```
 username@hostname:~$ scp ./vm-backuprestore.sh nvidia@10.10.10.10:/home/nvidia/
@@ -47,7 +47,7 @@ Then copy the `vm-backuprestore.sh` script to the `/usr/sbin/` directory on your
 nvidia@netq-server:~$ sudo cp ./vm-backuprestore.sh /usr/sbin/
 ```
 
-3. Log in to your NetQ server and set the script to executable. Do this for each node in your deployment:
+3. Log in to your NetQ server (or the master node in cluster deployments) and set the script to executable.
 
 ```
 nvidia@netq-server:/home/nvidia# sudo chmod +x /usr/sbin/vm-backuprestore.sh

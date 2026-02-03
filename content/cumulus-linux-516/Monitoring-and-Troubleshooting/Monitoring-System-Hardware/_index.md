@@ -272,10 +272,6 @@ priority = -2
 
 The following table summarizes the events that Cumulus Linux monitors for system health.
 
-{{%notice note%}}
-An asterisk (*) indicates that the event is new for Cumulus Linux 5.16.
-{{%/notice%}}
-
 | Event Category      | Component Name        | Severity   | Event Description                        | Threshold/Condition                          | States            |
 |---------------------|----------------------|------------|------------------------------------------|----------------------------------------------|-------------------|
 | Temperature Sensor  | Temp1-Temp8          | WARNING    | Temperature sensor state is HIGH         | temp ≥ max_hyst but < max                    | HIGH              |
@@ -319,13 +315,10 @@ An asterisk (*) indicates that the event is new for Cumulus Linux 5.16.
 | Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature high alarm       | Module temp high alarm/warning ON             | Not OK            |
 | Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature low alarm        | Module temp low alarm/warning ON              | Not OK            |
 | Transceiver&nbsp;Status  | transceiver          | INFO       | Transceiver status is OK                 | All transceivers operating normally           | OK                |
-| *SDK&nbsp;Health&nbsp;Event&nbsp;FATAL |  Cumulus SDK Health Monitor  | CRITICAL | FATAL health event received |  Fatal notification received | FAILED - Immediate SDK restart initiated. |
-| *SDK&nbsp;Health&nbsp;Event&nbsp;FATAL |  Cumulus SDK Health Monitor   | INFO | Generating MLX SDK debug dump for critical event| Critical SDK event detected | CRITICAL |
-| *Monitor&nbsp;State&nbsp;Change |  Cumulus SDK Health Monitor  | INFO | Disabled fatal failure detection | Part of shutdown or restart sequence | TRANSITIONING - Preparing for SDK restart |
-| *Recovery&nbsp;Action |  Cumulus SDK Health Monitor  | CRITICAL | Issuing switchd restart due to FATAL event | Triggered by prior FATAL event or health check failure | RECOVERY - SDK restart command issued |
-| *Recovery&nbsp;Action |  Cumulus SDK Health Monitor   | CRITICAL | Successfully recovery | Triggered by prior FATAL event or health check failure| RECOVERY - SDK restart command issued |
 
-## Related Information
+{{%notice note%}}
+The SDK health monitoring service (`cumulus-sdk-health-mon`) handles recovery and debug dump collection when detecting SDK health issues.
+{{%/notice%}}
 
 - {{<exlink url="http://packages.debian.org/search?keywords=lshw" text="packages.debian.org/search?keywords=lshw">}}
 - {{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors.org">}}

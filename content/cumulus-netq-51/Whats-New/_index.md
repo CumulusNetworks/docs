@@ -41,7 +41,7 @@ NetQ 5.1 is available exclusively for on-premises deployments. You can upgrade t
 {{%notice note%}}
 - If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
 - NetQ does not support performing a backup on version 5.1.0 and restoring it to the same version (5.1.0).
-- Debian repositories have changed from {{<exlink url="https://apps3.cumulusnetworks.com" >}} to {{<exlink url="https://edge.urm.nvidia.com/" >}}. The instructions in this guide have been updated to reflect this change.
+- Debian repositories have changed from {{<exlink url="https://apps3.cumulusnetworks.com" >}} to {{<exlink url="https://edge.urm.nvidia.com" >}}. The instructions in this guide have been updated to reflect this change.
 {{%/notice%}}
 
 ## Compatible Agent Versions

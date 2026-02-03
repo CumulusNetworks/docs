@@ -120,13 +120,14 @@ nvidia@<hostname>:~$ netq nvl cluster backup backup-path /home/nvidia/backup
 ...
 2025-06-17 06:30:55,159 - INFO - Full backup completed to: nvlink_cluster_backup_20250617063052
 ```
+2. Run `netq bootstrap rest purge-db` on your cluster's master node.
 
-2. Copy the newly-created file to the `/tmp/data-infra/` directory:
+3. Copy the newly-created file to the `/tmp/data-infra/` directory:
 
 ```
 cp -r /home/nvidia/nvlink_cluster_backup_20250617063052 /tmp/data-infra
 ```
-3. Run `netq bootstrap rest purge-db` on your cluster's master node.
+
 
 {{</tab >}}
 {{</tabs>}}

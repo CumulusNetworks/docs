@@ -23,13 +23,13 @@ Use the following endpoints to list, download, and optionally delete the `tar.gz
 | Endpoint | Description |
 | :-- | :-- |
 | GET `/nmx/v1/support-packages` | Retrieve a list of support packages, including package metadata |
-| POST `/nmx/v1/support-packages` | Initiate log collection from switches |
+| POST `/nmx/v1/support-packages` | Initiate log collection from individual switches or from switches in a given domain |
 | GET `/nmx/v1/support-packages/{id}` | Download the `tar.gz` support package |
 | DELETE `/nmx/v1/support-packages/{id}` | Delete support package |
 
 You can specify a `ProfileID` within the request body to authenticate switch access credentials. If you omit the `ProfileID`, NetQ uses the default profile for authentication.
 
-The following example initiates the log collection by making a POST request to the `/v1/support-packages` endpoint. The response returns an operation ID, which you can use to query the status of the request:
+The following example initiates the log collection by making a POST request to the `/v1/support-packages` endpoint, specifying the individual IP addresses for the switches.. The response returns an operation ID, which you can use to query the status of the request:
 ```
 POST /nmx/v1/support-packages
 Content-Type: application/json
@@ -42,11 +42,17 @@ Content-Type: application/json
   ]
 }
 ```
+The following example is similar to the one above, but uses the `DomainID` parameter that includes switches associated with a particular domain.
 
-Example response:
 ```
+POST /nmx/v1/support-packages
+Content-Type: application/json
+ 
 {
-  "operationId": "551137c2f9e1fac808a5f572"
+  "Domains": [
+    { "551137c2f9e1fac808a5f572" },
+    { "551137c2f9e1fac808a5f573" }
+  ]
 }
 ```
 

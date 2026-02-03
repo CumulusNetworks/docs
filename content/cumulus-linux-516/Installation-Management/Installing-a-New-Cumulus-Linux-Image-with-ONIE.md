@@ -687,6 +687,7 @@ You can also follow the steps below to recover a downgraded secure boot switch t
 
 ## Related Information
 
+- {{<exlink url="https://enterprise-support.nvidia.com/s/article/NVIDIA-Enterprise-Support-Guide-for-New-Users#NVIDIA-Enterprise-Support-Portal" text="NVIDIA Enterprise Support Portal User Guide">}}
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}
 - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="Managing Cumulus Linux Disk Images with ONIE">}}

@@ -1017,12 +1017,6 @@ ports configuration(ports.conf/ports_width.conf) is invalid</td>
 <td></td>
 </tr>
 <tr>
-<td>4805286</td>
-<td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
-<td>5.11.3-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4804084</td>
 <td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
 {{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
@@ -1378,12 +1372,6 @@ User name {} is already in use as OS group name 'and could not be used as userna
 <td>4683616</td>
 <td>When you configure the same 802.1X port ID on multiple ports using the same IPv6 profile, the switch might assign duplicate IPv6 addresses to those ports. To work around this issue, configure a unique port ID for each port with an IPv6 profile or omit the explicit port ID configuration to allow the system to assign a unique 802.1X port ID automatically.</td>
 <td>5.15.0-5.15.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4683602</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1752,7 +1740,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology. </td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>

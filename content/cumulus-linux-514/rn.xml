@@ -39,12 +39,6 @@ ports configuration(ports.conf/ports_width.conf) is invalid</td>
 <td></td>
 </tr>
 <tr>
-<td>4805286</td>
-<td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
-<td>5.11.3-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4804084</td>
 <td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
 {{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
@@ -235,12 +229,6 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td>An invalid hashed-password string for a local NVUE user causes all {{nv config apply}} operations (including unrelated changes) to fail health checks and raise tracebacks when NVUE attempts to recreate the user. </td>
 <td>5.12.0-5.14.0</td>
 <td>5.15.0-5.15.1</td>
-</tr>
-<tr>
-<td>4683602</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4683370</td>
@@ -950,7 +938,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology. </td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>

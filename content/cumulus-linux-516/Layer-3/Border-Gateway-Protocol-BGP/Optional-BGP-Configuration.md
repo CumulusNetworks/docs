@@ -1637,15 +1637,15 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-### BGP PIC in a Multiplane Topology
+### BGP PIC Anycast
 
-Fast route convergence in case of remote link failures between leaf and spine, and spine and superspine layers in a multiplane topology requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in {{<link url="#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
+Fast route convergence in case of remote link failures between leaf and spine, and spine and superspine layers requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in {{<link url="#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
 
 {{%notice note%}}
 The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
 {{%/notice%}}
 
-To configure PIC in a multiplane topology, set the SOO source IP address on a leaf. Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
+To configure BGP PIC anycast, set the SOO source IP address on a leaf. Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
 
 {{< tabs "1654 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1695,7 +1695,7 @@ BGP conditional disaggregation advertises specific prefixes when a failure is de
 ### Configure BGP Conditional Disaggregation
 
 To configure BGP conditional disaggregation on a leaf:
-- Required: Enable both {{<link url="/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} and {{<link url="/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}.
+- Required: Enable both {{<link url="/#bgp-prefix-independent-convergence" text="BGP PIC">}} and {{<link url="/#bgp-pic-anycast" text="BGP PIC Anycast">}}.
 - Required for 802.1X: If you are using 802.1X, you must enable the `preserve-on-link-down` option with the `nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down enabled` command to preserve IPv6 addresses when the switch reboots or a link flaps. For more information, refer to {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="Preserve Dynamically Assigned IPv6 Addresses">}}.
 - Required: Enable BGP conditional disaggregation.
 - Required: Enable BGP unreachability (failure signaling) globally and on relevant peers or peer groups.
@@ -1733,7 +1733,7 @@ The following table describes the `AS path` options.
 
 The following example configures BGP conditional disaggregation on a **leaf** for IPv6. For IPv4, run the `nv set vrf <vrf> router bgp address-family ip4-unicast` and `nv set vrf <vrf> router bgp address-family ipv4-unreachability` commands.
 
-To configure PIC, refer to {{<link url="/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}. To configure PIC in a multiplane topology, refer to {{<link url="/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}.
+To configure PIC, refer to {{<link url="/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}. To configure PIC anycast, refer to {{<link url="/#bgp-pic-anycast" text="BGP PIC Anycast">}}.
 
 The following example:
 - Enables BGP unreachability globally and on neighbors swp51 and swp52. 
@@ -1781,7 +1781,11 @@ cumulus@spine01:~$ nv config apply
 
 The following example configures BGP conditional disaggregation on a leaf for IPv6. For IPv4, run the `address-family ipv4 unreachability` command.
 
-The example enables BGP PIC and BGP PIC in a multiplane topology, enables BGP unreachability globally and on neighbors swp51 and swp52. For neighbor swp51, the prefix limit is set to a maximum of 6 and the route map ROUTEMAP1 controls which routes enter BGP. For neighbor swp52, the prefix limit is set to a maximum of 6 and the route map ROUTEMAP2 controls which routes enter BGP.
+The following example:
+- Enables BGP unreachability globally and on neighbors swp51 and swp52. 
+- Enables unreachability advertisements for interfaces matching the network 2001:1:1::/48.
+- Sets the prefix limit to a maximum of 6 for neighbors swp51 and swp52 .
+- Sets the `allow-my-asn` option for neighbors swp51 and swp52 to `origin` to allow a received AS path containing the ASN of the local system only if it is the originating AS.
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1791,14 +1795,13 @@ leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp soo-source 10.1.1.1
 leaf01(config-router)# address-family ipv6 unreachability
 leaf01(config-router-af)# bgp advertise-origin
+leaf01(config-router-af)# bgp advertise-unreach interfaces-match 2001:1:1::/48
 leaf01(config-router-af)# neighbor swp51 activate 
 leaf01(config-router-af)# neighbor swp51 allowas-in origin
 leaf01(config-router-af)# neighbor swp51 maximum-prefix 6
-leaf01(config-router-af)# neighbor swp51 allowas-in route-map ROUTEMAP1
 leaf01(config-router-af)# neighbor swp52 activate 
 leaf01(config-router-af)# neighbor swp52 allowas-in origin
 leaf01(config-router-af)# neighbor swp52 maximum-prefix 6
-leaf01(config-router-af)# neighbor swp52 allowas-in route-map ROUTEMAP2
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit

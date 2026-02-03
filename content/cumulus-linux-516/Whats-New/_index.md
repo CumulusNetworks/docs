@@ -16,7 +16,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-conditional-disaggregation" text="BGP conditional disaggregation">}}
-- {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
+- {{<link url="Optional-BGP-Configuration/#bgp-pic-anycast" text="BGP PIC anycast">}}
 - {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
 - {{<link url="Understanding-the-cl-support-Output-File/#automatic-cl-support-file" text="Manage automatic cl-support file generation">}}
 - {{<link url="Network-Troubleshooting/#extended-traceroute" text="Extended traceroute (RFC 5837)">}}
@@ -30,16 +30,16 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 - {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx squelch control">}} (Beta)
 - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}} (Beta)
 - {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1x dynamic VRF assignment">}} (Beta)
-- {{<link url="TACACS/#local-fallback-authentication" text="NVUE support for TACACS local fallback authentication">}}
-- {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
 - {{<link url="Quality-of-Service/#shaping" text="PPS mode for QoS egress shapers">}}
 - {{<link url="Quality-of-Service/#extra-lossy-headroom" text="Extra threshold for QoS lossy priority groups">}}
 - {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
-- {{<link url="Monitoring-System-Hardware/#health-monitoring-reference" text="New system health monitoring events">}}
+- {{<link url="Monitoring-System-Hardware/#health-monitoring-reference" text="The SDK health monitoring service handles recovery and debug dump collection when detecting SDK health issues">}}
 - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="NVUE support for both unset and set commands for the same object in a single patch">}}
 - Security features:
   - {{<link url="FIPS" text="FIPS mode">}}
   - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and     for a user group">}}
+  - {{<link url="TACACS/#local-fallback-authentication" text="NVUE support for TACACS local fallback authentication">}}
+  - {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
   - {{<link url="RADIUS-AAA/#required-radius-client-configuration" text="Yubikey authentication over RADIUS">}}
   - {{<link url="Syslog/#enable-secured-logs" text="Configure syslog messages">}} to include the date and time events occur, the source IP and username for NVUE commands, and when dynamic kernel modules load and unload
   - {{<link url="NVUE-API/#http-response-compression" text="HTTP response compression for API reponses">}}
@@ -51,11 +51,12 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 
 |  Name | Description |
 |------ | ----------- |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/priority` | RADIUS server priority 1, 2 or 3. |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/auth-port` | The port used for authentication and authorization. |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/acct-port` | The port used for RADIUS accounting. |
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/vrf` | The VRF that contains the RADIUS server.|
-| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/auth-type` | MD5 (Message Digest algorithm 5) or TLS (Transport Layer Security). |
+| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/priority` | Radius server priority 1, 2 or 3. Lower number indicates higher priority. |
+| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/auth-port` | The port used for authentication and authorization. |
+| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/acct-port` | The port used for RADIUS accounting. |
+| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/vrf` | The VRF that contains the RADIUS server.|
+| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/source-address` | The source IP address for RADIUS authentication requests. If not configured, the address defaults to the IP address of the interface used to reach the RADIUS server, as determined by the kernel routing table. You can configure the address with the NVUE `client-src-ip` parameter. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/auth-type` | EAP authentication method (MD5, TLS, TTLS, PEAP, and so on). |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/vlan` | VLAN on which the supplicant connects to the switch and tries to authenticate. |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/session-id` | 64 bytes/512 bit session ID. |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/status` | Supplicant status. |
@@ -67,17 +68,16 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-invalid-frames` | Counts malformed or invalid EAPOL frames received from the Supplicant. These are error counters for frames that do not comply with the protocol. |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/counters/in-eapol-len-err-frames` | Counts EAPOL frames received from this Supplicant that have an incorrect length. These frames are discarded and counted as protocol errors for this session. |
 | `/system/dot1x/state/reauth-timeout-ignore` | If enabled and if there is a reauthentication timeout with the RADIUS server, the timeout is ignored as long as the supplicant is currently in the authenticated state. |
-| `/system/dot1x/state/dynamic-vlan` | Indicates if the RADIUS server must assign a VLAN dynamically for the supplicant to be authorized or if Dynamic VLAN is `disabled`. Dynamic VLAN is `disabled` by default. |
+| `/system/dot1x/state/dynamic-vlan` | Dynamic VLAN assignment mode with three states: required (RADIUS must assign a VLAN for authorization), optional (VLAN assignment is optional), or disabled (Dynamic VLAN feature is off). Default is disabled. |
 | `/system/dot1x/state/max-stations` | The maximum number of authenticated MAC addresses allowed on a port. The default is 6. The range is between 1 and 255. |
-| `/system/dot1x/state/dynamic-ipv6-multi-tenant` | Must be set to `enabled` for dynamic IPv6 multi-tenancy to be enabled. | 
-| `/system/aaa/server-groups/server-group[dot1x]/servers/server[address]/radius/state/source-address` | The fixed source IP address that the switch as a RADIUS client uses to send authentication requests to the RADIUS server on behalf of supplicants. |  
+| `/system/dot1x/state/dynamic-ipv6-multi-tenant` | Must be set to `enabled` for dynamic IPv6 multi-tenancy to be enabled. |  
 | `/system/dot1x/radius/state/nas-ip-address` | The IP address used for accounting purposes by Cumulus Linux as a RADIUS client or NAS (Network Access Server) while communicating when a RADIUS server. This IP address is used in the initial Access-Request packet and is useful on the RADIUS server for accounting and not as a source IP address in packet to the RADIUS server. |
 | `/system/dot1x/radius/state/nas-identifier` | Identifies the RADIUS client to a RADIUS server together with the NAS IP address. The NAS IP address is useful for accounting on the RADIUS server. |
 | `/interfaces/interface[name]/ethernet/dot1x/state/eap` | If 802.1X is enabled or disabled on the interface. |
 | `/interfaces/interface[name]/ethernet/dot1x/state/mba` | If MAC-based authentication (MBA) is enabled or disabled on the interface. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/host-mode` | If multi host mode is enabled or disabled on the interface. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/port-id` | The 802.1X port ID. |
-| `/interfaces/interface[name]/ethernet/dot1x/state/ipv6-profile-name` | The IPv6 profile associated with this interface. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/host-mode` | The mode can be either multi-host or multi-host-authenticated. In multi-host mode, only the first host that connects to a dot1x (eap enabled) interface needs to be authenticated and any subsequent hosts do not. In multi-host-authenticated (MHA) mode, each and every host connecting to an interface needs to be authorized. MHA is the default host-mode. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/port-id` | The port ID is a unique 16-bit identifier for each interface that defaults to the last two bytes of the interface's MAC address or can be user-configured. The port ID is encoded into dynamically generated IPv6 addresses at the profile-specified offset, allowing the IPv6 address to identify which physical port authenticated each client for per-port tenant segmentation and routing policies. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/ipv6-profile` | The IPv6 profile associated with this interface. |
 | `/interfaces/interface[name]/ethernet/dot1x/state/reauthenticate-interval` |  The recurring interval in seconds after which all already authenticated supplicants reauthenticate. By default, the interval is 0 (no reauthentication). |
 | `/interfaces/interface[name]/ethernet/dot1x/state/auth-fail-vlan` | If auth-fail VLAN is configured. |
 | `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/offset-in-bits` | Offset in bits from the beginning of the 64 bit IPv6 profile. |
@@ -200,16 +200,6 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 | `/performance/interfaces/interface[name]/histograms/ingress-buffer/priority-group[pg][upper-boundary]/count` | Histogram interface ingress buffer queue depth.|
 | `/performance/interfaces/interface[name]/histograms/counter/counter-type[type][upper-boundary]/count` | Histogram interface counter data.|
 | `/performance/interfaces/interface[name]/histograms/latency/traffic-class[tc][upper-boundary]/count` | Histogram interface latency data.|
-
-{{< /expand >}}
-   - {{< expand "Updated gNMI Metrics" >}}
-Old Name | New Name|
-| -------- | --------- |
-| `/qos/shared-buffer/pools/pool[id]/state/data/instant-occupancy` |  `/qos/shared-buffer/pools/pool[id]/state/instant-occupancy` |
-| `/qos/shared-buffer/pools/pool[id]/state/data/max-occupancy-since-last-sample` | `/qos/shared-buffer/pools/pool[id]/state/max-occupancy-since-last-sample` |
-| `/qos/shared-buffer/pools/pool[id]/state/data/max-occupancy` | `/qos/shared-buffer/pools/pool[id]/state/max-occupancy` |
-| `/qos/shared-buffer/pools/pool[id]/state/data/max-occupancy-timestamp` | `/qos/shared-buffer/pools/pool[id]/state/max-occupancy-timestamp` |
-| `/qos/shared-buffer/pools/pool[id]/state/data/time-since-last-clear` |  `/qos/shared-buffer/pools/pool[id]/state/time-since-last-clear`|
 {{< /expand >}}
    - {{< expand "Deprecated gNMI Metrics" >}}
 |  Name | Removal Reason |
@@ -223,17 +213,17 @@ Old Name | New Name|
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_dot1x_system_info` | Global 802.1X configuration information. |
-| `nvswitch_dot1x_radius_client_info` | Radius client configuration. Cumulus Linux is the radius client. |
-| `nvswitch_dot1x_radius_server_info` | Radius server configuration. |
-| `nvswitch_dot1x_supplicant_summary` | Summary showing the MAC address of the supplicant and interface on which it is on. |
-| `nvswitch_dot1x_supplicant_eapol_counters` | 802.1X EAPOL counters to track authentication traffic, showing EAP request frames sent, EAP response frames received from the supplicant (client device), invalid EAPOL frames, and errors like length issues. |  
-| `nvswitch_dot1x_interface_info` | 802.1X interface configuration.|
-| `nvswitch_dot1x_supplicant_status` | Operational status of the supplicant. |
-| `nvswitch_dot1x_ipv6_profile_info` | IPv6 profile level configuration. | 
-| `nvswitch_dot1x_ipv6_profile_property_info` | IPv6 profile property level configuration. |
-| `nvswitch_dot1x_ipv6_profile_summary` | IPv6 profile summary with the IPv6 prefix. |
-| `nvswitch_dot1x_reauth_timeouts` | Supplicant counters when the `reauth-timeout-ignore` option is enabled. |
+| `nvswitch_dot1x_system_info` | Global 802.1X configuration (dynamic VLAN mode, dynamic IPv6 multi-tenant state, max stations per port, auth-fail VLAN ID, reauth-timeout-ignore state, reauthentication interval). |
+| `nvswitch_dot1x_radius_client_info` | RADIUS client configuration (NAS identifier, NAS IP address, source IP). |
+| `nvswitch_dot1x_radius_server_info` | RADIUS server configuration (IP address, authentication port, accounting port, priority, VRF). |
+| `nvswitch_dot1x_supplicant_summary` | Summary showing MAC address, interface, authentication type, VLAN assignment, and session ID of each authenticated supplicant. |
+| `nvswitch_dot1x_supplicant_eapol_counters` | EAPOL frame counters per supplicant, including start, logoff, request, response, invalid, and length-errored frames. |  
+| `nvswitch_dot1x_interface_info` | Per-interface 802.1X configuration (EAP, MBA, host mode, port-id, IPv6 profile, auth-fail VLAN).|
+| `nvswitch_dot1x_supplicant_status` | Authentication status of the supplicant. |
+| `nvswitch_dot1x_ipv6_profile_info` | IPv6 profile configuration (profile name and route tag). | 
+| `nvswitch_dot1x_ipv6_profile_property_info` | IPv6 profile property configuration (offset, length, value, isolation, summarization). |
+| `nvswitch_dot1x_ipv6_profile_summary` | IPv6 prefix generated for each layer 3 authenticated session that is using an IPv6 profile. |
+| `nvswitch_dot1x_reauth_timeouts` | Counter of reauthentication attempts with the RADIUS server that timed out but were ignored, keeping the supplicant in Authorized state when the `reauth-timeout-ignore` flag is enabled. |
 
 **Buffer:**
 
@@ -255,13 +245,13 @@ Review the following considerations before you upgrade to Cumulus Linux 5.16.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.16 from Cumulus Linux 5.13 and later. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.16 from Cumulus Linux 5.14 and later. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 
 To upgrade to Cumulus Linux 5.16 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 ### Maximum Number of NVUE Revisions
 
-Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.16 from 5.12or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
+Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.16 from 5.12 or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
 
 ### Linux Configuration Files Overwritten
 

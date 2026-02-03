@@ -348,7 +348,7 @@ The following additional interface priority group statistics are collected and e
 |------ | ----------- |
 | `nvswitch_interface_pg_rx_buffer_discard` | Interace ingress priority group receive buffer discard counter. |
 | `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
-| `nvswitch_interface_pg_rx_octets` | Interface ingress priority group receive bytes counter. |
+| `nvswitch_interface_pg_rx_octet` | Interface ingress priority group receive bytes counter. |
 | `nvswitch_interface_pg_rx_shared_buffer_discard` | Interface ingress priority group receive shared buffer discard counter. |
 | `nvswitch_interface_pg_rx_uc_frames` | Interface receive priority group unicast frames counter. |
 | `nvswitch_interface_pg_rx_mc_frames` | Interface receive priority group multicast frames counter. |

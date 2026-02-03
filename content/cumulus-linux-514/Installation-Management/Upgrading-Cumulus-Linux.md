@@ -25,6 +25,7 @@ Optimized image upgrade and package upgrade supports ISSU when you upgrade to Cu
 Before you perform an upgrade with ISSU, you must:
 - Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch.
 - Set the {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}} to warm (`nv set system reboot mode warm`).
+- Review support limitations and additional {{<link url="System-Power-and-Switch-Reboot/#warm-reboot-and-issu-considerations" text="warm reboot and ISSU considerations">}}.
 
 ## Before You Upgrade
 

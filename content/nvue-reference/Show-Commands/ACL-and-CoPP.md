@@ -546,6 +546,338 @@ tcp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip</h>
+
+Shows ACL match based on inner packet headers configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip
+                 operational  applied    
+---------------  -----------  -----------
+source-ip        10.10.10.10  10.10.10.10
+dest-ip          20.20.20.20  20.20.20.20
+protocol         udp          udp        
+dscp             10           10         
+udp                                      
+  [source-port]  1000         1000       
+  [dest-port]    2000         2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip ecn</h>
+
+Shows the ACL inner ECN match configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip ecn
+         operational  applied
+-------  -----------  -------
+[flags]               tcp-cwr
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip ecn flags</h>
+
+Shows the ACL inner ECN flag match configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip ecn flags
+operational  applied
+-----------  -------
+tcp-cwr      tcp-cwr
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip tcp</h>
+
+Shows the ACL inner TCP match configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip tcp
+             operational  applied  pending
+-----------  -----------  -------  -------
+[dest-port]                        1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip tcp dest-port</h>
+
+Shows the ACL inner TCP destination port match configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip tcp dest-port
+Ports
+-----
+2000 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip tcp dest-port \<port-id\></h>
+
+Shows information about the ACL inner TCP match for a specific destination port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip tcp dest-port 1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip tcp source-port</h>
+
+Shows the ACL inner TCP source port match configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip tcp source-port
+Ports
+-----
+1000 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip tcp source-port \<port-id\></h>
+
+Shows information about the ACL inner TCP match for a specific source port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip tcp source-port 1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip udp</h>
+
+Shows the ACL inner UDP match configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip udp
+             operational  applied
+-----------  -----------  -------
+[dest-port]               1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip tcp dest-port</h>
+
+Shows the ACL inner UDP destination port match configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip UDP dest-port
+Ports
+-----
+2000 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip udp dest-port \<port-id\></h>
+
+Shows information about the ACL inner match for a specific UDP destination port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip udp dest-port 1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip udp source-port</h>
+
+Shows the ACL inner UDP source port match configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip udp source-port
+Ports
+-----
+1000 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip udp source-port \<port-id\></h>
+
+Shows information about the ACL inner match for a specific UDP source port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip udp source-port 1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip connection-state</h>
 
 Shows the connection state for the match IP ACL rule.
@@ -725,6 +1057,61 @@ dest-mac                      08:9e:01:ce:e2:04
 dest-mac-mask                 ff:ff:ff:ff:ff:ff
 source-mac                    00:00:00:00:00:12
 source-mac-mask               ff:ff:ff:ff:ff:ff
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match offset</h>
+
+Shows the packet offset match criteria for the specified ACL rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match offset
+Offset ID  Summary      
+---------  -------------
+34         value: 0x1200
+54         value: 0xabcd
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match offset \<offset-id\></h>
+
+Shows information for the specific packet offset match for the ACL rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match offset 34
+            operational      applied        
+----------  ---------------  ---------------
+value       0x1200           0x1200         
+mask        0xFFFF           0xFFFF         
+match-from  start-of-packet  start-of-packet
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

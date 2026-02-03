@@ -207,6 +207,16 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/max-queue-len-cells` | New metric to get the cell size (`/qos/shared-buffer/state/cell-size`) |
 
 {{< /expand >}}
+   - {{< expand "Updated gNMI Metrics" >}}
+|  Old Metric | New Metric | Description |
+|------ | ----------- | ---------------- |
+| `qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/watermark-max` | `/qos/interfaces/interface[interface-id]/input/priority-group[pg-id]/state/shared-buffer/data/max-occupancy` | Maximum shared buffer occupancy in bytes for the priority group on the interface since the last watermark reset; software‑maintained. |
+| `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/time-since-last-clear` | `/qos/interfaces/interface[interface-id]/input/priority-group[pg-id]/state/shared-buffer/data/time-since-last-clear` | Time in milliseconds after watermarks for the interface priority group are last cleared. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/time-since-last-clear` | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/shared-buffer/data/time-since-last-clear` | Time in milliseconds after watermarks for the interface traffic class are last cleared. |
+| `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/in-pkts` | `/qos/interfaces/interface[interface-id]/input/priority-group[pg-id]/state/counters/in-pkts` | The number of packets received at ingress for a given priority group. |
+| `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/in-octets` | `/qos/interfaces/interface[interface-id]/input/priority-group[pg-id]/state/counters/in-octets` | The number of octets of data received at ingress for a given priority group.|
+
+{{< /expand >}}
    - {{< expand "New OTEL Metrics" >}}
 
 **802.1X:**
@@ -234,6 +244,19 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 | `nvswitch_shared_buffer_pool_desc_watermark_recorded_max` | Highest maximum shared buffer watermark for descriptors. |
 | `nvswitch_shared_buffer_pool_desc_watermark_recorded_max_timestamp` | Time when the highest shared buffer descriptor watermark is recorded. |
 | `nvswitch_shared_buffer_pool_desc_time_since_clear` | Time in milliseconds after shared buffer descriptor watermarks are last cleared.  |
+ `nvswitch_interface_shared_buffer_port_pg_desc_time_since_clear` | Time in milliseconds after watermarks for the interface priority‑group descriptor are last cleared.|
+| `nvswitch_interface_shared_buffer_port_tc_desc_time_since_clear` | Time in milliseconds after watermark counters for the interface traffic‑class queue descriptor are last cleared. | 
+| `nvswitch_interface_shared_buffer_port_ingress_pool_time_since_clear` | Time in milliseconds after watermark counters for the interface ingress pool are last cleared. | 
+| `nvswitch_interface_shared_buffer_port_ingress_pool_desc_time_since_clear` |  Time in milliseconds after watermark counters for the interface ingress‑pool descriptor are last cleared.| 
+| `nvswitch_interface_shared_buffer_port_egress_pool_time_since_clear` | Time in milliseconds after watermark counters for the interface egress pool are last cleared. | 
+| `nvswitch_interface_shared_buffer_port_egress_pool_desc_time_since_clear` | Time in milliseconds after watermark counters for the interface egress‑pool descriptor are last cleared .|
+| `nvswitch_interface_shared_buffer_mc_port_time_since_clear` |Time in milliseconds after watermark counters for multicast traffic on the interface are last cleared.| 
+| `nvswitch_shared_buffer_mc_sp_time_since_clear` | Time in milliseconds after watermark counters for multicast traffic in the specified switch priority are last cleared.|
+| `nvswitch_shared_buffer_pool_time_since_clear` | Time in milliseconds after watermark counters for the given pool are last cleared. | 
+| `nvswitch_interface_headroom_buffer_pg_time_since_clear` | Time in milliseconds after watermark counters for the specified buffer type (primary or secondary) in the priority group on the interface are last cleared. | 
+| `nvswitch_interface_headroom_shared_buffer_time_since_clear` | Time in milliseconds after watermark counters for the specified buffer type (primary or secondary) on the interface are last cleared.|
+| `nvswitch_buffer_cell_size_bytes` | Shared‑buffer allocation cell size in bytes. |
+
 {{< /expand >}}
    - {{< expand "Deprecated OTEL Metrics" >}}
 |  Name | Removal Reason |

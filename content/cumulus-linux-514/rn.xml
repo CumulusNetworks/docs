@@ -198,12 +198,6 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.15.1</td>
 </tr>
 <tr>
-<td>4717502</td>
-<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
-<td>5.13.1-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>

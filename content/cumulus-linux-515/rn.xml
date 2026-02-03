@@ -1261,12 +1261,6 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.15.1</td>
 </tr>
 <tr>
-<td>4717502</td>
-<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
-<td>5.13.1-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4717494</td>
 <td>When you run the {{nv show vrf default router rib}} command, NVUE returns an {{ItemDoesNotExist }} error. To work around this issue, run the following commands to retrieve IPv6 routing information:
 nv show vrf default router rib ipv6

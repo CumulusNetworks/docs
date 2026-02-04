@@ -517,35 +517,6 @@ ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip</h>
-
-Shows the IPv4 or IPv6 match criteria for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip
-                 operational  applied
----------------  -----------  -------
-protocol         tcp          tcp    
-tcp                                  
-  [source-port]  123          123    
-  [dest-port]    123          123
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show acl \<acl-id\> rule \<rule-id\> match inner-ip</h>
 
 Shows ACL match based on inner packet headers configuration.
@@ -874,6 +845,35 @@ Introduced in Cumulus Linux 5.16.0
 
 ```
 cumulus@switch:~$ nv show acl ACL1 rule 10 match inner-ip udp source-port 1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip</h>
+
+Shows the IPv4 or IPv6 match criteria for the specified ACL rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip
+                 operational  applied
+---------------  -----------  -------
+protocol         tcp          tcp    
+tcp                                  
+  [source-port]  123          123    
+  [dest-port]    123          123
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

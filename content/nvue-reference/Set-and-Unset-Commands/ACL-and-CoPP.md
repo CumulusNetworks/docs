@@ -1669,7 +1669,7 @@ cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 mask 0xFF00
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match offset \<offset\> match-from start-of-</h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match offset \<offset\> match-from</h>
 
 Sets the ACL rule matches based on the packet offset extraction point for the offset position. You can specify `start-of-packet` (the start of the layer 2 header, which is first byte of the destination MAC address), `start-of-inner-ipv4-header` or `start-of-inner-ipv6-header`.
 

@@ -224,20 +224,26 @@ In the event of a major power outage or hardware failure, NetQ might not load pr
 1. Check whether Cassandra pods are in a `CrashloopbackOff` state or are restarting frequently:
 
 ```
-nvidia@master1scale1:~$ kubectl get pods -o wide|grep cassandra
-cassandra-rc-0-fg5ft 0/1 CrashLoopBackOff 36 (50s ago) 3h52m 10.213.11.181 master1scale1
-cassandra-rc-1-cpl8s 1/1 Running 0 21h 10.213.11.182 worker1scale1
-cassandra-rc-2-zwt58 1/1 Running 0 21h 10.213.11.183 worker2scale1 
-nvidia@master1scale1:~$
+kubectl get pods -n netq-infra -l app.kubernetes.io/name=cassandra -o wide
+```
+
+Example output showing a crashing pod:
+
+```
+NAME                     READY   STATUS             RESTARTS        AGE   IP               NODE       NOMINATED NODE   READINESS GATES
+netq-dc1-default-sts-0   0/2     CrashLoopBackOff   36 (50s ago)    3h52m 10.244.133.233   worker-2   <none>           <none>
+netq-dc1-default-sts-1   2/2     Running            0               21h   10.244.219.127   master     <none>           <none>
+netq-dc1-default-sts-2   2/2     Running            0               21h   10.244.226.111   worker-1   <none>           <none>
 ```
 
 2. The log message from the crashing pods will return a `CommitLogReadException` exception:
 
 ```
-kubectl logs cassandra-rc-0-fg5ft -p
+kubectl logs -n netq-infra netq-dc1-default-sts-0 -c cassandra -p
 ```
 
-For example:
+Example error output:
+
 ```
 org.apache.cassandra.db.commitlog.CommitLogReadHandler$CommitLogReadException: Could not read commit log descriptor in file /opt/cassandra/data/commitlog/CommitLog-7-1735662812573.log
 at org.apache.cassandra.db.commitlog.CommitLogReader.readCommitLogSegment(CommitLogReader.java:195)
@@ -248,54 +254,68 @@ at org.apache.cassandra.db.commitlog.CommitLog.recoverSegmentsOnDisk(CommitLog.j
 at org.apache.cassandra.service.CassandraDaemon.setup(CassandraDaemon.java:360)
 at org.apache.cassandra.service.CassandraDaemon.activate(CassandraDaemon.java:765)
 at org.apache.cassandra.service.CassandraDaemon.main(CassandraDaemon.java:889)
-nvidia@master1scale1:~$
 ```
 
-To fix the issue, log in to the corrupted node using SSH and delete the corrupted file. The following example deletes the corrupted file from node `master1scale1`:
+To fix the issue, delete the corrupted commit log file from the Cassandra pod. The following example deletes the corrupted file from pod `netq-dc1-default-sts-0`:
 
-1. Log in as the root user:
-
-```
-nvidia@master1scale1:/mnt/cassandra/commitlog$ sudo su
-[sudo] password for nvidia:
-root@master1scale1:/mnt/cassandra/commitlog#
-```
-
-2. Change directories to `/mnt/cassandra/commitlog`:
+1. Execute into the Cassandra container inside the failing pod:
 
 ```
-nvidia@master1scale1:/mnt/cassandra/commitlog$ cd /mnt/cassandra/commitlog
+kubectl exec -it -n netq-infra netq-dc1-default-sts-0 -c cassandra -- /bin/bash
 ```
 
-3. Remove the corrupted commit log file:
+2. Change directories to the `commitlog` directory:
 
 ```
-root@master1scale1:/mnt/cassandra/commitlog# rm CommitLog-7-1735662812573.log
+cd /opt/cassandra/data/commitlog
 ```
 
-4. Delete the failing Cassandra pod:
+3. List the commit log files to identify the corrupted file (referenced in the error message):
 
 ```
-root@master1scale1:/mnt/cassandra/commitlog# kubectl get pods|grep cass
-cassandra-rc-0-fg5ft 0/1 CrashLoopBackOff 37 (4m50s ago) 4h3m
-cassandra-rc-1-cpl8s 1/1 Running 0 21h
-cassandra-rc-2-zwt58 1/1 Running 0 21h
-root@master1scale1:/mnt/cassandra/commitlog# kubectl delete pod cassandra-rc-0-fg5ft
-pod "cassandra-rc-0-fg5ft" deleted
+ls -la
 ```
 
-5. Repeat these steps for all pods that are in a `CrashLoopBackOff` state. Verify that all faulty pods are deleted using the following command:
+4. Remove the corrupted commit log file:
 
 ```
-root@master1scale1:/mnt/cassandra/commitlog# kubectl get pods|grep cass
-cassandra-rc-0-cg8j9 1/1 Running 0 2s
-cassandra-rc-1-cpl8s 1/1 Running 0 21h
-cassandra-rc-2-zwt58 1/1 Running 0 21h
-root@master1scale1:/mnt/cassandra/commitlog# kubectl get pods|grep cass
-cassandra-rc-0-cg8j9 1/1 Running 0 3s
-cassandra-rc-1-cpl8s 1/1 Running 0 21h
-cassandra-rc-2-zwt58 1/1 Running 0 21h
-root@master1scale1:/mnt/cassandra/commitlog#
+rm CommitLog-7-1735662812573.log
 ```
 
-If the problem persists, check whether the power outage caused node disk pressure, a condition where a node's available disk space becomes critically low. To recover from this state, perform a manual cleanup of the container images by checking which pods are taking up the most space. Then run `docker system prune -a` to remove all unused images, containers, and networks.
+5. Exit the pod with the `exit` command.
+
+6. Delete the failing Cassandra pod. This allows Cassandra to recreate it:
+
+```
+kubectl get pods -n netq-infra -l app.kubernetes.io/name=cassandra
+```
+
+```
+NAME                     READY   STATUS             RESTARTS        AGE
+netq-dc1-default-sts-0   0/2     CrashLoopBackOff   37 (4m50s ago)  4h3m
+netq-dc1-default-sts-1   2/2     Running            0               21h
+netq-dc1-default-sts-2   2/2     Running            0               21h
+```
+
+```
+kubectl delete pod -n netq-infra netq-dc1-default-sts-0
+```
+
+```
+pod "netq-dc1-default-sts-0" deleted
+```
+
+7. Repeat these steps for all pods that are in a `CrashLoopBackOff` state. Verify that all faulty pods are recovered using the following command:
+
+```
+kubectl get pods -n netq-infra -l app.kubernetes.io/name=cassandra
+```
+
+```
+NAME                     READY   STATUS    RESTARTS   AGE
+netq-dc1-default-sts-0   2/2     Running   0          2s
+netq-dc1-default-sts-1   2/2     Running   0          21h
+netq-dc1-default-sts-2   2/2     Running   0          21h
+```
+
+If the problem persists, check whether the power outage caused node disk pressure, a condition where a node's available disk space becomes critically low. To recover from this state, perform a manual cleanup of the container images by checking which pods are taking up the most space. Then run `docker system prune -a` or `crictl rmi --prune` (depending on container runtime) to remove all unused images, containers, and networks.

@@ -29,7 +29,7 @@ Use the following endpoints to list, download, and optionally delete the `tar.gz
 
 You can specify a `ProfileID` within the request body to authenticate switch access credentials. If you omit the `ProfileID`, NetQ uses the default profile for authentication.
 
-The following example initiates the log collection by making a POST request to the `/v1/support-packages` endpoint, specifying the individual IP addresses for the switches.. The response returns an operation ID, which you can use to query the status of the request:
+The following example initiates the log collection by making a POST request to the `/v1/support-packages` endpoint, specifying the individual IP addresses for the switches. The response returns an operation ID, which you can use to query the status of the request:
 ```
 POST /nmx/v1/support-packages
 Content-Type: application/json

@@ -5054,6 +5054,36 @@ enable               off      off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> router bgp soo-source</h>
+
+Configures BGP PIC anycast by setting the SOO source IP address on a leaf. Fast route convergence in case of remote link failures between leaf and spine, and spine and superspine layers requires you to configure the SOO source IP address on leaf switches to advertise the SOO route.
+
+You configure BGP PIC anycast in addition to configuring BGP prefix independent convergence (PIC). You configure PIC with the `nv set vrf <vrf-id> router bgp address-family <address-family>-unicast advertise-origin` command and the `nv set vrf default router bgp address-family <address-family>-unicast nhg-per-origin` command.
+
+Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
+
+{{%notice note%}}
+The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp soo-source 10.10.10.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router bgp timers</h>
 
 Shows BGP timer configuration for all peers in the specified VRF, such as the conditional advertisement, connection retry,

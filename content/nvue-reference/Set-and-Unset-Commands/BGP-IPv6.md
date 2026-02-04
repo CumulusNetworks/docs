@@ -736,7 +736,6 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf RED router bgp address-family ipv6-unicast route-import from-vrf route-map BLUEtoRED
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unreachability advertise-origin</h>
@@ -759,12 +758,33 @@ Introduced in Cumulus Linux 5.16.0
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-origin
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unreachability advertise-unreach interfaces-match</h>
+
+Configures unreachability advertisements for interfaces matching a network for IPv6.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-unreach interfaces-match 2001:1:1::/48
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unreachability state</h>
 
-Enables and disables BGP unreachability (failure signaling) globally for BGP conditional disaggregation for IPv6.
+Enables and disables BGP unreachability (failure signaling) globally for BGP conditional disaggregation for IPv6. You can specify `enabled` or `disabled`.
 
 ### Command Syntax
 

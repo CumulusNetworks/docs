@@ -16,7 +16,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set system log secured-logs state</h>
 
-Configures secured logs, which include the date and time events occur, the source IP and the username for NVUE commands, and when dynamic kernel modules load and unload.
+Configures secured logs, which include the date and time events occur, the source IP and the username for NVUE commands, and when dynamic kernel modules load and unload. You can specify `enabled` or `disabled`. The default value is `disabled`.
 
 ### Version History
 

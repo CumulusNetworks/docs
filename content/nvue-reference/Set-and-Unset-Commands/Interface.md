@@ -627,7 +627,7 @@ cumulus@switch:~$ nv set interface swp1 link state up
 Tx squelch control is a Beta feature.
 {{%/notice%}}
 
-Configures Tx squelch control that controls if the local port continues transmitting when the remote side is logically down (for example, when the remote side is in a fault state or needs to restart auto-negotiation).
+Configures Tx squelch control, which is a PHY‑level feature that controls if the local port continues transmitting when the remote side is logically down (for example, when the remote side is in a fault state or needs to restart auto-negotiation).
 
 {{%notice note%}}
 - Switches with Spectrum-4 and later support Tx squelch control.

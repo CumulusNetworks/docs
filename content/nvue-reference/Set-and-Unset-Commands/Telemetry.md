@@ -1274,10 +1274,9 @@ Introduced in Cumulus Linux 5.15.0
 cumulus@switch:~$ nv set system telemetry export otlp grpc certificate CERT....
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry export otlp grpc certificate \<certificate-id\></h>
+## <h>nv set system telemetry export otlp grpc client-certificate \<certificate-id\></h>
 
 Configures an X.509 client certificate to secure the <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> connection for telemetry export.
 
@@ -1298,9 +1297,8 @@ Introduced in Cumulus Linux 5.16.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system telemetry export otlp grpc client certificate CERT....
+cumulus@switch:~$ nv set system telemetry export otlp grpc client-certificate CERT....
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

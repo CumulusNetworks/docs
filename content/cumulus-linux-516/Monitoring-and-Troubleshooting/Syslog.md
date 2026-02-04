@@ -193,6 +193,15 @@ cumulus@switch:~$ nv set system log secured-logs state enabled
 
 To disable secured logs, run the `nv set system log secured-logs state disabled` command.
 
+To show if secured logs are enabled, run the `nv show system log secured-logs` command:
+
+```
+cumulus@switch:~$ nv show system log secured-logs
+       applied
+-----  -------
+state  enabled
+```
+
 ## Selectors and Filters
 
 You can control which logs to capture using selectors. A selector enables you to choose options such as facility, program name, severity, filters (with match conditions and actions for log selection), and rate limit, for precise and targeted log management. You define the selectors you want to use for a specific server.

@@ -42,7 +42,7 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
   - {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
   - {{<link url="RADIUS-AAA/#required-radius-client-configuration" text="Yubikey authentication over RADIUS">}}
   - {{<link url="Syslog/#enable-secured-logs" text="Configure syslog messages">}} to include the date and time events occur, the source IP and username for NVUE commands, and when dynamic kernel modules load and unload
-  - {{<link url="NVUE-API/#http-response-compression" text="HTTP response compression for API reponses">}}
+  - {{<link url="NVUE-API/#http-response-compression" text="HTTP response compression for API responses">}}
 - Telemetry
   - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
   - {{<link url="New-and-Updated-Telemetry-Metrics/#gnmi-metrics" text="New, updated, and deprecated gNMI Metrics">}}

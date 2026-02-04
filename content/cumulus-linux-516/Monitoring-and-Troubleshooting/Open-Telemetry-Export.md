@@ -952,6 +952,18 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_shared_buffer_pool_desc_watermark_recorded_max` | *Highest maximum shared buffer watermark for descriptors. |
 | `nvswitch_shared_buffer_pool_desc_watermark_recorded_max_timestamp` | *Time when the highest shared buffer descriptor watermark is recorded. |
 | `nvswitch_shared_buffer_pool_desc_time_since_clear` | *Time in milliseconds after shared buffer descriptor watermarks are last cleared.  |
+| `nvswitch_interface_shared_buffer_port_pg_desc_time_since_clear` | *Time in milliseconds after watermarks for the interface priority‑group descriptor are last cleared.|
+| `nvswitch_interface_shared_buffer_port_tc_desc_time_since_clear` | *Time in milliseconds after watermark counters for the interface traffic‑class queue descriptor are last cleared. | 
+| `nvswitch_interface_shared_buffer_port_ingress_pool_time_since_clear` | *Time in milliseconds after watermark counters for the interface ingress pool are last cleared. | 
+| `nvswitch_interface_shared_buffer_port_ingress_pool_desc_time_since_clear` | *Time in milliseconds after watermark counters for the interface ingress‑pool descriptor are last cleared.| 
+| `nvswitch_interface_shared_buffer_port_egress_pool_time_since_clear` | *Time in milliseconds after watermark counters for the interface egress pool are last cleared. | 
+| `nvswitch_interface_shared_buffer_port_egress_pool_desc_time_since_clear` | *Time in milliseconds after watermark counters for the interface egress‑pool descriptor are last cleared .|
+| `nvswitch_interface_shared_buffer_mc_port_time_since_clear` | *Time in milliseconds after watermark counters for multicast traffic on the interface are last cleared.| 
+| `nvswitch_shared_buffer_mc_sp_time_since_clear` | *Time in milliseconds after watermark counters for multicast traffic in the specified switch priority are last cleared.|
+| `nvswitch_shared_buffer_pool_time_since_clear` | *Time in milliseconds after watermark counters for the given pool are last cleared. | 
+| `nvswitch_interface_headroom_buffer_pg_time_since_clear` | *Time in milliseconds after watermark counters for the specified buffer type (primary or secondary) in the priority group on the interface are last cleared. | 
+| `nvswitch_interface_headroom_shared_buffer_time_since_clear` | *Time in milliseconds after watermark counters for the specified buffer type (primary or secondary) on the interface are last cleared.|
+| `nvswitch_buffer_cell_size_bytes` | *Shared‑buffer allocation cell size in bytes. |
 
 <!-- vale off -->
 <br>

@@ -1366,13 +1366,25 @@ cumulus@switch:~$ nv set interface swp1 acl example3 inbound
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
-With inner IP matches configured, any IPv4 or IPv6 `deny all` or `permit all` ACL rule must include an inner IP match (Source IP ANY, Destination IP ANY, or both). If the rule does not include an inner IP match, the switch interprets it as an outer rule, and does not evaluate the inner match. For Example:
+The following example creates an ACL permit rule for inbound packets on swp1 that matches TCP packets marked with the ECN (Explicit Congestion Notification) CWR (Congestion Window Reduced) flag.
 
 ```
-cumulus@switch:~$ nv set acl deny-all-rule type ipv4 
-cumulus@switch:~$ nv set acl deny-all-rule action deny 
-cumulus@switch:~$ nv set acl deny-all-rule match inner-ip source-ip ANY 
+cumulus@switch:~$ nv set acl example3 type ipv4
+cumulus@switch:~$ nv set acl example3 rule 10 action permit
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip protocol tcp
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip ecn flags tcp-cwr
+cumulus@switch:~$ nv set interface swp1 acl example3 inbound
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+When you have an ACL with an inner match rule configured, and you configure a different `deny all` or `permit all` rule in the same ACL, you must include an inner IP match (Source IP ANY, Destination IP ANY, or both) on the `deny all` or `permit all` rule; otherwise, the switch interprets the ACL as an outer match, and does not evaluate the inner match. For Example:
+
+```
+cumulus@switch:~$ nv set acl acl1 rule 10 match inner-ip source-ip 10.10.10.10
+cumulus@switch:~$ nv set acl acl1 rule 10 action permit
+cumulus@switch:~$ nv set acl acl1 rule 20 match inner-ip source-ip any
+cumulus@switch:~$ nv set acl acl1 rule 20 action deny
 ```
 {{%/notice%}}
 

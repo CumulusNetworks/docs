@@ -32,7 +32,7 @@ nv show acl <acl-id> rule <rule-id> match inner-ip udp source-port <source-port-
 nv show acl <acl-id> rule <rule-id> match offset
 nv show acl <acl-id> rule <rule-id> match offset <offset-id>
 nv show system dot1x tx-identity-request
-nv show system logs secured-logs
+nv show system log secured-logs
 nv show system security fips
 nv show system security group <group-id>
 nv show system security user <user-id>
@@ -57,13 +57,11 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unrea
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability capabilities
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability graceful-restart
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability prefix-limits 
-nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability received-routes
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability route-counters
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability advertised-routes
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability aspath
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability capabilities
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability prefix-limits 
-nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability received-routes
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability route-counters
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability graceful-restart
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability aspath

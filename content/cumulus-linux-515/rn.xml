@@ -967,6 +967,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>4850188</td>
+<td>Signal quality degradation is observed during SR4-100G to 4×25G breakout using an adapter.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4838527</td>
 <td>On a high port scale system, streaming telemetry for interface and buffer statistics (GNMI or OTEL) together with the PFC watchdog feature, causes samples of telemetry data to fail to export from the system periodically and kernel memory use might increase.</td>
 <td>5.14.0-5.15.1</td>
@@ -2190,6 +2196,11 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <td>5.12.1-5.14.0</td>
 </tr>
 <tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+</tr>
+<tr>
 <td>4662494</td>
 <td>When there are a very large number of gNMI client subscriptions, the switch might not accept new sessions and metrics might stop generating for existing sessions.</td>
 <td>5.14.0</td>
@@ -2292,6 +2303,11 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <tr>
 <td>4618809</td>
 <td>When collecting streaming telemetry data for per-process information and statistics from the system, you might see false errors about unavailable process IDs in the logs.</td>
+<td>5.14.0</td>
+</tr>
+<tr>
+<td>4616352</td>
+<td>The NVUE {{nv config diff}} command returns an incorrect exit code of 1 instead of 0 for successfully staged changes. As a result, ansible automation fails, which relies on program return codes to determine whether the commands are successful.</td>
 <td>5.14.0</td>
 </tr>
 <tr>

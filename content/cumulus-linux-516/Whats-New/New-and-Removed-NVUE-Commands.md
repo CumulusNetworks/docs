@@ -37,6 +37,7 @@ nv show system security fips
 nv show system security group <group-id>
 nv show system security user <user-id>
 nv show system tech-support auto-generation
+nv show system tech-support auto-generation recovery-steps
 nv show vrf <vrf-id> router bgp address-family <address-family> conditional-disaggregation
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-origin

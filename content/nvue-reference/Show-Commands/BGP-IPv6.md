@@ -868,7 +868,7 @@ No Data
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast route \<route-id\></h>
 
-Shows information about the BGP IPv4 route.
+Shows information about the BGP IPv6 route.
 
 ### Command Syntax
 

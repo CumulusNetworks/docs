@@ -542,52 +542,6 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action span swp1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip dscp</h>
-
-Sets the inner DSCP value for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.16.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip dscp 10
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip source-ip</h>
-
-Sets the source IP address for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.16.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip source-ip 10.10.10.10
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip dest-ip</h>
 
 Sets the destination IP address for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
@@ -607,6 +561,75 @@ Introduced in Cumulus Linux 5.16.0
 
 ```
 cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip dest-ip 20.20.20.20
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip dscp</h>
+
+Sets the inner DSCP value for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip dscp cs6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip ecn flags</h>
+
+Sets the ECN (Explicit Congestion Notification) flag for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads. You can specify `tcp-cwr` (the TCP congestion window reduced flag) or `tcp-ece` (the TCP ECN echo flag).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip ecn flags tcp-cwr
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip ecn ip-ect</h>
+
+Sets the ECN (Explicit Congestion Notification) IP ECT value for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip ecn ip-ect
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -634,9 +657,9 @@ cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip protocol udp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip udp source-port</h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip source-ip</h>
 
-Sets the source port for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+Sets the source IP address for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
 
 ### Command Syntax
 
@@ -652,14 +675,61 @@ Introduced in Cumulus Linux 5.16.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip udp source-port 1000
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip source-ip 10.10.10.10
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip tcp dest-port</h>
+
+Sets the TCP destination port for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip tcp dest-port 2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip tcp source-port</h>
+
+Sets the TCP source port for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip tcp source-port 2000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip udp dest-port</h>
 
-Sets the destination port for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+Sets the UDP destination port for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
 
 ### Command Syntax
 
@@ -676,6 +746,29 @@ Introduced in Cumulus Linux 5.16.0
 
 ```
 cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip udp dest-port 2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip udp source-port</h>
+
+Sets the UDP source port for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip udp source-port 1000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1576,9 +1669,9 @@ cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 mask 0xFF00
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match offset \<offset\> match-from start-of-packet</h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match offset \<offset\> match-from start-of-</h>
 
-Sets the ACL rule matches based on the packet offset extraction point for the offset position. The only option is `start-of-packet`, which is the start of the layer 2 header that is first byte of the destination MAC address.
+Sets the ACL rule matches based on the packet offset extraction point for the offset position. You can specify `start-of-packet` (the start of the layer 2 header, which is first byte of the destination MAC address), `start-of-inner-ipv4-header` or `start-of-inner-ipv6-header`.
 
 ### Command Syntax
 

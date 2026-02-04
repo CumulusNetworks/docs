@@ -106,6 +106,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td></td>
 </tr>
 <tr>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
@@ -1498,6 +1504,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>4721298</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>

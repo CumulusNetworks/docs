@@ -967,6 +967,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>4850188</td>
+<td>Signal quality degradation is observed during SR4-100G to 4×25G breakout using an adapter.</td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4838527</td>
 <td>On a high port scale system, streaming telemetry for interface and buffer statistics (GNMI or OTEL) together with the PFC watchdog feature, causes samples of telemetry data to fail to export from the system periodically and kernel memory use might increase.</td>
 <td>5.14.0-5.15.1</td>
@@ -1014,12 +1020,6 @@ ports configuration(ports.conf/ports_width.conf) is invalid</td>
 <td>4807528</td>
 <td>On certain platforms, the {{nv show platform transceiver &lt;port&gt;}} command shows module flags (for example, CMIS‑style fault/LOS flags) as False for legacy, non‑CMIS optics (such as older QSFP+, QSFP28, and QSFP56 modules) even when the module does not implement these flags. This issue has no functional impact.</td>
 <td>5.15.0-5.15.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4805286</td>
-<td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
-<td>5.11.3-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1267,18 +1267,6 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.15.1</td>
 </tr>
 <tr>
-<td>4717753</td>
-<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.15.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4717502</td>
-<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
-<td>5.13.1-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4717494</td>
 <td>When you run the {{nv show vrf default router rib}} command, NVUE returns an {{ItemDoesNotExist }} error. To work around this issue, run the following commands to retrieve IPv6 routing information:
 nv show vrf default router rib ipv6
@@ -1384,12 +1372,6 @@ User name {} is already in use as OS group name 'and could not be used as userna
 <td>4683616</td>
 <td>When you configure the same 802.1X port ID on multiple ports using the same IPv6 profile, the switch might assign duplicate IPv6 addresses to those ports. To work around this issue, configure a unique port ID for each port with an IPv6 profile or omit the explicit port ID configuration to allow the system to assign a unique 802.1X port ID automatically.</td>
 <td>5.15.0-5.15.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4683602</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2214,6 +2196,11 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <td>5.12.1-5.14.0</td>
 </tr>
 <tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+</tr>
+<tr>
 <td>4662494</td>
 <td>When there are a very large number of gNMI client subscriptions, the switch might not accept new sessions and metrics might stop generating for existing sessions.</td>
 <td>5.14.0</td>
@@ -2316,6 +2303,11 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <tr>
 <td>4618809</td>
 <td>When collecting streaming telemetry data for per-process information and statistics from the system, you might see false errors about unavailable process IDs in the logs.</td>
+<td>5.14.0</td>
+</tr>
+<tr>
+<td>4616352</td>
+<td>The NVUE {{nv config diff}} command returns an incorrect exit code of 1 instead of 0 for successfully staged changes. As a result, ansible automation fails, which relies on program return codes to determine whether the commands are successful.</td>
 <td>5.14.0</td>
 </tr>
 <tr>

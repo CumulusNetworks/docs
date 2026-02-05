@@ -2143,7 +2143,6 @@ weight                                  0
 ...
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes</h>
@@ -2720,7 +2719,6 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 No Data
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast community-advertise</h>
@@ -2775,7 +2773,6 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 enable               off
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast default-route-origination</h>
@@ -2828,7 +2825,6 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 rx-eof-rib  on                           
 tx-eof-rib  on
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3195,7 +3191,6 @@ Introduced in Cumulus Linux 5.5.0
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 bestpath -o json
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3590,7 +3585,6 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 capabilities
 extended-nexthop               auto
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ebgp-policy</h>
@@ -3901,7 +3895,7 @@ Address     IGPMetric  Valid  PathCnt  ResolvedVia                Interface
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address-id\></h>
+## <h>nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address\></h>
 
 Shows information about a specific BGP IPv4 or IPv6 next hop for the specified VRF.
 
@@ -3911,7 +3905,7 @@ Shows information about a specific BGP IPv4 or IPv6 next hop for the specified V
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 | `<afi>` |  The address family: IPv4 or IPv6. |
-| `<ip-address-id>` |  The IPv4 or IPv6 address. |
+| `<ip-address>` |  The IPv4 or IPv6 address. |
 
 ### Version History
 
@@ -3934,7 +3928,7 @@ last-update-time  2024-11-14T08:58:31Z
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address-id\> path</h>
+## <h>nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address\> path</h>
 
 Shows all paths associated with BGP IPv4 or IPv6 nexthops for the specified VRF.
 
@@ -3948,7 +3942,7 @@ Add `-o json` at the end of the command to see the output in a more readable for
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 | `<afi>` |  The address family: IPv4 or IPv6. |
-| `<ip-address-id>` |  The IPv4 or IPv6 address. |
+| `<ip-address>` |  The IPv4 or IPv6 address. |
 
 ### Version History
 
@@ -4037,7 +4031,7 @@ cumulus@switch:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address-id\> path \<path-id\></h>
+## <h>nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address\> path \<path-id\></h>
 
 Shows information about a specific path associated with BGP IPv4 or IPv6 nexthops for the specified VRF.
 
@@ -4047,7 +4041,7 @@ Shows information about a specific path associated with BGP IPv4 or IPv6 nexthop
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 | `<afi>` |  The address family: IPv4 or IPv6. |
-| `<ip-address-id>` |  The IPv4 or IPv6 address. |
+| `<ip-address>` |  The IPv4 or IPv6 address. |
 | `<path-id>` | The path ID. |
 
 ### Version History
@@ -4077,10 +4071,9 @@ flags
   nexthop-self                off
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address-id\> resolved-via</h>
+## <h>nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address\> resolved-via</h>
 
 Shows the recursive BGP IPv4 or IPv6 next hops for the specified VRF.
 
@@ -4090,7 +4083,7 @@ Shows the recursive BGP IPv4 or IPv6 next hops for the specified VRF.
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 | `<afi>` |  The address family: IPv4 or IPv6. |
-| `<ip-address-id>` |  The IPv4 or IPv6 address. |
+| `<ip-address>` |  The IPv4 or IPv6 address. |
 
 ### Version History
 
@@ -4618,7 +4611,6 @@ outbound
   prefix-list     none 
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound</h>
@@ -4814,7 +4806,6 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES bfd
 enable               off
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities</h>
@@ -4896,7 +4887,6 @@ hold                              auto
 connection-retry                  auto   
 route-advertisement               auto
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

@@ -943,7 +943,7 @@ fe80::4ab0:2dff:fed0:1e4a  remote  active  0          0          48:b0:2d:d0:1e:
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show evpn vni \<vni-id\> host \<ip-address-id\></h>
+## <h>nv show evpn vni \<vni-id\> host \<ip-address\></h>
 
 Shows a specific ARP and ND table for the specific VNI.
 
@@ -952,7 +952,7 @@ Shows a specific ARP and ND table for the specific VNI.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vni-id>` |  The VNI name. |
-| `<ip-address-id>` |  The IP address. |
+| `<ip-address>` |  The IP address. |
 
 ### Version History
 

@@ -120,7 +120,7 @@ enable              on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service dhcp-relay \<vrf-id\> agent remote-id \<remote-id\>
+## <h>nv show service dhcp-relay \<vrf-id\> agent remote-id \<remote-id\></h>
 
 Shows information about the specified remote ID configured for DHCP Agent Information Option 82.
 

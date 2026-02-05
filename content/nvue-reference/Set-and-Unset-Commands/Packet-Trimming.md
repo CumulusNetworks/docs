@@ -69,7 +69,7 @@ cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system forwarding packet-trim service-port \<port\></h>
+## <h>nv set system forwarding packet-trim service-port \<port-id\></h>
 
 Configures the service port to use for packet trimming.
 
@@ -85,7 +85,7 @@ Do not configure packet trimming port eligibility, port security, adaptive routi
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<port>`  |  The service port you want to use for packet trimming.  |
+| `<port-id>`  |  The service port you want to use for packet trimming.  |
 
 ### Version History
 

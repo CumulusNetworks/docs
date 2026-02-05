@@ -10,7 +10,7 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action
+## <h>nv action</h>
 
 Resets counters for interfaces, BGP, QoS buffers and pools, removes conflicts from protodown MLAG bonds, and disconnects system users.
 
@@ -2822,7 +2822,6 @@ Introduced in Cumulus Linux 5.15.0
 cumulus@switch:~$ nv action delete system health history files FILE1
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action delete system log file \<filename\></h>
@@ -3567,7 +3566,7 @@ cumulus@switch:~$ nv action import system security certificate tls-cert-1 passph
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action install system image file \<filename\>
+## <h>nv action install system image file \<filename\></h>
 
 Installs the specified binary image on the second partition (optimized upgrade).
 
@@ -3958,7 +3957,6 @@ Introduced in Cumulus Linux 5.15.0
 cumulus@switch:~$ nv action pull system docker image nginx
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action pull system docker image \<image-id\> tag</h>
@@ -4001,7 +3999,6 @@ Rebooting System in cold mode
 True
 Action succeeded
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

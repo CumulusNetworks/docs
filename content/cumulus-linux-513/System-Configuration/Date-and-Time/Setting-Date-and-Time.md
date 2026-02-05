@@ -81,7 +81,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Edit the /etc/timezone File ">}}
 
-1. Edit the `/etc/timezone` file to add your desired time zone. For a list of valid time zones, refer to {{<exlink url="https://data.iana.org/time-zones/data/leap-seconds.list" text="tz database time zones">}}.
+1. Edit the `/etc/timezone` file to add your desired time zone. For a list of valid time zones, refer to {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="tz database time zones">}}.
 
    ```
    cumulus@switch:~$ sudo vi /etc/timezone

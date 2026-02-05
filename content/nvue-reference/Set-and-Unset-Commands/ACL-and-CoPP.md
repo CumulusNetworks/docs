@@ -678,7 +678,6 @@ Introduced in Cumulus Linux 5.16.0
 cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip source-ip 10.10.10.10
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip tcp dest-port</h>
@@ -1641,7 +1640,6 @@ Introduced in Cumulus Linux 5.16.0
 ```
 cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 value 0x1200
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

@@ -1055,7 +1055,6 @@ Introduced in Cumulus Linux 5.9.0
 cumulus@switch:~$ nv set acl acl-default-dos rule 10 match ip tcp mss 536
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set acl acl-default-dos rule \<rule-id\> match ip tcp state established</h>
@@ -2346,7 +2345,6 @@ Introduced in Cumulus Linux 5.9.0
 ```
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip tcp mss 536
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

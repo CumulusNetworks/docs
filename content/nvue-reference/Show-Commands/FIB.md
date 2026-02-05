@@ -113,7 +113,7 @@ Shows IPv4 FIB table entries for a specific prefix in a VRF.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv4 or IPv6 prefix. |
+| `<route-id>` | The IPv4 prefix. |
 
 ### Version History
 
@@ -140,7 +140,7 @@ Shows IPv6 FIB table entries for a specific prefix in a VRF.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
-| `<route-id>` | The IPv4 or IPv6 prefix. |
+| `<route-id>` | The IPv6 prefix. |
 
 ### Version History
 

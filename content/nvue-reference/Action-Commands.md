@@ -763,9 +763,9 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv clear system control-plane policer statistics</h>
+## <h>nv action clear system control-plane policer statistics</h>
 
-Clears all control plane policer counters. USe this command to help troubleshooot control plane traffic issues.
+Clears all control plane policer counters. Use this command to help troubleshooot control plane traffic issues.
 
 ### Version History
 

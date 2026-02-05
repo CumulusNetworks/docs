@@ -170,7 +170,7 @@ nv set vrf <vrf-id> router bgp soo-source
 {{< tab "nv action ">}}
 
 ```
-nv action traceroute system <destination-id> errors-extension do-not-fragment
+nv action traceroute system <destination-id> errors-extension
 nv action activate system tech-support auto-generation
 nv action clear system control-plane policer statistics
 nv action clear system control-plane policer <policer-id> statistics

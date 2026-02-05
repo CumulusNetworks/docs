@@ -973,7 +973,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology. </td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology.</td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>
@@ -2269,7 +2269,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology. </td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology.</td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>

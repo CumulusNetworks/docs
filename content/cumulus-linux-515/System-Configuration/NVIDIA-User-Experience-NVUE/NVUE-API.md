@@ -324,7 +324,7 @@ connections
 
 ## Supported Objects
 
-The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. To see a full listing of the supported API endpoints, refer to {{<mib_link url="cumulus-linux-513/api/index.html" text="NVUE OpenAPI Specification for Cumulus Linux.">}}
+The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. To see a full listing of the supported API endpoints, refer to the {{<exlink url="https://api-prod.nvidia.com/openapi-browser" text="NVUE API browser tool">}}.
 
 | High-level Objects | Description |
 | ------------------ | ----------- |

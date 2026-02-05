@@ -356,7 +356,7 @@ NVUE provides a default `/etc/nvue.d/startup.yaml` file that includes configurat
 
 {{%notice info%}}
 - The default startup configuration file sets the default hostname as `cumulus`; therefore, Cumulus Linux does not accept the DHCP `host-name` option. To set a different hostname with NVUE, see {{<link url="Quick-Start-Guide/#configure-the-hostname" text="Configure the Hostname">}}. If you do not manage your switch with NVUE and want to change this behavior with Linux configuration files, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
-- The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command as described in {{<link url="Upgrading-Cumulus-Linux#back-up-and-restore-configuration-with-nvue" text=" Back up and Restore Configuration with NVUE">}}.
+- The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command as described in {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE Image Upgrade">}}.
 - You cannot delete a logged in user account.
 {{%/notice%}}
 

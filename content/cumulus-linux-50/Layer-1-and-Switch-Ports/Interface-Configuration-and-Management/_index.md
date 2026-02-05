@@ -514,7 +514,7 @@ You can add a description (alias) to an interface.
 Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<mib_link text="IF-MIB::ifAlias" url="mibs/IF-MIB.txt" >}}
 
 {{%notice note%}}
-- Interface descriptions can have a maximum of 256 characters.
+- Interface descriptions can have a maximum of 255 characters.
 - Avoid using apostrophes or non-ASCII characters. Cumulus Linux does not parse these characters.
 {{%/notice%}}
 

@@ -403,9 +403,7 @@ leaf02            swp51(spine01)               default         65101      65199 
 
 ## netq show check-filter
 
-Displays filters currently applied to `netq check` commands. Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for more information about suppressing tests associated with `netq check` commands.
-
-Use this command to display check filter IDs, which must be specified when adding filters to a `netq check` command.
+Displays filters currently applied to `netq check` commands. Use this command to display check filter IDs, which must be specified when adding filters to a `netq check` command.
 
 ### Syntax
 

@@ -29,7 +29,7 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 1. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-2. Configure {{<link title="Credentials and Profiles/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
+2. Configure {{<link title="Switch Management/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
 
 3. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 

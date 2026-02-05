@@ -176,7 +176,7 @@ profile               BFD1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group\> bfd</h>
+## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd</h>
 
 Shows the BFD configuration profile associated with a BGP peer group.
 
@@ -185,7 +185,7 @@ Shows the BFD configuration profile associated with a BGP peer group.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<peer-group>` | The peer group name. |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 

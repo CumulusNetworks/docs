@@ -224,12 +224,12 @@ cumulus@switch:~$ nv set interface swp1 ipv4 address 10.0.0.1/30
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ipv4 gateway \<ip-address-id\></h>
+## <h>nv set interface \<interface-id\> ipv4 gateway \<ip-address\></h>
 
-Configures the gateway IP address on the specified interface. For IPv6, run the `nv set interface <interface-id> ipv6 gateway <ip-address-id>` command.
+Configures the gateway IP address on the specified interface. For IPv6, run the `nv set interface <interface-id> ipv6 gateway <ip-address>` command.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip gateway <ip-address-id>`.
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip gateway <ip-address>`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -237,7 +237,7 @@ In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-i
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ip-address-id>` | The IP address.|
+| `<ip-address>` | The IP address.|
 
 ### Version History
 
@@ -285,7 +285,7 @@ Enables and disables IPv6. The default setting is `enabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier:
-- The command is `nv set interface <interface> ip ipv6 state`.
+- The command is `nv set interface <interface-id> ip ipv6 state`.
 - You specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
 {{%/notice%}}
 
@@ -313,7 +313,7 @@ Enables and disables IPv6 forwarding. The default setting is `enabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier:
-- The command is `nv set interface <interface> ip ipv6 forward`.
+- The command is `nv set interface <interface-id> ip ipv6 forward`.
 - You specify `on` or `off`.
 {{%/notice%}}
 

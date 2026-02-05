@@ -1064,12 +1064,12 @@ cumulus@switch:~$ nv set service dhcp-server6 default static server1 ifname swp1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-server6 \<vrf-id\> static \<static-id\> ip-address \<ip-address-id\></h>
+## <h>nv set service dhcp-server6 \<vrf-id\> static \<static-id\> ip-address \<ip-address\></h>
 
 Configures the IPv6 address for the static DHCP6 server.
 
 {{%notice note%}}
-In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v6 static-host <static-id> ip-address <ip-address-id>`.
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v6 static-host <static-id> ip-address <ip-address>`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -1078,7 +1078,7 @@ In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-serve
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<static-id>` |  The name of the resource. |
-| `<ip-address-id>` |  The IPv6 address. |
+| `<ip-address>` |  The IPv6 address. |
 
 ### Version History
 
@@ -1901,12 +1901,12 @@ cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1 ifname s
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> ip-address \<ip-address-id\></h>
+## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> ip-address \<ip-address\></h>
 
 Configures the IPv6 address for the static DHCP6 server.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id> ip-address <ip-address-id>`.
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id> ip-address <ip-address>`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -1915,7 +1915,7 @@ In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<static-id>` |  The name of the resource. |
-| `<ip-address-id>` |  The IPv6 address. |
+| `<ip-address>` |  The IPv6 address. |
 
 ### Version History
 

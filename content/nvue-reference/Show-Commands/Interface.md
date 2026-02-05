@@ -466,10 +466,10 @@ vrf                                  default  default
 
 Shows the IP addresses configured for the specified interface.
 
-For IPv6, the command is `nv show interface <interface> ipv6 address`.
+For IPv6, the command is `nv show interface <interface-id> ipv6 address`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip address`.
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip address`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -498,10 +498,10 @@ cumulus@switch:~$ nv show interface lo ipv4 address
 
 Shows details about a specific IP address for the specified interface.
 
-For IPv6, the command is `nv show interface <interface> ipv6 address <ip-prefix-id>`.
+For IPv6, the command is `nv show interface <interface-id> ipv6 address <ip-prefix-id>`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip address <ip-prefix-id>`.
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip address <ip-prefix-id>`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -527,10 +527,10 @@ cumulus@switch:~$ nv show interface lo ipv4 address 10.10.10.1/32
 
 Shows the gateway IP address for the specified interface.
 
-For IPv6, the command is `nv show interface <interface> ipv6 gateway`.
+For IPv6, the command is `nv show interface <interface-id> ipv6 gateway`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip gateway`.
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip gateway`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -551,14 +551,14 @@ cumulus@switch:~$ nv show interface swp1 ipv4 gateway
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ipv4 gateway \<ip-address-id\></h>
+## <h>nv show interface \<interface-id\> ipv4 gateway \<ip-address\></h>
 
 Shows information about a specific gateway IP address for the specified interface
 
-For IPv6, the command is `nv show interface <interface> ipv6 gateway <gateway>`.
+For IPv6, the command is `nv show interface <interface-id> ipv6 gateway <gateway>`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip gateway <gateway>`.
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip gateway <gateway>`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -566,7 +566,7 @@ In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface>
 | Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
-| `<ip-address-id>` | The gateway IP address. |
+| `<ip-address>` | The gateway IP address. |
 
 ### Version History
 
@@ -584,10 +584,10 @@ cumulus@switch:~$ nv show interface swp1 ipv4 gateway 10.10.10.1
 
 Shows information about the IP neighbors configured for the specified interface.
 
-For IPv6, the command is `nv show interface <interface> ipv6 neighbor`.
+For IPv6, the command is `nv show interface <interface-id> ipv6 neighbor`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip neighbor ipv4`.
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip neighbor ipv4`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -616,10 +616,10 @@ cumulus@switch:~$ nv show interface swp51 ipv4 neighbor
 
 Shows information about a specific IPv4 neighbor for the specified interface.
 
-For IPv6, the command is `nv show interface <interface> ipv6 neighbor <neighbor-id>`.
+For IPv6, the command is `nv show interface <interface-id> ipv6 neighbor <neighbor-id>`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface> ip neighbor ipv4 <neighbor-id>`.
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip neighbor ipv4 <neighbor-id>`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -795,7 +795,7 @@ state               enabled  enabled
 Shows physical layer diagnostic information for a port.
 
 {{%notice note%}}
-- Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface> link phy detail` command.
+- Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface-id> link phy detail` command.
 - In Cumulus Linux 5.14 and earlier, this command is `nv show interface <interface-id> link phy-diag`.
 {{%/notice%}}
 
@@ -854,7 +854,7 @@ eth-an-link-enabled               97452034
 Shows physical layer information, such the error counters for each lane on a port.
 
 {{%notice note%}}
-- Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface> link phy health` command.
+- Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface-id> link phy health` command.
 - In Cumulus Linux 5.14 and earlier, this command is `nv show interface <interface-id> link phy-detail`.
 {{%/notice%}}
 
@@ -1153,7 +1153,7 @@ cumulus@switch:~$ nv show interface swp1 link traffic-engineering
 Shows the <span class="a-tooltip">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
 
 {{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show platform transceiver <interface>` command instead.
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show platform transceiver <interface-id>` command instead.
 {{%/notice%}}
 
 ### Command Syntax

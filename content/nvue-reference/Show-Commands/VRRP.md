@@ -192,7 +192,7 @@ IP address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ipv4 vrrp virtual-router \<virtual-router-id\> address\<ip-address-id\></h>
+## <h>nv show interface \<interface-id\> ipv4 vrrp virtual-router \<virtual-router-id\> address\<ip-address\></h>
 
 Shows information about the IP address of the virtual gateway implemented with VRRP for the specified interface. For IPv6, run the `nv show interface <interface-id> ipv6 vrrp virtual-router <virtual-router-id> address <address-id>` command.
 
@@ -206,7 +206,7 @@ In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 | `<virtual-router-id>` | The <span class="a-tooltip">[VRID](## "Virtual Router Identifier")</span> that identifies the group of VRRP routers.|
-| `<ip-address-id>` | The IPv4 or IPv6 address. |
+| `<ip-address>` | The IPv4 or IPv6 address. |
 
 ### Version History
 

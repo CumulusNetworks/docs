@@ -86,7 +86,7 @@ cumulus@switch:~$ nv set router bfd offload enabled
 ```
 
 {{%notice note%}}
-For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` command.
+For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` command.
 {{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

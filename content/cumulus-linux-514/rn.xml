@@ -39,12 +39,6 @@ ports configuration(ports.conf/ports_width.conf) is invalid</td>
 <td></td>
 </tr>
 <tr>
-<td>4805286</td>
-<td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
-<td>5.11.3-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4804084</td>
 <td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
 {{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
@@ -204,9 +198,9 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.15.1</td>
 </tr>
 <tr>
-<td>4717502</td>
-<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
-<td>5.13.1-5.15.1</td>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -235,12 +229,6 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td>An invalid hashed-password string for a local NVUE user causes all {{nv config apply}} operations (including unrelated changes) to fail health checks and raise tracebacks when NVUE attempts to recreate the user. </td>
 <td>5.12.0-5.14.0</td>
 <td>5.15.0-5.15.1</td>
-</tr>
-<tr>
-<td>4683602</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4683370</td>
@@ -434,6 +422,12 @@ interface_stats_collector[41358]: [signal SIGSEGV: segmentation violation code=0
 <tr>
 <td>4618809</td>
 <td>When collecting streaming telemetry data for per-process information and statistics from the system, you might see false errors about unavailable process IDs in the logs.</td>
+<td>5.14.0</td>
+<td>5.15.0-5.15.1</td>
+</tr>
+<tr>
+<td>4616352</td>
+<td>The NVUE {{nv config diff}} command returns an incorrect exit code of 1 instead of 0 for successfully staged changes. As a result, ansible automation fails, which relies on program return codes to determine whether the commands are successful.</td>
 <td>5.14.0</td>
 <td>5.15.0-5.15.1</td>
 </tr>
@@ -950,7 +944,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology.</td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>

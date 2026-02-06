@@ -1908,6 +1908,8 @@ received sync response 'true' from '10.209.37.123:9339'
 When using gNMI with Cumulus Linux:
 - The minimum sampling interval is 1 second. If you configure a shorter sampling interval, the switch might not behave as expected.
 - ModelData, Origin, and Extensions fields are ignored in requests and not set in responses.
+- Cumulus Linux processes gNMI subscription requests one at a time. Concurrent requests receive a gRPC status CANCELLED with the message `System is busy. Please retry in a bit`.
+
 
 ## Related Information
 

@@ -30,9 +30,9 @@ cumulus@leaf01:~$ nv set interface bond3 bond member swp3
 cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf01:~$ nv set interface bond3 bond mlag id 3
-cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf01:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf01:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
 cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:FF:00:AA
@@ -68,9 +68,9 @@ cumulus@leaf01:~$ nv set interface swp52 router ospf timers dead-interval 60
 cumulus@leaf01:~$ nv set interface vlan10 router ospf area 0
 cumulus@leaf01:~$ nv set interface vlan20 router ospf area 0
 cumulus@leaf01:~$ nv set interface vlan30 router ospf area 0
-cumulus@leaf01:~$ nv set interface vlan10 router ospf passive on
-cumulus@leaf01:~$ nv set interface vlan20 router ospf passive on
-cumulus@leaf01:~$ nv set interface vlan30 router ospf passive on
+cumulus@leaf01:~$ nv set interface vlan10 router ospf passive enabled
+cumulus@leaf01:~$ nv set interface vlan20 router ospf passive enabled
+cumulus@leaf01:~$ nv set interface vlan30 router ospf passive enabled
 cumulus@leaf01:~$ nv set router ospf timers spf delay 80
 cumulus@leaf01:~$ nv set router ospf timers spf holdtime 100
 cumulus@leaf01:~$ nv set router ospf timers spf max-holdtime 6000
@@ -90,9 +90,9 @@ cumulus@leaf02:~$ nv set interface bond3 bond member swp3
 cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf02:~$ nv set interface bond3 bond mlag id 3
-cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass on
-cumulus@leaf02:~$ nv set interface bond3 bond lacp-bypass on
+cumulus@leaf02:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass enabled
+cumulus@leaf02:~$ nv set interface bond3 bond lacp-bypass enabled
 cumulus@leaf02:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
 cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:FF:00:AA
@@ -128,9 +128,9 @@ cumulus@leaf02:~$ nv set interface swp52 router ospf timers dead-interval 60
 cumulus@leaf02:~$ nv set interface vlan10 router ospf area 0
 cumulus@leaf02:~$ nv set interface vlan20 router ospf area 0
 cumulus@leaf02:~$ nv set interface vlan30 router ospf area 0
-cumulus@leaf02:~$ nv set interface vlan10 router ospf passive on
-cumulus@leaf02:~$ nv set interface vlan20 router ospf passive on
-cumulus@leaf02:~$ nv set interface vlan30 router ospf passive on
+cumulus@leaf02:~$ nv set interface vlan10 router ospf passive enabled
+cumulus@leaf02:~$ nv set interface vlan20 router ospf passive enabled
+cumulus@leaf02:~$ nv set interface vlan30 router ospf passive enabled
 cumulus@leaf02:~$ nv set router ospf timers spf delay 80
 cumulus@leaf02:~$ nv set router ospf timers spf holdtime 100
 cumulus@leaf02:~$ nv set router ospf timers spf max-holdtime 6000
@@ -214,8 +214,8 @@ cumulus@border01:~$ nv set interface bond1 bond member swp1
 cumulus@border01:~$ nv set interface bond2 bond member swp2
 cumulus@border01:~$ nv set interface bond1 bond mlag id 1
 cumulus@border01:~$ nv set interface bond2 bond mlag id 2
-cumulus@border01:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@border01:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@border01:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@border01:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@border01:~$ nv set interface bond1 bridge domain br_default access 2001
 cumulus@border01:~$ nv set interface bond2 bridge domain br_default access 2001
 cumulus@border01:~$ nv set interface bond1-2 bridge domain br_default
@@ -257,8 +257,8 @@ cumulus@border02:~$ nv set interface bond1 bond member swp1
 cumulus@border02:~$ nv set interface bond2 bond member swp2
 cumulus@border02:~$ nv set interface bond1 bond mlag id 1
 cumulus@border02:~$ nv set interface bond2 bond mlag id 2
-cumulus@border02:~$ nv set interface bond1 bond lacp-bypass on
-cumulus@border02:~$ nv set interface bond2 bond lacp-bypass on
+cumulus@border02:~$ nv set interface bond1 bond lacp-bypass enabled
+cumulus@border02:~$ nv set interface bond2 bond lacp-bypass enabled
 cumulus@border02:~$ nv set interface bond1 bridge domain br_default access 2001
 cumulus@border02:~$ nv set interface bond2 bridge domain br_default access 2001
 cumulus@border02:~$ nv set interface bond1-2 bridge domain br_default
@@ -2159,6 +2159,8 @@ timers throttle spf 0 100 6000
 {{< /tab >}}
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL515- OSPFv2" showNodes="leaf01,leaf02,spine01,spine02,border01,border02,server01,server02,server03,server07,server08" >}}
+
+This simulation is running Cumulus Linux 5.15. The Cumulus Linux 5.16 simulation is coming soon.
 
 The simulation starts with the example OSPF configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

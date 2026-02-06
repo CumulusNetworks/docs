@@ -1,4 +1,102 @@
 <tables>
+<table name="Open Issues in 5.0.1">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+<th> Fixed </th>
+</tr>
+<tr>
+<td>4786996</td>
+<td>To use lifecycle management in NMC or BCM environments, you must edit the master node IP address in the configuration manager to match the cluster’s head node IP address. Use the &lt;code&gt;kubectl edit cm -n netq-eth netq-master-node-ip&lt;/code&gt; command to edit the configuration. In the configuration file, change the &lt;code&gt;data/master_node&lt;/code&gt; field to the cluster’s head node IP address. </td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4693161</td>
+<td>In cluster and scale cluster deployments, the snapshot comparison feature may time out when comparing MAC addresses.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4689932</td>
+<td>Node reservation for NetQ is not supported in shared multi-node clusters. To work around this issue, deploy NetQ in a dedicated single-node or three-node cluster first, and then scale the deployment by adding nodes for other applications.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4687477</td>
+<td>When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4687241</td>
+<td>The activity log in the UI might display multiple entries with “unknown” or “anonymous” usernames. </td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4683830</td>
+<td>The Cable Validation Tool might fail to load in the NetQ UI. To work around this issue,  log out of NetQ and then log back in.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4681581</td>
+<td>The {{netq bootstrap reset purge-db}} command might take up to 60 minutes to complete on Base Command Manager scale deployments.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4668341</td>
+<td>When you a create an LDAP server configuration, the NetQ UI incorrectly allows you to modify the default server ports. Only the standard ports (389 for insecure and 636 for secure) are permitted.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4667571</td>
+<td>NetQ might return inconsistent results when queries use the regular expression wildcard.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4637749</td>
+<td>When the master node is down,  the {{netq show status}} command might report an incorrect status.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4573427</td>
+<td>The link health view utilization chart might display incorrect values for the top 5 links when multiple links share the same value.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4399074</td>
+<td>When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected.</td>
+<td>5.0.0-5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4100882</td>
+<td>When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export.</td>
+<td>4.12.0-4.15.1, 5.0.0-5.0.1</td>
+<td></td>
+</tr>
+</table>
+<table name="Fixed Issues in 5.0.1">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+</tr>
+<tr>
+<td>4784336</td>
+<td>The NetQ for NVLink deployment option is not supported in air-gapped environments.</td>
+<td>5.0.0</td>
+</tr>
+</table>
 <table name="Open Issues in 5.0.0">
 <tr>
 <th> Issue ID </th>
@@ -7,8 +105,26 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4786996</td>
+<td>To use lifecycle management in NMC or BCM environments, you must edit the master node IP address in the configuration manager to match the cluster’s head node IP address. Use the &lt;code&gt;kubectl edit cm -n netq-eth netq-master-node-ip&lt;/code&gt; command to edit the configuration. In the configuration file, change the &lt;code&gt;data/master_node&lt;/code&gt; field to the cluster’s head node IP address. </td>
+<td>5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4784336</td>
-<td>The NetQ for NVLink and Ethernet deployment is not supported in air-gapped environments.</td>
+<td>The NetQ for NVLink deployment option is not supported in air-gapped environments.</td>
+<td>5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4693161</td>
+<td>In cluster and scale cluster deployments, the snapshot comparison feature may time out when comparing MAC addresses.</td>
+<td>5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4689932</td>
+<td>Node reservation for NetQ is not supported in shared multi-node clusters. To work around this issue, deploy NetQ in a dedicated single-node or three-node cluster first, and then scale the deployment by adding nodes for other applications.</td>
 <td>5.0.0</td>
 <td></td>
 </tr>
@@ -43,6 +159,18 @@
 <td></td>
 </tr>
 <tr>
+<td>4667571</td>
+<td>NetQ might return inconsistent results when queries use the regular expression wildcard.</td>
+<td>5.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4637749</td>
+<td>When the master node is down,  the {{netq show status}} command might report an incorrect status.</td>
+<td>5.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4573427</td>
 <td>The link health view utilization chart might display incorrect values for the top 5 links when multiple links share the same value.</td>
 <td>5.0.0</td>
@@ -68,9 +196,44 @@
 <th> Affects </th>
 </tr>
 <tr>
+<td>4621868</td>
+<td>NetQ might generate event notifications for BGP reset time changes even when no actual changes have occurred.</td>
+<td>4.14.0-4.15.1</td>
+</tr>
+<tr>
+<td>4612457</td>
+<td>The process monitoring dashboard may display inaccurate CPU utilization values for the NetQ agent.</td>
+<td>4.11.0-4.15.1</td>
+</tr>
+<tr>
+<td>4606694</td>
+<td>Switch discovery through the lifecycle management UI does not work for switch IP addresses whose last octet is 0 or 255. To work around this issue, manually add these switches to NetQ by configuring the switch to point to the OPTA IP address.</td>
+<td>4.15.0-4.15.1</td>
+</tr>
+<tr>
+<td>4572526</td>
+<td>NetQ for NVLink deployments might fail in air-gapped environments.</td>
+<td></td>
+</tr>
+<tr>
+<td>4537675</td>
+<td>The NetQ UI might not display pagination controls for large tables with multiple entries.</td>
+<td>4.14.0-4.15.1</td>
+</tr>
+<tr>
+<td>4532058</td>
+<td>When you run a validation for a past date, NetQ might display incorrect values for session counts and active links.</td>
+<td>4.15.0-4.15.1</td>
+</tr>
+<tr>
 <td>4521037</td>
 <td>The PTP violations summary in the UI might not render properly. To work around this issue, refresh the page in your browser.</td>
 <td>4.15.0-4.15.1</td>
+</tr>
+<tr>
+<td>4023716</td>
+<td>NetQ might display duplicate validations results.</td>
+<td>4.11.0-4.15.1</td>
 </tr>
 <tr>
 <td>3993538</td>

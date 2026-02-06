@@ -188,6 +188,41 @@ echo 'automation:password!' | chpasswd
 adduser automation nvapply
 ```
 
+### HTTP Response Compression
+
+You can enable compression of HTTP responses for client requests with the Content-Encoding: gzip header to reduce data size and improve performance. When accessing the API over slow network connections or retrieving large datasets, response times can be significant.
+
+HTTP response compression is disabled by default. To enable HTTP response compression, run the `nv set system api compression gzip` command:
+
+```
+cumulus@switch:~$ nv set system api compression gzip
+cumulus@switch:~$ nv config apply
+```
+
+To disable HTTP response compression, run the `nv unset system api compression` command.
+
+To show if HTTP response compression is enabled, run the `nv show system api` command. The command output shows `compression  enabled` when HTTP response compression is enabled.
+
+```
+cumulus@switch:~$ nv show system api
+                     operational  applied    
+-------------------  -----------  -----------
+state                enabled      enabled    
+compression          gzip         gzip       
+port                 8765         8765       
+certificate          self-signed  self-signed
+token-expiration     60           60         
+[listening-address]  any                     
+connections                                  
+  active             1                       
+  accepted           1                       
+  handled            1                       
+  requests           1                       
+  reading            0                       
+  writing            1                       
+  waiting            0  
+```
+
 ### Control Plane ACLs
 
 You can secure the API by configuring:
@@ -324,7 +359,7 @@ connections
 
 ## Supported Objects
 
-The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. To see a full listing of the supported API endpoints, refer to {{<mib_link url="cumulus-linux-513/api/index.html" text="NVUE OpenAPI Specification for Cumulus Linux.">}}
+The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. To see a full listing of the supported API endpoints, refer to the {{<exlink url="https://api-prod.nvidia.com/openapi-browser" text="NVUE API browser tool">}}.
 
 | High-level Objects | Description |
 | ------------------ | ----------- |
@@ -4550,7 +4585,7 @@ To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/mark
 
 ## Resources
 
-For more information about using the NVUE REST API, reference the {{<exlink url="https://api-dev.nvidia.com/openapi-browser?spec=openapi+5.15.0.json" text="NVUE API browser tool">}}. This tool is still under development. Please report any issues or feedback to nvue-openapi-browser-support@nvidia.com.
+For more information about using the NVUE REST API, reference the {{<exlink url="https://api-prod.nvidia.com/openapi-browser" text="NVUE API browser tool">}}. This tool is still under development. Please report any issues or feedback to nvue-openapi-browser-support@nvidia.com.
 
 ## Considerations
 

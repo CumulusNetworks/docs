@@ -285,7 +285,7 @@ Cumulus Linux does not support using DHCP to specify your NTP servers.
 
 ### Expiration Log Messages
 
-NTP in Cumulus Linux uses the `/usr/share/zoneinfo/leap-seconds.list` file, which expires periodically and results in generated log messages about the expiration. When the file expires, update it from {{<exlink url="https://www.ietf.org/timezones/data/leap-seconds.list" text="https://www.ietf.org/timezones/data/leap-seconds.list">}} or upgrade the `tzdata` package to the newest version.
+NTP in Cumulus Linux uses the `/usr/share/zoneinfo/leap-seconds.list` file, which expires periodically and results in generated log messages about the expiration. When the file expires, update it from {{<exlink url="https://data.iana.org/time-zones/data/leap-seconds.list" text="https://data.iana.org/time-zones/data/leap-seconds.list">}} or upgrade the `tzdata` package to the newest version.
 
 ## Related Information
 

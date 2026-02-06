@@ -469,7 +469,7 @@ cumulus@leaf01:~$ nv config apply
 You can replace the private ASNs with your public ASN with the following command:
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -481,7 +481,7 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 ```
-cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -762,14 +762,14 @@ The following example allows a received AS path containing the ASN of the local 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To unset the above configuration, run the `nv unset` command:
 
 ```
-cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin on
+cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -804,28 +804,24 @@ address-family ipv4 unicast
 
 ## Enforce First AS
 
-By default, the switch denies an update received from an eBGP neighbor that does not list its ASN at the beginning of the AS_PATH in the incoming update. You can disable this setting with the `nv set vrf <vrf-id> router bgp neighbor <neighbor> enforce-first-as off` command.
-
-{{%notice note%}}
-In Cumulus Linux 5.13 and earlier the default setting for enforce first AS is OFF.
-{{%/notice%}}
+By default, the switch denies an update received from an eBGP neighbor that does not list its ASN at the beginning of the AS_PATH in the incoming update. You can disable this setting with the `nv set vrf <vrf-id> router bgp neighbor <neighbor> enforce-first-as disabled` command.
 
 {{< tabs "757 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 enforce-first-as off
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 enforce-first-as disabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable the enforce first AS setting for a peer group, run the `nv set vrf <vrf-id> router bgp peer-group <peer-group> enforce-first-as off` command.
+To disable the enforce first AS setting for a peer group, run the `nv set vrf <vrf-id> router bgp peer-group <peer-group> enforce-first-as disabled` command.
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group underlay enforce-first-as off
+cumulus@switch:~$ nv set vrf default router bgp peer-group underlay enforce-first-as disabled
 cumulus@switch:~$ nv config apply
 ```
 
-To reenable enforce first AS, run the `nv set vrf <vrf-id> router bgp neighbor <neighbor> enforce-first-as on` command or the `nv set vrf <vrf-id> router bgp peer-group <peer-group> enforce-first-as on` command.
+To reenable enforce first AS, run the `nv set vrf <vrf-id> router bgp neighbor <neighbor> enforce-first-as enabled` command or the `nv set vrf <vrf-id> router bgp peer-group <peer-group> enforce-first-as enabled` command.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -955,7 +951,7 @@ When you enable *BGP multipath*, Cumulus Linux load balances BGP routes from the
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp path-selection multipath aspath-ignore on
+cumulus@switch:~$ nv set vrf default router bgp path-selection multipath aspath-ignore enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1006,7 +1002,7 @@ Changing the `extended-nexthop` capability results in BGP session flaps, which m
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
+cumulus@switch:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 capabilities extended-nexthop enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1043,7 +1039,7 @@ Ensure that you have activated the IPv6 peers under the IPv4 unicast address fam
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
+cumulus@switch:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 capabilities extended-nexthop enabled
 cumulus@switch:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 address-family ipv4-unicast state enabled
 cumulus@switch:~$ nv config apply
 ```
@@ -1128,7 +1124,7 @@ cumulus@leaf01:~$ nv config apply
 The `summary-only` option ensures that BGP suppresses longer-prefixes inside the aggregate address before sending updates:
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only on
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1140,7 +1136,7 @@ You can configure BGP to wait for a response from the RIB indicating that the ro
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set router bgp wait-for-install on
+cumulus@leaf01:~$ nv set router bgp wait-for-install enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -2058,11 +2054,11 @@ You can shut down all active BGP sessions with a neighbor and remove all associa
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 shutdown on
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 shutdown enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
-To bring BGP sessions with the neighbor back up, run the `nv set vrf default router bgp neighbor swp51 shutdown off` command.
+To bring BGP sessions with the neighbor back up, run the `nv set vrf default router bgp neighbor swp51 shutdown disabled` command.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -2112,14 +2108,14 @@ When you enable graceful shutdown globally on the switch, Cumulus Linux adds the
 To enable graceful shutdown globally on the switch:
 
 ```
-cumulus@leaf01:~$ nv set router bgp graceful-shutdown on
+cumulus@leaf01:~$ nv set router bgp graceful-shutdown enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
 To disable graceful shutdown globally on the switch:
 
 ```
-cumulus@leaf01:~$ nv set router bgp graceful-shutdown off
+cumulus@leaf01:~$ nv set router bgp graceful-shutdown disabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -2230,10 +2226,10 @@ When you enable BGP graceful shutdown on a peer, Cumulus Linux attaches a `grace
 {{< tabs "1962 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable graceful shutdown on a peer, run the `nv set vrf <vrf-id> router bgp neighbor <neighbor> graceful-shutdown on` command:
+To enable graceful shutdown on a peer, run the `nv set vrf <vrf-id> router bgp neighbor <neighbor> graceful-shutdown enabled` command:
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-shutdown on
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-shutdown enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -2298,10 +2294,10 @@ When you enable BGP graceful shutdown on a peer group, Cumulus Linux attaches a 
 {{< tabs "2037 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable graceful shutdown on a peer group, run the `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-shutdown on` command:
+To enable graceful shutdown on a peer group, run the `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-shutdown enabled` command:
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay graceful-shutdown on
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay graceful-shutdown enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -2722,7 +2718,7 @@ The BGP community list can be either *standard*, *extended*, or *large*. The sta
 
 An extended BGP community list takes a regular expression of communities and matches the listed communities.
 
-A large community-list accommodates more identification information, including 4-byte AS numbers. BGP enables large communities by default. To disable large communities, run the `nv set vrf <vrf-id> router bgp neighbor <neighbor> address-family <address-family> community-advertise large off` command or the `nv set vrf <vrf-id> router bgp peer-group <peer-group> address-family <address-family> community-advertise large off` command.
+A large community-list accommodates more identification information, including 4-byte AS numbers. BGP enables large communities by default. To disable large communities, run the `nv set vrf <vrf-id> router bgp neighbor <neighbor> address-family <address-family> community-advertise large disabled` command or the `nv set vrf <vrf-id> router bgp peer-group <peer-group> address-family <address-family> community-advertise large disabled` command.
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 
@@ -2824,7 +2820,7 @@ The following example configures a BGP extended community <span class="a-tooltip
 ```
 cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM2 rule 10 ext-community rt "\.*_65000:2002_.*","\.*_89000:2002_.*"
 cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM2 rule 10 action permit
-cumulus@leaf01:~$ nv set router policy  ROUTEMAP3 rule 10 match ext-community-list EXTCOMM2
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP3 rule 10 match ext-community-list EXTCOMM2
 cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP3 rule 10 action permit
 cumulus@leaf01:~$ nv config apply
 ```

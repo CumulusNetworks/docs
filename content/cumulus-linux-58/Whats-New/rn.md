@@ -14,6 +14,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.15.1 | |
+| <a name="4717752"></a> [4717752](#4717752) <a name="4717752"></a> <br /> | When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded. | 5.3.1-5.14.0 | 5.15.0-5.15.1|
+| <a name="4663076"></a> [4663076](#4663076) <a name="4663076"></a> <br /> | When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded. | 5.3.1-5.11.4 | 5.11.5-5.15.1, 5.15.0-5.15.1|
 | <a name="4647646"></a> [4647646](#4647646) <a name="4647646"></a> <br /> | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.15.1|
 | <a name="4633514"></a> [4633514](#4633514) <a name="4633514"></a> <br /> | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | 5.15.0-5.15.1|
 | <a name="4621759"></a> [4621759](#4621759) <a name="4621759"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.14.0 | 5.15.0-5.15.1|

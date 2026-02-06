@@ -252,7 +252,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.3 address-fami
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.4 address-family l2vpn-evpn state enabled
 cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
-cumulus@leaf01:~$ nv set interface lo router ospf passive on
+cumulus@leaf01:~$ nv set interface lo router ospf passive enabled
 cumulus@leaf01:~$ nv set interface swp49 router ospf area 0.0.0.0
 cumulus@leaf01:~$ nv set interface swp50 router ospf area 0.0.0.0
 cumulus@leaf01:~$ nv set interface swp51 router ospf area 0.0.0.0
@@ -1033,7 +1033,7 @@ Run the vtysh `show bgp l2vpn evpn route type multicast` command to make sure th
 
 ## Extended Mobility
 
-Cumulus Linux supports scenarios where the IP to MAC binding for a host or virtual machine changes across the move. In addition to the simple mobility scenario where a host or virtual machine with a binding of `IP1`, `MAC1` moves from one rack to another, Cumulus Linux supports additional scenarios where a host or virtual machine with a binding of `IP1`, `MAC1` moves and takes on a new binding of `IP2`, `MAC1` or `IP1`, `MAC2`. The EVPN protocol mechanism to handle extended mobility continues to use the MAC mobility extended community and is the same as the standard mobility procedures. Extended mobility defines how to compute the sequence number in this attribute when binding changes occur.
+Cumulus Linux supports scenarios where the IP to MAC binding for a host or virtual machine changes across the move. In addition to the simple mobility scenario where a host or virtual machine with a binding of `IP1`, `MAC1` moves from one rack to another, Cumulus Linux supports additional scenarios where a host or virtual machine with a binding of `IP1`, `MAC1` moves and takes on a new binding of `IP2`, `MAC1` or `IP1`, `MAC2`. The EVPN protocol mechanism to handle extended mobility continues to use the MAC mobility extended community. Extended mobility defines how to compute the sequence number in this attribute when binding changes occur.
 
 Extended mobility not only supports virtual machine *moves*, but also where one virtual machine shuts down and you provision another on a different rack that uses the IP address or the MAC address of the previous virtual machine. For example, in an EVPN deployment with OpenStack, where virtual machines for a tenant provision and shut down dynamically, a new virtual machine can use the same IP address as an earlier virtual machine but with a different MAC address.
 

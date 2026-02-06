@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 30
 toc: 3
 ---
-This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to perform a hitless (sub-second loss of data plane traffic) upgrade.
+This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#upgrades-with-issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to perform a hitless (sub-second loss of data plane traffic) upgrade.
 
 To upgrade Cumulus Linux, choose one of the three upgrade methods:
 
@@ -21,9 +21,15 @@ Cumulus Linux supports two methods that can use ISSU:
 - {{<link url="#package-upgrade" text="Package upgrade">}}
 
 Before you perform an upgrade with ISSU, you must:
-- Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch.
-- Set the {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}} to warm (`nv action reboot system mode warm`).
-- Configure the switch in half-resource mode to perform a warm reboot. When the switch operates in half-resource mode, performing a warm reboot results in a hitless upgrade.
+- Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch. This change is disruptive due to BGP neighbor reset and must be a day 0 configuration.
+- Configure the switch in half-resource mode to perform a warm reboot. This change is disruptive due to `switchd` restart and must be a day 0 configuration.
+- Review support limitations and additional {{<link url="System-Power-and-Switch-Reboot/#warm-reboot-and-issu-considerations" text="warm reboot and ISSU considerations">}}.
+
+After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}}.
+
+{{%notice note%}}
+Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode these are reduced by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
+{{%/notice%}}
 
 To configure the switch in half resource mode:
 
@@ -85,9 +91,9 @@ cumulus@switch:~$ nv action generate system tech-support
 Optimized image upgrade uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
 
   - You can only use optimized image upgrade on a switch with a 30GB <span class="a-tooltip">[SSD](## "Solid state drive")</span> or larger to accommodate the second partition required for upgrade. To validate the size of the SSD, run the `sudo blockdev --getsize64 /dev/sda` command. As an alternative, run the `sudo blkid` command and confirm the `CL-SYSTEM-2` partition exists on the switch to support optimized upgrade.
-  - You cannot downgrade a Cumulus Linux 5.15 switch to Cumulus Linux 5.11.0 or earlier with optimized image upgrade; use ONIE instead.
+  - You cannot downgrade a Cumulus Linux switch to Cumulus Linux 5.11.0 or earlier with optimized image upgrade; use ONIE instead.
 <br>
-  For a list of the releases from which you can upgrade to Cumulus Linux 5.15 with optimized image upgrade, see {{<link url="Whats-New/#upgrade-requirements" text="Release Considerations">}}.
+  For a list of the releases from which you can upgrade to Cumulus Linux 5.16 with optimized image upgrade, see {{<link url="Whats-New/#upgrade-requirements" text="Release Considerations">}}.
 
 {{%notice note%}}
 Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
@@ -96,10 +102,12 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 {{< tabs "TabID569 ">}}
 {{< tab "NVUE Commands ">}}
 
-1. Download the Cumulus Linux image with the `nv action fetch system image <remote-url>` command:
+1. Download the Cumulus Linux image with the `nv action fetch system image <remote-url>` command.
+
+   The image files are downloaded to your enterprise support account in a convenient location in your infrasructure. The image location below is just an example; use your remote URL for the download.
 
    ```
-   cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.15.0-mlx-amd64.bin
+   cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.16.0-mlx-amd64.bin
    ```
 
    The `nv action fetch system image <remote-url>` command copies the image to the `/var/images` directory on the switch. If you copy the image manually to the switch instead of using the `nv action fetch system image <remote-url>` command, make sure to copy the image to the `/var/images` directory.
@@ -107,13 +115,13 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 2. Install the image on the second partition:
 
    ```
-   cumulus@switch:~$ nv action install system image files cumulus-linux-5.15.0-mlx-amd64.bin
+   cumulus@switch:~$ nv action install system image files cumulus-linux-5.16.0-mlx-amd64.bin
    ```
 
    Use the `force` option to force install the image:
 
    ```
-   cumulus@switch:~$ nv action install system image files cumulus-linux-5.15.0-mlx-amd64.bin force
+   cumulus@switch:~$ nv action install system image files cumulus-linux-5.16.0-mlx-amd64.bin force
    ```
 
 3. Set the boot partition:
@@ -152,15 +160,15 @@ cumulus@switch:~$ nv show system image
 current        2                        
 next           2                        
 partition1                              
-  build-id     5.13.0.0026
-  description  Cumulus Linux 5.13.0     
-  disk         /dev/sda5                
-  release      5.13.0                   
-partition2                              
-  build-id     5.15.0.0018
+  build-id     5.15.0.0026
   description  Cumulus Linux 5.15.0     
+  disk         /dev/sda5                
+  release      5.15.0                   
+partition2                              
+  build-id     5.16.0.0056
+  description  Cumulus Linux 5.16.0     
   disk         /dev/sda6                
-  release      5.15.0 
+  release      5.16.0 
 ```
 
 - To list the available Cumulus Linux image files, run the `nv show system image files` command.
@@ -174,7 +182,7 @@ partition2
 2. Install the image on the second partition:
 
    ```
-   cumulus@switch:~$ cl-image-upgrade -u cumulus-linux-5.15.0-mlx-amd64.bin
+   cumulus@switch:~$ cl-image-upgrade -u cumulus-linux-5.16.0-mlx-amd64.bin
    ```
 
 To check the current boot partition status, run the `cl-image-upgrade -s` command:
@@ -182,7 +190,7 @@ To check the current boot partition status, run the `cl-image-upgrade -s` comman
 ```
 cumulus@switch:~$ cl-image-upgrade -s  
 Current system partition is 1 on /dev/sda5 
-Current system partition has 5.11.0 "Cumulus Linux 5.11.0" 5.11.0.0012
+Current system partition has 5.15.0 "Cumulus Linux 5.15.0" 5.15.0.0012
 Other system partition is 2 on /dev/sda6 
 ...
 ```
@@ -223,10 +231,10 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 - The package upgrade command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
 - Cumulus Linux does not support the Linux `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
-- To package upgrade to Cumulus Linux 5.15, you need 0.8GB of free disk space. Before you upgrade, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command to show how much disk space you are currently using on the switch.
+- To package upgrade to Cumulus Linux 5.16, you need 0.8GB of free disk space. Before you upgrade, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command to show how much disk space you are currently using on the switch.
 {{%/notice%}}
 
-For a list of the releases from which you can upgrade to Cumulus Linux 5.15, see {{<link url="Whats-New/#upgrade-requirements" text="Release Considerations">}}.
+For a list of the releases from which you can upgrade, see {{<link url="Whats-New/#upgrade-requirements" text="Release Considerations">}}.
 
 To upgrade the switch with package upgrade:
 
@@ -258,7 +266,7 @@ To upgrade the switch with package upgrade:
     yes
 ```
 
-If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+If you configured the switch resource mode to half for {{<link url="#upgrades-with-issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
     cumulus@switch:~$ nv action reboot system mode warm
@@ -364,10 +372,10 @@ You can run the docker container on your own server, or use {{<link url="Docker-
 
 To launch the docker container and configure your switch for offline package upgrade:
 
-1. Copy the docker container tarball to your server. Load the image with the `sudo docker load -i /path/to/tarball/cumulus-linux-apt-mirror-5.15.0.tar` command:
+1. Copy the docker container tarball to your server. Load the image with the `sudo docker load -i /path/to/tarball/cumulus-linux-apt-mirror-5.16.0.tar` command:
 
 ```
-user@server:~$ docker load -i ./cumulus-linux-apt-mirror-5.15.0.tar 
+user@server:~$ docker load -i ./cumulus-linux-apt-mirror-5.16.0.tar 
 36f5f951f60a: Loading layer [==================================================>]  77.89MB/77.89MB
 2351dd6bd33d: Loading layer [==================================================>]  118.7MB/118.7MB
 00cc4f38365c: Loading layer [==================================================>]  3.584kB/3.584kB
@@ -382,7 +390,7 @@ ba266af6a60c: Loading layer [==================================================>
 599cafa33123: Loading layer [==================================================>]  9.216kB/9.216kB
 346269b5a88b: Loading layer [==================================================>]  8.195MB/8.195MB
 0abaedd440c4: Loading layer [==================================================>]   3.27GB/3.27GB
-Loaded image: cumulus-linux-apt-mirror:5.15.0
+Loaded image: cumulus-linux-apt-mirror:5.16.0
 ```
 
 2. Run the docker container, publishing ports for HTTP (8080:80) and HTTPS (8443:8443), defining volumes to mount for your own CA or server certificates.
@@ -397,7 +405,7 @@ Use the following container paths to supply certificates:
 The following example runs the container, defining volumes to mount for a CA certificate:
 
 ```
-user@server:~$ docker run -d --name repo -p 8080:80 -p 8443:8443 -v /local/certpath/ca.crt:/etc/nginx/ca/ca.crt:ro -v /local/certpath/ca.key:/etc/nginx/ca/ca.key:ro cumulus-linux-apt-mirror:5.15.0
+user@server:~$ docker run -d --name repo -p 8080:80 -p 8443:8443 -v /local/certpath/ca.crt:/etc/nginx/ca/ca.crt:ro -v /local/certpath/ca.key:/etc/nginx/ca/ca.key:ro cumulus-linux-apt-mirror:5.16.0
 ```
 
 If you do not specify your own CA or server certificate, a self-signed certificate is used. To run the container with a self-signed certificate, define the following environment variables in your `docker run` command:
@@ -409,11 +417,10 @@ If you do not specify your own CA or server certificate, a self-signed certifica
 The following example runs the container with a self-signed certificate:
 
 ```
-user@server:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_HOST=hostname.domain -e REPO_IP=10.1.100.1 -e FORCE_REISSUE=1 cumulus-linux-apt-mirror:5.15.0
+user@server:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_HOST=hostname.domain -e REPO_IP=10.1.100.1 -e FORCE_REISSUE=1 cumulus-linux-apt-mirror:5.16.0
 ```
 
 3. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Import the certificate">}} used for the repository container on the switches you want to upgrade. If you are using a self-signed certificated, you can retrieve it from the container with the curl command: `curl -fsSL http://10.1.1.100:8080/ca.crt`.
-
 
 <!--
 Retrieve and install the certificate on the switches you want to upgrade:
@@ -443,10 +450,9 @@ deb https://10.1.100.1:8443 CumulusLinux-5.15.0 cumulus upstream netq
 -->
 5. Continue with a {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} on your switch. 
 
-
 ## ONIE Image Upgrade
 
-ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch. ONIE upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.15).
+ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch. ONIE upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.16).
 
 {{%notice note%}}
 - Installing a Cumulus Linux image with ONIE is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
@@ -484,9 +490,7 @@ To back up the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
-
 
 {{< /tab >}}
 
@@ -513,7 +517,6 @@ As with other Linux distributions, the `/etc` directory is the primary location 
 | `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
-
 
 **Commonly Used Files:**
 
@@ -563,11 +566,11 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
 
 {{< /tabs >}}
 
-2. Download the Cumulus Linux image.
+2. {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="Download the Cumulus Linux image.">}}
 3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, defines the current NVUE startup configuration to back up and restore in the new image, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.15.0-mlx-amd64.bin && sudo reboot
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.16.0-mlx-amd64.bin && sudo reboot
     ```
 
 4. Restore certificates and the configuration files to the new release:
@@ -584,6 +587,21 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
    cumulus@switch:~$ nv config replace /home/cumulus/startup.yaml
    cumulus@switch:~$ nv config apply
    ```
+
+{{%notice note%}}
+In Cumulus Linux 5.16 and later, NVUE uses IPv6 address normalization, where it stores and looks up all IPv6 addresses in their normalized (canonical) form (for example, 2001:db8::1 instead of 2001:0db8::0001). When you copy the `startup.yaml` file manually from Cumulus Linux 5.15 or earlier to Cumulus Linux 5.16, the file bypasses the standard upgrade translation process. As a result, the configuration might contain unnormalized IPv6 addresses that are valid in earlier Cumulus Linux releases, which might cause failed lookups during NVUE show commands, unexpected configuration mismatches and failed or silent misconfigurations.
+
+Before you run the `nv config apply startup` command after the upgrade, first translate the file to ensure all IPv6 addresses are normalized, then replace the `startup.yaml` with the normalized version:
+
+```
+cumulus@switch:~$ nv config translate filename /home/cumulus/startup.yaml > /home/cumulus/ipv6_normalized_startup.yaml
+cumulus@switch:~$ sudo cp /home/cumulus/ipv6_normalized_startup.yaml /etc/nvue.d/startup.yaml
+cumulus@switch:~$ nv config apply startup
+```
+
+NVUE normalizes IPv6 addresses to their canonical form. However, for IPv4-mapped IPv6 addresses, NUE normalizes only the IPv6 portion of the address. The IPv4 portion of the address is retained in the IETF-recommended mixed-notation format and remains unchanged. For example, NVUE normalizes the IPv4-mapped IPv6 address 0::ffff:10.0.0.1 to ::ffff:10.0.0.1.
+
+{{%/notice%}}
 
 {{%notice infonopad%}}
 If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
@@ -740,7 +758,13 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 ## Considerations
 
-- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.15, these two files display the release as 5.15 after the upgrade.
-- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.13, followed by a package upgrade to 5.15, the `/etc/image-release` file continues to display Cumulus Linux 5.13, which is the originally installed base image.
+- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.16, these two files display the release as 5.16 after the upgrade.
+- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.15, followed by a package upgrade to 5.16, the `/etc/image-release` file continues to display Cumulus Linux 5.15, which is the originally installed base image.
 - To downgrade a switch with Secure Boot enabled, see {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}}.
 - If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch. After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages. Package upgrade does **not** replace or remove third-party applications.
+
+## Related Information
+
+- {{<exlink url="https://enterprise-support.nvidia.com/s/article/NVIDIA-Enterprise-Support-Guide-for-New-Users#NVIDIA-Enterprise-Support-Portal" text="NVIDIA Enterprise Support Portal User Guide">}}
+- {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}
+- {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="Managing Cumulus Linux Disk Images with ONIE">}}

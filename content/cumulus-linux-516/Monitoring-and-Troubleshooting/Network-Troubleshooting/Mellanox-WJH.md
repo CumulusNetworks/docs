@@ -16,6 +16,10 @@ WJH runs in Docker. If you exhaust the Docker ten percent global limit of overal
 
 You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories (layer 1, layer 2, layer 3, tunnel, buffer and ACL) you want to monitor.
 
+{{%notice note%}}
+A channel name must be between 4 and 16 characters long.
+{{%/notice%}}
+
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -35,7 +39,7 @@ The following example configures a channel to monitor buffer packet drops and a 
 
 ```
 cumulus@switch:~$ nv set system wjh channel buffer trigger buffer
-cumulus@switch:~$ nv set system wjh channel acl trigger acl
+cumulus@switch:~$ nv set system wjh channel acl1 trigger acl
 cumulus@switch:~$ nv config apply
 ```
 
@@ -100,7 +104,7 @@ cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
             "buffer": {
                 "drop_category_list": ["buffer"]
             },
-            "acl": {
+            "acl1": {
                 "drop_category_list": ["acl"]
             }
         }

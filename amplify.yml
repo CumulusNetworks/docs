@@ -23,6 +23,8 @@ frontend:
         #
         # If branch is defined below, manually update the Netguru copilot js
         - if [ "${AWS_BRANCH}" = "master" ]; then wget --no-check-certificate -O themes/netDocs/assets/js/netguru.js https://copilot-netguru.nvidia.com/chainlit/copilot/index.js ; fi
+        # Overwrite them head.html with stage-head.html to force no search indexing of stage servers
+        - if [ "${AWS_BRANCH}" != "master" ]; then mv themes/netDocs/layouts/partials/stage-head.html themes/netDocs/layouts/partials/head.html; fi
         # Don't minify in non-prod branches to simplify troubleshooting
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo -D --baseURL $BASEURL -d public/networking-ethernet-software/ ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi

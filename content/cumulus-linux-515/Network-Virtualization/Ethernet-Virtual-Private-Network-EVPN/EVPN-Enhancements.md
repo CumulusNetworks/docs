@@ -252,7 +252,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.3 address-fami
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.4 address-family l2vpn-evpn state enabled
 cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
-cumulus@leaf01:~$ nv set interface lo router ospf passive on
+cumulus@leaf01:~$ nv set interface lo router ospf passive enabled
 cumulus@leaf01:~$ nv set interface swp49 router ospf area 0.0.0.0
 cumulus@leaf01:~$ nv set interface swp50 router ospf area 0.0.0.0
 cumulus@leaf01:~$ nv set interface swp51 router ospf area 0.0.0.0
@@ -276,34 +276,34 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
         router:
           ospf:
             area: 0
-            enable: on
+            state: enabled
             network-type: point-to-point    
         type: loopback
       swp49:
         router:
           ospf:
             area: 0.0.0.0
-            enable: on
+            state: enabled
         type: swp
       swp50:
         router:
           ospf:
             area: 0.0.0.0
-            enable: on
+            state: enabled
             network-type: point-to-point
         type: swp
       swp51:
         router:
           ospf:
             area: 0.0.0.0
-            enable: on
+            state: enabled
             network-type: point-to-point
         type: swp
       swp52:
         router:
           ospf:
             area: 0.0.0.0
-            enable: on
+            state: enabled
             network-type: point-to-point
         type: swp
     bridge:
@@ -313,15 +313,15 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
             snooping:
               enable: off
               querier:
-                enable: on
+                state: enabled
     router:
       bgp:
         autonomous-system: 65101
-        enable: on
+        state: enabled
         router-id: 10.10.10.1
       ospf:
         router-id: 10.10.10.1
-        enable: on
+        state: enabled
     vrf:
       default:
         router:
@@ -332,28 +332,28 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
                 type: numbered
                 address-family:
                   l2vpn-evpn:
-                    enable: on
+                    state: enabled
               10.10.10.3:
                 remote-as: internal
                 type: numbered
                 address-family:
                   l2vpn-evpn:
-                    enable: on
+                    state: enabled
               10.10.10.4:
                 remote-as: internal
                 type: numbered
                 address-family:
                   l2vpn-evpn:
-                    enable: on
-            enable: on
+                    state: enabled
+            state: enabled
             address-family:
               l2vpn-evpn:
-                enable: on
+                state: enabled
     evpn:
-      enable: on
+      state: enabled
     nve:
       vxlan:
-        enable: on
+        state: enabled
 ```
 
 {{< /tab >}}
@@ -567,13 +567,13 @@ iface bridge1
 
 ### Disable ARP and ND Suppression
 
-NVIDIA recommends that you keep ARP and ND suppression on to reduce ARP and ND packet flooding over VXLAN tunnels. However, if you *do* need to disable ARP and ND suppression, run the NVUE `nv set nve vxlan arp-nd-suppress off` command or set `bridge-arp-nd-suppress off` in the `/etc/network/interfaces` file:
+NVIDIA recommends that you keep ARP and ND suppression on to reduce ARP and ND packet flooding over VXLAN tunnels. However, if you *do* need to disable ARP and ND suppression, run the NVUE `nv set nve vxlan arp-nd-suppress disabled` command or set `bridge-arp-nd-suppress disabled` in the `/etc/network/interfaces` file:
 
 {{< tabs "TabID593 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress off
+cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress disabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -799,7 +799,7 @@ The following example sets the maximum inbound prefix limit from peer swp51 to 3
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound maximum 3
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound warning-threshold 50
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound warning-only on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound warning-only enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -869,7 +869,7 @@ To advertise *all* SVI IP and MAC addresses on the switch, run these commands:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn route-advertise svi-ip on
+cumulus@leaf01:~$ nv set evpn route-advertise svi-ip enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -897,7 +897,7 @@ To advertise a *specific* SVI IP/MAC address, run these commands:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn vni 10 route-advertise svi-ip on
+cumulus@leaf01:~$ nv set evpn vni 10 route-advertise svi-ip enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1033,7 +1033,7 @@ Run the vtysh `show bgp l2vpn evpn route type multicast` command to make sure th
 
 ## Extended Mobility
 
-Cumulus Linux supports scenarios where the IP to MAC binding for a host or virtual machine changes across the move. In addition to the simple mobility scenario where a host or virtual machine with a binding of `IP1`, `MAC1` moves from one rack to another, Cumulus Linux supports additional scenarios where a host or virtual machine with a binding of `IP1`, `MAC1` moves and takes on a new binding of `IP2`, `MAC1` or `IP1`, `MAC2`. The EVPN protocol mechanism to handle extended mobility continues to use the MAC mobility extended community and is the same as the standard mobility procedures. Extended mobility defines how to compute the sequence number in this attribute when binding changes occur.
+Cumulus Linux supports scenarios where the IP to MAC binding for a host or virtual machine changes across the move. In addition to the simple mobility scenario where a host or virtual machine with a binding of `IP1`, `MAC1` moves from one rack to another, Cumulus Linux supports additional scenarios where a host or virtual machine with a binding of `IP1`, `MAC1` moves and takes on a new binding of `IP2`, `MAC1` or `IP1`, `MAC2`. The EVPN protocol mechanism to handle extended mobility continues to use the MAC mobility extended community. Extended mobility defines how to compute the sequence number in this attribute when binding changes occur.
 
 Extended mobility not only supports virtual machine *moves*, but also where one virtual machine shuts down and you provision another on a different rack that uses the IP address or the MAC address of the previous virtual machine. For example, in an EVPN deployment with OpenStack, where virtual machines for a tenant provision and shut down dynamically, a new virtual machine can use the same IP address as an earlier virtual machine but with a different MAC address.
 
@@ -1413,19 +1413,19 @@ To show the current EVPN configuration on the switch, run the `nv show evpn` com
 cumulus@leaf01:~$ nv show evpn  
                        operational   applied      
 ---------------------  ------------  -------------
-enable                               on           
+state                                enabled           
 route-advertise                                   
   nexthop-setting                    system-ip-mac
-  svi-ip               off           off          
-  default-gateway      off           off          
+  svi-ip               disabled      disabled          
+  default-gateway      disabled      disabled          
 dad                                               
-  enable               on            on           
+  state                enabled       enabled           
   mac-move-threshold   5             5            
   move-window          180           180          
   duplicate-action     warning-only  warning-only 
 [vni]                                             
 multihoming                                       
-  enable                             off          
+  state                              enabled          
   mac-holdtime         1080                       
   neighbor-holdtime    1080                       
   startup-delay        180                        
@@ -1445,7 +1445,7 @@ cumulus@leaf01:~$ nv show evpn -o json
     "duplicate-action": {
       "warning-only": {}
     },
-    "enable": "on",
+    "state": "enabled",
     "mac-move-threshold": 5,
     "move-window": 180
   },
@@ -1460,8 +1460,8 @@ cumulus@leaf01:~$ nv show evpn -o json
     "uplink-count": 0
   },
   "route-advertise": {
-    "default-gateway": "off",
-    "svi-ip": "off"
+    "default-gateway": "disabled",
+    "svi-ip": "disabled"
   }
 }
 ```
@@ -1471,7 +1471,7 @@ cumulus@leaf01:~$ nv show evpn -o yaml
 dad:
   duplicate-action:
     warning-only: {}
-  enable: on
+  state: enabled
   mac-move-threshold: 5
   move-window: 180
 l2vni-count: 3
@@ -1484,6 +1484,6 @@ multihoming:
   uplink-active: 0
   uplink-count: 0
 route-advertise:
-  default-gateway: off
-  svi-ip: off
+  default-gateway: disabled
+  svi-ip: disabled
 ```

@@ -140,7 +140,9 @@ You can configure the following optional TACACS+ settings:
 <!-- vale on -->
 - The users you do not want to send to the TACACS+ server for authentication; for example, local user accounts that exist on the switch, such as the cumulus user.
 - A separate home directory for each TACACS+ user when the TACACS+ user first logs in. By default, the switch uses the home directory in the mapping accounts in `/etc/passwd`. If the home directory does not exist, the `mkhomedir_helper` program creates it. This option does not apply to accounts with restricted shells (users mapped to a TACACS privilege level that has enforced per-command authorization).
-
+  {{%notice note%}}
+If a TACACS user exists and has already connected before you enable a separate home directory for that user, the user home directory already exists under `tacacs_template_user`. Therefore, when adding a local user, the user does not have permissions or ownership of the home directory.
+{{%/notice%}}
 <!-- - The output debugging information level through syslog(3) to use for troubleshooting. You can specify a value between 0 and 2. The default is 0. A value of 1 enables debug logging. A value of 2 increases the verbosity of some debug logs.
 
   {{%notice note%}}
@@ -329,10 +331,27 @@ You can configure the switch to allow local fallback authentication for a user w
 To allow local fallback authentication for a user, add a local privileged user account on the switch with the same username as a TACACS user. A local user is always active even when the TACACS service is not running.
 
 {{%notice note%}}
-NVUE does not provide commands to configure local fallback authentication.
+If the TACACS server is unreachable when you use local fallback authentication, the login process might take a long time. To work around this issue, set the TACACS timeout to a low value (such as 1) with the `nv set system aaa tacacs timeout` command. Even with a low timeout value, you might experience a delay of approximately 20 to 30 seconds when logging in. The number of seconds might vary depending on the number of configured TACACS servers.
 {{%/notice%}}
 
 To configure local fallback authentication:
+
+{{< tabs "TabID333 ">}}
+{{< tab "NVUE Commands ">}}
+
+Add a local privileged user account on the switch with the same username as a TACACS user. The following example enables the local privileged user to run `sudo` and NVUE commands. The TACACS account name is `tacadmin`.
+
+```
+cumulus@switch:~$ nv set system aaa user tacadmin role system-admin
+cumulus@switch:~$ nv set system aaa user tacadmin password
+Enter new password:
+Confirm password:
+cumulus@switch:~$ nv set system aaa user tacadmin full-name "FIRST LAST"
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/nsswitch.conf` file to remove the keyword `tacplus` from the line starting with `passwd`. (You need to add the keyword back in step 3.)
 
@@ -384,16 +403,22 @@ The first `adduser` command prompts for information and a password. You can skip
     ```
     cumulus@switch:~$ sudo systemctl restart nvued
     ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 <!-- vale off -->
 ## TACACS+ Per-command Authorization
 
 TACACS+ per-command authorization lets you configure the commands that TACACS+ users at different privilege levels can run.
 <!-- vale on -->
+TACACS per-command authorization supports {{<link url="NVUE-CLI/#command-completion" text="NVUE tab completion, option listing (?), and command history navigation">}}.
 
 The following command allows TACACS+ users at privilege level 0 to run the `nv` and `ip` commands.
 
 {{%notice note%}}
-After configuring TACACS+ per-command authorization, you must restart the NVUE service.
+- Ensure that TACACS+ servers are reachable before setting new command authorization rules.
+- After configuring TACACS+ per-command authorization, you must restart the NVUE service.
 {{%/notice%}}
 
 {{< tabs "TabID392 ">}}
@@ -416,7 +441,7 @@ Privilege Level  role          command
                                nv  
 ```
 
-{{%notice infonopad%}}
+{{%notice info%}}
 When you configure per-command authorization on the switch, only define the initial word of the command tree to permit use of any commands starting with that word. For example, permitting the command `nv` allows the use of all NVUE commands beginning with `nv`. For more granular control of specific commands in the tree after the initial word, configure your TACACS+ server to permit or deny specific commands for a user or privilege level. Refer to your TACACS+ server's vendor documentation or vendor support for assistance configuring your server.
 {{%/notice%}}
 
@@ -460,10 +485,6 @@ To remove all commands:
 ```
 cumulus@switch:~$ sudo rm ~tacacs0/bin/*
 ```
-
-{{%notice infonopad%}}
-When you configure per-command authorization on the switch, only define the initial word of the command tree to permit use of any commands starting with that word. For example, permitting the command `nv` allows the use of all NVUE commands beginning with `nv`. For more granular control of specific commands in the tree after the initial word, configure your TACACS+ server to permit or deny specific commands for a user or privilege level. Refer to your TACACS+ server's vendor documentation or vendor support for assistance configuring your server.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -699,8 +720,14 @@ For non-local users (users not in the local password file) you need to send a TA
 
 You need to configure certain TACACS+ servers to allow authorization requests before authentication. Contact your TACACS+ server vendor for information.
 
-### Multiple Servers with Different User Accounts
+### Multiple TACACS+ Servers
 
-If you configure multiple TACACS+ servers that have different user accounts:
-- TACACS+ *authentication* allows for fall through; if the first reachable server does not authenticate the user, the client tries the second server, and so on.
-- TACACS *authorization* does not fall through. If the first reachable server returns an *unauthorized* result, the client does not try the next server.
+If you configure multiple TACACS+ servers, both *authentication* and *authorization* allow for fall through; if the first reachable server explicitly fails to authenticate or authorize the user, the client tries the second server, and so on.
+
+{{%notice note%}}
+The TACACS+ client implementation that forwards or retries a request with an alternate TACACS+ server after receiving a failure (FAIL) response is not compliant with the behavior defined in {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8907" text="RFC 8907">}}.
+{{%/notice%}}
+
+### Local Fallback and User Home Directory
+
+To avoid home directory permission issues, NVIDIA recommends you do not both configure local fallback authentication and enable a home directory for a user.

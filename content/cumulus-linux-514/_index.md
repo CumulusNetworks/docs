@@ -1,5 +1,5 @@
 ---
-title: Cumulus® Linux 5.14 User Guide
+title: Cumulus Linux 5.14 User Guide
 author: NVIDIA
 weight: -42
 subsection: true
@@ -9,7 +9,7 @@ cascade:
     old: true
 toc: 1
 ---
-NVIDIA® Cumulus Linux is the first full-featured {{<exlink url="https://www.debian.org/releases/bookworm/" text="Debian bookworm" >}}-based, Linux operating system for the networking industry.
+NVIDIA® Cumulus® Linux is the first full-featured {{<exlink url="https://www.debian.org/releases/bookworm/" text="Debian bookworm" >}}-based, Linux operating system for the networking industry.
 
 This user guide provides in-depth documentation on the Cumulus Linux installation process, system configuration and management, network solutions, and monitoring and troubleshooting recommendations. In addition, the quick start guide provides an end-to-end setup process to get you started.
 
@@ -32,5 +32,5 @@ NVIDIA has also developed and released new applications as open source. The list
 Use one of the following methods to download the Cumulus Linux user guide and view it offline:
 
 - Host the documentation on a local host {{<exlink url="https://github.com/CumulusNetworks/docs" text="using hugo.">}}
-- For a fully functional copy of the user guide, download a zip file of an {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-514/CL514-html.zip" text="HTML documentation build">}} for offline use. Download the desired version, extract it locally, then open `cumulus-linux-514.html` in your web browser.
+- For a fully functional copy of the user guide, download a zip file of the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-514/CL514-html.zip" text="HTML documentation">}} for offline use, extract it locally, then open `cumulus-linux-<release>.html` in your web browser.
 - To view this user guide as a single page to print to a PDF with limited functionality, click {{% pdf_link "here." %}} Click the link one time and use the web browser print-to-PDF option to save the PDF locally.

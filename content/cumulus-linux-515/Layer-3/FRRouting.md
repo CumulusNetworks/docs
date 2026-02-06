@@ -576,7 +576,7 @@ The `zebra` daemon does not consider next hops that resolve to a default route a
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router nexthop-tracking ipv4 resolved-via-default on
+cumulus@leaf01:~$ nv set vrf default router nexthop-tracking ipv4 resolved-via-default enabled
 cumulus@leaf01:~$ nv config apply
 ```
 

@@ -569,7 +569,7 @@ To debug TACACS user command authorization, have the TACACS+ user enter the foll
 tacuser0@switch:~$ export TACACSAUTHDEBUG=1
 ```
 
-The `export TACACSAUTHDEBUG=1` command outputs error messages for commands authorized for the TACACS+ user running the command.
+The `export TACACSAUTHDEBUG=1` command outputs error messages for commands authorized for the TACACS+ user.
 
 To disable debugging:
 
@@ -699,8 +699,10 @@ For non-local users (users not in the local password file) you need to send a TA
 
 You need to configure certain TACACS+ servers to allow authorization requests before authentication. Contact your TACACS+ server vendor for information.
 
-### Multiple Servers with Different User Accounts
+### Multiple TACACS+ Servers
 
-If you configure multiple TACACS+ servers that have different user accounts:
-- TACACS+ *authentication* allows for fall through; if the first reachable server does not authenticate the user, the client tries the second server, and so on.
-- TACACS *authorization* does not fall through. If the first reachable server returns an *unauthorized* result, the client does not try the next server.
+If you configure multiple TACACS+ servers, both *authentication* and *authorization* allow for fall through; if the first reachable server explicitly fails to authenticate or authorize the user, the client tries the second server, and so on.
+
+{{%notice note%}}
+The TACACS+ client implementation that forwards or retries a request with an alternate TACACS+ server after receiving a failure (FAIL) response is not compliant with the behavior defined in {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8907" text="RFC 8907">}}.
+{{%/notice%}}

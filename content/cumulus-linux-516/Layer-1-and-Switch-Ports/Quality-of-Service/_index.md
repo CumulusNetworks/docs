@@ -18,10 +18,6 @@ Cumulus Linux uses two configuration files for QoS:
 - `/etc/cumulus/datapath/qos/qos_features.conf` includes all standard QoS configuration, such as marking, shaping and flow control.
 - `/etc/mlx/datapath/qos/qos_infra.conf` includes all platform specific configurations, such as buffer allocations and [Alpha values](https://enterprise-support.nvidia.com/s/article/understanding-the-alpha-parameter-in-the-buffer-configuration-of-mellanox-spectrum-switches).
 
-{{% notice note %}}
-Cumulus Linux 5.0 and later does not use the `traffic.conf` and `datapath.conf` files but uses the `qos_features.conf` and `qos_infra.conf` files instead. Before upgrading Cumulus Linux, review your existing QoS configuration to determine the changes you need to make.
-{{% /notice %}}
-
 ## switchd and QoS
 
 When you run **Linux commands** to configure QoS, you must apply QoS changes to the ASIC with the following command:
@@ -1024,7 +1020,7 @@ Traffic shaping typically occurs at egress and traffic policing at ingress.
 
 ### Shaping
 
-Traffic shaping allows a switch to send traffic at an average bitrate lower than the physical interface. Traffic shaping prevents a receiving device from dropping bursty traffic if the device is either not capable of that rate of traffic or has a policer that limits what it accepts.
+Traffic shaping allows a switch to send traffic at an average rate lower than the physical interface. Traffic shaping prevents a receiving device from dropping bursty traffic if the device is either not capable of that rate of traffic or has a policer that limits what it accepts.
 
 Traffic shaping works by holding packets in the buffer and releasing them at specific time intervals.
 
@@ -1032,9 +1028,10 @@ Cumulus Linux supports two levels of hierarchical traffic shaping: one at the eg
 
 The following example configuration:
 - Sets the profile name (port group) to use with the traffic shaping settings to `shaper1`.
-- Sets the minimum bandwidth for egress queue 2 to 100 kbps. The default minimum bandwidth is 0 kbps.
-- Sets the maximum bandwidth for egress queue 2 to 500 kbps. The default minimum bandwidth is 2147483647 kbps.
-- Sets the maximum packet shaper rate for the port group to 200000. The default maximum packet shaper rate is 2147483647 kbps.
+- Sets the mode to packets per second. You can set this option to either packets per second or kilobits per second. The default setting is kilobits per second.
+- Sets the minimum bandwidth for egress queue 2 to 100 packets per second. The default minimum bandwidth is 0.
+- Sets the maximum bandwidth for egress queue 2 to 500 packets per second. The default maximum bandwidth is 2147483647.
+- Sets the maximum packet shaper rate for the port group to 200000 packets per second. The default maximum packet shaper rate is 2147483647.
 - Applies the traffic shaping configuration to swp1, swp2, swp3, and swp5.
 
 {{% notice note %}}
@@ -1048,6 +1045,7 @@ The following example configuration:
 {{< tab "NVUE Commands ">}}
 
 ```
+cumulus@switch:~$ nv set qos egress-shaper shaper1 mode pps
 cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 min-rate 100
 cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 max-rate 500
 cumulus@switch:~$ nv set qos egress-shaper shaper1 port-max-rate 200000
@@ -1058,19 +1056,47 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `shaping` section of the `qos_features.conf` file.
+Edit the `shaping` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 Cumulus Linux bases the `egr_queue` value on the configured [egress queue](#egress-queues).
 
 ```
 shaping.port_group_list = [shaper1]
+shaping.shaper_port_group.mode = 1 
 shaping.shaper1.port_set = swp1-swp3,swp5
 shaping.shaper1.egr_queue_0.shaper = [50000, 100000]
 shaping.shaper1.port.shaper = 900000
 ```
 
+To set the mode to kilobits per second, set `shaping.shaper_port_group.mode = 0`. To set the mode to packets per second, set `shaping.shaper_port_group.mode = 1`.
+
 {{< /tab >}}
 {{< /tabs >}}
+
+To show traffic shaping configuration for an interface, run the `nv show interface <interface-id> qos egress-shaper` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 qos egress-shaper
+                       operational  applied
+---------------------  -----------  -------
+profile                shaper1      shaper1
+port-max-rate          200000
+port-max-shaper-state  enable
+mode                   pps
+
+Shaper Min/Max Rate
+======================
+    traffic-class  min-shaper-state  min-rate(kbps/pps)  max-shaper-state  max-rate(kbps/pps)
+    -------------  ----------------  ------------------  ----------------  ------------------
+    0              disable           0                   disable           0
+    1              disable           0                   disable           0
+    2              enable            100                 enable            500
+    3              disable           0                   disable           0
+    4              disable           0                   disable           0
+    5              disable           0                   disable           0
+    6              disable           0                   disable           0
+    7              disable           0                   disable           0
+```
 
 ### Policing
 
@@ -1162,7 +1188,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-You define profiles with the `source.port_group_list` configuration in the `qos_features.conf` file. A `source.port_group_list` is one or more names used for a group of settings.
+You define profiles with the `source.port_group_list` configuration in the `/etc/cumulus/datapath/qos/qos_features.conf` file. A `source.port_group_list` is one or more names used for a group of settings.
 
 The following example configures two profiles. `customer1` applies to swp1, swp4, and swp6. `customer2` applies to swp5 and swp7.
 
@@ -1689,6 +1715,55 @@ To unset the lossy headroom for a priority group, comment out the `priority_grou
 {{< /tab >}}
 {{< /tabs >}}
 
+### Extra Lossy Headroom
+
+In certain cases, higher forwarding latency and a high probability of small packets increase the risk of headroom buffer exhaustion on lossy traffic and the current default maximum headroom of 150 KB (153600 bytes) per port might be insufficient.
+
+To configure additional headroom (on top of the default threshold of 153600 bytes) for lossy priority groups before the switch drops packets, run the `nv set interface <interface-id> qos headroom lossy extra-threshold` command. You can specify a value between 192 and 1236480 bytes.
+
+{{%notice note%}}
+Switches with Spectrum-2 and later support extra lossy headroom.
+{{%/notice%}}
+
+The following example configures the extra lossy headroom to 50000 bytes for swp1:
+
+{{< tabs "TabID1728 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 qos headroom lossy extra-threshold 50000
+cumulus@switch:~$ nv config apply
+```
+
+To unset the additional headroom for lossy priority groups, run the `nv unset interface <interface-id> qos headroom lossy extra-threshold` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to adjust the `<interface>.headroom.lossy.extra-threshold` parameter.
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
+...
+swp1.headroom.lossy.extra-threshold = 50000
+```
+
+To unset the extra lossy headroom for a priority group, comment out the `<interface>.headroom.lossy.extra-threshold` parameter.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show extra lossy headroom configuration, run the `nv show interface <interface-id> qos headroom lossy` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 qos headroom lossy 
+                        operational  applied 
+----------------------  -----------  ------- 
+extra-threshold         9984         50000   
+default-headroom        153600       153600 
+effective-max-headroom  163584
+```
+
 ### Ingress and Egress Management Buffers
 
 Management traffic consists of control traffic originating from or destined to the switch CPU.
@@ -1910,7 +1985,7 @@ shared-bytes   13.53 KB         13.53 KB
 
 ## Syntax Checker
 
-Cumulus Linux provides a syntax checker for the `qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.
+Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/qos/qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.
 
 The syntax checker runs automatically with every `switchd reload`.
 
@@ -1923,11 +1998,11 @@ The `cl-consistency-check --datapath-syntax-check` command takes the following o
 | `-h` | Displays this list of command options. |
 | `-q` | Runs the command in quiet mode. Errors write to the `/var/log/switchd.log` file instead of `stderr`. |
 | `-qi` | Runs the syntax checker against a specified `qos_infra.conf` file. |
-| `-qf` | Runs the syntax checker against a specified `qos_features.conf` file. |
+| `-qf` | Runs the syntax checker against a specified `/etc/cumulus/datapath/qos/qos_features.conf` file. |
 
 By default the syntax checker assumes:
-- `qos_infra.conf` is in `/etc/mlx/datapath/qos/qos_infra.conf`
-- `qos_features.conf` is in `/etc/cumulus/datapath/qos/qos_features.conf`
+- The `qos_infra.conf` file is in the `/etc/mlx/datapath/qos/qos_infra.conf` directory.
+- The `qos_features.conf` file is in the `/etc/cumulus/datapath/qos/qos_features.conf` directory.
 
 You can run the syntax checker when `switchd` is either running or stopped.
 
@@ -1998,7 +2073,7 @@ Qos Port Statistics
 
 ## Clear QoS Buffers
 
-To clear the Qos pool buffers, run the `nv action clear qos buffer pool` command.
+To clear the QoS pool buffers, run the `nv action clear qos buffer pool` command.
 
 ```
 cumulus@switch:~$ nv action clear qos buffer pool
@@ -2026,7 +2101,7 @@ To clear the Qos buffers on a set of interfaces, run the `nv action clear interf
 
 ```
 cumulus@switch:~$ nv action clear interface swp1-5,swp20,swp25 qos buffer
-QoS buffers cleared on swp1-5.
+QoS buffers cleared on swp1,swp2,swp3,swp4,swp5,swp20,swp25.
 Action succeeded
 ```
 
@@ -2547,7 +2622,7 @@ cos_egr_queue.cos_7.cpu = 7
 
 If you configure btoh breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
 
-You must apply breakout port configuration before QoS configuration on the breakout ports. If you are using NVUE, configure breakout ports and perform an `nv config apply` first, then configure QoS settings on the breakout ports followed by another `nv config apply`. If you are using linux file configuration, modify `ports.conf` first, `reload switchd`, then modify `qos_features.conf` and `reload switchd` a second time.
+You must apply breakout port configuration before QoS configuration on the breakout ports. If you are using NVUE, configure breakout ports and perform an `nv config apply` first, then configure QoS settings on the breakout ports followed by another `nv config apply`. If you are using linux file configuration, modify `ports.conf` first, `reload switchd`, then modify `/etc/cumulus/datapath/qos/qos_features.conf` and `reload switchd` a second time.
 
 ### QoS Settings on Bond Member Interfaces
 
@@ -2560,4 +2635,4 @@ NVUE rejects QoS configurations on bond member interfaces and shows an error whe
 <!-- vale off -->
 ### Cut-through Switching
 <!-- vale on -->
-You cannot disable cut-through switching on Spectrum ASICs. Cumulus Linux ignores the `cut_through_enable = false` setting in the `qos_features.conf` file.
+You cannot disable cut-through switching on Spectrum ASICs. Cumulus Linux ignores the `cut_through_enable = false` setting in the `/etc/cumulus/datapath/qos/qos_features.conf` file.

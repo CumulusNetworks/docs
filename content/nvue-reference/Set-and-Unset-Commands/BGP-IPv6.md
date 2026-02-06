@@ -292,7 +292,7 @@ Route redistribution allows a network to use a routing protocol to route traffic
 
 {{%notice note%}}
 - In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-- This command does not export link-local IPv6 addresses.
+- This command does not export link-local IPv6 addresses as global addresses but treats them as neighbor entries in the EVPN fabric.
 {{%/notice%}}
 
 ### Command Syntax

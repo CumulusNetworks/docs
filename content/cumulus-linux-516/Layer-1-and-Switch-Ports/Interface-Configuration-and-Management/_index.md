@@ -306,7 +306,7 @@ To unset the MAC address for an interface, remove the mac address from the inter
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- MOVE TO 5.17
 ## Interface Physical Name
 
 The physical name for an interface maps the interface to the connector to show actual physical connections within the system and correlate software interface names with the physical layout of the hardware.
@@ -388,7 +388,7 @@ swp4s3     swp4c2s2            down          down                9216          n
 swp5s0     swp5c1s1            down          down                9216          none
 ...
 ```
-
+-->
 ## Interface Descriptions
 
 You can add a description (alias) to an interface.
@@ -396,7 +396,7 @@ You can add a description (alias) to an interface.
 Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<mib_link text="IF-MIB::ifAlias" url="mibs/IF-MIB.txt" >}}
 
 {{%notice note%}}
-- Interface descriptions can have a maximum of 256 characters.
+- Interface descriptions can have a maximum of 255 characters.
 - Avoid using apostrophes or non-ASCII characters. Cumulus Linux does not parse these characters.
 {{%/notice%}}
 
@@ -755,6 +755,73 @@ cumulus@switch:~$ nv show interface swp1 link flap-protection
 ------  -------
 state   disabled
 ```
+
+## Tx Squelch Control
+
+{{%notice note%}}
+Tx squelch control is a Beta feature.
+{{%/notice%}}
+
+Tx squelch control is a PHY‑level feature that controls if the local port continues transmitting when the remote side is logically down (for example, when the remote side is in a fault state or needs to restart auto-negotiation).
+
+{{%notice note%}}
+- Switches with Spectrum-4 and later support Tx squelch control.
+- Cumulus Linux supports Tx squelch control on physical ports only (including breakout ports).
+- Enabling or disabling Tx squelch control is disruptive on admin UP ports. The switch performs a port admin‑status down, then port admin‑status up for the changes to take effect.
+- Enabling or disabling Tx squelch control is not disruptive on admin DOWN ports. When you enable or disable Tx squelch control on an admin DOWN port, the new setting becomes effective the next time the port is admin UP.
+{{%/notice%}}
+
+{{< tabs "TabID773 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable Tx squelch control, run the `nv set interface <interface> link tx-squelch enabled` command. The default setting is `auto`, which enables the switch to decide the correct configuration.
+
+```
+cumulus@switch:~$ nv set interface swp1 link tx-squelch enabled 
+cumulus@switch:~$ nv config apply
+```
+
+To disable Tx squelch control, run the `nv set interface <interface> link tx-squelch disabled` command.
+
+To show if Tx squelch control is enabled, run the `nv show interface <interface> link` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 link
+                         operational              applied
+-----------------------  -----------------------  -------
+admin-status             up                              
+oper-status              up                              
+oper-status-last-change  2024/10/11 19:12:16.339         
+protodown                disabled                        
+auto-negotiate           disabled                 enabled
+duplex                   full                     full   
+speed                    1G                       auto   
+mac-address              48:b0:2d:fa:a1:14               
+fec                                               auto   
+mtu                      9000                     9216   
+fast-linkup              disabled
+tx-squelch               auto                     enabled  
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To enable Tx squelch control, edit the `/etc/cumulus/switchd.conf` file to set the `interface.<interface-id>.tx_squelch` parameter to `enabled`, then reload `switchd`.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+interface.swp1.tx_squelch = enabled 
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
+```
+
+To disable Tx squelch control, set the `interface.<interface-id>.tx_squelch` parameter to `disabled`.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Source Interface File Snippets
 

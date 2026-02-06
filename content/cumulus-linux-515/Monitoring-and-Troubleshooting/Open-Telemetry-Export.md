@@ -199,6 +199,7 @@ You can adjust the LLDP statistics sample interval (in seconds). You can specify
 cumulus@switch:~$ nv set system telemetry lldp sample-interval 10
 cumulus@switch:~$ nv config apply
 ```
+
 ### Platform Statistics
 
 When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, and transceiver information. To enable all [platform statistics](#platform-statistic-format) globally:
@@ -540,12 +541,6 @@ By default, OTLP export is in **secure** mode that requires a CA certificate. Fo
     cumulus@switch:~$ nv config apply
     ```
 
-
-<!-- POC IN CL5.13
-{{%notice note%}}
-When you make changes to the open telemetry export destination, connections to the destination do not reset.
-{{%/notice%}}
--->
 ### Customize Export
 
 By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to all configured OTLP destinations. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group to control which statistics you export and the sample interval for a destination.
@@ -764,16 +759,6 @@ The switch collects and exports statistics for IPv4, IPv6, layer 2, and layer 4 
 | `nvswitch_acl_set_l2_info` | Layer 2 ACL information. |
 | `nvswitch_acl_set_l4_info` | Layer 4 ACL information. |
 
-{{< expand "Example JSON data for nvswitch_acl_interface_matched_pkts:" >}}
-```
-```
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for nvswitch_acl_set_ipv4_info:" >}}
-```
-```
-{{< /expand >}}
-
 ### AI Ethernet Statistic Format
 
 The switch collects and exports the adaptive routing, SRv6, and packet trimming statistics when you configure the `nv set system telemetry ai-ethernet-stats export state enabled` command.
@@ -910,13 +895,13 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_shared_buffer_port_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded after running sdk_stats. |
 | `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for multicast port. |
 | `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for multicast port. |
-| `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for multicast port recorded after running sdk_stats. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark_recorded_max` | Highest maximum buffer occupancy for multicast port recorded after running sdk_stats. |
 | `nvswitch_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for multicast switch priority. |
 | `nvswitch_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for multicast switch priority. |
-| `nvswitch_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for multicast switch priority recorded after running sdk_stats. |
+| `nvswitch_shared_buffer_mc_sp_watermark_recorded_max` | Highest maximum buffer occupancy for multicast switch priority recorded after running sdk_stats. |
 | `nvswitch_shared_buffer_pool_curr_occupancy` | Current pool buffer occupancy. |
 | `nvswitch_shared_buffer_pool_watermark` | Maximum pool buffer occupancy |
-| `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded after running sdk_stats. |
+| `nvswitch_shared_buffer_pool_watermark_recorded_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded after running sdk_stats. |
 | `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current headroom buffer occupancy for port buffer. |
 | `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum pool headroom buffer occupancy for port buffer. |
 | `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port buffer recorded after running sdk_stats. |
@@ -1476,7 +1461,7 @@ The switch collects and exports the following additional interface priority grou
 |  Name | Description |
 |------ | ----------- |
 | `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
-| `nvswitch_interface_pg_rx_octets` | Interface ingress priority group receive bytes counter. |
+| `nvswitch_interface_pg_rx_octet` | Interface ingress priority group receive bytes counter. |
 
 {{< /tab >}}
 {{< tab "Switch Priority ">}}

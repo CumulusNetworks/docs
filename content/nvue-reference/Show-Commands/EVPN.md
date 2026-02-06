@@ -27,10 +27,10 @@ perational   applied
 enable                               on
 route-advertise
   nexthop-setting                    system-ip-mac
-  svi-ip               off           off
-  default-gateway      off           off
+  svi-ip               disabled      disabled
+  default-gateway      disabled      disabled
 dad
-  enable               on            on
+  state                enabled       enabled
   mac-move-threshold   5             5
   move-window          180           180
   duplicate-action     warning-only  warning-only
@@ -303,19 +303,23 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show evpn multihoming
                      operational  applied  pending
 -------------------  -----------  -------  -------
-enable                            on       on     
+state                            enabled  enabled    
 mac-holdtime         1080         1080     1080   
 neighbor-holdtime    1080         1080     1080   
 startup-delay        180          180      180    
 ead-evi-route                                     
-  rx                              on       on     
-  tx                              on       on     
+  rx                              enabled  enabled    
+  tx                              enabled  enabled    
 segment                                           
   df-preference                   32767    32767  
 startup-delay-timer  --:--:--                     
 uplink-active        2                            
 uplink-count         2
 ```
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command output for configuration options shows `on` or `off` instead of `enabled` or `disabled`.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -584,9 +588,13 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show evpn multihoming ead-evi-route
     operational  applied  pending
 --  -----------  -------  -------
-rx               on       on     
-tx               on       on
+rx               enabled  enabled    
+tx               enabled  enabled
 ```
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command output for configuration options shows `on` or `off` instead of `enabled` or `disabled`.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -779,9 +787,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show evpn route-advertise
                  operational  applied        pending      
 ---------------  -----------  -------------  -------------
-default-gateway  off          off            off          
+default-gateway  disabled     disabled       disabled          
 nexthop-setting               system-ip-mac  system-ip-mac
-svi-ip           off          off            off
+svi-ip           disabled     disabled       disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -849,8 +857,8 @@ cumulus@switch:~$ nv show evpn vni 10
                    operational  applied  pending
 -----------------  -----------  -------  -------
 route-advertise                                 
-  default-gateway  off                          
-  svi-ip           off                          
+  default-gateway  disabled                          
+  svi-ip           disabled                          
 bridge-domain      br_default                   
 host-count         4                            
 local-vtep         10.0.0.1                     
@@ -891,8 +899,8 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@switch:~$ nv show evpn vni 10 bgp-info
                           operational   applied  pending
 -------------------------  ------------  -------  -------
-advertise-default-gateway  off                           
-advertise-svi-ip           off                           
+advertise-default-gateway  disabled                           
+advertise-svi-ip           disabled                           
 in-kernel                  on                            
 local-vtep                 10.0.0.1                      
 rd                         10.10.10.1:5                  
@@ -1246,8 +1254,8 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@switch:~$ nv show evpn vni 10 route-advertise
                  operational  applied  pending
 ---------------  -----------  -------  -------
-default-gateway  off                          
-svi-ip           off
+default-gateway  disabled                          
+svi-ip           disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

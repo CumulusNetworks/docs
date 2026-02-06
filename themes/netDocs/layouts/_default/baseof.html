@@ -66,8 +66,8 @@
 </main>
 </div>
 
-
+{{if ne .Page.Type "pdf"}}
   {{ partialCached "footer" . }}
-
+{{ end }}
 </body>
 </html>

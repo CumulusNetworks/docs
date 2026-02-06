@@ -7,10 +7,46 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4850551</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4797691</td>
+<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
+<td>5.0.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789097</td>
+<td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
+<td>5.9.4-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4771521</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -67,7 +103,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.4</td>
+<td>5.9.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -97,20 +133,20 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.4</td>
+<td>5.8.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -158,7 +194,7 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -713,7 +749,7 @@ You can safely ignore this warning.</td>
 </tr>
 <tr>
 <td>4548514</td>
-<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+<td>When FRR installs a connected route for an SVI interface with VRR, the route might install with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
 &lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
@@ -753,7 +789,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4531829</td>
 <td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
-<td>5.11.1-5.11.4</td>
+<td>5.11.1-5.11.5</td>
 </tr>
 <tr>
 <td>4513850</td>
@@ -838,7 +874,7 @@ cumulus@switch:~$ nv config apply</td>
 <tr>
 <td>4271232</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0-5.11.4</td>
+<td>5.11.0-5.11.5</td>
 </tr>
 <tr>
 <td>4271228</td>
@@ -878,6 +914,11 @@ cumulus@switch:~$ nv config apply</td>
 <tr>
 <td>4245852</td>
 <td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
+<td>4245848</td>
+<td>Unreachable or reject routes might not get installed into the SDK.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
@@ -989,10 +1030,40 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4850551</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4797691</td>
+<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
+<td>5.0.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4771521</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -1026,7 +1097,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4548514</td>
-<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+<td>When FRR installs a connected route for an SVI interface with VRR, the route might install with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
 &lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
@@ -1095,7 +1166,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.4</td>
+<td>5.9.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1145,7 +1216,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.4</td>
+<td>5.8.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1188,7 +1259,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1206,7 +1277,7 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1329,7 +1400,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1882,10 +1953,40 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4850551</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4797691</td>
+<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
+<td>5.0.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4771521</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -1919,7 +2020,7 @@ You can safely ignore this warning.</td>
 </tr>
 <tr>
 <td>4548514</td>
-<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+<td>When FRR installs a connected route for an SVI interface with VRR, the route might install with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
 &lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
@@ -1982,7 +2083,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.4</td>
+<td>5.9.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2032,7 +2133,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.4</td>
+<td>5.8.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2075,7 +2176,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2093,7 +2194,7 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -2216,7 +2317,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3014,6 +3115,24 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4797691</td>
+<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
+<td>5.0.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
+</tr>
+<tr>
 <td>4647646</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
@@ -3045,7 +3164,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>4548514</td>
-<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+<td>When FRR installs a connected route for an SVI interface with VRR, the route might install with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
 &lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
@@ -3090,7 +3209,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.4</td>
+<td>5.9.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -3134,7 +3253,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.4</td>
+<td>5.8.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4120,6 +4239,24 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4797691</td>
+<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
+<td>5.0.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
+</tr>
+<tr>
 <td>4647646</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
@@ -4186,7 +4323,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.4</td>
+<td>5.9.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -4230,7 +4367,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.4</td>
+<td>5.8.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>

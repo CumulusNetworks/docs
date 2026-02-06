@@ -338,26 +338,55 @@ You configure the echo function by setting the following parameters in the topol
 
 ## BFD Offload
 
-BFD offload improves BFD session scale by offloading BFD to a kernel driver called `sx_bfd`, which is responsible for maintaining BFD sessions. BFD offload is disabled by default.
+BFD offload improves BFD session scale by offloading BFD numbered sessions to a kernel driver called `sx_bfd`, which is responsible for maintaining BFD sessions. BFD offload is disabled by default.
 
 {{%notice note%}}
-BFD offload does not support BFD sessions based on the IPv6 link-local address.
+- BFD offload does not support BFD sessions based on the IPv6 link-local address.
+- When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
+- If a BFD peer is down; for example, due to path failures, (not admin-down), the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might cause an increase in CPU usage.
+- When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode.
+- If you have a mix of BFD sessions to non-link-local IPv4 or IPv6 destinations, NVIDIA recommends that you do *not* enable BFD offload.
+- Depending on the configured BFD intervals and the number of BFD sessions, enabling and disabling BFD offload might result in session flaps, especially with aggressive timers on lower-end platforms. BFD sessions are expected to run in offload mode in a steady state and moving offloaded sessions back to non-offload (control-plane) mode is rare. In the unlikely event that such a transition is required, you must set the BFD session timers to values appropriate for non-offload mode to avoid flaps. When running multiple BFD sessions in non-offload mode, the minimum recommended timer values are 3 for the detect multiplier, 300 milliseconds for the transmit interval, and 900 milliseconds for the receive interval.
 {{%/notice%}}
 
-To enable BFD offload, run the `nv set router bfd offload enabled` command:
+To enable BFD offload:
+
+{{< tabs "TabID349 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set router bfd offload enabled` command.
 
 ```
 cumulus@switch:~$ nv set router bfd offload enabled
 cumulus@switch:~$ nv config apply
 ```
 
+For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` command; for example:
+
+```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd source 10.10.10.3
+```
+
 To disable BFD offload, run the `nv set router bfd offload disabled` command.
 
-{{%notice note%}}
-When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode including BFD sessions based on the IPv6 link-local address (even though BFD offload does not support BFD sessions based on the IPv6 link-local address).
-{{%/notice%}}
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
-To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view standard` command. The `Offloaded` field shows `control-plane` if the session is offloaded.
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# bfd
+switch(config-bfd)# offload-mode
+switch(config-bfd)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view standard` command or the vtysh `show bfd peer` command.
 
 ```
 cumulus@switch:~$ nv show vrf default router bfd peers --view standard 
@@ -371,6 +400,8 @@ LocalId     MHop   Local   Peer    Interface  State  Passive  Time     Type     
 ----------  -----  ------  ------  ---------  -----  -------  -------  -------  -------------  ------  ----------  -----  -----  ------  ------- 
 1862087280  False  500::1  500::2  vlan500    up     False    0:03:53  dynamic  control-plane          3           50     50     1476    1463 
 ```
+
+The `Offloaded` field shows `offloaded` if the session is offloaded and `control-plane` if the session is not offloaded.
 
 ## Show BFD Information
 
@@ -459,6 +490,7 @@ profile               BFD1
 ```
 
 You can run vtysh commands to show neighbor information in OSPF, including BFD status. To show IPv4 OSPF interface information, run the vtysh `show ip ospf interface <interface-id>` command.
+
 ### Show BFD with PIM
 
 To show the BFD profile associated with a PIM session, run the NVUE `nv show interface <interface-id> router pim bfd` command:

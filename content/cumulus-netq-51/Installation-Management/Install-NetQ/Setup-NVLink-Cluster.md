@@ -15,7 +15,7 @@ NetQ NVLink supports 3-node clusters with the following system requirements. Ver
 | :--- | :--- |
 | Processor | 48 virtual CPUs |
 | Memory | 512GB RAM |
-| Local disk storage | 3.2TB NVMe |
+| Local disk storage | 3.2TB NVMe; P99 disk I/O latency < 10ms  |
 | Network interface speed | 10 Gbps NIC |
 | Hypervisor | KVM/QCOW (QEMU Copy on Write) image for servers running Ubuntu 24.04;<br> VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux or Ubuntu 24.04| 
 

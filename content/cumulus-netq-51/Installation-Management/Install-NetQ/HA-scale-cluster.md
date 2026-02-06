@@ -20,7 +20,7 @@ Verify that *each node* in your cluster meets the VM requirements.
 | :--- | :--- |
 | Processor | 48 virtual CPUs |
 | Memory | 512GB RAM |
-| Local disk storage | 3.2TB SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br> (Note: This must be an SSD; other storage options can lead to system instability and are not supported.)|
+| Local disk storage | 3.2TB SSD with minimum disk IOPS of 1000 for a standard 4kb block size; P99 disk I/O latency < 10ms <br> (Note: This must be an SSD; other storage options can lead to system instability and are not supported.)|
 | Network interface speed | 10 Gbps NIC |
 | Hypervisor | KVM/QCOW (QEMU Copy on Write) image for servers running Ubuntu;<br> VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux or Ubuntu | 
 

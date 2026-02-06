@@ -298,6 +298,6 @@ pdfhidden: True
 | <a name="4372795"></a> [4372795](#4372795) <a name="4372795"></a> <br /> | With high SSH scale you might see LTTNG high memory usage errors causing an out of memory condition. | 5.13.0-5.13.1 | |
 | <a name="4360826"></a> [4360826](#4360826) <a name="4360826"></a> <br /> | On rare occasions, when you run the NVUE <code>nv config apply</code> command, <code>switchd</code> crashes, then restarts after the crash and resumes its normal flow of operation. | 5.13.0-5.13.1 | |
 | <a name="4341806"></a> [4341806](#4341806) <a name="4341806"></a> <br /> | The BGP uptime differs between vtysh and NVUE command output. | 5.12.0-5.13.1 | |
-| <a name="3879809"></a> [3879809](#3879809) <a name="3879809"></a> <br /> | What Just Happened (WJH) now works on Spectrum-4 switches. | 5.9.0-5.13.1 | |
+| <a name="3879809"></a> [3879809](#3879809) <a name="3879809"></a> <br /> | Spectrum-4 switches do not include full What Just Happened (WJH) support. | 5.9.0-5.13.1 | |
 | <a name="3875687"></a> [3875687](#3875687) <a name="3875687"></a> <br /> | After changing the VXLAN local tunnel IP address, the new IP address is not reflected in the <code>Local Vtep Ip</code> field of the <code>nv show evpn vni <vni></code> command output.  To work around this issue, either run the <code>ifup <vxlan-id></code> command or reboot the switch. | 5.9.0-5.13.1 | |
 

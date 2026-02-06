@@ -1,10 +1,10 @@
 ---
 title: New and Removed NVUE Commands
 author: Cumulus Networks
-weight: -30
+weight: 8
 product: Cumulus Linux
 version: "5.16"
-toc: 1
+toc: 3
 ---
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 

@@ -1,10 +1,10 @@
 ---
 title: New and Updated Telemetry Metrics
 author: Cumulus Networks
-weight: -30
+weight: 9
 product: Cumulus Linux
 version: "5.16"
-toc: 1
+toc: 3
 ---
 The following tables list the new, updated, and deprecated gNMI and OTEL metrics in Cumulus Linux 5.16.
 

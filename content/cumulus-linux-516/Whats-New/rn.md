@@ -1,13 +1,12 @@
 ---
 title: Cumulus Linux 5.16 Release Notes
 author: Cumulus Networks
-weight: -30
+weight: 7
 product: Cumulus Linux
 version: "5.16"
-toc: 1
-type: rn
+toc: 3
+
 ---
-{{<rn_xls_link dir="cumulus-linux-516" >}}
 ## 5.16.0 Release Notes
 ### Open Issues in 5.16.0
 

@@ -964,6 +964,7 @@ supported encodings:
   - JSON_IETF 
   - PROTO 
 ```
+
 ### gNOI Operational Commands
 
 The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](## "gRPC Network Operations Interface")</span> so that you can run operational tasks from a client, such as switch reboot or file transfer. The gNOI server is enabled when you configure {{<link url="gNMI-Streaming/#configure-gnmi-dial-in-mode" text="gNMI dial-in mode">}}. The gNOI server uses the same listening address, port, TLS configuration, and user credentials as your gNMI server configuration.
@@ -988,7 +989,6 @@ The following gNOI RPCs are not supported:
 - system `reboot` with `--method=FAST` (fast reboot mode)
 - file `transfer`
 {{%/notice%}}
-
 
 You can view the number of gNOI RPCs received on the switch with the `nv show system gnmi-server status gnoi-rpc` command:
 
@@ -1100,6 +1100,10 @@ cumulus@host:mgmt:~$
 {{%notice infonopad%}}
 When you issue a switch reboot with the gNOI system `reboot` RPC or the `activate` RPC without the `--no-reboot` option, the switch reboots immediately; no confirmation is required.
 {{%/notice%}}
+
+### Considerations
+
+Cumulus Linux processes gNMI subscription requests one at a time. Concurrent requests receive a gRPC status CANCELLED with the message `System is busy. Please retry in a bit`.
 
 ## gNMI with NetQ
 
@@ -1908,8 +1912,6 @@ received sync response 'true' from '10.209.37.123:9339'
 When using gNMI with Cumulus Linux:
 - The minimum sampling interval is 1 second. If you configure a shorter sampling interval, the switch might not behave as expected.
 - ModelData, Origin, and Extensions fields are ignored in requests and not set in responses.
-- Cumulus Linux processes gNMI subscription requests one at a time. Concurrent requests receive a gRPC status CANCELLED with the message `System is busy. Please retry in a bit`.
-
 
 ## Related Information
 

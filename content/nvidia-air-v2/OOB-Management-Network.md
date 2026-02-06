@@ -13,6 +13,21 @@ The OOB network gives you a single entry point to access all nodes in your simul
 
 This separation mirrors real-world data center design, where management traffic is isolated from production traffic. Your simulation nodes have two network identities: a management interface (typically `eth0`) on the OOB network, and data interfaces (such as `swp1`, `eth1`) that you configure for your simulation traffic.
 
+To enable the OOB network, toggle **Enable OOB** on in the topology builder or include OOB configuration in your topology file. External services such as SSH, HTTP, and HTTPS typically terminate on the `oob-mgmt-server`, making it the primary entry point for interacting with your simulation programmatically.
+
+## Without the OOB Network
+
+If you disable the OOB network, your simulation has no dedicated management plane. This means:
+
+- **Console-only access**: You can only reach nodes through their individual consoles in the Air UI. There is no central jump host to SSH into.
+- **No hostname resolution**: Without the DNS server on the `oob-mgmt-server`, you cannot SSH to nodes by name (for example, `ssh leaf01`).
+- **No automatic IP assignment**: There is no DHCP server to assign management IPs to your nodes.
+- **No outbound internet access**: The NAT gateway runs on the `oob-mgmt-server`. Without it, nodes have no outbound connectivity unless you configure it manually on the data plane.
+- **No ZTP**: Zero-touch provisioning scripts are served from the `oob-mgmt-server` and require the OOB network.
+- **No SSH service shortcut**: The **Enable SSH** button in the Air UI creates an SSH service on the `oob-mgmt-server`. Without OOB, this option is not available.
+
+For most use cases, leaving the OOB network enabled is recommended. Disable it only when you need full control over all network interfaces or when your simulation does not require management-plane connectivity.
+
 ## Architecture
 
 The OOB network uses a leaf-spine topology that scales automatically based on the number of nodes in your simulation.

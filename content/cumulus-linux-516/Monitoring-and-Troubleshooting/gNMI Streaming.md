@@ -861,6 +861,10 @@ User authentication is enabled by default. gNMI subscription requests must inclu
 
 You can use your gNMI client on a host to request capabilities and data to which the gNMI agent subscribes.
 
+{{%notice note%}}
+Cumulus Linux processes gNMI subscription requests one at a time. Concurrent requests receive a gRPC status CANCELLED with the message `System is busy. Please retry in a bit`.
+{{%/notice%}}
+
 #### Dial-in Mode Examples
 
 The following example shows a basic dial-in mode subscribe request in an HTTP basic authentication header:
@@ -1100,10 +1104,6 @@ cumulus@host:mgmt:~$
 {{%notice infonopad%}}
 When you issue a switch reboot with the gNOI system `reboot` RPC or the `activate` RPC without the `--no-reboot` option, the switch reboots immediately; no confirmation is required.
 {{%/notice%}}
-
-### Considerations
-
-Cumulus Linux processes gNMI subscription requests one at a time. Concurrent requests receive a gRPC status CANCELLED with the message `System is busy. Please retry in a bit`.
 
 ## gNMI with NetQ
 

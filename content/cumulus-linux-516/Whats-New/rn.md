@@ -6,7 +6,6 @@ product: Cumulus Linux
 version: "5.16"
 toc: 1
 type: rn
-pdfhidden: False
 ---
 {{<rn_xls_link dir="cumulus-linux-516" >}}
 ## 5.16.0 Release Notes

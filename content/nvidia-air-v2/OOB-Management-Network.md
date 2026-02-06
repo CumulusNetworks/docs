@@ -13,6 +13,21 @@ The OOB network gives you a single entry point to access all nodes in your simul
 
 This separation mirrors real-world data center design, where management traffic is isolated from production traffic. Your simulation nodes have two network identities: a management interface (typically `eth0`) on the OOB network, and data interfaces (such as `swp1`, `eth1`) that you configure for your simulation traffic.
 
+To enable the OOB network, toggle **Enable OOB** on in the topology builder or include OOB configuration in your topology file. External services such as SSH, HTTP, and HTTPS typically terminate on the `oob-mgmt-server`, making it the primary entry point for interacting with your simulation programmatically.
+
+## Without the OOB Network
+
+If you disable the OOB network, your simulation has no dedicated management plane. This means:
+
+- **Console-only access**: You can only reach nodes through their individual consoles in the Air UI. There is no central jump host to SSH into.
+- **No hostname resolution**: Without the DNS server on the `oob-mgmt-server`, you cannot SSH to nodes by name (for example, `ssh leaf01`).
+- **No automatic IP assignment**: There is no DHCP server to assign management IPs to your nodes.
+- **No outbound internet access**: The NAT gateway runs on the `oob-mgmt-server`. Without it, nodes have no outbound connectivity unless you configure it manually on the data plane.
+- **No ZTP**: Zero-touch provisioning scripts are served from the `oob-mgmt-server` and require the OOB network.
+- **No SSH service shortcut**: The **Enable SSH** button in the Air UI creates an SSH service on the `oob-mgmt-server`. Without OOB, this option is not available.
+
+For most use cases, leaving the OOB network enabled is recommended. Disable it only when you need full control over all network interfaces or when your simulation does not require management-plane connectivity.
+
 ## Architecture
 
 The OOB network uses a leaf-spine topology that scales automatically based on the number of nodes in your simulation.
@@ -24,7 +39,7 @@ For simulations with 226 or fewer nodes, Air creates a single leaf switch:
 ```
                      ┌───────────────────────┐
                      │   oob-mgmt-server     │
-                     │   192.168.0.253       │
+                     │   192.168.200.1       │
                      │                       │
                      │  • DHCP server        │
                      │  • DNS server         │
@@ -34,14 +49,14 @@ For simulations with 226 or fewer nodes, Air creates a single leaf switch:
                      ┌───────────┴───────────┐
                      │   oob-mgmt-switch     │
                      │   (leaf switch)       │
-                     │   192.168.0.254       │
+                     │   192.168.200.254     │
                      └───────────┬───────────┘
                                  │
               ┌──────────────────┼──────────────────┐
               │                  │                  │
         ┌─────┴─────┐      ┌─────┴─────┐      ┌─────┴─────┐
         │  node1    │      │  node2    │      │  node3    │
-        │  .0.1     │      │  .0.2     │      │  .0.3     │
+        │  .200.2   │      │  .200.3   │      │  .200.4   │
         └───────────┘      └───────────┘      └───────────┘
 ```
 
@@ -75,21 +90,21 @@ The OOB network can scale up to approximately 23,000 nodes.
 
 ## IP Addressing
 
-The OOB network uses the `192.168.0.0/16` private address space. Each leaf switch serves a `/24` subnet:
+The OOB network uses the `192.168.0.0/16` private address space. Each leaf switch serves a `/24` subnet, starting at `192.168.200.0/24` and allocating downward:
 
 | Subnet | Leaf Switch | Node IP Range | Gateway (Leaf SVI) |
 |--------|-------------|---------------|-------------------|
-| 192.168.0.0/24 | leaf-1 | 192.168.0.1 - 192.168.0.252 | 192.168.0.254 |
-| 192.168.1.0/24 | leaf-2 | 192.168.1.1 - 192.168.1.252 | 192.168.1.254 |
-| 192.168.2.0/24 | leaf-3 | 192.168.2.1 - 192.168.2.252 | 192.168.2.254 |
+| 192.168.200.0/24 | leaf-1 | 192.168.200.2 - 192.168.200.253 | 192.168.200.254 |
+| 192.168.199.0/24 | leaf-2 | 192.168.199.1 - 192.168.199.253 | 192.168.199.254 |
+| 192.168.198.0/24 | leaf-3 | 192.168.198.1 - 192.168.198.253 | 192.168.198.254 |
 | ... | ... | ... | ... |
 
 ### Reserved Addresses
 
 | Address | Purpose |
 |---------|---------|
-| .253 | OOB management server (on 192.168.0.0/24 only) |
-| .254 | Leaf switch gateway |
+| 192.168.200.1 | OOB management server |
+| .254 | Leaf switch gateway (per subnet) |
 | .255 | Broadcast |
 
 ## What Gets Configured Automatically

@@ -35,7 +35,7 @@ Expand to the large card to view the distribution of ASIC vendors, OS versions, 
 
 Expand the Inventory/Devices card to full-screen to view comprehensive inventory information for all switches, hosts, DPUs, and NICs in your network in a table where you can filter and export data by selecting the icons above the table:
 
-{{<figure src="/images/netq/inventory-devices-411.png" alt="full-screen inventory/devices card displaying a list of switches" width="1200" height="250">}}
+{{<figure src="/images/netq/inventory-devices-51.png" alt="full-screen inventory/devices card displaying a list of devices" width="1200" height="350">}}
 
 You can right-click the hostname of a given switch to open a monitoring dashboard for that switch in a new tab.
 

@@ -181,6 +181,27 @@ og: [udp sum ok] SYSLOG, length: 113
 `.N..y.@............... ...............).....y.i<85>Apr 17 09:14:00 leaf-11 sudo:     nvue : PWD=/var/lib/nvue ; USER=root ; COMMAND=/usr/bin/cat /var/log/syslog
 ```
 
+## Enable Secured Logs
+
+Secured logs include the date and time events occur, the source IP and the username for NVUE commands, and when dynamic kernel modules load and unload.
+
+To enable secured logs, run the `nv set system log secured-logs state enabled` command:
+
+```
+cumulus@switch:~$ nv set system log secured-logs state enabled
+```
+
+To disable secured logs, run the `nv set system log secured-logs state disabled` command.
+
+To show if secured logs are enabled, run the `nv show system log secured-logs` command:
+
+```
+cumulus@switch:~$ nv show system log secured-logs
+       applied
+-----  -------
+state  enabled
+```
+
 ## Selectors and Filters
 
 You can control which logs to capture using selectors. A selector enables you to choose options such as facility, program name, severity, filters (with match conditions and actions for log selection), and rate limit, for precise and targeted log management. You define the selectors you want to use for a specific server.
@@ -188,7 +209,7 @@ You can control which logs to capture using selectors. A selector enables you to
 {{%notice infonopad%}}
 In Cumulus Linux 5.14 and earlier, syslog selector configuration applies default values for facility (`daemon`) and severity (`notice`) if they are not explicitly configured. If a selector includes a program name, only logs from that program and matching other conditions (`facility`, `severity`, `filter`, `rate-limit`) are forwarded; logs from other programs are dropped. When a selector is defined with only rate-limit or severity, the respective defaults are still applied unless you explicitly configure otherwise.<br><br>
 
-In Cumulus Linux 5.15 and later, selector behavior has changed as follows:
+In Cumulus Linux 5.15 and later, selector behavior is as follows:
 
 - **No Default Facility or Severity**: Selectors now require explicit facility and severity values; no defaults are applied. If left unspecified, all facilities and severities are included for log forwarding.
 - **Expanded Program Matching**: When a selector specifies a program name alongside other conditions, logs from the targeted program are forwarded according to those conditions, and logs from all other programs are also forwarded unless excluded by other selectors.
@@ -200,7 +221,7 @@ In Cumulus Linux 5.15 and later, selector behavior has changed as follows:
 
 ### Selector with Program and Conditions
 
-To forward syslog messages only from the `ifreload` program containing the text 'ip link set', and to allow logging from other programs unless restricted:
+To forward syslog messages only from the `ifreload` program containing the text `ip link set`, and to allow logging from other programs unless restricted:
 
 {{< tabs "Example2Tabs" >}}
 {{< tab "NVUE Commands" >}}
@@ -229,7 +250,6 @@ if (
 {{< /tab >}}
 {{< /tabs >}}
 
-
 ### Selector with Rate-Limit
 
 To restrict log forwarding to five messages per minute, apply rate-limiting:
@@ -257,7 +277,6 @@ action(
 {{< /tab >}}
 {{< /tabs >}}
 
-
 ### Selector with Filter
 
 To filter and forward only logs containing a specific string (for example, 'ip link set'):
@@ -281,7 +300,6 @@ if (
 ```
 {{< /tab >}}
 {{< /tabs >}}
-
 
 ### Selector with Facility
 

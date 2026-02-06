@@ -7,9 +7,33 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4771521</td>
-<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port.</td>
+<td>4850551</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4797691</td>
+<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
+<td>5.0.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789097</td>
+<td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
+<td>5.9.4-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4771521</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -17,6 +41,12 @@
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -79,7 +109,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.4</td>
+<td>5.9.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -127,44 +157,44 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.4</td>
+<td>5.8.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4271207</td>
 <td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4260012</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.4</td>
+<td>5.10.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4259980</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.9.3, 5.10.0-5.11.4</td>
+<td>5.8.0-5.9.3, 5.10.0-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4200961</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.11.4</td>
+<td>5.10.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -177,20 +207,20 @@ This happens in async mode, where the end notification expected after an end of 
 <td>4175217</td>
 <td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
 netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4174646</td>
 <td>On the NVIDIA SN5400 and SN5600 switch, the fans might run at full speed when it is not necessary.</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4173602</td>
 <td>On the Spectrum-4 switch, {{switchd}} might crash with the following log message:
 CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
-<td>5.10.1-5.11.4</td>
+<td>5.10.1-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -325,7 +355,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -368,7 +398,7 @@ To work around this issue, power-cycle the switch.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology.</td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>
@@ -467,7 +497,7 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>Spectrum-4 switches do not include full What Just Happened (WJH) support.</td>
 <td>5.9.0-5.13.1</td>
 <td>5.14.0-5.15.1</td>
 </tr>
@@ -943,9 +973,33 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4771521</td>
-<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port.</td>
+<td>4850551</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4797691</td>
+<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
+<td>5.0.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789097</td>
+<td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
+<td>5.9.4-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4771521</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -953,6 +1007,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -1015,7 +1075,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.4</td>
+<td>5.9.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1045,38 +1105,38 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.4</td>
+<td>5.8.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4260012</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.4</td>
+<td>5.10.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4259980</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.9.3, 5.10.0-5.11.4</td>
+<td>5.8.0-5.9.3, 5.10.0-5.11.5</td>
 <td>5.9.4, 5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4200961</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.11.4</td>
+<td>5.10.0-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1241,7 +1301,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4052578</td>
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
-<td>5.9.2-5.11.4</td>
+<td>5.9.2-5.11.5</td>
 <td>5.12.0-5.15.1</td>
 </tr>
 <tr>
@@ -1284,7 +1344,7 @@ To work around this issue, power-cycle the switch.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology.</td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>
@@ -1414,7 +1474,7 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>Spectrum-4 switches do not include full What Just Happened (WJH) support.</td>
 <td>5.9.0-5.13.1</td>
 <td>5.14.0-5.15.1</td>
 </tr>

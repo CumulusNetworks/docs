@@ -163,7 +163,7 @@ nvidia@<hostname>:~$ netq install cluster master-init
 
 ```
 nvidia@netq-server:~$ netq install cluster config generate
-2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/combined-cluster-config.json
+2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
 ```
 
 11. Edit the cluster configuration JSON file with the values for each attribute.
@@ -173,7 +173,7 @@ nvidia@netq-server:~$ netq install cluster config generate
 {{< tab "Default JSON Template">}}
 
 ```
-nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
+nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
         "version": "v2.0",
         "interface": "<INPUT>",
@@ -209,7 +209,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {{< tab "Completed JSON Example">}}
 
 ``` 
-nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
+nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
         "version": "v2.0",
         "interface": "eth0",
@@ -250,7 +250,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {{< tab "New Install">}}
 
 ```
-nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.0.0.tgz /tmp/combined-cluster-config.json
+nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.0.0.tgz /tmp/cluster-install-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 

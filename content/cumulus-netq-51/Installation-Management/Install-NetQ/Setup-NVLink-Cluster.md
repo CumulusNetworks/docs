@@ -34,16 +34,20 @@ Confirm that the required ports are open for communication.
 |5000	|TCP|	Docker registry|
 |6443	|TCP|	kube-apiserver|
 
+{{< expand "Internal communication ports" >}}
+
 Additionally, for internal cluster communication, you must open these ports:
 
 | Port or Protocol Number | Protocol | Component Access |
 | --- | --- | --- |
+|2379|	TCP|	etcd|
+|2380|	TCP|	etcd|
 |5000|	TCP|	Docker registry|
 |6443|	TCP|	Kubernetes API server|
 |10250|	TCP|	kubelet health probe|
-|2379|	TCP|	etcd|
-|2380|	TCP|	etcd|
 |36443|	TCP|	Kubernetes control plane|
+
+{{< /expand >}}
 
 ## Installation and Configuration
 
@@ -53,7 +57,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.0.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.0.0 VMware** image<br>
+    e. For deployments using KVM, download the **NetQ SW 5.1.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.1.0 VMware** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -62,9 +66,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.0">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.1">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="5.0">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="5.1">}}
 
 3. Log in to the VM and change the password.
 
@@ -238,16 +242,10 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 
 12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step. Specify the passwords for the read-write user and the read-only user in the `rw-password` and `ro-password` fields, respectively. The passwords must each include a minimum of eight characters.
 
-{{< tabs "TabID268">}}
-{{< tab "New Install">}}
-
 ```
-nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.0.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
+nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.1.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Verify Installation Status
 
@@ -257,9 +255,10 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 5.0.0
-    Installer Version: 5.0.0
+    Version: 5.1.0
+    Installer Version: 5.1.0
     Installation Type: Cluster
+    Installation Mode: NVLink
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC
     Is Cloud: False

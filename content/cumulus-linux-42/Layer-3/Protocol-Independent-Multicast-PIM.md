@@ -486,7 +486,7 @@ Traditionally, the PIM DR is the only node to send the PIM *,G Join, but to prov
 
 {{%/notice%}}
 
-To prevent duplicate multicast packets, a Designated Forward (DF) is elected. The DF is the `primary` member of the MLAG pair. As a result, the MLAG secondary puts the VLAN in the Outgoing Interface List (OIL), preventing duplicate multicast traffic.
+To prevent duplicate multicast packets, a Designated Forward (DF) is elected. The DF is the `primary` member of the MLAG pair. As a result, the MLAG secondary does not put the VLAN in the Outgoing Interface List (OIL), preventing duplicate multicast traffic.
 
 ## Additional PIM Features
 

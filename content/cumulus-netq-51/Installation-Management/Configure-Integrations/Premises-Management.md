@@ -53,7 +53,7 @@ In this deployment model, the data is stored and can be viewed only from the Net
 
 {{%notice note%}}
 - The primary NetQ premises must be installed and operational before the secondary premises can be added.
-- NetQ 5.0.0 does not include cloud (OPTA) software packages. If your primary premises is running version 5.0.0, configure your secondary premises to use NetQ 4.15.0 cloud software.
+- NetQ 5.1.0 does not include cloud (OPTA) software packages. If your primary premises is running version 5.1.0, configure your secondary premises to use NetQ 4.15.0 cloud software.
 {{%/notice%}}
 
 

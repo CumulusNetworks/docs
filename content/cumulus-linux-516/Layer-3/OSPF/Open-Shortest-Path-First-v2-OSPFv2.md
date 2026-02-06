@@ -42,8 +42,8 @@ cumulus@leaf01:~$ nv set interface swp51 ip address 10.0.1.0/31
 cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.0.1.0/31
-cumulus@leaf01:~$ nv set interface swp1 router ospf passive on
-cumulus@leaf01:~$ nv set interface swp2 router ospf passive on
+cumulus@leaf01:~$ nv set interface swp1 router ospf passive enabled
+cumulus@leaf01:~$ nv set interface swp2 router ospf passive enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -237,8 +237,8 @@ Configure OSPF:
 cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
 cumulus@leaf01:~$ nv set interface lo router ospf area 0
 cumulus@leaf01:~$ nv set interface swp51 router ospf area 0
-cumulus@leaf01:~$ nv set interface swp1 router ospf passive on
-cumulus@leaf01:~$ nv set interface swp2 router ospf passive on
+cumulus@leaf01:~$ nv set interface swp1 router ospf passive enabled
+cumulus@leaf01:~$ nv set interface swp2 router ospf passive enabled
 cumulus@leaf01:~$ nv set interface swp51 router ospf network-type point-to-point
 cumulus@leaf01:~$ nv config apply
 ```
@@ -1023,7 +1023,7 @@ To configure the max-metric (for all interfaces):
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf max-metric administrative on
+cumulus@switch:~$ nv set vrf default router ospf max-metric administrative enabled
 cumulus@switch:~$ nv config apply
 ```
 

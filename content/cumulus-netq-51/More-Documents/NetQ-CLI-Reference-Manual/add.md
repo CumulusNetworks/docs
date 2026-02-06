@@ -105,6 +105,40 @@ netq add events-config events_config_name ntpconfig message_type ntp scope '[{"s
 
  - - -
 
+## netq add global tca config
+
+Configures how often NetQ rebroadcasts the same TCA event. This command is global and applies the frequency setting to all TCAs.
+
+### Syntax
+
+```
+netq add global tca config repeat_after <text-repeat-after>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| repeat_after | \<text-repeat-after\> | Time after which NetQ repeats TCA event in minutes, hours, or days (m, h, d) |
+
+### Options
+
+None
+
+### Sample Usage
+
+```
+nvidia@switch:~$ netq add global tca config repeat_after 30m
+Successfully added global TCA config with repeat_after: 30 minutes
+```
+
+### Related Commands
+
+- `netq show global tca config`
+- `netq del global tca config`
+
+- - -
+
 ## netq add notification channel
 
 NetQ presents events to the user through notification channels. NetQ supports five channel types: email, PagerDuty, Slack, `syslog`, and generic (a webhook channel that sends notifications to third-party applications). This command configures these channels.

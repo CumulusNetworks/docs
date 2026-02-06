@@ -51,7 +51,7 @@ NVUE also indicates if you need to provide specific values for the command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain ?
-    domain                 Domain (bridge-name)
+    <domain-id>            Domain (bridge-name)
 ```
 
 ## Command Abbreviation
@@ -356,7 +356,7 @@ NVUE provides a default `/etc/nvue.d/startup.yaml` file that includes configurat
 
 {{%notice info%}}
 - The default startup configuration file sets the default hostname as `cumulus`; therefore, Cumulus Linux does not accept the DHCP `host-name` option. To set a different hostname with NVUE, see {{<link url="Quick-Start-Guide/#configure-the-hostname" text="Configure the Hostname">}}. If you do not manage your switch with NVUE and want to change this behavior with Linux configuration files, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
-- The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command as described in {{<link url="Upgrading-Cumulus-Linux#back-up-and-restore-configuration-with-nvue" text=" Back up and Restore Configuration with NVUE">}}.
+- The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command as described in {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE Image Upgrade">}}.
 - You cannot delete a logged in user account.
 {{%/notice%}}
 
@@ -636,7 +636,7 @@ cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 ```
 
 {{%notice note%}}
-A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed; NVUE does not support both unset and set commands for the same object in a single patch.
+A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed.
 {{%/notice%}}
 
 You can also replace or patch against a plain text file of `nv set` and `nv unset` commands instead of a yaml file with the `nv config replace <textfile.txt>` and `nv config patch <textfile.txt>` commands.
@@ -644,6 +644,10 @@ You can also replace or patch against a plain text file of `nv set` and `nv unse
 NVUE automatically detects if the file contains only comments, blank lines, `nv set` or `nv unset` commands, and acts accordingly. If the file contains anything else, NVUE treats the file as a YAML file.
 
 If there are any issues with the `nv set` or `nv unset` commands, NVUE prints the line number and the command that has the error.
+
+{{%notice note%}}
+In Cumulus Linux 5.16 and later, NVUE supports both unset and set commands for the same object in a single patch.
+{{%/notice%}}
 
 ## Translate a Configuration Revision or File
 

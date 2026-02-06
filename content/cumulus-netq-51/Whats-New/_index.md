@@ -10,32 +10,40 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 - For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.1 Release Notes" text="release notes">}}.
 
-## What's New in NetQ 5.0
+## What's New in NetQ 5.1
 
-- You can now {{<link title="NVLink Management" text="monitor NVLink deployments">}} with NetQ. Use the REST API to manage NVLink network configurations and resources, and allocate GPUs for AI workloads. This release introduces {{<link title="Install the NetQ System" text="new deployment options">}} for Ethernet-only environments or hybrid NVLink-Ethernet networks. Previously called NMX-M, this feature retains all existing functionality and introduces new workflows, such as lifecycle management for NVOS switches.
-- NetQ NVLink supports Arm-based deployments that you can install using NVIDIA Mission Control.
-- {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="Create and apply custom labels">}} to organize and filter switches.
-- {{<link title="Integrate NetQ with Grafana/#collect-slurm-telemetry" text="View Slurm data in Grafana">}}.
-- You can now launch the {{<link title="Cable Validations" text="cable validation tool">}} (CVT) from NetQ.
-- NetQ now collects and correlates telemetry data across compute, fabric, and workload layers using OpenTelemetry and time-series databases. This architecture update enables AI-based troubleshooting features in upcoming releases.
-- Performance improvements to the duplicate IP address validation (beta)
-- Performance improvements to the NetQ agent
-- Security enhancements and general performance improvements
+- The {{<link title="Integrate NetQ with Grafana" text="NetQ integration with Grafana">}} is generally available.
+- NetQ now retains OTLP metrics data for 15 days instead of the previous three-day retention period. Additionally, you can now {{<link title="Integrate NetQ with Grafana/#customize-metric-collection" text="create a customizable list of metrics">}} that are forwarded to your time-series database.
+- You can now deploy NetQ for Ethernet and NVLink with an increased number of nodes to support large networks. To get started, {{<link title="Install NetQ for Ethernet and NVLink (Beta)" text="perform a fresh installation">}}. This deployment type is currently in beta.
+- You can now use NetQ to monitor multiplane networking environments (beta). With this enhancement, you can: 
+    - Filter and display telemetry data associated with individual planes. 
+    - Perform validations, such as BGP router-ID checks, within the appropriate plane context. 
+    - Include plane parameters across network topology, monitoring, and validation workflows.
+    - To get started, configure {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="system labels">}} using NVUE commands.
+- You can now create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}} with a wider range of measurement units in both the UI and the CLI. 
+- NetQ no longer broadcasts multiple, successive events for breaches to the same threshold-crossing rule. You can {{<link title="Configure and Monitor Threshold-Crossing Events/#adjust-the-time-between-notifications" text="change this new default behavior">}} using the CLI.
+- Performance improvements to the account management page in the UI
+- The time required to install NetQ has been reduced.
+- NetQ for NVLink API changes:
+    - Added the ability to download support packages and upgrade NVOS for all switches within an NVLink domain.
+    - Added an endpoint to retrieve NetQ's version
+    - Added a fault tolerance mechanism that allows NVLink switches with at least two out-of-band management ports to maintain connectivity to NMX controller and telemetry services in case of port failure.
+    - Queries to the `compute-nodes` endpoint now return hostnames within the response
+    - Performance improvements to scale deployments
+    - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
 
 
-## Release Considerations
+## Upgrade Paths
 
-- The API gateway port for on-premises deployments has changed from 32708 to 32710.
-- NVIDIA has simplified the package names in the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}} and updated the installation and upgrade instructions for NetQ agents and the CLI to reflect these changes.
+NetQ 5.1 is available exclusively for on-premises deployments. You can upgrade to 5.1 if your deployment is running version 5.0 or 4.15. First {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.0 installation">}}.
 
-### Upgrade Paths
+{{%notice note%}}
+If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
+{{%/notice%}}
 
-NetQ 5.0 is available exclusively for on-premises deployments. You can upgrade to 5.0 if your deployment is running version 4.15 or 4.14. First {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.0 installation">}}.
+## Compatible Agent Versions
 
+The NetQ 5.1 server is compatible with NetQ agents 5.1 and 5.0. You can install NetQ agents on switches and servers running:
 
-### Compatible Agent Versions
-
-The NetQ 5.0 server is compatible with NetQ agents 5.0 and 4.15. You can install NetQ agents on switches and servers running:
-
-- Cumulus Linux 5.15, 5.14, 5.11.3, 5.9.4
+- Cumulus Linux 5.16, 5.15, 5.11.3, 5.9.4
 - Ubuntu 24.04, 22.04

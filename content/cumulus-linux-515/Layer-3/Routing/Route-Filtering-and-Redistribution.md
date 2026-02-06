@@ -1036,7 +1036,7 @@ cumulus@sleaf01:~$
 To show route filtering results in the BGP routing table after applying inbound policies, run the NVUE `nv show vrf <vrf-id> router bgp address-family <address-family> route` command or the vtysh `show ip bgp` command.
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4 route
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route
                                                                                 
 PathCount - Number of paths present for the prefix, MultipathCount - Number of  
 paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 

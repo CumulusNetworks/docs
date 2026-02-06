@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4612457</td>
+<td>The process monitoring dashboard may display inaccurate CPU utilization values for the NetQ agent.</td>
+<td>4.11.0-4.15.1</td>
+<td>5.0.0</td>
+</tr>
+<tr>
 <td>4466349</td>
 <td>When you upgrade an HA cluster deployment from a version that is not part of the supported upgrade path, the upgrade might fail and the UI might not load due to expired control plane certificates on the worker nodes.To check whether the certificates have expired, run &lt;code&gt;sudo su&lt;/code&gt; followed by &lt;code&gt;kubeadm certs check-expiration&lt;/code&gt;. If the output displays a date in the past, your certificates are expired. To update the certificates, run &lt;code&gt;kubeadm certs renew all&lt;/code&gt; on each worker node in the cluster. Next, restart the &lt;a href="https://kubernetes.io/docs/concepts/overview/components/#control-plane-components/"&gt;control plane components&lt;/a&gt; with &lt;code&gt;crictl stop CONTAINER_ID&lt;/code&gt;, followed by &lt;code&gt;systemctl restart kubelet&lt;/code&gt;.</td>
 <td>4.8.0-4.14.0</td>
@@ -77,6 +83,12 @@
 <td>When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export.</td>
 <td>4.12.0-4.15.1, 5.0.0</td>
 <td></td>
+</tr>
+<tr>
+<td>4023716</td>
+<td>NetQ might display duplicate validations results.</td>
+<td>4.11.0-4.15.1</td>
+<td>5.0.0</td>
 </tr>
 <tr>
 <td>3993538</td>

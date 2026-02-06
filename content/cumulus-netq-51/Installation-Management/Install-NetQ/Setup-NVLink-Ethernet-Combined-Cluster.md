@@ -5,11 +5,12 @@ weight: 227
 toc: 5
 bookhidden: true
 ---
+
 Follow these steps to set up and configure your VMs in a cluster of servers. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
 
 ## System Requirements
 
-NetQ for Ethernet and NVLink supports 3-node clusters with the following system requirements. Verify that *each node* in your cluster meets the VM requirements:
+This deployment model requires a cluster comprising a minimum of three nodes. Verify that *each node* in your cluster meets the VM requirements:
 
 | Resource | Minimum Requirements |
 | :--- | :--- |
@@ -35,26 +36,38 @@ Confirm that the required ports are open for communications.
 |5000	|TCP|	Docker registry|
 |6443	|TCP|	kube-apiserver|
 |30001	|TCP|	DPU communication|
+|30008	|TCP|	gRPC OTLP receiver|
+|30009	|TCP|	HTTPS OTLP receiver|
 |31980	|TCP|	NetQ Agent communication|
 |31982	|TCP|	NetQ Agent SSL communication|
 |32710	|TCP|	API Gateway|
+
+{{< expand "Internal communication ports" >}}
+
 
 Additionally, for internal cluster communication, you must open these ports:
 
 | Port or Protocol Number | Protocol | Component Access |
 | --- | --- | --- |
-|8080|	TCP|	Admin API|
-|5000|	TCP|	Docker registry|
-|6443|	TCP|	Kubernetes API server|
-|10250|	TCP|	kubelet health probe|
+|2181|	TCP|	Zookeeper client|
 |2379|	TCP|	etcd|
 |2380|	TCP|	etcd|
-|7072|	TCP|	Kafka JMX monitoring|
-|9092|	TCP|	Kafka client|
-|7071|	TCP|	Cassandra JMX monitoring|
+|2888|	TCP|	Zookeeper cluster communication|
+|3888|	TCP|	Zookeeper cluster communication|
+|5000|	TCP|	Docker registry|
+|6443|	TCP|	Kubernetes API server|
 |7000|	TCP|	Cassandra cluster communication|
+|7071|	TCP|	Cassandra JMX monitoring|
+|7072|	TCP|	Kafka JMX monitoring|
+|7073|	TCP|	Zookeeper JMX monitoring|
+|8080|	TCP|	Admin API|
 |9042|	TCP|	Cassandra client|
+|9092|	TCP|	Kafka client|
+|10250|	TCP|	kubelet health probe|
 |36443|	TCP|	Kubernetes control plane|
+|54321|	TCP|	OPTA communication|
+
+{{< /expand >}}
 
 ## Installation and Configuration
 
@@ -64,7 +77,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.0.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.0.0 VMware** image<br>
+    e. For deployments using KVM, download the **NetQ SW 5.1.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.1.0 VMware Scale** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -163,7 +176,7 @@ nvidia@<hostname>:~$ netq install cluster master-init
 
 ```
 nvidia@netq-server:~$ netq install cluster config generate
-2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/combined-cluster-config.json
+2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
 ```
 
 11. Edit the cluster configuration JSON file with the values for each attribute.
@@ -173,7 +186,7 @@ nvidia@netq-server:~$ netq install cluster config generate
 {{< tab "Default JSON Template">}}
 
 ```
-nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
+nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
         "version": "v2.0",
         "interface": "<INPUT>",
@@ -209,7 +222,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {{< tab "Completed JSON Example">}}
 
 ``` 
-nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
+nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
         "version": "v2.0",
         "interface": "eth0",
@@ -244,16 +257,46 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {{< /tab >}}
 {{< /tabs >}}
 
-12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step.
+12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step. Follow the steps under _Restore Data and New Install_ if you have a {{<link title="Back Up and Restore NetQ" text="backup data tarball">}} from a previous NetQ installation to restore.
 
 {{< tabs "TabID268">}}
 {{< tab "New Install">}}
 
 ```
-nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.0.0.tgz /tmp/combined-cluster-config.json
+nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/cluster-install-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
+{{< /tab >}}
+{{< tab "Restore Data and New Install">}}
+1. Add the `config-key` parameter to the JSON template from step 11 using the key created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}. Edit the file with values for each attribute.
+
+```
+nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
+{
+        "version": "v2.0",
+        "config-key": "<INPUT>",
+        "interface": "<INPUT>",
+        "cluster-vip": "<INPUT>",
+        "master-ip": "<INPUT>",
+        "is-ipv6": false,
+        "ha-nodes":
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+}
+```
+
+2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
+
+```
+nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/cluster-install-config.json restore /home/nvidia/combined_backup_20241211111316.tar
+```
+
+<div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -266,8 +309,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 5.0.0
-    Installer Version: 5.0.0
+    Version: 5.1.0
+    Installer Version: 5.1.0
     Installation Type: Cluster
     Installation Mode: Combined
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==

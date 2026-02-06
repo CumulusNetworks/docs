@@ -7,12 +7,68 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4850551</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4838527</td>
+<td>On a high port scale system, streaming telemetry for interface and buffer statistics (GNMI or OTEL) together with the PFC watchdog feature, causes samples of telemetry data to fail to export from the system periodically and kernel memory use might increase.</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4835058</td>
+<td>When you add or remove bond members, the sflow state and rate are incorrect. </td>
+<td>5.13.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4826181</td>
+<td>When you apply EVPN layer 3 VNI and BGP AS configurations together for a VRF, an internal AS number inconsistency might occur between the FRR running configuration and the {{/etc/frr/frr.conf}} file. When you try to apply any configuration using f{{rr-reload}}, NVUE detects this pre-existing inconsistency and triggers an unnecessary FRR restart, causing BGP session flaps. To work around this issue, apply BGP configuration before EVPN layer 3 VNI configuration in separate commits. </td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4823999</td>
+<td>When making interface changes with NVUE, you might see the following message after you run the {{nv config apply}} command:
+ update-ports returned with error (code 254): switchd ports.conf node status not ready switchd validate_node is absent/not ready 
+ports configuration(ports.conf/ports_width.conf) is invalid</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4804084</td>
 <td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
 {{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
 interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
 interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
 <td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4797691</td>
+<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
+<td>5.0.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789562</td>
+<td>A switch running Nvidia Cumulus Linux may improperly forward routed packets out of an access port or on the native vlan of a trunk with an 802.1Q tag imposed on the packet.</td>
+<td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789339</td>
+<td>The {{interface_stats}} process might crash when a transceiver has non-ASCII data in EEPROM fields, such as vendor name or part number. </td>
+<td>5.13.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4789097</td>
+<td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
+<td>5.9.4-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -28,12 +84,6 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td></td>
 </tr>
 <tr>
-<td>4771874</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4771785</td>
 <td>NVUE drop counters and ethtool output do not show the packets discarded because the destination MAC address does not match the router MAC address.</td>
 <td>5.14.0-5.15.1</td>
@@ -41,7 +91,7 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 </tr>
 <tr>
 <td>4771521</td>
-<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. to work around this issue, flap the router port.</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
 </tr>
@@ -53,9 +103,27 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>4748963</td>
+<td>In an MLAG configuration with PVRST spanning tree mode configured on both switches, when the primary switch comes back up after a reboot, PVRST mode briefly changes to RSTP, then back to PVRST.</td>
+<td>5.13.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4748176</td>
 <td>Unsupported hardware modules might cause SDK and firmware health event and traffic loss.</td>
 <td>5.12.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4743814</td>
+<td>The switch clears the QoS buffer max usage values in the {{nv show interface &lt;interface&gt; qos buffer egress-traffic-class}} command output when a gNMI client subscribes to any QoS buffer metrics.</td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4734395</td>
+<td>{{mlxlink}} output sometimes displays additional special characters while still reporting valid data.</td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -78,6 +146,22 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 To work around this issue, restart the {{nvued.service}}. To avoid this issue, call each interface in the configuration instead of using ranges.</td>
 <td>5.14.0</td>
 <td>5.15.0-5.15.1</td>
+</tr>
+<tr>
+<td>4729839</td>
+<td>In an MLAG configuration, when you reboot the primary MLAG switch with PVRST spanning tree mode configured on both MLAG switches, PVRST mode briefly changes to RSTP, then back to PVRST when the primary switch comes back up.</td>
+<td>5.11.3-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4722680</td>
+<td>If you install RADIUS client packages when rolling back a two partition upgrade, the {{/var/lib/nvue}}, {{/var/lib/ntpsec}}, and {{/var/lib/snmp}} directories might have incorrect ownership after rollback and the {{nvued}} service might fail to start up. To work around this issue, run the following commands:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+sudo reboot</td>
+<td>5.11.4-5.15.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4722539</td>
@@ -114,6 +198,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.15.1</td>
 </tr>
 <tr>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
@@ -135,9 +225,18 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td></td>
 </tr>
 <tr>
-<td>4683602</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
+<td>4686865</td>
+<td>An invalid hashed-password string for a local NVUE user causes all {{nv config apply}} operations (including unrelated changes) to fail health checks and raise tracebacks when NVUE attempts to recreate the user. </td>
+<td>5.12.0-5.14.0</td>
+<td>5.15.0-5.15.1</td>
+</tr>
+<tr>
+<td>4683370</td>
+<td>On scale systems with OTEL enabled, you might see an {{interface_stats_collector}} crash with the following logs:
+{{interface_stats_collector[41358]: unexpected fault address 0x7fbb941d9110
+interface_stats_collector[41358]: fatal error: fault
+interface_stats_collector[41358]: [signal SIGSEGV: segmentation violation code=0x1addr=0x7fbb941d9110 pc=0x55124a]}}</td>
+<td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -193,6 +292,12 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td>The {{nv action clear interface &lt;port&gt;}} command does not clear the in and out packet counters under {{interface/&lt;port&gt;/link/stats}}.</td>
 <td>5.12.1-5.14.0</td>
 <td>5.15.0-5.15.1</td>
+</tr>
+<tr>
+<td>4643073</td>
+<td>Concurrent {{mlxfwmanager --query}} executions triggered by gNMI telemetry polling might cause MFT deadlock, resulting in repeated core dumps, {{nvued}} restarts, and control plane unresponsiveness. </td>
+<td>5.14.0-5.15.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4641806</td>
@@ -317,6 +422,12 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <tr>
 <td>4618809</td>
 <td>When collecting streaming telemetry data for per-process information and statistics from the system, you might see false errors about unavailable process IDs in the logs.</td>
+<td>5.14.0</td>
+<td>5.15.0-5.15.1</td>
+</tr>
+<tr>
+<td>4616352</td>
+<td>The NVUE {{nv config diff}} command returns an incorrect exit code of 1 instead of 0 for successfully staged changes. As a result, ansible automation fails, which relies on program return codes to determine whether the commands are successful.</td>
 <td>5.14.0</td>
 <td>5.15.0-5.15.1</td>
 </tr>
@@ -466,13 +577,13 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 </tr>
 <tr>
 <td>4549896</td>
-<td>When you try to set a VXLAN with a bridge, you see the error {{sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge}}. You can safely ignore this error as it doesn't impact switch functionality. </td>
+<td>When you try to set a VXLAN with a bridge, you see the error {{sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge}}. You can safely ignore this error.</td>
 <td>5.14.0-5.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4548514</td>
-<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+<td>When FRR installs a connected route for an SVI interface with VRR, the route might install with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
 &lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
@@ -698,7 +809,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4329931</td>
-<td>In previous releases, Cumulus Linux incorrectly allowed SyncE and PPS In features to be enabled at the same time. Upgrading systems with both features configured using NVUE to 5.12.0 or higher results in a failure to apply the startup configuration as part of the first boot of the upgraded version. To work around the issue, unset one of the features before you upgrade.</td>
+<td>Cumulus Linux incorrectly allows SyncE and PPS to be enabled at the same time. Upgrading systems with both features configured using NVUE to 5.12.0 or later results in a failure to apply the startup configuration as part of the first boot of the upgraded version. To work around the issue, unset one of the features before you upgrade.</td>
 <td>5.12.0-5.15.1</td>
 <td></td>
 </tr>
@@ -833,7 +944,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology.</td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>
@@ -1639,7 +1750,7 @@ onie-nos-install /$devname/onie-installer</td>
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>Spectrum-4 switches do not include full What Just Happened (WJH) support.</td>
 <td>5.9.0-5.13.1</td>
 </tr>
 <tr>

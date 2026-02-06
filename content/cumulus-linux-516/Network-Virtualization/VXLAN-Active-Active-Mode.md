@@ -2200,14 +2200,7 @@ exit-address-family
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "Try It " >}}
-    {{< simulation name="Try It CL515 - VXLAN Active-Active" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
-The simulation is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
-
-To validate the configuration, run the commands shown in the troublshooting section above.
-
-{{< /tab >}}
 {{< /tabs >}}
 
 For a full EVPN symmetric active-active configuration example, see {{<link url="Configuration-Examples#evpn-symmetric-routing" >}}.

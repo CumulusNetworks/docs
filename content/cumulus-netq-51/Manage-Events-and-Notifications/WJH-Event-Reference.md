@@ -22,8 +22,6 @@ Describes why a port is in the down state.
 | Cable/transceiver is unplugged | A cable or transceiver is missing or not fully inserted into the port |
 | Calibration failure | Calibration failure |
 | Port state changes counter | Cumulative number of state changes |
-| Symbol error counter | Cumulative number of symbol errors |
-| CRC error counter | Cumulative number of CRC errors |
 
 In addition to the reason, the information provided for these drops includes:
 

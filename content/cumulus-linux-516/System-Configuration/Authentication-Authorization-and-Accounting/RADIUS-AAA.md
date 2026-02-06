@@ -41,7 +41,7 @@ After you install the required RADIUS packages, configure the following required
 - Set the IP address or hostname of at least one RADIUS server. You can specify a port for the server (optional). The default port number is 1812.
 - Set the secret key shared between the RADIUS server and client.
   - If you include special characters in the key (such as $), you must enclose the key in single quotes ('). NVUE restricts the secret key to a maximum of 32 characters.
-  - Cumulus Linux 5.16 and later supports yubikey <span class="a-tooltip">[OTP](## "One-Time Password")</span> authentication with RADIUS. Log into the switch then touch the YubiKey to generate the OTP. Depending on the configuration, the password field requires you to provide the password and touch the YubiKeyOTP or the touch the YubiKey without the password.
+  - Cumulus Linux 5.16 and later supports yubikey <span class="a-tooltip">[OTP](## "One-Time Password")</span> authentication with RADIUS. You can log into the switch then touch the YubiKey to generate the OTP. Depending on the configuration, you either need to provide the password and touch the YubiKey or the touch the YubiKey without the password.
 - If you use NVUE commands to configure RADIUS, you must also:
   - Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
   - Set the priority for the authentication order for local and RADIUS users. You can set a value between 1 and 100. The lower value is the higher priority.

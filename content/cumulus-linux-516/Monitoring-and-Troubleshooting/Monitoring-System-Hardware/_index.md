@@ -270,14 +270,14 @@ priority = -2
 
 ## Health Monitoring Reference
 
-The following table summarizes the events that Cumulus Linux monitors for system health:
+The following table summarizes the events that Cumulus Linux monitors for system health.
 
 | Event Category      | Component Name        | Severity   | Event Description                        | Threshold/Condition                          | States            |
 |---------------------|----------------------|------------|------------------------------------------|----------------------------------------------|-------------------|
 | Temperature Sensor  | Temp1-Temp8          | WARNING    | Temperature sensor state is HIGH         | temp ≥ max_hyst but < max                    | HIGH              |
 | Temperature Sensor  | Temp1-Temp8          | WARNING    | Temperature sensor state is LOW          | temp ≤ min but > lcrit                       | LOW               |
 | Temperature Sensor  | Temp1-Temp8          | CRITICAL   | Temperature sensor state is CRITICAL     | temp ≥ max                                   | CRITICAL          |
-| Temperature Sensor  | Temp1-Temp8          | CRITICAL   | Temperature sensor state is LCRITICAL    | temp ≤ lcrit                                 | LCRITICAL         |
+| Temperature Sensor  | Temp1-Temp8          | CRITICAL   | Temperature sensor state is LCRITICAL    | temp ≤ lcrit                                 | CRITICAL         |
 | Temperature Sensor  | Temp1-Temp8          | ERROR      | Temperature sensor state is BAD          | Sensor data outside limits or read failure    | BAD               |
 | Temperature Sensor  | Temp1-Temp8          | INFO       | Temperature sensor state is ABSENT       | Sensor not present in system                  | ABSENT            |
 | Temperature Sensor  | Temp1-Temp8          | INFO       | Temperature sensor state is OK           | temp within normal range                      | OK                |
@@ -314,10 +314,11 @@ The following table summarizes the events that Cumulus Linux monitors for system
 | Service Status      | lldpd, smond, etc.   | WARNING    | Service not active                       | Service is inactive                           | inactive          |
 | Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature high alarm       | Module temp high alarm/warning ON             | Not OK            |
 | Transceiver Temp    | swp1-swpN            | WARNING    | Transceiver temperature low alarm        | Module temp low alarm/warning ON              | Not OK            |
-| Transceiver Status  | transceiver          | INFO       | Transceiver status is OK                 | All transceivers operating normally           | OK                |
+| Transceiver&nbsp;Status  | transceiver          | INFO       | Transceiver status is OK                 | All transceivers operating normally           | OK                |
 
-
-## Related Information
+{{%notice note%}}
+The SDK health monitoring service (`cumulus-sdk-health-mon`) handles recovery and debug dump collection when detecting SDK health issues.
+{{%/notice%}}
 
 - {{<exlink url="http://packages.debian.org/search?keywords=lshw" text="packages.debian.org/search?keywords=lshw">}}
 - {{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors.org">}}

@@ -7,9 +7,10 @@ toc: 5
 
 Installing NetQ telemetry agents on your hosts with {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-adapters/" text="NVIDIA ConnectX adapters">}} and {{<exlink url="https://www.nvidia.com/en-us/networking/products/data-processing-unit/" text="NVIDIA BlueField data processing units">}} (DPUs) allows you to track inventory data and statistics across devices. The DOCA Telemetry Service (DTS) is the agent that runs on hosts and DPUs to collect data.
 
-## Supported Versions
+## Requirements
 
-NetQ is compatible with DTS version 1.19.1.
+- NetQ is compatible with DTS version 1.19.1.
+- By default, NetQ expects port 9100 to be open on hosts to collect Prometheus metrics from ConnectX hosts and DPUs. If port 9100 is unavailable, you can configure NetQ to use an alternate port. This example updates the port to 9101: `netq install update-settings DYNAMIC_SCRAPE_PORT 9101`
 
 ## Install DTS on ConnectX Hosts
 
@@ -41,22 +42,21 @@ The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in
 
 1. Log in to your NetQ VM via SSH.
 
-2. Edit the Prometheus ConfigMap with the `kubectl edit cm prometheus-config` command.
+2. Edit the Prometheus ConfigMap with the `kubectl edit cm prometheus-config -n netq-eth` command.
 
 3. Edit the `scrape_interval` parameter. 
 
-4. Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
+4. Retrieve the current pod name with the `kubectl get pods -n netq-eth | grep netq-prom` command:
 
 ```
-nvidia@netq-server:~$ kubectl get pods | grep netq-prom
+nvidia@netq-server:~$ kubectl get pods -n netq-eth | grep netq-prom
 netq-prom-adapter-ffd9b874d-hxhbz                    2/2     Running   0          3h50m
 ```
 5. Restart the pod by deleting the running pod:
 
 ```
-kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz
+kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz -n netq-eth
 ```
-
 ## Install DTS on DPUs
 
 To install and configure the DOCA Telemetry Service (DTS) container on a DPU:

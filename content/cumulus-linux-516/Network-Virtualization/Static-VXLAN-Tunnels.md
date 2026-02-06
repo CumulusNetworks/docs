@@ -479,14 +479,7 @@ iface br_default
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "Try It " >}}
-    {{< simulation name="Try It CL515 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
-The simulation starts with the example static VXLAN configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
-
-To validate the configuration, run the verification commands shown below.
-
-{{< /tab >}}
 {{< /tabs >}}
 
 {{%notice note%}}

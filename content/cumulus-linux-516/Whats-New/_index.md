@@ -15,35 +15,40 @@ Cumulus Linux 5.16 contains new features and improvements, and provides bug fixe
 ### New Features and Enhancements
 
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload">}}
-- {{<link url="Routing-Tables/#show-fib-table-entries" text="Show FIB table entries">}}
-- {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
-- You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
-- {{<link url="Access-Control-List-Configuration/#clear-control-plane-policer-counters" text="Clear control plane policer counters">}}
-- {{<link url="Access-Control-List-Configuration/#match-on-inner-header" text="ACL matches on packet inner header">}} and {{<link url="Access-Control-List-Configuration/#match-on-packet-offset" text="ACL matches on packet offset">}}
-- {{<link url="Quality-of-Service/#clear-qos-buffers" text="Clear QoS buffers on multiple interfaces">}}
+- {{<link url="Optional-BGP-Configuration/#bgp-conditional-disaggregation" text="BGP conditional disaggregation">}}
+- {{<link url="Optional-BGP-Configuration/#bgp-pic-anycast" text="BGP PIC anycast">}}
+- {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="802.1X preserve dynamically assigned IPv6 addresses">}}
 - {{<link url="Understanding-the-cl-support-Output-File/#automatic-cl-support-file" text="Manage automatic cl-support file generation">}}
 - {{<link url="Network-Troubleshooting/#extended-traceroute" text="Extended traceroute (RFC 5837)">}}
-- {{<link url="Interface-Configuration-and-Management/#interface-physical-name" text="Physical interface names that map the port to the connector">}}
-- {{<link url="NVUE-CLI/#command-completion" text="Restricted bash enhancements for NVUE commands include command history with arrow key navigation, context-aware tab completion, and inline help with ? to list valid options">}}
 - {{<link url="DHCP-Relays/#dhcp-relay-for-ipv4-in-an-evpn-symmetric-environment-with-mlag" text="VRF-aware DHCP relay">}}
-- {{<link url="Optional-BGP-Configuration/#bgp-pic-in-a-multiplane-topology" text="BGP PIC in a multiplane topology">}}
-- {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}}
+- {{<link url="Routing-Tables/#show-fib-table-entries" text="Show FIB table entries">}}
+- {{<link url="Access-Control-List-Configuration/#match-on-inner-header" text="ACL matches on packet inner header">}} and {{<link url="Access-Control-List-Configuration/#match-on-packet-offset" text="ACL matches on packet offset">}}
+- {{<link url="Quality-of-Service/#clear-qos-buffers" text="Clear QoS buffers on multiple interfaces">}}
+- {{<link url="TACACS/#tacacs-per-command-authorization" text="TACACS per-command authorization supports NVUE tab completion, option listing (?), and command history navigation">}}
+- {{<link url="Access-Control-List-Configuration/#clear-control-plane-policer-counters" text="Clear control plane policer counters">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#lag-hash-randomizer" text="LAG hash randomizer for adaptive routing">}}
-- {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx Squelch Control">}}
-- 802.1x on router ports with dynamic VRF assignment
-- Same user created locally and on Tacacs server, need NVUE support
-- BGP conditional disaggregation for multi-planed GPUs
-- Health Event and SDK Driver Monitoring for Multi ASIC
-- Telemetry
-  - 802.1X {{<link url="Open-Telemetry-Export/#802.1x-statistic-format" text="OTEL metrics">}} and {{<link url="gNMI-Streaming/#metrics" text="gNMI metrics">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI interface and platform metrics">}} (`/interfaces/interface[name]/state/description`, `/interfaces/interface[name]/state/transceiver`, and `/components/component[name]/transceiver/state/serial-number`)
-  - Parity between OpenTelemetry and gNMI (Phase 2)
-  - YANG Browser Tool for YANG models
-- Security features
+- {{<link url="Interface-Configuration-and-Management/#tx-squelch-control" text="Tx squelch control">}} (Beta)
+- {{<link url="Ethernet-Virtual-Private-Network-EVPN/#key-features" text="Support for EVPN VXLAN over an IPv6 underlay">}} (Beta)
+- {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1x dynamic VRF assignment">}} (Beta)
+- {{<link url="Quality-of-Service/#shaping" text="PPS mode for QoS egress shapers">}}
+- {{<link url="Quality-of-Service/#extra-lossy-headroom" text="Extra threshold for QoS lossy priority groups">}}
+- {{<link url="FRRouting-Log-Message-Reference" text="New FRR high severity ERROR log messages">}}
+- {{<link url="Monitoring-System-Hardware/#health-monitoring-reference" text="The SDK health monitoring service handles recovery and debug dump collection when detecting SDK health issues">}}
+- {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="NVUE support for both unset and set commands for the same object in a single patch">}}
+- Security features:
   - {{<link url="FIPS" text="FIPS mode">}}
-  - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and for a user group">}}
+  - {{<link url="SSH-for-Remote-Access/#configure-timeouts-and-sessions" text="Maximum SSH sessions allowed for a user and     for a user group">}}
+  - {{<link url="TACACS/#local-fallback-authentication" text="NVUE support for TACACS local fallback authentication">}}
+  - {{<link url="802.1X-Interfaces/#802.1x-reauthentication" text="802.1X reauthentication">}}
   - {{<link url="RADIUS-AAA/#required-radius-client-configuration" text="Yubikey authentication over RADIUS">}}
-  - Audit records for loading and unloading dynamic kernel modules, establishing the source of events and when (date and time) the events occurred, and the identity of any individual or process associated with an event
+  - {{<link url="Syslog/#enable-secured-logs" text="Configure syslog messages">}} to include the date and time events occur, the source IP and username for NVUE commands, and when dynamic kernel modules load and unload
+  - {{<link url="NVUE-API/#http-response-compression" text="HTTP response compression for API responses">}}
+- Telemetry
+  - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#gnmi-metrics" text="New, updated, and deprecated gNMI Metrics">}}
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#otel-metrics" text="New and deprecated OTEL Metrics">}}
+- NVUE:
+  - {{<link url="New-and-Removed-NVUE-Commands" text="New and Removed NVUE Commands">}}.
 
 ## Release Considerations
 
@@ -51,18 +56,13 @@ Review the following considerations before you upgrade to Cumulus Linux 5.16.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.16 from Cumulus Linux 5.12 and later.
-
-You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.16 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
-- Cumulus Linux 5.15
-- Cumulus Linux 5.14
-- Cumulus Linux 5.13
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.16 from Cumulus Linux 5.14 and later. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 
 To upgrade to Cumulus Linux 5.16 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 ### Maximum Number of NVUE Revisions
 
-Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.16 from 5.12or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
+Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.16 from 5.12 or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
 
 ### Linux Configuration Files Overwritten
 

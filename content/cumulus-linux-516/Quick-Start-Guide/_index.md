@@ -494,6 +494,6 @@ You can add multiple loopback addresses. For more information, see {{<link url="
 
 ## Next Steps
 
-You are now ready to configure the switch according to your needs. This guide provides separate sections that describe how to configure {{<link url="System-Configuration" text="system">}}, {{<link url="Layer-1-and-Switch-Ports" text="layer 1">}}, {{<link url="Layer-2" text="layer 2">}}, {{<link url="Layer-3" text="layer 3">}}, and {{<link url="Network-Virtualization" text="network virtualization">}} settings. Each section includes example configurations and {{<link url="Try-It-Pre-built-Demos" text="pre-built demos">}}.
+You are now ready to configure the switch according to your needs. This guide provides separate sections that describe how to configure {{<link url="System-Configuration" text="system">}}, {{<link url="Layer-1-and-Switch-Ports" text="layer 1">}}, {{<link url="Layer-2" text="layer 2">}}, {{<link url="Layer-3" text="layer 3">}}, and {{<link url="Network-Virtualization" text="network virtualization">}} settings.
 
 For a deep dive into the NVUE object model that provides a CLI to simplify configuration, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVUE">}}.

@@ -1365,6 +1365,41 @@ leaf04            4001       10.0.1.2         L3               Vrf RED        ye
 - `netq check evpn`
 <!-- vale on -->
 - - -
+## netq show global tca config
+
+Displays how often NetQ rebroadcasts the same TCA event.
+
+### Syntax
+
+```
+netq show global tca config
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+None
+
+### Sample Usage
+
+```
+nvidia@switch:~$ netq show global tca config
+
+Matching config_tca records:
+Repeat After (minutes)
+--------------------------------------------
+30
+```
+
+### Related Commands
+
+- `netq add global tca config`
+- `netq del global tca config`
+
+- - -
 ## netq show histogram
 
 Displays a device's egress queue lengths as a histogram, grouped into bins. For more information, refer to {{<link title="Switches/#view-queue-lengths-as-histograms" text="Monitoring Switches">}}.
@@ -3363,7 +3398,7 @@ Version                              Uptime                    Reinitialize Time
 
 ## netq show otlp
 
-Displays OpenTelemetry health, status, security, or certificate information. Several forms of this command are available.
+Displays OpenTelemetry health, status, security, whitelist, or certificate information. Several forms of this command are available.
 
 ### Syntax
 
@@ -3387,12 +3422,17 @@ netq show otlp tls-ca-cert
 
 netq show otlp tls-cert 
     [json | dump]
+
+netq show otlp whitelist (default | custom)
+    [json]
 ```
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | tsdb-name | \<text-tsdb-endpoint\> | Specify the name of your time series database |
+| default | NA | Display the OTLP whitelist metrics that are enabled by default. You cannot modify these values. |
+| custom | NA | Display the OTLP whitelist metrics that are not part of the default metrics. |
 
 ### Options
 
@@ -4372,31 +4412,30 @@ Show all TCA event configurations:
 ```
 nvidia@switch:~$ netq show tca
 Matching config_tca records:
-TCA Name                     Event Name           Scope                      Severity Channel/s          Active Threshold          Unit     Threshold Type Suppress Until
----------------------------- -------------------- -------------------------- -------- ------------------ ------ ------------------ -------- -------------- ----------------------------
-TCA_CPU_UTILIZATION_UPPER_1  TCA_CPU_UTILIZATION_ {"hostname":"leaf01"}      info     pd-netq-events,slk True   87                 %        user_set       Fri Oct  9 15:39:35 2020
-                             UPPER                                                    -netq-events
-TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"*"}           error    slk-netq-events    True   93                 %        user_set       Fri Oct  9 15:39:56 2020
-                             UPPER
-TCA_DOM_BIAS_CURRENT_ALARM_U TCA_DOM_BIAS_CURRENT {"hostname":"leaf*","ifnam error    slk-netq-events    True   0                  mA       vendor_set     Fri Oct  9 16:02:37 2020
-PPER_1                       _ALARM_UPPER         e":"*"}
-TCA_DOM_RX_POWER_ALARM_UPPER TCA_DOM_RX_POWER_ALA {"hostname":"*","ifname":" info     slk-netq-events    True   0                  mW       vendor_set     Fri Oct  9 15:25:26 2020
-_1                           RM_UPPER             *"}
-TCA_SENSOR_TEMPERATURE_UPPER TCA_SENSOR_TEMPERATU {"hostname":"leaf","s_name error    slk-netq-events    True   32                 degreeC  user_set       Fri Oct  9 15:40:18 2020
-_1                           RE_UPPER             ":"temp1"}
-TCA_TCAM_IPV4_ROUTE_UPPER_1  TCA_TCAM_IPV4_ROUTE_ {"hostname":"*"}           error    pd-netq-events     True   20000              %        user_set       Fri Oct  9 16:13:39 2020
-                             UPPER
+TCA Name         TCA ID       Event ID         Scope      Severity Channel/s          Active Threshold          Unit     Threshold Type Suppress Until
+---------------- ------------ ---------------- ---------- -------- ------------------ ------ ------------------ -------- -------------- ----------------------------
+test             TCA_DISK_UTI TCA_DISK_UTILIZA {"hostname info                        true   20%                %        user_set       Fri Jan 23 15:19:38 2026
+                 LIZATION_UPP TION_UPPER       ":"*"}
+                 ER_1
+optics           TCA_DOM_MODU TCA_DOM_MODULE_V {"hostname error                       true   0uV                volt     vendor_set     Fri Jan 23 15:20:20 2026
+                 LE_VOLTAGE_A OLTAGE_ALARM_LOW ":"*","ifn
+                 LARM_LOWER_1 ER               ame":"*"}
+interfaces       TCA_RXBROADC TCA_RXBROADCAST_ {"hostname info                        true   20TB               bytes    user_set       Fri Jan 23 15:21:41 2026
+                 AST_UPPER_1  UPPER            ":"*","ifn
+                                               ame":"*"}
 ```
 
 Show a specific TCA configuration:
 
 ```
-nvidia@switch:~$ netq show tca tca_id TCA_TXMULTICAST_UPPER_1
+nvidia@switch:~$ netq show tca tca_id TCA_DISK_UTILIZATION_UPPER_1
+
 Matching config_tca records:
-TCA Name                     Event Name           Scope                      Severity         Channel/s          Active Threshold          Suppress Until
----------------------------- -------------------- -------------------------- ---------------- ------------------ ------ ------------------ ----------------------------
-TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname info             tca-tx-bytes-slack True   0                  Sun Dec  8 16:40:14 2269
-                             R                    ":"leaf01"}
+TCA Name         TCA ID       Event ID         Scope      Severity Channel/s          Active Threshold          Unit     Threshold Type Suppress Until
+---------------- ------------ ---------------- ---------- -------- ------------------ ------ ------------------ -------- -------------- ----------------------------
+test             TCA_DISK_UTI TCA_DISK_UTILIZA {"hostname info                        true   20%                %        user_set       Fri Jan 23 15:19:38 2026
+                 LIZATION_UPP TION_UPPER       ":"*"}
+                 ER_1
 ```
 
 ### Related Commands

@@ -935,34 +935,62 @@ To show control plane policer configuration and native hardware data counters fr
 
 ```
 cumulus@switch:~$ nv show system control-plane policer native
+Policer             Policer CIR  Policer CBS  To CPU Pkts  To CPU Bytes  Violated Packets
+------------------  -----------  -----------  -----------  ------------  ----------------
+acl-log             100          128          0            0             0
+arp                 800          1024         0            0             0
+bfd                 2000         2048         0            0             0
+bgp                 4000         4096         0            0             0
+catch-all           100          128          0            0             0
+clag                2000         2048         0            0             0
+dhcp                2000         2048         0            0             0
+eapol               2000         2048         0            0             0
+icmp6-def-mld       300          128          159          19866         0   ===>hardware counters are not cleared
+icmp6-neigh         500          512          18           1620          0
+icmp-def            100          64           0            0             0
+igmp                1000         1024         0            0             0
+ip2me               1000         1024         0            0             0
+l3-local            400          128          0            0             0
+lacp                2000         2048         0            0             0
+lldp-ptp            2500         4096         0            0             0
+nat                 200          256          0            0             0
+nve-decap-igmp-mld  1000         1024         0            0             0
+pim-ospf-rip        2000         2048         0            0             0
+rpvst               2000         2048         0            0             0
+sflow               1000         1024         0            0             0
+span-cpu            100          128          0            0             0
+ssh                 1000         1024         0            0             0
+stp                 2000         2048         0            0             0
+unknown-ipmc        1000         1024         0            0             0
 ```
 
-To show configuration and native hardware data counters for a specific control plane policer from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> native` command:
-
-```
-cumulus@switch:~$ nv show system control-plane policer bfd native
-```
-
-To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command:
-
-```
-cumulus@switch:~$ nv show system control-plane policer bfd statistics native
-```
+- To show configuration and native hardware data counters for a specific control plane policer from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> native` command.
+-To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command.
 
 #### Clear Control Plane Policer Counters
 
 To aid in troubleshoooting control plane traffic issues, you can clear all control plane policer counters and counters for a specific policer ID.
 
+{{%notice note%}}
+The switch clears software (NVUE counters); hardware counters remain intact.
+{{%/notice%}}
+
 To clear all control plane policer counters, run the `nv action clear system control-plane policer statistics` command:
 
 ```
 cumulus@switch:~$ nv action clear system control-plane policer statistics
+Action executing ...
+Control-plane policer counters cleared.
+Action succeeded
 ```
 
 To clear counters for a specific control plane policer ID, run the `nv action clear system control-plane policer <policer-id> statistics` command:
 
 ```
 cumulus@switch:~$ nv action clear system control-plane policer bfd statistics
+Action executing ...
+Control-plane policer bfd counters cleared.
+Action succeeded
 ```
 
 ### Control Plane ACLs
@@ -1309,10 +1337,8 @@ Cumulus Linux supports ACL matches based on inner packet headers inside encapsul
 - You cannot match on both inner and outer packet headers in the same ACL.
 - You cannot combine a VLAN match with inner packet matches.
 - Inner packet matches support hardware forwarded packets only.
+- You can configure matches on inner packet headers with NVUE commmands only. 
 {{%/notice%}}
-
-{{< tabs "TabID1309 ">}}
-{{< tab "NVUE Commands ">}}
 
 You can use the following inner packet matching options:
 
@@ -1321,7 +1347,8 @@ You can use the following inner packet matching options:
 | `dscp` | The inner DSCP value. |
 | `source-ip` | The inner source IP address. |
 | `dest-ip` | The inner destination IP address. |
-| `protocol` | The inner IP protocol: `udp` or `tcp`.<br>`dest-port` is the inner UDP or TCP destination port. `source-port` is the inner UDP or TCP source port. |
+| `protocol` | The inner IP protocol: `icmp`, `icmpv6`,`udp` or `tcp`.|
+| `dest-port`<br><br>`source-port`&nbsp; | The inner UDP or TCP destination port.<br><br>The inner UDP or TCP source port. |
 | `ecn` | Inner ECN.<br>`flags` is the inner ECN flag.<br>`tcp-cwr` is the TCP congestion window reduced flag. `tcp-ece` is the TCP ECN echo flag.<br>`ip-ect` is IP ECT value between 0 and 3. |
 
 The following example creates an ACL permit rule for inbound packets on swp1 that matches the inner header DSCP value 10, source IP address 10.10.10.10, destination IP address 20.20.20.20, UDP source port 1000, and UDP destination port 2000.
@@ -1339,35 +1366,25 @@ cumulus@switch:~$ nv set interface swp1 acl example3 inbound
 cumulus@switch:~$ nv config apply
 ```
 
-{{< /tab >}}
-{{< tab "iptables rule ">}}
-
-Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add a rule under `[iptables]`. The following example creates an ACL permit rule for inbound packets on swp1 that matches the inner header DSCP value 10, source IP address 10.10.10.10, destination IP address 20.20.20.20, UDP source port 1000, and UDP destination port 2000.
+The following example creates an ACL permit rule for inbound packets on swp1 that matches TCP packets marked with the ECN (Explicit Congestion Notification) CWR (Congestion Window Reduced) flag.
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-inner-header.rules
-[iptables]
-## ACL example3 in dir inbound on interface swp1 ##
-# rule-id #10:  #
--t mangle -A PREROUTING -i swp1 -m comment --comment rule_id:10,acl_name:example3,dir:inbound,interface_id:swp1 -s 10.10.10.10 -d 20.20.20.20 -p udp --sport 1000 --dport 2000 -m dscp --dscp 10 -m mark --mark 100 -j ACCEPT
+cumulus@switch:~$ nv set acl example3 type ipv4
+cumulus@switch:~$ nv set acl example3 rule 10 action permit
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip protocol tcp
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip ecn flags tcp-cwr
+cumulus@switch:~$ nv set interface swp1 acl example3 inbound
+cumulus@switch:~$ nv config apply
 ```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 {{%notice note%}}
-With inner IP matches configured, any IPv4 or IPv6 `deny all` or `permit all` ACL rule must include an inner IP match (Source IP ANY, Destination IP ANY, or both). If the rule does not include an inner IP match, the switch interprets it as an outer rule, and does not evaluate the inner match. For Example:
+When you have an ACL with an inner match rule configured, and you configure a different `deny all` or `permit all` rule in the same ACL, you must include an inner IP match (Source IP ANY, Destination IP ANY, or both) on the `deny all` or `permit all` rule; otherwise, the switch interprets the ACL as an outer match, and does not evaluate the inner match. For Example:
 
 ```
-cumulus@switch:~$ nv set acl deny-all-rule type ipv4 
-cumulus@switch:~$ nv set acl deny-all-rule action deny 
-cumulus@switch:~$ nv set acl deny-all-rule match inner-ip source-ip ANY 
+cumulus@switch:~$ nv set acl acl1 rule 10 match inner-ip source-ip 10.10.10.10
+cumulus@switch:~$ nv set acl acl1 rule 10 action permit
+cumulus@switch:~$ nv set acl acl1 rule 20 match inner-ip source-ip any
+cumulus@switch:~$ nv set acl acl1 rule 20 action deny
 ```
 {{%/notice%}}
 
@@ -1376,25 +1393,33 @@ cumulus@switch:~$ nv set acl deny-all-rule match inner-ip source-ip ANY
 Cumulus Linux supports ACL rule matches based on the packet offset.
 
 {{%notice note%}}
-- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which is not considered an extra offset match.
+- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which is not considered an extra offset match. The combination of an offset location and a `match-from` value is considered as one offset.
 - You can configure offset matches only for ACL type ipv4 and ipv6.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
+- You can configure matches based on the packet offset with NVUE commmands only. 
 {{%/notice%}}
-
-{{< tabs "TabID1368 ">}}
-{{< tab "NVUE Commands">}}
 
 You can use the following packet offset matching options:
 
 | Option | Description|
 |---------|-----------|
-| `offset` | The relative position in the packet from where the value needs to be matched. The maximum value is 478 bytes. |
+| `offset` | The relative position in the packet from which the value needs to be matched. The maximum value is 126 bytes. The value must be an even number. |
 | `value` | The value to be matched at the offset position. The offset match value must be two bytes long and in hexadecimal.|
 | `mask` | The mask to be used while matching the value. The mask must be two bytes long and in hexadecimal. The default value is 0xFFFF. |
-| `match-from`| The extraction point for the offset position. The only option is `start-of-packet`, which is the start of the layer 2 header that is first byte of the destination MAC address. |
+| `match-from`| The extraction point for the offset position. You can specify `start-of-packet` (the start of the layer 2 header, which is first byte of the destination MAC address), `start-of-inner-ipv4-header` or `start-of-inner-ipv6-header`.|
 
-The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x12 and first two bytes of UDP header as 0xabcd:
+The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x12 and first two bytes of UDP header as 0xabcd. The format of the packet is shown below:
+
+```
+0         14        34        54        62
+|---------|---------|---------|---------|
+| ETH(14) |IPv4(20) | IPv4(20)| UDP(8)  | PAYLOAD
+|---------|---------|---------|---------|
+```
+
+- The inner IPv4 header is at offset 34 (14 bytes of Ethernet header plus 20 bytes of IPv4 header ).
+- The inner UDP is at offset of 54 (14 bytes of Ethernet header plus 20 bytes of outer IPv4 plus 20 bytes of inner IPv4 header).
 
 ```
 cumulus@switch:~$ nv set acl OFFSET type ipv4
@@ -1409,27 +1434,10 @@ cumulus@switch:~$ nv set interface swp1 acl OFFSET inbound
 cumulus@switch:~$ nv config apply
 ```
 
-{{< /tab >}}
-{{< tab "iptables rule ">}}
-
-Create a rules file in the `/etc/cumulus/acl/policy.d` directory and add a rule under `[iptables]`. The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x64.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/10-offset-header.rules
-[iptables]
-## ACL OFFSET in dir inbound on interface swp1 ##
-# rule-id #10:  #
--t mangle -A PREROUTING -i swp1 -m comment --comment rule_id:10,acl_name:OFFSET,dir:inbound,interface_id:swp1 -m u32 --u32 "0x00010022 & 0xFF00 = 0x1200  &&  0x00010036 & 0xFFFF = 0xabcd" -j ACCEPT
-```
-
-Apply the rule:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+{{%notice note%}}
+- NVIDIA recommends that you configure the offset match with an IP or inner IP match. If no extra match is required, you can add a wildcard match, such as `nv set acl <acl-id> match inner-ip source-ip ANY` or `nv set acl <acl-id> match ip source-ip ANY`.
+- An offset match in the egress direction might not work if matched data is overwritten.
+{{%/notice%}}
 
 ## Example Configuration
 

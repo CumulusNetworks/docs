@@ -68,9 +68,9 @@ cumulus@leaf01:~$ nv set interface swp52 router ospf timers dead-interval 60
 cumulus@leaf01:~$ nv set interface vlan10 router ospf area 0
 cumulus@leaf01:~$ nv set interface vlan20 router ospf area 0
 cumulus@leaf01:~$ nv set interface vlan30 router ospf area 0
-cumulus@leaf01:~$ nv set interface vlan10 router ospf passive on
-cumulus@leaf01:~$ nv set interface vlan20 router ospf passive on
-cumulus@leaf01:~$ nv set interface vlan30 router ospf passive on
+cumulus@leaf01:~$ nv set interface vlan10 router ospf passive enabled
+cumulus@leaf01:~$ nv set interface vlan20 router ospf passive enabled
+cumulus@leaf01:~$ nv set interface vlan30 router ospf passive enabled
 cumulus@leaf01:~$ nv set router ospf timers spf delay 80
 cumulus@leaf01:~$ nv set router ospf timers spf holdtime 100
 cumulus@leaf01:~$ nv set router ospf timers spf max-holdtime 6000
@@ -128,9 +128,9 @@ cumulus@leaf02:~$ nv set interface swp52 router ospf timers dead-interval 60
 cumulus@leaf02:~$ nv set interface vlan10 router ospf area 0
 cumulus@leaf02:~$ nv set interface vlan20 router ospf area 0
 cumulus@leaf02:~$ nv set interface vlan30 router ospf area 0
-cumulus@leaf02:~$ nv set interface vlan10 router ospf passive on
-cumulus@leaf02:~$ nv set interface vlan20 router ospf passive on
-cumulus@leaf02:~$ nv set interface vlan30 router ospf passive on
+cumulus@leaf02:~$ nv set interface vlan10 router ospf passive enabled
+cumulus@leaf02:~$ nv set interface vlan20 router ospf passive enabled
+cumulus@leaf02:~$ nv set interface vlan30 router ospf passive enabled
 cumulus@leaf02:~$ nv set router ospf timers spf delay 80
 cumulus@leaf02:~$ nv set router ospf timers spf holdtime 100
 cumulus@leaf02:~$ nv set router ospf timers spf max-holdtime 6000
@@ -2157,12 +2157,5 @@ timers throttle spf 0 100 6000
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "Try It " >}}
-    {{< simulation name="Try It CL515- OSPFv2" showNodes="leaf01,leaf02,spine01,spine02,border01,border02,server01,server02,server03,server07,server08" >}}
 
-The simulation starts with the example OSPF configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
-
-To validate the configuration, run the commands listed in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/OSPF/Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="Troubleshooting">}} section.
-
-{{< /tab >}}
 {{< /tabs >}}

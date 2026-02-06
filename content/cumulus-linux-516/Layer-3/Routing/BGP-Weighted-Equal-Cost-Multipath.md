@@ -307,7 +307,7 @@ The following example disables all BGP extended communities on a peer:
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast community-advertise extended off
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast community-advertise extended disabled
 cumulus@switch:~$ nv config apply
 ```
 

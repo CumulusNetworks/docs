@@ -15,11 +15,14 @@ The following sections describe how to back up and restore your NetQ data and VM
 
 ## Back Up Your NetQ Data
 
-Follow the process below for your deployment type to back up your NetQ data:
+Follow the process below for your deployment type to back up your NetQ data.
 
 {{<tabs "TabID19" >}}
+{{<tab "Ethernet-only and Combined (Ethernet + NVLink)" >}}
 
-{{<tab "On-premises Deployments" >}}
+{{%notice note%}}
+If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
+{{%/notice%}}
 
 1. Retrieve the `vm-backuprestore.sh` script:
 
@@ -103,9 +106,46 @@ nvidia@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718
 ```
 
 {{</tab>}}
+{{<tab "NVLink-only" >}}
 
+These steps apply exclusively to {{<link title="Install NetQ for NVLink" text="NetQ NVLink">}} three-node cluster deployments.
+
+1. Run the {{<link title="nvl/#netq-nvl-cluster-backup" text="netq nvl cluster backup">}} command on each node in your cluster:
+
+```
+nvidia@<hostname>: netq nvl cluster backup
+2025-06-17 06:30:52,717 - INFO - Parsed arguments: Namespace(action='backup', backup_path='nvlink_cluster_backup', drop_mongo_collections=False, cm_op_ns='infra', cm_target_ns=['infra', 'kafka', 'nmx'], mongo_db_name=None, mongo_collections=None, mongo_k8s_ns='infra', mongo_statefulset='mongodb', mongo_container='mongodb', mongo_replicaset='rs0')
+2025-06-17 06:30:52,717 - INFO - Action: Full Backup selected.
+2025-06-17 06:30:52,717 - INFO - --- Starting NVLINK Cluster Full Backup to: nvlink_cluster_backup_20250617063052 ---
+...
+2025-06-17 06:30:55,159 - INFO - Full backup completed to: nvlink_cluster_backup_20250617063052
+```
+
+2. Copy the newly-created file to the `/tmp/data-infra/` directory:
+
+```
+cp -r /home/nvidia/nvlink_cluster_backup_20250617063052 /tmp/data-infra
+```
+
+{{</tab >}}
 {{</tabs>}}
 
 ## Restore Your NetQ Data
 
+{{<tabs "TabID129" >}}
+{{<tab "Ethernet-only and Combined (Ethernet + NVLink)"  >}}
+
 To restore your NetQ data, perform a {{<link title="Install the NetQ System" text="new NetQ VM installation">}} and follow the steps to restore your NetQ data when you run the `netq install` command. You will use the `restore` option, referencing the path where the backup file resides.
+
+{{</tab>}}
+{{<tab "NVLink-only" >}}
+
+1. Restore your data by running the {{<link title="nvl/#netq-nvl-cluster-restore" text="netq nvl cluster restore">}} command with the `drop-mongo-collections` option. This option prevents NetQ from re-installing duplicate data.
+
+```
+nvidia@<hostname>: netq nvl cluster restore /tmp/data-infra/nvlink_cluster_backup_20250617063052/ drop-mongo-collections
+```
+If this step fails for any reason, run `netq nvl bootstrap reset` and then try again.
+
+{{</tab >}}
+{{</tabs>}}

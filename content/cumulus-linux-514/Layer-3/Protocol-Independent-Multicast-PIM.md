@@ -310,7 +310,7 @@ You can configure SPT switchover per group (SPT infinity), which allows for some
 When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
 {{%/notice%}}
   
-To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list:
+To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list. This example uses the `default` VRF.If your configuration uses a different VRF for PIM, replace `vrf default` with the appropriate VRF name (for example, `vrf RED`):
 
 {{< tabs "TabID307 ">}}
 {{< tab "NVUE Commands ">}}
@@ -374,7 +374,7 @@ cumulus@switch:~$ nv set router policy prefix-list MyCustomSSMrange rule 10 matc
 cumulus@switch:~$ nv set router policy prefix-list MyCustomSSMrange rule 10 action permit
 ```
 
-Apply the custom prefix list:
+Apply the custom prefix list. This example uses the `default` VRF. If your configuration uses a different VRF for PIM, replace `vrf default` with the appropriate VRF name (for example, `vrf RED`):
 
 ```
 cumulus@switch:~$ nv set vrf default router pim address-family ipv4 ssm-prefix-list MyCustomSSMrange
@@ -545,6 +545,8 @@ The following steps configure a Cumulus switch to use MSDP:
    cumulus@rp01:~$ nv set interface lo ip address 10.100.100.100/32
    ```
 
+If you are using a non-default VRF and want to use the VRF interface IP address as the RP, see {{<link url="#pim-in-a-vrf" text="PIM in a VRF">}} to configure the VRF interface, then add the anycast IP addresses to the VRF interface instead of `lo`.
+
 2. On every multicast switch, configure the group to RP mapping using the anycast address:
 
    ```
@@ -666,27 +668,27 @@ Add the VRFs and associate them with switch ports:
 
 ```
 cumulus@switch:~$ nv set vrf RED
-cumulus@switch:~$ nv set vrf BLUE
-cumulus@switch:~$ nv set interface swp1 ip vrf RED
-cumulus@switch:~$ nv set interface swp2 ip vrf BLUE
+cumulus@switch:~$ nv set interface swp1 vrf RED
+cumulus@switch:~$ nv set interface swp51 vrf RED
 ```
 
 Add PIM configuration:
 
 ```
 cumulus@switch:~$ nv set interface swp1 router pim
-cumulus@switch:~$ nv set interface swp2 router pim
-cumulus@switch:~$ nv set vrf RED router bgp autonomous-system 65001
-cumulus@switch:~$ nv set vrf BLUE router bgp autonomous-system 65000
-cumulus@switch:~$ nv set vrf RED router bgp router-id 10.1.1.1
-cumulus@switch:~$ nv set vrf BLUE router bgp router-id 10.1.1.2
-cumulus@switch:~$ nv set vrf RED router bgp neighbor swp1 remote-as external
-cumulus@switch:~$ nv set vrf BLUE router bgp neighbor swp2 remote-as external
+cumulus@switch:~$ nv set interface swp51 router pim
 cumulus@switch:~$ nv config apply
 ```
 
+To use the VRF interface IP address for the PIM RP, add additional configuration to enable PIM on the interface:
+
+```
+cumulus@switch:~$ nv set interface RED type vrf
+cumulus@switch:~$ nv set interface RED router pim
+```
+
 {{< /tab >}}
-{{< tab "vtysh Commands ">}}
+{{< tab "Linux and vtysh Commands">}}
 
 Edit the `/etc/network/interfaces` file and to the VRFs and associate them with switch ports, then run `ifreload -a` to reload the configuration.
 
@@ -697,17 +699,10 @@ auto swp1
 iface swp1
     vrf RED
 
-auto swp2
-iface swp2
-    vrf BLUE
-
 auto RED
 iface RED
     vrf-table auto
 
-auto BLUE
-iface BLUE
-    vrf-table auto
 ...
 ```
 
@@ -720,17 +715,12 @@ switch# configure terminal
 switch(config)# interface swp1
 switch(config-if)# ip pim
 switch(config-if)# exit
-switch(config)# interface swp2
+switch(config)# interface swp51
 switch(config-if)# ip pim
 switch(config-if)# exit
-switch(config)# router bgp 65001 vrf RED
-switch(config-router)# bgp router-id 10.1.1.2
-switch(config-router)# neighbor swp1 interface remote-as external
-switch(config-router)# exit
-switch(config)# router bgp 65000 vrf BLUE
-switch(config-router)# bgp router-id 10.1.1.1
-switch(config-router)# neighbor swp2 interface remote-as external
-switch(config-router)# end
+switch(config)# interface RED
+switch(config-if)# ip pim
+switch(config-if)# end
 switch# write memory
 switch# exit
 ```
@@ -1110,7 +1100,7 @@ A dual-attached **multicast receiver** sends an IGMP join on the attached VLAN. 
 Traditionally, the PIM DR is the only node to send the PIM *,G Join. To provide resiliency in case of failure, both MLAG switches send PIM *,G Joins towards the RP to receive the multicast stream.
 {{%/notice%}}
 
-To prevent duplicate multicast packets, PIM elects a <span class="a-tooltip">[DF](## "PIM Designated Forwarder")</span>, which is the `primary` member of the MLAG pair. The MLAG secondary switch puts the VLAN in the <span class="a-tooltip">[OIL](## "Outgoing Interface List")</span>, preventing duplicate multicast traffic.
+To prevent duplicate multicast packets, PIM elects a <span class="a-tooltip">[DF](## "PIM Designated Forwarder")</span>, which is the `primary` member of the MLAG pair. The MLAG secondary switch does not put the VLAN in the <span class="a-tooltip">[OIL](## "Outgoing Interface List")</span>, preventing duplicate multicast traffic.
 
 ### Example Traffic Flow
 
@@ -2455,3 +2445,4 @@ To validate the configuration, run the PIM show commands listed in the troublesh
 - Cumulus Linux does not build an S,G mroute when forwarding over an \*,G tree.
 - On Spectrum-4 switches, multicast flows with packets smaller than 512 bytes might not reach full line rate. Cumulus Linux supports 512 byte and larger multicast packets.
 - When the switch is the FHR, Cumulus Linux does not install the mroute in hardware until it receives a `Register-Stop` from the RP. Without a hardware entry, packet forwarding does not occur. In a virtual environment such as NVIDIA Air, there is no hardware component so multicast routing occurs without the need for the `Register-Stop`.
+- Cumulus Linux does not support tenant routed multicast (TRM).

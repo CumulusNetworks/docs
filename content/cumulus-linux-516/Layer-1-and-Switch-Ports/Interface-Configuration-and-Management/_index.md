@@ -306,7 +306,7 @@ To unset the MAC address for an interface, remove the mac address from the inter
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- MOVE TO 5.17
 ## Interface Physical Name
 
 The physical name for an interface maps the interface to the connector to show actual physical connections within the system and correlate software interface names with the physical layout of the hardware.
@@ -388,7 +388,7 @@ swp4s3     swp4c2s2            down          down                9216          n
 swp5s0     swp5c1s1            down          down                9216          none
 ...
 ```
-
+-->
 ## Interface Descriptions
 
 You can add a description (alias) to an interface.
@@ -396,7 +396,7 @@ You can add a description (alias) to an interface.
 Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<mib_link text="IF-MIB::ifAlias" url="mibs/IF-MIB.txt" >}}
 
 {{%notice note%}}
-- Interface descriptions can have a maximum of 256 characters.
+- Interface descriptions can have a maximum of 255 characters.
 - Avoid using apostrophes or non-ASCII characters. Cumulus Linux does not parse these characters.
 {{%/notice%}}
 
@@ -758,6 +758,10 @@ state   disabled
 
 ## Tx Squelch Control
 
+{{%notice note%}}
+Tx squelch control is a Beta feature.
+{{%/notice%}}
+
 Tx squelch control is a PHY‑level feature that controls if the local port continues transmitting when the remote side is logically down (for example, when the remote side is in a fault state or needs to restart auto-negotiation).
 
 {{%notice note%}}
@@ -770,14 +774,14 @@ Tx squelch control is a PHY‑level feature that controls if the local port cont
 {{< tabs "TabID773 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable Tx squelch control, run the `nv set interface <interface> link tx-squelch on` command. The default setting is `auto`, which enables the switch to decide the correct configuration.
+To enable Tx squelch control, run the `nv set interface <interface> link tx-squelch enabled` command. The default setting is `auto`, which enables the switch to decide the correct configuration.
 
 ```
-cumulus@switch:~$ nv set interface swp1 link tx-squelch on 
+cumulus@switch:~$ nv set interface swp1 link tx-squelch enabled 
 cumulus@switch:~$ nv config apply
 ```
 
-To disable Tx squelch control, run the `nv set interface <interface> link tx-squelch off` command.
+To disable Tx squelch control, run the `nv set interface <interface> link tx-squelch disabled` command.
 
 To show if Tx squelch control is enabled, run the `nv show interface <interface> link` command:
 
@@ -796,21 +800,25 @@ mac-address              48:b0:2d:fa:a1:14
 fec                                               auto   
 mtu                      9000                     9216   
 fast-linkup              disabled
-tx-squelch               on                       on   
+tx-squelch               auto                     enabled  
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To enable Tx squelch control, edit the `/etc/cumulus/switchd.conf` file, and set the `interface.swp61s0.tx_squelch` parameter to `on`:
+To enable Tx squelch control, edit the `/etc/cumulus/switchd.conf` file to set the `interface.<interface-id>.tx_squelch` parameter to `enabled`, then reload `switchd`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
-interface.swp61s0.tx_squelch = on 
+interface.swp1.tx_squelch = enabled 
 ```
 
-To disable Tx squelch control, set the `interface.swp61s0.tx_squelch` parameter to `off`.
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
+```
+
+To disable Tx squelch control, set the `interface.<interface-id>.tx_squelch` parameter to `disabled`.
 
 {{< /tab >}}
 {{< /tabs >}}

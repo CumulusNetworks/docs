@@ -149,7 +149,7 @@ Use the `-E` option with `sudo` whenever you run any `apt-get` command. This opt
 ## Add a Package
 
 To add a new package, first ensure the package is not already on the system with the NVUE `nv show system version packages installed <package-name>` command or the Linux `dpkg -l | grep <package-name>` command.
-- If the package is already on the system, you can update the package from the Cumulus Linux repository as part of the package upgrade process, which upgrades all packages on the system. See {{<link url="#upgrade-packages" text="Upgrade Packages">}} above.
+- If the package is already on the system, you can update the package from the Cumulus Linux repository as part of the package upgrade process, which upgrades all packages on the system. See {{<link url="#upgrade-all-packages" text="Upgrade Packages">}} above.
 - If the package is *not* already on the system, add it with the Linux `sudo -E apt-get install <name of package>` command. This command retrieves the package from the Cumulus Linux repository and installs it on your switch together with any dependent packages. The following example adds the `tcpreplay` package on the switch:
 
 ```

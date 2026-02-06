@@ -651,16 +651,6 @@ cumulus@switch:~$ nv config apply
 ```
 
 The following example:
-- Configures STAT-GROUP7 to export ACL set statistics.
-- Applies the STAT-GROUP7 configuration to the OTLP destination 10.1.1.200.
-
-```
-cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP7 acl-stats class acl-set export state enabled
-cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30 stats-group STAT-GROUP7
-cumulus@switch:~$ nv config apply
-```
-
-The following example:
 - Configures STAT-GROUP8 to export 802.1X statistics.
 - Applies the STAT-GROUP8 configuration to the OTLP destination 10.1.1.100.
 - Sets the sample interval of the 802.1X set statistics to 30.
@@ -801,16 +791,6 @@ The switch collects and exports statistics for IPv4, IPv6, layer 2, and layer 4 
 | `nvswitch_acl_set_l2_info` | Layer 2 ACL information. |
 | `nvswitch_acl_set_l4_info` | Layer 4 ACL information. |
 
-{{< expand "Example JSON data for nvswitch_acl_interface_matched_pkts:" >}}
-```
-```
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for nvswitch_acl_set_ipv4_info:" >}}
-```
-```
-{{< /expand >}}
-
 ### AI Ethernet Statistic Format
 
 The switch collects and exports the adaptive routing, SRv6, and packet trimming statistics when you configure the `nv set system telemetry ai-ethernet-stats export state enabled` command.
@@ -947,13 +927,13 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_shared_buffer_port_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded after running sdk_stats. |
 | `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for multicast port. |
 | `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for multicast port. |
-| `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for multicast port recorded after running sdk_stats. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark_recorded_max` | Highest maximum buffer occupancy for multicast port recorded after running sdk_stats. |
 | `nvswitch_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for multicast switch priority. |
 | `nvswitch_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for multicast switch priority. |
-| `nvswitch_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for multicast switch priority recorded after running sdk_stats. |
+| `nvswitch_shared_buffer_mc_sp_watermark_recorded_max` | Highest maximum buffer occupancy for multicast switch priority recorded after running sdk_stats. |
 | `nvswitch_shared_buffer_pool_curr_occupancy` | Current pool buffer occupancy. |
 | `nvswitch_shared_buffer_pool_watermark` | Maximum pool buffer occupancy |
-| `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded after running sdk_stats. |
+| `nvswitch_shared_buffer_pool_watermark_recorded_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded after running sdk_stats. |
 | `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current headroom buffer occupancy for port buffer. |
 | `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum pool headroom buffer occupancy for port buffer. |
 | `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port buffer recorded after running sdk_stats. |
@@ -965,8 +945,25 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_headroom_buffer_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
 | `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_bytes` | Interface shared buffer traffic class highest recorded watermark counter in bytes.|
 | `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max_timestamp` | Time when highest shared buffer port group watermark is recorded.|
-| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_timestamp` | Time when highest shared buffer traffic class watermark is recorded|
+| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_timestamp` | Time when highest shared buffer traffic class watermark is recorded.|
 | `nvswitch_interface_shared_buffer_port_ingress_pool_watermark_recorded_max_timestamp` | Time when highest shared pool buffer watermark is recorded.|
+| `nvswitch_shared_buffer_pool_desc_curr_occupancy` | * Current shared buffer occupancy as number of descriptors for the given pool.|
+| `nvswitch_shared_buffer_pool_desc_watermark` | *Maximum shared buffer occupancy for descriptors. |
+| `nvswitch_shared_buffer_pool_desc_watermark_recorded_max` | *Highest maximum shared buffer watermark for descriptors. |
+| `nvswitch_shared_buffer_pool_desc_watermark_recorded_max_timestamp` | *Time when the highest shared buffer descriptor watermark is recorded. |
+| `nvswitch_shared_buffer_pool_desc_time_since_clear` | *Time in milliseconds after shared buffer descriptor watermarks are last cleared.  |
+| `nvswitch_interface_shared_buffer_port_pg_desc_time_since_clear` | *Time in milliseconds after watermarks for the interface priority‑group descriptor are last cleared.|
+| `nvswitch_interface_shared_buffer_port_tc_desc_time_since_clear` | *Time in milliseconds after watermark counters for the interface traffic‑class queue descriptor are last cleared. | 
+| `nvswitch_interface_shared_buffer_port_ingress_pool_time_since_clear` | *Time in milliseconds after watermark counters for the interface ingress pool are last cleared. | 
+| `nvswitch_interface_shared_buffer_port_ingress_pool_desc_time_since_clear` | *Time in milliseconds after watermark counters for the interface ingress‑pool descriptor are last cleared.| 
+| `nvswitch_interface_shared_buffer_port_egress_pool_time_since_clear` | *Time in milliseconds after watermark counters for the interface egress pool are last cleared. | 
+| `nvswitch_interface_shared_buffer_port_egress_pool_desc_time_since_clear` | *Time in milliseconds after watermark counters for the interface egress‑pool descriptor are last cleared .|
+| `nvswitch_interface_shared_buffer_mc_port_time_since_clear` | *Time in milliseconds after watermark counters for multicast traffic on the interface are last cleared.| 
+| `nvswitch_shared_buffer_mc_sp_time_since_clear` | *Time in milliseconds after watermark counters for multicast traffic in the specified switch priority are last cleared.|
+| `nvswitch_shared_buffer_pool_time_since_clear` | *Time in milliseconds after watermark counters for the given pool are last cleared. | 
+| `nvswitch_interface_headroom_buffer_pg_time_since_clear` | *Time in milliseconds after watermark counters for the specified buffer type (primary or secondary) in the priority group on the interface are last cleared. | 
+| `nvswitch_interface_headroom_shared_buffer_time_since_clear` | *Time in milliseconds after watermark counters for the specified buffer type (primary or secondary) on the interface are last cleared.|
+| `nvswitch_buffer_cell_size_bytes` | *Shared‑buffer allocation cell size in bytes. |
 
 <!-- vale off -->
 <br>
@@ -1165,17 +1162,17 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_dot1x_system_info` | *Global 802.1X configuration information. |
-| `nvswitch_dot1x_radius_client_info` | *Radius client configuration. Cumulus Linux is the radius client. |
-| `nvswitch_dot1x_radius_server_info` | *Radius server configuration. |
-| `nvswitch_dot1x_supplicant_summary` | *Summary showing the MAC address of the supplicant and interface on which it is on. |
-| `nvswitch_dot1x_supplicant_eapol_counters` | *802.1X EAPOL counters to track authentication traffic, showing EAP request frames sent, EAP response frames received from the supplicant (client device), invalid EAPOL frames, and errors like length issues. |  
-| `nvswitch_dot1x_interface_info` | *802.1X interface configuration.|
-| `nvswitch_dot1x_supplicant_status` | *Operational status of the supplicant. |
-| `nvswitch_dot1x_ipv6_profile_info` | *IPv6 profile level configuration. | 
-| `nvswitch_dot1x_ipv6_profile_property_info` | *IPv6 profile property level configuration. |
-| `nvswitch_dot1x_ipv6_profile_summary` | *IPv6 profile summary with the IPv6 prefix. |
-| `nvswitch_dot1x_reauth_timeouts` | *Supplicant counters when the `reauth-timeout-ignore` option is enabled. |
+| `nvswitch_dot1x_system_info` | *Global 802.1X configuration (dynamic VLAN mode, dynamic IPv6 multi-tenant state, max stations per port, auth-fail VLAN ID, reauth-timeout-ignore state, reauthentication interval). |
+| `nvswitch_dot1x_radius_client_info` | *RADIUS client configuration (NAS identifier, NAS IP address, source IP). |
+| `nvswitch_dot1x_radius_server_info` | *RADIUS server configuration (IP address, authentication port, accounting port, priority, VRF). |
+| `nvswitch_dot1x_supplicant_summary` | *Summary showing MAC address, interface, authentication type, VLAN assignment, and session ID of each authenticated supplicant. |
+| `nvswitch_dot1x_supplicant_eapol_counters` | *EAPOL frame counters per supplicant, including start, logoff, request, response, invalid, and length-errored frames. |  
+| `nvswitch_dot1x_interface_info` | *Per-interface 802.1X configuration (EAP, MBA, host mode, port-id, IPv6 profile, auth-fail VLAN).|
+| `nvswitch_dot1x_supplicant_status` | *Authentication status of the supplicant. |
+| `nvswitch_dot1x_ipv6_profile_info` | *IPv6 profile configuration (profile name and route tag). | 
+| `nvswitch_dot1x_ipv6_profile_property_info` | *IPv6 profile property configuration (offset, length, value, isolation, summarization). |
+| `nvswitch_dot1x_ipv6_profile_summary` | *IPv6 prefix generated for each layer 3 authenticated session that is using an IPv6 profile. |
+| `nvswitch_dot1x_reauth_timeouts` | *Counter of reauthentication attempts with the RADIUS server that timed out but were ignored, keeping the supplicant in Authorized state when the `reauth-timeout-ignore` flag is enabled. |
 
 {{< expand "Example JSON data for 802.1X:" >}}
 ```
@@ -1536,7 +1533,7 @@ The switch collects and exports the following additional interface priority grou
 |  Name | Description |
 |------ | ----------- |
 | `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
-| `nvswitch_interface_pg_rx_octets` | Interface ingress priority group receive bytes counter. |
+| `nvswitch_interface_pg_rx_octet` | Interface ingress priority group receive bytes counter. |
 
 {{< /tab >}}
 {{< tab "Switch Priority ">}}

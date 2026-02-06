@@ -1637,21 +1637,21 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-### BGP PIC in a Multiplane Topology
+### BGP PIC Anycast
 
-Fast route convergence in case of remote link failures between leaf and spine, and spine and superspine layers in a multiplane topology requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in {{<link url="#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
+Fast route convergence in case of remote link failures between leaf and spine, and spine and superspine layers requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in {{<link url="#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
 
 {{%notice note%}}
 The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
 {{%/notice%}}
 
-To configure PIC in a multiplane topology, set the SOO source IP address on a leaf. Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
+To configure BGP PIC anycast, set the SOO source IP address on a leaf. Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
 
 {{< tabs "1654 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp soo-source 10.1.1.1
+cumulus@leaf01:~$ nv set vrf default router bgp soo-source 10.10.10.1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1665,7 +1665,7 @@ To unset the SOO source IP address, run the `nv set vrf default router b
    ...
    leaf01# configure terminal
    leaf01(config)# router bgp 65101
-   leaf01(config-router)# bgp soo-source 10.1.1.1
+   leaf01(config-router)# bgp soo-source 10.10.10.1
    leaf01(config-router)# end
    leaf01# write memory
    leaf01# exit
@@ -1685,6 +1685,257 @@ If you set the SOO source IP address on a leaf switch after enable the BGP adver
 ### Show BGP PIC Information
 
 Cumulus Linux provides several show commands to help you troubleshoot BGP PIC. Refer to {{<link url="Troubleshooting-BGP/#show-prefix-independent-convergence-information" text="Show Prefix Independent Convergence Information">}}.
+
+## BGP Conditional Disaggregation
+
+In large scale deployments, route aggregation keeps BGP routing tables manageable by reducing the number of paths. However, when used in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer), each leaf advertises one aggregate route covering all its connected hosts. When a single link fails and an individual host becomes unreachable, the aggregate remains advertised and the switch continues to send traffic to the failed path with no mechanism to reroute through healthy planes.
+
+BGP conditional disaggregation advertises specific prefixes when a failure is detected, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
+
+### Configure BGP Conditional Disaggregation
+
+To configure BGP conditional disaggregation on a leaf:
+- Required: Enable both {{<link url="/#bgp-prefix-independent-convergence" text="BGP PIC">}} and {{<link url="/#bgp-pic-anycast" text="BGP PIC Anycast">}}.
+- Required for 802.1X: If you are using 802.1X, you must enable the `preserve-on-link-down` option with the `nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down enabled` command to preserve IPv6 addresses when the switch reboots or a link flaps. For more information, refer to {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="Preserve Dynamically Assigned IPv6 Addresses">}}.
+- Required: Enable BGP conditional disaggregation.
+- Required: Enable BGP unreachability (failure signaling) globally and on relevant peers or peer groups.
+- Required: Define the aggregate prefix and the included interfaces for which to conditionally advertise unreachability.
+- Optional: Set the prefix limits for a peer or peer group; see the table below.
+- Optional: Set the AS path options for a peer or peer group; see the table below.
+
+To configure BGP conditional disaggregation on a spine or super spine:
+- Required: Enable BGP unreachability (failure signaling) globally and on relevant neighbors or peer groups.
+- Optional: Set the prefix limits for a peer or peer group; see the table below.
+- Optional: Set the AS path options for a peer or peer group; see the table below.
+
+The following table describes the `prefix limit` options.
+
+| Option | Description |
+| -------- | ------------ |
+| `maximum` |  The maximum number of unreachability prefixes that the switch can receive from the peer or peer group. This is critical for security to prevent state exhaustion. |
+| `reestablish-wait` | The time in minutes to wait before establishing the BGP session again with the peer or peer group. You can specify a value between 1 and 65535, or `auto`. The default value is `auto`, which uses standard BGP timers and processing. |
+| `warning-only` | When enabled, the switch only generates a syslog warning if the number of received unreachability prefixes exceeds the limit. |
+| `warning-threshold` | The percentage of the maximum at which a syslog warning is generated. You can specify a value between 1 and 100. The default value is 75.|
+
+The following table describes the `AS path` options.
+
+| Option | Description |
+| -------- | ------------ |
+| `allow-my-asn` | Configures the switch to accept BGP updates containing its own ASN in the AS path. Set this option to:<br>- `state` to allow a received AS path to contain the ASN of the local system. You can specify `enabled` or `disabled`. The default value is `disabled`.<br>- `occurrences` to specify the maximum number of times the local system AS number is allowed in the received AS path. You can specify a value between 1 and 10.<br>- `origin` to allow a received AS path containing the ASN of the local system only if it is the originating AS. You can specify `enabled` or `disabled`. The default value is `disabled`.<br>- `route-map` to attach a route map that filters routes with the local AS in the AS path. This option allows selective application of `allowas-in` based on route map matching.|
+| `private-as` | Configures BGP to remove or replace private ASNs in the update to the peer or peer group. Set this option to:<br>- `none` to take no action.<br>- `remove` to remove private ASNs.<br>- `replace` to replace any private ASNs with the ASN of the local system.|
+| `replace-peer-as` |  Configures BGP to replace the ASN of the peer or peer group in an outgoing update with the ASN of the local system. You can specify `enabled` or `disabled`. The default is `disabled`.|
+
+{{< tabs "TabID1702 ">}}
+{{< tab "NVUE Commands ">}}
+
+{{< tabs "TabID1711 ">}}
+{{< tab "Leaf Configuration ">}}
+
+The following example configures BGP conditional disaggregation on a **leaf** for IPv6. For IPv4, run the `nv set vrf <vrf> router bgp address-family ip4-unicast` and `nv set vrf <vrf> router bgp address-family ipv4-unreachability` commands.
+
+To configure PIC, refer to {{<link url="/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}. To configure PIC anycast, refer to {{<link url="/#bgp-pic-anycast" text="BGP PIC Anycast">}}.
+
+The following example:
+- Enables BGP unreachability globally and on neighbors swp51 and swp52. 
+- Enables unreachability advertisements for interfaces matching the network 2001:1:1::/48.
+- Sets the prefix limit to a maximum of 6 for neighbors swp51 and swp52 .
+- Sets the `allow-my-asn` option for neighbors swp51 and swp52 to `origin` to allow a received AS path containing the ASN of the local system only if it is the originating AS.
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-origin 
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast conditional-disaggregation
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-unreach interfaces-match 2001:1:1::/48
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits maximum 6
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath allow-my-asn origin enabled
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability prefix-limits maximum 6
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability aspath allow-my-asn origin enabled
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Spine Configuration ">}}
+
+The following example configures BGP conditional disaggregation on a spine for IPv6. For IPv4, run the `nv set vrf <vrf> router bgp address-family ip4-unicast` and `nv set vrf <vrf> router bgp address-family ipv4-unreachability` commands.
+
+The example enables BGP unreachability globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE. For peer group UNDERLAY-LEAF, the prefix limit is set to a maximum of 6.
+
+```
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
+cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability state enabled
+cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits maximum 6
+cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-SUPERSPINE address-family ipv6-unreachability state enabled
+cumulus@spine01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+{{< tabs "TabID1751 ">}}
+{{< tab "Leaf Configuration ">}}
+
+The following example configures BGP conditional disaggregation on a leaf for IPv6. For IPv4, run the `address-family ipv4 unreachability` command.
+
+The following example:
+- Enables BGP unreachability globally and on neighbors swp51 and swp52. 
+- Enables unreachability advertisements for interfaces matching the network 2001:1:1::/48.
+- Sets the prefix limit to a maximum of 6 for neighbors swp51 and swp52 .
+- Sets the `allow-my-asn` option for neighbors swp51 and swp52 to `origin` to allow a received AS path containing the ASN of the local system only if it is the originating AS.
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp soo-source 10.1.1.1
+leaf01(config-router)# address-family ipv6 unreachability
+leaf01(config-router-af)# bgp advertise-origin
+leaf01(config-router-af)# bgp advertise-unreach interfaces-match 2001:1:1::/48
+leaf01(config-router-af)# neighbor swp51 activate 
+leaf01(config-router-af)# neighbor swp51 allowas-in origin
+leaf01(config-router-af)# neighbor swp51 maximum-prefix 6
+leaf01(config-router-af)# neighbor swp52 activate 
+leaf01(config-router-af)# neighbor swp52 allowas-in origin
+leaf01(config-router-af)# neighbor swp52 maximum-prefix 6
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< tab "Spine Configuration">}}
+
+The following example configures BGP conditional disaggregation on a spine for IPv6. For IPv4, run the `address-family ipv4 unreachability` command.
+
+The example enables BGP unreachability globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE. For peer group UNDERLAY-LEAF, the prefix limit is set to a maximum of 6.
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# address-family ipv6 unreachability
+leaf01(config-router-af)# bgp advertise-origin
+leaf01(config-router-af)# neighbor UNDERLAY-LEAF activate
+leaf01(config-router-af)# neighbor UNDERLAY-LEAF maximum-prefix 6
+leaf01(config-router-af)# neighbor UNDERLAY-SUPERSPINE activate
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Show BGP Conditional Disaggregation Information
+
+To show BGP conditional disaggregation configuration, run the `nv show vrf <vrf> router bgp address-family <address-family> conditional-disaggregation` command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unicast conditional-disaggregation
+No Data
+```
+
+To show if BGP unreachability is enabled on the switch, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability` command or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability` command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability 
+       operational       applied         
+-----  -----------       ----------------
+state                    enabled          
+                         state            
+                         advertise-unreach
+                         advertise-origin
+advertise-unreach                                   
+  [interfaces-match]     2001:1:1::/48
+```
+
+To show the aggregate prefix and the included interfaces for which unreachability is conditionally advertised, run the `nv show vrf default router bgp address-family ipv6-unreachability advertise-unreach` command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability advertise-unreach
+                    operational    applied      
+------------------  -------------  -------------
+[interfaces-match]  2001:1:1::/48  2001:1:1::/48
+```
+
+- To show the global BGP unreachability route count, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability route-count` command for IPv6 or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability route-count` command for IPv4.
+- For a specific neighbor, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv6-unreachability route-count` command for IPv6 or the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv4-unreachability route-count` command for IPv4.
+- For a specific peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family ipv6-unreachability route-count` command for IPv6 or the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family ipv4-unreachability route-count` command for IPv4.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability route-count
+             operational
+-----------  -----------
+total-routes  1          
+total-paths   1 
+```
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability route-count
+             operational
+-----------  -----------
+route-count     0                   
+adj-rib-in      0                   
+damped          0                   
+removed         0                   
+history         0                   
+stale           0                   
+valid           0                   
+all-rib         0                   
+routes-counted  0                   
+best-routes     0                   
+usable          0
+```
+
+To show global BGP unreachability routes, run the `nv show vrf <vrf> router bgp address-family ipv6-unreachability route` command for IPv6 or the `nv show vrf <vrf> router bgp address-family ipv4-unreachability route` command for IPv4.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability route
+PathCount - Number of paths present for the prefix, MultipathCount - Number of
+paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait-
+for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed
+
+Prefix            PathCount  MultipathCount  DestFlags
+----------------  ---------  --------------  ---------
+2001:1:1:1::/127  4          0               *
+```
+
+To show the BGP unreachability prefix limits for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv6-unreachability prefix-limits` command for IPv6 or the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv4-unreachability prefix-limits` command for IPv4.
+
+For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family ipv6-unreachability prefix-limits` command for IPv6 or the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits` command for IPv4.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits 
+                   operational  applied
+-----------------  -----------  ------- 
+maximum                         6   
+warning-threshold               75
+```
+
+To show the BGP unreachability AS path configuration for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv6-unreachability aspath` command for IPv6 or the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family ipv4-unreachability aspath` command for IPv4.
+
+For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family ipv6-unreachability aspath` command for IPv6 or the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family ipv4-unreachability aspath` command for IPv4.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath
+                 operational  applied    pending  
+---------------  -----------  ---------  ---------
+replace-peer-as  disabled     disabled   disabled 
+private-as       none         none       none     
+allow-my-asn                                      
+  state          enabled      enabled    enabled  
+  occurrences    3                                
+  route-map                   ROUTEMAP1  ROUTEMAP1
+```
 
 ## BGP Timers
 

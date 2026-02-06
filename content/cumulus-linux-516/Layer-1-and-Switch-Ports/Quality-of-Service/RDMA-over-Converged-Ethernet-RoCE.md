@@ -198,18 +198,21 @@ The following example shows the settings for the lossy multi TC profile. When yo
 
 ```
 cumulus@switch:~$ nv show qos roce
-                    operational     applied
-------------------  --------------  --------------
-state               enabled         enabled
-mode                lossy-multi-tc  lossy-multi-tc
+                    operational            applied
+------------------  --------------         --------------
+state                                      enabled
+mode                lossless-single-ipool  lossless-single-ipool
 pfc
-  pfc-priority      -
+  pfc-priority      3
+  rx-enabled        enabled
+  tx-enabled        enabled
+  cable-length      100
 congestion-control
   congestion-mode   ECN
-  enabled-tc        1,2,3
-  min-threshold     163.00 KB
-  max-threshold     234.00 KB
-  probability       5
+  enabled-tc        0,3
+  min-threshold     146.48 KB
+  max-threshold     1.43 MB
+  probability       100
 trust
   trust-mode        pcp,dscp
 

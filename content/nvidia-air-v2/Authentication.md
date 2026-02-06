@@ -7,7 +7,7 @@ product: NVIDIA Air 2.0
 
 NVIDIA Air uses NGC API keys for authenticating API requests. This page covers Air-specific authentication details. For general information about NGC API keys, see the {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html#ngc-api-keys" text="NGC API Keys documentation">}}.
 
-For the full API reference, see the {{<exlink url="https://air-ngc.nvidia.com/api/" text="NVIDIA Air API documentation">}}.
+For the full API reference, see the {{<exlink url="https://air-ngc.nvidia.com/api/docs/" text="NVIDIA Air API documentation">}}.
 
 ## API Key Types
 
@@ -33,7 +33,7 @@ When generating a key, select **NVIDIA Air** from the services list to grant Air
 Include your API key in the `Authorization` header:
 
 ```bash
-curl -X GET "https://air-ngc.nvidia.com/api/v3/simulations/" \
+curl -X GET "https://api.air-ngc.nvidia.com/api/v3/simulations/" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 

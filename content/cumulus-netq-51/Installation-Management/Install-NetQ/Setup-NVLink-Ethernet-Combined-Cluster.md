@@ -16,7 +16,7 @@ This deployment model requires a cluster comprising a minimum of three nodes. Ve
 | :--- | :--- |
 | Processor | 48 virtual CPUs |
 | Memory | 512GB RAM |
-| Local disk storage | 3.2TB NVMe |
+| Local disk storage | 3.2TB NVMe; P99 disk I/O latency < 10ms  |
 | Network interface speed | 10 Gbps NIC |
 | Hypervisor | KVM/QCOW (QEMU Copy on Write) image for servers running Ubuntu 24.04;<br> VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux or Ubuntu 24.04| 
 
@@ -65,7 +65,6 @@ Additionally, for internal cluster communication, you must open these ports:
 |9092|	TCP|	Kafka client|
 |10250|	TCP|	kubelet health probe|
 |36443|	TCP|	Kubernetes control plane|
-|54321|	TCP|	OPTA communication|
 
 {{< /expand >}}
 
@@ -86,9 +85,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.0">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.1">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="5.0">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="5.1">}}
 
 3. Log in to the VM and change the password.
 
@@ -210,7 +209,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `interface` | The local network interface on your master node used for NetQ connectivity. |
+| `interface` | The local network interface on your master node used for NetQ connectivity. Use a static IP address. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
@@ -246,7 +245,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `interface` | The local network interface on your master node used for NetQ connectivity. |
+| `interface` | The local network interface on your master node used for NetQ connectivity. Use a static IP address. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
@@ -296,7 +295,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/cluster-install-config.json restore /home/nvidia/combined_backup_20241211111316.tar
 ```
 
-<div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
+<div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 {{< /tab >}}
 {{< /tabs >}}
 

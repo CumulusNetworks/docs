@@ -10,6 +10,8 @@ The network topology dashboard displays a visual representation of your network,
 
 To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg" height="18" width="18"/> **Topology** in the workbench header. The UI displays the highest-level view of your network's topology, showing devices as part of tiers corresponding to your network's architecture: a two-tier architecture is made up of leaf and spine devices; a three-tier architecture is made up of leaf, spine, and super-spine devices. The bottom-most tier is reserved for devices which do not have a role assigned to them.
 
+The **Tier** view displays connections between devices. The **Device** view displays connections between the switch ports of different devices. For example, if a device has 32 of its ports connected to 32 ports on another device, the **Device** view will display a link count of 32. However, in the **Tier** view, it is represented as one link.
+
 {{<figure src="/images/netq/topo-device-view-412.png" alt="network devices displayed as a three-tier architecture, including a lower tier for unassigned devices." width="1100">}}
 
 If your devices appear as a single tier, navigate to the device tab and select the **Assign roles** button. Select the switches to assign to the same role, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role** above the table and follow the steps in the UI.
@@ -25,6 +27,8 @@ After assigning roles to the switches, return to the topology view and select **
 The topology screen features a main panel displaying tiers or, when zoomed in, the individual devices that comprise the tiers. You can zoom in or out of the topology via the zoom controls at the bottom-right corner of the screen, a mouse with a scroll wheel, or with a trackpad on your computer. You can also adjust the focus by clicking anywhere on the topology and dragging it with your mouse to view a different portion of the network diagram. Above the zoom controls, a smaller screen reflects a macro view of your network and helps with orienting, similar to mapping applications.
 
 {{<figure src="/images/netq/topo-tier-412.png" alt="selected network device displaying links between other devices" width="1100">}}
+
+
 
 ### View Device and Link Data
 
@@ -66,7 +70,7 @@ You can create queries to segment a topology into smaller, more manageable parts
 
 {{<figure src="/images/netq/query-topo-51.png" alt="" width="700">}}
 
-You can create queries based on device hostnames or labels {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="labels">}}. To combine multiple queries with logical operators, select **Add filter group**. 
+You can create queries based on device hostnames or {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="labels">}}. To combine multiple queries with logical operators, select **Add filter group**. 
 
 Select the three-dot menu on a given query to either delete or remove the query.
 

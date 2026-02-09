@@ -31,16 +31,22 @@
 <td></td>
 </tr>
 <tr>
-<td>4717753</td>
-<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.11.4</td>
-<td>5.11.5-5.15.1</td>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -272,7 +278,7 @@ You can safely ignore this error as FRR accepts and applies the new configuratio
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>Spectrum-4 switches do not include full What Just Happened (WJH) support.</td>
 <td>5.9.0-5.13.1</td>
 <td>5.14.0-5.15.1</td>
 </tr>
@@ -1042,16 +1048,22 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td></td>
 </tr>
 <tr>
-<td>4717753</td>
-<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.11.4</td>
-<td>5.11.5-5.15.1</td>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -1478,7 +1490,7 @@ You can safely ignore this error as FRR accepts and applies the new configuratio
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>Spectrum-4 switches do not include full What Just Happened (WJH) support.</td>
 <td>5.9.0-5.13.1</td>
 <td>5.14.0-5.15.1</td>
 </tr>
@@ -1959,16 +1971,22 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
-<td>4717753</td>
-<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.11.4</td>
-<td>5.11.5-5.15.1</td>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4714845</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4663076</td>
+<td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.11.4</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -2389,7 +2407,7 @@ You can safely ignore this error as FRR accepts and applies the new configuratio
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>Spectrum-4 switches do not include full What Just Happened (WJH) support.</td>
 <td>5.9.0-5.13.1</td>
 <td>5.14.0-5.15.1</td>
 </tr>
@@ -3103,10 +3121,16 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td></td>
 </tr>
 <tr>
-<td>4717753</td>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4663076</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
 <td>5.3.1-5.11.4</td>
-<td>5.11.5-5.15.1</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -3747,7 +3771,7 @@ You can safely ignore this error as FRR accepts and applies the new configuratio
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>Spectrum-4 switches do not include full What Just Happened (WJH) support.</td>
 <td>5.9.0-5.13.1</td>
 <td>5.14.0-5.15.1</td>
 </tr>
@@ -4221,10 +4245,16 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
-<td>4717753</td>
+<td>4717752</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.3.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4663076</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
 <td>5.3.1-5.11.4</td>
-<td>5.11.5-5.15.1</td>
+<td>5.11.5-5.15.1, 5.15.0-5.15.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -4688,7 +4718,7 @@ You can safely ignore this error as FRR accepts and applies the new configuratio
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>Spectrum-4 switches do not include full What Just Happened (WJH) support.</td>
 <td>5.9.0-5.13.1</td>
 <td>5.14.0-5.15.1</td>
 </tr>

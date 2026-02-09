@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 30
 toc: 3
 ---
-This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to perform a hitless (sub-second loss of data plane traffic) upgrade.
+This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#upgrades-with-issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to perform a hitless (sub-second loss of data plane traffic) upgrade.
 
 To upgrade Cumulus Linux, choose one of the three upgrade methods:
 
@@ -266,7 +266,7 @@ To upgrade the switch with package upgrade:
     yes
 ```
 
-If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+If you configured the switch resource mode to half for {{<link url="#upgrades-with-issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
     cumulus@switch:~$ nv action reboot system mode warm

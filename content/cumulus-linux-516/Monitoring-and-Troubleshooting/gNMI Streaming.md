@@ -861,6 +861,10 @@ User authentication is enabled by default. gNMI subscription requests must inclu
 
 You can use your gNMI client on a host to request capabilities and data to which the gNMI agent subscribes.
 
+{{%notice note%}}
+Cumulus Linux processes gNMI subscription requests one at a time. Concurrent requests receive a gRPC status CANCELLED with the message `System is busy. Please retry in a bit`.
+{{%/notice%}}
+
 #### Dial-in Mode Examples
 
 The following example shows a basic dial-in mode subscribe request in an HTTP basic authentication header:
@@ -964,6 +968,7 @@ supported encodings:
   - JSON_IETF 
   - PROTO 
 ```
+
 ### gNOI Operational Commands
 
 The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](## "gRPC Network Operations Interface")</span> so that you can run operational tasks from a client, such as switch reboot or file transfer. The gNOI server is enabled when you configure {{<link url="gNMI-Streaming/#configure-gnmi-dial-in-mode" text="gNMI dial-in mode">}}. The gNOI server uses the same listening address, port, TLS configuration, and user credentials as your gNMI server configuration.
@@ -988,7 +993,6 @@ The following gNOI RPCs are not supported:
 - system `reboot` with `--method=FAST` (fast reboot mode)
 - file `transfer`
 {{%/notice%}}
-
 
 You can view the number of gNOI RPCs received on the switch with the `nv show system gnmi-server status gnoi-rpc` command:
 

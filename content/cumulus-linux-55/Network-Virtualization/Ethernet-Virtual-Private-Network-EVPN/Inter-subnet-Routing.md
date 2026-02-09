@@ -562,6 +562,7 @@ The NVUE commands are as follows:
 - You can configure multiple import and export route targets in a VRF.
 - You can configure selective route targets for individual prefixes with routing policies.
 - You cannot leak (import) overlapping tenant prefixes into the same destination VRF.
+- You cannot overlap the VNI ID of downstream VNI imported routes with a VNI ID that exists locally on the leaf for another VRF or VLAN.
 {{%/notice%}}
 
 The following example shows a configuration with downstream VNI on leaf01 thru leaf04, and border01.

@@ -56,14 +56,13 @@ The basic configuration shown below uses the *default* PTP settings:
 - The clock mode is Boundary. This is the only clock mode that Cumulus Linux supports.
 - {{<link url="#clock-domains" text="The PTP clock domain">}} is 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are both 128.
-- {{<link url="#dscp" text="The DSCP" >}} is 46 for both general and event messages.
 - {{<link url="#Transport-mode" text="The PTP interface transport mode">}} is IPv4.
 - {{<link url="#Forced-master-mode" text="Announce messages from any master are accepted">}}.
 - {{<link url="#Message-mode" text="The PTP Interface Message Mode">}} is multicast.
 - The delay mechanism is End-to-End (E2E), where the slave measures the delay between itself and the master. The master and slave send delay request and delay response messages between each other to measure the delay.
 - The clock timestamp mode is two-step.
 
-To configure other settings, such as the PTP profile, domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
+To configure other settings, such as the PTP profile, domain, and priority, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
 
 ### Disable NTP
 

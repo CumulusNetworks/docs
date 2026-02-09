@@ -37,6 +37,7 @@ nv show system security fips
 nv show system security group <group-id>
 nv show system security user <user-id>
 nv show system tech-support auto-generation
+nv show system tech-support auto-generation recovery-steps
 nv show vrf <vrf-id> router bgp address-family <address-family> conditional-disaggregation
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-origin
@@ -85,12 +86,12 @@ nv set acl <acl-id> rule <rule-id> match inner-ip ecn flags
 nv set acl <acl-id> rule <rule-id> match inner-ip ecn ip-ect
 nv set acl <acl-id> rule <rule-id> match inner-ip protocol
 nv set acl <acl-id> rule <rule-id> match inner-ip source-ip
-nv set acl <acl-id> rule <rule-id> match inner-ip tcp source-port
 nv set acl <acl-id> rule <rule-id> match inner-ip tcp dest-port
-nv set acl <acl-id> rule <rule-id> match inner-ip udp source-port
+nv set acl <acl-id> rule <rule-id> match inner-ip tcp source-port
 nv set acl <acl-id> rule <rule-id> match inner-ip udp dest-port
+nv set acl <acl-id> rule <rule-id> match inner-ip udp source-port
 nv set acl <acl-id> rule <rule-id> match offset <offset> mask
-nv set acl <acl-id> rule <rule-id> match offset <offset> match-from start-of-packet 
+nv set acl <acl-id> rule <rule-id> match offset <offset> match-from 
 nv set acl <acl-id> rule <rule-id> match offset <offset> value 
 nv set router bfd offload
 nv set system api compression gzip
@@ -169,7 +170,7 @@ nv set vrf <vrf-id> router bgp soo-source
 {{< tab "nv action ">}}
 
 ```
-nv action traceroute system <destination-id> errors-extension do-not-fragment
+nv action traceroute system <destination-id> errors-extension
 nv action activate system tech-support auto-generation
 nv action clear system control-plane policer statistics
 nv action clear system control-plane policer <policer-id> statistics

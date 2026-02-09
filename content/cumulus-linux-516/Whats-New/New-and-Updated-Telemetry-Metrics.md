@@ -247,9 +247,8 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 {{< /tab >}}
 {{< tab "Deprecated OTEL Metrics ">}}
 
-|       |             |
-|------ | ----------- |
-| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_bytes` | |
+All scrape metrics; for example, `scrape_series_added`, `scrape_samples_scraped`, `scrape_duration_seconds`,  
+`scrape_samples_post_metric_relabeling`.
 
 {{< /tab >}}
 {{< /tabs >}}

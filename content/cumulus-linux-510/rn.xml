@@ -497,7 +497,7 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>Spectrum-4 switches do not include full What Just Happened (WJH) support.</td>
 <td>5.9.0-5.13.1</td>
 <td>5.14.0-5.15.1</td>
 </tr>
@@ -1474,7 +1474,7 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>Spectrum-4 switches do not include full What Just Happened (WJH) support.</td>
 <td>5.9.0-5.13.1</td>
 <td>5.14.0-5.15.1</td>
 </tr>

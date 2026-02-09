@@ -85,13 +85,9 @@ nv show system global nd garbage-collection-threshold
 nv show system ssh-server
 nv show system ssh-server max-unauthenticated
 nv show system ssh-server vrf
-nv show system ssh-server vrf <vrf-id>
 nv show system ssh-server allow-users
-nv show system ssh-server allow-users <user-id>
 nv show system ssh-server deny-users
-nv show system ssh-server deny-users <user-id>
 nv show system ssh-server port
-nv show system ssh-server port <port-id>
 nv show system ssh-server active-sessions
 ```
 

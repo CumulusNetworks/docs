@@ -961,6 +961,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4859201</td>
+<td>When the VNI changes on a VRF, from the old VNI to the new VNI, the VNI in the SVD VNI hash table or in the single‑VNI (SVD) in the VNI info is deleted. Therefore, when there are further updates to the old VNI, the lookup fails and causes the zebra core to crash. </td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4850551</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4859201</td>
+<td>When the VNI changes on a VRF, from the old VNI to the new VNI, the VNI in the SVD VNI hash table or in the single‑VNI (SVD) in the VNI info is deleted. Therefore, when there are further updates to the old VNI, the lookup fails and causes the zebra core to crash. </td>
+<td>5.14.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4850551</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
@@ -944,7 +950,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology. </td>
+<td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology.</td>
 <td>5.10.0-5.15.1</td>
 <td></td>
 </tr>
@@ -1750,7 +1756,7 @@ onie-nos-install /$devname/onie-installer</td>
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>Spectrum-4 switches do not include full What Just Happened (WJH) support.</td>
 <td>5.9.0-5.13.1</td>
 </tr>
 <tr>

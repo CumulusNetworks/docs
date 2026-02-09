@@ -245,9 +245,4 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "Deprecated OTEL Metrics ">}}
-
-All scrape metrics; for example, `scrape_series_added`, `scrape_samples_scraped`, `scrape_duration_seconds`, and `scrape_samples_post_metric_relabeling`.
-
-{{< /tab >}}
 {{< /tabs >}}

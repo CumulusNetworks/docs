@@ -205,7 +205,7 @@ nvidia@netq-server:~$ netq install cluster config generate workers 2
 
 {{< tab "Default JSON Template">}}
 
-The following example includes the `worker-nodes` objects for a 5-node deployment. The JSON template for the 3-node deployment will not include `worker-nodes`.  
+The following example includes the `worker-nodes` objects for a 5-node deployment. The JSON template for the 3-node deployment does not include `worker-nodes`.  
 
 ``` 
 nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
@@ -238,7 +238,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `interface` | The local network interface on your master node used for NetQ connectivity. |
+| `interface` | The local network interface on your master node used for NetQ connectivity. Use a static IP address. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
 | `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
@@ -325,7 +325,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `interface` | The local network interface on your master node used for NetQ connectivity. |
+| `interface` | The local network interface on your master node used for NetQ connectivity. Use a static IP address. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
 | `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
@@ -374,13 +374,15 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 }
 ```
 
-2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
+2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the `restore` option referencing the path where the backup file resides:
 
 ```
 nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/cluster-install-config.json restore /home/nvidia/combined_backup_20241211111316.tar
 ```
 
-<div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
+{{<notice tip>}}
+If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.
+{{</notice>}}
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -133,37 +133,40 @@ nvidia@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
 {{< tabs "TabID136 ">}}
 {{< tab "New Install">}}
 
+The following example installs NetQ using the `eth0` interface. You can alternately specify the IP address of the server instead of the interface name using the `ip-addr <ip-address>` argument. In both cases, you must use a static IP address.
 
 ```
 nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz
 ```
+Example with IP address:
+```
+nvidia@hostname:~$ netq install standalone full ip-addr <ip-address> bundle /mnt/installables/NetQ-5.1.0.tgz
+```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-5.1.0.tgz</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre>
     <p></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
-
-
 
 {{< /tab >}}
 {{< tab "Restore Data and New Install">}}
 
 Restore your data with the backup file you created during a backup using the `restore` option with the `netq install` command. The `restore` option copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. 
 
-Run the installation command on your NetQ server, referencing the path where the backup file resides.
+Run the installation command on your NetQ server, referencing the path where the backup file resides. The following example installs NetQ using the `eth0` interface:
 
 ```
-nvidia@netq-server:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz restore /home/nvidia/backup-netq-standalone-onprem-5.0.0-2025-12-11_19_50_12_UTC.tar
+nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz restore /home/nvidia/backup-netq-standalone-onprem-5.0.0-2025-12-11_19_50_12_UTC.tar
 ```
 
-<div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; restore /home/nvidia/backup-netq-standalone-onprem-5.0.0-2022-12-11_19_50_12_UTC.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-5.1.0.tgz restore /home/nvidia/backup-netq-standalone-onprem-5.0.0-2025-12-11_19_50_12_UTC.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
-    <p></p></div>
+Example using IP address:
 
-<div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
+```
+nvidia@hostname:~$ netq install standalone full ip-addr <ip-address> bundle /mnt/installables/NetQ-5.1.0.tgz restore /home/nvidia/backup-netq-standalone-onprem-5.0.0-2025-12-11_19_50_12_UTC.tar
+```
+
+<div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -197,7 +197,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `interface` | The local network interface on your master node used for NetQ connectivity. |
+| `interface` | The local network interface on your master node used for NetQ connectivity. Use a static IP address. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
 | `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |
@@ -232,7 +232,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `interface` | The local network interface on your master node used for NetQ connectivity. |
+| `interface` | The local network interface on your master node used for NetQ connectivity. Use a static IP address.|
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
 | `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |

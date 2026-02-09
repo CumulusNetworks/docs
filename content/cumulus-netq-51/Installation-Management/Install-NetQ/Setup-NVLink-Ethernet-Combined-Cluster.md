@@ -209,7 +209,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `interface` | The local network interface on your master node used for NetQ connectivity. |
+| `interface` | The local network interface on your master node used for NetQ connectivity. Use a static IP address. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
@@ -245,7 +245,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `interface` | The local network interface on your master node used for NetQ connectivity. |
+| `interface` | The local network interface on your master node used for NetQ connectivity. Use a static IP address. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. Set the value to `false` for IPv4. |
@@ -295,7 +295,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/cluster-install-config.json restore /home/nvidia/combined_backup_20241211111316.tar
 ```
 
-<div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
+<div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 {{< /tab >}}
 {{< /tabs >}}
 

@@ -21,6 +21,7 @@ netq modify otlp endpoint tsdb-name <text-tsdb-endpoint>
     [tsdb-url <text-tsdb-endpoint-url>] 
     [export true | export false] 
     [security-mode <text-mode>]
+    [whitelist_enabled true | whitelist_enabled false]
 ```
 
 ### Required Arguments
@@ -36,6 +37,7 @@ netq modify otlp endpoint tsdb-name <text-tsdb-endpoint>
 | tsdb-url | \<text-tsdb-endpoint-url\> | Specify the URL of your TSDB |
 | export | true, false | Begin exporting data immediately (true) or not (false) |
 | security-mode | \<text-mode\> | Set the security mode to `tls` (for TLS) or `insecure` |
+| whitelist_enabled | true, false | Enables (true) or disables (false) OTLP whitelist on the TSDB|
 
 ### Related Commands
 

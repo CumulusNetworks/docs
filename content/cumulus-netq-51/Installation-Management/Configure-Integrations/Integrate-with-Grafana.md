@@ -7,10 +7,6 @@ toc: 3
 
 The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network devices. To view data in Grafana, first configure security between NetQ and OTel clients, configure OpenTelemetry (OTel) on the devices in your network, then configure the data sources in Grafana. <!--test-->
 
-{{%notice note%}}
-The Grafana integration is in beta and supported for on-premises deployments only.
-{{%/notice%}}
-
 ## Requirements and Support
 
 - Switches must have a Spectrum-2 or later ASIC. The number of supported switches varies based on the deployment model and reflects an environment where each switch is configured with OpenTelemetry and running the NetQ agent.
@@ -19,7 +15,7 @@ The Grafana integration is in beta and supported for on-premises deployments onl
    - 3-node scale cluster: 500 switches
    - 5-node scale cluster: 1,000 switches
 - For switches, you must enable OpenTelemetry to collect and export each metric that you want to monitor, as described in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/" text="Cumulus Linux documentation">}}.
-- DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version 1.18 or later.
+- NetQ is compatible with DTS version 1.23.4.
 - Before you get started with the steps below, {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" text="install Grafana">}} and {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/" text="start the Grafana server">}}.
 - NetQ retains OTLP metrics for fifteen days.
 

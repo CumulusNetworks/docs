@@ -32,7 +32,7 @@ Running a flow analysis will affect switch CPU performance. For high-volume flow
 
 {{<notice info>}}
 
-If you attempt to run a flow analysis that includes switches assigned a default, unmodified access profile, the process will fail. {{<link title="Credentials and Profiles" text="Create a unique access profile">}} (or update the default profile with unique credentials), then {{<link title="Switch Management/#assign-a-profile-to-a-switch" text="assign the profile">}} to the switches you want to include in the flow analysis.
+If you attempt to run a flow analysis that includes switches assigned a default, unmodified access profile, the process will fail. {{<link title="Credentials and Profiles" text="Create a unique access profile">}} (or update the default profile with unique credentials), then {{<link title="Credentials and Profiles/#attach-a-profile-to-a-switch" text="attach the profile">}} to the switches you want to include in the flow analysis.
 {{</notice>}}
 
 4. After starting the flow analysis, a flow analysis card will appear on the NetQ Workbench.

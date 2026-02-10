@@ -316,7 +316,7 @@ nvidia@netq-server:~$
 - - -
 ## netq lcm attach credentials
 
-Assigns an {{<link title="Credentials and Profiles" text="access profile">}} to one or more switches. For step-by-step instructions, see {{<link title="Switch Management#assign-a-profile-to-a-switch" text="Switch Management">}}.
+Assigns an {{<link title="Credentials and Profiles" text="access profile">}} to one or more switches.
 
 To display the `profile_id`, run `netq lcm show credentials`.
 

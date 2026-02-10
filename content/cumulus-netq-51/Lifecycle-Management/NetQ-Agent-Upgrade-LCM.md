@@ -29,7 +29,7 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 1. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-2. Configure {{<link title="Credentials and Profiles/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
+2. Configure {{<link title="Switch Management/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
 
 3. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 
@@ -147,7 +147,7 @@ netq lcm upgrade netq-image
 The following example creates a NetQ agent upgrade job called *upgrade-example*. It upgrades NetQ agents on the *spine01* and *spine02* switches.
 
 ```
-nvidia@switch:~$ netq lcm upgrade netq-image job-name upgrade-example netq-version 5.0.0 hostnames spine01,spine02
+nvidia@switch:~$ netq lcm upgrade netq-image job-name upgrade-example netq-version 5.1.0 hostnames spine01,spine02
 ```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:

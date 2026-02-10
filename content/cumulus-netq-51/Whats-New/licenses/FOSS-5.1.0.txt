@@ -1,0 +1,1231 @@
+Package,Version,License(s)
+aws-java-sdk-for-elastic-load-balancing,"1.12.793, 1.12.770, 1.11.892, 1.12.124",Apache License 2.0
+opencontainers-image-spec,v1.1.0,Apache License 2.0
+aws-java-sdk-for-aws-simspace-weaver,"1.12.793, 1.12.770",Apache License 2.0
+jackson-core,"2.16.2, 2.15.0, 2.17.1, 2.18.3, 2.13.4, 2.17.2, 2.14.3, 2.14.2",Apache License 2.0
+osgi-resource-locator-bundle,1.0.3,Eclipse Public License 2.0
+aws-java-sdk-for-aws-license-manager,"1.12.793, 1.11.892, 1.12.770, 1.12.124",Apache License 2.0
+jopt-simple,"5.0.3, 5.0.4",MIT License
+golang-org-x-term,v0.28.0,"BSD 3-clause ""New"" or ""Revised"" License"
+google-guice,"4.2.2, 4.0, 4.2.3",Apache License 2.0
+cloudwatch-metrics-for-aws-java-sdk,"1.11.892, 1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+netty-tomcatnative-[boringssl-static],"2.0.70.Final, 2.0.8.Final",Apache License 2.0
+io-swagger-swagger-annotations,"2.1.10, 1.5.20, 1.6.2, 1.6.3",Apache License 2.0
+aws-java-sdk-for-aws-cloudhsm-v2,"1.11.892, 1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-aws-savings-plans,"1.12.793, 1.11.892, 1.12.124, 1.12.770",Apache License 2.0
+bouncy-castle,"1.80, 1.60, 1.69, 1.78.1",MIT License
+aws-java-sdk-for-aws-import-export,"1.12.793, 1.12.770, 1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-migration-hub-strategy-recommendations,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+play-functional,"2.4.0-M1, 2.9.2, 3.0.4, 2.8.1",Apache License 2.0
+apache-commons-logging,"1.2, 1.3.5",Apache License 2.0
+apache-hadoop-registry,3.3.4,Apache License 2.0
+jetty-alpn-jdk9-server-implementation,11.0.24,(Apache License 2.0 AND Eclipse Public License 2.0)
+apache-commons-beanutils,"1.9.4, 1.11.0",Apache License 2.0
+aws-java-sdk-for-aws-certificate-manager-private-certificate-authority,"1.11.892, 1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-agents-for-amazon-bedrock,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-performance-insights,"1.11.892, 1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-directory-service,"1.12.124, 1.12.770, 1.11.892, 1.12.793",Apache License 2.0
+jmes-path-query-library,"1.12.261, 1.11.892, 1.12.770, 1.12.454, 1.12.793",Apache License 2.0
+aws-java-sdk-for-payment-cryptography-control-plane,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-managed-grafana,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+golang-text,"v0.22.0, v0.21.0, 0.16.0","BSD 3-clause ""New"" or ""Revised"" License"
+wiremock,3.10.0,Apache License 2.0
+aws-java-sdk-for-aws-iot-1-click-projects,"1.12.770, 1.12.793, 1.11.892, 1.12.124",Apache License 2.0
+jackson-dataformat-yaml,"2.15.0, 2.18.1, 2.17.1, 2.9.6, 2.13.3, 2.18.3, 2.14.2",Apache License 2.0
+config-com-typesafe-config,"1.4.0, 1.3.2, 1.4.1, 1.2.0, 1.4.3",Apache License 2.0
+checker-qual,"3.37.0, 3.42.0, 2.5.2, 3.33.0, 2.5.5, 3.8.0, 3.22.0, 3.5.0, 3.12.0",MIT License
+aws-java-sdk-for-amazon-eventbridge-pipes,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-rds,"1.12.770, 1.12.124, 1.12.793, 1.11.892",Apache License 2.0
+uber-go-mock,v0.4.0,Apache License 2.0
+aws-java-sdk-for-aws-marketplace-metering-service,"1.11.892, 1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+aws-java-sdk-for-chatbot,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-network-firewall,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-macie-2,"1.12.770, 1.12.124, 1.12.793, 1.11.892",Apache License 2.0
+swagger-scala-module,"2.5.0, 1.4.0",Apache License 2.0
+aws-java-sdk-for-elastic-disaster-recovery,"1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+open-telemetry-opentelemetry-go,"exporters/stdout/stdoutmetric/v1.31.0, exporters/otlp/otlptrace/otlptracehttp/v1.31.0, sdk/metric/v1.31.0, exporters/otlp/otlplog/otlploghttp/v0.7.0, exporters/otlp/otlplog/otlploggrpc/v0.7.0, v1.33.0, exporters/otlp/otlptrace/otlptracegrpc/v1.31.0, sdk/log/v0.7.0, exporters/otlp/otlpmetric/otlpmetricgrpc/v1.31.0, sdk/v1.33.0, exporters/stdout/stdouttrace/v1.31.0, metric/v1.33.0, exporters/stdout/stdoutlog/v0.7.0, exporters/otlp/otlptrace/v1.31.0, log/v0.7.0, exporters/otlp/otlpmetric/otlpmetrichttp/v1.31.0, trace/v1.33.0",Apache License 2.0
+aws-java-sdk-for-amazon-cloudwatch-logs,"1.12.124, 1.12.793, 1.12.770, 1.11.892",Apache License 2.0
+kerby-kerb-crypto,2.0.3,Apache License 2.0
+slf4j-api-module,"2.0.7, 1.7.5, 1.7.25, 2.0.17, 1.7.31, 2.0.16, 2.0.13, 1.7.36",MIT License
+aws-java-sdk-for-aws-config,"1.11.892, 1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+aws-java-sdk-for-aws-compute-optimizer,"1.12.770, 1.12.793, 1.11.892, 1.12.124",Apache License 2.0
+sigs-k8s-io-yaml,v1.4.0,"(MIT License AND Apache License 2.0 AND BSD 3-clause ""New"" or ""Revised"" License)"
+kafka-streams-avro-serde,"7.4.0, 6.0.0, 7.8.0",Apache License 2.0
+aws-java-sdk-for-redshift-data-api,"1.11.892, 1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-iot-wireless,"1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-elasticache,"1.11.892, 1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-elastic-container-registry-public,"1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+xmltooling-java,1.4.4,Apache License 2.0
+bsm-gomega,v1.27.10,MIT License
+github-com-xyproto-randomstring,v1.0.5,MIT License
+com-sun-xml-bind-jaxb-impl,2.2.3-1,Common Development and Distribution License 1.1
+akka-actor,"2.6.16, 2.6.14",Apache License 2.0
+fvbommel-sortorder,v1.0.2,MIT License
+hadoop-yarn-server-applicationhistoryservice,3.4.2,Apache License 2.0
+netty-tomcatnative-[openssl-classes],"2.0.70.Final, 2.0.48.Final",Apache License 2.0
+apache-commons-io,"2.11.0, 2.17.0, 2.20.0, 1.3.2, 2.15.1, 2.16.1",Apache License 2.0
+aws-java-sdk-for-aws-server-migration,"1.11.892, 1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+build-info-extractor-gradle,4.33.16,Apache License 2.0
+aws-java-sdk-for-amazon-route-53-auto-naming,"1.12.770, 1.12.793, 1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-amazon-kinesis-video-streams-media,"1.12.124, 1.12.770, 1.12.793, 1.11.892",Apache License 2.0
+aws-java-sdk-for-amazon-appflow,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-appsync,"1.11.892, 1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+netty-tomcatnative-[openssl-dynamic],2.0.48.Final,Apache License 2.0
+apache-commons-fileupload,1.5,Apache License 2.0
+aws-java-sdk-for-aws-iot-sitewise,"1.12.124, 1.12.770, 1.11.892, 1.12.793",Apache License 2.0
+cert-manager-cert-manager,v1.16.4,Apache License 2.0
+go-testify,"v1.10.0, v1.9.0",MIT License
+aws-java-sdk-for-amazon-pinpoint-sms-and-voice,"1.12.770, 1.12.793, 1.11.892, 1.12.124",Apache License 2.0
+fxamacker-cbor,2.7.0,Expat License
+j2objc-java-to-ios,"1.1, 2.8, 3.0.0, 1.3",Apache License 2.0
+snappy-java,"1.1.10.5, 1.1.8.4, 1.1.7.3, 1.1.8.1",Apache License 2.0
+akka-protobuf-v3,"2.6.16, 2.6.14",Apache License 2.0
+aspectj-runtime,1.9.4,Eclipse Public License 1.0
+aws-java-sdk-for-ec2-image-builder,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-emr,"1.12.124, 1.12.793, 1.12.770, 1.11.892",Apache License 2.0
+aws-java-sdk-for-amazon-eventbridge-scheduler,"1.12.770, 1.12.793",Apache License 2.0
+python-distlib,"0.3.8, 0.2.6","Apache License 2.0,Python Software Foundation License 2.0"
+aws-java-sdk-for-aws-app-mesh,"1.11.892, 1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-route53,"1.12.124, 1.12.793, 1.11.892, 1.12.770",Apache License 2.0
+openconfig-ygot,v0.29.19,Apache License 2.0
+yaml-for-go,"v3.0.1, v2.4.0","(MIT License AND Apache License 2.0),Apache License 2.0"
+aws-java-sdk-for-amazonapigatewaymanagementapi,"1.12.124, 1.11.892, 1.12.770, 1.12.793",Apache License 2.0
+aws-sdk-for-java,"1.12.454, 2.17.30, 1.11.892, 1.12.277, 1.12.793, 2.28.2, 1.12.124, 1.12.770, 1.12.268, 1.12.261",Apache License 2.0
+aws-java-sdk-for-amazonnimblestudio,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+apache-commons-lang,"3.12.0, 3.14.0, 3.8.1, 3.20.0, 3.2.1, 2.6, 3.17.0",Apache License 2.0
+sigs-k8s-io-json,20221116-snapshot-bc3834ca,"(Apache License 2.0 AND BSD 3-clause ""New"" or ""Revised"" License)"
+scala,"2.12.6, 2.12.8, 2.10.6, 2.12.11, 2.12.20, 2.11.12, 2.12.15, 2.12.19, v2.12.14, v2.12.12, 2.12.13, 2.11.11, v2.12.10, 2.12.17","BSD 3-clause ""New"" or ""Revised"" License,Apache License 2.0,BSD 3-clause Clear License"
+aws-java-sdk-for-aws-service-catalog,"1.12.793, 1.11.892, 1.12.770, 1.12.124",Apache License 2.0
+curator-recipes,5.2.0,Apache License 2.0
+aws-java-sdk-for-amazon-chime,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+fsnotify-fsnotify,"v1.7.0, 1.8.0","BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-amazon-cloudwatch-events,"1.11.892, 1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-aws-single-sign-on,"1.12.770, 1.12.793, 1.11.892, 1.12.124",Apache License 2.0
+spf13-cobra,"1.9.1, 1.8.1",Apache License 2.0
+parser,"1.0.0, 0.13.0","MIT License,Apache License 2.0"
+aws-aws-sdk-go-v2,"v1.31.0, internal/configsources/v1.3.18, service/sso/v1.23.0, internal/ini/v1.8.1, service/internal/presigned-url/v1.11.20, service/ssooidc/v1.27.0, internal/endpoints/v2.6.18, credentials/v1.17.34, config/v1.27.36, service/internal/accept-encoding/v1.11.5, service/sts/v1.31.0, feature/ec2/imds/v1.16.14",Apache License 2.0
+aws-java-sdk-for-aws-secrets-manager,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-alexa-for-business,"1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-iot-twinmaker,"1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+fabric8-kubernetes-model-api-extensions,6.13.1,Apache License 2.0
+aws-java-sdk-for-amazon-route-53-resolver,"1.12.124, 1.12.770, 1.11.892, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amplifybackend,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-shield,"1.12.124, 1.12.793, 1.12.770, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-direct-connect,"1.12.770, 1.11.892, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-chime-sdk-voice,"1.12.770, 1.12.793",Apache License 2.0
+scala-logging,"3.9.2, 3.9.4",Apache License 2.0
+fabric8-kubernetes-model-metrics,6.13.1,Apache License 2.0
+aws-java-sdk-for-aws-migration-hub,"1.12.793, 1.12.770, 1.11.892, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-eventbridge,"1.11.892, 1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+go-spew,"v1.1.1, 20180930-snapshot-d8f796af",ISC License
+rocksdb-jni,"7.1.2, 5.18.4",Apache License 2.0
+pip,"24.0, 9.0.1, 23.0.1",MIT License
+aws-java-sdk-for-aws-snow-device-management,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-polly,"1.11.892, 1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-recycle-bin,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-aws-data-exchange,"1.12.770, 1.11.892, 1.12.793, 1.12.124",Apache License 2.0
+json-java,"20180130, 20240303, 20231013, 20231013.0.0.redhat-00001","JSON License,Public Domain"
+klauspost-cpuid,v2.2.7,MIT License
+aws-java-sdk-for-amazon-codeguru-reviewer,"1.12.793, 1.12.124, 1.12.770, 1.11.892",Apache License 2.0
+sourcegraph-conc,v0.3.0,MIT License
+aws-java-sdk-for-aws-systems-manager-incident-manager,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+pekko-http-spray-json,1.0.0,Apache License 2.0
+aws-java-sdk-for-aws-step-functions,"1.12.124, 1.12.770, 1.11.892, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-resource-groups,"1.12.793, 1.11.892, 1.12.770, 1.12.124",Apache License 2.0
+aws-java-sdk-for-aws-cloud9,"1.12.770, 1.11.892, 1.12.793, 1.12.124",Apache License 2.0
+fabric8-kubernetes-model-extensions,6.13.1,Apache License 2.0
+aws-java-sdk-for-amazon-sagemaker-edge-manager,"1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-securityhub,"1.12.793, 1.12.124, 1.12.770, 1.11.892",Apache License 2.0
+aws-java-sdk-for-timestream-influxdb,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-the-aws-simple-systems-management-(ssm)-service,"1.12.124, 1.12.793, 1.11.892, 1.12.770",Apache License 2.0
+apache-commons-daemon,1.0.13,Apache License 2.0
+netty-transport-classes-io_uring,4.2.7.Final,Apache License 2.0
+asm-tree,"9.2, 5.0.3, 7.2, 6.2.1","BSD 3-clause ""New"" or ""Revised"" License"
+jnr-posix,"3.0.44, 3.1.15","GNU Lesser General Public License v2.1 or later,(GNU Lesser General Public License v2.1 or later OR GNU General Public License v2.0 or later OR Eclipse Public License 2.0),(GNU Lesser General Public License v2.1 only OR Eclipse Public License 1.0),Eclipse Public License 1.0"
+apache-kafka,"3.4.0, 2.6.1, 7.4.0-ccs, 7.6.0-ccs, 6.1.0-ccs, 6.0.0-ccs, 0.9.0.1, 3.9.1, 3.8.1, 3.6.0, 7.8.0-ccs, 3.0.1",Apache License 2.0
+docker-go,20160303-snapshot-d30aec9f,"BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-auto-scaling,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+k8s-io-klog,2.130.1,Apache License 2.0
+snakeyaml-engine,2.7,Apache License 2.0
+aws-java-sdk-for-amazon-workmail,"1.12.770, 1.12.124, 1.12.793, 1.11.892",Apache License 2.0
+org-junit-jupiter-junit-jupiter-api,"5.11.4, 5.10.2",Eclipse Public License 2.0
+akka-pki,2.6.14,Apache License 2.0
+scalatestcore,3.2.15,Apache License 2.0
+aws-java-sdk-for-cloudwatch-observability-access-manager,"1.12.770, 1.12.793",Apache License 2.0
+jettison-json-stax-implementation,1.5.4,Apache License 2.0
+fabric8-kubernetes-model-flowcontrol,6.13.1,Apache License 2.0
+hamcrest,"1.3, v2.2, 2.1","BSD 3-clause ""New"" or ""Revised"" License"
+jnr-constants,"0.10.3, 0.9.9, 0.9.12",Apache License 2.0
+modern-go-reflect2,v1.0.2,Apache License 2.0
+apache-avro,"1.9.2, 1.11.4",Apache License 2.0
+animal-sniffer-annotations,"1.21, 1.19, 1.17, 1.23",MIT License
+aws-java-sdk-for-amazon-workmail-message-flow,"1.12.124, 1.12.770, 1.11.892, 1.12.793",Apache License 2.0
+container-orchestrated-devices-container-device-interface,v0.7.2,Apache License 2.0
+kafka-connect-cassandra,1.2.0,Apache License 2.0
+aws-java-sdk-for-aws-outposts,"1.12.770, 1.12.793, 1.12.125, 1.12.124, 1.11.892",Apache License 2.0
+protobuf-java,"3.19.2, 3.21.1, 3.5.1, 3.25.5, 3.25.4, 3.17.3, 3.22.0, 3.21.7","BSD 3-clause ""New"" or ""Revised"" License"
+github-com-sagikazarmark-slog-shim,0.1.0,"BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-amazon-pinpoint-sms-voice-v2,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-chime-sdk-meetings,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+ldapsdk,4.0.11,UnboundID LDAP SDK Free Use License
+jetty-http2-common,11.0.24,(Apache License 2.0 AND Eclipse Public License 2.0)
+swagger-parser,1.0.38,Apache License 2.0
+aws-java-sdk-for-amazon-cloudwatch-application-signals,"1.12.793, 1.12.770",Apache License 2.0
+netty-codec-protobuf,4.2.7.Final,Apache License 2.0
+scalatest-mustmatchers,3.2.15,Apache License 2.0
+gin-contrib-gzip,v0.0.6,MIT License
+mapstructure,v1.5.0,MIT License
+aws-java-sdk-for-amazon-mechanical-turk-requester,"1.12.770, 1.12.793, 1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-amazon-s3-on-outposts,"1.12.124, 1.12.793, 1.12.770, 1.11.892",Apache License 2.0
+scalatest-propspec,3.2.15,Apache License 2.0
+aws-java-sdk-for-aws-migration-hub-config,"1.12.793, 1.12.124, 1.11.892, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-location,"1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+apache-commons-configuration,"1.7, 2.12.0, 1.10",Apache License 2.0
+aws-java-sdk-for-amazon-documentdb-with-mongodb-compatibility,"1.12.770, 1.12.124, 1.12.793, 1.11.892",Apache License 2.0
+aws-java-sdk-for-amazon-appstream,"1.12.124, 1.11.892, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-memorydb,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-codeguru-profiler,"1.12.793, 1.12.770, 1.11.892, 1.12.124",Apache License 2.0
+hashicorp-hcl,v1.0.1-vault-5,Mozilla Public License 2.0
+fabric8-kubernetes-model-common,6.13.1,Apache License 2.0
+go-inf-inf,v0.9.1,"BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-aws-app-runner,"1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-sso-oidc,"1.11.892, 1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-aws-iam,"1.12.793, 1.12.124, 1.12.770, 1.11.892",Apache License 2.0
+aws-java-sdk-for-amazon-voice-id,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-connect,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+scalatest-compatible,3.2.15,Apache License 2.0
+aws-java-sdk-for-amazon-forecast,"1.12.770, 1.12.793, 1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-mediatailor,"1.12.124, 1.12.770, 1.11.892, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-transfer-for-sftp,"1.11.892, 1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-data-lifecycle-manager,"1.11.892, 1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+chill-java,0.9.3,Apache License 2.0
+kerby-util,2.0.3,Apache License 2.0
+json-smart,2.5.0,Apache License 2.0
+cloudevents-json-jackson,2.3.0,Apache License 2.0
+docker-buildx,v0.15.1,Apache License 2.0
+kafka-schema-serializer,"7.8.0, 7.4.0, 6.1.0, 7.6.0, 6.0.0",Apache License 2.0
+aws-java-sdk-for-aws-audit-manager,"1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-lex-model-building,"1.12.124, 1.12.770, 1.11.892, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-cloudfront,"1.12.124, 1.11.892, 1.12.770, 1.12.793",Apache License 2.0
+scalactic,"3.0.8-RC2, 3.2.15",Apache License 2.0
+hikaricp,"2.4.12, 3.2.0",Apache License 2.0
+aws-java-sdk-for-amazon-chime-sdk-media-pipelines,"1.12.770, 1.12.793",Apache License 2.0
+error-prone-annotations,"2.18.0, 2.23.0, 2.3.4, 2.5.1, 2.26.1, 2.14.0, 2.2.0, 2.10.0, 2.1.2, 2.15.0",Apache License 2.0
+apache-hadoop-archives,3.3.4,Apache License 2.0
+apache-commons-net,3.9.0,Apache License 2.0
+aws-java-sdk-for-application-migration,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-aws-account,"1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+natefinch-lumberjack,v2.2.1,MIT License
+asm-analysis,"6.2.1, 5.0.1, 9.2, 7.2, 5.0.3","BSD 3-clause ""New"" or ""Revised"" License"
+jwt-core-impl,0.5.1,Apache License 2.0
+github-com-invopop-yaml,v0.3.1,"(MIT License AND BSD 3-clause ""New"" or ""Revised"" License)"
+aws-java-sdk-http-auth-event-stream,2.28.2,Apache License 2.0
+github-com-go-viper-mapstructure,"2.2.1, 2.0.0",MIT License
+opencensus-api,0.12.3,Apache License 2.0
+scala-java8-compat,"0.8.0, 0.9.1, 1.0.0, 1.0.2","BSD 3-clause ""New"" or ""Revised"" License,Apache License 2.0"
+packaging,17.1,"(BSD 2-clause ""Simplified"" License OR Apache License 2.0)"
+aws-java-sdk-for-amazon-kinesis-analytics,"1.11.892, 1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-fault-injection-simulator,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+github-com-adalogics-go-fuzz-headers,20230811-snapshot-ced1acdc,Apache License 2.0
+java-libraries-for-amazon-simple-workflow,1.11.22,Apache License 2.0
+apache-velocity,2.3,Apache License 2.0
+aws-java-sdk-for-amazon-connect-wisdom,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+errwrap,v1.1.0,Mozilla Public License 2.0
+swaggo-gin-swagger,v1.6.0,MIT License
+httplib-cachecontrol,0.11.7,Apache License 2.0
+jackson-modules-java8,"2.16.2, 2.11.4, 2.13.4, 2.14.3, 2.10.1, 2.10.2, 2.10.5",Apache License 2.0
+aws-java-sdk-for-aws-organizations,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+xdg-go-stringprep,v1.0.4,Apache License 2.0
+aws-java-sdk-for-amazon-bedrock-runtime,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-x-ray,"1.11.892, 1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-inspector-scan,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-cloudwatch-application-insights,"1.12.770, 1.12.124, 1.11.892, 1.12.793",Apache License 2.0
+core,"1.4.0, 3.2.0, 0.13.0, 1.1.1, 2.3.3",Apache License 2.0
+aws-java-sdk-for-the-aws-cloudhsm,"1.11.892, 1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-rds-data,"1.12.124, 1.11.892, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-amplify,"1.12.124, 1.12.793, 1.12.770, 1.11.892",Apache License 2.0
+dgryski-go-rendezvous,20200823-snapshot-9f7001d1,MIT License
+spf13-cast,"v1.7.1, v1.6.0",MIT License
+aws-java-sdk-for-aws-migration-hub-refactor-spaces,"1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+cenkalti-backoff,"v4.3.0, v1.1.0, v4.1.1",MIT License
+client_golang,v1.20.5,Apache License 2.0
+aws-java-sdk-core-protocols-json-utils,"2.28.2, 2.17.30",Apache License 2.0
+aws-java-sdk-for-aws-elemental-mediastore-data-plane,"1.11.892, 1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+aws-java-sdk-for-aws-global-accelerator,"1.11.892, 1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-cognito-identity-provider-service,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+gson-on-fire-,1.8.5,Apache License 2.0
+aws-java-sdk-for-aws-iot-1-click-devices,"1.12.793, 1.12.124, 1.11.892, 1.12.770",Apache License 2.0
+akka-stream,"2.5.14, 2.6.16, 2.6.14, 2.5.12",Apache License 2.0
+aws-java-sdk-for-aws-iot-events,"1.11.892, 1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-service-catalog-app-registry,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+akka-http,"10.2.7, 10.2.6, 10.1.3, 10.1.7",Apache License 2.0
+aws-java-sdk-for-aws-glue,"1.12.770, 1.12.793, 1.12.124, 1.11.892",Apache License 2.0
+github-com-josharian-native,b6b71def0850a2fbd7e6875f8e28217a48c5bcb4,MIT License
+golang-org-x-sys,"v0.29.0, 0.21.0","BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-aws-codeconnections,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-elastic-inference,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+jackson-datatype-jsr310,"2.10.1, 2.18.2, 2.17.1, 2.11.4, 2.14.3, 2.12.1, 2.13.3",Apache License 2.0
+aws-java-sdk-for-amazon-opensearch,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-iot-fleetwise,"1.12.793, 1.12.770",Apache License 2.0
+slf4j-simple-binding,"1.7.5, 1.7.32",MIT License
+apache-log4j,"2.17.1, 2.17.2",Apache License 2.0
+aws-java-sdk-for-amazon-ses,"1.12.770, 1.11.892, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-finspace-public-api,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+json-schema-validator,"4.0.0, 2.2.10",Apache License 2.0
+go-logr-stdr,v1.2.2,Apache License 2.0
+github-com-redis-go-redis,v9.7.0,"BSD 2-clause ""Simplified"" License"
+aws-java-sdk-for-amazon-simpledb,"1.11.892, 1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-route53-recovery-readiness,"1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+mockito_,"v2.28.2, 2.27.0",MIT License
+aws-java-sdk-for-amazon-pinpoint-email,"1.12.124, 1.12.793, 1.11.892, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-swf,"1.12.124, 1.12.793, 1.11.892, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-ec2-instance-connect,"1.12.124, 1.12.770, 1.12.793, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-support-app,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-iot-greengrass-v2,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+jakarta-activation,"1.1.1, 1.1ea, 1.1, 2.0.0","(Sun GPL With Classpath Exception v2.0 OR Common Development and Distribution License 1.0),Common Development and Distribution License 1.0,Common Development and Distribution License 1.1,BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-aws-iot-jobs-data-plane,"1.11.892, 1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+github-com-moby-locker,1.0.1,Apache License 2.0
+netty-transport-native-io_uring,4.2.7.Final,Apache License 2.0
+aws-java-sdk-for-amazon-comprehend,"1.12.793, 1.12.124, 1.12.770, 1.11.892",Apache License 2.0
+jersey-server,1.19.4,Common Development and Distribution License 1.1
+aws-java-sdk-for-aws-panorama,"1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-cleanrooms-ml,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-quicksight,"1.12.124, 1.12.770, 1.11.892, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-elemental-mediapackage-vod,"1.12.124, 1.12.770, 1.12.793, 1.11.892",Apache License 2.0
+jersey,"1.19.4, 2.32, 3.1.11, 2.31","Common Development and Distribution License 1.1,Public Domain,Eclipse Public License 2.0"
+github-com-grafana-pyroscope-go,godeltaprof/v0.1.9,Apache License 2.0
+aws-java-sdk-for-amazonapigatewayv2,"1.12.770, 1.12.124, 1.12.793, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-batch,"1.11.892, 1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+github-com-twitchyliquid64-golang-asm,v0.15.1,"BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-aws-cloudformation,"1.12.124, 1.11.892, 1.12.770, 1.12.793",Apache License 2.0
+fabric8-kubernetes-model-node,6.13.1,Apache License 2.0
+aws-java-sdk-for-aws-codecommit,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+akka-protobuf,"2.6.14, 2.5.14",Apache License 2.0
+aws-java-sdk-for-amazon-personalize-events,"1.12.793, 1.12.124, 1.11.892, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-ground-station,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-cloud-control-api,"1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+apache-commons-codec,"1.13, 1.15, 1.17.0, 1.17.1, 1.10",Apache License 2.0
+aws-java-sdk-for-amazon-guardduty,"1.12.770, 1.12.793, 1.12.124, 1.11.892",Apache License 2.0
+java-servlet-api,"3.1.0, 2.1","(Common Development and Distribution License 1.1 OR Sun GPL With Classpath Exception v2.0),Common Development and Distribution License 1.0"
+aws-java-sdk-for-amazon-machine-learning,"1.12.770, 1.12.793, 1.12.124, 1.11.892",Apache License 2.0
+metrics-core,"4.1.18, 4.1.12.1, 3.2.2, 3.0.2, 3.2.4",Apache License 2.0
+aws-java-sdk-for-amazon-rekognition,"1.12.793, 1.12.770, 1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-iot-events-data,"1.12.793, 1.12.770, 1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-license-manager-user-subscriptions,"1.12.793, 1.12.770",Apache License 2.0
+apache-httpcomponents-core,"4.4.9, 5.2, 4.4.11, 4.4.16, 4.4.13, 5.3.1, 5.2.1",Apache License 2.0
+scala-xml,"1.0.4, 2.1.0, 1.0.6, 1.1.0, 1.3.0","BSD 3-clause ""New"" or ""Revised"" License,Apache License 2.0"
+jsch,0.1.55,"BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-amazon-snowball,"1.11.892, 1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-codestar-connections,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+pekko-stream-typed,1.0.2,Apache License 2.0
+scalaz-core,"7.2.28, 7.2.27","BSD 3-clause ""New"" or ""Revised"" License"
+commons-cli,"1.9.0, 1.4",Apache License 2.0
+json4s-ast,"3.5.2, 3.6.2",Apache License 2.0
+asm,"6.2.1, 5.0.3, 9.3, 7.2, 9.2","BSD 3-clause ""New"" or ""Revised"" License"
+idna,3.4,"BSD 3-clause ""New"" or ""Revised"" License"
+scalamock-scalatest-support,3.6.0,MIT License
+scala-parser-combinators,"1.1.0, 1.0.6, 1.1.2","BSD 3-clause ""New"" or ""Revised"" License,Apache License 2.0"
+jackson-module-paranamer,"2.14.2, 2.15.0, 2.13.3, 2.18.3, 2.9.6",Apache License 2.0
+aws-java-sdk-for-synthetics,"1.12.124, 1.11.892, 1.12.770, 1.12.793",Apache License 2.0
+jakartaee-rest,"2.1.4, 3.1.0, 2.1.6",Eclipse Public License 2.0
+aws-java-sdk-for-amazon-timestream-query,"1.12.124, 1.12.793, 1.11.892, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-device-farm,"1.12.770, 1.12.124, 1.11.892, 1.12.793",Apache License 2.0
+perfmark-perfmark-api,"0.26.0, 0.25.0, 0.23.0",Apache License 2.0
+okhttp,"4.9.1, 4.9.3, 3.7.0, 4.12.0",Apache License 2.0
+go-playground-universal-translator,v0.18.1,MIT License
+scalatestmatcherscore,3.2.15,Apache License 2.0
+curator-client,5.2.0,Apache License 2.0
+aws-java-sdk-for-amazon-api-gateway,"1.11.892, 1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+aws-java-sdk-for-codeartifact,"1.11.892, 1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+apache-xml-graphics-commons,2.7,Apache License 2.0
+guava-internalfuturefailureaccess-and-internalfutures,"1.0.2, 1.0.1",Apache License 2.0
+pentaho-aggdesigner-algorithm,5.1.5-jhyde,Apache License 2.0
+aws-java-sdk-for-amazon-elastic-block-store,"1.12.124, 1.12.770, 1.11.892, 1.12.793",Apache License 2.0
+apache-commons-math,3.6.1,Apache License 2.0
+aws-java-sdk-for-aws-telco-network-builder,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-application-discovery-service,"1.12.124, 1.11.892, 1.12.770, 1.12.793",Apache License 2.0
+apache-hadoop-auth,3.4.2,Apache License 2.0
+gorilla-mux,v1.8.1,"BSD 3-clause ""New"" or ""Revised"" License"
+python-webencodings,0.5.1,"BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-aws-iot,"1.11.892, 1.12.793, 1.12.124, 1.12.126, 1.12.770",Apache License 2.0
+woodstox,5.4.0,Apache License 2.0
+colorama,"0.3.6, 0.4.6","BSD 3-clause ""New"" or ""Revised"" License"
+xml-commons-external-components-xml-apis-extensions,1.3.04,Apache License 2.0
+googleguava,"32.1.3-android, v31.1, 30.1, 33.2.1-jre, 20.0, 19.0, v31.0.1, v30.1.1, 27.0.1, v32.0.1",Apache License 2.0
+jackson-module-scala,"2.15.0, 2.17.2, 2.18.3, 2.9.6, 2.13.3, 2.14.2",Apache License 2.0
+scala-compiler,"2.10.6, 2.12.6, 2.12.12","BSD 3-clause ""New"" or ""Revised"" License,Apache License 2.0"
+aws-java-sdk-for-aws-gamelift,"1.11.892, 1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+mozilla-rhino,1.7.7.1,Mozilla Public License 2.0
+lmdbjava,0.7.0,Apache License 2.0
+io-confluent-common-utils,"6.1.0, 6.0.0, 7.4.0, 7.6.0, 7.8.0",Apache License 2.0
+aws-java-sdk-for-aws-robomaker,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+xalan-java-serializer,2.7.1,Apache License 2.0
+aws-java-sdk-for-aws-elemental-mediaconvert,"1.12.770, 1.12.793, 1.11.892, 1.12.124",Apache License 2.0
+jersey-servlet,1.19.4,Common Development and Distribution License 1.1
+aws-java-sdk-for-aws-resource-access-manager,"1.12.793, 1.11.892, 1.12.770, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-honeycode,"1.11.892, 1.12.124",Apache License 2.0
+fabric8-kubernetes-model-events,6.13.1,Apache License 2.0
+hdrhistogram,2.1.12,"(BSD 2-clause ""Simplified"" License OR Creative Commons Zero v1.0 Universal OR Public Domain)"
+go-logr-logr,v1.4.2,Apache License 2.0
+akka-discovery-kubernetes-api,"1.1.1, 1.1.3",Apache License 2.0
+github-com-moby-docker-image-spec,v1.3.1,Apache License 2.0
+jackson-module-afterburner,2.16.2,Apache License 2.0
+netty-transport-native-unix-common,"4.1.108.Final, 4.1.119.Final, 4.2.7.Final",Apache License 2.0
+aws-java-sdk-for-amazon-forecast-query,"1.12.770, 1.11.892, 1.12.793, 1.12.124",Apache License 2.0
+client-java-proto,13.0.0,Apache License 2.0
+netty-resolver-dns-macos,"4.1.119.Final, 4.1.100.Final, 4.2.7.Final",Apache License 2.0
+aws-java-sdk-for-aws-wafv2,"1.12.793, 1.11.892, 1.12.124, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-eks-auth,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-iot-fleet-hub,"1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-codestar-notifications,"1.11.892, 1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-single-sign-on-admin,"1.12.124, 1.12.770, 1.11.892, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-cloudwatch-internet-monitor,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-sagemaker-geospatial-capabilities,"1.12.770, 1.12.793",Apache License 2.0
+xdg-go-scram,v1.1.2,Apache License 2.0
+json-common,3.2.0,Apache License 2.0
+aws-java-sdk-for-managed-streaming-for-kafka,"1.12.793, 1.12.124, 1.11.892, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-sagemaker-feature-store-runtime,"1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+joda-convert,1.6,Apache License 2.0
+json-unit-core,2.40.1,Apache License 2.0
+org-apache-xmlgraphics-batik-shared-resources,1.16,Apache License 2.0
+apache-cassandra-java-driver-object-mapper-runtime,4.19.0,Apache License 2.0
+aws-java-sdk-for-amazon-elastic-transcoder,"1.11.892, 1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-b2b-data-interchange,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-network-manager,"1.12.770, 1.12.793, 1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-amazon-qldb,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+jetty-alpn-client,11.0.24,(Apache License 2.0 AND Eclipse Public License 2.0)
+aws-java-sdk-for-aws-supply-chain,"1.12.793, 1.12.770",Apache License 2.0
+originext-common,1.0.0,GNU General Public License v3.0 or later
+jnr-ffi,"2.1.7, 2.1.9, 2.2.11",Apache License 2.0
+acarl005-stripansi,20180116-snapshot-5a71ef0e,MIT License
+hadoop-yarn-server-web-proxy,3.3.4,Apache License 2.0
+msg-simple,1.1,Apache License 2.0
+websocket-api,1.1,"Common Development and Distribution License 1.1,(GNU General Public License v2.0 w/Classpath exception OR Common Development and Distribution License 1.1)"
+docker,v27.1.1,Apache License 2.0
+netty-transport-classes-kqueue,"4.2.7.Final, 4.1.119.Final, 4.1.100.Final",Apache License 2.0
+kerby-kerb-util,2.0.3,Apache License 2.0
+aws-java-sdk-for-mailmanager,"1.12.793, 1.12.770",Apache License 2.0
+easymockobjenesis,"3.4, 2.6",Apache License 2.0
+play-datacommons,2.4.0-M1,Apache License 2.0
+jackson-annotations,"2.18.3, 2.14.3, 2.16.0, 2.17.1, 2.17.2, 2.16.2, 2.15.0, 2.13.4, 2.9.6, 2.14.0-rc1, 2.14.2, 2.18.2",Apache License 2.0
+aws-java-sdk-for-amazon-neptune,"1.12.124, 1.12.770, 1.12.793, 1.11.892",Apache License 2.0
+scalatest-diagrams,3.2.15,Apache License 2.0
+aws-java-sdk-for-aws-backup,"1.11.892, 1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-comprehend-medical,"1.12.124, 1.11.892, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-finspace-user-environment-management,"1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+org-xmlunit-xmlunit-placeholders,2.10.0,Apache License 2.0
+scalatest-core,3.2.15,Apache License 2.0
+aws-java-sdk-for-amazon-elasticsearch-service,"1.12.793, 1.12.770, 1.12.134, 1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-private-5g,"1.12.770, 1.12.793",Apache License 2.0
+jackson-module-jaxb-annotations,"2.12.1, 2.12.7",Apache License 2.0
+aws-java-sdk-for-aws-opsworks,"1.12.793, 1.12.124, 1.12.770, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-systems-manager-for-sap,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-personalize-runtime,"1.12.770, 1.11.892, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-aws-cost-explorer,"1.11.892, 1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-support,"1.12.124, 1.12.793, 1.12.770, 1.11.892",Apache License 2.0
+scalatestfeaturespec,3.2.15,Apache License 2.0
+googlegson,"2.9.0, 2.8.9, 2.10.1, 2.7, 2.10",Apache License 2.0
+aws-java-sdk-for-awskendrafrontend,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+zinc,0.3.15,Apache License 2.0
+netty-codec-redis,"4.2.7.Final, 4.1.100.Final, 4.1.119.Final",Apache License 2.0
+mitchellh-go-homedir,v1.1.0,MIT License
+aws-java-sdk-for-aws-auto-scaling-plans,"1.11.892, 1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+sparsebitset,1.2,Apache License 2.0
+macro-compat,1.1.1,Apache License 2.0
+secure-systems-lab-go-securesystemslib,v0.4.0,MIT License
+jnr-a64asm,1.0.0,Apache License 2.0
+github-com-distribution-reference,v0.6.0,Apache License 2.0
+aws-lambda-java-core-library,1.2.1,Apache License 2.0
+aws-java-sdk-checksums-spi,2.28.2,Apache License 2.0
+swagger-core,"1.5.21, 1.6.3, 1.5.20",Apache License 2.0
+okhttp-logging-interceptor,"4.9.3, 4.9.1",Apache License 2.0
+hadoop-yarn-server-resourcemanager,3.4.2,Apache License 2.0
+aws-java-sdk-for-amazon-transcribe,"1.11.892, 1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-appfabric,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-opsworks-for-chef-automate,"1.12.793, 1.12.124, 1.11.892, 1.12.770",Apache License 2.0
+python-certifi,2018.1.18,Mozilla Public License 2.0
+aws-java-sdk-for-aws-cloudtrail-data,"1.12.793, 1.12.770",Apache License 2.0
+mattn-go-shellwords,v1.0.12,MIT License
+mgutz-ansi,20170206-snapshot-9520e82c,MIT License
+akka-cluster-custom-downing,0.0.21,Apache License 2.0
+aws-java-sdk-for-aws-marketplace-entitlement,"1.12.770, 1.11.892, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-aws-waf,"1.12.124, 1.12.770, 1.11.892, 1.12.793",Apache License 2.0
+jetty-jakarta-servlet-api-and-schemas-for-jpms-and-osgi,5.0.2,Apache License 2.0
+scalautils,3.2.15,Apache License 2.0
+alicebob-gopher-json,20230218-snapshot-906a9b01,The Unlicense
+in-toto-in-toto-golang,v0.5.0,Apache License 2.0
+play-json,"3.0.4, 2.9.2, 2.4.0-M1, 2.8.1",Apache License 2.0
+logback,"1.3.12, 1.2.13, 1.2.10",(GNU Lesser General Public License v2.1 only OR Eclipse Public License 1.0)
+apache-commons-collections,"4.5.0, 3.2.2, 4.4, 4.5.0-M3, 4.1",Apache License 2.0
+aws-java-sdk-for-amazon-cognito-sync,"1.12.770, 1.12.124, 1.12.793, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-resource-explorer,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-glue-databrew,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+junit,"4.12, 4.13.2",Eclipse Public License 1.0
+scalatest-flatspec,3.2.15,Apache License 2.0
+aws-java-sdk-for-amazonmwaa,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+envoyproxy-go-control-plane,v0.13.1,Apache License 2.0
+zstd-jni,"1.4.4-7, 1.5.6-4","BSD 2-clause ""Simplified"" License"
+aws-java-sdk-for-amazon-connect-contact-lens,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+io-grpc-grpc-netty,"1.45.1, 1.13.1, 1.48.1",Apache License 2.0
+golang-sync,"v0.10.0, v0.11.0","BSD 3-clause ""New"" or ""Revised"" License"
+grpc-go,"v1.65.0, v1.69.2",Apache License 2.0
+gin-contrib-sse,v0.1.0,MIT License
+frankban-quicktest,v1.14.6,MIT License
+golang-stats,v0.7.1,MIT License
+aws-java-sdk-for-aws-code-build,"1.12.793, 1.12.770, 1.11.892, 1.12.124",Apache License 2.0
+config,7.8.0,Apache License 2.0
+io-grpc-grpc-context,"1.51.0, 1.45.1, 1.48.1, 1.13.1, 1.64.0, 1.51.1",Apache License 2.0
+aws-java-sdk-for-amazon-kendra-intelligent-ranking,"1.12.793, 1.12.770",Apache License 2.0
+swagger-jaxrs,"1.5.20, 1.6.3",Apache License 2.0
+aws-java-sdk-for-access-analyzer,"1.12.124, 1.11.892, 1.12.770, 1.12.793",Apache License 2.0
+envoyproxy-protoc-gen-validate,1.1.0,Apache License 2.0
+aws-java-sdk-for-amazon-fraud-detector,"1.11.892, 1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+akka-testkit,"2.6.14, 2.6.16, 2.5.21",Apache License 2.0
+aws-java-sdk-for-aws-marketplace-catalog,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-emr-containers,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+apache-httpclient,"4.5.14, 4.5.13, 5.4.1, 3.1, 5.2.1, 4.5.5, 4.5.6, 4.5.9",Apache License 2.0
+kafka-avro-serializer,"7.8.0, 6.0.0, 7.6.0, 6.1.0, 7.4.0",Apache License 2.0
+aws-java-sdk-for-amazon-bedrock,"1.12.770, 1.12.793",Apache License 2.0
+akka-management-cluster-http,"1.1.1, 1.1.3",Apache License 2.0
+mwitkow-go-proto-validators,v0.3.2,Apache License 2.0
+aws-java-sdk-for-aws-billing-and-cost-management-data-exports,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-sns,"1.12.793, 1.12.770, 1.12.124, 1.11.892",Apache License 2.0
+kerby-asn1-project,2.0.3,Apache License 2.0
+fabric8-kubernetes-model-core,6.13.1,Apache License 2.0
+aws-java-sdk-for-amazon-qldb-session,"1.12.770, 1.12.124, 1.11.892, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-healthlake,"1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-elemental-mediastore,"1.12.793, 1.12.124, 1.12.770, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-certificate-manager,"1.11.892, 1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+akka-management-pki,"1.1.1, 1.1.3",Apache License 2.0
+kafka-schema-converter,"7.6.0, 7.8.0",Apache License 2.0
+aws-java-sdk-for-aws-pricing,"1.12.793, 1.12.770, 1.11.892, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-connect-participant,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+fabric8-kubernetes-model-batch,6.13.1,Apache License 2.0
+aws-java-sdk-for-inspector2,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-resilience-hub,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-cloudwatch-rum,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+confluent-kafka-go,v2.8.0,Apache License 2.0
+io-grpc-grpc-services,1.51.0,Apache License 2.0
+aws-java-sdk-for-amazon-ec2,"1.11.892, 1.12.123, 1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+netty-codec-smtp,"4.2.7.Final, 4.1.100.Final, 4.1.119.Final",Apache License 2.0
+prometheus-common,0.55.0,Apache License 2.0
+javax-annotation-api,1.3.2,"(GNU General Public License v2.0 w/Classpath exception OR Common Development and Distribution License 1.1),Common Development and Distribution License 1.1"
+netty-resolver-dns-classes-macos,"4.1.100.Final, 4.2.7.Final, 4.1.119.Final",Apache License 2.0
+go-openapi-jsonpointer,v0.21.0,Apache License 2.0
+aws-java-sdk-for-aws-appconfig-data,"1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+jakartaeevalidation,"1.1.0, 3.0.0",Apache License 2.0
+golang-protobuf,"v1.36.2, v1.34.2, v1.5.4","BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-the-amazon-ec2-container-registry,"1.11.892, 1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+json4s-jackson,"3.6.2, 3.5.2",Apache License 2.0
+aws-java-sdk-for-amazon-connect-customer-profiles,"1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+jackson-dataformat-csv,"2.10.2, 2.13.4, 2.16.0, 2.14.1, 2.14.2",Apache License 2.0
+prometheus-java-span-context-supplier-opentelemetry-agent,0.11.0,Apache License 2.0
+allure-junit-4,2.13.2,Apache License 2.0
+netty-codec-http3,4.2.7.Final,Apache License 2.0
+mattn-go-runewidth,v0.0.15,MIT License
+kotlin-stdlib-common,"1.4.10, 1.9.10",Apache License 2.0
+asm-commons,"5.0.3, 6.2.1, 9.2, 5.0.2, 7.2","BSD 3-clause ""New"" or ""Revised"" License"
+fabric8-kubernetes-model-autoscaling,6.13.1,Apache License 2.0
+aws-java-sdk-for-aws-s3-control,"1.12.770, 1.12.124, 1.11.892, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-lookout-for-vision,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-payment-cryptography-data-plane,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-cloudwatch-evidently,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+squareokio,"2.8.0, 3.6.0",Apache License 2.0
+aws-java-sdk-for-amazon-interactive-video,"1.12.793, 1.12.770, 1.12.124, 1.11.892",Apache License 2.0
+open-telemetry-opentelemetry-go-contrib,"instrumentation/google.golang.org/grpc/otelgrpc/v0.55.0, instrumentation/net/http/httptrace/otelhttptrace/v0.46.1, instrumentation/net/http/otelhttp/v0.54.0",Apache License 2.0
+aws-java-sdk-for-aws-iot-secure-tunneling,"1.12.793, 1.12.770, 1.11.892, 1.12.124",Apache License 2.0
+go-toml,"v2.2.2, v1.9.5, v2.2.3",MIT License
+prometheus-java-simpleclient-common,0.11.0,Apache License 2.0
+jsonschema2pojo-core,1.0.2,Apache License 2.0
+javax-inject-javax-inject,1,Apache License 2.0
+aws-java-sdk-for-aws-datasync,"1.12.793, 1.12.770, 1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-storage-gateway,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+grpc-gateway,v2.22.0,"BSD 3-clause ""New"" or ""Revised"" License"
+jakarta-mail,"1.5.1, 1.4.3, 1.6.2","Common Development and Distribution License 1.1,Common Development and Distribution License 1.0"
+grpc-java,"1.48.1, 1.51.0, 1.45.1, 1.64.0, 1.51.1, 1.13.1",Apache License 2.0
+docker-registry,2.8.3,Apache License 2.0
+snakeyaml,"1.30, 2.0, 1.18",Apache License 2.0
+apache-log4j-slf4j-binding,"2.17.2, 2.17.1",Apache License 2.0
+aws-java-sdk-for-aws-iot-analytics,"1.12.793, 1.12.770, 1.11.892, 1.12.124",Apache License 2.0
+microsoft-hcsshim,v0.11.5,MIT License
+jsoniter-go,v1.1.12,MIT License
+gradle-scalastyle-plugin_2-11,1.0.1,"Apache License 2.0,Unknown License"
+apache-avro-ipc-jetty,1.11.4,Apache License 2.0
+netty-project,"4.1.119.Final, 4.1.68.Final, 3.7.0.Final, 4.1.108, 4.1.100.Final, 4.2.7.Final",Apache License 2.0
+aws-java-sdk-for-tax-settings,"1.12.770, 1.12.793",Apache License 2.0
+jetty-http2-hpack,11.0.24,(Apache License 2.0 AND Eclipse Public License 2.0)
+jffi-java-foreign-function-interface,"1.2.16, 1.2.18, 1.2.15, 1.3.9",Apache License 2.0
+aws-java-sdk-for-aws-codestar,"1.11.892, 1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+joda-time,"2.12.7, 2.9.7, 2.10.5, 2.8.1",Apache License 2.0
+io-grpc-grpc-protobuf-lite,"1.45.1, 1.13.1, 1.48.1, 1.51.0, 1.51.1",Apache License 2.0
+aws-java-sdk-for-amazon-glacier,"1.12.793, 1.12.124, 1.12.770, 1.11.892",Apache License 2.0
+gomega,v1.36.2,MIT License
+aws-java-sdk-for-aws-resource-groups-tagging-api,"1.12.124, 1.12.793, 1.12.770, 1.11.892",Apache License 2.0
+scalariform,0.2.0,MIT License
+opensaml-2-0,2.6.4,Apache License 2.0
+aws-java-sdk-for-amazon-redshift,"1.11.892, 1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+prometheus-java-span-context-supplier-common,0.11.0,Apache License 2.0
+aws-java-sdk-for-aws-elemental-medialive,"1.12.793, 1.12.770, 1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-marketplace-agreement,"1.12.793, 1.12.770",Apache License 2.0
+mattn-go-isatty,v0.0.20,MIT License
+akka-http-core,"10.2.7, 10.2.6, 10.1.7",Apache License 2.0
+aws-java-sdk-for-firewall-management,"1.12.124, 1.12.793, 1.11.892, 1.12.770",Apache License 2.0
+kafka-connect-avro-data,"6.1.0, 7.8.0, 7.6.0",Apache License 2.0
+aws-java-sdk-for-aws-re-post-private,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-migration-hub-orchestrator,"1.12.793, 1.12.770",Apache License 2.0
+compiler-interface,0.13.15,"BSD 3-clause ""New"" or ""Revised"" License"
+ssl-config-core,"0.4.2, 0.2.3",Apache License 2.0
+aws-java-sdk-for-amazonmq,"1.12.793, 1.11.892, 1.12.770, 1.12.124",Apache License 2.0
+github-com-containerd-platforms,0.2.1,Apache License 2.0
+scalatest-featurespec,3.2.15,Apache License 2.0
+aws-java-sdk-for-aws-iot-core-device-advisor,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+akka-http-spray-json,"10.2.7, 10.1.7, 10.2.6",Apache License 2.0
+aws-java-sdk-for-amazon-verified-permissions,"1.12.793, 1.12.770",Apache License 2.0
+gin-gonic-gin,v1.10.0,MIT License
+aws-java-sdk-for-amazon-vpc-lattice,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-application-auto-scaling,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-documentdb-elastic-clusters,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-workspaces,"1.12.770, 1.11.892, 1.12.793, 1.12.124",Apache License 2.0
+apache-avro-ipc,1.11.4,Apache License 2.0
+prometheus-java-span-context-supplier-opentelemetry,0.11.0,Apache License 2.0
+javassist,"rel_3_25_0_ga, 3.21.0, 3.12.1",Apache License 2.0
+aws-java-sdk-for-amazon-appconfig,"1.12.124, 1.12.793, 1.12.770, 1.11.892",Apache License 2.0
+aws-java-sdk-for-amazon-dynamodb-accelerator-(dax),"1.12.793, 1.12.124, 1.12.770, 1.11.892",Apache License 2.0
+aws-java-sdk-for-braket,"1.11.892, 1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-lex-runtime-v2,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+kataras-survey,v2.3.7,MIT License
+testng,7.0.0,Apache License 2.0
+jose4j,"0.9.3, jose4j-0.7.8",Apache License 2.0
+akka-cluster-sharding,2.6.14,Apache License 2.0
+mongodb-reactive-streams-driver,5.5.1,Apache License 2.0
+scalatest-freespec,3.2.15,Apache License 2.0
+kryo-shaded,4.0.2,"BSD 3-clause ""New"" or ""Revised"" License"
+jul-to-slf4j-bridge,2.0.0,MIT License
+aws-java-sdk-for-amazon-cloudwatch-network-monitor,"1.12.793, 1.12.770",Apache License 2.0
+kubernetes-client-api,13.0.0,Apache License 2.0
+aws-java-sdk-for-aws-lambda,"1.12.793, 1.12.770, 1.12.124, 1.11.892",Apache License 2.0
+com-google-api-grpc-proto-google-common-protos,"2.0.1, 1.0.0, 2.9.0",Apache License 2.0
+netty-codec-marshalling,4.2.7.Final,Apache License 2.0
+apache-yetus-audience-annotations,"0.13.0, 0.5.0, 0.12.0",Apache License 2.0
+containerd-console,v1.0.4,Apache License 2.0
+googleapis-go-genproto,"20241209-snapshot-e6fa225c, 20250106-snapshot-5f5ef82d, 20241015-snapshot-796eee8c, 20240528-snapshot-53152733, 20240325-snapshot-454cdb8f",Apache License 2.0
+morikuni-aec,v1.0.0,MIT License
+akka-persistence,2.6.14,Apache License 2.0
+jacoco,"0.8.5, 0.8.2","Eclipse Public License 2.0,Eclipse Public License 1.0"
+netty-transport-native-kqueue,"4.1.119.Final, 4.2.7.Final, 4.1.100.Final",Apache License 2.0
+aws-java-sdk-for-amazon-prometheus,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+fast-serialization,2.50,Apache License 2.0
+valyala-bytebufferpool,v1.0.0,MIT License
+aws-java-sdk-for-amazon-lookout-for-metrics,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-awsserverlessapplicationrepository,"1.12.793, 1.11.892, 1.12.124, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-license-manager-linux-subscriptions,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-pinpoint,"1.12.124, 1.11.892, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-lightsail,"1.12.793, 1.11.892, 1.12.770, 1.12.124",Apache License 2.0
+jerseyguice,1.19.4,Common Development and Distribution License 1.1
+aws-java-sdk-for-amazon-q-connect,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-codedeploy,"1.11.892, 1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-sagemaker,"1.12.793, 1.11.892, 1.12.124, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-fsx,"1.12.793, 1.12.124, 1.11.892, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-mediaconnect,"1.12.770, 1.11.892, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-service-quotas,"1.11.892, 1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+gorilla-websocket,1.5.1,"BSD 2-clause ""Simplified"" License"
+zookeeper-client-wrapper,2.2.0,Apache License 2.0
+org-jetbrains-kotlin-kotlin-stdlib-jdk7,"1.9.10, 1.4.10",Apache License 2.0
+javamail-api-pop3-provider,1.6.2,Common Development and Distribution License 1.1
+apache-commons-text,"1.13.1, 1.10.0",Apache License 2.0
+oklog-run,v1.1.0,Apache License 2.0
+jawn,0.13.0,Apache License 2.0
+aws-java-sdk-for-aws-marketplace-commerce-analytics,"1.12.770, 1.12.124, 1.11.892, 1.12.793",Apache License 2.0
+bouncy-castle-pkix-cms-eac-tsp-pkcs-ocsp-cmp-and-crmf-apis,"1.69, 1.60, 1.66",MIT License
+tklauser-numcpus,v0.6.1,Apache License 2.0
+specs,0.13.15,"BSD 3-clause ""New"" or ""Revised"" License"
+go-check-check,20201130-snapshot-10cb9826,"BSD 2-clause ""Simplified"" License"
+fabric8-kubernetes-model-apps,6.13.1,Apache License 2.0
+aws-java-sdk-for-aws-health-apis-and-notifications,"1.12.124, 1.12.793, 1.11.892, 1.12.770",Apache License 2.0
+go-playground-validator,v10.22.1,MIT License
+aws-java-sdk-for-aws-route53-recovery-control-config,"1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+apache-httpmime,4.5.1,Apache License 2.0
+akka-serialization-jackson,2.6.14,Apache License 2.0
+scalatestrefspec,3.2.15,Apache License 2.0
+jnr-x86asm,1.0.2,MIT License
+apache-log4j-api,"2.17.2, 2.17.1",Apache License 2.0
+webjars-locator,0.46,MIT License
+jsonreference,v0.21.0,Apache License 2.0
+apache-commons-compress,"1.26.0, 1.19, 1.26.2, 1.21",Apache License 2.0
+aws-java-sdk-http-auth-spi,2.28.2,Apache License 2.0
+prometheus-java-simpleclient,0.11.0,Apache License 2.0
+aws-java-sdk-for-amazon-managed-blockchain-query,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-personalize,"1.12.124, 1.12.793, 1.11.892, 1.12.770",Apache License 2.0
+asn-one,0.5.0,Apache License 2.0
+aws-java-sdk-for-aws-well-architected-tool,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+parboiled,2.5.0,Apache License 2.0
+openconfig-grpctunnel,20220819-snapshot-6f5422b8,Apache License 2.0
+github-com-shoenig-go-m1cpu,v0.1.6,Mozilla Public License 2.0
+aws-java-sdk-for-aws-arc-zonal-shift,"1.12.770, 1.12.793",Apache License 2.0
+compose-spec-compose-go,v2.1.3,Apache License 2.0
+kafka-connect-avro-converter,"7.8.0, 7.6.0, 6.1.0",Apache License 2.0
+jackson-databind,"2.14.2, 2.14.3, 2.17.2, 2.18.3, 2.13.4.2, 2.17.1, 2.15.0, 2.9.6, 2.16.2",Apache License 2.0
+github-com-yusufpapurcu-wmi,v1.2.3,MIT License
+aws-java-sdk-for-amazon-chime-sdk-identity,"1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+go-shellquote,20180428-snapshot-95032a82,MIT License
+aws-java-sdk-for-amazon-clouddirectory,"1.12.793, 1.12.770, 1.12.124, 1.11.892",Apache License 2.0
+pure-java-lz4-and-xxhash,1.8.0,Apache License 2.0
+org-jetbrains-kotlin-kotlin-stdlib-jdk8,"1.4.10, 1.9.10",Apache License 2.0
+aws-java-sdk-for-aws-launch-wizard,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-athena,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-route53-recovery-cluster,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+python-lockfile,0.12.2,Expat License
+opencensus,v0.4.1,Apache License 2.0
+dnsjava,3.6.1,"BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-amazon-textract,"1.12.770, 1.12.793, 1.11.892, 1.12.124",Apache License 2.0
+felixge-httpsnoop,v1.0.4,MIT License
+ion-java,1.0.2,Apache License 2.0
+aws-java-sdk-for-amazon-sqs,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+aspectj-weaver,1.8.10,Eclipse Public License 1.0
+microsoft-jdbc-driver-for-sql-server,6.2.1.jre7,MIT License
+py-distro,1.8.0,MIT License
+netty-codec-native-quic,4.2.7.Final,Apache License 2.0
+apache-xerces2-j,2.12.2,Apache License 2.0
+apache-parquet-encodings,1.12.3,Apache License 2.0
+github-com-containerd-log,v0.1.0,Apache License 2.0
+apache-cassandra-java-driver-core,4.19.0,Apache License 2.0
+io-grpc-grpc-netty-shaded,1.48.1,Apache License 2.0
+aws-java-sdk-for-amazon-kinesis-video-webrtc-storage,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-application-cost-profiler,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+jetty-java-based-http-1-x-http-2-servlet-websocket-server,"11.0.24, 9.4.57.v20241219",Apache License 2.0
+aws-java-sdk-for-aws-codepipeline,"1.11.892, 1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-elastic-container-service-for-kubernetes,"1.12.770, 1.11.892, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-aws-signer,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+apache-zookeeper-jute,"3.8.0, 3.9.4",Apache License 2.0
+golang-github-docker-go-connections-dev,v0.5.0,Apache License 2.0
+html5lib-python,0.999999999,MIT License
+apache-zookeeper,"3.4.14, 3.4.6, 3.9.4, 3.8.0",Apache License 2.0
+swagger-akka-http,"2.6.0, 1.6.0, 1.0.0",Apache License 2.0
+aws-java-sdk-for-schemas,"1.12.770, 1.11.892, 1.12.793, 1.12.124",Apache License 2.0
+metrics-core-library,2.2.0,Apache License 2.0
+go-flowrate,20140419-snapshot-cca7078d,"BSD 3-clause ""New"" or ""Revised"" License"
+pekko-http-core,1.0.0,Apache License 2.0
+joor,0.9.10,Apache License 2.0
+go-ole-go-ole,v1.2.6,MIT License
+aws-java-sdk-for-amazon-inspector-service,"1.12.793, 1.12.770, 1.12.124, 1.11.892",Apache License 2.0
+elasticsearch-kubernetes-cloud-plugin,6.13.1,Apache License 2.0
+swagger-integration-jakarta,2.1.11,Apache License 2.0
+scalatest-wordspec,3.2.15,Apache License 2.0
+scalap,2.12.12,Apache License 2.0
+hashicorp-go-hclog,v1.6.3,MIT License
+aws-java-sdk-for-aws-cost-and-usage-report,"1.12.770, 1.12.793, 1.11.892, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-devops-guru,"1.12.124, 1.12.793, 1.12.770, 1.12.123",Apache License 2.0
+aws-java-sdk-for-amazonconnectcampaign,"1.12.793, 1.12.770",Apache License 2.0
+apache-poi-ooxml-schemas,"4.1.2, 3.17",Apache License 2.0
+aws-java-sdk-for-aws-proton,"1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-amplify-ui-builder,"1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+akka-http-testkit,10.2.6,Apache License 2.0
+go-task-slim-sprig,v3.0.0,MIT License
+fabric8-kubernetes-httpclient-okhttp,6.13.1,Apache License 2.0
+asm-util,"9.2, 5.0.3","BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-amazon-cloudsearch,"1.12.124, 1.12.770, 1.12.793, 1.11.892",Apache License 2.0
+scalatest,"3.0.5, 3.2.15, 3.0.6",Apache License 2.0
+andybalholm-brotli,v1.1.1,MIT License
+aws-java-sdk-for-amazon-workdocs,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+scalatest-shouldmatchers,3.2.15,Apache License 2.0
+aws-java-sdk-for-aws-control-tower,"1.12.793, 1.12.770",Apache License 2.0
+xeipuuv-gojsonschema,v1.2.0,Apache License 2.0
+argparse4j,0.7.0,MIT License
+aws-java-sdk-for-amazon-timestream-write,"1.11.892, 1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+aws-sdk-for-java-models,"1.12.124, 1.12.793, 1.12.770, 1.11.892",Apache License 2.0
+openconfig-gnmi,"v0.10.0, v0.14.0",Apache License 2.0
+aws-java-sdk-for-managed-streaming-for-kafka-connect,"1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+aws-java-sdk-for-agents-for-amazon-bedrock-runtime,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-third-party-jackson-core,"2.28.2, 2.17.30",Apache License 2.0
+scala-collection-compat,"2.1.6, 2.6.0",Apache License 2.0
+curator-framework,5.2.0,Apache License 2.0
+aws-java-sdk-for-aws-lex,"1.12.793, 1.12.770, 1.12.124, 1.11.892",Apache License 2.0
+ehcache,3.3.1,Apache License 2.0
+aws-java-sdk-for-amazon-elastic-file-system,"1.12.124, 1.12.770, 1.12.793, 1.11.892",Apache License 2.0
+re2j,1.6,"BSD 3-clause ""New"" or ""Revised"" License"
+rest-assured-common,3.2.0,Apache License 2.0
+fabric8-kubernetes-model-resource,6.13.1,Apache License 2.0
+akka-slf4j,2.6.14,Apache License 2.0
+github-com-cloudwego-iasm,v0.2.0,Apache License 2.0
+docker-go-units,v0.5.0,Apache License 2.0
+jquery,3.5.1,MIT License
+jersey-json,1.22.0,Common Development and Distribution License 1.1
+aws-java-sdk-for-qapps,"1.12.770, 1.12.793",Apache License 2.0
+jackson-dataformat-binary,"2.18.3, 2.17.2, 2.12.7, 2.6.7, 2.11.4, 2.12.6",Apache License 2.0
+extended-mockito,2.28.2.1,Mozilla Public License 2.0
+swagger-jaxrs2-jakarta,2.1.11,Apache License 2.0
+webjars-locator-core,0.52,MIT License
+tyrus-standalone-client,1.9,"(Common Development and Distribution License 1.1 OR Sun GPL With Classpath Exception v2.0),Common Development and Distribution License 1.1"
+aws-java-sdk-identity-spi,2.28.2,Apache License 2.0
+aws-event-stream,1.0.1,Apache License 2.0
+io-grpc-grpc-stub,"1.51.0, 1.13.1, 1.45.1, 1.48.1",Apache License 2.0
+aws-java-sdk-for-amazon-macie,"1.12.124, 1.11.892",Apache License 2.0
+aws-java-sdk-for-amazon-cognito-identity,"1.11.892, 1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+moby-sys,"symlink/v0.2.0, sequential/v0.5.0, user/v0.1.0, signal/v0.7.0, mountinfo/v0.7.1",Apache License 2.0
+googlei18n-libphonenumber,8.0.0,Apache License 2.0
+fabric8-kubernetes-model-admission-registration-authentication-and-authorization,6.13.1,Apache License 2.0
+h2-database-engine,2.2.224,(Mozilla Public License 2.0 OR Eclipse Public License 1.0)
+akka-parsing,"10.2.6, 10.1.7, 10.2.7",Apache License 2.0
+owasp-antisamy,1.7.3,"BSD 3-clause ""New"" or ""Revised"" License"
+github-com-sagikazarmark-locafero,"v0.7.0, v0.4.0",MIT License
+jackson-jaxrs-base,"2.12.7, 2.12.1",Apache License 2.0
+aws-java-sdk-for-aws-mobile,"1.12.124, 1.11.892",Apache License 2.0
+slf4j-nop,1.7.25,MIT License
+swag,"v0.23.1, v0.23.0",Apache License 2.0
+aws-java-sdk-for-aws-free-tier,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-aws-backup-gateway,"1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+org-apache-xmlgraphics-batik-constants,1.16,Apache License 2.0
+aws-java-sdk-for-emr-serverless,"1.12.793, 1.12.770",Apache License 2.0
+not-yet-commons-ssl,0.3.9,Apache License 2.0
+pathjson,2.9.0,Apache License 2.0
+getkin-kin-openapi,"v0.128.0, v0.132.0",MIT License
+aws-java-sdk-for-pcaconnectorad,"1.12.770, 1.12.793",Apache License 2.0
+ronmamoreflections,0.9.11,Do What The F*ck You Want To Public License
+aws-java-sdk-for-amazon-detective,"1.11.892, 1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-lookout-for-equipment,"1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+aws-java-sdk-core-protocols-aws-json-protocol,"2.28.2, 2.17.30",Apache License 2.0
+aws-java-sdk-for-amazon-omics,"1.12.770, 1.12.793",Apache License 2.0
+esapi-java-legacy,2.5.2.0,"BSD 3-clause ""New"" or ""Revised"" License"
+tryvium-travels-memongo,v0.12.0,MIT License
+aws-java-sdk-for-iam-roles-anywhere,"1.12.793, 1.12.770",Apache License 2.0
+xom,1.3.8,GNU Lesser General Public License v2.1 or later
+aws-java-sdk-for-route-53-profiles,"1.12.770, 1.12.793",Apache License 2.0
+gogo-protobuf,v1.3.2,"BSD 3-clause ""New"" or ""Revised"" License"
+go-ansiterm,20210617-snapshot-d185dfc1,MIT License
+aws-java-sdk-for-awsdeadlinecloud,"1.12.793, 1.12.770",Apache License 2.0
+aop-alliance-(java-j2ee-aop-standard),1.0,Public Domain
+com-bakdata-fluent-kafka-streams-tests-schema-registry-mock,2.16.0,MIT License
+aws-java-sdk-for-amazon-codeguru-security,"1.12.770, 1.12.793",Apache License 2.0
+akka-management,"1.1.3, 1.1.1",Apache License 2.0
+aws-java-sdk-for-aws-budgets,"1.11.892, 1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+grpc-ecosystem-go-grpc-middleware,v1.4.0,Apache License 2.0
+handoff,0.3.4,Apache License 2.0
+netty-codec-compression,4.2.7.Final,Apache License 2.0
+aws-java-sdk-for-amazon-workspaces-thin-client,"1.12.770, 1.12.793",Apache License 2.0
+xeipuuv-gojsonpointer,20190904-snapshot-02993c40,Apache License 2.0
+github-com-apapsch-go-jsonmerge,v2.0.0,MIT License
+hashicorp-go-cleanhttp,v0.5.2,Mozilla Public License 2.0
+github-com-power-devops-perfstat,20210106-snapshot-5aafc221,MIT License
+aws-java-sdk-for-aws-entityresolution,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-aws-sso-identity-store,"1.12.793, 1.12.124, 1.12.770, 1.11.892",Apache License 2.0
+spray-json,"v1.3.6, v1.3.5",Apache License 2.0
+github-com-moby-spdystream,v0.4.0,Apache License 2.0
+kafka-schema-registry-client,"7.6.0, 6.1.0, 7.4.0, 6.0.0, 7.8.0",Apache License 2.0
+reactive-streams-jvm,"1.0.3, 1.0.4, 1.0.2","Creative Commons Zero v1.0 Universal,MIT No Attribution"
+aws-java-sdk-for-aws-clean-rooms,"1.12.770, 1.12.793",Apache License 2.0
+acobaugh-osrelease,20181218-snapshot-a93a0a55,"BSD 3-clause ""New"" or ""Revised"" License"
+log-redactor,"1.0.12, 1.0.11",Apache License 2.0
+byte-buddy-agent,1.9.10,Apache License 2.0
+aws-java-sdk-for-aws-greengrass,"1.12.793, 1.11.892, 1.12.770, 1.12.124",Apache License 2.0
+kubernetes-api,v0.31.1,Apache License 2.0
+prometheus-client_model,v0.6.1,Apache License 2.0
+buger-goterm,v1.0.4,MIT License
+apache-parquet-format-structures,1.12.3,Apache License 2.0
+openws,"1.5.4, 1.5.1",Apache License 2.0
+tklauser-go-sysconf,v0.3.12,"BSD 3-clause ""New"" or ""Revised"" License"
+play-iteratees,2.4.0-M1,Apache License 2.0
+go-openapi-spec,v0.20.4,Apache License 2.0
+aws-java-sdk-for-awsbillingconductor,"1.12.770, 1.12.793",Apache License 2.0
+github-com-cncf-xds,20240423-snapshot-555b57ec,Apache License 2.0
+client-go,v0.31.1,Apache License 2.0
+golang-github-spf13-pflag-dev,"v1.0.6, v1.0.5","BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-private-ca-connector-for-scep,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-worklink,"1.12.770, 1.12.793, 1.12.124, 1.11.892",Apache License 2.0
+log-redactor-metrics,"1.0.12, 1.0.11",Apache License 2.0
+org-junit-platform-junit-platform-commons,"1.10.2, 1.11.4",Eclipse Public License 2.0
+json-schema-core,1.2.10,Apache License 2.0
+io-grpc-grpc-testing,1.13.1,Apache License 2.0
+kerby-config,2.0.3,Apache License 2.0
+datastax-java-driver-for-apache-cassandra-object-mapping,3.11.5,Apache License 2.0
+json4s-native,3.5.2,Apache License 2.0
+aws-java-sdk-for-aws-elemental-mediapackage-v2,"1.12.770, 1.12.793",Apache License 2.0
+apache-geronimo-jcache-spec-1-0,1.0-alpha-1,Apache License 2.0
+google-gofuzz,v1.2.0,Apache License 2.0
+uber-go-atomic,v1.11.0,MIT License
+spotbugs-annotations,3.1.9,GNU Lesser General Public License v2.1 or later
+swagger-models-jakarta,2.1.11,Apache License 2.0
+kerby-pkix-project,2.0.3,Apache License 2.0
+mailru-easyjson,"v0.9.0, v0.7.7",MIT License
+htmlunit-nekohtml,3.1.0,Apache License 2.0
+go-viper,"v1.19.0, v1.20.1",MIT License
+openzipkin-zipkin-go,v0.4.1,Apache License 2.0
+aws-java-sdk-for-amazon-neptunedata,"1.12.770, 1.12.793",Apache License 2.0
+google-go-cmp,v0.6.0,"BSD 3-clause ""New"" or ""Revised"" License"
+jakarta-annotations-api,"2.1.1, 1.3.5",Eclipse Public License 2.0
+r3labs-sse,20210224-snapshot-26fe8047,Mozilla Public License 2.0
+aws-java-sdk-for-aws-artifact,"1.12.793, 1.12.770",Apache License 2.0
+rogpeppe-go-internal,"1.9.0, v1.13.1","BSD 3-clause ""New"" or ""Revised"" License"
+bytedance-sonic,"v1.11.6, loader/v0.1.1",Apache License 2.0
+scalatest-matchers-core,3.2.15,Apache License 2.0
+scalatestfunsuite,3.2.15,Apache License 2.0
+aws-java-sdk-for-aws-iot-things-graph,"1.12.770, 1.12.793, 1.11.892, 1.12.124",Apache License 2.0
+aws-sdk-for-java-bom,"1.12.770, 1.12.122",Apache License 2.0
+psf-requests,2.18.4,Apache License 2.0
+mohae-deepcopy,20170929-snapshot-c48cc78d,MIT License
+reactor-core,3.5.0,Apache License 2.0
+aws-java-sdk-for-amazon-translate,"1.12.793, 1.12.124, 1.12.770, 1.11.892",Apache License 2.0
+docker-org,v0.8.0,MIT License
+masterminds-semver,v3.2.1,MIT License
+github-com-tilt-dev-fsnotify,20220602-snapshot-fff9c274,"BSD 3-clause ""New"" or ""Revised"" License"
+minlog,"1.3.0, 1.3.1","BSD 3-clause ""New"" or ""Revised"" License"
+google-android-annotations-library,4.1.1.4,Apache License 2.0
+jaxb-osgi-bundle-for-glassfish-v3,2.2.10,"Common Development and Distribution License 1.1,(Common Development and Distribution License 1.1 OR Sun GPL With Classpath Exception v2.0)"
+fsnotify-fsevents,v0.2.0,"BSD 3-clause ""New"" or ""Revised"" License"
+golang-org-x-oauth2,v0.23.0,"BSD 3-clause ""New"" or ""Revised"" License"
+google-pprof,20241210-snapshot-40e02aab,Apache License 2.0
+netty-handler-ssl-ocsp,"4.2.7.Final, 4.1.119.Final, 4.1.100.Final",Apache License 2.0
+hashicorp-go-version,v1.7.0,Mozilla Public License 2.0
+project-lombok,1.18.24,MIT License
+curvesapi,"1.04, 1.06","BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-aws-elemental-mediapackage,"1.12.770, 1.12.124, 1.12.793, 1.11.892",Apache License 2.0
+aws-java-sdk-for-aws-cloudtrail,"1.12.770, 1.12.793, 1.11.892, 1.12.124",Apache License 2.0
+generic,0.13.0,Apache License 2.0
+aws-java-sdk-http-auth-aws,2.28.2,Apache License 2.0
+go-uber-org-goleak,v1.3.0,MIT License
+mdlayher-genetlink,v1.0.0,MIT License
+scalatestfreespec,3.2.15,Apache License 2.0
+robfig-cron,v3.0.1,MIT License
+swagger-core-jakarta,2.1.11,Apache License 2.0
+cloudevents-api,2.3.0,Apache License 2.0
+javax-inject-1-as-osgi-bundle,2.6.1,Eclipse Public License 2.0
+aws-java-sdk-for-amazon-kinesis-video-signaling-channels,"1.11.892, 1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+swagger-models,"1.5.20, 1.6.3, 1.5.21",Apache License 2.0
+jakarta-activation-api,1.2.1,"BSD 3-clause ""New"" or ""Revised"" License"
+golang-org-x-tools,v0.29.0,"BSD 3-clause ""New"" or ""Revised"" License"
+hadoop-yarn-server-common,3.3.4,Apache License 2.0
+aws-java-sdk-for-amazon-interactive-video-service-chat,"1.12.770, 1.12.793",Apache License 2.0
+aws-java-sdk-for-amazon-augmented-ai-runtime,"1.11.892, 1.12.770, 1.12.124, 1.12.793",Apache License 2.0
+k8s-io-kube-openapi,20240903-snapshot-9e1beecb,Apache License 2.0
+fabric8-kubernetes-model-coordination,6.13.1,Apache License 2.0
+org-apache-xmlgraphics-batik-i18n,1.16,Apache License 2.0
+apache-avro-mapred-api,1.11.4,Apache License 2.0
+go-restful,v3.12.1,MIT License
+aws-java-sdk-for-aws-elastic-beanstalk,"1.12.793, 1.11.892, 1.12.770, 1.12.124",Apache License 2.0
+openconfig-working-group,v4.3.0,Apache License 2.0
+akka-stream-kafka,2.0.3,Apache License 2.0
+go-kit-kit,v0.13.0,MIT License
+jaxb-api,"2.2.11, 2.3.0, 2.2.12","(GNU General Public License v2.0 w/Classpath exception OR Common Development and Distribution License 1.1),Common Development and Distribution License 1.1"
+moby-buildkit,v0.14.1,Apache License 2.0
+github-com-samber-lo,v1.51.0,MIT License
+docker-java-shaded,"3.0.14, 3.1.0-rc-5",Apache License 2.0
+kryo,5.6.2,"BSD 3-clause ""New"" or ""Revised"" License"
+github-com-munnerz-goautoneg,20191010-snapshot-a7dc8b61,"BSD 3-clause ""New"" or ""Revised"" License"
+jwt-core,0.5.1,Apache License 2.0
+apache-hadoop-distributed-copy,3.3.4,Apache License 2.0
+aws-java-sdk-for-aws-data-pipeline,"1.12.124, 1.12.793, 1.12.770, 1.11.892",Apache License 2.0
+apache-commons-digester,1.8.1,Apache License 1.1
+aws-java-sdk-for-amazon-datazone,"1.12.770, 1.12.793",Apache License 2.0
+kubernetes-apiextensions-apiserver,v0.31.1,Apache License 2.0
+bsm-ginkgo,v2.12.0,MIT License
+pekko-parsing,1.0.0,Apache License 2.0
+apache-hadoop-annotations,3.4.2,Apache License 2.0
+aws-java-sdk-for-aws-control-catalog,"1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-workspaces-web,"1.12.124, 1.12.793, 1.12.770",Apache License 2.0
+aws-java-sdk-for-amazon-interactive-video-service-realtime,"1.12.770, 1.12.793",Apache License 2.0
+docker-cli,v27.0.3,Apache License 2.0
+akka-management-cluster-bootstrap,"1.1.1, 1.1.3",Apache License 2.0
+aws-java-sdk-for-amazon-managed-blockchain,"1.11.892, 1.12.793, 1.12.124, 1.12.770",Apache License 2.0
+apache-parquet-hadoop,1.12.3,Apache License 2.0
+hashicorp-go-retryablehttp,0.7.7,Mozilla Public License 2.0
+kylebanks-depth,v1.2.1,MIT License
+jaxb-codemodel,2.6,Common Development and Distribution License 1.1
+allure-model-integration,2.13.2,Apache License 2.0
+json4s-core,"3.6.2, 3.5.2",Apache License 2.0
+gopacket,v1.1.19,"BSD 3-clause ""New"" or ""Revised"" License"
+agrona,1.9.0,Apache License 2.0
+fabric8-kubernetes-model-scheduling,6.13.1,Apache License 2.0
+fabric8-kubernetes-model-storage-class,6.13.1,Apache License 2.0
+akka-cluster-tools,2.6.14,Apache License 2.0
+apache-hadoop-shaded-protobuf,1.4.0,Apache License 2.0
+converter-jackson,2.9.0,Apache License 2.0
+aws-java-sdk-for-amazon-appintegrations,"1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+oklog-oklog,v0.3.2,Apache License 2.0
+javamail-api-smtp-provider,1.6.2,Common Development and Distribution License 1.1
+exp,"20230727-snapshot-d63ba01a, 20250106-snapshot-7588d65b","BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-amazon-sagemaker-runtime,"1.11.892, 1.12.770, 1.12.793, 1.12.124",Apache License 2.0
+jcommander-library,"1.72, 1.78",Apache License 2.0
+go-programming-language,20251121-snapshot,"BSD 3-clause ""New"" or ""Revised"" License"
+mongodb-mongo-go-driver,v1.17.2,Apache License 2.0
+an-implementation-of-the-apache-cassandra®-native-protocol,1.5.1,Apache License 2.0
+byte-buddy,byte-buddy-1.9.10,Apache License 2.0
+goccy-go-json,v0.10.5,MIT License
+apache-santuario-(java),2.1.7,Apache License 2.0
+notary,v0.7.0,Apache License 2.0
+scalamock-core,3.6.0,MIT License
+json4s-scalap,"3.6.2, 3.5.2",Apache License 2.0
+apache-commons-pool,1.6,Apache License 2.0
+youmark-pkcs8,20240726-snapshot-a2c0da24,MIT License
+kubernetes-sigs-structured-merge-diff,v4.4.1,Apache License 2.0
+github-com-aws-smithy-go,v1.21.0,Apache License 2.0
+x448-float16,v0.8.4,MIT License
+fatih-color,v1.16.0,MIT License
+datastax-java-driver-for-apache-cassandra-core,3.11.5,Apache License 2.0
+asm-based-accessors-helper-used-by-json-smart,2.5.0,Apache License 2.0
+aws-java-sdk-for-the-amazon-ec2-container-service,"1.12.793, 1.12.770, 1.11.892, 1.12.124",Apache License 2.0
+pekko-connectors-kafka,1.0.0,Apache License 2.0
+mergo,"v0.3.16, v1.0.0","BSD 3-clause ""New"" or ""Revised"" License"
+golang-org-x-mod,v0.22.0,"BSD 3-clause ""New"" or ""Revised"" License"
+prometheus-java-simpleclient-pushgateway,0.11.0,Apache License 2.0
+jsimonetti-rtnetlink,20210525-snapshot-4cc83657,MIT License
+jcttools,v4.0.5,Apache License 2.0
+aws-java-sdk-for-redshift-serverless,"1.12.793, 1.12.770",Apache License 2.0
+jsonschemavalidator,1.5.4,Apache License 2.0
+godebug,v1.1.0,Apache License 2.0
+open-telemetry-opentelemetry-go-instrumentation,sdk/v1.1.0,Apache License 2.0
+jline-java-console-input-library,"0.9.94, 2.12.1","BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-aws-lake-formation,"1.11.892, 1.12.124, 1.12.770, 1.12.793",Apache License 2.0
+kr-pretty,v0.3.1,MIT License
+netty-transport-classes-epoll,"4.1.119.Final, 4.2.7.Final",Apache License 2.0
+go-googlesource-com-arch,v0.8.0,"BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-aws-health-imaging,"1.12.793, 1.12.770",Apache License 2.0
+ipaddress,5.5.1,Apache License 2.0
+eiannone-keyboard,20220611-snapshot-0d226195,MIT License
+opencensus-contrib-grpc-metrics,0.12.3,Apache License 2.0
+aws-java-sdk-for-cost-optimization-hub,"1.12.793, 1.12.770",Apache License 2.0
+github-com-planetscale-vtprotobuf,20240319-snapshot-0393e58b,"BSD 3-clause ""New"" or ""Revised"" License"
+pekko-stream,1.0.2,Apache License 2.0
+miekg-pkcs11,v1.1.1,"BSD 3-clause ""New"" or ""Revised"" License"
+pmezard-go-difflib,"1.0.0, 20190219-snapshot-5d4384ee","BSD 3-clause ""New"" or ""Revised"" License,Apache License 2.0"
+github-com-oapi-codegen-runtime,v1.1.1,Apache License 2.0
+apache-parquet-avro,1.12.3,Apache License 2.0
+google-gnxi,20210716-snapshot-cb5c5575,Apache License 2.0
+golang-mock,v1.6.0,Apache License 2.0
+apache-parquet-jackson,1.13.1,Apache License 2.0
+serialx-hashring,20200716-snapshot-22c0c7ab,MIT License
+aws-java-sdk-metrics-interface,"2.17.30, 2.28.2",Apache License 2.0
+aws-java-sdk-for-aws-database-migration-service,"1.12.770, 1.11.892, 1.12.124, 1.12.793",Apache License 2.0
+mdlayher-netlink,v1.4.1,MIT License
+classgraph,4.8.147,MIT License
+aws-java-sdk-checksums,2.28.2,Apache License 2.0
+scalatestmustmatchers,3.2.15,Apache License 2.0
+docker-go-metrics,v0.0.1,Apache License 2.0
+uuid,3.2,MIT License
+apache-parquet-common,1.12.3,Apache License 2.0
+kotlin,"1.4.10, 1.8.10",Apache License 2.0
+pekko-actor-typed,1.0.2,Apache License 2.0
+spf13-afero,"v1.12.0, v1.11.0",Apache License 2.0
+golang-org-x-crypto,v0.32.0,"BSD 3-clause ""New"" or ""Revised"" License"
+hadoop-yarn-common,3.4.2,Apache License 2.0
+aws-java-sdk-for-opensearch-service-serverless,"1.12.793, 1.12.770",Apache License 2.0
+valyala-fasthttp,v1.58.0,MIT License
+mongo-kafka,2.0.1,Apache License 2.0
+kerby-kerb-core,2.0.3,Apache License 2.0
+aws-java-sdk-for-amazon-sagemaker-metrics,"1.12.770, 1.12.793",Apache License 2.0
+gabriel-vasile-mimetype,1.4.3,MIT License
+shibumi-go-pathspec,v1.3.0,"(Apache License 2.0 AND BSD 3-clause ""New"" or ""Revised"" License)"
+scalatestflatspec,3.2.15,Apache License 2.0
+aws-java-sdk-for-amazon-opensearch-ingestion,"1.12.770, 1.12.793",Apache License 2.0
+jcip-annotations-under-apache-license,1.0-1,Apache License 2.0
+jakarta-xml-bind-jakarta-xml-bind-api,"2.3.2, 3.0.0",Eclipse Distribution License - v 1.0
+aws-java-sdk-for-amazon-simple-email,"1.12.124, 1.11.892, 1.12.793, 1.12.770",Apache License 2.0
+fabric8-kubernetes-model-policy,6.13.1,Apache License 2.0
+akka-discovery,2.6.14,Apache License 2.0
+aws-java-sdk-for-trustedadvisor-public-api,"1.12.770, 1.12.793",Apache License 2.0
+go-playground-locales,v0.14.1,MIT License
+golang-org-x-net,"v0.34.0, v0.26.0","BSD 3-clause ""New"" or ""Revised"" License"
+gopsutil,v3.23.12,"BSD 3-clause ""New"" or ""Revised"" License"
+netty-codec-classes-quic,4.2.7.Final,Apache License 2.0
+mockito-scala-scalatest,1.4.0-beta.7,MIT License
+akka-http-cors,0.3.0,Apache License 2.0
+swagger-annotations-jakarta,2.1.11,Apache License 2.0
+containerd-continuity,v0.4.3,Apache License 2.0
+apache-cassandra-java-driver-guava-shaded-dep,4.19.0,Apache License 2.0
+aws-java-sdk-for-aws-marketplace-deployment,"1.12.770, 1.12.793",Apache License 2.0
+go-ini-ini,1.67.0,Apache License 2.0
+microsoft-go-winio,v0.6.2,MIT License
+testcontainers-go,"v0.33.0, modules/compose/v0.33.0",MIT License
+client-java-api,13.0.0,Apache License 2.0
+go-opentelemetry-io-proto,otlp/v1.3.1,Apache License 2.0
+tonistiigi-vt100,20240514-snapshot-90bafcd6,MIT License
+jonboulle-clockwork,v0.4.0,Apache License 2.0
+moby-term,v0.5.0,Apache License 2.0
+pypi-setuptools,39.0.1,MIT License
+jarcoal-httpmock,v1.3.0,MIT License
+json-simple,1.1,Apache License 2.0
+scalatest-refspec,3.2.15,Apache License 2.0
+protocol-buffer-java-util-package,3.21.7,"BSD 3-clause ""New"" or ""Revised"" License"
+aws-java-sdk-for-aws-systems-manager-incident-manager-contacts,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+golang-org-x-time,v0.6.0,"BSD 3-clause ""New"" or ""Revised"" License"
+fabric8-kubernetes-model-sigs-gateway-api,6.13.1,Apache License 2.0
+gogo-googleapis,v1.4.1,Apache License 2.0
+hashicorp-go-multierror,v1.1.1,Mozilla Public License 2.0
+renekroon-ttlcache,v2.11.0,MIT License
+akka-cluster-metrics,2.6.14,Apache License 2.0
+mattn-go-colorable,0.1.13,"(MIT License AND BSD 3-clause ""New"" or ""Revised"" License)"
+minimal-json,0.9.5,MIT License
+leodido-go-urn,v1.4.0,MIT License
+jackson-coreutils,1.9,Apache License 2.0
+github-com-google-cel-spec,v0.15.0,Apache License 2.0
+godoc-text,v0.2.0,MIT License
+aws-java-sdk-for-aws-mainframe-modernization-application-testing,"1.12.793, 1.12.770",Apache License 2.0
+akka-remote,2.6.14,Apache License 2.0
+jackson-module-parameter-names,2.11.4,Apache License 2.0
+fabric8-kubernetes-model-discovery,6.13.1,Apache License 2.0
+sbt-interface,0.13.15,"BSD 3-clause ""New"" or ""Revised"" License"
+skratchdot-open-golang,20200116-snapshot-eef84239,MIT License
+cespare-xxhash,v2.3.0,MIT License
+scalatestpropspec,3.2.15,Apache License 2.0
+akka-cluster,2.6.14,Apache License 2.0
+googleuuid,v1.6.0,"BSD 3-clause ""New"" or ""Revised"" License"
+skuber,2.6.4,Apache License 2.0
+leveldbjni-all,1.8,"BSD 3-clause ""New"" or ""Revised"" License"
+apache-poi,"3.17, 4.1.2",Apache License 2.0
+docker-compose,2.28.1,Apache License 2.0
+cpuguy83-dockercfg,v0.3.1,MIT License
+mongo-scala-bson,5.5.1,Apache License 2.0
+scalatestfunspec,3.2.15,Apache License 2.0
+hadoop-yarn-registry,3.3.4,Apache License 2.0
+org-xmlunit-xmlunit-core,2.10.0,"BSD 3-clause ""New"" or ""Revised"" License"
+containerd-containerd,v1.7.18,Apache License 2.0
+mockito-scala,1.4.0-beta.7,MIT License
+caffeine-cache,3.1.1,Apache License 2.0
+beorn7-perks,v1.0.1,MIT License
+aws-java-sdk-for-awsmainframemodernization,"1.12.770, 1.12.793",Apache License 2.0
+pekko-slf4j,1.0.2,Apache License 2.0
+tonistiigi-fsutil,20240424-snapshot-91a3fc46,MIT License
+hadoop-yarn-api,3.4.2,Apache License 2.0
+aspect-for-allure-junit-4-listener,2.13.2,Apache License 2.0
+pekko-connectors-mongodb,1.0.2,Apache License 2.0
+klauspost-compress,v1.17.11,"BSD 3-clause ""New"" or ""Revised"" License"
+stretchr-objx,v0.5.2,MIT License
+org-opentest4j-opentest4j,1.3.0,Apache License 2.0
+tagsoup,1.2.1,Apache License 2.0
+aws-java-sdk-for-amazon-keyspaces,"1.12.793, 1.12.770",Apache License 2.0
+javax-ws-rs-api,2.1.1,Eclipse Public License 2.0
+com-bakdata-fluent-kafka-streams-tests-schema-registry-mock-junit5,2.16.0,MIT License
+aws-java-sdk-for-amazon-security-lake,"1.12.770, 1.12.793",Apache License 2.0
+apache-hadoop,3.4.2,Apache License 2.0
+modern-go-concurrent,20180305-snapshot-bacd9c7e,Apache License 2.0
+brianvoe-gofakeit,v6.28.0,MIT License
+apache-hadoop-hdfs-client,3.4.2,Apache License 2.0
+pekko-actor,1.0.2,Apache License 2.0
+golang-glog,v1.2.1,Apache License 2.0
+jetbrains-annotations,13.0,Apache License 2.0
+github-com-mdlayher-socket,20210307-snapshot-262dc998,MIT License
+github-com-gofrs-flock,v0.8.1,"BSD 3-clause ""New"" or ""Revised"" License"
+bson-record-codec,5.5.1,Apache License 2.0
+akka-coordination,2.6.14,Apache License 2.0
+apache-sling,0.1.0,Apache License 2.0
+rest-assured,3.2.0,Apache License 2.0
+pekko-protobuf-v3,1.0.2,Apache License 2.0
+slick,3.3.3,"BSD 2-clause ""Simplified"" License"
+slick-hikaricp,3.3.3,"BSD 2-clause ""Simplified"" License"
+swagger-ui,4.5.2,Apache License 2.0
+google-shlex,20191202-snapshot-e7afc7fb,Apache License 2.0
+ugorji's-go,codec/v1.2.12,MIT License
+handlebars-java,4.3.1,Apache License 2.0
+uri-template,0.9,Apache License 2.0
+pkg-errors,v0.9.1,"BSD 2-clause ""Simplified"" License"
+cats-core,2.1.0,MIT License
+containerd-typeurl,v2.1.1,Apache License 2.0
+junit-composite-runner,0.1.0,MIT License
+compiler-com-github-spullara-mustache-java-compiler,0.9.10,Apache License 2.0
+netty-codec-base,4.2.7.Final,Apache License 2.0
+scalatest-funsuite,3.2.15,Apache License 2.0
+moby-patternmatcher,v0.6.0,Apache License 2.0
+io-opentracing-contrib-specialagent-opentracing-specialagent,1.0.0,Apache License 2.0
+aws-java-sdk-for-amazon-chime-sdk-messaging,"1.12.793, 1.12.770, 1.12.124",Apache License 2.0
+aws-java-sdk-for-amazon-lex-model-building-v2,"1.12.124, 1.12.127, 1.12.770, 1.12.793",Apache License 2.0
+pekko-http,1.0.0,Apache License 2.0
+mongo-java-driver,5.5.1,Apache License 2.0
+josharian-intern,v1.0.0,MIT License
+akka-stream-alpakka-csv,3.0.4,Apache License 2.0
+go-logfmt-logfmt,v0.6.0,MIT License
+patrickmn-go-cache,2.1.0,MIT License
+opencontainers-go-digest,1.0.0,Apache License 2.0
+github-com-containerd-ttrpc,v1.2.5,Apache License 2.0
+chill,0.9.3,Apache License 2.0
+subosito-gotenv,v1.6.0,MIT License
+lz4java,"1.8.0, 1.7.1",Apache License 2.0
+batik-xml-utility-library,1.16,Apache License 2.0
+jmx_prometheus_javaagent,"0.16.1, 0.18.0, 0.11.0",Apache License 2.0
+golang-snappy-go-dev,v0.0.4,"BSD 3-clause ""New"" or ""Revised"" License"
+github-com-swaggo-files,v1.0.1,MIT License
+tonistiigi-units,20180711-snapshot-6950e57a,MIT License
+json-web-token-support-for-the-jvm,0.9.1,Apache License 2.0
+yuin-gopher-lua,v1.1.1,MIT License
+aws-java-sdk-for-amazon-connect-cases,"1.12.793, 1.12.770",Apache License 2.0
+cats-macros,2.1.0,MIT License
+apache-tika,"1.20, 3.2.2",Apache License 2.0
+apache-maven,3.8.6,Apache License 2.0
+miniredis,v2.34.0,MIT License
+cloudevents-core,2.3.0,Apache License 2.0
+aws-java-sdk-for-qbusiness,"1.12.770, 1.12.793",Apache License 2.0
+apache-cassandra-java-driver-query-builder,4.19.0,Apache License 2.0
+slf4j-log4j-12-binding,1.7.6,MIT License
+go-co-op-gocron,v1.30.2,MIT License
+logrusorgru-aurora,v2.0.3,Do What The F*ck You Want To Public License
+jackson-jaxrs-json-provider,"2.12.1, 2.12.7",Apache License 2.0
+beanshell,2.0b6,Apache License 2.0
+lift-json,3.4.3,Apache License 2.0
+github-com-cloudwego-base64x,v0.1.4,Apache License 2.0
+lift-json-scalaz7,3.4.3,Apache License 2.0
+cats-kernel,2.1.0,MIT License
+aws-java-sdk-services-aws-kms,"2.28.2, 2.17.30",Apache License 2.0
+go-test-deep,v1.0.8,MIT License
+onsi-ginkgo,v2.22.2,MIT License
+scalatestwordspec,3.2.15,Apache License 2.0
+aws-java-sdk-http-auth,2.28.2,Apache License 2.0
+jetty-alpn-jdk9-client-implementation,11.0.24,(Apache License 2.0 AND Eclipse Public License 2.0)
+kafka-connect-rest-api-client,"1.0.3, 4.0.4",MIT License
+mongo-scala-driver,5.5.1,Apache License 2.0
+prometheus-procfs,v0.15.1,Apache License 2.0
+prometheus-java-simpleclient-httpserver,0.11.0,Apache License 2.0
+golang-github-magiconair-properties,v1.8.7,"BSD 2-clause ""Simplified"" License"
+google-gnostic-models,v0.6.8,Apache License 2.0
+fabric8-kubernetes-model-certificates,6.13.1,Apache License 2.0
+paranamer-core,2.8,"BSD 3-clause ""New"" or ""Revised"" License"
+zkclient,0.7,Apache License 2.0
+nimbus-jose-jwt,9.37.2,Apache License 2.0
+jsr311-api,1.1.1,Common Development and Distribution License 1.0
+fabric8-kubernetes-model-networking,6.13.1,Apache License 2.0
+kubernetes-sigs-gateway-api,v1.1.0,Apache License 2.0
+kubernetes-apimachinery,v0.31.1,Apache License 2.0
+scalatest-funspec,3.2.15,Apache License 2.0
+circe,3.2.0,Apache License 2.0
+allure-testng,2.13.2,Apache License 2.0
+inconshreveable-mousetrap,v1.1.0,Apache License 2.0
+fabric8-kubernetes-model-rbac,6.13.1,Apache License 2.0
+python-wheel,0.30.0,MIT License
+xmlbeans,3.1.0,Apache License 2.0
+aws-java-sdk-endpoints-spi,2.28.2,Apache License 2.0
+allure-java-commons,2.13.2,Apache License 2.0
+commons-lang3,3.14.0-r2,Apache License 2.0
+sirupsen-logrus,v1.9.3,MIT License
+fabric8-kubernetes-java-client-api,6.13.1,Apache License 2.0
+handlebars-helpers,4.3.1,Apache License 2.0
+apache-groovy,2.4.15,Apache License 2.0
+go-playground-assert,v2.2.0,MIT License
+github-com-rivo-uniseg,v0.2.0,MIT License
+jetty-alpn-server,11.0.24,(Apache License 2.0 AND Eclipse Public License 2.0)
+swaggo-swag,v1.8.12,MIT License
+openconfig-goyang,v1.4.5,Apache License 2.0
+go-uber-org-multierr,v1.11.0,MIT License
+numbers,0.13.0,Apache License 2.0
+findbugs-jsr305,3.0.2,Apache License 2.0
+mockito-scala-specs2,1.4.0-beta.7,MIT License
+akka-distributed-data,2.6.14,Apache License 2.0
+datastax-java-driver-for-apache-cassandra-extras,3.11.5,Apache License 2.0
+github-com-xdg-go-pbkdf2,1.0.0,Apache License 2.0
+aws-java-sdk-retries,2.28.2,Apache License 2.0
+github-com-lufia-plan9stats,20211012-snapshot-39d0f177,"BSD 3-clause ""New"" or ""Revised"" License"
+json-path,3.2.0,Apache License 2.0
+xml-path,3.2.0,Apache License 2.0
+urllib3,1.22,MIT License
+k8s-io-utils,20240921-snapshot-49e7df57,Apache License 2.0
+xeipuuv-gojsonreference,20180127-snapshot-bd5ef7bd,Apache License 2.0
+aws-java-sdk-retries-api,2.28.2,Apache License 2.0
+stax2-api,4.2,"BSD 2-clause ""Simplified"" License"
+guava-listenablefuture-only,9999.0-empty-to-avoid-conflict-with-guava,Apache License 2.0
+apache-parquet-column,1.12.3,Apache License 2.0
+internet-time-utility,1.10.2,Apache License 2.0
+scalastyle-style-checker-for-scala,1.0.0,Apache License 2.0
+jakarta-dependency-injection,2.0.1,Apache License 2.0
+github-com-containerd-errdefs,0.1.0,Apache License 2.0
+org-apiguardian-apiguardian-api,1.1.2,Apache License 2.0
+generics-resolver,3.0.0,MIT License
+btf,1.2,Apache License 2.0
+github-com-go-kit-log,v0.2.1,MIT License
+go-zap,v1.27.0,MIT License
+py3-tomli,2.0.1,MIT License
+apache-xml-commons,1.4.01,Apache License 2.0

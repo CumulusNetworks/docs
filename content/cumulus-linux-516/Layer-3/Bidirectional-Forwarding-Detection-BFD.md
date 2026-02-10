@@ -347,7 +347,7 @@ BFD offload improves BFD session scale by offloading BFD numbered sessions to a 
 - When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode.
 - If you have a mix of BFD sessions to non-link-local IPv4 or IPv6 destinations, NVIDIA recommends that you do *not* enable BFD offload.
 - Depending on the configured BFD intervals and the number of BFD sessions, enabling and disabling BFD offload might result in session flaps, especially with aggressive timers on lower-end platforms. BFD sessions are expected to run in offload mode in a steady state and moving offloaded sessions back to non-offload (control-plane) mode is rare. In the unlikely event that such a transition is required, you must set the BFD session timers to values appropriate for non-offload mode to avoid flaps. When running multiple BFD sessions in non-offload mode, the minimum recommended timer values are 3 for the detect multiplier, 300 milliseconds for the transmit interval, and 900 milliseconds for the receive interval.
-- If you use aggressive BFD timers (such as 50 msecs, multiplier 3) for a higher number of BFD sessions, NVIDIA recommends increasing BFD control plane policer values with the `nv set system control-plane policer bfd burst` and `nv set system control-plane policer bfd rate` commands.
+- If you use frequent BFD timers (such as 50 msecs and multiplier 3) for BFD sessions at scale, NVIDIA recommends increasing the BFD control plane policer values with the `nv set system control-plane policer bfd burst` and `nv set system control-plane policer bfd rate` commands.
 {{%/notice%}}
 
 To enable BFD offload:

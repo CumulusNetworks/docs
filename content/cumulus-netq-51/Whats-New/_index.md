@@ -14,7 +14,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 - The {{<link title="Integrate NetQ with Grafana" text="NetQ integration with Grafana">}} is generally available.
 - NetQ now retains OTLP metrics data for 15 days instead of the previous three-day retention period. Additionally, you can now {{<link title="Integrate NetQ with Grafana/#customize-metric-collection" text="create a customizable list of metrics">}} that are forwarded to your time-series database.
-- You can now deploy NetQ for Ethernet and NVLink with up to six nodes to support large networks. To get started, {{<link title="Install the NetQ System" text="perform a fresh installation">}}. This deployment type is currently in beta.
+- You can now deploy NetQ for Ethernet and NVLink with up to six nodes to support large networks. To get started, {{<link title="Install the NetQ System" text="perform a fresh installation">}}. *This deployment type is currently in beta.*
 - You can now use NetQ to monitor multiplane networking environments. With this enhancement, you can: 
     - Filter and display telemetry data associated with individual planes. 
     - Perform validations, such as BGP router-ID checks, within the appropriate plane context. 
@@ -33,16 +33,16 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Queries to the `compute-nodes` endpoint now return hostnames within the response
 - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
 
+## Release Considerations
+
+- If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
+- NetQ does not support performing a backup on version 5.1.0 and restoring it to the same version (5.1.0).
+- The NetQ Debian repository location has changed from {{<exlink url="https://apps3.cumulusnetworks.com" >}} to {{<exlink url="https://edge.urm.nvidia.com" >}}. You can download the `netq-apps` and `netq-agent` Debian packages from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian-local/pool/netq-latest/" text="new NetQ repository">}}.
 
 ## Upgrade Paths
 
 NetQ 5.1 is available exclusively for on-premises deployments. You can upgrade to 5.1 if your deployment is running version 5.0 or 4.15. First {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.1 installation">}}.
 
-{{%notice note%}}
-- If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
-- NetQ does not support performing a backup on version 5.1.0 and restoring it to the same version (5.1.0).
-- Debian repositories have changed from {{<exlink url="https://apps3.cumulusnetworks.com" >}} to {{<exlink url="https://edge.urm.nvidia.com" >}}. The instructions in this guide have been updated to reflect this change.
-{{%/notice%}}
 
 ## Compatible Agent Versions
 

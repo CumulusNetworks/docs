@@ -118,13 +118,6 @@ Shows BGP conditional disaggregation configuration.
 
 BGP conditional disaggregation advertises specific prefixes when a failure is detected, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
 
-To use BGP conditional disaggregation, you must also:
-- Configure BGP PIC (`nv set vrf <vrf-id> router bgp address-family ipv4-unicast advertise-origin` or `nv set vrf <vrf-id> router bgp address-family ipv6-unicast advertise-origin` and `nv set vrf <vrf-id> router bgp address-family ipv4-unicast nhg-per-origin` or `nv set vrf <vrf-id> router bgp address-family ipv6-unicast nhg-per-origin`).
-- Configure BGP PIC anycast (`nv set vrf <vrf-id> router bgp soo-source`).
-- For 802.1X: Enable the `preserve-on-link-down` option with the `nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down enabled` command to preserve IPv6 addresses when the switch reboots or a link flaps.
-- Enable BGP unreachability (failure signaling) globally and on relevant peers or peer groups (`nv set vrf <vrf-id> router bgp address-family ipv4-unreachability state enabled` or `nv set vrf <vrf-id> router bgp address-family ipv6-unreachability state enabled`).
-- Define the aggregate prefix and the included interfaces for which to conditionally advertise unreachability (`nv set vrf <vrf-id> router bgp address-family ipv4-unreachability advertise-unreach interfaces-match` or `nv set vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-unreach interfaces-match`).
-
 ### Command Syntax
 
 | Syntax | Description |

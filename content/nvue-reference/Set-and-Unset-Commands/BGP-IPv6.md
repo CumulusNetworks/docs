@@ -162,6 +162,37 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast aggr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h> nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast conditional-disaggregation</h>
+
+Enables and disables BGP conditional disaggregation for IPv6 on a leaf switch.
+
+BGP conditional disaggregation advertises specific prefixes when a failure is detected, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
+
+To use BGP conditional disaggregation, you must also:
+- Configure BGP PIC (`nv set vrf <vrf-id> router bgp address-family ipv6-unicast advertise-origin` and `nv set vrf <vrf-id> router bgp address-family ipv6-unicast nhg-per-origin`).
+- Configure BGP PIC anycast (`nv set vrf <vrf-id> router bgp soo-source`).
+- For 802.1X: Enable the `preserve-on-link-down` option with the `nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down enabled` command to preserve IPv6 addresses when the switch reboots or a link flaps.
+- Enable BGP unreachability (failure signaling) globally and on relevant peers or peer groups.
+- Define the aggregate prefix and the included interfaces for which to conditionally advertise unreachability (`nv set vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-unreach interfaces-match`).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast conditional-disaggregation 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast state</h>
 
 Enables and disables BGP for IPv6 for the specified VRF. The default setting is `disabled`.
@@ -740,7 +771,7 @@ cumulus@switch:~$ nv set vrf RED router bgp address-family ipv6-unicast route-im
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unreachability advertise-origin</h>
 
-Configures BGP conditional disaggregation to attach the SOO for BGP unreachability information signaling for IPv6.
+Attaches the SOO for BGP unreachability information signaling.
 
 ### Command Syntax
 
@@ -784,7 +815,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unreachabili
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unreachability state</h>
 
-Enables and disables BGP unreachability (failure signaling) globally for BGP conditional disaggregation for IPv6. You can specify `enabled` or `disabled`.
+Enables and disables BGP unreachability SAFI (failure signaling) globally for IPv6. You can specify `enabled` or `disabled`.
 
 ### Command Syntax
 
@@ -1756,7 +1787,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability prefix-limits warning-threshold</h>
 
-Configures the prefix limits for a neighbor for BGP conditional disaggregation. Sets the percentage of the maximum at which a syslog warning is generated. You can set the value between 1 and 100. The default value is 75.
+Configures the prefix limits for a neighbor for BGP unreachability SAFI (failure signaling). Sets the percentage of the maximum at which a syslog warning is generated. You can set the value between 1 and 100. The default value is 75.
 
 ### Command Syntax
 
@@ -2095,7 +2126,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise state</h>
 
-Enables or disables BGP conditional advertisement for IPv6 for the peer group. The default setting is `disabled`.
+Enables or disables BGP conditional advertisement for the IPv6 peer group. The default setting is `disabled`.
 
 BGP conditional advertisement lets you advertise certain routes only if other routes either do or do not exist. BGP conditional advertisement is typically used in multihomed networks where BGP advertises some prefixes to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
 
@@ -2600,7 +2631,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath allow-my-asn occurrences</h>
 
-Configures the maximum number of occurrences of the local system's AS number in the received AS_PATH for the peer group. You can set a value between 1 and 10.
+Configures the maximum number of occurrences of the local system's AS number in the received AS_PATH for the peer group for BGP unreachability SAFI (failure signaling). You can set a value between 1 and 10.
 
 ### Command Syntax
 
@@ -2623,7 +2654,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath allow-my-asn origin</h>
 
-Configures BGP to allow a received AS_PATH containing the ASN of the local system but only if it is the originating AS for the peer group. You can specify `enabled` or `disabled`.
+Configures BGP to allow a received AS_PATH containing the ASN of the local system but only if it is the originating AS for the peer group for BGP unreachability SAFI (failure signaling). You can specify `enabled` or `disabled`.
 
 ### Command Syntax
 
@@ -2646,7 +2677,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath allow-my-asn route-map</h>
 
-Applies the route map to filter IPv6 routes with my AS in the AS_PATH. Allows selective application of `allowas-in` based on route map matching. 
+Applies the route map to filter IPv6 routes with my AS in the AS_PATH for BGP unreachability SAFI (failure signaling). Allows selective application of `allowas-in` based on route map matching. 
 
 ### Command Syntax
 
@@ -2669,7 +2700,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath allow-my-asn state</h>
 
-Enables and disables the local system's AS number in the received AS_PATH for the peer group. You can specify `enabled` or `disabled`. The default setting is `disabled`. 
+Enables and disables the local system's AS number in the received AS_PATH for the peer group for BGP unreachability SAFI (failure signaling). You can specify `enabled` or `disabled`. The default setting is `disabled`. 
 
 ### Command Syntax
 
@@ -2692,7 +2723,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath private-as</h>
 
-Configures how to handle private ASNs in the update to the peer group. You can specify:
+Configures how to handle private ASNs in the update to the peer group for BGP unreachability SAFI (failure signaling). You can specify:
 - `none` to take no action. This is the default setting.
 - `remove` to remove any private ASNs in the update to the peer.
 - `replace` to replace any private ASNs in the update to the peer  with the ASN of the local system.
@@ -2718,7 +2749,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath replace-peer-as</h>
 
-Configures BGP to replace the ASN of the peer in the AS_PATH of an outgoing update with the ASN of the local system for the peer group. You can specify `enabled` or `disabled`. The default setting is `disabled`.
+Configures BGP to replace the ASN of the peer in the AS_PATH of an outgoing update with the ASN of the local system for the peer group for BGP unreachability SAFI (failure signaling). You can specify `enabled` or `disabled`. The default setting is `disabled`.
 
 ### Command Syntax
 
@@ -2741,7 +2772,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits maximum</h>
 
-Configures the maximum number of unreachability IPv6 prefixes that can be received from the peer group. This is CRITICAL for security to prevent state exhaustion.
+Configures the maximum number of IPv6 prefixes that can be received from the peer group for BGP unreachability SAFI (failure signaling). This is CRITICAL for security to prevent state exhaustion.
 
 ### Command Syntax
 
@@ -2764,7 +2795,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits reestablish-wait</h>
 
-Configures the time in minutes to wait before establishing the BGP session again with the peer group for unreachability. The default value is `auto`, which uses standard BGP timers and processing. 
+Configures the time in minutes to wait before establishing the BGP session again with the peer group for BGP unreachability SAFI (failure signaling). The default value is `auto`, which uses standard BGP timers and processing. 
 
 ### Command Syntax
 
@@ -2787,7 +2818,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits warning-only</h>
 
-Configures the switch to only generate a warning syslog if the number of received unreachability IPv6 prefixes exceeds the limit, but does not bring down the BGP session. You can set this option to `enabled` or `disabled`.
+Configures the switch for BGP unreachability SAFI (failure signaling) to only generate a warning syslog if the number of received unreachability IPv6 prefixes exceeds the limit, but does not bring down the BGP session. You can set this option to `enabled` or `disabled`.
 
 ### Command Syntax
 
@@ -2810,7 +2841,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits warning-threshold</h>
 
-Configures the prefix limits for a peer group for BGP conditional disaggregation. Sets the percentage of the maximum at which a syslog warning is generated. You can set the value between 1 and 100. The default value is 75.
+Configures the prefix limits for a peer group for BGP unreachability SAFI (failure signaling). Sets the percentage of the maximum at which a syslog warning is generated. You can set the value between 1 and 100. The default value is 75.
 
 ### Command Syntax
 
@@ -2833,7 +2864,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability state</h>
 
-Enables and disables IPv6 BGP unreachability (failure signaling) for the peer group. The default value is disabled.
+Enables and disables IPv6 BGP unreachability SAFI (failure signaling) for the peer group. The default value is disabled.
 
 ### Command Syntax
 

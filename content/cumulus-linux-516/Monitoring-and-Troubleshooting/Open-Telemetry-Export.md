@@ -1173,6 +1173,7 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 | `nvswitch_dot1x_ipv6_profile_property_info` | *IPv6 profile property configuration (offset, length, value, isolation, summarization). |
 | `nvswitch_dot1x_ipv6_profile_summary` | *IPv6 prefix generated for each layer 3 authenticated session that is using an IPv6 profile. |
 | `nvswitch_dot1x_reauth_timeouts` | *Counter of reauthentication attempts with the RADIUS server that timed out but were ignored, keeping the supplicant in Authorized state when the `reauth-timeout-ignore` flag is enabled. |
+| `nvswitch_dot1x_supplicant_dynamic_vrf` | *Displays the VRF when an interface is dynamically associated to a VRF if the dynamic VRF assignment feature is enabled.|
 
 {{< expand "Example JSON data for 802.1X:" >}}
 ```
@@ -1505,7 +1506,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_if_out_errors` | Number of interface out errors. |
 | `nvswitch_interface_if_out_multicast_pkts`|Number of interface out multicast packets. |
 | `nvswitch_interface_if_out_octets`| Number of interface out octets.|
-| `nvswitch_interface_if_out_octets`| Number of interface out unicast packets.|
+| `nvswitch_interface_if_out_pkts`| Number of interface out unicast packets.|
 | `nvswitch_interface_type`|Link-layer interface type.|
 | `nvswitch_interface_ether_stats_jabbers` | Jabber frames receiverd on this interface.|
 | `nvswitch_interface_hw_address_info` | System defined default MAC address for the interface.|

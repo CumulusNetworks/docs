@@ -862,7 +862,7 @@ User authentication is enabled by default. gNMI subscription requests must inclu
 You can use your gNMI client on a host to request capabilities and data to which the gNMI agent subscribes.
 
 {{%notice note%}}
-Cumulus Linux processes gNMI subscription requests one at a time. Concurrent requests receive a gRPC status CANCELLED with the message `System is busy. Please retry in a bit`.
+Cumulus Linux processes gNMI client subscription create and delete requests sequentially (one at a time). The switch rejects concurrent subscription requests with a `CANCELLED: System is busy`​ gRPC status and the gNMI client must retry after a short delay. This limitation applies only to subscription setup or teardown. After the subscription establishes, multiple subscriptions run concurrently and stream telemetry data independently.
 {{%/notice%}}
 
 #### Dial-in Mode Examples

@@ -131,7 +131,7 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 
 ### Resolve Disk Capacity Issues
 
-When you perform a backup, you may encounter the following error: `Error: Tar size exceeds the minimum disk space required to run NetQ.` This error indicates that the size of the backup file causes NetQ to cross the 80% disk threshold limit.
+When you perform a backup, you may encounter the following error: `Error: Tar size exceeds the minimum disk space required to run NetQ.` This error indicates that the backup operation will fail because the size of the backup file will cause NetQ to cross the 80% disk threshold limit.
 
 Three resolution options are available, listed in order of recommendation. Try each option sequentially if the previous option does not resolve the issue.
 
@@ -184,6 +184,7 @@ sudo vi /tmp/longhorn-trim-recurringjob.yaml
 ```
 
 2. Add the following content to the file:
+
 ```
 apiVersion: longhorn.io/v1beta2
 kind: RecurringJob

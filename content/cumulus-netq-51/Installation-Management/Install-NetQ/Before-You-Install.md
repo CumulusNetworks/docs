@@ -49,7 +49,7 @@ Large networks have the potential to generate a large amount of data. For large 
 
 The following values have been explicitly tested and validated, but they might not reflect the maximum theoretical system limits for NetQ
 
-| Deployment Type | Verified Features | Verified Limit | Data Rate | Hardware Requirements |
+| Deployment Type | Verified Features | Verified Scale Limit | Data Rate | Hardware Requirements |
 |-----------------|-------------------|-------|-----------|-----------------------|
 | Ethernet + NVLink combined: 6-nodes | - Ethernet agent features: WJH, RoCE, histograms, adaptive routing, interfaces, inventory, BGP sessions, validations<br>- Switch OTLP data collection<br>- DPU OTLP data collection<br>- NVLink data collection: topology, partitions, metrics | - Ethernet switches: 675 (GPUs: 32K)<br>- DPUs: 8K (OTLP data)<br>- NVLink: 450 GB with 72x1 configuration | - NetQ Agent: ~7 Mbps<br>- OTLP switch: 445 MB/s (3.56 Gbps)<br>- OTLP host: 1,000,000 samples/s at 10-second interval<br>- NVLink: ~32,000 messages/s (2,628 ports)<br>- Counters: 112 per GB/s | 6 nodes, each with:<br>  - 48 vCPUs<br>  - 512 GB RAM<br>  - 3 TB SSD/NVMe |
 | Ethernet + NVLink combined: 6-nodes | - Ethernet agent features: WJH, RoCE, histograms, adaptive routing, interfaces, inventory, BGP sessions, validations<br>- Switch OTLP data collection<br>- DPU OTLP data collection | - Ethernet switches: 1,300 (GPUs: 55K)<br>- DPUs: 14K (OTLP data) | - NetQ Agent: ~7 Mbps<br>- OTLP switch: 445 MB/s (3.56 Gbps)<br>- OTLP host: 1,718,750 samples/s at 10-second interval | 6 nodes, each with:<br>  - 48 vCPUs<br>  - 512 GB RAM<br>  - 3 TB SSD/NVMe |

@@ -21,12 +21,7 @@ This section discusses how to configure and use gNMI with Cumulus Linux. To conf
 {{%notice note%}}
 Switches with the Spectrum 1 ASIC do not support gNMI streaming.
 {{%/notice%}}
-<!--
-{{%notice note%}}
-- When you enable gNMI with Cumulus Linux, do **not** enable and use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
-- Switches with the Spectrum 1 ASIC do not support gNMI streaming.
-{{%/notice%}}
--->
+
 Cumulus Linux supports both gNMI dial-in mode, where a collector can start a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
 
 ### Configure gNMI Dial-in Mode
@@ -862,7 +857,7 @@ User authentication is enabled by default. gNMI subscription requests must inclu
 You can use your gNMI client on a host to request capabilities and data to which the gNMI agent subscribes.
 
 {{%notice note%}}
-Cumulus Linux processes gNMI subscription requests one at a time. Concurrent requests receive a gRPC status CANCELLED with the message `System is busy. Please retry in a bit`.
+Cumulus Linux processes gNMI client subscription create and delete requests sequentially (one at a time). The switch rejects concurrent subscription requests with a `CANCELLED: System is busy`​ gRPC status and the gNMI client must reinitiate the request and retry with the `--backoff` flag. This limitation applies only to subscription setup or teardown. After the subscription establishes, multiple subscriptions run concurrently and stream telemetry data independently.
 {{%/notice%}}
 
 #### Dial-in Mode Examples

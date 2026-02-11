@@ -28,10 +28,11 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ### NetQ for NVLink API Changes
 - Added the ability to download support packages and upgrade NVOS for all switches within an NVLink domain.
-- Added an endpoint to retrieve NetQ's version
+- Added an endpoint to retrieve NetQ's version.
 - Added a fault tolerance mechanism that allows NVLink switches with at least two out-of-band management ports to maintain connectivity to NMX controller and telemetry services in case of port failure.
-- Queries to the `compute-nodes` endpoint now return hostnames within the response
-- Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
+- Queries to the `compute-nodes` endpoint now return hostnames within the response.
+- Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes.
+- View the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="REST API in Swagger">}}.
 
 ## Release Considerations
 

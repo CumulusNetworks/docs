@@ -1433,7 +1433,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_if_out_errors` | Number of interface out errors. |
 | `nvswitch_interface_if_out_multicast_pkts`|Number of interface out multicast packets. |
 | `nvswitch_interface_if_out_octets`| Number of interface out octets.|
-| `nvswitch_interface_if_out_octets`| Number of interface out unicast packets.|
+| `nvswitch_interface_if_out_pkts`| Number of interface out unicast packets.|
 | `nvswitch_interface_type`|Link-layer interface type.|
 | `nvswitch_interface_ether_stats_jabbers` | Jabber frames receiverd on this interface.|
 | `nvswitch_interface_hw_address_info` | System defined default MAC address for the interface.|

@@ -1177,6 +1177,37 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 
 {{< expand "Example JSON data for 802.1X:" >}}
 ```
+ {
+              "name": "nvswitch_dot1x_supplicant_dynamic_vrf",
+              "gauge": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "interface",
+                        "value": {
+                          "stringValue": "swp31s0"
+                        }
+                      },
+                      {
+                        "key": "mac_address",
+                        "value": {
+                          "stringValue": "00:02:00:00:00:01"
+                        }
+                      },
+                      {
+                        "key": "vrf",
+                        "value": {
+                          "stringValue": "RED"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1770866343520858618",
+                    "asDouble": 1
+                  }
+                ]
+              }
+            },
 ```
 {{< /expand >}}
 

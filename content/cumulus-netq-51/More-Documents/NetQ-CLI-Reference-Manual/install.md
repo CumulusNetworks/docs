@@ -381,7 +381,7 @@ netq install combined config generate nodes <text-num-nodes>
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-num-nodes\> | Specify the full path for the JSON configuration file template |
+| NA | \<text-config-json-file\> | Specify the full path for the JSON configuration file template |
 
 ### Related Commands
 

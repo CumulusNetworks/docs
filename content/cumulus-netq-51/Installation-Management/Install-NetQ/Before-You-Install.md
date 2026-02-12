@@ -33,10 +33,6 @@ Consider the following deployment options and requirements before you install th
 
 In both cluster deployments, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure. Similarly, a five-node cluster can tolerate a two-node failure, but not a three-node failure. If the majority of failed nodes are Kubernetes control plane nodes, NetQ will no longer function. For more information, refer to the {{<exlink url="https://etcd.io/docs/v3.3/faq/" text="etcd documentation">}}.
 
-{{%notice note%}}
-Large networks have the potential to generate a large amount of data. For large networks, NVIDIA does not recommend using the NetQ CLI; additionally, {{<link title="Access Data with Cards/#table-settings" text="tabular data in the UI">}} is limited to 10,000 rows. If you need to review a large amount of data, NVIDIA recommends downloading and exporting the tabular data as a CSV or JSON file and analyzing it in a spreadsheet program.
-{{%/notice%}}
-
 ## Verified Limits
 
 The following values have been explicitly tested and validated, but they might not reflect the maximum theoretical system limits for NetQ.
@@ -51,6 +47,10 @@ The following values have been explicitly tested and validated, but they might n
 | 3-node scale cluster: NVLink-only | - NVLink data collection: topology, partitions, metrics | - NVLink: 110 GB with 72x1 configuration<br>- Partitions: 1,600 | - NVLink: ~10,000 messages/s (2,628 ports)<br>- Counters: 112 per GB/s | 3 nodes, each with:<br>  - 48 vCPUs<br>  - 512 GB RAM<br>  - 3 TB SSD/NVMe |
 | 5-node scale cluster: Ethernet-only | - Ethernet agent features: WJH, RoCE, histograms, adaptive routing, interfaces, inventory, BGP sessions, validations<br>- Ethernet OTLP data collection | - Ethernet switches: 1,000 (GPUs: 32K)<br>- DPUs: 4K (OTLP data) | - NetQ Agent: 10 Mbps<br>- OTLP switch: 660 MB/s (5.28 Gbps)<br>- OTLP host: 1,000,000 samples/s at 10-second interval | 5 nodes, each with:<br>  - 48 vCPUs<br>  - 512 GB RAM<br>  - 3 TB SSD/NVMe |
 | 3-node cluster (non-scale): Ethernet-only | - Ethernet agent features: WJH, RoCE, histograms, adaptive routing, interfaces, inventory, BGP sessions, validations<br>- Ethernet OTLP data collection | - Ethernet switches: 50 (GPUs: 1.6K) | - NetQ Agent: 500 Kbps<br>- OTLP switch: 33 MB/s (264 Mbps)<br>- OTLP host: 50,000 samples/s at 10-second interval | 3 nodes, each with:<br>  - 16 vCPUs<br>  - 64 GB RAM<br>  - 500 GB SSD/NVMe |
+
+{{%notice note%}}
+Large networks have the potential to generate a large amount of data. For large networks, NVIDIA does not recommend using the NetQ CLI; additionally, {{<link title="Access Data with Cards/#table-settings" text="tabular data in the UI">}} is limited to 10,000 rows. If you need to review a large amount of data, NVIDIA recommends downloading and exporting the tabular data as a CSV or JSON file and analyzing it in a spreadsheet program.
+{{%/notice%}}
 
 ## Base Command Manager
 

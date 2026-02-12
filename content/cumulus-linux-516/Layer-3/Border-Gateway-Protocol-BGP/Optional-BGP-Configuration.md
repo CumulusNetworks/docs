@@ -707,10 +707,11 @@ address-family ipv4 unicast
 {{< /tabs >}}
 
 You can configure additional options:
-- You can set the maximum number of occurrences of the local system's AS number in the received AS path
-- You can allow a received AS path containing the ASN of the local system but only if it is the originating AS
+- Set the maximum number of occurrences of the local system AS number in the received AS path.
+- Allow a received AS path containing the ASN of the local system but only if it is the originating AS.
+- Attach a route map that filters routes with the local AS in the AS path.
 
-The following example sets the maximum number of occurrences of the local system's AS number in the received AS path to 4:
+The following example sets the maximum number of occurrences of the local system AS number in the received AS path to 4:
 
 {{< tabs "652 ">}}
 {{< tab "NVUE Commands ">}}
@@ -796,6 +797,52 @@ address-family ipv4 unicast
   network 10.10.10.1/32
   redistribute connected
   neighbor swp51 allowas-in origin
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following example attaches a route map called ROUTEMAP1 that filters routes with the local AS in the AS path:  
+
+{{< tabs "807 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn route-map ROUTEMAP1 
+cumulus@switch:~$ nv config apply
+```
+
+To unset the above configuration, run the `nv unset` command:
+
+```
+cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn route-map
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# address-family ipv4 unicast
+switch(config-router-af)# neighbor swp51 allowas-in route-map ROUTEMAP1
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+address-family ipv4 unicast
+  network 10.10.10.1/32
+  redistribute connected
+  neighbor swp51 allowas-in route-map ROUTEMAP1
 ...
 ```
 
@@ -1697,7 +1744,7 @@ BGP unreachability SAFI signals prefix unreachability without affecting the rout
 ### Configuration
 
 To configure BGP unreachability SAFI:
-- **Required on both leaf and spine**: Enable BGP unreachability SAFI (failure signaling) globally and on relevant peers or peer groups.
+- **Required on both leaf, spine and super spine**: Enable BGP unreachability SAFI (failure signaling) globally and on relevant peers or peer groups.
 - **Required on the leaf only**: Define the aggregate prefix and the included interfaces for which to advertise unreachability (you can define only one `interface-match` prefix for each address family).
 - Optional on both leaf and spine: Set the prefix limits for a peer or peer group; see the table below.
 - Optional on both leaf and spine: Set the AS path options for a peer or peer group; see the table below.
@@ -1733,6 +1780,7 @@ The following example:
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-origin
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-unreach interfaces-match 2001:1:1::/48
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability state enabled
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits maximum 6
@@ -1958,13 +2006,6 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-
-To show BGP conditional disaggregation configuration, run the `nv show vrf <vrf> router bgp address-family <address-family> conditional-disaggregation` command:
-
-```
-cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unicast conditional-disaggregation
-No Data
-```
 
 ## BGP Timers
 

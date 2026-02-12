@@ -7,7 +7,6 @@ version: "5.16"
 toc: 3
 
 ---
-{{<rn_xls_link dir="cumulus-linux-516" >}}
 ## 5.16.0 Release Notes
 ### Open Issues in 5.16.0
 

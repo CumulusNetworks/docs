@@ -8,7 +8,7 @@ toc: 3
 The NetQ NVLink API is organized around {{<exlink url="https://en.wikipedia.org/wiki/REST" text="REST">}} and conforms with {{<exlink url="https://spec.openapis.org/oas/v3.0.3" text="OpenAPI Specification v3.0.3">}}. The API provides access to resources and functionalities through a set of defined endpoints. Each endpoint has its own schema, which includes the payload, parameters, and the expected request/response formats.
 
 - {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="REST API in Swagger">}}
-- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/netq-50/netq-nvl-api/openapi.yaml" text="View the full object model">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/openapi.yaml" text="View the full object model">}}
 
 ## Authentication
 

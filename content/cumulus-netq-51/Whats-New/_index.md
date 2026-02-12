@@ -22,7 +22,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
     - To get started, configure {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="system labels">}} on your switches using NVUE commands.
 - You can now create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}} with a wider range of measurement units in both the UI and the CLI. 
 - NetQ no longer broadcasts multiple, successive events for breaches to the same threshold-crossing rule. You can {{<link title="Configure and Monitor Threshold-Crossing Events/#adjust-the-time-between-notifications" text="change this new default behavior">}} using the CLI.
-- Performance improvements to the account management page in the UI
+- Improved the performance of the account management page in the UI.
 - Reduced NetQ installation time by approximately 50%.
 - WJH L1 frame error events (symbol/CRC) have been removed from the WJH dashboard. These counters remain available through the {{<link title="Interfaces" text="Link Health view">}}.
 

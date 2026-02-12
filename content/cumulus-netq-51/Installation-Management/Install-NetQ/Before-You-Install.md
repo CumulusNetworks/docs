@@ -47,7 +47,7 @@ Large networks have the potential to generate a large amount of data. For large 
 
 ## Verified Limits
 
-The following values have been explicitly tested and validated, but they might not reflect the maximum theoretical system limits for NetQ
+The following values have been explicitly tested and validated, but they might not reflect the maximum theoretical system limits for NetQ.
 
 | Deployment Type | Verified Features | Verified Scale Limit | Data Rate | Hardware Requirements |
 |-----------------|-------------------|-------|-----------|-----------------------|

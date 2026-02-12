@@ -245,11 +245,4 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "Deprecated OTEL Metrics ">}}
-
-|       |             |
-|------ | ----------- |
-| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_bytes` | |
-
-{{< /tab >}}
 {{< /tabs >}}

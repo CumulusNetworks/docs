@@ -126,6 +126,12 @@ cumulus@switch:~$ nv config apply
    cumulus@switch:~$ sudo systemctl restart auditd
    ```
 
+4. Enable TACACS+:
+
+   ```
+   cumulus@switch:~$ sudo pam-auth-update --enable tacplus
+   ```
+
 {{< /tab >}}
 {{< /tabs >}}
 

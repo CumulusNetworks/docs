@@ -171,6 +171,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4859201"></a> [4859201](#4859201) <a name="4859201"></a> <br /> | When the VNI changes on a VRF, from the old VNI to the new VNI, the VNI in the SVD VNI hash table or in the single‑VNI (SVD) in the VNI info is deleted. Therefore, when there are further updates to the old VNI, the lookup fails and causes the zebra core to crash.  | 5.14.0-5.15.1 | |
 | <a name="4850551"></a> [4850551](#4850551) <a name="4850551"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.15.1 | |
 | <a name="4850188"></a> [4850188](#4850188) <a name="4850188"></a> <br /> | Signal quality degradation is observed during SR4-100G to 4×25G breakout using an adapter. | 5.15.0-5.15.1 | |
 | <a name="4838527"></a> [4838527](#4838527) <a name="4838527"></a> <br /> | On a high port scale system, streaming telemetry for interface and buffer statistics (GNMI or OTEL) together with the PFC watchdog feature, causes samples of telemetry data to fail to export from the system periodically and kernel memory use might increase. | 5.14.0-5.15.1 | |

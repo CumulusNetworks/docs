@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 770
 ---
 
-Device groups allow you to create a label for a subset of devices in the inventory. You can configure {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="validation checks">}} to run on select devices by referencing group names.
+Device groups allow you to create a label for a subset of devices in the inventory. You can configure {{<link title="Validate Network Protocol and Service Operations/#create-and-run-validations" text="validation checks">}} to run on select devices by referencing group names.
 
 ## Create a Device Group
 

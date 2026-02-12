@@ -32,7 +32,7 @@ This table summarizes LCM functionalities in the UI and CLI:
 | Job history | View the results of installation, upgrade, and configuration assignment jobs | <ul><li>CL upgrade history</li><li>NetQ install and upgrade history</li></ul> | <ul><li>netq lcm show status</li><li>netq lcm show upgrade-jobs</li></ul> |
 ## LCM Support for In-band Management
 
-If you manage a switch using an in-band network interface, the `inband-interface` option must be specified in the {{<link url="Install-NetQ-Agents/#configure-netq-agents-using-the-netq-cli" text="initial agent configuration">}} for LCM operations to function as expected. You can configure the agent by specifying the in-band interface in the `/etc/netq/netq.yml` file. Alternately, you can use the CLI and include the `inband-interface` option.
+If you manage a switch using an in-band network interface, the `inband-interface` option must be specified in the {{<link title="Install NetQ Agents/#configure-netq-agents" text="initial agent configuration">}} for LCM operations to function as expected. You can configure the agent by specifying the in-band interface in the `/etc/netq/netq.yml` file. Alternately, you can use the CLI and include the `inband-interface` option.
 
 - `/etc/netq/netq.yml` configuration file example:
 
@@ -49,4 +49,4 @@ If you manage a switch using an in-band network interface, the `inband-interface
     ```
     sudo netq config add agent server 192.168.1.254 vrf default inband-interface swp1
     ```
-After the NetQ Agent is configured for in-band connections, you can {{<link title="Upgrade NetQ Agent/#agent-configuration-profiles" text="create custom agent configuration profiles">}}, then {{<link title="Upgrade NetQ Agent/#apply-configuration-profiles" text="apply the custom profiles">}} to switches during upgrades.
+After the NetQ Agent is configured for in-band connections, you can {{<link title="Upgrade NetQ Agent/#agent-configuration-profiles" text="create custom agent configuration profiles">}}, then apply the configuration profiles to switches during upgrades.

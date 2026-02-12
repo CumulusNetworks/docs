@@ -270,7 +270,7 @@ Refer to {{<link title="Configure System Event Notifications">}} for more inform
 
 ## netq add notification filter
 
-Event notification filters tie notification rules to the notification channels. Filters can limit events so only those with a given severity get sent. You can insert filters before or after other filters to achieve the level of filtering desired. Refer to {{<link title="Configure System Event Notifications/#create-filters" text="Create Filters">}} for implementation details and additional examples.
+Event notification filters tie notification rules to the notification channels. Filters can limit events so only those with a given severity get sent. You can insert filters before or after other filters to achieve the level of filtering desired. Refer to {{<link title="Configure System Event Notifications">}} for implementation details and additional examples.
 
 {{<notice note>}}
 You must have at least one channel, one rule, and one filter to fully configure a notification.
@@ -331,7 +331,7 @@ Successfully added/updated filter notify-all-ifs
 
 ## netq add notification rule
 
-Event notification rules define which events to include or exclude from a notification. Rules are a key-value pair. Each key has a defined set of values available for filtering against. Refer to {{<link title="Configure System Event Notifications/#create-rules" text="Create Rules">}} for implementation details and additional examples.
+Event notification rules define which events to include or exclude from a notification. Rules are a key-value pair. Each key has a defined set of values available for filtering against. Refer to {{<link title="Configure System Event Notifications/#create-a-rule" text="Configure System Event Notifications">}} for implementation details and additional examples.
 
 {{<notice note>}}
 You must have at least one channel, one rule, and one filter to fully configure a notification.

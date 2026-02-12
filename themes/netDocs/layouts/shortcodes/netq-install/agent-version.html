@@ -1,3 +1,26 @@
+{{- if eq (.Get "version") "5.1.0" -}}
+
+You should see version 5.1.0 in the results.<br>
+
+{{- if eq (.Get "opsys") "cl" -}}
+<ul>
+    <ul>
+        <li>Cumulus Linux 5.9.0 or later: netq-agent_<strong>5.1.0</strong>-cld12u5_amd64.deb</li>
+    </ul>
+</ul>
+{{ end }}
+
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>Ubuntu 24.04: netq-agent_<strong>5.1.0</strong>-ub24.04u6_amd64.deb</li> 
+    <li>Ubuntu 22.04: netq-agent_<strong>5.1.0</strong>-ub22.04u6_amd64.deb</li> 
+</ul>
+
+{{ end }}
+
+{{ end }}
+
 {{- if eq (.Get "version") "5.0.0" -}}
 
 You should see version 5.0.0 in the results.<br>

@@ -276,6 +276,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/ethernet/dot1x/state/ipv6-profile` | *The IPv6 profile associated with this interface. |
 | `/interfaces/interface[name]/ethernet/dot1x/state/reauthenticate-interval` | *The recurring interval in seconds after which all already authenticated supplicants reauthenticate. By default, the interval is 0 (no reauthentication). |
 | `/interfaces/interface[name]/ethernet/dot1x/state/auth-fail-vlan` | *If auth-fail VLAN is configured. |
+| `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/vrf` | *The VRF that is assigned dynamically to an interface by the RADIUS server after a supplicant authenticates. The dynamic VRF feature needs to be in the `required` or `optional` state.|
 | `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/offset-in-bits` | *Offset in bits from the beginning of the 64 bit IPv6 profile. |
 | `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/length-in-bits` | *The length of the property in bits. |
 | `/system/dot1x/ipv6-profiles/profile[name]/properties/property[id]/state/property-value` | *The VSA ID, port ID, an integer or a hexadecimal value. |
@@ -284,6 +285,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/system/dot1x/ipv6-profiles/profile[name]/state/route-tag` | *Associates a policy tag with routes learned through this 802.1X IPv6 profile, allowing routing policy, redistribution control, and tenant isolation for the authenticated sessions. |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/ipv6-prefix` | *The IPv6 prefix generated from all the IPv6 profile properties. |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/counters/reauth-timeouts` | *Counter that keeps track of authentication failures because the RADIUS server is unreachable after a successful authentication when the `reauth-timeout-ignore` option is enabled. |
+| `/system/dot1x/state/dynamic-vrf` | *Shows if a VRF is `required` to be assigned dynamically by the RADIUS server to an 802.1X interface, is `optional` or `disabled`. |
 
 {{< /tab >}}
 {{< tab "ACLs ">}}
@@ -857,7 +859,7 @@ User authentication is enabled by default. gNMI subscription requests must inclu
 You can use your gNMI client on a host to request capabilities and data to which the gNMI agent subscribes.
 
 {{%notice note%}}
-Cumulus Linux processes gNMI client subscription create and delete requests sequentially (one at a time). The switch rejects concurrent subscription requests with a `CANCELLED: System is busy`​ gRPC status and the gNMI client must reinitiate the request and retry with the `--backoff` flag. This limitation applies only to subscription setup or teardown. After the subscription establishes, multiple subscriptions run concurrently and stream telemetry data independently.
+Cumulus Linux processes gNMI client subscription create and delete requests sequentially (one at a time). The switch rejects concurrent subscription requests with a `CANCELLED: System is busy`​ gRPC status and the gNMI client must reinitiate the request with the appropriate backoff. This limitation applies only to subscription setup or teardown. After the subscription establishes, multiple subscriptions run concurrently and stream telemetry data independently.
 {{%/notice%}}
 
 #### Dial-in Mode Examples

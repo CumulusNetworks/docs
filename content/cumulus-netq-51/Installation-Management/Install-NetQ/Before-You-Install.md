@@ -29,7 +29,7 @@ Consider the following deployment options and requirements before you install th
 
 **Cluster**: The cluster deployment comprises three servers: one master and two workers nodes. NetQ supports high-availability using a virtual IP address. Even if the master node fails, NetQ services remain operational.
 
-**Scale cluster**: The scale cluster deployment is intended for large network environments and allows you to expand NetQ monitoring capacity by adding nodes as your network grows. NVIDIA typically recommends this deployment for environments with 100 or more switches. It is also the only deployment model that supports monitoring {{<exlink url="https://www.nvidia.com/en-us/data-center/nvlink/" text="NVLink switches">}}, as well as mixed Ethernet and NVLink networks.
+**Scale cluster**: The scale cluster deployment is intended for large network environments and allows you to expand NetQ monitoring capacity by adding nodes as your network grows. NVIDIA typically recommends this deployment for environments with 100 or more switches. It is the only deployment model that supports monitoring for {{<exlink url="https://www.nvidia.com/en-us/data-center/nvlink/" text="NVIDIA NVLink">}}, {{<exlink url="https://www.nvidia.com/en-us/networking/spectrumx/" text="NVIDIA Spectrum-X Ethernet">}}, as well as mixed Ethernet and NVLink networks.
 
 The following table shows high-level device support per-node for Ethernet-only, NVLink-only, and combined deployments. This deployment model is currently in beta for clusters larger than 5 nodes. See {{<link title="Before You Install/#verified-limits" text="Verified Limits">}} for detailed testing information.
 

@@ -2,7 +2,7 @@
 title: OOB Management Network
 author: NVIDIA
 weight: 45
-product: NVIDIA Air
+product: NVIDIA Air 2.0
 ---
 
 ## Overview
@@ -103,6 +103,29 @@ When you enable the OOB network, Air automatically configures:
 - **NAT gateway** on the `oob-mgmt-server` for outbound internet access
 - **DHCP relay** on leaf switches to forward DHCP requests to the server
 - **SSH key injection** so your Air SSH keys work on the `oob-mgmt-server`
+
+### Disabling the DHCP Service
+
+By default, the OOB network includes a fully configured DHCP server. If you want to manage DHCP yourself — for example, to run your own DHCP server with custom configurations — you can disable the automatic DHCP service while keeping the rest of the OOB network (L2 connectivity, management interfaces, and infrastructure nodes).
+
+To disable DHCP when importing a JSON topology, set `enable_dhcp` to `false` in the `oob` object:
+
+```
+{
+    "nodes": { ... },
+    "links": [ ... ],
+    "oob": {
+        "enable_dhcp": false
+    }
+}
+```
+
+When DHCP is disabled:
+
+- The `oob-mgmt-server` and OOB switch infrastructure are still created.
+- Management interfaces (`eth0`) are still connected to the OOB network.
+- No DHCP server, DNS, or NAT gateway is configured on the `oob-mgmt-server`.
+- Nodes do not receive automatic IP assignments. You must configure IP addresses manually or provide your own DHCP server.
 
 ## Accessing Your Nodes
 

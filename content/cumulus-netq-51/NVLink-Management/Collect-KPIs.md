@@ -34,7 +34,7 @@ wget --quiet \
 
 ## API Filters
 
-The REST API supports filtering based on health or inventory information. To use these filters, append the filter parameter to the endpoint, for example `kpis?filter=HEALTH`. Refer to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nmx-api-8513100/#/KPI/GetKPI" text="Swagger API">}} for a complete list of available filters.
+The REST API supports filtering based on health or inventory information. To use these filters, append the filter parameter to the endpoint, for example `kpis?filter=HEALTH`. Refer to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="Swagger API">}} for a complete list of available filters.
 
 {{< expand "cURL example with filtering" >}}
 

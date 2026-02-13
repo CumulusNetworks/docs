@@ -14,11 +14,8 @@ You must have {{<link title="Install NIC and DPU Agents" text="DOCA Telemetry Se
 
 ## NIC Inventory Commands
 
-Run the {{<link title="show/#netq-show-inventory" text="netq show inventory brief">}} command to display an inventory summary, including a list of NICs.
+- {{<link title="show/#netq-show-inventory" text="netq show inventory nic">}}: view a list of NICs
 
-```
-netq show inventory brief
-```
 ## View NIC Inventory in the UI
 
 The Inventory/NIC card displays the hardware- and software-component inventory on NICs running NetQ in your network, including connection adapters and firmware versions. 

@@ -240,7 +240,7 @@ nvidia@netq-server:~$ netq add otlp endpoint tsdb-name <text-tsdb-endpoint> tsdb
 
 NetQ restricts the metrics accepted into the local TSDB by default. To view the default whitelist of permitted metrics, run the `netq show otlp whitelist default` command:
 
-{{<expand "Default OTLP Whitelist">}}
+{{<expand "Default OTLP whitelist">}}
 ```
 nvidia@netq-server:~$ netq show otlp whitelist default
 - nvswitch_interface_tc_tx_octet

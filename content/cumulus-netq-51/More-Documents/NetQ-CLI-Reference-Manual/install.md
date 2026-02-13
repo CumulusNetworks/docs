@@ -99,7 +99,8 @@ netq install cluster bundle
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| restore | \<text-backup-file\> | |
+| restore | \<text-backup-file\> | Specify the path where the backup .tar file resides |
+
 
 ### Sample Usage
 
@@ -358,24 +359,25 @@ Creates the JSON configuration template for the NetQ for Ethernet and NVLink com
 
 ### Syntax
 
-The default `netq install combined config generate` command creates a JSON configuration template for a three-node cluster. If your deployment model uses more than three nodes, specify the number using the `nodes` argument.
-<!--asking shyamala what this does
-netq install combined config generate workers <text-num-nodes> 
-    [<text-config-json-file>]
--->
+The default `netq install combined config generate` command creates a JSON configuration template for a three-node cluster. If your deployment model uses more than three nodes, specify the number using the `nodes` argument (for total number of nodes) or the `workers` argument (for total number of worker nodes).
+
 ```
 netq install combined config generate 
     [<text-config-json-file>]
 
 netq install combined config generate nodes <text-num-nodes>  
-    [<text-config-json-file>] 
+    [<text-config-json-file>]
+
+ netq install combined config generate workers <text-num-nodes> 
+    [<text-config-json-file>]
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| nodes| \<text-num-nodes\> | Specify the number of worker node objects in the JSON configuration template |
+| nodes| \<text-num-nodes\> | Specify the total number of node objects in the JSON configuration template |
+| workers| \<text-num-nodes\> | Specify the total number of worker node objects in the JSON configuration template |
 
 ### Options
 

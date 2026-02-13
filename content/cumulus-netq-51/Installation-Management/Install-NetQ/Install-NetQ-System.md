@@ -51,7 +51,7 @@ The following deployment models use NetQ to monitor networks that use both Ether
 | Server Arrangement | Hypervisor | Requirements & Installation |
 | :--- | --- | :---: |
 | High-availability scale cluster: three nodes | KVM or VMware | {{<link title="Install NetQ for Ethernet and NVLink" text="Start install">}} |
-| High-availability scale cluster: up to six nodes* | KVM or VMware | {{<link title="Install NetQ for Ethernet and NVLink (Beta)" text="Start install">}} |
+| High-availability scale cluster: user-defined nodes* | KVM or VMware | {{<link title="Install NetQ for Ethernet and NVLink (Beta)" text="Start install">}} |
 {{</tab>}}
 
 {{</tabs>}}

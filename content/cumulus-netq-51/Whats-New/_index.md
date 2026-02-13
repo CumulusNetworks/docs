@@ -14,7 +14,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 - The {{<link title="Integrate NetQ with Grafana" text="NetQ integration with Grafana">}} is generally available.
 - NetQ now retains OTLP metrics data for 15 days instead of the previous three-day retention period. Additionally, you can now {{<link title="Integrate NetQ with Grafana/#customize-metric-collection" text="create a customizable list of metrics">}} that are forwarded to your time-series database.
-- You can now deploy NetQ for Ethernet and NVLink with additional nodes to support large networks. Review the {{<link title="Before You Install" text="updated support information">}}, then {{<link title="Install the NetQ System" text="perform a fresh installation">}}. *This deployment type is currently in beta.*
+- You can now deploy NetQ for Ethernet and NVLink with additional nodes to support large networks. Review the {{<link title="Before You Install" text="updated support information">}}, then {{<link title="Install the NetQ System/#netq-for-ethernet-and-nvlink" text="perform a fresh installation">}}. *This deployment type is currently in beta.*
 - You can now use NetQ to monitor multiplane networking environments. With this enhancement, you can: 
     - Filter and display telemetry data associated with individual planes. 
     - Perform validations, such as BGP router-ID checks, within the appropriate plane context. 

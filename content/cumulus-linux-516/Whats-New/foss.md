@@ -4,8 +4,7 @@ author: Cumulus Networks
 weight: -30
 product: Cumulus Linux
 version: "5.16"
-toc: 1
-pdfhidden: True
+toc: 3
 ---
 ## 5.16 Packages
 

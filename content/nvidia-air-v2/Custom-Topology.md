@@ -94,20 +94,13 @@ For switch nodes, you can break out a port into multiple sub-ports to simulate m
 To break out a port:
 
 1. Select a switch node to open its properties panel.
-2. In the **Connectors** section, find the port you want to break out.
-3. Click the breakout button next to the port.
-4. Select the number of sub-ports to create.
+2. In the **Connectors** section, click **Breakout Port**.
+3. Select the ports you want to break out.
+4. Choose the split type (number of sub-ports) and click **Confirm**.
 
-<!-- TODO: Add screenshot BreakoutPorts.png showing breakout button on switch node ports -->
+{{<img src="/images/guides/nvidia-air-v2/BreakoutPorts.png" alt="Breakout Port dialog showing port selection and split type">}}
 
-The available split options depend on the switch model:
-
-| Switch Models | Split Options |
-|---------------|---------------|
-| SN2100, SN2201, SN2410, SN2700, SN3420, SN3700, SN3700C, SN3750, SN4600, SN4600C | 2, 4 |
-| SN4700, SN5400, SN5600, SN5610 | 2, 4, 8 |
-
-To revert a breakout, click the revert button on any of the sub-ports. This removes all sub-ports and restores the original port.
+The available split options depend on the switch model. To revert a breakout, select **Delete Breakout** in the Breakout Port dialog.
 
 {{%notice note%}}
 Breakout ports can only be configured before the simulation starts for the first time. Only data plane interfaces on switch nodes support breakout — management and OOB interfaces do not.
@@ -120,12 +113,12 @@ Outbound links connect a node's interface directly to external networks, giving 
 To configure an outbound link:
 
 1. Select a node to open its properties panel.
-2. In the **Connectors** section, find the port you want to connect externally.
-3. Click the outbound button to mark the interface as an outbound link.
+2. In the **Connectors** section, click the port you want to connect externally.
+3. In the Connect dialog, toggle **Outbound link** on.
 
-<!-- TODO: Add screenshot OutboundLink.png showing outbound link configuration on node interface -->
+{{<img src="/images/guides/nvidia-air-v2/OutboundLink.png" alt="Connect dialog showing outbound link toggle">}}
 
-Outbound interfaces appear in the **Links** tab and in the **Services** tab, where you can create services (such as SSH or HTTP) that terminate on the outbound interface.
+Outbound interfaces appear in the **Services** tab, where you can create services (such as SSH or HTTP) that terminate on the outbound interface.
 
 {{%notice note%}}
 An outbound interface connects directly to the external network. It cannot also be connected to another node's interface.

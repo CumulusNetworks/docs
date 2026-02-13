@@ -17,15 +17,7 @@ With cloud-init, you can automate tasks such as:
 
 ## Supported Images
 
-Cloud-init is supported on the following Air-provided images:
-
-| Image | Cloud-Init Support |
-|-------|-------------------|
-| `generic/ubuntu2404` | Yes |
-| `generic/ubuntu2204` | Yes |
-| `generic/ubuntu2004` | Yes |
-
-Custom images that include cloud-init with NoCloud datasource support also work with this feature.
+Cloud-init works on any image that includes cloud-init with NoCloud datasource support, including custom images. The Air-provided `generic/ubuntu` images include cloud-init out of the box.
 
 ## Configuration
 

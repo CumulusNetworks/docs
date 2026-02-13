@@ -8,9 +8,7 @@ pdfhidden: true
 type: nojsscroll
 ---
 
-You can install NetQ with a single command or you can perform the individual steps using multiple commands. Generally, using the single command option is *strongly recommended*. However, the individual commands can be useful for troubleshooting the installation process when it fails. Refer to the {{<link title="Install the NetQ System" text="installation page for your deployment model">}} for step-by-step instructions.
-
-You can use these commands only after bootstrapping the physical server or VM. Refer to {{<link title="bootstrap" text="netq bootstrap">}}.
+Refer to the {{<link title="Install the NetQ System" text="installation page for your deployment model">}} for step-by-step instructions.
 
 - - -
 
@@ -103,6 +101,7 @@ netq install cluster bundle
 | ---- | ---- | ---- |
 | restore | \<text-backup-file\> | Specify the path where the backup .tar file resides |
 
+
 ### Sample Usage
 
 ```
@@ -113,7 +112,39 @@ nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-5.1.0.tg
 
 - `netq install cluster config generate`
 - - -
+## netq install cluster combined bundle
 
+Installs the NetQ software for an on-premises HA scale cluster deployment in Ethernet + NVLink combined mode.
+
+### Syntax
+
+```
+netq install cluster combined bundle <text-bundle-url> <text-cluster-config> 
+    [ignore-pre-checks] 
+    [restore <text-backup-file>] 
+    [validate-only]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
+| NA | \<text-cluster-config\> | Installs NetQ per the JSON configuration file parameters that were specified using the `netq install combined config generate` command. |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| ignore-pre-checks | N/A | Ignores the pre-check process that ensures the installation will complete successfully (not recommended)|
+| restore | \<text-backup-file\> | Specify the path where the backup .tar file resides |
+| validate-only | NA | Runs the pre-checks, but does not proceed with the installation |
+
+### Sample Usage
+
+```
+nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/combined-cluster-config.json
+```
+- - -
 ## netq install cluster config generate
 
 Run this command on your *master* node to generate a JSON template that you can use to specify your VM's cluster configuration attributes as part of the high-availability scale cluster deployment.
@@ -320,6 +351,43 @@ None
 ### Related Commands
 
 - `netq install cluster master-init`
+
+- - -
+## netq install combined config generate
+
+Creates the JSON configuration template for the NetQ for Ethernet and NVLink combined mode in an HA scale cluster environment. Several versions of this command are available depending on how many nodes are in your deployment.
+
+### Syntax
+
+The default `netq install combined config generate` command creates a JSON configuration template for a three-node cluster. If your deployment model uses more than three nodes, specify the number using the `nodes` argument (for total number of nodes) or the `workers` argument (for total number of worker nodes).
+
+```
+netq install combined config generate 
+    [<text-config-json-file>]
+
+netq install combined config generate nodes <text-num-nodes>  
+    [<text-config-json-file>]
+
+ netq install combined config generate workers <text-num-nodes> 
+    [<text-config-json-file>]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| nodes| \<text-num-nodes\> | Specify the total number of node objects in the JSON configuration template |
+| workers| \<text-num-nodes\> | Specify the total number of worker node objects in the JSON configuration template |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-config-json-file\> | Specify the full path for the JSON configuration file template |
+
+### Related Commands
+
+- `netq install cluster combined bundle`
 
 - - -
 

@@ -106,7 +106,7 @@ None
 ### Sample Usage
 
 ```
-nvidia@switch:~$ netq del global  tca config
+nvidia@switch:~$ netq del global tca config
 Successfully deleted global TCA config
 ```
 

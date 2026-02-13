@@ -1687,7 +1687,7 @@ spine01# exit
 
 ### BGP PIC Anycast
 
-Fast route convergence in case of remote link failures between leaf and spine, and spine and superspine layers requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in {{<link url="#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
+Fast route convergence in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer) requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in {{<link url="#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
 
 {{%notice note%}}
 - The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
@@ -1744,7 +1744,7 @@ BGP unreachability SAFI signals prefix unreachability without affecting the rout
 ### Configuration
 
 To configure BGP unreachability SAFI:
-- **Required on both leaf, spine and super spine**: Enable BGP unreachability SAFI (failure signaling) globally and on relevant peers or peer groups.
+- **Required on leaf, spine, and super spine**: Enable BGP unreachability SAFI (failure signaling) globally and on relevant peers or peer groups.
 - **Required on the leaf only**: Define the aggregate prefix and the included interfaces for which to advertise unreachability (you can define only one `interface-match` prefix for each address family).
 - Optional on both leaf and spine: Set the prefix limits for a peer or peer group; see the table below.
 - Optional on both leaf and spine: Set the AS path options for a peer or peer group; see the table below.
@@ -1773,7 +1773,7 @@ The following table describes the `AS path` options.
 {{< tab "Leaf Configuration ">}}
 
 The following example:
-- Enables BGP unreachability SAFI for IPv6 globally and on neighbors swp51 and swp52 (for IPv4, run `address-family ipv4-unreachability` commands). 
+- Enables BGP unreachability SAFI for IPv6 AFI (AFI 2) globally and on neighbors swp51 and swp52 (for IPv4, run `address-family ipv4-unreachability` commands). 
 - Enables unreachability advertisements for interfaces matching the network 2001:1:1::/48.
 - Sets the prefix limit to a maximum of 6 for neighbors swp51 and swp52.
 - Sets the `allow-my-asn` option for neighbors swp51 and swp52 to `origin` to allow a received AS path containing the ASN of the local system only if it is the originating AS.
@@ -1959,12 +1959,12 @@ allow-my-asn
 
 ## BGP Conditional Disaggregation
 
-In large scale deployments, route aggregation keeps BGP routing tables manageable by reducing the number of paths. However, when used in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer), leaf switches often advertise one aggregate route covering all of its connected hosts. When a single link fails and an individual host becomes unreachable, the aggregate remains advertised and the switch continues to send traffic to the failed path with no mechanism to reroute through healthy planes.
+In large scale deployments, route aggregation keeps BGP routing tables manageable by reducing the number of paths. However, when used in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer), leaf switches often advertise one aggregate route covering all of its connected hosts while suppressing more specific routes. When a single link fails and an individual host becomes unreachable, the aggregate remains advertised and the switch continues to send traffic to the failed path with no mechanism to reroute through healthy planes.
 
 BGP conditional disaggregation advertises specific prefixes when a failure is detected, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
 
 {{%notice note%}}
-- Conditional disaggregation supports the default VRF only.
+- You can configure conditional disaggregation in the default VRF only.
 - Conditionally disaggregated routes and leaf loopback routes do not carry the anycast SOO, even when you configure the advertise origin.
 - You can configure a BGP convergence wait timer on the leaf switch to avoid premature advertising of the aggregate route before all host-facing links are ready.
 {{%/notice%}}

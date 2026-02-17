@@ -8,7 +8,7 @@ toc: 3
 
 ## 5.1 NetQ NVLink REST API Changelog
 
-<p><strong>Version 5.1.0</strong> (compared to 5.0.0). Breaking changes are indicated with ⚠️. <!--For more information, see the NetQ for NVLink Swagger documentation.--><br>
+<p><strong>Version 5.1.0</strong> (compared to 5.0.0). Breaking changes are indicated with ⚠️. For more information, see the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="REST API in Swagger">}}.<br>
 
 <table id="api-changelog" class="sortable">
   <thead>
@@ -28,14 +28,6 @@ toc: 3
     <tr><td><code>GET /domains/count</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns domain count</td></tr>
     <tr><td><code>GET /domains/{id}</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Retrieves domain details</td></tr>
     <tr><td><code>PATCH /domains/{id}</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Updates domain properties. Use this endpoint to create an association between a domain and a profile ID. Then use the profile ID to access the switches within the domain.</td></tr>
-    <tr><td><code>GET /partitions</code></td><td><strong>Changed ⚠️</strong>: Added <code>subschema #3</code> to <code>/items/Members</code> list</td><td>Schema update for 200 responses</td></tr>
-    <tr><td><code>GET /partitions</code></td><td><strong>Changed ⚠️</strong>: Added enum value <code>DEVICE_UID_BASED</code> to <code>/items/Type</code></td><td>Expands partition type options</td></tr>
-    <tr><td><code>GET /partitions</code></td><td><strong>Added</strong>: Response properties <code>/items/MultiCastGroupLimit</code>, <code>/items/ResiliencyMode</code></td><td>Returned with status 200</td></tr>
-    <tr><td><code>POST /partitions</code></td><td><strong>Added</strong>: Optional request properties <code>MultiCastGroupLimit</code>, <code>ResiliencyMode</code></td><td>Enhances partition configuration</td></tr>
-    <tr><td><code>POST /partitions</code></td><td><strong>Changed</strong>: Added <code>subschema #3</code> to <code>Members</code> oneOf list</td><td>Schema expansion</td></tr>
-    <tr><td><code>GET /partitions/{id}</code></td><td><strong>Changed ⚠️</strong>: Added <code>subschema #3</code> and enum <code>DEVICE_UID_BASED</code></td><td>Updated schema for ID lookup</td></tr>
-    <tr><td><code>GET /partitions/{id}</code></td><td><strong>Added</strong>: Optional properties <code>MultiCastGroupLimit</code>, <code>ResiliencyMode</code></td><td>Returned with status 200</td></tr>
-    <tr><td><code>PUT /partitions/{id}</code></td><td><strong>Changed</strong>: Added <code>subschema #3</code> to request <code>Members</code></td><td>Aligns with POST schema</td></tr>
     <tr><td><code>GET /ports</code></td><td><strong>Added</strong>: Required properties <code>/items/LinkRateMbps</code>, <code>/items/PortAdminState</code></td><td>Returned with status 200</td></tr>
     <tr><td><code>GET /ports/{id}</code></td><td><strong>Added</strong>: Required properties <code>LinkRateMbps</code>, <code>PortAdminState</code></td><td>Returned with status 200</td></tr>
     <tr><td><code>PUT /ports/{id}</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Supports port updates</td></tr>

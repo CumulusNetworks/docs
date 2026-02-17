@@ -92,10 +92,10 @@ None
 None
 
 - - -
-<!--
+
 ## netq set otlp whitelist
 
-Use this command to add and update the whitelist ConfigMap for an external time-series database. Executing the command automatically triggers a rolling restart of the OTLP pods and will not cause downtime. You can view the contents of the whitelist using the `netq show whitelist custom` command.
+Use this command to add and update the whitelist ConfigMap for a time-series database. Executing the command automatically triggers a rolling restart of the OTLP pods and will not cause downtime. You can view the contents of the whitelist using the `netq show whitelist custom` command.
 
 ### Syntax
 
@@ -119,11 +119,9 @@ None
 ### Sample Usage
 
 ```
-netq set otlp whitelist file /home/nvidia/custom.yaml tsdb-name external-vm
+nvidia@netq-server:~$ netq set otlp whitelist file /path/to/custom.yaml tsdb-name default
 ```
 
 ### Related Commands
 
 - `netq show otlp whitelist`
-
--->

@@ -82,7 +82,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Get the NetQ CLI Software Package for Ubuntu
 
-To install the NetQ CLI on an Ubuntu server, you need to install `netq-apps` on each Ubuntu server. This is available from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}}.
+To install the NetQ CLI on an Ubuntu server, you need to install `netq-apps` on each Ubuntu server. This is available from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian-local/pool/netq-latest/" text="NetQ repository">}}.
 
 {{<tabs "Get NetQ CLI Ubuntu">}}
 
@@ -93,7 +93,7 @@ To get the NetQ CLI package:
 1. Reference and update the local `apt` repository.
 
     ```
-    root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+    root@ubuntu:~# sudo wget -qO -  https://edge.urm.nvidia.com/artifactory/api/gpg/key/public | apt-key add -
     ```
 
 2. Add the Ubuntu repository. Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu24.04.list` and add the following line:
@@ -101,7 +101,7 @@ To get the NetQ CLI package:
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-ubuntu24.04.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb ubuntu24.04 netq-latest
+deb [arch=amd64] https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/ ubuntu24.04 netq-latest
 ...
 ```
 <!--
@@ -118,7 +118,7 @@ To get the NetQ CLI package:
 1. Reference and update the local `apt` repository.
 
     ```
-    root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+    root@ubuntu:~# sudo wget -qO -  https://edge.urm.nvidia.com/artifactory/api/gpg/key/public | apt-key add -
     ```
 
 2. Add the Ubuntu repository. Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu22.04.list` and add the following line:
@@ -126,7 +126,7 @@ To get the NetQ CLI package:
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-ubuntu22.04.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb ubuntu22.04 netq-latest
+deb [arch=amd64] https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/ ubuntu22.04 netq-latest
 ...
 ```
 <!--
@@ -153,12 +153,12 @@ Cumulus Linux 4.4 and later includes the `netq-apps` package by default. To upgr
 ```
 nvidia@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-5 netq-latest
+deb https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/ CumulusLinux-5 netq-latest
 ...
 ```
 <!--
 {{<notice tip>}}
-You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v5.0: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-5 netq-5.0</pre>
+You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v5.0: <pre>https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/ CumulusLinux-5 netq-5.0</pre>
 {{</notice>}}
 -->
 
@@ -174,7 +174,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     ```
     nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
-You should see version 5.1.0 in the results: netq-apps_<strong>5.1.0</strong>-cld12u5_amd64.deb
+You should see version 5.1.0 in the results: netq-apps_<strong>5.1.0</strong>-cld12u7_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -195,7 +195,7 @@ You should see version 5.1.0 in the results: netq-apps_<strong>5.1.0</strong>-cl
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="5.0" opsys="ub">}}
+{{<netq-install/cli-version version="5.1" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 

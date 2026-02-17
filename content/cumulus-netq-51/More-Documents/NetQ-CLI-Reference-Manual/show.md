@@ -403,9 +403,7 @@ leaf02            swp51(spine01)               default         65101      65199 
 
 ## netq show check-filter
 
-Displays filters currently applied to `netq check` commands. Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for more information about suppressing tests associated with `netq check` commands.
-
-Use this command to display check filter IDs, which must be specified when adding filters to a `netq check` command.
+Displays filters currently applied to `netq check` commands. Use this command to display check filter IDs, which must be specified when adding filters to a `netq check` command.
 
 ### Syntax
 
@@ -1951,6 +1949,9 @@ netq [<hostname>] show inventory memory
     [opta]
     [json]
 
+netq [<hostname>] show inventory nic
+    [json]
+
 netq [<hostname>] show inventory os
     [version <os-version>|name <os-name>]
     [opta]
@@ -1967,6 +1968,7 @@ netq [<hostname>] show inventory os
 | cpu | NA | Only display processor information: hostname, architecture, model, frequency, number of cores |
 | disk | NA | Only display disk information: hostname, disk name and type, transport, size, vendor, model |
 | memory | NA | Only display memory information: hostname, memory name, type, size, speed, vendor, serial number |
+| nic | NA | Only display NIC information |
 | os | NA | Only display operating system information: hostname, OS name, version, when changed |
 
 ### Options
@@ -3425,6 +3427,9 @@ netq show otlp tls-cert
 
 netq show otlp whitelist (default | custom)
     [json]
+
+netq show otlp whitelist tsdb-name <text-tsdb-name> 
+    [json]
 ```
 ### Required Arguments
 
@@ -4254,8 +4259,8 @@ None
 nvidia@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 5.0.0
-Installer Version: 5.0.0
+Version: 5.1.0
+Installer Version: 5.1.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdsaHpjKzcwNmJiNVROOExRRXdLL3l5RVNLSHRhUE5sZS9FRjN0cTNzaHh1NmRtMkZpYmg3WWxKUE9lZTd5bnVlV2huaTZxZ0xxV3ZMYkpLMGdkc3RQcGdzNUlqanNMR3RzRTFpaEdNa3RZNlJYenQxLzh4Z3pVRXp3WTBWZDB4aWJrdDF3RGQwSjhnbExlbVk1RDM4VUdBVFVkMWQwcndLQ3gxZEhRdEM5L1UzZUs5cHFlOVdBYmE0ZHdiUFlaazZXLzM0ZmFsdFJxaG8rNUJia0pkTkFnWHdkZGZ5RXA1Vjc3Z2I1TUU3Q1BxOXp2Q1lXZW84cGtXVS9Wc0gxWklNWnhsa2crYlZ4MDRWUnN4ZnNIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==

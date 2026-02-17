@@ -1,3 +1,35 @@
+{{- if eq (.Get "version") "5.1" -}}
+
+You should see version 5.1.0 in the results. For example:
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<ul>
+        <ul>
+            <li>Cumulus Linux 5.9.0 or later: netq-apps_<strong>5.1.0</strong>-cld12u7_amd64.deb</li>
+        </ul>
+</ul>
+
+{{ end }}
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>Ubuntu 24.04: netq-apps_<strong>5.1.0</strong>-ub24.04u7_amd64.deb</li>
+    <li>Ubuntu 22.04: netq-apps_<strong>5.1.0</strong>-ub22.04u7_amd64.deb</li>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "rh" -}}
+
+<ul>
+    <li>netq-apps_<strong>4.15.0</strong>-rh7u<strong>50</strong>~????????.x86_64.rpm</li>
+</ul>
+
+{{ end }}
+
+{{ end }}
+
 {{- if eq (.Get "version") "5.0" -}}
 
 You should see version 5.0.0 in the results. For example:

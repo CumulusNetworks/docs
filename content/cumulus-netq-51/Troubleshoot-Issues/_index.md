@@ -87,6 +87,7 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 
 | Error Message | Deployment Type | Solution |
 | ---- | ---- | ---- |
+| Error: Tar size is exceeding the minimum disk required to run NetQ.| 5.0.0 single server or HA scale cluster |  Reduce the size of  the backup file, delete old backup files, or update the filesystem trimming logic. Refer to {{<link title="Troubleshoot NetQ/#resolve-disk-capacity-issues" text="Resolve Disk Capacity Issues">}}. |
 | Cannot upgrade a non-bootstrapped NetQ server. Please reset the cluster and re-install.| | Only a server that has been bootstrapped and has a valid `/etc/app-release` file can be upgraded.<br> 1. Run the `netq bootstrap reset` command. <br> 2. Run the {{<link title="install" text="netq install">}} command according to your deployment type. |
 | Unable to get response from admin app. | | Re-run the {{<link title="upgrade" text="netq upgrade bundle <text-bundle-url>">}} command. If the retry fails with same error, reset the server and run the `install` command:<br> 1. Run the `netq bootstrap reset` command. <br> 2. Run the {{<link title="install" text="netq install">}} command according to your deployment type. |
 | Unable to get response from kubernetes api server. |  | Re-run the {{<link title="upgrade" text="netq upgrade bundle <text-bundle-url>">}} command. If the retry fails with same error, reset the server and run the `install` command:<br> 1. Run the `netq bootstrap reset` command <br> 2. Run the {{<link title="install" text="netq install">}} command according to your deployment type. |
@@ -127,6 +128,88 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 {{</tab>}}
 
 {{</tabs>}}
+
+### Resolve Disk Capacity Issues
+
+When you perform a backup, you may encounter the following error: `Error: Tar size exceeds the minimum disk space required to run NetQ.` This error indicates that the backup operation will fail because the size of the backup file will cause NetQ to cross the 80% disk threshold limit.
+
+Three resolution options are available, listed in order of recommendation. Try each option sequentially if the previous option does not resolve the issue.
+
+{{< expand "Option 1: Reduce the size of the backup file" >}}
+
+Compress the backup file by adding the compression flag to the backup command. The compression process increases the amount of time it takes to create the backup file, but the size of the file is significantly reduced.
+
+1. Run the following command on your NetQ server (or the master node in cluster deployments):
+```
+nvidia@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup --use_compression
+```
+2. Monitor the backup process. After the backup is complete, verify the backup file was created in the `/opt/backuprestore/` directory.
+
+{{< /expand >}}
+
+{{< expand "Option 2: Remove old backup files to free up disk space" >}}
+
+The following steps remove backup files from the backup directory to free up disk space. Make sure that the files are not required for retention policies or compliance before performing these steps.
+
+1. Run the `df -h /` command to check how much disk space is available.
+
+2. Navigate to the backup directory on your NetQ server:
+```
+nvidia@netq-server:~$ cd /opt/backuprestore
+```
+3. List all backup files with their respective sizes using the `ls -lh` command.
+
+4. Remove the old backup files. Specify the name of the backup .tar file in the command:
+```
+nvidia@netq-server:~$ sudo rm -f /opt/backuprestore/backup-netq-<old-date>.tar
+```
+5. After the file is removed, verify that sufficient disk space is available:
+```
+nvidia@netq-server:~$ df -h /
+```
+6. Retry the backup procedure. You can optionally include the compression flag in the backup command:
+```
+nvidia@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup --use_compression
+```
+
+{{< /expand >}}
+
+{{< expand "Option 3: Reclaim unused disk space by enabling filesystem trim" >}}
+
+The following steps apply exclusively to NetQ version 5.0.0.
+
+1. Create the configuration YAML file for the Longhorn filesystem trim recurring job:
+```
+sudo vi /tmp/longhorn-trim-recurringjob.yaml
+```
+
+2. Add the following content to the file:
+
+```
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: filesystem-trim-job
+  namespace: longhorn-system
+spec:
+  # Run every hour at minute 0
+  cron: "0 * * * *"
+  task: filesystem-trim
+  concurrency: 1
+  retain: 0
+```
+3. Apply the recurring job to Kubernetes:
+```
+kubectl apply -f /tmp/longhorn-trim-recurringjob.yaml
+```
+4. Verify that the recurring job was created successfully:
+```
+kubectl get recurringjobs -n longhorn-system
+```
+5. The trim job runs every hour. After it runs, check the available disk space with the `df -h /` command.
+
+6. If there is sufficient disk space, retry the backup procedure.
+{{< /expand >}}
 
 ## Installation and Upgrade Hook Scripts
 
@@ -196,7 +279,7 @@ nvidia@server:~$ sudo opta-support
 Generating opta-support archive. Process takes few minutes to complete...
 Please send /var/support/opta_support_server_2021119_165552.txz to Nvidia support.
 ```
-To export network validation check data in addition to OPTA health data to the support bundle, the {{<link title="Install NetQ CLI#configure-netq-cli-using-the-cli" text="NetQ CLI must be activated with AuthKeys">}}. If the CLI access key is not activated, the command output displays a notification and data collection excludes `netq show` output:
+To export network validation check data in addition to OPTA health data to the support bundle, the {{<link title="Install NetQ CLI#configure-the-netq-cli" text="NetQ CLI must be activated with AuthKeys">}}. If the CLI access key is not activated, the command output displays a notification and data collection excludes `netq show` output:
 
 ```
 nvidia@server:~$ sudo opta-support
@@ -224,20 +307,26 @@ In the event of a major power outage or hardware failure, NetQ might not load pr
 1. Check whether Cassandra pods are in a `CrashloopbackOff` state or are restarting frequently:
 
 ```
-nvidia@master1scale1:~$ kubectl get pods -o wide|grep cassandra
-cassandra-rc-0-fg5ft 0/1 CrashLoopBackOff 36 (50s ago) 3h52m 10.213.11.181 master1scale1
-cassandra-rc-1-cpl8s 1/1 Running 0 21h 10.213.11.182 worker1scale1
-cassandra-rc-2-zwt58 1/1 Running 0 21h 10.213.11.183 worker2scale1 
-nvidia@master1scale1:~$
+kubectl get pods -n netq-infra -l app.kubernetes.io/name=cassandra -o wide
+```
+
+Example output showing a crashing pod:
+
+```
+NAME                     READY   STATUS             RESTARTS        AGE   IP               NODE       NOMINATED NODE   READINESS GATES
+netq-dc1-default-sts-0   0/2     CrashLoopBackOff   36 (50s ago)    3h52m 10.244.133.233   worker-2   <none>           <none>
+netq-dc1-default-sts-1   2/2     Running            0               21h   10.244.219.127   master     <none>           <none>
+netq-dc1-default-sts-2   2/2     Running            0               21h   10.244.226.111   worker-1   <none>           <none>
 ```
 
 2. The log message from the crashing pods will return a `CommitLogReadException` exception:
 
 ```
-kubectl logs cassandra-rc-0-fg5ft -p
+kubectl logs -n netq-infra netq-dc1-default-sts-0 -c cassandra -p
 ```
 
-For example:
+Example error output:
+
 ```
 org.apache.cassandra.db.commitlog.CommitLogReadHandler$CommitLogReadException: Could not read commit log descriptor in file /opt/cassandra/data/commitlog/CommitLog-7-1735662812573.log
 at org.apache.cassandra.db.commitlog.CommitLogReader.readCommitLogSegment(CommitLogReader.java:195)
@@ -248,54 +337,68 @@ at org.apache.cassandra.db.commitlog.CommitLog.recoverSegmentsOnDisk(CommitLog.j
 at org.apache.cassandra.service.CassandraDaemon.setup(CassandraDaemon.java:360)
 at org.apache.cassandra.service.CassandraDaemon.activate(CassandraDaemon.java:765)
 at org.apache.cassandra.service.CassandraDaemon.main(CassandraDaemon.java:889)
-nvidia@master1scale1:~$
 ```
 
-To fix the issue, log in to the corrupted node using SSH and delete the corrupted file. The following example deletes the corrupted file from node `master1scale1`:
+To fix the issue, delete the corrupted commit log file from the Cassandra pod. The following example deletes the corrupted file from pod `netq-dc1-default-sts-0`:
 
-1. Log in as the root user:
-
-```
-nvidia@master1scale1:/mnt/cassandra/commitlog$ sudo su
-[sudo] password for nvidia:
-root@master1scale1:/mnt/cassandra/commitlog#
-```
-
-2. Change directories to `/mnt/cassandra/commitlog`:
+1. Execute into the Cassandra container inside the failing pod:
 
 ```
-nvidia@master1scale1:/mnt/cassandra/commitlog$ cd /mnt/cassandra/commitlog
+kubectl exec -it -n netq-infra netq-dc1-default-sts-0 -c cassandra -- /bin/bash
 ```
 
-3. Remove the corrupted commit log file:
+2. Change directories to the `commitlog` directory:
 
 ```
-root@master1scale1:/mnt/cassandra/commitlog# rm CommitLog-7-1735662812573.log
+cd /opt/cassandra/data/commitlog
 ```
 
-4. Delete the failing Cassandra pod:
+3. List the commit log files to identify the corrupted file (referenced in the error message):
 
 ```
-root@master1scale1:/mnt/cassandra/commitlog# kubectl get pods|grep cass
-cassandra-rc-0-fg5ft 0/1 CrashLoopBackOff 37 (4m50s ago) 4h3m
-cassandra-rc-1-cpl8s 1/1 Running 0 21h
-cassandra-rc-2-zwt58 1/1 Running 0 21h
-root@master1scale1:/mnt/cassandra/commitlog# kubectl delete pod cassandra-rc-0-fg5ft
-pod "cassandra-rc-0-fg5ft" deleted
+ls -la
 ```
 
-5. Repeat these steps for all pods that are in a `CrashLoopBackOff` state. Verify that all faulty pods are deleted using the following command:
+4. Remove the corrupted commit log file:
 
 ```
-root@master1scale1:/mnt/cassandra/commitlog# kubectl get pods|grep cass
-cassandra-rc-0-cg8j9 1/1 Running 0 2s
-cassandra-rc-1-cpl8s 1/1 Running 0 21h
-cassandra-rc-2-zwt58 1/1 Running 0 21h
-root@master1scale1:/mnt/cassandra/commitlog# kubectl get pods|grep cass
-cassandra-rc-0-cg8j9 1/1 Running 0 3s
-cassandra-rc-1-cpl8s 1/1 Running 0 21h
-cassandra-rc-2-zwt58 1/1 Running 0 21h
-root@master1scale1:/mnt/cassandra/commitlog#
+rm CommitLog-7-1735662812573.log
 ```
 
-If the problem persists, check whether the power outage caused node disk pressure, a condition where a node's available disk space becomes critically low. To recover from this state, perform a manual cleanup of the container images by checking which pods are taking up the most space. Then run `docker system prune -a` to remove all unused images, containers, and networks.
+5. Exit the pod with the `exit` command.
+
+6. Delete the failing Cassandra pod. This allows Cassandra to recreate it:
+
+```
+kubectl get pods -n netq-infra -l app.kubernetes.io/name=cassandra
+```
+
+```
+NAME                     READY   STATUS             RESTARTS        AGE
+netq-dc1-default-sts-0   0/2     CrashLoopBackOff   37 (4m50s ago)  4h3m
+netq-dc1-default-sts-1   2/2     Running            0               21h
+netq-dc1-default-sts-2   2/2     Running            0               21h
+```
+
+```
+kubectl delete pod -n netq-infra netq-dc1-default-sts-0
+```
+
+```
+pod "netq-dc1-default-sts-0" deleted
+```
+
+7. Repeat these steps for all pods that are in a `CrashLoopBackOff` state. Verify that all faulty pods are recovered using the following command:
+
+```
+kubectl get pods -n netq-infra -l app.kubernetes.io/name=cassandra
+```
+
+```
+NAME                     READY   STATUS    RESTARTS   AGE
+netq-dc1-default-sts-0   2/2     Running   0          2s
+netq-dc1-default-sts-1   2/2     Running   0          21h
+netq-dc1-default-sts-2   2/2     Running   0          21h
+```
+
+If the problem persists, check whether the power outage caused node disk pressure, a condition where a node's available disk space becomes critically low. To recover from this state, perform a manual cleanup of the container images by checking which pods are taking up the most space. Then run `docker system prune -a` or `crictl rmi --prune` (depending on container runtime) to remove all unused images, containers, and networks.

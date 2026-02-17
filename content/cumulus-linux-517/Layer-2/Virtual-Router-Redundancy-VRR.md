@@ -948,25 +948,4 @@ iface bond1.30
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "Try It " >}}
-    {{< simulation name="Try It CL515 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
-
-This simulation is running Cumulus Linux 5.15. The Cumulus Linux 5.16 simulation is coming soon.
-
-The simulation is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
-
-To validate the configuration, run the `nv show interface <vlan> ipv4 vrr` command or the `nv show interface <vlan> ipv6 vrr` command:
-
-```
-cumulus@leaf02:mgmt:~$ nv show interface vlan10 ipv4 vrr
-             operational        applied            
------------  -----------------  ----------------- 
-state                           enabled           
-mac-address  00:00:5e:00:01:00  00:00:5e:00:01:00
-mac-id                          none             
-[address]    10.1.10.1/24       10.1.10.1/24      
-state        enabled            enabled                 
-```
-
-{{< /tab >}}
 {{< /tabs >}}

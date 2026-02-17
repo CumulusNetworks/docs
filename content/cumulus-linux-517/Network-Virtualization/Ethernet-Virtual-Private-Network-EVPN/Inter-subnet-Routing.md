@@ -1814,19 +1814,6 @@ exit-address-family
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "Try It " >}}
-    {{< simulation name="Try It CL515 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
-
-This simulation is running Cumulus Linux 5.15. The Cumulus Linux 5.16 simulation is coming soon.
-
-The simulation starts with the example downstream VNI configuration. To simplify the example, only one spine is in the topology. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
-
-- **fw1** has IP address 10.1.210.254 configured beyond border01 in VRF10.
-- **server01** has IP address 10.1.10.101 as in the example.
-
-To validate the configuration, run the verification commands shown below.
-
-{{< /tab >}}
 {{< /tabs >}}
 
 ### Verify Configuration

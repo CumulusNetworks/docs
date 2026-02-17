@@ -124,12 +124,6 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.15.0-5.15.1</td>
 </tr>
 <tr>
-<td>4641326</td>
-<td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
-<td>5.12.0-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4640126</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.14.0</td>
@@ -1316,12 +1310,6 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
 <td>5.15.0-5.15.1</td>
-</tr>
-<tr>
-<td>4641326</td>
-<td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
-<td>5.12.0-5.15.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4640126</td>

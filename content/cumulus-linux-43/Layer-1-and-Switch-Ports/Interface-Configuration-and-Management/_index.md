@@ -1145,7 +1145,7 @@ Interface descriptions also appear in the {{<link url="Simple-Network-Management
 {{%notice note%}}
 
 - Aliases are limited to 256 characters.
-- Avoid using apostrophes or non-ASCII characters in the alias string. Cumulus Linux does not parse these characters.
+- Avoid using backslashes, apostrophes, or non-ASCII characters. Cumulus Linux does not parse these characters.
 
 {{%/notice%}}
 

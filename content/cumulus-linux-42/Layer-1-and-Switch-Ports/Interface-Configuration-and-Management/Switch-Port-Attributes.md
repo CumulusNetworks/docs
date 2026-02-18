@@ -874,7 +874,7 @@ cumulus@switch:~$ net commit
 
 To break out swp1 into four 10G ports, run the `net add interface swp1 breakout 4x10G` command.
 
-On Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches, you need to disable the next port. The following example command disables swp2.
+On Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches, you need to disable the next port. The following example command disables swp2. (This does *not* apply to a 2x50G breakout configuration or to the Mellanox SN2100 and SN2010 switches.)
 
 ```
 cumulus@switch:~$ net add interface swp2 breakout disabled

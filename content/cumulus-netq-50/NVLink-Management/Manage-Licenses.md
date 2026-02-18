@@ -10,13 +10,14 @@ NetQ for NVLink includes an evaluation license that is automatically applied dur
 
 ## Download the License and the License Update Script
 
-1. Log in to the {{<exlink url="http://nvid.nvidia.com/" text="NVIDIA Application Hub">}}. From there, navigate to the NVIDIA Licensing Portal.
-2. First, download the license. From the menu, select **Entitlements&nbsp;<span aria-label="and then">></span> Networking**.
-3. Select the NetQ tab and locate the license file. From the *Actions* column, select the three-dot menu to download the license.
-4. Next, download the `license-update.sh` script. Select **Software Downloads** from the side menu.
-5. In the search field above the table, enter **NetQ**.
-6. Locate and download the latest *NetQ License Update* file.
-7. Copy the `license-update.sh` script to the `/opt/netq-admin/nvl/scripts` directory.
+You will need to download two files: the license file and the license update script.
+
+1. Log in to the {{<exlink url="http://nvid.nvidia.com/" text="NVIDIA Application Hub">}}. From there, navigate to the {{<exlink url="https://ui.licensing.nvidia.com/" text="NVIDIA Licensing Portal">}}.
+2. Download the license.
+3. Next, download the `license-update.sh` script. Select **Software Downloads** from the side menu.
+4. In the search field above the table, enter **NetQ**.
+5. Locate and download the latest *NetQ License Update* file.
+6. Copy the `license-update.sh` script to the `/opt/netq-admin/nvl/scripts` directory.
 
 
 ## Apply a New License

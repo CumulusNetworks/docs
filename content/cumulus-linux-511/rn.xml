@@ -1002,6 +1002,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>4840299</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4805286</td>
 <td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
 <td>5.11.3-5.11.4</td>
@@ -2000,6 +2006,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4840299</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4805286</td>
 <td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
 <td>5.11.3-5.11.4</td>
@@ -2976,6 +2988,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4850551</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4840299</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4160,6 +4178,12 @@ nv config apply -y</td>
 <td>4850551</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4840299</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>
@@ -5412,6 +5436,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>4850551</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
 <td>5.9.2-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4840299</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>

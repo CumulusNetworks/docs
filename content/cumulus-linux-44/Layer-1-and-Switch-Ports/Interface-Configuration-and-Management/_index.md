@@ -535,7 +535,7 @@ Interface descriptions also appear in the {{<link url="Simple-Network-Management
 
 {{%notice note%}}
 - Interface descriptions can have a maximum of 255 characters.
-- Avoid using apostrophes or non-ASCII characters. Cumulus Linux does not parse these characters.
+- Avoid using backslashes, apostrophes, or non-ASCII characters. Cumulus Linux does not parse these characters.
 {{%/notice%}}
 
 The following example commands create a description for swp1:

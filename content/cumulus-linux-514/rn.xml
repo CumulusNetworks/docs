@@ -336,12 +336,6 @@ interface_stats_collector[41358]: [signal SIGSEGV: segmentation violation code=0
 <td></td>
 </tr>
 <tr>
-<td>4641326</td>
-<td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
-<td>5.12.0-5.15.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4641291</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or phy.</td>
 <td>5.13.1-5.14.0</td>

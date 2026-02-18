@@ -41,9 +41,11 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for 
   EVPN VXLAN IPv6 VTEP is a Beta feature.
   {{%/notice%}}
   
+## EVPN with eBGP and iBGP Peering
+
 Cumulus Linux supports the EVPN address family with both <span class="a-tooltip">[eBGP](## "external BGP")</span> and <span class="a-tooltip">[iBGP](## "internal BGP")</span> peering. If you configure underlay routing with eBGP, you can use the same eBGP session to carry EVPN routes. In a typical 2-tier Clos network where the leafs are VTEPs, if you use eBGP sessions between the leafs and spines for underlay routing, the same sessions exchange EVPN routes. The spine switches act as *route forwarders* and do not install any forwarding state as they are not VTEPs. When the switch exchanges EVPN routes over iBGP peering, you can use OSPF as the IGP or resolve next hops using iBGP.
 
-{{%notice note%}}
+## Considerations
+
 - Cumulus Linux disables data plane MAC learning by default on VXLAN interfaces. Do *not* enable MAC learning on VXLAN interfaces: EVPN installs remote MACs.
 - Cumulus Linux does not support tenant routed multicast (TRM).
-{{%/notice%}}

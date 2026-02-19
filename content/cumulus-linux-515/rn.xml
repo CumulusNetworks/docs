@@ -961,6 +961,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4884646</td>
+<td>When you run the vtysh -c {{show bgp l2v evp neigh swp1 routes json}} command,  a memory leak occurs. </td>
+<td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4875599</td>
 <td>When you configure authentication for a BGP dynamic neighbor, removing the configuration does not bring back the sessions.</td>
 <td>5.15.0-5.15.1</td>
@@ -988,6 +994,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4850188</td>
 <td>Signal quality degradation is observed during SR4-100G to 4×25G breakout using an adapter.</td>
 <td>5.15.0-5.15.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4840299</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.15.1</td>
 <td></td>
 </tr>
 <tr>

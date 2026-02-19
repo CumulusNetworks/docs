@@ -1,10 +1,10 @@
 ---
 title: NetQ 5.1 Open Source Packages
 author: Cumulus Networks
-weight: -30
+weight: 25
 product: Cumulus NetQ
 version: "5.1"
-toc: 1
+toc: 3
 pdfhidden: True
 ---
 ## 5.1.0 Open Source Software Licenses 

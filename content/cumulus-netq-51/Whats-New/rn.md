@@ -4,9 +4,7 @@ author: Cumulus Networks
 weight: 30
 product: Cumulus NetQ
 version: "5.1"
-toc: 1
-type: rn
-pdfhidden: True
+toc: 3
 ---
 {{<rn_xls_link dir="cumulus-netq-51" >}}
 ## 5.1.0 Release Notes

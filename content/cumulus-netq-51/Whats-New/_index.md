@@ -3,7 +3,7 @@ title: What's New
 author: NVIDIA
 weight: 10
 subsection: true
-toc: 1
+toc: 2
 ---
 
 This page summarizes new features and improvements for the NetQ {{<version>}} release. 

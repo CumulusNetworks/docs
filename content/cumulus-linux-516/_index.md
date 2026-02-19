@@ -23,4 +23,4 @@ To implement various Cumulus Linux features, NVIDIA has forked various software 
 
 NVIDIA has also developed and released new applications as open source. The list of open source projects is on the {{<link title="Cumulus Linux 5.16 Packages" text="Cumulus Linux packages" >}} page.
 
-_This PDF documentation was compiled on Feb 6, 2026_
+_This PDF documentation was compiled on Feb 19, 2026_

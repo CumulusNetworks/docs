@@ -87,6 +87,7 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 
 | Error Message | Deployment Type | Solution |
 | ---- | ---- | ---- |
+| Error: Tar size is exceeding the minimum disk required to run NetQ.| 5.0.0 single server or HA scale cluster |  Reduce the size of  the backup file, delete old backup files, or update the filesystem trimming logic. Refer to {{<link title="Troubleshoot NetQ/#resolve-disk-capacity-issues" text="Resolve Disk Capacity Issues">}}. |
 | Cannot upgrade a non-bootstrapped NetQ server. Please reset the cluster and re-install.| | Only a server that has been bootstrapped and has a valid `/etc/app-release` file can be upgraded.<br> 1. Run the `netq bootstrap reset` command. <br> 2. Run the {{<link title="install" text="netq install">}} command according to your deployment type. |
 | Unable to get response from admin app. | | Re-run the {{<link title="upgrade" text="netq upgrade bundle <text-bundle-url>">}} command. If the retry fails with same error, reset the server and run the `install` command:<br> 1. Run the `netq bootstrap reset` command. <br> 2. Run the {{<link title="install" text="netq install">}} command according to your deployment type. |
 | Unable to get response from kubernetes api server. |  | Re-run the {{<link title="upgrade" text="netq upgrade bundle <text-bundle-url>">}} command. If the retry fails with same error, reset the server and run the `install` command:<br> 1. Run the `netq bootstrap reset` command <br> 2. Run the {{<link title="install" text="netq install">}} command according to your deployment type. |
@@ -127,6 +128,88 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 {{</tab>}}
 
 {{</tabs>}}
+
+### Resolve Disk Capacity Issues
+
+When you perform a backup, you may encounter the following error: `Error: Tar size exceeds the minimum disk space required to run NetQ.` This error indicates that the backup operation will fail because the size of the backup file will cause NetQ to cross the 80% disk threshold limit.
+
+Three resolution options are available, listed in order of recommendation. Try each option sequentially if the previous option does not resolve the issue.
+
+{{< expand "Option 1: Reduce the size of the backup file" >}}
+
+Compress the backup file by adding the compression flag to the backup command. The compression process increases the amount of time it takes to create the backup file, but the size of the file is significantly reduced.
+
+1. Run the following command on your NetQ server (or the master node in cluster deployments):
+```
+nvidia@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup --use_compression
+```
+2. Monitor the backup process. After the backup is complete, verify the backup file was created in the `/opt/backuprestore/` directory.
+
+{{< /expand >}}
+
+{{< expand "Option 2: Remove old backup files to free up disk space" >}}
+
+The following steps remove backup files from the backup directory to free up disk space. Make sure that the files are not required for retention policies or compliance before performing these steps.
+
+1. Run the `df -h /` command to check how much disk space is available.
+
+2. Navigate to the backup directory on your NetQ server:
+```
+nvidia@netq-server:~$ cd /opt/backuprestore
+```
+3. List all backup files with their respective sizes using the `ls -lh` command.
+
+4. Remove the old backup files. Specify the name of the backup .tar file in the command:
+```
+nvidia@netq-server:~$ sudo rm -f /opt/backuprestore/backup-netq-<old-date>.tar
+```
+5. After the file is removed, verify that sufficient disk space is available:
+```
+nvidia@netq-server:~$ df -h /
+```
+6. Retry the backup procedure. You can optionally include the compression flag in the backup command:
+```
+nvidia@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup --use_compression
+```
+
+{{< /expand >}}
+
+{{< expand "Option 3: Reclaim unused disk space by enabling filesystem trim" >}}
+
+The following steps apply exclusively to NetQ version 5.0.0.
+
+1. Create the configuration YAML file for the Longhorn filesystem trim recurring job:
+```
+sudo vi /tmp/longhorn-trim-recurringjob.yaml
+```
+
+2. Add the following content to the file:
+
+```
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: filesystem-trim-job
+  namespace: longhorn-system
+spec:
+  # Run every hour at minute 0
+  cron: "0 * * * *"
+  task: filesystem-trim
+  concurrency: 1
+  retain: 0
+```
+3. Apply the recurring job to Kubernetes:
+```
+kubectl apply -f /tmp/longhorn-trim-recurringjob.yaml
+```
+4. Verify that the recurring job was created successfully:
+```
+kubectl get recurringjobs -n longhorn-system
+```
+5. The trim job runs every hour. After it runs, check the available disk space with the `df -h /` command.
+
+6. If there is sufficient disk space, retry the backup procedure.
+{{< /expand >}}
 
 ## Installation and Upgrade Hook Scripts
 

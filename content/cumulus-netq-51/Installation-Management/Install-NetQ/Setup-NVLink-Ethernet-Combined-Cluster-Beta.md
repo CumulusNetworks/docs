@@ -7,7 +7,7 @@ bookhidden: true
 ---
 Follow these steps to set up and configure your VMs in a cluster of servers. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure.
 {{<notice info>}}
-This deployment option is in beta. Deployments with more than three nodes will require a fresh installation upon subsequent NetQ releases.
+This deployment option is in beta. Deployments with more than three nodes will require a fresh installation upon subsequent NetQ releases. {{<link title="Before You Install/#server-arrangement" text="View node support information">}}.
 {{</notice>}}
 ## System Requirements
 

@@ -570,7 +570,7 @@ def get_products():
     { "cl":  ["3.7.1", "3.7.2"], "netq": ["2.4.0", "2.4.1", "3.0.0", "3.1.0"] }
     '''
     session = requests.Session()
-    url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"
+    url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list_stage.json"
     response = session.get(url)
     if response.status_code != 200:
         print("Unable to download JSON releases file to determine products and versions for release notes.")

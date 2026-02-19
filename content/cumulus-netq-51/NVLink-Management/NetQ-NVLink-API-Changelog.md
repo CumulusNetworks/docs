@@ -8,7 +8,7 @@ toc: 3
 
 ## 5.1 NetQ NVLink REST API Changelog
 
-<p><strong>Version 5.1.0</strong> (compared to 5.0.0). Breaking changes are indicated with ⚠️. <!--For more information, see the NetQ for NVLink Swagger documentation.--><br>
+<p><strong>Version 5.1.0</strong> (compared to 5.0.0). Breaking changes are indicated with ⚠️. For more information, see the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="REST API in Swagger">}}.<br>
 
 <table id="api-changelog" class="sortable">
   <thead>

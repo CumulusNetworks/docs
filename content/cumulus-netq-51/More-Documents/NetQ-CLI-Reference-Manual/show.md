@@ -1949,6 +1949,9 @@ netq [<hostname>] show inventory memory
     [opta]
     [json]
 
+netq [<hostname>] show inventory nic
+    [json]
+
 netq [<hostname>] show inventory os
     [version <os-version>|name <os-name>]
     [opta]
@@ -1965,6 +1968,7 @@ netq [<hostname>] show inventory os
 | cpu | NA | Only display processor information: hostname, architecture, model, frequency, number of cores |
 | disk | NA | Only display disk information: hostname, disk name and type, transport, size, vendor, model |
 | memory | NA | Only display memory information: hostname, memory name, type, size, speed, vendor, serial number |
+| nic | NA | Only display NIC information |
 | os | NA | Only display operating system information: hostname, OS name, version, when changed |
 
 ### Options

@@ -5,15 +5,9 @@ weight: 60
 toc: 4
 ---
 
-NetQ contains the following applications and key components:
+NetQ collects telemetry from Ethernet switches, DPUs, hosts, and NVLink fabrics, normalizes it, and streams it into a central analytics layer where metrics, events, and topology data are correlated in near real time. It then exposes this processed data through a unified monitoring and operations platform that supports alerting, validation, and visibility for large-scale GPU and Ethernet/NVLink environments.
 
-- Telemetry data collection and aggregation via
-  - NetQ switch agents
-  - NetQ host agents
-  - Database
-- Data streaming
-- Network services
-- User interfaces
+{{<figure src="/images/netq/how-netq-works-51.svg" alt="" width="1100">}}
 
 <!--
 While these functions apply to both the on-premises and cloud solutions, they are configured differently, as shown in the following diagrams.

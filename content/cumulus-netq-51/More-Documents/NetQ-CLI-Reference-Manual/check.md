@@ -906,7 +906,8 @@ NetQ supports RoCE lossless and lossy modes; NetQ monitoring and validation chec
 
 ```
 netq check roce
-    [hostnames <text-list-hostnames>] 
+    [streaming]
+    [label <text-label-name> | hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>] 
     [include <roce-number-range-list> | exclude <roce-number-range-list>] 
     [around <text-time>] 
@@ -921,6 +922,8 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| streaming | NA | Run a streaming validation |
+| label | \<text-label-names\> | Comma-separated list (no spaces) of device labels to include in validation |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<roce-number-range-list\> | Include the specified validation tests |
@@ -1161,7 +1164,7 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| label | \<text-label-name\> | Reserved |
+| label | \<text-label-names\> | Comma-separated list (no spaces) of device labels to include in validation |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | unverified | NA | Find nodes with no peer |
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |

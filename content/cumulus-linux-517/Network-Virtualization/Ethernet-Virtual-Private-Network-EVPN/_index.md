@@ -33,7 +33,7 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for 
   - MAC (host) mobility.
   - PIM multicast-based BUM handling.
   - Interoperability with IPv4 and IPv6 VTEPs in the fabric.
-  - Dual stack VXLAN mode (with both an IPv4 and IPv6 VTEP source address)
+  - Dual stack VXLAN mode (with both an IPv4 and IPv6 VTEP source address).
   - MLAG.
   - Static VXLAN tunnels.
   - Downstream VNIs.

@@ -1875,6 +1875,10 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.
 }
 ```
 
+{{%notice note%}}
+The API `GET` operation output matches the operational revision view (equivalent to `nv show --rev=operational`) and omits unset fields that are shown in the default `nv show` output.
+{{%/notice%}}
+
 ### Use Filters in a Query
 
 You can use filters to show specific information in a query with the `curl -u '<username>:<password>' -k -X GET http://path?filter=<filter>` syntax. The following example is the equivalent REST API method for the NVUE `nv show interface --filter type=svi` command, which shows all SVIs configured on the switch:

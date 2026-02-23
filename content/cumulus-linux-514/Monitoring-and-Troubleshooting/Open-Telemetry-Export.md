@@ -2793,7 +2793,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `node_memory_Zswapped_bytes` | `/proc/meminfo` Zswapped bytes. |
 
 {{< /tab >}}
-{{< tab "Environment Sensors ">}}
+{{< tab "Environment Sensor ">}}
 
 | Name | Description |
 |----- | ----------- |

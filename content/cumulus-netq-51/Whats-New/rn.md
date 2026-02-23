@@ -38,4 +38,3 @@ pdfhidden: True
 | <a name="4637749"></a> [4637749](#4637749) <a name="4637749"></a> <br /> | When the master node is down,  the <code>netq show status</code> command might report an incorrect status. | 5.0.0 | |
 | <a name="4573427"></a> [4573427](#4573427) <a name="4573427"></a> <br /> | The link health view utilization chart might display incorrect values for the top 5 links when multiple links share the same value. | 5.0.0 | |
 | <a name="4527529"></a> [4527529](#4527529) <a name="4527529"></a> <br /> | When there is a high volume of concurrent API requests to NetQ, some requests may fail. | 4.15.0-5.0.0 | |
-

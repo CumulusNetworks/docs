@@ -14,6 +14,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 
 ### New Features and Enhancements
 
+- {{<link url="TACACS/#server-side-per-command-authorization" text="TACACS+ Server-side Per-command Authorization">}}
 - Headroom Size based on the average packet size
 - Dynamic ECN (Beta)
 - Instant Retransmission System (Beta)
@@ -31,7 +32,6 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - BER monitoring | GSHUT and port down due to error disabled
 - Security - Support "sudo" validation when TACACS server is connected to the default VRF 
 - Telemetry - amBER Link Down Information (gNMI & OTEL)
-- Support For TACACS Per Command Authorization on TACACS Server Instead of Locally 
 - Integrate logs in tc_log to the syslog​, and update log level
 - NV config verify (User can verify a config before apply
 - High frequency telemetry - Nsight Integration - Phase 2 (Binary format) 

@@ -485,7 +485,7 @@ cumulus@switch:~$ sudo rm ~tacacs0/bin/*
 
 ## Server-side Per-command Authorization
 
-Whe you use server-side per-command authorization, Cumulus Linux sends every command that the TACACS+ user enters to the TACACS server for authorization before executing the command. The TACACS server is the sole authority on which commands are permitted; you don't need to configure local per-command configuration on the switch.
+Whe you use server-side per-command authorization, Cumulus Linux sends every command that the TACACS+ user enters to the TACACS server for authorization before executing the command.
 
 {{%notice note%}}
 - You can use server-side per-command authorization together with specific command authorization so that Cumulus Linux authorizes certain commands locally and forwards all other commands *only* to the TACACS server.
@@ -497,17 +497,17 @@ By default, server-side per-command authorization is disabled for all privilege 
 
 To enable server-side per-command authorization for a TACACS privilege level, run the `nv set system aaa tacacs authorization <priority-id> all-commands enabled` command.
 
-The following example enables server-side authorization for all commands at privilege level 15:
+The following example enables server-side authorization for all commands at privilege level 0:
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs authorization 15 all-commands enabled
+cumulus@switch:~$ nv set system aaa tacacs authorization 0 all-commands enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable server-side per-command authorization for a TACACS privilege level and revert to local command authorization only, run the `nv set system aaa tacacs authorization <priority-id> all-commands disabled` command:
+To disable server-side per-command authorization for a TACACS privilege level, run the `nv set system aaa tacacs authorization <priority-id> all-commands disabled` command:
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs authorization 15 all-commands disabled
+cumulus@switch:~$ nv set system aaa tacacs authorization 0 all-commands disabled
 cumulus@switch:~$ nv config apply
 ```
 

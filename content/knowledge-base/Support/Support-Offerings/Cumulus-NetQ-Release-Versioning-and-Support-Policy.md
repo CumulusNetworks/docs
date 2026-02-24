@@ -29,8 +29,8 @@ NetQ software installation file names include a version number, in the form of x
 
 For example:
 
-- netq-apps_5.0.0-cld12u5_amd64.deb
-- netq-agent_5.0.0-cld12u5_amd64.deb
+- netq-apps_5.1.0-cld12u7_amd64.deb
+- netq-agent_5.1.0-cld12u7_amd64.deb
 
 ## Release, Support Lifecycle and Support Policy
 
@@ -43,10 +43,9 @@ NetQ is offered with a per switch subscription that includes support for 1, 3, a
 
 ## NetQ Support Matrix
 
-The following table depicts the NetQ release support matrix:
-
 | NetQ Release | Release Date | End of Support |
 | :--------: | --------- | --------- |
+| 5.1.z | 24-Feb-2026 | 24-Feb-2028|
 | 5.0.z | 03-Nov-2025 | 03-Nov-2027 |
 | 4.15.z | 31-Jul-2025 | 31-Jul-2027 |
 | 4.14.z | 22-Apr-2025 | 22-Apr-2027 |

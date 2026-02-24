@@ -31,11 +31,13 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for 
 
   EVPN VXLAN IPv6 VTEP does not support:
   - MAC (host) mobility.
-  - PIM multicast based BUM handling.
-  - Interoperability with an IPv4 VTEP in the fabric.
+  - PIM multicast-based BUM handling.
+  - Interoperability with IPv4 and IPv6 VTEPs in the fabric.
+  - Dual stack VXLAN mode (with both an IPv4 and IPv6 VTEP source address).
   - MLAG.
   - Static VXLAN tunnels.
-  - The NVUE command `auto` setting for the VXLAN source IP address, which is applicable only for IPv4 VXLAN tunnels. If you want to set up IPv6 VXLAN tunnels, you must configure the VXLAN source IP address manually as an IPv6 GUA address.
+  - Downstream VNIs.
+  - The NVUE `nv set nve vxlan source address` command `auto` setting, which is applicable only for IPv4 VXLAN tunnels. If you want to configure IPv6 VXLAN tunnels, you must set the VXLAN source IP address manually as an IPv6 GUA address.
 
   {{%notice note%}}
   EVPN VXLAN IPv6 VTEP is a Beta feature.

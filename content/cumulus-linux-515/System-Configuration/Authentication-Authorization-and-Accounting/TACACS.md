@@ -398,10 +398,6 @@ TACACS+ per-command authorization lets you configure the commands that TACACS+ u
 
 The following command allows TACACS+ users at privilege level 0 to run the `nv` and `ip` commands.
 
-{{%notice note%}}
-After configuring TACACS+ per-command authorization, you must restart the NVUE service.
-{{%/notice%}}
-
 {{< tabs "TabID392 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -409,7 +405,6 @@ After configuring TACACS+ per-command authorization, you must restart the NVUE s
 cumulus@switch:~$ nv set system aaa tacacs authorization 0 command ip 
 cumulus@switch:~$ nv set system aaa tacacs authorization 0 command nv
 cumulus@switch:~$ nv config apply
-cumulus@switch:~$ sudo systemctl restart nvued.service
 ```
 
 To show the per-command authorization settings, run the `nv show system aaa tacacs authorization` command:
@@ -431,7 +426,6 @@ When you configure per-command authorization on the switch, only define the init
 
 ```
 cumulus@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a ip nv
-cumulus@switch:~$ sudo systemctl restart nvued.service
 ```
 
 The `tacplus-auth` command handles authorization for each command. To make this an enforced authorization, change the TACACS+ log in to use a restricted shell, with a very limited executable search path. Otherwise, the user can bypass the authorization. The `tacplus-restrict` utility simplifies setting up the restricted environment.

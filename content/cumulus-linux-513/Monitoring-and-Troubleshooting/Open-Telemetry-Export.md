@@ -256,19 +256,19 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Environment sensors">}}
+{{< tab "Environment sensor">}}
 
 To enable environment sensor statistics:
 
 ```
-cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensors state enabled
+cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensor state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To adjust the sample interval for environment sensor statistics:
 
 ```
-cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensors sample-interval 100
+cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensor sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
 
@@ -2392,7 +2392,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `node_memory_Zswapped_bytes` | `/proc/meminfo` Zswapped bytes. |
 
 {{< /tab >}}
-{{< tab "Environment Sensors ">}}
+{{< tab "Environment Sensor ">}}
 
 | Name | Description |
 |----- | ----------- |

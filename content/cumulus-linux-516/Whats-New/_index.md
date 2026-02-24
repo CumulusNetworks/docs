@@ -65,6 +65,12 @@ To upgrade to Cumulus Linux 5.16 from a release that does not support package up
 Cumulus Linux 5.16 does not support online package upgrade; you can use offline package upgrade instead.
 {{%/notice%}}
 
+### Significant NVUE Command and API Updates
+
+{{%notice warning%}}
+To align with a long-term vision of a common interface between Cumulus Linux, NVIDIA OS (NVOS), and Host-Based Networking, Cumulus Linux 5.15 included significant NVUE command and API updates. If you are upgrading to Cumulus Linux 5.16 from Cumulus Linux 5.14 or earlier, review the list of {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-515/Whats-New/New-and-Changed-NVUE-Commands/" text="New, Changed, and Deprecated NVUE Commands in Cumulus Linux 5.15">}} before you upgrade to ensure a smooth transition.
+{{%/notice%}}
+
 ### Maximum Number of NVUE Revisions
 
 Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.16 from 5.12 or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.

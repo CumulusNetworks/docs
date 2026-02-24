@@ -18,7 +18,7 @@ PIM-SM has three configuration options:
 Cumulus Linux supports ASM and SSM only.
 
 {{%notice note%}}
-- SSM works only with IGMPv3 multicast group ranges.
+- IGMPv3 works only with SSM multicast group ranges.
 - Cumulus Linux does not support IPv6 multicast routing with PIM.
 {{%/notice%}}
 

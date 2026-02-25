@@ -8,6 +8,11 @@ This document supports the Cumulus Linux 5.16 release, and lists new features an
 - For a list of open and fixed issues in Cumulus Linux 5.16, see the {{<link title="Cumulus Linux 5.16 Release Notes" text="Cumulus Linux 5.16 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.16, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+{{%notice note%}}
+Cumulus Linux 5.16 is tested as part of the Spectrum-X reference architecture release 2.1.
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+
 ## What's New in Cumulus Linux 5.16
 
 Cumulus Linux 5.16 contains new features and improvements, and provides bug fixes.

@@ -6,9 +6,10 @@ subsection: true
 toc: 1
 ---
 
-This page summarizes new features and improvements for the NetQ {{<version>}} release. 
-
-- For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.1 Release Notes" text="release notes">}}.
+This page summarizes new features and improvements for the NetQ {{<version>}} release. For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.1 Release Notes" text="release notes">}}.
+{{%notice note%}}
+NetQ 5.1 is tested and validated as part of the Spectrum-X reference architecture 2.1 release.
+{{%/notice%}}
 
 ## What's New in NetQ 5.1
 

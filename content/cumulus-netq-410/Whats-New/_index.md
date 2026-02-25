@@ -31,6 +31,11 @@ To get started, refer to the {{<exlink url="https://docs.nvidia.com/base-command
 {{%notice info%}}
 NetQ 4.10.0 does not support upgrading switches to Cumulus Linux version 5.9 with {{<link title="Upgrade Cumulus Linux" text="NetQ Lifecycle Management">}}. To upgrade switches manually, see {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}}.
 {{%/notice%}}
+
+## Release Considerations
+
+- NetQ 4.10 is tested and validated as part of the Spectrum-X reference architecture 1.0.1 release. For a full compatibility matrix, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+
 ## Upgrade Paths
 
 For deployments running:

@@ -19,6 +19,10 @@ NetQ 4.11.0 includes the following new features and improvements:
 - Create threshold crossing rules that alert you when a {{<link title="Threshold-Crossing Events Reference#sensors" text="sensor's state changes">}}.
 - {{<link title="Focus Your Monitoring Using Workbenches#manage-auto-refresh" text="Adjust the frequency">}} that NetQ reloads dashboard data to every minute, 2 minutes, or 5 minutes.
 
+## Release Considerations
+
+- NetQ 4.11 is tested and validated as part of the Spectrum-X reference architecture 1.1 release. For a full compatibility matrix, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+
 ## Upgrade Paths
 
 For deployments running:

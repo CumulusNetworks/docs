@@ -17,6 +17,10 @@ NetQ 4.14.0 includes the following new features:
 
 <!-- You can now name a threshold-crossing rule {{<link title="add/#netq-add-tca" text="using the command line">}}. Miriam to confirm-->
 
+## Release Considerations
+
+- This NetQ version is not part of the Spectrum-X reference architecture release and is not supported in Spectrum-X environments.
+
 ## Upgrade Paths
 
 For deployments running:

@@ -65,10 +65,6 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 
 To upgrade to Cumulus Linux 5.16 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
-{{%notice note%}}
-Cumulus Linux 5.16 does not support online package upgrade; you can use offline package upgrade instead.
-{{%/notice%}}
-
 ### Significant NVUE Command and API Updates
 
 {{%notice warning%}}

@@ -20,6 +20,9 @@ NetQ 4.13.0 includes the following new features:
 - Added support for Ubuntu 22.04 and deprecated support for Ubuntu 20.04
 - Security and performance improvements
 
+## Release Considerations
+
+- NetQ 4.13 is tested and validated as part of the Spectrum-X reference architecture 1.3 release. For a full compatibility matrix, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 
 ## Upgrade Paths
 

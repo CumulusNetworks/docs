@@ -15,10 +15,12 @@ The upcoming Cumulus Linux 5.15.0 release includes updates to NVUE commands. The
 ## What's New in Cumulus Linux 5.10.1
 
 Cumulus Linux 5.10.1 provides {{<link title="Cumulus Linux 5.10 Packages" text="new SDK and firmware versions">}}, and includes bug fixes.
-
-{{%notice note%}}
 - To upgrade to Cumulus Linux 5.10.1 from Cumulus Linux 5.9.2, you must install the Cumulus Linux 5.10.1 image. You cannot use package upgrade.
 - Package upgrade to Cumulus Linux 5.10.1 from 5.9.1 and earlier does not support warm restart mode.
+
+{{%notice note%}}
+Cumulus Linux 5.10.1 is tested and validated as part of the Spectrum-X reference architecture 1.1 release.
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
 
 ## What's New in Cumulus Linux 5.10.0

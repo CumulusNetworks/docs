@@ -43,6 +43,18 @@
     {{ $jsAir := resources.Get "js/air.js" }}
     <script type="application/javascript" src="{{ $jsAir.Permalink }}"></script>
 
+
+    <!-- OneTrust Cookies Consent Notice start for nvidia.com -->
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="3e2b62ff-7ae7-4ac5-87c8-d5949ecafff5"></script>
+<script type="text/javascript">
+function OptanonWrapper() {        
+            var event = new Event('bannerLoaded');
+        window.dispatchEvent(event);
+    }
+        </script>
+<!-- OneTrust Cookies Consent Notice end for nvidia.com -->
+
+<script type="text/javascript" src="https://images.nvidia.com/aem-dam/Solutions/ot-js/ot-custom.js"></script>
 {{ end }}
 
 {{ if eq .Page.Params.product "NVIDIA Air" }}

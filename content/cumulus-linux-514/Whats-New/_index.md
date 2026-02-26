@@ -16,6 +16,11 @@ The upcoming Cumulus Linux 5.15.0 release includes updates to NVUE commands. The
 
 Cumulus Linux 5.14.0 contains several new features and improvements, and provides bug fixes.
 
+{{%notice note%}}
+Cumulus Linux 5.14 is tested and validated as part of the Spectrum-X reference architecture 2.0 release.
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+
 ### New Features and Enhancements
 
 - FRR upgrade to 10.0.3

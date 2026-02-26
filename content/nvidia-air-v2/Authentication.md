@@ -32,7 +32,7 @@ When generating a key, select **NVIDIA Air** from the services list to grant Air
 
 Include your API key in the `Authorization` header:
 
-```bash
+```
 curl -X GET "https://api.air-ngc.nvidia.com/api/v3/simulations/" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```

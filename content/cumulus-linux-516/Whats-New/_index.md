@@ -10,6 +10,7 @@ This document supports the Cumulus Linux 5.16 release, and lists new features an
 
 {{%notice note%}}
 Cumulus Linux 5.16 is tested as part of the Spectrum-X reference architecture release 2.1.
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
 
 ## What's New in Cumulus Linux 5.16
@@ -64,10 +65,6 @@ Review the following considerations before you upgrade to Cumulus Linux 5.16.
 You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.16 from Cumulus Linux 5.14 and later. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 
 To upgrade to Cumulus Linux 5.16 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
-
-{{%notice note%}}
-Cumulus Linux 5.16 does not support online package upgrade; you can use offline package upgrade instead.
-{{%/notice%}}
 
 ### Significant NVUE Command and API Updates
 

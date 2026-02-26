@@ -43,7 +43,7 @@ Cloud-init runs during the initial boot of each node. Configure cloud-init assig
 
 The following `cloud-config` user-data installs packages and writes a configuration file on first boot:
 
-```yaml
+```
 #cloud-config
 
 packages:

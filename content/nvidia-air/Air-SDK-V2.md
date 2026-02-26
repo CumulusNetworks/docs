@@ -40,7 +40,7 @@ Although most API V2 endpoints make no reference to a topology, there are a few 
 
 The V2 implementation of the SDK has a separate import from the [air_sdk](https://pypi.org/project/air-sdk/) package:
 
-```python
+```
 from air_sdk import AirApi as AirApiV1  # Imports the original SDK
 from air_sdk.v2 import AirApi  # Imports the V2 SDK
 
@@ -51,7 +51,7 @@ api = AirApi(username=..., password=...)
 
 Because most API V2 endpoints that list data are [paginated](https://www.django-rest-framework.org/api-guide/pagination/#limitoffsetpagination), V2 SDK methods often return iterators (for example, api.simulations.list()) which improve performance but require iteration. Convert iterators to lists when indexing is required:
 
-```python
+```
 from air_sdk.v2 import AirApi
 
 api = AirApi(username=..., password=...)
@@ -65,7 +65,7 @@ for simulation in simulation_iterator:  # The SDK will walk through the paginati
 ```
 The SDK uses a default page size of 200. You can adjust the page size to make fewer or more requests by calling `list` on the iterator:
 
-```python
+```
 from air_sdk.v2 import AirApi
 
 api = AirApi(username=..., password=...)
@@ -77,7 +77,7 @@ sims = list(api.simulations.list())  # will most likely only make 1 call to the 
 
 Most of the SDK V2 comes with type hints that provides assistance and validation when creating or updating objects:
 
-```python
+```
 >>> from typing import get_type_hints
 >>> for key, value in get_type_hints(air.simulations.create).items():
 ...    print(key, ':', value)
@@ -99,7 +99,7 @@ return : <class 'air_sdk.v2.endpoints.simulations.Simulation'>
 
 Clients can set a custom connection timeout for the SDK V2:
 
-```python
+```
 from datetime import timedelta
 from air_sdk.v2 import AirApi
 
@@ -116,7 +116,7 @@ api.set_read_timeout(timedelta(minutes=2))
 
 The initialization process for the original and the V2 SDK is nearly identical:
 
-```python
+```
 from air_sdk import AirApi as AirApiV1
 from air_sdk.v2 import AirApi as AirApiV2
 
@@ -134,7 +134,7 @@ air_v2 = AirApiV2(
 
 There is an additional option to skip authentication during the initialization of the SDK V2 and provide authentication credentials at a later time:
 
-```python
+```
 from air_sdk.v2 import AirApi
 api = AirApi(api_url=..., authenticate=False)
 api.client.authenticate(username=..., password=...)
@@ -146,7 +146,7 @@ You can also use this method to switch which client is authenticated.
 
 SDK V2 introduces dataclasses for representing various objects like simulations, nodes, images, and organizations in Python.
 
-```python
+```
 >>> sim
 Simulation(id='95bbbf37-a6d4-42b2-ab62-0234cc86370d', title='2k links', state='NEW', documentation=None, write_ok=True, metadata=None)
 >>> sim.id
@@ -157,21 +157,21 @@ Simulation(id='95bbbf37-a6d4-42b2-ab62-0234cc86370d', title='2k links', state='N
 datetime.datetime(2024, 10, 18, 16, 11, 12, 659424, tzinfo=datetime.timezone.utc)
 ```
 You can easily convert these objects to native Python dictionaries using the `.dict()` method:
-```python
+```
 >>> sim.dict()
 {'id': '95bbbf37-a6d4-42b2-ab62-0234cc86370d', 'title': '2k links', 'state': 'NEW', 'sleep': True, 'owner': 'tiparker@nvidia.com', 'cloned': False, 'expires': False, 'created': datetime.datetime(2024, 10, 18, 16, 11, 12, 659424, tzinfo=datetime.timezone.utc), 'modified': datetime.datetime(2024, 10, 31, 17, 50, 28, 905146, tzinfo=datetime.timezone.utc), 'sleep_at': datetime.datetime(2024, 10, 19, 4, 11, 12, 649304, tzinfo=datetime.timezone.utc), 'expires_at': datetime.datetime(2024, 11, 1, 16, 11, 12, 649000, tzinfo=datetime.timezone.utc), 'organization': '3b7c20c9-e525-46ac-96e3-a9a332aef774', 'preferred_worker': None, 'documentation': None, 'write_ok': True, 'metadata': None}
 ```
 
 To convert to a JSON string, use the `.json()` method:
 
-```python
+```
 >>> sim.json()
 '{"id":"95bbbf37-a6d4-42b2-ab62-0234cc86370d","title":"2k links","state":"NEW","sleep":true,"owner":"tiparker@nvidia.com","cloned":false,"expires":false,"created":"2024-10-18T16:11:12.659424Z","modified":"2024-10-31T17:50:28.905146Z","sleep_at":"2024-10-19T04:11:12.649304Z","expires_at":"2024-11-01T16:11:12.649000Z","organization":"3b7c20c9-e525-46ac-96e3-a9a332aef774","preferred_worker":null,"documentation":null,"write_ok":true,"metadata":null}'
 ```
 
 To synchronize an object’s data with the latest API state, use the `.refresh()` method:
 
-```python
+```
 >>> sim.title
 '2k links'
 >>> sim.title = 'New Name'
@@ -188,14 +188,14 @@ As seen when calling `.json()` or `.dict()` above, `Simulation` instances might 
 
 It is often possible to directly access related objects. For example:
 
-```python
+```
 >>> sim.organization
 Organization(id='3b7c20c9-e525-46ac-96e3-a9a332aef774', name='Tim test org', member_count=8)
 ```
 
 These related objects are created lazily, meaning the `Organization` object is fetched on-demand when accessed for the first time. This allows seamless traversal of relationships between connected objects:
 
-```python
+```
 >>> sim
 Simulation(id='95bbbf37-a6d4-42b2-ab62-0234cc86370d', title='2k links', state='NEW', documentation=None, write_ok=True, metadata=None)
 >>> sim.organization
@@ -229,7 +229,7 @@ ResourceBudget(id='b0c2a464-f6c5-4a9c-a65c-d8645d6fa01f')
 
 When comparing objects accessed by different processes, you should compare the object's `id` (or other primary key):
 
-```python
+```
 >>> id(sim) == id(node.simulation)  # Different objects in Python
 False
 >>> sim == node.simulation
@@ -242,18 +242,18 @@ True
 
 In Air, simulations are structured with multiple nodes, and each node can contain several interfaces. In the SDK V2, these 'many-to-one' relationships—where a simulation contains many nodes, and a node contains multiple interfaces—must be explicitly queried to access all related entities. For example:
 
-```python
+```
 from air_sdk.v2 import AirApi
 
 air = AirApi(username=..., password=...)
 
-```python
+```
 >>> sim = air.simulations.get('1ebf9958-a01e-4396-88f6-946e93299cf2')
 >>> hasattr(sim, 'nodes')
 False
 ```
 Iterate through a list of nodes for a sim:
-```python
+```
 >>> for node in air.nodes.list(simulation=sim):
 ...    print(node.name)
 ... 
@@ -271,13 +271,13 @@ node5
 node9
 ```
 Alternatively, obtain a list of nodes by calling `list`:
-```python
+```
 >>> nodes = list(air.nodes.list(simulation=sim))
 >>> len(nodes)
 12
 ```
 Interfaces can be filtered by individual nodes or by simulations:
-```python
+```
 >>> sim = air.simulations.get('<simulation-id>')
 >>> node = next(air.nodes.list(simulation=sim))
 >>> node_interfaces = list(air.interfaces.list(node=node))
@@ -301,7 +301,7 @@ You can create entire simulations efficiently and reliably by importing a file. 
 <!--
 More details can be found in the [import instructions section](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Quick-Start/#import-a-topology) of the quick start guide.
 -->
-```python
+```
 from air_sdk.v2 import AirApi
 
 air = AirApi(username=..., password=...)
@@ -329,7 +329,7 @@ simulation = air.simulations.create_from(
 
 A blank simulation (that is, a simulation with no nodes) may be created via the basic [create simulation](https://air.nvidia.com/api/#/v2/v2_simulations_create) endpoint.
 
-```python
+```
 from air_sdk.v2 import AirApi
 
 air = AirApi(username=..., password=...)
@@ -355,7 +355,7 @@ You can customize existing simulations by adjusting their fields, adding or remo
 
 You can retrieve an existing simulation with its ID:
 
-```python
+```
 from air_sdk.v2 import AirApi
 
 air = AirApi(username=..., password=...)
@@ -365,13 +365,13 @@ simulation = air.simulations.get('<simulation-id>')
 
 Alternatively, you can query a simulation by the [list simulations](https://air.nvidia.com/api/#/v2/v2_simulations_list) endpoint:
 
-```python
+```
 simulation = next(air.simulations.list(title="My Simulation Title"))  # using `next` gets the first result
 ```
 
 You can query simulations by any of the values specified in [list simulations](https://air.nvidia.com/api/#/v2/v2_simulations_list).
 
-```python
+```
 my_favorite_org = next(air.organizations.list(search="My Favorite Org"))  # using `next` returns the first result
 simulation = next(air.simulations.list(title="My Simulation's Title", organization=my_favorite_org))
 ```
@@ -393,7 +393,7 @@ Calling `.update` on a simulation object corresponds to [PATCH simulation V2](ht
 
 There is also a `.full_update` method on the simulation that updates all fields on the simulation:
 
-```python
+```
 sim.full_update(
     title='New Title',
     documentation=sim.documentation,
@@ -410,7 +410,7 @@ sim.full_update(
 
 #### Add New Nodes to a Simulation
 
-```python
+```
 >>> image = next(air.images.list(name='generic/ubuntu2204'))  # Obtain an image for the node
 >>> image
 Image(name='generic/ubuntu2204', version='22.04', organization_name=None)
@@ -425,7 +425,7 @@ True
 
 You can [export](https://air.nvidia.com/api/#/v2/v2_simulations_export_retrieve) existing simulations into a JSON representation, which you can share and [re-import](#file-import) into Air.
 
-```python
+```
 from air_sdk.v2 import AirApi
 
 air = AirApi(username=..., password=...)

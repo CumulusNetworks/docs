@@ -772,6 +772,51 @@ To show PFC watchdog data for a specific traffic class, run the `nv show interfa
 
 To clear the PFC watchdog `deadlock-count` on an interface, run the `nv action clear interface <interface-id> qos pfc-watchdog deadlock-count` command.
 
+### Lossless Headroom Based on Small Packet Probability
+
+{{%notice note%}}
+Lossless headroom based on small packet probability is a Beta feature.
+{{%/notice%}}
+
+Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). On Spectrum-5 and earlier, the switch assumes a 100 percent probability of such packets arriving at line rate. On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
+
+To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}.
+
+To configure the probability of small packets on a port:
+
+{{< tabs "TabID783 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set interface <interface-id> qos small-packet-probability <percent>` command.
+
+The following command sets the small packet probability on swp1 to 60 percent:
+
+```
+cumulus@switch:~$ nv set interface swp1 qos small-packet-probability 60
+cumulus@switch:~$ nv config apply
+```
+
+The following command sets the small packet probability on swp1 through swp10 to 60 percent:
+
+```
+cumulus@switch:~$ nv set interface swp1-10 qos small-packet-probability 60
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `small_pcket_probablity` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+
+```
+swp1.qos.small_packet_probability = 60 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the small packet probability configuration, run the `nv show interface <interface-id> qos small-packet-probability` command.
+
 ## Congestion Control (ECN)
 
 Explicit Congestion Notification (ECN) is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.

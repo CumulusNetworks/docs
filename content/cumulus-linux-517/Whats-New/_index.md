@@ -15,7 +15,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 ### New Features and Enhancements
 
 - {{<link url="TACACS/#server-side-per-command-authorization" text="TACACS+ Server-side Per-command Authorization">}}
-- Headroom Size based on the average packet size
+- {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}}
 - Dynamic ECN (Beta)
 - Instant Retransmission System (Beta)
 - LLDP BGP Route Redistribution Extension (Beta)

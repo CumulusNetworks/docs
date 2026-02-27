@@ -774,6 +774,10 @@ To clear the PFC watchdog `deadlock-count` on an interface, run the `nv action c
 
 ### Lossless Headroom Based on Small Packet Probability
 
+{{%notice note%}}
+Lossless headroom based on small packet probability is a Beta feature.
+{{%/notice%}}
+
 Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). On Spectrum-5 and earlier, the switch assumes a 100 percent probability of such packets arriving at line rate. On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
 
 To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}.

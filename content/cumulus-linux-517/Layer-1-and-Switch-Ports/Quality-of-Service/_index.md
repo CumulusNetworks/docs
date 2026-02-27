@@ -821,7 +821,7 @@ To show the small packet probability configuration, run the `nv show interface <
 
 Explicit Congestion Notification (ECN) is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
 
-Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
+Instead of signaling to adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
 
 You use ECN with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section describes how to deploy PFC and ECN for RoCE environments.
 
@@ -912,6 +912,114 @@ default_ecn_red_conf.ecn_enable = false
 {{< /tabs >}}
 
 To apply a custom ECN profile to specific interfaces, see [Port Groups](#ecn).
+
+### Dynamic ECN
+
+{{%notice note%}}
+Dynamic ECN is a Beta feature.
+{{%/notice%}}
+
+Dynamic ECN is a congestion marking mechanism optimized for high-performance traffic, where bursty traffic requires immediate congestion signals to prevent buffer exhaustion. This feature provides extremely fast and aggressive feedback to mitigate microbursts and sudden congestion by triggering ECN marking based on the percentage of available shared buffer instead of static byte thresholds.
+
+{{%notice note%}}
+- Cumulus Linux supports dynamic ECN on switches with Spectrum-4 and later.
+- ECN marking probability has a hardware granularity of 1 percent; effective probabilities below 1 percent do not produce any marking.
+{{%/notice%}}
+
+To configure dynamic ECN:
+- Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`. 
+
+  When you set the dynamic ECN mode to `relative`, the switch hardware ignores existing byte thresholds and the ASIC immediately begins marking based on the dynamic buffer calculation: threshold = (alpha_quota * percent) / 100. When you set the dynamic ECN mode to `absolute`, the switch hardware ignores percentage thresholds and the ASIC reverts to marking based on static cell counts derived from the configured byte values.
+
+- Configure the minumum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The switch marks packets when queue occupancy exceeds this percentage. The default value is 0.
+- Configure the maximum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The value must be greater than or equal to the minumum threshold percent. The default value is 100.
+<!--
+{{%notice note%}}
+To maintain statistical integrity and prevent mixing `absolute` mark counts with `relative` mark counts in historical data, Cumulus Linux resets ECN counters for the affected traffic class to zero for any mode transition.
+{{%/notice%}}
+-->
+The following commands set dynamic ECN mode to `relative` for the default profile, configure the minumum ECN marking threshold to 20 percent and the maximum ECN marking threshold to 80 percent:
+
+{{< tabs "TabID936 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 3 mode relative
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 3 min-threshold-percent 20 
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 3 max-threshold-percent 80 
+cumulus@switch:~$ nv config apply
+```
+
+To disable dynamic ECN, set the mode to `absolute` with the `nv set qos congestion-control <profile> traffic-class 3 mode absolute` command. Reconfigure the {{<link title="#congestion-control-(ecn)" text="byte thresholds">}} if you do not want to use the default values.
+
+```
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 3 mode absolute
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Explicit Congestion Notification` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file to add relative mode, and the minimum and maximum threshold percentages.
+
+```
+default_ecn_red_conf.egress_queue_list = [4,5,7] 
+default_ecn_red_conf.ecn_enable = true 
+default_ecn_red_conf.red_enable = false 
+# Mode Setting 
+default_ecn_red_conf.mode = relative 
+# Byte Thresholds (Ignored/Zero) 
+default_ecn_red_conf.min_threshold_bytes = 0 
+default_ecn_red_conf.max_threshold_bytes = 0 
+# Percent Thresholds (Active) 
+default_ecn_red_conf.min_threshold_percent = 20 
+default_ecn_red_conf.max_threshold_percent = 80 
+default_ecn_red_conf.probability = 100
+```
+
+To disable dynamic ECN, set the mode to `absolute`, and configure the `min_threshold_bytes` and `max_threshold_bytes` parameters.
+
+```
+default_ecn_red_conf.egress_queue_list = [4,5,7] 
+default_ecn_red_conf.ecn_enable = true 
+default_ecn_red_conf.red_enable = false 
+# Mode Setting 
+default_ecn_red_conf.mode = absolute 
+# Byte Thresholds (Active) 
+default_ecn_red_conf.min_threshold_bytes = 150000 
+default_ecn_red_conf.max_threshold_bytes = 1500000 
+# Percent Thresholds (Ignored/Zero) 
+default_ecn_red_conf.min_threshold_percent = 0 
+default_ecn_red_conf.max_threshold_percent = 0 
+default_ecn_red_conf.probability = 100
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show dynamic ECN configuration in the default profile, run the `nv show qos congestion-control default-global` command:
+
+```
+cumulus@switch:~$ nv show qos congestion-control default-global 
+ECN Configurations 
+===================== 
+  traffic-class  Mode      ECN     RED     Min Th     Max Th   Min Th %  Max Th %  Probability
+  -------------  --------  ------  ------  ---------  -------  --------  --------  -----------     
+  0              relative  enable  enable  0 Bytes    0 Bytes  35        80        2
+  3              absolute  enable  enable  143.05 KB  1.40 MB  0         0         2
+```
+
+To show dynamic ECN configuration for an interface, run the `nv show interface <interface-id> qos congestion-control` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 qos congestion-control 
+ECN configuration for Interface: swp1 
+======================================================================= 
+  traffic-class  ECN     RED      Mode       Min Th     Max Th     Min Th %   Max Th %   Probability 
+  -------------  ------  -------  ---------  ---------  ---------  ---------  ---------  ----------- 
+  0              enable  disable  relative   0 B        0 B        10          90          100     
+  3              enable  disable  relative   0 B        0 B        10          90          100 
+```
 
 ## Egress Queues
 

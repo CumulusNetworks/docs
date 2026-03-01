@@ -654,6 +654,78 @@ SecureBoot enabled
 On a switch with the Spectrum-4 ASIC, if the ASIC firmware fails to boot, you see a message alerting you to contact NVIDIA Customer Support for further options.
 {{%/notice%}}
 
+### Show Secure Boot Details
+
+To show secure boot details, you can run NVUE commands or the Linux `mokutil` command.
+
+{{< tabs "TabID659 ">}}
+{{< tab "NVUE Commands ">}}
+
+To show the system boot security state (`enabled`, `disabled`, or `not-supported`), run the `nv show system` command.
+
+```
+cumulus@switch:~$ nv show system
+uptime             1 day, 1:52:24                                                 
+hostname           leaf01 
+product-name       Cumulus Linux                                                  
+platform           N/A                                                            
+system-memory      1.31 GB used / 363.36 MB free / 1.67 GB total                  
+swap-memory        0 Bytes used / 0 Bytes free / 0 Bytes total                    
+health-status      Not OK 
+security
+  secure-boot
+    state          enabled                                                        
+date-time          2025-04-18 12:48:46                                            
+status             N/A                                                            
+timezone           Etc/UTC                                                        
+version                                                                           
+  onie             N/A                                                            
+  kernel           6.1.0-cl-1-amd64                                               
+  base-os          Debian GNU/Linux 12.10    
+```
+
+To show secure boot details, run the `nv show system security secure-boot` command. The output shows the Secure Boot Key Database (DB) and SBAT revocation values in a consolidated view so that you can review enrolled keys with certificate details, monitor validity status, and view SBAT revocation information.
+
+Certificate details include:
+- SHA1 fingerprint 
+- Signature algorithm
+- Validity status (generated-on and expiring-on dates)
+- Issuer attributes (indexed and structured)
+
+SBAT revocation information includes:
+- Component name
+- Version number
+- Generation date (in YYYY-MM-DD format)
+- Tevision ID
+
+```
+cumulus@switch:~$ nv show system security secure-boot
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To show the secure boot state, run the `mokutil --sb-state` command:
+
+```
+cumulus@switch:~$ mokutil --sb-state
+```
+
+To show Secure Boot Key Database (DB) details, run the `mokutil --db` command:
+
+```
+cumulus@switch:~$ mokutil --db 
+```
+
+To show SBAT revocation details, run the `mokutil --list-sbat-revocations` command:
+
+```
+cumulus@switch:~$ mokutil --list-sbat-revocations
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Downgrade a Secure Boot Switch
 
 The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.17 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (in Cumulus Linux 5.10 or Cumulus Linux 5.9.2 and earlier), which has security vulnerabilities.

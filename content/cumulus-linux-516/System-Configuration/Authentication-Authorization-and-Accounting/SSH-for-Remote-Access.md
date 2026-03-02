@@ -357,11 +357,15 @@ You can configure the following SSH timeout and session options:
 - The number of minutes a session can be inactive before the SSH server terminates the connection. The default value is 0 minutes.
 - The maximum number of SSH sessions allowed for each TCP connection. You can specify a value between 1 and 100. The default value is 10.
 - The maximum number of SSH sessions allowed for a specific user. You can specify a value between 1 and 100. The default value is 10.
-- The maximum number of SSH sessions allowed for a specific user group.  You can specify a value between 1 and 100. The default value is 10. This setting does not affect user groups that do not contain any users in the `/etc/group` file. To check a user group, run the `groups <username>` command.
+- The maximum number of SSH sessions allowed for a specific user group. You can specify a value between 1 and 100. The default value is 10.<br>This setting does not affect user groups that do not contain any users in the `/etc/group` file. To check a user group, run the `groups <username>` command.
 - Unauthenticated SSH sessions:
   - The maximum number of unauthenticated SSH sessions allowed. You can specify a value between 1 and 10000. The default value is 100.
   - The number of unauthenticated SSH sessions allowed before throttling starts. You can specify a value between 1 and 10000. The default value is 10.
   - The starting percentage of connections to reject above the throttle start count before reaching the session count limit. You can specify a value between 1 and 100. The default value is 30.
+
+{{%notice note%}}
+The maximum number of SSH sessions allowed only takes effect for new sessions; the switch blocks only new sessions if the number of current sessions equals or exceeds the maximum setting.
+{{%/notice%}}
 
 The following example configures the number of login attempts allowed before rejecting the SSH session to 10 and the number of seconds allowed before login times out to 200:
 

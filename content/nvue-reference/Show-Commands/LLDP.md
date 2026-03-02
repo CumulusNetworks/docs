@@ -602,7 +602,7 @@ Port  priority
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system lldp application-tlv tcp-port \<port-id\>
+## <h>nv show system lldp application-tlv tcp-port \<port-id\></h>
 
 Shows the priority mapping for the specified TCP port.
 

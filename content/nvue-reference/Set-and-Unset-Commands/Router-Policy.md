@@ -909,7 +909,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match interface sw
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop \<ip-address-id\></h>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop \<ip-address\></h>
 
 Configures the route map to match the IP address of a next hop.
 
@@ -919,7 +919,7 @@ Configures the route map to match the IP address of a next hop.
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
-| `<ip-address-id>` | The IPv4 or IPv6 address of the next hop.|
+| `<ip-address>` | The IPv4 or IPv6 address of the next hop.|
 
 ### Version History
 

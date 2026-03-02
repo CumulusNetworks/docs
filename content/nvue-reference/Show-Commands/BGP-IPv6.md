@@ -112,6 +112,31 @@ summary-only               on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast conditional-disaggregation</h>
+
+Shows BGP conditional disaggregation configuration.
+
+BGP conditional disaggregation advertises specific prefixes when a failure is detected, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast conditional-disaggregation
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib</h>
 
 Shows the IPv6 local RIB for the specified VRF.
@@ -834,9 +859,9 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route \<route-id\></h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast route \<route-id\></h>
 
-Shows information about the BGP IPv4 route.
+Shows information about the BGP IPv6 route.
 
 ### Command Syntax
 
@@ -1098,6 +1123,181 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast update-group 2 subgroup
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unreachability</h>
+
+Shows if BGP unreachability (failure signaling) is enabled globally on the switch.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachability
+       operational  applied         
+-----  -----------  ----------------
+state               enabled         
+                    state           
+                    advertise-origin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-origin</h>
+
+Shows the BGP unreachability advertise-origin configuration.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachability advertise-origin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-unreach</h>
+
+Shows the BGP unreachability aggregate prefix and the included interfaces for which unreachability is conditionally advertised.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachability advertise-unreach
+                    operational    applied      
+------------------  -------------  -------------
+[interfaces-match]  2001:1:1::/48  2001:1:1::/48
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-unreach interfaces-match</h>
+
+Shows the interfaces for which unreachability is conditionally advertised.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachability advertise-unreach interfaces-match
+-------------
+2001:1:1::/48
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unreachability route</h>
+
+Shows BGP unreachability routes.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachability route
+PathCount - Number of paths present for the prefix, MultipathCount - Number of
+paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait-
+for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed
+
+Prefix            PathCount  MultipathCount  DestFlags
+----------------  ---------  --------------  ---------
+2001:1:1:1::/127  4          0               *
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unreachability route \<route-id\></h>
+
+Shows information about the specified BGP unreachability route.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<route-id>` | The IPv6 route.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachability route 2001:1:1:1::/127
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unreachability route-count</h>
+
+Shows the BGP unreachability route count.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachability route-count
+             operational
+-----------  -----------
+total-paths  1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2190,6 +2390,109 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability aspath</h>
+
+Shows BGP unreachability AS path configuration for the specified neighbor.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath
+                 operational  applied 
+---------------  -----------  --------
+replace-peer-as  disabled     disabled
+private-as       none         none    
+allow-my-asn                          
+  state          enabled      enabled 
+  origin         enabled      enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability capabilities</h>
+
+Shows BGP unreachability capabilities for the specified neighbor.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability capabilities
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability graceful-restart</h>
+
+Shows BGP unreachability graceful restart timers for the specified neighbor.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability graceful-restart
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability prefix-limits</h>
+
+Shows BGP unreachability prefix-limits for the specified neighbor.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits
+                   operational  applied
+-----------------  -----------  ------- 
+maximum                         6   
+warning-threshold               75
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast</h>
 
 Shows if IPv6 is configured for the peer group.
@@ -2549,4 +2852,61 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 -----------------  -------
 maximum            none   
 warning-threshold  75
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability aspath</h>
+
+Shows the BGP unreachability prefix limits for the peer group.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unreachability aspath
+                 operational  applied 
+---------------  -----------  --------
+replace-peer-as  disabled     disabled
+private-as       none         none    
+allow-my-asn                          
+  state          enabled      enabled 
+  origin         enabled      enabled 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits</h>
+
+Shows the the BGP unreachability prefix limits for the peer group.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unreachability prefix-limits
+                   operational  applied
+-----------------  -----------  ------- 
+maximum                         6   
+warning-threshold               75
 ```

@@ -63,12 +63,12 @@ Introduced in Cumulus Linux 5.0.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ipv4 vrrp virtual-router \<virtual-router-id\> address \<ip-address-id\></h>
+## <h>nv set interface \<interface-id\> ipv4 vrrp virtual-router \<virtual-router-id\> address \<ip-address\></h>
 
-Configures a virtual address for VRRPv3. For IPv6, run the `nv set interface <interface-id> ipv6 vrrp virtual-router <virtual-router-id> address <ip-address-id>` command.
+Configures a virtual address for VRRPv3. For IPv6, run the `nv set interface <interface-id> ipv6 vrrp virtual-router <virtual-router-id> address <ip-address>` command.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id>`.
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address>`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -77,7 +77,7 @@ In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-i
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
 | `<virtual-router-id>` |  The Virtual Router Syntax (VRID). |
-| `<ip-address-id>` |  The IPv4 or IPv6 address. |
+| `<ip-address>` |  The IPv4 or IPv6 address. |
 
 ### Version History
 
@@ -177,10 +177,11 @@ cumulus@switch:~$ nv set interface swp1 ipv4 vrrp virtual-router 44 priority 254
 
 ## <h>nv set interface \<interface-id\> ipv4 vrrp virtual-router \<virtual-router-id\> version</h>
 
-Configures the VRRP protocol version for the interface. You can specify a value of 2 or 3. The default setting is 3. For IPv6, run the `nv set interface <interface-id> ipv6 vrrp virtual-router <virtual-router-id> version` command.
+Configures the VRRP protocol version for the interface. You can specify a value of 2, 3, or `auto`. The default setting is `auto`. For IPv6, run the `nv set interface <interface-id> ipv6 vrrp virtual-router <virtual-router-id> version` command.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> version`.
+- In Cumulus Linux 5.15 and earlier, you can only specify a value of 2 or 3.
+- In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> version`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -197,7 +198,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ipv4 vrrp virtual-router 44 address 10.0.0.1
+cumulus@switch:~$ nv set interface swp1 ipv4 vrrp virtual-router 44 version 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

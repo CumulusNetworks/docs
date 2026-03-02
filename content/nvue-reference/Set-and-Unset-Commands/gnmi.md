@@ -217,7 +217,6 @@ Configures the port number for the gRPC tunnel server to which you want to conne
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<server-id>` |  The gRPC tunnel server ID. |
-| `<port>` |  The gRPC tunnel server port. |
 
 ### Version History
 

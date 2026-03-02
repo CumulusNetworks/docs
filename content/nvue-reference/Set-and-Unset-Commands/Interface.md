@@ -224,12 +224,12 @@ cumulus@switch:~$ nv set interface swp1 ipv4 address 10.0.0.1/30
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ipv4 gateway \<ip-address-id\></h>
+## <h>nv set interface \<interface-id\> ipv4 gateway \<ip-address\></h>
 
-Configures the gateway IP address on the specified interface. For IPv6, run the `nv set interface <interface-id> ipv6 gateway <ip-address-id>` command.
+Configures the gateway IP address on the specified interface. For IPv6, run the `nv set interface <interface-id> ipv6 gateway <ip-address>` command.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip gateway <ip-address-id>`.
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip gateway <ip-address>`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -237,7 +237,7 @@ In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-i
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ip-address-id>` | The IP address.|
+| `<ip-address>` | The IP address.|
 
 ### Version History
 
@@ -285,7 +285,7 @@ Enables and disables IPv6. The default setting is `enabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier:
-- The command is `nv set interface <interface> ip ipv6 state`.
+- The command is `nv set interface <interface-id> ip ipv6 state`.
 - You specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
 {{%/notice%}}
 
@@ -313,7 +313,7 @@ Enables and disables IPv6 forwarding. The default setting is `enabled`.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier:
-- The command is `nv set interface <interface> ip ipv6 forward`.
+- The command is `nv set interface <interface-id> ip ipv6 forward`.
 - You specify `on` or `off`.
 {{%/notice%}}
 
@@ -617,6 +617,39 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state up
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> link tx-squelch</h>
+
+{{%notice note%}}
+Tx squelch control is a Beta feature.
+{{%/notice%}}
+
+Configures Tx squelch control, which is a PHY‑level feature that controls if the local port continues transmitting when the remote side is logically down (for example, when the remote side is in a fault state or needs to restart auto-negotiation).
+
+{{%notice note%}}
+- Switches with Spectrum-4 and later support Tx squelch control.
+- Cumulus Linux supports Tx squelch control on physical ports only (including breakout ports).
+- Enabling or disabling Tx squelch control is disruptive on admin UP ports. The switch performs a port admin‑status down, then port admin‑status up for the changes to take effect.
+- Enabling or disabling Tx squelch control is not disruptive on admin DOWN ports. When you enable or disable Tx squelch control on an admin DOWN port, the new setting becomes effective the next time the port is admin UP.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 link tx-squelch enabled 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -23,6 +23,8 @@ frontend:
         #
         # If branch is defined below, manually update the Netguru copilot js
         - if [ "${AWS_BRANCH}" = "master" ]; then wget --no-check-certificate -O themes/netDocs/assets/js/netguru.js https://copilot-netguru.nvidia.com/chainlit/copilot/index.js ; fi
+        # If branch is master as defined below, manually overwrite themes/netDocs/layouts/partials/head.html with themes/netDocs/layouts/partials/head_master_only.html - this only brings in the OneTrust cookie consent script in the master branch
+        - if [ "${AWS_BRANCH}" = "master" ]; then cp themes/netDocs/layouts/partials/head_master_only.html themes/netDocs/layouts/partials/head.html ; fi
         # Overwrite them head.html with stage-head.html to force no search indexing of stage servers
         - if [ "${AWS_BRANCH}" != "master" ]; then mv themes/netDocs/layouts/partials/stage-head.html themes/netDocs/layouts/partials/head.html; fi
         # Don't minify in non-prod branches to simplify troubleshooting

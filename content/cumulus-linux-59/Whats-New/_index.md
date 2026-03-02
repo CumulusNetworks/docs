@@ -42,6 +42,11 @@ Cumulus Linux 5.9.1 provides all the same new features and enhancements as Cumul
 - Cumulus Linux 5.9 provides a set of default firewall rules that allows only specific IP addresses and ports, and drops packets that are disallowed. Be sure to review the {{<link url="Firewall-Rules" text="firewall rules">}} before upgrading.
 {{%/notice%}}
 
+{{%notice note%}}
+Cumulus Linux 5.9.1 is tested and validated as part of the Spectrum-X reference architecture 1.0.1 release.
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+
 ### New Features and Enhancements
 - Cumulus Linux upgrade to Debian 12 (bookworm)
 - All switches that ship with a 32 GB or larger SSD now include a secondary partition for future use

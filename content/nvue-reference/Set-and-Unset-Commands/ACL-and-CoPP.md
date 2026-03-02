@@ -542,6 +542,236 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action span swp1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip dest-ip</h>
+
+Sets the destination IP address for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip dest-ip 20.20.20.20
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip dscp</h>
+
+Sets the inner DSCP value for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip dscp cs6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip ecn flags</h>
+
+Sets the ECN (Explicit Congestion Notification) flag for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads. You can specify `tcp-cwr` (the TCP congestion window reduced flag) or `tcp-ece` (the TCP ECN echo flag).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip ecn flags tcp-cwr
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip ecn ip-ect</h>
+
+Sets the ECN (Explicit Congestion Notification) IP ECT value for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip ecn ip-ect
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip protocol</h>
+
+Sets the protocol for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip protocol udp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip source-ip</h>
+
+Sets the source IP address for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip source-ip 10.10.10.10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip tcp dest-port</h>
+
+Sets the TCP destination port for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip tcp dest-port 2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip tcp source-port</h>
+
+Sets the TCP source port for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip tcp source-port 2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip udp dest-port</h>
+
+Sets the UDP destination port for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip udp dest-port 2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match inner-ip udp source-port</h>
+
+Sets the UDP source port for the ACL match based on inner packet headers inside encapsulated IPv4 and IPv6 payloads.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl example3 rule 10 match inner-ip udp source-port 1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip connection-state</h>
 
 Configures the connection state (control-plane only) you want to match. You can set the value to `established`, `related`, `new`, or `invalid`.
@@ -565,7 +795,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip connection-state related
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip dest-ip \<ip-address-id\></h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip dest-ip \<ip-address\></h>
 
 Configures the destination IP address you want to match.
 
@@ -575,7 +805,7 @@ Configures the destination IP address you want to match.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<ip-address-id>` | The destination IP address. |
+| `<ip-address>` | The destination IP address. |
 
 ### Version History
 
@@ -1042,7 +1272,7 @@ Configures the source IP address you want to match.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<ip-address-id>` | The source IP address. |
+| `<ip-address>` | The source IP address. |
 
 ### Version History
 
@@ -1385,6 +1615,78 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match mac vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match offset \<offset\> value</h>
+
+Sets the ACL rule match based on the packet offset position. The offset match value must be two bytes long and in hexadecimal.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+| `<offset>` |  The relative position in the packet from where the value needs to be matched. The maximum value is 478 bytes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 value 0x1200
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match offset \<offset\> mask</h>
+
+Sets the ACL rule matches based on the packet offset mask. The mask must be two bytes long and in hexadecimal. The default value is 0xFFFF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+| `<offset>` |  The relative position in the packet from where the value needs to be matched. The maximum value is 478 bytes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 mask 0xFF00
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match offset \<offset\> match-from</h>
+
+Sets the ACL rule matches based on the packet offset extraction point for the offset position. You can specify `start-of-packet` (the start of the layer 2 header, which is first byte of the destination MAC address), `start-of-inner-ipv4-header` or `start-of-inner-ipv6-header`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+| `<offset>` |  The relative position in the packet from where the value needs to be matched. The maximum value is 478 bytes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl OFFSET rule 10 match offset 34 match-from start-of-packet 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

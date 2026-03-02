@@ -504,7 +504,7 @@ cumulus@switch:~$ nv set acl acl-default-dos rule 10 match ip connection-state r
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl acl-default-dos rule \<rule-id\> match ip dest-ip \<ip-address-id\></h>
+## <h>nv set acl acl-default-dos rule \<rule-id\> match ip dest-ip \<ip-address\></h>
 
 Configures the destination IP address you want to match for the firewall DoS rule.
 
@@ -513,7 +513,7 @@ Configures the destination IP address you want to match for the firewall DoS rul
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<rule-id>` |  The ACL rule number. |
-| `<ip-address-id>` |  The destination IP address. |
+| `<ip-address>` |  The destination IP address. |
 
 ### Version History
 
@@ -1054,7 +1054,6 @@ Introduced in Cumulus Linux 5.9.0
 ```
 cumulus@switch:~$ nv set acl acl-default-dos rule 10 match ip tcp mss 536
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1796,7 +1795,7 @@ cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip connection-s
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip dest-ip \<ip-address-id\></h>
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip dest-ip \<ip-address\></h>
 
 Configures the destination IP address you want to match for the firewall whitelist rule.
 
@@ -1805,7 +1804,7 @@ Configures the destination IP address you want to match for the firewall whiteli
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<rule-id>` |  The ACL rule number. |
-| `<ip-address-id>` |  The destination IP address. |
+| `<ip-address>` |  The destination IP address. |
 
 ### Version History
 
@@ -2346,7 +2345,6 @@ Introduced in Cumulus Linux 5.9.0
 ```
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip tcp mss 536
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

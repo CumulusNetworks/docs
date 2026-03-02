@@ -25,18 +25,28 @@ Introduced in Cumulus Linux 5.9.0
 cumulus@switch:~$ nv show system security
                            operational  applied
 -------------------------  -----------  -------
-password-hardening                             
+fips
+  mode                     enabled      enabled
+password-hardening
   state                    enabled      enabled
   reject-user-passw-match  enabled      enabled
   lower-class              enabled      enabled
   upper-class              enabled      enabled
   digits-class             enabled      enabled
   special-class            enabled      enabled
-  expiration-warning       15           15     
-  expiration               180          180    
-  history-cnt              10           10     
+  expiration-warning       15           15
+  expiration               180          180
+  history-cnt              10           10
   len-min                  8            8
+encryption
+  db
+    state                               enabled
+...
 ```
+
+{{%notice note%}}
+Cumulus Linux 5.16.0 introduce FIPS mode. If you are running Cumulus Linux 5.15 or earlier, the `nv show system security` command output does not show FIPS mode configuration.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -217,6 +227,29 @@ cumulus@switch:~$ nv show system security encryption db
        operational  applied
 -----  -----------  -------
 state  enabled      enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system security fips</h>
+
+Shows if FIPS mode is enabled. FIPS are standards for federal computer systems developed by the U.S. government and published by the National Institute of Standards and Technology (NIST).
+
+When you enable FIPS mode, the switch enforces FIPS 140-2 and 140-3 compliant cryptographic operations, making it suitable for high-security and regulated environments.
+
+The default FIPS mode is `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system security fips
+                           operational  applied
+-------------------------  -----------  -------
+mode                       enabled      enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

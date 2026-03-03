@@ -75,7 +75,7 @@ If the certificate is passphrase protected, you need to include the passphrase.
 
 You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
 
-The following example imports a CA certificate bundle with a public key and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`. The public key is a Base64 ASCII encoded PEM string.
+The following example imports a CA certificate bundle with a public key and calls the certificate `tls-cert-1`. The public key is a Base64 ASCII encoded PEM string.
 
 {{%notice note%}}
 - You must enclose the public key in the NVUE command with three double quotes (`"""<public-key>"""`).
@@ -83,7 +83,7 @@ The following example imports a CA certificate bundle with a public key and call
 {{%/notice%}}
 
 ```
-cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 passphrase mypassphrase data """<public-key>""" 
+cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 data """<public-key>""" 
 ```
 
 The following example imports an entity certificate and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`.

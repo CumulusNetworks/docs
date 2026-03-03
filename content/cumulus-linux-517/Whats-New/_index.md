@@ -22,11 +22,13 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - NVUE
   - {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#show-secure-boot-details" text="NVUE command to show secure boot status and details">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}
+- Telemetry
+  - {{<link url="Open-Telemetry-Export/#interface-statistics" text="New link debounce OTEL metrics">}}
+  - {{<link url="gNMI-Streaming/#metrics" text="New link debounce gNMI metrics">}}
 - Instant Retransmission System (Beta)
 - LLDP BGP Route Redistribution Extension (Beta)
 - Open Telemetry  Granular metric selection (Beta)
 - BGP/LLDP X-Plane multi-plane'd GPUs with disjoined planes (EVPN based deployments) (Beta)
-- 
 - Block NVUE CLI during Long Background Operations
 - Security - Alert in the event of an audit processing failure\
 - Security - Support organizational requirements to conduct backups of information system documentation

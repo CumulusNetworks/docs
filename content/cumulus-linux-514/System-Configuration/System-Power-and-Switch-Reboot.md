@@ -151,7 +151,6 @@ mode       warm                               warm
 required   no
 ```
 
-
 ## Warm Reboot and ISSU Considerations
 
 ### Warm Reboot Support

@@ -55,9 +55,11 @@ Restart the switchd service with the `sudo systemctl restart switchd.service` co
 
 ### Reboot
 
-To reboot the switch, run the `nv action reboot system mode <mode>` command. To force the reboot without prompting for confirmation, add the `force` option (`nv action reboot system mode <mode> force`).
+To reboot the switch, run the following commands. The reboot command provides several options.
 
-The following command reboots the switch immediately without notifying any running processes:
+When using NVUE, you can force the reboot without prompting for confirmation with the `force` option (`nv action reboot system mode <mode> force`).
+
+The following command reboots the switch immediately without notifying any running processes.
 
 {{< tabs "TabID78">}}
 {{< tab "NVUE Commands ">}}
@@ -74,13 +76,13 @@ Action succeeded
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ sudo reboot -f
+cumulus@switch:~$ sudo reboot --force
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command shuts down the system:
+The following command shuts down the system.
 
 {{< tabs "TabID101">}}
 {{< tab "NVUE Commands ">}}
@@ -97,13 +99,13 @@ Action succeded
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ sudo halt -f
+cumulus@switch:~$ sudo reboot --halt
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command power cycles the switch:
+The following command power cycles the switch.
 
 {{< tabs "TabID125">}}
 {{< tab "NVUE Commands ">}}
@@ -129,25 +131,28 @@ cumulus@switch:~$ sudo cl-powercycle
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command reboots the switch in cold mode without prompting for confirmation:
+The following command reboots the switch in cold mode.
 
 {{< tabs "TabID151">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv action reboot system mode cold force
+cumulus@switch:~$ nv action reboot system mode cold
 ```
 
 You can also run `nv action reboot system force` because cold reboot is the default mode.
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ sudo csmgrctl -cf
+cumulus@switch:~$ sudo csmgrctl -c
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+
+The following command reboots the switch in fast mode.
 
 {{< tabs "TabID168">}}
 {{< tab "NVUE Commands ">}}
@@ -164,26 +169,26 @@ Action succeeded
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ sudo csmgrctl -ff
+cumulus@switch:~$ sudo csmgrctl -f
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command reboots the switch in warm mode without prompting for confirmation.
+The following command reboots the switch in warm mode.
 
 {{< tabs "TabID189">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv action reboot system mode warm force
+cumulus@switch:~$ nv action reboot system mode warm
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ sudo csmgrctl -wf
+cumulus@switch:~$ sudo csmgrctl -w
 ```
 
 {{< /tab >}}
@@ -195,31 +200,13 @@ To show reboot information, such as the date and time, and reason, and the reboo
 
 ```
 cumulus@switch:~$ nv show system reboot
-           operational                       applied
----------  --------------------------------  -------
-reason                                                     
-  reason          Unknown                                  
-  gentime         2025-09-30T14:36:27.003819+00:00         
-  user            system/root                              
-[history]         1                                        
-[history]         2                                        
-[history]         3                                        
-[history]         4                                        
-[history]         5                                        
-[history]         6                                        
-[history]         7                                        
-required          no                                       
-last-reboot-mode  cold
+reason
+  reason               SW asserted reset through CPLD
+  gentime              2026-02-28T01:45:15.921195+00:00
+  user                 system/root
+required               no
+last-reboot-operation  cold
 ```
-
-<!-- COMMENTED OUT AS THIS COMMAND ISN'T OPERATIONAL IN 5.15
-To display the current resource mode, run the `nv show system forwarding resource-mode` command. 
-
-```
-cumulus@switch:~$ nv show system forwarding resource-mode
-cumulus@switch:~$ nv config apply
-```
--->
 
 ## Warm Reboot and ISSU Considerations
 

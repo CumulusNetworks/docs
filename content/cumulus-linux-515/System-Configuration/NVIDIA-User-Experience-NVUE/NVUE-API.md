@@ -68,12 +68,10 @@ You can import certificates onto the switch (fetch certificates from an external
 - The certificate you import contains sensitive private key information. NVIDIA recommends that you use a secure transport such as SFTP, SCP, or HTTPS.
 {{%/notice%}}
 
-- To import an entity certificate, run an `nv action import system security certificate <cert-id>`command.
-- To import a CA certificate bundle file, run an `nv action import system security ca-certificate <cert-id>` command.
+- To import an entity certificate, run an `nv action import system security certificate <cert-id>`command. If the certificate is passphrase protected, you need to include the passphrase.
+- To import a CA certificate bundle file, run an `nv action import system security ca-certificate <cert-id>` command. A CA certificate must be in .pem, .p7a, or .p7c format.
 
-If the certificate is passphrase protected, you need to include the passphrase.
-
-You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
+You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import. A certificate bundle must be in .PFX or .P12 format.
 
 The following example imports a CA certificate bundle with a public key and calls the certificate `tls-cert-1`. The public key is a Base64 ASCII encoded PEM string.
 
@@ -88,15 +86,11 @@ cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 dat
 
 The following example imports an entity certificate and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`.
 
-A certificate bundle must be in .PFX or .P12 format.
-
 ```
 cumulus@switch:~$ nv action import system security certificate tls-cert-1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12 
 ```
 
 The following example imports an entity certificate with the public key URI `scp://user@pass:1.2.3.4` and private key URI `scp://user@pass:1.2.3.4`, and calls the certificate `tls-cert-1`. The certificate is not passphrase protected.
-
-A CA certificate must be in .pem, .p7a, or .p7c format.
 
 ```
 cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-public-key scp://user@pass:1.2.3.4 uri-private-key scp://user@pass:1.2.3.4

@@ -93,7 +93,7 @@ cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 port 443 
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 target-name TARGET1 
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 retry-interval 40
-cumulus@switch:~$ nv action import system security ca-certificate CACERT1 uri-public-key scp://user@pass:1.2.3.4:/opt/certs/ca-cert.pem uri-private-key scp://user@pass:1.2.3.4:/opt/certs/ca-cert-key.pem
+cumulus@switch:~$ nv action import system security ca-certificate CACERT1 uri scp://user@pass:1.2.3.4:/opt/certs/ca-cert.pem
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CACERT1
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
 cumulus@switch:~$ nv config apply

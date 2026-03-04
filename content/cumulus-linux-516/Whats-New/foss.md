@@ -18,6 +18,7 @@ Cumulus Linux 5.16.0 contains the following core switch package versions:
 | Hardware management (`hw-management`) | 7.0050.3000 | Hardware management package|
 | NVUE (`python3-nvue`) | 1.12.0.76 | NVUE core package |
 | kernel (`linux-image`) | 6.1.123 | Linux kernel package |
+| FRR | 10.0.3 | FRRouting package|
 | Telemetry | 91.1.12.17 | Telemetry package |
 
 To obtain a complete list of open source packages included in Cumulus Linux 5.16, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.

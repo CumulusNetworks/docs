@@ -216,14 +216,14 @@ cumulus@switch:~$ nv config apply
 When you enable this setting, the switch exports `nvswitch_interface_link_debounce` counters:
 
 ```
-cumulus@switch:~$ nv set system telemetry link debounce state enabled
+cumulus@switch:~$ nv set system telemetry interface-stats class debounce state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 You can adjust the link debounce statistics sample interval (in seconds). You can specify a value between 10 and 86400. The default value is 10.
 
 ```
-cumulus@switch:~$ nv set system telemetry lldp sample-interval 60
+cumulus@switch:~$ nv set system telemetry interface-stats class debounce sample-interval 40
 cumulus@switch:~$ nv config apply
 ```
 
@@ -683,12 +683,12 @@ cumulus@switch:~$ nv config apply
 The following example:
 - Configures STAT-GROUP9 to export link debounce statistics.
 - Applies the STAT-GROUP9 configuration to the OTLP destination 10.1.1.100.
-- Sets the sample interval of the debounce statistics to 30.
+- Sets the sample interval of the debounce statistics to 120.
 
 ```
-cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 link debounce export state enabled 
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce export state enabled 
 cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group STAT-GROUP9
-cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 link debounce sample-interval 30 
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce sample-interval 120
 cumulus@switch:~$ nv config apply
 ```
 
@@ -802,6 +802,61 @@ Cumulus Linux exports statistics and histogram data in the formats defined in th
 {{%notice note%}}
 An asterisk (*) in the `Description` column of the tables below indicates that metric is new for Cumulus Linux 5.17.
 {{%/notice%}}
+
+### 802.1X Statistic Format
+
+When you enable 802.1X statistic telemetry, the switch exports the following statistics:
+
+| Name | Description |
+|----- | ----------- |
+| `nvswitch_dot1x_system_info` | Global 802.1X configuration (dynamic VLAN mode, dynamic IPv6 multi-tenant state, max stations per port, auth-fail VLAN ID, reauth-timeout-ignore state, reauthentication interval). |
+| `nvswitch_dot1x_radius_client_info` | RADIUS client configuration (NAS identifier, NAS IP address, source IP). |
+| `nvswitch_dot1x_radius_server_info` | RADIUS server configuration (IP address, authentication port, accounting port, priority, VRF). |
+| `nvswitch_dot1x_supplicant_summary` | Summary showing MAC address, interface, authentication type, VLAN assignment, and session ID of each authenticated supplicant. |
+| `nvswitch_dot1x_supplicant_eapol_counters` | EAPOL frame counters per supplicant, including start, logoff, request, response, invalid, and length-errored frames. |  
+| `nvswitch_dot1x_interface_info` | Per-interface 802.1X configuration (EAP, MBA, host mode, port-id, IPv6 profile, auth-fail VLAN).|
+| `nvswitch_dot1x_supplicant_status` | Authentication status of the supplicant. |
+| `nvswitch_dot1x_ipv6_profile_info` | IPv6 profile configuration (profile name and route tag). | 
+| `nvswitch_dot1x_ipv6_profile_property_info` | IPv6 profile property configuration (offset, length, value, isolation, summarization). |
+| `nvswitch_dot1x_ipv6_profile_summary` | IPv6 prefix generated for each layer 3 authenticated session that is using an IPv6 profile. |
+| `nvswitch_dot1x_reauth_timeouts` | Counter of reauthentication attempts with the RADIUS server that timed out but were ignored, keeping the supplicant in Authorized state when the `reauth-timeout-ignore` flag is enabled. |
+| `nvswitch_dot1x_supplicant_dynamic_vrf` | Displays the VRF when an interface is dynamically associated to a VRF if the dynamic VRF assignment feature is enabled.|
+
+{{< expand "Example JSON data for 802.1X:" >}}
+```
+ {
+              "name": "nvswitch_dot1x_supplicant_dynamic_vrf",
+              "gauge": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "interface",
+                        "value": {
+                          "stringValue": "swp31s0"
+                        }
+                      },
+                      {
+                        "key": "mac_address",
+                        "value": {
+                          "stringValue": "00:02:00:00:00:01"
+                        }
+                      },
+                      {
+                        "key": "vrf",
+                        "value": {
+                          "stringValue": "RED"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1770866343520858618",
+                    "asDouble": 1
+                  }
+                ]
+              }
+            },
+```
+{{< /expand >}}
 
 ### ACL Statistic Format
 
@@ -1184,61 +1239,6 @@ When you enable control plane statistic telemetry, the switch exports the follow
 }
 ```
 
-{{< /expand >}}
-
-### 802.1X Statistic Format
-
-When you enable 802.1X statistic telemetry, the switch exports the following statistics:
-
-| Name | Description |
-|----- | ----------- |
-| `nvswitch_dot1x_system_info` | Global 802.1X configuration (dynamic VLAN mode, dynamic IPv6 multi-tenant state, max stations per port, auth-fail VLAN ID, reauth-timeout-ignore state, reauthentication interval). |
-| `nvswitch_dot1x_radius_client_info` | RADIUS client configuration (NAS identifier, NAS IP address, source IP). |
-| `nvswitch_dot1x_radius_server_info` | RADIUS server configuration (IP address, authentication port, accounting port, priority, VRF). |
-| `nvswitch_dot1x_supplicant_summary` | Summary showing MAC address, interface, authentication type, VLAN assignment, and session ID of each authenticated supplicant. |
-| `nvswitch_dot1x_supplicant_eapol_counters` | EAPOL frame counters per supplicant, including start, logoff, request, response, invalid, and length-errored frames. |  
-| `nvswitch_dot1x_interface_info` | Per-interface 802.1X configuration (EAP, MBA, host mode, port-id, IPv6 profile, auth-fail VLAN).|
-| `nvswitch_dot1x_supplicant_status` | Authentication status of the supplicant. |
-| `nvswitch_dot1x_ipv6_profile_info` | IPv6 profile configuration (profile name and route tag). | 
-| `nvswitch_dot1x_ipv6_profile_property_info` | IPv6 profile property configuration (offset, length, value, isolation, summarization). |
-| `nvswitch_dot1x_ipv6_profile_summary` | IPv6 prefix generated for each layer 3 authenticated session that is using an IPv6 profile. |
-| `nvswitch_dot1x_reauth_timeouts` | Counter of reauthentication attempts with the RADIUS server that timed out but were ignored, keeping the supplicant in Authorized state when the `reauth-timeout-ignore` flag is enabled. |
-| `nvswitch_dot1x_supplicant_dynamic_vrf` | Displays the VRF when an interface is dynamically associated to a VRF if the dynamic VRF assignment feature is enabled.|
-
-{{< expand "Example JSON data for 802.1X:" >}}
-```
- {
-              "name": "nvswitch_dot1x_supplicant_dynamic_vrf",
-              "gauge": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp31s0"
-                        }
-                      },
-                      {
-                        "key": "mac_address",
-                        "value": {
-                          "stringValue": "00:02:00:00:00:01"
-                        }
-                      },
-                      {
-                        "key": "vrf",
-                        "value": {
-                          "stringValue": "RED"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1770866343520858618",
-                    "asDouble": 1
-                  }
-                ]
-              }
-            },
-```
 {{< /expand >}}
 
 ### Histogram Data Format

@@ -32,16 +32,15 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - {{<link url="Open-Telemetry-Export/#interface-statistics" text="New link down OTEL metrics">}}
   - {{<link url="gNMI-Streaming/#metrics" text="New link debounce gNMI metrics">}}
   - {{<link url="gNMI-Streaming/#metrics" text="New link down gNMI metrics">}}
+  - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}}(Beta)
 - Security
   - Alert in the event of an audit processing failure
   - Support organizational requirements to conduct backups of information system documentation
   - Support "sudo" validation when TACACS server is connected to the default VRF
   - Graceful SSD Wipe
   - API to change SED password (Cumulus)
-  - Support PEAP-GTC tunneling for Radius
 - Instant Retransmission System (Beta)
 - LLDP BGP Route Redistribution Extension (Beta)
-- Open Telemetry Granular metric selection (Beta)
 - BGP/LLDP X-Plane multi-plane'd GPUs with disjoined planes (EVPN based deployments) (Beta)
 - Support SSD-SED disable in BIOS (Spectrum-6)
 - Routing Convergence Enhancement for full connectivity loss (all links Up/restart)

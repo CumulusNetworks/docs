@@ -704,7 +704,7 @@ vrf                 default   default
 otlp                                  
   state             disabled  disabled
   grpc                                
-    insecure  disabled  disabled
+    insecure        disabled  disabled
     port            8443      8443    
     [destination]             
 ```

@@ -48,7 +48,6 @@ cumulus@switch:~$ nv action generate system tech-support
 ## Optimized Image Upgrade
 
 Optimized image upgrade uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
-
   - You can only use optimized image upgrade on a switch with a 30GB <span class="a-tooltip">[SSD](## "Solid state drive")</span> or larger to accommodate the second partition required for upgrade. To validate the size of the SSD, run the `sudo blockdev --getsize64 /dev/sda` command. As an alternative, run the `sudo blkid` command and confirm the `CL-SYSTEM-2` partition exists on the switch to support optimized upgrade.
   - You can use optimized image upgrade to upgrade the switch to Cumulus Linux 5.14 from 5.11.1 and later.
   - You cannot downgrade a Cumulus Linux 5.14 switch to Cumulus Linux 5.11.0 or earlier with optimized image upgrade; use ONIE instead.
@@ -56,7 +55,6 @@ Optimized image upgrade uses two partitions to upgrade the image with just one r
 {{%notice note%}}
 Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
-
 
 {{< tabs "TabID569 ">}}
 {{< tab "NVUE Commands ">}}
@@ -284,7 +282,6 @@ To upgrade the switch with package upgrade:
 {{< /tab >}}
 {{< /tabs >}}
 
-
 ## ONIE Image Upgrade
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch. ONIE upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.14).
@@ -317,9 +314,7 @@ To back up the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
-
 
 {{< /tab >}}
 
@@ -346,7 +341,6 @@ As with other Linux distributions, the `/etc` directory is the primary location 
 | `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
-
 
 **Commonly Used Files:**
 
@@ -393,7 +387,6 @@ To show a list of files changed from the previous Cumulus Linux install, run the
 To show a list of generated `/etc/default/isc-*` files changed from the previous Cumulus Linux install, run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command.
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 2. Download the Cumulus Linux image.

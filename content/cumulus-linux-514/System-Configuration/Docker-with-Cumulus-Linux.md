@@ -174,6 +174,10 @@ NVUE provides commands to:
 - Stop a container.
 - Delete a Docker container.
 
+{{%notice note%}}
+Before you download a container image onto the switch, check the available disk space. You must have enough disk space to account for the size of the container image plus 25 percent more space just to download the image. In addition, consider how much extra space you need to run the container.
+{{%/notice%}}
+
 ### Docker Images
 
 To download a Docker image from a registry or remove a Docker image from the switch, run the following commands.

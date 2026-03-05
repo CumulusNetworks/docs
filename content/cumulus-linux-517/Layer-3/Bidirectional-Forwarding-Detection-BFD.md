@@ -341,7 +341,7 @@ You configure the echo function by setting the following parameters in the topol
 BFD offload improves BFD session scale by offloading BFD numbered sessions to a kernel driver called `sx_bfd`, which is responsible for maintaining BFD sessions. BFD offload is disabled by default.
 
 {{%notice note%}}
-- BFD offload does not support BFD sessions based on the IPv6 link-local address.
+<!--SUPPORTED IN 5.17 - BFD offload does not support BFD sessions based on the IPv6 link-local address.-->
 - When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
 - If a BFD peer is down; for example, due to path failures, (not admin-down), the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might cause an increase in CPU usage.
 - When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode.

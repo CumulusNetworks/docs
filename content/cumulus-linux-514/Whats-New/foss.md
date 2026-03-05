@@ -17,6 +17,7 @@ Cumulus Linux 5.14.0 contains the following core switch package versions:
 | MFT (`kernel-mft-dkms`) | 4.32.0.120| Switch MFT package. Legal Notices and 3rd Party Licenses: {{<exlink url="https://content.mellanox.com/Legal/3rdPartyNotice_MFT_LINUX_mft-4.32.0.pdf" text="MFT 3rd Party Notice">}}; {{<exlink url="https://content.mellanox.com/Legal/license_MFT_LINUX_mft-4.32.0.pdf" text="MFT License">}} |
 | Hardware management (`hw-management`) | 7.0050.1001 | Hardware management package.|
 | NVUE (`python3-nvue`) | 1.10.0.93 | NVUE core package. |
+| FRR | 10.0.3 | FRRouting package|
 | kernel (`linux-image`) | 6.1.123 | Linux kernel package. |
 | Telemetry | 91.1.10.0| 
 

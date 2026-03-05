@@ -93,7 +93,7 @@ When you enable FIPS mode, NVUE blocks the following configurations that use non
 | SSH server | Non-FIPS public key algorithms | `nv set system ssh-server pubkey-accepted-algorithms ssh-ed25519` |
 | Certificates | Non-FIPS algorithms or key sizes |Imported certificates, CAs, and CRLs must use RSA 2048 or more bits, ECDSA P-256, P-384, or P-521, SHA-256, 384, or 512 signatures. |
 
-The following example configures FIPS mode, sets the RADIUS authentication type to PEAP-GTC, and configures the non-FIPS public key algorithms and key exchange:
+The following example enables FIPS mode, sets the RADIUS authentication type to PEAP-GTC, and configures the non-FIPS public key algorithms and key exchange:
 
 ```
 cumulus@switch:~$ nv set system aaa radius auth-type peap-gtc

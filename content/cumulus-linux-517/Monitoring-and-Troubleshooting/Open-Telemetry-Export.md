@@ -691,7 +691,31 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.10
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce sample-interval 120
 cumulus@switch:~$ nv config apply
 ```
+<!--
+### Granular Metric Selection
 
+{{%notice note%}}
+Granular metric selection is a Beta feature.
+{{%/notice%}}
+
+To tailor metrics collection to your specific monitoring needs, you can export individual metrics instead of all metrics in a group. You can include or exclude metrics by name or wildcard, globally or for a statistics group or destination at varied collection frequencies.
+
+The following example collects the platform memory metrics `node_memory_MemTotal_bytes` and `node_memory_MemFree_bytes`:
+
+```
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS description ”Platform metrics" 
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_memory_MemTotal_bytes 
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_memory_MemFree_bytes 
+```
+
+The following example collects all `nvswitch_env_` and `node_cpu_` metrics:
+
+```
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric nvswitch_env_* 
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_cpu_*
+cumulus@switch:~$ nv config apply
+```
+-->
 ### Show Telemetry Export Configuration
 
 To show the telemetry export configuration, run the `nv show system telemetry export` command:
@@ -704,7 +728,7 @@ vrf                 default   default
 otlp                                  
   state             disabled  disabled
   grpc                                
-    insecure  disabled  disabled
+    insecure        disabled  disabled
     port            8443      8443    
     [destination]             
 ```

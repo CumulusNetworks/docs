@@ -51,6 +51,7 @@ cumulus@switch:~$ sudo systemctl status docker@mgmt.service
                └─mgmt
                  └─733337 /usr/bin/dockerd --containerd=/run/containerd/containerd.sock
 ```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -77,7 +78,6 @@ cumulus@switch:~$ nv config apply
 The {{<link title="What Just Happened (WJH)" text="What Just Happened">}} (WJH) service relies on Docker. If you disable Docker, WJH must also be disabled with the `nv set system wjh state disabled` command.
 {{%/notice%}}
 
-
 You can test Docker by running the `hello-world` container if Docker is running in a VRF with Internet access:
 
 ```
@@ -96,7 +96,6 @@ hello-word          hello-world                      6ad36b761217  Exited (0) Ab
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands">}}
 
 Enable and start Docker:
@@ -113,6 +112,7 @@ To disable and stop Docker:
 cumulus@switch:~$ sudo systemctl disable docker@mgmt.service
 cumulus@switch:~$ sudo systemctl stop docker@mgmt.service
 ```
+
 {{%notice note%}}
 The {{<link title="What Just Happened (WJH)" text="What Just Happened">}} (WJH) service relies on Docker. If you disable Docker, WJH must also be disabled.
 {{%/notice%}}
@@ -146,7 +146,6 @@ https://docs.docker.com/get-started/
 
 {{< /tab >}}
 {{< /tabs >}}
-
 
 ## Change the Docker Service VRF
 
@@ -193,6 +192,10 @@ NVUE provides commands to:
 - Create and run a new container from an image.
 - Stop a container.
 - Delete a Docker container.
+
+{{%notice note%}}
+Before you download a container image onto the switch, check the available disk space. You must have enough disk space to account for the size of the container image plus 25 percent more space just to download the image. In addition, consider how much extra space you need to run the container.
+{{%/notice%}}
 
 ### Docker Images
 

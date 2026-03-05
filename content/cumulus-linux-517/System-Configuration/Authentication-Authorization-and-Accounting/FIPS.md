@@ -74,7 +74,7 @@ encryption
 
 ## FIPS Restricted Configurations
 
-When you enable FIPS mode, NVUE blocks the following configurations that use non-FIPS compliant algorithms:
+When you enable FIPS mode, NVUE blocks the following configurations that use non-FIPS compliant algorithms. If you try to enable FIPS with any of these configurations present, NVUE rejects the apply and displays the specific violations.
 
 | Feature | Restriction | Blocked Configuration |
 | ------- | ----------- | --------------------- |
@@ -85,7 +85,7 @@ When you enable FIPS mode, NVUE blocks the following configurations that use non
 | OSPF | MD5 authentication | `nv set interface <interface> router ospf authentication` |
 | BGP&nbsp;neighbor | MD5 password | `nv set vrf <vrf> router bgp neighbor <neighbor-id> password` |
 | BGP&nbsp;peer&nbsp;group | MD5 password | `nv set vrf <vrf> router bgp peer-group <peer-group-id> password` |
-| RADIUS | PAP CHAP, or MSCHAPv2 authentication types. PEAP-GTC is the only authentication type allowed. | `nv set system aaa radius auth-type pap`<br><br>`nv set system aaa radius auth-type mschapv2` |
+| RADIUS | PAP CHAP, or MSCHAPv2 authentication types. PEAP-GTC is the only authentication type allowedd; see the example configuration below. | `nv set system aaa radius auth-type pap`<br><br>`nv set system aaa radius auth-type mschapv2` |
 | RADIUS server | PAP, CHAP, or MSCHAPv2 authentication types. PEAP-GTC is the only authentication type allowed.| `nv set system aaa radius server <server-id> auth-type pap`<br><br>`nv set system aaa radius server <server-id> auth-type mschapv2` |
 | LDAP | SSL or TLS mode |`nv set system aaa ldap ssl mode start-tls`<br><br>`nv set system aaa ldap ssl mode ssl` |
 | User accounts | MD5 hashed passwords | `nv set system aaa user <user> hashed-password`|
@@ -93,9 +93,7 @@ When you enable FIPS mode, NVUE blocks the following configurations that use non
 | SSH server | Non-FIPS public key algorithms | `nv set system ssh-server pubkey-accepted-algorithms ssh-ed25519` |
 | Certificates | Non-FIPS algorithms or key sizes |Imported certificates, CAs, and CRLs must use RSA 2048 or more bits, ECDSA P-256, P-384, or P-521, SHA-256, 384, or 512 signatures. |
 
-If you try to enable FIPS with any of these configurations present, NVUE rejects the apply and displays the specific violations.
-
-The following example configures FIPS mode and sets the RADIUS authentication type to PEAP-GTC:
+The following example configures FIPS mode, sets the RADIUS authentication type to PEAP-GTC, and configures the non-FIPS public key algorithms and key exchange:
 
 ```
 cumulus@switch:~$ nv set system aaa radius auth-type peap-gtc

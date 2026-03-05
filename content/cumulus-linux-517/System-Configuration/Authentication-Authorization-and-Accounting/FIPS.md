@@ -16,6 +16,8 @@ When you enable FIPS mode, the switch enforces FIPS 140-2 and 140-3 compliant cr
 - When FIPS mode is enabled and you apply LDAP, TACACS, RADIUS, or authentication order configuration, all logged-in user sessions terminate and users must re-authenticate (except for root user).
 - Factory reset returns FIPS mode to disabled mode (except when you use the `keep all-config` option).
 - If FIPS is enabled when you upgrade the switch with `onie-install -t`, an additional reboot is required after the upgrade for FIPS mode to take full effect.
+- If you upgrade to Cumulus Linux 5.17 or later from Cumulus Linux 5.16 with FIPS enabled and RADIUS authentication configured with CHAP authentication (either globally, or for a server), the upgrade process changes the authentication type to PEAP-GTC.
+
 {{%/notice%}}
 
 ## Configure FIPS Mode
@@ -35,24 +37,6 @@ Are you sure? [y/N]
 ```
 
 To disable FIPS, run the `nv set system security fips mode disabled` command. You can also run the `nv unset system security fips` command to restore FIPS to the default setting (`disabled`).
-
-## FIPS and RADIUS Authentication
-
-PEAP-GTC is the only authentication type for RADIUS authentication in FIPS mode.
-
-{{%notice note%}}
-If you upgrade to Cumulus Linux 5.17 or later from Cumulus Linux 5.16 with FIPS enabled and RADIUS authentication configured with CHAP authentication (either globally, or for a server), the upgrade process changes the authentication type to PEAP-GTC.
-{{%/notice%}}
-
-The following example configures FIPS mode with RADIUS authentication:
-
-```
-cumulus@switch:~$ nv set system aaa radius auth-type peap-gtc
-cumulus@switch:~$ nv set sys ssh-server pubkey-accepted-algorithms rsa-sha2-512
-cumulus@switch:~$ nv set sys ssh-server kex-algorithms diffie-hellman-group14-sha256
-cumulus@switch:~$ nv set system security fips mode enabled
-cumulus@switch:~$ nv config apply
-```
 
 ## Show FIPS Configuration
 
@@ -90,7 +74,7 @@ encryption
 
 ## FIPS Restricted Configurations
 
-When you enable FIPS mode, NVUE blocks the following configurations that use non-FIPS compliant algorithms:
+When you enable FIPS mode, NVUE blocks the following configurations that use non-FIPS compliant algorithms. If you try to enable FIPS with any of these configurations present, NVUE rejects the apply and displays the specific violations.
 
 | Feature | Restriction | Blocked Configuration |
 | ------- | ----------- | --------------------- |
@@ -101,12 +85,20 @@ When you enable FIPS mode, NVUE blocks the following configurations that use non
 | OSPF | MD5 authentication | `nv set interface <interface> router ospf authentication` |
 | BGP&nbsp;neighbor | MD5 password | `nv set vrf <vrf> router bgp neighbor <neighbor-id> password` |
 | BGP&nbsp;peer&nbsp;group | MD5 password | `nv set vrf <vrf> router bgp peer-group <peer-group-id> password` |
-| RADIUS | PAP CHAP, or MSCHAPv2 authentication types | `nv set system aaa radius auth-type pap`<br><br>`nv set system aaa radius auth-type mschapv2` |
-| RADIUS server | PAP, CHAP, or MSCHAPv2 authentication types | `nv set system aaa radius server <server-id> auth-type pap`<br><br>`nv set system aaa radius server <server-id> auth-type mschapv2` |
+| RADIUS | PAP CHAP, or MSCHAPv2 authentication types. PEAP-GTC is the only authentication type allowedd; see the example configuration below. | `nv set system aaa radius auth-type pap`<br><br>`nv set system aaa radius auth-type mschapv2` |
+| RADIUS server | PAP, CHAP, or MSCHAPv2 authentication types. PEAP-GTC is the only authentication type allowed.| `nv set system aaa radius server <server-id> auth-type pap`<br><br>`nv set system aaa radius server <server-id> auth-type mschapv2` |
 | LDAP | SSL or TLS mode |`nv set system aaa ldap ssl mode start-tls`<br><br>`nv set system aaa ldap ssl mode ssl` |
 | User accounts | MD5 hashed passwords | `nv set system aaa user <user> hashed-password`|
 | SSH server | Non-FIPS key exchange | `nv set system ssh-server kex-algorithms curve25519-sha256` |
 | SSH server | Non-FIPS public key algorithms | `nv set system ssh-server pubkey-accepted-algorithms ssh-ed25519` |
 | Certificates | Non-FIPS algorithms or key sizes |Imported certificates, CAs, and CRLs must use RSA 2048 or more bits, ECDSA P-256, P-384, or P-521, SHA-256, 384, or 512 signatures. |
 
-If you try to enable FIPS with any of these configurations present, NVUE rejects the apply and displays the specific violations.
+The following example enables FIPS mode, sets the RADIUS authentication type to PEAP-GTC, and configures the non-FIPS public key algorithms and key exchange:
+
+```
+cumulus@switch:~$ nv set system aaa radius auth-type peap-gtc
+cumulus@switch:~$ nv set sys ssh-server pubkey-accepted-algorithms rsa-sha2-512
+cumulus@switch:~$ nv set sys ssh-server kex-algorithms diffie-hellman-group14-sha256
+cumulus@switch:~$ nv set system security fips mode enabled
+cumulus@switch:~$ nv config apply
+```

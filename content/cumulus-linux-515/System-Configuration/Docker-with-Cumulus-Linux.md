@@ -8,10 +8,6 @@ You can use Cumulus Linux to run the {{<exlink url="https://www.docker.com/" tex
 
 The Docker package installs as part of the Cumulus Linux installation or ONIE upgrade process and the service is running by default. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service.
 
-{{%notice note%}}
-Docker has a global limit to use ten percent of the overall switch system resources. WJH also runs in docker; if you exhaust the ten percent limit, then start WJH, you might see issues when using WJH. Make sure to free up resources, then restart the WJH service.
-{{%/notice%}}
-
 ## Before Managing Docker Containers
 
 Before managing Docker containers, validate that the service is running.

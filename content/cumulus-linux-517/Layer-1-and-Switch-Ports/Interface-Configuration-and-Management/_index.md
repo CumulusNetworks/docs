@@ -756,6 +756,90 @@ cumulus@switch:~$ nv show interface swp1 link flap-protection
 state   disabled
 ```
 
+## Link Debounce Timers
+
+A flapping port can cause network instability and disruption as layer 2 and layer 3 protocols are constantly forced to reconverge and rebuild the topology with every port status change. If flapping occurs at short intervals, it can also cause a spike in CPU utilization. To enhance the stability of Ethernet port link state transitions and mitigate network disruptions resulting from port flapping, Cumulus Linux provides link debounce hold timers for link state transitions. The switch waits until the port status is stable for a configured period before notifying layer 2 and layer 3 protocols about the status change (up or down).
+
+When a link transitions up or down, the debounce timer starts. The switch reports the link change only after the timer expires, and the link remains in that state. If the link toggles back before the timer expires, the switch ignores the event and does not report any state change.
+
+{{%notice note%}}
+- You can configure link debounce timers on physical switch ports only.
+- The maximum debounce timer values are limited by SDK capabilities (5000ms).
+- NVIDIA recommends that you use identical or similar debounce timer values on both ends of the link.
+- Link debounce and link flap protection are complementary features that work at different time scales. Link debounce filters transient noise and micro-interruptions whereas link flap protection detects excessive legitimate state transitions and protects the system by placing the interface into a protodown state. If you configure both features, set the link flap protection interval to be significantly larger than the debounce timers to ensure proper coordination.
+{{%/notice%}}
+
+To configure the link debounce timers, run the commands below. The hold timers allow a value between 0 and 5000. The default value is 10 milliseconds. A value of 0 disables the timer.
+
+{{< tabs "TabID837 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set interface <interface> link debounce up` and `nv set interface <interface> link debounce down` commands.
+If you configure one direction only, the other direction uses the default value of 10 milliseconds.
+
+```
+cumulus@switch:~$ nv set interface swp1 link debounce up 2000  
+cumulus@switch:~$ nv set interface swp1 link debounce down 1000
+cumulus@switch:~$ nv config apply
+```
+
+To unset the link debounce hold timers, run the `nv unset interface <interface> link debounce` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.d/link_debounce.conf` file to edit the `interface.swp61s0.link_debounce.up_delay` and `interface.swp61s0.link_debounce.down_delay` options, then reload `switchd`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/link_debounce.conf
+interface.swp1.link_debounce.up_delay = 2000 
+interface.swp1.link_debounce.down_delay = 1000
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the link debounce statistics for an interface, run the `nv show interface <interface-id> link debounce` command.
+
+```
+cumulus@switch:~$ nv show interface swp1 link debounce 
+Counter                Value 
+---------------------  ----- 
+ignored-up-events      10 
+ignored-down-events    8 
+received-up-events     23 
+received-down-events   22 
+timer-cancellations    18 
+timer-expirations      45
+```
+
+To show the link debounce statistics for all interfaces, run the `nv show interface debounce-counters` command:
+
+```
+cumulus@switch:~$ nv show interface debounce-counters
+Interface ignored-up ignored-down received-up received-down timer-cancel timer-expire 
+--------- ---------- ------------ ----------- ------------- ------------ ------------ 
+swp1      10         8            23          22            18           45 
+swp2      5          3            15          14            8            22 
+swp3      0          0            2           2             0            4 
+```
+
+To clear link debounce statistics for an interface, run the `nv action clear interface <interface-id> counters link debounce` command:
+
+```
+cumulus@switch:~$ nv action clear interface swp1 counters link debounce
+```
+
+To clear link debounce statistics for all interfaces, run the `nv action clear interface debounce-counters` command:
+
+```
+cumulus@switch:~$ nv action clear interface debounce-counters 
+```
+
 ## Tx Squelch Control
 
 {{%notice note%}}

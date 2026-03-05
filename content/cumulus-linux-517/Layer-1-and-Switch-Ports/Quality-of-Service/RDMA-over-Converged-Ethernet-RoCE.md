@@ -308,7 +308,9 @@ RoCE Pool Status
     3   roce-reserved-egress   DYNAMIC  14       -                  3              inf       7.29 MB        13.47 MB
 ```
 
-To show detailed information about current buffer utilization as well as historic RoCE byte and packet counts for an interface, run the `nv show interface <interface-id> qos roce counters` command. To show the counters for all interfaces, run the `nv show interface qos-roce-counters` command.
+To show detailed information about current buffer utilization as well as historic RoCE byte and packet counts for one interface or multiple interfaces (swp1-3, swp5, swp32s0-3), run the `nv show interface <interface-id> qos roce counters` command.
+
+To show the counters for all interfaces, run the `nv show interface qos-roce-counters` command.
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp16 qos roce counters

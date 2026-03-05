@@ -194,7 +194,7 @@ cumulus@switch:~$ nv set router pbr map map1 rule 10 action vrf RED
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match destination-ip \<ip-address-id\></h>
+## <h>nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match destination-ip \<ip-address\></h>
 
 Sets PBR to match packets according to the destination IP prefix.
 
@@ -204,7 +204,7 @@ Sets PBR to match packets according to the destination IP prefix.
 | ---------  | -------------- |
 | `<pbr-map-id>` |  The PBR route map name. |
 | `<rule-id>`   | The PBR rule number. |
-| `<ip-address-id>` | The destination IPv4 or IPv6 prefix. |
+| `<ip-address>` | The destination IPv4 or IPv6 prefix. |
 
 ### Version History
 

@@ -36,6 +36,24 @@ cumulus@switch:~$ nv set system api certificate <string>
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system api compression gzip</h>
+
+Enables and disables compression of HTTP responses for client requests with the Content-Encoding: gzip header to reduce data size and improve performance. When accessing the API over slow network connections or retrieving large datasets, response times can be significant.
+
+HTTP response compression is disabled by default.
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system api compression gzip
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system api listening-address \<listening-address-id\></h>
 
 Configures the NVUE REST API listening address; you can specify an IPv4 address or localhost. If you do not specify a listening address, NGINX listens on all addresses for the target port.

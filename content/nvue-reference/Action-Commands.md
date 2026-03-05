@@ -10,7 +10,7 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action
+## <h>nv action</h>
 
 Resets counters for interfaces, BGP, QoS buffers and pools, removes conflicts from protodown MLAG bonds, and disconnects system users.
 
@@ -31,6 +31,31 @@ cumulus@switch:~$ nv action abort system ztp
 ```
 
 If you add the `force` option (`nv action abort system ztp force`), ZTP terminates without prompting you for confirmation.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action activate system tech-support auto-generation</h>
+
+Reactivates automatic cl-support file generation.
+
+`cl-support` files can generate in quick succession due to a chain of faults, which burdens system resources and causes system instability. When this occurs, the switch deactivates automatic cl-support file generation and preserves the first cl-support file (which contains relevant diagnostic information) for troubleshooting.
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action activate system tech-support auto-generation
+Action executing ...
+Activating tech-support auto-generation...
+
+Action executing ...
+Activated tech-support auto-generation.
+
+Action succeeded
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -734,6 +759,46 @@ Clearing restrictions for user USER1
 Action executing ...
 Successfully cleared user name USER1
 Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system control-plane policer statistics</h>
+
+Clears all control plane policer counters. Use this command to help troubleshooot control plane traffic issues.
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system control-plane policer statistics
+Action executing ...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system control-plane policer \<policer-id\> statistics</h>
+
+Clears counters for a specific control plane policer.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<policer-id>` |  The control plane policer ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system control-plane policer bfd statistics
+Action executing ...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2757,7 +2822,6 @@ Introduced in Cumulus Linux 5.15.0
 cumulus@switch:~$ nv action delete system health history files FILE1
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action delete system log file \<filename\></h>
@@ -3502,7 +3566,7 @@ cumulus@switch:~$ nv action import system security certificate tls-cert-1 passph
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action install system image file \<filename\>
+## <h>nv action install system image file \<filename\></h>
 
 Installs the specified binary image on the second partition (optimized upgrade).
 
@@ -3893,7 +3957,6 @@ Introduced in Cumulus Linux 5.15.0
 cumulus@switch:~$ nv action pull system docker image nginx
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action pull system docker image \<image-id\> tag</h>
@@ -3936,7 +3999,6 @@ Rebooting System in cold mode
 True
 Action succeeded
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -4409,6 +4471,51 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action traceroute system 10.10.10.10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> errors-extension</h>
+
+Sends extended traceroute packets (RFC 5837) to a destination so you can validate the route. You can specify either an IP address or a domain name. You can also specify the `do-not-fragment` option to trace the route to the destination without fragmentation.
+
+Cumulus Linux supports RFC 5837, which extends ICMP error messages with interface information, enabling more meaningful traceroute results in unnumbered networks where router interfaces use link-local addresses.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 errors-extension
+Action executing ...
+{
+    "destination_name": "10.10.10.1",
+    "destination_address": "10.10.10.1",
+    "hops": 1,
+    "packet_size": 60,
+    "trace": {
+        "1": {
+            "probe-1": {
+                "address": "10.10.10.1",
+                "name": "jak-test5.nvidia.com",
+                "rtt": [
+                    31000,
+                    6000,
+                    5000
+                ],
+                "state": "DEFAULT"
+            }
+        }
+    }
+}
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

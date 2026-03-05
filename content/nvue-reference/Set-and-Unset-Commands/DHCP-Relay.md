@@ -346,7 +346,7 @@ cumulus@switch:~$ nv set service dhcp-relay default source-ip gateway
 Configures the DHCP relay downstream interface.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you must associate the downstream interface with a server group using the `nv set service dhcp-relay <vrf-id> downstream-interface <interface> server-group-name` command.
+In Cumulus Linux 5.14 and earlier, you must associate the downstream interface with a server group using the `nv set service dhcp-relay <vrf-id> downstream-interface <interface-id> server-group-name` command.
 {{%/notice%}}
 
 ### Command Syntax

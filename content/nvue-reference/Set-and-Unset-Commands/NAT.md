@@ -37,7 +37,7 @@ cumulus@switch:~$ nv set acl acl_2 rule 1 action dest-nat translate-ip 10.0.0.1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action dest-nat translate-ip \<ip-address-id\> to \<ip-address-id\></h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action dest-nat translate-ip \<ip-address\> to \<ip-address\></h>
 
 Configures a dynamic NAT rule to translate a destination IP address range.
 
@@ -47,7 +47,7 @@ Configures a dynamic NAT rule to translate a destination IP address range.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<ip-address-id> to <ip-address-id>` |  The IP address range. |
+| `<ip-address> to <ip-address>` |  The IP address range. |
 
 ### Version History
 
@@ -108,7 +108,7 @@ cumulus@switch:~$ nv set acl acl_4 rule 1 action dest-nat translate-port 5000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<ip-address-id\></h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<ip-address\></h>
 
 Configures a NAT action rule to translate a source IP address.
 
@@ -118,7 +118,7 @@ Configures a NAT action rule to translate a source IP address.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<ip-address-id>` |  The IP address. |
+| `<ip-address>` |  The IP address. |
 
 ### Version History
 
@@ -132,7 +132,7 @@ cumulus@switch:~$ nv set acl acl_1 rule 1 action source-nat translate-ip 172.30.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<ip-address-id\> to \<ip-address-id\></h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<ip-address\> to \<ip-address\></h>
 
 Configures a NAT action rule to translate a source IP address range.
 
@@ -142,7 +142,7 @@ Configures a NAT action rule to translate a source IP address range.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<ip-address-id> to <ip-address-id>` |  The IP address range. |
+| `<ip-address> to <ip-address>` |  The IP address range. |
 
 ### Version History
 

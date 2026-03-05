@@ -16,6 +16,11 @@ The upcoming Cumulus Linux 5.15.0 release includes updates to NVUE commands. The
 Cumulus Linux 5.12.1 includes a new {{<link title="Cumulus Linux 5.12 Packages" text="SDK, hardware management package, and kernel">}} and provides {{<link url="Cumulus-Linux-5.12-Release-Notes" text="bug fixes">}}. In addition, Cumulus Linux 5.12.1 supports the following new platform:
 - NVIDIA SN5600D (800G Spectrum-4 DC version) ALPHA
 
+{{%notice note%}}
+Cumulus Linux 5.12.1 is tested and validated as part of the Spectrum-X reference architecture 1.3 release.
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+
 ## What's New in Cumulus Linux 5.12.0
 
 Cumulus Linux 5.12.0 contains several new features and improvements, and provides bug fixes.

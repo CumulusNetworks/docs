@@ -148,7 +148,7 @@ The `oob-mgmt-server` is the entry point to your simulation. When you connect vi
 
 From there, SSH to any node by hostname:
 
-```bash
+```
 # Connect to the OOB server via AIR
 ssh ubuntu@<air-service-url>
 

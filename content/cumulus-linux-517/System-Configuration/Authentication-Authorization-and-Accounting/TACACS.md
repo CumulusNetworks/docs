@@ -149,12 +149,7 @@ You can configure the following optional TACACS+ settings:
   {{%notice note%}}
 If a TACACS user exists and has already connected before you enable a separate home directory for that user, the user home directory already exists under `tacacs_template_user`. Therefore, when adding a local user, the user does not have permissions or ownership of the home directory.
 {{%/notice%}}
-<!-- - The output debugging information level through syslog(3) to use for troubleshooting. You can specify a value between 0 and 2. The default is 0. A value of 1 enables debug logging. A value of 2 increases the verbosity of some debug logs.
 
-  {{%notice note%}}
-  Do not leave debugging enabled on a production switch after you complete troubleshooting.
-  {{%/notice%}}
--->
 {{< tabs "TabID111 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -414,7 +409,7 @@ The first `adduser` command prompts for information and a password. You can skip
 {{< /tabs >}}
 
 <!-- vale off -->
-## TACACS+ Per-command Authorization
+## Local Per-command Authorization
 
 TACACS+ per-command authorization lets you configure the commands that TACACS+ users at different privilege levels can run.
 <!-- vale on -->
@@ -487,6 +482,34 @@ cumulus@switch:~$ sudo rm ~tacacs0/bin/*
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Server-side Per-command Authorization
+
+Whe you use server-side per-command authorization, Cumulus Linux sends every command that the TACACS+ user enters to the TACACS server for authorization before executing the command.
+
+{{%notice note%}}
+- You can use server-side per-command authorization together with specific command authorization so that Cumulus Linux authorizes certain commands locally and forwards all other commands *only* to the TACACS server.
+- If the switch cannot reach any of the configured TACACS servers, the command is denied.
+- The switch does not execute commands without explicit server authorization.
+{{%/notice%}}
+
+By default, server-side per-command authorization is disabled for all privilege levels.
+
+To enable server-side per-command authorization for a TACACS privilege level, run the `nv set system aaa tacacs authorization <priority-id> all-commands enabled` command.
+
+The following example enables server-side authorization for all commands at privilege level 0:
+
+```
+cumulus@switch:~$ nv set system aaa tacacs authorization 0 all-commands enabled
+cumulus@switch:~$ nv config apply
+```
+
+To disable server-side per-command authorization for a TACACS privilege level, run the `nv set system aaa tacacs authorization <priority-id> all-commands disabled` command:
+
+```
+cumulus@switch:~$ nv set system aaa tacacs authorization 0 all-commands disabled
+cumulus@switch:~$ nv config apply
+```
 
 ## Remove the TACACS+ Client Packages
 

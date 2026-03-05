@@ -27,6 +27,10 @@ The following features have been removed or deprecated:
 - OSPF validations
 - Monitoring for OSPF, configuration files, PTM, and installed software packages. NetQ will no longer collect information about or broadcast events for these categories.
 
+## Release Considerations
+
+- NetQ 4.12 is tested and validated as part of the Spectrum-X reference architecture 1.2 release. For a full compatibility matrix, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+
 ## Upgrade Paths
 
 For deployments running:

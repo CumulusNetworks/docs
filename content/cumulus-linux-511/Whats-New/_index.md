@@ -61,6 +61,11 @@ Cumulus Linux 5.11.1 is a Long-Term Support (LTS) release. For more information,
 
 Cumulus Linux 5.11.0 provides new platforms, new features and improvements, and includes bug fixes.
 
+{{%notice note%}}
+Cumulus Linux 5.11.0 is tested and validated as part of the Spectrum-X reference architecture 1.2 release.
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+
 ### Platforms
 
 - NVIDIA SN2201M (100G Spectrum 1)

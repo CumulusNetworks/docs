@@ -36,6 +36,24 @@ Are you sure? [y/N]
 
 To disable FIPS, run the `nv set system security fips mode disabled` command. You can also run the `nv unset system security fips` command to restore FIPS to the default setting (`disabled`).
 
+## FIPS and RADIUS Authentication
+
+PEAP-GTC is the only authentication type for RADIUS authentication in FIPS mode.
+
+{{%notice note%}}
+If you upgrade to Cumulus Linux 5.17 or later from Cumulus Linux 5.16 with FIPS enabled and RADIUS authentication configured with CHAP authentication (either globally, or for a server), the upgrade process changes the authentication type to PEAP-GTC.
+{{%/notice%}}
+
+The following example configures FIPS mode with RADIUS authentication:
+
+```
+cumulus@switch:~$ nv set system aaa radius auth-type peap-gtc
+cumulus@switch:~$ nv set sys ssh-server pubkey-accepted-algorithms rsa-sha2-512
+cumulus@switch:~$ nv set sys ssh-server kex-algorithms diffie-hellman-group14-sha256
+cumulus@switch:~$ nv set system security fips mode enabled
+cumulus@switch:~$ nv config apply
+```
+
 ## Show FIPS Configuration
 
 To show if FIPS mode is enabled, run the `nv show system security fips` command or the `nv show system security` command:
@@ -83,8 +101,8 @@ When you enable FIPS mode, NVUE blocks the following configurations that use non
 | OSPF | MD5 authentication | `nv set interface <interface> router ospf authentication` |
 | BGP&nbsp;neighbor | MD5 password | `nv set vrf <vrf> router bgp neighbor <neighbor-id> password` |
 | BGP&nbsp;peer&nbsp;group | MD5 password | `nv set vrf <vrf> router bgp peer-group <peer-group-id> password` |
-| RADIUS | PAP or MSCHAPv2 authentication types | `nv set system aaa radius auth-type pap`<br><br>`nv set system aaa radius auth-type mschapv2` |
-| RADIUS server | PAP or MSCHAPv2 authentication types | `nv set system aaa radius server <server-id> auth-type pap`<br><br>`nv set system aaa radius server <server-id> auth-type mschapv2` |
+| RADIUS | PAP CHAP, or MSCHAPv2 authentication types | `nv set system aaa radius auth-type pap`<br><br>`nv set system aaa radius auth-type mschapv2` |
+| RADIUS server | PAP, CHAP, or MSCHAPv2 authentication types | `nv set system aaa radius server <server-id> auth-type pap`<br><br>`nv set system aaa radius server <server-id> auth-type mschapv2` |
 | LDAP | SSL or TLS mode |`nv set system aaa ldap ssl mode start-tls`<br><br>`nv set system aaa ldap ssl mode ssl` |
 | User accounts | MD5 hashed passwords | `nv set system aaa user <user> hashed-password`|
 | SSH server | Non-FIPS key exchange | `nv set system ssh-server kex-algorithms curve25519-sha256` |

@@ -1642,6 +1642,11 @@ The switch collects and exports the following additional interface statistics wh
 | `nvswitch_interface_phy_stats_time_since_last_clear` | Time after counters clear.|
 | `nvswitch_interface_phy_stats_effective_ber` | FEC BER errors. |
 | `nvswitch_interface_phy_rs_fec_histogram` | Firmware version information for the transceiver.|
+| `nvswitch_interface_phy_stats_link_down_events` | *Total PHY link down events. |
+| `nvswitch_interface_phy_stats_intentional_link_down_events` | *Intentional link down events. |
+| `nvswitch_interface_phy_stats_unintentional_link_down_events` | *Unintentional link down events. |
+| `nvswitch_interface_phy_stats_link_down_reason_code_local ` | *Opcode of link down reason at the local end.|
+| `nvswitch_interface_phy_stats_link_down_reason_code_remote ` | *Opcode of link down reason at the remote end. |
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -25,6 +25,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4879269</td>
+<td>Under certain conditions, {{switchd}} crashes with a segmentation fault (SIGSEGV) when cleaning up the layer 3 nexthop state or when freeing internal hash or cache structures.</td>
+<td>5.14.0-5.15.1</td>
+<td>5.16.0</td>
+</tr>
+<tr>
 <td>4859201</td>
 <td>When the VNI changes on a VRF, from the old VNI to the new VNI, the VNI in the SVD VNI hash table or in the single‑VNI (SVD) in the VNI info is deleted. Therefore, when there are further updates to the old VNI, the lookup fails and causes the zebra core to crash. </td>
 <td>5.14.0-5.15.1</td>
@@ -33,8 +39,8 @@
 <tr>
 <td>4850551</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
-<td>5.9.2-5.16.0</td>
-<td></td>
+<td>5.9.2-5.15.1</td>
+<td>5.16.0</td>
 </tr>
 <tr>
 <td>4840299</td>
@@ -74,8 +80,8 @@ ports configuration(ports.conf/ports_width.conf) is invalid</td>
 {{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
 interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
 interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
-<td>5.14.0-5.16.0</td>
-<td></td>
+<td>5.14.0-5.15.1</td>
+<td>5.16.0</td>
 </tr>
 <tr>
 <td>4797691</td>
@@ -110,8 +116,8 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <tr>
 <td>4771875</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.16.0</td>
-<td></td>
+<td>5.11.1-5.15.1</td>
+<td>5.16.0</td>
 </tr>
 <tr>
 <td>4771785</td>
@@ -230,8 +236,8 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <tr>
 <td>4717752</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.16.0</td>
-<td></td>
+<td>5.3.1-5.14.0</td>
+<td>5.15.0-5.16.0</td>
 </tr>
 <tr>
 <td>4714845</td>
@@ -338,26 +344,26 @@ interface_stats_collector[41358]: [signal SIGSEGV: segmentation violation code=0
 <tr>
 <td>4641344</td>
 <td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
-<td>5.14.0-5.16.0</td>
-<td></td>
+<td>5.14.0</td>
+<td>5.15.0-5.16.0</td>
 </tr>
 <tr>
 <td>4641343</td>
 <td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
-<td>5.14.0-5.16.0</td>
-<td></td>
+<td>5.14.0</td>
+<td>5.15.0-5.16.0</td>
 </tr>
 <tr>
 <td>4641341</td>
 <td>The neighbor manager service memory usage increases significantly after the number of entries in the kernel neighbor table exceeds the {{gc_threshold}}.</td>
-<td>5.13.1-5.16.0</td>
-<td></td>
+<td>5.13.1-5.14.0</td>
+<td>5.15.0-5.16.0</td>
 </tr>
 <tr>
 <td>4641340</td>
 <td>The neighbor manager service memory usage increases significantly after the number of entries in the kernel neighbor table exceeds the {{gc_threshold}}.</td>
-<td>5.13.1-5.16.0</td>
-<td></td>
+<td>5.13.1-5.14.0</td>
+<td>5.15.0-5.16.0</td>
 </tr>
 <tr>
 <td>4641291</td>
@@ -634,27 +640,9 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4535856</td>
-<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
-<td>5.13.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4535843</td>
-<td>After a switch reboot, the {{nv show system health}} command shows incorrect system LED status and color.</td>
-<td>5.13.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4535806</td>
 <td>After a factory reset, the switch does not clear the {{/var/tmp}} directory, which the switch uses for temporary files.</td>
 <td>5.14.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4535804</td>
-<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.16.0</td>
 <td></td>
 </tr>
 <tr>
@@ -685,12 +673,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4531960</td>
 <td>The GNMI Subscription to xpath {{interfaces/interface[name=swp61s0]/state/counters/out-pkts}} with a high sample interval results in an initial response of zero but in subsequent updates, the value is correct. You do not see this issue when the sample interval is 1 second.</td>
 <td>5.14.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4513849</td>
-<td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
-<td>5.13.0-5.16.0</td>
 <td></td>
 </tr>
 <tr>
@@ -754,42 +736,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4423368</td>
-<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
-<td>5.12.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423360</td>
-<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
-<td>5.12.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423352</td>
-<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423335</td>
-<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423277</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.16.0</td>
@@ -802,12 +748,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4423235</td>
-<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
-<td>5.11.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4423175</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
 <td>5.13.0-5.16.0</td>
@@ -817,12 +757,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4370954</td>
-<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
-<td>5.12.0-5.16.0</td>
 <td></td>
 </tr>
 <tr>

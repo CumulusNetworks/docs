@@ -31,6 +31,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 - The API gateway port for on-premises deployments has changed from 32708 to 32710.
 - NVIDIA has simplified the package names in the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}} and updated the installation and upgrade instructions for NetQ agents and the CLI to reflect these changes.
+- NetQ 5.0 does not include cloud (OPTA) software packages. If your NetQ deployment uses both primary and secondary premises, configure your secondary premises to use NetQ 4.15.0 cloud software. You can upgrade the primary premises to the latest NetQ version.
 - This NetQ version is not part of the Spectrum-X reference architecture release and is not supported in Spectrum-X environments.
 
 ### Upgrade Paths

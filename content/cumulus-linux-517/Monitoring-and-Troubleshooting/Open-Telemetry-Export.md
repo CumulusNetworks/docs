@@ -691,31 +691,44 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.10
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce sample-interval 120
 cumulus@switch:~$ nv config apply
 ```
-<!--
+
 ### Granular Metric Selection
 
 {{%notice note%}}
 Granular metric selection is a Beta feature.
 {{%/notice%}}
 
-To tailor metrics collection to your specific monitoring needs, you can export individual metrics instead of all metrics in a group. You can include or exclude metrics by name or wildcard, globally or for a statistics group or destination at varied collection frequencies.
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a group. You can include or exclude metrics by name or wildcard, globally or for a statistics group or destination at varied collection frequencies.
 
-The following example collects the platform memory metrics `node_memory_MemTotal_bytes` and `node_memory_MemFree_bytes`:
+Configure groups with specific metrics, then apply the group by either including or excluding the group of metrics.
+
+The following example includes the platform memory metrics `node_memory_MemTotal_bytes` and `node_memory_MemFree_bytes`, and all `nvswitch_env_` and `node_cpu_` metrics in a group called PLATFORM_METRICS.
 
 ```
 cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS description ”Platform metrics" 
 cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_memory_MemTotal_bytes 
 cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_memory_MemFree_bytes 
-```
-
-The following example collects all `nvswitch_env_` and `node_cpu_` metrics:
-
-```
 cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric nvswitch_env_* 
 cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_cpu_*
 cumulus@switch:~$ nv config apply
 ```
--->
+
+To apply the metric collection, run the `nv set system telemetry include-list` command or the `nv set system telemetry exclude-list` command.
+
+The following example includes the metrics in the PLATFORM_METRICS metric group list in the collection:
+
+```
+cumulus@switch:~$ nv set system telemetry include-list PLATFORM_METRICS 
+cumulus@switch:~$ nv config apply
+```
+
+You can apply the metric collection to a statistics group. The following example includes the metrics in the PLATFORM_METRICS metric group list in the stats group STAT-GROUP3:
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 include-list PLATFORM_METRICS
+cumulus@switch:~$ nv config apply
+```
+
 ### Show Telemetry Export Configuration
 
 To show the telemetry export configuration, run the `nv show system telemetry export` command:

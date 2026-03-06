@@ -21,27 +21,8 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - {{<link url="Interface-Configuration-and-Management/#link-debounce-timers" text="Interface debounce timer (link dampening)">}}
 - {{<link url="Zero-Touch-Provisioning-ZTP/#ztp-over-dhcp" text="Revert to DHCP if the ZTP URL is not reachable">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload support for BFD sessions based on the IPv6 link-local address">}}
-- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
-- NVUE
-  - {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#show-secure-boot-details" text="NVUE command to show secure boot status and details">}}
-  - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}
-  - New command to verify a configuration before applying
-  - Block NVUE CLI during Long Background Operations
-- Telemetry
-  - {{<link url="Open-Telemetry-Export/#interface-statistics" text="New link debounce OTEL metrics">}}
-  - {{<link url="Open-Telemetry-Export/#interface-statistics" text="New link down OTEL metrics">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="New link debounce gNMI metrics">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="New link down gNMI metrics">}}
-- Security
-  - Alert in the event of an audit processing failure
-  - Support organizational requirements to conduct backups of information system documentation
-  - Support "sudo" validation when TACACS server is connected to the default VRF
-  - Graceful SSD Wipe
-  - API to change SED password (Cumulus)
-  - Support PEAP-GTC tunneling for Radius
 - Instant Retransmission System (Beta)
 - LLDP BGP Route Redistribution Extension (Beta)
-- Open Telemetry Granular metric selection (Beta)
 - BGP/LLDP X-Plane multi-plane'd GPUs with disjoined planes (EVPN based deployments) (Beta)
 - Support SSD-SED disable in BIOS (Spectrum-6)
 - Routing Convergence Enhancement for full connectivity loss (all links Up/restart)
@@ -56,6 +37,24 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - Request to get Missing serial number of the device with GNMI subscription 
 - Request to Re authentication of dot1x supplicant(Phase 2) 
 - Docker Resource Governance & Policy Agent (GA)
+- NVUE
+  - {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#show-secure-boot-details" text="NVUE command to show secure boot status and details">}}
+  - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}
+  - New command to verify a configuration before applying
+  - Block NVUE CLI during Long Background Operations
+- Telemetry
+  - {{<link url="Open-Telemetry-Export/#interface-statistics" text="New link debounce OTEL metrics">}}
+  - {{<link url="Open-Telemetry-Export/#interface-statistics" text="New link down OTEL metrics">}}
+  - {{<link url="gNMI-Streaming/#metrics" text="New link debounce gNMI metrics">}}
+  - {{<link url="gNMI-Streaming/#metrics" text="New link down gNMI metrics">}}
+  - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}}(Beta)
+- Security
+  - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
+  - Alert in the event of an audit processing failure
+  - Support organizational requirements to conduct backups of information system documentation
+  - Support "sudo" validation when TACACS server is connected to the default VRF
+  - Graceful SSD Wipe
+  - API to change SED password (Cumulus)
 
 ## Release Considerations
 

@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4895298"></a> [4895298](#4895298) <a name="4895298"></a> <br /> | When you configure BGP dynamic neighbors and <code>default-originate</code> with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the <code>default-originate</code> with the route map command or toggle <code>default-route-origination</code> off, then on. | 5.11.5-5.16.0 | |
 | <a name="4885553"></a> [4885553](#4885553) <a name="4885553"></a> <br /> | If ZTP uses a proxy server for image download using <code>onie-install</code>, the image install fails with signing issues. | 5.12.0-5.16.0 | |
 | <a name="4882392"></a> [4882392](#4882392) <a name="4882392"></a> <br /> | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.16.0 | |
 | <a name="4850551"></a> [4850551](#4850551) <a name="4850551"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.15.1 | 5.16.0|
@@ -236,6 +237,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4895298"></a> [4895298](#4895298) <a name="4895298"></a> <br /> | When you configure BGP dynamic neighbors and <code>default-originate</code> with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the <code>default-originate</code> with the route map command or toggle <code>default-route-origination</code> off, then on. | 5.11.5-5.16.0 | |
 | <a name="4885553"></a> [4885553](#4885553) <a name="4885553"></a> <br /> | If ZTP uses a proxy server for image download using <code>onie-install</code>, the image install fails with signing issues. | 5.12.0-5.16.0 | |
 | <a name="4882392"></a> [4882392](#4882392) <a name="4882392"></a> <br /> | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.16.0 | |
 | <a name="4850551"></a> [4850551](#4850551) <a name="4850551"></a> <br /> | The switch installs suboptimal routes in the routing table and advertises them out. | 5.9.2-5.16.0 | |

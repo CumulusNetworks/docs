@@ -50,11 +50,11 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}}(Beta)
 - Security
   - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
+  - {{<link url="Disk-Management/#erase-data-from-the-disk" text="Extended disk erase to support SED SSDs">}}
+  - {{<link url="Disk-Management/#change-the-sed-password" text="Change the SED disk password">}}
   - Alert in the event of an audit processing failure
   - Support organizational requirements to conduct backups of information system documentation
   - Support "sudo" validation when TACACS server is connected to the default VRF
-  - Graceful SSD Wipe
-  - API to change SED password (Cumulus)
 
 ## Release Considerations
 

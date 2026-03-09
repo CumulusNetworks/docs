@@ -40,8 +40,11 @@ You can also reduce the number of premises that can be displayed in the UI by ho
 
 To view the premises you just added, return to the home workbench and select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown in the top-right corner of the screen. Alternately, run the {{<link title="config/#netq-config-show-cli-premises" text="netq config show cli premises">}} command.
 
-
 ### Full NetQ Deployment at Primary Premises and Smaller Deployments at Secondary Premises
+
+{{<notice info>}}
+This deployment type has been deprecated and is not included in testing for this version.
+{{</notice>}}
 
 In this implementation, there is a NetQ VM at one of the deployments acting as the primary premises for the other deployments. The primary premises runs the NetQ software (including the NetQ UI and CLI) and houses the database. All other deployments are secondary premises; they run the NetQ cloud (OPTA) software and send their data to the primary premises for storage and processing. A list of these secondary premises is stored with the primary deployment.
 
@@ -52,8 +55,7 @@ After the multiple premises are configured, you can view this list of premises i
 In this deployment model, the data is stored and can be viewed only from the NetQ UI at the primary premises.
 
 {{%notice note%}}
-- The primary NetQ premises must be installed and operational before the secondary premises can be added.
-- NetQ 5.0.0 does not include cloud (OPTA) software packages. If your primary premises is running version 5.0.0, configure your secondary premises to use NetQ 4.15.0 cloud software.
+The primary NetQ premises must be installed and operational before the secondary premises can be added.
 {{%/notice%}}
 
 

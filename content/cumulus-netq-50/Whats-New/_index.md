@@ -26,12 +26,14 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Performance improvements to the NetQ agent
 - Security enhancements and general performance improvements
 
+The following features are deprecated:
+
+- Cloud (OPTA) deployments are no longer tested or validated. This deprecation also applies to deployments {{<link title="Configure Premises/#full-netq-deployment-at-primary-premises-and-smaller-deployments-at-secondary-premises" text="running OPTA software on secondary premises that forward data to primary premises">}}.
 
 ## Release Considerations
 
 - The API gateway port for on-premises deployments has changed from 32708 to 32710.
 - NVIDIA has simplified the package names in the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/" text="NetQ repository">}} and updated the installation and upgrade instructions for NetQ agents and the CLI to reflect these changes.
-- NetQ 5.0 does not include cloud (OPTA) software packages. If your NetQ deployment uses both primary and secondary premises, configure your secondary premises to use NetQ 4.15.0 cloud software. You can upgrade the primary premises to the latest NetQ version.
 - This NetQ version is not part of the Spectrum-X reference architecture release and is not supported in Spectrum-X environments.
 
 ### Upgrade Paths

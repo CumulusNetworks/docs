@@ -13,9 +13,13 @@ Cumulus Linux 5.16 is tested and validated as part of the Spectrum-X reference a
 For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
 
-## What's New in Cumulus Linux 5.16
+## What's New in Cumulus Linux 5.16.1
 
-Cumulus Linux 5.16 contains new features and improvements, and provides bug fixes.
+Cumulus Linux 5.16.1 provides bug fixes.
+
+## What's New in Cumulus Linux 5.16.0
+
+Cumulus Linux 5.16.0 contains new features and improvements, and provides bug fixes.
 
 ### New Features and Enhancements
 

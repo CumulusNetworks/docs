@@ -108,6 +108,10 @@ The NVUE CLI has a flat structure; however, the commands are in four functional 
 
 The NVUE configuration commands modify switch configuration. You can set and unset configuration options.
 
+{{%notice note%}}
+During long background operations such factory reset, system reset, image upgrade, or profile changes, NVUE does not allow you to make configuration changes with the configuration commands; you can use only use the {{<link url="#monitoring-commands" text="monitoring commands">}}.
+{{%/notice%}}
+
 The `nv set` and `nv unset` commands are in the following categories. Each command group includes subcommands. Use command completion (press the tab key) to list the subcommands.
 
 | <div style="width:300px">Command Group | Description |

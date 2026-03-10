@@ -26,6 +26,9 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Performance improvements to the NetQ agent
 - Security enhancements and general performance improvements
 
+The following features are deprecated:
+
+- Cloud (OPTA) deployments are no longer tested or validated. This deprecation also applies to deployments {{<link title="Configure Premises/#full-netq-deployment-at-primary-premises-and-smaller-deployments-at-secondary-premises" text="running OPTA software on secondary premises that forward data to primary premises">}}.
 
 ## Release Considerations
 

@@ -7,8 +7,78 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4889939</td>
+<td>In an MLAG configuration, when the MLAG node receives MLAG peer keepalives from an IP address that is not configured as the peer IP address, a peer IP address mismatch conflict occurs. Even after the conflict is resolved,  you sometimes see that the MLAG session still retains the peer IP mismatch conflict.</td>
+<td>5.14.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4885553</td>
+<td>If ZTP uses a proxy server for image download using {{onie-install}}, the image install fails with signing issues.</td>
+<td>5.12.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4885474</td>
+<td>During warm boot, a transient error "ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1" appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4882392</td>
+<td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
+<td>5.9.1-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4875640</td>
+<td>A rare timing scenario results in the following error log in {{switchd}}:
+ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4875599</td>
+<td>When you configure authentication for a BGP dynamic neighbor, removing the configuration does not bring back the sessions.</td>
+<td>5.15.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4875122</td>
+<td>The JSON output for the vtysh {{show bgp &lt;address-family&gt; unreachability&gt; summary}} reports peers as {{Established}} even when the AFI or SAFI is not negotiated, while the plain summary shows {{NoNeg}}. This causes JSON to misrepresent  the per‑AFI or SAFI state for established sessions.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4873853</td>
+<td>TACACS authentication is not working with flat files. The Cumulus Linux user guide is missing the {{sudo pam-auth-update --enable tacplus}} command.</td>
+<td>5.15.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4870212</td>
+<td>When a BGP peer initially advertises UNREACH routes with a matching SoO (Site of Origin), the receiving router correctly triggers conditional disaggregation. However, if the peer later removes the advertise-origin 
+configuration with the {{nv unset vrf default router bgp address-family ipv6-unreachability advertise-origin}} command, the receiving router continues to 
+advertise disaggregated routes even though the UNREACH updates no longer contain a matching SoO. This issue results in unnecessary route advertisements 
+where only the aggregate should be advertised.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4870105</td>
 <td>When you provide a JSON string with double quotes in an NVUE {{nv set}} command, the command fails.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4862680</td>
+<td>The vtysh {{show bgp ipv4 unreachability &lt;prefix&gt; json}} and {{show bgp ipv6 unreachability &lt;prefix&gt; json}} commands do not display BGP community attributes (including {{graceful-shutdown}}) in the JSON output even though they are shown correctly in the non-JSON text output.Network automation tools and scripts relying on JSON output might not detect the {{graceful-shutdown}} community on unreachability routes, making it difficult to identify routes that are withdrawn due to graceful shutdown procedures.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4856402</td>
+<td>The graceful restart helper node experiences temporary traffic loss when the peer goes under warm boot.</td>
 <td>5.16.0</td>
 <td></td>
 </tr>
@@ -25,21 +95,15 @@
 <td></td>
 </tr>
 <tr>
-<td>4850442</td>
-<td>In a configuration where the loopback on a VTEP node has multiple IP addresses and you change the VXLAN source address (VTEP), partial traffic loss is observed due to the node still advertising type 1 routes with the old VTEP IP address (in addition to route advertisements with the source as the new VTEP IP address).To work around this issue, unset the VXLAN and loopback IP addresses, set the loopback with the new IP address and new VXLAN source address, then reapply the configuration. For example:
-cumulus@switch:~$ nv unset nve vxlan
-cumulus@switch:~$ nv unset interface &lt;loopback-interface&gt; &lt;address-family&gt;
-cumulus@switch:~$ nv config apply
-cumulus@switch:~$ nv set interface &lt;loopback-interface&gt; &lt;address-family&gt; address &lt;ip-address&gt;
-cumulus@switch:~$ nv set nve vxlan source address &lt;ip-address&gt;
-cumulus@switch:~$ nv config apply</td>
+<td>4840423</td>
+<td>Running {{traceroute}} in an SRv6 topology is unsuccessful.</td>
 <td>5.16.0</td>
 <td></td>
 </tr>
 <tr>
-<td>4840423</td>
-<td>Running {{traceroute}} in an SRv6 topology is unsuccessful.</td>
-<td>5.16.0</td>
+<td>4840299</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.16.0</td>
 <td></td>
 </tr>
 <tr>
@@ -157,6 +221,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
 <td>5.12.1-5.16.0</td>
 <td>5.9.4</td>
+</tr>
+<tr>
+<td>4534357</td>
+<td>During Cumulus Linux upgrade or downgrade, {{rsyslog}} might crash because the management (eth0) port is unavailable, which triggers a use-after-free fault and  produces a cl-support file as a response.</td>
+<td>5.13.1-5.16.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4531960</td>
@@ -807,6 +877,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>4884646</td>
+<td>When you run the vtysh -c {{show bgp l2v evp neigh swp1 routes json}} command,  a memory leak occurs. </td>
+<td>5.15.0-5.15.1</td>
+</tr>
+<tr>
+<td>4879269</td>
+<td>Under certain conditions, {{switchd}} crashes with a segmentation fault (SIGSEGV) when cleaning up the layer 3 nexthop state or when freeing internal hash or cache structures.</td>
+<td>5.14.0-5.15.1</td>
+</tr>
+<tr>
 <td>4864948</td>
 <td>If you use optimized image (two partition) upgrade when there is insufficient space in the {{/var}} directory, the upgrade might fail and the {{/var}} directory might run out of space. The minimum amount of space needed in {{/var}} is approximately 3.5Gbytes on Cumulus Linux 5.15.1 and earlier, and 2.4Gbytes on Cumulus Linux 5.16.0.</td>
 <td></td>
@@ -914,6 +994,11 @@ ports configuration(ports.conf/ports_width.conf) is invalid</td>
 <td>5.14.0-5.15.1</td>
 </tr>
 <tr>
+<td>4781602</td>
+<td>Some internal OTLP metrics were incorrectly exported by the system.</td>
+<td></td>
+</tr>
+<tr>
 <td>4781499</td>
 <td>The 802.1X RADIUS shared secret is limited to 32 characters instead of 256 characters.</td>
 <td>5.15.0-5.15.1</td>
@@ -938,6 +1023,14 @@ To work around this issue, use a YAML file instead of a text-based patch file or
 <tr>
 <td>4776470</td>
 <td>In Cumulus Linux 5.15.0, NTP and DNS configuration commands changed from {{nv set service}} to {{nv set system}}. However, after upgrading the switch to Cumulus Linux 5.15.1, the {{nv set service}} command might still appear in the configuration output because a stale {{nv set service}} command remains after the configuration is translated during the upgrade. If you save the configuration with the {{nv config show -o commands}}, then reapply the configuration with {{nv config replace}}, the command fails if the stale {{nv set service}} command is present.To workaround this issue, before applying the configuration with {{nv config replace}}, remove any stale {{nv set service}} commands from the saved configuration file, then reapply the configuration with the {{nv config replace &lt;config-file&gt;}} command.</td>
+<td>5.15.0-5.15.1</td>
+</tr>
+<tr>
+<td>4776444</td>
+<td>In rare cases when telemetry is configured on a switch with high interface scale, the following log message might be generated and lead to a kernel crash event:
+
+interface_stats_collector[27979]: ERROR intf_stats_collector.go:485 WaitBulkCounterDone error: unable to receive trap info after 15 iterations
+</td>
 <td>5.15.0-5.15.1</td>
 </tr>
 <tr>

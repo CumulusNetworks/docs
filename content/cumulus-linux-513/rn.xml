@@ -29,8 +29,8 @@
 <tr>
 <td>4850551</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
-<td>5.9.2-5.15.1</td>
-<td>5.16.0</td>
+<td>5.9.2-5.16.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4840299</td>
@@ -71,8 +71,8 @@
 <tr>
 <td>4771875</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td>5.16.0</td>
+<td>5.11.1-5.16.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4771521</td>
@@ -134,8 +134,8 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <tr>
 <td>4717752</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.14.0</td>
-<td>5.15.0-5.16.0</td>
+<td>5.3.1-5.16.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4714845</td>
@@ -165,18 +165,6 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>4643537</td>
 <td>The {{nv action clear interface &lt;port&gt;}} command does not clear the in and out packet counters under {{interface/&lt;port&gt;/link/stats}}.</td>
 <td>5.12.1-5.14.0</td>
-<td>5.15.0-5.16.0</td>
-</tr>
-<tr>
-<td>4641341</td>
-<td>The neighbor manager service memory usage increases significantly after the number of entries in the kernel neighbor table exceeds the {{gc_threshold}}.</td>
-<td>5.13.1-5.14.0</td>
-<td>5.15.0-5.16.0</td>
-</tr>
-<tr>
-<td>4641340</td>
-<td>The neighbor manager service memory usage increases significantly after the number of entries in the kernel neighbor table exceeds the {{gc_threshold}}.</td>
-<td>5.13.1-5.14.0</td>
 <td>5.15.0-5.16.0</td>
 </tr>
 <tr>
@@ -364,14 +352,20 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4535856</td>
 <td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
-<td>5.13.0-5.13.1</td>
-<td>5.14.0-5.16.0</td>
+<td>5.13.0-5.16.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4535843</td>
 <td>After a switch reboot, the {{nv show system health}} command shows incorrect system LED status and color.</td>
-<td>5.13.0-5.13.1</td>
-<td>5.14.0-5.16.0</td>
+<td>5.13.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4535804</td>
+<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
+<td>5.10.0-5.16.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4535749</td>
@@ -453,8 +447,8 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4513849</td>
 <td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
-<td>5.13.0-5.13.1</td>
-<td>5.14.0-5.16.0</td>
+<td>5.13.0-5.16.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4509255</td>
@@ -551,12 +545,6 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <td>5.9.4</td>
 </tr>
 <tr>
-<td>4475104</td>
-<td>On the NVIDIA SN5610 switch, bringing up around 256 links takes a long time (approximately 90 seconds).</td>
-<td>5.13.0-5.13.1</td>
-<td>5.14.0-5.16.0</td>
-</tr>
-<tr>
 <td>4475095</td>
 <td>The BGP service might crash when you have overlapping routes between two VRFs and you are leaking these routes between these VRFs in an EVPN environment. Avoid leaking overlapping IP addresses or subnets between two VRFs. This is typically accomplished by filtering the overlapping IP address or subnet routes with a prefix list and route map.</td>
 <td>5.13.1</td>
@@ -613,7 +601,7 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <tr>
 <td>4460588</td>
 <td>The NVIDIA SN5610 switch might experience FEC burstiness with multiple optics, which can impact link stability and performance.</td>
-<td>5.13.0-5.13.1</td>
+<td>5.13.1</td>
 <td>5.14.0-5.16.0</td>
 </tr>
 <tr>
@@ -706,6 +694,42 @@ cumulus@switch:~$ git gc</td>
 <td>5.14.0-5.16.0</td>
 </tr>
 <tr>
+<td>4423368</td>
+<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
+<td>5.12.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423360</td>
+<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
+<td>5.12.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423352</td>
+<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
+<td>5.11.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423335</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
+<td>5.9.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423277</td>
+<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
+<td>5.11.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423269</td>
+<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.16.0</td>
@@ -715,6 +739,12 @@ cumulus@switch:~$ git gc</td>
 <td>4423244</td>
 <td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423235</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
+<td>5.11.0-5.16.0</td>
 <td></td>
 </tr>
 <tr>
@@ -783,6 +813,12 @@ onie-nos-install /$devname/onie-installer</td>
 <td>With high SSH scale you might see LTTNG high memory usage errors causing an out of memory condition.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.14.0-5.16.0</td>
+</tr>
+<tr>
+<td>4370954</td>
+<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.16.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4360826</td>
@@ -1414,8 +1450,8 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4850551</td>
 <td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
-<td>5.9.2-5.16.0</td>
-<td></td>
+<td>5.9.2-5.15.1</td>
+<td>5.16.0</td>
 </tr>
 <tr>
 <td>4840299</td>
@@ -1444,8 +1480,8 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4771875</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.16.0</td>
-<td></td>
+<td>5.11.1-5.15.1</td>
+<td>5.16.0</td>
 </tr>
 <tr>
 <td>4771521</td>
@@ -1501,8 +1537,8 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <tr>
 <td>4717752</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.16.0</td>
-<td></td>
+<td>5.3.1-5.14.0</td>
+<td>5.15.0-5.16.0</td>
 </tr>
 <tr>
 <td>4714845</td>
@@ -1653,20 +1689,14 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4535856</td>
 <td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
-<td>5.13.0-5.16.0</td>
-<td></td>
+<td>5.13.0-5.13.1</td>
+<td>5.14.0-5.16.0</td>
 </tr>
 <tr>
 <td>4535843</td>
 <td>After a switch reboot, the {{nv show system health}} command shows incorrect system LED status and color.</td>
-<td>5.13.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4535804</td>
-<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.16.0</td>
-<td></td>
+<td>5.13.0-5.13.1</td>
+<td>5.14.0-5.16.0</td>
 </tr>
 <tr>
 <td>4535749</td>
@@ -1727,8 +1757,8 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4513849</td>
 <td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
-<td>5.13.0-5.16.0</td>
-<td></td>
+<td>5.13.0-5.13.1</td>
+<td>5.14.0-5.16.0</td>
 </tr>
 <tr>
 <td>4509255</td>
@@ -1819,12 +1849,6 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <td>5.9.4</td>
 </tr>
 <tr>
-<td>4475104</td>
-<td>On the NVIDIA SN5610 switch, bringing up around 256 links takes a long time (approximately 90 seconds).</td>
-<td>5.13.0-5.13.1</td>
-<td>5.14.0-5.16.0</td>
-</tr>
-<tr>
 <td>4474924</td>
 <td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
 <td>5.13.0-5.13.1</td>
@@ -1870,12 +1894,6 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <td>4461102</td>
 <td>In certain cases, when a port is down and you apply adaptive routing with the link utilization threshold setting to the port as it goes up, you might see log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
-<td>5.14.0-5.16.0</td>
-</tr>
-<tr>
-<td>4460588</td>
-<td>The NVIDIA SN5610 switch might experience FEC burstiness with multiple optics, which can impact link stability and performance.</td>
-<td>5.13.0-5.13.1</td>
 <td>5.14.0-5.16.0</td>
 </tr>
 <tr>
@@ -1974,42 +1992,6 @@ cumulus@switch:~$ git gc</td>
 <td>5.14.0-5.16.0</td>
 </tr>
 <tr>
-<td>4423368</td>
-<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
-<td>5.12.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423360</td>
-<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
-<td>5.12.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423352</td>
-<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423335</td>
-<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423277</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.16.0</td>
@@ -2019,12 +2001,6 @@ cumulus@switch:~$ git gc</td>
 <td>4423244</td>
 <td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423235</td>
-<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
-<td>5.11.0-5.16.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2093,12 +2069,6 @@ onie-nos-install /$devname/onie-installer</td>
 <td>With high SSH scale you might see LTTNG high memory usage errors causing an out of memory condition.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.14.0-5.16.0</td>
-</tr>
-<tr>
-<td>4370954</td>
-<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
-<td>5.12.0-5.16.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4360826</td>

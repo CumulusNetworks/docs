@@ -21,13 +21,13 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - {{<link url="Interface-Configuration-and-Management/#link-debounce-timers" text="Interface debounce timer (link dampening)">}}
 - {{<link url="Zero-Touch-Provisioning-ZTP/#ztp-over-dhcp" text="Revert to DHCP if the ZTP URL is not reachable">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload support for BFD sessions based on the IPv6 link-local address">}}
-- Support PFC headroom pool 
+- Docker Resource Governance & Policy Agent (GA)
 - LLDP BGP Route Redistribution Extension (Beta)
 - BGP/LLDP X-Plane multi-plane'd GPUs with disjoined planes (EVPN based deployments) (Beta)
 - Routing Convergence Enhancement for full connectivity loss (all links Up/restart)
 - Integrate logs in tc_log to the syslog​, and update log level
 - Granular LLDP TLV definition and control 
-- Docker Resource Governance & Policy Agent (GA)
+- Support PFC headroom pool
 - NVUE
   - {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#show-secure-boot-details" text="NVUE command to show secure boot status and details">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}

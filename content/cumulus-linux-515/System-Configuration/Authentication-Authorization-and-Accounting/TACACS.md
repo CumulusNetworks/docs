@@ -183,7 +183,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-- To set the server port (use the format `server:port`), source IP address, authentication type, and enable Cumulus Linux to create a separate home directory for each TACACS+ user, edit the `/etc/tacplus_servers` file, then restart `auditd`.
+- To set the server port (use the format `server:port`), source IP address, authentication type, and to enable Cumulus Linux to create a separate home directory for each TACACS+ user, edit the `/etc/tacplus_servers` and `/usr/share/pam-configs/tacplus` files. Restart `auditd`, then run `sudo pam-auth-update –enable tacplus`.
 - To set the timeout and the usernames to exclude from TACACS+ authentication, edit the `/etc/tacplus_nss.conf` file (you do not need to restart `auditd`).
 
 The following example sets the server port to 32, the authentication type to CHAP, the source IP address to 10.10.10.1, and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
@@ -212,7 +212,30 @@ login=chap
 ```
 
 ```
+cumulus@switch:~$ sudo nano /usr/share/pam-configs/tacplus
+Name: Tacacs+ authentication
+Default: yes
+Priority: 514
+Auth-Type: Primary
+Auth:
+        [default=ignore success=1] pam_succeed_if.so uid <= 1000 quiet
+        [authinfo_unavail=ignore success=3 auth_err=ignore default=ignore]      pam_tacplus.so include=/etc/tacplus_servers login=chap protocol=ssh service=shell
+Account-Type: Primary
+Account:
+        [default=ignore success=1] pam_succeed_if.so uid <= 1000 quiet
+        [authinfo_unavail=ignore success=end perm_denied=bad default=ignore]    pam_tacplus.so include=/etc/tacplus_servers login=chap protocol=ssh service=shell
+Session-Type: Additional
+Session:
+        [default=1 success=ignore] pam_succeed_if.so uid > 1000 quiet
+        [authinfo_unavail=ignore success=ok default=ignore] pam_tacplus.so include=/etc/tacplus_servers login=login protocol=ssh service=shell
+```
+
+```
 cumulus@switch:~$ sudo systemctl restart auditd
+```
+
+```
+cumulus@switch:~$ sudo pam-auth-update –enable tacplus
 ```
 
 The following example sets the timeout to 10 seconds and excludes the user `USER1` from going to the TACACS+ server for authentication:

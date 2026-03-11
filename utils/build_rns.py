@@ -556,7 +556,7 @@ def build_rn_xls_files(product, version_list):
 # Key: product short name ("cl" or "netq"). Value: list of full version strings to skip.
 EXCLUDED_VERSIONS = {
     "cl": [],
-    "netq": ["5.0.0", "5.0.1"],
+    "netq": ["5.0.0", "5.0.1", "5.1.0"],
 }
 
 def get_products():

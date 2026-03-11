@@ -81,7 +81,7 @@ To show buffer statistics configuration, run the `nv show system telemetry buffe
 
 ### Control Plane Statistics
 
-When you enable open telemetry for control plane statistics, the switch exports additional counters for [control plane packets](#control-plane-statistic-format):
+When you enable open telemetry for control plane statistics, the switch exports all counters for [control plane packets](#control-plane-statistic-format):
 
 ```
 cumulus@switch:~$ nv set system telemetry control-plane-stats export state enabled
@@ -95,7 +95,138 @@ cumulus@switch:~$ nv set system telemetry control-plane-stats sample-interval 10
 cumulus@switch:~$ nv config apply
 ```
 
-To show control plane statistics configuration, run the `nv show system telemetry control-plane-stats` command.
+You can enable these additional control plane statistics:
+- All ingress packets.
+- Ingress IPv4 packets.
+- Ingress IPv6 packets.
+- All egress packets.
+- Egress IPv4 packets.
+- Egress IPv6 packets.
+
+To enable all ingress packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats ingress export state enabled
+```
+
+To enable all ingress IPv4 packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats ingress ipv4 export state enabled
+```
+
+To enable all ingress IPv6 packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats ingress ipv6 export state enabled 
+```
+
+To enable all egress packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats egress export state enabled
+```
+
+To enable all egress IPv4 packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats egress ipv4 export state enabled
+```
+
+To enable all egress IPv6 packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats egress ipv6 export state enabled
+```
+
+To show control plane statistics, run the `nv show system telemetry control-plane-stats` command.
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics 
+                                   operational 
+---------------------------------  ----------- 
+ingress 
+  ipv4 
+    udp 
+      rcv-buf-errors               0 
+      no-ports                     0 
+      in-errors                    0 
+      in-datagrams                 4103 
+    tcp 
+      in-segs                      1224998 
+      in-errs                      0 
+    ipext 
+      in-truncated-pkts            0 
+      in-no-routes                 0 
+      in-no-ect-pkts               0 
+      in-mcast-pkts                0 
+      in-mcast-octets              0 
+      in-ect1-pkts                 0 
+      in-ect0-pkts                 0 
+      in-ce-pkts                   0 
+      in-bcast-pkts                0 
+    ip 
+      reasm-reqds                  0 
+      reasm-oks                    0 
+      reasm-fails                  0 
+      in-unknown-protos            0 
+      in-receives                  0 
+      in-hdr-errors                0 
+      in-discards                  0 
+      in-delivers                  0 
+      in-addr-errors               0 
+      forw-datagrams               0 
+    icmp 
+      in-time-excds                0 
+      in-redirects                 0 
+      in-msgs                      0 
+      in-errors                    0 
+      in-echos                     0 
+      in-echo-reps                 0 
+      in-dest-unreachs             0 
+  ipv6 
+    udp6 
+      rcv-buf-errors               0 
+      no-ports                     0 
+      in-errors                    0
+...
+```
+
+To show all control plane ingress statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics ingress 
+```
+
+To show all control plane ingress IPv4 statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics ingress ipv4 
+```
+
+To show all control plane ingress IPv6 statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics ingress ipv6  
+```
+
+To show all control plane egress statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics egress 
+```
+
+To show all control plane egress IPv4 statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics egress ipv4   
+```
+
+To show all control plane egress IPv6 statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics egress ipv6 
+```
 
 ### 802.1X Statistics
 
@@ -1183,6 +1314,126 @@ When you enable control plane statistic telemetry, the switch exports the follow
 | `node_netstat_Ip6_InReceives` | Control plane input IPv6 packets. |
 | `node_netstat_Ip6_InAddrErrors` | Control plane input IPv6 errors. |
 | `node_netstat_Ip6_InDelivers` | Control plane output IPv6 packets. |
+| `node_netstat_Ip_InReceives` | *|
+| `node_netstat_Ip_InAddrErrors` | *| 
+| `node_netstat_Ip_InDelivers` | *| 
+| `node_netstat_Ip_InDiscards` | *| 
+| `node_netstat_Ip_InHdrErrors` | *| 
+| `node_netstat_Ip_InUnknownProtos` | *|
+| `node_netstat_Ip_ForwDatagrams` | *|
+| `node_netstat_Ip_ReasmOKs` | *|
+| `node_netstat_Ip_ReasmFails` | *|
+| `node_netstat_Ip_ReasmReqds` | *|
+| `node_netstat_IpExt_InNoRoutes` | *|
+| `node_netstat_IpExt_InOctets` | *|
+| `node_netstat_IpExt_InMcastPkts` | *|
+| `node_netstat_IpExt_InMcastOctets` | *|
+| `node_netstat_IpExt_InBcastPkts` | *|
+| `node_netstat_IpExt_InTruncatedPkts` | *|
+| `node_netstat_Ip_OutRequests` | *|
+| `node_netstat_Ip_OutDiscards` | *|
+| `node_netstat_Ip_OutNoRoutes` | *|
+| `node_netstat_Ip_FragOKs` | *|
+| `node_netstat_Ip_FragFails` | *|
+| `node_netstat_Ip_FragCreates` | *|
+| `node_netstat_IpExt_OutOctets` | *|
+| `node_netstat_IpExt_OutMcastPkts` | *|
+| `node_netstat_IpExt_OutMcastOctets` | *|
+| `node_netstat_IpExt_OutBcastPkts` | *|
+| `node_netstat_Icmp_InMsgs` | *|
+| `node_netstat_Icmp_InErrors` | *|
+| `node_netstat_Icmp_InDestUnreachs` | *|
+| `node_netstat_Icmp_InTimeExcds` | *|
+| `node_netstat_Icmp_InEchos` | *|
+| `node_netstat_Icmp_InEchoReps` | *|
+| `node_netstat_Icmp_OutMsgs` | *|
+| `node_netstat_Icmp_OutErrors` | *|
+| `node_netstat_Icmp_OutDestUnreachs` | *|
+| `node_netstat_Icmp_OutTimeExcds` | *|
+| `node_netstat_Icmp_OutEchos` | *|
+| `node_netstat_Icmp_OutEchoReps` | *|
+| `node_netstat_Tcp_InSegs` | *|
+| `node_netstat_Tcp_InErrs` | *|
+| `node_netstat_Tcp_OutSegs` | *|
+| `node_netstat_Tcp_RetransSegs` | *|
+| `node_netstat_Tcp_ActiveOpens` | *|
+| `node_netstat_Tcp_PassiveOpens` | *|
+| `node_netstat_Tcp_AttemptFails` | *|
+| `node_netstat_Tcp_EstabResets` | *|
+| `node_netstat_Tcp_CurrEstab` | *|
+| `node_netstat_Tcp_OutRsts` | *|
+| `node_netstat_TcpExt_ListenDrops` | *|
+| `node_netstat_TcpExt_ListenOverflows` | *|
+| `node_netstat_TcpExt_TCPTimeouts` | *|
+| `node_netstat_TcpExt_TCPSynRetrans` | *|
+| `node_netstat_Udp_InDatagrams` | *|
+| `node_netstat_Udp_InErrors` | *|
+| `node_netstat_Udp_NoPorts` | *|
+| `node_netstat_Udp_RcvbufErrors` | *|
+| `node_netstat_Udp_OutDatagrams` | *|
+| `node_netstat_Udp_SndbufErrors` | *|
+| `node_netstat_Ip6_InReceives` | *|
+| `node_netstat_Ip6_InAddrErrors` | *|
+| `node_netstat_Ip6_InDelivers` | *|
+| `node_netstat_Ip6_InDiscards` | *|
+| `node_netstat_Ip6_InHdrErrors` | *|
+| `node_netstat_Ip6_InUnknownProtos` | *|
+| `node_netstat_Ip6_InNoRoutes` | *|
+| `node_netstat_Ip6_InOctets` | *|
+| `node_netstat_Ip6_InMcastPkts` | *|
+| `node_netstat_Ip6_InMcastOctets` | *|
+| `node_netstat_Ip6_InTruncatedPkts` | *|
+| `node_netstat_Ip6_OutRequests` | *|
+| `node_netstat_Ip6_OutDiscards` | *|
+| `node_netstat_Ip6_OutNoRoutes` | *|
+| `node_netstat_Ip6_OutForwDatagrams` | *|
+| `node_netstat_Ip6_FragOKs` | *|
+| `node_netstat_Ip6_FragFails` | *|
+| `node_netstat_Ip6_FragCreates` | *|
+| `node_netstat_Ip6_OutOctets` | *|
+| `node_netstat_Ip6_OutMcastPkts` | *|
+| `node_netstat_Ip6_OutMcastOctets` | *|
+| `node_netstat_Ip6_ReasmOKs` | *|
+| `node_netstat_Ip6_ReasmFails` | *|
+| `node_netstat_Ip6_ReasmReqds` | *|
+| `node_netstat_Icmp6_InMsgs` | *|
+| `node_netstat_Icmp6_InErrors` | *|
+| `node_netstat_Icmp6_InDestUnreachs` | *|
+| `node_netstat_Icmp6_InTimeExcds` | *|
+| `node_netstat_Icmp6_InEchos` | *|
+| `node_netstat_Icmp6_InEchoReplies` | *|
+| `node_netstat_Icmp6_OutMsgs` | *|
+| `node_netstat_Icmp6_OutErrors` | *|
+| `node_netstat_Icmp6_OutDestUnreachs` | *|
+| `node_netstat_Icmp6_OutTimeExcds` | *|
+| `node_netstat_Icmp6_OutEchos` | *|
+| `node_netstat_Icmp6_OutEchoReplies` | *|
+| `node_netstat_Udp6_InDatagrams` | *|
+| `node_netstat_Udp6_InErrors` | *|
+| `node_netstat_Udp6_NoPorts` | *|
+| `node_netstat_Udp6_RcvbufErrors` | *|
+| `node_netstat_Udp6_OutDatagrams` | *|
+| `node_netstat_Udp6_SndbufErrors` | *|
+| `node_netstat_Icmp6_InNeighborAdvertisements` | *|
+| `node_netstat_Icmp6_InNeighborSolicits` | *|
+| `node_netstat_Icmp6_InRedirects` | *|
+| `node_netstat_Icmp6_InRouterAdvertisements` | *|
+| `node_netstat_Icmp6_InRouterSolicits` | *|
+| `node_netstat_Icmp6_OutNeighborAdvertisements` | *|
+| `node_netstat_Icmp6_OutNeighborSolicits` | *|
+| `node_netstat_Icmp6_OutRedirects` | *|
+| `node_netstat_Icmp6_OutRouterAdvertisements` | *|
+| `node_netstat_Icmp6_OutRouterSolicits` | *|
+| `node_netstat_Icmp_InRedirects` | *|
+| `node_netstat_Icmp_OutRedirects` | *|
+| `node_netstat_Ip6_InCEPkts` | *|
+| `node_netstat_Ip6_InECT0Pkts` | *|
+| `node_netstat_Ip6_InECT1Pkts` | *|
+| `node_netstat_Ip6_InNoECTPkts` | *|
+| `node_netstat_IpExt_InCEPkts` | *|
+| `node_netstat_IpExt_InECT0Pkts` | *|
+| `node_netstat_IpExt_InECT1Pkts` | *|
+| `node_netstat_IpExt_InNoECTPkts` | *|
 
 {{< expand "Example JSON data for nvswitch_control_plane_trap_rx_drop:" >}}
 ```

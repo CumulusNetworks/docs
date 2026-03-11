@@ -40,7 +40,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4786996"></a> [4786996](#4786996) <a name="4786996"></a> <br /> | To use lifecycle management in NMC or BCM environments, you must edit the master node IP address in the configuration manager to match the cluster’s head node IP address. Use the <code>kubectl edit cm -n netq-eth netq-master-node-ip</code> command to edit the configuration. In the configuration file, change the <code>data/master_node</code> field to the cluster’s head node IP address.  | 5.0.0 | 5.1.0|
-| <a name="4784336"></a> [4784336](#4784336) <a name="4784336"></a> <br /> | The NetQ for NVLink deployment option is not supported in air-gapped environments. | 5.0.0-5.1.0 | |
+| <a name="4784336"></a> [4784336](#4784336) <a name="4784336"></a> <br /> | The NetQ for NVLink deployment option is not supported in air-gapped environments. | 5.0.0 | 5.0.1 |
 | <a name="4693161"></a> [4693161](#4693161) <a name="4693161"></a> <br /> | In cluster and scale cluster deployments, the snapshot comparison feature may time out when comparing MAC addresses. | 5.0.0 | 5.1.0|
 | <a name="4689932"></a> [4689932](#4689932) <a name="4689932"></a> <br /> | Node reservation for NetQ is not supported in shared multi-node clusters. To work around this issue, deploy NetQ in a dedicated single-node or three-node cluster first, and then scale the deployment by adding nodes for other applications. | 5.0.0 | 5.1.0|
 | <a name="4687477"></a> [4687477](#4687477) <a name="4687477"></a> <br /> | When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters. | 5.0.0-5.1.0 | |

@@ -34,7 +34,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - {{<link url="NVUE-CLI/#configuration-commands" text="NVUE prevents configuration changes during long background operations">}}
   - New command to verify a configuration before applying
 - Telemetry
-  - New OTEL metrics: {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="link debounce">}}, {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="PHY link down">}}, and {{<link url="Open-Telemetry-Export/#control-plane-statistics-format" text="control plane">}}
+  - New OTEL metrics: {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="link debounce">}}, {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="PHY link down">}}, and {{<link url="Open-Telemetry-Export/#control-plane-statistic-format" text="control plane">}}
   - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="PHY link down, link debounce, and control plane">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} (Beta)
   - Parity between OpenTelemetry and gNMI (Phase 3)

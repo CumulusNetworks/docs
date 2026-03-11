@@ -417,14 +417,6 @@ def build_rn_markdown_files(product, version_list):
     major_minor = {}
 
     for version in version_list:
-    #### Examples of skipping versions for RN processing - list of EOL_VERSIONS regardless of product, or individual version numbers:
-    # EOL_VERSIONS = [3.7.0]
-    # if version in EOL_VERSIONS:
-    #    continue
-    #   if version == "4.6.0":
-    #       continue
-    #    if version == "4.12.0":
-    #        continue
         if version_string(version) in major_minor:
             major_minor[version_string(version)].append(version)
         else:
@@ -447,8 +439,6 @@ def build_rn_markdown_files(product, version_list):
 
         # Loop over all the maintenance releases.
         for version in major_minor[major]:
-            if version == "4.1.2":
-                continue
             print("Building markdown for {} {}\n".format(product_string(product), version))
             version_output.append("## {} Release Notes\n".format(version))
 
@@ -562,6 +552,13 @@ def build_rn_xls_files(product, version_list):
         all_versions_xls.append("</tables>")
         write_rns(all_versions_xls, "xls", product, version)
 
+# Product versions to exclude from release notes build (even if present in source JSON).
+# Key: product short name ("cl" or "netq"). Value: list of full version strings to skip.
+EXCLUDED_VERSIONS = {
+    "cl": [],
+    "netq": ["5.0.0", "5.0.1"],
+}
+
 def get_products():
     '''
     Download the engineering provided JSON file detailing the list of products and releases.
@@ -593,9 +590,12 @@ def main():
     products = get_products()
 
     for product in products:
-        build_rn_markdown_files(product, products[product])
-        build_rn_xls_files(product, products[product])
-
+        excluded = EXCLUDED_VERSIONS.get(product, [])
+        version_list = [v for v in products[product] if v not in excluded]
+        if excluded:
+            print("Excluding {} versions: {}".format(product, excluded))
+        build_rn_markdown_files(product, version_list)
+        build_rn_xls_files(product, version_list)
     exit(0)
 
 

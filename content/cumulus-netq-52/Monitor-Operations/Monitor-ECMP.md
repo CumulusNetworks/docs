@@ -7,11 +7,6 @@ toc: 3
 
 Equal-cost multi-path (ECMP) is a routing strategy whereby packets are forwarded along multiple paths of equal cost. Load sharing occurs automatically for IPv4 and IPv6 routes with multiple installed next hops. The hardware or the routing protocol configuration determines the maximum number of routes for which load sharing occurs.
 
-## ECMP Commands
-
-- {{<link title="show/#netq-show-ecmp" text="netq show ecmp">}}
-- {{<link title="show/#netq-show-ecmp-hash-config" text="netq show ecmp-hash-config">}}
-
 ## View ECMP Resource Utilization in the UI
 
 You can view resource utilization for ECMP next hops in the full-screen switch card. Search for the device’s hostname in the global search field or from the header select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**. Select a switch from the list. When the card opens on the dashboard, expand it to the largest size.

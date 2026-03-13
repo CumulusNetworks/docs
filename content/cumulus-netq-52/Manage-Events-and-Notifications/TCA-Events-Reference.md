@@ -109,14 +109,6 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | Tx pause storm warning events | TCA_HOSTD_TX_PAUSE_STORM_WARNING_EVENTS | Count of pause warning events exceeded user-defined maximum threshold |
 | Tx PCI signal integrity |	TCA_HOSTD_TX_PCI_SIGNAL_INTEGRITY |	Count of Tx PCIe signal integrity errors exceeded user-defined maximum threshold |
 
-## ECMP
-
-<!-- vale off -->
-| NetQ UI Name | NetQ CLI Event ID | Description |
-| --- | --- | --- |
-| ECMP imbalance | TCA_ECMP_IMBALANCE | ECMP path utilization imbalance greater than the threshold |
-
-
 ## Forwarding Resources
 
 | NetQ UI Name | NetQ CLI Event ID | Description |

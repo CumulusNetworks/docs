@@ -5,7 +5,7 @@ weight: 790
 toc: 3
 ---
 
-Threshold-crossing events are user-defined events that detect and prevent network failures for ACL resources, BGP, digital optics, ECMP, forwarding resources, interface errors and statistics, link flaps, resource utilization, RoCE, sensors, and What Just Happened events. You can find a complete list of TCAs---including event IDs required for the command line---in the {{<link title="Threshold-Crossing Events Reference" text="Threshold-Crossing Events Reference">}}.
+Threshold-crossing events are user-defined events that detect and prevent network failures for ACL resources, BGP, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, RoCE, sensors, and What Just Happened events. You can find a complete list of TCAs---including event IDs required for the command line---in the {{<link title="Threshold-Crossing Events Reference" text="Threshold-Crossing Events Reference">}}.
 
 <!--
 
@@ -79,7 +79,6 @@ For each event type, you can filter rules according to the following parameters:
 | TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Hostname |
 | TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Hostname |
 | TCA_TCAM_MAC_ENTRIES_UPPER | Hostname |
-| TCA_TCAM_ECMP_NEXTHOPS_UPPER | Hostname |
 | TCA_TCAM_IPV4_ROUTE_UPPER | Hostname |
 | TCA_TCAM_IPV4_HOST_UPPER | Hostname |
 | TCA_TCAM_IPV6_ROUTE_UPPER | Hostname |

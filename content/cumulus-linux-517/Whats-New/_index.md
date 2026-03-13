@@ -43,9 +43,9 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
   - {{<link url="Disk-Management/#erase-data-from-the-disk" text="Extended disk erase to support SED SSDs">}}
   - {{<link url="Disk-Management/#change-the-sed-password" text="Change the SED disk password">}}
+  - {{<link url="User-Accounts/#show-user-accounts" text="Ability to view hashed password">}}
   - Alert in the event of an audit processing failure
   - Support "sudo" validation when TACACS server is connected to the default VRF
-  - Ability to view Hashed password
   - Request to reauthenticae dot1x supplicant(Phase 2) 
 
 ## Release Considerations

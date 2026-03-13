@@ -21,6 +21,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process. <!--need to verify-->
 - This NetQ version is not part of the Spectrum-X reference architecture release and is not supported in Spectrum-X environments. <!--need to verify-->
 - The following features have been removed or deprecated:
+    - ECMP <!--specify legacy somehow-->
 
 ## Upgrade Paths
 

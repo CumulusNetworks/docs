@@ -120,6 +120,12 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td>5.16.0</td>
 </tr>
 <tr>
+<td>4769255</td>
+<td>When using the CPU port as a SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
+<td>5.14.0-5.15.1</td>
+<td>5.16.0</td>
+</tr>
+<tr>
 <td>4751060</td>
 <td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
 sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>
@@ -188,12 +194,6 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.16.0</td>
-</tr>
-<tr>
-<td>4717888</td>
-<td>When using the CPU port as a SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
-<td>5.14.0-5.15.0</td>
-<td>5.15.1-5.16.0, 5.16.0</td>
 </tr>
 <tr>
 <td>4717752</td>
@@ -660,6 +660,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>External input such as Ctrl+\ might trigger core dumps on the serial console from {{/bin/login}}. This behavior is caused by external sources, such as console servers or automation tools, and does not reflect a fault in the operating system. As a potential result, the serial console might become unresponsive.</td>
 <td>5.14.0-5.16.0</td>
 <td></td>
+</tr>
+<tr>
+<td>4475074</td>
+<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
+<td>5.13.0-5.16.0</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4472414</td>
@@ -1536,11 +1542,6 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <td>4460588</td>
 <td>The NVIDIA SN5610 switch might experience FEC burstiness with multiple optics, which can impact link stability and performance.</td>
 <td>5.13.1</td>
-</tr>
-<tr>
-<td>4458873</td>
-<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
-<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4457165</td>

@@ -3601,7 +3601,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4475074</td>
 <td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
-<td>5.13.0-5.13.1</td>
+<td>5.13.0-5.16.0</td>
 </tr>
 <tr>
 <td>4472549</td>

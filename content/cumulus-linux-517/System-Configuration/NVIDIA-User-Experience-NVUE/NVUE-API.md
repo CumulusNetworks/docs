@@ -2973,6 +2973,18 @@ This example deletes the `test1` user.
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -k -X DELETE https://127.0.0.1:8765/nvue_v1/system/aaa/user/test1?rev=6
 ```
 
+This command shows information about the user account test1:
+
+```
+cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/system/aaa/user/test1?
+```
+
+To see the hashed password for the user in the original form instead of with obfuscated values (asterisks), add `privileged=true`. You must have `sudo` privileges to view the hashed password.
+
+```
+cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765//nvue_v1/system/aaa/user/test1? privileged=true
+```
+
 {{< /tab >}}
 {{< tab "Python Code" >}}
 <!-- vale off -->
@@ -3163,6 +3175,18 @@ This example deletes the user `test1`.
 
 ```
 cumulus@switch:~$ nv unset system aaa user test1
+```
+
+This command shows information about the user account test1:
+
+```
+cumulus@switch:~$ nv show system aaa user test1
+```
+
+To see the hashed password for the user in the original form instead of with obfuscated values (asterisks), add the `--privileged` option to the `nv show system aaa user <user-id>` command. You must have `sudo` privileges to view the hashed password.
+
+```
+cumulus@switch:~$ nv show system aaa user test1 --privileged
 ```
 
 {{< /tab >}}

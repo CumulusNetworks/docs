@@ -294,18 +294,34 @@ uucp              uucp                                Unknown  system
 uuidd                                                 Unknown  system
 ```
 
-To show information about a specific user account, run the NVUE `nv show system aaa user <user>` command:
+To show information about a specific user account, run the NVUE `nv show system aaa user <user-id>` command:
 
 ```
 cumulus@switch:~$ nv show system aaa user cumulus
                     operational  applied
 ------------------  -----------  -------
-role                Unknown             
-full-name           cumulus,,,          
+state            enabled       enabled     
+role             system-admin  system-admin
+full-name        cumulus,,,    cumulus,,, 
 hashed-password     *                   
-ssh                                     
-  [authorized-key]                      
-state               enabled       enabled 
+sh 
+  cert-auth                                
+    state        disabled      disabled                  
+```
+
+To view the hashed password for the user in the original form instead of with obfuscated values (asterisks), add the `--privileged` option to the `nv show system aaa user <user-id>` command. You must have `sudo` privileges to view the hashed password.
+
+```
+cumulus@switch:~$ nv show system aaa user cumulus
+                    operational  applied
+------------------  -----------  -------
+state            enabled       enabled     
+role             system-admin  system-admin
+full-name        cumulus,,,    cumulus,,,    
+hashed-password  $6$Uaw1vlGzEY0NKMPd$.zThBc9I7DuW9PHjIyUrb4nGuQj7m4Slp1NVLmN1fXKov4yXj6iwHpwevT0BNh.qX.LFw2JHIqy50QY.InjH1                  
+ssh 
+  cert-auth                                
+    state        disabled      disabled                 
 ```
 
 ## Enable the root User

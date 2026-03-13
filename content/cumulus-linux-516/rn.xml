@@ -312,6 +312,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4475074</td>
+<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
+<td>5.13.0-5.16.0</td>
+<td>5.11.2</td>
+</tr>
+<tr>
 <td>4440766</td>
 <td>When you try to delete a trusted ca key, Cumulus Linux shows an incorrect error message. To remove a trusted ca key, you must unset the key ID, not the key literal.</td>
 <td>5.13.0-5.16.0</td>

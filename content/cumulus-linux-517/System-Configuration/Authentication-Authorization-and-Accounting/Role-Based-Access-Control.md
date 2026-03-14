@@ -182,15 +182,30 @@ uuidd                                                 Unknown  system
 www-data          www-data                            Unknown  system    
 ```
 
-To show information about a specific user account including the role assigned to the user, run the NVUE `nv show system aaa user <user>` command:
+To show information about a specific user account including the role assigned to the user, run the NVUE `nv show system aaa user <user-id>` command:
 
 ```
 cumulus@switch:~$ nv show system aaa user admin2
-           operational  applied
----------  -----------  -------
-role       role1        role1  
-full-name                      
-enable     on           on
+                 operational   applied     
+---------------  ------------  ------------
+state            enabled       enabled     
+role             role1         role1
+full-name        cumulus,,,    cumulus,,,  
+hashed-password  *             *           
+...                             
+```
+
+To view the hashed password for the user in the original form instead of with obfuscated values (asterisks), add the `--privileged` option to the `nv show system aaa user <user-id>` command. You must have `sudo` privileges to view the hashed password.
+
+```
+cumulus@switch:~$ nv show system aaa user admin2
+                    operational  applied
+------------------  -----------  -------
+state            enabled       enabled     
+role             role1         role1
+full-name        cumulus,,,    cumulus,,,  
+hashed-password  $6$Uaw1vlGzEY0NKMPd$.zThBc9I7DuW9PHjIyUrb4nGuQj7m4Slp1NVLmN1fXKov4yXj6iwHpwevT0BNh.qX.LFw2JHIqy50QY.InjH1                  
+...                               
 ```
 
 To show all the roles configured on the switch, run the NVUE `nv show system aaa role` command:

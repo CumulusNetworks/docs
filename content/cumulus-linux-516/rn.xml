@@ -46,7 +46,7 @@
 </tr>
 <tr>
 <td>4885474</td>
-<td>During warm boot, a transient error "ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1" appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
+<td>During warm boot, a transient error {{ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1}} appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -935,6 +935,11 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>5.16.0</td>
 </tr>
 <tr>
+<td>4922106</td>
+<td>The NVUE {{nv show system dot1x ipv6-profile}} command does not show the correct {{preserve-on-link-down}} status. To work around this issue, use the {{--applied}} option ({{nv show system dot1x ipv6-profile --applied}}).</td>
+<td>5.16.0</td>
+</tr>
+<tr>
 <td>4922105</td>
 <td>The JSON output for the vtysh {{show bgp &lt;address-family&gt; unreachability&gt; summary}} reports peers as {{Established}} even when the AFI or SAFI is not negotiated, while the plain summary shows {{NoNeg}}. This causes JSON to misrepresent  the per‑AFI or SAFI state for established sessions.</td>
 <td>5.16.0</td>
@@ -1021,6 +1026,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td></td>
 </tr>
 <tr>
+<td>4922106</td>
+<td>The NVUE {{nv show system dot1x ipv6-profile}} command does not show the correct {{preserve-on-link-down}} status. To work around this issue, use the {{--applied}} option ({{nv show system dot1x ipv6-profile --applied}}).</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4922105</td>
 <td>The JSON output for the vtysh {{show bgp &lt;address-family&gt; unreachability&gt; summary}} reports peers as {{Established}} even when the AFI or SAFI is not negotiated, while the plain summary shows {{NoNeg}}. This causes JSON to misrepresent  the per‑AFI or SAFI state for established sessions.</td>
 <td>5.16.0</td>
@@ -1096,7 +1107,7 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 </tr>
 <tr>
 <td>4885474</td>
-<td>During warm boot, a transient error "ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1" appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
+<td>During warm boot, a transient error {{ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1}} appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
 <td>5.16.0</td>
 <td></td>
 </tr>

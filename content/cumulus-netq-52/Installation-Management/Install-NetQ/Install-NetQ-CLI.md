@@ -82,7 +82,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Get the NetQ CLI Software Package for Ubuntu
 
-To install the NetQ CLI on an Ubuntu server, you need to install `netq-apps` on each Ubuntu server. This is available from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian-local/pool/netq-latest/" text="NetQ repository">}}.
+To install the NetQ CLI on an Ubuntu server, you need to install `netq-apps` on each Ubuntu server. This is available from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/pool/netq-latest/" text="NetQ repository">}}.
 
 {{<tabs "Get NetQ CLI Ubuntu">}}
 

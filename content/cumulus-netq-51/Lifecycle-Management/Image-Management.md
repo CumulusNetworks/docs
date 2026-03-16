@@ -7,7 +7,7 @@ toc: 4
 
 NetQ and network operating system images are managed with LCM. This section explains how to check for missing images, upgrade images, and specify default images.
 
-The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agent` packages from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian-local/pool/netq-latest/" text="NetQ repository">}}:
+The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agent` packages from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/pool/netq-latest/" text="NetQ repository">}}:
 
 - netq-agent_5.1.0-cld12u7_amd64.deb
 - netq-apps_5.1.0-cld12u7_amd64.deb
@@ -123,7 +123,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 netq lcm show netq-images
 ```
 
-2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian-local/pool/netq-latest/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
+2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/pool/netq-latest/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
 3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 5.1.0 for a NetQ VM running Ubuntu 24.04 with an AMD 64 architecture.
 

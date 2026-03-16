@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4922104</td>
+<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
+<td>5.13.1-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4922099</td>
+<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes congested while processing these NHG updates, its memory usage can grow significantly.</td>
+<td>5.14.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4895563</td>
 <td>Routes are present in BGP and Zebra but are missing in the kernel. This occurs when next hops in an NHG become invalid and the kernel deletes the next hops, then notifies the control plane (zebra). The control plane tries to reinstall the routes in the existing NHG with the invalid next hop information so route installation fails. Later, the routes arrive with the correct next hop information in the NHG but there is no mechanism to replace the failed routes and install them again in the kernel.</td>
 <td>5.14.0-5.15.1</td>
@@ -28,12 +40,6 @@
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
 <td>5.9.1-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4881679</td>
-<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
-<td>5.13.1-5.16.0</td>
 <td></td>
 </tr>
 <tr>

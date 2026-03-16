@@ -1,0 +1,23 @@
+---
+title: Accounts and Roles
+author: NVIDIA
+weight: 500
+toc: 2
+---
+NetQ accounts are assigned one of two roles: *admin* or *user*. Accounts with admin privileges can perform the same actions as user accounts. Additionally, admins can access a management dashboard in the UI by expanding the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** on the NetQ dashboard, then selecting **Management**.
+
+From this dashboard, admins can:
+
+- Create, edit, and delete NetQ accounts
+- Manage login policies, including SSO and LDAP authentication
+- Review account activity
+- Create, edit, and delete system events, channels, and notifications
+- Manage premises
+- Schedule network traces and validations
+
+The following image displays the management dashboard. Accounts with *user* privileges cannot perform the functions described above and do not have access to the management dashboard.
+{{<figure src="/images/netq/management-dash-415.png" alt="netq management dashboard" width="1100" height="575">}}
+
+## Related Information
+
+- {{<link title="Add and Manage Accounts" text="Add and Manage Accounts">}}

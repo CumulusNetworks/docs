@@ -7,8 +7,33 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4925515</td>
+<td>When you exceed the maximum number of ports allowed (30) in an 802.1x IPv6 profile, IPv6 addresses are not allocated to additional ports even if authentication is successful. To work around this issue, create additional profiles with the same configuration, associating no more than 30 interfaces to each profile.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4923828</td>
+<td>When cl-support files generate in quick succession due to a chain of faults, the cl-support files are not generated correctly.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4923804</td>
+<td>If a switch reboots in the middle of a git operation, a git lock might be left. After rebooting, that git lock is stale and prevents other git operations from running, which might prevent the NVUE service from starting.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4923647</td>
 <td>The graceful restart helper node experiences temporary traffic loss when the peer goes under warm boot.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4923036</td>
+<td>When an SDK health monitoring or {{switchd}} watchdog event occurs, the switch might generate the following error message and does not recover automatically:
+hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Return Status is Non-Zero </td>
 <td>5.16.0</td>
 <td></td>
 </tr>
@@ -19,8 +44,50 @@
 <td></td>
 </tr>
 <tr>
+<td>4922106</td>
+<td>The NVUE {{nv show system dot1x ipv6-profile}} command does not show the correct {{preserve-on-link-down}} status. To work around this issue, use the {{--applied}} option ({{nv show system dot1x ipv6-profile --applied}}).</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4922105</td>
 <td>The JSON output for the vtysh {{show bgp &lt;address-family&gt; unreachability&gt; summary}} reports peers as {{Established}} even when the AFI or SAFI is not negotiated, while the plain summary shows {{NoNeg}}. This causes JSON to misrepresent  the per‑AFI or SAFI state for established sessions.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4922104</td>
+<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
+<td>5.13.1-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4922099</td>
+<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes congested while processing these NHG updates, its memory usage can grow significantly.</td>
+<td>5.14.0-5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4922098</td>
+<td>When you enable conditional disaggregation and a SAFI_UNREACH NLRI for a prefix is received before the corresponding connected (redistributed) route exists in SAFI_UNICAST on the leaf (for example, before the interface has the /64 address prior to 802.1x authorization), the leaf does not originate the conditionally disaggregated route. After the interface gets the address (after 802.1x succeeds), the disaggregated route still does not originate because the code does not re-evaluate existing UNREACH entries against the newly installed unicast prefix. To work around this issue, clear the BGP session on the leaf that originates the UNREACH to resend the UNREACH NLRI toward the leaf that has the newly programmed interface address. The leaf runs conditional disaggregation and originates the disaggregated route.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4922097</td>
+<td>After upgrading the switch from a previous release, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4922093</td>
+<td>When core files generate or persist due to repeated faults after tech-support auto-generation deactivates, the switch repeatedly attempts to trigger tech-support collection resulting in continuous error messages.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4922090</td>
+<td>When you configure OTEL to generate a large number of metrics with a small sample interval, but the remote receiver is unreachable, OTEL collector memory usage might increase rapidly, which results in the OTEL collector triggering a OOM killer. </td>
 <td>5.16.0</td>
 <td></td>
 </tr>
@@ -44,7 +111,7 @@
 </tr>
 <tr>
 <td>4885474</td>
-<td>During warm boot, a transient error "ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1" appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
+<td>During warm boot, a transient error {{ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1}} appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
 <td>5.16.0</td>
 <td></td>
 </tr>
@@ -52,12 +119,6 @@
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
 <td>5.9.1-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4881679</td>
-<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
-<td>5.13.1-5.16.0</td>
 <td></td>
 </tr>
 <tr>

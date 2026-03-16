@@ -15,7 +15,7 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 
 ## What's New in Cumulus Linux 5.16.1
 
-Cumulus Linux 5.16.1 provides bug fixes.
+Cumulus Linux 5.16.1 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}}.
 
 ## What's New in Cumulus Linux 5.16.0
 

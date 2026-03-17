@@ -25,6 +25,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4923776</td>
+<td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are incorrectly categorized as fatal.  The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4923647</td>
 <td>The graceful restart helper node experiences temporary traffic loss when the peer goes under warm boot.</td>
 <td>5.16.0</td>
@@ -40,12 +46,6 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>4922108</td>
 <td>The vtysh {{show bgp ipv4 unreachability &lt;prefix&gt; json}} and {{show bgp ipv6 unreachability &lt;prefix&gt; json}} commands do not display BGP community attributes (including {{graceful-shutdown}}) in the JSON output even though they are shown correctly in the non-JSON text output.Network automation tools and scripts relying on JSON output might not detect the {{graceful-shutdown}} community on unreachability routes, making it difficult to identify routes that are withdrawn due to graceful shutdown procedures.</td>
-<td>5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4922106</td>
-<td>The NVUE {{nv show system dot1x ipv6-profile}} command does not show the correct {{preserve-on-link-down}} status. To work around this issue, use the {{--applied}} option ({{nv show system dot1x ipv6-profile --applied}}).</td>
 <td>5.16.0</td>
 <td></td>
 </tr>
@@ -1007,6 +1007,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>4922106</td>
+<td>The NVUE {{nv show system dot1x ipv6-profile}} command does not show the correct {{preserve-on-link-down}} status. To work around this issue, use the {{--applied}} option ({{nv show system dot1x ipv6-profile --applied}}).</td>
+<td></td>
 </tr>
 <tr>
 <td>4895563</td>

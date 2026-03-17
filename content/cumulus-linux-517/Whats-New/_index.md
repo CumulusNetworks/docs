@@ -21,13 +21,13 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - {{<link url="Interface-Configuration-and-Management/#link-debounce-timers" text="Interface debounce timer (link dampening)">}}
 - {{<link url="Zero-Touch-Provisioning-ZTP/#ztp-over-dhcp" text="Revert to DHCP if the ZTP URL is not reachable">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload support for BFD sessions based on the IPv6 link-local address">}}
+- Support PFC headroom pool (MAYBE OUT for 5.16)
 - BGP/LLDP X-Plane multi-plane'd GPUs with disjoined planes (EVPN based deployments) (Beta)
 - Docker Resource Governance & Policy Agent
 - LLDP BGP Route Redistribution Extension (Beta)
 - Routing Convergence Enhancement for full connectivity loss (all links Up/restart)
 - Integrate logs in tc_log to the syslog​, and update log level
 - Granular LLDP TLV definition and control 
-- Support PFC headroom pool (MAYBE OUT for 5.16)
 - NVUE
   - {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#show-secure-boot-details" text="NVUE command to show secure boot status and details">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}
@@ -45,8 +45,8 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - {{<link url="Disk-Management/#change-the-sed-password" text="Change the SED disk password">}}
   - Ability to view {{<link url="User-Accounts/#show-user-accounts" text="hashed password with NVUE">}} and {{<link url="NVUE-API/#configure-users" text="with API">}}
   - Alert in the event of an audit processing failure
-  - Support "sudo" validation when TACACS server is connected to the default VRF
   - Request to reauthenticae dot1x supplicant(Phase 2)
+  - Support "sudo" validation when TACACS server is connected to the default VRF
 
 ## Release Considerations
 

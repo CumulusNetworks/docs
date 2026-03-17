@@ -44,7 +44,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - {{<link url="Disk-Management/#erase-data-from-the-disk" text="Extended disk erase to support SED SSDs">}}
   - {{<link url="Disk-Management/#change-the-sed-password" text="Change the SED disk password">}}
   - Ability to view {{<link url="User-Accounts/#show-user-accounts" text="hashed password with NVUE">}} and {{<link url="NVUE-API/#configure-users" text="with API">}}
-  - Alert in the event of an audit processing failure
+  - {{<link url="Syslog/#enable-security-alerts" text="syslog security alerts ">}} and {{<link url="Configure-SNMP/#enable-security-alerts" text="SNMP traps">}} for audit processing failures
   - Request to reauthenticae dot1x supplicant(Phase 2)
   - Support "sudo" validation when TACACS server is connected to the default VRF
 

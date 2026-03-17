@@ -492,6 +492,10 @@ sysname CumulusBox-1,543,567
 {{< /tab >}}
 {{< /tabs >}}
 
+## Enable Security Alerts
+
+To prevent a compromised or misconfigured system from silently losing its audit trail, masking intrusion or compliance violations, you can configure SNMP to alert you when audit integrity fails. Security alerts include `auditd` daemon crashes, disk space exhaustion, and disk I/O errors. To enable security alerts and send SNMP traps, run the `nv set system security alerts state enabled` command; Refer to {{<link url="Syslog/#enable-security-alerts" text="syslog security alerts ">}}.
+
 ## Enable SNMP Support for FRR
 
 SNMP supports routing MIBs in {{<link url="FRRouting" text="FRR">}}. If you are running Linux commands to configure the switch, you need to configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR.

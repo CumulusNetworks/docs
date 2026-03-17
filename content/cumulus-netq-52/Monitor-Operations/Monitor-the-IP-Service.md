@@ -30,12 +30,8 @@ netq show ipv6 routes
 ```
 - The {{<link title="show/#netq show address-history" text="netq show address-history">}} command displays when an IP address configuration changed for an interface.
 - The {{<link title="show/#netq show neighbor-history" text="netq show neighbor-history">}} command displays when the neighbor configuration changed for an IP address.
-- The {{<link title="check/#netq check addresses" text="netq check addresses">}} command searches for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and checks for duplicate /32 host routes in each VRF.
+- The {{<link title="check/#netq check addresses" text="netq check addresses">}} command searches for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and checks for duplicate /32 host routes in each VRF. *(Deprecated)* 
 
 ## View IP Addresses in the UI
 
-IPv4 and IPv6 address, neighbor, and route information is available in the NetQ UI. 
-
-To access this information, select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then enter **IP addresses**, **IP neighbors**, or **IP routes** in the search field. The following image displays a list of IP addresses:
-
-{{<figure src="/images/netq/ip-addr-490.png" alt="" width="1100">}}
+To access IPv4 and IPv6 address, neighbor, and route information from the NetQ UI, select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then enter **IP addresses**, **IP neighbors**, or **IP routes** in the search field.

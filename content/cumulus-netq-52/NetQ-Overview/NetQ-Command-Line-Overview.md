@@ -163,7 +163,8 @@ The {{<link title="check" text="netq check commands">}} validate the current or 
 - **sensors**: Temperature/Fan/PSU sensor operation
 - **topology**: Topology configuration
 - **vlan**: VLAN (Virtual Local Area Network) operation
-- **vxlan**: VXLAN (Virtual Extensible LAN) data path operation
+- **vxlan**: VXLAN (Virtual Extensible LAN) data path operation *(Deprecated)*
+
 <!-- vale on -->
 
 The commands take the form of `netq check <network-protocol-or-service> [options]`, where the options vary according to the protocol or service.

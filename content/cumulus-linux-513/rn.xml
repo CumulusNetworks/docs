@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4922104</td>
+<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
+<td>5.13.1-5.16.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4885553</td>
 <td>If ZTP uses a proxy server for image download using {{onie-install}}, the image install fails with signing issues.</td>
 <td>5.12.0-5.16.0</td>
@@ -16,12 +22,6 @@
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
 <td>5.9.1-5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4881679</td>
-<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
-<td>5.13.1-5.16.0</td>
 <td></td>
 </tr>
 <tr>

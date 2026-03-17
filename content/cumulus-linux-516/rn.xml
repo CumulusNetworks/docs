@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4925419</td>
-<td>When you exceed the maximum number of ports allowed (30) in an 802.1x IPv6 profile, IPv6 addresses are not allocated to additional ports even if authentication is successful. To work around this issue, create additional profiles with the same configuration, associating no more than 30 interfaces to each profile.</td>
-<td>5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4895589</td>
 <td>When you run the {{nv set vrf default router bgp address-family ipv4-unicast state disabled}} command, you still see IPv4 exchanged between BGP peers. This is because FRR enables IPv4 by default even when there is no explicit configuration.</td>
 <td>5.16.0-5.16.1</td>
@@ -909,6 +903,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>4925515</td>
+<td>When you exceed the maximum number of ports allowed (30) in an 802.1x IPv6 profile, IPv6 addresses are not allocated to additional ports even if authentication is successful. To work around this issue, create additional profiles with the same configuration, associating no more than 30 interfaces to each profile.</td>
+<td>5.16.0</td>
+</tr>
+<tr>
 <td>4923828</td>
 <td>When cl-support files generate in quick succession due to a chain of faults, the cl-support files are not generated correctly.</td>
 <td>5.16.0</td>
@@ -916,6 +915,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4923804</td>
 <td>If a switch reboots in the middle of a git operation, a git lock might be left. After rebooting, that git lock is stale and prevents other git operations from running, which might prevent the NVUE service from starting.</td>
+<td>5.16.0</td>
+</tr>
+<tr>
+<td>4923776</td>
+<td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are incorrectly categorized as fatal.  The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
 <td>5.16.0</td>
 </tr>
 <tr>
@@ -937,7 +941,7 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>4922106</td>
 <td>The NVUE {{nv show system dot1x ipv6-profile}} command does not show the correct {{preserve-on-link-down}} status. To work around this issue, use the {{--applied}} option ({{nv show system dot1x ipv6-profile --applied}}).</td>
-<td>5.16.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4922105</td>
@@ -989,12 +993,6 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td></td>
 </tr>
 <tr>
-<td>4925419</td>
-<td>When you exceed the maximum number of ports allowed (30) in an 802.1x IPv6 profile, IPv6 addresses are not allocated to additional ports even if authentication is successful. To work around this issue, create additional profiles with the same configuration, associating no more than 30 interfaces to each profile.</td>
-<td>5.16.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4923828</td>
 <td>When cl-support files generate in quick succession due to a chain of faults, the cl-support files are not generated correctly.</td>
 <td>5.16.0</td>
@@ -1003,6 +1001,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>4923804</td>
 <td>If a switch reboots in the middle of a git operation, a git lock might be left. After rebooting, that git lock is stale and prevents other git operations from running, which might prevent the NVUE service from starting.</td>
+<td>5.16.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4923776</td>
+<td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are incorrectly categorized as fatal.  The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
 <td>5.16.0</td>
 <td></td>
 </tr>
@@ -1022,12 +1026,6 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>4922108</td>
 <td>The vtysh {{show bgp ipv4 unreachability &lt;prefix&gt; json}} and {{show bgp ipv6 unreachability &lt;prefix&gt; json}} commands do not display BGP community attributes (including {{graceful-shutdown}}) in the JSON output even though they are shown correctly in the non-JSON text output.Network automation tools and scripts relying on JSON output might not detect the {{graceful-shutdown}} community on unreachability routes, making it difficult to identify routes that are withdrawn due to graceful shutdown procedures.</td>
-<td>5.16.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4922106</td>
-<td>The NVUE {{nv show system dot1x ipv6-profile}} command does not show the correct {{preserve-on-link-down}} status. To work around this issue, use the {{--applied}} option ({{nv show system dot1x ipv6-profile --applied}}).</td>
 <td>5.16.0</td>
 <td></td>
 </tr>
@@ -2093,6 +2091,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>4922106</td>
+<td>The NVUE {{nv show system dot1x ipv6-profile}} command does not show the correct {{preserve-on-link-down}} status. To work around this issue, use the {{--applied}} option ({{nv show system dot1x ipv6-profile --applied}}).</td>
+<td></td>
 </tr>
 <tr>
 <td>4895563</td>

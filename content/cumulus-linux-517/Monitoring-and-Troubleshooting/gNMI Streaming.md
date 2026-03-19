@@ -286,6 +286,12 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/ipv6-prefix` | The IPv6 prefix generated from all the IPv6 profile properties. |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/counters/reauth-timeouts` | Counter that keeps track of authentication failures because the RADIUS server is unreachable after a successful authentication when the `reauth-timeout-ignore` option is enabled. |
 | `/system/dot1x/state/dynamic-vrf` | Shows if a VRF is `required` to be assigned dynamically by the RADIUS server to an 802.1X interface, is `optional` or `disabled`. |
+| `/system/dot1x/tx-identity-request/state/admin-status`| *|
+| `/system/dot1x/tx-identity-request/state/delay`| *| 
+| `/system/dot1x/tx-identity-request/state/interval`| *| 
+| `/system/dot1x/tx-identity-request/state/max-retries`| *| 
+| `/interfaces/interface[name]/ethernet/dot1x/state/tx-identity-request`| *| 
+| `/interfaces/interface[name]/ethernet/dot1x/state/out-eapol-unsolicited-identity-request-frames`| *|
 
 {{< /tab >}}
 {{< tab "ACLs ">}}

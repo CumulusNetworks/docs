@@ -12,6 +12,8 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 
 ### NetQ for NVLink API Changes
+- Added a `/v1/redfish` endpoint to detect and report leak events in liquid-cooling equipment using the Redfish Baseboard Management Controller (BMC) 
+- Added ability to upgrade CPLD firmware using the `/v1/upgrade-switch` endpoint
 
 - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes.
 - View the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="REST API in Swagger">}}.
@@ -22,7 +24,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - NetQ 5.2 is tested and validated as part of the Spectrum-X reference architecture 2.2 release. For a full compatibility matrix, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 - The following features have been removed or deprecated:
     - Flow analysis (deprecated)
-    - Validations: duplicate IP addresses, agents, VXLAN, MLAG bond VLAN consistency (deprecated)
+    - Validations: duplicate IP addresses, agents, VXLAN, MLAG bond VLAN consistency test (deprecated)
     - ECMP without adaptive routing (removed) 
 
 ## Upgrade Paths

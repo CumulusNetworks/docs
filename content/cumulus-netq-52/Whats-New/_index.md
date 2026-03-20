@@ -15,7 +15,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Added a `/v1/redfish` endpoint to detect and report leak events in liquid-cooling equipment using the Redfish Baseboard Management Controller (BMC)
 - Added `/v1/certificates` endpoints that let you {{<link title="Register Services" text="use your own certificates">}} instead of the ones that NetQ NVLink automatically generates
 - Added `/v1/validations/fw-versions` endpoint to validate that all switches within a domain have the same firmware version
-- Added ability to upgrade CPLD firmware using the `/v1/upgrade-switch` endpoint
+- Added ability {{<link title="Upgrade NVOS or Firmware" text="to upgrade firmware">}} using the `/v1/upgrade-switch` endpoint
 - Added several `/v1/kpis` endpoints that allow you to view health metrics {{<link title="Collect KPIs" text="view health metrics">}} for GPUs, switch nodes, compute nodes, partitions, and domains over time
 - Added several parameters to the `/v1/gpus` endpoint that allow for filtering based on a devices UUID, chassis serial number, slot ID, tray index, or host ID
 - Added parameter to manage partitions using a device's unique identifier (UUID) with the `/v1/partitions` endpoints

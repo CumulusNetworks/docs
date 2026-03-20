@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4908392</td>
-<td>In the multicast routing path (ip_mr_output) you might encounter a self-deadlock issue in one CPU that causes the kernel lock up (the switch reboots).</td>
-<td>5.15.1-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4905123</td>
 <td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
 <td>5.16.0-5.16.1</td>
@@ -40,20 +34,6 @@
 <td>4895589</td>
 <td>When you run the {{nv set vrf default router bgp address-family ipv4-unicast state disabled}} command, you still see IPv4 exchanged between BGP peers. This is because FRR enables IPv4 by default even when there is no explicit configuration.</td>
 <td>5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4895298</td>
-<td>When you configure BGP dynamic neighbors and 
-{{default-originate}} with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the {{default-originate}} with the route map command or toggle 
-{{default-route-origination}} off, then on.</td>
-<td>5.11.5-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4895247</td>
-<td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
-<td>5.15.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -94,18 +74,6 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td></td>
 </tr>
 <tr>
-<td>4875599</td>
-<td>When you configure authentication for a BGP dynamic neighbor, removing the configuration does not bring back the sessions.</td>
-<td>5.15.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4873853</td>
-<td>TACACS authentication is not working with flat files. The Cumulus Linux user guide is missing the {{sudo pam-auth-update --enable tacplus}} command.</td>
-<td>5.15.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4872684</td>
 <td>Cumulus Linux does not provide protection or a warning when you configure a destructive resource limit for a critical service. A low value resource limit for {{nvued}} might terminate the {{nvued}} service and block users from using NVUE commands.</td>
 <td>5.16.0-5.16.1</td>
@@ -124,12 +92,6 @@ where only the aggregate should be advertised.</td>
 <td>4870105</td>
 <td>When you provide a JSON string with double quotes in an NVUE {{nv set}} command, the command fails.</td>
 <td>5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4869499</td>
-<td>When you configure PTP on a trunk interface, where the selected PTP VLAN is the PVID (untagged native VLAN), the PTP packets might be tagged incorrectly with the VLAN ID.</td>
-<td>5.15.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -169,55 +131,21 @@ where only the aggregate should be advertised.</td>
 <td></td>
 </tr>
 <tr>
-<td>4722680</td>
-<td>If you install RADIUS client packages when rolling back a two partition upgrade, the {{/var/lib/nvue}}, {{/var/lib/ntpsec}}, and {{/var/lib/snmp}} directories might have incorrect ownership after rollback and the {{nvued}} service might fail to start up. To work around this issue, run the following commands:
-sudo chown -R nvue /var/lib/nvue
-sudo chown -R ntpsec /var/lib/ntpsec
-sudo chown -R Debian-snmp /var/lib/snmp
-sudo reboot</td>
-<td>5.11.4-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4667792</td>
 <td>Usernames longer than 32 characters do not authenticate against the switch. Avoid using long usernames.</td>
 <td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4662854</td>
-<td>If you configure a DSCP match as {{ANY}}, the gNMI subscription does not show DSCP as {{ANY}}. The OpenConfig model supports only integer DSCP values.</td>
-<td>5.15.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4657192</td>
 <td>On the NVIDIA SN5640 switch, after you configure a port as unsplit, links do not come up while optics are in use. To work around this issue, use copper cables.</td>
-<td>5.15.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4648833</td>
-<td>Interfaces using PAM4 DAC cables on switches with Spectrum-4 and later might not come up after a link flap or reboot if auto-negotiation is disabled. Auto-negotiation is required for PAM4 DAC cables on these switches.</td>
-<td>5.15.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4608614</td>
-<td>When setting up SSH keys, you have to run {{nv config apply}} twice for the configuration to take effect.</td>
-<td>5.11.3-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4582679</td>
-<td>If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
-<td>5.9.4-5.16.1</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
-<td>5.11.3-5.16.1</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -265,7 +193,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4535699</td>
 <td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
-<td>5.11.3-5.16.1</td>
+<td>5.12.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -293,12 +221,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4508830</td>
-<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
-<td>5.11.2-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4501632</td>
 <td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that NVUE database has time to sync to the filesystem. </td>
 <td>5.14.0-5.16.1</td>
@@ -321,12 +243,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>External input such as Ctrl+\ might trigger core dumps on the serial console from {{/bin/login}}. This behavior is caused by external sources, such as console servers or automation tools, and does not reflect a fault in the operating system. As a potential result, the serial console might become unresponsive.</td>
 <td>5.14.0-5.16.1</td>
 <td></td>
-</tr>
-<tr>
-<td>4475111</td>
-<td>When you try to convert a layer 3 port that is part of ECMP to a bond member,  you might see a failure in the {{switchd}} logs. This issue does not have any functional impact.</td>
-<td>5.11.2-5.16.1</td>
-<td>5.9.4</td>
 </tr>
 <tr>
 <td>4475074</td>
@@ -385,7 +301,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
-<td>5.9.2-5.9.3, 5.12.0-5.16.1</td>
+<td>5.12.0-5.16.1</td>
 <td>5.9.4</td>
 </tr>
 <tr>
@@ -497,12 +413,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4077921</td>
 <td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1 or later. You must install the Cumulus Linux image instead.</td>
 <td>5.10.1-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4049213</td>
-<td>When there are routes that point to a single next hop, an ECMP entry is created in the SDK. After the single next hop from the route is removed, the ECMP entry might stay in the SDK until the time the next hop is present in the kernel.</td>
-<td>5.9.2-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1026,31 +936,31 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>4925515</td>
 <td>When you exceed the maximum number of ports allowed (30) in an 802.1x IPv6 profile, IPv6 addresses are not allocated to additional ports even if authentication is successful. To work around this issue, create additional profiles with the same configuration, associating no more than 30 interfaces to each profile.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4923828</td>
 <td>When cl-support files generate in quick succession due to a chain of faults, the cl-support files are not generated correctly.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4923804</td>
 <td>If a switch reboots in the middle of a git operation, a git lock might be left. After rebooting, that git lock is stale and can prevent other git operations from running, preventing {{nvued}} from starting.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4923776</td>
 <td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are incorrectly categorized as fatal.  The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4923647</td>
 <td>The graceful restart helper node experiences temporary traffic loss when the peer goes under warm boot.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1058,121 +968,121 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>When an SDK health monitoring or {{switchd}} watchdog event occurs, the switch might generate the following error message and does not recover automatically:
 hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Return Status is Non-Zero </td>
 <td>5.16.0</td>
-<td></td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4922108</td>
 <td>The vtysh {{show bgp ipv4 unreachability &lt;prefix&gt; json}} and {{show bgp ipv6 unreachability &lt;prefix&gt; json}} commands do not display BGP community attributes (including {{graceful-shutdown}}) in the JSON output even though they are shown correctly in the non-JSON text output.Network automation tools and scripts relying on JSON output might not detect the {{graceful-shutdown}} community on unreachability routes, making it difficult to identify routes that are withdrawn due to graceful shutdown procedures.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4922105</td>
 <td>The JSON output for the vtysh {{show bgp &lt;address-family&gt; unreachability&gt; summary}} reports peers as {{Established}} even when the AFI or SAFI is not negotiated, while the plain summary shows {{NoNeg}}. This causes JSON to misrepresent  the per‑AFI or SAFI state for established sessions.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4922104</td>
 <td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
-<td>5.13.1-5.16.0</td>
+<td>5.13.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4922099</td>
 <td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4922098</td>
 <td>When you enable conditional disaggregation and a SAFI_UNREACH NLRI for a prefix is received before the corresponding connected (redistributed) route exists in SAFI_UNICAST on the leaf (for example, before the interface has the /64 address prior to 802.1x authorization), the leaf does not originate the conditionally disaggregated route. After the interface gets the address (after 802.1x succeeds), the disaggregated route still does not originate because the code does not re-evaluate existing UNREACH entries against the newly installed unicast prefix. To work around this issue, clear the BGP session on the leaf that originates the UNREACH to resend the UNREACH NLRI toward the leaf that has the newly programmed interface address. The leaf runs conditional disaggregation and originates the disaggregated route.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4922097</td>
 <td>When you upgrade Cumulus Linux from 5.13.1 to 5.16.0, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4922093</td>
 <td>When core files generate or persist due to repeated faults after tech-support auto-generation deactivates, the switch repeatedly attempts to trigger tech-support collection resulting in continuous error messages.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4922090</td>
 <td>When you configure OTEL to generate a large number of metrics with a small sample interval but the remote receiver is unreachable, OTEL collector memory usage might increase rapidly leading to the OTEL collector being {{Out Of Memory Killed}}. </td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4918507</td>
 <td>When you upgrade Cumulus Linux from a prior release with package upgrade, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4918342</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
-<td>5.13.0-5.16.0</td>
+<td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4905123</td>
 <td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4895589</td>
 <td>When you run the {{nv set vrf default router bgp address-family ipv4-unicast state disabled}} command, you still see IPv4 exchanged between BGP peers. This is because FRR enables IPv4 by default even when there is no explicit configuration.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4889939</td>
 <td>In an MLAG configuration, when the MLAG node receives MLAG peer keepalives from an IP address that is not configured as the peer IP address, a peer IP address mismatch conflict occurs. Even after the conflict is resolved,  you sometimes see that the MLAG session still retains the peer IP mismatch conflict.</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4885553</td>
 <td>If ZTP uses a proxy server for image download using {{onie-install}}, the image install fails with signing issues.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4885474</td>
 <td>During warm boot, a transient error {{ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1}} appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
-<td>5.9.1-5.16.0</td>
+<td>5.9.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4879165</td>
 <td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4875640</td>
 <td>A rare timing scenario results in the following error log in {{switchd}}:
 ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4872684</td>
 <td>Cumulus Linux does not provide protection or a warning when you configure a destructive resource limit for a critical service. A low value resource limit for {{nvued}} might terminate the {{nvued}} service and block users from using NVUE commands.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1181,43 +1091,43 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 configuration with the {{nv unset vrf default router bgp address-family ipv6-unreachability advertise-origin}} command, the receiving router continues to 
 advertise disaggregated routes even though the UNREACH updates no longer contain a matching SoO. This issue results in unnecessary route advertisements 
 where only the aggregate should be advertised.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4870105</td>
 <td>When you provide a JSON string with double quotes in an NVUE {{nv set}} command, the command fails.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4855164</td>
 <td>When you run {{mlxcmd}} with non root privileges, you see a python traceback instead of an error message.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4850780</td>
 <td>After you remove 802.1X IPv6 profile configuration for dynamic IPv6 multi-tenancy, IPv6 addresses and summary routes remain in FRR. To recover from this state, manually delete the residual files or reauthenticate through the IPV6 profile with {{hostapd}} on the affected interfaces.To avoid this issue, detach the IPv6 profile from the interfaces and apply the configuration, then remove the global 802.1X configuration. </td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4840423</td>
 <td>Running {{traceroute}} in an SRv6 topology is unsuccessful.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
-<td>5.9.1-5.16.0</td>
+<td>5.9.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4820187</td>
 <td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are categorized incorrectly as fatal. The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1226,67 +1136,67 @@ where only the aggregate should be advertised.</td>
 {{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
 interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
 interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4774686</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4771875</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.16.0</td>
+<td>5.11.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4717752</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, users may encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.16.0</td>
+<td>5.3.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4667792</td>
 <td>Usernames longer than 32 characters do not authenticate against the switch. Avoid using long usernames.</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4657192</td>
 <td>On the NVIDIA SN5640 switch, after you configure a port as unsplit, links do not come up while optics are in use. To work around this issue, use copper cables.</td>
-<td>5.16.0</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4641344</td>
 <td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4641343</td>
 <td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4551249</td>
 <td>The NVUE service might fail during switch upgrade. To work around this issue, stop the {{sysmonitor}} with the {{sudo systemctl stop sysmonitor}} command, then upgrade the switch with the {{nv action upgrade system packages to latest}} command.</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4549896</td>
 <td>When you try to set a VXLAN with a bridge, you see the error {{sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge}}. You can safely ignore this error.</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1296,7 +1206,7 @@ This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
 &lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
 To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1304,235 +1214,235 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>When you try to run {{nv action boot-next}} commands during optimized image upgrade, the commands time out. This does not necessarily mean an issue occurred; the system might still be executing the action.To check that the action command completed before going to the next step to reboot the system:
 &lt;ol&gt;&lt;li&gt;Find the Request ID for the REST API invocation corresponding to the {{nv action boot-next}} command by doing a grep for {{ActionKey.*boot-next}} in the /var/log/nvued.log}} file. For example, the value 3 in the {{Ran Job running ActionKey('@boot-next', '/system/image', (), 3, (('partition', 'partition1'),))}} line indicates the Request ID.&lt;/li&gt;
 &lt;li&gt;Run the {{curl -u '&lt;username&gt;:&lt;password&gt;'  -X GET https://127.0.0.1:8765/nvue_v1/action/&lt;Request ID&gt; -k}} command from the shell to show the status of the action command. If the value of {{state}} is {{action_success}}, the action command completed successfully. If the value of {{state}} is {{running}}, the system is still processing. If the value of {{state}} is {{action_error}}, the system encountered an error.&lt;/li&gt;&lt;/ol&gt;</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4535856</td>
 <td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
-<td>5.13.0-5.16.0</td>
+<td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4535843</td>
 <td>After a switch reboot, the {{nv show system health}} command shows incorrect system LED status and color.</td>
-<td>5.13.0-5.16.0</td>
+<td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4535806</td>
 <td>After a factory reset, the switch does not clear the {{/var/tmp}} directory, which the switch uses for temporary files.</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.16.0</td>
+<td>5.10.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4535749</td>
 <td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4535699</td>
 <td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
-<td>5.12.1-5.16.0</td>
+<td>5.12.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4535696</td>
 <td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
-<td>5.12.1-5.16.0</td>
+<td>5.12.1-5.16.1</td>
 <td>5.9.4</td>
 </tr>
 <tr>
 <td>4534357</td>
 <td>During Cumulus Linux upgrade or downgrade, {{rsyslog}} might crash because the management (eth0) port is unavailable, which triggers a use-after-free fault and  produces a cl-support file as a response.</td>
-<td>5.13.1-5.16.0</td>
+<td>5.13.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4531960</td>
 <td>The GNMI Subscription to xpath {{interfaces/interface[name=swp61s0]/state/counters/out-pkts}} with a high sample interval results in an initial response of zero but in subsequent updates, the value is correct. You do not see this issue when the sample interval is 1 second.</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4513849</td>
 <td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
-<td>5.13.0-5.16.0</td>
+<td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4509255</td>
 <td>In PTP two-step, the hardware incorrectly modifies the SYNC message correction field.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4501632</td>
 <td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that NVUE database has time to sync to the filesystem. </td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4495383</td>
 <td>NVUE configuration yaml file translation converts unset commands to set commands because the translation logic expects only set commands. </td>
-<td>5.13.0-5.16.0</td>
+<td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4475401</td>
 <td>External input such as Ctrl+\ might trigger core dumps on the serial console from {{/bin/login}}. This behavior is caused by external sources, such as console servers or automation tools, and does not reflect a fault in the operating system. As a potential result, the serial console might become unresponsive.</td>
-<td>5.14.0-5.16.0</td>
+<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4475074</td>
 <td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
-<td>5.13.0-5.16.0</td>
+<td>5.13.0-5.16.1</td>
 <td>5.11.2</td>
 </tr>
 <tr>
 <td>4440766</td>
 <td>When you try to delete a trusted ca key, Cumulus Linux shows an incorrect error message. To remove a trusted ca key, you must unset the key ID, not the key literal.</td>
-<td>5.13.0-5.16.0</td>
+<td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4423368</td>
 <td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4423360</td>
 <td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4423352</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4423277</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4423269</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4423244</td>
 <td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4423235</td>
 <td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4423175</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
-<td>5.13.0-5.16.0</td>
+<td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
-<td>5.13.0-5.16.0</td>
+<td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4370954</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4337278</td>
 <td>In certain cases, statically configured VXLAN entries age out after a peerlink flap.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4329931</td>
 <td>Cumulus Linux incorrectly allows SyncE and PPS to be enabled at the same time. Upgrading systems with both features configured using NVUE to 5.12.0 or later results in a failure to apply the startup configuration as part of the first boot of the upgraded version. To work around the issue, unset one of the features before you upgrade.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4309876</td>
 <td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td>5.9.4</td>
 </tr>
 <tr>
 <td>4294156</td>
 <td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output do not show updated (cleared) values.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4277042</td>
 <td>On the NVIDIA SN5600 switch, you see low power alarms immediately after a reboot. The alarms disappear after showing up initially. Certain modules typically show low power alarms on initialization. No action is needed.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4249096</td>
 <td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 and later is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0 or later.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4236419</td>
 <td>On the Spectrum-3 switch, the PTP offset for 25GbE fluctuates within a range of plus or minus 50 nanoseconds beyond the expected values.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4214678</td>
 <td>Changes to open telemetry configuration or export states restarts the telemetry service and resets all health metrics.</td>
-<td>5.12.0-5.16.0</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1540,7 +1450,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>When performing a package upgrade, {{nslcd}} installation might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1548,13 +1458,13 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump}}) first as the cumulus user, then with {{sudo}}, you see the following error:
 PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
 To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4142857</td>
 <td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR] messages.</td>
-<td>5.10.0-5.16.0</td>
+<td>5.10.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1565,91 +1475,91 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 [ 1903.846724] mlxsw_minimal 2-0048: Could not acquire lock
 [ 1903.852689] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900a(mtmp),type=query)
 [ 1903.861573] hwmon hwmon28: Failed to query module temperature</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4134447</td>
 <td>The journal logs might include the error message {{ERR kernel: [    7.453789] usb usb2-port2: connect-debounce failed}}. You can safely ignore this log message.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4129757</td>
 <td>If you include a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma. For example, instead of {{^65550:([0-9]{1,2}|[1-9][1-9]):.*$}}, specify {{^65550:([0-9]|[0-9][0-9]):.*$}} and instead of {{^65550:([0-4]{1,2}|[7-9][8-9]):.*$}}, specify {{^65550:([0-4]|[0-4][0-4]|[7-9][8-9]):.*$}}.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4124376</td>
 <td>The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 or later boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (included in Cumulus Linux 5.10 and earlier).To downgrade a secure boot switch from Cumulus Linux 5.11.0 or later, or to recover a downgraded switch that does not boot, follow the steps in &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/#downgrade-a-secure-boot-switch"&gt;Downgrade a Secure Boot Switch&lt;/a&gt;.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4118970</td>
 <td>When running PTP, the performance for 100Gx2 and 400Gx8 can have a high offset in up to 1.5% of the sampling. </td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4105127</td>
 <td>Any sFlow configuration changes that require an {{hsflowd}} restart are operational only after an initial delay of 60 seconds.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4100629</td>
 <td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4082210</td>
 <td>When you change the CPU resource limit with the {{nv set service control rsyslog resource-limit cpu &lt;value&gt;}} command, the {{rsyslog}} agent does not start. To work around this issue, increase the CPU resource limit, then restart the service manually.</td>
-<td>5.11.0-5.16.0</td>
+<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4077921</td>
 <td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1 or later. You must install the Cumulus Linux image instead.</td>
-<td>5.10.1-5.16.0</td>
+<td>5.10.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4047798</td>
 <td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology.</td>
-<td>5.10.0-5.16.0</td>
+<td>5.10.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4030380</td>
 <td>When you roll back interface configuration to the default setting with the {{nv unset interface}} command, NVUE removes the complete entry for the interface from the {{/etc/network/interface}} file, and puts the interface in admin down. As a result, you cannot configure FEC on the interface at the lower layers.</td>
-<td>5.10.0-5.16.0</td>
+<td>5.10.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4005422</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 or later with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
-<td>5.10.0-5.16.0</td>
+<td>5.10.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3985682</td>
 <td>On Spectrum-4 switches, multicast flows containing packets smaller than 512 bytes might not reach full line rate. Cumulus Linux supports 512 byte and larger multicast packets.</td>
-<td>5.10.0-5.16.0</td>
+<td>5.10.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3966312</td>
 <td>When connecting the SN5xxx switch to third party test equipment (such as IXIA) using copper cables at 100GbE, 200GbE, 400GbE, or 800GbE, links do not come up.</td>
-<td>5.10.0-5.16.0</td>
+<td>5.10.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3948068</td>
 <td>On the SN3700 and SN3700c switch, the {{nv show platform environment voltage}} command output shows a failed state for the {{PSU-n-12V-RAIL-OUT}} sensors.  This is a known hardware limitation that cannot be corrected by the PSU vendor.</td>
-<td>5.10.0-5.16.0</td>
+<td>5.10.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1658,13 +1568,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3879717</td>
 <td>Running {{snmpwalk}} on the switch with the management IP address does not work. To work around this issue, use the localhost option ({{snmpwalk -v 2c -c public28 localhost 1.3.6.1.2.1.14}}) or create a control plane ACL whitelist rule.</td>
-<td>5.10.0-5.16.0</td>
+<td>5.10.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1673,44 +1583,44 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 ZTP: ZTP DHCP: Unexpected error: 'ascii' codec can't decode byte 0xe2 in position 181: ordinal not in range(128)
 ZTP: Script returned failure 
 To work around this issue, use the {{-q}} option with {{wget}}.</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3877516</td>
 <td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto-negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3875373</td>
 <td>When you run the {{nv config apply empty}} command, NVUE removes the {{cumulus user}}. If you are logged in as the {{cumulus}} user when you run the {{nv config apply empty}} command, the command fails.</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3861745</td>
 <td>On UEFI hardware (where the {{/sys/firmware/efi}} directory exists), using the update-grub program might generate a {{/boot/grub/grub.cfg}} that is incorrect for booting ONIE if the ONIE option is selected on the console while booting. To work around this issue, run {{mount LABEL="EFI System" /boot/efi}} before using update-grub.</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3855796</td>
 <td>When configuring a Unicast Master Table for clients, the server addresses must be reachable and the route to the destination must exist. The unicast table can have one directly-connected port for a client. This restriction is only for directly connected ports and doesn't apply to Unicast Servers on other devices or switches.</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3847439</td>
 <td>In rare cases on the Spectrum 1 switch, where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair, and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3819945</td>
 <td>When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes per port setting, links do not come up. To work around this issue, provide the lanes per port configuration shown below:
 cumulus@switch:~$ nv set interface &lt;interface&gt; link breakout 4x lanes-per-port 1</td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1720,13 +1630,13 @@ cumulus@switch:~$ nv set interface &lt;interface&gt; link breakout 4x lanes-per-
 Mounting dev-hugepages.mount - Huge Pages File System...
 Mounting dev-mqueue.mount
 </td>
-<td>5.9.0-5.16.0</td>
+<td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3774274</td>
 <td>When you manually configure the {{/etc/cumulus/datapath/qos/qos_features.conf}} file without applying the QoS configuration with NVUE, running the {{nv config apply empty}} command later does not clean up the QoS configuration. If the QoS configuration includes breakout ports, the {{nv config apply empty}} command fails due to a {{switchd}} reload trigger failure. To work around this issue, clean up the configuration manually in the {{/etc/cumulus/datapath/qos/qos_features.conf}}, then run the {{nv config apply empty}} command.</td>
-<td>5.8.0-5.16.0</td>
+<td>5.8.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1738,37 +1648,37 @@ cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 </td>
-<td>4.0.0-4.4.5, 5.0.0-5.16.0</td>
+<td>4.0.0-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3771168</td>
 <td>When you perform an ISSU upgrade on a Spectrum 1 switch, the {{switchd}} service might crash.</td>
-<td>5.8.0-5.16.0</td>
+<td>5.8.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3677533</td>
 <td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
-<td>5.7.0-5.16.0</td>
+<td>5.7.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3655681</td>
 <td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
-<td>5.7.0-5.16.0</td>
+<td>5.7.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3637444</td>
 <td>Applying an inbound control plane ACL on the eth0 management interface does not take effect. To work around this issue, apply the ACL on the {{mgmt}} interface; for example, {{nv set interface mgmt acl &lt;acl-id&gt; inbound control-plane}}.</td>
-<td>5.7.0-5.16.0</td>
+<td>5.7.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3591918</td>
 <td>The {{nv action disconnect system aaa user}} command does not clear all open sessions. To work around this issue, run the command as many times as the number of sessions.</td>
-<td>5.6.0-5.16.0</td>
+<td>5.6.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1782,68 +1692,68 @@ To work around this issue when using copper cables:
 To work around this issue when using fiber cables:
 &lt;ul&gt;&lt;li&gt;Configure 800g/Force.&lt;/li&gt;
 &lt;li&gt;Use the recommended NVIDIA optical adapters.&lt;/li&gt;&lt;/ul&gt;</td>
-<td>5.6.0-5.16.0</td>
+<td>5.6.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3556762</td>
 <td>On rare occasions, SPT switchover might not happen cleanly in PIM resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
-<td>5.5.0-5.16.0</td>
+<td>5.5.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3540510</td>
 <td>400Gx8 ports only support traffic line rate with packets that are larger than 172 bytes.</td>
-<td>5.6.0-5.16.0</td>
+<td>5.6.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3538321</td>
 <td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the slave state and one of the ports might remain in an uncalibrated state. To work around this issue, toggle the port that is in the uncalibrated state up and down so that one of the ports is selected as the slave.</td>
-<td>5.6.0-5.16.0</td>
+<td>5.6.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3497622</td>
 <td>When you remove PSUs, then plug them back in, you might   experience traffic loss and some ports might be in a down state.</td>
-<td>5.6.0-5.16.0</td>
+<td>5.6.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3472163</td>
 <td>On a switch with the Spectrum-4 ASIC, packets that are smaller than 256 bytes are not included in multicast flows.  Multicast flows support packets that are 256 bytes or larger.</td>
-<td>5.6.0-5.16.0</td>
+<td>5.6.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3444490</td>
 <td>Migration from ONYX to Cumulus Linux is supported and tested with ONYX version 3.10.4302 GA only.</td>
-<td>5.6.0-5.16.0</td>
+<td>5.6.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3442569</td>
 <td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
-<td>5.5.0-5.16.0</td>
+<td>5.5.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3430430</td>
 <td>When you configure PTP on 50G ports, the offset correction might be higher, which can affect the time synchronization of the node. To work around this issue, configure PTP on 100G ports, or on 10G or 1G ports with PTP shaper enabled.</td>
-<td>5.5.0-5.16.0</td>
+<td>5.5.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3424967</td>
 <td>{{sudo}} for TACACS+ users with privilege level 15 does not work when reaching the TACACS+ server through the {{default}} VRF. To work around this issue, specify the interface name that the {{default}} VRF uses in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file or run the NVUE {{nv set system aaa tacacs vrf}} command. If you don't run either command, a TACACS+ user with privilege level 15 can run {{vrf task exec default sudo ...}} to execute the {{sudo}} command.</td>
-<td>5.0.0-5.16.0</td>
+<td>5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3420056</td>
 <td>
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.16.0</td>
+<td>4.4.0-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1851,73 +1761,73 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
 sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
 You can ignore this error; it has no impact on switch functionality.</td>
-<td>5.6.0-5.16.0</td>
+<td>5.6.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3362113</td>
 <td>If you restore an NVUE {{startup.yaml}} file or run the {{nv config patch}} command after an upgrade that includes breakout ports with QoS configuration, the NVUE configuration fails to apply. Subsequent attempts to run {{nv config apply}} fail with a message similar to {{Invalid config [rev_id: 11] qos config is not supported on the following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
-<td>5.4.0-5.16.0</td>
+<td>5.4.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3347538</td>
 <td>When connecting NVIDIA-to-NVIDIA in PAM4, you must enable auto-negotiation.</td>
-<td>5.4.0-5.16.0</td>
+<td>5.4.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3341214</td>
 <td>If you use the NVUE REST API to configure a local user with a hashed password, the user cannot log in and the {{/etc/nvue.d/startup.yaml}} file shows the password as plain text.</td>
-<td>5.4.0-5.16.0</td>
+<td>5.4.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3329518</td>
 <td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} (files is listed before tacplus), a user that is present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch. NVIDIA recommends that when using TACACS+, you list {{tacplus}} before {{files}} in {{/etc/nsswitch.conf}}.  When using NVUE, ensure that {{tacacs}} has priority over {{local}}.</td>
-<td>5.4.0-5.16.0</td>
+<td>5.4.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.16.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3326659</td>
 <td>If you have a large number of MAC addresses, they do not age out at the MAC ageing timeout value configured on the switch. It might take up to 30 seconds more for the MAC addresses to age out and be deleted from the hardware. To work around this issue, wait for the ageing timeout value plus 30 seconds.</td>
-<td>5.4.0-5.16.0</td>
+<td>5.4.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3253218</td>
 <td>Auto-negotiation isn't supported on Spectrum-2 and Spectrum-3 switches using the 1G SFP-T module; FORCE 1G is configured instead. </td>
-<td>5.4.0-5.16.0</td>
+<td>5.4.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3241567</td>
 <td>When you apply switch configuration for the first time on a freshly booted switch and you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}, you might see the error message {{Failed to start Hostname Service}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
-<td>5.3.0-5.16.0</td>
+<td>5.3.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3226506</td>
 <td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
-<td>5.3.0-5.16.0</td>
+<td>5.3.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3225117</td>
 <td>Occasionally, packet loss might occur on 25G ports when the link is raised without FEC.</td>
-<td>5.4.0-5.16.0</td>
+<td>5.4.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3172504</td>
 <td>When you connect the NVIDIA SN4600C switch to a Spectrum 1 or Spectrum-3 switch with a 40GbE passive copper cable (Part Number: MC2210126-005) on edge ports 1-4 and 61-64, there is an Effective BER of 1E-12 in PHY.</td>
-<td>5.2.0-5.16.0</td>
+<td>5.2.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1928,13 +1838,13 @@ cumulus@switch:~$ nv set service snmp-server viewname cumulusOnly included .1.3.
 Error: GET /nvue_v1/service/snmp-server/viewname/cumulusOnly/included?pointers=%5B%22%2Fparameters%22%2C+%22%2Fpatch%2FrequestBody%2Fcontent%2Fapplication~1json%2Fschema%22%2C+%22%2Fpatch%2Fparameters%22%2C+%22%2Fpatch%2Fresponses%2F200%2Flinks%22%5D responded with 404 NOT FOUND
 
 To work around this issue, reference the OID without the preceding period ( {{.}} ) in the command.</td>
-<td>5.3.0-5.16.0</td>
+<td>5.3.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3145869</td>
 <td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between plus or minus 27. The average offset is around 7.</td>
-<td>5.2.0-5.16.0</td>
+<td>5.2.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1943,55 +1853,55 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 
 cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
-<td>5.2.0-5.16.0</td>
+<td>5.2.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3115242</td>
 <td>When you configure two VNIs in the same VLAN, ifupdown2  shows a {{vlan added to two or more VXLANS}} warning, which is only issued after the VNI is already added to the bridge. This leaves the new VNI in the PVID even if there is already an existing VNI configured in that PVID.</td>
-<td>5.1.0-5.16.0</td>
+<td>5.1.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3103821</td>
 <td>On the NVIDIA SN4700 switch, inserting and removing the PSU might cause loss of frames.</td>
-<td>5.2.0-5.16.0</td>
+<td>5.2.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3084476</td>
 <td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
-<td>4.4.3, 5.0.0-5.16.0</td>
+<td>4.4.3, 5.0.0-5.16.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3084027</td>
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.16.0</td>
+<td>4.3.0-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
-<td>4.4.4-4.4.5, 5.1.0-5.16.0</td>
+<td>4.4.4-4.4.5, 5.1.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3061656</td>
 <td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
-<td>5.1.0-5.16.0</td>
+<td>5.1.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>5.0.0-5.16.0</td>
+<td>5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.16.0</td>
+<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1999,43 +1909,43 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5, 5.0.0-5.16.0</td>
+<td>4.4.0-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2885305</td>
 <td>Certain Murata PSU attributes show intermittently in the sensors command output. To work around this issue, upgrade to the latest PSU firmware on Murata.</td>
-<td>5.0.0-5.16.0</td>
+<td>5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2867042</td>
 <td>When connecting the NVIDIA SN4600 switch to another NVIDIA Spectrum switch, you must use auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
-<td>5.0.0-5.16.0</td>
+<td>5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2823307</td>
 <td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
-<td>5.0.0-5.16.0</td>
+<td>5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.16.0</td>
+<td>4.4.0-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.16.0</td>
+<td>4.4.0-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>2671652</td>
 <td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
-<td>4.4.0-4.4.5, 5.5.0-5.16.0</td>
+<td>4.4.0-4.4.5, 5.5.0-5.16.1</td>
 <td></td>
 </tr>
 </table>

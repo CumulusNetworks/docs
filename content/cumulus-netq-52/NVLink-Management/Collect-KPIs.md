@@ -5,7 +5,7 @@ weight: 850
 toc: 4
 ---
 
-The KPI REST endpoint provides key performance indicators (KPIs) that summarize your network cluster’s overall health while also allowing you to examine specific events in greater detail. KPIs reflect aggregated data across all domains. To troubleshoot a specific domain, use the compute-node or switch-node REST API endpoints.
+The KPI REST endpoints provide key performance indicators (KPIs) that summarize your network cluster’s overall health while also allowing you to examine specific events in greater detail. KPIs reflect aggregated data across all domains.
 
 ## Access the API
 

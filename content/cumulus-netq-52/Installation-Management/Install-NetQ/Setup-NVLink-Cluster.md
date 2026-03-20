@@ -280,4 +280,5 @@ If any of the applications or services display a DOWN status after 30 minutes, o
 
 ## Next Steps
 
-{{<link title="NVLink Bringup" text="Perform a system bringup">}} to connect to telemetry and controller services.
+- {{<link title="NVLink Bringup" text="Perform a system bringup">}} to connect to telemetry and controller services. 
+- The NVIDIA Vera Rubin platform does not support the system bringup process. Follow the steps to {{<link title="Register Services" text="register services">}} manually instead.

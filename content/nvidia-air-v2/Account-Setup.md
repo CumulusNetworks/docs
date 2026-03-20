@@ -59,6 +59,28 @@ Only NGC organization owners can start a free trial. If you are the org owner, A
 
 Click **Start Trial** to activate the free trial for your organization. If you are not the organization owner, contact your NGC organization admin to start the trial.
 
+## Add a User and Assign Roles
+
+To access NVIDIA Air, each user in your organization must have at least one of the following roles assigned at the organization level:
+
+- **Air Org Admin**
+- **Air User**
+
+To add a new user to your organization, go to {{<exlink url="https://org.ngc.nvidia.com/users" text="org.ngc.nvidia.com/users">}} and click **Add a user**.
+
+{{%notice warning%}}
+Always add users through the NGC org management page linked above. Do not invite users through the NVIDIA Cloud Account (NCA) page. Users invited through NCA may not appear correctly in NGC, which prevents you from assigning roles.
+{{%/notice%}}
+
+To assign roles to an existing user:
+
+1. Go to {{<exlink url="https://org.ngc.nvidia.com/users" text="org.ngc.nvidia.com/users">}}.
+2. Find the user and edit their membership.
+3. Under **Step 2: Assign Permissions to New User**, select **Organization** as the context for role assignment.
+4. Under **NVIDIA Air**, select **Air Org Admin**, **Air User**, or both, then click **Add Role**.
+
+{{<img src="/images/guides/nvidia-air-v2/assign-air-roles.png" alt="Assign Air roles to a user" width="600px">}}
+
 ## Troubleshooting
 
 ### Cannot Start Free Trial
@@ -75,4 +97,4 @@ If your organization has an Air subscription but you cannot access the platform:
 
 {{<img src="/images/guides/nvidia-air-v2/subscription-no-roles.png" alt="Subscription exists but user lacks roles" width="800px">}}
 
-Contact your NGC organization owner to request the appropriate roles for Air access.
+Contact your NGC organization owner and direct them to [Add a User and Assign Roles](#add-a-user-and-assign-roles) to request the appropriate roles for Air access.

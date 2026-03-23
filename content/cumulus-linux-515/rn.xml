@@ -14,9 +14,15 @@
 </tr>
 <tr>
 <td>4922099</td>
-<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes congested while processing these NHG updates, its memory usage can grow significantly.</td>
-<td>5.14.0-5.16.0</td>
-<td>5.16.1</td>
+<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
+<td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4918342</td>
+<td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4895563</td>
@@ -1073,9 +1079,15 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>4922099</td>
-<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes congested while processing these NHG updates, its memory usage can grow significantly.</td>
-<td>5.14.0-5.16.0</td>
-<td>5.16.1</td>
+<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
+<td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4918342</td>
+<td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4895563</td>

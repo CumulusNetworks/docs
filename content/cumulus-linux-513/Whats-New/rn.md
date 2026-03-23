@@ -15,6 +15,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4922104"></a> [4922104](#4922104) <a name="4922104"></a> <br /> | When the system is under load and the <code>wd_keepalive</code> process is running at the default rate of one time per minute, the switch might reboot due to starvation of the <code>wd_keepalive</code> process. | 5.13.1-5.16.1 | |
+| <a name="4918342"></a> [4918342](#4918342) <a name="4918342"></a> <br /> | In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY. | 5.13.0-5.16.1 | |
 | <a name="4885553"></a> [4885553](#4885553) <a name="4885553"></a> <br /> | If ZTP uses a proxy server for image download using <code>onie-install</code>, the image install fails with signing issues. | 5.12.0-5.16.1 | |
 | <a name="4882392"></a> [4882392](#4882392) <a name="4882392"></a> <br /> | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.16.1 | |
 | <a name="4840299"></a> [4840299](#4840299) <a name="4840299"></a> <br /> | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN. | 5.9.1-5.16.1 | |
@@ -228,6 +229,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4918342"></a> [4918342](#4918342) <a name="4918342"></a> <br /> | In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY. | 5.13.0-5.16.1 | |
 | <a name="4885553"></a> [4885553](#4885553) <a name="4885553"></a> <br /> | If ZTP uses a proxy server for image download using <code>onie-install</code>, the image install fails with signing issues. | 5.12.0-5.16.1 | |
 | <a name="4882392"></a> [4882392](#4882392) <a name="4882392"></a> <br /> | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.16.1 | |
 | <a name="4840299"></a> [4840299](#4840299) <a name="4840299"></a> <br /> | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN. | 5.9.1-5.16.1 | |

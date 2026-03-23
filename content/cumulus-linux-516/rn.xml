@@ -7,6 +7,30 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4931702</td>
+<td>When you launch a Cumulus VX 5.16.1 image in Air with switch emulation, you see the {{systemd-remount-fs.service}} systemd service in a failed state. This issue has no functional impact.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4918507</td>
+<td>When you upgrade Cumulus Linux from a prior release with package upgrade, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4918342</td>
+<td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4905123</td>
+<td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4895589</td>
 <td>When you run the {{nv set vrf default router bgp address-family ipv4-unicast state disabled}} command, you still see IPv4 exchanged between BGP peers. This is because FRR enables IPv4 by default even when there is no explicit configuration.</td>
 <td>5.16.0-5.16.1</td>
@@ -50,6 +74,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td></td>
 </tr>
 <tr>
+<td>4872684</td>
+<td>Cumulus Linux does not provide protection or a warning when you configure a destructive resource limit for a critical service. A low value resource limit for {{nvued}} might terminate the {{nvued}} service and block users from using NVUE commands.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4870212</td>
 <td>When a BGP peer initially advertises UNREACH routes with a matching SoO (Site of Origin), the receiving router correctly triggers conditional disaggregation. However, if the peer later removes the advertise-origin 
 configuration with the {{nv unset vrf default router bgp address-family ipv6-unreachability advertise-origin}} command, the receiving router continues to 
@@ -86,6 +116,12 @@ where only the aggregate should be advertised.</td>
 <td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
 <td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4820187</td>
+<td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are categorized incorrectly as fatal. The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -809,6 +845,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>4925516</td>
+<td>Core processing services such as {{cumulus-core.service}} and {{cumulus-core.path}} might enter a failed state due to {{systemd}} start rate limiting caused by rapid start and stop cycles. This issue can prevent core files from being included in subsequent automatically generated cl-support collections even after you reactivate automatic cl-support generation after deactivation due to a chain of faults. Newly generated core files might accumulate, potentially leading to {{/var}} partition exhaustion. To recover from this condition, run the {{sudo systemctl reset-failed cumulus-core.service cumulus-core.path}} command.</td>
+<td></td>
+</tr>
+<tr>
 <td>4925515</td>
 <td>When you exceed the maximum number of ports allowed (30) in an 802.1x IPv6 profile, IPv6 addresses are not allocated to additional ports even if authentication is successful. To work around this issue, create additional profiles with the same configuration, associating no more than 30 interfaces to each profile.</td>
 <td>5.16.0</td>
@@ -820,7 +861,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>4923804</td>
-<td>If a switch reboots in the middle of a git operation, a git lock might be left. After rebooting, that git lock is stale and prevents other git operations from running, which might prevent the NVUE service from starting.</td>
+<td>If a switch reboots in the middle of a git operation, a git lock might be left. After rebooting, that git lock is stale and can prevent other git operations from running, preventing {{nvued}} from starting.</td>
 <td>5.16.0</td>
 </tr>
 <tr>
@@ -861,7 +902,7 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 </tr>
 <tr>
 <td>4922099</td>
-<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes congested while processing these NHG updates, its memory usage can grow significantly.</td>
+<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
 <td>5.14.0-5.16.0</td>
 </tr>
 <tr>
@@ -871,7 +912,7 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 </tr>
 <tr>
 <td>4922097</td>
-<td>After upgrading the switch from a previous release, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
+<td>When you upgrade Cumulus Linux from 5.13.1 to 5.16.0, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
 <td>5.16.0</td>
 </tr>
 <tr>
@@ -881,7 +922,7 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 </tr>
 <tr>
 <td>4922090</td>
-<td>When you configure OTEL to generate a large number of metrics with a small sample interval, but the remote receiver is unreachable, OTEL collector memory usage might increase rapidly, which results in the OTEL collector triggering a OOM killer. </td>
+<td>When you configure OTEL to generate a large number of metrics with a small sample interval but the remote receiver is unreachable, OTEL collector memory usage might increase rapidly leading to the OTEL collector being {{Out Of Memory Killed}}. </td>
 <td>5.16.0</td>
 </tr>
 </table>
@@ -906,9 +947,9 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 </tr>
 <tr>
 <td>4923804</td>
-<td>If a switch reboots in the middle of a git operation, a git lock might be left. After rebooting, that git lock is stale and prevents other git operations from running, which might prevent the NVUE service from starting.</td>
-<td>5.16.0</td>
-<td>5.16.1</td>
+<td>If a switch reboots in the middle of a git operation, a git lock might be left. After rebooting, that git lock is stale and can prevent other git operations from running, preventing {{nvued}} from starting.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4923776</td>
@@ -949,9 +990,9 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 </tr>
 <tr>
 <td>4922099</td>
-<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes congested while processing these NHG updates, its memory usage can grow significantly.</td>
-<td>5.14.0-5.16.0</td>
-<td>5.16.1</td>
+<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
+<td>5.14.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4922098</td>
@@ -961,9 +1002,9 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 </tr>
 <tr>
 <td>4922097</td>
-<td>After upgrading the switch from a previous release, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
-<td>5.16.0</td>
-<td>5.16.1</td>
+<td>When you upgrade Cumulus Linux from 5.13.1 to 5.16.0, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4922093</td>
@@ -973,9 +1014,27 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 </tr>
 <tr>
 <td>4922090</td>
-<td>When you configure OTEL to generate a large number of metrics with a small sample interval, but the remote receiver is unreachable, OTEL collector memory usage might increase rapidly, which results in the OTEL collector triggering a OOM killer. </td>
-<td>5.16.0</td>
-<td>5.16.1</td>
+<td>When you configure OTEL to generate a large number of metrics with a small sample interval but the remote receiver is unreachable, OTEL collector memory usage might increase rapidly leading to the OTEL collector being {{Out Of Memory Killed}}. </td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4918507</td>
+<td>When you upgrade Cumulus Linux from a prior release with package upgrade, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4918342</td>
+<td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4905123</td>
+<td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4895589</td>
@@ -1021,6 +1080,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td></td>
 </tr>
 <tr>
+<td>4872684</td>
+<td>Cumulus Linux does not provide protection or a warning when you configure a destructive resource limit for a critical service. A low value resource limit for {{nvued}} might terminate the {{nvued}} service and block users from using NVUE commands.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4870212</td>
 <td>When a BGP peer initially advertises UNREACH routes with a matching SoO (Site of Origin), the receiving router correctly triggers conditional disaggregation. However, if the peer later removes the advertise-origin 
 configuration with the {{nv unset vrf default router bgp address-family ipv6-unreachability advertise-origin}} command, the receiving router continues to 
@@ -1057,6 +1122,12 @@ where only the aggregate should be advertised.</td>
 <td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
 <td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4820187</td>
+<td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are categorized incorrectly as fatal. The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>

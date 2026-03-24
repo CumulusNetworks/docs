@@ -81,6 +81,10 @@ To assign roles to an existing user:
 
 {{<img src="/images/guides/nvidia-air-v2/assign-air-roles.png" alt="Assign Air roles to a user" width="600px">}}
 
+{{%notice warning%}}
+Do not assign the **Air Trainee** role to users. This role is reserved for NVIDIA-led Air training sessions. Assigning the Air Trainee role locks the user's identity in the organization to read-only access and prevents them from creating simulations.
+{{%/notice%}}
+
 ## Troubleshooting
 
 ### Cannot Start Free Trial

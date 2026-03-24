@@ -1916,6 +1916,58 @@ extra-threshold         9984         50000
 default-headroom        153600       153600 
 effective-max-headroom  163584
 ```
+### Lossless Headroom
+
+The QoS subsystem supports multiple lossless priority groups that share a single buffer pool allowing different PFC-enabled switch priority values to map to distinct priority groups, each with independent buffer thresholds. For example, you can assign storage traffic (switch priority 3 and 4) to priority group 7 with more aggressive flow-control thresholds while application traffic (switch priority 5) can use priority group 6 with more conservative settings.
+
+All lossless priority groups continue to share the same ingress and egress buffer pools. However, each priority groups maintains its own reserved buffers, xon and xoff thresholds, and descriptor buffer allocations. This design provides isolation and independent flow-control behavior while still making efficient use of shared buffer resources.
+
+You can configure the following headroom settings:
+- Required headroom
+- Exclusive headroom
+- Oversubscription ratio
+- Port shared buffer
+
+The following example assigns switch priority 3 and 4 to priority group 3, configures the ingress lossless buffer service pool mapping to service-pool 1, and sets the required and exclusive headroom for switch priority 3 and 4 to 1024, oversubscription ratio to 2, and port shared buffer to 1024. The example enables the shared headroom pool on swp10.
+
+{{< tabs "TabID1935 ">}}
+{{< tab "NVUE Commands ">}}
+
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group service7 switch-priority 3,4
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group service3 service-pool 1
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 1024 
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 1024
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio 2
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom port-shared-buffer 10240
+cumulus@switch:~$ nv set interface swp10 qos shared-headroom-pool enable
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file.
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
+...
+flow_contriol.cos_3.lossless_pg = 3
+flow_contriol.cos_4.lossless_pg = 3
+...
+lossless.ingress_service_pool = 1
+...
+shp.pg.required_headroom = 1024
+shp.pg.exclusive_headroom = 1024
+shp.pg. oversubscription_ratio = 2
+shp.pg. port_shared_buffer = 2
+...
+shared_headroom_pool.port_list = swp10
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Ingress and Egress Management Buffers
 

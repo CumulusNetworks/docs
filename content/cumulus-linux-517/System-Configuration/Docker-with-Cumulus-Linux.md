@@ -444,23 +444,23 @@ log-level       json-file
 
 ## Docker Resource Tiering System
 
-Cumulus Linux includes a built-in Docker resource tiering system that acts as an automated governance layer for system resources. In a shared environment where users or automated scripts can launch arbitrary Docker containers, there is a significant risk that a single *noisy neighbor*, such as high-load compilation, a memory leak, or a stress test, consumes 100 percent of the CPU or RAM, causing critical network services or the host OS itself to become unresponsive.
+Cumulus Linux includes a built-in Docker resource tiering system that acts as an automated governance layer for system resources. In a shared environment where users or automated scripts can launch arbitrary Docker containers, there is a significant risk that high-load compilation, a memory leak, or a stress test can consume 100 percent of the CPU or RAM, causing critical network services or the host OS itself to become unresponsive. The resource tiering system prevents resource exhaustion (Denial of Service) from untrusted workloads while guaranteeing performance for critical system applications.
 
-The built-in Docker resource tiering system is enabled by default and active after installation. The policy agent enforces runtime policy.
+The built-in Docker resource tiering system is enabled by default and active after installation. The policy agent enforces runtime policy entirely in the background; no configuration is required.
 
 Cumulus Linux uses slices to apply shared resource limits to a group of processes:
 - `docker-restricted.slice` is the default tier for third-party containers that are not whitelisted. This tier uses 10 percent host CPU and 10 percent host memory.
 - `docker-limited.slice` is the intermediate tier for selected workloads that need more headroom than restricted but still need to be capped. This tier uses 50 percent host CPU and 50 percent host memory.
 - `docker.slice` is the trusted tier for trusted NVIDIA containers and other explicitly trusted workloads. There is no host CPU or host memory cap.
 
-To disable the resource tiering system, stop, then disable the cumulus docker policy agent:
+To disable the resource tiering system, stop, then disable the cumulus Docker policy agent:
 
 ```
 cumulus@switch:~$ systemctl stop cumulus-docker-policy-agent.service
 cumulus@switch:~$ systemctl disable cumulus-docker-policy-agent.service 
 ```
 
-To re-enable the resource tiering system, enable, then start the cumulus docker policy agent:
+To re-enable the resource tiering system, enable, then start the cumulus Docker policy agent:
 
 ```
 cumulus@switch:~$ systemctl enable cumulus-docker-policy-agent.service 

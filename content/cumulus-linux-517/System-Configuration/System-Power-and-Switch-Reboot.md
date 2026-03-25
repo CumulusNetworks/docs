@@ -206,6 +206,8 @@ reason
   user                 system/root
 required               no
 last-reboot-operation  cold
+status                 success
+detailed-status         none
 ```
 
 <!-- COMMENTED OUT AS THIS COMMAND ISN'T OPERATIONAL IN 5.15

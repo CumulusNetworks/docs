@@ -202,10 +202,6 @@ cumulus@switch:~$ nv show system log secured-logs
 state  enabled
 ```
 
-## Enable Security Alerts
-
-Cumulus Linux can send proactive alerts as syslog messages (facility LOG_DAEMON, severity CRIT) when audit processing failures occur, such as when the audit daemon crashes or disk space runs low on the audit partition. To enable security alerts, refer to {{<link url="Configure-SNMP/#enable-security-alerts" text="SNMP security alerts ">}}.
-
 ## Selectors and Filters
 
 You can control which logs to capture using selectors. A selector enables you to choose options such as facility, program name, severity, filters (with match conditions and actions for log selection), and rate limit, for precise and targeted log management. You define the selectors you want to use for a specific server.

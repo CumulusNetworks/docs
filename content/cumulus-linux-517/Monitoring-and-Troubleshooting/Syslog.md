@@ -202,40 +202,6 @@ cumulus@switch:~$ nv show system log secured-logs
 state  enabled
 ```
 
-## Enable Security Alerts
-
-To prevent a compromised or misconfigured system from silently losing its audit trail, masking intrusion or compliance violations, you can configure syslog to alert you with a critical severity message when audit integrity fails. Security alerts include `auditd` daemon crashes, disk space exhaustion, and disk I/O errors.
-
-To enable global security alerts:
-
-```
-cumulus@switch:~$ nv set system security alerts state enabled
-cumulus@switch:~$ nv config apply
-```
-
-To disable global security alerts run the `nv set system security alerts state disabled` command.
-
-By default, when you enable security alerts, audit failure alerts are enabled by default. To disable audit failure alerts:
-
-```
-cumulus@switch:~$ nv set system security alerts audit-failure disabled
-cumulus@switch:~$ nv config apply
-```
-
-To reenable audit failure alerts, run the `nv set system security alerts audit-failure enabled` command.
-
-To show the current alert configuration and status, run the `nv show system security alerts` command:
-
-```
-cumulus@switch:~$ nv show system security alerts
-               operational  applied
--------------  -----------  --------
-state          disabled     enabled
-audit-failure  enabled      disabled 
-```
-
-The `nv show system security` command also shows if security alerts are enabled.
-
 ## Selectors and Filters
 
 You can control which logs to capture using selectors. A selector enables you to choose options such as facility, program name, severity, filters (with match conditions and actions for log selection), and rate limit, for precise and targeted log management. You define the selectors you want to use for a specific server.

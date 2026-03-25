@@ -204,37 +204,7 @@ state  enabled
 
 ## Enable Security Alerts
 
-To prevent a compromised or misconfigured system from silently losing its audit trail, masking intrusion or compliance violations, you can configure syslog to alert you with a critical severity message when audit integrity fails. Security alerts include `auditd` daemon crashes, disk space exhaustion, and disk I/O errors.
-
-To enable global security alerts:
-
-```
-cumulus@switch:~$ nv set system security alerts state enabled
-cumulus@switch:~$ nv config apply
-```
-
-To disable global security alerts run the `nv set system security alerts state disabled` command.
-
-By default, when you enable security alerts, audit failure alerts are enabled by default. To disable audit failure alerts:
-
-```
-cumulus@switch:~$ nv set system security alerts audit-failure disabled
-cumulus@switch:~$ nv config apply
-```
-
-To reenable audit failure alerts, run the `nv set system security alerts audit-failure enabled` command.
-
-To show the current alert configuration and status, run the `nv show system security alerts` command:
-
-```
-cumulus@switch:~$ nv show system security alerts
-               operational  applied
--------------  -----------  --------
-state          disabled     enabled
-audit-failure  enabled      disabled 
-```
-
-The `nv show system security` command also shows if security alerts are enabled.
+Cumulus Linux can send proactive alerts as syslog messages (facility LOG_DAEMON, severity CRIT) when audit processing failures occur, such as when the audit daemon crashes or disk space runs low on the audit partition. To enable security alerts, refer to {{<link url="Configure-SNMP/#enable-security-alerts" text="SNMP security alerts ">}}.
 
 ## Selectors and Filters
 

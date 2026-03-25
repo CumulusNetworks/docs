@@ -65,13 +65,13 @@ The following table shows the NVUE reboot commands and their Linux command equiv
 | `nv action reboot system mode immediate force` | `sudo reboot --force` | Reboots the switch immediately without notifying any running processes and without prompting for confirmation. |
 | `nv action reboot system mode halt` | No native command available. | Shuts down the system. |
 | `nv action reboot system mode halt force` | `sudo reboot --halt` | Shuts down the system without prompting for confirmation.|
-| `nv action reboot system mode power-cycle` | `sudo cl-powercycle` | Power cycles the switch. The prompt messages from NVUE command and the Linux command are different. |
+| `nv action reboot system mode power-cycle` | `sudo cl-powercycle` | Power cycles the switch. |
 | `nv action reboot system mode power-cycle force` | `sudo cl-powercycle -noprompt` | Power cycles the switch without prompting for confirmation.|
-| `nv action reboot system mode cold` | `sudo csmgrctl -c` | Reboots the switch in cold mode. The prompt messages from the NVUE command and the Linux command are different. |
+| `nv action reboot system mode cold` | `sudo csmgrctl -c` | Reboots the switch in cold mode. |
 | `nv action reboot system mode cold force` | `sudo csmgrctl -cf` | Reboots the switch in cold mode without prompting for confirmation.|
-| `nv action reboot system mode fast` | `sudo csmgrctl -f` | Reboots the switch in fast mode. The prompt messages from NVUE command and native command are different |
+| `nv action reboot system mode fast` | `sudo csmgrctl -f` | Reboots the switch in fast mode. |
 | `nv action reboot system mode fast force` | `sudo csmgrctl -ff` | Reboots the switch in fast mode without prompting for confirmation.|
-| `nv action reboot system mode warm` | `sudo csmgrctl -w` | Reboots the switch in warm mode. The prompt messages from NVUE command and native command are different. |
+| `nv action reboot system mode warm` | `sudo csmgrctl -w` | Reboots the switch in warm mode. |
 | `nv action reboot system mode warm force` | `sudo csmgrctl -wf` | Reboots the switch in warm mode without prompting for confirmation.|
 
 ### Command Examples

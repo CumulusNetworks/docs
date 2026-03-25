@@ -386,6 +386,81 @@ The following table shows the TLVs sent for each configuration.
 <!-- vale on -->
 Use CDP only or LLDP only to get the desired behavior of `PortID`, `Description`, or `MacAddress` (LLDP only) across all neighbors. For more information, see {{<link url="#set-lldp-mode" text="LLDP Mode">}}.
 
+## LLDP TLVs
+
+By default, LLDP implementations transmit a broad set of TLVs including system name, system description, management address, port description, system capabilities, VLAN information, and more. While this is useful for network management and topology discovery, it presents a security concern in environments where host-facing (untrusted) ports might expose sensitive infrastructure details to end hosts.
+
+A compromised or malicious host connected to a switch port can passively listen to LLDP frames and extract information such as:
+- The switch hostname and operating system version (System Name, System Description)
+- Management IP addresses (Management Address)
+- VLAN topology (Port VLAN ID, VLAN Name)
+- System capabilities and enabled functions (System Capabilities)
+
+This information can be leveraged for infrastructure reconnaissance, making lateral movement or targeted attacks significantly easier.
+
+Cumulus Linux provides granular LLDP TLV control so that you can:
+- Control egress TLVs at the system level by defining a global policy for which optional TLVs the switch includes in its LLDP advertisements across all ports. 
+- Control egress TLVs for each port by overriding the global policy on specific interfaces (suppress System Name and Management Address only on host-facing ports while keeping full TLV advertisement on fabric or uplink ports).
+- Control ingress TLV processing by defining which TLVs from received LLDP frames to process and store in the neighbor table, limiting information exposure even on the receive side.
+- Define reusable TLV profiles (host-facing-secure, fabric-full) that you can apply at both the system (global) level and for each port, simplifying configuration across large-scale deployments.
+
+By default, all mandatory TLVs (Chassis ID, Port ID, TTL) are enabled and all optional TLVs (port description, system name, system description, system capabilities, and management address) are disabled. You can configure a global ingress or egress policy to enable optional TLVs across all ports or create a profile to enable optional TLVs and apply the profile to specific ports. You cannot configure mandatory TLVs.
+
+### Global Configuration
+
+You configure a global ingress policy across all ports with the `nv set system lldp tlv ingress-policy <tlv-name> state` command and a global egress policy across all ports, with the `nv set system lldp tlv egress-policy <tlv-name> state` command.
+
+The following example configures a global egress policy to transmit the system name, system description, and system capabilities optional TLVs:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv egress-policy system-name state enabled
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv egress-policy system-description state enabled
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv egress-policy system-capabilities state enabled
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+The following example configures a global ingress policy to transmit the port description and management address optional TLVs:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv ingress-policy port-description state enabled
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv ingress-policymanagement-address state enabled
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+### Profile Configuration
+
+You configure an ingress policy profile with the `nv set system lldp tlv profile <profile-name> ingress-policy <tlv-name> state` command, an egress policy profile with the `nv set system lldp tlv profile <profile-name> egress-policy <tlv-name> state` command, then apply the profile to an interface, with the `nv set interface <ifname> lldp tlv profile <profile-name>` command.
+
+The following example configures an egress profile for uplink ports called `fabric-full` to transmit all optional TLVs (port description, system name, system description, system capabilities, and management address). The example applies the profile to swp49 and swp50.
+
+```
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full egress-policy port-description state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full egress-policy system-name state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full egress-policy system-description state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full egress-policy system-capabilities state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full egress-policy management-address state enabled
+cumulus@leaf01:mgmt:~$ nv set interface swp49 lldp tlv profile fabric-full 
+cumulus@leaf01:mgmt:~$ nv set interface swp50 lldp tlv profile fabric-full 
+cumulus@leaf01:mgmt:~$ nv config apply 
+```
+
+The following example configures an ingress profile for uplink ports called `fabric-full` to transmit all optional TLVs (port description, system name, system description, system capabilities, and management address). The example applies the profile to swp49 and swp50.
+
+```
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full ingress-policy port-description state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full ingress-policy system-name state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full ingress-policy system-description state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full ingress-policy system-capabilities state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full ingress-policy management-address state enabled
+cumulus@leaf01:mgmt:~$ nv set interface swp49 lldp tlv profile fabric-full 
+cumulus@leaf01:mgmt:~$ nv set interface swp50 lldp tlv profile fabric-full 
+cumulus@leaf01:mgmt:~$ nv config apply 
+```
+
+{{%notice note%}}
+A profile overrides system defaults for an interface.
+{{%/notice%}}
+
 ## LLDP DCBX TLVs
 
 <span class="a-tooltip">[DCBX](## "Data Center Bridging Capability Exchange protocol ")</span> is an extension of LLDP that supports <span class="a-tooltip">[TLVs](## "Type-Length-Value ")</span> to provide additional information in LLDP packets to peers.

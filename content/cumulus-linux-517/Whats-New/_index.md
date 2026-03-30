@@ -24,6 +24,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - {{<link url="Docker-with-Cumulus-Linux/#docker-resource-tiering-system" text="Docker Resource Governance & Policy Agent">}}
 - {{<link url="Quality-of-Service/#lossless-headroom" text="PFC headroom pool">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-tlvs" text="Granular LLDP TLV definition and control">}}
+- {{<link url="Automatic-Configuration-Backup" text="Automatic Configuration Backup">}}
 - BGP/LLDP X-Plane multi-plane'd GPUs with disjoined planes (EVPN based deployments) (Beta)
 - LLDP BGP Route Redistribution Extension (Beta)
 - Routing Convergence Enhancement for full connectivity loss (all links Up/restart)

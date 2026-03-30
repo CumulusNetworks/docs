@@ -26,7 +26,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## Release Considerations
 
-- If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process. <!--need to verify-->
+- When your NetQ deployment operates in combined Ethernet and NVLink mode, certain NVLink data is not preserved during the backup and restore process. Information related to network entities such as switches, GPUs, and partitions is not saved. However, data for services, switch profiles, and domains is saved during the backup and restore process.
 - NetQ 5.2 is tested and validated as part of the Spectrum-X reference architecture 2.2 release. For a full compatibility matrix, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 - The following features have been removed or deprecated:
     - Flow analysis (deprecated)

@@ -34,8 +34,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## Release Considerations
 
-- If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
-- NetQ does not support performing a backup on version 5.1.0 and restoring it to the same version (5.1.0).
+- When your NetQ deployment operates in combined Ethernet and NVLink mode, certain NVLink data is not preserved during the backup and restore process. Information related to network entities such as switches, GPUs, and partitions is not saved. However, data for services, switch profiles, and domains is saved during the backup and restore process.
 - The NetQ Debian repository location has changed from {{<exlink url="https://apps3.cumulusnetworks.com" >}} to {{<exlink url="https://edge.urm.nvidia.com" >}}. You can download the `netq-apps` and `netq-agent` Debian packages from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/pool/netq-latest/" text="new NetQ repository">}}.
 - NetQ 5.1 is tested and validated as part of the Spectrum-X reference architecture 2.1 release. For a full compatibility matrix, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 

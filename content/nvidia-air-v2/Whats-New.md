@@ -7,4 +7,8 @@ product: NVIDIA Air 2.0
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air-ngc.nvidia.com" text="NVIDIA Air 2.0">}}.
 
+## March 2026
+<!-- Air:WhatsNew -->
+### 82.2.1.5.6
+- Fixed an issue where large simulations fail to be deleted.
 <!-- Air:WhatsNew -->

@@ -24,15 +24,16 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - {{<link url="Docker-with-Cumulus-Linux/#docker-resource-tiering-system" text="Docker Resource Governance & Policy Agent">}}
 - {{<link url="Quality-of-Service/#lossless-headroom" text="PFC headroom pool">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-tlvs" text="Granular LLDP TLV definition and control">}}
+- {{<link url="Automatic-Configuration-Backup" text="Automatic configuration backup">}}
 - BGP/LLDP X-Plane multi-plane'd GPUs with disjoined planes (EVPN based deployments) (Beta)
 - LLDP BGP Route Redistribution Extension (Beta)
 - Routing Convergence Enhancement for full connectivity loss (all links Up/restart)
-- Integrate logs in tc_log to the syslog​, and update log level 
+- Integrate logs in tc_log to the syslog​, and update log level
 - NVUE
   - {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#show-secure-boot-details" text="NVUE command to show secure boot status and details">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}
   - {{<link url="NVUE-CLI/#configuration-commands" text="NVUE prevents configuration changes during long background operations">}}
-  - New command to verify a configuration before applying
+  - {{<link url="NVUE-CLI/#verify-configuration-before-applying" text="Verify configuration before applying">}}
 - Telemetry
   - New OTEL metrics: {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="link debounce">}}, {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="PHY link down">}}, and {{<link url="Open-Telemetry-Export/#control-plane-statistic-format" text="control plane">}}
   - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="PHY link down, link debounce, and control plane">}}

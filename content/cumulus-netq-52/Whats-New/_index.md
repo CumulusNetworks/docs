@@ -17,7 +17,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Added `/v1/validations/fw-versions` endpoint to validate that all switches within a domain have the same firmware version
 - Added ability {{<link title="Upgrade NVOS or Firmware" text="to upgrade firmware">}} using the `/v1/upgrade-switch` endpoint
 - Added several `/v1/kpis` endpoints that allow you to view health metrics {{<link title="Collect KPIs" text="view health metrics">}} for GPUs, switch nodes, compute nodes, partitions, and domains over time
-- Added several parameters to the `/v1/gpus` endpoint that allow for filtering based on a devices UUID, chassis serial number, slot ID, tray index, or host ID
+- Added several parameters to the `/v1/gpus` endpoint that allow for filtering based on a device's UUID, chassis serial number, slot ID, tray index, or host ID
 - Added parameter to manage partitions using a device's unique identifier (UUID) with the `/v1/partitions` endpoints
 - Added ability to adjust NMX-T polling frequency using the `/v1/settings` endpoint
 - Added support for NetQ NVLink on the NVIDIA Vera Rubin platform (beta)

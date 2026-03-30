@@ -339,6 +339,20 @@ nv show interface lldp
 
 To view the NVUE command reference for Cumulus Linux, which describes all the NVUE CLI commands and provides examples, go to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvue-reference/" text="NVUE Command Reference">}}.
 
+## Verify Configuration Before Applying
+
+To verify your configuration before you apply it, run the `nv config verify` command. The command output shows any errors so that you can resolve them before applying the configuration.
+
+```
+cumulus@switch:~$ nv config verify
+```
+
+To show the configuration file produced by the `nv config apply` command, run `nv config verify` with the `debug` option.
+
+```
+cumulus@switch:~$ nv config verify debug
+```
+
 ## NVUE Configuration File
 
 When you save network configuration, NVUE writes the configuration to the `/etc/nvue.d/startup.yaml` file.

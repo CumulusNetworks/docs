@@ -558,7 +558,8 @@ rsyslogd: End of config validation run. Bye.
 
 ## Thermal Control Logs
 
-By default, Hardware Management Thermal Control routes messages with Notice, Warning, Error, and Critical severity levels to syslog. The messages incude detailed information about the state of sensors and fans, and any errors. For repeating messages (PWM set failures, file read errors, sensor errors, and so on), Thermal Control does not repeat each occurrence and only prints the opening message and the corresponding closing message after the condition resolves, preventing syslog from being flooded with duplicate entries.
+By default, Hardware Management Thermal Control routes Notice, Warning, Error, and Critical messages to syslog. These messages include detailed information about sensor and fan states, as well as any detected errors.
+For recurring messages (such as PWM set failures, file read errors, or sensor errors), Thermal Control suppresses duplicate entries. It logs only the initial message and a corresponding closing message after the condition resolves, preventing syslog from being flooded.
 
 The following example shows an opening and closing syslog message:
 

@@ -425,7 +425,6 @@ user@server:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_HO
 
 3. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Import the certificate">}} used for the repository container on the switches you want to upgrade. If you are using a self-signed certificated, you can retrieve it from the container with the curl command: `curl -fsSL http://10.1.1.100:8080/ca.crt`.
 
-
 <!--
 Retrieve and install the certificate on the switches you want to upgrade:
 
@@ -454,7 +453,6 @@ deb https://10.1.100.1:8443 CumulusLinux-5.15.0 cumulus upstream netq
 -->
 5. Continue with a {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} on your switch. 
 
-
 ## ONIE Image Upgrade
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch. ONIE upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.15).
@@ -465,6 +463,7 @@ ONIE is an open source project (equivalent to PXE on servers) that enables the i
 - Merge conflicts with configuration file changes in the new release sometimes go undetected.
 - If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
+- If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. To work around this issue, **before** you upgrade Cumulus Linux, upgrade the ONIE installer to ONIE version 5.3.0013 or later. The ONIE installer upgrade requires a switch reload and causes a complete switch factory reset. To check the ONIE installer version, run the `sudo mount LABEL="ONIE-BOOT" /mnt` and `/mnt/onie/tools/bin/onie-version` commands.
 {{%/notice%}}
 
 To upgrade the switch with ONIE:
@@ -495,12 +494,9 @@ To back up the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
-
 {{< /tab >}}
-
 {{< tab "Back up Linux Configuration Files">}}
 
 If you do not use NVUE to manage your switch configuration, reference this section to back up your configuration files. 
@@ -524,7 +520,6 @@ As with other Linux distributions, the `/etc` directory is the primary location 
 | `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
-
 
 **Commonly Used Files:**
 
@@ -571,7 +566,6 @@ To show a list of files changed from the previous Cumulus Linux install, run the
 To show a list of generated `/etc/default/isc-*` files changed from the previous Cumulus Linux install, run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command.
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 2. Download the Cumulus Linux image.

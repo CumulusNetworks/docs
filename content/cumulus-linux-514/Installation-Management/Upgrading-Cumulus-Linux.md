@@ -286,6 +286,10 @@ To upgrade the switch with package upgrade:
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch. ONIE upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.14).
 
+{{%notice note%}}
+If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. To work around this issue, **before** you upgrade Cumulus Linux, upgrade the ONIE installer to ONIE version 5.3.0013 or later. The ONIE installer upgrade requires a switch reload and causes a complete switch factory reset. To check the ONIE installer version, run the `sudo mount LABEL="ONIE-BOOT" /mnt` and `/mnt/onie/tools/bin/onie-version` commands.
+{{%/notice%}}
+
 To upgrade the switch with ONIE:
 
 1. Back up the configurations off the switch.

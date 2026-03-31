@@ -13,6 +13,22 @@
 <td></td>
 </tr>
 <tr>
+<td>4925516</td>
+<td>If Cumulus Linux generates a core file while automatic cl-support file generation is deactivated, automatic file generation does not work for core files even after you reactivate automatic cl-support file generation but does work for other types of failures, such as service failures and restarts.To clear this problem condition and get automatic cl-support file generation working for cores again, run the following commands:
+cumulus@switch:~$ sudo systemctl reset-failed cumulus-core.service
+cumulus@switch:~$ sudo systemctl restart cumulus-core.service
+cumulus@switch:~$ sudo systemctl reset-failed cumulus-core.path
+cumulus@switch:~$ sudo systemctl restart cumulus-core.path</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4925514</td>
+<td>Core processing services such as {{cumulus-core.service}} and {{cumulus-core.path}} might enter a failed state due to {{systemd}} start rate limiting caused by rapid start and stop cycles. This issue can prevent core files from being included in subsequent automatically generated cl-support collections even after you reactivate automatic cl-support generation after deactivation due to a chain of faults. Newly generated core files might accumulate, potentially leading to {{/var}} partition exhaustion. To recover from this condition, run the {{sudo systemctl reset-failed cumulus-core.service cumulus-core.path}} command.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4918507</td>
 <td>When you upgrade Cumulus Linux from a prior release with package upgrade, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
 <td>5.16.0-5.16.1</td>
@@ -857,11 +873,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
-<td>4925516</td>
-<td>Core processing services such as {{cumulus-core.service}} and {{cumulus-core.path}} might enter a failed state due to {{systemd}} start rate limiting caused by rapid start and stop cycles. This issue can prevent core files from being included in subsequent automatically generated cl-support collections even after you reactivate automatic cl-support generation after deactivation due to a chain of faults. Newly generated core files might accumulate, potentially leading to {{/var}} partition exhaustion. To recover from this condition, run the {{sudo systemctl reset-failed cumulus-core.service cumulus-core.path}} command.</td>
-<td></td>
-</tr>
-<tr>
 <td>4925515</td>
 <td>When you exceed the maximum number of ports allowed (30) in an 802.1x IPv6 profile, IPv6 addresses are not allocated to additional ports even if authentication is successful. To work around this issue, create additional profiles with the same configuration, associating no more than 30 interfaces to each profile.</td>
 <td>5.16.0</td>
@@ -1353,12 +1364,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423277</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 147
 toc: 3
 ---
-Cumulus Linux uses `rsyslog` to collect, filter, store, and forward system logs from various services, applications, network components, and thermal controls (sensors and fans). `rsyslog` enables efficient troubleshooting, centralized log management, and compliance enforcement with custom rules for log processing.  
+Cumulus Linux uses `rsyslog` to collect, filter, store, and forward system logs from various services, applications, and network components. `rsyslog` enables efficient troubleshooting, centralized log management, and compliance enforcement with custom rules for log processing.  
 
 You can configure logging based on severity, program name, and facility while specifying transport settings such as VRF, protocol (UDP or TCP), and port. Cumulus Linux also provides advanced filtering using match conditions and actions so that you can capture and forward only relevant logs. Additionally, you can configure rate limiting to ensure controlled log forwarding and prevent overwhelming the system.
 
@@ -555,6 +555,17 @@ rsyslogd: End of config validation run. Bye.
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Thermal Control Logs
+
+By default, Hardware Management Thermal Control routes messages with Notice, Warning, Error, and Critical severity levels to syslog. The messages incude detailed information about the state of sensors and fans, and any errors. For repeating messages (PWM set failures, file read errors, sensor errors, and so on), Thermal Control does not repeat each occurrence and only prints the opening message and the corresponding closing message after the condition resolves, preventing syslog from being flooded with duplicate entries.
+
+The following example shows an opening and closing syslog message:
+
+```
+hw-management-tc: WARNING: asic1: /var/run/hw-management/thermal/asic (value) issue
+hw-management-tc: NOTICE: message "asic1: /var/run/hw-management/thermal/asic (value) issue"  (repeat=1, duration=60s)
+```
 
 ## Troubleshooting
 

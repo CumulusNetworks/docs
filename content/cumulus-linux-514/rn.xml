@@ -712,12 +712,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4423277</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423269</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.16.1</td>

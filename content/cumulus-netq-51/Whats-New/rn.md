@@ -15,8 +15,6 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4867933"></a> [4867933](#4867933) <a name="4867933"></a> <br /> | Threshold-crossing events created before version 5.1.0 may not display event values correctly after you upgrade NetQ. | 5.1.0 | |
-| <a name="4854041"></a> [4854041](#4854041) <a name="4854041"></a> <br /> | When you upgrade a NetQ for NVLink and Ethernet deployment using the data backup and restoration workflow, NetQ does not preserve NVLink data. | 5.1.0 | |
-| <a name="4845405"></a> [4845405](#4845405) <a name="4845405"></a> <br /> | NetQ does not support performing a backup on version 5.1.0 and restoring it to the same version (5.1.0). | 5.1.0 | |
 | <a name="4839716"></a> [4839716](#4839716) <a name="4839716"></a> <br /> | You cannot perform lifecycle management operations immediately after backing up an HA scale cluster deployment. To work around this issue, wait several hours before initiating LCM operations. | 5.1.0 | |
 | <a name="4794266"></a> [4794266](#4794266) <a name="4794266"></a> <br /> | Power sensor (PSU) events might show inconsistent sensor names. Additionally, NetQ might not generate PSU events reliably. | 5.1.0 | |
 | <a name="4687477"></a> [4687477](#4687477) <a name="4687477"></a> <br /> | When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters. | 5.0.0-5.1.0 | |

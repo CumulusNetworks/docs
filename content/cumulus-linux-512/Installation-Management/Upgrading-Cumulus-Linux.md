@@ -269,7 +269,7 @@ cumulus@switch:~$ cl-image-upgrade -a
 - Merge conflicts with configuration file changes in the new release sometimes go undetected.
 - If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
-- If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. To work around this issue, **before** you upgrade Cumulus Linux, upgrade the ONIE installer to ONIE version 5.3.0013 or later. The ONIE installer upgrade requires a switch reload and causes a complete switch factory reset. To check the ONIE installer version, run the `sudo mount LABEL="ONIE-BOOT" /mnt` and `/mnt/onie/tools/bin/onie-version` commands.
+- If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. Refer to {{<link url="#onie-install-issues" text="ONIE Install Issues">}}.
 {{%/notice%}}
 
 To upgrade the switch with ONIE:
@@ -613,5 +613,41 @@ After you upgrade using a full Cumulus Linux image install, you need to reinstal
 
 ## Considerations
 
+### /etc/os-release, /etc/lsb-release, and /etc/image-release Files
+
 - The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.12, these two files display the release as 5.12 after the upgrade.
 - The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.10.1, followed by a package upgrade to 5.12, the `/etc/image-release` file continues to display Cumulus Linux 5.10.1, which is the originally installed base image.
+
+### ONIE Install Issues
+
+If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. To work around this issue, **before** you upgrade Cumulus Linux, upgrade the ONIE installer to ONIE version 5.3.0013 or later. The ONIE installer upgrade requires a switch reload and causes a complete switch factory reset.
+
+{{< expand "Upgrade the ONIE installer" >}}
+1. Log into Cumulus Linux.
+2. Run the following commands:
+
+   ```
+   cumulus@switch:~$ sudo -i
+   cumulus@switch:~$ mount LABEL=ONIE-BOOT /mnt/onie-boot
+   cumulus@switch:~$ ln -s /mnt/onie-boot/onie/tools/lib/onie /lib/onie
+   ```
+
+3. To check the existing ONIE version, run the `/mnt/onie-boot/onie/tools/bin/onie-fwpkg show` command.
+
+   ```
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   ```
+
+4. To upgrade the ONIE installer, run the following commands:
+
+   ```
+   cumulus@switch:~$ wget http://Image/onie-updater-x86_64-mlnx_x86-r0
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg purge
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg add onie-updater-x86_64-mlnx_x86-r0
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   cumulus@switch:~$ umount /mnt/onie-boot
+   cumulus@switch:~$ onie-select -pf
+   ```
+
+5. Reboot the switch, then upgrade Cumulus Linux.
+{{< /expand >}}

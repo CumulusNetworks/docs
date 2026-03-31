@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 147
 toc: 3
 ---
-Cumulus Linux uses `rsyslog` to collect, filter, store, and forward system logs from various services, applications, and network components. `rsyslog` enables efficient troubleshooting, centralized log management, and compliance enforcement with custom rules for log processing.  
+Cumulus Linux uses `rsyslog` to collect, filter, store, and forward system logs from various services, applications, network components, and thermal controls (sensors and fans). `rsyslog` enables efficient troubleshooting, centralized log management, and compliance enforcement with custom rules for log processing.  
 
 You can configure logging based on severity, program name, and facility while specifying transport settings such as VRF, protocol (UDP or TCP), and port. Cumulus Linux also provides advanced filtering using match conditions and actions so that you can capture and forward only relevant logs. Additionally, you can configure rate limiting to ensure controlled log forwarding and prevent overwhelming the system.
 

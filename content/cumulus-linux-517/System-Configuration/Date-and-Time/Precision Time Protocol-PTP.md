@@ -72,10 +72,10 @@ To configure other settings, such as the PTP profile, domain, and priority, the 
 Remove the default NTP configuration on the switch:
 
 ```
-cumulus@switch:~$ nv unset service ntp mgmt server 0.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ nv unset service ntp mgmt server 1.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ nv unset service ntp mgmt server 2.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ nv unset service ntp mgmt server 3.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp mgmt server 0.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp mgmt server 1.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp mgmt server 2.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp mgmt server 3.cumulusnetworks.pool.ntp.org
 cumulus@switch:~$ nv config apply
 ```
 

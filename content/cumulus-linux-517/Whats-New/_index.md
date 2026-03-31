@@ -25,10 +25,10 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - {{<link url="Quality-of-Service/#lossless-headroom" text="PFC headroom pool">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-tlvs" text="Granular LLDP TLV definition and control">}}
 - {{<link url="Automatic-Configuration-Backup" text="Automatic configuration backup">}}
+- {{<link url="Syslog/#thermal-control-logs" text="Thermal logging in syslsog (sensor and fan state and errors)">}}
 - BGP/LLDP X-Plane multi-plane'd GPUs with disjoined planes (EVPN based deployments) (Beta)
 - LLDP BGP Route Redistribution Extension (Beta)
 - Routing Convergence Enhancement for full connectivity loss (all links Up/restart)
-- Integrate logs in tc_log to the syslog​, and update log level
 - NVUE
   - {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#show-secure-boot-details" text="NVUE command to show secure boot status and details">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}

@@ -556,6 +556,18 @@ rsyslogd: End of config validation run. Bye.
 {{< /tab >}}
 {{< /tabs >}}
 
+## Thermal Control Logs
+
+By default, Hardware Management Thermal Control routes Notice, Warning, Error, and Critical messages to syslog. These messages include detailed information about sensor and fan states, as well as any detected errors.
+For recurring messages (such as PWM set failures, file read errors, or sensor errors), Thermal Control suppresses duplicate entries. It logs only the initial message and a corresponding closing message after the condition resolves, preventing syslog from being flooded.
+
+The following example shows an opening and closing syslog message:
+
+```
+hw-management-tc: WARNING: asic1: /var/run/hw-management/thermal/asic (value) issue
+hw-management-tc: NOTICE: message "asic1: /var/run/hw-management/thermal/asic (value) issue"  (repeat=1, duration=60s)
+```
+
 ## Troubleshooting
 
 You can use the following Linux commands to troubleshoot `syslog` issues.

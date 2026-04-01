@@ -23,6 +23,10 @@ You can download a Cumulus Linux image from the {{<exlink url="https://enterpris
 Installing the Cumulus Linux image is destructive; configuration files on the switch are not saved; copy them to a different server before installing.
 {{%/notice%}}
 
+{{%notice note%}}
+The Spectrum-6 switch requires you to install the <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span> and <span class="a-tooltip">[EROT](## "Embedded Root of Trust")</span> components. For package download and installation instructions, refer to {{<link url="BMC-and-eRoT" text="BMC and eRoT">}}.
+{{%/notice%}}
+
 In the following procedures:
 
 - You can name your Cumulus Linux image using any of the
@@ -700,6 +704,13 @@ SBAT revocation information includes:
 
 ```
 cumulus@switch:~$ nv show system security secure-boot
+key-database
+===============
+No Data
+
+sbat-revocation
+==================
+No Data
 ```
 
 {{< /tab >}}

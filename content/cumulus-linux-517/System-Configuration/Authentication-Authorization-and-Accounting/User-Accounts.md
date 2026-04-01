@@ -312,7 +312,7 @@ sh
 To view the hashed password for the user in the original form instead of with obfuscated values (asterisks), add the `--privileged` option to the `nv show system aaa user <user-id>` command. You must have `sudo` privileges to view the hashed password.
 
 ```
-cumulus@switch:~$ nv show system aaa user cumulus
+cumulus@switch:~$ nv show system aaa user cumulus --privileged
                     operational  applied
 ------------------  -----------  -------
 state            enabled       enabled     

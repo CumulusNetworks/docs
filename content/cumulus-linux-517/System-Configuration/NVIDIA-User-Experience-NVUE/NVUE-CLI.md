@@ -347,10 +347,11 @@ To verify your configuration before you apply it, run the `nv config verify` com
 cumulus@switch:~$ nv config verify
 ```
 
-To show the configuration file produced by the `nv config apply` command, run `nv config verify` with the `debug` option.
+To verify the configuration of a file, run the `nv config verify filename <filename>` command. To verify the configuration of a revision, run the `nv config verify revision <revision>` command.
 
 ```
-cumulus@switch:~$ nv config verify debug
+cumulus@switch:~$ nv config verify revision 2
+dry_run_complete [rev_id: 2]
 ```
 
 ## NVUE Configuration File

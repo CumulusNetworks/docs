@@ -425,7 +425,6 @@ user@server:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_HO
 
 3. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Import the certificate">}} used for the repository container on the switches you want to upgrade. If you are using a self-signed certificated, you can retrieve it from the container with the curl command: `curl -fsSL http://10.1.1.100:8080/ca.crt`.
 
-
 <!--
 Retrieve and install the certificate on the switches you want to upgrade:
 
@@ -454,7 +453,6 @@ deb https://10.1.100.1:8443 CumulusLinux-5.15.0 cumulus upstream netq
 -->
 5. Continue with a {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} on your switch. 
 
-
 ## ONIE Image Upgrade
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch. ONIE upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.15).
@@ -465,6 +463,7 @@ ONIE is an open source project (equivalent to PXE on servers) that enables the i
 - Merge conflicts with configuration file changes in the new release sometimes go undetected.
 - If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
+- If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. Refer to {{<link url="#onie-install-issues" text="ONIE Install Issues">}}.
 {{%/notice%}}
 
 To upgrade the switch with ONIE:
@@ -495,12 +494,9 @@ To back up the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
-
 {{< /tab >}}
-
 {{< tab "Back up Linux Configuration Files">}}
 
 If you do not use NVUE to manage your switch configuration, reference this section to back up your configuration files. 
@@ -524,7 +520,6 @@ As with other Linux distributions, the `/etc` directory is the primary location 
 | `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
-
 
 **Commonly Used Files:**
 
@@ -571,7 +566,6 @@ To show a list of files changed from the previous Cumulus Linux install, run the
 To show a list of generated `/etc/default/isc-*` files changed from the previous Cumulus Linux install, run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command.
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 2. Download the Cumulus Linux image.
@@ -751,8 +745,50 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 ## Considerations
 
+### /etc/os-release, /etc/lsb-release, and /etc/image-release Files
+
 - The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.15, these two files display the release as 5.15 after the upgrade.
 - The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.13, followed by a package upgrade to 5.15, the `/etc/image-release` file continues to display Cumulus Linux 5.13, which is the originally installed base image.
-- To downgrade a switch with Secure Boot enabled, see {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}}.
-- If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch. After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages. Package upgrade does **not** replace or remove third-party applications.
+
+### Downgrade a Switch with Secure Boot
+
+To downgrade a switch with Secure Boot enabled, see {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}}.
+
+### Third Party Applications
+
+If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch. After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages. Package upgrade does **not** replace or remove third-party applications.
+
+### ONIE Install Issues
+
 - If you run `onie-install` without the `-t` option and the `nv config patch <config>` or `nv config replace <config>` command fails, try to translate the configuration file with the `nv config translate <config.yaml> > <translated-config.yaml>` command before you run `onie-install`.
+- If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. To work around this issue, **before** you upgrade Cumulus Linux, upgrade the ONIE installer to ONIE version 5.3.0013 or later. The ONIE installer upgrade requires a switch reload and causes a complete switch factory reset.
+
+{{< expand "Upgrade the ONIE installer" >}}
+1. Log into Cumulus Linux.
+2. Run the following commands:
+
+   ```
+   cumulus@switch:~$ sudo -i
+   cumulus@switch:~$ mount LABEL=ONIE-BOOT /mnt/onie-boot
+   cumulus@switch:~$ ln -s /mnt/onie-boot/onie/tools/lib/onie /lib/onie
+   ```
+
+3. To check the existing ONIE version, run the `/mnt/onie-boot/onie/tools/bin/onie-fwpkg show` command.
+
+   ```
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   ```
+
+4. To upgrade the ONIE installer, run the following commands:
+
+   ```
+   cumulus@switch:~$ wget http://Image/onie-updater-x86_64-mlnx_x86-r0
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg purge
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg add onie-updater-x86_64-mlnx_x86-r0
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   cumulus@switch:~$ umount /mnt/onie-boot
+   cumulus@switch:~$ onie-select -pf
+   ```
+
+5. Reboot the switch, then upgrade Cumulus Linux.
+{{< /expand >}}

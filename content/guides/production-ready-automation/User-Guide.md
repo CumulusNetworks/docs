@@ -204,11 +204,11 @@ After you reach your simulation console, choose a demo from the dropdown menu on
 4. Follow the instructions on the `Guided Tour` panel to test and experience the unique aspects of your selected demo.
 <!-- vale on -->
 
-## Manually Run the Automation Demo from Cumulus in the Cloud
+## Manually Run the Automation Demo from Nvidia DSX Air Platform
 
-{{<exlink url="https://www.NVIDIA.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}} provides the fastest way to enjoy the experience of provisioning a full data center using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, you can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the Cloud also includes a free temporary NetQ Cloud account to showcase the NetQ features with live data from your simulation.
+{{<exlink url="https://www.NVIDIA.com/en-us/networking/network-simulation/" text="Nvidia DSX Air">}} provides the fastest way to enjoy the experience of provisioning a full data center using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, you can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the Cloud also includes a free temporary NetQ Cloud account to showcase the NetQ features with live data from your simulation.
 
-1. Start from the `oob-mgmt-server` in your Cumulus in the Cloud simulation. For the best experience, use an SSH client to connect. Find the SSH client connection information from the **Services** window in the UI.
+1. Start from the `oob-mgmt-server` in your DSX Air simulation. For the best experience, use an SSH client to connect. Find the SSH client connection information from the **Services** window in the UI.
 
     {{<img src="/images/guides/citc-interface-services.png" >}}
 

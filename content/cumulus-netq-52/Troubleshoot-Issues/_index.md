@@ -124,7 +124,7 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 | All cluster addresses must belong to the same subnet. Master node net mask = {} | HA cluster |  Make sure all cluster IP addresses---the master, worker, and virtual IP---belong to the same subnet.|
 | Virtual IP {} is already used | HA cluster | Provide a unique virtual IP address. |
 | Package {} with version {} must be installed. | | Make sure the `netq-apps` version is the same as the tarball version. |
-| Master node is already bootstrapped | | Run the {{<link title="bootstrap" text="netq bootstrap rest">}} command, followed by the {{<link title="install" text="netq install">}} command to re-attempt the installation. |
+| Master node is already bootstrapped | | Run the {{<link title="bootstrap" text="netq bootstrap reset">}} command, followed by the {{<link title="install" text="netq install">}} command to re-attempt the installation. |
 {{</tab>}}
 
 {{</tabs>}}

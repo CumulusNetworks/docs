@@ -25,7 +25,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - {{<link url="Quality-of-Service/#lossless-headroom" text="PFC headroom pool">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-tlvs" text="Granular LLDP TLV definition and control">}}
 - {{<link url="Automatic-Configuration-Backup" text="Automatic configuration backup">}}
-- {{<link url="Syslog/#thermal-control-logs" text="Thermal logging in syslsog (sensor and fan state and errors)">}}
+- {{<link url="Syslog/#thermal-control-logs" text="Thermal logging in syslog (sensor and fan state and errors)">}}
 - BGP/LLDP X-Plane multi-plane'd GPUs with disjoined planes (EVPN based deployments) (Beta)
 - LLDP BGP Route Redistribution Extension (Beta)
 - NVUE

@@ -10,10 +10,10 @@ Check out the latest updates to {{<exlink url="https://air-ngc.nvidia.com" text=
 ## March 2026
 <!-- Air:WhatsNew -->
 ### 82.2.1.5.7
-- Fixed and issue where the Node Instructions table would not resize well on smaller viewports
-- Fixed image name length where it was overlapping version.
+- Fixed an issue where the node instructions table did not resize correctly on smaller viewports
+- Fixed a UI display issue affecting images with names longer than 128 characters
 <!-- Air:WhatsNew -->
 
 ### 82.2.1.5.6
-- Fixed an issue where large simulations fail to be deleted.
+- Fixed an issue that prevented large simulations from being deleted
 

@@ -5,7 +5,7 @@ weight: 850
 toc: 4
 ---
 
-The KPI REST endpoint provides key performance indicators (KPIs) that summarize your network cluster’s overall health while also allowing you to examine specific events in greater detail. KPIs reflect aggregated data across all domains. To troubleshoot a specific domain, use the compute-node or switch-node REST API endpoints.
+The KPI REST endpoints provide key performance indicators (KPIs) that summarize your network cluster’s overall health while also allowing you to examine specific events in greater detail. KPIs reflect aggregated data across all domains.
 
 ## Access the API
 
@@ -32,7 +32,7 @@ wget --quiet \
 {{</tab>}}
 {{</tabs>}}
 
-## API Filters
+## Apply Filters
 
 The REST API supports filtering based on health or inventory information. To use these filters, append the filter parameter to the endpoint, for example `kpis?filter=HEALTH`. Refer to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="Swagger API">}} for a complete list of available filters.
 

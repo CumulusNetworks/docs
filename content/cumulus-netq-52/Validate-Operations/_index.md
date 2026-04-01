@@ -28,9 +28,9 @@ The following table displays the validation categories and the default frequency
 | Sensors | Yes | Yes |  Yes |  60 mins |
 | Topology | Yes | Yes | No | on-demand, as scheduled |
 | VLAN | Yes | Yes | Yes |  60 mins |
-| VXLAN | Yes | Yes | Yes |  60 mins |
+| VXLAN* | Yes | Yes | Yes |  60 mins |
 
-*This validation is undergoing improvements. The enhanced version identifies duplicate endpoints across VRFs. It is available in the UI and does not generate events.
+**Deprecated*
 
 {{<notice note>}}
 After logging in, it can take up to an hour for NetQ to display accurate validation data.

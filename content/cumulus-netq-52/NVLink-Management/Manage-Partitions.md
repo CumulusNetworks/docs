@@ -7,7 +7,7 @@ toc: 4
 
 Network partitions represent logical groupings of GPUs that reside within the same network domain. Partitions can be created based on one of two member types:
 
-- GPU-ID-based: A list of unique GPU identifiers.
+- GPU-ID-based: A list of unique GPU identifiers. You can list devices by either their database ID (`db-id`) or unique identifier (`device-uuid`). Pick one ID method; do not use both.
 - Location-based: A set of objects describing each GPU’s physical placement, including attributes such as domain, chassis, slot, and host.
 
 A partition's member type is fixed at creation and cannot be changed or updated. All subsequent operations---such as updates or read requests---must use the same member type. For example, attempting to update a location-based partition using GPU IDs will result in a `409 Conflict` error.
@@ -20,8 +20,8 @@ Use the `/v1/partitions` endpoint to create, update, view, or delete a partition
 
 | Endpoint | Description |
 | :-- | :-- |
-| GET `/nmx/v1/partitions` | Retrieve a list of partitions |
-| POST `/nmx/v1/partitions` | Create a partition. The request body must include a partition name and a `members` object, which is either GPU-ID-based or location-based |
+| GET `/nmx/v1/partitions` | Retrieve a list of partitions. The `gpu-id-type` parameter allows you to specify devices by either their database ID (`db-id`) or unique identifier (`device-uuid`). |
+| POST `/nmx/v1/partitions` | Create a partition. The request body must include a partition name and a `members` object, which is either GPU-ID-based (`db-id` or `device-uuid`) or location-based |
 | GET `/nmx/v1/partitions/{id}` | Retrieve partition information, including health and metadata |
 | PUT `/nmx/v1/partitions/{id}` | Update a partition. Note that the partition name cannot be modified. However, you can update its member list. When performing a PUT operation, the `members` parameter must include all GPUs that will belong to the partition. The system compares the provided list with the current configuration and adds or removes members automatically. |
 | DELETE `/nmx/v1/support-packages/{id}` | Delete a partition |

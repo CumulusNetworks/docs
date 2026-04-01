@@ -6,11 +6,13 @@ toc: 4
 ---
 Create a flow analysis to sample data from TCP and UDP flows in your environment and to review latency and buffer utilization statistics across network paths.
 
-<!-- vale off -->
+{{<notice warning>}}
+This feature has been deprecated.
+{{</notice>}}
 {{<notice info>}}
 Flow analysis is supported on NVIDIA Spectrum-2 switches and later. It requires a switch fabric running Cumulus Linux version 5.0 or later.
 {{</notice>}}
-<!-- vale on -->
+
 ## Create a New Flow Analysis
 
 1. To start a new flow analysis, in the header select **Flow analysis** then **Create new flow analysis**.

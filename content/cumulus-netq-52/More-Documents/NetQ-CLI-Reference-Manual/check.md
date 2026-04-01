@@ -19,6 +19,9 @@ Refer to the {{<link title="Validation Tests Reference">}} for a description of 
 
 - - -
 ## netq check addresses
+{{<notice info>}}
+This feature has been deprecated.
+{{</notice>}}
 
 Searches for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and checks for duplicate /32 host routes in each VRF.
 
@@ -66,7 +69,6 @@ Skipped Nodes       : 0
 
 IPV4 Duplicate Address Test   : passed
 IPV6 Duplicate Address Test   : passed
-
 ```
 
 ### Related Commands
@@ -75,6 +77,9 @@ IPV6 Duplicate Address Test   : passed
 - - -
 ## netq check agents
 
+{{<notice info>}}
+This feature has been deprecated.
+{{</notice>}}
 Validates the communication status of all nodes (leafs, spines, and hosts) running the NetQ Agent in your network fabric. The output displays the status (passed/failed/skipped) of all tests and a summary including:
 
 - Total number of nodes found
@@ -1132,6 +1137,10 @@ Topology Blueprint Test   : passed
 
 ## netq check vlan
 
+{{<notice info>}}
+The MLAG bond consistency test has been deprecated.
+{{</notice>}}
+
 Verifies consistency of the virtual local area network (VLAN) nodes and interfaces across all links in your network fabric. In particular, it looks for link neighbor and MLAG bond consistency. You can also identify nodes without peers.
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
@@ -1191,7 +1200,7 @@ Total Link Count    : 291
 Failed Link Count   : 4
 
 Link Neighbor VLAN Consistency Test   : 0 warnings, 4 errors
-Clag Bond VLAN Consistency Test       : 0 warnings, 2 errors
+MLAG Bond VLAN Consistency Test       : 0 warnings, 2 errors
 
 Link Neighbor VLAN Consistency Test details:
 Hostname          Interface                 VLANs                     Peer              Peer Interface            Peer VLANs                Message
@@ -1223,9 +1232,11 @@ border02          bond3                     10,20,30                  -         
 - ```netq add validation```
 
 - - -
-<!-- vale off -->
+
 ## netq check vxlan
-<!-- vale on -->
+{{<notice info>}}
+This feature has been deprecated.
+{{</notice>}}
 Verifies consistency of the virtual extensible local area network (VXLAN) nodes and interfaces across all links in your network fabric. In particular, it looks for consistent VXLAN configuration and BUM replication errors.
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:

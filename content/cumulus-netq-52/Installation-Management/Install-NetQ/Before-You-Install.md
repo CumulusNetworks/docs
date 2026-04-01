@@ -18,7 +18,7 @@ Consider the following deployment options and requirements before you install th
 | KVM or VMware hypervisor | KVM or VMware hypervisor | KVM or VMware hypervisor |
 | No high-availability option | High-availability | High-availability |
 | System requirements:<ul></ul><ul><li>16 virtual CPUs</li><li>64GB RAM</li><li>500GB SSD disk</li></ul>| System requirements (per node):<ul></ul><ul><li>16 virtual CPUs</li><li>64GB RAM</li><li>500GB SSD disk</li></ul>| System requirements (per node): <ul></ul><ul><li>48 virtual CPUs</li><li>512GB RAM </li><li>3.2TB SSD disk</li></ul>|
-| Not supported:<ul><li>NVLink monitoring</li></ul> | Not supported:<ul><li>NVLink monitoring</li>|  Not supported:<ul><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>MAC commentary</li><li>Duplicate IP address validations</li></ul> Limited support: <ul><li>Link health view (beta)</li></ul>|
+| Not supported:<ul><li>NVLink monitoring</li></ul> | Not supported:<ul><li>NVLink monitoring</li>|  Not supported:<ul><li>Network snapshots</li><li>Trace requests</li><li>MAC commentary</li></ul> Limited support: <ul><li>Link health view (beta)</li></ul>|
 
 *When switches are {{<link title="Integrate NetQ with Grafana/#requirements-and-support" text="configured with both OpenTelemetry (OTLP)">}} and the NetQ agent, switch support per deployment model is reduced by half.<br>
 

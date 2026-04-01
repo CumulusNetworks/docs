@@ -704,6 +704,13 @@ SBAT revocation information includes:
 
 ```
 cumulus@switch:~$ nv show system security secure-boot
+key-database
+===============
+No Data
+
+sbat-revocation
+==================
+No Data
 ```
 
 {{< /tab >}}

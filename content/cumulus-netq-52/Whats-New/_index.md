@@ -10,6 +10,9 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 5.2
 
+- Added a “correlation” event type which displays the association between host-based errors and devices within a network’s fabric (beta)
+- 
+
 
 ### NetQ for NVLink API Changes
 - Added a `/v1/redfish` endpoint to detect and report leak events in liquid-cooling equipment using the Redfish Baseboard Management Controller (BMC)

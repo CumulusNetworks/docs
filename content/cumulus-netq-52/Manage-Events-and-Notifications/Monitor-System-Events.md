@@ -19,17 +19,17 @@ Refer to {{<link title="Configure System Event Notifications">}} for information
 
 Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then select **Events**.
 
-The dashboard presents a timeline of events alongside the devices that are causing the most events. You can select the controls above the summary to filter events by time, device (hostname), type, severity, or state. Select the tabs below the controls to display all events networkwide, interface events, network services events, system events, or threshold-crossing events. The charts and tables update according to the tab you've selected.
-
-  {{<figure src="/images/netq/events-full-460.png" width="1200" alt="Events dashboard with networkwide error and info events.">}}
+The dashboard presents a timeline of events alongside the devices that are causing the most events. You can select the controls above the summary to filter events by time, device (hostname), type, severity, or label. Select the tabs below the controls to display all events networkwide, interface events, network services events, system events, or threshold-crossing events. The charts and tables update according to the tab you've selected.
 
 Events are also generated when streaming {{<link title="Validation Tests Reference" text="validation checks">}} detect a failure. If an event is generated from a failed validation check, it will be marked resolved automatically the next time the check runs successfully.
 
+  {{<figure src="/images/netq/events-summary-52.png" width="1200" alt="Events dashboard with networkwide error and info events.">}}
+
+
+
 ## Create Event Filters
 
-You can create, save, and apply filters to show a subset of events. After you save the filters, navigate back to your workbench to view filtered and unfiltered data side-by-side. For example, the left-most card displays all network events from the past 24 hours alongside a filtered subset of BGP 'error' events from the past six hours:
-
-{{<figure src="/images/netq/events-plus-filter-413.png" width="500" alt="">}}
+You can create, save, and apply filters to show a subset of events. After you save the filters, navigate back to your workbench to view filtered and unfiltered data side-by-side.
 
 {{<tabs "TabID38" >}}
 
@@ -39,13 +39,17 @@ To create a filter in the NetQ UI:
 
 1. Expand the Events card to full-screen.
 
-2. Use the controls above the events summary to create a filter according to time parameters, hostname, event type, or event severity.
+2. Use the controls above the events summary to create a filter according to time parameters, hostname, event type, severity, or label.
 
 3. Select **Save filters** and enter a descriptive name for the filter. Then select **Save**.
 
 The events summary now displays the filtered data. Select the X in the top-right corner to return to your workbench. The events card displays a filter with a red dot, indicating that you are viewing filtered data. Hover your mouse over the filter to view its name. If you have not included a custom time filter, you can select the clock <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> to adjust the time period of the data reflected on the card.
 
-To clear or delete the filter, expand the card to full-screen and select **Clear all filters** from above the table. When you remove cards from a workbench, the cards' respective filters are also deleted. Note that when you clone a workbench, you must recreate the filters on the new, cloned workbench. 
+To clear or delete the filter, expand the card to full-screen and select **Clear all filters** from above the table. When you remove cards from a workbench, the cards' respective filters are also deleted. Note that when you clone a workbench, you must recreate the filters on the new, cloned workbench.
+
+In the following example, the left-most card displays all network events from the past 24 hours alongside a filtered subset of BGP 'error' events from the past six hours:
+
+{{<figure src="/images/netq/events-plus-filter-413.png" width="500" alt="">}}
 
 {{</tab>}}
 

@@ -341,17 +341,41 @@ To view the NVUE command reference for Cumulus Linux, which describes all the NV
 
 ## Verify Configuration Before Applying
 
-To verify your configuration before you apply it, run the `nv config verify` command. The command output shows any errors so that you can resolve them before applying the configuration.
+To verify your configuration before you apply it, run the `nv config verify` command. The command validates configuration without reloading services or modifying the running system state. The command output shows any errors so that you can resolve them before applying the configuration.
+
+You can also verify the configuration of a specific YAML or plain text configuration file, or a specific configuration revision (ID, applied, empty, or startup).
+
+The `nv config verify` command provides a `--verbose` option that shows a list of staged files and scheduled services affected in addition to reporting validation success or failure, and showing warnings and errors.
+
+{{%notice note%}}
+NVUE does not reload services during verification; therefore, a successful verification does not guarantee a successful `nv config apply`. The `nv config verify` command confirms syntax, schema, and staging logic, but cannot account for environmental runtime errors.
+{{%/notice%}}
+
+To verify the pending configuration, run the `nv config verify` command:
 
 ```
 cumulus@switch:~$ nv config verify
+applied_and_saved [rev_id: 2]
 ```
 
-To verify the configuration of a file, run the `nv config verify filename <filename>` command. To verify the configuration of a revision, run the `nv config verify revision <revision>` command.
+To verify the configuration of a file, run the `nv config verify filename <filename>` command.
+
+```
+cumulus@switch:~$ nv config verify filename config2.yaml
+dry_run_complete [rev_id: 2]
+```
+
+To verify the configuration of a revision, run the `nv config verify revision <revision>` command.
 
 ```
 cumulus@switch:~$ nv config verify revision 2
 dry_run_complete [rev_id: 2]
+```
+
+To show a list of staged files and scheduled services affected in addition to reporting validation success or failure, and showing warnings and errors, use the `--verbose` option:
+
+```
+cumulus@switch:~$ nv config verify revision startup --verbose
 ```
 
 ## NVUE Configuration File

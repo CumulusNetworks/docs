@@ -840,7 +840,7 @@ The statistics category must be enabled. For example, to configure specific cont
 The following example configures the platform memory metrics `node_memory_MemTotal_bytes` and `node_memory_MemFree_bytes`, and all `nvswitch_env_` and `node_cpu_` metrics in a group called PLATFORM_METRICS.
 
 ```
-cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS description ”Platform metrics" 
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS description "Platform metrics" 
 cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_memory_MemTotal_bytes 
 cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_memory_MemFree_bytes 
 cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric nvswitch_env_* 

@@ -74,9 +74,9 @@ You can change the SED password only on switches with SED enabled.
 
 The Trusted Platform Module (TPM) on the disk maintains two distinct persistent storage locations, referred to as TPM Banks, which serve as primary and secondary storage for the SED management password. During the boot process, the Pre-Boot Authentication (PBA) mechanism attempts to unlock the SED using the password stored in the primary bank. If the decryption attempt fails, the PBA automatically retries using the secondary bank.  
 
-To change the password, run the `nv action change security sed-password <password>` command:
+To change the password, run the `nv action change system security sed-password <password>` command:
 
 ```
-cumulus@switch:~$ nv action change security sed-password NewPassword
+cumulus@switch:~$ nv action change system security sed-password NewPassword
 cumulus@switch:~$ nv config apply
 ```

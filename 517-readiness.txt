@@ -6,7 +6,7 @@ Security alerts for audit processing failures DONE reviewed
 
 NVUE command and NVUE API option to verify configuration before applying DONE in review
 
-
+*********************************************
 
 Change the SED disk password - DONE - ready for review
 
@@ -18,18 +18,18 @@ nv show interface <interface-id> qos roce counters supports multiple interfaces,
 
 Revert to DHCP if the ZTP URL is not reachable DONE -ready for review (small feature no command)
 
-NVUE prevents configuration changes during long background operations DONE 
+NVUE prevents configuration changes during long background operations DONE  - ready for review
 
 NVUE prevents configuration changes during long background operations
 DONE - ready for review
+
+Lossless headroom size based on small packet probability Done - ready for review
 
 Thermal logging in syslog (sensor and fan state and errors) DONE  ready for review
 
 802.1X reauthentication: maximum number of retries and interface configuration DONE - ready for review - need to check command output 
 
 
-
-Lossless headroom size based on small packet probability (Beta) NOT IN BUILD 005
 
 Dynamic ECN (Beta) NOT IN BUILD 005
 

@@ -613,21 +613,6 @@ cumulus@switch:~$ nv set qos pfc default-global cable-length 50
 cumulus@switch:~$ nv config apply
 ```
 
-To show the PFC settings for the default profile, run the `nv show qos pfc default-global` command:
-
-```
-cumulus@switch:~$ nv show qos pfc default-global
-                   operational  applied  description
------------------  -----------  -------  --------------------------------
-cable-length       50           50       Cable Length (in meters)
-port-buffer        25000 B      25000 B  Port Buffer (in bytes)
-rx                 disable      disable  PFC Rx State
-tx                 enable       enable   PFC Tx State
-xoff-threshold     10000 B      10000 B  Xoff Threshold (in bytes)
-xon-threshold      2000 B       2000 B   Xon Threshold (in bytes)
-[switch-priority]  0            0        Collection of switch priorities.
-```
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -649,6 +634,73 @@ pfc.default-global.cable_length = 50
 {{< /tabs >}}
 
 To apply a custom profile to specific interfaces, see [Port Groups](#pfc).
+
+To show the PFC settings for the default profile, run the `nv show qos pfc default-global` command:
+
+```
+cumulus@switch:~$ nv show qos pfc default-global
+                          operational  applied 
+------------------------  -----------  ------- 
+cable-length              105          105     
+small-packet-probability               60
+tx                        enable       enable
+rx                        enable       enable
+[switch-priority]         3            3
+```
+
+To show the PFC settings for an interface, run the `nv show interface <interface-id> qos pfc` command:
+
+```
+cumulus@switch:~$ nv show interface swp1-5 qos pfc
+                 operational  applied 
+---------------  -----------  ------- 
+xoff-threshold   18.94 KB 
+xon-threshold    18.94 KB 
+port-buffer      35.25 KB 
+cable-length     100 
+tx               enable 
+rx               enable 
+switch-priority  3 
+small-packet-probability 60 
+```
+
+### Lossless Headroom Based on Small Packet Probability
+
+{{%notice note%}}
+Lossless headroom based on small packet probability is a Beta feature.
+{{%/notice%}}
+
+Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). On Spectrum-5 and earlier, the switch assumes a 100 percent probability of such packets arriving at line rate. On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
+
+To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}. Based on the configured small packet probability, `switchd` calculates the headroom reservation required for the lossless priority group.
+
+To configure the probability of small packets:
+
+{{< tabs "TabID679 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set qos pfc <profile> small-packet-probability <percent>` command. To configure a profile for PFC, refer to {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}.
+
+The following command sets the small packet probability for all ports in the PFC `default-global` profile to 60 percent.
+
+```
+cumulus@switch:~$ nv set qos pfc default-global small-packet-probability 60
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `priority flow control` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+
+```
+pfc.default-global.small_packet_probability = 60
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the PFC small packet probability setting for the default profile, run the `nv show qos pfc default-global` command. To show the PFC small packet probability setting for an interface, run the `nv show interface <interface-id> qos pfc` command.
 
 ### PFC Watchdog
 
@@ -771,51 +823,6 @@ PFC WD Status
 To show PFC watchdog data for a specific traffic class, run the `nv show interface <interface-id> qos pfc-watchdog status <traffic-class>` command.
 
 To clear the PFC watchdog `deadlock-count` on an interface, run the `nv action clear interface <interface-id> qos pfc-watchdog deadlock-count` command.
-
-### Lossless Headroom Based on Small Packet Probability
-
-{{%notice note%}}
-Lossless headroom based on small packet probability is a Beta feature.
-{{%/notice%}}
-
-Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). On Spectrum-5 and earlier, the switch assumes a 100 percent probability of such packets arriving at line rate. On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
-
-To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}.
-
-To configure the probability of small packets on a port:
-
-{{< tabs "TabID783 ">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv set interface <interface-id> qos small-packet-probability <percent>` command.
-
-The following command sets the small packet probability on swp1 to 60 percent:
-
-```
-cumulus@switch:~$ nv set interface swp1 qos small-packet-probability 60
-cumulus@switch:~$ nv config apply
-```
-
-The following command sets the small packet probability on swp1 through swp10 to 60 percent:
-
-```
-cumulus@switch:~$ nv set interface swp1-10 qos small-packet-probability 60
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `small_pcket_probablity` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
-
-```
-swp1.qos.small_packet_probability = 60 
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To show the small packet probability configuration, run the `nv show interface <interface-id> qos small-packet-probability` command.
 
 ## Congestion Control (ECN)
 

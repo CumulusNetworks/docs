@@ -226,7 +226,7 @@ System will restart
 
 ### Show Reboot Information
 
-To show reboot information, such as the date and time, and reason, and the reboot mode, run the `nv show system reboot` command:
+To show reboot information, such as the date and time, and reason, the reboot mode, and the reboot status, run the `nv show system reboot` command:
 
 ```
 cumulus@switch:~$ nv show system reboot
@@ -235,19 +235,16 @@ reason
   gentime              2026-02-28T01:45:15.921195+00:00
   user                 system/root
 required               no
-last-reboot-operation  cold
-status                 success
-detailed-status         none
+last-reboot-operation  warm
+status                 failed
+detailed-status        forwarding driver api failed
 ```
 
-<!-- COMMENTED OUT AS THIS COMMAND ISN'T OPERATIONAL IN 5.15
-To display the current resource mode, run the `nv show system forwarding resource-mode` command. 
+For cold and fast reboot, the `status` indicates `success` and the `detailed-status` is `none` immediately after reboot.
 
-```
-cumulus@switch:~$ nv show system forwarding resource-mode
-cumulus@switch:~$ nv config apply
-```
--->
+For warm reboot, the `status` transitions from `in-progress` to `success` after ISSU completes, or to `failed` with a `detailed-status` of `forwarding driver api failed` if ISSU fails.
+
+The switch also creates a syslog message to indicate if warm reboot is in progress or complete.
 
 ## Warm Reboot and ISSU Considerations
 

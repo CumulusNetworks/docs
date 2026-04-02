@@ -32,7 +32,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#show-secure-boot-details" text="NVUE command to show secure boot status and details">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}
   - {{<link url="NVUE-CLI/#configuration-commands" text="NVUE prevents configuration changes during long background operations">}}
-  - {{<link url="NVUE-CLI/#verify-configuration-before-applying" text="Verify configuration before applying">}}
+  -  {{<link url="NVUE-CLI/#verify-configuration-before-applying" text="NVUE command">}} and {{<link url="NVUE-API/#verify-configuration-before-applying" text="NVUE API option">}} to verify configuration before applying
 - Telemetry
   - New OTEL metrics: {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="link debounce">}}, {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="PHY link down">}}, and {{<link url="Open-Telemetry-Export/#control-plane-statistic-format" text="control plane">}}
   - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="PHY link down, link debounce, and control plane">}}

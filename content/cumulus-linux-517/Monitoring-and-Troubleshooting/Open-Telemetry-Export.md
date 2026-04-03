@@ -887,6 +887,12 @@ otlp
 
 To show the OTLP gRPC destination configuration, run the `nv show system telemetry export otlp grpc destination` command.
 
+To show the configured metric list groups, run the `nv show system telemetry metric-list` command. To show information about a specific metric list group, run the `nv show system telemetry metric-list <metric-list-id>` command.
+
+```
+cumulus@switch:~$ nv show system telemetry metric-list
+```
+
 ### Static Labels
 
 You can apply static labels to switches and individual interfaces to configure descriptions for devices and interface roles. Exported OTLP data includes these label names and descriptions.

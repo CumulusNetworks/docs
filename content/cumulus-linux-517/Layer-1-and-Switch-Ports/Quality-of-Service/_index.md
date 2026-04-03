@@ -930,10 +930,10 @@ Dynamic ECN is a congestion marking mechanism optimized for high-performance tra
 
 {{%notice note%}}
 - Cumulus Linux supports dynamic ECN on switches with Spectrum-4 and later.
-- ECN marking probability has a hardware granularity of 1 percent; effective probabilities below 1 percent do not produce any marking.
+- ECN marking probability has a hardware granularity of one percent; effective probabilities below one percent do not produce any marking.
 {{%/notice%}}
 
-To configure dynamic ECN:
+To configure dynamic ECN, determine which traffic classes carry loss-sensitive or bursty traffic (such as RoCE on traffic class 3), determine the percentage of dynamic buffer allowance you want to trigger congestion marking, then set dynamic ECN:
 - Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`. 
 
   When you set the dynamic ECN mode to `relative`, the switch hardware ignores existing byte thresholds and the ASIC immediately begins marking based on the dynamic buffer calculation: threshold = (alpha_quota * percent) / 100. When you set the dynamic ECN mode to `absolute`, the switch hardware ignores percentage thresholds and the ASIC reverts to marking based on static cell counts derived from the configured byte values.
@@ -1930,12 +1930,15 @@ The QoS subsystem supports multiple lossless priority groups that share a single
 All lossless priority groups continue to share the same ingress and egress buffer pools. However, each priority groups maintains its own reserved buffers, xon and xoff thresholds, and descriptor buffer allocations. This design provides isolation and independent flow-control behavior while still making efficient use of shared buffer resources.
 
 You can configure the following headroom settings:
-- Required headroom
-- Exclusive headroom
-- Oversubscription ratio
-- Port shared buffer
+- Required headroom per priority group in bytes. The switch converts this value to cells. 
+- Exclusive headroom per priority group in bytes. The switch converts this value to cells.
+- Oversubscription ratio for the shared headroom pool. You can set a value between 1 and 256.
 
-The following example assigns switch priority 3 and 4 to priority group 3, configures the ingress lossless buffer service pool mapping to service-pool 1, and sets the required and exclusive headroom for switch priority 3 and 4 to 1024, oversubscription ratio to 2, and port shared buffer to 1024. The example enables the shared headroom pool on swp10.
+{{%notice note%}}
+The required headroom must be more than exclusive headroom.
+{{%/notice%}}
+
+The following example assigns switch priority 3 and 4 to priority group 3, configures the ingress lossless buffer service pool mapping to service-pool 1, and sets the required headroom for switch priority 3 and 4 to 1024, the exclusive headroom for switch priority 3 and 4 to 1010, and oversubscription ratio to 2. The example enables the shared headroom pool on swp10.
 
 {{< tabs "TabID1935 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1945,9 +1948,8 @@ The following example assigns switch priority 3 and 4 to priority group 3, confi
 cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group service7 switch-priority 3,4
 cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group service3 service-pool 1
 cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 1024 
-cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 1024
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 1010
 cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio 2
-cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom port-shared-buffer 10240
 cumulus@switch:~$ nv set interface swp10 qos shared-headroom-pool enable
 cumulus@switch:~$ nv config apply
 ```
@@ -1960,17 +1962,11 @@ Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file.
 ```
 cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
 ...
-flow_contriol.cos_3.lossless_pg = 3
-flow_contriol.cos_4.lossless_pg = 3
-...
-lossless.ingress_service_pool = 1
-...
-shp.pg.required_headroom = 1024
+# Shared headroom pool configuration
+shared_headroom_pool.port_list = [swp10]
+shp.pg.oversubscription_ratio = 2
 shp.pg.exclusive_headroom = 1024
-shp.pg. oversubscription_ratio = 2
-shp.pg. port_shared_buffer = 2
-...
-shared_headroom_pool.port_list = swp10
+shp.pg.required_headroom = 1028
 ```
 
 {{< /tab >}}

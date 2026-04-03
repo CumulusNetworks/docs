@@ -207,17 +207,6 @@ required               no
 last-reboot-operation  cold
 ```
 
-<!-- COMMENTED OUT AS THIS COMMAND ISN'T OPERATIONAL IN 5.15
-To display the current resource mode, run the `nv show system forwarding resource-mode` command. 
-
-```
-cumulus@switch:~$ nv show system forwarding resource-mode
-cumulus@switch:~$ nv config apply
-```
--->
-
-
-
 ## Warm Reboot and ISSU Considerations
 
 ### Warm Reboot Support

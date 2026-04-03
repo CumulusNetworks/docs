@@ -3,6 +3,7 @@ title: BMC and eRoT
 author: NVIDIA
 weight: 62
 toc: 3
+draft: true
 ---
 The Spectrum-6 switch requires you to install the <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span> and <span class="a-tooltip">[eRoT](## "Embedded Root of Trust")</span> components.
 - BMC is a dedicated microcontroller on the switch motherboard that provides out-of-band management so that you can monitor and control the switch even when the main CPU or OS is down.

@@ -23,11 +23,12 @@ Cumulus Linux 5.17.0 contains the following core switch package versions:
 
 To obtain a complete list of open source packages included in Cumulus Linux 5.17, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
 
-The Spectrum-6 switch running Cumulus Linux 5.17 requires you to download and install the following components:
+<!-- The Spectrum-6 switch running Cumulus Linux 5.18 requires you to download and install the following components:
 
 | Component | Version | Description |
 | --- | ----| ----------- |
 | BMC | ???? | Baseboard Management Controller |
-| eRoT |???? | Embedded Root of Trust
+| eRoT |???? | Embedded Root of Trust |
 
-For package download and installation instructions, refer to {{<link url="BMC-and-eRoT" text="BMC and eRoT">}}.|
+For package download and installation instructions, refer to {{<link url="BMC-and-eRoT" text="BMC and eRoT">}}.
+-->

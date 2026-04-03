@@ -32,7 +32,7 @@ NetQ uses the following endpoints to manage switch credentials and access. The d
 | Endpoint | Description |
 | :-- | :-- |
 | GET `/nmx/v1/bring-up` | Retrieve bring-up status with optional filters (pending, in progress, failed, completed) |
-| POST `/nmx/v1/bring-up` | Initiate a new bring-up process for one or more switches |
+| POST `/nmx/v1/bring-up` | Initiate a new bring-up process for one or more switches. |
 | GET `/nmx/v1/bring-up/{id}` | Retrieve bring-up status for a specific operation |
 
 ## Bringup Examples

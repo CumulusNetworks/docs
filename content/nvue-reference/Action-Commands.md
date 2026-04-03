@@ -4004,13 +4004,27 @@ Action succeeded
 
 ## <h>nv action reboot system mode \<mode-id\></h>
 
-Reboots the switch in the mode you select: `cold`, `fast`, `halt`, `immediate`, `power-cycle`, or `warm`.
+Reboots the switch. Cumulus Linux provides these reboot modes:
+- `immediate` reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
+- `halt` shuts down the system. Use this mode to stop the switch completely instead of rebooting.
+- `power-cycle` lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
+- `cold` restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
+- `fast` restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
+- `warm` restarts the switch with no interruption to traffic for existing route entries and without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. Warm reboot requires configuring the switch resource mode to half to reduce the available forwarding table entries on the switch by half to accommodate traffic forwarding during a reboot.
+
+{{%notice note%}}
+Cumulus Linux supports warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN.
+
+The following features are not supported during warm reboot:
+- EVPN MLAG or EVPN multihoming.
+- LACP bonds. LACP control plane sessions might time out before warm reboot completes. Use static LAG to keep bonds up with sub-second convergence during a warm reboot.
+{{%/notice%}}
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<mode-id>` |  The reboot mode.|
+| `<mode-id>` |  The reboot mode: `immediate`, `halt`, `power-cycle`, `cold`, `fast`,or `warm`.|
 
 ### Version History
 

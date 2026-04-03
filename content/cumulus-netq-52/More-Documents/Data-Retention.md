@@ -9,12 +9,9 @@ NetQ deletes some types of data periodically to minimize database usage and incr
 
 | Feature | Retention Period (Days) |
 | -------------| :---: |
-|Agent validations | 40 |
 |BGP validations | 30 |
 |Device inventory  | 40 |
-|Duplicate IP address validations | 40 |
 |EVPN validations | 30 |
-|Flow analysis | 40 |
 |Interface validations | 30 |
 |Link health | 3 |
 |MLAG validations | 30 |
@@ -29,6 +26,5 @@ NetQ deletes some types of data periodically to minimize database usage and incr
 |Topology validations | 40 |
 |Validation filters | 40 |
 |VLAN validations | 30 |
-|VXLAN validations | 30 |
 |What Just Happened data | 40 |
 

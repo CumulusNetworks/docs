@@ -12,6 +12,9 @@ NetQ collects data that validates the health of your network fabric, devices, an
 Use the value in the Test Number column in the tables below with the CLI when you want to include or exclude specific tests with the {{<link title="check" text="netq check">}} command. You can get the test numbers by running the {{<link title="show/#netq-show-unit-tests" text="netq show unit-tests">}} command.
 
 ## Agent Validation Tests
+{{<notice info>}}
+This feature has been deprecated.
+{{</notice>}}
 
 NetQ Agent validation looks for an agent status of *rotten* for each node in the network. A *fresh* status indicates the agent is running as expected. The agent sends a 'heartbeat' every 30 seconds, and if it does not send three consecutive heartbeats, its status changes to *rotten*.
 
@@ -41,6 +44,9 @@ The Cumulus Linux version test looks for version consistency.
 | 0 | Cumulus Linux Image Version | Checks the following: <ul><li>No version specified, checks that all switches in the network have consistent version</li><li><em>match-version</em> specified, checks that a switch's OS version equals the specified version</li><li><em>min-version</em> specified, checks that a switch's OS version is equal to or greater than the specified version</li></ul> |
 
 ## Duplicate IP Addresses Validation Tests
+{{<notice info>}}
+This feature has been deprecated.
+{{</notice>}}
 
 The duplicate address detection tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory. It also checks for duplicate /32 host routes in each VRF.
 
@@ -152,9 +158,14 @@ The VLAN validation tests look for configuration consistency between two nodes.
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | Link neighbor VLAN consistency | Checks for consistency of VLAN configuration on two sides of a port or a bond |
-| 1 | MLAG bond VLAN consistency | Checks for consistent VLAN membership of an MLAG bond on each side of the MLAG pair |
+| 1 | MLAG bond VLAN consistency* | Checks for consistent VLAN membership of an MLAG bond on each side of the MLAG pair |
+
+**Deprecated*
 
 ## VXLAN Validation Tests
+{{<notice info>}}
+This feature has been deprecated.
+{{</notice>}}
 
 The VXLAN validation tests look for configuration consistency across all VTEPs.
 

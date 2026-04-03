@@ -63,7 +63,7 @@ The following table shows the NVUE reboot commands and their Linux command equiv
 | `nv action reboot system force` | `sudo csmgrctl -cf` | Reboots the switch in cold mode without prompting for confirmation. This is equivalent to the `nv action reboot system mode cold force` command. |
 | `nv action reboot system mode immediate`| No Linux command available. | Reboots the switch immediately without notifying any running processes. This command invokes the Linux command `sudo reboot --force` after you respond to the prompt with `Yes`.|
 | `nv action reboot system mode immediate force` | `sudo reboot --force` | Reboots the switch immediately without notifying any running processes and without prompting for confirmation. |
-| `nv action reboot system mode halt` | No native command available. | Shuts down the system. |
+| `nv action reboot system mode halt` | No native command available. | Shuts down the switch completely. The switch remains powered off until power cycled through a remote PDU connection.  |
 | `nv action reboot system mode halt force` | `sudo reboot --halt` | Shuts down the system without prompting for confirmation.|
 | `nv action reboot system mode power-cycle` | `sudo cl-powercycle` | Power cycles the switch. |
 | `nv action reboot system mode power-cycle force` | `sudo cl-powercycle -noprompt` | Power cycles the switch without prompting for confirmation.|

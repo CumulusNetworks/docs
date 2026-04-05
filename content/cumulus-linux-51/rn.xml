@@ -9,8 +9,8 @@
 <tr>
 <td>4797691</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
-<td>5.0.0-5.15.1</td>
-<td>5.16.0-5.16.1</td>
+<td>5.0.0-5.9.4, 5.15.1</td>
+<td>5.9.5, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -938,7 +938,7 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.4</td>
+<td>4.0.0-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 </table>

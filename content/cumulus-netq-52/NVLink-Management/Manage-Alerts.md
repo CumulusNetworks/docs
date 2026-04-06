@@ -29,15 +29,14 @@ For each new metric value, NetQ analyzes historical data over a predefined time 
 | Port Degradation Warning | `port_metrics_deviation` | `PortDegradationHistogram1`, `PortDegradationHistogram2`, `PortDegradationHistogram3`, `PortDegradationBER`, `PortDegradationLinkErrors` | warning |
 | Packet Discard Warning | `port_metrics_deviation` | `PacketDiscard` | warning |
 
-## License Validations
+## License Expiration
 
-NetQ broadcasts alerts when your {{<link title="Manage Licenses" text="license">}} is expired or about to expire. 
+NetQ broadcasts alerts when your {{<link title="Manage Licenses" text="NetQ for NVLink license">}} is expired or about to expire. To enable or disable these alerts refer to {{<link title="Manage Licenses/#manage-license-alerts" text="manage license alerts">}}.
 
 | Alert Type | Alert Group | Alert Name(s) | Severity |
 | :-- | :-- | :-- | :-- |
 | Expires Soon | `licensing` | `LicenseValidation` | warning |
 | Expired | `licensing` | `LicenseValidation` | critical |
-
 
 ## Update the Webhook Receiver URL
 

@@ -57,7 +57,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.1.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.1.0 VMware** image<br>
+    e. For deployments using KVM, download the **NetQ SW 5.2.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.2.0 VMware** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -66,9 +66,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.1">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.2">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="5.1">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="5.2">}}
 
 3. Log in to the VM and change the password.
 
@@ -192,6 +192,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
                 ],
         "storage-path": "/var/lib/longhorn",
         "alertmanager_webhook_url": "<INPUT>"
+        "cert-mode": "self-signed"
 }
 ```
 
@@ -201,6 +202,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
 | `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |
+| `cert-mode` | The TLS certificate mode for southbound (switch) communication. Set to `self-signed` (default) to use auto-generated certificates, or `user-cert` to provide your own CA and TLS certificates. If you select `user-cert`, you must upload your CA and server certificates <!--insert link--> after the installation but before performing a bringup. The `cert-mode` setting cannot be changed after installation. Switching between `self-signed` and `user-cert` requires a full reinstallation. |
 
 {{< /tab >}}
 {{< tab "Completed JSON Example ">}}
@@ -227,6 +229,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
                 ],
         "storage-path": "/var/lib/longhorn",
         "alertmanager_webhook_url": "http://master_ip:5029/webhook"
+        "cert-mode": "self-signed"
 }
 ```
 
@@ -236,6 +239,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
 | `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |
+| `cert-mode` | The TLS certificate mode for southbound (switch) communication. Set to `self-signed` (default) to use auto-generated certificates, or `user-cert` to provide your own CA and TLS certificates. If you select `user-cert`, you must upload your CA and server certificates <!--insert link--> after the installation but before performing a bringup. The `cert-mode` setting cannot be changed after installation. Switching between `self-signed` and `user-cert` requires a full reinstallation. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -243,7 +247,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step. Specify the passwords for the read-write user and the read-only user in the `rw-password` and `ro-password` fields, respectively. The passwords must each include a minimum of eight characters.
 
 ```
-nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.1.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
+nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.2.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -255,8 +259,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 5.1.0
-    Installer Version: 5.1.0
+    Version: 5.2.0
+    Installer Version: 5.2.0
     Installation Type: Cluster
     Installation Mode: NVLink
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
@@ -280,5 +284,6 @@ If any of the applications or services display a DOWN status after 30 minutes, o
 
 ## Next Steps
 
+- If you installed NetQ for NVLink with `cert-mode` set to `user-cert`, upload your certificates <!--insert link--> before performing a system bringup.
 - {{<link title="NVLink Bringup" text="Perform a system bringup">}} to connect to telemetry and controller services. 
 - The NVIDIA Vera Rubin platform does not support the system bringup process. Follow the steps to {{<link title="Register Services" text="register services">}} manually instead.

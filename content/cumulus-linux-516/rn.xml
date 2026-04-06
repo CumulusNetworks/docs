@@ -7,9 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4949347</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4931702</td>
 <td>When you launch a Cumulus VX 5.16.1 image in Air with switch emulation, you see the {{systemd-remount-fs.service}} systemd service in a failed state. This issue has no functional impact.</td>
 <td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4930970</td>
+<td>Unreachability routes originated locally (for example, due to a link-down event) display incorrect BGP origin attribute values in show commands and JSON output. The origin shows as {{IGP}} instead of {{incomplete}} and JSON fields include redundant origin symbols in the AS path string.</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -26,6 +38,12 @@ cumulus@switch:~$ sudo systemctl restart cumulus-core.path</td>
 <td>4925514</td>
 <td>Core processing services such as {{cumulus-core.service}} and {{cumulus-core.path}} might enter a failed state due to {{systemd}} start rate limiting caused by rapid start and stop cycles. This issue can prevent core files from being included in subsequent automatically generated cl-support collections even after you reactivate automatic cl-support generation after deactivation due to a chain of faults. Newly generated core files might accumulate, potentially leading to {{/var}} partition exhaustion. To recover from this condition, run the {{sudo systemctl reset-failed cumulus-core.service cumulus-core.path}} command.</td>
 <td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4925316</td>
+<td>Known registered multicast traffic is duplicated to receivers behind an EVPN-MH dual-homed access switch.</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -65,6 +83,18 @@ cumulus@switch:~$ sudo systemctl restart cumulus-core.path</td>
 <td></td>
 </tr>
 <tr>
+<td>4895501</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4893569</td>
+<td>NVUE allows invalid interfaces with leading zeroes; for example, swp000001.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4889939</td>
 <td>In an MLAG configuration, when the MLAG node receives MLAG peer keepalives from an IP address that is not configured as the peer IP address, a peer IP address mismatch conflict occurs. Even after the conflict is resolved,  you sometimes see that the MLAG session still retains the peer IP mismatch conflict.</td>
 <td>5.14.0-5.16.1</td>
@@ -83,9 +113,27 @@ cumulus@switch:~$ sudo systemctl restart cumulus-core.path</td>
 <td></td>
 </tr>
 <tr>
+<td>4883698</td>
+<td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4883569</td>
+<td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
 <td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4881914</td>
+<td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -105,6 +153,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td>4872684</td>
 <td>Cumulus Linux does not provide protection or a warning when you configure a destructive resource limit for a critical service. A low value resource limit for {{nvued}} might terminate the {{nvued}} service and block users from using NVUE commands.</td>
 <td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -144,6 +198,12 @@ where only the aggregate should be advertised.</td>
 <td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
 <td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4824056</td>
+<td>Adding a bond member fails when the member port has subinterfaces and you unset the subinterface and add the bond member under same commit.</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -924,6 +984,11 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>5.13.1-5.16.0</td>
 </tr>
 <tr>
+<td>4922100</td>
+<td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are incorrectly categorized as fatal.  The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
+<td></td>
+</tr>
+<tr>
 <td>4922099</td>
 <td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
 <td>5.14.0-5.16.0</td>
@@ -957,8 +1022,20 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4930970</td>
+<td>Unreachability routes originated locally (for example, due to a link-down event) display incorrect BGP origin attribute values in show commands and JSON output. The origin shows as {{IGP}} instead of {{incomplete}} and JSON fields include redundant origin symbols in the AS path string.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4925515</td>
 <td>When you exceed the maximum number of ports allowed (30) in an 802.1x IPv6 profile, IPv6 addresses are not allocated to additional ports even if authentication is successful. To work around this issue, create additional profiles with the same configuration, associating no more than 30 interfaces to each profile.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4925316</td>
+<td>Known registered multicast traffic is duplicated to receivers behind an EVPN-MH dual-homed access switch.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -1078,6 +1155,18 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td></td>
 </tr>
 <tr>
+<td>4895501</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4893569</td>
+<td>NVUE allows invalid interfaces with leading zeroes; for example, swp000001.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4889939</td>
 <td>In an MLAG configuration, when the MLAG node receives MLAG peer keepalives from an IP address that is not configured as the peer IP address, a peer IP address mismatch conflict occurs. Even after the conflict is resolved,  you sometimes see that the MLAG session still retains the peer IP mismatch conflict.</td>
 <td>5.14.0-5.16.1</td>
@@ -1096,9 +1185,27 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td></td>
 </tr>
 <tr>
+<td>4883698</td>
+<td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4883569</td>
+<td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
 <td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4881914</td>
+<td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1118,6 +1225,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td>4872684</td>
 <td>Cumulus Linux does not provide protection or a warning when you configure a destructive resource limit for a critical service. A low value resource limit for {{nvued}} might terminate the {{nvued}} service and block users from using NVUE commands.</td>
 <td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1157,6 +1270,12 @@ where only the aggregate should be advertised.</td>
 <td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
 <td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4824056</td>
+<td>Adding a bond member fails when the member port has subinterfaces and you unset the subinterface and add the bond member under same commit.</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>

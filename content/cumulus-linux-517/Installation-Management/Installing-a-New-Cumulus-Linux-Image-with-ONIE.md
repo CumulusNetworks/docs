@@ -679,13 +679,7 @@ health-status      Not OK
 security
   secure-boot
     state          enabled                                                        
-date-time          2025-04-18 12:48:46                                            
-status             N/A                                                            
-timezone           Etc/UTC                                                        
-version                                                                           
-  onie             N/A                                                            
-  kernel           6.1.0-cl-1-amd64                                               
-  base-os          Debian GNU/Linux 12.10    
+...    
 ```
 
 To show secure boot details, run the `nv show system security secure-boot` command. The output shows the Secure Boot Key Database (DB) and SBAT revocation values in a consolidated view so that you can review enrolled keys with certificate details, monitor validity status, and view SBAT revocation information.

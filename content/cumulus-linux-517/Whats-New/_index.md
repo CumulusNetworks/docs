@@ -39,7 +39,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="PHY link down, link debounce, and control plane">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} (Beta)
   - Parity between OpenTelemetry and gNMI (Phase 3)
-  - High frequency telemetry - Nsight Integration - Phase 2 (Binary format)
+  - High frequency telemetry streaming over IPFIX
 - Security
   - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
   - {{<link url="Disk-Management/#erase-data-from-the-disk" text="Extended disk erase to support SED SSDs">}}

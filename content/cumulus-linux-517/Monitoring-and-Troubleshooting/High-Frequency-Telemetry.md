@@ -10,8 +10,8 @@ High frequency telemetry enables you to collect counters at very short sampling 
 High frequency telemetry data provides time-series data that traditional histograms cannot provide. This data can help you understand the shape of the traffic pattern and identify any variability, or jitter in the traffic.
 
 Cumulus Linux provides two different methods to collect and analyze high frequency telemetry data:
-- {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}}.
-- {{<link url="#collect-hft-in-json-file" text="Collect HFT data in a JSON format file">}} on the switch filesystem, and upload the file to an external location for analysis.
+- {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}} or through {{<link url="Open-Telemetry-Export/#ipfix-export" text="IP Flow Information Export (IPFIX)">}}.
+- {{<link url="#collect-hft-in-json-file" text="Collect HFT data in a JSON format file">}} on the switch filesystem and upload the file to an external location for analysis.
 
 {{%notice note%}}
 - Cumulus Linux supports high frequency telemetry on Spectrum-4 and later switches. 
@@ -22,9 +22,9 @@ Cumulus Linux provides two different methods to collect and analyze high frequen
 
 ## Streaming HFT Export
 
-You can stream HFT data to your {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export destination">}}.  To configure OTLP streaming of HFT data:
+To configure HFT data streaming:
 
-1. Configure {{<link url="Open-Telemetry-Export" text="open telemetry">}} and add your collector as a gRPC export destination.
+1. Configure {{<link url="Open-Telemetry-Export" text="open telemetry export">}} and add your collector as a {{<link url="Open-Telemetry-Export/#otlp-grpc-export" text="gRPC OTEL export destination">}} or an {{<link url="Open-Telemetry-Export/#ipfix-export" text="IPFIX export destination">}}.
 
 2. Configure streaming HFT parameters:
 
@@ -65,12 +65,23 @@ cumulus@switch:~$ nv set system telemetry hft duration 120
 cumulus@switch:~$ nv config apply
 ```
 
-3. Enable HFT streaming to export data to your configured {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export destination">}}:
+3. Enable HFT streaming to export data to your configured destination:
+
+IPFIX
+
+Enable HFT export globally:
+
+```
+cumulus@switch:~$ nv set system telemetry hft export ipfix state enabled
+cumulus@switch:~$ nv config apply
+```
+
+OTLP gRPC
 
 If you are only exporting OTEL data to a single collector from your switch, you can enable HFT export globally:
 
 ```
-cumulus@switch:~$ nv set system telemetry hft export state enabled 
+cumulus@switch:~$ nv set system telemetry hft export otlp grpc state enabled 
 cumulus@switch:~$ nv config apply
 ```
 

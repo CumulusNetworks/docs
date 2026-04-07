@@ -15,7 +15,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 
 ### NetQ for NVLink API Changes
-- Added a `/v1/redfish` endpoint to detect and report leak events in liquid-cooling equipment using the Redfish Baseboard Management Controller (BMC)
+- Added a `/v1/redfish` endpoint to {{<link title="Monitor Leaks with Redfish" text="detect and report leak events">}} in liquid-cooling equipment using the Redfish Baseboard Management Controller (BMC)
 - Added `/v1/certificates` endpoints that let you {{<link title="Register Services" text="use your own certificates">}} instead of the ones that NetQ NVLink automatically generates
 - Added `/v1/validations/fw-versions` endpoint to validate that all switches within a domain have the same firmware version
 - Added ability {{<link title="Upgrade NVOS or Firmware" text="to upgrade firmware">}} using the `/v1/upgrade-switch` endpoint

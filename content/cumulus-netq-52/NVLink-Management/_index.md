@@ -21,6 +21,7 @@ NetQ NVLink was previously packaged as NMX-M.
 - {{<link title="Manage Alerts">}}
 - {{<link title="Manage Licenses">}}
 - {{<link title="Manage Partitions">}}
+- {{<link title="Monitor Leaks with Redfish">}}
 - {{<link title="Upgrade NVOS or Firmware">}}
 - {{<link title="Monitor with Prometheus">}}
 - {{<link title="Troubleshooting and Support">}}

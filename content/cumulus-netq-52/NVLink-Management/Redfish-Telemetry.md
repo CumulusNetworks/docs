@@ -1,5 +1,5 @@
 ---
-title: Redfish Telemetry
+title: Monitor Leaks with Redfish
 author: NVIDIA
 weight: 850
 toc: 4

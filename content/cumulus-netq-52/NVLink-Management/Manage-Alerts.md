@@ -13,14 +13,14 @@ All triggering conditions are preconfigured and cannot be modified.
 
 The *port status* alert is triggered by a group of events that affect port operation. These alerts are based on deviations in a group of metrics---if any metric exceeds two standard deviations from the average, an alert is raised. The alert includes the port ID, domain, node ID, and port number.
 
-| Alert Type | Alert Group | Alert Name(s) | Severity | Trigger Condition | Behavior |
-| :-- | :-- | :-- | :-- | :-- | :-- |
-| Ongoing Port Validation | `ongoing_port_validation` | `OngoingPortValidation` | warning | More than 3 errors of a specific metric are detected within a 24-hour window. | The alert is sent continuously until the condition is resolved to ensure delivery even if external systems are temporarily down. |
+| Alert Type | Alert Group | Alert Name(s) | Severity |
+| :-- | :-- | :-- | :-- |
+| Ongoing Port Validation | `ongoing_port_validation` | `OngoingPortValidation` | warning | More than 3 errors of a specific metric are detected within a 24-hour window. |
 
 
 ## Anomaly Detection
 
-For each new metric value, NetQ analyzes historical data over a predefined time period using a statistical model. If the value deviates significantly from the expected range (beyond two standard deviations), the system triggers an alert.  The following alerts are included:
+For each new metric value, NetQ analyzes historical data over a predefined time period using a statistical model. If the value deviates significantly from the expected range (beyond two standard deviations), the system triggers an alert.
 
 | Alert Type | Alert Group | Alert Name(s) | Severity |
 | :-- | :-- | :-- | :-- |
@@ -37,7 +37,11 @@ NetQ broadcasts alerts when your {{<link title="Manage Licenses" text="NetQ for 
 | :-- | :-- | :-- | :-- |
 | Expires Soon | `licensing` | `LicenseValidation` | warning |
 | Expired | `licensing` | `LicenseValidation` | critical |
+<!--
+## Redfish Alerts
 
+
+-->
 ## Update the Webhook Receiver URL
 
 You can update the webhook URL at any time after installation.

@@ -362,9 +362,10 @@ cumulus@switch:~$ nv set router bfd offload enabled
 cumulus@switch:~$ nv config apply
 ```
 
-For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` command; for example:
+For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd profile <profile-id>` and `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` commands; for example:
 
 ```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd profile BFD1
 cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd source 10.10.10.3
 ```
 
@@ -379,6 +380,18 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# bfd
 switch(config-bfd)# offload-mode
+switch(config-bfd)# end
+switch# write memory
+switch# exit
+```
+
+For single hop static route BFD sessions in offload mode, you need to configure the source address:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# ip route 10.10.10.101/32 10.0.1.0 2 bfd source 10.10.10.3 profile BFD1
 switch(config-bfd)# end
 switch# write memory
 switch# exit

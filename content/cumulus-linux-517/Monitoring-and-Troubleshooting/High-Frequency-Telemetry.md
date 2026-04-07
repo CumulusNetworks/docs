@@ -24,52 +24,51 @@ Cumulus Linux provides two different methods to collect and analyze high frequen
 
 To configure HFT data streaming:
 
-1. Configure {{<link url="Open-Telemetry-Export" text="open telemetry export">}} and add your collector as a {{<link url="Open-Telemetry-Export/#otlp-grpc-export" text="gRPC OTEL export destination">}} or an {{<link url="Open-Telemetry-Export/#ipfix-export" text="IPFIX export destination">}}.
+1. Add your collector as a gRPC OTEL export destination or an IPFIX export destination. Refer to {{<link url="Open-Telemetry-Export/#configure-an-export-destination" text="Configure an Export Destination">}}.
 
 2. Configure streaming HFT parameters:
 
-Configure the sampling interval for HFT data. The default value is 5000 microseconds. The interval must be specified in microseconds, with a valid range of 100 to 12,750 and in multiples of 50:
+   Configure the sampling interval for HFT data. The default value is 5000 microseconds. The interval must be    specified in microseconds, with a valid range of 100 to 12,750 and in multiples of 50:
+   
+   ```
+   cumulus@switch:~$ nv set system telemetry hft sample-interval-usec 1000
+   cumulus@switch:~$ nv config apply
+   ```
+   
+   Configure the counters that are sampled at the defined interval. The options for sampling are received bytes    (`rx-byte`), transmitted bytes (`tx-byte`), received packets (`rx-packet`), transmitted packets (`tx-packet`), and    traffic class buffer occupancy (`tc-occupancy`):
+   
+   ```
+   cumulus@switch:~$ nv set system telemetry hft counter rx-byte
+   cumulus@switch:~$ nv set system telemetry hft counter tx-byte
+   cumulus@switch:~$ nv set system telemetry hft counter tc-occupancy
+   cumulus@switch:~$ nv config apply
+   ```
+   
+   When collecting traffic class buffer occupancy counters, configure the traffic classes to monitor:
+   
+   ```
+   cumulus@switch:~$ nv set system telemetry hft egress-buffer traffic-class 0,1,5
+   cumulus@switch:~$ nv config apply
+   ```
+   
+   Configure the interfaces that HFT monitors to collect data:
+   
+   ```
+   cumulus@switch:~$ nv set interface swp1s0-3,swp2s0-3 telemetry hft state enabled
+   cumulus@switch:~$ nv config apply
+   ```
+   
+   Configure a duration, in seconds, to stop streaming HFT data after a specified period. The maximum duration is 1    hour (3600 seconds):
+   
+   ```
+   cumulus@switch:~$ nv set system telemetry hft duration 120
+   cumulus@switch:~$ nv config apply
+   ```
 
-```
-cumulus@switch:~$ nv set system telemetry hft sample-interval-usec 1000
-cumulus@switch:~$ nv config apply
-```
+3. Enable streaming to export data to your configured destination:
 
-Configure the counters that are sampled at the defined interval. The options for sampling are received bytes (`rx-byte`), transmitted bytes (`tx-byte`), received packets (`rx-packet`), transmitted packets (`tx-packet`), and traffic class buffer occupancy (`tc-occupancy`):
-
-```
-cumulus@switch:~$ nv set system telemetry hft counter rx-byte
-cumulus@switch:~$ nv set system telemetry hft counter tx-byte
-cumulus@switch:~$ nv set system telemetry hft counter tc-occupancy
-cumulus@switch:~$ nv config apply
-```
-
-When collecting traffic class buffer occupancy counters, configure the traffic classes to monitor:
-
-```
-cumulus@switch:~$ nv set system telemetry hft egress-buffer traffic-class 0,1,5
-cumulus@switch:~$ nv config apply
-```
-
-Configure the interfaces that HFT monitors to collect data:
-
-```
-cumulus@switch:~$ nv set interface swp1s0-3,swp2s0-3 telemetry hft state enabled
-cumulus@switch:~$ nv config apply
-```
-
-Configure a duration, in seconds, to stop streaming HFT data after a specified period. The maximum duration is 1 hour (3600 seconds):
-
-```
-cumulus@switch:~$ nv set system telemetry hft duration 120
-cumulus@switch:~$ nv config apply
-```
-
-3. Enable HFT streaming to export data to your configured destination:
-
-IPFIX
-
-Enable HFT export:
+   {{< tabs "Tab70 ">}}
+{{< tab "IPFIX">}}
 
 ```
 cumulus@switch:~$ nv set system telemetry hft export ipfix state enabled
@@ -78,7 +77,8 @@ cumulus@switch:~$ nv config apply
 
 Only one HFT session can run at a time; you cannot configure IPFIX for a statistics group.
 
-OTLP gRPC
+{{< /tab >}}
+{{< tab "OTLP gRPC">}}
 
 If you are only exporting OTEL data to a single collector from your switch, you can enable HFT export globally:
 
@@ -116,6 +116,9 @@ cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state 
 cumulus@switch:~$ nv config apply
 ```
 {{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 You can view HFT status and configured parameters with the `nv show system telemetry hft` command:
 

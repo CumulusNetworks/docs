@@ -14,7 +14,10 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4963280"></a> [4963280](#4963280) <a name="4963280"></a> <br /> | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.16.1 | |
+| <a name="4963277"></a> [4963277](#4963277) <a name="4963277"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.1 | |
 | <a name="4882392"></a> [4882392](#4882392) <a name="4882392"></a> <br /> | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.16.1 | |
+| <a name="4871161"></a> [4871161](#4871161) <a name="4871161"></a> <br /> | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN. | 5.9.1-5.16.1 | |
 | <a name="4840299"></a> [4840299](#4840299) <a name="4840299"></a> <br /> | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN. | 5.9.1-5.16.1 | |
 | <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | 5.16.0-5.16.1|
 | <a name="4771521"></a> [4771521](#4771521) <a name="4771521"></a> <br /> | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1 | 5.16.0-5.16.1|
@@ -171,7 +174,10 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4963280"></a> [4963280](#4963280) <a name="4963280"></a> <br /> | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.16.1 | |
+| <a name="4963277"></a> [4963277](#4963277) <a name="4963277"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.1 | |
 | <a name="4882392"></a> [4882392](#4882392) <a name="4882392"></a> <br /> | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.16.1 | |
+| <a name="4871161"></a> [4871161](#4871161) <a name="4871161"></a> <br /> | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN. | 5.9.1-5.16.1 | |
 | <a name="4840299"></a> [4840299](#4840299) <a name="4840299"></a> <br /> | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN. | 5.9.1-5.16.1 | |
 | <a name="4789097"></a> [4789097](#4789097) <a name="4789097"></a> <br /> | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | 5.16.0-5.16.1|
 | <a name="4771521"></a> [4771521](#4771521) <a name="4771521"></a> <br /> | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1 | 5.16.0-5.16.1|

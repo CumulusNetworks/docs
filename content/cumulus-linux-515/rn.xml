@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4945654</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4945652</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4922104</td>
 <td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
 <td>5.13.1-5.16.1</td>
@@ -37,6 +49,12 @@
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
+<td>4895501</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4889939</td>
 <td>In an MLAG configuration, when the MLAG node receives MLAG peer keepalives from an IP address that is not configured as the peer IP address, a peer IP address mismatch conflict occurs. Even after the conflict is resolved,  you sometimes see that the MLAG session still retains the peer IP mismatch conflict.</td>
 <td>5.14.0-5.16.1</td>
@@ -64,6 +82,12 @@
 <td>4879165</td>
 <td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
 <td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1054,6 +1078,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4945654</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4945652</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4922104</td>
 <td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
 <td>5.13.1-5.16.1</td>
@@ -1084,6 +1120,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
+<td>4895501</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4889939</td>
 <td>In an MLAG configuration, when the MLAG node receives MLAG peer keepalives from an IP address that is not configured as the peer IP address, a peer IP address mismatch conflict occurs. Even after the conflict is resolved,  you sometimes see that the MLAG session still retains the peer IP mismatch conflict.</td>
 <td>5.14.0-5.16.1</td>
@@ -1111,6 +1153,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4879165</td>
 <td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
 <td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>

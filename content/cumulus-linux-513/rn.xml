@@ -7,8 +7,38 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4963277</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.14.0</td>
+<td>5.15.0-5.16.1</td>
+</tr>
+<tr>
+<td>4945654</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4945652</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4930152</td>
+<td>When you configure layer 3 SVI interfaces with an anycast gateway (VRR) IP address only and no unique IP address, the connected route for the subnet is not programmed in the ASIC, causing packets destined for locally connected hosts to drop after decapsulation.</td>
+<td>5.11.3-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4918342</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4895501</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
 <td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
@@ -37,6 +67,12 @@
 <td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
 <td>5.13.1-5.16.0</td>
 <td>5.16.1</td>
+</tr>
+<tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4840299</td>
@@ -1356,8 +1392,44 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4963280</td>
+<td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4963277</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4945654</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4945652</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4930152</td>
+<td>When you configure layer 3 SVI interfaces with an anycast gateway (VRR) IP address only and no unique IP address, the connected route for the subnet is not programmed in the ASIC, causing packets destined for locally connected hosts to drop after decapsulation.</td>
+<td>5.11.3-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4918342</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
+<td>5.13.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4895501</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
 <td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
@@ -1378,6 +1450,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
 <td>5.9.1-5.16.1</td>
 <td></td>
 </tr>

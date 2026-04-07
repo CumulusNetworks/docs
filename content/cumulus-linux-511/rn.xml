@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
 <td>5.9.1-5.16.1</td>
@@ -858,6 +864,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
 <td>5.9.1-5.16.1</td>
 <td></td>
 </tr>
@@ -1708,6 +1720,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
 <td>5.9.1-5.16.1</td>
@@ -2542,8 +2560,26 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4963280</td>
+<td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4963277</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
 <td>5.9.1-5.16.1</td>
 <td></td>
 </tr>
@@ -3696,8 +3732,26 @@ nv config apply -y</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4963280</td>
+<td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4963277</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
 <td>5.9.1-5.16.1</td>
 <td></td>
 </tr>
@@ -4918,8 +4972,26 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4963280</td>
+<td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4963277</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4871161</td>
+<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN.</td>
 <td>5.9.1-5.16.1</td>
 <td></td>
 </tr>

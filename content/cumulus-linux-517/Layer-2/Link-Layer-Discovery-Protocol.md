@@ -461,6 +461,27 @@ cumulus@leaf01:mgmt:~$ nv config apply
 A profile overrides system defaults for an interface.
 {{%/notice%}}
 
+### BGP Unreachable Prefix TLV
+
+The BGP unreachable prefix TLV allows LLDP to send prefix information learned from {{<link url="FRRouting/" text="FRRouting">}} to connected hosts. This is required in certain use cases such as EVPN unreachability signaling in disjoined planes. The following example enables the BGP unreachable prefix TLV globally:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv egress-policy unreachable-prefix state enabled
+cumulus@leaf01:mgmt:~$ nv config apply 
+```
+
+The following example enables the unreachable prefix TLV only on ports swp1, swp2, and swp3:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile unreachable-prefix-only description "Unreachable-prefix TLV" 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile unreachable-prefix-only egress-policy unreachable-prefix state enabled
+cumulus@leaf01:mgmt:~$ nv set interface swp1-3 lldp tlv profile unreachable-prefix-only 
+cumulus@leaf01:mgmt:~$ nv config apply 
+```
+{{%notice note%}}
+You can only enable the unreachable prefix TLV in the `egress-policy` of a TLV profile; it is not supported on ingress.  
+{{%/notice%}}
+
 ## LLDP DCBX TLVs
 
 <span class="a-tooltip">[DCBX](## "Data Center Bridging Capability Exchange protocol ")</span> is an extension of LLDP that supports <span class="a-tooltip">[TLVs](## "Type-Length-Value ")</span> to provide additional information in LLDP packets to peers.

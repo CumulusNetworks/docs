@@ -693,14 +693,9 @@ cumulus@switch:~$ nv show system telemetry software-stats systemd export
 state  enabled
 ```
 
-### Configure an Export Destination
+### gRPC OTLP Export
 
-You can configure an OTLP gRPC export destination or an IPFIX export destination for <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span>:
-
-{{< tabs "TabID698 ">}}
-{{< tab "OTLP gRPC">}}
-
-To configure an OTLP gRPC export destination:
+To configure the open telemetry export destination:
 
 1. Configure gRPC to communicate with the collector by providing the collector destination IP address or hostname. Specify the port to use for communication if it is different from the default port 8443:
 
@@ -725,38 +720,6 @@ By default, OTLP export is in **secure** mode that requires a CA certificate. Fo
     cumulus@switch:~$ set system telemetry export vrf RED
     cumulus@switch:~$ nv config apply
     ```
-
-   {{< /tab >}}
-{{< tab "IPFIX Export for HFT">}}
-
-To configure an IPFIX export destination for HFT:
-
-1. Configure the IPFX collector destination IP address or hostname. Specify the port to use for communication if it is different from the default port 8443:
-
-   ```
-   cumulus@switch:~$ nv set system telemetry export ipfix destination 10.1.1.100
-   cumulus@switch:~$ nv set system telemetry export ipfix port 4317
-   cumulus@switch:~$ nv config apply
-   ```
-
-   You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations.
-
-2. Specify the interval in seconds for IPFIX template and metadata export. You can specify a value between 1 and 86400. The default is 30 seconds.
-
-   ```
-   cumulus@switch:~$ nv set system telemetry export ipfix template-metadata-interval 40
-   cumulus@switch:~$ nv config apply
-   ```
-
-3. Configure the VRF where the export destination is reachable. The `default` VRF is the default value:
-
-    ```
-    cumulus@switch:~$ set system telemetry export ipfix vrf RED
-    cumulus@switch:~$ nv config apply
-    ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ### Customize Export
 

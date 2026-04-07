@@ -14,6 +14,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4963277"></a> [4963277](#4963277) <a name="4963277"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.14.0 | 5.15.0-5.16.1|
+| <a name="4945654"></a> [4945654](#4945654) <a name="4945654"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |
+| <a name="4945652"></a> [4945652](#4945652) <a name="4945652"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |
 | <a name="4930152"></a> [4930152](#4930152) <a name="4930152"></a> <br /> | When you configure layer 3 SVI interfaces with an anycast gateway (VRR) IP address only and no unique IP address, the connected route for the subnet is not programmed in the ASIC, causing packets destined for locally connected hosts to drop after decapsulation. | 5.11.3-5.16.1 | |
 | <a name="4918342"></a> [4918342](#4918342) <a name="4918342"></a> <br /> | In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY. | 5.13.0-5.16.1 | |
 | <a name="4895501"></a> [4895501](#4895501) <a name="4895501"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |
@@ -234,6 +237,10 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4963280"></a> [4963280](#4963280) <a name="4963280"></a> <br /> | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.16.1 | |
+| <a name="4963277"></a> [4963277](#4963277) <a name="4963277"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.1 | |
+| <a name="4945654"></a> [4945654](#4945654) <a name="4945654"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |
+| <a name="4945652"></a> [4945652](#4945652) <a name="4945652"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |
 | <a name="4930152"></a> [4930152](#4930152) <a name="4930152"></a> <br /> | When you configure layer 3 SVI interfaces with an anycast gateway (VRR) IP address only and no unique IP address, the connected route for the subnet is not programmed in the ASIC, causing packets destined for locally connected hosts to drop after decapsulation. | 5.11.3-5.16.1 | |
 | <a name="4918342"></a> [4918342](#4918342) <a name="4918342"></a> <br /> | In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY. | 5.13.0-5.16.1 | |
 | <a name="4895501"></a> [4895501](#4895501) <a name="4895501"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |

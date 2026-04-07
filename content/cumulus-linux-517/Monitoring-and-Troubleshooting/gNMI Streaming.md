@@ -992,6 +992,33 @@ The `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/max
 | `/system/processes/process[pid]/state/cpu-utilization` | Percentage of CPU that the process is using, relative to total system CPU capacity (all cores combined). |
 
 {{< /tab >}}
+{{< tab "systemd service">}}
+
+|  Name | Description |
+|------ | ----------- |
+| ` /system/services/service[name]/state/name` | *Service name (key).|
+| ` /system/services/service[name]/state/main-pid` | *Main process ID of the service.|
+| `/system/services/service[name]/state/state` | *Service state: active, inactive, failed, activating, deactivating.|
+| `/system/services/service[name]/state/running` | *If the service is currently running. |
+| `/system/services/service[name]/state/exe-path` | *Executable path and arguments|
+| `/system/services/service[name]/state/restart-count` | *Number of times the service has been restarted by systemd.|
+| `/system/services/service[name]/state/cpu-usage-seconds` | *Aggregate CPU usage across all service processes.|
+| `/system/services/service[name]/state/memory-usage-bytes` | *Aggregate memory usage across all service processes.|
+| `/system/services/service[name]/state/start-time-seconds` | *Service start time (seconds since Unix epoch).|
+| `/system/services/service[name]/state/uptime-seconds` | *Service uptime in seconds.|
+| `/system/services/service[name]/state/thread-count` | *Aggregate thread count across all service processes|
+| `/system/services/service[name]/state/process-count` | *Number of processes belonging to this service|
+| `/system/services/service[name]/state/processes/process[pid]/pid` | *List of process PIDs belonging to this service.|
+| `/system/processes/process[pid]/state/parent-pid` | *Parent process ID.|
+| `/system/processes/process[pid]/state/state` | *Process state (Running, Sleeping, Zombie, and so on.)|
+| `/system/processes/process[pid]/state/thread-count` | *Number of threads in the process. |
+| ` /system/processes/process[pid]/state/subprocess-count` | * Number of child processes. |
+| `/system/processes/process[pid]/state/context-switches/type[type=Voluntary]`<br>`/system/processes/process[pid]/state/context-switches/type[type=NonVoluntary]` | * Number of context switches per type (Voluntary, NonVoluntary).|
+| `/system/processes/process[pid]/state/virtual-memory-usage-bytes` | * Virtual memory size of the process. |
+| `/system/processes/process[pid]/state/shared-memory-usage-bytes` | *Shared memory (RSS shmem) used by the process. |
+| `/system/processes/process[pid]/state/service-name` | *Back-reference to the service this process belongs to (optional, for bidirectional navigation). |
+
+{{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->
 ### User Credentials and Authentication

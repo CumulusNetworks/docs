@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4963277"></a> [4963277](#4963277) <a name="4963277"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.1 | |
 | <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.9.4, 5.15.1 | 5.9.5, 5.16.0-5.16.1|
 | <a name="4663076"></a> [4663076](#4663076) <a name="4663076"></a> <br /> | When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded. | 5.3.1-5.9.4 | 5.9.5-5.16.1, 5.11.5-5.16.1, 5.15.0-5.16.1|
 | <a name="4647646"></a> [4647646](#4647646) <a name="4647646"></a> <br /> | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.16.1|
@@ -174,6 +175,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4963277"></a> [4963277](#4963277) <a name="4963277"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.1 | |
 | <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.9.4, 5.15.1 | 5.9.5, 5.16.0-5.16.1|
 | <a name="4663076"></a> [4663076](#4663076) <a name="4663076"></a> <br /> | When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded. | 5.3.1-5.9.4 | 5.9.5-5.16.1, 5.11.5-5.16.1, 5.15.0-5.16.1|
 | <a name="4647646"></a> [4647646](#4647646) <a name="4647646"></a> <br /> | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.16.1|

@@ -473,7 +473,7 @@ Cumulus Linux transfers the link state of a VLAN device from the lower device. T
 
 If you need the link state of the VLAN device to track only the state of the subset of ports that are also members of the corresponding VLAN instead of all ports, you can configure VLAN bridge binding mode. In VLAN bridge binding mode, Cumulus Linux does not transfer the link state automatically from the lower device but determines the link state according to the bridge ports that are members of the VLAN.
 
-VLAN bridge binding mode is off by default. To enable VLAN bridge binding mode:
+VLAN bridge binding mode is on by default. To disable VLAN bridge binding mode:
 
 {{< tabs "TabID476 ">}}
 {{< tab "NVUE Commands ">}}
@@ -483,7 +483,7 @@ NVUE does not provide commands to configure VLAN bridge binding mode.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add the `vlan-bridge-binding on` parameter to the bridge stanza, then reload the configuration with the `sudo ifreload -a` command:
+Edit the `/etc/network/interfaces` file to set the `vlan-bridge-binding` parameter to `off` in the bridge stanza, then reload the configuration with the `sudo ifreload -a` command:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -496,7 +496,7 @@ iface br_default
     bridge-pvid 1
     bridge-stp yes
     bridge-mcsnoop no
-    vlan-bridge-binding on
+    vlan-bridge-binding off
     mstpctl-forcevers rstp
 ```
 
@@ -510,6 +510,10 @@ cumulus@switch:~$ sudo ifreload -a
 ## Keep SVIs Perpetually UP
 
 The first time you configure a switch, all southbound bridge ports are down; therefore, by default, SVIs are also down. You can force SVIs to always be up by disabling interface state tracking so that the SVIs are always in the UP state even when all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
+
+{{%notice note%}}
+To keep SVIs perpetually UP, VLAN bridge binding mode (`vlan-bridge-binding`) must be `on`.
+{{%/notice%}}
 
 {{< tabs "TabID486 ">}}
 {{< tab "NVUE Commands ">}}

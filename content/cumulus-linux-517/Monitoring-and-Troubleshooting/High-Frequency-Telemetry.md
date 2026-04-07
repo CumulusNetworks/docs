@@ -69,12 +69,14 @@ cumulus@switch:~$ nv config apply
 
 IPFIX
 
-Enable HFT export globally:
+Enable HFT export:
 
 ```
 cumulus@switch:~$ nv set system telemetry hft export ipfix state enabled
 cumulus@switch:~$ nv config apply
 ```
+
+Only one HFT session can run at a time; you cannot configure IPFIX for a statistics group.
 
 OTLP gRPC
 

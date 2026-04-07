@@ -721,6 +721,12 @@ By default, OTLP export is in **secure** mode that requires a CA certificate. Fo
     cumulus@switch:~$ nv config apply
     ```
 
+4. Enable export:
+
+   ```
+   cumulus@switch:~$ set system telemetry export otlp grpc state enabled
+   ```
+
 ### IPFIX Export
 
 To configure an IPFIX export destination:
@@ -732,6 +738,8 @@ To configure an IPFIX export destination:
    cumulus@switch:~$ nv set system telemetry export ipfix port 4317
    cumulus@switch:~$ nv config apply
    ```
+
+   You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations.
 
 2. Specify the interval in seconds for IPFIX template and metadata export. You can specify a value between 1 and 86400. The default is 30 seconds.
 
@@ -746,6 +754,12 @@ To configure an IPFIX export destination:
     cumulus@switch:~$ set system telemetry export ipfix vrf RED
     cumulus@switch:~$ nv config apply
     ```
+
+4. Enable export:
+
+   ```
+   cumulus@switch:~$ set system telemetry export ipfix state enabled
+   ```
 
 ### Customize Export
 

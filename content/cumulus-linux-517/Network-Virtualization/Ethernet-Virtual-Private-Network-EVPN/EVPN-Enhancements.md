@@ -232,11 +232,15 @@ address-family l2vpn evpn
 
 ## EVPN Unreachability in Disjoined Planes
 
-In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. Leaf switches perform route aggregation per tenant VRF for scalability, but this suppresses visibility of individual host link failures. EVPN unreachability signaling in a tenant VRF sends a route to advertise host unreachability after a link failure, enabling leaf switches to send LLDP TLVs informing connected NICs to avoid unreachable paths.
+In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. Leaf switches perform route aggregation per tenant VRF for scalability but this suppresses visibility of individual host link failures. EVPN unreachability signaling in a tenant VRF sends a route to advertise host unreachability after a link failure, enabling leaf switches to send LLDP TLVs informing connected NICs to avoid unreachable paths.
+
+{{%notice note%}}
+EVPN unreachability in disjoined planes is a Beta feature.
+{{%/notice%}}
 
 To enable EVPN unreachability signaling for disjoined multi-plane topologies on each leaf switch tenant VRF:
 
-1. Configurate route aggregation in the tenant VRFs to summarize relevant network IPv4 and/or IPv6 prefixes
+1. Configurate route aggregation in the tenant VRFs to summarize relevant network IPv4 and, or IPv6 prefixes:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only enabled
@@ -244,7 +248,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unicast
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-2. Configure `bgp advertise-unreach interfaces-match <prefix>` under each IPv4 and/or IPv6 unreachability address-family to match interface prefixes attached to GPU NICs:
+2. Configure `bgp advertise-unreach interfaces-match <prefix>` under each IPv4 and, or IPv6 unreachability address-family to match interface prefixes attached to GPU NICs:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreachability advertise-unreach interfaces-match 10.1.0.0/16 
@@ -260,7 +264,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreach
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-4. Enable `bgp export lldp` in tenant VRFs to configure FRR to LLDP integration to send IPv4 and/or IPv6 prefix information to LLDP
+4. Enable `bgp export lldp` in tenant VRFs to configure FRR to LLDP integration to send IPv4 and, or IPv6 prefix information to LLDP
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreachability export-lldp state

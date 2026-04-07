@@ -1034,6 +1034,18 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4963280</td>
+<td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
+<td>5.9.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4963277</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4945654</td>
 <td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
 <td>5.13.0-5.16.1</td>

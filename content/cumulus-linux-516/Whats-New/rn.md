@@ -185,6 +185,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4963280"></a> [4963280](#4963280) <a name="4963280"></a> <br /> | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.16.1 | |
+| <a name="4963277"></a> [4963277](#4963277) <a name="4963277"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.1 | |
 | <a name="4945654"></a> [4945654](#4945654) <a name="4945654"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |
 | <a name="4945652"></a> [4945652](#4945652) <a name="4945652"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |
 | <a name="4930970"></a> [4930970](#4930970) <a name="4930970"></a> <br /> | Unreachability routes originated locally (for example, due to a link-down event) display incorrect BGP origin attribute values in show commands and JSON output. The origin shows as <code>IGP</code> instead of <code>incomplete</code> and JSON fields include redundant origin symbols in the AS path string. | 5.16.0-5.16.1 | |

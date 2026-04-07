@@ -693,7 +693,12 @@ cumulus@switch:~$ nv show system telemetry software-stats systemd export
 state  enabled
 ```
 
-### OTLP gRPC Export
+### Configure an Export Destination
+
+You can configure an OTLP gRPC export destination or an IPFIX export destination for <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span>:
+
+{{< tabs "TabID698 ">}}
+{{< tab "OTLP gRPC">}}
 
 To configure an OTLP gRPC export destination:
 
@@ -721,9 +726,10 @@ By default, OTLP export is in **secure** mode that requires a CA certificate. Fo
     cumulus@switch:~$ nv config apply
     ```
 
-### IPFIX Export
+   {{< /tab >}}
+{{< tab "IPFIX Export for HFT">}}
 
-To configure an IPFIX export destination:
+To configure an IPFIX export destination for HFT:
 
 1. Configure the IPFX collector destination IP address or hostname. Specify the port to use for communication if it is different from the default port 8443:
 
@@ -732,6 +738,8 @@ To configure an IPFIX export destination:
    cumulus@switch:~$ nv set system telemetry export ipfix port 4317
    cumulus@switch:~$ nv config apply
    ```
+
+   You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations.
 
 2. Specify the interval in seconds for IPFIX template and metadata export. You can specify a value between 1 and 86400. The default is 30 seconds.
 
@@ -746,6 +754,9 @@ To configure an IPFIX export destination:
     cumulus@switch:~$ set system telemetry export ipfix vrf RED
     cumulus@switch:~$ nv config apply
     ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Customize Export
 

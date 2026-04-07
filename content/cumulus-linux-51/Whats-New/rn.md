@@ -14,7 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.15.1 | 5.16.0-5.16.1|
+| <a name="4797691"></a> [4797691](#4797691) <a name="4797691"></a> <br /> | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.9.4, 5.15.1 | 5.9.5, 5.16.0-5.16.1|
 | <a name="4647646"></a> [4647646](#4647646) <a name="4647646"></a> <br /> | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.16.1|
 | <a name="4413450"></a> [4413450](#4413450) <a name="4413450"></a> <br /> | When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes.  | 5.0.0-5.11.1, 5.13.0-5.13.1 | 5.11.2, 5.14.0-5.16.1|
 | <a name="4377862"></a> [4377862](#4377862) <a name="4377862"></a> <br /> | When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity. | 5.1.0-5.9.3 | 5.9.4-5.16.1, 5.11.2-5.16.1, 5.13.0-5.16.1|
@@ -147,7 +147,7 @@ pdfhidden: True
 | <a name="2736108"></a> [2736108](#2736108) <a name="2736108"></a> <br /> | When you change the VRRP advertisement interval on the master, the <code>master advertisement interval</code> field in the <code>show vrrp</code> command output does not show the updated value. | 4.4.0-4.4.5, 5.0.0-5.16.1 | |
 | <a name="2734103"></a> [2734103](#2734103) <a name="2734103"></a> <br /> | <code>ACL &#91;No More Resources&#93;</code> messages keep appearing and you can't reinstall the ACL. | 4.3.0-5.1.0 | 5.2.0-5.16.1|
 | <a name="2684925"></a> [2684925](#2684925) <a name="2684925"></a> <br /> | The NVUE <code>nv show vrf default router bgp peer</code> command produces a 404 not found error. | 4.4.0-4.4.5, 5.0.0-5.16.1 | |
-| <a name="2543915"></a> [2543915](#2543915) <a name="2543915"></a> <br /> | When you enable a service in the management VRF, <code>systemctl</code> issues a warning similar to the following:<pre>Warning: The unit file, source configuration file or drop-ins of ntp&#64;mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</pre>You can safely ignore this warning. | 4.0.0-5.9.4 | 5.10.0-5.16.1|
+| <a name="2543915"></a> [2543915](#2543915) <a name="2543915"></a> <br /> | When you enable a service in the management VRF, <code>systemctl</code> issues a warning similar to the following:<pre>Warning: The unit file, source configuration file or drop-ins of ntp&#64;mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</pre>You can safely ignore this warning. | 4.0.0-5.9.5 | 5.10.0-5.16.1|
 
 ### Fixed Issues in 5.1.0
 |  Issue ID 	|   Description	|   Affects	|

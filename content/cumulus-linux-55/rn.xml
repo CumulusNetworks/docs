@@ -9,14 +9,14 @@
 <tr>
 <td>4797691</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
-<td>5.0.0-5.15.1</td>
-<td>5.16.0-5.16.1</td>
+<td>5.0.0-5.9.4, 5.15.1</td>
+<td>5.9.5, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4663076</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.11.4</td>
-<td>5.11.5-5.16.1, 5.15.0-5.16.1</td>
+<td>5.3.1-5.9.4</td>
+<td>5.9.5-5.16.1, 5.11.5-5.16.1, 5.15.0-5.16.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -103,7 +103,7 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>3897227</td>
 <td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
-<td>5.5.1-5.9.4</td>
+<td>5.5.1-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 <tr>
@@ -684,7 +684,7 @@ This error message is benign and has no functional impact.</td>
 <tr>
 <td>3393966</td>
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
-<td>5.5.0-5.9.4</td>
+<td>5.5.0-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 <tr>
@@ -982,7 +982,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.4</td>
+<td>4.0.0-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 </table>
@@ -1008,14 +1008,14 @@ You can safely ignore this warning.</td>
 <tr>
 <td>4797691</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
-<td>5.0.0-5.15.1</td>
-<td>5.16.0-5.16.1</td>
+<td>5.0.0-5.9.4, 5.15.1</td>
+<td>5.9.5, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4663076</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.11.4</td>
-<td>5.11.5-5.16.1, 5.15.0-5.16.1</td>
+<td>5.3.1-5.9.4</td>
+<td>5.9.5-5.16.1, 5.11.5-5.16.1, 5.15.0-5.16.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -1583,7 +1583,7 @@ This error message is benign and has no functional impact.</td>
 <tr>
 <td>3393966</td>
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
-<td>5.5.0-5.9.4</td>
+<td>5.5.0-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 <tr>
@@ -1881,7 +1881,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.4</td>
+<td>4.0.0-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 </table>

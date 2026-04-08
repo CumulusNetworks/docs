@@ -37,6 +37,10 @@ NetQ broadcasts alerts when your {{<link title="Manage Licenses" text="NetQ for 
 | :-- | :-- | :-- | :-- |
 | Expires Soon | `licensing` | `LicenseValidation` | warning |
 | Expired | `licensing` | `LicenseValidation` | critical |
+
+<!--
+## Certificate Expiration
+
 <!--
 ## Redfish Alerts
 

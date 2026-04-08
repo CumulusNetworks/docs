@@ -202,7 +202,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
 | `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |
-| `cert-mode` | The TLS certificate mode for southbound (switch) communication. Set to `self-signed` (default) to use auto-generated certificates, or `user-cert` to provide your own CA and TLS certificates. If you select `user-cert`, you must upload your CA and server certificates <!--insert link--> after the installation but before performing a bringup. The `cert-mode` setting cannot be changed after installation. Switching between `self-signed` and `user-cert` requires a full reinstallation. |
+| `cert-mode` | The TLS certificate mode for southbound (switch) communication. Set to `self-signed` (default) to use auto-generated certificates, or `user-cert` to provide your own CA and TLS certificates. If you select `user-cert`, you must {{<link title="Upload Custom Certificates" text="upload your CA and server certificates">}} after the installation but before performing a bringup. The `cert-mode` setting cannot be changed after installation. Switching between `self-signed` and `user-cert` requires a full reinstallation. |
 
 {{< /tab >}}
 {{< tab "Completed JSON Example ">}}
@@ -239,7 +239,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `servers`, `ip` | The IP addresses of the three nodes (master node and two worker nodes) in your cluster. |
 | `alertmanager_webhook_url` | The URL for the Alertmanager webhook. |
-| `cert-mode` | The TLS certificate mode for southbound (switch) communication. Set to `self-signed` (default) to use auto-generated certificates, or `user-cert` to provide your own CA and TLS certificates. If you select `user-cert`, you must upload your CA and server certificates <!--insert link--> after the installation but before performing a bringup. The `cert-mode` setting cannot be changed after installation. Switching between `self-signed` and `user-cert` requires a full reinstallation. |
+| `cert-mode` | The TLS certificate mode for southbound (switch) communication. Set to `self-signed` (default) to use auto-generated certificates, or `user-cert` to provide your own CA and TLS certificates. If you select `user-cert`, you must {{<link title="Upload Custom Certificates" text="upload your CA and server certificates">}} after the installation but before performing a bringup. The `cert-mode` setting cannot be changed after installation. Switching between `self-signed` and `user-cert` requires a full reinstallation. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -284,6 +284,6 @@ If any of the applications or services display a DOWN status after 30 minutes, o
 
 ## Next Steps
 
-- If you installed NetQ for NVLink with `cert-mode` set to `user-cert`, upload your certificates <!--insert link--> before performing a system bringup.
+- If you installed NetQ NVLink with `cert-mode` set to `user-cert`, {{<link title="Upload Custom Certificates" text="upload your certificates">}} before performing a system bringup.
 - {{<link title="NVLink Bringup" text="Perform a system bringup">}} to connect to telemetry and controller services. 
 - The NVIDIA Vera Rubin platform does not support the system bringup process. Follow the steps to {{<link title="Register Services" text="register services">}} manually instead.

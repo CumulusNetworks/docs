@@ -11,7 +11,7 @@ After installing NetQ, perform a bringup to configure and register NetQ with a d
 
 - Retrieve the {{<exlink url="https://docs.nvidia.com/networking/display/nvidianvosusermanualfornvlinkswitchesv25024282/sdn" text="SDN configuration profiles">}} from all switches included in the bringup procedure.
 - Ensure you have configured a switch profile with the proper credentials. During the bringup process, you can specify a global switch profile for all switches or define individual profiles for each switch. Individual profiles take precedence over the global profile specified in the request body.
-- If your system is installed in `user-cert` mode, you must upload your CA certificate and server certificate <!-- insert link--> *before* initiating a bringup. Prepare a PKCS#12 (.p12) certificate bundle for your switches, signed by the same CA. Ensure that the `.p12` file is not password-protected and is not expired.
+- If your system is installed in `user-cert` mode, you must {{<link title="Upload Custom Certificates" text="upload your CA certificate and server certificate">}}*before* initiating a bringup.
 
 ## NVLink Bringup Endpoints
 
@@ -35,7 +35,7 @@ NetQ uses the following endpoints to manage switch credentials and access. The d
 | POST `/nmx/v1/bring-up` | Initiate a new bring-up process for one or more switches. |
 | GET `/nmx/v1/bring-up/{id}` | Retrieve bring-up status for a specific operation |
 
-{{%notice note%}} The bringup request behavior is determined by the system's certificate mode (`cert-mode`), which is set during installation. In the default `self-signed` mode, certificates are generated automatically and the `CertP12` field must be omitted. In `user-cert` mode, the CertP12 field is required. See <!--insert link--> for details.
+{{%notice note%}} The bringup request behavior is determined by the system's certificate mode (`cert-mode`), which is set during installation. In the default `self-signed` mode, certificates are generated automatically and the `CertP12` field must be omitted. In `user-cert` mode, the `CertP12` field is required. See {{<link title="Upload Custom Certificates" text="Upload Custom Certificates">}} for details.
 {{%/notice%}}
 
 ## Bringup Examples
@@ -71,6 +71,8 @@ curl -X 'POST' \
   "ProfileID": "<custom-switch-profile-id>"
 }'
 ```
+
+### Bringup Examples using Custom Certificates
 
 The following example reflects a bringup when NetQ NVLink is installed in `user-cert` mode. It includes the `CertP12` field along with the `.p12` certificate bundle. NetQ validates the certificate against the uploaded CA before proceeding with the bringup. The certificate is applied to all switches in the request:
 ```

@@ -11,7 +11,7 @@ After installing NetQ, perform a bringup to configure and register NetQ with a d
 
 - Retrieve the {{<exlink url="https://docs.nvidia.com/networking/display/nvidianvosusermanualfornvlinkswitchesv25024282/sdn" text="SDN configuration profiles">}} from all switches included in the bringup procedure.
 - Ensure you have configured a switch profile with the proper credentials. During the bringup process, you can specify a global switch profile for all switches or define individual profiles for each switch. Individual profiles take precedence over the global profile specified in the request body.
-- If your system is installed in `user-cert` mode, you must {{<link title="Upload Custom Certificates" text="upload your CA certificate and server certificate">}}*before* initiating a bringup.
+- If your system is installed in `user-cert` mode, you must {{<link title="Upload Custom Certificates" text="upload your CA certificate and server certificate">}} *before* initiating a bringup.
 
 ## NVLink Bringup Endpoints
 

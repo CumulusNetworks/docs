@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4963280"></a> [4963280](#4963280) <a name="4963280"></a> <br /> | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.16.1 | |
+| <a name="4963277"></a> [4963277](#4963277) <a name="4963277"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.1 | |
 | <a name="4945654"></a> [4945654](#4945654) <a name="4945654"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |
 | <a name="4945652"></a> [4945652](#4945652) <a name="4945652"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |
 | <a name="4922104"></a> [4922104](#4922104) <a name="4922104"></a> <br /> | When the system is under load and the <code>wd_keepalive</code> process is running at the default rate of one time per minute, the switch might reboot due to starvation of the <code>wd_keepalive</code> process. | 5.13.1-5.16.1 | |
@@ -190,6 +192,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4963280"></a> [4963280](#4963280) <a name="4963280"></a> <br /> | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.16.1 | |
+| <a name="4963277"></a> [4963277](#4963277) <a name="4963277"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.1 | |
 | <a name="4945654"></a> [4945654](#4945654) <a name="4945654"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |
 | <a name="4945652"></a> [4945652](#4945652) <a name="4945652"></a> <br /> | Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond. | 5.13.0-5.16.1 | |
 | <a name="4922104"></a> [4922104](#4922104) <a name="4922104"></a> <br /> | When the system is under load and the <code>wd_keepalive</code> process is running at the default rate of one time per minute, the switch might reboot due to starvation of the <code>wd_keepalive</code> process. | 5.13.1-5.16.1 | |

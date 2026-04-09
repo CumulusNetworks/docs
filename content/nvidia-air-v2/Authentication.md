@@ -5,9 +5,9 @@ weight: 25
 product: NVIDIA Air 2.0
 ---
 
-NVIDIA Air uses NGC API keys for authenticating API requests. This page covers Air-specific authentication details. For general information about NGC API keys, see the {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html#ngc-api-keys" text="NGC API Keys documentation">}}.
+NVIDIA DSX Air uses NGC API keys for authenticating API requests. This page covers Air-specific authentication details. For general information about NGC API keys, see the {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html#ngc-api-keys" text="NGC API Keys documentation">}}.
 
-For the full API reference, see the {{<exlink url="https://air-ngc.nvidia.com/api/docs/" text="NVIDIA Air API documentation">}}.
+For the full API reference, see the {{<exlink url="https://air-ngc.nvidia.com/api/docs/" text="NVIDIA DSX Air API documentation">}}.
 
 ## API Key Types
 

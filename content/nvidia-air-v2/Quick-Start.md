@@ -7,11 +7,11 @@ product: NVIDIA Air 2.0
 
 ## Supported Browsers
 
-NVIDIA Air fully supports the following browsers:
+NVIDIA DSX Air fully supports the following browsers:
 - Google Chrome 120 or later
 - Mozilla Firefox 121 or later
 
-NVIDIA Air supports the following browsers on a best-effort basis:
+NVIDIA DSX Air supports the following browsers on a best-effort basis:
 - Microsoft Edge
 - Safari
 
@@ -63,7 +63,7 @@ To add a new service to your simulation:
 2. Enter the following information to create a service:
 - **Service Name** is the name for your service. After you name a service, you can choose to run multiple instances of the same service on different interfaces or ports.
 - **Interface** is where the connection terminates; typically `eth0` on the `oob-mgmt-server`.
-- **Service Type** is the service type. NVIDIA Air creates a hyperlink to the URL automatically in the services panel for _SSH_, _HTTP_, or _HTTPS_ services. For _Other_ services, you can use any port, but Air does not generate a hyperlink. The hyperlink provides a convenient way to copy and paste the service if your browser supports it.
+- **Service Type** is the service type. NVIDIA DSX Air creates a hyperlink to the URL automatically in the services panel for _SSH_, _HTTP_, or _HTTPS_ services. For _Other_ services, you can use any port, but Air does not generate a hyperlink. The hyperlink provides a convenient way to copy and paste the service if your browser supports it.
 - **Service Port** is the internal port where the service terminates. 
 
 Click **Create**.
@@ -96,7 +96,7 @@ You can edit important attributes of a simulation with the {{<img src="/images/g
 
 ## API Authentication
 
-To authenticate with the NVIDIA Air API, use NGC API keys. For detailed information about generating and using API keys, see {{<link title="API Authentication">}}.
+To authenticate with the NVIDIA DSX Air API, use NGC API keys. For detailed information about generating and using API keys, see {{<link title="API Authentication">}}.
 
 ## SSH Keys
 

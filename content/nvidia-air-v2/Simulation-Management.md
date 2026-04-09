@@ -5,11 +5,11 @@ weight: 25
 product: NVIDIA Air 2.0
 ---
 
-This page covers the simulation lifecycle, checkpoints, and simulation history in NVIDIA Air.
+This page covers the simulation lifecycle, checkpoints, and simulation history in NVIDIA DSX Air.
 
 ## Simulation Lifecycle
 
-A simulation in NVIDIA Air transitions through several states during its lifecycle. Understanding these states helps you monitor your simulation's progress and troubleshoot issues.
+A simulation in NVIDIA DSX Air transitions through several states during its lifecycle. Understanding these states helps you monitor your simulation's progress and troubleshoot issues.
 
 ### Starting a Simulation
 

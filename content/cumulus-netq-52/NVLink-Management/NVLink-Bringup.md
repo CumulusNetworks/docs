@@ -17,23 +17,27 @@ After installing NetQ, perform a bringup to configure and register NetQ with a d
 
 ### Switch Profile Endpoints
 
-NetQ uses the following endpoints to manage switch credentials and access. The default value for both the username and the password is `admin`. You must specify at least one switch profile in the bringup request.
+NetQ uses the following endpoints to manage switch credentials and access. You must specify at least one switch profile in the bringup request.
+
+{{%notice note%}}
+The default value for both the username and the password is `admin`. NVIDIA strongly recommends changing these default values and creating dedicated usernames and passwords for each switch.
+{{%/notice%}}
 
 | Endpoint | Description |
 | :-- | :-- |
-| GET `/nmx/v1/switch-profiles` | Retrieve a list of switch profiles |
-| POST `/nmx/v1/switch-profiles` | Create a new switch profile |
-| GET `/nmx/v1/switch-profiles/{id}` | Retrieve a specific switch profile |
-| DELETE `/nmx/v1/switch-profiles/{id}` | Delete a switch profile |
-| PATCH `/nmx/v1/switch-profiles/{id}` | Update an existing switch profile |
+| GET `/v1/switch-profiles` | Retrieve a list of switch profiles |
+| POST `/v1/switch-profiles` | Create a new switch profile |
+| GET `/v1/switch-profiles/{id}` | Retrieve a specific switch profile |
+| DELETE `/v1/switch-profiles/{id}` | Delete a switch profile |
+| PATCH `/v1/switch-profiles/{id}` | Update an existing switch profile |
 
 ### Bringup Endpoints
 
 | Endpoint | Description |
 | :-- | :-- |
-| GET `/nmx/v1/bring-up` | Retrieve bring-up status with optional filters (pending, in progress, failed, completed) |
-| POST `/nmx/v1/bring-up` | Initiate a new bring-up process for one or more switches. |
-| GET `/nmx/v1/bring-up/{id}` | Retrieve bring-up status for a specific operation |
+| GET `/v1/bring-up` | Retrieve bring-up status with optional filters (pending, in progress, failed, completed) |
+| POST `/v1/bring-up` | Initiate a new bring-up process for one or more switches. |
+| GET `/v1/bring-up/{id}` | Retrieve bring-up status for a specific operation |
 
 {{%notice note%}} The bringup request behavior is determined by the system's certificate mode (`cert-mode`), which is set during installation. In the default `self-signed` mode, certificates are generated automatically and the `CertP12` field must be omitted. In `user-cert` mode, the `CertP12` field is required. See {{<link title="Upload Custom Certificates" text="Upload Custom Certificates">}} for details.
 {{%/notice%}}

@@ -1,5 +1,5 @@
 ---
-title: Monitor Leaks with Redfish
+title: Sensor Events and Notifications
 author: NVIDIA
 weight: 850
 toc: 4
@@ -13,17 +13,15 @@ NetQ NVLink supports leakage sensor events exclusively; events from other sensor
 
 ## Register a BMC Redfish Endpoint
 
-To start monitoring leak events, register at least one Redfish endpoint:
+To begin monitoring leak events for a switch, register the designated Redfish endpoint of the BMC assigned to that switch:
 
-1. Authenticate your credentials by {{<link title="NVLink Bringup/#switch-profile-endpoints" text="creating a switch profile">}}. Make a POST request to the `/v1/switch-profiles` endpoint that contains your username and password. Copy the `ProfileID` from the response body.
+1. {{<link title="NVLink Bringup/#switch-profile-endpoints" text="Create a switch profile">}}. Make a POST request to the `/v1/switch-profiles` endpoint using the {{<exlink url="https://docs.nvidia.com/networking/display/nvidiaswitchbmcusermanualv8800020956/getting+started#src-3832573619_GettingStarted-LoginCredentials" text="BMC username and password">}}. Copy the `ProfileID` from the response body.
 
-2. Make a POST request to the `/v1/redfish` endpoint using the `ProfileID` from the previous step. You can either specify a global profile ID or an individual profile ID for each endpoint. Note that individual profile IDs override global profile IDs for any given endpoint. You can optionally specify a port or use the default value (443). Wait for the `status` field to change from `pending` to `active`.
+2. Make a POST request to the `/v1/redfish` endpoint using the `ProfileID` from the previous step. You can either specify a global profile ID or an individual profile ID for each endpoint. Note that individual profile IDs override global profile IDs for any given endpoint. You can optionally specify a port or use the default value (443).
 
 3. If all initial validations succeed, the API returns an `HTTP 202 Accepted` response with a JSON body containing an operation ID. You can make a GET request to the `/v1/operations` endpoint to track the progress of the registration.
 
-After the endpoint is successfully registered, NetQ NVLink establishes an HTTPS mTLS connection and subscribes to the BMC Redfish events. You can send GET request to `v1/redfish` to list all registered endpoints. 
-
-<!-- link to manage alerts -->
+After the endpoint is successfully registered, the `status` field changes from `pending` to `active`. NetQ NVLink establishes an HTTPS mTLS connection and subscribes to the {{<link title="Manage Alerts/#leak-sensor-notifications" text="BMC Redfish events">}}. You can send GET request to `/v1/redfish` to list all registered endpoints. 
 
 ## Example
 

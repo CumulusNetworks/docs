@@ -15,7 +15,7 @@ The *port status* alert is triggered by a group of events that affect port opera
 
 | Alert Type | Alert Group | Alert Name(s) | Severity |
 | :-- | :-- | :-- | :-- |
-| Ongoing Port Validation | `ongoing_port_validation` | `OngoingPortValidation` | warning | More than 3 errors of a specific metric are detected within a 24-hour window. |
+| Ongoing Port Validation | `ongoing_port_validation` | `OngoingPortValidation` | warning |
 
 
 ## Anomaly Detection
@@ -40,12 +40,16 @@ NetQ broadcasts alerts when your {{<link title="Manage Licenses" text="NetQ for 
 
 <!--
 ## Certificate Expiration
-
-<!--
-## Redfish Alerts
-
-
 -->
+
+## Leak Sensor Notifications
+
+| Alert Type | Alert Group | Alert Name(s) | Severity |
+| :-- | :-- | :-- | :-- |
+| Redfish event alert on a switch or GPU | `webhook-gateway` | `RedfishEventNotification` | warning/critical |
+| Redfish connection status update on a switch or GPU | `oob-connectivity` | `RedfishStatusNotification` | warning/critical |
+
+
 ## Update the Webhook Receiver URL
 
 You can update the webhook URL at any time after installation.

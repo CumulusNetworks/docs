@@ -19,18 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4945654</td>
-<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
-<td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4945652</td>
-<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
-<td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4922104</td>
 <td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
 <td>5.13.1-5.16.1</td>

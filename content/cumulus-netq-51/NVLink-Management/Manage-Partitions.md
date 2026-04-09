@@ -24,7 +24,7 @@ Use the `/v1/partitions` endpoint to create, update, view, or delete a partition
 | POST `/nmx/v1/partitions` | Create a partition. The request body must include a partition name and a `members` object, which is either GPU-ID-based or location-based |
 | GET `/nmx/v1/partitions/{id}` | Retrieve partition information, including health and metadata |
 | PUT `/nmx/v1/partitions/{id}` | Update a partition. Note that the partition name cannot be modified. However, you can update its member list. When performing a PUT operation, the `members` parameter must include all GPUs that will belong to the partition. The system compares the provided list with the current configuration and adds or removes members automatically. |
-| DELETE `/nmx/v1/support-packages/{id}` | Delete a partition |
+| DELETE `/nmx/v1/partitions/{id}` | Delete a partition |
 
 ## Monitor Partition Health
 

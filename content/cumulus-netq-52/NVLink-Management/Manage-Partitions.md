@@ -24,11 +24,11 @@ Use the `/v1/partitions` endpoint to create, update, view, or delete a partition
 
 | Endpoint | Description |
 | :-- | :-- |
-| GET `/nmx/v1/partitions` | Retrieve a list of partitions. The `gpu-id-type` parameter allows you to specify devices by either their database ID (`db-id`) or unique identifier (`device-uuid`). |
-| POST `/nmx/v1/partitions` | Create a partition. The request body must include a partition name and a `members` object, which is either GPU-ID-based (`db-id` or `device-uuid`) or location-based |
-| GET `/nmx/v1/partitions/{id}` | Retrieve partition information, including health and metadata |
-| PUT `/nmx/v1/partitions/{id}` | Update a partition. Note that the partition name cannot be modified. However, you can update its member list. When performing a PUT operation, the `members` parameter must include all GPUs that will belong to the partition. The system compares the provided list with the current configuration and adds or removes members automatically. |
-| DELETE `/nmx/v1/support-packages/{id}` | Delete a partition |
+| GET `/v1/partitions` | Retrieve a list of partitions. The `gpu-id-type` parameter allows you to specify devices by either their database ID (`db-id`) or unique identifier (`device-uuid`). |
+| POST `/v1/partitions` | Create a partition. The request body must include a partition name and a `members` object, which is either GPU-ID-based (`db-id` or `device-uuid`) or location-based |
+| GET `/v1/partitions/{id}` | Retrieve partition information, including health and metadata |
+| PUT `/v1/partitions/{id}` | Update a partition. Note that the partition name cannot be modified. However, you can update its member list. When performing a PUT operation, the `members` parameter must include all GPUs that belong to the partition. The system compares the provided list with the current configuration and adds or removes members automatically. |
+| DELETE `/v1/partitions/{id}` | Delete a partition |
 
 The `gpu-id-type` parameter controls the identifier format returned in the `Members` array for ID-based partitions. When set to `device-uuid` (the default), the response contains an array of `uint64` device UIDs as known by the network. When set to `db-id`, the response contains an array of string-based database identifiers. This parameter has no effect on location-based partitions, which always return member objects with physical placement attributes.
 

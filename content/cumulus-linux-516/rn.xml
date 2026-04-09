@@ -13,18 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4945654</td>
-<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
-<td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4945652</td>
-<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
-<td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4931702</td>
 <td>When you launch a Cumulus VX 5.16.1 image in Air with switch emulation, you see the {{systemd-remount-fs.service}} systemd service in a failed state. This issue has no functional impact.</td>
 <td>5.16.1</td>
@@ -1043,18 +1031,6 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>4963277</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4945654</td>
-<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
-<td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4945652</td>
-<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
-<td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>

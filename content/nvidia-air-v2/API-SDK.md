@@ -5,7 +5,7 @@ weight: 55
 product: NVIDIA Air 2.0
 ---
 
-NVIDIA Air provides a REST API and a Python SDK for programmatic access to the platform.
+NVIDIA DSX Air provides a REST API and a Python SDK for programmatic access to the platform.
 
 ## API Documentation
 
@@ -15,6 +15,6 @@ The Air API lets you manage simulations, images, organizations, and other resour
 
 ## Python SDK
 
-The Air Python SDK provides a high-level interface for interacting with the NVIDIA Air API.
+The Air Python SDK provides a high-level interface for interacting with the NVIDIA DSX Air API.
 
 {{<exlink url="https://docs.nvidia.com/air/sdk/latest/" text="View the SDK documentation">}}

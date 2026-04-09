@@ -22,10 +22,10 @@ Use the following endpoints to list, download, and optionally delete the `tar.gz
 
 | Endpoint | Description |
 | :-- | :-- |
-| GET `/nmx/v1/support-packages` | Retrieve a list of support packages, including package metadata |
-| POST `/nmx/v1/support-packages` | Initiate log collection from individual switches or from switches in a given domain |
-| GET `/nmx/v1/support-packages/{id}` | Download the `tar.gz` support package |
-| DELETE `/nmx/v1/support-packages/{id}` | Delete support package |
+| GET `/v1/support-packages` | Retrieve a list of support packages, including package metadata |
+| POST `/v1/support-packages` | Initiate log collection from individual switches or from switches in a given domain |
+| GET `/v1/support-packages/{id}` | Download the `tar.gz` support package |
+| DELETE `/v1/support-packages/{id}` | Delete support package |
 
 You can specify a `ProfileID` within the request body to authenticate switch access credentials. If you omit the `ProfileID`, NetQ uses the default profile for authentication.
 

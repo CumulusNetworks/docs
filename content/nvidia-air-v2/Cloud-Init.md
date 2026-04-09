@@ -7,7 +7,7 @@ product: NVIDIA Air 2.0
 
 ## Overview
 
-Cloud-init is an industry-standard tool for automating the initial configuration of virtual machines on first boot. NVIDIA Air supports cloud-init through the {{<exlink url="https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html" text="NoCloud datasource">}}, which allows you to inject user-data and meta-data into your simulation nodes.
+Cloud-init is an industry-standard tool for automating the initial configuration of virtual machines on first boot. NVIDIA DSX Air supports cloud-init through the {{<exlink url="https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html" text="NoCloud datasource">}}, which allows you to inject user-data and meta-data into your simulation nodes.
 
 With cloud-init, you can automate tasks such as:
 - Setting hostnames

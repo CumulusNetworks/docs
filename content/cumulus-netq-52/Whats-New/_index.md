@@ -10,15 +10,18 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 5.2
 
+- Added a “correlation” event type which displays the association between host-based errors and devices within a network’s fabric (beta)
+- 
+
 
 ### NetQ for NVLink API Changes
-- Added a `/v1/redfish` endpoint to detect and report leak events in liquid-cooling equipment using the Redfish Baseboard Management Controller (BMC)
-- Added `/v1/certificates` endpoints that let you {{<link title="Register Services" text="use your own certificates">}} instead of the ones that NetQ NVLink automatically generates
+- Added a `/v1/redfish` endpoint to {{<link title="Sensor Events and Notifications" text="detect and report leak events">}} in liquid-cooling equipment
+- Added `/v1/certificates` endpoints that let you use your own certificates instead of the ones that NetQ NVLink automatically generates. To use your own certificates, {{<link title="Install NetQ NVLink" text="install NetQ NVLink">}}, then {{<link title="Upload Custom Certificates" text="upload the certificates">}} using the API.
 - Added `/v1/validations/fw-versions` endpoint to validate that all switches within a domain have the same firmware version
 - Added ability {{<link title="Upgrade NVOS or Firmware" text="to upgrade firmware">}} using the `/v1/upgrade-switch` endpoint
 - Added several `/v1/kpis` endpoints that allow you to view health metrics {{<link title="Collect KPIs" text="view health metrics">}} for GPUs, switch nodes, compute nodes, partitions, and domains over time
 - Added several parameters to the `/v1/gpus` endpoint that allow for filtering based on a device's UUID, chassis serial number, slot ID, tray index, or host ID
-- Added parameter to manage partitions using a device's unique identifier (UUID) with the `/v1/partitions` endpoints
+- Added parameter that allows you to {{<link title="Manage Partitions" text="manage partitions">}} using a device's unique identifier (UUID) with the `/v1/partitions` endpoints
 - Added ability to adjust NMX-T polling frequency using the `/v1/settings` endpoint
 - Added support for NetQ NVLink on the NVIDIA Vera Rubin platform (beta)
 - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
@@ -35,7 +38,11 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## Upgrade Paths
 
-NetQ 5.1 is available exclusively for on-premises deployments. You can upgrade to 5.1 if your deployment is running version 5.0 or 4.15. First {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.1 installation">}}.
+NetQ 5.2 is available exclusively for on-premises deployments. You can upgrade to 5.2 if your deployment is running version 5.1 or 5.0. 
+
+- To upgrade from 5.1 to 5.2, perform an {{<link title="Upgrade NetQ Virtual Machines" text="in-place upgrade">}}.
+- To upgrade from 5.1 to 5.2 and concurrently add additional nodes to your cluster, run the `netq install cluster` command with the `extend-cluster` option.
+- To upgrade from 5.0 to 5.2, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.2 installation">}}.
 
 
 ## Compatible Agent Versions

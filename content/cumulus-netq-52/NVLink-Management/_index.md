@@ -13,6 +13,7 @@ NetQ NVLink was previously packaged as NMX-M.
 
 
 - {{<link title="Install NetQ for NVLink">}}
+- {{<link title="Upload Custom Certificates">}}
 - {{<link title="NVLink Bringup">}}
 - {{<link title="Register Services">}}
 - {{<link title="NetQ NVLink API User Guide">}}
@@ -21,6 +22,7 @@ NetQ NVLink was previously packaged as NMX-M.
 - {{<link title="Manage Alerts">}}
 - {{<link title="Manage Licenses">}}
 - {{<link title="Manage Partitions">}}
+- {{<link title="Sensor Events and Notifications">}}
 - {{<link title="Upgrade NVOS or Firmware">}}
 - {{<link title="Monitor with Prometheus">}}
 - {{<link title="Troubleshooting and Support">}}

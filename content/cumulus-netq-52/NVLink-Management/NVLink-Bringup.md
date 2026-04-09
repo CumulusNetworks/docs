@@ -11,29 +11,36 @@ After installing NetQ, perform a bringup to configure and register NetQ with a d
 
 - Retrieve the {{<exlink url="https://docs.nvidia.com/networking/display/nvidianvosusermanualfornvlinkswitchesv25024282/sdn" text="SDN configuration profiles">}} from all switches included in the bringup procedure.
 - Ensure you have configured a switch profile with the proper credentials. During the bringup process, you can specify a global switch profile for all switches or define individual profiles for each switch. Individual profiles take precedence over the global profile specified in the request body.
-
+- If your system is installed in `user-cert` mode, you must {{<link title="Upload Custom Certificates" text="upload your CA certificate and server certificate">}} *before* initiating a bringup.
 
 ## NVLink Bringup Endpoints
 
 ### Switch Profile Endpoints
 
-NetQ uses the following endpoints to manage switch credentials and access. The default value for both the username and the password is `admin`. You must specify at least one switch profile in the bringup request.
+NetQ uses the following endpoints to manage switch credentials and access. You must specify at least one switch profile in the bringup request.
+
+{{%notice note%}}
+The default value for both the username and the password is `admin`. NVIDIA strongly recommends changing these default values and creating dedicated usernames and passwords for each switch.
+{{%/notice%}}
 
 | Endpoint | Description |
 | :-- | :-- |
-| GET `/nmx/v1/switch-profiles` | Retrieve a list of switch profiles |
-| POST `/nmx/v1/switch-profiles` | Create a new switch profile |
-| GET `/nmx/v1/switch-profiles/{id}` | Retrieve a specific switch profile |
-| DELETE `/nmx/v1/switch-profiles/{id}` | Delete a switch profile |
-| PATCH `/nmx/v1/switch-profiles/{id}` | Update an existing switch profile |
+| GET `/v1/switch-profiles` | Retrieve a list of switch profiles |
+| POST `/v1/switch-profiles` | Create a new switch profile |
+| GET `/v1/switch-profiles/{id}` | Retrieve a specific switch profile |
+| DELETE `/v1/switch-profiles/{id}` | Delete a switch profile |
+| PATCH `/v1/switch-profiles/{id}` | Update an existing switch profile |
 
 ### Bringup Endpoints
 
 | Endpoint | Description |
 | :-- | :-- |
-| GET `/nmx/v1/bring-up` | Retrieve bring-up status with optional filters (pending, in progress, failed, completed) |
-| POST `/nmx/v1/bring-up` | Initiate a new bring-up process for one or more switches. |
-| GET `/nmx/v1/bring-up/{id}` | Retrieve bring-up status for a specific operation |
+| GET `/v1/bring-up` | Retrieve bring-up status with optional filters (pending, in progress, failed, completed) |
+| POST `/v1/bring-up` | Initiate a new bring-up process for one or more switches. |
+| GET `/v1/bring-up/{id}` | Retrieve bring-up status for a specific operation |
+
+{{%notice note%}} The bringup request behavior is determined by the system's certificate mode (`cert-mode`), which is set during installation. In the default `self-signed` mode, certificates are generated automatically and the `CertP12` field must be omitted. In `user-cert` mode, the `CertP12` field is required. See {{<link title="Upload Custom Certificates" text="Upload Custom Certificates">}} for details.
+{{%/notice%}}
 
 ## Bringup Examples
 
@@ -69,7 +76,48 @@ curl -X 'POST' \
 }'
 ```
 
-### Track the Progress
+### Bringup Examples using Custom Certificates
+
+The following example reflects a bringup when NetQ NVLink is installed in `user-cert` mode. It includes the `CertP12` field along with the `.p12` certificate bundle. NetQ validates the certificate against the uploaded CA before proceeding with the bringup. The certificate is applied to all switches in the request:
+```
+curl -X 'POST' \
+  'https://<ip_address>/nmx/v1/bring-up' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'FmConfig=@<fm-config-file>' \
+  -F 'CertP12=@<path-to-switch-cert.p12>' \
+  -F 'ProfileID=<switch-profile-id>' \
+  -F 'Switches={ "Address": "<switch-IP-address-or-hostname>" 
+}'
+```
+
+To use different certificates for different switches, submit separate bringup requests with the respective `.p12` files:
+
+```
+curl -X 'POST' \
+  'https://<ip_address>/nmx/v1/bring-up' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'FmConfig=@<fm-config-file>' \
+  -F 'CertP12=@<path-to-switch-A-cert.p12>' \
+  -F 'ProfileID=<switch-profile-id>' \
+  -F 'Switches={ "Address": "<switch-A-IP-address>" 
+}'
+```
+```
+curl -X 'POST' \
+  'https://<ip_address>/nmx/v1/bring-up' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'FmConfig=@<fm-config-file>' \
+  -F 'CertP12=@<path-to-switch-B-cert.p12>' \
+  -F 'ProfileID=<switch-profile-id>' \
+  -F 'Switches={ "Address": "<switch-B-IP-address>" 
+}'
+```
+
+
+## Track the Progress
 
 If all initial validations succeed, the API returns an `HTTP 202 Accepted` response with a JSON body containing a bringup operation ID. You can make a GET request to the `/v1/bring-up/` endpoint to track the progress of the bringup.
 

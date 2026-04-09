@@ -5,7 +5,7 @@ weight: 30
 product: NVIDIA Air 2.0
 ---
 
-NVIDIA Air offers preconfigured network simulations---also called labs or demos---in the [Demo Marketplace](https://air-ngc.nvidia.com/demos). You can clone these demos and use them to learn about network configuration best practices, try out new features, and experiment with different environments or fabrics. They are completely yours to learn from, explore, destroy, and rebuild. Each demo includes a link to documentation that explains the goals of the simulation and provides step-by-step instructions or general information about the demo.
+NVIDIA DSX Air offers preconfigured network simulations---also called labs or demos---in the [Demo Marketplace](https://air-ngc.nvidia.com/demos). You can clone these demos and use them to learn about network configuration best practices, try out new features, and experiment with different environments or fabrics. They are completely yours to learn from, explore, destroy, and rebuild. Each demo includes a link to documentation that explains the goals of the simulation and provides step-by-step instructions or general information about the demo.
 
 {{<img src="/images/guides/nvidia-air-v2/DemoMarketplace.png" alt="demo marketplace homepage displaying available demos">}}
 

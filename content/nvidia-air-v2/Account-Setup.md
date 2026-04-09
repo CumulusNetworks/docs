@@ -5,7 +5,7 @@ weight: 15
 product: NVIDIA Air 2.0
 ---
 
-NVIDIA Air uses {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html" text="NVIDIA NGC">}} for authentication and organization management.
+NVIDIA DSX Air uses {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html" text="NVIDIA NGC">}} for authentication and organization management.
 
 ## Prerequisites
 
@@ -61,7 +61,7 @@ Click **Start Trial** to activate the free trial for your organization. If you a
 
 ## Add a User and Assign Roles
 
-To access NVIDIA Air, each user in your organization must have at least one of the following roles assigned at the organization level:
+To access NVIDIA DSX Air, each user in your organization must have at least one of the following roles assigned at the organization level:
 
 - **Air Org Admin**
 - **Air User**

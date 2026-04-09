@@ -495,7 +495,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Platform Information">}}
 
-To enable platform information statistics, such as the time of last reboot, the last reboot reason, or firmware version:
+To enable platform information statistics, such as the time of last reboot, the last reboot reason, or hardware details such as the chasis version, model name, part number, serial number, and type:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class platform-info state enabled
@@ -3298,6 +3298,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_info_last_reboot_time` | Time of last reboot in ns since epoch.|
 | `nvswitch_platform_info_last_reboot_reason` | Information about the last reboot reason of a component.|
 | `nvswitch_platform_info_firmware_version` | Information about the firmware version of a component.|
+| `nvswitch_platform_info_hw_details` | *Component hardware details such as the version, model name, part number, serial number, and type.|
 
 {{< /tab >}}
 {{< /tabs >}}

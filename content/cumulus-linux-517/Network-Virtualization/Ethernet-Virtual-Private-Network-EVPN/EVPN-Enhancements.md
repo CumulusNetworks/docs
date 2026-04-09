@@ -274,6 +274,42 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 5. Enable the LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} to distribute unreachable prefix information to connected hosts.
 
+### Show EVPN Unreachability Information
+
+To show EVPN unreachability signaling information, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf TENANT1 router bgp address-family l2vpn-evpn route
+```
+
+To show EVPN unreachability signaling for a specific IPv4 route, run the `nv show vrf <vrf-id> router bgp address-family ipv4-unreachability <route>` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf TENANT1 router bgp address-family ipv4-unreachability 10.1.0.0/16
+```
+
+To show EVPN unreachability signaling for a specific IPv6 route, run the `nv show vrf <vrf-id> router bgp address-family ipv6-unreachability <route>` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf TENANT1 router bgp address-family ipv6-unreachability 2001:db8::/64
+```
+
+### Known Limitations
+
+Be aware of the following limitations when configuring EVPN unreachability in disjoined planes.
+
+#### switchd Restart
+
+Restarting `switchd` results in network churn. FRR sees interfaces going down, which triggers BGP to start advertising EVPN unreachable routes and brings down peering. BGP withdraws the EVPN unreachable routes and re-establishes BGP sessions after the interfaces are back up operationally.
+
+#### Link Down with Dynamic VRF Assignment on 802.1X Interfaces
+
+When a link with a configured IP address goes down operationally on the leaf switch on only one plane, BGP on the leaf advertises the EVPN unreachable route type for the IP prefix of the interface that is operationally down. However, because the interface is unassigned from the VRF, BGP withdraws the EVPN unreachable route type from the remote leaf switch. Because the remote node still has the aggregate summary route, the leaf switch where the link is down attracts traffic and blocks it instead of rerouting traffic through other healthy planes.
+
+#### Redistributed Route Overlapping with the Interface Match Command
+
+If an interface address redistributed by BGP falls within the IP address range configured in the `bgp advertise-unreach interfaces-match` command and the interface goes down operationally, BGP withdraws the type-5 route and advertise the EVPN unreachable route type for the interface IP address.
+
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 
 You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or static route underlay. This is a more complex configuration than using <span class="a-tooltip">[eBGP](## "external BGP")</span>. In this case, <span class="a-tooltip">[iBGP](## "internal BGP")</span> advertises EVPN routes directly between <span class="a-tooltip">[VTEPs](## "Virtual Tunnel End Points")</span> and the spines are unaware of EVPN or BGP.

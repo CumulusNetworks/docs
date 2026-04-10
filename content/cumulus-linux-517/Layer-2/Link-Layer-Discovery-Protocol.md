@@ -489,7 +489,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 You can only enable the unreachable prefix TLV in the `egress-policy` of a TLV profile; it is not supported on ingress.  
 {{%/notice%}}
 
-## LLDP DCBX TLVs
+### LLDP DCBX TLVs
 
 <span class="a-tooltip">[DCBX](## "Data Center Bridging Capability Exchange protocol ")</span> is an extension of LLDP that supports <span class="a-tooltip">[TLVs](## "Type-Length-Value ")</span> to provide additional information in LLDP packets to peers.
 
@@ -506,7 +506,7 @@ Cumulus Linux supports the following LLDP DCBX TLVs:
 - Cumulus Linux limits DCBX support to enabling DCBX TLVs (either with ROCE global configuration or per interface) as documented in the {{<exlink url="https://ieeexplore.ieee.org/document/8403927" text="IEEE 802.1Q standard">}}.
 {{%/notice%}}
 <!-- vale off -->
-### IEEE 802.1 TLVs
+#### IEEE 802.1 TLVs
 <!-- vale on -->
 You can transmit the following IEEE 802.1 TLVs when exchanging LLDP messages. By default, IEEE 802.1 TLV transmission is `off` and the switch sends all LLDP frames without IEEE 802.1 TLVs.
 
@@ -540,7 +540,7 @@ mode                    default      default   default
 ...
 ```
 <!-- vale off -->
-### IEEE 802.3 TLVs
+#### IEEE 802.3 TLVs
 <!-- vale on -->
 Cumulus Linux transmits the following IEEE 802.3 TLVs by default. You do not need to enable them.
 
@@ -549,7 +549,7 @@ Cumulus Linux transmits the following IEEE 802.3 TLVs by default. You do not nee
 | Link Aggregation    | 3       | Indicates if the port supports link aggregation and if it is enabled.  |
 | Maximum Frame Size  | 4       | The MTU configuration on the port. The MTU on the port is the <span class="a-tooltip">[MFS](## "Maximum Frame Size ")</span>. |
 
-### QoS TLVs
+#### QoS TLVs
 
 Adding <span class="a-tooltip">[QoS](## "Quality of Service ")</span> configuration as part of the DCBX TLVs allows automated configuration on hosts and switches that connect to the switch.
 
@@ -568,8 +568,6 @@ When you enable {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="ROCE">}} o
 - QoS TLV transmission (PFC Configuration, ETS Configuration, and ETS Recommendation) is on globally for all ports, which overrides any QoS TLV transmission setting on a switch port interface.
 - LLDP frames for all switch port interfaces carry PFC configuration, ETS configuration, ETS recommendation, and APP Priority TLVs. The ETS configuration and PFC configuration TLV payloads are the same for all interfaces.
 {{%/notice%}}
-
-#### Enable QoS TLV Transmission
 
 To enable PFC Configuration TLV transmission, run the `nv set interface <interface-id> lldp dcbx-pfc-tlv enabled` command:
 
@@ -596,8 +594,6 @@ cumulus@switch:~$ nv config apply
 The interface must be a physical interface; you cannot enable TLVs on bonds.  
 {{%/notice%}}
 
-#### Disable QoS TLV Transmission
-
 To disable PFC Configuration TLV transmission, run the `nv unset interface <interface-id> lldp dcbx-pfc-tlv` command:
 
 ```
@@ -619,8 +615,6 @@ cumulus@switch:~$ nv unset interface swp1 lldp dcbx-ets-recomm-tlv
 cumulus@switch:~$ nv config apply
 ```
 
-#### Show QoS TLV Transmission Settings
-
 To show if Qos TLV transmission is `enabled` for an interface, run the NVUE `nv show interface <interface-id>` command:
 
 ```
@@ -635,7 +629,7 @@ lldp
 ... 
 ```
 
-### LLDP-MED Inventory TLVs
+#### LLDP-MED Inventory TLVs
 
 <span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> is an extension to LLDP that operates between endpoint devices, such as IP phones and switches. Inventory management TLV enables an endpoint to transmit detailed inventory information about itself to the switch, such as the manufacturer, model, firmware, and serial number.
 
@@ -663,7 +657,7 @@ mode                    default      default   default
 ...
 ```
 
-### Application Priority TLVs
+#### Application Priority TLVs
 
 DCBX Application priority TLVs allow hosts to receive per-application priority values in LLDP packets.
 
@@ -671,8 +665,6 @@ Cumulus Linux supports application priority TLVs for:
 - <span class="a-tooltip">[iSCSI](## "Internet Small Computer System Interface")</span> using TCP port 3260.
 - <span class="a-tooltip">[NVMe](## "Non-Volatile Memory Express")</span> using TCP port 4420 and 8009.
 - Applications using a specific TCP port or UDP port.
-
-#### Enable Application Priority TLV Transmission
 
 To enable application priority TLV transmission, run NVUE commands to set:
 - The application, TCP port, or UDP port and the associated application priority. If you do not set an application priority, Cumulus Linux uses the default priority 0.
@@ -731,8 +723,6 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
 cumulus@switch:~$ nv config apply
 ```
 
-#### Disable Application Priority TLV Transmission
-
 To stop LLDP from sending PDUs with application priority TLVs on an interface, unset the interface configuration; for example:
 
 ```
@@ -786,8 +776,6 @@ The following example unsets application priority 0 (the default priority) for i
 cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app iSCSI
 cumulus@switch:~$ nv config apply
 ```
-
-#### Show Application Priority TLV Settings
 
 To show all application priority TLV configuration on the switch:
 

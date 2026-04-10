@@ -14,11 +14,11 @@ The summary displays:
 - When NetQ last performed each validation
 - The results of the validation (passed, failed, not run)
 
-{{<figure src="/images/netq/validation-summary-50.png" height="375" width="750" alt="validation summary displaying network validation results">}}
+{{<figure src="/images/netq/val-summary-52.png" height="375" width="750" alt="validation summary displaying network validation results">}}
 
 Select **View details** in the bottom-right corner to view a more detailed summary, with a list of the individual tests comprising a single validation and whether those tests passed or failed across all nodes that were included in the validation.
 
-{{<figure src="/images/netq/val-summary-full-50.png" height="550" width="1100" alt="detailed validation summary with individual test results">}}
+{{<figure src="/images/netq/val-summary-full-52.png" height="550" width="1100" alt="detailed validation summary with individual test results">}}
 
 From this view, you can select **View details** on a specific validation to view a time series of all the validations that NetQ ran for that particular protocol or service. The following dashboard displays the results from BGP validations from the past 24 hours. 
 
@@ -34,11 +34,11 @@ From this view, you can select **View details** on a specific validation to view
 
 In addition to the hourly validation checks that run by default, NetQ lets you validate the protocols and services running in your network either on-demand or according to a schedule. Both types can be customized to include or exclude particular tests or devices.
 
-- **On-demand validations** allow you to validate the operation of one or more network protocols and services right now.
-- **Scheduled validations** allow you to run validations according to a schedule. You can create and schedule up to 15 custom validation checks. The hourly, default validation checks do not count towards this limit.
+- **On-demand validations** validate the operation of one or more network protocols and services right now.
+- **Scheduled validations** run according to a schedule. You can create and schedule up to 15 custom validation checks. The hourly, default validation checks do not count towards this limit.
 
 {{<notice tip>}}
-Before you run an on-demand validation for a particular protocol or service, check whether a scheduled validation is running or about to run. If both validations run concurrently, NetQ will take longer to validate your network and display results.
+Before you run an on-demand validation for a particular protocol or service, check whether a scheduled validation is running or about to run. If both validations run concurrently, NetQ takes longer to validate your network and display results.
 {{</notice>}}
 
 <!-- vale on -->
@@ -68,7 +68,7 @@ You can also select <b>Re-run</b> from the validation summary to run a new, on-d
 
 {{<tab "NetQ CLI">}}
 
-To view the list of tests for a given protocol or service, use either {{<link title="show" text="netq show unit-tests">}}.
+To view the list of tests for a given protocol or service, use either {{<link title="show/#netq-show-unit-tests" text="netq show unit-tests">}}.
 
 To run on-demand validations use the {{<link title="check" text="netq check">}} commands. 
 

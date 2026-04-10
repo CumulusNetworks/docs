@@ -3493,7 +3493,8 @@ Displays RoCE configuration.
 ### Syntax
 ```
 netq [<hostname>] show roce-config
-    [<text-port>] 
+    [<text-port>]
+    [host | dpu] 
     [around <text-time>] 
     [json]
 ```
@@ -3507,6 +3508,8 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
 | NA | \<text-port\> | Filter by a specified port |
+| host | NA | Only show RoCE configurations for hosts |
+| dpu | NA | Only show RoCE configurations for DPUs |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -3518,26 +3521,15 @@ nvidia@switch:~$ netq show roce-config
 Matching roce records:
 Hostname          Interface       RoCE Mode  Enabled TCs  Mode     ECN Max  ECN Min  SP->DSCP   SP->PCP  SP->PG   SP->TC   PFC SPs  PFC Rx     PFC Tx     ETS Mode   Last Changed
 ----------------- --------------- ---------- ------------ -------- -------- -------- ---------- -------- -------- -------- -------- ---------- ---------- ---------- -------------------------
-mlx-3700c-23      swp16           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp27           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp32           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp23           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp25           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp5            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp26           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp4            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp18           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp12           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp9            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp30           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp21           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp13           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp1            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp24           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp15           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp17           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-23      swp22           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
-mlx-3700c-24      swp8            Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Wed Mar 29 11:00:51 2023
+switch-14        swp1            Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Fri Apr 10 09:15:00 2026
+switch-14        swp10           Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Fri Apr 10 09:15:00 2026
+switch-14        swp11           Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Fri Apr 10 09:15:00 2026
+switch-14        swp12           Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Fri Apr 10 09:15:00 2026
+switch-14        swp13           Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Fri Apr 10 09:15:00 2026
+switch-14        swp14           Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Fri Apr 10 09:15:00 2026
+switch-14        swp15           Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Fri Apr 10 09:15:00 2026
+switch-14        swp16           Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Fri Apr 10 09:15:00 2026
+switch-14        swp17           Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Fri Apr 10 09:15:00 2026
 ...
 ```
 
@@ -4335,6 +4327,10 @@ netq show unit-tests agent
     [check_filter_id <text-check-filter-id>] 
     [json]
 
+netq show unit-tests ar 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+
 netq show unit-tests bgp
     [check_filter_id <text-check-filter-id>] 
     [json]
@@ -4388,13 +4384,13 @@ netq show unit-tests vxlan
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| <!-- vale off -->address, agent, bgp, cl-version, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
+| <!-- vale off -->address, agent, ar, bgp, cl-version, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| check_filter_id | \<text-check-filter-id\> | Include the specific filter for a validation |
+| check_filter_id | \<text-check-filter-id\> | Include the specified filter for a validation |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
@@ -4433,7 +4429,7 @@ Displays one or all scheduled validations, including their name, type, cadence, 
 ```
 netq show validation settings
     [name <text-validation-name>]
-    [type addr|agents|bgp|evpn|interfaces|mlag|mtu|ntp|roce|sensors|topology|vlan|vxlan]
+    [type addr|agents|ar|bgp|evpn|interfaces|mlag|mtu|ntp|roce|sensors|topology|vlan|vxlan]
     [json]
 ```
 
@@ -4446,7 +4442,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
+| type | <!-- vale off -->addr, agents, ar, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
@@ -4509,13 +4505,13 @@ netq show validation summary
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, ip, mlag, mtu, ntp, roce, sensors, topology, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
+| type | <!-- vale off -->addr, agents, ar, bgp, evpn, interfaces, ip, mlag, mtu, ntp, roce, sensors, topology, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
+| name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name (addr, agents, ar, bgp, evpn, interfaces, ip, mlag, mtu, ntp, roce, sensors, topology, vlan or vxlan) |
 | around | \<text-time-hr\> | Show summary status for this time in the past. You must specify the value in hours and include the *h* time unit. Default is 24 hours. |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 

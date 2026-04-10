@@ -11,7 +11,8 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 ## What's New in NetQ 5.2
 
 - Added a “fault correlation” event type which groups of events linked to the same underlying issue and displays the association between host-based errors and devices within a network’s fabric (beta)
-- 
+- Added {{<link title="Validation Tests Reference/#adaptive-routing-validation-tests" text="adaptive routing validations">}} that verify configuration consistencies across switches in your network's fabric (beta)
+- Added {{<link title="Validation Tests Reference/#roce-validation-tests" text="RoCE validations">}} that verify configuration consistencies across the entire network fabric, including switches, host NICs, and DPUs (beta)
 
 
 ### NetQ for NVLink API Changes

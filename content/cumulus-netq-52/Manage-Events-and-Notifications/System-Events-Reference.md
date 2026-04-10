@@ -1054,7 +1054,7 @@ The following table lists all system event messages organized by type. You can {
 <tr>
 <td>vxlan</td>
 <td>Replication list is contains an inconsistent set of nodes<></td>
-<td>Error<></td>
+<td>Error</td>
 <td>VNI @vni replication list inconsistent with @conflicts diff:@diff<></td>
 <!-- vale off -->
 <td>VNI 14 replication list inconsistent with ["leaf03","leaf04"] diff:+:["leaf03","leaf04"] -:["leaf07","leaf08"]</td>

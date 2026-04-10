@@ -2,7 +2,7 @@
 title: API & SDK
 author: NVIDIA
 weight: 55
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
 NVIDIA DSX Air provides a REST API and a Python SDK for programmatic access to the platform.

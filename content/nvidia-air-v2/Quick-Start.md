@@ -2,7 +2,7 @@
 title: Quick Start
 author: NVIDIA
 weight: 20
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
 ## Supported Browsers

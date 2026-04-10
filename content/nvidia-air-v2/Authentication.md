@@ -2,7 +2,7 @@
 title: API Authentication
 author: NVIDIA
 weight: 25
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
 NVIDIA DSX Air uses NGC API keys for authenticating API requests. This page covers Air-specific authentication details. For general information about NGC API keys, see the {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html#ngc-api-keys" text="NGC API Keys documentation">}}.

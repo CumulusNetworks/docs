@@ -232,11 +232,15 @@ address-family l2vpn evpn
 
 ## EVPN Unreachability in Disjoined Planes
 
-In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. Leaf switches perform route aggregation per tenant VRF for scalability, but this suppresses visibility of individual host link failures. EVPN unreachability signaling in a tenant VRF sends a route to advertise host unreachability after a link failure, enabling leaf switches to send LLDP TLVs informing connected NICs to avoid unreachable paths.
+In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. Leaf switches perform route aggregation per tenant VRF for scalability but this suppresses visibility of individual host link failures. EVPN unreachability signaling in a tenant VRF sends a route to advertise host unreachability after a link failure, enabling leaf switches to send LLDP TLVs informing connected NICs to avoid unreachable paths.
+
+{{%notice note%}}
+EVPN unreachability in disjoined planes is a Beta feature.
+{{%/notice%}}
 
 To enable EVPN unreachability signaling for disjoined multi-plane topologies on each leaf switch tenant VRF:
 
-1. Configurate route aggregation in the tenant VRFs to summarize relevant network IPv4 and/or IPv6 prefixes
+1. Configurate route aggregation in the tenant VRFs to summarize relevant network IPv4 and, or IPv6 prefixes:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only enabled
@@ -244,7 +248,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unicast
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-2. Configure `bgp advertise-unreach interfaces-match <prefix>` under each IPv4 and/or IPv6 unreachability address-family to match interface prefixes attached to GPU NICs:
+2. Configure `bgp advertise-unreach interfaces-match <prefix>` under each IPv4 and, or IPv6 unreachability address-family to match interface prefixes attached to GPU NICs:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreachability advertise-unreach interfaces-match 10.1.0.0/16 
@@ -260,7 +264,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreach
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-4. Enable `bgp export lldp` in tenant VRFs to configure FRR to LLDP integration to send IPv4 and/or IPv6 prefix information to LLDP
+4. Enable `bgp export lldp` in tenant VRFs to configure FRR to LLDP integration to send IPv4 and, or IPv6 prefix information to LLDP
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreachability export-lldp state
@@ -269,6 +273,42 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
 5. Enable the LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} to distribute unreachable prefix information to connected hosts.
+
+### Show EVPN Unreachability Information
+
+To show EVPN unreachability signaling information, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf TENANT1 router bgp address-family l2vpn-evpn route
+```
+
+To show EVPN unreachability signaling for a specific IPv4 route, run the `nv show vrf <vrf-id> router bgp address-family ipv4-unreachability <route>` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf TENANT1 router bgp address-family ipv4-unreachability 10.1.0.0/16
+```
+
+To show EVPN unreachability signaling for a specific IPv6 route, run the `nv show vrf <vrf-id> router bgp address-family ipv6-unreachability <route>` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf TENANT1 router bgp address-family ipv6-unreachability 2001:db8::/64
+```
+
+### Known Limitations
+
+Be aware of the following limitations when configuring EVPN unreachability in disjoined planes.
+
+#### switchd Restart
+
+Restarting `switchd` results in network churn. FRR sees interfaces going down, which triggers BGP to start advertising EVPN unreachable routes and brings down peering. BGP withdraws the EVPN unreachable routes and re-establishes BGP sessions after the interfaces are back up operationally.
+
+#### Link Down with Dynamic VRF Assignment on 802.1X Interfaces
+
+When a link with a configured IP address goes down operationally on the leaf switch on only one plane, BGP on the leaf advertises the EVPN unreachable route type for the IP prefix of the interface that is operationally down. However, because the interface is unassigned from the VRF, BGP withdraws the EVPN unreachable route type from the remote leaf switch. Because the remote node still has the aggregate summary route, the leaf switch where the link is down attracts traffic and blocks it instead of rerouting traffic through other healthy planes.
+
+#### Redistributed Route Overlapping with the Interface Match Command
+
+If an interface address redistributed by BGP falls within the IP address range configured in the `bgp advertise-unreach interfaces-match` command and the interface goes down operationally, BGP withdraws the type-5 route and advertise the EVPN unreachable route type for the interface IP address.
 
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 

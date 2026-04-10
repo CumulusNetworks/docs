@@ -2,7 +2,7 @@
 title: Node Instructions
 author: NVIDIA
 weight: 55
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
 ## Overview

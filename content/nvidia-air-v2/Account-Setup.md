@@ -2,7 +2,7 @@
 title: Account Setup
 author: NVIDIA
 weight: 15
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
 NVIDIA DSX Air uses {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html" text="NVIDIA NGC">}} for authentication and organization management.

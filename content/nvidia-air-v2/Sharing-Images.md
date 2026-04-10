@@ -2,7 +2,7 @@
 title: Sharing Images
 author: NVIDIA
 weight: 35
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
 Image sharing enables organizations to securely share custom OS images with other NVIDIA DSX Air organizations.

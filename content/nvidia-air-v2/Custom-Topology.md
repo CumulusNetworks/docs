@@ -2,7 +2,7 @@
 title: Custom Topology
 author: NVIDIA
 weight: 40
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 ## The Drag-and-Drop Topology Builder
 

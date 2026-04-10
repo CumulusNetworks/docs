@@ -160,6 +160,14 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 | `/interfaces/interface[name]/phy/remote_reason_opcode` | Opcode of link down reason at the remote end.|
 
 {{< /tab >}}
+{{< tab "Platform">}}
+| `/components/component[name]/state/serial-no` | Component serial number, keyed by component name.|
+| `/components/component[name]/state/part-no` | Component part number, keyed by component name.|
+| `/components/component[name]/state/model-name`| Component model name.|
+| `/components/component[name]/state/hardware-version`| Component hardware version.|
+| `/components/component[name]/state/type`| Component type.|
+
+{{< /tab >}}
 {{< /tabs >}}
 
 ## OTEL Metrics
@@ -169,7 +177,6 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 |  Name | Description |
 |------ | ----------- |
-
 | `node_netstat_Ip_InReceives` | | 
 | `node_netstat_Ip_InAddrErrors` | |  
 | `node_netstat_Ip_InDelivers` | |  
@@ -313,6 +320,11 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 | `nvswitch_interface_phy_stats_unintentional_link_down_events` | Unintentional link down events. |
 | `nvswitch_interface_phy_stats_link_down_reason_code_local ` | Opcode of link down reason at the local end.|
 | `nvswitch_interface_phy_stats_link_down_reason_code_remote ` | Opcode of link down reason at the remote end. |
+
+{{< /tab >}}
+{{< tab "Platform">}}
+
+| `nvswitch_platform_info_hw_details` | Hardware details such as the version, model name, part number, serial number, and type.|
 
 {{< /tab >}}
 {{< /tabs >}}

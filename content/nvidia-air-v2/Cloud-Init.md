@@ -2,7 +2,7 @@
 title: Cloud-Init
 author: NVIDIA
 weight: 50
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
 ## Overview

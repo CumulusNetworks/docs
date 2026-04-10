@@ -26,8 +26,8 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-tlvs" text="Granular LLDP TLV definition and control">}}
 - {{<link url="Automatic-Configuration-Backup" text="Automatic configuration backup">}}
 - {{<link url="Syslog/#thermal-control-logs" text="Thermal logging in syslog (sensor and fan state and errors)">}}
-- BGP/LLDP X-Plane multi-plane'd GPUs with disjoined planes (EVPN based deployments) (Beta)
-- LLDP BGP Route Redistribution Extension (Beta)
+- {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} (Beta)
+- {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} (Beta)
 - NVUE
   - {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#show-secure-boot-details" text="NVUE command to show secure boot status and details">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}
@@ -35,8 +35,8 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   -  {{<link url="NVUE-CLI/#verify-configuration-before-applying" text="NVUE command">}} and {{<link url="NVUE-API/#verify-configuration-before-applying" text="NVUE API option">}} to verify configuration before applying
   - {{<link url="System-Power-and-Switch-Reboot/#show-reboot" text="NVUE command to show warm boot status ">}}
 - Telemetry
-  - New OTEL metrics: {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="link debounce">}}, {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="PHY link down">}}, and {{<link url="Open-Telemetry-Export/#control-plane-statistic-format" text="control plane">}}
-  - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="PHY link down, link debounce, control plane, and systemd service">}}
+  - New OTEL metrics: {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="link debounce">}}, {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="PHY link down">}}, {{<link url="Open-Telemetry-Export/#control-plane-statistic-format" text="control plane">}}, and {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="platform information">}}
+  - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="PHY link down, link debounce, control plane, platform information, and systemd service">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} (Beta)
   - {{<link url="High-Frequency-Telemetry/#streaming-hft-export" text="High frequency telemetry streaming over IPFIX">}}
 - Security

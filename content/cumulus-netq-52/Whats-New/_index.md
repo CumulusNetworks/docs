@@ -10,7 +10,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 5.2
 
-- Added a “correlation” event type which displays the association between host-based errors and devices within a network’s fabric (beta)
+- Added a “fault correlation” event type which groups of events linked to the same underlying issue and displays the association between host-based errors and devices within a network’s fabric (beta)
 - 
 
 

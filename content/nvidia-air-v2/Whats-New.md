@@ -2,7 +2,7 @@
 title: What's New
 author: NVIDIA
 weight: 20
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air-ngc.nvidia.com" text="NVIDIA DSX Air">}}.

@@ -2,7 +2,7 @@
 title: Simulation Management
 author: NVIDIA
 weight: 25
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
 This page covers the simulation lifecycle, checkpoints, and simulation history in NVIDIA DSX Air.

@@ -516,14 +516,34 @@ You can transmit the following IEEE 802.1 TLVs when exchanging LLDP messages. By
 | VLAN Name        | 3       | The name of any VLAN to which the port belongs. |
 | Link Aggregation | 7       | Indicates if the port supports link aggregation and if it is on. |
 
-To enable IEEE 802.1 TLV transmission, run the `nv set system lldp dot1-tlv enabled` command:
+You enable IEEE 802.1 TLV transmission either globally or for a profile applied to an interface. You can send or receive all IEEE 802.1 TLVs or only specific IEEE 802.1 TLVs; for example, you can send the port VLAN ID and the VLAN name but not Link Aggregation.
+
+The following example enables IEEE 802.1 TLV transmission globally. The switch sends and receives LLDP frames with the PORT VLAN ID, VLAN Name, and Link Aggregation on all ports:
 
 ```
 cumulus@switch:~$ nv set system lldp dot1-tlv enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable IEEE 802.1 TLV transmission, run the `nv unset system lldp dot1-tlv` command.
+The following example configures the switch to send LLDP frames with only the port VLAN ID and VLAN Name on all ports:
+
+```
+cumulus@switch:~$ nv set system lldp tlv egress-policy vlan-name state enabled
+cumulus@switch:~$ nv set system lldp tlv egress-policy port-vlan-id state enabled
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures an egress policy profile called VLAN for swp1 that sends LLDP frames with the port VLAN ID and VLAN name only:
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile VLAN egress-policy vlan-name state enabled
+cumulus@switch:~$ nv set system lldp tlv profile VLAN egress-policy port-vlan-id state enabled
+cumulus@switch:~$ nv set interface swp1 lldp tlv profile VLAN
+cumulus@switch:~$ nv config apply
+```
+
+- To disable IEEE 802.1 TLV transmission globally, run the `nv unset system lldp dot1-tlv` command.
+- To disable IEEE 802.1 TLV transmission for a profile, run the `nv set interface <interface-id> lldp tlv profile <profile-id> disabled` command.
 
 To show if IEEE 802.1 TLV transmission is enabled, run the NVUE `nv show system lldp` command:
 
@@ -542,12 +562,27 @@ mode                    default      default   default
 <!-- vale off -->
 #### IEEE 802.3 TLVs
 <!-- vale on -->
-Cumulus Linux transmits the following IEEE 802.3 TLVs by default. You do not need to enable them.
+Cumulus Linux transmits the following IEEE 802.3 TLVs by default. You can disable the IEEE 802.3 TLVs individually either globally or for a profile.
 
 | Name                | Subtype | Description |
 |-------------------- | ------- | ----------- |
 | Link Aggregation    | 3       | Indicates if the port supports link aggregation and if it is enabled.  |
 | Maximum Frame Size  | 4       | The MTU configuration on the port. The MTU on the port is the <span class="a-tooltip">[MFS](## "Maximum Frame Size ")</span>. |
+| MAC PHY Configuration |  1 | Advertises port auto-negotiation capabilities, operational status, duplex setting, bit rate, and physical interface type. | 
+||||
+
+The following example disables the Maximum Frame Size TLV on egress for all ports:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv egress-policy max-frame-size
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+The following example disables the Link Aggregation TLV on egress for the profile LINK-AGG:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile LINK-AGG egress-policy max-frame-size state disabled
+```
 
 #### QoS TLVs
 
@@ -569,49 +604,45 @@ When you enable {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="ROCE">}} o
 - LLDP frames for all switch port interfaces carry PFC configuration, ETS configuration, ETS recommendation, and APP Priority TLVs. The ETS configuration and PFC configuration TLV payloads are the same for all interfaces.
 {{%/notice%}}
 
-To enable PFC Configuration TLV transmission, run the `nv set interface <interface-id> lldp dcbx-pfc-tlv enabled` command:
-
-```
-cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv enabled
-cumulus@switch:~$ nv config apply
-```
-
-To enable ETS Configuration TLV transmission, run the `nv set interface <interface-id> lldp dcbx-ets-config-tlv enabled` command:
-
-```
-cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-config-tlv enabled
-cumulus@switch:~$ nv config apply 
-```
-
-To enable ETS Recommendation TLV transmission, run the `nv set interface <interface-id> lldp dcbx-ets-recomm-tlv enabled` command:
-
-```
-cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv enabled
-cumulus@switch:~$ nv config apply
-```
+You enable PFC Configuration, ETS Configuration, and ETS Recommendation TLV transmission either globally or for a profile, then set the interface.
 
 {{%notice note%}}
 The interface must be a physical interface; you cannot enable TLVs on bonds.  
 {{%/notice%}}
 
-To disable PFC Configuration TLV transmission, run the `nv unset interface <interface-id> lldp dcbx-pfc-tlv` command:
+The following example enables PFC Configuration, ETS Configuration, and ETS Recommendation TLV transmission on egress globally:
 
 ```
-cumulus@switch:~$ nv unset interface swp1 lldp dcbx-pfc-tlv
+cumulus@switch:~$ nv set system lldp tlv egress-policy dcbx-pfc state enabled
+cumulus@switch:~$ nv set system lldp tlv egress-policy dcbx-ets state enabled
+cumulus@switch:~$ nv set system lldp tlv egress-policy dcbx-ets-recomm state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable ETS Configuration TLV transmission, run the `nv unset interface <interface-id> lldp dcbx-ets-config-tlv` command:
+The following example enables PFC Configuration, ETS Configuration, and ETS Recommendation TLV transmission for an egress policy profile called dcbx-swp1 on swp1:
 
 ```
-cumulus@switch:~$ nv unset interface swp1 lldp dcbx-ets-config-tlv
-cumulus@switch:~$ nv config apply 
+cumulus@switch:~$ nv set system lldp tlv profile dcbx-swp1 egress-policy dcbx-pfc state enabled
+cumulus@switch:~$ nv set system lldp tlv profile dcbx-swp1 egress-policy dcbx-ets-config state enabled 
+cumulus@switch:~$ nv set system lldp tlv profile dcbx-swp1 egress-policy dcbx-ets-recomm state enabled 
+cumulus@switch:~$ nv set interface swp1 lldp tlv profile dcbx-swp1
+cumulus@switch:~$ nv config apply
 ```
 
-To disable ETS Recommendation TLV transmission, run the `nv unset interface <interface-id> lldp dcbx-ets-recomm-tlv` command:
+To disable PFC Configuration, ETS Configuration, or ETS Recommendation TLV transmission globally, run the
+`nv set interface <interface-id> lldp dcbx-pfc-tlv disabled`, `nv set interface <interface-id> lldp dcbx-ets-tlv disabled`, or `nv set interface <interface-id> lldp dcbx-ets-recomm-tlv disabled` commands.
 
 ```
-cumulus@switch:~$ nv unset interface swp1 lldp dcbx-ets-recomm-tlv
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv disabled
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-tlv disabled
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv disabled
+cumulus@switch:~$ nv config apply
+```
+
+To disable PFC Configuration, ETS Configuration, or ETS Recommendation TLV transmission for a profile, run the `nv set interface <interface-id> lldp tlv profile <profile-id> disabled` command:
+
+```
+cumulus@switch:~$ nv set interface swp1 lldp tlv profile dcbx-swp1 disabled
 cumulus@switch:~$ nv config apply
 ```
 

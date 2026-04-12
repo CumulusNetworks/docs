@@ -104,7 +104,7 @@
 <th> Affects </th>
 </tr>
 <tr>
-<td>2545622</td>
+<td>2545622, 2545622</td>
 <td>NetQ UI: This only applies to the NetQ 2.3.1 UI installed on the NetQ Server or NetQ Appliance in on-premises deployments. Cloud deployments are not impacted by this bug. Trace results are not shown after running an on-demand or scheduled trace request in the NetQ UI. The medium Trace Result cards are blank whether the trace was successful or not. The full-screen Trace Result card and the NetQ CLI show the results correctly.
 To work around this issue, apply the update to your existing 2.3.1 build as follows:
 

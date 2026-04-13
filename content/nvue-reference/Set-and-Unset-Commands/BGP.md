@@ -1168,7 +1168,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 ```
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unreachability prefix-limits maximum </h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unreachability prefix-limits inbound maximum </h>
 
 Configures the maximum number of BGP unreachability SAFI IPv4 prefixes that can be received from the peer. This is CRITICAL for security to prevent state exhaustion.
 
@@ -1185,12 +1185,12 @@ Introduced in Cumulus Linux 5.16.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unreachability prefix-limits maximum 6
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unreachability prefix-limits inbound maximum 6
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unreachability prefix-limits reestablish-wait</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unreachability prefix-limits inbound reestablish-wait</h>
 
 Configures the time in minutes to wait before establishing the BGP session again with the peer for BGP unreachability SAFI. The default value is `auto`, which uses standard BGP timers and processing.
 
@@ -1207,12 +1207,12 @@ Introduced in Cumulus Linux 5.16.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unreachability prefix-limits reestablish-wait 6
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unreachability prefix-limits inbound reestablish-wait 6
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unreachability prefix-limits warning-only</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unreachability prefix-limits inbound warning-only</h>
 
 Configures the switch to only generate a warning syslog if the number of received BGP unreachability SAFI prefixes exceeds the limit, but does not bring down the BGP session. You can set this option to `enabled` or `disabled`.
 
@@ -1229,12 +1229,12 @@ Introduced in Cumulus Linux 5.16.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unreachability prefix-limits warning-only enabled
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unreachability prefix-limits inbound warning-only enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unreachability prefix-limits warning-threshold</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unreachability prefix-limits inbound warning-threshold</h>
 
 Configures the prefix limits for a neighbor for BGP unreachability SAFI (failure signaling). Sets the percentage of the maximum at which a syslog warning is generated. You can set the value between 1 and 100. The default value is 75.
 
@@ -1251,7 +1251,7 @@ Introduced in Cumulus Linux 5.16.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unreachability prefix-limits warning-threshold 50
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unreachability prefix-limits inbound warning-threshold 50
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

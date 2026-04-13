@@ -1753,7 +1753,7 @@ The following table describes the `prefix limit` options.
 
 | Option | Description |
 | -------- | ------------ |
-| `maximum` |  The maximum number of unreachability prefixes that the switch can receive from the peer or peer group. This is critical for security to prevent state exhaustion. |
+| `inbound maximum` |  The maximum number of unreachability prefixes that the switch can receive from the peer or peer group. This is critical for security to prevent state exhaustion. |
 | `reestablish-wait` | The time in minutes to wait before establishing the BGP session again with the peer or peer group. You can specify a value between 1 and 65535, or `auto`. The default value is `auto`, which uses standard BGP timers and processing. |
 | `warning-only` | When enabled, the switch only generates a syslog warning if the number of received unreachability prefixes exceeds the limit. |
 | `warning-threshold` | The percentage of the maximum at which a syslog warning is generated. You can specify a value between 1 and 100. The default value is 75.|
@@ -1786,7 +1786,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits maximum 6
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath allow-my-asn origin enabled
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability state enabled
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability prefix-limits maximum 6
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability prefix-limits inbound maximum 6
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability aspath allow-my-asn origin enabled
 cumulus@leaf01:~$ nv config apply
 ```
@@ -1799,7 +1799,7 @@ The following example enables BGP unreachability SAFI for IPv6 globally and on p
 ```
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
 cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability state enabled
-cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits maximum 6
+cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits inbound maximum 6
 cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-SUPERSPINE address-family ipv6-unreachability state enabled
 cumulus@spine01:~$ nv config apply
 ```
@@ -1937,8 +1937,11 @@ For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-i
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits 
                    operational  applied
 -----------------  -----------  ------- 
-maximum                         6   
-warning-threshold               75
+-------------------  -----------  -------
+
+inbound
+  maximum                         6   
+  warning-threshold               75
 ```
 
 To show the BGP unreachability AS path configuration for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability aspath` command.

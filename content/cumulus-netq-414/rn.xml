@@ -19,7 +19,7 @@
 <td>5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>4537675, 4444957</td>
+<td>4537675</td>
 <td>The NetQ UI might not display pagination controls for large tables with multiple entries.</td>
 <td>4.14.0-4.15.1</td>
 <td>5.0.0-5.1.0</td>

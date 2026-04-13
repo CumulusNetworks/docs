@@ -13,19 +13,19 @@
 <td></td>
 </tr>
 <tr>
-<td>4797691, 4815026, 4815029, 4815030</td>
+<td>4797691</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
 <td>5.0.0-5.9.4, 5.15.1</td>
 <td>5.9.5, 5.16.0-5.16.1</td>
 </tr>
 <tr>
-<td>4663076, 4717752, 4717753</td>
+<td>4663076</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
 <td>5.3.1-5.9.4</td>
 <td>5.9.5-5.16.1, 5.11.5-5.16.1, 5.15.0-5.16.1</td>
 </tr>
 <tr>
-<td>4647646, 4652641, 4652642</td>
+<td>4647646</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
 <td>5.15.0-5.16.1</td>
@@ -37,19 +37,19 @@
 <td>5.15.0-5.16.1</td>
 </tr>
 <tr>
-<td>4469498, 4548340, 4548341</td>
+<td>4469498</td>
 <td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.9.3</td>
 <td>5.9.4-5.16.1, 5.14.0-5.16.1</td>
 </tr>
 <tr>
-<td>4413450, 4422898, 4422899</td>
+<td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.11.1, 5.13.0-5.13.1</td>
 <td>5.11.2, 5.14.0-5.16.1</td>
 </tr>
 <tr>
-<td>4377862, 4423223, 4423224</td>
+<td>4377862</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
 <td>5.1.0-5.9.3</td>
 <td>5.9.4-5.16.1, 5.11.2-5.16.1, 5.13.0-5.16.1</td>
@@ -61,31 +61,31 @@
 <td>5.11.0-5.16.1</td>
 </tr>
 <tr>
-<td>4004453, 4037015</td>
+<td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
 <td>5.9.2-5.16.1, 5.10.0-5.16.1</td>
 </tr>
 <tr>
-<td>3982222, 3982226</td>
+<td>3982222</td>
 <td>When you enable SPAN  on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices, such as load balancers, might fail to update the bridge MAC table to point to the interface with the newly active load balancer. To work around this issue, remove the SPAN configuration from the bridge member or ensure that the load balancer generates non-ARP traffic after the failover to properly update the bridge MAC table.</td>
 <td>5.4.0-5.9.1</td>
 <td>5.9.2-5.16.1, 5.10.0-5.16.1</td>
 </tr>
 <tr>
-<td>3949367, 3965573</td>
+<td>3949367</td>
 <td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
 <td>5.3.1-5.9.1</td>
 <td>5.9.2-5.16.1, 5.10.0-5.16.1</td>
 </tr>
 <tr>
-<td>3927016, 4003866</td>
+<td>3927016</td>
 <td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
 <td>5.0.1-5.9.1</td>
 <td>5.9.2-5.16.1, 5.10.0-5.16.1</td>
 </tr>
 <tr>
-<td>3895042, 3980941</td>
+<td>3895042</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
@@ -94,7 +94,7 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>5.9.2-5.16.1, 5.10.0-5.16.1</td>
 </tr>
 <tr>
-<td>3859422, 4023649</td>
+<td>3859422</td>
 <td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
 <td>5.2.0-5.9.1</td>
 <td>5.9.2-5.16.1, 5.10.0-5.16.1</td>
@@ -236,7 +236,7 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <td>5.6.0-5.16.1</td>
 </tr>
 <tr>
-<td>3491259, 3497002</td>
+<td>3491259</td>
 <td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
 <td>5.0.0-5.5.1</td>
 <td>4.3.2-4.4.5, 5.6.0-5.16.1</td>
@@ -254,7 +254,7 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <td>5.9.0-5.16.1</td>
 </tr>
 <tr>
-<td>3482006, 3486888</td>
+<td>3482006</td>
 <td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
 <td>5.0.0-5.5.1</td>
 <td>4.3.2-4.4.5, 5.6.0-5.16.1</td>
@@ -274,7 +274,7 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <td>5.6.0-5.16.1</td>
 </tr>
 <tr>
-<td>3474352, 3474352</td>
+<td>3474352</td>
 <td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap between the upper and lower four lanes on a port, the firmware gets stuck.</td>
 <td>5.3.0-5.5.1</td>
 <td>5.6.0-5.16.1</td>
@@ -812,13 +812,13 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3084476, 3085330</td>
+<td>3084476</td>
 <td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.16.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
-<td>3084027, 3081352</td>
+<td>3084027</td>
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
@@ -866,13 +866,13 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2951110, 2550950</td>
+<td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2904450, 2971193</td>
+<td>2904450</td>
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
@@ -932,7 +932,7 @@ You can safely ignore this warning.</td>
 <td>5.3.0-5.3.1</td>
 </tr>
 <tr>
-<td>3351951, 3351951</td>
+<td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
 </tr>
@@ -970,7 +970,7 @@ You can safely ignore this warning.</td>
 <td>5.3.0-5.3.1</td>
 </tr>
 <tr>
-<td>3329096, 3333064</td>
+<td>3329096</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>5.0.0-5.3.1</td>
 </tr>
@@ -980,7 +980,7 @@ You can safely ignore this warning.</td>
 <td>5.3.0-5.3.1</td>
 </tr>
 <tr>
-<td>3320571, 3321391</td>
+<td>3320571</td>
 <td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
 <td>5.2.0-5.3.1</td>
 </tr>
@@ -1029,7 +1029,7 @@ ethtool (-S): unknown parameter 'clear'
 <td>5.3.0-5.3.1</td>
 </tr>
 <tr>
-<td>3289972, 3289972</td>
+<td>3289972</td>
 <td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
 <td>4.4.3-5.3.1</td>
 </tr>
@@ -1039,7 +1039,7 @@ ethtool (-S): unknown parameter 'clear'
 <td>5.2.0-5.3.1</td>
 </tr>
 <tr>
-<td>3283598, 3283598</td>
+<td>3283598</td>
 <td>After you restart the FRR service, show commands incorrectly reflect the VLAN associated with layer 3 VNIs as 0:
 
 # net show evpn vni 123
@@ -1061,12 +1061,12 @@ Vlan: 0
 <td>5.2.0-5.3.1</td>
 </tr>
 <tr>
-<td>3262012, 3269537</td>
+<td>3262012</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
 </tr>
 <tr>
-<td>3255899, 3261883</td>
+<td>3255899</td>
 <td>The Linux utility that sends ARP packets is constrained to 512 interfaces on the system. In large scale deployments, the warm boot process fails repeatedly as it sends gratuitous ARP requests for each local address. This issue does not impact the functionality and can be ignored.</td>
 <td>5.2.0-5.3.1</td>
 </tr>
@@ -1084,7 +1084,7 @@ Vlan: 0
 <td>5.2.0-5.3.1</td>
 </tr>
 <tr>
-<td>3234085, 3240406, 3334036</td>
+<td>3234085</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>5.0.1-5.3.1</td>
 </tr>

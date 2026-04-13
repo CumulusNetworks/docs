@@ -1749,11 +1749,11 @@ To configure BGP unreachability SAFI:
 - Optional on both leaf and spine: Set the prefix limits for a peer or peer group; see the table below.
 - Optional on both leaf and spine: Set the AS path options for a peer or peer group; see the table below.
 
-The following table describes the `prefix limit` options.
+The following table describes the prefix limit options (`prefix-limits inbound`).
 
 | Option | Description |
 | -------- | ------------ |
-| `inbound maximum` |  The maximum number of unreachability prefixes that the switch can receive from the peer or peer group. This is critical for security to prevent state exhaustion. |
+| `maximum` |  The maximum number of unreachability prefixes that the switch can receive from the peer or peer group. This is critical for security to prevent state exhaustion. |
 | `reestablish-wait` | The time in minutes to wait before establishing the BGP session again with the peer or peer group. You can specify a value between 1 and 65535, or `auto`. The default value is `auto`, which uses standard BGP timers and processing. |
 | `warning-only` | When enabled, the switch only generates a syslog warning if the number of received unreachability prefixes exceeds the limit. |
 | `warning-threshold` | The percentage of the maximum at which a syslog warning is generated. You can specify a value between 1 and 100. The default value is 75.|

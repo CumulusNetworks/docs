@@ -9,6 +9,10 @@ Cumulus Linux provides commands to:
 - Erase data from the switch.
 - Replace the Self-Encrypting Drive (SED) factory-set password with a custom password.
 
+{{%notice note%}}
+NVUE runs the Linux `sedutil` command for disk management in the background to maintain correct encapsulation and error handling. Do not run the `sedutil` command directly from the command line on the switch.
+{{%/notice%}}
+
 ## Erase Data from the Disk
 
 Cumulus Linux enables you to erase all data from the switch <span class="a-tooltip">[SSD](## "Solid state drive")</span> securely to prevent leaking critical data. Erasing data is an important process when you return a switch with <span class="a-tooltip">[RMA](## "Return Merchandise Authorization")</span> if the switch is defective or move a switch between buildings.

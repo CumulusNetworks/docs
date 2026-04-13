@@ -34,11 +34,11 @@ wget --quiet \
 
 ## Apply Filters
 
-The REST API supports filtering based on health or inventory information. To use these filters, append the filter parameter to the endpoint, for example `kpis?filter=HEALTH`. Refer to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="Swagger API">}} for a complete list of available filters.
+The REST API supports filtering based on health, inventory, and time ranges. To use these filters, append the filter parameter to the endpoint, for example `kpis?filter=HEALTH`. Refer to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="Swagger API">}} for a complete list of available filters.
 
 {{< expand "cURL example with filtering" >}}
 
-Make a GET request to the `/v1/kpis` endpoint using a filter:
+The following example filters devices according to their health status:
 ```
 curl --request GET --url https://<ip_address>/nmx/v1/kpis?filter=SWITCH_HEALTH --user "<username>:<password>" --insecure
 ```
@@ -375,6 +375,20 @@ Example response:
     }
 }
 ```
+
+{{< /expand >}}
+<br>
+You can also apply filters to view health data at a specific point in time or over a time range. NetQ NVLink collects health status information every hour. If you do not specify a time filter, the API aggregates health counts from all domains and returns the entire available time range.
+
+{{< expand "cURL example with time-based filtering" >}}
+
+The following example appends a time-range filter to view the health of devices within a particular domain.
+```
+curl --request GET \ 
+  --url "https://<ip_address>/nmx/v1/kpi/domain-health?domain=<domain-uuid>&from=2026-03-17T00:00:00Z&to=2026-03-18T00:00:00Z" \ 
+  --user "<username>:<password>" --insecure 
+```
+
 {{< /expand >}}
 
 ## View KPIs in Grafana

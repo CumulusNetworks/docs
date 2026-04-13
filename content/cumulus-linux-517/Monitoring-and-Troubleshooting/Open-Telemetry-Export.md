@@ -1306,144 +1306,126 @@ When you enable control plane statistic telemetry, the switch exports the follow
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_control_plane_tx_packets` | Control plane transmit packets. |
-| `nvswitch_control_plane_tx_bytes` | Control plane transmit bytes. |
-| `nvswitch_control_plane_rx_packets` | Control plane receive packets. |
-| `nvswitch_control_plane_rx_bytes` | Control plane receive bytes. |
-| `nvswitch_control_plane_rx_buffer_drops` | Control plane receive buffer drops. |
-| `nvswitch_control_plane_trap_rx_packets` | Control plane trap group receive packets. |
-| `nvswitch_control_plane_trap_rx_event_count`| Control plane trap group receive events. |
-| `nvswitch_control_plane_trap_rx_drop` | Control plane trap group receive drops. |
-| `nvswitch_control_plane_trap_rx_bytes` | Control plane trap group receive bytes. |
-| `nvswitch_control_plane_trap_group_rx_packets` | Control plane trap group receive packets. |
-| `nvswitch_control_plane_trap_group_rx_bytes` | Control plane trap group receive bytes. |
-| `nvswitch_control_plane_trap_group_pkt_violations` | Control plane trap group packet violations. |
-| `node_netstat_Ip_InReceives` | Control plane input IPv4 packets |
-| `node_netstat_Ip_InAddrErrors` | Control plane input IPv4 errors. |
-| `node_netstat_Ip_InDelivers` | Control plane output IPv4 packets.. |
-| `node_netstat_Ip6_InReceives` | Control plane input IPv6 packets. |
-| `node_netstat_Ip6_InAddrErrors` | Control plane input IPv6 errors. |
-| `node_netstat_Ip6_InDelivers` | Control plane output IPv6 packets. |
-| `node_netstat_Ip_InReceives` | *|
-| `node_netstat_Ip_InAddrErrors` | *| 
-| `node_netstat_Ip_InDelivers` | *| 
-| `node_netstat_Ip_InDiscards` | *| 
-| `node_netstat_Ip_InHdrErrors` | *| 
-| `node_netstat_Ip_InUnknownProtos` | *|
-| `node_netstat_Ip_ForwDatagrams` | *|
-| `node_netstat_Ip_ReasmOKs` | *|
-| `node_netstat_Ip_ReasmFails` | *|
-| `node_netstat_Ip_ReasmReqds` | *|
-| `node_netstat_IpExt_InNoRoutes` | *|
-| `node_netstat_IpExt_InOctets` | *|
-| `node_netstat_IpExt_InMcastPkts` | *|
-| `node_netstat_IpExt_InMcastOctets` | *|
-| `node_netstat_IpExt_InBcastPkts` | *|
-| `node_netstat_IpExt_InTruncatedPkts` | *|
-| `node_netstat_Ip_OutRequests` | *|
-| `node_netstat_Ip_OutDiscards` | *|
-| `node_netstat_Ip_OutNoRoutes` | *|
-| `node_netstat_Ip_FragOKs` | *|
-| `node_netstat_Ip_FragFails` | *|
-| `node_netstat_Ip_FragCreates` | *|
-| `node_netstat_IpExt_OutOctets` | *|
-| `node_netstat_IpExt_OutMcastPkts` | *|
-| `node_netstat_IpExt_OutMcastOctets` | *|
-| `node_netstat_IpExt_OutBcastPkts` | *|
-| `node_netstat_Icmp_InMsgs` | *|
-| `node_netstat_Icmp_InErrors` | *|
-| `node_netstat_Icmp_InDestUnreachs` | *|
-| `node_netstat_Icmp_InTimeExcds` | *|
-| `node_netstat_Icmp_InEchos` | *|
-| `node_netstat_Icmp_InEchoReps` | *|
-| `node_netstat_Icmp_OutMsgs` | *|
-| `node_netstat_Icmp_OutErrors` | *|
-| `node_netstat_Icmp_OutDestUnreachs` | *|
-| `node_netstat_Icmp_OutTimeExcds` | *|
-| `node_netstat_Icmp_OutEchos` | *|
-| `node_netstat_Icmp_OutEchoReps` | *|
-| `node_netstat_Tcp_InSegs` | *|
-| `node_netstat_Tcp_InErrs` | *|
-| `node_netstat_Tcp_OutSegs` | *|
-| `node_netstat_Tcp_RetransSegs` | *|
-| `node_netstat_Tcp_ActiveOpens` | *|
-| `node_netstat_Tcp_PassiveOpens` | *|
-| `node_netstat_Tcp_AttemptFails` | *|
-| `node_netstat_Tcp_EstabResets` | *|
-| `node_netstat_Tcp_CurrEstab` | *|
-| `node_netstat_Tcp_OutRsts` | *|
-| `node_netstat_TcpExt_ListenDrops` | *|
-| `node_netstat_TcpExt_ListenOverflows` | *|
-| `node_netstat_TcpExt_TCPTimeouts` | *|
-| `node_netstat_TcpExt_TCPSynRetrans` | *|
-| `node_netstat_Udp_InDatagrams` | *|
-| `node_netstat_Udp_InErrors` | *|
-| `node_netstat_Udp_NoPorts` | *|
-| `node_netstat_Udp_RcvbufErrors` | *|
-| `node_netstat_Udp_OutDatagrams` | *|
-| `node_netstat_Udp_SndbufErrors` | *|
-| `node_netstat_Ip6_InReceives` | *|
-| `node_netstat_Ip6_InAddrErrors` | *|
-| `node_netstat_Ip6_InDelivers` | *|
-| `node_netstat_Ip6_InDiscards` | *|
-| `node_netstat_Ip6_InHdrErrors` | *|
-| `node_netstat_Ip6_InUnknownProtos` | *|
-| `node_netstat_Ip6_InNoRoutes` | *|
-| `node_netstat_Ip6_InOctets` | *|
-| `node_netstat_Ip6_InMcastPkts` | *|
-| `node_netstat_Ip6_InMcastOctets` | *|
-| `node_netstat_Ip6_InTruncatedPkts` | *|
-| `node_netstat_Ip6_OutRequests` | *|
-| `node_netstat_Ip6_OutDiscards` | *|
-| `node_netstat_Ip6_OutNoRoutes` | *|
-| `node_netstat_Ip6_OutForwDatagrams` | *|
-| `node_netstat_Ip6_FragOKs` | *|
-| `node_netstat_Ip6_FragFails` | *|
-| `node_netstat_Ip6_FragCreates` | *|
-| `node_netstat_Ip6_OutOctets` | *|
-| `node_netstat_Ip6_OutMcastPkts` | *|
-| `node_netstat_Ip6_OutMcastOctets` | *|
-| `node_netstat_Ip6_ReasmOKs` | *|
-| `node_netstat_Ip6_ReasmFails` | *|
-| `node_netstat_Ip6_ReasmReqds` | *|
-| `node_netstat_Icmp6_InMsgs` | *|
-| `node_netstat_Icmp6_InErrors` | *|
-| `node_netstat_Icmp6_InDestUnreachs` | *|
-| `node_netstat_Icmp6_InTimeExcds` | *|
-| `node_netstat_Icmp6_InEchos` | *|
-| `node_netstat_Icmp6_InEchoReplies` | *|
-| `node_netstat_Icmp6_OutMsgs` | *|
-| `node_netstat_Icmp6_OutErrors` | *|
-| `node_netstat_Icmp6_OutDestUnreachs` | *|
-| `node_netstat_Icmp6_OutTimeExcds` | *|
-| `node_netstat_Icmp6_OutEchos` | *|
-| `node_netstat_Icmp6_OutEchoReplies` | *|
-| `node_netstat_Udp6_InDatagrams` | *|
-| `node_netstat_Udp6_InErrors` | *|
-| `node_netstat_Udp6_NoPorts` | *|
-| `node_netstat_Udp6_RcvbufErrors` | *|
-| `node_netstat_Udp6_OutDatagrams` | *|
-| `node_netstat_Udp6_SndbufErrors` | *|
-| `node_netstat_Icmp6_InNeighborAdvertisements` | *|
-| `node_netstat_Icmp6_InNeighborSolicits` | *|
-| `node_netstat_Icmp6_InRedirects` | *|
-| `node_netstat_Icmp6_InRouterAdvertisements` | *|
-| `node_netstat_Icmp6_InRouterSolicits` | *|
-| `node_netstat_Icmp6_OutNeighborAdvertisements` | *|
-| `node_netstat_Icmp6_OutNeighborSolicits` | *|
-| `node_netstat_Icmp6_OutRedirects` | *|
-| `node_netstat_Icmp6_OutRouterAdvertisements` | *|
-| `node_netstat_Icmp6_OutRouterSolicits` | *|
-| `node_netstat_Icmp_InRedirects` | *|
-| `node_netstat_Icmp_OutRedirects` | *|
-| `node_netstat_Ip6_InCEPkts` | *|
-| `node_netstat_Ip6_InECT0Pkts` | *|
-| `node_netstat_Ip6_InECT1Pkts` | *|
-| `node_netstat_Ip6_InNoECTPkts` | *|
-| `node_netstat_IpExt_InCEPkts` | *|
-| `node_netstat_IpExt_InECT0Pkts` | *|
-| `node_netstat_IpExt_InECT1Pkts` | *|
-| `node_netstat_IpExt_InNoECTPkts` | *|
+| `node_netstat_Ip_InReceives` | *The number of IP packets received. | 
+| `node_netstat_Ip_InAddrErrors` | *The umber of IP packets dropped upon receipt due to errors in the destination or source IP address.|  
+| `node_netstat_Ip_InDelivers` | *The number of received IP packets that were successfully delivered to higher-level protocols (such as TCP or UDP).|  
+| `node_netstat_Ip_InDiscards` | *The number of IP packets received but dropped, often due to errors.|  
+| `node_netstat_Ip_InHdrErrors` | *The number of input IP packets discarded due to errors in their headers (bad checksums, version mismatch, or invalid length). |  
+| `node_netstat_Ip_InUnknownProtos` | *The number of incoming IP packets received with an unknown or unsupported protocol. | 
+| `node_netstat_Ip_ForwDatagrams` | *The number of IP packets forwarded. | 
+| `node_netstat_Ip_ReasmOKs` | *The number of IP packets successfully reassembled after being fragmented.| 
+| `node_netstat_Ip_ReasmFails` | *The number of IP packets that failed to reassemble.| 
+| `node_netstat_Ip_ReasmReqds` | *The number of IP packets that required reassembly.| 
+| `node_netstat_IpExt_InNoRoutes` | *The number of incoming IP packets discarded because no route could be found to the destination address. | 
+| `node_netstat_IpExt_InOctets` | *The number of bytes received through IP, representing incoming network traffic. | 
+| `node_netstat_IpExt_InMcastPkts` | *The number of IP multicast packets received.| 
+| `node_netstat_IpExt_InMcastOctets` | *The number of IP multicast bytes received.| 
+| `node_netstat_IpExt_InBcastPkts` | *The number of incoming IP broadcast packets received.| 
+| `node_netstat_IpExt_InTruncatedPkts` | *The number of truncated packets received.| 
+| `node_netstat_Ip_OutRequests` | *The number of packets sent.| 
+| `node_netstat_Ip_OutDiscards` | *The number of outgoing IP packets that were discarded, even though no errors were detected to prevent their transmission.| 
+| `node_netstat_Ip_OutNoRoutes` |  *The number of IP packets dropped because a route could not be found. | 
+| `node_netstat_Ip_FragOKs` | *The number of IP packets that have been successfully fragmented. | 
+| `node_netstat_Ip_FragFails` |  *The number of IP packets that have been discarded because they needed to be fragmented but could not be, or were otherwise failing fragmentation.| 
+| `node_netstat_Ip_FragCreates` | *The number of IP packets that have been generated as a result of fragmentation.| 
+| `node_netstat_IpExt_OutOctets` |*The number of bytes sent. | 
+| `node_netstat_IpExt_OutMcastPkts` | *The number of IP multicast packets sent.| 
+| `node_netstat_IpExt_OutMcastOctets` | *The number of IP multicast bytes sent. | 
+| `node_netstat_IpExt_OutBcastPkts` | *The number of IP broadcast packets sent.| 
+| `node_netstat_Icmp_InMsgs` | *The number of ICMP messages received.| 
+| `node_netstat_Icmp_InErrors` | *The number of ICMP errors received.| 
+| `node_netstat_Icmp_InDestUnreachs` | *The number of ICMP Destination Unreachable received. | 
+| `node_netstat_Icmp_InTimeExcds` | *The number of ICMP Time Exceeded messages received.| 
+| `node_netstat_Icmp_InEchos` | *The number of ICMP Echo Request messages (pings) received.| 
+| `node_netstat_Icmp_InEchoReps` | *The number of ICMP Echo Reply messages received.| 
+| `node_netstat_Icmp_OutMsgs` | *The number of ICMP messages sent.| 
+| `node_netstat_Icmp_OutErrors` | *The number of ICMP errors sent.| 
+| `node_netstat_Icmp_OutDestUnreachs` | *The number of outgoing ICMP Destination Unreachable packets sent.| 
+| `node_netstat_Icmp_OutTimeExcds` | *The number of ICMP Time Exceeded messages sent.| 
+| `node_netstat_Icmp_OutEchos` | *The number of ICMP Echo Request messages sent. |
+| `node_netstat_Icmp_OutEchoReps` | *The number of ICMP Echo Reply (ping reply) messages sent.| 
+| `node_netstat_Tcp_InSegs` | *The number of TCP segments received.| 
+| `node_netstat_Tcp_InErrs` | *The number of TCP segments received that contained errors.| 
+| `node_netstat_Tcp_OutSegs` | *The number of TCP segments sent.| 
+| `node_netstat_Tcp_RetransSegs` | *The number of TCP segments retransmitted.| 
+| `node_netstat_Tcp_ActiveOpens` | *The number of TCP connections that have made a direct transition from the CLOSED state to the SYN-SENT state.| 
+| `node_netstat_Tcp_PassiveOpens` | *The number of TCP connections with a SYN that moved directly from the LISTEN state to SYN-RCVD.| 
+| `node_netstat_Tcp_AttemptFails` | *The number of times TCP connections have made a failed attempt to connect.| 
+| `node_netstat_Tcp_EstabResets` | *The number of TCP connections that have directly transitioned from an ESTABLISHED state to a CLOSED state.| 
+| `node_netstat_Tcp_CurrEstab` | *The number of TCP connections in the ESTABLISHED or CLOSE-WAIT state.| 
+| `node_netstat_Tcp_OutRsts` | *The number of TCP resends.| 
+| `node_netstat_TcpExt_ListenDrops` | *The number of TCP listne drops.| 
+| `node_netstat_TcpExt_ListenOverflows` | *The number of TCP listen overflows.| 
+| `node_netstat_TcpExt_TCPTimeouts` | *The number of TCP connections that timed out.| 
+| `node_netstat_TcpExt_TCPSynRetrans` | *The number of TCP SYN retransmissions.| 
+| `node_netstat_Udp_InDatagrams` | *The number of UDP packets received.| 
+| `node_netstat_Udp_InErrors` | *The number of UDP errors opens.| 
+| `node_netstat_Udp_NoPorts` | *The number of UDP no ports opens.| 
+| `node_netstat_Udp_RcvbufErrors` | *The number of UDP receive buffer errors. | 
+| `node_netstat_Udp_OutDatagrams` | *The number of UDP packets sent.| 
+| `node_netstat_Udp_SndbufErrors` | *The number of UDP send buffer errors.| 
+| `node_netstat_Ip6_InReceives` | *The number of IP packets received.| 
+| `node_netstat_Ip6_InAddrErrors` | *The number of IPv6 packets dropped due to address errors.| 
+| `node_netstat_Ip6_InDelivers` | *The number of incoming IPv6 packets delivered to upper-layer protocols.| 
+| `node_netstat_Ip6_InDiscards` |  *The number of incoming IPv6 packets discarded.| 
+| `node_netstat_Ip6_InHdrErrors` | *The number of incoming IPv6 packets with hardware errors.| 
+| `node_netstat_Ip6_InUnknownProtos` | *The number of incoming IPv6 packets with unknown protocols.| 
+| `node_netstat_Ip6_InNoRoutes` | *The number of incoming IPv6 packets with no routes.| 
+| `node_netstat_Ip6_InOctets` | *The number of bytes received through IPv6. | 
+| `node_netstat_Ip6_InMcastPkts` | *The number of incoming IPv6 multicast packets| 
+| `node_netstat_Ip6_InMcastOctets` | *The number of incoming multicast bytes received through IPv6.| 
+| `node_netstat_Ip6_InTruncatedPkts` | *The number of incoming IPv6 truncated packets.| 
+| `node_netstat_Ip6_OutRequests` | *The number of IPv6 packets sent.| 
+| `node_netstat_Ip6_OutDiscards` | *The number of outgoing IPv6 packets intentionally dropped.| 
+| `node_netstat_Ip6_OutNoRoutes` | *The number of IPv6 packets dropped because no route could be found to their destination.| 
+| `node_netstat_Ip6_OutForwDatagrams` | *The number of IPv6 packets that the local node forwarded to other destinations.| 
+| `node_netstat_Ip6_FragOKs` | *The number of IPv6 packets successfully fragmented.| 
+| `node_netstat_Ip6_FragFails` | *The number of IPv6 packets that could not be fragmented due to size restrictions or errors.| 
+| `node_netstat_Ip6_FragCreates` | *The number of IPv6 packets fragmented into multiple packets. | 
+| `node_netstat_Ip6_OutOctets` | *The number of bytes sent in IPv6 packets.| 
+| `node_netstat_Ip6_OutMcastPkts` | *The number of IPv6 multicast packets sent.| 
+| `node_netstat_Ip6_OutMcastOctets` | *The number of octets (bytes) transmitted in IPv6 multicast packets. | 
+| `node_netstat_Ip6_ReasmOKs` | *The number of IPv6 packets successfully reassembled.| 
+| `node_netstat_Ip6_ReasmFails` | *The number of IPv6 packets that failed to reassemble successfully.| 
+| `node_netstat_Ip6_ReasmReqds` | *The number of IPv6 fragments that need to be reassembled. | 
+| `node_netstat_Icmp6_InMsgs` | *The number of ICMPv6 messages received. | 
+| `node_netstat_Icmp6_InErrors` | *The number of ICMPv6 errors received.| 
+| `node_netstat_Icmp6_InDestUnreachs` | *The number of ICMPv6 Destination Unreachable packets received. | 
+| `node_netstat_Icmp6_InTimeExcds` | *The number of ICMPv6 "Time Exceeded" messages received.| 
+| `node_netstat_Icmp6_InEchos` | *The number of ICMPv6 Echo Request messages (pings) received.| 
+| `node_netstat_Icmp6_InEchoReplies` | *The number of ICMPv6 Echo Reply messages (pings) received.| 
+| `node_netstat_Icmp6_OutMsgs` | *The number of ICMPv6 messages sent. | 
+| `node_netstat_Icmp6_OutErrors` | *The number of ICMPv6 errors sent.| 
+| `node_netstat_Icmp6_OutDestUnreachs` | *The number of ICMPv6 Destination Unreachable packets sent.| 
+| `node_netstat_Icmp6_OutTimeExcds` | *The number of ICMPv6 "Time Exceeded" messages sent.| 
+| `node_netstat_Icmp6_OutEchos` | *The number of ICMPv6 Echo Request messages (pings) sent.| 
+| `node_netstat_Icmp6_OutEchoReplies` | *The number of ICMPv6 Echo Reply messages (pings) sent.| 
+| `node_netstat_Udp6_InDatagrams` | *The number of UDP packets delivered to IPv6 users.| 
+| `node_netstat_Udp6_InErrors` | *The number of received UDP6 datagrams that could not be delivered, often due to errors.| 
+| `node_netstat_Udp6_NoPorts` | *The number of UDP6 no ports.| 
+| `node_netstat_Udp6_RcvbufErrors` | *The number of times a UDP6 packet was dropped because the receive buffer (Rcvbuf) was full.| 
+| `node_netstat_Udp6_OutDatagrams` | *The number of UDP datagrams sent through IPv6.| 
+| `node_netstat_Udp6_SndbufErrors` | *The number of UDPv6 packets that could not be sent due to send buffer errors.| 
+| `node_netstat_Icmp6_InNeighborAdvertisements` | *The number of ICMPv6 Neighbor Advertisement messages received.| 
+| `node_netstat_Icmp6_InNeighborSolicits` | *The number of ICMPv6 Neighbor Solicitation messages received.| 
+| `node_netstat_Icmp6_InRedirects` | *The number of ICMPv6 redirect messages received. | 
+| `node_netstat_Icmp6_InRouterAdvertisements` | *The number of ICMPv6 Type 134 messages (Router Advertisements) received.| 
+| `node_netstat_Icmp6_InRouterSolicits` | *The number of ICMPv6 Router Solicitation (RS) messages received.| 
+| `node_netstat_Icmp6_OutNeighborAdvertisements` | *The number of ICMPv6 Neighbor Advertisement messages sent.| 
+| `node_netstat_Icmp6_OutNeighborSolicits` | *The number of ICMPv6 Neighbor Solicitation messages sent.| 
+| `node_netstat_Icmp6_OutRedirects` | *The number of ICMPv6 Redirect messages sent.| 
+| `node_netstat_Icmp6_OutRouterAdvertisements` | *The number of IPv6 Router Advertisement (RA) messages sent.| 
+| `node_netstat_Icmp6_OutRouterSolicits` | *The number of ICMPv6 Router Solicitation (Type 133) messages sent.| 
+| `node_netstat_Icmp_InRedirects` | *The number of ICMP Redirect messages received.| 
+| `node_netstat_Icmp_OutRedirects` | *The number of ICMP Out Redirects.| 
+| `node_netstat_Ip6_InCEPkts` | *The number of received IPv6 packets with the Congestion Experienced (CE) codepoint set.| 
+| `node_netstat_Ip6_InECT0Pkts` | *The number of received IPv6 packets with the ECN-Capable Transport (ECT) codepoint '0' set (ECT(0)).| 
+| `node_netstat_Ip6_InECT1Pkts` | *The number of incoming IPv6 packets received with the ECN (Explicit Congestion Notification) Codepoint 1 (ECT1) set. | 
+| `node_netstat_Ip6_InNoECTPkts` | *The number of incoming IPv6 packets received that do not have the ECN-Capable Transport (ECT) codepoint set.| 
+| `node_netstat_IpExt_InCEPkts` | *The number of incoming IP packets received with the Congestion Experienced (CE) codepoint set.| 
+| `node_netstat_IpExt_InECT0Pkts` | *The number of IP datagrams received with the ECN (Explicit Congestion Notification) codepoint "ECT(0)".| 
+| `node_netstat_IpExt_InECT1Pkts` | *The number of IP packets received with ECN (Explicit Congestion Notification) capable transport, specifically ECT(1) codepoint.| 
+| `node_netstat_IpExt_InNoECTPkts` | *The number of IP packets received with no ECN (Explicit Congestion Notification) capable transport.|
 
 {{< expand "Example JSON data for nvswitch_control_plane_trap_rx_drop:" >}}
 ```

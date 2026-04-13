@@ -326,6 +326,8 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 {{< /tab >}}
 {{< tab "Platform">}}
 
+|  Name | Description |
+|------ | ----------- |
 | `nvswitch_platform_info_hw_details` | Hardware details such as the version, model name, part number, serial number, and type.|
 
 {{< /tab >}}

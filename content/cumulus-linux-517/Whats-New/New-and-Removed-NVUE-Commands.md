@@ -20,6 +20,7 @@ nv show interface <interface-id> counters link debounce
 nv show interface <interface-id> link debounce
 nv show interface <interface-id> qos buffer shared-headroom-pool
 nv show interface debounce-counters
+nv show interface <interface-id> link debounce
 nv show qos advance-buffer-config <profile-id> shared-headroom
 nv show system dot1x pre-auth
 nv show system dot1x pre-auth allow-protocol
@@ -29,11 +30,13 @@ nv show system lldp tlv profile <lldp-profile-name-id> egress-policy
 nv show system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-name-id>
 nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy
 nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-name-id>
+nv show system reboot
 nv show system telemetry export ipfix
 nv show system telemetry interface-stats class debounce
 nv show system telemetry stats-group <stats-group-id> interface-stats class debounce
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability export-lldp
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound
 
 ```
 
@@ -41,22 +44,48 @@ nv show vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp
 {{< tab "nv set ">}}
 
 ```
-nv set interface <interface-id> dot1x tx-identity-request (enabled|disabled)
+nv set interface <interface-id> dot1x tx-identity-request
 nv set interface <interface-id> link debounce down
 nv set interface <interface-id> link debounce up
 nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom-per-pg
 nv set qos advance-buffer-config <profile-id> shared-headroom required-headroom-per-pg
-nv set qos link-pause <profile-id> small-packet-probability
-nv set system dot1x pre-auth allow-protocol lldp
+nv set qos pfc default-global small-packet-probability
+nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group <priority-group-id> switch-priority <switch-priority-id>
+nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group <priority-group-id> service-pool <service-pool-id>
+nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg
+nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg
+nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio
+nv set interface <interface-id> qos shared-headroom-pool enable
+nv set qos congestion-control default-global traffic-class <traffic-class-id> mode
+nv set qos congestion-control default-global traffic-class <traffic-class-id> min-threshold-percent
+nv set qos congestion-control default-global traffic-class <traffic-class-id> max-threshold-percent
+nv set router bfd offload
+nv set system config backup state
+nv set system config backup restore <snapshot-id>
+nv set system dot1x pre-auth allow-protocol lldp ingress
+nv set system dot1x pre-auth allow-protocol lldp egress
+nv set system dot1x pre-auth allow-protocol lldp both
 nv set system dot1x tx-identity-request max-retries
 nv set system lldp tlv egress-policy <tlv-name-id>
+nv set system lldp tlv egress-policy <tlv-name-id> state
+nv set system lldp tlv egress-policy system-capabilities state
 nv set system lldp tlv ingress-policy <tlv-name-id>
-nv set system lldp tlv ingress-policy <tlv-name-id> state (enabled|disabled)
-nv set system lldp tlv profile <lldp-profile-name-id>
+nv set system lldp tlv ingress-policy <tlv-name-id> state
+nv set system lldp tlv ingress-policy port-description state
+nv set system lldp tlv ingress-policy management-address state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy port-description state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-name state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-description state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-capabilities state 
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy management-address state
+nv set interface <interface-id> lldp tlv profile <lldp-profile-name-id>
 nv set system lldp tlv profile <lldp-profile-name-id> description <value>
 nv set system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-name-id>
 nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-name-id>
+nv show system security secure-boot
 nv set system security alerts audit-failure (enabled|disabled)
+nv set system aaa tacacs authorization <id>> all-commands (enabled|disabled)
 nv set system telemetry exclude-list <value>
 nv set system telemetry include-list <value>
 nv set system telemetry interface-stats class debounce sample-interval (10-86400)
@@ -79,6 +108,7 @@ nv set vrf <vrf-id> router bgp dynamic-neighbor listen-range <ip-sub-prefix-id> 
 {{< tab "nv action ">}}
 
 ```
+nv action clear interface debounce-counters 
 nv action clear interface <interface-id> counters link debounce
 nv action delete system file-path <path>
 nv action fetch system file-path <path> <uri> [file-permissions <value>] [vrf <vrf-name>]

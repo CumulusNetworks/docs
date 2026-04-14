@@ -19,7 +19,7 @@ Refer to {{<link title="Configure System Event Notifications">}} for information
 
 Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then select **Events**.
 
-The dashboard presents a timeline of events alongside the devices that are causing the most events. You can select the controls above the summary to filter events by time, device (hostname), type, severity, or label. Select the tabs below the controls to display all events networkwide, interface events, network services events, system events, or threshold-crossing events. The charts and tables update according to the tab you've selected.
+The dashboard presents a timeline of events alongside the devices that are causing the most events. You can select the controls above the summary to filter events by time, device (hostname), type, severity, or label. Select the tabs below the controls to display all events networkwide, interface events, network services events, system events, threshold-crossing events, or groups of events linked to the same underlying issue (fault correlation). The charts and tables update according to the tab you've selected.
 
 Events are also generated when streaming {{<link title="Validation Tests Reference" text="validation checks">}} detect a failure. If an event is generated from a failed validation check, it will be marked resolved automatically the next time the check runs successfully.
 
@@ -65,7 +65,7 @@ You can suppress events for the following types of messages:
 - BGP
 - BTRFS information (events related to the BTRFS file system in Cumulus Linux)
 - Cable
-- CL support (events generated when creating the `cl-support script`)
+- Cumulus Linux support (events generated when creating the `cl-support script`)
 - EVPN
 - Installed packages
 - Lifecycle management

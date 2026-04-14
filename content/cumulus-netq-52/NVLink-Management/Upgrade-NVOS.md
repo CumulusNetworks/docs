@@ -45,7 +45,7 @@ You can upgrade NVOS at either the switch-level or domain-level. Switch-level op
 
 ## Upgrade CPLD Firmware 
 
-You can upgrade firmware at either the switch-level or domain-level. Switch-level operations are prioritized before domain-level operations.
+You can upgrade firmware at either the switch-level or domain-level. Switch-level operations are prioritized before domain-level operations. After you upgrade the firmware, NetQ NVLink automatically validates the firmware to ensure version consistency.
 
 {{<tabs "TabID50" >}}
 {{<tab "Switch-level upgrade"  >}}
@@ -71,5 +71,8 @@ You can upgrade firmware at either the switch-level or domain-level. Switch-leve
 
 5. If all initial validations succeed, the API returns an `HTTP 202 Accepted` response with a JSON body containing an operation ID. You can make a GET request to the `/v1/operations/` endpoint to track the progress of the upgrade.
 
+After the upgrade is finished, NetQ NVLink automatically validates the firmware to ensure version consistency. You can also view firmware versions across a domain by making a GET request to the `/v1/validations/fw-version` or applying the `FW_VERSIONS` filter to the `/v1/kpis/` endpoint. See {{<link title="Collect KPIs/#apply-filters" text="Collect KPIs">}} for examples. 
+
 {{</tab >}}
 {{</tabs>}}
+

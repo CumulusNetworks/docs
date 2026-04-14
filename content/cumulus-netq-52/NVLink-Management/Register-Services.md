@@ -5,21 +5,13 @@ weight: 325
 toc: 3
 ---
 
-NetQ must register with the NMX-T and NMX-C services to begin receiving network telemetry and control data. Communication between these services is secured using certificate-based mTLS encryption. 
-
-These certificates are automatically created during the installation process, but you must configure them on the switch trays hosting NMX-C and NMX-T. Alternately, you can provide your own certificates.
+NetQ must register with the NMX-T and NMX-C services to begin receiving network telemetry and control data. Communication between these services is secured using certificate-based mTLS encryption. These certificates are automatically created during the installation process, but you must configure them on the switch trays hosting NMX-C and NMX-T.
 
 {{<notice tip>}}
 You can also perform the steps outlined on this page using the <code>/v1/switch-profiles</code> endpoint. Refer to {{<link url="NVLink-Bringup" text="NVLink Bringup">}} for more information.
 {{</notice>}}
 
-## Secure Devices with Certificates
-
-You can configure NetQ NVLink devices to use either NetQ NVLink's self-signed certificate or your own certificates. If you are using your own certificates, upload the CA certificate first, followed by the server certificate, and finally the switch certificate.
-
-{{<tabs "certificate-options" >}}
-
-{{<tab "Self-signed certificates" >}}
+## Generate Certificates
 
 1. Use SSH to log in to the master node of your NetQ NVLink deployment. This is the node you used during the initial installation.
 
@@ -43,49 +35,11 @@ Files created:
 Done.
 ```
 
-3. Copy the `.crt` and `.p12` files to the switch tray. Use the {{<exlink url=“https://docs.nvidia.com/networking/display/nvidianvosusermanualfornvlinkswitchesv25022225/cluster+manager+commands” text="NVOS cluster manager commands">}} to apply the certificates to both NMX-C and NMX-T.
-
-{{</tab>}}
-
-{{<tab "User-provided certificates" >}}
-
-{{<tabs "user-provided-certs">}}
-
-{{<tab "CA certificates" >}}
-
-1. Ensure that you do not already have a certificate installed by making a GET request to the `/v1/certificates/` endpoint.
-
-2. Upload your certificates by making a POST request to the `/v1/certificates/ca` endpoint. In the request body, specify the file. The certificate must be in PEM format and end in `.crt`. If successful, the response body includes metadata about the certificate including its expiration date.
-
-{{</tab >}}
-
-{{<tab "Server certificates" >}}
-
-1. Ensure that you do not already have a server certificate installed by making a GET request to the `/v1/certificates/` endpoint.
-
-1. Upload your certificates by making a POST request to the `/v1/certificates/server` endpoint. In the request body, specify the `.crt` and `.key` files. If successful, the response body includes metadata about the certificate including its expiration date.
-
-{{</tab >}}
-
-{{<tab "Switch certificates" >}}
-
-1. Ensure that you do not already have a switch certificate installed by making a GET request to the `/v1/certificates/` endpoint.
-
-1. Upload your certificates by making a POST request to the `/v1/certificates/switch` endpoint. In the request body, specify the `.p12` file. If successful, the response body includes metadata about the certificate including its expiration date.
-
-1. Perform an {{<link url="NVLink-Bringup" text="NVLink Bringup">}} by making a POST request to the `/v1/bring-up/` endpoint, and specify the switch `.p12` file in the request body.
-
-{{</tab>}}
-
-{{</tabs>}}
-
-{{</tab>}}
-
-{{</tabs>}}
+3. Copy the `example-ca.crt` and `example-tls.p12` files to the switch tray. Replace the filenames with the actual names of the files. Use the {{<exlink url="https://docs.nvidia.com/networking/display/nvidianvosusermanualfornvlinkswitchesv25022225/cluster+manager+commands" text="NVOS cluster manager commands">}} to apply the certificates to both NMX-C and NMX-T.
 
 ## Register Services
 
-Register the services by making a POST request to the `v1/services` endpoint.
+Register the services by making a POST request to the `/v1/services` endpoint.
 
 {{<tabs "TabID42" >}}
 
@@ -113,7 +67,7 @@ curl --request POST \
 
 ## Check the Status of a Registered Service
 
-To retrieve the status of all registered services, make a GET request to the `v1/services` endpoint.
+To retrieve the status of all registered services, make a GET request to the `/v1/services` endpoint.
 
 {{<tabs "TabID70" >}}
 
@@ -155,4 +109,4 @@ kubectl edit cm -n netq-nvl common-config
 
 2. Locate the `feature-flags` section. Change the `service-failover-enabled` value from `true` to `false`.
 
-3. Make a `DELETE` request to the `v1/services` endpoint.
+3. Make a `DELETE` request to the `/v1/services` endpoint.

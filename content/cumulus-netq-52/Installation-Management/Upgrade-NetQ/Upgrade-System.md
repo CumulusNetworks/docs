@@ -5,7 +5,7 @@ weight: 410
 toc: 4
 ---
 
-This page describes how to upgrade your NetQ virtual machines and . Note that the upgrade instructions vary depending on NetQ version you’re currently running.
+This page describes how to upgrade your NetQ virtual machines. Note that the upgrade instructions vary depending on NetQ version you’re currently running.
 
 For deployments running:
 
@@ -142,7 +142,7 @@ Run the upgrade command on your master node and specify the following within the
 - The `/home/nvidia/nvl-cluster-config.json` file
 
 ```
-nvidia@<hostname>:~$ netq upgrade nvl bundle /mnt/installables/NetQ-5.1.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /home/nvidia/nvl-cluster-config.json
+nvidia@<hostname>:~$ netq upgrade nvl bundle /mnt/installables/NetQ-5.2.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /home/nvidia/nvl-cluster-config.json
 ```
 {{</tab>}}
 

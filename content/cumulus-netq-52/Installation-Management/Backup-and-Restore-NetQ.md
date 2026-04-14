@@ -149,7 +149,7 @@ To restore your NetQ data, perform a {{<link title="Install the NetQ System" tex
 - The `/home/nvidia/nvl-cluster-config.json` backup file
 
 ```
-nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.1.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /home/nvidia/nvl-cluster-config.json
+nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.2.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /home/nvidia/nvl-cluster-config.json
 ```
 
 2. Restore your data by running the {{<link title="nvl/#netq-nvl-cluster-restore" text="netq nvl cluster restore">}} command with the `drop-mongo-collections` option. This option prevents NetQ from re-installing duplicate data entries.

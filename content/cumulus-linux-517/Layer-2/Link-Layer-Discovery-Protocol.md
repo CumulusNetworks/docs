@@ -458,7 +458,8 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
 {{%notice note%}}
-A profile overrides system defaults for an interface.
+- A profile overrides system defaults for an interface.
+- If you enabled LLDP TLVs in Cumulus Linux 5.16 and earlier for specific interfaces with the `nv set interface <interface-id> lldp <tlv-type> enabled` command, when upgrading to Cumulus Linux 5.17, the upgrade process converts the interface-specific configuration to a profile configuration using the profile name `auto-migrated-<interface-id>` and the equivalent egress-policy entries.
 {{%/notice%}}
 
 ### BGP Unreachable Prefix TLV
@@ -508,7 +509,7 @@ Cumulus Linux supports the following LLDP DCBX TLVs:
 <!-- vale off -->
 #### IEEE 802.1 TLVs
 <!-- vale on -->
-You can transmit the following IEEE 802.1 TLVs when exchanging LLDP messages. By default, IEEE 802.1 TLV transmission is `off` and the switch sends all LLDP frames without IEEE 802.1 TLVs.
+You can transmit the following IEEE 802.1 TLVs when exchanging LLDP messages. By default, IEEE 802.1 TLV transmission is off and the switch sends all LLDP frames without IEEE 802.1 TLVs.
 
 | Name             | Subtype | Description |
 |----------------- | ------- | ----------- |
@@ -664,6 +665,8 @@ lldp
 
 <span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> is an extension to LLDP that operates between endpoint devices, such as IP phones and switches. Inventory management TLV enables an endpoint to transmit detailed inventory information about itself to the switch, such as the manufacturer, model, firmware, and serial number.
 
+You can enable LLDP-MED inventory TLV transmission globally only; LLDP-MED inventory TLV transmission does not support profiles.
+
 To enable LLDP-MED inventory TLV transmission, run the `nv set system lldp lldp-med-inventory-tlv enabled` command:
 
 ```
@@ -705,6 +708,8 @@ To enable application priority TLV transmission, run NVUE commands to set:
 - You cannot enable application priority TLV transmission on bonds.
 - You can configure a maximum of 10 application TLV priorities on the switch.
 - Cumulus Linux can send a maximum of 10 application priority TLVs in an LLDP PDU.
+- You can enable application priority TLV transmission globally only; application priority TLV transmission does not support profiles.
+
 {{%/notice%}}
 
 The following example sets the application priority of iSCSI traffic to 3 in the application priority TLV sent in LLDP PDUs on swp1.

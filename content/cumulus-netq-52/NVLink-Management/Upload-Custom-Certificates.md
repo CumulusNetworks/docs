@@ -43,7 +43,7 @@ A successful upload returns HTTP 200 OK with the CA certificate metadata:
 }
 ```
 
-2. Upload the server (southbound) TLS certificate and its private key (both as PEM-encoded files) by making a POST request to the `v1/certificates/server` endpoint. The certificate must be signed by the same CA as the certificate you uploaded in the previous step.
+2. Upload the server (southbound) TLS certificate and its private key (both as PEM-encoded files) by making a POST request to the `/v1/certificates/server` endpoint. The certificate must be signed by the same CA as the certificate you uploaded in the previous step.
 
 ```
 curl -X 'POST' \

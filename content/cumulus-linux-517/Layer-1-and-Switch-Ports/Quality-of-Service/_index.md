@@ -345,6 +345,54 @@ cumulus@switch:~$ nv set qos remark default-global switch-priority 2 dscp 40
 cumulus@switch:~$ nv config apply
 ```
 
+To show global remarking configuration, run the `nv show qos remark default-global` command:
+
+```
+cumulus@switch:~$ nv show qos remark default-global
+         operational  applied
+-------  -----------  -------
+rewrite  l2           l2
+
+SP->PCP/DSCP mapping configuration
+=====================================
+    switch-priority  pcp  dscp
+    ---------------  ---  ----
+    0                0    0
+    1                7    8
+    2                2    16
+    3                3    24
+    4                4    32
+    5                5    40
+    6                6    48
+    7                7    56
+```
+
+To show global remarking configuration for a specific interface, run the `nv show interface <interface-id> qos remark` command:
+
+```
+cumulus@switch:~$ nv show interface swp5 qos remark
+         operational  applied
+-------  -----------  -------
+rewrite  l2
+
+SP->PCP/DSCP remark configuration
+====================================
+    switch-priority  pcp  dscp
+    ---------------  ---  ----
+    0                0    0
+    1                1    8
+    2                2    16
+    3                3    24
+    4                4    32
+    5                5    40
+    6                6    48
+    7                7    56
+```
+
+{{%notice note%}}
+When you configure global QoS remarking with `default-global`, the `nv show interface <interface-id> qos remark` command displays the default PCP and DSCP mappings derived from SDK defaults; however, the `nv show qos remark default-global` command only displays the PCP and DSCP mappings if you configure them.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 

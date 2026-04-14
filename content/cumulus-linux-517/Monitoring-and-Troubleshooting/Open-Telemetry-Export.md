@@ -3280,7 +3280,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_info_last_reboot_time` | Time of last reboot in ns since epoch.|
 | `nvswitch_platform_info_last_reboot_reason` | Information about the last reboot reason of a component.|
 | `nvswitch_platform_info_firmware_version` | Information about the firmware version of a component.|
-| `nvswitch_platform_info_hw_details` | *Component hardware details such as the version, model name, part number, serial number, and type.|
+| `nvswitch_platform_info_hw_details` | *Component hardware details such as the version, model name, part number, serial number, type, and name.|
 
 {{< /tab >}}
 {{< /tabs >}}

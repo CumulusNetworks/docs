@@ -670,11 +670,12 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name]/state/serial-no` | *Serial number of the chasis, keyed by component name.|
-| `/components/component[name]/state/part-no` | *Part number of the chasis, keyed by component name.|
-| `/components/component[name]/state/model-name`| *Model name of the chasis.|
-| `/components/component[name]/state/hardware-version`|  *Hardware version of the chasis.|
-| `/components/component[name]/state/type`|  *Chasis type.|
+| `/components/component[name]/state/serial-no` | *Component serial number, keyed by component name.|
+| `/components/component[name]/state/part-no` | *Component part number, keyed by component name.|
+| `/components/component[name]/state/model-name`| *Component model name.|
+| `/components/component[name]/state/hardware-version`|  *Component hardware version.|
+| `/components/component[name]/state/type`|  *Component type.|
+| `/components/component[name]/state/name`|  *Component name.|
 | `/components/component[name]/storage/state/counters/rotation-rate-rpm` | Disk rotation rate in RPMs (supported only on SATA disks). |
 | `/components/component[name]/storage/state/counters/write-cache` | Indicates whether the disk has a write cache (supported only on SATA disks). |
 | `/components/component[name]/storage/state/counters/write-cache-enabled` | Indicates whether the disk write cache is enabled. (supported only on SATA disks) |

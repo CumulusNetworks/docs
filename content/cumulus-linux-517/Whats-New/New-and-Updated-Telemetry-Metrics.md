@@ -163,6 +163,7 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 {{< tab "Platform">}}
 |  Name | Description |
 |------ | ----------- |
+| `/components/component[name]/state/name` | Component name.|
 | `/components/component[name]/state/serial-no` | Component serial number, keyed by component name.|
 | `/components/component[name]/state/part-no` | Component part number, keyed by component name.|
 | `/components/component[name]/state/model-name`| Component model name.|
@@ -328,7 +329,7 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_platform_info_hw_details` | Hardware details such as the version, model name, part number, serial number, and type.|
+| `nvswitch_platform_info_hw_details` | Hardware details such as the version, model name, part number, serial number, type, and name.|
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -13,6 +13,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Added a {{<link title="System Events Reference/#correlation-events" text="fault correlation system event">}} which groups of events linked to the same underlying issue and displays the association between host-based errors and devices within a network’s fabric (beta)
 - Added {{<link title="Validation Tests Reference/#adaptive-routing-validation-tests" text="adaptive routing validations">}} that verify configuration consistencies across switches in your network's fabric (beta)
 - Added {{<link title="Validation Tests Reference/#roce-validation-tests" text="RoCE validations">}} that verify configuration consistencies across the entire network fabric, including switches, host NICs, and DPUs (beta)
+- Updated the {{<link title="Cable Validations" text="Cable Validation Tool">}} to version 1.9
 
 
 ### NetQ for NVLink API Changes

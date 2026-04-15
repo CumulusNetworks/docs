@@ -8,7 +8,7 @@ You can use Cumulus Linux to run the {{<exlink url="https://www.docker.com/" tex
 
 The Docker package installs as part of the Cumulus Linux installation or ONIE upgrade process and the service is running by default. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service.
 
-## Before Managing Docker Containers
+## Validate the Docker Service is Running
 
 Before managing Docker containers, validate that the service is running.
 

@@ -347,126 +347,126 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 |  Name | Description |
 |------ | ----------- |
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-receives`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-addr-errors`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-delivers`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-discarded-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-hdr-errors`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-unknown-protos`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-forwarded-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-reassembly-ok`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-reassembly-fails`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-reassembly-reqd`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-no-routes`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-octets`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-multicast-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-multicast-octets`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-broadcast-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-truncated-pkts`| *|
-| `/system/control-plane-traffic/egress/ipv4/counters/out-requests`| *|
-| `/system/control-plane-traffic/egress/ipv4/counters/out-discarded-pkts`| *|
-| `/system/control-plane-traffic/egress/ipv4/counters/out-no-routes`| *|
-| `/system/control-plane-traffic/egress/ipv4/counters/out-frag-ok`| *|
-| `/system/control-plane-traffic/egress/ipv4/counters/out-frag-fails`| *|
-| `/system/control-plane-traffic/egress/ipv4/counters/out-frag-creates`| *|
-| `/system/control-plane-traffic/egress/ipv4/counters/out-octets`| *|
-| `/system/control-plane-traffic/egress/ipv4/counters/out-multicast-pkts`| *|
-| `/system/control-plane-traffic/egress/ipv4/counters/out-multicast-octets`| *|
-| `/system/control-plane-traffic/egress/ipv4/counters/out-broadcast-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-msgs`| *|
-| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-errors`| *|
-| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-dest-unreachs`| *|
-| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-time-excds`| *|
-| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-echos`| *|
-| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-echo-reps`| *|
-| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-msgs`| *|
-| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-errors`| *|
-| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-dest-unreachs`| *|
-| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-time-excds`| *|
-| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-echos`| *|
-| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-echo-reps`| *|
-| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/in-segs`| *|
-| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/in-errs`| *|
-| `/system/control-plane-traffic/egress/ipv4/tcp/counters/out-segs`| *|
-| `/system/control-plane-traffic/egress/ipv4/tcp/counters/retrans-segs`| *|
-| `/system/control-plane-traffic/egress/ipv4/tcp/counters/active-opens`| *|
-| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/passive-opens`| *|
-| `/system/control-plane-traffic/egress/ipv4/tcp/counters/attempt-fails`| *|
-| `/system/control-plane-traffic/egress/ipv4/tcp/counters/estab-resets`| *|
-| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/curr-estab`| *|
-| `/system/control-plane-traffic/egress/ipv4/tcp/counters/out-rsts`| *|
-| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/listen-drops`| *|
-| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/listen-overflows`| *|
-| `/system/control-plane-traffic/egress/ipv4/tcp/counters/tcp-timeouts`| *|
-| `/system/control-plane-traffic/egress/ipv4/tcp/counters/tcp-syn-retrans`| *|
-| `/system/control-plane-traffic/ingress/ipv4/udp/counters/in-datagrams`| *|
-| `/system/control-plane-traffic/ingress/ipv4/udp/counters/in-errors`| *|
-| `/system/control-plane-traffic/ingress/ipv4/udp/counters/no-ports`| *|
-| `/system/control-plane-traffic/ingress/ipv4/udp/counters/rcvbuf-errors`| *|
-| `/system/control-plane-traffic/egress/ipv4/udp/counters/out-datagrams`| *|
-| `/system/control-plane-traffic/egress/ipv4/udp/counters/sndbuf-errors`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-receives`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-addr-errors`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-delivers`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-discarded-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-hdr-errors`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-unknown-protos`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-no-routes`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-octets`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-multicast-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-multicast-octets`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-truncated-pkts`| *|
-| `/system/control-plane-traffic/egress/ipv6/counters/out-requests`| *|
-| `/system/control-plane-traffic/egress/ipv6/counters/out-discarded-pkts`| *|
-| `/system/control-plane-traffic/egress/ipv6/counters/out-no-routes`| *|
-| `/system/control-plane-traffic/egress/ipv6/counters/out-forwarded-pkts`| *|
-| `/system/control-plane-traffic/egress/ipv6/counters/out-frag-ok`| *|
-| `/system/control-plane-traffic/egress/ipv6/counters/out-frag-fails`| *|
-| `/system/control-plane-traffic/egress/ipv6/counters/out-frag-creates`| *|
-| `/system/control-plane-traffic/egress/ipv6/counters/out-octets`| *|
-| `/system/control-plane-traffic/egress/ipv6/counters/out-multicast-pkts`| *|
-| `/system/control-plane-traffic/egress/ipv6/counters/out-multicast-octets`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-reassembly-ok`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-reassembly-fails`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-reassembly-reqd`| *|
-| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-msgs`| *|
-| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-errors`| *|
-| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-dest-unreachs`| *|
-| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-time-excds`| *|
-| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-echos`| *|
-| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-echo-replies`| *|
-| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-msgs`| *|
-| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-errors`| *|
-| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-dest-unreachs`| *|
-| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-time-excds`| *|
-| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-echos`| *|
-| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-echo-replies`| *|
-| `/system/control-plane-traffic/ingress/ipv6/udp/counters/in-datagrams`| *|
-| `/system/control-plane-traffic/ingress/ipv6/udp/counters/in-errors`| *|
-| `/system/control-plane-traffic/ingress/ipv6/udp/counters/no-ports`| *|
-| `/system/control-plane-traffic/ingress/ipv6/udp/counters/rcvbuf-errors`| *|
-| `/system/control-plane-traffic/egress/ipv6/udp/counters/out-datagrams`| *|
-| `/system/control-plane-traffic/egress/ipv6/udp/counters/sndbuf-errors`| *|
-| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-neighbor-advertisements`| *|
-| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-neighbor-solicits`| *|
-| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-redirects`| *|
-| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-router-advertisements`| *|
-| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-router-solicits`| *|
-| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-neighbor-advertisements`| *|
-| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-neighbor-solicits`| *|
-| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-redirects`| *|
-| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-router-advertisements`| *|
-| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-router-solicits`| *|
-| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-redirects`| *|
-| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-redirects`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-ce-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-ect0-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-ect1-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv6/counters/in-no-ect-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-ce-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-ect0-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-ect1-pkts`| *|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-no-ect-pkts` | *|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-receives`| *IPv4 ingress packets received.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-addr-errors`| *IPv4 ingress packet address errors.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-delivers`| *IPv4 ingress packets delivered. |
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-discarded-pkts`| *IPv4 ingress packets discarded.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-hdr-errors`| *IPv4 ingress packet hardware errors.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-unknown-protos`| *IPv4 ingress packet unknown protocols.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-forwarded-pkts`| *IPv4 forwarded ingress packets.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-reassembly-ok`| *IPv4 ingress packets with reassembly OK .|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-reassembly-fails`| *IPv4 ingress packets with reassembly fail.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-reassembly-reqd`| *IPv4 ingress packets with reassembly required.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-no-routes`| *IPv4 ingress packets with no routes.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-octets`| *IPv4 ingress packet octets. |
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-multicast-pkts`| *IPv4 ingress mulicast packets.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-multicast-octets`| *IPv4 ingress multicast packet octets.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-broadcast-pkts`| *IPv4 ingress broadcast packets.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-truncated-pkts`| *IPv4 ingress truncted packets. |
+| `/system/control-plane-traffic/egress/ipv4/counters/out-requests`| *IPv4 egress packet requests.|
+| `/system/control-plane-traffic/egress/ipv4/counters/out-discarded-pkts`| *IPv4 egress packets discarded.|
+| `/system/control-plane-traffic/egress/ipv4/counters/out-no-routes`| *IPv4 egress packets with no routes.|
+| `/system/control-plane-traffic/egress/ipv4/counters/out-frag-ok`| *IPv4 egress packets with fragment OK.|
+| `/system/control-plane-traffic/egress/ipv4/counters/out-frag-fails`| *IPv4 egress packets with fragment fails.|
+| `/system/control-plane-traffic/egress/ipv4/counters/out-frag-creates`| *IPv4 egress packets with fragment creates.|
+| `/system/control-plane-traffic/egress/ipv4/counters/out-octets`| *IPv4 egress packets octets.|
+| `/system/control-plane-traffic/egress/ipv4/counters/out-multicast-pkts`| *IPv4 egress multicast packets.|
+| `/system/control-plane-traffic/egress/ipv4/counters/out-multicast-octets`| *IPv4 egress multicast packet octets.|
+| `/system/control-plane-traffic/egress/ipv4/counters/out-broadcast-pkts`| *IPv4 egress broadcast packets.|
+| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-msgs`| *IPv4 ICMP ingress packet messages.|
+| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-errors`| *IPv4 ICMP ingress packet errors.|
+| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-dest-unreachs`| *IPv4 ICMP ingress packets with destination unreachable.|
+| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-time-excds`| *IPv4 ICMP ingress packets with time exceeds.|
+| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-echos`| *IPv4 ICMP ingress packet echos.|
+| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-echo-reps`| *IPv4 ICMP ingress packet echo repeats. |
+| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-msgs`| *IPv4 ICMP egress packet messages.|
+| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-errors`| *IPv4 ICMP egress packet errors.|
+| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-dest-unreachs`| *IPv4 ICMP egress packets with destination unreachable.|
+| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-time-excds`| *IPv4 ICMP egress packets with time exceeds.|
+| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-echos`| *IPv4 ICMP egress packet echos.|
+| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-echo-reps`| *IPv4 ICMP egress packet echo repeats.|
+| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/in-segs`| *IPv4 TCP segments received.|
+| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/in-errs`| *IPv4 TCP errors received.|
+| `/system/control-plane-traffic/egress/ipv4/tcp/counters/out-segs`| *IPv4 TCP segments sent.|
+| `/system/control-plane-traffic/egress/ipv4/tcp/counters/retrans-segs`| *IPv4 TCP segments retransmitted.|
+| `/system/control-plane-traffic/egress/ipv4/tcp/counters/active-opens`| *IPv4 TCP active opens.|
+| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/passive-opens`| *IPv4 TCP passive opens.|
+| `/system/control-plane-traffic/egress/ipv4/tcp/counters/attempt-fails`| *IPv4 TCP attempt fails.|
+| `/system/control-plane-traffic/egress/ipv4/tcp/counters/estab-resets`| *IPv4 TCP established resets.|
+| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/curr-estab`| *IPv4 TCP currently established.|
+| `/system/control-plane-traffic/egress/ipv4/tcp/counters/out-rsts`| *IPv4 TCP outgoing resets.|
+| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/listen-drops`| *IPv4 TCP  listen drops.|
+| `/system/control-plane-traffic/ingress/ipv4/tcp/counters/listen-overflows`| *IPv4 TCP listen overflows|
+| `/system/control-plane-traffic/egress/ipv4/tcp/counters/tcp-timeouts`| *IPv4 TCP timeouts.|
+| `/system/control-plane-traffic/egress/ipv4/tcp/counters/tcp-syn-retrans`| *IPv4 TCP Syn retransmissions.|
+| `/system/control-plane-traffic/ingress/ipv4/udp/counters/in-datagrams`| *IPv4 UDP datagrams received.|
+| `/system/control-plane-traffic/ingress/ipv4/udp/counters/in-errors`| *IPv4 UDP errors received.|
+| `/system/control-plane-traffic/ingress/ipv4/udp/counters/no-ports`| *IPv4 UDP no ports.|
+| `/system/control-plane-traffic/ingress/ipv4/udp/counters/rcvbuf-errors`| *IPv4 UDP buffer errors received.|
+| `/system/control-plane-traffic/egress/ipv4/udp/counters/out-datagrams`| *IPv4 UDP datagrams sent.|
+| `/system/control-plane-traffic/egress/ipv4/udp/counters/sndbuf-errors`| *IPv4 UDP buffer errors sent.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-receives`| *IPv6 ingress packets received.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-addr-errors`| *IPv6 ingress packet address errors.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-delivers`| *IPv6 ingress packets delivered.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-discarded-pkts`| *IPv6 ingress packets discarded.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-hdr-errors`| *IPv6 ingress packets with hardware errors. |
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-unknown-protos`| *IPv6 ingress packets with unknown protocols.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-no-routes`| *IPv6 ingress packets with no routes.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-octets`| *IPv6 ingress packets octets. |
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-multicast-pkts`| *IPv6 ingress multicast packets.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-multicast-octets`| *IPv6 ingress multicast octets. |
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-truncated-pkts`| *IPv6 truncated ingress packets.|
+| `/system/control-plane-traffic/egress/ipv6/counters/out-requests`| *IPv6 egress request packets.|
+| `/system/control-plane-traffic/egress/ipv6/counters/out-discarded-pkts`| *IPv6 discarded egress packets.|
+| `/system/control-plane-traffic/egress/ipv6/counters/out-no-routes`| *IPv6 egress packets with no routes. |
+| `/system/control-plane-traffic/egress/ipv6/counters/out-forwarded-pkts`| *IPv6 forwarded egress packets. |
+| `/system/control-plane-traffic/egress/ipv6/counters/out-frag-ok`| *IPv6 egress packets with fragment ok.|
+| `/system/control-plane-traffic/egress/ipv6/counters/out-frag-fails`| *IPv6 egress packets with fragment fails. |
+| `/system/control-plane-traffic/egress/ipv6/counters/out-frag-creates`| *IPv6 egress packets with fragment creates.|
+| `/system/control-plane-traffic/egress/ipv6/counters/out-octets`| *IPv6 egress octets.|
+| `/system/control-plane-traffic/egress/ipv6/counters/out-multicast-pkts`| *IPv6 multicast egress packets.|
+| `/system/control-plane-traffic/egress/ipv6/counters/out-multicast-octets`| *IPv6 multicast egress octets.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-reassembly-ok`| *IPv6 ingress packets with reassembly ok.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-reassembly-fails`| *IPv6 ingress packets with reassembly fails.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-reassembly-reqd`| *IPv6 ingress packets with reassembly required.|
+| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-msgs`| *IPv6 ICMP ingress messages.|
+| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-errors`| *IPv6 ICMP ingress errors.|
+| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-dest-unreachs`| *IPv6 ICMP ingress destination unreachable.|
+| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-time-excds`| *IPv6 ICMP ingress time exceeds.|
+| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-echos`| *IPv6 ICMP ingress echos.|
+| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-echo-replies`| *IPv6 ICMP ingress echo replies.|
+| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-msgs`| *IPv6 ICMP egress message.|
+| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-errors`| *IPv6 ICMP egress errors.|
+| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-dest-unreachs`| *IPv6 ICMP egress destination unreachable.|
+| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-time-excds`| *IPv6 ICMP egress time exceeds.|
+| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-echos`| *IPv6 ICMP egress echos.|
+| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-echo-replies`| *IPv6 ICMP egress echo replies.|
+| `/system/control-plane-traffic/ingress/ipv6/udp/counters/in-datagrams`| *IPv6 UDP datagrams received.|
+| `/system/control-plane-traffic/ingress/ipv6/udp/counters/in-errors`| *IPv6 UDP errors received.|
+| `/system/control-plane-traffic/ingress/ipv6/udp/counters/no-ports`| *IPv6 UDP no ports received.|
+| `/system/control-plane-traffic/ingress/ipv6/udp/counters/rcvbuf-errors`| *IPv6 UDP receive errors.|
+| `/system/control-plane-traffic/egress/ipv6/udp/counters/out-datagrams`| *IPv6 UDP datagrams sent.|
+| `/system/control-plane-traffic/egress/ipv6/udp/counters/sndbuf-errors`| *IPv6 UDP send buffer errors sent.|
+| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-neighbor-advertisements`| *IPv6 ICMP neighbor advertisements received.|
+| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-neighbor-solicits`| *IPv6 ICMP neighbor solicits received.|
+| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-redirects`| *IPv6 ICMP redirects received.|
+| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-router-advertisements`| *IPv6 ICMP router advertisements received.|
+| `/system/control-plane-traffic/ingress/ipv6/icmp/counters/in-router-solicits`| *IPv6 ICMP router solicits received.|
+| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-neighbor-advertisements`| *IPv6 ICMP neighbor advertisements sent.|
+| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-neighbor-solicits`| *IPv6 ICMP neighbor solicits sent.|
+| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-redirects`| *IPv6 ICMP redirects sent.|
+| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-router-advertisements`| *IPv6 ICMP router advertisements sent.|
+| `/system/control-plane-traffic/egress/ipv6/icmp/counters/out-router-solicits`| *IPv6 ICMP router solicits sent.|
+| `/system/control-plane-traffic/ingress/ipv4/icmp/counters/in-redirects`| *IPv4 ICMP redirects received.|
+| `/system/control-plane-traffic/egress/ipv4/icmp/counters/out-redirects`| *IPv4 ICMP redirects sent|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-ce-pkts`| *IPv6 Congestion Experienced packets received. |
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-ect0-pkts`| *IPv6 ECN-Capable Transport, codepoint 10 packets received.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-ect1-pkts`| *IPv6 ECN-Capable Transport (1) codepoint (binary 01) packets received.|
+| `/system/control-plane-traffic/ingress/ipv6/counters/in-no-ect-pkts`| *IPv6 packets received with no Congestion Experienced.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-ce-pkts`| *IPv4 Congestion Experienced packets received.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-ect0-pkts`| *IPv4 ECN-Capable Transport, codepoint 10 packets received. |
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-ect1-pkts`| *IPv4 ECN-Capable Transport (1) codepoint (binary 01) packets received.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-no-ect-pkts` | *IPv4 packets received with no Congestion Experienced.|
 
 
 {{< /tab >}}
@@ -670,11 +670,12 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name]/state/serial-no` | *Serial number of the chasis, keyed by component name.|
-| `/components/component[name]/state/part-no` | *Part number of the chasis, keyed by component name.|
-| `/components/component[name]/state/model-name`| *Model name of the chasis.|
-| `/components/component[name]/state/hardware-version`|  *Hardware version of the chasis.|
-| `/components/component[name]/state/type`|  *Chasis type.|
+| `/components/component[name]/state/serial-no` | *Component serial number, keyed by component name.|
+| `/components/component[name]/state/part-no` | *Component part number, keyed by component name.|
+| `/components/component[name]/state/model-name`| *Component model name.|
+| `/components/component[name]/state/hardware-version`|  *Component hardware version.|
+| `/components/component[name]/state/type`|  *Component type.|
+| `/components/component[name]/state/name`|  *Component name.|
 | `/components/component[name]/storage/state/counters/rotation-rate-rpm` | Disk rotation rate in RPMs (supported only on SATA disks). |
 | `/components/component[name]/storage/state/counters/write-cache` | Indicates whether the disk has a write cache (supported only on SATA disks). |
 | `/components/component[name]/storage/state/counters/write-cache-enabled` | Indicates whether the disk write cache is enabled. (supported only on SATA disks) |

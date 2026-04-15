@@ -1239,12 +1239,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4964153</td>
-<td>When you configure layer 3 SVI interfaces with an anycast gateway (VRR) IP address only and no unique IP address, the connected route for the subnet is not programmed in the ASIC, causing packets destined for locally connected hosts to drop after decapsulation.</td>
-<td>5.11.3-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4963280</td>
 <td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
 <td>5.9.1-5.16.1</td>
@@ -1340,7 +1334,7 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
-<td>4721298, 4937854, 4937855</td>
+<td>4721298</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.16.1</td>
@@ -1352,13 +1346,13 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.15.0-5.16.1</td>
 </tr>
 <tr>
-<td>4647646, 4652641, 4652642</td>
+<td>4647646</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
 <td>5.15.0-5.16.1</td>
 </tr>
 <tr>
-<td>4640126, 4640869</td>
+<td>4640126</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.14.0</td>
 <td>5.15.0-5.16.1</td>
@@ -1382,13 +1376,13 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.15.0-5.16.1</td>
 </tr>
 <tr>
-<td>4625452, 4641326</td>
+<td>4625452</td>
 <td>Trying to apply a hashed password of '*' blocks access to the switch instead of rejecting the password and showing an error.</td>
 <td>5.12.0-5.14.0</td>
 <td>5.15.0-5.16.1</td>
 </tr>
 <tr>
-<td>4622487, 4641327</td>
+<td>4622487</td>
 <td>When you configure an {{exclude_users}} line in {{/etc/tacplus_nss.conf}} containing a long list of users, NSS lookups might fail or behave incorrectly when parsing the configuration. </td>
 <td>5.11.1-5.14.0</td>
 <td>5.15.0-5.16.1</td>
@@ -1412,13 +1406,13 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td></td>
 </tr>
 <tr>
-<td>4579237, 4237198</td>
+<td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.3-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4562806, 4641355, 4641356</td>
+<td>4562806</td>
 <td>When there is a very high volume of MLD traffic in a VXLAN environment, the switch CPU and control protocols might be impacted.</td>
 <td>5.12.0-5.14.0</td>
 <td>5.15.0-5.16.1</td>
@@ -1430,7 +1424,7 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.14.0-5.16.1</td>
 </tr>
 <tr>
-<td>4548512, 4518822</td>
+<td>4548512</td>
 <td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
@@ -1452,13 +1446,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4535749, 4497094</td>
+<td>4535749</td>
 <td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
 <td>5.11.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4535699, 4501510</td>
+<td>4535699</td>
 <td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
 <td>5.11.3-5.16.1</td>
 <td></td>
@@ -1496,13 +1490,13 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>4508830, 4475115</td>
+<td>4508830</td>
 <td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
 <td>5.11.2-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4499025, 4499025</td>
+<td>4499025</td>
 <td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
 <td>5.11.2-5.16.1</td>
 <td></td>
@@ -1514,13 +1508,13 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>4486200, 4475109</td>
+<td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
 <td>5.11.2-5.13.1</td>
 <td>5.14.0-5.16.1</td>
 </tr>
 <tr>
-<td>4475111, 4575860</td>
+<td>4475111</td>
 <td>When you try to convert a layer 3 port that is part of ECMP to a bond member,  you might see a failure in the {{switchd}} logs. This issue does not have any functional impact.</td>
 <td>5.11.2-5.16.1</td>
 <td>5.9.4</td>
@@ -1580,13 +1574,13 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>4423248, 4363645</td>
+<td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423244, 4370616</td>
+<td>4423244</td>
 <td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.16.1</td>
 <td></td>
@@ -1610,7 +1604,7 @@ To work around this issue, power cycle the switch.</td>
 <td>5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4391394, 4423208, 4423209</td>
+<td>4391394</td>
 <td>When using DHCP snooping , access ports do not work as trust ports or server connection ports .</td>
 <td>5.12.0-5.12.1</td>
 <td>5.11.2, 5.13.0-5.16.1</td>
@@ -1635,7 +1629,7 @@ onie-nos-install /$devname/onie-installer</td>
 <td>5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4378226, 4423134, 4423135</td>
+<td>4378226</td>
 <td>On Spectrum-1a switches with IGMP snooping enabled, a multicast hardware programming failure might occur after interface flap or switch reboot events. You can observe this issue when log messages similar to the following are generated:
 sx_sdk[18174]: ERROR   FDB: Usage API type can not be changed for 0x1003 fid.
 sx_sdk[18174]: ERROR   FDB: Failed to __fdb_unreg_mc_flood_cfg_api_type_set , err: Command Unpermitted
@@ -1644,7 +1638,7 @@ switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered I
 <td>5.11.2, 5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4373436, 4423237</td>
+<td>4373436</td>
 <td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
 <td>5.11.0-5.11.1, 5.12.0-5.12.1</td>
 <td>5.11.2, 5.13.0-5.16.1</td>
@@ -1656,7 +1650,7 @@ switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered I
 <td></td>
 </tr>
 <tr>
-<td>4370702, 4408280</td>
+<td>4370702</td>
 <td>NVUE commands create excessive log data. To work around this issue, configure rsyslog rules to limit logging of these commands.</td>
 <td>5.11.0-5.11.1, 5.12.0-5.12.1</td>
 <td>5.11.2, 5.13.0-5.16.1</td>
@@ -1668,7 +1662,7 @@ switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered I
 <td>5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4352307, 4423258</td>
+<td>4352307</td>
 <td>After a factory reset, the files in the {{/etc/pam.d/}} directory might be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and LDAP. To work around this issue, run the following command:
 cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>5.12.0-5.12.1</td>
@@ -1681,7 +1675,7 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4347029, 4423261</td>
+<td>4347029</td>
 <td>When you use the NVUE {{nv set qos congestion-control &lt;ecn_profile_name&gt; traffic-class &lt;tc&gt; min-threshold-bytes}} command to set an ECN Profile, you must configure the minimum threshold according to the platform:
 On the Spectrum-4 switch, the cell-size is 192 bytes. The minimum buffer must be a multiple of 64; therefore, the initial value is 192*64 (12KB).
 On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64 (9KB).</td>
@@ -1695,13 +1689,13 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>5.14.0-5.16.1</td>
 </tr>
 <tr>
-<td>4341501, 4423276, 4423277</td>
+<td>4341501</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
 <td>5.11.0-5.11.1, 5.12.0-5.12.1</td>
 <td>5.9.5, 5.11.2, 5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4340528, 4370955</td>
+<td>4340528</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.11.2, 5.13.0-5.16.1</td>
@@ -1713,7 +1707,7 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td></td>
 </tr>
 <tr>
-<td>4335287, 4370950, 4370952</td>
+<td>4335287</td>
 <td>ERSPAN does not work when the ERSPAN destination IP address is reachable over SVIs and layer 2 bonds. To work around this issue, make the ERSPAN destination IP address reachable over layer 3 swps or bond interfaces.</td>
 <td>5.11.0-5.11.1, 5.12.0-5.12.1</td>
 <td>5.11.2, 5.13.0-5.16.1</td>
@@ -1737,7 +1731,7 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4318464, 4318467</td>
+<td>4318464</td>
 <td>When connecting two NVIDIA devices using DAC in auto-negotiation mode with 100GbE R1 (one lane) port speed, the link goes down. To avoid this issue, use firmware version xx.2014.3xxx and above on both sides.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.16.1</td>
@@ -1749,13 +1743,13 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td></td>
 </tr>
 <tr>
-<td>4308857, 4296649</td>
+<td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.9.3, 5.12.0-5.16.1</td>
 <td>5.9.4</td>
 </tr>
 <tr>
-<td>4298572, 4298583, 4298584</td>
+<td>4298572</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
 <td>5.10.1-5.11.0, 5.12.0</td>
 <td>5.9.4, 5.11.1, 5.12.1-5.16.1</td>
@@ -1787,7 +1781,7 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4290629, 4423300</td>
+<td>4290629</td>
 <td>The NVUE {{nv show interface qos}} command takes approximately two minutes to display output. To work around this issue, fetch only the sub commands that are part of the {{nv show interface qos}}, command such as buffer, congestion-control, pfc, and so on.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.11.2, 5.13.0-5.16.1</td>
@@ -1799,7 +1793,7 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4286489, 4288263, 4288264</td>
+<td>4286489</td>
 <td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
 <td>5.12.0</td>
 <td>5.11.1, 5.12.1-5.16.1</td>
@@ -1841,7 +1835,7 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td></td>
 </tr>
 <tr>
-<td>4215613, 4423362</td>
+<td>4215613</td>
 <td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.11.2, 5.13.0-5.16.1</td>
@@ -1853,7 +1847,7 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td></td>
 </tr>
 <tr>
-<td>4210596, 4423359</td>
+<td>4210596</td>
 <td>After a factory reset, the files in the {{/etc/pam.d/}} directory might be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and LDAP. To work around this issue, run the following command:
 cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>5.12.0-5.12.1</td>
@@ -1905,7 +1899,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
-<td>4129757, 4203748</td>
+<td>4129757</td>
 <td>If you include a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma. For example, instead of {{^65550:([0-9]{1,2}|[1-9][1-9]):.*$}}, specify {{^65550:([0-9]|[0-9][0-9]):.*$}} and instead of {{^65550:([0-4]{1,2}|[7-9][8-9]):.*$}}, specify {{^65550:([0-4]|[0-4][0-4]|[7-9][8-9]):.*$}}.</td>
 <td>5.11.0-5.16.1</td>
 <td></td>
@@ -1917,7 +1911,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4128912, 4173604</td>
+<td>4128912</td>
 <td>When you use PPS IN, PTP might show a high offset. The offset might be around an offset value. For example, around 60 ns or 80 ns. To work around this issue, set the cable compensation value. For 60 ns, run the {{nv set platform pulse-per-second in timestamp-correction -60}} command to set the compensation.</td>
 <td>5.11.0-5.12.1</td>
 <td>5.13.0-5.16.1</td>
@@ -1959,7 +1953,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
-<td>4049213, 4186873</td>
+<td>4049213</td>
 <td>When there are routes that point to a single next hop, an ECMP entry is created in the SDK. After the single next hop from the route is removed, the ECMP entry might stay in the SDK until the time the next hop is present in the kernel.</td>
 <td>5.9.2-5.16.1</td>
 <td></td>
@@ -1989,7 +1983,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4005422, 4007590</td>
+<td>4005422</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 or later with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0-5.16.1</td>
 <td></td>
@@ -2331,13 +2325,13 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3084476, 3085330</td>
+<td>3084476</td>
 <td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.16.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
-<td>3084027, 3081352</td>
+<td>3084027</td>
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
@@ -2361,13 +2355,13 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2951110, 2550950</td>
+<td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>2904450, 2971193</td>
+<td>2904450</td>
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
@@ -2423,17 +2417,17 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.11.0-5.11.5</td>
 </tr>
 <tr>
-<td>4522594, 4531825, 4531829</td>
+<td>4522594</td>
 <td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
 <td>5.11.1-5.11.5</td>
 </tr>
 <tr>
-<td>4280823, 4309875</td>
+<td>4280823</td>
 <td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
 <td></td>
 </tr>
 <tr>
-<td>4277143, 4278870</td>
+<td>4277143</td>
 <td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
 <td>5.11.0</td>
 </tr>
@@ -2443,37 +2437,37 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.11.0-5.11.5</td>
 </tr>
 <tr>
-<td>4256151, 4271228, 4271229</td>
+<td>4256151</td>
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
 <td>5.9.1-5.9.3, 5.11.0</td>
 </tr>
 <tr>
-<td>4251984, 4260018, 4260019</td>
+<td>4251984</td>
 <td>NVUE prevents you from setting the IPv6 RA lifetime to 0 (zero). Use vtysh mode to apply the setting.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4251315, 4423365</td>
+<td>4251315</td>
 <td>When you enable NAT dynamic mode and NAT rules with NVUE in a single commit, you see the error {{error: hw sync failed (Dynamic NAT is not enabled. Ignoring rules..)}}. To work around this issue, enable dynamic NAT with NVUE in one commit, then add NAT ACL rules in a subsequent commit.</td>
 <td>5.11.0-5.11.1</td>
 </tr>
 <tr>
-<td>4250847, 4271202, 4271203</td>
+<td>4250847</td>
 <td>When the STP state goes down, then back up on the primary MLAG peer, the peerlink state is not updated correctly in {{mstpd}}.</td>
 <td>5.8.0-5.9.3</td>
 </tr>
 <tr>
-<td>4248702, 4309885</td>
+<td>4248702</td>
 <td>Replacing a configuration using a revision ID ({{nv config apply &lt;revision-id&gt;}}) might take more than three minutes in certain cases. This issue has no functional impact.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4242756, 4245819, 4271232</td>
+<td>4242756</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4240584, 4260016, 4260017</td>
+<td>4240584</td>
 <td>When you enable SNMP, Cumulus Linux enables and creates an {{agentx}} user called {{debian-snmp}} automatically for FRR. As a result, TACACS sends log messages similar to the following:
 &lt;&lt;sudo: nss_tacplus: TACACS+ server 10.23.1.0:49 read failed (-3) for user Debian-snmp: Success&gt;&gt;
 &lt;&lt;sudo: tac_author_read: reply timeout after 5 secs&gt;&gt;
@@ -2487,27 +2481,27 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.11.0-5.11.5</td>
 </tr>
 <tr>
-<td>4220147, 4281099</td>
+<td>4220147</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
 <td>5.8.0-5.11.0</td>
 </tr>
 <tr>
-<td>4209429, 4245848, 4245849</td>
+<td>4209429</td>
 <td>Unreachable or reject routes might not get installed into the SDK.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4209160, 4223448</td>
+<td>4209160</td>
 <td>When there is significant traffic generated from the CPU to the network, the health check might report a critical issue. </td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4208746, 4214550, 4245850</td>
+<td>4208746</td>
 <td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
 <td>5.9.1-5.9.3</td>
 </tr>
 <tr>
-<td>4205103, 4223449</td>
+<td>4205103</td>
 <td>On rare occasions, platform drivers capture the firmware state as being in ISSU when it is not the case. This causes the ASIC temperature to be read as 0, which causes the thermal algorithm to set fan speeds to low. As a result, the switch can get overheated and undergo a thermal shutdown. To work around this issue, reboot or powercycle the switch.</td>
 <td>5.11.0</td>
 </tr>
@@ -2517,27 +2511,27 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.11.0-5.11.5</td>
 </tr>
 <tr>
-<td>4203794, 4245856</td>
+<td>4203794</td>
 <td>The {{nv show platform transceiver &lt;interface&gt;}} command sometimes does not show transceiver data for layer 3 Dot1q subinterfaces (such as swp2.10). To work around this issue, run the {{ethtool -m &lt;interface&gt;}} command.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4203784, 4223450</td>
+<td>4203784</td>
 <td>Under unique hardware failure conditions, when the ASIC temperature sensor read fails repeatedly, the fans are set to twenty percent, which might not be high enough to maintain proper ASIC cooling, resulting in a thermal shutdown.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4200758, 4246858</td>
+<td>4200758</td>
 <td>The {{nv show service ntp &lt;vrf&gt;}} command shows the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the applied and operational columns have different values, which causes confusion.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4200742, 4268260</td>
+<td>4200742</td>
 <td>Due to hardware limitations in the MPS2975, the minimum threshold for PMIC-12-COMEX-VCORE-OUT is fixed and cannot be set to zero. While a threshold violation warning might appear, system functionality remains unaffected, and the current configuration is maintained to ensure device compatibility.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4199734, 4248626</td>
+<td>4199734</td>
 <td>The {{nv show system ztp}} command might report an error when you use a system local that represents time differently from {{%a %b %d %H:%M:%S %Y %Z}}.</td>
 <td>5.11.0</td>
 </tr>
@@ -2557,18 +2551,18 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.9.2-5.11.5</td>
 </tr>
 <tr>
-<td>4185962, 4223451</td>
+<td>4185962</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
 <td>5.9.2-5.11.0</td>
 </tr>
 <tr>
-<td>4185426, 4248633, 4248634</td>
+<td>4185426</td>
 <td>When you add a new MLAG bond, the BPDU guard state of its peer is initialized to False and immediately updated correctly after resync if the bond is up. If the bond is down, resync is not done and the peer PBDU guard state is not updated, which leads to a conflict if the local PBDU guard is enabled.Even though it seems that PBDU configuration does not match between MLAG peers, this issue does not have any functional impact. It gets cleared when the bond becomes up.</td>
 <td>5.9.2-5.9.3, 5.11.0</td>
 </tr>
 <tr>
-<td>4184845, 4271207</td>
+<td>4184845</td>
 <td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
 <td>5.10.1-5.11.0</td>
 </tr>
@@ -2578,7 +2572,7 @@ This happens in async mode, where the end notification expected after an end of 
 <td>5.11.0-5.11.5</td>
 </tr>
 <tr>
-<td>4182753, 4260013, 4260014</td>
+<td>4182753</td>
 <td>When you configure the SPAN port mirror truncate size to a value greater than four and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
 <td>5.8.0-5.9.3</td>
 </tr>
@@ -2588,7 +2582,7 @@ This happens in async mode, where the end notification expected after an end of 
 <td>5.11.0-5.11.5</td>
 </tr>
 <tr>
-<td>4175695, 4260012</td>
+<td>4175695</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
 <td>5.10.0-5.11.0</td>
 </tr>
@@ -2598,17 +2592,17 @@ This happens in async mode, where the end notification expected after an end of 
 <td>5.10.1-5.11.5</td>
 </tr>
 <tr>
-<td>4170628, 4200961</td>
+<td>4170628</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>4159554, 4170604, 4264726</td>
+<td>4159554</td>
 <td>When you configure EVPN multihoming with more than one ESI bond member, you might see intermediate traffic loss.</td>
 <td>5.9.1-5.9.3</td>
 </tr>
 <tr>
-<td>4156332, 4173602</td>
+<td>4156332</td>
 <td>On the Spectrum-4 switch, {{switchd}} might crash with the following log message:
 CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.10.1-5.11.0</td>
@@ -2619,17 +2613,17 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.11.0-5.11.5</td>
 </tr>
 <tr>
-<td>4154369, 4154369, 4218485</td>
+<td>4154369</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
 <td>5.5.1-5.9.3</td>
 </tr>
 <tr>
-<td>4151336, 4259979, 4259980</td>
+<td>4151336</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
 <td>5.8.0-5.9.3, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>4150508, 4170602, 4175217</td>
+<td>4150508</td>
 <td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
 netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
 <td>5.10.1-5.11.0</td>
@@ -2664,7 +2658,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>5.11.0-5.11.5</td>
 </tr>
 <tr>
-<td>4115126, 4271212, 4271213</td>
+<td>4115126</td>
 <td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
 <td>5.9.2-5.9.3</td>
 </tr>
@@ -2679,7 +2673,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>5.9.2-5.11.5</td>
 </tr>
 <tr>
-<td>3844670, 4423336</td>
+<td>3844670</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.11.1</td>
 </tr>

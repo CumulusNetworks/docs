@@ -345,6 +345,54 @@ cumulus@switch:~$ nv set qos remark default-global switch-priority 2 dscp 40
 cumulus@switch:~$ nv config apply
 ```
 
+To show global remarking configuration, run the `nv show qos remark default-global` command:
+
+```
+cumulus@switch:~$ nv show qos remark default-global
+         operational  applied
+-------  -----------  -------
+rewrite  l2           l2
+
+SP->PCP/DSCP mapping configuration
+=====================================
+    switch-priority  pcp  dscp
+    ---------------  ---  ----
+    0                0    0
+    1                7    8
+    2                2    16
+    3                3    24
+    4                4    32
+    5                5    40
+    6                6    48
+    7                7    56
+```
+
+To show global remarking configuration for a specific interface, run the `nv show interface <interface-id> qos remark` command:
+
+```
+cumulus@switch:~$ nv show interface swp5 qos remark
+         operational  applied
+-------  -----------  -------
+rewrite  l2
+
+SP->PCP/DSCP remark configuration
+====================================
+    switch-priority  pcp  dscp
+    ---------------  ---  ----
+    0                0    0
+    1                1    8
+    2                2    16
+    3                3    24
+    4                4    32
+    5                5    40
+    6                6    48
+    7                7    56
+```
+
+{{%notice note%}}
+When you configure global QoS remarking with `default-global`, the `nv show interface <interface-id> qos remark` command displays the default PCP and DSCP mappings derived from SDK defaults; however, the `nv show qos remark default-global` command only displays the PCP and DSCP mappings if you configure them.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -674,12 +722,10 @@ Cumulus Linux calculates the headroom size for lossless priority groups based on
 
 To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}. Based on the configured small packet probability, `switchd` calculates the headroom reservation required for the lossless priority group.
 
-To configure the probability of small packets:
-
 {{< tabs "TabID679 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv set qos pfc <profile> small-packet-probability <percent>` command. To configure a profile for PFC, refer to {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}.
+To configure the probability of small packets for PFC, run the `nv set qos pfc <profile> small-packet-probability <percent>` command. To configure a profile for PFC, refer to {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}.
 
 The following command sets the small packet probability for all ports in the PFC `default-global` profile to 60 percent.
 
@@ -688,19 +734,57 @@ cumulus@switch:~$ nv set qos pfc default-global small-packet-probability 60
 cumulus@switch:~$ nv config apply
 ```
 
+To configure the probability of small packets for link pause, run the `nv set qos link-pause <profile> small-packet-probability <percent>` command. To configure a profile for link pause, refer to {{<link url="#link-pause" text="Link Pause">}}.
+
+The following command sets the small packet probability for all ports in the link pause `default-global` profile to 60 percent.
+
+```
+cumulus@switch:~$ nv set qos link-pause default-global small-packet-probability 60
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `priority flow control` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+To configure the probability of small packets for PFC,, edit the `priority flow control` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 ```
 pfc.default-global.small_packet_probability = 60
 ```
 
+To configure the probability of small packets for link pause, edit the `link-pause` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+
+```
+link-pause.default-global.small_packet_probability = 60
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the PFC small packet probability setting for the default profile, run the `nv show qos pfc default-global` command. To show the PFC small packet probability setting for an interface, run the `nv show interface <interface-id> qos pfc` command.
+To show the PFC small packet probability setting for a profile, run the `nv show qos pfc <profile-id>` command. To show the PFC small packet probability setting for an interface, run the `nv show interface <interface-id> qos pfc` command.
+
+```
+cumulus@switch:~$ nv show qos pfc default-global
+                   operational  applied  pending
+-----------------  -----------  -------  -------
+cable-length                             100
+small-packet-probability                 60     
+tx                                       enable 
+rx                                       enable 
+[switch-priority]                        3
+```
+
+To show the link pause small packet probability setting for a profile, run the `nv show qos link-pause <profile-id>` command. To show the link pause small packet probability setting for an interface, run the `nv show interface <interface-id> qos link-pause` command.
+
+```
+cumulus@switch:~$ nv show qos link-pause default-global
+                          operational  applied  pending
+------------------------  -----------  -------  -------
+cable-length                                    100    
+small-packet-probability                        60     
+tx                                              enable 
+rx                                              enable
+```
 
 ### PFC Watchdog
 

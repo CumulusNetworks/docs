@@ -83,7 +83,7 @@ b. Specify the interval in seconds for IPFIX template and metadata export. You c
 c. Configure the VRF where the export destination is reachable. The `default` VRF is the default value:
 
    ```
-   cumulus@switch:~$ set system telemetry export ipfix vrf RED
+   cumulus@switch:~$ nv set system telemetry export ipfix vrf RED
    cumulus@switch:~$ nv config apply
    ```
 

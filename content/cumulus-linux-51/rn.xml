@@ -7,43 +7,43 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4797691, 4815026, 4815029, 4815030</td>
+<td>4797691</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
 <td>5.0.0-5.9.4, 5.15.1</td>
 <td>5.9.5, 5.16.0-5.16.1</td>
 </tr>
 <tr>
-<td>4647646, 4652641, 4652642</td>
+<td>4647646</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
 <td>5.15.0-5.16.1</td>
 </tr>
 <tr>
-<td>4413450, 4422898, 4422899</td>
+<td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.11.1, 5.13.0-5.13.1</td>
 <td>5.11.2, 5.14.0-5.16.1</td>
 </tr>
 <tr>
-<td>4377862, 4423223, 4423224</td>
+<td>4377862</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
 <td>5.1.0-5.9.3</td>
 <td>5.9.4-5.16.1, 5.11.2-5.16.1, 5.13.0-5.16.1</td>
 </tr>
 <tr>
-<td>4004453, 4037015</td>
+<td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
 <td>5.9.2-5.16.1, 5.10.0-5.16.1</td>
 </tr>
 <tr>
-<td>3927016, 4003866</td>
+<td>3927016</td>
 <td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
 <td>5.0.1-5.9.1</td>
 <td>5.9.2-5.16.1, 5.10.0-5.16.1</td>
 </tr>
 <tr>
-<td>3895042, 3980941</td>
+<td>3895042</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
@@ -94,7 +94,7 @@ cumulus@switch:~$ sudo apt upgrade
 <td>5.6.0-5.16.1</td>
 </tr>
 <tr>
-<td>3491259, 3497002</td>
+<td>3491259</td>
 <td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
 <td>5.0.0-5.5.1</td>
 <td>4.3.2-4.4.5, 5.6.0-5.16.1</td>
@@ -106,7 +106,7 @@ cumulus@switch:~$ sudo apt upgrade
 <td>5.6.0-5.16.1</td>
 </tr>
 <tr>
-<td>3482006, 3486888</td>
+<td>3482006</td>
 <td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
 <td>5.0.0-5.5.1</td>
 <td>4.3.2-4.4.5, 5.6.0-5.16.1</td>
@@ -175,7 +175,7 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <td>5.5.0-5.16.1</td>
 </tr>
 <tr>
-<td>3351951, 3351951</td>
+<td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-4.3.1, 4.4.0-4.4.5, 5.0.0-5.16.1</td>
 <td>4.3.2</td>
@@ -199,7 +199,7 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <td>5.4.0-5.16.1</td>
 </tr>
 <tr>
-<td>3329096, 3333064</td>
+<td>3329096</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>5.0.0-5.3.1</td>
 <td>5.4.0-5.16.1</td>
@@ -223,7 +223,7 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <td>5.2.1-5.16.1</td>
 </tr>
 <tr>
-<td>3262012, 3269537</td>
+<td>3262012</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
 <td>5.4.0-5.16.1</td>
@@ -235,19 +235,19 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <td>5.3.0-5.16.1</td>
 </tr>
 <tr>
-<td>3234085, 3240406, 3334036</td>
+<td>3234085</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>5.0.1-5.3.1</td>
 <td>4.3.2-4.4.5, 5.4.0-5.16.1</td>
 </tr>
 <tr>
-<td>3231330, 3234031</td>
+<td>3231330</td>
 <td>If BGP {{neighbor &lt;name&gt; allowas-in}} is set, negating with no {{no neighbor &lt;name&gt; allowas-in}} does not disable the setting. To work around this issue and disable the setting, restart the FRR service.</td>
 <td>5.1.0-5.2.1</td>
 <td>4.3.2-4.4.5, 5.3.0-5.16.1</td>
 </tr>
 <tr>
-<td>3228856, 3244739, 3244740</td>
+<td>3228856</td>
 <td>If you have a lot of inbound route maps that match lists with many regex statements, a large number of updates from the peer can cause the system to run out of memory. To work around this issue, reduce the number of regex matches in inbound route maps.</td>
 <td>5.1.0-5.2.1</td>
 <td>4.3.2-4.4.5, 5.3.0-5.16.1</td>
@@ -259,7 +259,7 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <td>5.3.0-5.16.1</td>
 </tr>
 <tr>
-<td>3218207, 3172497</td>
+<td>3218207</td>
 <td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
 <td>4.3.0-5.2.1</td>
 <td>5.3.0-5.16.1</td>
@@ -310,7 +310,7 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td>5.3.0-5.16.1</td>
 </tr>
 <tr>
-<td>3192808, 3192808</td>
+<td>3192808</td>
 <td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.3.1, 4.4.0-4.4.5, 5.0.1-5.16.1</td>
 <td>4.3.2</td>
@@ -490,7 +490,7 @@ sudo usermod -a -G nvshow tacacs14
 <td>5.2.0-5.16.1</td>
 </tr>
 <tr>
-<td>3123965, 3221470</td>
+<td>3123965</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
 sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
@@ -499,7 +499,7 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td>5.2.0-5.16.1</td>
 </tr>
 <tr>
-<td>3120423, 3123556</td>
+<td>3120423</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
 <td>4.3.1, 5.2.0-5.16.1</td>
@@ -552,26 +552,26 @@ end vrf
 <td>5.2.0-5.16.1</td>
 </tr>
 <tr>
-<td>3102128, 3288156</td>
+<td>3102128</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
 <td>5.0.0-5.1.0</td>
 <td>5.2.0-5.16.1</td>
 </tr>
 <tr>
-<td>3084476, 3085330</td>
+<td>3084476</td>
 <td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.16.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
-<td>3084027, 3081352</td>
+<td>3084027</td>
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>3084007, 3089148, 3089442, 3089474</td>
+<td>3084007</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.
 
 This issue impacts customers with these conditions: CL 5.1.0, CLAG, NTP, and a switch that has been powered off for some time (i.e. the clock may have drifted) prior to initial boot.</td>
@@ -623,7 +623,7 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>5.4.0-5.16.1</td>
 </tr>
 <tr>
-<td>3072674, 3119614, 3119615</td>
+<td>3072674</td>
 <td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
 <td>3.7.15-5.1.0</td>
 <td>5.2.0-5.16.1</td>
@@ -641,7 +641,7 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>5.6.0-5.16.1</td>
 </tr>
 <tr>
-<td>3066664, 3073649</td>
+<td>3066664</td>
 <td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4-4.4.5, 5.2.0-5.16.1</td>
@@ -664,7 +664,7 @@ cumulus@switch:~$ nv config apply
 <td>5.2.0-5.16.1</td>
 </tr>
 <tr>
-<td>3059566, 3060399</td>
+<td>3059566</td>
 <td>When you add an interface to a layer 3 bond, traffic does not forward and you see errors similar to the following:
 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
@@ -708,7 +708,7 @@ export HOME
 <td>5.3.0-5.16.1</td>
 </tr>
 <tr>
-<td>3046023, 3041447</td>
+<td>3046023</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-5.1.0</td>
 <td>5.2.0-5.16.1</td>
@@ -790,7 +790,7 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 <td>5.2.0-5.16.1</td>
 </tr>
 <tr>
-<td>3020254, 3021692, 3021693</td>
+<td>3020254</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
 <td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
 <td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.16.1</td>
@@ -815,7 +815,7 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 <td>5.4.0-5.16.1</td>
 </tr>
 <tr>
-<td>3014664, 3082583</td>
+<td>3014664</td>
 <td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4-4.4.5, 5.2.0-5.16.1</td>
@@ -840,7 +840,7 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <td></td>
 </tr>
 <tr>
-<td>2951110, 2550950</td>
+<td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.16.1</td>
 <td></td>
@@ -852,7 +852,7 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <td>5.3.0-5.16.1</td>
 </tr>
 <tr>
-<td>2904450, 2971193</td>
+<td>2904450</td>
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
@@ -884,7 +884,7 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <td></td>
 </tr>
 <tr>
-<td>2831968, 2837378</td>
+<td>2831968</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0, 4.4.0-5.1.0</td>
 <td>4.3.1, 5.2.0-5.16.1</td>
@@ -920,7 +920,7 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <td></td>
 </tr>
 <tr>
-<td>2734103, 2730345</td>
+<td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.16.1</td>
@@ -949,7 +949,7 @@ You can safely ignore this warning.</td>
 <th> Affects </th>
 </tr>
 <tr>
-<td>3228899, 3228899</td>
+<td>3228899</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.2</td>
 </tr>
@@ -969,12 +969,12 @@ You can safely ignore this warning.</td>
 <td>5.0.1</td>
 </tr>
 <tr>
-<td>3041307, 2668483, 3041306, 3041307</td>
+<td>3041307</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent FDB entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>3040080, 3040080</td>
+<td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 </tr>
@@ -1010,7 +1010,7 @@ To work around this issue, reboot the system.</td>
 <td>4.4.2-5.0.1</td>
 </tr>
 <tr>
-<td>3030238, 3058604, 3110729</td>
+<td>3030238</td>
 <td>When you change the time with NTP or manually, the clagd service stops.</td>
 <td>5.0.1</td>
 </tr>
@@ -1020,17 +1020,17 @@ To work around this issue, reboot the system.</td>
 <td></td>
 </tr>
 <tr>
-<td>3021897, 3021897</td>
+<td>3021897</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
 <td>4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>3021838, 2960984</td>
+<td>3021838</td>
 <td>PBR rules that you apply to interfaces in the default VRF install in the kernel with the action {{lookup local}}. As a result, packets that match this rule only perform a route lookup in the local table (which contains special routes for local IP addresses and broadcast addresses) but not in the main table (which contains unicast routes).  As a result, policy routing might be applied to traffic incorrectly.</td>
 <td>4.4.2-5.0.1</td>
 </tr>
 <tr>
-<td>3021696, 3021696</td>
+<td>3021696</td>
 <td>On the NVIDIA SN4600C switch, when you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.
 
 resq_pp: EXCEPTION=invalid literal for int() with base 10: 'v4-lpm-heavy'
@@ -1038,22 +1038,22 @@ resq_pp: EXCEPTION=invalid literal for int() with base 10: 'v4-lpm-heavy'
 <td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>3017127, 3021698</td>
+<td>3017127</td>
 <td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>3008388, 3032960</td>
+<td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3-5.0.1</td>
 </tr>
 <tr>
-<td>3008057, 3021877</td>
+<td>3008057</td>
 <td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.  This issue occurs only when you specify {{bridge-vids}} on the bond. This issue does not occur  when you configure VLANs only on the bridge interface and let the bond get the {{bridge-vids}} applied from the bridge.</td>
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>3007564, 3007564</td>
+<td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed. This is issue is impacting all Cumulus Linux releases. 
 The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issue (this attribute has been available since CL2). It was decided to change ifupdown2's default behavior to automatically purge BUM entries added by ifup/ifreload.   </td>
 <td>3.7.15-5.0.1</td>
@@ -1071,7 +1071,7 @@ The new behavior will make sure to apply the configuration delta without disrupt
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2999253, 2999253</td>
+<td>2999253</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.3.0</td>
 </tr>
@@ -1087,12 +1087,12 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>4.4.2-5.0.1</td>
 </tr>
 <tr>
-<td>2993786, 3020157</td>
+<td>2993786</td>
 <td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
 <td></td>
 </tr>
 <tr>
-<td>2980891, 2991501</td>
+<td>2980891</td>
 <td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
 <td>4.2.1-4.3.0, 4.4.0-5.0.1</td>
 </tr>
@@ -1112,12 +1112,12 @@ Unrecoverable internal error
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2952117, 2968495</td>
+<td>2952117</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2943443, 2943442, 2943443</td>
+<td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
 <td>3.7.15, 4.2.1-4.3.0, 4.4.2-5.0.1</td>
 </tr>
@@ -1161,7 +1161,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>4.4.0-5.0.1</td>
 </tr>
 <tr>
-<td>2910017, 2961008</td>
+<td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
 </tr>
@@ -1192,7 +1192,7 @@ Unrecoverable internal error
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2875338, 2875337, 2875338</td>
+<td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.3.0, 4.4.0-5.0.1</td>
 </tr>
@@ -1215,13 +1215,13 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <td>5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>2855908, 2896733</td>
+<td>2855908</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.0.1</td>
 </tr>
 <tr>
-<td>2854787, 2854787</td>
+<td>2854787</td>
 <td>An unexpected software system shutdown might occur due to a thermal zones issue in the {{hw-management}} package. You see the following message in the {{/var/log/syslog}} file before the shutdown:
 
 thermal thermal_zoneX: critical temperature reached (33 C), shutting down
@@ -1229,7 +1229,7 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>4.3.0-4.3.4</td>
 </tr>
 <tr>
-<td>2815646, 2815645, 2815646</td>
+<td>2815646</td>
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-5.0.1</td>
 </tr>

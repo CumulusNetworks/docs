@@ -24,7 +24,6 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - {{<link url="Docker-with-Cumulus-Linux/#docker-resource-tiering-system" text="Docker Resource Governance & Policy Agent">}}
 - {{<link url="Quality-of-Service/#lossless-headroom" text="PFC headroom pool">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-tlvs" text="Granular LLDP TLV definition and control">}}
-- {{<link url="Automatic-Configuration-Backup" text="Automatic configuration backup">}}
 - {{<link url="Syslog/#thermal-control-logs" text="Thermal logging in syslog (sensor and fan state and errors)">}}
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} (Beta)
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} (Beta)
@@ -33,7 +32,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}
   - {{<link url="NVUE-CLI/#configuration-commands" text="NVUE prevents configuration changes during long background operations">}}
   -  {{<link url="NVUE-CLI/#verify-configuration-before-applying" text="NVUE command">}} and {{<link url="NVUE-API/#verify-configuration-before-applying" text="NVUE API option">}} to verify configuration before applying
-  - {{<link url="System-Power-and-Switch-Reboot/#show-reboot" text="NVUE command to show warm boot status ">}}
+  - {{<link url="System-Power-and-Switch-Reboot/#show-reboot-information" text="NVUE command to show warm boot status">}}
 - Telemetry
   - New OTEL metrics: {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="link debounce">}}, {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="PHY link down">}}, {{<link url="Open-Telemetry-Export/#control-plane-statistic-format" text="control plane">}}, and {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="platform information">}}
   - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="PHY link down, link debounce, control plane, platform information, and systemd service">}}

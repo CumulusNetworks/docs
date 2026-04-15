@@ -10,8 +10,8 @@ Check out the latest updates to {{<exlink url="https://air-ngc.nvidia.com" text=
 ## April 2026
 <!-- Air:WhatsNew -->
 ### 82.2.1.7.3
-- Reduced the risk of S3 throttling during cloning.
-- Fixed an issue were old simulation with emulated nodes exported with unwanted key (`required_mac_count`).
+- Reduced the risk of S3 throttling during cloning operations.
+- Fixed an issue where old simulation using emulated nodes were exported with an unintended `required_mac_count` key.
 <!-- Air:WhatsNew -->
 
 ## March 2026

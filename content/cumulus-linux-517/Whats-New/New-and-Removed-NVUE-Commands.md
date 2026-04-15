@@ -50,7 +50,8 @@ nv set interface <interface-id> link debounce down
 nv set interface <interface-id> link debounce up
 nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom-per-pg
 nv set qos advance-buffer-config <profile-id> shared-headroom required-headroom-per-pg
-nv set qos pfc default-global small-packet-probability
+nv set qos link-pause <profile-id> small-packet-probability
+nv set qos pfc <profile-id> small-packet-probability
 nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group <priority-group-id> switch-priority <switch-priority-id>
 nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group <priority-group-id> service-pool <service-pool-id>
 nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg
@@ -146,15 +147,15 @@ nv set system telemetry export ipfix vrf <vrf-id>
 nv set system telemetry hft export ipfix state
 nv set system telemetry exclude-list <value>
 nv set system telemetry include-list <value>
-nv set system telemetry interface-stats class debounce sample-interval (10-86400)
-nv set system telemetry interface-stats class debounce state (enabled|disabled)
+nv set system telemetry interface-stats class debounce sample-interval
+nv set system telemetry interface-stats class debounce state
 nv set system telemetry metric-list <metric-list-id>
 nv set system telemetry metric-list <metric-list-id> description <value>
 nv set system telemetry metric-list <metric-list-id> metric <metric-id>
 nv set system telemetry stats-group <stats-group-id> exclude-list <value>
 nv set system telemetry stats-group <stats-group-id> include-list <value>
-nv set system telemetry stats-group <stats-group-id> interface-stats class debounce sample-interval (10-86400)
-nv set system telemetry stats-group <stats-group-id> interface-stats class debounce state (enabled|disabled)
+nv set system telemetry stats-group <stats-group-id> interface-stats class debounce sample-interval
+nv set system telemetry stats-group <stats-group-id> interface-stats class debounce state
 nv set vrf <vrf-id> router bgp address-family ipv4-unreachability export-lldp state
 nv set vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp state
 nv set vrf <vrf-id> router bgp address-family l2vpn-evpn advertise ipv4-unreachability state

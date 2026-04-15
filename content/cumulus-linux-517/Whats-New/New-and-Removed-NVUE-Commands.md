@@ -18,9 +18,8 @@ The following NVUE commands are new in Cumulus Linux 5.17.
 ```
 nv show interface <interface-id> counters link debounce
 nv show interface <interface-id> link debounce
-nv show interface <interface-id> qos buffer shared-headroom-pool
 nv show interface debounce-counters
-nv show interface <interface-id> link debounce
+nv show interface <interface-id> qos buffer shared-headroom-pool
 nv show qos advance-buffer-config <profile-id> shared-headroom
 nv show system aaa user cumulus --privileged
 nv show system dot1x pre-auth
@@ -57,16 +56,16 @@ nv set qos advance-buffer-config default-global ingress-lossless-buffer priority
 nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg
 nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg
 nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio
-nv set interface <interface-id> qos shared-headroom-pool enable
+nv set interface <interface-id> qos shared-headroom-pool
 nv set qos congestion-control default-global traffic-class <traffic-class-id> mode
 nv set qos congestion-control default-global traffic-class <traffic-class-id> min-threshold-percent
 nv set qos congestion-control default-global traffic-class <traffic-class-id> max-threshold-percent
 nv set router bfd offload
-nv set system config backup state
 nv set system config backup restore <snapshot-id>
 nv set system dot1x pre-auth allow-protocol lldp ingress
 nv set system dot1x pre-auth allow-protocol lldp egress
 nv set system dot1x pre-auth allow-protocol lldp both
+nv set system dot1x pre-auth allow-protocol lldp none
 nv set system dot1x tx-identity-request max-retries
 nv set system lldp tlv egress-policy 
 nv set system lldp tlv egress-policy dcbx-app-priority
@@ -85,6 +84,7 @@ nv set system lldp tlv egress-policy link-aggregation
 nv set system lldp tlv egress-policy port-vlan-id         
 nv set system lldp tlv egress-policy mac-phy-config
 nv set system lldp tlv egress-policy system-capabilities
+nv set system lldp tlv egress-policy unreachable-prefix state
 nv set system lldp tlv ingress-policy dcbx-app-priority
 nv set system lldp tlv ingress-policy management-address
 nv set system lldp tlv ingress-policy system-description
@@ -139,7 +139,7 @@ nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy port-vlan-i
 nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy mac-phy-config
 nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy system-capabilities 
 nv set system security alerts audit-failure
-nv set system aaa tacacs authorization <id>> all-commands
+nv set system aaa tacacs authorization <privilege-level> all-commands
 nv set system telemetry export ipfix destination
 nv set system telemetry export ipfix port
 nv set system telemetry export ipfix template-metadata-interval
@@ -189,8 +189,4 @@ nv config verify revision revision <revision>
 
 ## Removed NVUE Commands
 
-Cumulus Linux 5.17 no longer supports the following NVUE commands:
-
-```
-
-```
+No NVUE commands are removed in Cumulus Linux 5.17.

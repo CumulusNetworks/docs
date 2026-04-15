@@ -56,7 +56,7 @@ c. Configure the VRF where the export destination is reachable. The `default` VR
 d. Enable OTLP gRPC export:
 
    ```
-   cumulus@switch:~$ nv set system telemetry hft export otlp grpc state enabled 
+   cumulus@switch:~$ nv set system telemetry export otlp state enabled 
    cumulus@switch:~$ nv config apply
 ```
 
@@ -90,7 +90,7 @@ c. Configure the VRF where the export destination is reachable. The `default` VR
 d. Enable IPFIX export:
 
    ```
-   cumulus@switch:~$ nv set system telemetry hft export ipfix state enabled
+   cumulus@switch:~$ nv set system telemetry export ipfix state enabled
    cumulus@switch:~$ nv config apply
    ```
 
@@ -136,9 +136,10 @@ d. Enable IPFIX export:
    cumulus@switch:~$ nv config apply
    ```
 
-3. Enable streaming to export data to your configured destination:
+3. Enable streaming to export data to your configured export destination (`otlp` or `ipfix`):
 
    ```
+   cumulus@switch:~$ nv set system telemetry hft export-type ipfix
    cumulus@switch:~$ nv set system telemetry hft export state enabled 
    cumulus@switch:~$ nv config apply
    ```
@@ -181,11 +182,9 @@ cumulus@switch:mgmt:~# nv show system telemetry hft
 --------------------  -------------------  -------  -------
 export                                                     
   state                                    enabled  enabled
+export-type                                otlp     ipfix
 duration                                   120      120    
-sample-interval-usec                       1000     1000   
-session-status                                             
-  status              COMPLETED                            
-  timestamp           2025-10-29 08:02:08                  
+sample-interval-usec                       1000     1000                
 
 Counters
 ===========
@@ -223,7 +222,7 @@ profile
     standard  3              rx-byte       5000           
                              tc-occupancy                 
                              tx-byte                      
-job
+jobs
 ======
 No Data
 ```

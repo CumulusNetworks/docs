@@ -408,7 +408,7 @@ cumulus@switch:~$ nv show router bfd
 ---------  ---------------------------
 state      enabled
 offload    enabled
-[profile]  bfd_profile_bgp-bfd-profile
+...
 ```
 
 To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view brief` command or the vtysh `show bfd peer` command.

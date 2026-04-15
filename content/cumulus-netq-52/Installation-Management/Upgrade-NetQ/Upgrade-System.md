@@ -5,7 +5,7 @@ weight: 410
 toc: 4
 ---
 
-This page describes how to upgrade your NetQ virtual machines. Note that the upgrade instructions vary depending on NetQ version you’re currently running.
+This page describes how to upgrade your NetQ virtual machines while preserving your existing NetQ data. Note that the upgrade instructions vary depending on NetQ version you’re currently running.
 
 For deployments running:
 
@@ -71,15 +71,20 @@ If the output of this command displays errors or returns an empty response, you 
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
 
-
+-->
 ## Download the Upgrade Software
 
-1. Download the upgrade tarball.
+1. Download the NetQ image.
 
-    {{<netq-install/upgrade-image version="4.12">}}
+    a. Log in to your {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}} account.<br>
+    b. Select **NVIDIA Licensing Portal**.<br>
+    c. Select **Software Downloads** from the menu.<br>
+    d. In the search field above the table, enter **NetQ**.<br>
+    e. For deployments using KVM, download the **NetQ SW 5.2.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.2.0 VMware Scale** image<br>
+    f. If prompted, read the license agreement and proceed with the download.<br>
 
 2. Copy the tarball to the `/mnt/installables/` directory on your NetQ VM.
-
+<!--
 ## Run the Upgrade
 
 {{%notice note%}}
@@ -115,7 +120,7 @@ Run the appropriate commands for your deployment type:
 
 {{<tab "Standalone">}}
 
-Run the upgrade command on your master node, specifying the tarball of the latest NetQ release: 
+Run the upgrade command on your master node, specifying the tarball path in the command: 
 
 ```
 nvidia@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-5.2.0.tgz
@@ -126,7 +131,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 {{</tab>}}
 
 {{<tab "High-availability Cluster">}}
-Run the upgrade command on your master node, specifying the current version's tarball and your cluster's virtual IP address.
+Run the upgrade command on your master node, specifying the tarball path and your cluster's virtual IP address in the command:
  
 ```
 nvidia@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-5.2.0.tgz <cluster-vip>
@@ -137,7 +142,7 @@ nvidia@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-5.2.0.tgz <clust
 
 Run the upgrade command on your master node and specify the following within the command itself: 
 
-- The tarball of the latest NetQ release. This command upgrades NetQ to the release specified in the command.
+- The path to the tarball of the latest NetQ release. This command upgrades NetQ to the release specified in the command.
 - The passwords for the read-write user (`rw-password`) and the read-only user (`ro-password`)
 - The `/home/nvidia/nvl-cluster-config.json` file
 
@@ -147,12 +152,28 @@ nvidia@<hostname>:~$ netq upgrade nvl bundle /mnt/installables/NetQ-5.2.0.tgz ko
 {{</tab>}}
 
 {{<tab "High-availbility Scale Cluster (NVLink + Ethernet)">}}
-Run the upgrade command on your master node, specifying the current version's tarball and your cluster's virtual IP address.
+
+Two upgrade options are available for this deployment model. One option upgrades your NetQ deployment to the latest version. The other option upgrades your NetQ deployment to the latest version and concurrently adds additional nodes to your existing cluster.
+
+## Upgrade with Same Number of Nodes
+
+Run the upgrade command on your master node, specifying the current version's tarball and your cluster's virtual IP address:
 
 
 ```
-nvidia@<hostname>:~$ netq upgrade nvl bundle /mnt/installables/NetQ-5.2.0.tgz <cluster-vip>
+nvidia@<hostname>:~$ netq upgrade cluster bundle /mnt/installables/NetQ-5.2.0.tgz <text-cluster-config>
 ```
+## Upgrade and Add Additional Nodes
+
+<!--how to load json file? how to upgrade v2 to v3-->
+
+
+Run the installation command on your master node, specifying the current version's tarball and the full path to your cluster's JSON configuration file:
+
+```
+nvidia@<hostname>:~$ netq install cluster extend-cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
+```
+
 {{</tab>}}
 
 {{</tabs>}}

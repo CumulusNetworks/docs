@@ -8,6 +8,7 @@ toc: 3
 The following sections describe how to back up and restore your NetQ data and VMs for on-premises deployments.
 
 {{%notice note%}}
+- Follow the backup and restore instructions as outlined on this page to upgrade your deployment from 5.0 to 5.2. If your deployment is currently running version 5.1, {{<link title="Upgrade NetQ Virtual Machines" text="perform an in-place upgrade">}} to upgrade to version 5.2.
 - You must run backup and restore scripts with sudo privileges.
 - NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
 - The backup and restore process does not retain several configurations necessary for the Grafana integration, including switch TLS certificates, authentication tokens (vm-tokens), OpenTelemetry configurations, and external time-series database configurations. After reinstalling NetQ, you must {{<link title="Integrate NetQ with Grafana" text="reconfigure these components">}}. Grafana will not display data from previous NetQ versions.
@@ -18,7 +19,7 @@ The following sections describe how to back up and restore your NetQ data and VM
 Follow the process below for your deployment type to back up your NetQ data.
 
 {{<tabs "TabID19" >}}
-{{<tab "Ethernet-only and Combined (Ethernet + NVLink)" >}}
+{{<tab "Ethernet and Combined (Ethernet + NVLink) Deployments" >}}
 
 {{%notice note%}}
 If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
@@ -106,7 +107,7 @@ nvidia@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718
 ```
 
 {{</tab>}}
-{{<tab "NVLink-only" >}}
+{{<tab "NVLink-only Deployments" >}}
 
 These steps apply exclusively to {{<link title="Install NetQ for NVLink" text="NetQ NVLink">}} three-node cluster deployments.
 
@@ -135,12 +136,12 @@ cp -r /home/nvidia/nvlink_cluster_backup_20250617063052 /tmp/data-infra
 ## Restore Your NetQ Data
 
 {{<tabs "TabID129" >}}
-{{<tab "Ethernet-only and Combined (Ethernet + NVLink)"  >}}
+{{<tab "Ethernet and Combined (Ethernet + NVLink) Deployments"  >}}
 
 To restore your NetQ data, perform a {{<link title="Install the NetQ System" text="new NetQ VM installation">}} and follow the steps to restore your NetQ data when you run the `netq install` command. You will use the `restore` option, referencing the path where the backup file resides.
 
 {{</tab>}}
-{{<tab "NVLink-only" >}}
+{{<tab "NVLink-only Deployments" >}}
 
 1. Run the installation command on your master node and specify the following within the command itself: 
 

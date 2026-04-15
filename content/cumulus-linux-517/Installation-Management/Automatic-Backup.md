@@ -3,6 +3,7 @@ title: Automatic Configuration Backup
 author: NVIDIA
 weight: 82
 toc: 3
+draft: true
 ---
 
 Cumulus Linux provides an automatic configuration backup feature that takes snapshots each time the `nv config apply` command runs successfully. The switch also takes a snapshot weekly to ensure that at least one valid weekly snapshot is available, subject to disk space and backup success.

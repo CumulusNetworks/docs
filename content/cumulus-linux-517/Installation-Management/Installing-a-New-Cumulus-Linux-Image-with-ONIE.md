@@ -669,16 +669,20 @@ To show the system boot security state (`enabled`, `disabled`, or `not-supported
 
 ```
 cumulus@switch:~$ nv show system
-uptime             1 day, 1:52:24                                                 
-hostname           leaf01 
-product-name       Cumulus Linux                                                  
-platform           N/A                                                            
-system-memory      1.31 GB used / 363.36 MB free / 1.67 GB total                  
-swap-memory        0 Bytes used / 0 Bytes free / 0 Bytes total                    
-health-status      Not OK 
-security
-  secure-boot
-    state          enabled                                                        
+                   operational          applied                
+-----------------  -------------------  -----------------
+uptime             5:07:49                                                  
+hostname           leaf01               leaf01          
+fqdn               leaf01                                                   
+product-name       Cumulus Linux                                            
+security                                                                    
+  secure-boot                                                               
+    state          not-supported                                            
+dns                                                                         
+  domain                                                                    
+date-time                                                                   
+  local-time       2026-04-15 21:23:16                                      
+  timezone         Etc/UTC              Etc/UTC                                                        
 ...    
 ```
 

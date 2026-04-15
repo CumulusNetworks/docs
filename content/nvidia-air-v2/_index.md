@@ -12,4 +12,4 @@ NVIDIA DSX Air is a cloud-hosted, data center simulation platform that behaves l
 
 Visit the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA DSX Air product site">}} to learn more.
 
-To access NVIDIA DSX Air, go to {{<exlink url="https://air-ngc.nvidia.com" text="air-ngc.nvidia.com">}}.
+To access NVIDIA DSX Air, go to {{<exlink url="https://dsx-air.nvidia.com" text="dsx-air.nvidia.com">}}.

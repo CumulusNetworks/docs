@@ -32,7 +32,7 @@ Cloud-init is configured through the API. The general workflow is:
 
 1. Create a simulation with your desired topology, but do not start it yet.
 2. Create **UserConfig** resources containing your user-data and meta-data content. UserConfigs are reusable — for example, you can create one user-data config and share it across multiple nodes, while giving each node its own meta-data with a unique hostname.
-3. Assign the UserConfig resources to simulation nodes using the {{<exlink url="https://air-ngc.nvidia.com/api/docs/#tag/nodes/PATCH/api/v3/simulations/nodes/bulk-assign" text="bulk-assign endpoint">}}. This endpoint lets you assign both user-data and meta-data to multiple nodes in a single request.
+3. Assign the UserConfig resources to simulation nodes using the {{<exlink url="https://dsx-air.nvidia.com/api/docs/#tag/nodes/PATCH/api/v3/simulations/nodes/bulk-assign" text="bulk-assign endpoint">}}. This endpoint lets you assign both user-data and meta-data to multiple nodes in a single request.
 4. Start the simulation. Cloud-init runs automatically on each node during its first boot.
 
 {{%notice note%}}

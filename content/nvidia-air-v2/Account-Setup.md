@@ -24,7 +24,7 @@ To add additional users to your organization, you need an enterprise org. For mo
 
 ## Log In to Air
 
-1. Go to {{<exlink url="https://air-ngc.nvidia.com" text="air-ngc.nvidia.com">}} and click **Login**.
+1. Go to {{<exlink url="https://dsx-air.nvidia.com" text="dsx-air.nvidia.com">}} and click **Login**.
 
 {{<img src="/images/guides/nvidia-air-v2/air-landing.png" alt="NVIDIA Air landing page" width="800px">}}
 

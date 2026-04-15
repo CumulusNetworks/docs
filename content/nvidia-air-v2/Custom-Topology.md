@@ -6,7 +6,7 @@ product: NVIDIA DSX Air
 ---
 ## The Drag-and-Drop Topology Builder
 
-One way to create custom simulations is with the built-in topology builder, which provides a drag-and-drop editor to design any custom network. To get started, navigate to [https://air-ngc.nvidia.com/simulations](https://air-ngc.nvidia.com/simulations).
+One way to create custom simulations is with the built-in topology builder, which provides a drag-and-drop editor to design any custom network. To get started, navigate to [https://dsx-air.nvidia.com/simulations](https://dsx-air.nvidia.com/simulations).
 
 1. Select **Create Simulation**.
 2. Provide a name for your simulation.
@@ -448,13 +448,13 @@ You can customize RAM (in MB) with the `memory` option:
 
 ### Examples
 
-Labs in the [Demo Marketplace](https://air-ngc.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` or `topology.json` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository, where you can download the file used for the demo topology.
+Labs in the [Demo Marketplace](https://dsx-air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` or `topology.json` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository, where you can download the file used for the demo topology.
 
 You can also launch a copy of a lab in the Demo Marketplace and then export the JSON file.
 
 ### Import a Topology
 
-To import and upload a DOT or JSON topology file to Air, navigate to [air-ngc.nvidia.com/simulations](https://air-ngc.nvidia.com/simulations).
+To import and upload a DOT or JSON topology file to Air, navigate to [dsx-air.nvidia.com/simulations](https://dsx-air.nvidia.com/simulations).
 
 1. Click **Create Simulation**.
 2. Provide a name for the simulation.
@@ -552,8 +552,8 @@ The string `"exit"` is also accepted as an alias for `"outbound"` in the links a
 {{< /tab >}}
 {{< /tabs >}}
 
-For additional schemas, refer to the [API documentation](https://air-ngc.nvidia.com/api/#/Simulations/api_v3_simulations_import_create).
+For additional schemas, refer to the [API documentation](https://dsx-air.nvidia.com/api/#/Simulations/api_v3_simulations_import_create).
 
 ## Export a Topology through the API
 
-You can export existing simulations into a JSON representation using the API. Refer to the [API documentation](https://air-ngc.nvidia.com/api/#/Simulations/api_v3_simulations_export_retrieve) for additional schema details.
+You can export existing simulations into a JSON representation using the API. Refer to the [API documentation](https://dsx-air.nvidia.com/api/#/Simulations/api_v3_simulations_export_retrieve) for additional schema details.

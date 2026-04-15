@@ -17,7 +17,7 @@ NVIDIA DSX Air supports the following browsers on a best-effort basis:
 
 ## Log in to Air
 
-Go to {{<exlink url="https://air-ngc.nvidia.com" text="air-ngc.nvidia.com">}} and click **Login**. Air uses NGC for authentication—sign in with your business email and select your NGC organization.
+Go to {{<exlink url="https://dsx-air.nvidia.com" text="dsx-air.nvidia.com">}} and click **Login**. Air uses NGC for authentication—sign in with your business email and select your NGC organization.
 
 For first-time setup, free trials, and troubleshooting access issues, see {{<link title="Account Setup">}}.
 
@@ -29,7 +29,7 @@ After you log in, Air displays a list of simulations associated with your accoun
 
 To create a simulation, you can either:
 - Build a custom topology; see [Custom Topology](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/).
-- Load a pre-configured demo from the [Demo Marketplace](https://air-ngc.nvidia.com/demos) and customize it; see [Pre-Built Demos](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Pre-Built-Demos).
+- Load a pre-configured demo from the [Demo Marketplace](https://dsx-air.nvidia.com/demos) and customize it; see [Pre-Built Demos](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Pre-Built-Demos).
 
 ### Navigate Simulations
 

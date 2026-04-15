@@ -11,7 +11,7 @@ NVIDIA DSX Air provides a REST API and a Python SDK for programmatic access to t
 
 The Air API lets you manage simulations, images, organizations, and other resources programmatically. For authentication details, see {{<link title="API Authentication">}}.
 
-{{<exlink url="https://air-ngc.nvidia.com/api/docs/" text="View the API reference">}}
+{{<exlink url="https://dsx-air.nvidia.com/api/docs/" text="View the API reference">}}
 
 ## Python SDK
 

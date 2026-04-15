@@ -815,10 +815,10 @@ cumulus@switch:~$ nv config apply
 The following example:
 - Configures STAT-GROUP9 to export link debounce statistics.
 - Applies the STAT-GROUP9 configuration to the OTLP destination 10.1.1.100.
-- Sets the sample interval of the debounce statistics to 120.
+- Sets the sample interval of the debounce statistics to 120 seconds. You can set a value between 10 and 86400. The default is 10 seconds.
 
 ```
-cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce export state enabled 
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce state enabled 
 cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group STAT-GROUP9
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce sample-interval 120
 cumulus@switch:~$ nv config apply

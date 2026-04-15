@@ -25,7 +25,7 @@
 <td>4.13.0-4.15.1</td>
 </tr>
 <tr>
-<td>4023716</td>
+<td>4023716, 4022819, 4282514</td>
 <td>NetQ might display duplicate validations results.</td>
 <td>4.11.0-4.15.1</td>
 <td>5.0.0-5.1.0</td>
@@ -49,7 +49,7 @@
 <td>4.12.0-4.15.1</td>
 </tr>
 <tr>
-<td>3993538</td>
+<td>3993538, 4379389</td>
 <td>When you re-position a card on your workbench and then manually refresh the workbench, NetQ might reposition the cards.</td>
 <td>4.11.0-4.15.1</td>
 <td>5.0.0-5.1.0</td>
@@ -67,7 +67,7 @@
 <td>4.12.0-4.15.1</td>
 </tr>
 <tr>
-<td>3854467</td>
+<td>3854467, 3848959, 3845926, 3959779</td>
 <td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
 <td>4.10.0-4.11.0</td>
 <td>4.12.0-4.15.1</td>
@@ -85,7 +85,7 @@
 <td></td>
 </tr>
 <tr>
-<td>3769936</td>
+<td>3769936, 3976289, 4122250</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
 <td>4.9.0-4.13.0</td>
 <td>4.14.0-4.15.1</td>
@@ -119,7 +119,7 @@
 <td>4.10.0-4.10.1</td>
 </tr>
 <tr>
-<td>3721754</td>
+<td>3721754, 3721794</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0-4.10.1</td>
 </tr>

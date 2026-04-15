@@ -104,7 +104,7 @@ sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'
 <td>4.7.0-4.15.1</td>
 </tr>
 <tr>
-<td>3429528</td>
+<td>3429528, 3588417</td>
 <td>EVPN and RoCE validation cards in the NetQ UI might not display data when Cumulus Linux switches are configured with high VNI scale.</td>
 <td>4.6.0-4.8.0</td>
 <td>4.9.0-4.15.1</td>

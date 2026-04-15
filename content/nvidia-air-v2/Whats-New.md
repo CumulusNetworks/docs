@@ -5,7 +5,7 @@ weight: 20
 product: NVIDIA DSX Air
 ---
 <!-- vale off -->
-Check out the latest updates to {{<exlink url="https://air-ngc.nvidia.com" text="NVIDIA DSX Air">}}.
+Check out the latest updates to {{<exlink url="https://dsx-air.nvidia.com" text="NVIDIA DSX Air">}}.
 
 ## April 2026
 <!-- Air:WhatsNew -->

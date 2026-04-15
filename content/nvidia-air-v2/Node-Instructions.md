@@ -7,7 +7,7 @@ product: NVIDIA DSX Air
 
 ## Overview
 
-Node instructions let you run automation on simulation nodes through the Air agent. You can write files, execute shell commands, or set initialization parameters — all through the UI or the {{<exlink url="https://air-ngc.nvidia.com/api/docs/#tag/instructions" text="instructions API">}}.
+Node instructions let you run automation on simulation nodes through the Air agent. You can write files, execute shell commands, or set initialization parameters — all through the UI or the {{<exlink url="https://dsx-air.nvidia.com/api/docs/#tag/instructions" text="instructions API">}}.
 
 Instructions are created against a specific node and execute after the node boots. By default, the Air agent waits for network connectivity before running each instruction, which ensures the node can reach other devices in the simulation before configuration begins.
 

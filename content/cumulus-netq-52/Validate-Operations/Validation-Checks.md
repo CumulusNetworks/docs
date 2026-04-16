@@ -127,7 +127,7 @@ The NTP validation test looks for poor operational status of the NTP service.
 
 ## RoCE Validation Tests
 
-The RoCE validation tests look for consistent RoCE and QoS configurations across nodes.
+The RoCE validation tests look for consistent RoCE and QoS configurations across nodes. NetQ validates DPU RoCE configurations hourly. You can adjust the validation frequency by adding the `arg-roce-sampling-interval` parameter to `/opt/mellanox/doca/services/telemetry/config/collection_configs/inventory_netq.cfg` (for example, `arg-roce-sampling-interval=5m`). <!--RM4965944-->
 
 {{%notice note%}}
 NetQ supports RoCE lossless and lossy modes; NetQ monitoring and validation checks do not support the single shared buffer mode, `lossless-single-ipool`.

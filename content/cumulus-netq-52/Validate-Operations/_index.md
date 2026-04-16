@@ -16,7 +16,7 @@ The following table displays the validation categories and the default frequency
 | Item | NetQ UI | NetQ CLI | Run by Default | Frequency |
 | --- | :---: | :---: | :---: |  :---: |
 | Agents* | Yes | Yes |  Yes |  60 mins |
-| Adaptive routing | Yes | Yes |  |  |
+| Adaptive routing | Yes | Yes | on-demand, as scheduled |
 | BGP | Yes | Yes | Yes |  60 mins |
 | Cumulus Linux version | No | Yes |  No | on-demand, as scheduled |
 | Duplicate IP addresses* | Yes | Yes | No | on-demand, as scheduled |

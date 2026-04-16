@@ -6,9 +6,7 @@ toc: 5
 bookhidden: true
 ---
 Follow these steps to set up and configure your VMs in a cluster of servers. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure.
-{{<notice info>}}
-This deployment option is in beta. Deployments with more than three nodes will require a fresh installation upon subsequent NetQ releases. {{<link title="Before You Install/#server-arrangement" text="View node support information">}}.
-{{</notice>}}
+
 ## System Requirements
 
 This deployment model requires a cluster comprising a minimum of three nodes. Verify that *each node* in your cluster meets the VM requirements:
@@ -77,7 +75,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.1.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.1.0 VMware Scale** image<br>
+    e. For deployments using KVM, download the **NetQ SW 5.2.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.2.0 VMware Scale** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -172,10 +170,10 @@ nvidia@<hostname>:~$ netq install cluster master-init
 ```
 9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
-10. Create a JSON template using the installation command for your deployment model. Run `netq install combined config generate` on your master node to generate a template for the cluster configuration JSON file. This command creates a template with three nodes by default. To change the number of nodes, specify the number in the command itself. For example, `netq install combined config generate nodes 6` creates a JSON template with fields for six nodes.
+10. Create a JSON template using the installation command for your deployment model. Run `netq install cluster config generate` on your master node to generate a template for a 3-node cluster configuration JSON file. To create a template with placeholder values for more than three nodes, run `netq install cluster config generate workers` and specify the number of additional nodes within the command.  For example, `netq install cluster config generate workers 2` creates a JSON template with fields for five nodes (three HA nodes plus two worker nodes).
 
 ```
-nvidia@netq-server:~$ netq install combined config generate
+nvidia@netq-server:~$ netq install cluster config generate
 2025-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/combined-cluster-config.json
 ```
 
@@ -185,7 +183,7 @@ nvidia@netq-server:~$ netq install combined config generate
 
 {{< tab "Default JSON Template">}}
 
-The `netq install combined config generate` command creates a JSON template for a three-node cluster.
+The `netq install cluster config generate` command creates a JSON template for a three-node cluster.
 
 ```
 nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
@@ -214,7 +212,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `version` | The version of the JSON template. For NetQ 5.1, specify "v3.0". |
+| `version` | The version of the JSON template. For NetQ 5.2, specify "v3.0". |
 | `interface` | The local network interface on your master node used for NetQ connectivity. Use a static IP address. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
@@ -226,7 +224,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {{< /tab >}}
 {{< tab "Completed JSON Example">}}
 
-The following example uses the `netq install combined config generate nodes 6` command to create a JSON template for a six-node cluster.
+The following example uses the `netq install cluster config generate workers 3` command to create a JSON template for a six-node cluster.
 
 ``` 
 nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json 
@@ -269,7 +267,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `version` | The version of the JSON template. For NetQ 5.1, specify "v3.0". |
+| `version` | The version of the JSON template. For NetQ 5.2, specify "v3.0". |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
@@ -288,7 +286,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {{< tab "New Install">}}
 
 ```
-nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/combined-cluster-config.json
+nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -304,8 +302,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 5.1.0
-    Installer Version: 5.1.0
+    Version: 5.2.0
+    Installer Version: 5.2.0
     Installation Type: Cluster
     Installation Mode: Combined
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==

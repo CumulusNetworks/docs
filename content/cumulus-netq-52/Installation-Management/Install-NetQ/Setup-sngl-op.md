@@ -51,7 +51,7 @@ Confirm that the required ports are open for communications.
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.1.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.1.0 VMware** image.<br>
+    e. For deployments using KVM, download the **NetQ SW 5.2.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.2.0 VMware** image.<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -136,15 +136,15 @@ nvidia@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
 The following example installs NetQ using the `eth0` interface. You can alternately specify the IP address of the server instead of the interface name using the `ip-addr <ip-address>` argument. In both cases, you must use a static IP address.
 
 ```
-nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz
+nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.2.0.tgz
 ```
 Example with IP address:
 ```
-nvidia@hostname:~$ netq install standalone full ip-addr <ip-address> bundle /mnt/installables/NetQ-5.1.0.tgz
+nvidia@hostname:~$ netq install standalone full ip-addr <ip-address> bundle /mnt/installables/NetQ-5.2.0.tgz
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre>
+    <pre><div class="copy-code-img"></div>nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.2.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre>
     <p></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -157,13 +157,13 @@ Restore your data with the backup file you created during a backup using the `re
 Run the installation command on your NetQ server, referencing the path where the backup file resides. The following example installs NetQ using the `eth0` interface:
 
 ```
-nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.1.0.tgz restore /home/nvidia/backup-netq-standalone-onprem-5.0.0-2025-12-11_19_50_12_UTC.tar
+nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-5.2.0.tgz restore /home/nvidia/backup-netq-standalone-onprem-5.0.0-2025-12-11_19_50_12_UTC.tar
 ```
 
 Example using IP address:
 
 ```
-nvidia@hostname:~$ netq install standalone full ip-addr <ip-address> bundle /mnt/installables/NetQ-5.1.0.tgz restore /home/nvidia/backup-netq-standalone-onprem-5.0.0-2025-12-11_19_50_12_UTC.tar
+nvidia@hostname:~$ netq install standalone full ip-addr <ip-address> bundle /mnt/installables/NetQ-5.2.0.tgz restore /home/nvidia/backup-netq-standalone-onprem-5.0.0-2025-12-11_19_50_12_UTC.tar
 ```
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -177,8 +177,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 
 ```
 State: Active
-    Version: 5.1.0
-    Installer Version: 5.1.0
+    Version: 5.2.0
+    Installer Version: 5.2.0
     Installation Type: Standalone
     Activation Key: PKrgipMGEhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixUQmFLTUhzZU80RUdTL3pOT01uQ2lnRnrrUhTbXNPUGRXdnUwTVo5SEpBPTIHZGVmYXVsdDoHbmV0cWRldgz=
     Master SSH Public Key: a3NoLXJzYSBBQUFNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFEazliekZDblJUajkvQVhOZ0hteXByTzZIb3Y2cVZBWFdsNVNtKzVrTXo3dmMrcFNZTGlOdWl1bEhZeUZZVDhSNmU3bFdqS3NrSE10bzArNFJsQVd6cnRvbVVzLzlLMzQ4M3pUMjVZQXpIU2N1ZVhBSE1TdZ0JyUkpXYUpTNjJ2RTkzcHBDVjBxWWJvUFo3aGpCY3ozb0VVWnRsU1lqQlZVdjhsVjBNN3JEWW52TXNGSURWLzJ2eks3K0x2N01XTG5aT054S09hdWZKZnVOT0R4YjFLbk1mN0JWK3hURUpLWW1mbTY1ckoyS1ArOEtFUllrr5TkF3bFVRTUdmT3daVNoZnpQajMwQ29CWDZZMzVST2hDNmhVVnN5OEkwdjVSV0tCbktrWk81MWlMSDAyZUpJbXJHUGdQa2s1SzhJdGRrQXZISVlTZ0RwRlpRb3Igcm9vdEBucXRzLTEwLTE4OC00NC0xNDc=

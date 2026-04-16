@@ -12,7 +12,9 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 - Added a {{<link title="System Events Reference/#correlation-events" text="fault correlation system event">}} which groups of events linked to the same underlying issue and displays the association between host-based errors and devices within a network’s fabric (beta)
 - Added {{<link title="Validation Tests Reference/#adaptive-routing-validation-tests" text="adaptive routing validations">}} that verify configuration consistencies across switches in your network's fabric (beta)
+- Added support for node addition for NetQ NVLink + Ethernet combined mode deployments (beta)
 - Added {{<link title="Validation Tests Reference/#roce-validation-tests" text="RoCE validations">}} that verify configuration consistencies across the entire network fabric, including switches, host NICs, and DPUs (beta)
+- Updated the {{<link title="Cable Validations" text="Cable Validation Tool">}} to version 1.9
 
 
 ### NetQ for NVLink API Changes
@@ -31,19 +33,20 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## Release Considerations
 
-- When your NetQ deployment operates in combined Ethernet and NVLink mode, certain NVLink data is not preserved during the backup and restore process. Information related to network entities such as switches, GPUs, and partitions is not saved. However, data for services, switch profiles, and domains is saved during the backup and restore process.
+
 - NetQ 5.2 is tested and validated as part of the Spectrum-X reference architecture 2.2 release. For a full compatibility matrix, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+- When your NetQ deployment operates in combined Ethernet and NVLink mode, certain NVLink data is not preserved during the backup and restore process. Information related to network entities such as switches, GPUs, and partitions is not saved. However, data for services, switch profiles, and domains is saved during the backup and restore process.
 - The following features have been removed or deprecated:
     - Flow analysis (deprecated)
     - Validations: duplicate IP addresses, agents, VXLAN, MLAG bond VLAN consistency test (deprecated)
-    - ECMP without adaptive routing (removed) 
+    - ECMP without adaptive routing (removed)
+    - High-availability scale cluster deployment for Ethernet only (removed). You can upgrade this deployment type using the upgrade instructions for NVLink + Ethernet combined mode.
 
 ## Upgrade Paths
 
 NetQ 5.2 is available exclusively for on-premises deployments. You can upgrade to 5.2 if your deployment is running version 5.1 or 5.0. 
 
-- To upgrade from 5.1 to 5.2, perform an {{<link title="Upgrade NetQ Virtual Machines" text="in-place upgrade">}}.
-- To upgrade from 5.1 to 5.2 and concurrently add additional nodes to your cluster, run the `netq install cluster` command with the `extend-cluster` option.
+- To upgrade from 5.1 to 5.2, perform an {{<link title="Upgrade NetQ Virtual Machines" text="in-place upgrade">}}. 
 - To upgrade from 5.0 to 5.2, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.2 installation">}}.
 
 

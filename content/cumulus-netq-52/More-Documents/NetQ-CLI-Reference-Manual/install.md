@@ -271,7 +271,7 @@ nvidia@<hostname>:~$ netq install cluster master-init
 - - -
 ## netq install cluster worker add
 
-Adds additional worker nodes to an existing HA scale cluster. Use this command to generate a JSON configuration template referencing the number of additional worker nodes you want to add. See the {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster/#add-additional-worker-nodes" text="scale cluster deployment guide">}} for more information.
+Adds additional worker nodes to an existing HA scale cluster. Use this command to generate a JSON configuration template referencing the number of additional worker nodes you want to add.
 
 ### Syntax
 

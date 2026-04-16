@@ -104,44 +104,19 @@ netq config add agent command
 For example, to change the polling frequency of the `ntp` command to 60 seconds from its default of 30 seconds, run:
 
 ```
-nvidia@switch:~$ sudo netq config add agent command service-key ntp poll-period 30
+nvidia@switch:~$ sudo netq config add agent command service-key ntp poll-period 60
 Successfully added/modified Command service misc command None
 
 nvidia@switch:~$ sudo netq config show agent commands
-Service Key               Period  Active       Command                                                        Timeout
------------------------  --------  --------  --------------------------------------------------------------  ---------
-bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']         30
-evpn-vni                       60  yes       ['/usr/bin/vtysh', '-c', 'show bgp l2vpn evpn vni json']               30
-lldp-json                     120  yes       /usr/sbin/lldpctl -f json                                              30
-clagctl-json                   60  yes       /usr/bin/clagctl -j                                                    30
-mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json                                             30
-ports                        3600  yes       Netq Predefined Command                                                30
-proc-net-dev                   30  yes       Netq Predefined Command                                                30
-dom                          1800  yes       Netq Predefined Command                                                30
-roce                           60  yes       Netq Predefined Command                                                30
-roce-config                   300  yes       Netq Predefined Command                                                30
-nvue-roce-config              300  yes       Netq Predefined Command                                                30
-ntp                            30  yes       Netq Predefined Command                                                45
-agent_stats                   300  yes       Netq Predefined Command                                                30
-agent_util_stats              300  yes       Netq Predefined Command                                                30
-tcam-resource-json            300  yes       /usr/cumulus/bin/cl-resource-query -j                                  30
-nvue-mon-json                 300  yes       Netq Predefined Command                                                30
-cl-support-json              3600  yes       Netq Predefined Command                                                30
-resource-util-json            300  yes       findmnt / -n -o FS-OPTIONS                                             30
-smonctl-json                  120  yes       /usr/sbin/smonctl -j                                                   30
-sensors-json                 1800  yes       sensors -u                                                             30
-ssd-util-json               86400  yes       /usr/sbin/smartctl -a /dev/sda                                         30
-ssd-util-nvme-json          86400  yes       /usr/sbin/smartctl -a /dev/nvme0                                       30
-ecmp-hash-info                300  yes       cat /etc/cumulus/datapath/traffic.conf                                 30
-ecmp-info                      60  yes       Netq Predefined Command                                                30
-ptp-config-info                60  yes       cat /etc/ptp4l.conf                                                    30
-ptp-clock-info                 60  yes       Netq Predefined Command                                                30
-ptp-clock-status               60  yes       Netq Predefined Command                                                30
-ptp-statistics                 60  yes       Netq Predefined Command                                                30
-ptp-correction                 30  yes       Netq Predefined Command                                                30
-log-exporter                   60  yes       Netq Predefined Command                                                30
-adaptive-routing-config       300  yes       Netq Predefined Command                                                30
-ber-info                       30  yes       Netq Predefined Command                                                30
+Service Key          Period  Active       Command                  Timeout
+------------------  --------  --------  --------------------------  ---------
+ports                   3600  yes       Netq Predefined Command     30
+proc-net-dev              30  yes       Netq Predefined Command     30
+ntp                       60  yes       Netq Predefined Command     None
+agent_stats              300  yes       Netq Predefined Command     30
+agent_util_stats          30  yes       Netq Predefined Command     30
+resource-util-json       120  yes       findmnt / -n -o FS-OPTIONS  30
+box-info               86400  yes       Netq Predefined Command     30
 ```
 
 Disable a command:
@@ -1411,40 +1386,15 @@ Show the configuration for all commands:
 
 ```
 nvidia@switch:~$ sudo netq config show agent commands
-Service Key               Period  Active       Command                                                        Timeout
------------------------  --------  --------  --------------------------------------------------------------  ---------
-bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']         30
-evpn-vni                       60  yes       ['/usr/bin/vtysh', '-c', 'show bgp l2vpn evpn vni json']               30
-lldp-json                     120  yes       /usr/sbin/lldpctl -f json                                              30
-clagctl-json                   60  yes       /usr/bin/clagctl -j                                                    30
-mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json                                             30
-ports                        3600  yes       Netq Predefined Command                                                30
-proc-net-dev                   30  yes       Netq Predefined Command                                                30
-dom                          1800  yes       Netq Predefined Command                                                30
-roce                           60  yes       Netq Predefined Command                                                30
-roce-config                   300  yes       Netq Predefined Command                                                30
-nvue-roce-config              300  yes       Netq Predefined Command                                                30
-ntp                            30  yes       Netq Predefined Command                                                45
-agent_stats                   300  yes       Netq Predefined Command                                                30
-agent_util_stats              300  yes       Netq Predefined Command                                                30
-tcam-resource-json            300  yes       /usr/cumulus/bin/cl-resource-query -j                                  30
-nvue-mon-json                 300  yes       Netq Predefined Command                                                30
-cl-support-json              3600  yes       Netq Predefined Command                                                30
-resource-util-json            300  yes       findmnt / -n -o FS-OPTIONS                                             30
-smonctl-json                  120  yes       /usr/sbin/smonctl -j                                                   30
-sensors-json                 1800  yes       sensors -u                                                             30
-ssd-util-json               86400  yes       /usr/sbin/smartctl -a /dev/sda                                         30
-ssd-util-nvme-json          86400  yes       /usr/sbin/smartctl -a /dev/nvme0                                       30
-ecmp-hash-info                300  yes       cat /etc/cumulus/datapath/traffic.conf                                 30
-ecmp-info                      60  yes       Netq Predefined Command                                                30
-ptp-config-info                60  yes       cat /etc/ptp4l.conf                                                    30
-ptp-clock-info                 60  yes       Netq Predefined Command                                                30
-ptp-clock-status               60  yes       Netq Predefined Command                                                30
-ptp-statistics                 60  yes       Netq Predefined Command                                                30
-ptp-correction                 30  yes       Netq Predefined Command                                                30
-log-exporter                   60  yes       Netq Predefined Command                                                30
-adaptive-routing-config       300  yes       Netq Predefined Command                                                30
-ber-info                       30  yes       Netq Predefined Command                                                30
+ Service Key          Period  Active       Command                    Timeout
+------------------  --------  --------  --------------------------  ---------
+ports                   3600  yes       Netq Predefined Command            30
+proc-net-dev              30  yes       Netq Predefined Command            30
+ntp                       30  yes       Netq Predefined Command            30
+agent_stats              300  yes       Netq Predefined Command            30
+agent_util_stats          30  yes       Netq Predefined Command            30
+resource-util-json       120  yes       findmnt / -n -o FS-OPTIONS         30
+box-info               86400  yes       Netq Predefined Command            30
 ```
 
 Show the configuration for a specified command:

@@ -11,7 +11,6 @@ Several NetQ features function exclusively on NVIDIA Spectrum switches. The foll
 | ------------- | :---: | :---: | :---: | :---: |
 |Adaptive routing monitoring | No | No | No | Yes |
 |Bit error rate monitoring | No | No | Yes | Yes |
-|ECMP monitoring| Yes | Yes | Yes | Yes |
 |Flow analysis| No | Yes | Yes | Yes |
 |Multiplane support | No | No | No | Yes |
 |Process monitoring| Yes | Yes | Yes | Yes |

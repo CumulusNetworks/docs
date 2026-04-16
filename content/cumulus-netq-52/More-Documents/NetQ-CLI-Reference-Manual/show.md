@@ -3493,7 +3493,6 @@ Displays RoCE configuration.
 ### Syntax
 ```
 netq [<hostname>] show roce-config
-    [<text-port>]
     [host | dpu] 
     [around <text-time>] 
     [json]
@@ -3507,7 +3506,6 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
-| NA | \<text-port\> | Filter by a specified port |
 | host | NA | Only show RoCE configurations for hosts |
 | dpu | NA | Only show RoCE configurations for DPUs |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |

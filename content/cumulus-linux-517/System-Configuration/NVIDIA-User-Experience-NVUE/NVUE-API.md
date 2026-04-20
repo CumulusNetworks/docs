@@ -4631,7 +4631,7 @@ if __name__ == "__main__":
 
 ## Try the API
 
-To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/marketplace?demo_id=aa77bb13-6a7d-431c-9203-640510778beb" text="NVUE API Lab">}} available on NVIDIA Air. The lab provides a basic example to help you get started. You can also try out the other examples in this document.
+To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/marketplace?demo_id=aa77bb13-6a7d-431c-9203-640510778beb" text="NVUE API Lab">}} available on NVIDIA DSX Air. The lab provides a basic example to help you get started. You can also try out the other examples in this document.
 
 ## Resources
 

@@ -75,11 +75,33 @@ Mark important checkpoints as favorites to protect them from automatic deletion.
 
 ### Checkpoint Limits
 
-Each organization has a maximum number of checkpoints that can be stored per simulation. When this limit is reached:
+Air stores up to 3 checkpoints per simulation. When this limit is reached:
 
-- Air automatically deletes older checkpoints to make room for new ones.
-- Favorite checkpoints are preserved longer than non-favorite checkpoints.
-- The most recent checkpoints are kept by default.
+- Air automatically deletes the oldest non-favorite checkpoint to make room for a new one.
+- Favorite checkpoints are preserved and do not count toward automatic deletion.
+
+## Reverting a Simulation
+
+Reverting a simulation deletes all of its checkpoints and returns the simulation to an editable state. Use revert when you need to add, remove, or modify nodes in a simulation that already has checkpoints.
+
+By default, a simulation becomes uneditable after it starts for the first time, because a checkpoint is saved when you stop it. The state badge next to the simulation name shows **Editable** or **Uneditable** to reflect this.
+
+### Requirements
+
+You can revert a simulation only when:
+
+- The simulation is **inactive** (stopped).
+- The simulation has at least one checkpoint.
+
+### How to Revert
+
+1. Open the simulation.
+2. In the action bar at the top of the page, select the revert icon.
+3. In the confirmation dialog, hold the **Hold to Revert** button until the action completes.
+
+{{<img src="/images/guides/nvidia-air-v2/RevertSimulation.png" alt="Revert icon in the simulation action bar and the Revert Simulation confirmation dialog">}}
+
+After the revert completes, the state badge changes to **Editable** and you can modify the topology again.
 
 ## Simulation History
 

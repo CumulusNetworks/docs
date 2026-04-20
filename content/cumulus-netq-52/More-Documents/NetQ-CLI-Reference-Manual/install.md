@@ -115,7 +115,7 @@ nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-5.2.0.tg
 
 - `netq install cluster config generate`
 - - -
-<!--difference between this and netq install cluster config extend-cluster?
+<!--difference between this and netq install cluster extend-cluster?
 ## netq install cluster config extend-cluster
 
 

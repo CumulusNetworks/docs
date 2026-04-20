@@ -87,6 +87,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3418045</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-5.4.0</td>
+<td>5.5.0-5.16.1</td>
+</tr>
+<tr>
 <td>3400244</td>
 <td>NCLU accepts multiple instances of same {{net add bgp}} commands and stores the configuration in the {{/etc/frr/frr.conf}} file  when you run the {{net commit}} command. As a result, unintended commands might be processed during {{frr-reload}}. To work around this issue, edit the {{/etc/frr/frr.conf}} file to remove the duplicated entries.</td>
 <td>4.3.1-4.4.5</td>
@@ -187,7 +193,7 @@ ERR cannot allocate vlan for sub-interface
 <td>3291548, 2434628</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
-<td>5.0.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3289482</td>
@@ -223,8 +229,8 @@ Vlan: 0
 <tr>
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
-<td>4.4.0-5.3.1</td>
-<td>5.4.0-5.16.1</td>
+<td>4.4.0-4.4.5, 5.0.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3236334</td>
@@ -256,8 +262,8 @@ Vlan: 0
 
 sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3218207</td>
@@ -859,6 +865,13 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>2710208</td>
 <td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2701000</td>
+<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
+To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2176,6 +2189,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3418045</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-5.4.0</td>
+<td>5.5.0-5.16.1</td>
+</tr>
+<tr>
 <td>3400244</td>
 <td>NCLU accepts multiple instances of same {{net add bgp}} commands and stores the configuration in the {{/etc/frr/frr.conf}} file  when you run the {{net commit}} command. As a result, unintended commands might be processed during {{frr-reload}}. To work around this issue, edit the {{/etc/frr/frr.conf}} file to remove the duplicated entries.</td>
 <td>4.3.1-4.4.5</td>
@@ -2276,7 +2295,7 @@ ERR cannot allocate vlan for sub-interface
 <td>3291548, 2434628</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
-<td>5.0.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3289482</td>
@@ -2306,8 +2325,8 @@ Vlan: 0
 <tr>
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
-<td>4.4.0-5.3.1</td>
-<td>5.4.0-5.16.1</td>
+<td>4.4.0-4.4.5, 5.0.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3236334</td>
@@ -2339,8 +2358,8 @@ Vlan: 0
 
 sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3218207</td>
@@ -2397,8 +2416,8 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <tr>
 <td>3205701</td>
 <td>A firmware upgrade has been implemented to optimize the PCIe bus between the CPU and Spectrum ASIC on NVIDIA SN4700, SN4600, SN4600C, and SN4410 switches manufactured with {{0x26 1 17}} in EEPROM. Affected switches will not boot properly without this firmware upgrade. To see the EEPROM value, run the {{onie-syseeprom}} command from ONIE or run the {{decode-syseeprom}} command from Cumulus Linux.</td>
-<td>4.4.4-5.2.0</td>
-<td>5.2.1-5.16.1</td>
+<td>4.4.4, 5.2.0-5.16.1</td>
+<td>4.4.5</td>
 </tr>
 <tr>
 <td>3191517</td>
@@ -2948,6 +2967,13 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>2710208</td>
 <td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2701000</td>
+<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
+To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -4402,6 +4428,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3418045</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-5.4.0</td>
+<td>5.5.0-5.16.1</td>
+</tr>
+<tr>
 <td>3400244</td>
 <td>NCLU accepts multiple instances of same {{net add bgp}} commands and stores the configuration in the {{/etc/frr/frr.conf}} file  when you run the {{net commit}} command. As a result, unintended commands might be processed during {{frr-reload}}. To work around this issue, edit the {{/etc/frr/frr.conf}} file to remove the duplicated entries.</td>
 <td>4.3.1-4.4.5</td>
@@ -4502,7 +4534,7 @@ ERR cannot allocate vlan for sub-interface
 <td>3291548, 2434628</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
-<td>5.0.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3289482</td>
@@ -4532,8 +4564,8 @@ Vlan: 0
 <tr>
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
-<td>4.4.0-5.3.1</td>
-<td>5.4.0-5.16.1</td>
+<td>4.4.0-4.4.5, 5.0.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3236334</td>
@@ -4553,8 +4585,8 @@ Vlan: 0
 
 sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3218207</td>
@@ -4675,6 +4707,12 @@ end vrf
 <td>5.2.0-5.16.1</td>
 </tr>
 <tr>
+<td>3107615</td>
+<td>ONIE installation over HTTP fails if the web server hosting the installation image returns valid HTML content when ONIE requests an {{optional_pkgs}} file that does not exist. To work around this issue, configure the hosting web server to return an HTTP 404 code when the non-existant file is requested, or host an empty file on the web server with the format {{&lt;image name&gt;.optional_pkgs}}.</td>
+<td>4.2.1-4.4.3</td>
+<td>4.4.4-4.4.5, 5.2.0-5.16.1</td>
+</tr>
+<tr>
 <td>3094082</td>
 <td>If you apply a PBR policy with a next hop group but the next hop is not reachable, the PBR service crashes.</td>
 <td>4.4.0-4.4.3</td>
@@ -4689,8 +4727,8 @@ end vrf
 <tr>
 <td>3091381, 2804508</td>
 <td>Restarting {{switchd}} might fail due to an ACL SPAN module initialization failure.</td>
-<td>4.4.2-4.4.5</td>
-<td>5.0.0-5.16.1</td>
+<td>4.4.2-4.4.3</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3089165</td>
@@ -4719,8 +4757,8 @@ end vrf
 <tr>
 <td>3082583</td>
 <td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
-<td>4.4.2-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.2-4.4.3, 5.0.0-5.16.1</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3078202</td>
@@ -4728,6 +4766,12 @@ end vrf
 To work around this issue, disable, then enable the port.</td>
 <td>4.4.0-4.4.3</td>
 <td>4.4.4-4.4.5, 5.2.0-5.16.1</td>
+</tr>
+<tr>
+<td>3077737</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors. To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-4.4.3</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3073668</td>
@@ -4738,8 +4782,8 @@ To work around this issue, disable, then enable the port.</td>
 <tr>
 <td>3073649</td>
 <td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.0-4.4.3, 5.0.0-5.16.1</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3072674</td>
@@ -4765,8 +4809,8 @@ To work around this issue, disable, then enable the port.</td>
 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
 </td>
-<td>4.4.2-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.2-4.4.3, 5.0.1-5.16.1</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3059135, 3060400</td>
@@ -4784,8 +4828,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent FDB entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-5.0.1</td>
-<td>3.7.16, 4.3.1, 5.1.0-5.16.1</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16, 4.4.4-4.4.5, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3032234, 3163643</td>
@@ -4823,14 +4867,14 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <tr>
 <td>3021698</td>
 <td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
-<td>4.4.2-5.0.1</td>
-<td>5.1.0-5.16.1</td>
+<td>4.4.2-4.4.3, 5.0.0-5.16.1</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3021692</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
-<td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
-<td>4.3.1, 5.2.0-5.16.1</td>
+<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4-4.4.5, 5.2.0-5.16.1</td>
 </tr>
 <tr>
 <td>3018159</td>
@@ -5233,6 +5277,13 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>2710208</td>
 <td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2701000</td>
+<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
+To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -6567,6 +6618,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3418045</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-5.4.0</td>
+<td>5.5.0-5.16.1</td>
+</tr>
+<tr>
 <td>3400244</td>
 <td>NCLU accepts multiple instances of same {{net add bgp}} commands and stores the configuration in the {{/etc/frr/frr.conf}} file  when you run the {{net commit}} command. As a result, unintended commands might be processed during {{frr-reload}}. To work around this issue, edit the {{/etc/frr/frr.conf}} file to remove the duplicated entries.</td>
 <td>4.3.1-4.4.5</td>
@@ -6667,7 +6724,7 @@ ERR cannot allocate vlan for sub-interface
 <td>3291548, 2434628</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
-<td>5.0.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3284719</td>
@@ -6678,8 +6735,8 @@ ERR cannot allocate vlan for sub-interface
 <tr>
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
-<td>4.4.0-5.3.1</td>
-<td>5.4.0-5.16.1</td>
+<td>4.4.0-4.4.5, 5.0.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3236334</td>
@@ -6693,8 +6750,8 @@ ERR cannot allocate vlan for sub-interface
 
 sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3218207</td>
@@ -6798,6 +6855,12 @@ On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scal
 <td>5.2.0-5.16.1</td>
 </tr>
 <tr>
+<td>3107615</td>
+<td>ONIE installation over HTTP fails if the web server hosting the installation image returns valid HTML content when ONIE requests an {{optional_pkgs}} file that does not exist. To work around this issue, configure the hosting web server to return an HTTP 404 code when the non-existant file is requested, or host an empty file on the web server with the format {{&lt;image name&gt;.optional_pkgs}}.</td>
+<td>4.2.1-4.4.3</td>
+<td>4.4.4-4.4.5, 5.2.0-5.16.1</td>
+</tr>
+<tr>
 <td>3094082</td>
 <td>If you apply a PBR policy with a next hop group but the next hop is not reachable, the PBR service crashes.</td>
 <td>4.4.0-4.4.3</td>
@@ -6812,8 +6875,8 @@ On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scal
 <tr>
 <td>3091381, 2804508</td>
 <td>Restarting {{switchd}} might fail due to an ACL SPAN module initialization failure.</td>
-<td>4.4.2-4.4.5</td>
-<td>5.0.0-5.16.1</td>
+<td>4.4.2-4.4.3</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3089165</td>
@@ -6836,8 +6899,8 @@ On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scal
 <tr>
 <td>3082583</td>
 <td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
-<td>4.4.2-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.2-4.4.3, 5.0.0-5.16.1</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3078202</td>
@@ -6845,6 +6908,12 @@ On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scal
 To work around this issue, disable, then enable the port.</td>
 <td>4.4.0-4.4.3</td>
 <td>4.4.4-4.4.5, 5.2.0-5.16.1</td>
+</tr>
+<tr>
+<td>3077737</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors. To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-4.4.3</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3073668</td>
@@ -6855,8 +6924,8 @@ To work around this issue, disable, then enable the port.</td>
 <tr>
 <td>3073649</td>
 <td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.0-4.4.3, 5.0.0-5.16.1</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3072674</td>
@@ -6882,8 +6951,8 @@ To work around this issue, disable, then enable the port.</td>
 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
 </td>
-<td>4.4.2-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.2-4.4.3, 5.0.1-5.16.1</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3059135, 3060400</td>
@@ -6901,8 +6970,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent FDB entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-5.0.1</td>
-<td>3.7.16, 4.3.1, 5.1.0-5.16.1</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16, 4.4.4-4.4.5, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3032234, 3163643</td>
@@ -6934,14 +7003,14 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <tr>
 <td>3021698</td>
 <td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
-<td>4.4.2-5.0.1</td>
-<td>5.1.0-5.16.1</td>
+<td>4.4.2-4.4.3, 5.0.0-5.16.1</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3021692</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
-<td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
-<td>4.3.1, 5.2.0-5.16.1</td>
+<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4-4.4.5, 5.2.0-5.16.1</td>
 </tr>
 <tr>
 <td>3017180</td>
@@ -6975,8 +7044,8 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 <tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
-<td>4.2.1-5.0.1</td>
-<td>5.1.0-5.16.1</td>
+<td>4.2.1-4.4.2, 5.0.0-5.16.1</td>
+<td>4.4.3-4.4.5</td>
 </tr>
 <tr>
 <td>2964279</td>
@@ -6993,8 +7062,8 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 <tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15-5.0.1</td>
-<td>5.1.0-5.16.1</td>
+<td>3.7.15-4.4.2, 5.0.0-5.16.1</td>
+<td>4.4.3-4.4.5</td>
 </tr>
 <tr>
 <td>2959575</td>
@@ -7352,6 +7421,13 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>2710208</td>
 <td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2701000</td>
+<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
+To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -8774,6 +8850,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3418045</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-5.4.0</td>
+<td>5.5.0-5.16.1</td>
+</tr>
+<tr>
 <td>3400244</td>
 <td>NCLU accepts multiple instances of same {{net add bgp}} commands and stores the configuration in the {{/etc/frr/frr.conf}} file  when you run the {{net commit}} command. As a result, unintended commands might be processed during {{frr-reload}}. To work around this issue, edit the {{/etc/frr/frr.conf}} file to remove the duplicated entries.</td>
 <td>4.3.1-4.4.5</td>
@@ -8843,13 +8925,13 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>3291548, 2434628</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
-<td>5.0.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
-<td>4.4.0-5.3.1</td>
-<td>5.4.0-5.16.1</td>
+<td>4.4.0-4.4.5, 5.0.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3236334</td>
@@ -8863,8 +8945,8 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 
 sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3218207</td>
@@ -8953,6 +9035,12 @@ On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scal
 <td>5.2.0-5.16.1</td>
 </tr>
 <tr>
+<td>3107615</td>
+<td>ONIE installation over HTTP fails if the web server hosting the installation image returns valid HTML content when ONIE requests an {{optional_pkgs}} file that does not exist. To work around this issue, configure the hosting web server to return an HTTP 404 code when the non-existant file is requested, or host an empty file on the web server with the format {{&lt;image name&gt;.optional_pkgs}}.</td>
+<td>4.2.1-4.4.3</td>
+<td>4.4.4-4.4.5, 5.2.0-5.16.1</td>
+</tr>
+<tr>
 <td>3094082</td>
 <td>If you apply a PBR policy with a next hop group but the next hop is not reachable, the PBR service crashes.</td>
 <td>4.4.0-4.4.3</td>
@@ -8990,6 +9078,12 @@ To work around this issue, disable, then enable the port.</td>
 <td>4.4.4-4.4.5, 5.2.0-5.16.1</td>
 </tr>
 <tr>
+<td>3077737</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors. To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-4.4.3</td>
+<td>4.4.4-4.4.5</td>
+</tr>
+<tr>
 <td>3073668</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
@@ -8998,8 +9092,8 @@ To work around this issue, disable, then enable the port.</td>
 <tr>
 <td>3073649</td>
 <td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>4.4.0-4.4.3, 5.0.0-5.16.1</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3072674</td>
@@ -9035,8 +9129,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent FDB entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-5.0.1</td>
-<td>3.7.16, 4.3.1, 5.1.0-5.16.1</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16, 4.4.4-4.4.5, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3031228</td>
@@ -9050,8 +9144,8 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <tr>
 <td>3021692</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
-<td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
-<td>4.3.1, 5.2.0-5.16.1</td>
+<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4-4.4.5, 5.2.0-5.16.1</td>
 </tr>
 <tr>
 <td>3017180</td>
@@ -9078,14 +9172,14 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 <tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
-<td>4.2.1-5.0.1</td>
-<td>5.1.0-5.16.1</td>
+<td>4.2.1-4.4.2, 5.0.0-5.16.1</td>
+<td>4.4.3-4.4.5</td>
 </tr>
 <tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
-<td>3.7.15-5.0.1</td>
-<td>5.1.0-5.16.1</td>
+<td>3.7.15-4.4.2, 5.0.0-5.16.1</td>
+<td>4.4.3-4.4.5</td>
 </tr>
 <tr>
 <td>2959575</td>
@@ -9194,14 +9288,14 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <tr>
 <td>2854785, 2826122</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5</td>
-<td>3.7.16, 4.3.1, 5.0.0-5.16.1</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.1</td>
+<td>3.7.16, 4.3.1, 4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2854784</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.5</td>
-<td>5.0.0-5.16.1</td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2848204</td>
@@ -9399,8 +9493,8 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 <tr>
 <td>2755614</td>
 <td> When you set {{route_preferred_over_neigh}} to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
-<td>4.0.0-4.3.0, 4.4.0-4.4.5</td>
-<td>4.3.1, 5.0.0-5.16.1</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2-4.4.5, 5.0.0-5.16.1</td>
 </tr>
 <tr>
 <td>2754791</td>
@@ -9470,6 +9564,12 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 <td></td>
 </tr>
 <tr>
+<td>2734107</td>
+<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
+<td>3.7.12-4.4.1</td>
+<td>4.4.2-4.4.5</td>
+</tr>
+<tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
 <td>4.3.0-5.1.0</td>
@@ -9534,6 +9634,13 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
 <td>4.3.0-4.4.1</td>
 <td>4.4.2-4.4.5</td>
+</tr>
+<tr>
+<td>2701000</td>
+<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
+To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>2700767</td>

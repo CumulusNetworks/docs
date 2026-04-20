@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4986333</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4963280</td>
 <td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
 <td>5.9.1-5.16.1</td>
@@ -229,8 +241,8 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4499025</td>
 <td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.16.1</td>
-<td></td>
+<td>5.11.2-5.13.1</td>
+<td>5.14.0-5.16.1</td>
 </tr>
 <tr>
 <td>4495231</td>
@@ -242,6 +254,21 @@ To work around this issue, power cycle the switch.</td>
 <td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
 <td>5.11.2-5.13.1</td>
+<td>5.14.0-5.16.1</td>
+</tr>
+<tr>
+<td>4475117</td>
+<td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+To restart the services, either reboot the switch, or run the following commands:
+sudo systemctl restart nvued.service
+sudo systemctl restart nvue-startup.service
+systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
+systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
+</td>
+<td>5.11.1-5.13.1</td>
 <td>5.14.0-5.16.1</td>
 </tr>
 <tr>
@@ -1004,6 +1031,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4986333</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4963280</td>
 <td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
 <td>5.9.1-5.16.1</td>
@@ -1042,8 +1081,8 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4829843</td>
 <td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
-<td>5.11.3-5.15.1</td>
-<td>5.9.5, 5.16.0-5.16.1</td>
+<td>5.11.3-5.11.4</td>
+<td>5.9.5, 5.11.5-5.16.1</td>
 </tr>
 <tr>
 <td>4789097</td>
@@ -1054,8 +1093,8 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4771874</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td>5.9.5, 5.16.0-5.16.1</td>
+<td>5.11.1-5.11.4</td>
+<td>5.9.5, 5.11.5-5.16.1</td>
 </tr>
 <tr>
 <td>4771521</td>
@@ -1230,8 +1269,8 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4499025</td>
 <td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.16.1</td>
-<td></td>
+<td>5.11.2-5.13.1</td>
+<td>5.14.0-5.16.1</td>
 </tr>
 <tr>
 <td>4495231</td>
@@ -1243,6 +1282,21 @@ To work around this issue, power cycle the switch.</td>
 <td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
 <td>5.11.2-5.13.1</td>
+<td>5.14.0-5.16.1</td>
+</tr>
+<tr>
+<td>4475117</td>
+<td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+To restart the services, either reboot the switch, or run the following commands:
+sudo systemctl restart nvued.service
+sudo systemctl restart nvue-startup.service
+systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
+systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
+</td>
+<td>5.11.1-5.13.1</td>
 <td>5.14.0-5.16.1</td>
 </tr>
 <tr>
@@ -1996,6 +2050,18 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4986333</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4963280</td>
 <td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
 <td>5.9.1-5.16.1</td>
@@ -2034,8 +2100,8 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4829843</td>
 <td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
-<td>5.11.3-5.15.1</td>
-<td>5.9.5, 5.16.0-5.16.1</td>
+<td>5.11.3-5.11.4</td>
+<td>5.9.5, 5.11.5-5.16.1</td>
 </tr>
 <tr>
 <td>4789097</td>
@@ -2046,8 +2112,8 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4771874</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td>5.9.5, 5.16.0-5.16.1</td>
+<td>5.11.1-5.11.4</td>
+<td>5.9.5, 5.11.5-5.16.1</td>
 </tr>
 <tr>
 <td>4771521</td>
@@ -2209,8 +2275,8 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4499025</td>
 <td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.16.1</td>
-<td></td>
+<td>5.11.2-5.13.1</td>
+<td>5.14.0-5.16.1</td>
 </tr>
 <tr>
 <td>4495231</td>
@@ -2222,6 +2288,21 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
 <td>5.11.2-5.13.1</td>
+<td>5.14.0-5.16.1</td>
+</tr>
+<tr>
+<td>4475117</td>
+<td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+To restart the services, either reboot the switch, or run the following commands:
+sudo systemctl restart nvued.service
+sudo systemctl restart nvue-startup.service
+systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
+systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
+</td>
+<td>5.11.1-5.13.1</td>
 <td>5.14.0-5.16.1</td>
 </tr>
 <tr>
@@ -2969,6 +3050,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4986333</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4963280</td>
 <td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
 <td>5.9.1-5.16.1</td>
@@ -3007,8 +3100,8 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4771874</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td>5.9.5, 5.16.0-5.16.1</td>
+<td>5.11.1-5.11.4</td>
+<td>5.9.5, 5.11.5-5.16.1</td>
 </tr>
 <tr>
 <td>4771521</td>
@@ -3146,8 +3239,8 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4499025</td>
 <td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.16.1</td>
-<td></td>
+<td>5.11.2-5.13.1</td>
+<td>5.14.0-5.16.1</td>
 </tr>
 <tr>
 <td>4495231</td>
@@ -3159,6 +3252,21 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
 <td>5.11.2-5.13.1</td>
+<td>5.14.0-5.16.1</td>
+</tr>
+<tr>
+<td>4475117</td>
+<td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+To restart the services, either reboot the switch, or run the following commands:
+sudo systemctl restart nvued.service
+sudo systemctl restart nvue-startup.service
+systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
+systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
+</td>
+<td>5.11.1-5.13.1</td>
 <td>5.14.0-5.16.1</td>
 </tr>
 <tr>
@@ -3918,20 +4026,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>4475117</td>
-<td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
-sudo chown -R nvue /var/lib/nvue
-sudo chown -R ntpsec /var/lib/ntpsec
-sudo chown -R Debian-snmp /var/lib/snmp
-To restart the services, either reboot the switch, or run the following commands:
-sudo systemctl restart nvued.service
-sudo systemctl restart nvue-startup.service
-systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
-systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
-</td>
-<td>5.11.1</td>
-</tr>
-<tr>
 <td>4475074</td>
 <td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
 <td>5.13.0-5.16.1</td>
@@ -4087,13 +4181,6 @@ switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered I
 <td>5.11.0-5.11.1, 5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4408161</td>
-<td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
-systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
-To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
-<td>5.7.0-5.9.3</td>
-</tr>
-<tr>
 <td>4400384, 4391704</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
 <td>5.11.0-5.11.1</td>
@@ -4141,6 +4228,12 @@ nv config apply -y</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4963280</td>
 <td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
 <td>5.9.1-5.16.1</td>
@@ -4179,8 +4272,8 @@ nv config apply -y</td>
 <tr>
 <td>4771874</td>
 <td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.15.1</td>
-<td>5.9.5, 5.16.0-5.16.1</td>
+<td>5.11.1-5.11.4</td>
+<td>5.9.5, 5.11.5-5.16.1</td>
 </tr>
 <tr>
 <td>4771521</td>
@@ -4293,8 +4386,8 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4501645</td>
 <td>When you connect the QLOUIE cable with FW 52.181.1003 to an NVIDIA SN5600 switch, you might see link flaps. </td>
-<td>5.11.0-5.13.1</td>
-<td>5.14.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4495231</td>
@@ -4314,8 +4407,8 @@ sudo systemctl restart nvue-startup.service
 systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
 systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </td>
-<td>5.11.1</td>
-<td>5.11.2-5.16.1</td>
+<td>5.11.1-5.13.1</td>
+<td>5.14.0-5.16.1</td>
 </tr>
 <tr>
 <td>4472414, 4621451</td>
@@ -4332,14 +4425,14 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4423430, 4322632, 4391362</td>
 <td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423365</td>
 <td>When you enable NAT dynamic mode and NAT rules with NVUE in a single commit, you see the error {{error: hw sync failed (Dynamic NAT is not enabled. Ignoring rules..)}}. To work around this issue, enable dynamic NAT with NVUE in one commit, then add NAT ACL rules in a subsequent commit.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0-5.11.1, 5.12.0-5.16.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4423352</td>
@@ -4350,8 +4443,8 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4423336, 3875789, 3933038</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.9.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423335</td>
@@ -4362,38 +4455,38 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4423321</td>
 <td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423286</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, Manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces}} file.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.9.4, 5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.9.4, 5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423279</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423276</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.9.5, 5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1, 5.12.0-5.16.1</td>
+<td>5.9.5, 5.11.2</td>
 </tr>
 <tr>
 <td>4423274</td>
 <td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.9.4, 5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.9.4, 5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423270</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423269</td>
@@ -4428,8 +4521,8 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4423237</td>
 <td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1, 5.12.0-5.16.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4423235</td>
@@ -4440,8 +4533,8 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4422898, 4497128</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
-<td>5.0.0-5.13.1</td>
-<td>5.14.0-5.16.1</td>
+<td>5.0.0-5.11.1, 5.13.0-5.16.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4408387</td>
@@ -4452,26 +4545,26 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4408280, 4360680</td>
 <td>NVUE commands create excessive log data. To work around this issue, configure rsyslog rules to limit logging of these commands.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1, 5.12.0-5.16.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4400384, 4391704</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4389124</td>
 <td>NVUE fails when applying ERSPAN configuration on an MLAG peer. This failure occurs because ERSPAN does not support bond slave ports as analyzer ports but fails to validate the configuration. </td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4370952</td>
 <td>ERSPAN does not work when the ERSPAN destination IP address is reachable over SVIs and layer 2 bonds. To work around this issue, make the ERSPAN destination IP address reachable over layer 3 swps or bond interfaces.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1, 5.12.0-5.16.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4370462</td>
@@ -4480,14 +4573,14 @@ nv set vrf &lt;vrf-id&gt; loopback ip address 127.0.0.1/8
 nv set vrf &lt;vrf-id&gt; loopback ip address 127.0.1.1/8
 nv set vrf &lt;vrf-id&gt; loopback ip address ::/128
 nv config apply -y</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4363640</td>
 <td>When a MAC address flaps between two different EVPN VTEPs, a Zebra core crash occurs.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4360615</td>
@@ -4498,8 +4591,8 @@ nv config apply -y</td>
 <tr>
 <td>4341608</td>
 <td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
-<td>5.10.1-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.10.1-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4328729, 4261676</td>
@@ -5343,7 +5436,7 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4218485</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.9.3</td>
+<td>5.5.1-5.11.0</td>
 </tr>
 <tr>
 <td>4200961</td>
@@ -5379,6 +5472,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4963280</td>
@@ -5505,8 +5604,8 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4501645</td>
 <td>When you connect the QLOUIE cable with FW 52.181.1003 to an NVIDIA SN5600 switch, you might see link flaps. </td>
-<td>5.11.0-5.13.1</td>
-<td>5.14.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4495231</td>
@@ -5529,14 +5628,14 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423430, 4322632, 4391362</td>
 <td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423365</td>
 <td>When you enable NAT dynamic mode and NAT rules with NVUE in a single commit, you see the error {{error: hw sync failed (Dynamic NAT is not enabled. Ignoring rules..)}}. To work around this issue, enable dynamic NAT with NVUE in one commit, then add NAT ACL rules in a subsequent commit.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0-5.11.1, 5.12.0-5.16.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4423352</td>
@@ -5547,8 +5646,8 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423336, 3875789, 3933038</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.9.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423335</td>
@@ -5559,38 +5658,38 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423321</td>
 <td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423286</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, Manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces}} file.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.9.4, 5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.9.4, 5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423279</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423276</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.9.5, 5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1, 5.12.0-5.16.1</td>
+<td>5.9.5, 5.11.2</td>
 </tr>
 <tr>
 <td>4423274</td>
 <td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.9.4, 5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.9.4, 5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423270</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4423269</td>
@@ -5625,8 +5724,8 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423237</td>
 <td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1, 5.12.0-5.16.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4423235</td>
@@ -5637,8 +5736,8 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4422898, 4497128</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
-<td>5.0.0-5.13.1</td>
-<td>5.14.0-5.16.1</td>
+<td>5.0.0-5.11.1, 5.13.0-5.16.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4408387</td>
@@ -5649,26 +5748,26 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4408280, 4360680</td>
 <td>NVUE commands create excessive log data. To work around this issue, configure rsyslog rules to limit logging of these commands.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1, 5.12.0-5.16.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4400384, 4391704</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4389124</td>
 <td>NVUE fails when applying ERSPAN configuration on an MLAG peer. This failure occurs because ERSPAN does not support bond slave ports as analyzer ports but fails to validate the configuration. </td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4370952</td>
 <td>ERSPAN does not work when the ERSPAN destination IP address is reachable over SVIs and layer 2 bonds. To work around this issue, make the ERSPAN destination IP address reachable over layer 3 swps or bond interfaces.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1, 5.12.0-5.16.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4370462</td>
@@ -5677,14 +5776,14 @@ nv set vrf &lt;vrf-id&gt; loopback ip address 127.0.0.1/8
 nv set vrf &lt;vrf-id&gt; loopback ip address 127.0.1.1/8
 nv set vrf &lt;vrf-id&gt; loopback ip address ::/128
 nv config apply -y</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4363640</td>
 <td>When a MAC address flaps between two different EVPN VTEPs, a Zebra core crash occurs.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4360615</td>
@@ -5695,8 +5794,8 @@ nv config apply -y</td>
 <tr>
 <td>4341608</td>
 <td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
-<td>5.10.1-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.10.1-5.11.1</td>
+<td>5.11.2-5.16.1</td>
 </tr>
 <tr>
 <td>4328729, 4261676</td>
@@ -5707,14 +5806,14 @@ nv config apply -y</td>
 <tr>
 <td>4309885</td>
 <td>Replacing a configuration using a revision ID ({{nv config apply &lt;revision-id&gt;}}) might take more than three minutes in certain cases. This issue has no functional impact.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4309870</td>
 <td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.9.4, 5.13.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.9.4, 5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4309850</td>
@@ -5722,51 +5821,51 @@ nv config apply -y</td>
 cumulus@switch:~$ nv set interface eth0 link speed 1G
 cumulus@switch:~$ nv set interface eth0 link duplex full
 cumulus@switch:~$ nv config apply</td>
-<td>5.11.0-5.12.1</td>
-<td>5.9.4, 5.13.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.9.4, 5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4298583</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
-<td>5.10.1-5.12.0</td>
-<td>5.9.4, 5.12.1-5.16.1</td>
+<td>5.10.1-5.11.0, 5.12.0-5.16.1</td>
+<td>5.9.4, 5.11.1</td>
 </tr>
 <tr>
 <td>4286413, 4328729</td>
 <td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. </td>
-<td>5.11.0-5.12.0</td>
-<td>5.12.1-5.16.1, 5.13.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1, 5.12.1-5.16.1</td>
 </tr>
 <tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.8.0-5.11.0, 5.12.0-5.16.1</td>
+<td>5.11.1</td>
 </tr>
 <tr>
 <td>4278870, 4277148</td>
 <td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4271229</td>
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.9.3, 5.11.0-5.11.5</td>
-<td>5.9.4, 5.12.0-5.16.1</td>
+<td>5.9.1-5.9.3, 5.11.0</td>
+<td>5.9.4, 5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4271216</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
 </td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4271207</td>
 <td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
-<td>5.10.1-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.10.1-5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4270957</td>
@@ -5777,14 +5876,14 @@ cumulus@switch:~$ nv config apply</td>
 <tr>
 <td>4268260</td>
 <td>Due to hardware limitations in the MPS2975, the minimum threshold for PMIC-12-COMEX-VCORE-OUT is fixed and cannot be set to zero. While a threshold violation warning might appear, system functionality remains unaffected, and the current configuration is maintained to ensure device compatibility.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4260019</td>
 <td>NVUE prevents you from setting the IPv6 RA lifetime to 0 (zero). Use vtysh mode to apply the setting.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.9.4, 5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.9.4, 5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4260016</td>
@@ -5793,93 +5892,99 @@ cumulus@switch:~$ nv config apply</td>
 &lt;&lt;sudo: tac_author_read: reply timeout after 5 secs&gt;&gt;
 
 To work around this issue, manually add the {{debian-snmp}} user to the TACACS configuration {{exclude_users}} list so that TACACS ignores this user.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4260012</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.10.0-5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4259980</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.9.3, 5.10.0-5.11.5</td>
-<td>5.9.4, 5.12.0-5.16.1</td>
+<td>5.8.0-5.9.3, 5.10.0-5.11.0</td>
+<td>5.9.4, 5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4248634</td>
 <td>When you add a new MLAG bond, the BPDU guard state of its peer is initialized to False and immediately updated correctly after resync if the bond is up. If the bond is down, resync is not done and the peer PBDU guard state is not updated, which leads to a conflict if the local PBDU guard is enabled.Even though it seems that PBDU configuration does not match between MLAG peers, this issue does not have any functional impact. It gets cleared when the bond becomes up.</td>
-<td>5.9.2-5.9.3, 5.11.0-5.11.5</td>
-<td>5.9.4, 5.12.0-5.16.1</td>
+<td>5.9.2-5.9.3, 5.11.0</td>
+<td>5.9.4, 5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4248626</td>
 <td>The {{nv show system ztp}} command might report an error when you use a system local that represents time differently from {{%a %b %d %H:%M:%S %Y %Z}}.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4246858</td>
 <td>The {{nv show service ntp &lt;vrf&gt;}} command shows the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the applied and operational columns have different values, which causes confusion.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4245856</td>
 <td>The {{nv show platform transceiver &lt;interface&gt;}} command sometimes does not show transceiver data for layer 3 Dot1q subinterfaces (such as swp2.10). To work around this issue, run the {{ethtool -m &lt;interface&gt;}} command.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4245853</td>
 <td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.9.4, 5.13.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.9.4, 5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4245849</td>
 <td>Unreachable or reject routes might not get installed into the SDK.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.9.4, 5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.9.4, 5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4245819</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.9.4, 5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.9.4, 5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4223451</td>
 <td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.9.2-5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4223450, 4203785</td>
 <td>Under unique hardware failure conditions, when the ASIC temperature sensor read fails repeatedly, the fans are set to twenty percent, which might not be high enough to maintain proper ASIC cooling, resulting in a thermal shutdown.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4223449</td>
 <td>On rare occasions, platform drivers capture the firmware state as being in ISSU when it is not the case. This causes the ASIC temperature to be read as 0, which causes the thermal algorithm to set fan speeds to low. As a result, the switch can get overheated and undergo a thermal shutdown. To work around this issue, reboot or powercycle the switch.</td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4223448</td>
 <td>When there is significant traffic generated from the CPU to the network, the health check might report a critical issue. </td>
-<td>5.11.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4220393</td>
 <td>The default GRUB timeout style changed from menu to countdown. When booting, a countdown displays on the console and you can use the escape key to break out of the countdown and show the GRUB menu. This reduces the chance of console noise halting the reboot process. If you press the escape key twice, you might go to the GRUB command line. In this case, type {{normal}} to get back to the GRUB menu or {{reboot}} to reboot the switch.</td>
 <td>5.11.0-5.11.5</td>
 <td>5.12.0-5.16.1</td>
+</tr>
+<tr>
+<td>4218485</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.5.1-5.11.0</td>
+<td>5.11.1-5.16.1, 5.12.0-5.16.1</td>
 </tr>
 <tr>
 <td>4205060</td>
@@ -5890,8 +5995,8 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4200961</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.10.0-5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4200952</td>
@@ -5947,8 +6052,8 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td>4175217</td>
 <td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
 netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.11.5</td>
-<td>5.9.4, 5.12.0-5.16.1</td>
+<td>5.10.1-5.11.0</td>
+<td>5.9.4, 5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4174646, 4042294</td>
@@ -5960,8 +6065,8 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td>4173602</td>
 <td>On the Spectrum-4 switch, {{switchd}} might crash with the following log message:
 CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
-<td>5.10.1-5.11.5</td>
-<td>5.12.0-5.16.1</td>
+<td>5.10.1-5.11.0</td>
+<td>5.11.1-5.16.1</td>
 </tr>
 <tr>
 <td>4155957</td>

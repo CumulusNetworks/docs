@@ -85,7 +85,7 @@ Air also provides advanced options, such as enabling UEFI secure boot.
 {{<img src="/images/guides/nvidia-air-v2/AddNode.png" alt="">}}
 <br>
 <br>
-After you create your topology, start the simulation. You cannot add, remove, or edit nodes after the simulation starts for the first time.
+After you create your topology, start the simulation. You cannot add, remove, or edit nodes after the simulation starts for the first time. To edit a simulation that has already been started, [revert the simulation](../Simulation-Management/#reverting-a-simulation) to delete its checkpoints and return it to an editable state.
 
 ### Breakout Ports
 

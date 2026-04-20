@@ -235,12 +235,18 @@ address-family l2vpn evpn
 In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. Leaf switches perform route aggregation per tenant VRF for scalability but this suppresses visibility of individual host link failures. EVPN unreachability signaling in a tenant VRF sends a route to advertise host unreachability after a link failure, enabling leaf switches to send LLDP TLVs informing connected NICs to avoid unreachable paths.
 
 {{%notice note%}}
-EVPN unreachability in disjoined planes is a Beta feature.
+- EVPN unreachability in disjoined planes is a Beta feature.
+- EVPN unreachability signaling is not functional if all the leaf switch uplinks to spines go down.
+- When using EVPN unreachability in disjoined planes, route aggregation is required.
+- EVPN unreachability in disjoined planes does not work during a networking restart or forced reboot.
+- Cumulus Linux does not support mixing connected and disjoined planes on the same leaf switch.
+- Cumulus Linux does not support 802.1x dynamic VRF assignments with EVPN unreachability in disjoined planes.
+- If you are migrating from connected planes with BGP disaggregation, remove BGP disaggregation configuration before configuring EVPN unreachability in disjoined planes.
 {{%/notice%}}
 
 To enable EVPN unreachability signaling for disjoined multi-plane topologies on each leaf switch tenant VRF:
 
-1. Configurate route aggregation in the tenant VRFs to summarize relevant network IPv4 and, or IPv6 prefixes:
+1. Required: Configure route aggregation in the tenant VRFs to summarize relevant network IPv4 and, or IPv6 prefixes:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only enabled
@@ -273,6 +279,23 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
 5. Enable the LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} to distribute unreachable prefix information to connected hosts.
+
+### Considerations
+
+- To avoid a drop in traffic, NVIDIA recommends that you configure the global BGP advertisement delay with the `nv set route bgp advertisement-delay` command.
+- Multiple service failures across leaf switches (such as an FRR failure on one leaf, and FRR, BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
+- FRR can send a maximum of 25k prefixes for each VRF and 100k total prefixes across all VRFs to LLDP.
+- When you use EVPN unreachability in disjoined planes with 802.1X, the radius servers must be reachable through the management VRF.
+- When the IPv6 SLAAC address for a connected host expires but the interface remains up, an unreachable route is not injected for the host.
+- The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
+- If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling. To work around this, manually configure the following vtysh commands using snippets to configure the original prefix to be injected and withdrawn:
+
+  ```
+  bgp inject unreachability ipv4 10.1.0.0/24 local
+  bgp inject unreachability ipv4 10.1.0.0/24 remote
+  no bgp inject unreachability ipv4 10.1.0.0/24 local
+  no bgp inject unreachability ipv4 10.1.0.0/24 remote
+  ```
 
 ### Show EVPN Unreachability Information
 

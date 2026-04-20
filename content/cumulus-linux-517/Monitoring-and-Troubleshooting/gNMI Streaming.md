@@ -235,13 +235,14 @@ Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
 
 ### Metrics
 
+Cumulus Linux provides a list of supported gNMI metrics here (ADD LINK). To see a list of the new metrics for Cumulus Linux 5.17, refer to {{<link url="New-and-Updated-Telemetry-Metrics" text="New and Updated Telemetry Metrics">}}.
+<!--
 Cumulus Linux supports the following metrics.
 
 {{%notice note%}}
 An asterisk (*) in the `Description` column of the tables below indicates that metric is new for Cumulus Linux 5.17.
 {{%/notice%}}
 
-<!-- vale off -->
 {{< tabs "TabID250 ">}}
 {{< tab "802.1X">}}
 
@@ -1024,7 +1025,7 @@ The `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/max
 
 {{< /tab >}}
 {{< /tabs >}}
-<!-- vale on -->
+-->
 ### User Credentials and Authentication
 
 User authentication is enabled by default. gNMI subscription requests must include the user authentication credentials with NVUE API access permissions, either in an HTTP basic authentication header according to RFC7617 or a gRPC metadata header.

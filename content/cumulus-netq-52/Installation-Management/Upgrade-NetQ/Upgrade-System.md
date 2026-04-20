@@ -14,6 +14,10 @@ For deployments running:
 
 During the upgrade process, NetQ will be temporarily unavailable.
 
+{{%notice note%}}
+- NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
+{{%/notice%}}
+
 <!--
 ## Before You Upgrade
 

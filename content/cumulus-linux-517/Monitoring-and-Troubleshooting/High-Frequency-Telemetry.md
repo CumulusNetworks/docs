@@ -68,7 +68,6 @@ a. Configure the IPFIX collector destination IP address or hostname. Specify the
    ```
    cumulus@switch:~$ nv set system telemetry export ipfix destination 10.1.1.100
    cumulus@switch:~$ nv set system telemetry export ipfix port 4317
-   cumulus@switch:~$ nv config apply
    ```
 
    You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations.
@@ -77,17 +76,21 @@ b. Specify the interval in seconds for IPFIX template and metadata export. You c
 
    ```
    cumulus@switch:~$ nv set system telemetry export ipfix template-metadata-interval 40
-   cumulus@switch:~$ nv config apply
    ```
 
 c. Configure the VRF where the export destination is reachable. The `default` VRF is the default value:
 
    ```
    cumulus@switch:~$ nv set system telemetry export ipfix vrf RED
-   cumulus@switch:~$ nv config apply
    ```
 
-d. Enable IPFIX export:
+d. Configure the maximum size for an exported IP packet containing HFT over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The default setting is determined from the outgoing interface MTU.
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix max-ip-packet-size 65535
+```
+
+e. Enable IPFIX export:
 
    ```
    cumulus@switch:~$ nv set system telemetry export ipfix state enabled

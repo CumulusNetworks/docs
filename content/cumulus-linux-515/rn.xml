@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4986343</td>
+<td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
+<td>5.15.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4986333</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4964154</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
 <td>5.15.0-5.16.1</td>
@@ -45,20 +63,20 @@
 <tr>
 <td>4922104</td>
 <td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
-<td>5.13.1-5.16.1</td>
-<td></td>
+<td>5.13.1-5.16.0</td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4922100</td>
 <td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are incorrectly categorized as fatal.  The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
-<td>5.15.1-5.16.1</td>
-<td></td>
+<td>5.15.1-5.16.0</td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4922099</td>
 <td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
-<td>5.14.0-5.16.1</td>
-<td></td>
+<td>5.14.0-5.16.0</td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4918342, 4641291</td>
@@ -1484,6 +1502,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4986333</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4964154</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
 <td>5.15.0-5.16.1</td>
@@ -1516,14 +1546,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4922104</td>
 <td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
-<td>5.13.1-5.16.1</td>
-<td></td>
+<td>5.13.1-5.16.0</td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4922099</td>
 <td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
-<td>5.14.0-5.16.1</td>
-<td></td>
+<td>5.14.0-5.16.0</td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4918342, 4641291</td>
@@ -1805,20 +1835,20 @@ interface_stats_collector[27979]: ERROR intf_stats_collector.go:485 WaitBulkCoun
 <tr>
 <td>4769258</td>
 <td>After upgrading the switch with {{onie-install -t}}, NTP configuration is missing and does not work. This issue does not occur with package or optimized image upgrade.</td>
-<td>5.15.0-5.15.1</td>
-<td>5.16.0-5.16.1</td>
+<td>5.15.0, 5.16.0-5.16.1</td>
+<td>5.15.1</td>
 </tr>
 <tr>
 <td>4769256</td>
 <td>Low fan speed alarm events occur while the corresponding fan modules are amber physically. </td>
-<td>5.15.0-5.15.1</td>
-<td>5.16.0-5.16.1</td>
+<td>5.15.0</td>
+<td>5.15.1-5.16.1</td>
 </tr>
 <tr>
 <td>4769255</td>
 <td>When using the CPU port as a SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
-<td>5.14.0-5.15.1</td>
-<td>5.16.0-5.16.1</td>
+<td>5.14.0-5.15.0</td>
+<td>5.15.1-5.16.1</td>
 </tr>
 <tr>
 <td>4752986, 4851043</td>
@@ -1863,8 +1893,8 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 <tr>
 <td>4738956</td>
 <td>When a Spectrum-4 or Spectrum-5 switch interface is connected to a ConnectX-7 NIC that performs a soft reset, adaptive routing and Spectrum-X features fail to start on the interface. To work around this issue, flap the interface.</td>
-<td>5.15.0-5.15.1</td>
-<td>5.16.0-5.16.1</td>
+<td>5.15.0</td>
+<td>5.15.1-5.16.1</td>
 </tr>
 <tr>
 <td>4734606</td>

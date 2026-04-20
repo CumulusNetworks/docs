@@ -64,6 +64,16 @@ cumulus@switch:~$ sudo apt upgrade
 <td>5.7.0-5.16.1</td>
 </tr>
 <tr>
+<td>3647426</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-5.5.1</td>
+<td>5.6.0-5.16.1</td>
+</tr>
+<tr>
 <td>3585467</td>
 <td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
 <td>5.0.0-5.6.0</td>
@@ -131,16 +141,38 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3413860</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-5.4.0</td>
+<td>5.5.0-5.16.1</td>
+</tr>
+<tr>
+<td>3413827, 3323143</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.4.0-5.4.0</td>
+<td>4.3.2, 5.5.0-5.16.1</td>
+</tr>
+<tr>
 <td>3413785, 3424967</td>
 <td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.1</td>
 <td>5.6.0-5.16.1</td>
 </tr>
 <tr>
+<td>3402935</td>
+<td>For layer 3 interfaces configured on the switch, certain triggers, such as port flaps and subinterface flaps, or when configuring the ports to and from layer 2 and layer 3, cause the dummy internal VLAN to not free up, which can result in exhaustion of the dummy internal VLANs designated for the layer 3 interfaces. When this occurs, you see the following {{switchd}} log messages:
+
+ERR dummy internal vlans exhausted
+ERR cannot allocate vlan for sub-interface
+</td>
+<td>4.4.2-5.4.0</td>
+<td>5.5.0-5.16.1</td>
+</tr>
+<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-4.3.1, 4.4.0-4.4.5, 5.0.0-5.16.1</td>
-<td>4.3.2</td>
+<td>4.2.1-5.3.1</td>
+<td>5.4.0-5.16.1</td>
 </tr>
 <tr>
 <td>3350789</td>
@@ -173,6 +205,25 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>5.4.0-5.16.1</td>
 </tr>
 <tr>
+<td>3289972</td>
+<td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
+<td>4.4.3-5.3.1</td>
+<td>5.4.0-5.16.1</td>
+</tr>
+<tr>
+<td>3283598</td>
+<td>After you restart the FRR service, show commands incorrectly reflect the VLAN associated with layer 3 VNIs as 0:
+
+# net show evpn vni 123
+VNI: 123
+Type: L3
+Tenant VRF: BLUE
+Vlan: 0
+</td>
+<td>4.4.3-5.3.1</td>
+<td>5.4.0-5.16.1</td>
+</tr>
+<tr>
 <td>3270988</td>
 <td>After restarting {{switchd}} on the NVIDIA SN2100 switch, the FAN speeds are at one hundred percent. To work around this issue, restart the {{hw-management}} service.</td>
 <td>4.4.5-5.2.0</td>
@@ -197,6 +248,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>4.3.2-4.4.5, 5.4.0-5.16.1</td>
 </tr>
 <tr>
+<td>3228899</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-5.0.1</td>
+<td>5.1.0-5.16.1</td>
+</tr>
+<tr>
 <td>3227677</td>
 <td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-5.2.1</td>
@@ -218,6 +275,14 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>3217674</td>
 <td>Multicast PTP over UDP traffic does not forward to data ports when the PTP service is disabled. To work around this issue, change the {{ptp.timestamping}} setting to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, then restart {{switchd}}.</td>
 <td>5.0.1-5.2.1</td>
+<td>5.3.0-5.16.1</td>
+</tr>
+<tr>
+<td>3216922</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
+<td>3.7.0-5.2.1</td>
 <td>5.3.0-5.16.1</td>
 </tr>
 <tr>
@@ -256,8 +321,8 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <tr>
 <td>3192808</td>
 <td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.3.1, 4.4.0-4.4.5, 5.0.1-5.16.1</td>
-<td>4.3.2</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.16.1</td>
 </tr>
 <tr>
 <td>3157240, 3173622</td>
@@ -529,14 +594,14 @@ Failure during apply. Ignore? [y/N]
 <tr>
 <td>3041307</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent FDB entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.16.1</td>
-<td>3.7.16, 4.3.1, 4.4.4-4.4.5</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16, 4.4.4-4.4.5, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.16.1</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.2-5.0.1</td>
+<td>5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3037824</td>
@@ -571,8 +636,8 @@ Failure during apply. Ignore? [y/N]
 <tr>
 <td>3021897</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
-<td>4.4.3, 5.0.0-5.16.1</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.3-5.0.1</td>
+<td>5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3021838</td>
@@ -586,8 +651,8 @@ Failure during apply. Ignore? [y/N]
 
 resq_pp: EXCEPTION=invalid literal for int() with base 10: 'v4-lpm-heavy'
 </td>
-<td>4.4.0-4.4.3, 5.0.0-5.16.1</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.0-5.0.1</td>
+<td>5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3020254</td>
@@ -636,8 +701,8 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed. This is issue is impacting all Cumulus Linux releases. 
 The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issue (this attribute has been available since CL2). It was decided to change ifupdown2's default behavior to automatically purge BUM entries added by ifup/ifreload.   </td>
-<td>3.7.15-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>3.7.15-5.0.1</td>
+<td>5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3007020</td>
@@ -651,6 +716,12 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 
 The new behavior will make sure to apply the configuration delta without disrupting any traffic as much as possible. Note that a tunnel mode change can't be applied without causing traffic loss. </td>
 <td>5.0.0-5.0.1</td>
+<td>5.1.0-5.16.1</td>
+</tr>
+<tr>
+<td>2999253</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
+<td>4.3.0-5.0.1</td>
 <td>5.1.0-5.16.1</td>
 </tr>
 <tr>
@@ -716,8 +787,8 @@ Unrecoverable internal error
 <tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
-<td>3.7.15, 4.2.1-4.3.0, 4.4.2-4.4.5, 5.0.0-5.16.1</td>
-<td>3.7.16, 4.3.1</td>
+<td>3.7.15, 4.2.1-5.0.1</td>
+<td>3.7.16, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>2943080</td>
@@ -823,8 +894,8 @@ Unrecoverable internal error
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.3.0, 4.4.0-4.4.5, 5.0.0-5.16.1</td>
-<td>3.7.16, 4.3.1</td>
+<td>4.2.1-4.3.0, 4.4.0-5.0.1</td>
+<td>4.3.1, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>2867248, 2866947, 3124967</td>
@@ -867,6 +938,15 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>4.3.1, 5.1.0-5.16.1</td>
 </tr>
 <tr>
+<td>2854787</td>
+<td>An unexpected software system shutdown might occur due to a thermal zones issue in the {{hw-management}} package. You see the following message in the {{/var/log/syslog}} file before the shutdown:
+
+thermal thermal_zoneX: critical temperature reached (33 C), shutting down
+</td>
+<td>4.3.0-5.0.1</td>
+<td>5.1.0-5.16.1</td>
+</tr>
+<tr>
 <td>2831968</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0, 4.4.0-5.1.0</td>
@@ -883,6 +963,12 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>FRR restarts even when the NVUE configuration overwrite mode is set.</td>
 <td>5.0.0-5.3.1</td>
 <td>5.4.0-5.16.1</td>
+</tr>
+<tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-4.3.0, 4.4.2-5.0.1</td>
+<td>4.3.1, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>2812075, 3077547</td>
@@ -1017,6 +1103,16 @@ cumulus@switch:~$ sudo apt upgrade
 <td>5.7.0-5.16.1</td>
 </tr>
 <tr>
+<td>3647426</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-5.5.1</td>
+<td>5.6.0-5.16.1</td>
+</tr>
+<tr>
 <td>3585467</td>
 <td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
 <td>5.0.0-5.6.0</td>
@@ -1084,16 +1180,38 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3413860</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-5.4.0</td>
+<td>5.5.0-5.16.1</td>
+</tr>
+<tr>
+<td>3413827, 3323143</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.4.0-5.4.0</td>
+<td>4.3.2, 5.5.0-5.16.1</td>
+</tr>
+<tr>
 <td>3413785, 3424967</td>
 <td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.1</td>
 <td>5.6.0-5.16.1</td>
 </tr>
 <tr>
+<td>3402935</td>
+<td>For layer 3 interfaces configured on the switch, certain triggers, such as port flaps and subinterface flaps, or when configuring the ports to and from layer 2 and layer 3, cause the dummy internal VLAN to not free up, which can result in exhaustion of the dummy internal VLANs designated for the layer 3 interfaces. When this occurs, you see the following {{switchd}} log messages:
+
+ERR dummy internal vlans exhausted
+ERR cannot allocate vlan for sub-interface
+</td>
+<td>4.4.2-5.4.0</td>
+<td>5.5.0-5.16.1</td>
+</tr>
+<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-4.3.1, 4.4.0-4.4.5, 5.0.0-5.16.1</td>
-<td>4.3.2</td>
+<td>4.2.1-5.3.1</td>
+<td>5.4.0-5.16.1</td>
 </tr>
 <tr>
 <td>3350789</td>
@@ -1126,6 +1244,25 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>5.4.0-5.16.1</td>
 </tr>
 <tr>
+<td>3289972</td>
+<td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
+<td>4.4.3-5.3.1</td>
+<td>5.4.0-5.16.1</td>
+</tr>
+<tr>
+<td>3283598</td>
+<td>After you restart the FRR service, show commands incorrectly reflect the VLAN associated with layer 3 VNIs as 0:
+
+# net show evpn vni 123
+VNI: 123
+Type: L3
+Tenant VRF: BLUE
+Vlan: 0
+</td>
+<td>4.4.3-5.3.1</td>
+<td>5.4.0-5.16.1</td>
+</tr>
+<tr>
 <td>3270988</td>
 <td>After restarting {{switchd}} on the NVIDIA SN2100 switch, the FAN speeds are at one hundred percent. To work around this issue, restart the {{hw-management}} service.</td>
 <td>4.4.5-5.2.0</td>
@@ -1144,6 +1281,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>5.3.0-5.16.1</td>
 </tr>
 <tr>
+<td>3228899</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-5.0.1</td>
+<td>5.1.0-5.16.1</td>
+</tr>
+<tr>
 <td>3227677</td>
 <td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-5.2.1</td>
@@ -1153,6 +1296,14 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>3218207</td>
 <td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
 <td>4.3.0-5.2.1</td>
+<td>5.3.0-5.16.1</td>
+</tr>
+<tr>
+<td>3216922</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
+<td>3.7.0-5.2.1</td>
 <td>5.3.0-5.16.1</td>
 </tr>
 <tr>
@@ -1181,6 +1332,12 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
 <td>5.0.0-5.0.1</td>
 <td>5.1.0-5.16.1</td>
+</tr>
+<tr>
+<td>3192808</td>
+<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.16.1</td>
 </tr>
 <tr>
 <td>3157240, 3173622</td>
@@ -1343,14 +1500,14 @@ export HOME
 <tr>
 <td>3041307</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent FDB entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.16.1</td>
-<td>3.7.16, 4.3.1, 4.4.4-4.4.5</td>
+<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16, 4.4.4-4.4.5, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.16.1</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.2-5.0.1</td>
+<td>5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3037824</td>
@@ -1373,8 +1530,8 @@ export HOME
 <tr>
 <td>3021897</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
-<td>4.4.3, 5.0.0-5.16.1</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.3-5.0.1</td>
+<td>5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3021838</td>
@@ -1388,8 +1545,8 @@ export HOME
 
 resq_pp: EXCEPTION=invalid literal for int() with base 10: 'v4-lpm-heavy'
 </td>
-<td>4.4.0-4.4.3, 5.0.0-5.16.1</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.0-5.0.1</td>
+<td>5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3020254</td>
@@ -1425,8 +1582,8 @@ resq_pp: EXCEPTION=invalid literal for int() with base 10: 'v4-lpm-heavy'
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed. This is issue is impacting all Cumulus Linux releases. 
 The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issue (this attribute has been available since CL2). It was decided to change ifupdown2's default behavior to automatically purge BUM entries added by ifup/ifreload.   </td>
-<td>3.7.15-5.1.0</td>
-<td>5.2.0-5.16.1</td>
+<td>3.7.15-5.0.1</td>
+<td>5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>3007020</td>
@@ -1440,6 +1597,12 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 
 The new behavior will make sure to apply the configuration delta without disrupting any traffic as much as possible. Note that a tunnel mode change can't be applied without causing traffic loss. </td>
 <td>5.0.0-5.0.1</td>
+<td>5.1.0-5.16.1</td>
+</tr>
+<tr>
+<td>2999253</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
+<td>4.3.0-5.0.1</td>
 <td>5.1.0-5.16.1</td>
 </tr>
 <tr>
@@ -1494,8 +1657,8 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <tr>
 <td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
-<td>3.7.15, 4.2.1-4.3.0, 4.4.2-4.4.5, 5.0.0-5.16.1</td>
-<td>3.7.16, 4.3.1</td>
+<td>3.7.15, 4.2.1-5.0.1</td>
+<td>3.7.16, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>2943080</td>
@@ -1602,8 +1765,8 @@ Unrecoverable internal error
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.3.0, 4.4.0-4.4.5, 5.0.0-5.16.1</td>
-<td>3.7.16, 4.3.1</td>
+<td>4.2.1-4.3.0, 4.4.0-5.0.1</td>
+<td>4.3.1, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>2867248, 2866947, 3124967</td>
@@ -1646,6 +1809,15 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>4.3.1, 5.1.0-5.16.1</td>
 </tr>
 <tr>
+<td>2854787</td>
+<td>An unexpected software system shutdown might occur due to a thermal zones issue in the {{hw-management}} package. You see the following message in the {{/var/log/syslog}} file before the shutdown:
+
+thermal thermal_zoneX: critical temperature reached (33 C), shutting down
+</td>
+<td>4.3.0-5.0.1</td>
+<td>5.1.0-5.16.1</td>
+</tr>
+<tr>
 <td>2831968</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0, 4.4.0-5.1.0</td>
@@ -1662,6 +1834,12 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>FRR restarts even when the NVUE configuration overwrite mode is set.</td>
 <td>5.0.0-5.3.1</td>
 <td>5.4.0-5.16.1</td>
+</tr>
+<tr>
+<td>2815646</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-4.3.0, 4.4.2-5.0.1</td>
+<td>4.3.1, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>2812075, 3077547</td>

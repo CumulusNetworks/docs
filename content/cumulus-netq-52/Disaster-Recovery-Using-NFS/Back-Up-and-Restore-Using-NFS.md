@@ -135,5 +135,5 @@ CASSANDRA_RSYNC_BW_LIMIT=5120 \
 ```
 
 - You can monitor `rsync` activity using the `ps aux | grep rsync` command.
-- You can check the size of the backup directory using the `du -sh /mnt/nfs-share/hybrid-backup-*/node-data/*` command
+- You can check the size of the backup directory using the `du -sh /mnt/nfs-share/hybrid-backup-*/node-data/*` command.
 - Log files are stored in the `/var/log/vm-backuprestore.log` directory by default.

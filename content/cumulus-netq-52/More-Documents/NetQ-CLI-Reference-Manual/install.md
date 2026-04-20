@@ -86,6 +86,8 @@ netq install cluster bundle
     <text-bundle-url>
     <text-cluster-config>
     [restore <text-backup-file>]
+    [ignore-pre-checks] 
+    [validate-only] 
 ```
 
 ### Required Arguments
@@ -100,7 +102,8 @@ netq install cluster bundle
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | restore | \<text-backup-file\> | Specify the path where the backup .tar file resides |
-
+| ignore-pre-checks | NA | Skips pre-checks (not recommended)|
+| validate-only | NA | Performs installation checks but does not proceed with installation |
 
 ### Sample Usage
 
@@ -112,7 +115,14 @@ nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-5.2.0.tg
 
 - `netq install cluster config generate`
 - - -
+<!--difference between this and netq install cluster config extend-cluster?
+## netq install cluster config extend-cluster
 
+
+netq install cluster config extend-cluster <text-cluster-config> <text-num-nodes> 
+
+
+-->
 ## netq install cluster config generate
 
 Run this command on your *master* node to generate a JSON template that you can use to specify your VM's cluster configuration attributes as part of the high-availability scale cluster deployment. The default version of this command creates a template with fields for three nodes.
@@ -180,6 +190,40 @@ nvidia@netq-server:~$ netq install cluster config generate workers 2
 ### Related Commands
 
 - `netq install cluster bundle`
+
+- - -
+
+## netq install cluster extend-cluster
+
+Simultaneously upgrades NetQ and adds additional nodes to your NVLink + Ethernet deployment.
+
+### Syntax
+
+```
+netq install cluster extend-cluster 
+    bundle <text-bundle-url> 
+    <text-cluster-config>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
+| NA | \<text-cluster-config\> | Specify the cluster configuration JSON file; specify the additional nodes in the file itself  |
+
+### Options
+
+None
+
+### Sample Usage
+
+```
+nvidia@<hostname>:~$ netq install cluster config extend-cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
+```
+### Related Commands
+
+- `netq install cluster config generate`
 
 - - -
 ## netq install cluster full
@@ -334,8 +378,9 @@ Installs {{<link title="Install NetQ NVLink" text="NetQ NVLink">}} using the JSO
 netq install nvl bundle <text-bundle-url> 
     kong-rw-password <text-kong-rw-password> 
     kong-ro-password <text-kong-ro-password> 
-    <text-cluster-config>
-    [ignore-pre-checks]
+    <text-cluster-config> 
+    [cert-mode <text-cert-mode>] 
+    [ignore-pre-checks] 
 ```
 
 ### Required Arguments
@@ -351,6 +396,7 @@ netq install nvl bundle <text-bundle-url>
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| cert-mode| \<text-cert-mode\> | The TLS certificate mode for southbound (switch) communication. Set to `self-signed` (default) to use auto-generated certificates, or `user-cert` to provide your own CA and TLS certificates. |
 | ignore-pre-checks | NA | Skips pre-checks (not recommended)|
 
 ### Related Commands

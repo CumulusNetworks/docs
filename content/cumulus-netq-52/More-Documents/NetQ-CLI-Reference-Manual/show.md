@@ -3184,7 +3184,7 @@ Version                              Uptime                    Reinitialize Time
 
 ## netq show otlp
 
-Displays OpenTelemetry health, status, security, whitelist, or certificate information. Several forms of this command are available.
+Displays OpenTelemetry health, status, security, whitelist, or certificate information.
 
 ### Syntax
 
@@ -3196,9 +3196,15 @@ netq show otlp endpoint-ca-cert
 netq show otlp endpoints 
     [json]
 
+netq show otlp exporter-security-mode 
+    [json] 
+
 netq show otlp health 
     [verbose] 
     [json]
+
+netq show otlp ingress-security-mode 
+    [json] 
 
 netq show otlp security-mode 
     [json]
@@ -3235,6 +3241,8 @@ netq show otlp whitelist tsdb-name <text-tsdb-name>
 
 - `netq add otlp endpoint`
 - `netq modify otlp endpoint`
+- `netq set otlp exporter-security-mode `
+- `netq set otlp security-mode`
 
 - - -
 ## netq show ptp
@@ -4494,7 +4502,7 @@ Displays summary status of a scheduled validation for a given protocol or servic
 ```
 netq show validation summary
     [name <text-validation-name>]
-    type (addr | agents | bgp | evpn | interfaces | ip | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
+    type (addr | agents | ar | bgp | evpn | interfaces | ip | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
     [around <text-time-hr>]
     [json]
 ```

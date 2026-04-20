@@ -76,6 +76,16 @@ cumulus@switch:~$ sudo apt upgrade
 <td>5.7.0-5.16.1</td>
 </tr>
 <tr>
+<td>3647426</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-5.5.1</td>
+<td>5.6.0-5.16.1</td>
+</tr>
+<tr>
 <td>3585467</td>
 <td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
 <td>5.0.0-5.6.0</td>
@@ -149,10 +159,32 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3413860</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-5.4.0</td>
+<td>5.5.0-5.16.1</td>
+</tr>
+<tr>
+<td>3413827, 3323143</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.4.0-5.4.0</td>
+<td>4.3.2, 5.5.0-5.16.1</td>
+</tr>
+<tr>
 <td>3413785, 3424967</td>
 <td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.1</td>
 <td>5.6.0-5.16.1</td>
+</tr>
+<tr>
+<td>3402935</td>
+<td>For layer 3 interfaces configured on the switch, certain triggers, such as port flaps and subinterface flaps, or when configuring the ports to and from layer 2 and layer 3, cause the dummy internal VLAN to not free up, which can result in exhaustion of the dummy internal VLANs designated for the layer 3 interfaces. When this occurs, you see the following {{switchd}} log messages:
+
+ERR dummy internal vlans exhausted
+ERR cannot allocate vlan for sub-interface
+</td>
+<td>4.4.2-5.4.0</td>
+<td>5.5.0-5.16.1</td>
 </tr>
 <tr>
 <td>3388067</td>
@@ -177,8 +209,8 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-4.3.1, 4.4.0-4.4.5, 5.0.0-5.16.1</td>
-<td>4.3.2</td>
+<td>4.2.1-5.3.1</td>
+<td>5.4.0-5.16.1</td>
 </tr>
 <tr>
 <td>3350789</td>
@@ -214,6 +246,25 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <td>3301988</td>
 <td>Some EVPN multihoming show commands might cause BGP to crash if you use the {{json}} flag and attempt to reference the default VRF by name. For example, {{show bgp l2vpn evpn es-vrf json}}.</td>
 <td>5.0.0-5.3.1</td>
+<td>5.4.0-5.16.1</td>
+</tr>
+<tr>
+<td>3289972</td>
+<td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
+<td>4.4.3-5.3.1</td>
+<td>5.4.0-5.16.1</td>
+</tr>
+<tr>
+<td>3283598</td>
+<td>After you restart the FRR service, show commands incorrectly reflect the VLAN associated with layer 3 VNIs as 0:
+
+# net show evpn vni 123
+VNI: 123
+Type: L3
+Tenant VRF: BLUE
+Vlan: 0
+</td>
+<td>4.4.3-5.3.1</td>
 <td>5.4.0-5.16.1</td>
 </tr>
 <tr>
@@ -277,6 +328,14 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 <td>5.3.0-5.16.1</td>
 </tr>
 <tr>
+<td>3216922</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.16.1</td>
+</tr>
+<tr>
 <td>3211054</td>
 <td>On the NVIDIA Spectrum-2 switch, when receiving multicast traffic on a PIM enabled VLAN, the multicast traffic is forwarded correctly to the associated VLAN, however WJH shows traffic loss with the error:
 
@@ -312,8 +371,8 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <tr>
 <td>3192808</td>
 <td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.3.1, 4.4.0-4.4.5, 5.0.1-5.16.1</td>
-<td>4.3.2</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.16.1</td>
 </tr>
 <tr>
 <td>3187469, 3188618</td>

@@ -341,11 +341,9 @@ You configure the echo function by setting the following parameters in the topol
 BFD offload improves BFD session scale by offloading BFD numbered sessions to a kernel driver called `sx_bfd`, which is responsible for maintaining BFD sessions. BFD offload is disabled by default.
 
 {{%notice note%}}
-<!--SUPPORTED IN 5.17 - BFD offload does not support BFD sessions based on the IPv6 link-local address.-->
 - When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
 - If a BFD peer is down; for example, due to path failures, (not admin-down), the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might cause an increase in CPU usage.
 - When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode.
-- If you have a mix of BFD sessions to non-link-local IPv4 or IPv6 destinations, NVIDIA recommends that you do *not* enable BFD offload.
 - Depending on the configured BFD intervals and the number of BFD sessions, enabling and disabling BFD offload might result in session flaps, especially with aggressive timers on lower-end platforms. BFD sessions are expected to run in offload mode in a steady state and moving offloaded sessions back to non-offload (control-plane) mode is rare. In the unlikely event that such a transition is required, you must set the BFD session timers to values appropriate for non-offload mode to avoid flaps. When running multiple BFD sessions in non-offload mode, the minimum recommended timer values are 3 for the detect multiplier, 300 milliseconds for the transmit interval, and 900 milliseconds for the receive interval.
 - If you use frequent BFD timers (such as 50 milliseconds and a multiplier of 3) for BFD sessions at scale, NVIDIA recommends increasing the BFD control plane policer values with the `nv set system control-plane policer bfd burst` and `nv set system control-plane policer bfd rate` commands.
 {{%/notice%}}

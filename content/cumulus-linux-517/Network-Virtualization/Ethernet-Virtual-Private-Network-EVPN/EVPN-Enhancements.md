@@ -245,7 +245,7 @@ In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to mult
 {{%/notice%}}
 
 
-To configure EVPN unreachability in disjoined planes, configure {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} in tenant VRFs, and enable unreachability advertisements in the `l2vpn-evpn` address-family. The following example on a leaf switch configures:
+To configure EVPN unreachability in disjoined planes, configure {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} in tenant VRFs, and enable unreachability advertisements in the `l2vpn-evpn` address-family. The following example on a leaf switch assumes a working EVPN configuration with IPv4 and IPv6 routes in VRF `TENANT1` and configures:
 
 - IPv4 and IPv6 aggregate routes to summarize relevant networks in vrf `TENANT1`
 - IPv4 and IPv6 unreachability for interfaces matching the aggregate prefixes in vrf `TENANT1`
@@ -254,6 +254,10 @@ To configure EVPN unreachability in disjoined planes, configure {{<link url="/#b
 - BGP prefix export to LLDP in vrf `TENANT1` 
 - The LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}}
 
+
+{{< tabs "TabID1728 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only enabled
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unicast aggregate-route 2001:db8::/64 summary-only enabled
@@ -261,12 +265,51 @@ cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreach
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreachability advertise-unreach interfaces-match 2001:db8::/64
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family l2vpn-evpn advertise ipv4-unreachability state enabled  
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family l2vpn-evpn advertise ipv6-unreachability state enabled
-cumulus@leaf01:mgmt:~$ nv set vrf default router bgp advertisement-delay 150
-cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreachability export-lldp state
-cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreachability export-lldp state
+cumulus@leaf01:mgmt:~$ nv set vrf bgp advertisement-delay time 150
+cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreachability export-lldp state enabled
+cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreachability export-lldp state enabled
 cumulus@leaf01:mgmt:~$ nv set system lldp tlv egress-policy unreachable-prefix state enabled
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+leaf01# config t
+leaf01(config)# bgp advertisement-delay 150
+leaf01(config)# router bgp 65001 vrf TENANT1
+leaf01(config-router)#  address-family ipv4 unicast
+leaf01(config-router-af)#   aggregate-address 10.1.0.0/16 summary-only
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)#  address-family ipv4 unreachability
+leaf01(config-router-af)#   bgp advertise-unreach interfaces-match 10.1.0.0/16
+leaf01(config-router-af)#   bgp export lldp
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)#  address-family ipv6 unicast
+leaf01(config-router-af)#   aggregate-address 2001:db8::/64 summary-only
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)#  address-family ipv6 unreachability
+leaf01(config-router-af)#   bgp advertise-unreach interfaces-match 2001:db8::/64
+leaf01(config-router-af)#   bgp export lldp
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)#  address-family l2vpn evpn
+leaf01(config-router-af)#   advertise ipv4 unreachability
+leaf01(config-router-af)#   advertise ipv6 unreachability
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)# exit
+leaf01(config)# end
+leaf01# wr mem
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+leaf01# 
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+
 ### Considerations
 
 - EVPN Multihoming is not supported with unreachability in disjoined planes.

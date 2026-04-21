@@ -2220,6 +2220,7 @@ Integrated configuration saved to /etc/frr/frr.conf
 {{< /tabs >}}
 ### Considerations
 
+- To extend BGP-LLDP unreachability to EVPN and tenant VRFs, see {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}}.
 - Multiple service failures across leaf switches (such as an FRR failure on one leaf, and FRR, BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
 - FRR can send a maximum of 25k prefixes for each VRF and 100k total prefixes across all VRFs to LLDP.
 - When you use BGP unreachability in disjoined planes with 802.1X, the radius servers must be reachable through the management VRF.
@@ -2227,12 +2228,12 @@ Integrated configuration saved to /etc/frr/frr.conf
 - The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
 - If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling. To work around this, manually configure the following vtysh commands using snippets to configure the original prefix to be injected and withdrawn:
 
-  ```
-  bgp inject unreachability ipv4 10.1.0.0/24 local
-  bgp inject unreachability ipv4 10.1.0.0/24 remote
-  no bgp inject unreachability ipv4 10.1.0.0/24 local
-  no bgp inject unreachability ipv4 10.1.0.0/24 remote
-  ```
+```
+bgp inject unreachability ipv4 10.1.0.0/24 local
+bgp inject unreachability ipv4 10.1.0.0/24 remote
+no bgp inject unreachability ipv4 10.1.0.0/24 local
+no bgp inject unreachability ipv4 10.1.0.0/24 remote
+```
 
 ### Show BGP Unreachability Information
 

@@ -245,7 +245,7 @@ In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to mult
 {{%/notice%}}
 
 
-To configure EVPN unreachability in disjoined planes, configure {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} in tenant VRFs, and enable unreachability advertisements in the `l2vpn-evpn` address-family. The following example on a leaf switch assumes a working EVPN configuration with IPv4 and IPv6 routes in VRF `TENANT1` and configures:
+To configure EVPN unreachability in disjoined planes, configure {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} in tenant VRFs, and enable unreachability advertisements in the `l2vpn-evpn` address-family. The following example on a leaf switch assumes a working EVPN configuration with IPv4 and IPv6 routes in VRF `TENANT1` and configures:
 
 - IPv4 and IPv6 aggregate routes to summarize relevant networks in vrf `TENANT1`
 - IPv4 and IPv6 unreachability for interfaces matching the aggregate prefixes in vrf `TENANT1`
@@ -308,7 +308,6 @@ leaf01#
 ```
 {{< /tab >}}
 {{< /tabs >}}
-
 
 ### Considerations
 

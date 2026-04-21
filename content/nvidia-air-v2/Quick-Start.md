@@ -109,23 +109,6 @@ To add an SSH key, fill in the **Name** and **Public Key** fields, then select *
 <br>
 You can delete SSH keys if you no longer need them, or if they become compromised.
 
-## Resource Budgets
-
-The number of simulation resources allotted to a user is tied to the user's account. For an account using a valid business email, Air allocates the following resource budget:
-- 60 vCPUs
-- 90 GB memory
-- 650 GB storage
-- 4 running simulations
-
-NGC organizations have the largest resource budgets and can accommodate large simulations. The default resource budget for an organization is:
-- 300 vCPUs
-- 300 GB memory
-- 3 TB storage
-- 10 GB image storage
-- 15 running simulations
-
-If you need to expand the resources for an organization beyond the default resource budget, contact the Air Support team at [air-support@nvidia.com](mailto:air-support@nvidia.com).
-
 ## Related Information
 
 - [Cumulus Linux in a Virtual Environment](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Cumulus-Linux-in-a-Virtual-Environment/)

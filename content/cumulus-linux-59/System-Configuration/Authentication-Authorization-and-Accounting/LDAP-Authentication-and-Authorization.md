@@ -193,6 +193,22 @@ map    passwd shell "/bin/bash"
 In LDAP, the ***map*** refers to one of the supported maps specified in the `manpage` for `nslcd.conf` (such as *passwd* or *group*).
 {{%/notice%}}
 
+### Assign NVUE User Groups with LDAP
+
+You can configure your LDAP server to assign a Linux {{<link url="User-Accounts/#default-roles" text="user group">}} for a user.
+
+The following example configures an LDAP directory entry that assigns the adminuser to the `nvapply` group when they authenticate so that they can configure the switch with NVUE:
+
+```
+dn: cn=nvapply,ou=People,dc=domain,dc=local
+objectClass: posixGroup
+cn: nvapply
+gidNumber: 992
+memberUid: adminuser
+```
+
+The `nvapply` group allows both NVUE configuration and show commands. The `nvshow` group allows only NVUE show commands.
+
 ### Create Home Directory on Login
 <!-- vale off -->
 If you want to use unique home directories, run the `sudo pam-auth-update` command and select `Create home directory on login` in the PAM configuration dialog (press the space bar to select the option). Select OK, then press Enter to save the update and close the dialog.

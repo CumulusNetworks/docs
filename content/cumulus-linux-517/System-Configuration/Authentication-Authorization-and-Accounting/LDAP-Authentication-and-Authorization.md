@@ -285,7 +285,7 @@ map group gidnumber objectSid:S-1-5-21-1391733952-3059161487-1245441232
 
 ### Assign NVUE User Groups with LDAP
 
-You can configure your LDAP server to assign a Linux {{<link url="Authentication-Authorization-and-Accounting/User-Accounts/" text="user group">}} for a user.
+You can configure your LDAP server to assign a Linux {{<link url="User-Accounts/#default-roles" text="user group">}} for a user.
 
 The following example configures an LDAP directory entry that assigns the adminuser to the `nvapply` group when they authenticate so that they can configure the switch with NVUE:
 

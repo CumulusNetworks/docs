@@ -2015,7 +2015,6 @@ leaf01# exit
 
 In disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. For scalability, leaf switches perform route aggregation, which can reduce visibility into individual host link failures. BGP-based unreachability signaling enables the advertisement of host reachability changes following a link failure. Upon receiving BGP unreachable route advertisements, leaf switches use LLDP TLVs to notify directly connected NICs to avoid forwarding traffic over unreachable paths.
 
-
 {{%notice note%}}
 - BGP-LLDP unreachability in disjoined planes is a Beta feature.
 - BGP unreachability signaling is not functional if all the leaf switch uplinks to spines go down.
@@ -2050,7 +2049,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unreach
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-3. Enable the IPv4 and, or IPv6 unreachability SAFIs, and enable the SAFI on desired peer-groups or neighbors:
+3. Enable the IPv4 and, or IPv6 unreachability SAFIs, and enable the SAFI on desired peer groups or neighbors:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unreachability state enabled  
@@ -2085,7 +2084,6 @@ cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart path-selection-deferra
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-
 7. Configure `bgp export lldp` to enable FRR to LLDP integration to send IPv4 and, or IPv6 prefix information to LLDP:
 
 ```
@@ -2097,7 +2095,6 @@ cumulus@leaf01:mgmt:~$ nv config apply
 8. Enable the LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} to distribute unreachable prefix information to connected hosts.
 
 {{< /tab >}}
-
 {{< tab "Spine Configuration ">}}
 
 To enable BGP-LLDP unreachability signaling for disjoined multi-plane topologies on each spine switch:
@@ -2131,8 +2128,6 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< /tabs >}}
 
 {{< /tab >}}
-
-
 {{< tab "vtysh Commands ">}}
 
 {{< tabs "TabID1776 ">}}
@@ -2140,16 +2135,18 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 The following commands configure:
 
-- BGP advertisement delay of 150 seconds 
-- BGP Graceful Restart
-- Aggregate route of 10.1.0.0./16
-- The BGP IPv4 unreachability SAFI, activated for peer-group SPINES
-- Unreachability advertisements for interfaces matching 10.1.0.0./16
-- BGP PIC with `advertise-origin` and `nhg-per-origin`
-- BGP unerachable prefix export to LLDP
+- BGP advertisement delay of 150 seconds.
+- BGP Graceful Restart.
+- Aggregate route of 10.1.0.0./16.
+- The BGP IPv4 unreachability SAFI, activated for peer-group SPINES.
+- Unreachability advertisements for interfaces matching 10.1.0.0./16.
+- BGP PIC with `advertise-origin` and `nhg-per-origin`.
+- BGP unerachable prefix export to LLDP.
 
 ```
-leaf01# config t
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# configure terminal
 leaf01(config)# bgp advertisement-delay 150
 leaf01(config)# bgp graceful-restart
 leaf01(config)# router bgp 65000
@@ -2169,20 +2166,14 @@ leaf01(config-router-af)#   neighbor SPINES activate
 leaf01(config-router-af)#  exit-address-family
 leaf01(config-router)# exit
 leaf01(config)# end
-leaf01# wr mem
-Note: this version of vtysh never writes vtysh.conf
-Building Configuration...
-Integrated configuration saved to /etc/frr/frr.conf
-[OK]
+leaf01# write memory
 leaf01# 
-
 ```
 
 Then enable the LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} to distribute unreachable prefix information to connected hosts.
 
 {{< /tab >}}
 {{< tab "Spine Configuration">}}
-
 
 The following commands configure:
 
@@ -2191,7 +2182,9 @@ The following commands configure:
 - BGP PIC with `nhg-per-origin`
 
 ```
-spine01# conf t
+cumulus@spine01:mgmt:~$ sudo vtysh
+...
+leaf01# configure terminal
 spine01(config)# bgp graceful-restart
 spine01(config)#  router bgp 65001
 spine01(config-router)#  bgp router-id 10.10.0.10
@@ -2206,11 +2199,7 @@ spine01(config-router-af)#   neighbor LEAFS activate
 spine01(config-router-af)#  exit-address-family
 spine01(config-router)# exit
 spine01(config)# end
-spine01# wr mem
-Note: this version of vtysh never writes vtysh.conf
-Building Configuration...
-Integrated configuration saved to /etc/frr/frr.conf
-[OK]
+spine01# write memory
 ```
 
 {{< /tab >}}
@@ -2218,15 +2207,16 @@ Integrated configuration saved to /etc/frr/frr.conf
 
 {{< /tab >}}
 {{< /tabs >}}
+
 ### Considerations
 
-- To extend BGP-LLDP unreachability to EVPN and tenant VRFs, see {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}}.
+- To extend BGP-LLDP unreachability to EVPN and tenant VRFs, refer to {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}}.
 - Multiple service failures across leaf switches (such as an FRR failure on one leaf, and FRR, BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
 - FRR can send a maximum of 25k prefixes for each VRF and 100k total prefixes across all VRFs to LLDP.
 - When you use BGP unreachability in disjoined planes with 802.1X, the radius servers must be reachable through the management VRF.
 - When the IPv6 SLAAC address for a connected host expires but the interface remains up, an unreachable route is not injected for the host.
 - The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
-- If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling. To work around this, manually configure the following vtysh commands using snippets to configure the original prefix to be injected and withdrawn:
+- If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling. To work around this issue, manually configure the following vtysh commands using snippets to configure the original prefix to be injected and withdrawn:
 
 ```
 bgp inject unreachability ipv4 10.1.0.0/24 local
@@ -2236,7 +2226,6 @@ no bgp inject unreachability ipv4 10.1.0.0/24 remote
 ```
 
 ### Show BGP Unreachability Information
-
 
 To show BGP unreachability information for a specific IPv4 route, run the `nv show vrf <vrf-id> router bgp address-family ipv4-unreachability <route>` command:
 

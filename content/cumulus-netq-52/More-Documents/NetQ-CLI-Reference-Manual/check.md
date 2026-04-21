@@ -46,7 +46,7 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
 | include | \<addr-number-range-list\> | Include the specified validation tests |
 | exclude | \<addr-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -108,7 +108,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
 | include | \<agents-number-range-list\> | Include the specified validation tests |
 | exclude | \<agents-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -170,6 +170,90 @@ Agent Health Test   : passed
 - ```netq config agent```
 
 - - -
+## netq check ar
+
+The adaptive routing validation tests look for configuration anomalies across switches. The output displays the status (passed/failed/skipped) of all tests and a summary including:
+
+- Total number of nodes found
+- Number of nodes validated
+- Number of nodes that failed the validation
+- Number of nodes that have been silent for 120 seconds (rotten)
+- Number of nodes with warnings
+- Number of sessions that have failed to establish a connection
+
+### Syntax
+
+```
+netq check ar 
+    [streaming] 
+    [hostnames <text-list-hostnames>] 
+    [check_filter_id <text-check-filter-id>] 
+    [include <ar-number-range-list> | exclude <ar-number-range-list>] 
+    [around <text-time>] 
+    [json | summary]
+```
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| streaming | NA | Perform a streaming validation |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
+| include | \<ar-number-range-list\> | Include the specified validation tests |
+| exclude | \<ar-number-range-list\> | Exclude the specified validation tests |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON format |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
+
+### Sample Usage
+
+```
+nvidia@switch:~$ netq check ar
+ar check result summary:
+
+Total nodes         : 5
+Checked nodes       : 4
+Failed nodes        : 2
+Rotten nodes        : 1
+Warning nodes       : 0
+Skipped nodes       : 0
+
+
+AR Global Config consistency Test      :  0 warnings, 1 errors
+AR and RoCE Config consistency Test    :  0 warnings, 1 errors
+AR Interface Config consistency Test   :  Passed.
+
+
+AR Global Config Consistency Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+mlx-4600c-17      AR configuration for mlx-4600c-17 set to Disa
+                  bled, inconsistent with switch-15,          
+                  switch-14, switch-232                        
+
+
+AR and RoCE Config Consistency Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+switch-14        AR enabled for switch-14 but roce mode set to
+                 Lossy                                      
+
+
+List of nodes rotten and not verified:
+-------------------------------------
+switch-231
+
+```
+### Related Commands
+
+
+- ```netq show unit-tests ar```
+
+- - -
 <!-- vale off -->
 ## netq check bgp
 
@@ -209,9 +293,9 @@ None
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | vrf | \<vrf\> | When you configure a VRF, the accepted values include: <ul><li>default: use the default routing table</li><li> mgmt: use management routing table</li><li>\<custom\>: use user-defined routing table</li></ul> |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
-| include | \<agent-number-range-list\> | Include the specified validation tests |
-| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
+| include | \<bgp-number-range-list\> | Include the specified validation tests |
+| exclude | \<bgp-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
@@ -305,9 +389,9 @@ None
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | match-version | \<cl-ver\> | Identifies all switches with a Cumulus Linux version other than the one specified with this option. Specify `cl-ver` values in *x.y.z* format, for example 4.2.0.
 | min-version | \<cl-ver\> | Identifies all switches with a Cumulus Linux version older than the one specified with this option. Specify `cl-ver` values in *x.y.z* format, for example 3.7.12. |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
-| include | \<agent-number-range-list\> | Include the specified validation tests |
-| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
+| include | \<version-number-range-list\> | Include the specified validation tests |
+| exclude | \<version-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
@@ -318,13 +402,21 @@ None
 nvidia@switch:~$ netq check cl-version
 version check result summary:
 
-Total nodes         : 21
-Checked nodes       : 21
-Failed nodes        : 0
-Rotten nodes        : 0
+Total nodes         : 5
+Checked nodes       : 4
+Failed nodes        : 1
+Rotten nodes        : 1
 Warning nodes       : 0
+Skipped nodes       : 0
 
-Cumulus Linux Image Version Test   : passed
+
+Cumulus Linux Image Version Test   : 0 warnings, 1 errors
+
+
+Cumulus Linux Image Version Test details:
+Hostname          Entity       Version                              Reason
+----------------- ------------ ------------------------------------ ---------------------------------------------
+border01      OS           5.16.0                               os version 5.16.0, different from 5.17.0     
 ```
 
 List devices which do not match a version:
@@ -419,9 +511,9 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
-| include | \<agent-number-range-list\> | Include the specified validation tests |
-| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
+| include | \<evpn-number-range-list\> | Include the specified validation tests |
+| exclude | \<evpn-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
@@ -510,9 +602,9 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
-| include | \<agent-number-range-list\> | Include the specified validation tests |
-| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
+| include | \<interfaces-number-range-list\> | Include the specified validation tests |
+| exclude | \<interfaces-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
@@ -617,9 +709,9 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
-| include | \<agent-number-range-list\> | Include the specified validation tests |
-| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
+| include | \<mlag-number-range-list\> | Include the specified validation tests |
+| exclude | \<mlag-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
@@ -727,9 +819,9 @@ None
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | unverified | NA | Find nodes without a known peer link |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
-| include | \<agent-number-range-list\> | Include the specified validation tests |
-| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
+| include | \<mtu-number-range-list\> | Include the specified validation tests |
+| exclude | \<mtu-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
@@ -849,9 +941,9 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
-| include | \<agent-number-range-list\> | Include the specified validation tests |
-| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
+| include | \<ntp-number-range-list\> | Include the specified validation tests |
+| exclude | \<ntp-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
@@ -930,7 +1022,7 @@ None
 | streaming | NA | Run a streaming validation |
 | label | \<text-label-names\> | Comma-separated list (no spaces) of device labels to include in validation |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
 | include | \<roce-number-range-list\> | Include the specified validation tests |
 | exclude | \<roce-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -945,52 +1037,148 @@ The following example displays several RoCE errors in the network's fabric. The 
 nvidia@switch:mgmt:~$ netq check roce
 roce check result summary:
 
-Total nodes                             : 2
-Checked nodes                           : 2
-Failed nodes                            : 2
-Rotten nodes                            : 0
-Warning nodes                           : 0
-Skipped nodes                           : 0
-Checked nodes hostname                  : mlx-3700c-23, mlx-3700c-24
-
-RoCE mode Test                 : 0 warnings, 1 errors
-RoCE Classification Test       : 0 warnings, 3 errors
-RoCE Congestion Control Test   : 0 warnings, 2 errors
-RoCE Flow Control Test         : 0 warnings, 2 errors
-RoCE ETS mode Test             : passed
+Total nodes         : 6
+Checked nodes       : 5
+Failed nodes        : 4
+Rotten nodes        : 1
+Warning nodes       : 0
+Skipped nodes       : 0
 
 
-RoCE mode Test details:
+RoCE Mode and Flow Control Test    :  0 warnings, 6 errors
+RoCE Classification and ETS Test   :  0 warnings, 8 errors
+RoCE Congestion Control Test       :  Passed.
+RoCE Miscellaneous Test            :  Passed.
+RoCE QoS Trust Mode Test           :  0 warnings, 4 errors
+RoCE Version Test                  :  0 warnings, 1 errors
+RoCE ACS P2P Mode Test             :  Passed.
+
+
+RoCE Mode and Flow Control Test details:
 Hostname          Reason
 ----------------- ---------------------------------------------
-mlx-3700c-24      RoCE Lossy mode inconsistent with mlx-3700c-2
-                  3                                            
-RoCE Classification Test details:
+nic-l-vrt-netq-20 RoCE Lossless mode for interface ens7f0np0 in
+                  consistent with switch-14,                  
+                  nic-l-vrt-netq-20 port ens7f1np1,            
+                  nic-l-vrt-netq-40 ports [ens1f0np0,          
+                  ens1f1np1, ens8f0np0, ens7f0np0, ibs8f1]     
+nic-l-vrt-netq-20 RoCE Lossless mode for interface ens8f0np0 in
+                  consistent with switch-14,                  
+                  nic-l-vrt-netq-20 port ens7f1np1,            
+                  nic-l-vrt-netq-40 ports [ens1f0np0,          
+                  ens1f1np1, ens8f0np0, ens7f0np0, ibs8f1]     
+nic-l-vrt-netq-20 RoCE Lossless mode for interface ens8f1np1 in
+                  consistent with switch-14,                  
+                  nic-l-vrt-netq-20 port ens7f1np1,            
+                  nic-l-vrt-netq-40 ports [ens1f0np0,          
+                  ens1f1np1, ens8f0np0, ens7f0np0, ibs8f1]     
+nic-l-vrt-netq-40 RoCE Lossless mode for interface ens7f1np1 in
+                  consistent with switch-14,                  
+                  nic-l-vrt-netq-20 port ens7f1np1,            
+                  nic-l-vrt-netq-40 ports [ens1f0np0,          
+                  ens1f1np1, ens8f0np0, ens7f0np0, ibs8f1]     
+switch-15        RoCE Lossless mode inconsistent with switch-
+                  14, nic-l-vrt-netq-20 port ens7f1np1,        
+                  nic-l-vrt-netq-40 ports [ens1f0np0,          
+                  ens1f1np1, ens8f0np0, ens7f0np0, ibs8f1]     
+switch-232         RoCE Lossless mode inconsistent with switch-
+                  14, nic-l-vrt-netq-20 port ens7f1np1,        
+                  nic-l-vrt-netq-40 ports [ens1f0np0,          
+                  ens1f1np1, ens8f0np0, ens7f0np0, ibs8f1]     
+
+
+RoCE Classification and ETS Test details:
 Hostname          Reason
 ----------------- ---------------------------------------------
-mlx-3700c-23      Invalid traffic-class mapping for switch-prio
-                  rity 4.Expected 0 Got 3                      
-mlx-3700c-24      DSCP mapping config invalid for switch-prio 3
-                  .Expected DSCP: 24,25,26,27,28,29,30,31.  
-                  DSCP mapping config invalid for switch-prio 5.
-                  Expected DSCP: 40,41,42,43,44,45,46,47.        
-mlx-3700c-24      PCP mapping config invalid for switch-prio 3.
-                  Expected PCP: 3. PCP mapping config invalid f
-                  or switch-prio 4.Expected PCP: 4.            
-RoCE Congestion Control Test details:
+nic-l-vrt-netq-40 RoCE SP->DSCP mapping  inconsistent for inter
+                  face ens7f0np0 with switch-232, switch-14,   
+                  switch-15,                                  
+                  nic-l-vrt-netq-40 ports [ens1f1np1,          
+                  ens1f0np0],                                  
+                  nic-l-vrt-netq-20 ports [ens8f1np1,          
+                  ens8f0np0, ens7f1np1, ens7f0np0]             
+nic-l-vrt-netq-40 RoCE SP->DSCP mapping  inconsistent for inter
+                  face ens7f0np0 with switch-232, switch-14,   
+                  switch-15,                                  
+                  nic-l-vrt-netq-40 ports [ens1f1np1,          
+                  ens1f0np0],                                  
+                  nic-l-vrt-netq-20 ports [ens8f1np1,          
+                  ens8f0np0, ens7f1np1, ens7f0np0]             
+nic-l-vrt-netq-40 RoCE SP->DSCP mapping  inconsistent for inter
+                  face ens7f1np1 with switch-232, switch-14,   
+                  switch-15,                                  
+                  nic-l-vrt-netq-40 ports [ens1f1np1,          
+                  ens1f0np0],                                  
+                  nic-l-vrt-netq-20 ports [ens8f1np1,          
+                  ens8f0np0, ens7f1np1, ens7f0np0]             
+nic-l-vrt-netq-40 RoCE SP->DSCP mapping  inconsistent for inter
+                  face ens7f1np1 with switch-232, switch-14,   
+                  switch-15,                                  
+                  nic-l-vrt-netq-40 ports [ens1f1np1,          
+                  ens1f0np0],                                  
+                  nic-l-vrt-netq-20 ports [ens8f1np1,          
+                  ens8f0np0, ens7f1np1, ens7f0np0]             
+nic-l-vrt-netq-40 RoCE SP->DSCP mapping  inconsistent for inter
+                  face ens8f0np0 with switch-232, switch-14,   
+                  switch-15,                                  
+                  nic-l-vrt-netq-40 ports [ens1f1np1,          
+                  ens1f0np0],                                  
+                  nic-l-vrt-netq-20 ports [ens8f1np1,          
+                  ens8f0np0, ens7f1np1, ens7f0np0]             
+nic-l-vrt-netq-40 RoCE SP->DSCP mapping  inconsistent for inter
+                  face ens8f0np0 with switch-232, switch-14,   
+                  switch-15,                                  
+                  nic-l-vrt-netq-40 ports [ens1f1np1,          
+                  ens1f0np0],                                  
+                  nic-l-vrt-netq-20 ports [ens8f1np1,          
+                  ens8f0np0, ens7f1np1, ens7f0np0]             
+nic-l-vrt-netq-40 RoCE SP->DSCP mapping  inconsistent for inter
+                  face ibs8f1 with switch-232, switch-14,      
+                  switch-15,                                  
+                  nic-l-vrt-netq-40 ports [ens1f1np1,          
+                  ens1f0np0],                                  
+                  nic-l-vrt-netq-20 ports [ens8f1np1,          
+                  ens8f0np0, ens7f1np1, ens7f0np0]             
+nic-l-vrt-netq-40 RoCE SP->DSCP mapping  inconsistent for inter
+                  face ibs8f1 with switch-232, switch-14,      
+                  switch-15,                                  
+                  nic-l-vrt-netq-40 ports [ens1f1np1,          
+                  ens1f0np0],                                  
+                  nic-l-vrt-netq-20 ports [ens8f1np1,          
+                  ens8f0np0, ens7f1np1, ens7f0np0]             
+
+
+RoCE QoS Trust Mode Test details:
 Hostname          Reason
 ----------------- ---------------------------------------------
-mlx-3700c-23      Congestion Config TC Mismatch.Expected enable
-                  d-tc: 0,3.                                   
-mlx-3700c-23      Congestion Config mode Mismatch.Expected cong
-                  estion-mode: ECN.                            
-RoCE Flow Control Test details:
+nic-l-vrt-netq-40 Expected QOS trust mode is dscp/both and conf
+                  igured QOS trust mode is N/A for interface ib
+                  s8f1                                         
+nic-l-vrt-netq-40 Expected QOS trust mode is dscp/both and conf
+                  igured QOS trust mode is pcp for interface en
+                  s7f0np0                                      
+nic-l-vrt-netq-40 Expected QOS trust mode is dscp/both and conf
+                  igured QOS trust mode is pcp for interface en
+                  s7f1np1                                      
+nic-l-vrt-netq-40 Expected QOS trust mode is dscp/both and conf
+                  igured QOS trust mode is pcp for interface en
+                  s8f0np0                                      
+
+
+RoCE Version Test details:
 Hostname          Reason
 ----------------- ---------------------------------------------
-mlx-3700c-23      Invalid RoCE PFC rx-enabled flag.Expected: en
-                  abled.                                       
-mlx-3700c-23      RoCE PFC Priority Mismatch.Expected pfc-prior
-                  ity: 3.
+nic-l-vrt-netq-40 RoCE version IB/RoCE v1 for interface ibs8f1 
+                  inconsistent with nic-l-vrt-netq-40 ports [en
+                  s7f0np0, ens8f0np0, ens1f1np1, ens7f1np1,    
+                  ens1f0np0],                                  
+                  nic-l-vrt-netq-20 ports [ens8f1np1,          
+                  ens8f0np0, ens7f1np1, ens7f0np0]             
+
+
+List of nodes rotten and not verified:
+-------------------------------------
+switch-231
 ```
 ### Related Commands
 
@@ -998,7 +1186,7 @@ mlx-3700c-23      RoCE PFC Priority Mismatch.Expected pfc-prior
 - `netq show roce-config`
 - `netq show roce-counters pool`
 - `netq show events`
-- `netq show unit-tests`
+- `netq show unit-tests roce`
 
 - - -
 ## netq check sensors
@@ -1035,9 +1223,9 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
-| include | \<agent-number-range-list\> | Include the specified validation tests |
-| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
+| include | \<sensors-number-range-list\> | Include the specified validation tests |
+| exclude | \<sensors-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
@@ -1099,7 +1287,7 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
 | include | \<topology-number-range-list\> | Include the specified validation tests |
 | exclude | \<topology-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -1176,9 +1364,9 @@ None
 | label | \<text-label-names\> | Comma-separated list (no spaces) of device labels to include in validation |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | unverified | NA | Find nodes with no peer |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
-| include | \<agent-number-range-list\> | Include the specified validation tests |
-| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
+| include | \<vlan-number-range-list\> | Include the specified validation tests |
+| exclude | \<vlan-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
@@ -1268,9 +1456,9 @@ None
 | ---- | ---- | ---- |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
-| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
-| include | \<agent-number-range-list\> | Include the specified validation tests |
-| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| check_filter_id | \<text-check-filter-id> | Include the specified filter for a validation |
+| include | \<vxlan-number-range-list\> | Include the specified validation tests |
+| exclude | \<vxlan-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |

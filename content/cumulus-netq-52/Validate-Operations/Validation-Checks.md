@@ -21,6 +21,17 @@ NetQ Agent validation looks for an agent status of *rotten* for each node in the
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | Agent health | Checks for nodes that have failed or lost communication |
+
+## Adaptive Routing Validation Tests
+
+The adaptive routing validation tests look for configuration anomalies across switches.
+
+| Test Number | Test Name | Description |
+| :---------: | --------- | ----------- |
+| 0 | AR global config consistency | Checks the consistency of the AR global configuration (Switch only)|
+| 1 | AR and RoCE config consistency | Checks the consistency of the AR and RoCE configuration (Switch only)|
+| 2 | AR interface config consistency| Checks the consistence of the AR interface configuration (Switch only)|
+
 ## BGP Validation Tests
 
 The BGP validation tests look for status and configuration anomalies.
@@ -76,8 +87,6 @@ The interface validation tests look for consistent configuration between two nod
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 (deprecated) | Administrative state | Checks for consistency of administrative state on two sides of a physical interface |
-| 1 (deprecated) | Operational state | Checks for consistency of operational state on two sides of a physical interface |
 | 2 | Speed | Checks for consistency of the speed setting on two sides of a physical interface |
 | 3 | Auto-negotiation | Checks for consistency of the auto-negotiation setting on two sides of a physical interface |
 
@@ -118,7 +127,7 @@ The NTP validation test looks for poor operational status of the NTP service.
 
 ## RoCE Validation Tests
 
-The RoCE validation tests look for consistent RoCE and QoS configurations across nodes.
+The RoCE validation tests look for consistent RoCE and QoS configurations across nodes. NetQ validates DPU RoCE configurations hourly. You can adjust the validation frequency by adding the `arg-roce-sampling-interval` parameter to `/opt/mellanox/doca/services/telemetry/config/collection_configs/inventory_netq.cfg` (for example, `arg-roce-sampling-interval=5m`). <!--RM4965944-->
 
 {{%notice note%}}
 NetQ supports RoCE lossless and lossy modes; NetQ monitoring and validation checks do not support the single shared buffer mode, `lossless-single-ipool`.
@@ -126,12 +135,14 @@ NetQ supports RoCE lossless and lossy modes; NetQ monitoring and validation chec
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 | RoCE mode | Checks whether RoCE is configured for lossy or lossless mode |
-| 1 | RoCE classification | Checks for consistency of DSCP, service pool, port group, and traffic class settings |
-| 2 | RoCE congestion control | Checks for consistency of ECN and RED threshold settings |
-| 3 | RoCE flow control | Checks for consistency of PFC configuration for RoCE lossless mode |
-| 4 | RoCE ETS mode | Checks for consistency of Enhanced Transmission Selection settings |
-| 5 | RoCE miscellaneous | Checks for consistency across related services |
+| 0 | RoCE mode and flow control | Checks RoCE mode consistency (lossy or lossless) and flow control configuration (Switch + Host/DPU) |
+| 1 | RoCE classification and ETS | Checks RoCE DSCP/PCP classification and ETS bandwidth (Switch + Host/DPU) |
+| 2 | RoCE congestion control | Checks RoCE congestion control configuration (Switch only) |
+| 3 | RoCE miscellaneous | Checks miscellaneous RoCE configurations for consistency (Switch only, NVUE) |
+| 4 | RoCE QoS trust mode| Checks RoCE QoS trust mode (DSCP) consistency (Host/DPU only)|
+| 5 | RoCE version | Checks for RoCE version consistency across fabric (Host/DPU only)|
+| 6 | RoCE ACS P2P mode| Checks that ACS/PCIe P2P mode is enabled for GPUDirect RDMA (Host/DPU only)|
+
 ## Sensor Validation Tests
 
 The sensor validation tests looks for chassis power supply, fan, and temperature sensors that are not operating as expected.

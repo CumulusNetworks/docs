@@ -3,7 +3,7 @@ title: NVIDIA DSX Air User Guide
 author: NVIDIA
 weight: 10
 cascade:
-    product: NVIDIA Air 2.0
+    product: NVIDIA DSX Air
 ---
 
 NVIDIA DSX Air is a cloud-hosted, data center simulation platform that behaves like a real-world production environment. Use DSX Air to create a digital twin of your IT infrastructure so that you can:
@@ -12,4 +12,4 @@ NVIDIA DSX Air is a cloud-hosted, data center simulation platform that behaves l
 
 Visit the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA DSX Air product site">}} to learn more.
 
-To access NVIDIA DSX Air, go to {{<exlink url="https://air-ngc.nvidia.com" text="air-ngc.nvidia.com">}}.
+To access NVIDIA DSX Air, go to {{<exlink url="https://dsx-air.nvidia.com" text="dsx-air.nvidia.com">}}.

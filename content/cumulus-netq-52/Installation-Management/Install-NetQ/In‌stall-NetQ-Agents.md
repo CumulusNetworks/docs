@@ -440,7 +440,7 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 {{<tab "NetQ CLI" >}}
 
-If you have a high-availability server cluster arrangement, you should configure the NetQ Agent to distribute data across all servers in the cluster. For {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster deployments">}}, configure the agent with the IP address of the `master-ip` and each `ha-node`. For 5-node deployments, you do not need to specify the `worker-nodes`.
+If you have a high-availability server cluster arrangement, you should configure the NetQ Agent to distribute data across all servers in the cluster. For {{<link title="Install NetQ for Ethernet and NVLink (Beta)" text="scale cluster deployments">}}, configure the agent with the IP address of the `master-ip` and each `ha-node`. For 5-node deployments, you do not need to specify the `worker-nodes`.
 
 To configure the agent to send data to the servers in your cluster, run:
 
@@ -480,7 +480,7 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 3. Set the parameters for the agent as follows:
     - port: 31980 (default configuration)
-    - cluster-servers: IP addresses of all NetQ servers in your cluster. For {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster deployments">}}, configure the agent with the IP address of the `master-ip` and each `ha-node`. For 5-node deployments, you do not need to specify the `worker-nodes`.
+    - cluster-servers: IP addresses of all NetQ servers in your cluster. For {{<link title="Install NetQ for Ethernet and NVLink (Beta)" text="scale cluster deployments">}}, configure the agent with the IP address of the `master-ip` and each `ha-node`. For 5-node deployments, you do not need to specify the `worker-nodes`.
     - vrf: default (or one that you specify)
     - inband-interface: the interface used to reach your NetQ server and used by lifecycle management to connect to the switch (for deployments where switches are managed through an in-band interface)
 

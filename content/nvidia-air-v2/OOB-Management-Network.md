@@ -2,7 +2,7 @@
 title: OOB Management Network
 author: NVIDIA
 weight: 45
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
 ## Overview

@@ -2,10 +2,10 @@
 title: Account Setup
 author: NVIDIA
 weight: 15
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
-NVIDIA Air uses {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html" text="NVIDIA NGC">}} for authentication and organization management.
+NVIDIA DSX Air uses {{<exlink url="https://docs.nvidia.com/ngc/latest/ngc-user-guide.html" text="NVIDIA NGC">}} for authentication and organization management.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ To add additional users to your organization, you need an enterprise org. For mo
 
 ## Log In to Air
 
-1. Go to {{<exlink url="https://air-ngc.nvidia.com" text="air-ngc.nvidia.com">}} and click **Login**.
+1. Go to {{<exlink url="https://dsx-air.nvidia.com" text="dsx-air.nvidia.com">}} and click **Login**.
 
 {{<img src="/images/guides/nvidia-air-v2/air-landing.png" alt="NVIDIA Air landing page" width="800px">}}
 
@@ -59,9 +59,20 @@ Only NGC organization owners can start a free trial. If you are the org owner, A
 
 Click **Start Trial** to activate the free trial for your organization. If you are not the organization owner, contact your NGC organization admin to start the trial.
 
+## Billing
+
+NVIDIA DSX Air bills usage by compute hour, measured down to the minute.
+
+A compute hour represents either:
+
+- 1 vCPU used for 1 hour, or
+- 8 GB of memory used for 1 hour
+
+vCPUs and memory are billed independently. For example, a VM with 1 vCPU and 8 GB of memory running for 1 hour consumes 2 compute hours (1 for the vCPU + 1 for the memory).
+
 ## Add a User and Assign Roles
 
-To access NVIDIA Air, each user in your organization must have at least one of the following roles assigned at the organization level:
+To access NVIDIA DSX Air, each user in your organization must have at least one of the following roles assigned at the organization level:
 
 - **Air Org Admin**
 - **Air User**

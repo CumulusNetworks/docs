@@ -21,9 +21,9 @@ You can upgrade NVOS at either the switch-level or domain-level. Switch-level op
 
 1. Authenticate your credentials by {{<link title="NVLink Bringup/#switch-profile-endpoints" text="creating a switch profile">}}. Make a POST request to the `/v1/switch-profiles` endpoint that contains your username and password. Copy the `ProfileID` from the response body.
 
-2. Upload the NVOS image by making a POST request to the `/v1/images` endpoint. After the image is successfully uploaded, the response body returns an `ImageID`.
+2. Upload the NVOS image by making a POST request to the `/v1/images` endpoint with the `ImageType` field set to `nvos`. After the image is successfully uploaded, the response body returns an `ImageID`.
 
-3. Make a POST request to the `/v1/upgrade-switch` endpoint; select **switch-based NVOS upgrade** and include the `ProfileID` and `ImageID` from the previous steps, in addition to the IP addresses of the switches you want to upgrade.
+3. Make a POST request to the `/v1/upgrade-switch` endpoint with `UpgradeType` field set to `nvos`; select **switch-based upgrade** and include the `ProfileID` and `ImageID` from the previous steps, in addition to the IP addresses of the switches you want to upgrade. Note that the `ImageType` must match the `UpgradeType`.
 
 4. If all initial validations succeed, the API returns an `HTTP 202 Accepted` response with a JSON body containing an operation ID. You can make a GET request to the `/v1/operations/` endpoint to track the progress of the upgrade.
 
@@ -32,11 +32,11 @@ You can upgrade NVOS at either the switch-level or domain-level. Switch-level op
 
 1. Authenticate your credentials by {{<link title="NVLink Bringup/#switch-profile-endpoints" text="creating a switch profile">}}. Make a POST request to the `/v1/switch-profiles` endpoint that contains your username and password. Copy the `ProfileID` from the response body.
 
-2. Upload the NVOS image by making a POST request to the `/v1/images` endpoint. After the image is successfully uploaded, the response body returns an `ImageID`.
+2. Upload the NVOS image by making a POST request to the `/v1/images` endpoint with the `ImageType` field set to `nvos`. After the image is successfully uploaded, the response body returns an `ImageID`.
 
 3. Make a PATCH request to the `/v1/domains/{id}` endpoint to create an association between the profile ID from the first step and a given domain. The response body returns a `DomainID`.
 
-4. Make a POST request to the `/v1/upgrade-switch` endpoint; select **domain-based NVOS upgrade** and include the `DomainID` and `ImageID` from the previous steps.
+4. Make a POST request to the `/v1/upgrade-switch` endpoint with the `UpgradeType` field set to `nvos`; select **domain-based upgrade** and include the `DomainID` and `ImageID` from the previous steps. Note that the `ImageType` must match the `UpgradeType`.
 
 5. If all initial validations succeed, the API returns an `HTTP 202 Accepted` response with a JSON body containing an operation ID. You can make a GET request to the `/v1/operations/` endpoint to track the progress of the upgrade.
 
@@ -45,31 +45,37 @@ You can upgrade NVOS at either the switch-level or domain-level. Switch-level op
 
 ## Upgrade CPLD Firmware 
 
-You can upgrade firmware at either the switch-level or domain-level. Switch-level operations are prioritized before domain-level operations.
+You can upgrade firmware at either the switch-level or domain-level. Switch-level operations are prioritized before domain-level operations. After you upgrade the firmware, NetQ NVLink automatically validates the firmware to ensure version consistency.
 
 {{<tabs "TabID50" >}}
 {{<tab "Switch-level upgrade"  >}}
 
 1. Authenticate your credentials by {{<link title="NVLink Bringup/#switch-profile-endpoints" text="creating a switch profile">}}. Make a POST request to the `/v1/switch-profiles` endpoint that contains your username and password. Copy the `ProfileID` from the response body.
 
-2. Upload the firmware image by making a POST request to the `/v1/images` endpoint. After the image is successfully uploaded, the response body returns an `ImageID`.
+2. Upload the firmware image by making a POST request to the `/v1/images` endpoint with the `ImageType` field set to `cpld`. After the image is successfully uploaded, the response body returns an `ImageID`.
 
-3. Make a POST request to the `/v1/upgrade-switch` endpoint; select **switch-based CPLD firmware upgrade** and include the `ProfileID` and `ImageID` from the previous steps, in addition to the IP addresses of the switches you want to upgrade.
+3. Make a POST request to the `/v1/upgrade-switch` endpoint with `UpgradeType` field set to `cpld`; select **switch-based CPLD firmware upgrade** and include the `ProfileID` and `ImageID` from the previous steps, in addition to the IP addresses of the switches you want to upgrade. Note that the `ImageType` must match the `UpgradeType`.
 
 4. If all initial validations succeed, the API returns an `HTTP 202 Accepted` response with a JSON body containing an operation ID. You can make a GET request to the `/v1/operations/` endpoint to track the progress of the upgrade.
+
 
 {{</tab>}}
 {{<tab "Domain-level upgrade" >}}
 
 1. Authenticate your credentials by {{<link title="NVLink Bringup/#switch-profile-endpoints" text="creating a switch profile">}}. Make a POST request to the `/v1/switch-profiles` endpoint that contains your username and password. Copy the `ProfileID` from the response body.
 
-2. Upload the firmware image by making a POST request to the `/v1/images` endpoint. After the image is successfully uploaded, the response body returns an `ImageID`.
+2. Upload the firmware image by making a POST request to the `/v1/images` endpoint with the `ImageType` field set to `cpld`. After the image is successfully uploaded, the response body returns an `ImageID`.
 
 3. Make a PATCH request to the `/v1/domains/{id}` endpoint to create an association between the profile ID from the first step and a given domain. The response body returns a `DomainID`.
 
-4. Make a POST request to the `/v1/upgrade-switch` endpoint; select **domain-based CPLD firmware upgrade** and include the `DomainID` and `ImageID` from the previous steps.
+4. Make a POST request to the `/v1/upgrade-switch` endpoint with the `UpgradeType` field set to `cpld`; select **domain-based CPLD firmware upgrade** and include the `DomainID` and `ImageID` from the previous steps. Note that the `ImageType` must match the `UpgradeType`.
 
 5. If all initial validations succeed, the API returns an `HTTP 202 Accepted` response with a JSON body containing an operation ID. You can make a GET request to the `/v1/operations/` endpoint to track the progress of the upgrade.
 
+
 {{</tab >}}
 {{</tabs>}}
+
+## Validate Version Consistency
+
+After an upgrade is finished, NetQ NVLink automatically performs a validation to ensure that all devices are running the same NVOS or firmware versions. You can view versions across a domain by making a GET request to `/v1/validations/fw-version` or applying the `FW_VERSIONS` filter to the `/v1/kpis/` endpoint. See {{<link title="Collect KPIs/#apply-filters" text="Collect KPIs">}} for examples that use filters. 

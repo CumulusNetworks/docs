@@ -25,7 +25,7 @@
 <td>4.9.0-4.15.1</td>
 </tr>
 <tr>
-<td>3781503</td>
+<td>3781503, 3775625</td>
 <td>When you upgrade a Cumulus Linux switch running the nslcd service with NetQ LCM, the {{nslcd}} service fails to start after the upgrade. To work around this issue, manually back up your {{nslcd}} configuration and restore it after the upgrade.</td>
 <td>4.8.0</td>
 <td>4.9.0-4.15.1</td>
@@ -106,7 +106,7 @@ sudo kubectl set image deployment/netq-prom-adapter prometheus=docker-registry:5
 <td>4.9.0-4.15.1</td>
 </tr>
 <tr>
-<td>3429528</td>
+<td>3429528, 3588417</td>
 <td>EVPN and RoCE validation cards in the NetQ UI might not display data when Cumulus Linux switches are configured with high VNI scale.</td>
 <td>4.6.0-4.8.0</td>
 <td>4.9.0-4.15.1</td>

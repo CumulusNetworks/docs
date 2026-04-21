@@ -328,8 +328,89 @@ The following table lists all system event messages organized by type. You can {
 </body>
 </table>
 
+## Correlation Events
+
+Unlike other system events, you can configure and manage correlation event thresholds via a helper script located at `/tmp/installables/nvl-scripts/update-correlation-thresholds.sh`
+
+- Display current thresholds: `./update-correlation-thresholds.sh --list`
+- Set a new threshold (this action triggers a pod restart) : `./update-correlation-thresholds.sh --set-engine <KEY>=<VALUE>`
+- List existing VMRule correlation alerts: `./update-correlation-thresholds.sh --show-vmrule`
+- Patch a VMRule alert expression (updates within 30 seconds): `./update-correlation-thresholds.sh --set-vmrule 1.0 'rate(hw_roce_adp_retrans[2m]) > 200'`
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>correlation</td>
+<td>Adaptive retransmission rate exceeds threshold on host NIC</td>
+<td>info</td>
+<td>NIC retransmissions detected on @hostname NIC @device_name — investigating fabric path</td>
+<td>NIC retransmissions detected on fit-l-vrt-netq-40 NIC ens7f0np0 — investigating fabric path</td>
+</tr>
+<tr>
+<td>correlation</td>
+<td>Retransmission timeout rate exceeds threshold, routing drops suspected</td>
+<td>error</td>
+<td>Critical: Retransmission timeouts on @hostname NIC @device_name — routing/black hole suspected</td>
+<td>Critical: Retransmission timeouts on fit-l-vrt-netq-40 NIC ens7f0np0 — routing/black hole suspected</td>
+</tr>
+<tr>
+<td>correlation</td>
+<td>WJH drop rate or symbol error rate exceeds threshold on connected switch port</td>
+<td>error</td>
+<td>Faulty link detected on @hostname NIC @device_name — drops and symbol errors on @leaf:@leaf_port</td>
+<td>Faulty link detected on fit-l-vrt-netq-40 NIC ens7f0np0 — drops and symbol errors on moose-232:swp61s1</td>
+</tr>
+<tr>
+<td>correlation</td>
+<td>CNP rate elevated above baseline, congestion control active</td>
+<td>error</td>
+<td>Congestion detected on @hostname NIC @device_name — congestion control active (CNP)</td>
+<td>Congestion detected on fit-l-vrt-netq-40 NIC ens7f0np0 — congestion control active (CNP)</td>
+</tr>
+<tr>
+<td>correlation</td>
+<td>TX pause frame rate elevated, host being throttled by switch</td>
+<td>error</td>
+<td>NIC TX pauses on @hostname NIC @device_name — straggler node being throttled by switch</td>
+<td>NIC TX pauses on fit-l-vrt-netq-40 NIC ens7f0np0 — straggler node being throttled by switch</td>
+</tr>
+<tr>
+<td>correlation</td>
+<td>RX pause frame rate elevated, host cannot consume data fast enough</td>
+<td>info</td>
+<td>Slow receiver detected on @hostname NIC @device_name — NIC sending RX pauses</td>
+<td>Slow receiver detected on fit-l-vrt-netq-40 NIC ens7f0np0 — NIC sending RX pauses</td>
+</tr>
+<tr>
+<td>correlation</td>
+<td>Previously firing correlation alert resolved (metric dropped below threshold)</td>
+<td>info</td>
+<td>Correlation alert resolved on @hostname NIC @device_name — metric dropped below threshold</td>
+<td>Correlation alert resolved on fit-l-vrt-netq-40 NIC ens7f0np0 — metric dropped below threshold</td>
+</tr>
+</tbody>
+</table>
+
+
+
 <!-- vale off -->
-## CL Support Events
+## Cumulus Linux Support Events
 <!-- vale on -->
 
 <table>
@@ -1054,7 +1135,7 @@ The following table lists all system event messages organized by type. You can {
 <tr>
 <td>vxlan</td>
 <td>Replication list is contains an inconsistent set of nodes<></td>
-<td>Error<></td>
+<td>Error</td>
 <td>VNI @vni replication list inconsistent with @conflicts diff:@diff<></td>
 <!-- vale off -->
 <td>VNI 14 replication list inconsistent with ["leaf03","leaf04"] diff:+:["leaf03","leaf04"] -:["leaf07","leaf08"]</td>

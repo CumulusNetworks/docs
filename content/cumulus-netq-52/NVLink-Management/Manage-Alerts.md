@@ -13,14 +13,14 @@ All triggering conditions are preconfigured and cannot be modified.
 
 The *port status* alert is triggered by a group of events that affect port operation. These alerts are based on deviations in a group of metrics---if any metric exceeds two standard deviations from the average, an alert is raised. The alert includes the port ID, domain, node ID, and port number.
 
-| Alert Type | Alert Group | Alert Name(s) | Severity | Trigger Condition | Behavior |
-| :-- | :-- | :-- | :-- | :-- | :-- |
-| Ongoing Port Validation | `ongoing_port_validation` | `OngoingPortValidation` | warning | More than 3 errors of a specific metric are detected within a 24-hour window. | The alert is sent continuously until the condition is resolved to ensure delivery even if external systems are temporarily down. |
+| Alert Type | Alert Group | Alert Name(s) | Severity |
+| :-- | :-- | :-- | :-- |
+| Ongoing Port Validation | `ongoing_port_validation` | `OngoingPortValidation` | warning |
 
 
 ## Anomaly Detection
 
-For each new metric value, NetQ analyzes historical data over a predefined time period using a statistical model. If the value deviates significantly from the expected range (beyond two standard deviations), the system triggers an alert.  The following alerts are included:
+For each new metric value, NetQ analyzes historical data over a predefined time period using a statistical model. If the value deviates significantly from the expected range (beyond two standard deviations), the system triggers an alert.
 
 | Alert Type | Alert Group | Alert Name(s) | Severity |
 | :-- | :-- | :-- | :-- |
@@ -29,14 +29,25 @@ For each new metric value, NetQ analyzes historical data over a predefined time 
 | Port Degradation Warning | `port_metrics_deviation` | `PortDegradationHistogram1`, `PortDegradationHistogram2`, `PortDegradationHistogram3`, `PortDegradationBER`, `PortDegradationLinkErrors` | warning |
 | Packet Discard Warning | `port_metrics_deviation` | `PacketDiscard` | warning |
 
-## License Validations
+## License Expiration
 
-NetQ broadcasts alerts when your {{<link title="Manage Licenses" text="license">}} is expired or about to expire. 
+NetQ broadcasts alerts when your {{<link title="Manage Licenses" text="NetQ for NVLink license">}} is expired or about to expire. To enable or disable these alerts refer to {{<link title="Manage Licenses/#manage-license-alerts" text="manage license alerts">}}.
 
 | Alert Type | Alert Group | Alert Name(s) | Severity |
 | :-- | :-- | :-- | :-- |
 | Expires Soon | `licensing` | `LicenseValidation` | warning |
 | Expired | `licensing` | `LicenseValidation` | critical |
+
+<!--
+## Certificate Expiration
+-->
+
+## Leak Sensor Notifications
+
+| Alert Type | Alert Group | Alert Name(s) | Severity |
+| :-- | :-- | :-- | :-- |
+| Redfish event alert on a switch or GPU | `webhook-gateway` | `RedfishEventNotification` | warning/critical |
+| Redfish connection status update on a switch or GPU | `oob-connectivity` | `RedfishStatusNotification` | warning/critical |
 
 
 ## Update the Webhook Receiver URL

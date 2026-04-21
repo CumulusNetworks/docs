@@ -59,6 +59,17 @@ Only NGC organization owners can start a free trial. If you are the org owner, A
 
 Click **Start Trial** to activate the free trial for your organization. If you are not the organization owner, contact your NGC organization admin to start the trial.
 
+## Billing
+
+NVIDIA DSX Air bills usage by compute hour, measured down to the minute.
+
+A compute hour represents either:
+
+- 1 vCPU used for 1 hour, or
+- 8 GB of memory used for 1 hour
+
+vCPUs and memory are billed independently. For example, a VM with 1 vCPU and 8 GB of memory running for 1 hour consumes 2 compute hours (1 for the vCPU + 1 for the memory).
+
 ## Add a User and Assign Roles
 
 To access NVIDIA DSX Air, each user in your organization must have at least one of the following roles assigned at the organization level:

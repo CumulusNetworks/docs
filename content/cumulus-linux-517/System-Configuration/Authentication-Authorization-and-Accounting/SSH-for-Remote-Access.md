@@ -148,6 +148,12 @@ DenyUsers  = user4
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+When you configure SSH to allow certain users to establish an SSH session with the allow users setting, the allowed list is a strict whitelist; only the listed users can establish an SSH session, regardless of other settings. This includes the root user. If you configure permit root login to a setting other than disabled, and you configure the allow users setting without including root, the switch blocks the root SSH login. To allow root login when you configure the allow users setting, you must add root to the allow users list.
+- NVUE does not warn you when you apply the configuration if it detects this configuration conflict.
+- If you do not configure the allow users setting, the permit root login works as expected without any additional configuration.
+{{%/notice%}}
+
 ### SSH and VRFs
 
 The SSH service runs in the default VRF on the switch but listens on all interfaces in all VRFs. You can limit SSH to listen on specific VRFs.

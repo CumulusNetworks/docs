@@ -244,16 +244,13 @@ In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to mult
 - If you are migrating from connected planes with BGP disaggregation, remove BGP disaggregation configuration before configuring EVPN unreachability in disjoined planes.
 {{%/notice%}}
 
-
 To configure EVPN unreachability in disjoined planes, configure {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} in tenant VRFs, and enable unreachability advertisements in the `l2vpn-evpn` address-family. The following example on a leaf switch assumes a working EVPN configuration with IPv4 and IPv6 routes in VRF `TENANT1` and configures:
-
-- IPv4 and IPv6 aggregate routes to summarize relevant networks in vrf `TENANT1`
-- IPv4 and IPv6 unreachability for interfaces matching the aggregate prefixes in vrf `TENANT1`
-- EVPN IPv4 and IPv6 unreachability advertisements in the `l2vpn-evpn` address-family
-- BGP `advertisement-delay` to 150 seconds
-- BGP prefix export to LLDP in vrf `TENANT1` 
-- The LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}}
-
+- IPv4 and IPv6 aggregate routes to summarize relevant networks in the `TENANT1` VRF.
+- IPv4 and IPv6 unreachability for interfaces matching the aggregate prefixes in the `TENANT1` VRF.
+- EVPN IPv4 and IPv6 unreachability advertisements in the `l2vpn-evpn` address-family.
+- BGP `advertisement-delay` to 150 seconds.
+- BGP prefix export to LLDP in the `TENANT1` VRF.
+- The LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}}.
 
 {{< tabs "TabID1728 ">}}
 {{< tab "NVUE Commands ">}}
@@ -276,7 +273,8 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< tab "vtysh Commands ">}}
 
 ```
-leaf01# config t
+cumulus@leaf01:mgmt:~$ sudo vtysh
+leaf01# configure terminal
 leaf01(config)# bgp advertisement-delay 150
 leaf01(config)# router bgp 65001 vrf TENANT1
 leaf01(config-router)#  address-family ipv4 unicast
@@ -299,20 +297,17 @@ leaf01(config-router-af)#   advertise ipv6 unreachability
 leaf01(config-router-af)#  exit-address-family
 leaf01(config-router)# exit
 leaf01(config)# end
-leaf01# wr mem
-Note: this version of vtysh never writes vtysh.conf
-Building Configuration...
-Integrated configuration saved to /etc/frr/frr.conf
-[OK]
+leaf01# write memory
 leaf01# 
 ```
+
 {{< /tab >}}
 {{< /tabs >}}
 
 ### Considerations
 
 - EVPN Multihoming is not supported with unreachability in disjoined planes.
-- The EVPN unreachable route type is only supported with L3 VNIs.
+- The EVPN unreachable route type is only supported with layer 3 VNIs.
 - Multiple service failures across leaf switches (such as an FRR failure on one leaf, and FRR, BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
 - FRR can send a maximum of 25k prefixes for each VRF and 100k total prefixes across all VRFs to LLDP.
 - When you use EVPN unreachability in disjoined planes with 802.1X, the radius servers must be reachable through the management VRF.

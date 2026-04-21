@@ -25,6 +25,18 @@
 <td></td>
 </tr>
 <tr>
+<td>4980055</td>
+<td>With very large configurations, {{nv config apply}} command performance might be slow.</td>
+<td>5.15.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4968081</td>
+<td>During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause {{/var/run/lldpd.socket}} to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover.</td>
+<td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4964154</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
 <td>5.15.0-5.16.1</td>
@@ -46,6 +58,30 @@
 <td>4963271</td>
 <td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
 <td>5.15.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4957394</td>
+<td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
+<td>5.9.5-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4951125</td>
+<td>API calls to NVUE generate a TACACS author request for a local user bypassing the authentication order. </td>
+<td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4940786, 4705183</td>
+<td>Transceiver firmware upgrade fails due to PMAOS register access failures.</td>
+<td>5.15.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4931956</td>
+<td>Upgrading Cumulus Linux from 5.13.1 or earlier by package (APT) upgrade with NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package (APT) upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package (APT) upgrade with NVUE commands.</td>
+<td>5.13.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -88,6 +124,12 @@
 <td>4917759</td>
 <td>BGP sessions configured with an explicit IPv6 link local peer address might result in stale or invalid next hop tracking entries after a session disruption.</td>
 <td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4909312</td>
+<td>Cumulus Linux 5.14  removed the OTEL metric {{nvswitch_interface_if_in_octets}} because it duplicated {{nvswitch_interface_ether_stats_octets}}.  Cumulus Linux 5.17 restores the {{nvswitch_interface_if_in_octets}} metric so that existing telemetry consumers can continue to use the previous metric name.</td>
+<td>5.15.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -460,6 +502,12 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 <td>On the NVIDIA SN5610 switch, the {{nv show platform transceiver}} command output for 3rd party optics is missing fields such as {{rx-los}} and {{tx-los}}.</td>
 <td>5.14.0-5.15.1</td>
 <td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4731091, 4857885</td>
+<td>During optimized image upgrade, the switch logs an error because a new file is added. There is no functional impact.</td>
+<td>5.11.4-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4729839</td>
@@ -1514,6 +1562,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>4980055</td>
+<td>With very large configurations, {{nv config apply}} command performance might be slow.</td>
+<td>5.15.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4968081</td>
+<td>During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause {{/var/run/lldpd.socket}} to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover.</td>
+<td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4964154</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
 <td>5.15.0-5.16.1</td>
@@ -1529,6 +1589,30 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4963277</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4957394</td>
+<td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
+<td>5.9.5-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4951125</td>
+<td>API calls to NVUE generate a TACACS author request for a local user bypassing the authentication order. </td>
+<td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4940786, 4705183</td>
+<td>Transceiver firmware upgrade fails due to PMAOS register access failures.</td>
+<td>5.15.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4931956</td>
+<td>Upgrading Cumulus Linux from 5.13.1 or earlier by package (APT) upgrade with NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package (APT) upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package (APT) upgrade with NVUE commands.</td>
+<td>5.13.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1565,6 +1649,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4917759</td>
 <td>BGP sessions configured with an explicit IPv6 link local peer address might result in stale or invalid next hop tracking entries after a session disruption.</td>
 <td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4909312</td>
+<td>Cumulus Linux 5.14  removed the OTEL metric {{nvswitch_interface_if_in_octets}} because it duplicated {{nvswitch_interface_ether_stats_octets}}.  Cumulus Linux 5.17 restores the {{nvswitch_interface_if_in_octets}} metric so that existing telemetry consumers can continue to use the previous metric name.</td>
+<td>5.15.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1925,6 +2015,12 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 <td>On the NVIDIA SN5610 switch, the {{nv show platform transceiver}} command output for 3rd party optics is missing fields such as {{rx-los}} and {{tx-los}}.</td>
 <td>5.14.0-5.15.1</td>
 <td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4731091, 4857885</td>
+<td>During optimized image upgrade, the switch logs an error because a new file is added. There is no functional impact.</td>
+<td>5.11.4-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4729839</td>
@@ -3000,6 +3096,11 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <td>4641291, 4703438, 4918342, 4923799</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or phy.</td>
 <td>5.13.1-5.14.0</td>
+</tr>
+<tr>
+<td>4640898</td>
+<td>When a new LLDP neighbor is discovered with an empty or missing Port Description TLV; for example, when introducing a new third-party switch into the fabric, a {{ptmd}} defect might cause a segmentation fault (crash).</td>
+<td>5.11.2-5.14.0</td>
 </tr>
 <tr>
 <td>4640126</td>

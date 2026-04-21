@@ -19,6 +19,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4968081</td>
+<td>During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause {{/var/run/lldpd.socket}} to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover.</td>
+<td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4963280</td>
 <td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
 <td>5.9.1-5.16.1</td>
@@ -28,6 +34,24 @@
 <td>4963277</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4957394</td>
+<td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
+<td>5.9.5-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4951125</td>
+<td>API calls to NVUE generate a TACACS author request for a local user bypassing the authentication order. </td>
+<td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4931956</td>
+<td>Upgrading Cumulus Linux from 5.13.1 or earlier by package (APT) upgrade with NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package (APT) upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package (APT) upgrade with NVUE commands.</td>
+<td>5.13.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -258,6 +282,12 @@ To work around this issue, restart the {{nvued.service}}. To avoid this issue, c
 <td>5.15.0-5.16.1</td>
 </tr>
 <tr>
+<td>4731091, 4857885</td>
+<td>During optimized image upgrade, the switch logs an error because a new file is added. There is no functional impact.</td>
+<td>5.11.4-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4729839</td>
 <td>In an MLAG configuration, when you reboot the primary MLAG switch with PVRST spanning tree mode configured on both MLAG switches, PVRST mode briefly changes to RSTP, then back to PVRST when the primary switch comes back up.</td>
 <td>5.11.3-5.15.1</td>
@@ -413,6 +443,12 @@ interface_stats_collector[41358]: [signal SIGSEGV: segmentation violation code=0
 <td>4641291, 4703438, 4918342, 4923799</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or phy.</td>
 <td>5.13.1-5.14.0</td>
+<td>5.15.0-5.16.1</td>
+</tr>
+<tr>
+<td>4640898</td>
+<td>When a new LLDP neighbor is discovered with an empty or missing Port Description TLV; for example, when introducing a new third-party switch into the fabric, a {{ptmd}} defect might cause a segmentation fault (crash).</td>
+<td>5.11.2-5.14.0</td>
 <td>5.15.0-5.16.1</td>
 </tr>
 <tr>

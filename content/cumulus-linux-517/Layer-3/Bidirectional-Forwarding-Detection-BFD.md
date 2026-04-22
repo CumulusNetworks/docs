@@ -338,7 +338,7 @@ You configure the echo function by setting the following parameters in the topol
 
 ## BFD Offload
 
-BFD offload improves BFD session scale by offloading BFD numbered sessions to a kernel driver called `sx_bfd`, which is responsible for maintaining BFD sessions. BFD offload is disabled by default.
+BFD offload improves BFD session scale by offloading sessions to the kernel driver `sx_bfd`, which is responsible for maintaining those sessions. BFD offload supports numbered sessions and IPv6 unnumbered sessions. BFD offload is disabled by default.
 
 {{%notice note%}}
 - When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
@@ -416,9 +416,12 @@ cumulus@switch:~$ nv show vrf default router bfd peers --view brief
 MHop - Multihop, Local - Local, Peer - Peer, Interface - Interface, State -
 State, Passive - Passive Mode, Time - Up/Down Time, Type - Config Type,
 Offloaded - Offloaded
-LocalId     MHop   Local       Peer        Interface    State  Passive  Time     Type     Offloaded
-----------  -----  ---------   ---------   -----------  -----  -------  -------  -------  ---------
-4481308     False  10.10.10.1  10.10.10.2  swp2         up     False    3:58:44  dynamic  offloaded
+LocalId     MHop   Local                      Peer                  Interface      State  Passive  Time     Type     Offloaded
+----------  -----  ---------                  ---------             -----------    -----  -------  -------  -------  ---------
+4481308     False  10.10.10.1                 10.10.10.2            swp2           up     False    3:58:44  dynamic  offloaded
+87960564    False  fe80::1e34:daff:fea2:bb11  fe80::202:ff:fe00:e   swp21s1.631    up     False    0:00:55  dynamic  offloaded
+88363335    False  fe80::1e34:daff:fea2:bb10  fe80::202:ff:fe00:d   swp21s0.510    up     False    0:00:57  dynamic  offloaded
+90679959    False  fe80::1e34:daff:fea2:bb10  fe80::202:ff:fe00:d   swp21s0.507    up     False    0:00:57  dynamic  offloaded
 ```
 
 The `Offloaded` field shows `offloaded` if the session is offloaded and `control-plane` if the session is not offloaded.
@@ -436,7 +439,7 @@ cumulus@switch:~$ nv show router bfd profile BFD1
 detect-multiplier  10 
 min-rx-interval    100 
 min-tx-interval    100 
-shutdown           enabled 
+shutdown           disabled 
 passive-mode       enabled 
 minimum-ttl        1 
 ```

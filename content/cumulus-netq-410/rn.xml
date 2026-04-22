@@ -31,7 +31,7 @@
 <td>4.12.0-4.15.1</td>
 </tr>
 <tr>
-<td>3854467</td>
+<td>3854467, 3848959, 3845926, 3959779</td>
 <td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
 <td>4.10.0-4.11.0</td>
 <td>4.12.0-4.15.1</td>
@@ -55,13 +55,13 @@
 <td></td>
 </tr>
 <tr>
-<td>3769936</td>
+<td>3769936, 3976289, 4122250</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
 <td>4.9.0-4.13.0</td>
 <td>4.14.0-4.15.1</td>
 </tr>
 <tr>
-<td>3721754</td>
+<td>3721754, 3721794</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0-4.10.1</td>
 <td>4.11.0-4.15.1</td>
@@ -117,7 +117,7 @@
 <td>4.12.0-4.15.1</td>
 </tr>
 <tr>
-<td>3854467</td>
+<td>3854467, 3848959, 3845926, 3959779</td>
 <td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
 <td>4.10.0-4.11.0</td>
 <td>4.12.0-4.15.1</td>
@@ -141,13 +141,13 @@
 <td></td>
 </tr>
 <tr>
-<td>3769936</td>
+<td>3769936, 3976289, 4122250</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
 <td>4.9.0-4.13.0</td>
 <td>4.14.0-4.15.1</td>
 </tr>
 <tr>
-<td>3721754</td>
+<td>3721754, 3721794</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0-4.10.1</td>
 <td>4.11.0-4.15.1</td>
@@ -202,7 +202,7 @@ To work around this issue, run the {{netq bootstrap reset keep-db}} command and 
 <td>4.9.0</td>
 </tr>
 <tr>
-<td>3808200</td>
+<td>3808200, 3788382</td>
 <td>When you perform a {{netq bootstrap reset}} on a NetQ cluster VM and perform a fresh install with the {{netq install}} command, the install might fail with the following error:
  master-node-installer: Running sanity check on cluster_vip: 10.10.10.10 Virtual IP 10.10.10.10 is already used
 To work around this issue, run the {{netq install}} command again.</td>

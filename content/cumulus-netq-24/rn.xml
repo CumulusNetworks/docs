@@ -13,7 +13,7 @@
 <td>3.2.0-3.3.1</td>
 </tr>
 <tr>
-<td>2549246</td>
+<td>2549246, 2549315, 2549518, 2549315</td>
 <td>NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s).</td>
 <td>2.4.0-3.2.1</td>
 <td>3.3.0-3.3.1</td>
@@ -67,7 +67,7 @@
 <td>3.2.0-3.3.1</td>
 </tr>
 <tr>
-<td>2549246</td>
+<td>2549246, 2549315, 2549518, 2549315</td>
 <td>NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s).</td>
 <td>2.4.0-3.2.1</td>
 <td>3.3.0-3.3.1</td>
@@ -145,7 +145,7 @@ Found the container running with new image.
 <td>2.3.1</td>
 </tr>
 <tr>
-<td>2545296</td>
+<td>2545296, 2545925</td>
 <td>NetQ UI: When a warning occurs during a VXLAN validation, the small, medium, and large VXLAN Scheduled Validation Result cards incorrectly display the text of the warning instead of the Failed icon and text.</td>
 <td>2.3.1</td>
 </tr>

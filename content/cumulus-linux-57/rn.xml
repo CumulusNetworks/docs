@@ -7,16 +7,28 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4797691</td>
-<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
-<td>5.0.0-5.15.1</td>
-<td>5.16.0-5.16.1</td>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
 </tr>
 <tr>
-<td>4663076</td>
+<td>4963277</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4797691</td>
+<td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
+<td>5.0.0-5.9.4, 5.15.1</td>
+<td>5.9.5, 5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4663076, 3963232</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.3.1-5.11.4</td>
-<td>5.11.5-5.16.1, 5.15.0-5.16.1</td>
+<td>5.3.1-5.9.4</td>
+<td>5.9.5-5.16.1, 5.11.5-5.16.1, 5.15.0-5.16.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -59,7 +71,7 @@ To work around this issue, power cycle the switch.</td>
 <td>5.9.4-5.16.1, 5.14.0-5.16.1</td>
 </tr>
 <tr>
-<td>4413450</td>
+<td>4413450, 4497128</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.11.1, 5.13.0-5.13.1</td>
 <td>5.11.2, 5.14.0-5.16.1</td>
@@ -115,7 +127,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>5.9.2-5.16.1, 5.10.0-5.16.1</td>
 </tr>
 <tr>
-<td>3949367</td>
+<td>3949367, 3949366</td>
 <td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
 <td>5.3.1-5.9.1</td>
 <td>5.9.2-5.16.1, 5.10.0-5.16.1</td>
@@ -135,11 +147,11 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>3897227</td>
 <td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
-<td>5.5.1-5.9.4</td>
+<td>5.5.1-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 <tr>
-<td>3895042</td>
+<td>3895042, 3895041</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
@@ -285,7 +297,7 @@ leaf01# exit</td>
 <td>5.8.0-5.16.1</td>
 </tr>
 <tr>
-<td>3713420</td>
+<td>3713420, 3718144</td>
 <td>When you run the {{systemctl restart switchd.service}} command or reboot the switch after you set the host route preference option with the NVUE {{nv set system forwarding host-route-preference}} command or manually in the {{/etc/cumulus/switchd.conf}} file, {{switchd}} crashes and creates core files.</td>
 <td>5.7.0</td>
 <td>5.8.0-5.16.1</td>
@@ -313,7 +325,7 @@ cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
 cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
 cumulus@switch:~$ nv set acl one type mac
 </td>
-<td>5.7.0-5.9.4</td>
+<td>5.7.0-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 <tr>
@@ -341,13 +353,13 @@ cumulus@switch:~$ nv set acl one type mac
 <td>5.8.0-5.16.1</td>
 </tr>
 <tr>
-<td>3686389</td>
+<td>3686389, 3725881</td>
 <td>When you use NVUE commands to configure an untagged VLAN (PVID) on a bridge to a non-default value, {{nv show bridge}} commands still indicate that the untagged VLAN is 1 (the default value). The untagged VLAN you configured is properly set on bridge ports, but displays incorrectly in operational NVUE show commands.</td>
 <td>5.6.0-5.7.0</td>
 <td>5.8.0-5.16.1</td>
 </tr>
 <tr>
-<td>3679478</td>
+<td>3679478, 3701229, 3737814</td>
 <td>During switch boot, you see the following messages in the syslog:
 
 2024-03-04T10:34:49.650950+00:00 cumulus sx_sdk: 2262 [TELE] [ERROR  ]: Tele impl module is already initialized
@@ -390,7 +402,7 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 <tr>
 <td>3636266</td>
 <td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address is not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
-<td>5.7.0-5.9.4</td>
+<td>5.7.0-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 <tr>
@@ -412,15 +424,15 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 <td>5.8.0-5.16.1</td>
 </tr>
 <tr>
-<td>3610967</td>
+<td>3610967, 3647761</td>
 <td>In an EVPN symmetric routing configuration, running the NVUE {{nv set vrf &lt;vrf&gt; vlan auto}} command to derive layer 3 VNIs automatically might result in duplicate VLAN entries in the system. This most often occurs at scale when many VRFs have similar names. To work around this issue, manually specify a unique VLAN for each VRF.</td>
 <td>5.3.0-5.8.0</td>
 <td>5.9.0-5.16.1</td>
 </tr>
 <tr>
-<td>3610591</td>
+<td>3610591, 3781456</td>
 <td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
-<td>5.7.0-5.9.4</td>
+<td>5.7.0-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 <tr>
@@ -444,13 +456,13 @@ To work around this issue when using fiber cables:
 <td></td>
 </tr>
 <tr>
-<td>3556762</td>
+<td>3556762, 3463827</td>
 <td>On rare occasions, SPT switchover might not happen cleanly in PIM resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
 <td>5.5.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>3546857</td>
+<td>3546857, 3564377</td>
 <td>The {{nv show bridge vlan}} command does not show tagged and untagged VLAN information for the bridge.
 
 </td>
@@ -470,7 +482,7 @@ To work around this issue when using fiber cables:
 <td></td>
 </tr>
 <tr>
-<td>3538321</td>
+<td>3538321, 3564344</td>
 <td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the slave state and one of the ports might remain in an uncalibrated state. To work around this issue, toggle the port that is in the uncalibrated state up and down so that one of the ports is selected as the slave.</td>
 <td>5.6.0-5.16.1</td>
 <td></td>
@@ -494,13 +506,13 @@ To work around this issue when using fiber cables:
 <td></td>
 </tr>
 <tr>
-<td>3463827</td>
+<td>3463827, 3434515, 3556762</td>
 <td>On rare occasions, SPT switchover might not happen cleanly in PIM, resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
 <td>5.6.0-5.8.0</td>
 <td>5.9.0-5.16.1</td>
 </tr>
 <tr>
-<td>3452681</td>
+<td>3452681, 3465375</td>
 <td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see an error message similar to {{Error: GET /nvue_v1/system/aaa/tacacs/authorization/1?rev=operational responded with 404 NOT FOUND}}.</td>
 <td>5.5.0-5.10.1</td>
 <td>5.11.0-5.16.1</td>
@@ -512,7 +524,7 @@ To work around this issue when using fiber cables:
 <td></td>
 </tr>
 <tr>
-<td>3442569</td>
+<td>3442569, 3520880, 3586421</td>
 <td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
 <td>5.5.0-5.16.1</td>
 <td></td>
@@ -524,19 +536,19 @@ To work around this issue when using fiber cables:
 <td>5.9.0-5.16.1</td>
 </tr>
 <tr>
-<td>3433577</td>
+<td>3433577, 3433769</td>
 <td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
 <td>5.5.0-5.8.0</td>
 <td>5.9.0-5.16.1</td>
 </tr>
 <tr>
-<td>3430430</td>
+<td>3430430, 3337848</td>
 <td>When you configure PTP on 50G ports, the offset correction might be higher, which can affect the time synchronization of the node. To work around this issue, configure PTP on 100G ports, or on 10G or 1G ports with PTP shaper enabled.</td>
 <td>5.5.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>3424967</td>
+<td>3424967, 3413785</td>
 <td>{{sudo}} for TACACS+ users with privilege level 15 does not work when reaching the TACACS+ server through the {{default}} VRF. To work around this issue, specify the interface name that the {{default}} VRF uses in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file or run the NVUE {{nv set system aaa tacacs vrf}} command. If you don't run either command, a TACACS+ user with privilege level 15 can run {{vrf task exec default sudo ...}} to execute the {{sudo}} command.</td>
 <td>5.0.0-5.16.1</td>
 <td></td>
@@ -549,7 +561,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
-<td>3414866</td>
+<td>3414866, 3536555, 4465009, 4509253, 4732973</td>
 <td>Each VLAN is represented as a bitmap on the underlying port and when you add multiple VLANs together, Cumulus Linux iterates over the existing ones and updates the diff. However, in few corner cases, the same bitmap might be repeated again causing the following error.
 sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge
 You can ignore this error; it has no impact on switch functionality.</td>
@@ -559,7 +571,7 @@ You can ignore this error; it has no impact on switch functionality.</td>
 <tr>
 <td>3393966</td>
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
-<td>5.5.0-5.9.4</td>
+<td>5.5.0-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 <tr>
@@ -623,7 +635,7 @@ You can ignore this error; it has no impact on switch functionality.</td>
 <td></td>
 </tr>
 <tr>
-<td>3225117</td>
+<td>3225117, 3158720</td>
 <td>Occasionally, packet loss might occur on 25G ports when the link is raised without FEC.</td>
 <td>5.4.0-5.16.1</td>
 <td></td>
@@ -646,7 +658,7 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 <td></td>
 </tr>
 <tr>
-<td>3145869</td>
+<td>3145869, 3430508, 3543102</td>
 <td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between plus or minus 27. The average offset is around 7.</td>
 <td>5.2.0-5.16.1</td>
 <td></td>
@@ -723,7 +735,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2904450</td>
+<td>2904450, 2553222</td>
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
@@ -731,7 +743,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2885305</td>
+<td>2885305, 2887500, 3234087, 3074929, 3293192</td>
 <td>Certain Murata PSU attributes show intermittently in the sensors command output. To work around this issue, upgrade to the latest PSU firmware on Murata.</td>
 <td>5.0.0-5.16.1</td>
 <td></td>
@@ -773,7 +785,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.4</td>
+<td>4.0.0-5.9.5</td>
 <td>5.10.0-5.16.1</td>
 </tr>
 </table>
@@ -838,7 +850,7 @@ You can safely ignore this warning.</td>
 <td>5.3.1-5.6.0</td>
 </tr>
 <tr>
-<td>3662354</td>
+<td>3662354, 3582826</td>
 <td>When you enable the FRR SNMP agent (agentx) and configure routing adjacencies with short timers (dead, keepalive, and hold time), the routing adjacencies might go down in certain scenarios; for example when you have frequent or concurrent client SNMP requests, you use custom SNMP MIB extensions, you poll OIDs with large responses, or during high CPU load. To work around this issue, you can increase the routing adjacency timers to accommodate SNMP processing.</td>
 <td>5.6.0</td>
 </tr>
@@ -898,7 +910,7 @@ Note: this procedure results in a switchd restart which will have an impact on t
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3616643</td>
+<td>3616643, 3660953</td>
 <td>NVUE commands to set a route map exit policy match produce incorrect configuration in the {{/etc/frr/frr.conf}} file.</td>
 <td>5.6.0</td>
 </tr>
@@ -927,12 +939,12 @@ These error messages do not affect how the switch functions; however the message
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3610611</td>
+<td>3610611, 3599699</td>
 <td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the nv unset vrf &lt;vrf&gt; loopback ip address command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
 <td>5.5.0-5.6.0</td>
 </tr>
 <tr>
-<td>3609128</td>
+<td>3609128, 3609176</td>
 <td>When you use {{vi}} with root or sudo, visual mode is enabled by default due to a missing {{vimrc}} configuration file. This makes it difficult to copy and paste into {{vi}}.  In CL5.7.0, the default configuration now includes {{set mouse-=a}}.
 
 In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines, which can be a security risk.</td>
@@ -959,7 +971,7 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3599699</td>
+<td>3599699, 3569484, 3610611</td>
 <td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
 <td>5.5.0-5.6.0</td>
 </tr>
@@ -979,7 +991,7 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 <td>5.0.0-5.6.0</td>
 </tr>
 <tr>
-<td>3582826</td>
+<td>3582826, 3662354</td>
 <td>When you enable the FRR SNMP agent (agentx) and configure routing adjacencies with short timers (dead, keepalive, and hold time), the routing adjacencies might go down in certain scenarios; for example when you have frequent or concurrent client SNMP requests, you use custom SNMP MIB extensions, you poll OIDs with large responses, or during high CPU load. To work around this issue, you can increase the routing adjacency timers to accommodate SNMP processing.</td>
 <td>5.5.0-5.6.0</td>
 </tr>
@@ -1016,7 +1028,7 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <td>5.3.1-5.6.0</td>
 </tr>
 <tr>
-<td>3566980</td>
+<td>3566980, 3511344</td>
 <td>When running DHCP relay for IPv6 and a downstream interface flaps more than once, relaying might stop working. To recover, restart the {{dhcrelay6}} service, making sure the specified downstream interfaces are up and running.</td>
 <td>5.5.0-5.6.0</td>
 </tr>
@@ -1031,13 +1043,13 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3522524</td>
+<td>3522524, 3668926</td>
 <td>FRR does not allow eBGP multi hop configuration on unnumbered BGP neighbors. 
 </td>
 <td>5.5.0-5.6.0</td>
 </tr>
 <tr>
-<td>3517739</td>
+<td>3517739, 3477016, 3565701</td>
 <td>When you connect the SN5600 switch to third party test equipment (such as IXIA) using copper cables, 100G, 200G, 400G, and 800G links do not come up. To work around this issue, use fiber optic cables when testing an SN5600 switch with IXIA for 100G, 200G, 400G, and 800G link speeds.</td>
 <td>5.6.0</td>
 </tr>
@@ -1064,7 +1076,7 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td>5.0.0-5.6.0</td>
 </tr>
 <tr>
-<td>3428677</td>
+<td>3428677, 3437317</td>
 <td>In certain cases, Cumulus Linux does not process next hop updates because the {{zebra}} IP routing manager thinks the state of the next hops is unchanged. As a result, route installation fails and remains in a rejected state.</td>
 <td>5.3.0-5.6.0</td>
 </tr>
@@ -1079,7 +1091,7 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td>5.5.0-5.6.0</td>
 </tr>
 <tr>
-<td>3347677</td>
+<td>3347677, 3180068</td>
 <td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.</td>
 <td>5.1.0-5.6.0</td>
 </tr>
@@ -1104,7 +1116,7 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td>5.4.0-5.6.0</td>
 </tr>
 <tr>
-<td>3221628</td>
+<td>3221628, 3217877</td>
 <td>Cumulus Linux VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
 <td>5.2.0-5.6.0</td>
 </tr>

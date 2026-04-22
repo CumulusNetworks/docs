@@ -22,7 +22,7 @@ pdfhidden: True
 | <a name="3555031"></a> [3555031](#3555031) <a name="3555031"></a> <br /> | NetQ incorrectly reports a low health SSD event on SN5600 switches. To work around this issue, configure an event suppression rule for <code>ssdutil</code> messages from SN5600 switches in your network. | 4.7.0 | 4.8.0-4.15.1|
 | <a name="3549877"></a> [3549877](#3549877) <a name="3549877"></a> <br /> | NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes. | 4.6.0-4.8.0 | 4.9.0-4.15.1|
 | <a name="3530739"></a> [3530739](#3530739) <a name="3530739"></a> <br /> | Queue histogram data received from switches might encounter a delay before appearing in the NetQ UI. | 4.7.0 | 4.8.0-4.15.1|
-| <a name="3429528"></a> [3429528](#3429528) <a name="3429528"></a> <br /> | EVPN and RoCE validation cards in the NetQ UI might not display data when Cumulus Linux switches are configured with high VNI scale. | 4.6.0-4.8.0 | 4.9.0-4.15.1|
+| <a name="3429528, 3588417"></a> [3429528, 3588417](#3429528, 3588417) <a name="3429528, 3588417"></a> <br /> | EVPN and RoCE validation cards in the NetQ UI might not display data when Cumulus Linux switches are configured with high VNI scale. | 4.6.0-4.8.0 | 4.9.0-4.15.1|
 
 ### Fixed Issues in 4.7.0
 |  Issue ID 	|   Description	|   Affects	|

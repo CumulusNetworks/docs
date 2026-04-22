@@ -617,6 +617,10 @@ cumulus@switch:~$ nv config replace /usr/lib/python3/dist-packages/cue_config_v1
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice note%}}
+The `nv config replace <file>` command replaces the entire running configuration. You must include any configuration you want to keep in the replace file.
+{{%/notice%}}
+
 ## Detach a Pending Configuration
 
 The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. Cumulus Linux saves the detached configuration to a file with a numerical value to distinguish it from other pending configurations.

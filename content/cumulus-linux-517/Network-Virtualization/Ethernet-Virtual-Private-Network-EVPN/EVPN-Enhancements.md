@@ -300,27 +300,40 @@ leaf01#
 {{< /tab >}}
 {{< /tabs >}}
 
-### Route Map Match and Set
-
-You can configure route maps to match unreachability EVPN route types and set communities, extended communities (where supported), MED, local-pref, AS-path manipulation, origin, and other generic BGP set actions that apply to other EVPN route types to unreachability EVPN route types.
+You can configure route maps to match unreachability EVPN route types with the `nv set router policy route-map <route-map-id> rule 10 match evpn-route-type prefix-unreachability` command. You can also set communities, extended communities (where supported), MED, local-pref, AS-path manipulation, origin, and other generic BGP set actions that apply to other EVPN route types to unreachability EVPN route types.
 
 {{%notice note%}}
 Setting the gateway overlay for unreachability EVPN prefixes is not supported.
 {{%/notice%}}
 
-The following example shows the route map match unreachability EVPN route type configuration:
+The following example configures a route map that sets the BGP AS path exclude attribute to 2 for unreachability EVPN route types:
+
+{{< tabs "TabID311 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MATCH_EVPN_UNREACH rule 10 match evpn-route-type prefix-unreachability
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MATCH_EVPN_UNREACH rule 10 set as-path-exclude 2
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MATCH_EVPN_UNREACH rule 10 action permit
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map MATCH_EVPN_UNREACH permit 10
 leaf01(config-route-map)# match evpn route-type prefix-unreachability
+leaf01(config-route-map)# set as-path exclude 2
+leaf01(config-route-map)# end
+leaf01# write memory
+leaf01# exit
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Considerations
 

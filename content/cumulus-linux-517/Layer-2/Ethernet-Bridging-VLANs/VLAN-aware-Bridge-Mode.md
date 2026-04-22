@@ -569,7 +569,7 @@ If you want the link state for the SVI to follow the bridge link state only, set
 In Cumulus Linux 5.13 and later, VLAN bridge binding is on by default. In Cumulus Linux 5.12 and earlier, VLAN bridge binding is off by default.
 {{%/notice%}}
 
-**Example 1: The bridge VLAN bridge binding mode is on**
+**Example 1: VLAN bridge binding mode is on (default setting)**
 
 SVI interface vlan100 on bridge `br_default` has two interfaces in the VLAN:
 - swp1 is an access port (bridge access 100).
@@ -581,7 +581,7 @@ If the following conditions are true, vlan100 has link status up:
 
 If both conditions are false, vlan100 has link status down.
 
-**Example 2: The bridge VLAN bridge binding mode is off**
+**Example 2: VLAN bridge binding mode is off**
 
 - If the `br-default` bridge is link status up, vlan100 has link status up.
 - If the `br-default` bridge is link status down, vlan100 also has link status down.

@@ -14,6 +14,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4989440"></a> [4989440](#4989440) <a name="4989440"></a> <br /> | The <code>nv show interface qos-roce-status</code> command causes HIGH CPU. | 5.16.0-5.16.1 | |
+| <a name="4989435"></a> [4989435](#4989435) <a name="4989435"></a> <br /> | During warm and fast reboots, NVUE intentionally skips a comprehensive Git cleanup to adhere to strict service start-up SLAs. When this cleanup is bypassed, existing Git maintenance debt, such as unreachable loose objects or blocked Garbage Collection (GC) states, remain in place and accumulate across successive reboots. The lightweight housekeeping performed during a standard <code>nv config apply</code> is not equivalent to a full cleanup. Consequently, stale objects and blocked GC states can persist until the repository becomes unreadable, eventually causing git commit operations to fail with the error <code>fatal: could not parse HEAD</code>.<br>To work around this issue, run <code>sudo systemctl restart nvued.service</code> manually after a warm or fast reboot to trigger the full cleanup path skipped during the automated startup sequence. | 5.16.1 | |
+| <a name="4989430"></a> [4989430](#4989430) <a name="4989430"></a> <br /> | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.16.1 | |
 | <a name="4986343"></a> [4986343](#4986343) <a name="4986343"></a> <br /> | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1-5.16.1 | |
 | <a name="4986333"></a> [4986333](#4986333) <a name="4986333"></a> <br /> | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.16.1 | |
 | <a name="4986329"></a> [4986329](#4986329) <a name="4986329"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.1 | |
@@ -240,6 +243,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4989440"></a> [4989440](#4989440) <a name="4989440"></a> <br /> | The <code>nv show interface qos-roce-status</code> command causes HIGH CPU. | 5.16.0-5.16.1 | |
+| <a name="4989430"></a> [4989430](#4989430) <a name="4989430"></a> <br /> | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.16.1 | |
 | <a name="4986343"></a> [4986343](#4986343) <a name="4986343"></a> <br /> | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1-5.16.1 | |
 | <a name="4986333"></a> [4986333](#4986333) <a name="4986333"></a> <br /> | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.16.1 | |
 | <a name="4986329"></a> [4986329](#4986329) <a name="4986329"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.1 | |

@@ -733,7 +733,7 @@ The following command sets the small packet probability for all ports in the PFC
 cumulus@switch:~$ nv set qos pfc default-global small-packet-probability 60
 cumulus@switch:~$ nv config apply
 ```
-
+<!--
 To configure the probability of small packets for link pause, run the `nv set qos link-pause <profile> small-packet-probability <percent>` command. To configure a profile for link pause, refer to {{<link url="#link-pause" text="Link Pause">}}.
 
 The following command sets the small packet probability for all ports in the link pause `default-global` profile to 60 percent.
@@ -742,22 +742,22 @@ The following command sets the small packet probability for all ports in the lin
 cumulus@switch:~$ nv set qos link-pause default-global small-packet-probability 60
 cumulus@switch:~$ nv config apply
 ```
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To configure the probability of small packets for PFC,, edit the `priority flow control` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+To configure the probability of small packets for PFC, edit the `priority flow control` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 ```
 pfc.default-global.small_packet_probability = 60
 ```
-
+<!--
 To configure the probability of small packets for link pause, edit the `link-pause` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 ```
 link-pause.default-global.small_packet_probability = 60
 ```
-
+-->
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -773,7 +773,7 @@ tx                                       enable
 rx                                       enable 
 [switch-priority]                        3
 ```
-
+<!--
 To show the link pause small packet probability setting for a profile, run the `nv show qos link-pause <profile-id>` command. To show the link pause small packet probability setting for an interface, run the `nv show interface <interface-id> qos link-pause` command.
 
 ```
@@ -785,7 +785,7 @@ small-packet-probability                        60
 tx                                              enable 
 rx                                              enable
 ```
-
+-->
 ### PFC Watchdog
 
 PFC watchdog detects and mitigates pause storms on PFC-enabled ports.

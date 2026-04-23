@@ -1179,7 +1179,7 @@ Resets the UUID for a given premises. In cloud deployments, this command can be 
 ### Syntax
 
 ```
-netq config reset premise <test-premises-name>
+netq config reset premise <text-premises-name>
 ```
 ### Required Arguments
 

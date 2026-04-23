@@ -947,7 +947,8 @@ cumulus@switch:~$ nv set vrf default router bgp dynamic-neighbor listen-range 10
 Enables and disables BGP for the specified VRF.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+- In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+<!-- - In Cumulus Linux 5.17 and later, NVUE prevents you from disabling BGP for a non-default VRF when a layer 3 VNI is configured.-->
 {{%/notice%}}
 
 ### Command Syntax
@@ -972,11 +973,6 @@ cumulus@switch:~$ nv set vrf default router bgp state enabled
 
 Attaches the SOO for BGP unreachability information signaling for IPv4.
 
-<!--
-{{%notice note%}}
-In Cumulus Linux 5.17 and later, NVUE prevents you from disabling BGP for a non-default VRF when a layer 3 VNI is configured.
-{{%/notice%}}
--->
 ### Command Syntax
 
 | Syntax |  Description   |

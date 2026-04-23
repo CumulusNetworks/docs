@@ -830,9 +830,9 @@ cumulus@switch:~$ nv config apply
 Granular metric selection is a Beta feature.
 {{%/notice%}}
 
-To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a statistics group or destination at varied collection frequencies.
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
 
-To configure granular metric selection, configure a group with the metrics you want to collect, then apply the group by either including or excluding the group.
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
 
 {{%notice note%}}
 The statistics category must be enabled. For example, to configure specific control plane metrics, you must enable the control plane statistics group with the `nv set system telemetry control-plane-stats export state enabled` command. Refer to {{<link url="#configure-open-telemetry" text="Configure Open Telemetry">}}.
@@ -849,7 +849,7 @@ cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric no
 cumulus@switch:~$ nv config apply
 ```
 
-To apply the metric collection, run the `nv set system telemetry include-list` command or the `nv set system telemetry exclude-list` command.
+To apply the metric list globally to all destinations, run the `nv set system telemetry include-list` command or the `nv set system telemetry exclude-list` command.
 
 The following example includes the metrics in the PLATFORM_METRICS metric group in the collection:
 
@@ -858,7 +858,7 @@ cumulus@switch:~$ nv set system telemetry include-list PLATFORM_METRICS
 cumulus@switch:~$ nv config apply
 ```
 
-You can apply the metric collection to a statistics group (`stats-group`). The following example includes the metrics in the PLATFORM_METRICS metric group in the statistics group STAT-GROUP3:
+You can also apply the metric list to a statistics group (`stats-group`) to get granular control for a destination. The following example includes the metrics in the PLATFORM_METRICS metric list in the statistics group STAT-GROUP3:
 
 ```
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 include-list PLATFORM_METRICS
@@ -888,7 +888,7 @@ otlp
 
 To show the OTLP gRPC destination configuration, run the `nv show system telemetry export otlp grpc destination` command.
 
-To show the configured metric list groups, run the `nv show system telemetry metric-list` command. To show information about a specific metric list group, run the `nv show system telemetry metric-list <metric-list-id>` command.
+To show the configured metric lists, run the `nv show system telemetry metric-list` command. To show information about a specific metric list, run the `nv show system telemetry metric-list <metric-list-id>` command.
 
 ```
 cumulus@switch:~$ nv show system telemetry metric-list

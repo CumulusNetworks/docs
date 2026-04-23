@@ -444,92 +444,136 @@ log-level       json-file
 
 ## Docker Resource Tiering System
 
-Cumulus Linux includes a built-in Docker resource tiering system that acts as an automated governance layer for system resources. In a shared environment where users or automated scripts can launch arbitrary Docker containers, there is a significant risk that high-load compilation, a memory leak, or a stress test can consume 100 percent of the CPU or RAM, causing critical network services or the host OS itself to become unresponsive. The resource tiering system prevents resource exhaustion (Denial of Service) from untrusted workloads while guaranteeing performance for critical system applications.
+Cumulus Linux includes a Docker Resource Tiering Governance system that protects the switch from noisy-neighbor CPU and memory exhaustion by classifying container workloads into governance tiers and placing them into the correct `systemd` slice at container creation time.
 
-The built-in Docker resource tiering system is enabled by default and active after installation. The policy agent enforces runtime policy entirely in the background; no configuration is required.
+The Governance system is not a long-running background agent; the packaged docker wrapper applies governance at container birth. The `cumulus-docker-resource-tier-governance.service` systemd service programs the tier slice limits and reconciles existing governance-managed containers when you start, reload, restart, or stop the service.
 
-Cumulus Linux uses slices to apply shared resource limits to a group of processes:
-- `docker-restricted.slice` is the default tier for third-party containers that are not whitelisted. This tier uses 10 percent host CPU and 10 percent host memory.
-- `docker-limited.slice` is the intermediate tier for selected workloads that need more headroom than restricted but still need to be capped. This tier uses 50 percent host CPU and 50 percent host memory.
-- `docker.slice` is the trusted tier for trusted NVIDIA containers and other explicitly trusted workloads. There is no host CPU or host memory cap.
+When governance is enabled, containers use one of these tiers:
+- `docker.slice` is the Trusted tier. Containers in this tier are not subject to CPU or memory caps.
+- `docker-limited.slice` is the Limited tier. This tier is for workloads that need more headroom than the default tier but must still remain bounded.
+- `docker-restricted.slice` is the Restricted tier. This is the default tier for images that are not whitelisted. 
 
-To disable the resource tiering system, stop, then disable the cumulus Docker policy agent:
+By default, the Restricted and Limited tiers use aggregate limits of 10% and 50% of total host CPU and total host memory. These are shared per-tier limits, not per-container reservations. If multiple containers run in the same tier, they share the tier budget.
 
-```
-cumulus@switch:~$ systemctl stop cumulus-docker-policy-agent.service
-cumulus@switch:~$ systemctl disable cumulus-docker-policy-agent.service 
-```
+The packaged docker wrapper classifies supported docker container creation commands and places new containers directly into the correct parent slice with the appropriate `cgroup-parent`.
 
-To re-enable the resource tiering system, enable, then start the cumulus Docker policy agent:
+The `cumulus-docker-resource-tier-governance.service` service reads the current policy, programs the Restricted and Limited slice limits, and reconciles existing governance-managed containers when you apply policy. If you install the Docker Compose plugin, Docker compose workloads are also governed at creation time.
 
-```
-cumulus@switch:~$ systemctl enable cumulus-docker-policy-agent.service 
-cumulus@switch:~$ systemctl start cumulus-docker-policy-agent.service 
-```
+Governance does not move running container processes between control groups. If an existing governance-managed container needs to change tiers, the service recreates it in the correct slice. If the container is supervised by `systemd`, the service restarts the owning unit so the container is recreated through its normal service lifecycle.
 
-<!--
-### Container Resources
+### Governance Configuration
 
-You can customize these values by editing the `/etc/cumulus/docker/resources.conf` file.
+Governance uses these configuration files:
 
-```
-cumulus@switch: sudo nano /etc/cumulus/docker/resources.conf
-RESTRICTED_PERCENT=10  # Tighter jail for unknown apps
-LIMITED_PERCENT=60     # Slightly more room for limited apps
-```
+- `/etc/cumulus/docker/resource-tier-governance/whitelist.json` controls which images are classified as Trusted or Limited.
+- `/etc/cumulus/docker/resource-tier-governance/quotas.conf` controls the aggregate CPU and memory percentages for the Restricted and Limited tiers.
 
-After editing the `/etc/cumulus/docker/resources.conf` file, you must restart `cumulus-docker-resource-limit-calculator.service`.
+Images that are not listed in either the Trusted or Limited tier default to the Restricted tier.
+
+The following example shows an `/etc/cumulus/docker/resource-tier-governance/whitelist.json` file:
 
 ```
-cumulus@switch: systemctl restart cumulus-docker-resource-limit-calculator.service
-```
-
-The docker image whitelist maintains the list of trusted and limited images and is located in the `/etc/cumulus/docker/whitelist.json` file.
-
-By default, the `/etc/cumulus/docker/whitelist.json` file ships with the following content.
-
-```
-cumulus@switch: sudo cat /etc/cumulus/docker/whitelist.json
 {
-  "trusted_images": [ ],
-  "limited_images": ["docker-wjh"]
-}
-```
-
-You can edit this file to add trusted and limited images.
-
-```
-cumulus@switch: sudo nano /etc/cumulus/docker/whitelist.json
-{
-  "trusted_images": [
-    "internal-app",
-    "postgres"
-  ],
+  "trusted_images": [],
   "limited_images": [
-    "jenkins-agent",
-    "python-worker"
+    "nv-gnmi",
+    "nv-umf",
+    "nv-grpctunnel",
+    "nv-otel-collector",
+    "docker-wjh"
   ]
 }
 ```
 
-To show memory resource usage for containers, run the Linux `sudo cat /sys/fs/cgroup/cumulus-docker-trusted/memory.current` command.
+{{%notice note%}}
+- Whitelist entries can match repository names, tags, or digests as seen by Docker on the local system. Matching is case-insensitive.
+- Do not list the same image in both the Trusted and Limited tiers. If an image appears in both places, the Trusted tier takes precedence.
+{{%/notice%}}
+
+The following example shows an `/etc/cumulus/docker/resource-tier-governance/quotas.conf` file:
 
 ```
-cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-trusted/memory.current
-
+RESTRICTED_DOCKER_RESOURCE_QUOTA=10
+LIMITED_DOCKER_RESOURCE_QUOTA=50
 ```
 
-To show CPU resource usage for containers, run the Linux `sudo cat sys/fs/cgroup/cumulus-docker-trusted/cpu.stat` command and `sudo cat /sys/fs/cgroup/cumulus-docker-limited/cpu.stat` command.
+### Enable and Disable Governance
+
+The Docker Resource Tiering Governance system is installed and enabled by default. To disable governance immediately and prevent it from being enabled again at boot, stop and disable the service:
 
 ```
-cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-limited/cpu.stat
-
+cumulus@switch:~$ sudo systemctl stop cumulus-docker-resource-tier-governance.service
+cumulus@switch:~$ sudo systemctl disable cumulus-docker-resource-tier-governance.service
 ```
 
-To show which container processes are trusted and which are limited, run the `sudo cat /sys/fs/cgroup/cumulus-docker-trusted/cgroup.procs` command or the `sudo cat /sys/fs/cgroup/cumulus-docker-limited/cgroup.procs` command:
+When you stop the service, Cumulus Linux:
+- Disables governance for future container births.
+- Promotes existing governance-managed containers to `docker.slice`.
+- Clears the Restricted and Limited slice caps.
+- Leaves containers with a custom parent control group (cgroup) unchanged.
+- Leaves unmanaged containers that do not carry governance metadata unchanged.
+
+When you disable governance, new containers default to the Trusted tier unless you select another parent slice.
+
+To re-enable governance:
 
 ```
-cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-limited/cgroup.procs
+cumulus@switch:~$ sudo systemctl enable cumulus-docker-resource-tier-governance.service
+cumulus@switch:~$ sudo systemctl start cumulus-docker-resource-tier-governance.service
+```
+
+{{%notice note%}}
+- Enable and disable control boot-time activation only. Runtime policy changes occur when you start, reload, restart, or stop the service.
+- If the service is already active, `systemctl start` does not reapply policy. Use `systemctl reload` to apply updated governance policy to a running system.
+{{%/notice%}}
+
+### Promote, Demote, and Whitelist Images
+
+To move an image between tiers, edit the `/etc/cumulus/docker/resource-tier-governance/whitelist.json` file:
+- To promote an image to Trusted, add it to `trusted_images` and remove it from `limited_images`.
+- To move an image to Limited, add it to `limited_images` and remove it from `trusted_images`.
+- To demote an image back to Restricted, remove it from both `limited_images` and `trusted_images`.
+
+After updating the whitelist, apply the change with the `sudo systemctl reload cumulus-docker-resource-tier-governance.service` command.
+
+Use `systemctl reload` instead of `systemctl restart` for normal policy updates.
+- `systemctl reload` re-reads the whitelist and quota files, reprograms the Restricted and Limited slice limits, and reconciles existing governance-managed containers against the updated policy. This avoids the extra churn caused by a full stop-then-start cycle.
+- `systemctl restart` is more disruptive because it executes a full stop followed by start. The stop path disables governance and promotes governance-managed containers to docker.slice. The start path enables governance again and might recreate or restart the containers a second time to place them back into Limited or Restricted.
+
+{{%notice note%}}
+- `systemctl restart` might cause unnecessary container churn during normal whitelist updates. Use `systemctl reload` when governance is already active. If the service is currently inactive, run the `sudo systemctl start cumulus-docker-resource-tier-governance.service` command.
+- If you update the `/etc/cumulus/docker/resource-tier-governance/quotas.conf` file, apply the change with the `sudo systemctl reload cumulus-docker-resource-tier-governance.service` command. For quota-only changes, `reload` updates the slice limits live and does not require recreating containers just to program the new slice cap values.
+{{%/notice%}}
+
+### Considerations
+
+- Existing containers are reconsidered only when you apply governance with a service action such as `start`, `reload`, `restart`, or `stop`.
+- Editing the `/etc/cumulus/docker/resource-tier-governance/whitelist.json` file  or the `/etc/cumulus/docker/resource-tier-governance/quotas.conf` file does not retier existing containers until you apply governance again.
+- Containers created before you install the governance wrapper, or other containers without governance metadata, are treated as unmanaged and are left untouched. To bring these containers under governance, stop and remove them, then recreate them.
+- Containers created with an explicit Docker `--cgroup-parent` or `Compose cgroup_parent` remain under user control and are not re-tiered by governance.
+- Retiering an existing container can require a stop, remove, and recreate operation or, for workloads that `systemd` supervises, a restart of the owning unit. Plan policy changes accordingly for stateful or production workloads.
+- Governance enforces aggregate ceilings per tier. It does not provide guaranteed minimum CPU or memory reservations for each container inside a tier.
+
+### Verify Container Placement and Tier Limits
+
+To check the configuration of a container parent slice:
 
 ```
--->
+cumulus@switch:~$ docker inspect -f '{{.HostConfig.CgroupParent}}' <container_name>
+```
+
+To verify that the running process is actually under the expected slice:
+
+```
+cumulus@switch:~$ PID=$(docker inspect -f '{{.State.Pid}}' <container_name>)
+awk -F: '$1=="0" {print $3}' /proc/$PID/cgroup
+```
+
+To inspect the slice limits programmed by governance:
+
+```
+cumulus@switch:~$ systemctl show docker-restricted.slice -p CPUQuotaPerSecUSec -p MemoryMax
+cumulus@switch:~$ systemctl show docker-limited.slice -p CPUQuotaPerSecUSec -p MemoryMax
+```
+
+The authoritative CPU and memory limits are applied to the slice, not to the individual container scope. Verify both container placement and slice properties when checking governance behavior.

@@ -9,10 +9,12 @@ Check out the latest updates to {{<exlink url="https://dsx-air.nvidia.com" text=
 
 ## April 2026
 <!-- Air:WhatsNew -->
+### 82.2.1.8.11
+- Fixed issue with high fidelity nodes with outbound interfaces not being able to consistently use their data ports.
+<!-- Air:WhatsNew -->
+
 ### 82.2.1.7.3
 - Reduced the risk of S3 throttling during cloning operations.
-- Fixed an issue where old simulation using emulated nodes were exported with an unintended `required_mac_count` key.
-<!-- Air:WhatsNew -->
 
 ## March 2026
 ### 82.2.1.5.7

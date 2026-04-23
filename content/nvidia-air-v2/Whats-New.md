@@ -11,6 +11,7 @@ Check out the latest updates to {{<exlink url="https://dsx-air.nvidia.com" text=
 <!-- Air:WhatsNew -->
 ### 82.2.1.8.11
 - Fixed issue with high fidelity nodes with outbound interfaces not being able to consistently use their data ports.
+- Fixed an issue where users were able to select enablement durations exceeding the five‑year limit enforced by NGC.
 <!-- Air:WhatsNew -->
 
 ### 82.2.1.7.3

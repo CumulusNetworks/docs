@@ -25,6 +25,18 @@
 <td></td>
 </tr>
 <tr>
+<td>4989427</td>
+<td>When upgrading the switch to Cumulus Linux 5.16,  the upgrade process completes successfully and both gNMI and SNMP services are up, but gNMI telemetry data is not returned for several key metrics.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989426</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4986343</td>
 <td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
 <td>5.15.1-5.16.1</td>
@@ -1401,6 +1413,18 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>4989430</td>
 <td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989427</td>
+<td>When upgrading the switch to Cumulus Linux 5.16,  the upgrade process completes successfully and both gNMI and SNMP services are up, but gNMI telemetry data is not returned for several key metrics.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989426</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>

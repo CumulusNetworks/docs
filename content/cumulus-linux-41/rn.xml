@@ -47,12 +47,33 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td></td>
 </tr>
 <tr>
+<td>3269538</td>
+<td>The {{cl-ecmpcalc}} command prints the following error when the egress interface is a bond or SVI:
+
+ecmpcalc: will query hardware
+Traceback (most recent call last):
+File “/usr/cumulus/bin/cl-ecmpcalc”, line 986, in
+isTrunkMbr, port = ecmp.getHdPort(hd_cmd)
+File “/usr/cumulus/bin/cl-ecmpcalc”, line 618, in getHdPort
+port = int(str4)
+ValueError: invalid literal for int() with base 10: ‘0t
+</td>
+<td>3.7.16-4.3.1</td>
+<td>4.3.2-4.4.5</td>
+</tr>
+<tr>
 <td>3209699</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.16.1</td>
+</tr>
+<tr>
+<td>3136940</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>3.7.16-4.3.0</td>
+<td>4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>3120423</td>
@@ -111,6 +132,12 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 <td></td>
 </tr>
 <tr>
+<td>2932121</td>
+<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
+<td>3.7.15-4.3.0</td>
+<td>4.3.1-4.4.5</td>
+</tr>
+<tr>
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
@@ -123,17 +150,23 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 <td>4.3.1-4.4.5</td>
 </tr>
 <tr>
+<td>2899422, 3036049, 3069904</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
+<td>3.7.15-4.3.0</td>
+<td>4.3.1-4.4.5</td>
+</tr>
+<tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-5.0.1</td>
-<td>5.1.0-5.16.1</td>
+<td>3.7.15-4.3.0, 4.4.0-4.4.5, 5.0.0-5.16.1</td>
+<td>4.3.1</td>
 </tr>
 <tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.5</td>
-<td>3.7.16, 5.0.0-5.16.1</td>
+<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
+<td>3.7.16, 4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -154,6 +187,18 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 Reboot the affected switches.</td>
 <td>3.7.12-4.3.0</td>
 <td>4.3.1-4.4.5</td>
+</tr>
+<tr>
+<td>2862210</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.</td>
+<td>3.7.12-4.3.0, 4.4.2-4.4.5</td>
+<td>4.3.1, 5.0.0-5.16.1</td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-4.3.0, 4.4.2-5.0.1</td>
+<td>4.3.1, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>2792750</td>
@@ -203,8 +248,8 @@ vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd b
 spine01# show bgp vrf all ipv6 unicast statistics 
 vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
 To workaround this issue, run the command against each VRF independently.</td>
-<td>3.7.15, 4.0.0-4.4.5</td>
-<td>3.7.16</td>
+<td>3.7.15-4.3.0</td>
+<td>4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2687332</td>
@@ -250,10 +295,22 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>5.1.0-5.16.1</td>
 </tr>
 <tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-4.3.0</td>
+<td>4.3.1-4.4.5</td>
+</tr>
+<tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
 <td>3.7.15-4.3.4</td>
 <td>4.4.0-4.4.5</td>
+</tr>
+<tr>
+<td>2644071, 3348697</td>
+<td>When you stop {{clagd}} on the MLAG primary switch (for example, when you reboot the switch), in rare conditions the MLAG secondary switch might fail to properly assert itself as the MLAG primary switch. To work around this issue, change the primary designation by configuring the {{clagd}} priorities to ensure that you only reboot a switch that is in the MLAG secondary role.</td>
+<td>3.7.15-4.3.0</td>
+<td>4.3.1-4.4.5, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2574368</td>
@@ -265,14 +322,14 @@ To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/
 <tr>
 <td>2556764</td>
 <td>In a configuration with both traditional and VLAN-aware bridges, the VLAN membership check on a VLAN-aware bridge does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.4</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15-3.7.16, 4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.3.4</td>
-<td>4.4.0-4.4.5</td>
+<td>4.0.0-4.3.0</td>
+<td>4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2556081</td>
@@ -661,8 +718,8 @@ Because the modules listed above do not return to their default values correctly
 <td>2551162, 2550590</td>
 <td>{{switchd}} memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.
 To work around this issue, correct the cause of the frequent link flaps. You can restart {{switchd}} with the {{sudo systemctl restart switchd}} command to recover memory; this operation is impactful to all traffic on the switch during the restart.</td>
-<td>3.7.11-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.11-4.2.0</td>
+<td>4.2.1-4.4.5</td>
 </tr>
 <tr>
 <td>2551124</td>
@@ -760,14 +817,14 @@ To work around this issue, apply an extended community with a route map using {{
 <tr>
 <td>2550601</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.4</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
+<td>3.7.8-4.3.0</td>
+<td>4.3.1-4.4.5, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2550479</td>
 <td>VXLAN interface as in-interface or out-interface in an ACL is not supported in Spectrum-based switches.</td>
-<td>3.7.7-4.2.1</td>
-<td>4.3.0-4.4.5</td>
+<td>3.7.7-4.2.0</td>
+<td>4.2.1-4.4.5</td>
 </tr>
 <tr>
 <td>2550444</td>
@@ -818,8 +875,8 @@ May 20 10:48:04.665635 leaf01 poed[8012]: ERROR : invalid checksum in response [
 May 20 10:48:04.671299 leaf01 poed[8012]: poed : ERROR : invalid checksum in response [0xC2:0x00]
 May 20 10:48:04.708620 leaf01 systemd[1]: cumulus-poe.service: main process exited, code=exited, status=1/FAILURE
 The service starts automatically but there is an impact to POE devices momentarily.</td>
-<td>3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.12-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2550264, 2550998</td>
@@ -957,8 +1014,8 @@ To work around this issue, reapply the configuration with NCLU and run the {{net
 <td>2549677</td>
 <td>After you add or remove a bridge VLAN identifier (VID) on a trunk port, the layer 2 VNI is put into VLAN 1. 
 To work around this issue, revert the configuration change.</td>
-<td>3.7.10-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.10-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2549671</td>
@@ -1104,8 +1161,8 @@ username cumulus nopassword
 <td>2548674</td>
 <td>A large number of flapping peers causes FRR to require a corresponding update to internal data structures that track peer information. Updating this internal data structure does not delete links that are down due to the flapping. The size of this array then grows to contain both current peers as well as peers that should have been deleted during the flap processing. The contents of this array is processed by FRR to poll the links, which consumes CPU for all items in the array. This additional polling consumes more CPU than necessary but has no functional impact.
 To work around this issue, restart FRR.</td>
-<td>3.7.11-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.11-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548672, 2555635</td>
@@ -1137,8 +1194,8 @@ You can safely ignore these error messages.</td>
 <td>After you flap an MLAG peerlink, a rare condition might occur where routes and neighbors for VXLAN-enabled VLANs are misprogrammed as non-VXLAN routes and neighbors due to VNI state transitions. This results in a forwarding failure for traffic destined to these misprogrammed routes and neighbors.
 *Note*: Do not flap a VNI interface manually. The only expected time for a VNI interface to go down is when the MLAG secondary switch brings the VNIs protodown during a peer link failure where the backup IP address is still active.
 To recover from this condition, restart {{switchd}} with the {{sudo systemctl restart switchd}} command.</td>
-<td>3.7.10-3.7.12, 4.1.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.10-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548561</td>
@@ -1213,14 +1270,14 @@ Note: A network restart is a disruptive operation. </td>
 <tr>
 <td>2548383</td>
 <td>The QuantaMesh BMS T3048-LY8 switch shows a low fan RPM in syslog.</td>
-<td>3.7.5-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.5-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548373, 2548371</td>
 <td>On the Edgecore AS5812 switch, the Innodisk DIMM causes a DIMM temperature sensor absent alert.</td>
-<td>3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.12-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548320, 2543525</td>
@@ -1241,8 +1298,8 @@ These errors are result of  user space acting on kernel events a bit slow. The m
 <td>2548308</td>
 <td>When the garbage collector does not release memory back to the operating system, {{clagd}} might consume a large amount of memory. As a result of low system memory, {{systemd}} might shut down services to reclaim memory.
  </td>
-<td>3.7.11-3.7.12, 4.1.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.11-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548275, 2548503, 2556077</td>
@@ -1295,8 +1352,8 @@ These errors are result of  user space acting on kernel events a bit slow. The m
 <tr>
 <td>2548113</td>
 <td>In OVSDB VLAN-aware mode, removing a VTEP binding on the NSX controller fails to clean up all interfaces associated with the logical switch.</td>
-<td>3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.12-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548062</td>
@@ -1352,15 +1409,15 @@ To work around this issue, reboot the switch.</td>
 <tr>
 <td>2547667</td>
 <td>On the Dell S5232F-ON switch, the output of {{ledmgrd}} shows {{amber_blinking}} but {{smonctl}} shows all OK.</td>
-<td>3.7.11-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.11-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2547610, 2548114</td>
 <td>Mellanox switches with the Spectrum A0 ASIC that are integrated with VMware NSX experience BFD connectivity issues with service nodes. As a result, VXLAN tunnels do not work.
 Mellanox switches with the Spectrum A1 ASIC do **not** have this issue.</td>
-<td>3.7.11-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.11-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2547405</td>
@@ -1434,8 +1491,8 @@ To work around this issue, execute the {{vtysh -f &lt;file&gt;}} command in the 
 <tr>
 <td>2546985</td>
 <td>On the EdgeCore AS7326-56X switch, the PSU fans show constant LOW warnings.</td>
-<td>3.7.10-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.10-4.2.0</td>
+<td>4.2.1-4.4.5</td>
 </tr>
 <tr>
 <td>2546951, 2548887</td>
@@ -1447,8 +1504,8 @@ You might see logs similar to the following in {{/var/log/syslog}}:
 kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142ca sp 00007ffd557a86d0 error 4 in switchd[400000+71000]
 
 To work around this issue, use a route map to filter the default route (the source VRF is imported into the destination VRF).</td>
-<td>3.7.10-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.10-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2546895</td>
@@ -1771,8 +1828,8 @@ See /var/log/netd.log for more details.
  /usr/share/mgmt-vrf/bin/ping6 = cap_net_raw+ep 
   
  </td>
-<td>3.7.6-3.7.10, 4.1.0-4.4.5</td>
-<td>3.7.11-3.7.16</td>
+<td>3.7.6-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2543649</td>
@@ -1780,8 +1837,8 @@ See /var/log/netd.log for more details.
 
 -A FORWARD -i swp5 -s 00:25:90:b2:bd:9d -d 50:6b:4b:96:c4:04 -j erspan --src-ip 100.1.1.2 --dst-ip 100.1.1.1 --ttl 64
 </td>
-<td>3.7.6-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.6-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2543647</td>
@@ -2290,12 +2347,33 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td></td>
 </tr>
 <tr>
+<td>3269538</td>
+<td>The {{cl-ecmpcalc}} command prints the following error when the egress interface is a bond or SVI:
+
+ecmpcalc: will query hardware
+Traceback (most recent call last):
+File “/usr/cumulus/bin/cl-ecmpcalc”, line 986, in
+isTrunkMbr, port = ecmp.getHdPort(hd_cmd)
+File “/usr/cumulus/bin/cl-ecmpcalc”, line 618, in getHdPort
+port = int(str4)
+ValueError: invalid literal for int() with base 10: ‘0t
+</td>
+<td>3.7.16-4.3.1</td>
+<td>4.3.2-4.4.5</td>
+</tr>
+<tr>
 <td>3209699</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.16.1</td>
+</tr>
+<tr>
+<td>3136940</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>3.7.16-4.3.0</td>
+<td>4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>3120423</td>
@@ -2348,17 +2426,29 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 <td>4.3.0-4.4.5</td>
 </tr>
 <tr>
+<td>2932121</td>
+<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
+<td>3.7.15-4.3.0</td>
+<td>4.3.1-4.4.5</td>
+</tr>
+<tr>
 <td>2910017</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
 <td>4.4.3-4.4.5, 5.1.0-5.16.1</td>
 </tr>
 <tr>
+<td>2899422, 3036049, 3069904</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
+<td>3.7.15-4.3.0</td>
+<td>4.3.1-4.4.5</td>
+</tr>
+<tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
-<td>3.7.15-5.0.1</td>
-<td>5.1.0-5.16.1</td>
+<td>3.7.15-4.3.0, 4.4.0-4.4.5, 5.0.0-5.16.1</td>
+<td>4.3.1</td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -2379,6 +2469,18 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 Reboot the affected switches.</td>
 <td>3.7.12-4.3.0</td>
 <td>4.3.1-4.4.5</td>
+</tr>
+<tr>
+<td>2862210</td>
+<td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.</td>
+<td>3.7.12-4.3.0, 4.4.2-4.4.5</td>
+<td>4.3.1, 5.0.0-5.16.1</td>
+</tr>
+<tr>
+<td>2815645</td>
+<td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
+<td>3.7.12-4.3.0, 4.4.2-5.0.1</td>
+<td>4.3.1, 5.1.0-5.16.1</td>
 </tr>
 <tr>
 <td>2792750</td>
@@ -2428,8 +2530,8 @@ vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd b
 spine01# show bgp vrf all ipv6 unicast statistics 
 vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
 To workaround this issue, run the command against each VRF independently.</td>
-<td>3.7.15, 4.0.0-4.4.5</td>
-<td>3.7.16</td>
+<td>3.7.15-4.3.0</td>
+<td>4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2687332</td>
@@ -2475,22 +2577,34 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>5.1.0-5.16.1</td>
 </tr>
 <tr>
+<td>2652003</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>3.7.10-4.3.0</td>
+<td>4.3.1-4.4.5</td>
+</tr>
+<tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
 <td>3.7.15-4.3.4</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
+<td>2644071, 3348697</td>
+<td>When you stop {{clagd}} on the MLAG primary switch (for example, when you reboot the switch), in rare conditions the MLAG secondary switch might fail to properly assert itself as the MLAG primary switch. To work around this issue, change the primary designation by configuring the {{clagd}} priorities to ensure that you only reboot a switch that is in the MLAG secondary role.</td>
+<td>3.7.15-4.3.0</td>
+<td>4.3.1-4.4.5, 4.4.0-4.4.5</td>
+</tr>
+<tr>
 <td>2556764</td>
 <td>In a configuration with both traditional and VLAN-aware bridges, the VLAN membership check on a VLAN-aware bridge does not drop PVST BPBUs that come from a traditional bridge.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.4</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15-3.7.16, 4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2556500</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.3.4</td>
-<td>4.4.0-4.4.5</td>
+<td>4.0.0-4.3.0</td>
+<td>4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2556037</td>
@@ -2809,8 +2923,8 @@ To workaround this issue, downgrade to Cumulus Linux 3.7 ESR.</td>
 <td>2551162, 2550590</td>
 <td>{{switchd}} memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.
 To work around this issue, correct the cause of the frequent link flaps. You can restart {{switchd}} with the {{sudo systemctl restart switchd}} command to recover memory; this operation is impactful to all traffic on the switch during the restart.</td>
-<td>3.7.11-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.11-4.2.0</td>
+<td>4.2.1-4.4.5</td>
 </tr>
 <tr>
 <td>2551124</td>
@@ -2870,14 +2984,14 @@ To work around this issue, apply an extended community with a route map using {{
 <tr>
 <td>2550601</td>
 <td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.4</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
+<td>3.7.8-4.3.0</td>
+<td>4.3.1-4.4.5, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2550479</td>
 <td>VXLAN interface as in-interface or out-interface in an ACL is not supported in Spectrum-based switches.</td>
-<td>3.7.7-4.2.1</td>
-<td>4.3.0-4.4.5</td>
+<td>3.7.7-4.2.0</td>
+<td>4.2.1-4.4.5</td>
 </tr>
 <tr>
 <td>2550444</td>
@@ -2922,8 +3036,8 @@ May 20 10:48:04.665635 leaf01 poed[8012]: ERROR : invalid checksum in response [
 May 20 10:48:04.671299 leaf01 poed[8012]: poed : ERROR : invalid checksum in response [0xC2:0x00]
 May 20 10:48:04.708620 leaf01 systemd[1]: cumulus-poe.service: main process exited, code=exited, status=1/FAILURE
 The service starts automatically but there is an impact to POE devices momentarily.</td>
-<td>3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.12-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2550243</td>
@@ -2990,8 +3104,8 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <td>2549677</td>
 <td>After you add or remove a bridge VLAN identifier (VID) on a trunk port, the layer 2 VNI is put into VLAN 1. 
 To work around this issue, revert the configuration change.</td>
-<td>3.7.10-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.10-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2549671</td>
@@ -3131,8 +3245,8 @@ username cumulus nopassword
 <td>2548674</td>
 <td>A large number of flapping peers causes FRR to require a corresponding update to internal data structures that track peer information. Updating this internal data structure does not delete links that are down due to the flapping. The size of this array then grows to contain both current peers as well as peers that should have been deleted during the flap processing. The contents of this array is processed by FRR to poll the links, which consumes CPU for all items in the array. This additional polling consumes more CPU than necessary but has no functional impact.
 To work around this issue, restart FRR.</td>
-<td>3.7.11-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.11-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548672, 2555635</td>
@@ -3177,8 +3291,8 @@ To work around this issue and proceed with the upgrade, run {{apt-get update --a
 <td>After you flap an MLAG peerlink, a rare condition might occur where routes and neighbors for VXLAN-enabled VLANs are misprogrammed as non-VXLAN routes and neighbors due to VNI state transitions. This results in a forwarding failure for traffic destined to these misprogrammed routes and neighbors.
 *Note*: Do not flap a VNI interface manually. The only expected time for a VNI interface to go down is when the MLAG secondary switch brings the VNIs protodown during a peer link failure where the backup IP address is still active.
 To recover from this condition, restart {{switchd}} with the {{sudo systemctl restart switchd}} command.</td>
-<td>3.7.10-3.7.12, 4.1.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.10-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548561</td>
@@ -3253,14 +3367,14 @@ Note: A network restart is a disruptive operation. </td>
 <tr>
 <td>2548383</td>
 <td>The QuantaMesh BMS T3048-LY8 switch shows a low fan RPM in syslog.</td>
-<td>3.7.5-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.5-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548373, 2548371</td>
 <td>On the Edgecore AS5812 switch, the Innodisk DIMM causes a DIMM temperature sensor absent alert.</td>
-<td>3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.12-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548320, 2543525</td>
@@ -3281,8 +3395,8 @@ These errors are result of  user space acting on kernel events a bit slow. The m
 <td>2548308</td>
 <td>When the garbage collector does not release memory back to the operating system, {{clagd}} might consume a large amount of memory. As a result of low system memory, {{systemd}} might shut down services to reclaim memory.
  </td>
-<td>3.7.11-3.7.12, 4.1.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.11-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548275, 2548503, 2556077</td>
@@ -3335,8 +3449,8 @@ These errors are result of  user space acting on kernel events a bit slow. The m
 <tr>
 <td>2548113</td>
 <td>In OVSDB VLAN-aware mode, removing a VTEP binding on the NSX controller fails to clean up all interfaces associated with the logical switch.</td>
-<td>3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.12-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2548062</td>
@@ -3392,15 +3506,15 @@ To work around this issue, reboot the switch.</td>
 <tr>
 <td>2547667</td>
 <td>On the Dell S5232F-ON switch, the output of {{ledmgrd}} shows {{amber_blinking}} but {{smonctl}} shows all OK.</td>
-<td>3.7.11-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.11-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2547610, 2548114</td>
 <td>Mellanox switches with the Spectrum A0 ASIC that are integrated with VMware NSX experience BFD connectivity issues with service nodes. As a result, VXLAN tunnels do not work.
 Mellanox switches with the Spectrum A1 ASIC do **not** have this issue.</td>
-<td>3.7.11-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.11-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2547405</td>
@@ -3474,8 +3588,8 @@ To work around this issue, execute the {{vtysh -f &lt;file&gt;}} command in the 
 <tr>
 <td>2546985</td>
 <td>On the EdgeCore AS7326-56X switch, the PSU fans show constant LOW warnings.</td>
-<td>3.7.10-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.10-4.2.0</td>
+<td>4.2.1-4.4.5</td>
 </tr>
 <tr>
 <td>2546951, 2548887</td>
@@ -3487,8 +3601,8 @@ You might see logs similar to the following in {{/var/log/syslog}}:
 kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142ca sp 00007ffd557a86d0 error 4 in switchd[400000+71000]
 
 To work around this issue, use a route map to filter the default route (the source VRF is imported into the destination VRF).</td>
-<td>3.7.10-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.10-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2546895</td>
@@ -3811,8 +3925,8 @@ See /var/log/netd.log for more details.
  /usr/share/mgmt-vrf/bin/ping6 = cap_net_raw+ep 
   
  </td>
-<td>3.7.6-3.7.10, 4.1.0-4.4.5</td>
-<td>3.7.11-3.7.16</td>
+<td>3.7.6-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2543649</td>
@@ -3820,8 +3934,8 @@ See /var/log/netd.log for more details.
 
 -A FORWARD -i swp5 -s 00:25:90:b2:bd:9d -d 50:6b:4b:96:c4:04 -j erspan --src-ip 100.1.1.2 --dst-ip 100.1.1.1 --ttl 64
 </td>
-<td>3.7.6-3.7.12, 4.0.0-4.4.5</td>
-<td>3.7.13-3.7.16</td>
+<td>3.7.6-4.1.1</td>
+<td>4.2.0-4.4.5</td>
 </tr>
 <tr>
 <td>2543647</td>

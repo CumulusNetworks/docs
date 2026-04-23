@@ -1239,6 +1239,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4986333</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4963280</td>
 <td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
 <td>5.9.1-5.16.1</td>
@@ -1248,6 +1260,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4963277</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4957394</td>
+<td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
+<td>5.9.5-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1308,6 +1326,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
+<td>4731091, 4857885</td>
+<td>During optimized image upgrade, the switch logs an error because a new file is added. There is no functional impact.</td>
+<td>5.11.4-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4729839</td>
 <td>In an MLAG configuration, when you reboot the primary MLAG switch with PVRST spanning tree mode configured on both MLAG switches, PVRST mode briefly changes to RSTP, then back to PVRST when the primary switch comes back up.</td>
 <td>5.11.3-5.15.1</td>
@@ -1349,6 +1373,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>4647646</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
+<td>5.15.0-5.16.1</td>
+</tr>
+<tr>
+<td>4640898</td>
+<td>When a new LLDP neighbor is discovered with an empty or missing Port Description TLV; for example, when introducing a new third-party switch into the fabric, a {{ptmd}} defect might cause a segmentation fault (crash).</td>
+<td>5.11.2-5.14.0</td>
 <td>5.15.0-5.16.1</td>
 </tr>
 <tr>
@@ -1498,8 +1528,8 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4499025</td>
 <td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.16.1</td>
-<td></td>
+<td>5.11.2-5.13.1</td>
+<td>5.14.0-5.16.1</td>
 </tr>
 <tr>
 <td>4495231</td>
@@ -1511,6 +1541,21 @@ To work around this issue, power cycle the switch.</td>
 <td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
 <td>5.11.2-5.13.1</td>
+<td>5.14.0-5.16.1</td>
+</tr>
+<tr>
+<td>4475117</td>
+<td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+To restart the services, either reboot the switch, or run the following commands:
+sudo systemctl restart nvued.service
+sudo systemctl restart nvue-startup.service
+systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
+systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
+</td>
+<td>5.11.1-5.13.1</td>
 <td>5.14.0-5.16.1</td>
 </tr>
 <tr>

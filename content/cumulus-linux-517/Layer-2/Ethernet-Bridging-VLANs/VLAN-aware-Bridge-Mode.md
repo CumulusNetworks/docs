@@ -467,14 +467,155 @@ iface bridge1_vlan10
 {{< /tab >}}
 {{< /tabs >}}
 
-## VLAN Bridge Binding Mode
+## Bridge and SVI Link State Controls
 
-Cumulus Linux transfers the link state of a VLAN device automatically from the lower device. If you want to determine the link state according to the bridge ports that are members of the VLAN, disable VLAN bridge binding mode.
+To control the behavior of the SVI link state, configure bridge always up and VLAN bridge binding mode.
+
+### Bridge Always Up
+
+The first time you configure a switch, all southbound bridge ports are down; therefore, by default, the bridge is down. You can force the bridge to always be up by disabling interface state tracking on the bridge so that the bridge is always in the up state even when all member ports are down.
+
+{{%notice note%}}
+To keep SVIs perpetually up, {{<link url="#vlan-bridge-binding-mode" text="VLAN bridge binding mode">}} (`vlan-bridge-binding`) must be `off`.
+{{%/notice%}}
+
+{{< tabs "TabID486 ">}}
+{{< tab "NVUE Commands ">}}
+
+To configure all SVIs on the switch to be perpetually up, run the `nv set system global svi-force-up state enabled` command.
+
+```
+cumulus@switch:~$ nv set system global svi-force-up state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To configure SVIs in a specific bridge to be perpetually up, run the `nv set bridge domain <bridge> svi-force-up state enabled` command:
+
+```
+cumulus@switch:~$ nv set bridge domain br_default svi-force-up state enabled
+cumulus@switch:~$ nv config apply
+```
+
+- To configure all SVIs on the switch to be perpetually down, run the `nv set system global svi-force-up state disabled` command.
+- To configure the SVIs in a specific bridge to be perpetually down, run the `nv set bridge domain <bridge> svi-force-up state disabled` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To configure the SVIs in a bridge to be perpetually up, edit the `/etc/network/interfaces` file to add the `bridge-always-up on` option to the bridge stanza, then reload the configuration with the `sudo ifreload -a` command:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 bond3 peerlink
+    hwaddress 48:b0:2d:4e:ad:89
+    bridge-vlan-aware yes
+    bridge-vids 10 20 30
+    bridge-pvid 1
+    bridge-stp yes
+    bridge-mcsnoop no
+    bridge-always-up on
+    mstpctl-forcevers rstp
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+To configure all SVIs on the switch to be perpetually up, add the `bridge-always-up on` option to all bridge stanzas with SVIs.
+
+- To configure the SVIs in a bridge to be perpetually down, remove the `bridge-always-up on` option from the bridge stanza, then reload the configuration with the `sudo ifreload -a` command.
+- To configure all SVIs on the switch to be perpetually down, remove the `bridge-always-up on` option from all bridge stanzas, then reload the configuration with the `sudo ifreload -a` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+With bridge always up is set to `on`, even when an interface is down, the bridge remains up:
+
+```
+cumulus@switch:~$ ip link show bond1
+7: bond1: <BROADCAST,MULTICAST,MASTER> mtu 9216 qdisc noqueue master br_default state DOWN mode DEFAULT group default qlen 1000
+    link/ether 48:b0:2d:cf:e4:3e brd ff:ff:ff:ff:ff:ff
+cumulus@switch:~$ ip link show br_default
+18: br_default: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether 8:b0:2d:4e:ad:89 brd ff:ff:ff:ff:ff:ff
+```
+
+To show if bridge always up is set to `on` for all SVIs on the switch, run the `nv show system global svi-force-up` command:
+
+```
+cumulus@switch:~$ nv show system global svi-force-up
+        operational  applied
+------  -----------  -------
+state   enabled      enabled
+```
+
+To show if bridge always up is set to `on` for SVIs in a specific bridge, run the `nv show bridge domain <domain-id> svi-force-up` command:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default svi-force-up
+        applied
+------  -------
+state   enabled
+```
+
+### VLAN Bridge Binding Mode
+
+By default, the link state of an SVI follows the link state of the VLAN member ports and the bridge link state.
+If you want the link state for the SVI to follow the bridge link state only, set VLAN bridge binding mode to off on the bridge.
+
+{{%notice note%}}
+In Cumulus Linux 5.13 and later, VLAN bridge binding is on by default. In Cumulus Linux 5.12 and earlier, VLAN bridge binding is off by default.
+{{%/notice%}}
+
+**Example 1: VLAN bridge binding mode is on (default setting)**
+
+SVI interface vlan100 on bridge `br_default` has two interfaces in the VLAN:
+- swp1 is an access port (bridge access 100).
+- swp2 is included on the bridge and defaults to be a trunk port with all VLANs included.
+
+If the following conditions are true, vlan100 has link status up:
+- The `br_default` bridge is link status up.
+- Either swp1 or swp2, or both swp1 and swp2 are link status up.
+
+If both conditions are false, vlan100 has link status down.
+
+**Example 2: VLAN bridge binding mode is off**
+
+- If the `br-default` bridge is link status up, vlan100 has link status up.
+- If the `br-default` bridge is link status down, vlan100 also has link status down.
+
+{{%notice note%}}
+To ensure that the SVI is perpetually up, combine VLAN bridge binding mode with the {{<link url="#bridge-always-up" text="bridge always up setting">}}.
+{{%/notice%}}
+
+To configure the VLAN bridge binding mode:
 
 {{< tabs "TabID476 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE does not provide commands to configure VLAN bridge binding mode.
+NVUE does not provide commands to configure VLAN bridge binding mode; however, you can use snippets.
+
+The following example creates a snippet file called `bridge_binding_off_snippet.yaml` and sets VLAN bridge binding mode to off:
+
+```
+cumulus@switch:~$ sudo nano bridge_binding_off_snippet.yaml
+- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlan100: |
+              vlan-bridge-binding off
+```
+
+Apply the snippet file to the configuration:
+
+```
+cumulus@switch:~$ nv config patch svi_bridge_binding_off_snippet.yaml
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -502,95 +643,6 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-
-## Keep SVIs Perpetually UP
-
-The first time you configure a switch, all southbound bridge ports are down; therefore, by default, SVIs are also down. You can force SVIs to always be up by disabling interface state tracking so that the SVIs are always in the UP state even when all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
-
-{{%notice note%}}
-To keep SVIs perpetually UP, VLAN bridge binding mode (`vlan-bridge-binding`) must be `off`.
-{{%/notice%}}
-
-{{< tabs "TabID486 ">}}
-{{< tab "NVUE Commands ">}}
-
-To configure all SVIs on the switch to be perpetually UP, run the `nv set system global svi-force-up state enabled` command.
-
-```
-cumulus@switch:~$ nv set system global svi-force-up state enabled
-cumulus@switch:~$ nv config apply
-```
-
-To configure SVIs in a specific bridge to be perpetually UP, run the `nv set bridge domain <bridge> svi-force-up state enabled` command:
-
-```
-cumulus@switch:~$ nv set bridge domain br_default svi-force-up state enabled
-cumulus@switch:~$ nv config apply
-```
-
-- To configure all SVIs on the switch to be perpetually DOWN, run the `nv set system global svi-force-up state disabled` command.
-- To configure the SVIs in a specific bridge to be perpetually DOWN, run the `nv set bridge domain <bridge> svi-force-up state disabled` command.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-To configure the SVIs in a bridge to be perpetually UP, edit the `/etc/network/interfaces` file and add the `bridge-always-up on` option to the bridge stanza, then reload the configuration with the `sudo ifreload -a` command:
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-auto br_default
-iface br_default
-    bridge-ports bond1 bond2 bond3 peerlink
-    hwaddress 48:b0:2d:4e:ad:89
-    bridge-vlan-aware yes
-    bridge-vids 10 20 30
-    bridge-pvid 1
-    bridge-stp yes
-    bridge-mcsnoop no
-    bridge-always-up on
-    mstpctl-forcevers rstp
-```
-
-```
-cumulus@switch:~$ sudo ifreload -a
-```
-
-To configure all SVIs on the switch to be perpetually UP, add the `bridge-always-up on` option to all bridge stanzas with SVIs.
-
-- To configure the SVIs in a bridge to be perpetually DOWN, remove the `bridge-always-up on` option from the bridge stanza, then reload the configuration with the `sudo ifreload -a` command.
-- To configure all SVIs on the switch to be perpetually DOWN, remove the `bridge-always-up on` option from all bridge stanzas, then reload the configuration with the `sudo ifreload -a` command.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-With the `svi-force-up` (`bridge-always-up`) option set to `on`, even when an interface is down, the bridge remains UP:
-
-```
-cumulus@switch:~$ ip link show bond1
-7: bond1: <BROADCAST,MULTICAST,MASTER> mtu 9216 qdisc noqueue master br_default state DOWN mode DEFAULT group default qlen 1000
-    link/ether 48:b0:2d:cf:e4:3e brd ff:ff:ff:ff:ff:ff
-cumulus@switch:~$ ip link show br_default
-18: br_default: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
-    link/ether 8:b0:2d:4e:ad:89 brd ff:ff:ff:ff:ff:ff
-```
-
-To show if the `svi-force-up` option is set to `on` for all SVIs on the switch, run the `nv show system global svi-force-up` command:
-
-```
-cumulus@switch:~$ nv show system global svi-force-up
-        operational  applied
-------  -----------  -------
-state   enabled      enabled
-```
-
-To show if the `svi-force-up` option is set to `on` for SVIs in a specific bridge, run the `nv show bridge domain <domain-id> svi-force-up` command:
-
-```
-cumulus@switch:~$ nv show bridge domain br_default svi-force-up
-        applied
-------  -------
-state   enabled
-```
 
 <!-- vale off -->
 ## IPv6 Link-local Address Generation

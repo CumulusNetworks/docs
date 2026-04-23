@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4963277</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.16.1</td>
@@ -223,6 +229,16 @@ leaf01# exit</td>
 <td>Changing non-default BGP timers with NCLU or vtysh commands sets the hold time and keep alive interval to 0 seconds. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.3.1-5.6.0</td>
 <td>5.7.0-5.16.1</td>
+</tr>
+<tr>
+<td>3647426</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-5.5.1</td>
+<td>5.6.0-5.16.1</td>
 </tr>
 <tr>
 <td>3630492</td>
@@ -1012,6 +1028,12 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4963277</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.16.1</td>
@@ -1176,6 +1198,16 @@ leaf01# exit</td>
 <td>Changing non-default BGP timers with NCLU or vtysh commands sets the hold time and keep alive interval to 0 seconds. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.3.1-5.6.0</td>
 <td>5.7.0-5.16.1</td>
+</tr>
+<tr>
+<td>3647426</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-5.5.1</td>
+<td>5.6.0-5.16.1</td>
 </tr>
 <tr>
 <td>3613258</td>
@@ -1393,8 +1425,8 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <tr>
 <td>3474352</td>
 <td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap between the upper and lower four lanes on a port, the firmware gets stuck.</td>
-<td>5.3.0-5.5.1</td>
-<td>5.6.0-5.16.1</td>
+<td>5.3.0-5.5.0</td>
+<td>5.5.1-5.16.1</td>
 </tr>
 <tr>
 <td>3472865</td>

@@ -235,64 +235,99 @@ address-family l2vpn evpn
 In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. Leaf switches perform route aggregation per tenant VRF for scalability but this suppresses visibility of individual host link failures. EVPN unreachability signaling in a tenant VRF sends a route to advertise host unreachability after a link failure, enabling leaf switches to send LLDP TLVs informing connected NICs to avoid unreachable paths.
 
 {{%notice note%}}
-EVPN unreachability in disjoined planes is a Beta feature.
+- EVPN unreachability in disjoined planes is a Beta feature.
+- If you are migrating from connected planes with BGP disaggregation, remove BGP disaggregation configuration before configuring EVPN unreachability in disjoined planes.
+- When using EVPN unreachability in disjoined planes, route aggregation is required.
 {{%/notice%}}
 
-To enable EVPN unreachability signaling for disjoined multi-plane topologies on each leaf switch tenant VRF:
+To configure EVPN unreachability in disjoined planes, configure {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} in tenant VRFs, and enable unreachability advertisements in the `l2vpn-evpn` address-family. The following example on a leaf switch assumes a working EVPN configuration with IPv4 and IPv6 routes in VRF `TENANT1` and configures:
+- IPv4 and IPv6 aggregate routes to summarize relevant networks in the `TENANT1` VRF.
+- IPv4 and IPv6 unreachability for interfaces matching the aggregate prefixes in the `TENANT1` VRF.
+- EVPN IPv4 and IPv6 unreachability advertisements in the `l2vpn-evpn` address-family.
+- BGP `advertisement-delay` to 150 seconds.
+- BGP prefix export to LLDP in the `TENANT1` VRF.
+- The LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}}.
 
-1. Configurate route aggregation in the tenant VRFs to summarize relevant network IPv4 and, or IPv6 prefixes:
+{{< tabs "TabID1728 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only enabled
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unicast aggregate-route 2001:db8::/64 summary-only enabled
-cumulus@leaf01:mgmt:~$ nv config apply
-```
-
-2. Configure `bgp advertise-unreach interfaces-match <prefix>` under each IPv4 and, or IPv6 unreachability address-family to match interface prefixes attached to GPU NICs:
-
-```
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreachability advertise-unreach interfaces-match 10.1.0.0/16 
-cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreachability advertise-unreach interfaces-match 2001:db8::/64 
+cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreachability advertise-unreach interfaces-match 2001:db8::/64
+cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family l2vpn-evpn advertise ipv4-unreachability state enabled  
+cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family l2vpn-evpn advertise ipv6-unreachability state enabled
+cumulus@leaf01:mgmt:~$ nv set vrf bgp advertisement-delay time 150
+cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreachability export-lldp state enabled
+cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreachability export-lldp state enabled
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv egress-policy unreachable-prefix state enabled
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-3. Enable unreachability advertisements under the l2vpn evpn address family for the tenant VRFs:
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreachability state enabled  
-cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreachability state enabled 
-cumulus@leaf01:mgmt:~$ nv config apply
+cumulus@leaf01:mgmt:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# bgp advertisement-delay 150
+leaf01(config)# router bgp 65001 vrf TENANT1
+leaf01(config-router)#  address-family ipv4 unicast
+leaf01(config-router-af)#   aggregate-address 10.1.0.0/16 summary-only
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)#  address-family ipv4 unreachability
+leaf01(config-router-af)#   bgp advertise-unreach interfaces-match 10.1.0.0/16
+leaf01(config-router-af)#   bgp export lldp
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)#  address-family ipv6 unicast
+leaf01(config-router-af)#   aggregate-address 2001:db8::/64 summary-only
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)#  address-family ipv6 unreachability
+leaf01(config-router-af)#   bgp advertise-unreach interfaces-match 2001:db8::/64
+leaf01(config-router-af)#   bgp export lldp
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)#  address-family l2vpn evpn
+leaf01(config-router-af)#   advertise ipv4 unreachability
+leaf01(config-router-af)#   advertise ipv6 unreachability
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)# exit
+leaf01(config)# end
+leaf01# write memory
+leaf01# 
 ```
 
-4. Enable `bgp export lldp` in tenant VRFs to configure FRR to LLDP integration to send IPv4 and, or IPv6 prefix information to LLDP
+{{< /tab >}}
+{{< /tabs >}}
 
-```
-cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreachability export-lldp state
-cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreachability export-lldp state
-cumulus@leaf01:mgmt:~$ nv config apply
-```
+You can configure route maps to match unreachability EVPN route types with the NVUE `nv set router policy route-map <route-map-id> rule 10 match evpn-route-type prefix-unreachability` command or the vtysh `match evpn route-type prefix-unreachability` command. You can also set communities, extended communities (where supported), MED, local-pref, AS-path manipulation, origin, and other generic BGP set actions that apply to other EVPN route types to unreachability EVPN route types.
 
-5. Enable the LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} to distribute unreachable prefix information to connected hosts.
+{{%notice note%}}
+Setting the gateway overlay for unreachability EVPN prefixes is not supported.
+{{%/notice%}}
 
-### Show EVPN Unreachability Information
+### Considerations
 
-To show EVPN unreachability signaling information, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route` command:
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf TENANT1 router bgp address-family l2vpn-evpn route
-```
-
-To show EVPN unreachability signaling for a specific IPv4 route, run the `nv show vrf <vrf-id> router bgp address-family ipv4-unreachability <route>` command:
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf TENANT1 router bgp address-family ipv4-unreachability 10.1.0.0/16
-```
-
-To show EVPN unreachability signaling for a specific IPv6 route, run the `nv show vrf <vrf-id> router bgp address-family ipv6-unreachability <route>` command:
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf TENANT1 router bgp address-family ipv6-unreachability 2001:db8::/64
-```
+- EVPN Multihoming is not supported with unreachability in disjoined planes.
+- The EVPN unreachable route type is only supported with layer 3 VNIs.
+- Multiple service failures across leaf switches (such as an FRR failure on one leaf, and FRR, BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
+- FRR can send a maximum of 25k prefixes for each VRF and 100k total prefixes across all VRFs to LLDP.
+- When you use EVPN unreachability in disjoined planes with 802.1X, the radius servers must be reachable through the management VRF.
+- When the IPv6 SLAAC address for a connected host expires but the interface remains up, an unreachable route is not injected for the host.
+- The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
+- EVPN unreachability signaling is not functional if all the leaf switch uplinks to spines go down.
+- EVPN unreachability in disjoined planes does not work during a networking restart or forced reboot.
+- Cumulus Linux does not support:
+  - Mixing connected and disjoined planes on the same leaf switch.
+  - 802.1x dynamic VRF assignments with EVPN unreachability in disjoined planes.
+  - VRF leaking for IPv4 or IPv6 unreachability SAFI.
+  - Reporter TLV aggregation procedures for the EVPN unreachable route type.
+  - BGP ADD-PATH or multipath for the EVPN unreachable route type.
+  - Soft-reconfiguration support for the EVPN unreachable route type.
+  - Timestamp TLV based ageing and cleanup of the EVPN unreachable routes.
+  - EVPN Instance sub-TLV encoding support in the EVPN unreachable route type <span class="a-tooltip">[NLRI](## "Network Layer Reachability Information")</span>.
+  - Route map support to match anything other than route type in the unreachable route type <span class="a-tooltip">[NLRI](## "Network Layer Reachability Information")</span>.
+  - Wait for install for the EVPN unreachability route type.
 
 ### Known Limitations
 

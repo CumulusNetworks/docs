@@ -511,32 +511,34 @@ cumulus@switch:~$ systemctl status frr
 
 ## Adaptive Routing
 
-Adaptive routing is a load balancing feature that improves network utilization for eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.
+Adaptive routing is a load balancing feature that improves network utilization for adaptive routing eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.
 
 The benefits of using adaptive routing include:
 - The switch can forward adaptive routing eligible IP packets over all the available ECMP member ports to maximize the total traffic throughput, while removing potential ECMP flow collisions.
 - The switch distributes incoming traffic equally (or according to their weights) between the available IP next hops, which helps to minimize latency and network congestion.
 - If the cumulative rate of one or more flows exceeds the link bandwidth of the individual uplink port, adaptive routing can distribute the traffic dynamically between multiple uplink ports; the available bandwidth for these flows is not limited to the link bandwidth of an individual uplink port.
 
-With adaptive routing, the switch forwards packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion. The change decision for port selection is set to one microsecond; you cannot change it.
+With adaptive routing, the switch forwards adaptive routing eligible packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion. The change decision for port selection is set to one microsecond; you cannot change it.
 
 Cumulus Linux supports ECMP resource optimization for adaptive routing, which addresses the requirement of large numbers of ECMP groups during routing protocol convergence in transient scenarios.
 
 Cumulus Linux supports adaptive routing with:
 - Switches with the Spectrum-4 ASIC at 400G and 200G speeds.
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE2" >}} unicast traffic.
+- Adaptive routing eligible {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE2" >}} unicast traffic.
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
 - The NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectum-X networking platform" >}}.
+- For additional implementation requirements for adaptive routing consult the Spectrum-X Deployment Guide.
 
 {{%notice note%}}
 - Adaptive routing does not make use of resilient hashing.
 - Cumulus Linux does not support adaptive routing on layer 3 subinterfaces, SVIs, bonds or bond members.
 - The Spectrum-4 switch does not support adaptive routing on 800G links.
+- Adaptive routing is only suppported on the NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectum-X networking platform" >}}.
 {{%/notice%}}
 
-Cumulus Linux also supports BGP W-ECMP with adaptive routing; see {{<link title="BGP Weighted Equal Cost Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP Weighted Equal Cost Multipath. ">}}
+Cumulus Linux also supports BGP W-ECMP with adaptive routing; see {{<link title="BGP Weighted Equal Cost Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP Weighted Equal Cost Multipath ">}}.
 
 ### Enable Adaptive Routing
 

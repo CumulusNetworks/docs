@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4989428</td>
+<td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage, potentially leading to a restart of the gNMI server.</td>
+<td>5.15.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4986343</td>
 <td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
 <td>5.15.1-5.16.1</td>

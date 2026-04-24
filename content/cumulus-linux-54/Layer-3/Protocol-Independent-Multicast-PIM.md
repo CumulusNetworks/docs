@@ -1993,18 +1993,6 @@ exit-address-family
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "Try It " >}}
-    {{< simulation name="Try It CL54 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
-
-This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
-
-- To show the multicast routing table, run the NCLU `net show mroute` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
-- To see the active source on the RP, run the `net show pim upstream` command on spine01.
-- To show information about known S,Gs, the <span class="a-tooltip">[IIF](## "Incoming Interface")</span> and the <span class="a-tooltip">[OIL](## "Outgoing Interface")</span>, run the `net show pim state` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
-
-To further validate the configuration, run the PIM show commands listed in the troubleshooting section above.
-
-{{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->
 

@@ -306,6 +306,157 @@ You can configure route maps to match unreachability EVPN route types with the N
 Setting the gateway overlay for unreachability EVPN prefixes is not supported.
 {{%/notice%}}
 
+To show the EVPN unreachability route Reporters details, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route <evpn-route-id> -o json` command. To show the information in vtysh format, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route <evpn-route-id> -o native` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route [6.1.1.1:3]:[254]:[0]:[2001:10:11:1::/64] -o json
+{
+  "advertised-to": {
+    "2006::17": {
+      "hostname": "spine1-plane1"
+    },
+    "2006::21": {
+      "hostname": "spine2-plane1"
+    }
+  },
+  "ethernet-tag": 0,
+  "evpn-prefix-str": "[254]:[0]:[64]:[2001:10:11:1::]",
+  "ip": "2001:10:11:1::",
+  "path": {
+    "1": {
+      "aspath": {
+        "4202201117": {},
+        "4202201118": {}
+      },
+      "bestpath": {
+        "from-as": 4202201117,
+        "overall": "yes",
+        "selection-reason": "Router ID"
+      },
+      "ext-community": {
+        "RT:32798:500001 ET:8 Rmac:00:01:00:00:09:09": {}
+      },
+      "flags": {
+        "bestpath": {},
+        "valid": {}
+      },
+      "flags-string": "*v",
+      "last-update-time": 140,
+      "nexthop": {
+        "1": {
+          "accessible": "on",
+          "afi": "ipv6",
+          "ip": "2006::9",
+          "metric": 0,
+          "scope": "global",
+          "used": "on"
+        }
+      },
+      "nexthop-count": 1,
+      "origin": "incomplete",
+      "path-from": "external",
+      "peer": {
+        "hostname": "spine1-plane1",
+        "id": "2006::17",
+        "router-id": "7.1.1.1",
+        "type": "external"
+      },
+      "reporters": {
+        "6.1.1.1": {
+          "reporter-as": 4202201118,
+          "subtlv": {
+            "reason": "Local-Link-Down",
+            "timestamp": "2026-04-22T18:53:17Z"
+          }
+        }
+      },
+      "valid": "on",
+      "vni": {
+        "0": {}
+      }
+    },
+    "2": {
+      "aspath": {
+        "4202201117": {},
+        "4202201118": {}
+      },
+      "ext-community": {
+        "RT:32798:500001 ET:8 Rmac:00:01:00:00:09:09": {}
+      },
+      "flags": {
+        "valid": {}
+      },
+      "flags-string": "v",
+      "last-update-time": 140,
+      "nexthop": {
+        "1": {
+          "accessible": "on",
+          "afi": "ipv6",
+          "ip": "2006::9",
+          "metric": 0,
+          "scope": "global",
+          "used": "on"
+        }
+      },
+      "nexthop-count": 1,
+      "origin": "incomplete",
+      "path-from": "external",
+      "peer": {
+        "hostname": "spine2-plane1",
+        "id": "2006::21",
+        "router-id": "7.1.2.1",
+        "type": "external"
+      },
+      "reporters": {
+        "6.1.1.1": {
+          "reporter-as": 4202201118,
+          "subtlv": {
+            "reason": "Local-Link-Down",
+            "timestamp": "2026-04-22T18:53:17Z"
+          }
+        }
+      },
+      "valid": "on",
+      "vni": {
+        "0": {}
+      }
+    }
+  },
+  "path-count": 2,
+  "prefix": "2001:10:11:1::/64",
+  "rd": "6.1.1.1:3",
+  "route-type": "254"
+}
+```
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route [6.1.1.1:3]:[254]:[0]:[2001:10:11:1::/64] -o native
+BGP routing table entry for 6.1.1.1:3:[254]:[0]:[64]:[2001:10:11:1::]
+Paths: (2 available, best #1)
+  Advertised to peers:
+  spine1-plane1(2006::17) spine2-plane1(2006::21)
+  Route [254]:[0]:[64]:[2001:10:11:1::] VNI 0
+  4202201117 4202201118
+    2006::9 (spine1-plane1) from spine1-plane1(2006::17) (7.1.1.1)
+      Origin incomplete, valid, external, bestpath-from-AS 4202201117, best (Router ID)
+      Extended Community: RT:32798:500001 ET:8 Rmac:00:01:00:00:09:09
+      Reporter: 6.1.1.1 AS 4202201118
+        Reason Code: 9 (Local-Link-Down)
+        Timestamp: Wed Apr 22 18:53:17 2026
+      Last update: Thu Apr 23 07:52:09 2026
+  Route [254]:[0]:[64]:[2001:10:11:1::] VNI 0
+  4202201117 4202201118
+    2006::9 (spine2-plane1) from spine2-plane1(2006::21) (7.1.2.1)
+      Origin incomplete, valid, external
+      Extended Community: RT:32798:500001 ET:8 Rmac:00:01:00:00:09:09
+      Reporter: 6.1.1.1 AS 4202201118
+        Reason Code: 9 (Local-Link-Down)
+        Timestamp: Wed Apr 22 18:53:17 2026
+      Last update: Thu Apr 23 07:52:09 2026
+
+Displayed 2 paths for requested prefix
+```
+
 ### Considerations
 
 - EVPN Multihoming is not supported with unreachability in disjoined planes.

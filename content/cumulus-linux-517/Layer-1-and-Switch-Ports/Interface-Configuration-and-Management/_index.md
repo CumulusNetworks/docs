@@ -788,10 +788,10 @@ To unset the link debounce hold timers, run the `nv unset interface <interface> 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.d/link_debounce.conf` file to edit the `interface.swp61s0.link_debounce.up_delay` and `interface.swp61s0.link_debounce.down_delay` options, then reload `switchd`:
+Edit the `/etc/cumulus/switchd.d/link.conf` file to edit the `interface.swp61s0.link_debounce.up_delay` and `interface.swp61s0.link_debounce.down_delay` options, then reload `switchd`:
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/link_debounce.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/link.conf
 interface.swp1.link_debounce.up_delay = 2000 
 interface.swp1.link_debounce.down_delay = 1000
 ```

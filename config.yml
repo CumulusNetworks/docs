@@ -16,7 +16,7 @@ Params:
   netq_latest: "cumulus-netq-51"
   #sonic_latest: "sonic-202012"
   nvue_latest: "nvue-reference"
-  air_latest: "nvidia-air"
+  air_latest: "nvidia-air-v2"
 
   #Syntax Highlighting
   pygmentsCodeFencesGuessSyntax: True

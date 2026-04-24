@@ -244,7 +244,7 @@ To configure EVPN unreachability in disjoined planes, configure {{<link url="Opt
 - IPv4 and IPv6 aggregate routes to summarize relevant networks in the `TENANT1` VRF.
 - IPv4 and IPv6 unreachability for interfaces matching the aggregate prefixes in the `TENANT1` VRF.
 - EVPN IPv4 and IPv6 unreachability advertisements in the `l2vpn-evpn` address-family.
-- BGP `advertisement-delay` to 150 seconds.
+- BGP `advertisement-delay` to 150 seconds in the `TENANT1` VRF. 
 - BGP prefix export to LLDP in the `TENANT1` VRF.
 - The LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}}.
 
@@ -258,7 +258,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreach
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreachability advertise-unreach interfaces-match 2001:db8::/64
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family l2vpn-evpn advertise ipv4-unreachability state enabled  
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family l2vpn-evpn advertise ipv6-unreachability state enabled
-cumulus@leaf01:mgmt:~$ nv set vrf bgp advertisement-delay time 150
+cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp advertisement-delay time 150
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv4-unreachability export-lldp state enabled
 cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family ipv6-unreachability export-lldp state enabled
 cumulus@leaf01:mgmt:~$ nv set system lldp tlv egress-policy unreachable-prefix state enabled
@@ -271,8 +271,8 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 leaf01# configure terminal
-leaf01(config)# bgp advertisement-delay 150
 leaf01(config)# router bgp 65001 vrf TENANT1
+leaf01(config-router)# bgp advertisement-delay 150
 leaf01(config-router)#  address-family ipv4 unicast
 leaf01(config-router-af)#   aggregate-address 10.1.0.0/16 summary-only
 leaf01(config-router-af)#  exit-address-family

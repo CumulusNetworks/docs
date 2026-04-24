@@ -2070,9 +2070,13 @@ cumulus@leaf01:mgmt:~$ nv config apply
 5. Configure BGP advertisement delay to avoid premature advertisement of aggregate routes after a leaf switch reboot or FRR service restart, allowing downlink interfaces to come up before drawing traffic to the switch. NVIDIA recommends setting the delay to at least 150 seconds when using 802.1x authentication, and at least 30 seconds in other scenarios:
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router bgp advertisement-delay time 150
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp advertisement-delay time 150
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
+
+{{%notice note%}}
+When you configure advertisement delay in a VRF, multihop eBGP sessions are established after the `advertisement-delay` timer expires.
+{{%/notice%}}
 
 6. Enable {{<link url="/#graceful-bgp-restart" text="BGP Graceful Restart">}} to preserve forwarding state during service restarts. Configure `restart-time` and `stale-routes-time` with values greater than the configured `advertisement-delay`:
 

@@ -306,12 +306,10 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_interface_link_debounce_ignored_up_events` | UP events suppressed because debounce timer had not yet expired (transient UP spikes filtered). This metric indicates Noise or short UP spikes being filtered.  |
-| `nvswitch_interface_link_debounce_ignored_down_events`| DOWN events suppressed because debounce timer had not yet expired (transient link loss filtered). This metric indicates short interruptions being filtered. |
-| `nvswitch_interface_link_debounce_received_up_events` | UP events accepted and propagated after debounce delay (stable link recovery). This metric indicates stable link recovery events.  |
-| `nvswitch_interface_link_debounce_received_down_events` | DOWN events accepted and propagated after debounce delay (sustained link failure). This metric indicates sustained link failure events.  |
-| `nvswitch_interface_link_debounce_timer_cancellations` | Timer aborted because link state reverted before timer expired (quick reversal). This metric indicates Link flapping or oscillation. |
-| `nvswitch_interface_link_debounce_timer_expirations` | Timer completed successfully, event sent after debounce delay (stable state change). This metric indicates Valid and stable state changes.  |
+| `nvswitch_interface_link_debounce_ignored_events[event][interface]` | UP: Events suppressed because debounce timer had not yet expired (transient UP spikes filtered). This metric indicates Noise or short UP spikes being filtered.<br>DOWN: Events suppressed because debounce timer had not yet expired (transient link loss filtered). This metric indicates short interruptions being filtered.  |
+| `nvswitch_interface_link_debounce_received_events[event][interface]` | UP: Events accepted and propagated after debounce delay (stable link recovery). This metric indicates stable link recovery events.<br>DOWN: Events accepted and propagated after debounce delay (sustained link failure). This metric indicates sustained link failure events.  |
+| `nvswitch_interface_link_debounce_timer_cancellations[interface]` | Timer aborted because link state reverted before timer expired (quick reversal). This metric indicates Link flapping or oscillation. |
+| `nvswitch_interface_link_debounce_timer_expirations[interface]` | Timer completed successfully, event sent after debounce delay (stable state change). This metric indicates Valid and stable state changes.  |
 
 {{< /tab >}}
 {{< tab "PHY">}}

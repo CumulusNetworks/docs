@@ -48,7 +48,7 @@
     <script type="application/javascript" src="{{ $jsAir.Permalink }}"></script>
 {{ end }}
 
-{{ if eq .Page.Params.product "NVIDIA Air" }}
+{{ if eq .Page.Params.product "NVIDIA DSX Air" }}
 {{ $jsNetguru := resources.Get "js/netguru.js" }}
 
 <script src="{{ $jsNetguru.Permalink }}" id="chainlit-script"></script>

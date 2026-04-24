@@ -19,9 +19,49 @@
 <td></td>
 </tr>
 <tr>
+<td>4989434</td>
+<td>If the nginx {{nvue.conf }} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+nv set system api compression gzip
+nv config apply -y
+nv unset system api compression gzip
+nv config apply -y</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989432</td>
+<td>When an interface is constantly flapping and the same BGP neighbor is coming up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes the routes during interface down events. To recover from this state, restart the FRR service.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4989430</td>
 <td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
 <td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989428</td>
+<td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage, potentially leading to a restart of the gNMI server.</td>
+<td>5.15.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989427</td>
+<td>When upgrading the switch to Cumulus Linux 5.16,  the upgrade process completes successfully and both gNMI and SNMP services are up, but gNMI telemetry data is not returned for several key metrics.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989426</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989425</td>
+<td>Upgrading Cumulus Linux to 5.16.x causes a long boot delay and the {{nvued}} service remains in an activating state. To work around this issue, run {{nvue-git-manual-recovery.sh}} as a root user during maintenance on each node before upgrade, or on any node that has this issue. When successful, upgrade Cumulus Linux. If the script exits non-zero or reports time exceeded, follow the on-screen steps before continuing the upgrade.</td>
+<td>5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -155,16 +195,6 @@
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
 <td>5.15.0-5.16.1</td>
 <td>5.9.5</td>
-</tr>
-<tr>
-<td>4925516</td>
-<td>If Cumulus Linux generates a core file while automatic cl-support file generation is deactivated, automatic file generation does not work for core files even after you reactivate automatic cl-support file generation but does work for other types of failures, such as service failures and restarts.To clear this problem condition and get automatic cl-support file generation working for cores again, run the following commands:
-cumulus@switch:~$ sudo systemctl reset-failed cumulus-core.service
-cumulus@switch:~$ sudo systemctl restart cumulus-core.service
-cumulus@switch:~$ sudo systemctl reset-failed cumulus-core.path
-cumulus@switch:~$ sudo systemctl restart cumulus-core.path</td>
-<td>5.16.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4925514, 4919006</td>
@@ -1401,6 +1431,24 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>4989430</td>
 <td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989428</td>
+<td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage, potentially leading to a restart of the gNMI server.</td>
+<td>5.15.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989427</td>
+<td>When upgrading the switch to Cumulus Linux 5.16,  the upgrade process completes successfully and both gNMI and SNMP services are up, but gNMI telemetry data is not returned for several key metrics.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989426</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>

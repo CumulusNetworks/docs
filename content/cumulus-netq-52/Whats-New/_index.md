@@ -10,12 +10,13 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 5.2
 
-- Re-designed the {{<link title="Network Topology" text="network topology dashboard">}} 
+- Re-designed the {{<link title="Network Topology" text="network topology dashboard">}} (beta)
 - Added ability to {{<link title="Disaster Recovery Using NFS" text="back up your NetQ data using an NFS server">}} for disaster recovery scenarios (beta)
 - Added a {{<link title="System Events Reference/#correlation-events" text="fault correlation system event">}} which groups of events linked to the same underlying issue and displays the association between host-based errors and devices within a network’s fabric (beta)
 - Added {{<link title="Validation Tests Reference/#adaptive-routing-validation-tests" text="adaptive routing validations">}} that verify configuration consistencies across switches in your network's fabric (beta)
 - Added support for node addition for NetQ NVLink + Ethernet combined mode deployments (beta)
 - Added {{<link title="Validation Tests Reference/#roce-validation-tests" text="RoCE validations">}} that verify configuration consistencies across the entire network fabric, including switches, host NICs, and DPUs (beta)
+- Added support for Arm-based systems
 - Added ability to {{<link title="Create a NetQ Simulation in DSX Air" text="create NetQ simulations in DSX Air">}}
 - Updated the {{<link title="Cable Validations" text="Cable Validation Tool">}} to version 1.9
 

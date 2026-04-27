@@ -85,7 +85,7 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 
 {{<tab "Upgrade Issues">}}
 
-| Error Message | Deployment Type | Solution |
+| Error Message or Symptom | Deployment Type | Solution |
 | ---- | ---- | ---- |
 | Error: Tar size is exceeding the minimum disk required to run NetQ.| 5.0.0 single server or HA scale cluster |  Reduce the size of  the backup file, delete old backup files, or update the filesystem trimming logic. Refer to {{<link title="Troubleshoot NetQ/#resolve-disk-capacity-issues" text="Resolve Disk Capacity Issues">}}. |
 | Cannot upgrade a non-bootstrapped NetQ server. Please reset the cluster and re-install.| | Only a server that has been bootstrapped and has a valid `/etc/app-release` file can be upgraded.<br> 1. Run the `netq bootstrap reset` command. <br> 2. Run the {{<link title="install" text="netq install">}} command according to your deployment type. |
@@ -95,6 +95,7 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 | Please provide cluster-vip option and run command. | HA cluster | Include the `cluster-vip` option in the {{<link title="upgrade" text="netq upgrade bundle">}} command. | 
 | Could not find admin app pod, please re-run the command. | | Re-run the {{<link title="upgrade" text="netq upgrade bundle <text-bundle-url>">}} command. |
 | Could not upgrade server, unable to restore got exception: {} | On-premises |  The backup/restore option is only applicable for on-premises deployments which use {{<link title="Install a Custom Signed Certificate" text="self-signed certificates">}}.| 
+| After you upgrade NetQ, the NVLink services registry displays a DOWN status for controller and telemetry services. | On-premises |  This issue occurs when NVLink devices use non-standard ports (any ports other than 9370 and 9351). To work around this issue, apply a patch to the southbound gateway after the upgrade to include the non-standard ports. For example, if your custom ports are 9341 and 9441, run the following command on the NetQ server after the upgrade: `kubectl patch deploy southbound -n netq-nvl --type='json' -p='[{"op":"replace","path":"/spec/template/metadata/annotations/traffic.sidecar.istio.io~1excludeOutboundPorts","value":"9370,9351,9341,9441"}]’`| 
 {{</tab>}}
 
 {{<tab "Installation Issues" >}}

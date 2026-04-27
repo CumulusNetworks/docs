@@ -1,9 +1,9 @@
 ---
-title: Cumulus Linux 5.16 Release Notes
+title: Cumulus Linux 5.17 Release Notes
 author: Cumulus Networks
 weight: -30
 product: Cumulus Linux
-version: "5.16"
+version: "5.17"
 toc: 1
 type: rn
 pdfhidden: True

@@ -30,7 +30,6 @@ nv show system lldp tlv profile <lldp-profile-name-id> egress-policy
 nv show system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-name-id>
 nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy
 nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-name-id>
-nv show system reboot
 nv show system security alerts
 nv show system security secure-boot
 nv show system telemetry export ipfix
@@ -173,7 +172,6 @@ nv action change system security sed-password
 nv action clear interface debounce-counters 
 nv action clear interface <interface-id> counters link debounce
 nv action delete system file-path <path>
-nv action erase system disk
 nv action fetch system file-path <path> <uri> [file-permissions <value>] [vrf <vrf-name>]
 ```
 

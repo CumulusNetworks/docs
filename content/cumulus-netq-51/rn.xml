@@ -7,6 +7,44 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4977619</td>
+<td>NetQ might fail to load in high-availability (HA) scale deployments when ECMP is enabled. To work around this issue, disable ECMP ingestion by updating the Kafka connector configuration:
+&lt;ol&gt;
+&lt;li&gt;Create a backup of the current configuration:
+&lt;code&gt;kubectl get kafkaconnector cassandra-sink-group-1 -n netq-infra -o yaml &amp;gt; /tmp/cassandra-sink-group-1.backup.yaml&lt;/code&gt;
+&lt;/li&gt;
+&lt;li&gt;Capture the current Kafka connector values:
+
+OLD_KCQL=$(kubectl get kafkaconnector cassandra-sink-group-1 -n netq-infra -o jsonpath='{.spec.config.connect.cassandra.kcql}')
+OLD_TOPICS=$(kubectl get kafkaconnector cassandra-sink-group-1 -n netq-infra -o jsonpath='{.spec.config.topics}')
+
+&lt;/li&gt;
+&lt;li&gt;Remove ECMP-related entries from KCQL and topics:
+
+NEW_KCQL=$(echo "$OLD_KCQL" | tr ';' '\n' | grep -v -E 'INTO ecmp_info SELECT|INTO ecmp_info_aggregate SELECT|INTO ecmp_info_group_aggregate SELECT' | paste -sd ';' -)
+NEW_TOPICS=$(echo "$OLD_TOPICS" | tr ',' '\n' | grep -v -E '^netq_obj_ecmp_info$|^netq_obj_ecmp_info_aggregate$|^netq_obj_ecmp_info_group_aggregate$' | paste -sd ',' -)
+
+&lt;/li&gt;
+&lt;li&gt;Verify the changes before applying them:
+
+echo "=== KCQL ECMP entries remaining (should only show ecmp_hash + arEcmpInfo) ==="
+echo "$NEW_KCQL" | tr ';' '\n' | grep -i ecmp
+echo "=== TOPICS ECMP entries remaining (should only show netq_obj_ecmp_hash) ==="
+echo "$NEW_TOPICS" | tr ',' '\n' | grep -i ecmp
+echo "Old KCQL: $(echo "$OLD_KCQL" | tr ';' '\n' | wc -l) / New: $(echo "$NEW_KCQL" | tr ';' '\n' | wc -l) (-3)"
+echo "Old TOPICS: $(echo "$OLD_TOPICS" | tr ',' '\n' | wc -l) / New: $(echo "$NEW_TOPICS" | tr ',' '\n' | wc -l) (-3)"
+
+&lt;/li&gt;
+&lt;li&gt;Apply the updated configuration:
+&lt;code&gt;kubectl patch kafkaconnector cassandra-sink-group-1 -n netq-infra --type=merge -p "$(jq -n --arg k "$NEW_KCQL" --arg t "$NEW_TOPICS" '{spec:{config:{"connect.cassandra.kcql":$k,"topics":$t&amp;#125;&amp;#125;&amp;#125;')"&lt;/code&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra-sink-group-1.backup.yaml}}.
+</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4867933</td>
 <td>Threshold-crossing events created before version 5.1.0 may not display event values correctly after you upgrade NetQ.</td>
 <td>5.1.0</td>
@@ -15,12 +53,6 @@
 <tr>
 <td>4854041</td>
 <td>When you upgrade a NetQ for NVLink and Ethernet deployment using the data backup and restoration workflow, NetQ does not preserve NVLink data.</td>
-<td>5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4845405</td>
-<td>NetQ does not support performing a backup on version 5.1.0 and restoring it to the same version (5.1.0).</td>
 <td>5.1.0</td>
 <td></td>
 </tr>

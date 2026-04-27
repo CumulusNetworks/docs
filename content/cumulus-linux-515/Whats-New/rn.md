@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4989428"></a> [4989428](#4989428) <a name="4989428"></a> <br /> | In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage, potentially leading to a restart of the gNMI server. | 5.15.1-5.16.1 | |
 | <a name="4986343"></a> [4986343](#4986343) <a name="4986343"></a> <br /> | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1-5.16.1 | |
 | <a name="4986333"></a> [4986333](#4986333) <a name="4986333"></a> <br /> | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.16.1 | |
 | <a name="4986329"></a> [4986329](#4986329) <a name="4986329"></a> <br /> | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.1 | |

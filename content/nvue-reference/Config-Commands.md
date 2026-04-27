@@ -420,3 +420,72 @@ Introduced in Cumulus Linux 5.12.0
 ```
 cumulus@switch:~$ nv config translate filename /home/cumulus/backup.yaml
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv config verify</h>
+
+Verifies the pending configuration.
+
+The command validates configuration without reloading services or modifying the running system state. The command output shows any errors so that you can resolve them before applying the configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config verify
+applied_and_saved [rev_id: 2]
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv config verify filename \<nvue-file\></h>
+
+Verifies the configuration of the specified YAML or plain text configuration file.
+
+The command validates configuration without reloading services or modifying the running system state, and shows any errors.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<nvue-file>` |  The YAML or plain text configuration file name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config verify filename config2.yaml
+dry_run_complete [rev_id: 2]
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv config verify revision \<revision\></h>
+
+Verifies the configuration of a revision.
+
+The command validates configuration without reloading services or modifying the running system state, and shows any errors.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<revision>` | The revision ID, `applied`, `empty`, or `startup`.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config verify revision 2
+dry_run_complete [rev_id: 2]
+```

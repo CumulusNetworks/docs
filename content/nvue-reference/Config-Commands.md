@@ -446,7 +446,7 @@ applied_and_saved [rev_id: 2]
 
 Verifies the configuration of the specified YAML or plain text configuration file.
 
-The command validates configuration without reloading services or modifying the running system state, and shows any errors.
+The command validates configuration without reloading services or modifying the running system state. The output shows any errors.
 
 ### Command Syntax
 
@@ -471,7 +471,7 @@ dry_run_complete [rev_id: 2]
 
 Verifies the configuration of a revision.
 
-The command validates configuration without reloading services or modifying the running system state, and shows any errors.
+The command validates configuration without reloading services or modifying the running system state. The output shows any errors.
 
 ### Command Syntax
 

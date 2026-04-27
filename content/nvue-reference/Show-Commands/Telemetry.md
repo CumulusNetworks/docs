@@ -841,6 +841,27 @@ otlp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry export ipfix</h>
+
+Shows high frequency telemetry (HFT) export configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry export ipfix
+                            applied 
+--------------------------  --------
+port                        4739    
+state                       disabled
+template-metadata-interval  30
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry export otlp gRPC</h>
 
 Shows OTLP gRPC export configuration on the switch.
@@ -1442,6 +1463,26 @@ cumulus@switch:~$  nv show system telemetry interface-stats class phy
        operational  applied 
 -----  -----------  --------
 state               disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry interface-stats class debounce</h>
+
+Shows link debounce interface statistics configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$  nv show system telemetry interface-stats class debounce
+                 operational  applied 
+---------------  -----------  --------
+sample-interval  10           10      
+state            disabled     disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2720,6 +2761,28 @@ export
 class                    
   phy                    
     state        disabled
+```
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> interface-stats class debounce</h>
+
+Shows configuration for the custom statistics group for link debounce interface statistics.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 interface-stats class debounce 
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

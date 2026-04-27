@@ -2862,13 +2862,13 @@ Action succeeded
 
 ## <h>nv action delete system file-path \<file-path\></h>
 
-Deletes the specified .
+Deletes the specified file from local system.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<file-path>` | The  you want to delete. |
+| `<file-path>` | The local file path on the system. |
 
 ### Version History
 
@@ -2877,7 +2877,7 @@ Introduced in Cumulus Linux 5.17.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action delete system 
+cumulus@switch:~$ nv action delete system system file-path /path/file
 ```
 
 

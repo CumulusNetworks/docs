@@ -2010,7 +2010,6 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-
 ## BGP-LLDP Unreachability in Disjoined Planes
 
 In disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. For scalability, leaf switches perform route aggregation, which can reduce visibility into individual host link failures. BGP-based unreachability signaling enables the advertisement of host reachability changes following a link failure. Upon receiving BGP unreachable route advertisements, leaf switches use LLDP TLVs to notify directly connected NICs to avoid forwarding traffic over unreachable paths.
@@ -2244,6 +2243,8 @@ To show the unreachable prefixes in the RIB that are sent to LLDP, run the `nv s
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router rib unreachable-prefixes
 ```
+
+To show if FRR to LLDP integration is enabled to send IPv4 or IPv6 prefix information to LLDP, run the `nv show vrf <vrf-id> router bgp address-family ipv4-unreachability export-lldp` command for IPv4 or the `nv show vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp` command for IPv6.
 
 ## BGP Timers
 

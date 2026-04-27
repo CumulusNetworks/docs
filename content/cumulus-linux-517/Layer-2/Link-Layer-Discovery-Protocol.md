@@ -462,6 +462,10 @@ cumulus@leaf01:mgmt:~$ nv config apply
 - If you enabled LLDP TLVs in Cumulus Linux 5.16 and earlier for specific interfaces with the `nv set interface <interface-id> lldp <tlv-type> enabled` command, when upgrading to Cumulus Linux 5.17, the upgrade process converts the interface-specific configuration to a profile configuration using the profile name `auto-migrated-<interface-id>` and the equivalent egress-policy entries.
 {{%/notice%}}
 
+- To show LLDP TLV profile configuration, run the `nv show system lldp tlv profile <lldp-profile-name-id>` command.
+- To show ingress policy configuration for an LLDP TLV profile, run the `nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy` command.
+- To show egress policy configuration for an LLDP TLV profile, run the `nv show system lldp tlv profile <lldp-profile-name-id> egress-policy` command.
+
 ### BGP Unreachable Prefix TLV
 
 The BGP unreachable prefix TLV allows LLDP to send prefix information learned from {{<link url="FRRouting/" text="FRRouting">}} to connected hosts. This is required in certain use cases such as EVPN unreachability signaling in disjoined planes.

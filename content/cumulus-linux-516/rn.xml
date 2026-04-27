@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4989435</td>
-<td>During warm and fast reboots, NVUE intentionally skips a comprehensive Git cleanup to adhere to strict service start-up SLAs. When this cleanup is bypassed, existing Git maintenance debt, such as unreachable loose objects or blocked Garbage Collection (GC) states, remain in place and accumulate across successive reboots. The lightweight housekeeping performed during a standard {{nv config apply}} is not equivalent to a full cleanup. Consequently, stale objects and blocked GC states can persist until the repository becomes unreadable, eventually causing git commit operations to fail with the error {{fatal: could not parse HEAD}}.To work around this issue, run {{sudo systemctl restart nvued.service}} manually after a warm or fast reboot to trigger the full cleanup path skipped during the automated startup sequence.</td>
-<td>5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4989434</td>
 <td>If the nginx {{nvue.conf }} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
 nv set system api compression gzip
@@ -32,12 +26,6 @@ nv config apply -y</td>
 <td>4989432</td>
 <td>When an interface is constantly flapping and the same BGP neighbor is coming up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes the routes during interface down events. To recover from this state, restart the FRR service.</td>
 <td>5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4989430</td>
-<td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
-<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1425,12 +1413,6 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>4989440</td>
 <td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
-<td>5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4989430</td>
-<td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>

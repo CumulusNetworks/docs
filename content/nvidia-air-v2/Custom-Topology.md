@@ -158,125 +158,39 @@ The following JSON topology is an example of a simple topology with 1 spine, 2 l
             "leaf01": {
                 "cpu": 2,
                 "memory": 4096,
-                "storage": 10,
-                "os": "sonic-vs-202305",
-                "features": {
-                    "uefi": false,
-                    "tpm": false
-                },
-                "pxehost": false,
-                "secureboot": false,
-                "oob": false,
-                "emulation_type": null,
-                "network_pci": {},
-                "management_mac": "00:00:00:00:00:00"
+                "storage": 20,
+                "os": "cumulus-vx-5.16.1"
             },
             "leaf02": {
                 "cpu": 2,
                 "memory": 4096,
-                "storage": 10,
-                "os": "sonic-vs-202305",
-                "features": {
-                    "uefi": false,
-                    "tpm": false
-                },
-                "pxehost": false,
-                "secureboot": false,
-                "oob": false,
-                "emulation_type": null,
-                "network_pci": {},
-                "management_mac": "00:00:00:00:00:00"
+                "storage": 20,
+                "os": "cumulus-vx-5.16.1"
+            },
+            "spine01": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 20,
+                "os": "cumulus-vx-5.16.1"
             },
             "server01": {
                 "cpu": 2,
                 "memory": 2048,
                 "storage": 10,
-                "os": "generic/ubuntu2404",
-                "features": {
-                    "uefi": false,
-                    "tpm": false
-                },
-                "pxehost": false,
-                "secureboot": false,
-                "oob": false,
-                "emulation_type": null,
-                "network_pci": {},
-                "management_mac": "00:00:00:00:00:00"
+                "os": "generic/ubuntu2404"
             },
             "server02": {
                 "cpu": 2,
                 "memory": 2048,
                 "storage": 10,
-                "os": "generic/ubuntu2404",
-                "features": {
-                    "uefi": false,
-                    "tpm": false
-                },
-                "pxehost": false,
-                "secureboot": false,
-                "oob": false,
-                "emulation_type": null,
-                "network_pci": {},
-                "management_mac": "00:00:00:00:00:00"
-            },
-            "spine01": {
-                "cpu": 2,
-                "memory": 4096,
-                "storage": 10,
-                "os": "sonic-vs-202305",
-                "features": {
-                    "uefi": false,
-                    "tpm": false
-                },
-                "pxehost": false,
-                "secureboot": false,
-                "oob": false,
-                "emulation_type": null,
-                "network_pci": {},
-                "management_mac": "00:00:00:00:00:00"
+                "os": "generic/ubuntu2404"
             }
         },
         "links": [
-            [
-                {
-                    "interface": "eth1",
-                    "node": "leaf01"
-                },
-                {
-                    "interface": "eth1",
-                    "node": "server01"
-                }
-            ],
-            [
-                {
-                    "interface": "eth2",
-                    "node": "leaf01"
-                },
-                {
-                    "interface": "eth1",
-                    "node": "spine01"
-                }
-            ],
-            [
-                {
-                    "interface": "eth1",
-                    "node": "leaf02"
-                },
-                {
-                    "interface": "eth1",
-                    "node": "server02"
-                }
-            ],
-            [
-                {
-                    "interface": "eth2",
-                    "node": "leaf02"
-                },
-                {
-                    "interface": "eth2",
-                    "node": "spine01"
-                }
-            ]
+            [{"interface": "swp1", "node": "leaf01"}, {"interface": "eth1", "node": "server01"}],
+            [{"interface": "swp2", "node": "leaf01"}, {"interface": "swp1", "node": "spine01"}],
+            [{"interface": "swp1", "node": "leaf02"}, {"interface": "eth1", "node": "server02"}],
+            [{"interface": "swp2", "node": "leaf02"}, {"interface": "swp2", "node": "spine01"}]
         ]
     }
 }
@@ -366,7 +280,7 @@ You can create and customize a NetQ instance for your simulation.
                     "cpu": 4,
                     "memory": 6144,
                     "storage": 64,
-                    "os": "netq-ts-cloud-4.12.0"
+                    "os": "netq-ts-cloud-4.15.0"
                 }
             }
         }
@@ -391,15 +305,15 @@ The following is an example of a simple topology with 1 spine, 2 leaf nodes, and
 
 ```
 graph "Demo" {
-  "spine01" [ function="spine" memory="4096" os="sonic-vs-202305" cpu="2" ]
-  "leaf01" [ function="leaf" memory="4096" os="sonic-vs-202305" cpu="2" nic_model="e1000"]
-  "leaf02" [ function="leaf" memory="4096" os="sonic-vs-202305" cpu="2" secureboot="true"]
+  "spine01" [ function="spine" memory="4096" os="cumulus-vx-5.16.1" cpu="2" ]
+  "leaf01" [ function="leaf" memory="4096" os="cumulus-vx-5.16.1" cpu="2" nic_model="e1000"]
+  "leaf02" [ function="leaf" memory="4096" os="cumulus-vx-5.16.1" cpu="2" secureboot="true"]
   "server01" [ function="server" memory="2048" os="generic/ubuntu2404" cpu="2"]
   "server02" [ function="server" memory="2048" os="generic/ubuntu2204" cpu="3" storage="20"]
-    "leaf01":"eth1" -- "server01":"eth1"
-    "leaf02":"eth1" -- "server02":"eth1"
-    "leaf01":"eth2" -- "spine01":"eth1"
-    "spine01":"eth2" -- "leaf02":"eth2"
+    "leaf01":"swp1" -- "server01":"eth1"
+    "leaf02":"swp1" -- "server02":"eth1"
+    "leaf01":"swp2" -- "spine01":"swp1"
+    "spine01":"swp2" -- "leaf02":"swp2"
 }
 ```
 
@@ -410,7 +324,7 @@ The following sections provide examples for common DOT file customizations.
 You can set the operating system of the node with the `os` option:
 
 ```
-"server" [os="cumulus-vx-5.10.1"]
+"server" [os="cumulus-vx-5.16.1"]
 ```
 
 #### Disk Space

@@ -19,8 +19,6 @@ Network simulation is essential to avoid manual CLI, and copy and paste configur
 
 There might be different specifications for each storage vendor deployment. You can always check out [Cumulus Linux documentation]({{<ref "/cumulus-linux-50" >}}) to explore more details and match the configuration for your deployment.
 
-Cumulus Linux documentation offers pre-built [**Try It**]({{<ref "/cumulus-linux-50/Try-It-Pre-built-Demos">}}) demos for certain features like MLAG, VRR, VXLAN, and EVPN. These demos automatically start a network simulation in Air so you can practice configuration.
-
 {{%notice note%}}
 If your switches are still running [NVIDIA Onyx](https://www.nvidia.com/en-us/networking/ethernet-switching/onyx/), migrate to Cumulus Linux by following this guide to [uninstall the Onyx image]({{<ref "/knowledge-base/Installing-and-Upgrading/Installation/Uninstall-the-ONYX-Image">}}) and [install a new Cumulus Linux image]({{<ref "/cumulus-linux-50/Installation-Management/Installing-a-New-Cumulus-Linux-Image">}}).</br>
 To ease the transition from ONYX to NVUE, you can upload the running configuration file from the Onyx switch with this [NVUE Migration Tool](https://air.nvidia.com/migrate/).

@@ -7,8 +7,6 @@ toc: 4
 
 The NetworkEntity section of the API lets you manage inventory and hardware objects in the NVLink fabric: switches, switch nodes, chassis, compute nodes, GPUs, ports, and domains.
 
-<!--need to include info about domain ops-->
-
 ## GPU API Endpoints
 
 The `/v1/gpus` endpoint supports the following query parameters. These parameters allow you to scope GPU queries according to a specific chassis, slot, tray, or host without retrieving the entire inventory.
@@ -33,8 +31,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?device-uid=GPU-12345678" 
   -H "accept: application/json" \
   -H "Authorization: Basic <auth-token>"
 ```
-
-Example response
+{{< expand "Example response" >}}
 
 ```
 [
@@ -53,7 +50,8 @@ Example response
   }
 ]
 ```
-
+{{< /expand >}}
+<br>
 Retrieve all GPUs in a specific chassis:
 
 ```
@@ -61,8 +59,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassis-serial-number=CH-
   -H "accept: application/json" \
   -H "Authorization: Basic <auth-token>"
 ```
-
-Example response:
+{{< expand "Example response" >}}
 
 ```
 [
@@ -90,7 +87,8 @@ Example response:
   }
 ]
 ```
-
+{{< /expand >}}
+<br>
 Retrieve GPUs from a specific slot within a chassis:
 
 ```
@@ -99,7 +97,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassis-serial-number=CH-
   -H "Authorization: Basic <auth-token>"
 ```
 
-Example response:
+{{< expand "Example response" >}}
 
 ```
 [
@@ -118,7 +116,8 @@ Example response:
   }
 ]
 ```
-
+{{< /expand >}}
+<br>
 Retrieve GPUs from a specific tray and host combination:
 
 ```
@@ -126,8 +125,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassis-serial-number=CH-
   -H "accept: application/json" \
   -H "Authorization: Basic <auth-token>"
 ```
-
-Example response:
+{{< expand "Example response" >}}
 
 ```
 [
@@ -155,4 +153,4 @@ Example response:
   }
 ]
 ```
-
+{{< /expand >}}

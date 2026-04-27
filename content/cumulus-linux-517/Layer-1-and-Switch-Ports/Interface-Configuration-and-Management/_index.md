@@ -803,18 +803,28 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the link debounce statistics for an interface, run the `nv show interface <interface-id> link debounce` command.
+To show the link transitions for an interface, run the `nv show interface <interface-id> link debounce` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1 link debounce 
-Counter                Value 
----------------------  ----- 
-ignored-up-events      10 
-ignored-down-events    8 
-received-up-events     23 
-received-down-events   22 
-timer-cancellations    18 
-timer-expirations      45
+      operational  applied
+----  -----------  -------
+up    200          200    
+down  150          150
+```
+
+To show link debounce statistics for an interface, run the `nv show interface <interface-id> counters link debounce` command.
+
+```
+cumulus@switch:~$ nv show interface swp1 counters link debounce 
+                      operational
+--------------------  -----------
+ignored-down-events   0          
+ignored-up-events     0          
+received-up-events    2          
+received-down-events  1          
+timer-cancellations   0          
+timer-expirations     3
 ```
 
 To show the link debounce statistics for all interfaces, run the `nv show interface debounce-counters` command:

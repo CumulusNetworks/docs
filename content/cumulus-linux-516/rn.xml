@@ -7,9 +7,22 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4992435</td>
+<td>A rare timing scenario results in the following error log in {{switchd}}:
+ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4989440</td>
 <td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
 <td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989435</td>
+<td>During warm and fast reboots, NVUE intentionally skips a comprehensive Git cleanup to adhere to strict service start-up SLAs. When this cleanup is bypassed, existing Git maintenance debt, such as unreachable loose objects or blocked Garbage Collection (GC) states, remain in place and accumulate across successive reboots. The lightweight housekeeping performed during a standard {{nv config apply}} is not equivalent to a full cleanup. Consequently, stale objects and blocked GC states can persist until the repository becomes unreadable, eventually causing git commit operations to fail with the error {{fatal: could not parse HEAD}}.To work around this issue, run {{sudo systemctl restart nvued.service}} manually after a warm or fast reboot to trigger the full cleanup path skipped during the automated startup sequence.</td>
+<td>5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -23,12 +36,6 @@ nv config apply -y</td>
 <td></td>
 </tr>
 <tr>
-<td>4989432</td>
-<td>When an interface is constantly flapping and the same BGP neighbor is coming up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes the routes during interface down events. To recover from this state, restart the FRR service.</td>
-<td>5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4989428</td>
 <td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage, potentially leading to a restart of the gNMI server.</td>
 <td>5.15.1-5.16.1</td>
@@ -36,7 +43,7 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>4989427</td>
-<td>When upgrading the switch to Cumulus Linux 5.16,  the upgrade process completes successfully and both gNMI and SNMP services are up, but gNMI telemetry data is not returned for several key metrics.</td>
+<td>GNMI subscriptions might not return interface counter metrics when there is an active, low-rate (1 second) subscription to transceiver data.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -50,6 +57,12 @@ nv config apply -y</td>
 <td>4989425</td>
 <td>Upgrading Cumulus Linux to 5.16.x causes a long boot delay and the {{nvued}} service remains in an activating state. To work around this issue, run {{nvue-git-manual-recovery.sh}} as a root user during maintenance on each node before upgrade, or on any node that has this issue. When successful, upgrade Cumulus Linux. If the script exits non-zero or reports time exceeded, follow the on-screen steps before continuing the upgrade.</td>
 <td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989352</td>
+<td>GNMI subscriptions might not return interface counter metrics when there is an active, low-rate (1 second) subscription to transceiver data.</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -134,12 +147,6 @@ nv config apply -y</td>
 <td>4940786, 4705183</td>
 <td>Transceiver firmware upgrade fails due to PMAOS register access failures.</td>
 <td>5.15.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4937657</td>
-<td>During warm and fast reboots, NVUE intentionally skips a comprehensive Git cleanup to adhere to strict service start-up SLAs. When this cleanup is bypassed, existing Git maintenance debt, such as unreachable loose objects or blocked Garbage Collection (GC) states, remain in place and accumulate across successive reboots. The lightweight housekeeping performed during a standard {{nv config apply}} is not equivalent to a full cleanup. Consequently, stale objects and blocked GC states can persist until the repository becomes unreadable, eventually causing git commit operations to fail with the error {{fatal: could not parse HEAD}}.To work around this issue, run {{sudo systemctl restart nvued.service}} manually after a warm or fast reboot to trigger the full cleanup path skipped during the automated startup sequence.</td>
-<td>5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -340,13 +347,6 @@ nv config apply -y</td>
 <td>4879165</td>
 <td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
 <td>5.14.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4875640</td>
-<td>A rare timing scenario results in the following error log in {{switchd}}:
-ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
-<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1411,6 +1411,13 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4992435</td>
+<td>A rare timing scenario results in the following error log in {{switchd}}:
+ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4989440</td>
 <td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
 <td>5.16.0-5.16.1</td>
@@ -1424,13 +1431,19 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 </tr>
 <tr>
 <td>4989427</td>
-<td>When upgrading the switch to Cumulus Linux 5.16,  the upgrade process completes successfully and both gNMI and SNMP services are up, but gNMI telemetry data is not returned for several key metrics.</td>
+<td>GNMI subscriptions might not return interface counter metrics when there is an active, low-rate (1 second) subscription to transceiver data.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4989426</td>
 <td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4989352</td>
+<td>GNMI subscriptions might not return interface counter metrics when there is an active, low-rate (1 second) subscription to transceiver data.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -1783,13 +1796,6 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>4879165</td>
 <td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
 <td>5.14.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4875640</td>
-<td>A rare timing scenario results in the following error log in {{switchd}}:
-ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
-<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>

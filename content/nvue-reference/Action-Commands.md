@@ -133,6 +133,25 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action change system security sed-password</h>
+
+Changes the SED factory-set password with a custom password to strengthen data protection and reduce the risk of offline attacks.
+You can change the SED password only on switches with SED enabled.
+
+The Trusted Platform Module (TPM) on the disk maintains two distinct persistent storage locations, referred to as TPM Banks, which serve as primary and secondary storage for the SED management password. During the boot process, the Pre-Boot Authentication (PBA) mechanism attempts to unlock the SED using the password stored in the primary bank. If the decryption attempt fails, the PBA automatically retries using the secondary bank.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action change system security sed-password NewPassword
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear acl counters</h>
 
 Clears all ACL counters.
@@ -452,6 +471,22 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear interface debounce-counters</h>
+
+Clears link debounce statistics for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface debounce-counters
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear interface \<interface-id\> bond mlag lacp-conflict</h>
 
 Clears the MLAG LACP conflict on the specified interface bond. A conflict can be an LACP partner MAC address mismatch or a duplicate LACP partner MAC address.
@@ -520,6 +555,29 @@ Introduced in Cumulus Linux 5.5.0
 ```
 cumulus@switch:~$ nv action clear interface swp1 counters
 swp1 counters cleared.
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear interface \<interface-id\> counters link debounce</h>
+
+Clears link debounce statistics for an interface.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ---------- | ------------ |
+| `<interface-id>` | The interface on which you want to clear link debounce counters. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface swp1 counters link debounce
 Action succeeded
 ```
 
@@ -2799,6 +2857,29 @@ Introduced in Cumulus Linux 5.8.0
 cumulus@switch:~$ nv action deauthenticate interface swp1 dot1x authorized-sessions 00:55:00:00:00:09 silent
 Action succeeded
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action delete system file-path \<file-path\></h>
+
+Deletes the specified .
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<file-path>` | The  you want to delete. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system 
+```
+
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

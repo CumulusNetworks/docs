@@ -66,6 +66,10 @@ protocols             all
 
 Shows information about the switch, such as the hostname, version information, the switch uptime, time zone, memory, and health status.
 
+{{%notice note%}}
+In Cumulus Linux 5.17 and later, the `nv show system` command shows the system boot security state (`enabled`, `disabled`, or `not-supported`).
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.2.0
@@ -74,20 +78,21 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show system
-uptime             1 day, 1:52:24                                                 
-hostname           leaf01 
-product-name       Cumulus Linux                                                  
-platform           N/A                                                            
-system-memory      1.31 GB used / 363.36 MB free / 1.67 GB total                  
-swap-memory        0 Bytes used / 0 Bytes free / 0 Bytes total                    
-health-status      Not OK                                                         
-date-time          2025-04-18 12:48:46                                            
-status             N/A                                                            
-timezone           Etc/UTC                                                        
-version                                                                           
-  onie             N/A                                                            
-  kernel           6.1.0-cl-1-amd64                                               
-  base-os          Debian GNU/Linux 12.10                                         
+                   operational          applied                
+-----------------  -------------------  -----------------
+uptime             5:07:49                                                  
+hostname           leaf01               leaf01          
+fqdn               leaf01                                                   
+product-name       Cumulus Linux                                            
+security                                                                    
+  secure-boot                                                               
+    state          not-supported                                            
+dns                                                                         
+  domain                                                                    
+date-time                                                                   
+  local-time       2026-04-15 21:23:16                                      
+  timezone         Etc/UTC              Etc/UTC                                                        
+...                                         
 ```
 
 Cumulus Linux 5.12 and earlier also shows build and product-release fields. NVUE removed these fields in Cumulus Linux 5.13.

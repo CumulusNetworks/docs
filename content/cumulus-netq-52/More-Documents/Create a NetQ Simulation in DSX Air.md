@@ -25,7 +25,7 @@ To access DSX Air, you need an NGC account and organization. Refer to the {{<exl
 ## Add the NetQ Server to the JSON File
 
 1. Open the downloaded JSON file in a text editor.  
-2. Add the following block at the end of the `Nodes` array, then save the file: <!--ask Jaydev for entire export file-->
+2. Add the following block at the end of the `Nodes` array, then save the file:
 
 ```
 "netq-master": {
@@ -36,14 +36,14 @@ To access DSX Air, you need an NGC account and organization. Refer to the {{<exl
   "cpu_mode": "host-passthrough"
 }
 ```
-3. If a newer NetQ image is available, update the `os` value accordingly. <!--how would an external user do this? need to check os field--> 
+3. If a newer NetQ image is available, update the `os` value accordingly.
 
 
 ## Create the Simulation Using the Updated JSON
 
 1. Click **New Simulation** and enter a name.  
 2. Select **JSON** as the simulation type and upload the JSON file you created in the previous section.  
-3. Enable **Apply ZTP Template**. Delete the contents and replace them with `ZTPScript.sh`. The ZTP script sets the OOB management server IP address to `192.168.200.1` and updates the default switch password from `cumulus` to `netq_123`. : <!--ask Jaydev about apps3 repo-->
+3. Enable **Apply ZTP Template**. Delete the contents and replace them with `ZTPScript.sh`. The ZTP script sets the OOB management server IP address to `192.168.200.1` and updates the default switch password from `cumulus` to `netq_123`:
 {{<expand "ZTPScript.sh">}}
 ```
 #!/bin/bash

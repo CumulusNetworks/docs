@@ -33,7 +33,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Added recommendation to {{<link title="NVLink Bringup/#switch-profile-endpoints" text="change switch credentials">}} from their default values to dedicated usernames and passwords for each switch
 - Added support for NetQ NVLink on the NVIDIA Vera Rubin platform (beta)
 - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
-- View the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="REST API in Swagger">}}
+- View the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-520/" text="REST API in Swagger">}}
 
 ## Release Considerations
 

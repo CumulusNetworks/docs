@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4992296</td>
+<td>Optimized image upgrade with warm reboot leaves the switch in a broken state, where all services fail and the configuration is removed.</td>
+<td>5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4989434</td>
 <td>If the nginx {{nvue.conf }} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
 nv set system api compression gzip
@@ -836,6 +842,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4966799</td>
 <td>If automatic cl-support file generation deactivates due to chain of faults and no auto-generated cl-support file exists yet, the deactivation handler service polls for the ring buffer file and logs the syslog message {{Ring buffer file not found, waiting…}} until that file appears. The syslog messages might repeat frequently and can make syslog noisy. In environments where syslog has rate limits, other messages might be harder to see. The repeated messages stop after cl-support file generation reactivates and an auto-generated cl-support file generates successfully.</td>
+<td></td>
+</tr>
+<tr>
+<td>4958266</td>
+<td>With higher port scale, cl-support timeout can be seen.</td>
 <td></td>
 </tr>
 <tr>

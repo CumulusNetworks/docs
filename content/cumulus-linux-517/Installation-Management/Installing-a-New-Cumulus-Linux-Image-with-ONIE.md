@@ -698,7 +698,7 @@ SBAT revocation information includes:
 - Component name
 - Version number
 - Generation date (in YYYY-MM-DD format)
-- Tevision ID
+- Revision ID
 
 ```
 cumulus@switch:~$ nv show system security secure-boot

@@ -5,34 +5,38 @@ weight: 890
 toc: 3
 ---
 
-The network topology dashboard displays a visual representation of your network, showing connections and device information for all monitored nodes. The view allows you to understand your network's architecture at a high-level, but also lets you isolate individual devices, network planes, or network tiers.
+The network topology dashboard displays a visual representation of your network, showing connections and device information for all monitored nodes. The view allows you to understand your network's architecture at a high-level, but also lets you isolate individual devices or subsections of your topology.
 ## Access the Topology View
 
 To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg" height="18" width="18"/> **Topology** in the workbench header. Use the dropdown in the header to display your network topology in one of two ways:
 
-- Logical grouping: Visualize the topology according to the {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="system labels">}} assigned to the switches. (beta)
+- Logical grouping (beta): Visualize the topology according to the {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="system labels">}} assigned to the switches.
 - Role-based grouping: Visualize the topology according to the {{<link title="Switch Management/#assign-roles-to-switches" text="roles assigned to the devices">}}.
 
 {{<tabs "TabID16" >}}
-{{<tab "Logical groups" >}}
+{{<tab "Logical groups (beta)" >}}
 
 Logical groups correspond to {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="system labels">}} that you assign to switches using NVUE commands. After you configure the labels, NetQ groups and displays devices according to their assigned labels. NetQ supports four system-level labels, which are configured at the switch level: 
-- Device type (leaf, spine, or superspine)
-- Pod number
-- Rail group
-- Scalable unit
 
-{{<figure src="/images/netq/network-topo-expanded-52.png" alt="" width="1100">}}
-
-<!--
-This view supports 
-- Rail groups: spine and leaf switches
 - Scalable units: host devices. You cannot configure labels on hosts, so the placement is based on the most recently discovered LLDP connection to the leaf switches
-Unclassified devices are either unmanaged devices  or devices with partial/incomplete configurations. For example, if a device has been assigned a device type of spine, and a pod value, but no rail group, it will display as unclassified.
+- Device types: choose from leaf, spine, or superspine
+- Rail groups: vertical groups comprising spine and leaf switches
+- Pods: made up of rail groups and scalable units
 
-Each logical group corresponds to a label. pods, rail groups, scalable units, hosts
+For example, this topology displays a pod labeled `Pod:0`. Within `Pod:0`, there are four total rail groups and two scalable units. `Rail group:1` is expanded to show the spine and leaf switches that comprise the rail group. The dashed lines represent logical links between devices and groups of devices. Select **Show physical interfaces** to display the physical links as solid lines. The number represents an aggregate count of the interfaces between groups.
 
--->
+{{<figure src="/images/netq/expanded-rg-52.png" alt="" width="1100">}}
+
+Devices that are designated "Unclassified" are not fully configured or are unmanaged devices. The side menu displays a numerical count of the physical devices within the container that you've selected. You can select any of the options in the side menu to zoom in on a particular subsection of the topology. Select the eye icon to alternately show or hide a particular device or group of devices.
+
+You can view devices and interfaces at the most granular level by selecting them until they load in the focused view. From here, you can see information for the selected device, including ASIC and operating system, protocols, labels, events, and other utilization data related to that device. You can view up to 15 devices at the same time in focused view.
+
+{{<figure src="/images/netq/focus-view-52.png" alt="" width="1100">}}
+
+Select **Save view** and enter a name to save the focused view as it appears on your dashboard. You can access this view later by navigating back to the topology, then selecting **View options** and then **Saved views**. Only fresh switches appear; if you decommission a switch in a saved view, it will no longer appear when you navigate back to the saved view.
+
+You can also export or share an entire topology or a subset of the topology. Select **Share** to copy a link to your clipboard that you can share with other users. Select **Export** to export the topology as an image (either PNG or SVG format) or as a full topology file (either JSON or Dot format). The Dot file is compatible with and can be used by NVIDIA DSX Air for network simulations.
+
 {{</tab>}}
 {{<tab "Role-based groups" >}}
 
@@ -97,11 +101,11 @@ You can rearrange the topology's tiers by selecting **Edit** at the top of the s
 
 ### Create Queries to View a Subset of Devices
 
-You can create queries to segment a topology into smaller, more manageable parts. This can be especially helpful when you need to view a particular section of a very large topology or when you want to find and view connections between two or more devices. To create a query, select **Queries** on the left side of the screen, then **Add query**. The name of the query is pre-populated with a unique identifier that you can edit by expanding the query.
+You can create queries to segment a topology into smaller, more manageable parts. This can be especially helpful when you need to view a particular section of a very large topology or when you want to find and view connections between two or more devices. To create a query, select **Queries** on the left side of the screen (or **View options** and then **Queries**), then **Add query**. 
 
 {{<figure src="/images/netq/query-topo-51.png" alt="" width="700">}}
 
-You can create queries based on device hostnames or {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="labels">}}. To combine multiple queries with logical operators, select **Add filter group**. Select the three-dot menu on a given query to either delete or remove the query.
+You can create queries based on device hostnames or {{<link title="Switch Inventory/#create-and-assign-switch-labels" text="labels">}}. In the role-based topology, you can combine multiple queries with logical operators by selecting **Add filter group**. Select the three-dot menu on a given query to either delete or remove the query.
 
 ## Related Information
 

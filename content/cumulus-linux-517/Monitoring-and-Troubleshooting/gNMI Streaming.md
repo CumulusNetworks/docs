@@ -1035,7 +1035,8 @@ User authentication is enabled by default. gNMI subscription requests must inclu
 You can use your gNMI client on a host to request capabilities and data to which the gNMI agent subscribes.
 
 {{%notice note%}}
-Cumulus Linux processes gNMI client subscription create and delete requests sequentially (one at a time). The switch rejects concurrent subscription requests with a `CANCELLED: System is busy`​ gRPC status and the gNMI client must reinitiate the request with the appropriate backoff. This limitation applies only to subscription setup or teardown. After the subscription establishes, multiple subscriptions run concurrently and stream telemetry data independently.
+- Cumulus Linux processes gNMI client subscription create and delete requests sequentially (one at a time). The switch rejects concurrent subscription requests with a `CANCELLED: System is busy`​ gRPC status and the gNMI client must reinitiate the request with the appropriate backoff. This limitation applies only to subscription setup or teardown. After the subscription establishes, multiple subscriptions run concurrently and stream telemetry data independently.
+- For better performance, NVIDIA recommends that you enable gzip in your gNMI client tools by adding `gnmic --gzip` to the request header.
 {{%/notice%}}
 
 #### Dial-in Mode Examples
@@ -1043,7 +1044,7 @@ Cumulus Linux processes gNMI client subscription create and delete requests sequ
 The following example shows a basic dial-in mode subscribe request in an HTTP basic authentication header:
 
 ```
-gnmic subscribe --mode stream -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic -a 192.168.200.3:9339 --prefix "system/cpus/cpu[index=0]" --path "state"
+gnmic subscribe gnmic --gzip --mode stream -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic -a 192.168.200.3:9339 --prefix "system/cpus/cpu[index=0]" --path "state"
 ...
 ```
 

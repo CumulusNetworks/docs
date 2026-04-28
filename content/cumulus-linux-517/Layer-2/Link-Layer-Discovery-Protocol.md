@@ -682,9 +682,23 @@ lldp
 
 <span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> is an extension to LLDP that operates between endpoint devices, such as IP phones and switches. Inventory management TLV enables an endpoint to transmit detailed inventory information about itself to the switch, such as the manufacturer, model, firmware, and serial number.
 
-You can enable LLDP-MED inventory TLV transmission globally only; LLDP-MED inventory TLV transmission does not support profiles.
+To enable basic MED TLV subtypes, configure `media-capabilities` in the relevant egress or ingress policy (system or profile).
 
-To enable LLDP-MED inventory TLV transmission, run the `nv set system lldp lldp-med-inventory-tlv enabled` command:
+The following example enables basic MED TLV subtypes on the switch:
+
+```
+cumulus@switch:~$ nv set system lldp tlv egress-policy media-capabilities state enabled
+cumulus@switch:~$ nv config apply
+```
+
+The following example enables basic MED TLV subtypes for a profile (PROFILE2):
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile PROFILE2 egress-policy media-capabilities state enabled
+cumulus@switch:~$ nv config apply
+```
+
+`media-capabilities` enables basic MED TLV subtypes but does not enable inventory TLV. To enable LLDP-MED inventory TLV transmission, run the `nv set system lldp lldp-med-inventory-tlv enabled` command:
 
 ```
 cumulus@switch:~$ nv set system lldp lldp-med-inventory-tlv enabled
@@ -725,8 +739,7 @@ To enable application priority TLV transmission, run NVUE commands to set:
 - You cannot enable application priority TLV transmission on bonds.
 - You can configure a maximum of 10 application TLV priorities on the switch.
 - Cumulus Linux can send a maximum of 10 application priority TLVs in an LLDP PDU.
-- You can enable application priority TLV transmission globally only; application priority TLV transmission does not support profiles.
-
+- By default, DCBX application priority policy is enabled but the switch transmits the TLV only when application priority configuration exists on the interface.
 {{%/notice%}}
 
 The following example sets the application priority of iSCSI traffic to 3 in the application priority TLV sent in LLDP PDUs on swp1.
@@ -918,7 +931,9 @@ iSCSI
 
 ## Troubleshooting
 
-You can use the `lldpcli` tool to query the `lldpd` daemon for neighbors, statistics, and other running configuration information. See `man lldpcli(8)` for details.
+### lldpcli Commands
+
+You can use the `lldpcli` tool to query the `lldpd` service for neighbors, statistics, and other running configuration information.
 
 To show all neighbors on all ports and interfaces:
 
@@ -1071,6 +1086,12 @@ Configuration:
   Portid TLV Subtype for lldp frames: ifname
 --------------------------------------------------------------------
 ```
+
+### LLDP TLVs
+
+On a port where ingress TLV filtering is active, the `lldp-tlv-filtered-rx` counter for each interface increments each time a received TLV drops due to the ingress policy. The counter is cumulative after the last `lldpd` service restart. To show the counter, run the NVUE `nv show interface <interface-id> lldp counters` command or the `sudo lldpcli show statistics` commands.
+
+To show the TLV policy that LLDP applies on an interface, including which entries come from a per-interface override and which entries come from a global default, run the `sudo lldpcli show interface ports <interface-id> tlv-policy` command.
 
 ## Considerations
 

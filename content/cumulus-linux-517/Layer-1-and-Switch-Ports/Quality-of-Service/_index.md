@@ -2016,15 +2016,15 @@ The QoS subsystem supports multiple lossless priority groups that share a single
 All lossless priority groups continue to share the same ingress and egress buffer pools. However, each priority groups maintains its own reserved buffers, xon and xoff thresholds, and descriptor buffer allocations. This design provides isolation and independent flow-control behavior while still making efficient use of shared buffer resources.
 
 You can configure the following headroom settings:
-- Required headroom per priority group in bytes. The switch converts this value to cells. 
-- Exclusive headroom per priority group in bytes. The switch converts this value to cells.
+- Required headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
+- Exclusive headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
 - Oversubscription ratio for the shared headroom pool. You can set a value between 1 and 256.
 
 {{%notice note%}}
 The required headroom must be more than exclusive headroom.
 {{%/notice%}}
 
-The following example assigns switch priority 3 and 4 to priority group 3, configures the ingress lossless buffer service pool mapping to service-pool 1, and sets the required headroom for switch priority 3 and 4 to 1024, the exclusive headroom for switch priority 3 and 4 to 1010, and oversubscription ratio to 2. The example enables the shared headroom pool on swp10.
+The following example assigns switch priority 3 and 4 to priority group 3, configures the ingress lossless buffer service pool mapping to service-pool 1, and sets the required headroom for switch priority 3 and 4 to 21024, the exclusive headroom for switch priority 3 and 4 to 21010, and oversubscription ratio to 2. The example enables the shared headroom pool on swp10.
 
 {{< tabs "TabID1935 ">}}
 {{< tab "NVUE Commands ">}}
@@ -2033,8 +2033,8 @@ The following example assigns switch priority 3 and 4 to priority group 3, confi
 ```
 cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group service7 switch-priority 3,4
 cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group service3 service-pool 1
-cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 1024 
-cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 1010
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 21024 
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 21010
 cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio 2
 cumulus@switch:~$ nv set interface swp10 qos shared-headroom-pool enable
 cumulus@switch:~$ nv config apply
@@ -2051,8 +2051,8 @@ cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
 # Shared headroom pool configuration
 shared_headroom_pool.port_list = [swp10]
 shp.pg.oversubscription_ratio = 2
-shp.pg.exclusive_headroom = 1024
-shp.pg.required_headroom = 1028
+shp.pg.exclusive_headroom = 21010
+shp.pg.required_headroom = 21024
 ```
 
 {{< /tab >}}

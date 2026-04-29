@@ -402,9 +402,30 @@ Cumulus Linux provides granular LLDP TLV control so that you can:
 - Control egress TLVs at the system level by defining a global policy for which optional TLVs the switch includes in its LLDP advertisements across all ports. 
 - Control egress TLVs for each port by overriding the global policy on specific interfaces (suppress System Name and Management Address only on host-facing ports while keeping full TLV advertisement on fabric or uplink ports).
 - Control ingress TLV processing by defining which TLVs from received LLDP frames to process and store in the neighbor table, limiting information exposure even on the receive side.
-- Define reusable TLV profiles (host-facing-secure, fabric-full) that you can apply at both the system (global) level and for each port, simplifying configuration across large-scale deployments.
+- Define reusable TLV profiles (for example, `host-facing-secure`, `fabric-full`) at the system level with the `nv set system lldp tlv profile <profile-name>` command and apply them to interfaces with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command. Use the system-level egress policy or ingress policy for switch-wide defaults.
 
-By default, all mandatory TLVs (Chassis ID, Port ID, TTL) are enabled and all optional TLVs (port description, system name, system description, system capabilities, and management address) are disabled. You can configure a global ingress or egress policy to enable optional TLVs across all ports or create a profile to enable optional TLVs and apply the profile to specific ports. You cannot configure mandatory TLVs.
+By default, the mandatory TLVs and the basic optional 802.1AB TLVs (port description, system name, system description, system capabilities, and management address) are enabled. IEEE 802.1 TLVs (port VLAN ID and VLAN name) and DCBX QoS TLVs (PFC configuration, ETS recommendation, and ETS configuration) are disabled by default. Use the global egress or ingress policy or a profile to override these defaults.
+
+The following table shows the default ingress and egress settings for each TLV.
+
+| TLV name           | IEEE Standard                  | Default TX  | Default RX |
+| ------------------ | -------------                  | ----------  | ---------- |
+| port-description   | 802.1AB                        | enabled     | enabled   |
+| system-name        | 802.1AB                        | enabled     | enabled   |
+| system-description | 802.1AB                        | enabled     | enabled   |
+| system-capabilities| 802.1AB                        | enabled     | enabled   |
+| management-address | 802.1AB                        | enabled     | enabled   |
+| port-vlan-id       | 802.1 Org                      | disabled    | enabled   |
+| vlan-name          | 802.1 Org                      | disabled    | enabled   |
+| mac-phy-config     | 802.3 Org                      | enabled     | enabled   |
+| link-aggregation   | 802.3 Org                      | enabled     | enabled   |
+| max-frame-size     | 802.3 Org                      | enabled     | enabled   |
+| dcbx-pfc           | 802.1 Org (DCBX)               | disabled    | N/A       |
+| dcbx-ets-config    | 802.1 Org (DCBX)               | disabled    | N/A       |
+| dcbx-ets-recomm    | 802.1 Org (DCBX)               | disabled    | N/A       |
+| dcbx-app-priority  | 802.1 Org (DCBX)               | enabled     | N/A       |
+| media-capabilities | TIA-1057 (MED) (subtypes 1–11) | enabled     | enabled   |
+| unreachable-prefix | Custom                         | enabled     | N/A       |
 
 ### Global Configuration
 
@@ -423,7 +444,7 @@ The following example configures a global ingress policy to transmit the port de
 
 ```
 cumulus@leaf01:mgmt:~$ nv set system lldp tlv ingress-policy port-description state enabled
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv ingress-policymanagement-address state enabled
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv ingress-policy management-address state enabled
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -431,36 +452,51 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 You configure an ingress policy profile with the `nv set system lldp tlv profile <profile-name> ingress-policy <tlv-name> state` command, an egress policy profile with the `nv set system lldp tlv profile <profile-name> egress-policy <tlv-name> state` command, then apply the profile to an interface, with the `nv set interface <ifname> lldp tlv profile <profile-name>` command.
 
-The following example configures an egress profile for uplink ports called `fabric-full` to transmit all optional TLVs (port description, system name, system description, system capabilities, and management address). The example applies the profile to swp49 and swp50.
+The following example configures an egress profile for uplink ports called `FABRIC-FULL` to transmit all optional TLVs (port description, system name, system description, system capabilities, and management address). The example applies the profile to swp49 and swp50.
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full egress-policy port-description state enabled 
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full egress-policy system-name state enabled 
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full egress-policy system-description state enabled 
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full egress-policy system-capabilities state enabled 
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full egress-policy management-address state enabled
-cumulus@leaf01:mgmt:~$ nv set interface swp49 lldp tlv profile fabric-full 
-cumulus@leaf01:mgmt:~$ nv set interface swp50 lldp tlv profile fabric-full 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy port-description state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy system-name state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy system-description state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy system-capabilities state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy management-address state enabled
+cumulus@leaf01:mgmt:~$ nv set interface swp49 lldp tlv profile FABRIC-FULL 
+cumulus@leaf01:mgmt:~$ nv set interface swp50 lldp tlv profile FABRIC-FULL 
 cumulus@leaf01:mgmt:~$ nv config apply 
 ```
 
-The following example configures an ingress profile for uplink ports called `fabric-full` to transmit all optional TLVs (port description, system name, system description, system capabilities, and management address). The example applies the profile to swp49 and swp50.
+The following example configures an ingress profile for uplink ports called `FABRIC-FULL` to transmit all optional TLVs (port description, system name, system description, system capabilities, and management address). The example applies the profile to swp49 and swp50.
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full ingress-policy port-description state enabled 
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full ingress-policy system-name state enabled 
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full ingress-policy system-description state enabled 
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full ingress-policy system-capabilities state enabled 
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile fabric-full ingress-policy management-address state enabled
-cumulus@leaf01:mgmt:~$ nv set interface swp49 lldp tlv profile fabric-full 
-cumulus@leaf01:mgmt:~$ nv set interface swp50 lldp tlv profile fabric-full 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy port-description state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy system-name state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy system-description state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy system-capabilities state enabled 
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy management-address state enabled
+cumulus@leaf01:mgmt:~$ nv set interface swp49 lldp tlv profile FABRIC-FULL 
+cumulus@leaf01:mgmt:~$ nv set interface swp50 lldp tlv profile FABRIC-FULL 
 cumulus@leaf01:mgmt:~$ nv config apply 
+```
+
+The following example configures profile for host-facing ports with only mandatory TLVs enabled and applies the profile to swp1 through 3:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile HOST-FACING-SECURE description "Mandatory TLVs only for host-facing ports"
+cumulus@leaf01:mgmt:~$ nv set interface swp1-3 lldp tlv profile HOST-FACING-SECURE
+cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
 {{%notice note%}}
-- A profile overrides system defaults for an interface.
-- If you enabled LLDP TLVs in Cumulus Linux 5.16 and earlier for specific interfaces with the `nv set interface <interface-id> lldp <tlv-type> enabled` command, when upgrading to Cumulus Linux 5.17, the upgrade process converts the interface-specific configuration to a profile configuration using the profile name `auto-migrated-<interface-id>` and the equivalent egress-policy entries.
+- A profile fully replaces system defaults on the interface to which you apply it.
+- Inside a profile, every TLV defaults to disabled; you must enable each TLV you want.
+- The switch always sends the mandatory TLVs (Chassis ID, Port ID, TTL, End of LLDPDU) regardless of profile.
 {{%/notice%}}
+
+To show LLDP TLV profile configuration, run the `nv show system lldp tlv profile <lldp-profile-name-id>` command.
+
+To show ingress policy configuration for an LLDP TLV profile, run the `nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy` command.
+
+To show egress policy configuration for an LLDP TLV profile, run the `nv show system lldp tlv profile <lldp-profile-name-id> egress-policy` command.
 
 ### BGP Unreachable Prefix TLV
 
@@ -487,7 +523,9 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
 {{%notice note%}}
-You can only enable the unreachable prefix TLV in the `egress-policy` of a TLV profile; it is not supported on ingress.  
+- The switch supports the unreachable-prefix TLV for ingress and egress.
+- You can see received information with the `lldpcli` command.
+- You can disable TLV ingress processing if necessary.
 {{%/notice%}}
 
 ### LLDP DCBX TLVs
@@ -534,7 +572,7 @@ cumulus@switch:~$ nv set system lldp tlv egress-policy port-vlan-id state enable
 cumulus@switch:~$ nv config apply
 ```
 
-The following example configures an egress policy profile called VLAN for swp1 that sends LLDP frames with the port VLAN ID and VLAN name only:
+The following example configures an egress policy profile called `VLAN` for swp1 that sends LLDP frames with the port VLAN ID and VLAN name only:
 
 ```
 cumulus@switch:~$ nv set system lldp tlv profile VLAN egress-policy vlan-name state enabled
@@ -565,12 +603,11 @@ mode                    default      default   default
 <!-- vale on -->
 Cumulus Linux transmits the following IEEE 802.3 TLVs by default. You can disable the IEEE 802.3 TLVs individually either globally or for a profile.
 
-| Name                | Subtype | Description |
-|-------------------- | ------- | ----------- |
-| Link Aggregation    | 3       | Indicates if the port supports link aggregation and if it is enabled.  |
-| Maximum Frame Size  | 4       | The MTU configuration on the port. The MTU on the port is the <span class="a-tooltip">[MFS](## "Maximum Frame Size ")</span>. |
-| MAC PHY Configuration |  1 | Advertises port auto-negotiation capabilities, operational status, duplex setting, bit rate, and physical interface type. | 
-||||
+| Name                  | Subtype | Description |
+|--------------------   | ------- | ----------- |
+| Link Aggregation      | 3       | Indicates if the port supports link aggregation and if it is enabled.  |
+| Maximum Frame Size    | 4       | The MTU configuration on the port. The MTU on the port is the <span class="a-tooltip">[MFS](## "Maximum Frame Size ")</span>. |
+| MAC PHY Configuration |  1      | Advertises port auto-negotiation capabilities, operational status, duplex setting, bit rate, and physical interface type. |
 
 The following example disables the Maximum Frame Size TLV on egress for all ports:
 
@@ -582,7 +619,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 The following example disables the Link Aggregation TLV on egress for the profile LINK-AGG:
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile LINK-AGG egress-policy max-frame-size state disabled
+cumulus@leaf01:mgmt:~$ nv set system lldp tlv profile LINK-AGG egress-policy link-aggregation state disabled
 ```
 
 #### QoS TLVs
@@ -600,9 +637,11 @@ You can transmit the following QoS TLVs. By default, all QoS TLV transmission is
 {{%notice info%}}
 Adding the QoS TLVs to LLDP packets on an interface relies on PFC and ETS configuration from `switchd`. Refer to {{<link url="Quality-of-Service" text="Quality of Service">}} for information on configuring PFC and ETS.
 
-When you enable {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="ROCE">}} on the switch:
-- QoS TLV transmission (PFC Configuration, ETS Configuration, and ETS Recommendation) is on globally for all ports, which overrides any QoS TLV transmission setting on a switch port interface.
-- LLDP frames for all switch port interfaces carry PFC configuration, ETS configuration, ETS recommendation, and APP Priority TLVs. The ETS configuration and PFC configuration TLV payloads are the same for all interfaces.
+When you enable {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="ROCE">}} on the switch, NVUE writes explicit configuration that sets the DCBX QoS TLVs (PFC Configuration, ETS Configuration, and ETS Recommendation, and DCBX Application priority) to enabled in the system-level egress-policy. You can override this in two ways:
+- System-wide with the `nv set system lldp tlv egress-policy <tlv> state disabled` command.
+- For an interface by applying a profile that disables the DCBX TLVs. The profile for an interface takes full precedence over the system-level setting.
+
+When you disable RoCE, NVUE shows a warning if DCBX TLVs remain enabled at the system level, prompting you to revert if no longer needed.
 {{%/notice%}}
 
 You enable PFC Configuration, ETS Configuration, and ETS Recommendation TLV transmission either globally or for a profile, then set the interface.
@@ -620,13 +659,13 @@ cumulus@switch:~$ nv set system lldp tlv egress-policy dcbx-ets-recomm state ena
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables PFC Configuration, ETS Configuration, and ETS Recommendation TLV transmission for an egress policy profile called dcbx-swp1 on swp1:
+The following example enables PFC Configuration, ETS Configuration, and ETS Recommendation TLV transmission for an egress policy profile called `DCBX-swp1` on swp1:
 
 ```
-cumulus@switch:~$ nv set system lldp tlv profile dcbx-swp1 egress-policy dcbx-pfc state enabled
-cumulus@switch:~$ nv set system lldp tlv profile dcbx-swp1 egress-policy dcbx-ets-config state enabled 
-cumulus@switch:~$ nv set system lldp tlv profile dcbx-swp1 egress-policy dcbx-ets-recomm state enabled 
-cumulus@switch:~$ nv set interface swp1 lldp tlv profile dcbx-swp1
+cumulus@switch:~$ nv set system lldp tlv profile DCBX-swp1 egress-policy dcbx-pfc state enabled
+cumulus@switch:~$ nv set system lldp tlv profile DCBX-swp1 egress-policy dcbx-ets-config state enabled 
+cumulus@switch:~$ nv set system lldp tlv profile DCBX-swp1 egress-policy dcbx-ets-recomm state enabled 
+cumulus@switch:~$ nv set interface swp1 lldp tlv profile DCBX-swp1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -643,7 +682,7 @@ cumulus@switch:~$ nv config apply
 To disable PFC Configuration, ETS Configuration, or ETS Recommendation TLV transmission for a profile, run the `nv set interface <interface-id> lldp tlv profile <profile-id> disabled` command:
 
 ```
-cumulus@switch:~$ nv set interface swp1 lldp tlv profile dcbx-swp1 disabled
+cumulus@switch:~$ nv set interface swp1 lldp tlv profile DCBX-swp1 disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -656,7 +695,7 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1
 ...
 lldp
   dcbx-ets-config-tlv                        enabled   
-  dcbx-ets-recomm-tlv                        edisabled 
+  dcbx-ets-recomm-tlv                        disabled 
   dcbx-pfc-tlv                               enabled   
 ... 
 ```
@@ -665,9 +704,23 @@ lldp
 
 <span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> is an extension to LLDP that operates between endpoint devices, such as IP phones and switches. Inventory management TLV enables an endpoint to transmit detailed inventory information about itself to the switch, such as the manufacturer, model, firmware, and serial number.
 
-You can enable LLDP-MED inventory TLV transmission globally only; LLDP-MED inventory TLV transmission does not support profiles.
+To enable basic MED TLV subtypes, configure `media-capabilities` in the relevant egress or ingress policy (system or profile).
 
-To enable LLDP-MED inventory TLV transmission, run the `nv set system lldp lldp-med-inventory-tlv enabled` command:
+The following example enables basic MED TLV subtypes on the switch:
+
+```
+cumulus@switch:~$ nv set system lldp tlv egress-policy media-capabilities state enabled
+cumulus@switch:~$ nv config apply
+```
+
+The following example enables basic MED TLV subtypes for a profile (PROFILE2):
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile PROFILE2 egress-policy media-capabilities state enabled
+cumulus@switch:~$ nv config apply
+```
+
+`media-capabilities` enables basic MED TLV subtypes but does not enable inventory TLV. To enable LLDP-MED inventory TLV transmission, run the `nv set system lldp lldp-med-inventory-tlv enabled` command:
 
 ```
 cumulus@switch:~$ nv set system lldp lldp-med-inventory-tlv enabled
@@ -708,8 +761,7 @@ To enable application priority TLV transmission, run NVUE commands to set:
 - You cannot enable application priority TLV transmission on bonds.
 - You can configure a maximum of 10 application TLV priorities on the switch.
 - Cumulus Linux can send a maximum of 10 application priority TLVs in an LLDP PDU.
-- You can enable application priority TLV transmission globally only; application priority TLV transmission does not support profiles.
-
+- By default, DCBX application priority policy is enabled but the switch transmits the TLV only when application priority configuration exists on the interface.
 {{%/notice%}}
 
 The following example sets the application priority of iSCSI traffic to 3 in the application priority TLV sent in LLDP PDUs on swp1.
@@ -717,6 +769,14 @@ The following example sets the application priority of iSCSI traffic to 3 in the
 ```
 cumulus@switch:~$ nv set system lldp application-tlv app iSCSI priority 3
 cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures a profile called APP-PRIO with an egress policy to enable DCBX Application priority TLVs and applies the profile to swp1:
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile APP-PRIO egress-policy dcbx-app-priority state enabled
+cumulus@switch:~$ nv set interface swp1 lldp tlv profile APP-PRIO
 cumulus@switch:~$ nv config apply
 ```
 
@@ -769,7 +829,7 @@ cumulus@switch:~$ nv config apply
 The following example unsets application priority 3 for iSCSI, then disables transmission of the application priority TLVs on swp1.
 
 ```
-cumulus@switch:~$ nv unset service lldp application-tlv app iSCSI priority 3
+cumulus@switch:~$ nv unset system lldp application-tlv app iSCSI priority 3
 cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app iSCSI
 cumulus@switch:~$ nv config apply
 ```
@@ -777,7 +837,7 @@ cumulus@switch:~$ nv config apply
 The following example unsets application priority 5 for NVMe using TCP port 4420, then disables transmission of the application priority TLVs on swp1.
 
 ```
-cumulus@switch:~$ nv unset service lldp application-tlv app NVME_4420 priority 5
+cumulus@switch:~$ nv unset system lldp application-tlv app NVME_4420 priority 5
 cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app NVME_4420
 cumulus@switch:~$ nv config apply
 ```
@@ -785,7 +845,7 @@ cumulus@switch:~$ nv config apply
 The following example unsets application priority 7 for NVMe using TCP port 8009, then disables transmission of the application priority TLVs on swp1.
 
 ```
-cumulus@switch:~$ nv unset service lldp application-tlv app NVME_8009 priority 7
+cumulus@switch:~$ nv unset system lldp application-tlv app NVME_8009 priority 7
 cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app NVME_8009
 cumulus@switch:~$ nv config apply
 ```
@@ -793,7 +853,7 @@ cumulus@switch:~$ nv config apply
 The following example unsets application priority 6 for the application using TCP port 4217, then disables transmission of application priority TLVs on swp1:
 
 ```
-cumulus@switch:~$ nv unset service lldp application-tlv tcp-port 4217 priority 6
+cumulus@switch:~$ nv unset system lldp application-tlv tcp-port 4217 priority 6
 cumulus@switch:~$ nv unset interface swp1 lldp application-tlv tcp-port 4217
 cumulus@switch:~$ nv config apply
 ```
@@ -801,7 +861,7 @@ cumulus@switch:~$ nv config apply
 The following example unsets application priority 4 for the application using UDP port 4317, then disables transmission of application priority TLVs on swp1:
 
 ```
-cumulus@switch:~$ nv unset service lldp application-tlv udp-port 4317 priority 4
+cumulus@switch:~$ nv unset system lldp application-tlv udp-port 4317 priority 4
 cumulus@switch:~$ nv unset interface swp1 lldp application-tlv udp-port 4317
 cumulus@switch:~$ nv config apply
 ```
@@ -901,7 +961,9 @@ iSCSI
 
 ## Troubleshooting
 
-You can use the `lldpcli` tool to query the `lldpd` daemon for neighbors, statistics, and other running configuration information. See `man lldpcli(8)` for details.
+### lldpcli Commands
+
+You can use the `lldpcli` tool to query the `lldpd` service for neighbors, statistics, and other running configuration information.
 
 To show all neighbors on all ports and interfaces:
 
@@ -1054,6 +1116,12 @@ Configuration:
   Portid TLV Subtype for lldp frames: ifname
 --------------------------------------------------------------------
 ```
+
+### LLDP TLVs
+
+On a port where ingress TLV filtering is active, the `lldp-tlv-filtered-rx` counter for each interface increments each time a received TLV drops due to the ingress policy. The counter is cumulative after the last `lldpd` service restart. To show the counter, run the NVUE `nv show interface <interface-id> lldp counters` command or the `sudo lldpcli show statistics` commands.
+
+To show the TLV policy that LLDP applies on an interface, including which entries come from a per-interface override and which entries come from a global default, run the `sudo lldpcli show interface ports <interface-id> tlv-policy` command.
 
 ## Considerations
 

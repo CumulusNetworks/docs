@@ -26,7 +26,7 @@ The `/v1/gpus` endpoint supports the following query parameters. These parameter
 Retrieve a specific GPU using its unique device identifier:
 
 ```
-curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?deviceUID=GPU-12345678" \
+curl -X GET "https://<ip_address>/nmx/v1/gpus?deviceUID=12345678" \
   -H "accept: application/json" \
   -H "Authorization: Basic <auth-token>"
 ```
@@ -36,7 +36,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?deviceUID=GPU-12345678" \
 [
   {
     "EntityID": "gpu-uuid-001",
-    "DeviceUID": "GPU-12345678",
+    "DeviceUID": "12345678",
     "LocationInfo": {
       "ChassisID": "CH-SN-9876543",
       "SlotID": 3,
@@ -54,7 +54,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?deviceUID=GPU-12345678" \
 Retrieve all GPUs in a specific chassis:
 
 ```
-curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543" \
+curl -X GET "https://<ip_address>/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543" \
   -H "accept: application/json" \
   -H "Authorization: Basic <auth-token>"
 ```
@@ -64,7 +64,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassisSerialNumber=CH-SN
 [
   {
     "EntityID": "gpu-uuid-001",
-    "DeviceUID": "GPU-12345678",
+    "DeviceUID": "12345678",
     "LocationInfo": {
       "ChassisID": "CH-SN-9876543",
       "SlotID": 3,
@@ -75,7 +75,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassisSerialNumber=CH-SN
   },
   {
     "EntityID": "gpu-uuid-002",
-    "DeviceUID": "GPU-12345679",
+    "DeviceUID": "12345679",
     "LocationInfo": {
       "ChassisID": "CH-SN-9876543",
       "SlotID": 4,
@@ -91,7 +91,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassisSerialNumber=CH-SN
 Retrieve GPUs from a specific slot within a chassis:
 
 ```
-curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543&slot-id=3" \
+curl -X GET "https://<ip_address>/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543&slot-id=3" \
   -H "accept: application/json" \
   -H "Authorization: Basic <auth-token>"
 ```
@@ -102,7 +102,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassisSerialNumber=CH-SN
 [
   {
     "EntityID": "gpu-uuid-001",
-    "DeviceUID": "GPU-12345678",
+    "DeviceUID": "12345678",
     "LocationInfo": {
       "ChassisID": "CH-SN-9876543",
       "SlotID": 3,
@@ -120,7 +120,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassisSerialNumber=CH-SN
 Retrieve GPUs from a specific tray and host combination:
 
 ```
-curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543&tray-index=1&host-id=compute-node-05" \
+curl -X GET "https://<ip_address>/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543&tray-index=1&host-id=compute-node-05" \
   -H "accept: application/json" \
   -H "Authorization: Basic <auth-token>"
 ```
@@ -130,7 +130,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassisSerialNumber=CH-SN
 [
   {
     "EntityID": "gpu-uuid-001",
-    "DeviceUID": "GPU-12345678",
+    "DeviceUID": "12345678",
     "LocationInfo": {
       "ChassisID": "CH-SN-9876543",
       "SlotID": 3,
@@ -141,7 +141,7 @@ curl -X GET "https://<netq.domain>:443/api/nmx/v1/gpus?chassisSerialNumber=CH-SN
   },
   {
     "EntityID": "gpu-uuid-002",
-    "DeviceUID": "GPU-12345679",
+    "DeviceUID": "12345679",
     "LocationInfo": {
       "ChassisID": "CH-SN-9876543",
       "SlotID": 4,

@@ -1033,7 +1033,11 @@ To configure dynamic ECN, determine which traffic classes carry loss-sensitive o
 To maintain statistical integrity and prevent mixing `absolute` mark counts with `relative` mark counts in historical data, Cumulus Linux resets ECN counters for the affected traffic class to zero for any mode transition.
 {{%/notice%}}
 -->
-The following commands set dynamic ECN mode to `relative` for the default profile, configure the minimum ECN marking threshold to 20 percent and the maximum ECN marking threshold to 80 percent:
+The following commands set dynamic ECN mode to `relative` for the default profile, configure the minimum ECN marking threshold to 20 percent and the maximum ECN marking threshold to 80 percent.
+
+{{%notice note%}}
+You can set both absolute and relative mode in the same configuration when applied on different traffic classes.
+{{%/notice%}}
 
 {{< tabs "TabID936 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1045,7 +1049,7 @@ cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 3 m
 cumulus@switch:~$ nv config apply
 ```
 
-To disable dynamic ECN, set the mode to `absolute` with the `nv set qos congestion-control <profile> traffic-class 3 mode absolute` command. Reconfigure the {{<link title="#congestion-control-(ecn)" text="byte thresholds">}} if you do not want to use the default values.
+To disable dynamic ECN, set the mode to `absolute` with the `nv set qos congestion-control <profile> traffic-class <traffic-class> mode absolute` command. Reconfigure the {{<link title="#congestion-control-(ecn)" text="byte thresholds">}} if you do not want to use the default values.
 
 ```
 cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 3 mode absolute
@@ -1056,6 +1060,26 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 Edit the `Default ECN configuration` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file to add relative mode, and the minimum and maximum threshold percentages.
+
+```
+# Default ECN configuration
+# Relative Mode (Dynamic) for TC [3]
+# ---------------------------------------------------------
+default_ecn_red_conf@1.egress_queue_list = [3]
+default_ecn_red_conf@1.ecn_enable = true
+default_ecn_red_conf@1.red_enable = true
+# Mode Setting
+default_ecn_red_conf@1.mode = relative
+# Byte Thresholds (Ignored/Zero)
+default_ecn_red_conf@1.min_threshold_bytes = 0
+default_ecn_red_conf@1.max_threshold_bytes = 0
+# Percent Thresholds (Active)
+default_ecn_red_conf@1.min_threshold_percent = 20
+default_ecn_red_conf@1.max_threshold_percent = 80
+default_ecn_red_conf@1.probability = 100
+```
+
+The following example sets relative mode for traffic class 3 and absolute mode for traffic class 4 and 5:
 
 ```
 #Default ECN configuration
@@ -1073,23 +1097,21 @@ default_ecn_red_conf@1.max_threshold_bytes = 0
 default_ecn_red_conf@1.min_threshold_percent = 20
 default_ecn_red_conf@1.max_threshold_percent = 80
 default_ecn_red_conf@1.probability = 100
-```
 
-To disable dynamic ECN, set the mode to `absolute`, and configure the `min_threshold_bytes` and `max_threshold_bytes` parameters.
-
-```
-default_ecn_red_conf.egress_queue_list = [4,5,7] 
-default_ecn_red_conf.ecn_enable = true 
-default_ecn_red_conf.red_enable = false 
-# Mode Setting 
-default_ecn_red_conf.mode = absolute 
-# Byte Thresholds (Active) 
-default_ecn_red_conf.min_threshold_bytes = 150000 
-default_ecn_red_conf.max_threshold_bytes = 1500000 
-# Percent Thresholds (Ignored/Zero) 
-default_ecn_red_conf.min_threshold_percent = 0 
-default_ecn_red_conf.max_threshold_percent = 0 
-default_ecn_red_conf.probability = 100
+# Block 2: Absolute Mode (Legacy) for TC [4,5]
+# ---------------------------------------------------------
+default_ecn_red_conf@2.egress_queue_list = [4,5]
+default_ecn_red_conf@2.ecn_enable = true
+default_ecn_red_conf@2.red_enable = true
+# Mode Setting
+default_ecn_red_conf@2.mode = absolute
+# Byte Thresholds (Active)
+default_ecn_red_conf@2.min_threshold_bytes = 150000
+default_ecn_red_conf@2.max_threshold_bytes = 1500000
+# Percent Thresholds (Ignored/Zero)
+default_ecn_red_conf@2.min_threshold_percent = 0
+default_ecn_red_conf@2.max_threshold_percent = 0
+default_ecn_red_conf@2.probability = 100
 ```
 
 {{< /tab >}}

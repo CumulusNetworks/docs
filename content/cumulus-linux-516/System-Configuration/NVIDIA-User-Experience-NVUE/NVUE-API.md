@@ -596,6 +596,99 @@ cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/n
 ...
 ```
 
+### Reserved Characters in cURL
+
+If you use a reserved character from the following table in the cURL URI, you need to encode it with a percent.
+
+{{<img src = "/images/cumulus-linux/curl-reserved.png">}}
+
+{{%notice note%}}
+Percent encoding for the space character is %20.
+{{%/notice%}}
+
+You can run the following python line of code that percent encodes the reserved character instead of manually encoding it.
+
+In the following example, the python line of code percent encodes the colons (:) in the URI.
+
+```
+cumulus@switch:~$ PREFIX=$(python3 -c 'import urllib.parse; print(urllib.parse.quote("[144.2.1.2:6]:[5]:[0]:[2050:1:1:1::122/128]", safe=":"))')
+```
+
+```
+cumulus@switch:~$ curl -k -u 'cumulus:NvidiaR0cks!' -X GET "https://localhost:8765//nvue_v1/vrf/default/router/bgp
+/address-family/l2vpn-evpn/route/${PREFIX}"
+{
+  "advertised-to": {
+    "swp1": {
+      "hostname": "spine-1"
+    },
+    "swp2": {
+      "hostname": "spine-2"
+    },
+    "swp3": {
+      "hostname": "bordertor-11"
+    },
+    "swp4": {
+      "hostname": "bordertor-12"
+    }
+  },
+  "ethernet-tag": 0,
+  "evpn-prefix-str": "[5]:[0]:[128]:[2050:1:1:1::122]",
+  "ip": "2050:1:1:1::122",
+  "path": {
+    "1": {
+      "aspath": {
+        "650000": {}
+      },
+      "bestpath": {
+        "from-as": 650000,
+        "overall": "yes",
+        "selection-reason": "First path received"
+      },
+      "ext-community": {
+        "RT:60176:104001 ET:8 Rmac:00:01:00:00:02:08": {}
+      },
+      "flags": {
+        "bestpath": {},
+        "valid": {}
+      },
+      "flags-string": "*v",
+      "last-update-time": 5265,
+      "metric": 0,
+      "nexthop": {
+        "1": {
+          "accessible": "on",
+          "afi": "ipv4",
+          "ip": "6.0.0.2",
+          "metric": 0,
+          "used": "on"
+        }
+      },
+      "nexthop-count": 1,
+      "origin": "IGP",
+      "path-from": "external",
+      "peer": {
+        "hostname": "bordertor-12",
+        "id": "fe80::202:ff:fe00:8",
+        "interface": "swp4",
+        "router-id": "6.0.0.2",
+        "type": "external"
+      },
+      "valid": "on",
+      "vni": {
+        "104001": {}
+      }
+    }
+  },
+  "path-count": 1,
+  "prefix": "2050:1:1:1::122/128",
+  "rd": "144.2.1.2:6",
+  "route-type": "5"
+}
+```
+
+To percent encode more than one reserved character with the python line of code, use a comma separated list.
+
 ## API Use Cases
 
 The following examples show the primary API uses cases.

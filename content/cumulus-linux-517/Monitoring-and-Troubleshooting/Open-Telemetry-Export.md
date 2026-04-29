@@ -1004,9 +1004,9 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 | `nvswitch_dot1x_ipv6_profile_summary` | IPv6 prefix generated for each layer 3 authenticated session that is using an IPv6 profile. |
 | `nvswitch_dot1x_reauth_timeouts` | Counter of reauthentication attempts with the RADIUS server that timed out but were ignored, keeping the supplicant in Authorized state when the `reauth-timeout-ignore` flag is enabled. |
 | `nvswitch_dot1x_supplicant_dynamic_vrf` | Displays the VRF when an interface is dynamically associated to a VRF if the dynamic VRF assignment feature is enabled.|
-| `nvswitch_dot1x_interface_eapol_counters` | *|
-| `nvswitch_dot1x_tx_identity_request_info` | *|
-| `nvswitch_dot1x_interface_info`| *|
+| `nvswitch_dot1x_tx_identity_request_info` | *Multicast EAPOL identity request information.|
+| `nvswitch_dot1x_interface_eapol_counters` | *Unsolicited Request/Identity TX counters.|
+| `nvswitch_dot1x_tx-identity-request_interface_info`| *Replaces `nvswitch_dot1x_interface_info`.|
 
 {{< expand "Example JSON data for 802.1X:" >}}
 ```

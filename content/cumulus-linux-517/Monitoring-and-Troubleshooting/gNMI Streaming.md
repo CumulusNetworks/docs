@@ -287,12 +287,12 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/ipv6-prefix` | The IPv6 prefix generated from all the IPv6 profile properties. |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/counters/reauth-timeouts` | Counter that keeps track of authentication failures because the RADIUS server is unreachable after a successful authentication when the `reauth-timeout-ignore` option is enabled. |
 | `/system/dot1x/state/dynamic-vrf` | Shows if a VRF is `required` to be assigned dynamically by the RADIUS server to an 802.1X interface, is `optional` or `disabled`. |
-| `/system/dot1x/tx-identity-request/state/admin-status`| *|
-| `/system/dot1x/tx-identity-request/state/delay`| *| 
-| `/system/dot1x/tx-identity-request/state/interval`| *| 
-| `/system/dot1x/tx-identity-request/state/max-retries`| *| 
-| `/interfaces/interface[name]/ethernet/dot1x/state/tx-identity-request`| *| 
-| `/interfaces/interface[name]/ethernet/dot1x/state/out-eapol-unsolicited-identity-request-frames`| *|
+| `/system/dot1x/tx-identity-request/state/admin-status` | *Admin Status. |
+| `/system/dot1x/tx-identity-request/state/delay` | *Number of seconds to wait after a link-up event before sending the first EAP Identity request.|
+| `/system/dot1x/tx-identity-request/state/interval` | *Frequency in seconds at which EAP Identity requests are sent until the switch detects a supplicant or the maximum number of retries is reached.|
+| `/system/dot1x/tx-identity-request/state/max-retries` | *Maximum number of multicast EAPOL identity request retries.|
+| `/interfaces/interface[name]/ethernet/dot1x/state/tx-identity-request` | *If 802.1X reauthentication is enabled or disabled on the interface. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/out-eapol-unsolicited-identity-request-frames` | *Number of unsolicited identity request frames for the interface.|
 
 {{< /tab >}}
 {{< tab "ACLs ">}}

@@ -11,6 +11,18 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 ## gNMI Metrics
 
 {{< tabs "TabID13 ">}}
+{{< tab "802.1X">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/system/dot1x/tx-identity-request/state/admin-status` | Admin Status. |
+| `/system/dot1x/tx-identity-request/state/delay` | Number of seconds to wait after a link-up event before sending the first EAP Identity request.|
+| `/system/dot1x/tx-identity-request/state/interval` | Frequency in seconds at which EAP Identity requests are sent until the switch detects a supplicant or the maximum number of retries is reached.|
+| `/system/dot1x/tx-identity-request/state/max-retries` | Maximum number of multicast EAPOL identity request retries.|
+| `/interfaces/interface[name]/ethernet/dot1x/state/tx-identity-request` | If 802.1X reauthentication is enabled or disabled on the interface. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/out-eapol-unsolicited-identity-request-frames` | Number of unsolicited identity request frames for the interface.|
+
+{{< /tab >}}
 {{< tab "Control Plane">}}
 
 |  Name | Description |
@@ -161,6 +173,7 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 {{< /tab >}}
 {{< tab "Platform">}}
+
 |  Name | Description |
 |------ | ----------- |
 | `/components/component[name]/state/name` | Component name.|
@@ -175,7 +188,16 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 ## OTEL Metrics
 
-{{< tabs "TabID167 ">}}
+{{< tabs "TabID190 ">}}
+{{< tab "802.1X">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_dot1x_tx_identity_request_info` | Multicast EAPOL identity request information.|
+| `nvswitch_dot1x_interface_eapol_counters` | Unsolicited Request/Identity TX counters.|
+| `nvswitch_dot1x_tx-identity-request_interface_info`| Replaces `nvswitch_dot1x_interface_info`.|
+
+{{< /tab >}}
 {{< tab "Control Plane">}}
 
 |  Name | Description |

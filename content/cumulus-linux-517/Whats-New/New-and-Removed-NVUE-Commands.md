@@ -50,8 +50,6 @@ nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom
 nv set qos advance-buffer-config <profile-id> shared-headroom required-headroom-per-pg
 nv set qos link-pause <profile-id> small-packet-probability
 nv set qos pfc <profile-id> small-packet-probability
-nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group <priority-group-id> switch-priority <switch-priority-id>
-nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group <priority-group-id> service-pool <service-pool-id>
 nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg
 nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg
 nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio

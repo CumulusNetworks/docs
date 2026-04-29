@@ -20,7 +20,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - {{<link url="Zero-Touch-Provisioning-ZTP/#ztp-over-dhcp" text="Revert to DHCP if the ZTP URL is not reachable">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload support for BFD sessions based on the IPv6 link-local address">}}
 - {{<link url="Docker-with-Cumulus-Linux/#docker-resource-tiering-system" text="Docker Resource Governance & Policy Agent">}}
-- {{<link url="Quality-of-Service/#lossless-headroom" text="PFC headroom pool">}}
+- {{<link url="Quality-of-Service/#lossless-shared-headroom-pool" text="Lossless shared headroom pool">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-tlvs" text="Granular LLDP TLV definition and control">}}
 - {{<link url="Syslog/#thermal-control-logs" text="Thermal logging in syslog (sensor and fan state and errors)">}}
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} (Beta)

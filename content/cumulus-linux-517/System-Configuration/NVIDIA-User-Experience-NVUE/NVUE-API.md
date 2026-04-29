@@ -596,7 +596,7 @@ cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/n
 ...
 ```
 
-## Reserved Characters in cURL
+### Reserved Characters in cURL
 
 If you use a reserved character from the following table in the cURL URI, you need to encode it with a percent.
 

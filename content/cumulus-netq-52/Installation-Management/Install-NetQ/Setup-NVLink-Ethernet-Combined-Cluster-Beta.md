@@ -206,6 +206,8 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
         "shared-cluster-install": "<INPUT>"
         "storage-path": "/var/lib/longhorn"
         "alertmanager_webhook_url": "<INPUT>"
+        "cert-mode": "<INPUT>",
+        "worker-nodes": []
 
 }
 ```
@@ -220,6 +222,8 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 | `ha-nodes`, `ip` | The IP addresses of the two high-availability control plane nodes in your cluster. |
 | `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` | Enter the URL of the Alertmanager webhook. You can add multiple URLs as a comma-separated list. Note that you must manually add this line to the JSON template to receive NVLink alerts. |
+| `cert-mode` | The TLS certificate mode for southbound (switch) communication. Set to `self-signed` (default) to use auto-generated certificates, or `user-cert` to provide your own CA and TLS certificates. |
+| `worker-nodes`, `ip` | The IP addresses of the worker nodes in your cluster. |
 
 {{< /tab >}}
 {{< tab "Completed JSON Example">}}
@@ -247,6 +251,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
         "shared-cluster-install": false,
         "storage-path": "/var/lib/longhorn",
         "alertmanager_webhook_url": "",
+        "cert-mode": "self-signed",
         "worker-nodes": [
                 {
                         "ip": "10.176.235.54",
@@ -275,6 +280,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 | `ha-nodes`, `ip` | The IP addresses of the two high-availability control plane nodes in your cluster. |
 | `shared-cluster-install` | Set the value to `true` if Kubernetes was already installed (for example, as part of a Base Command Manager deployment) or `false` to install Kubernetes. |
 | `alertmanager_webhook_url` | Enter the URL of the Alertmanager webhook. You can add multiple URLs as a comma-separated list. Note that you must manually add this line to the JSON template to receive NVLink alerts. |
+| `cert-mode` | The TLS certificate mode for southbound (switch) communication. Set to `self-signed` (default) to use auto-generated certificates, or `user-cert` to provide your own CA and TLS certificates. |
 | `worker-nodes`, `ip` | The IP addresses of the worker nodes in your cluster. |
 
 {{< /tab >}}
@@ -327,6 +333,5 @@ If any of the applications or services display a DOWN status after 30 minutes, o
 
 ## Next Steps
 
-After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser using the virtual cluster IP address. 
-
-To access NVLink data, {{<link title="NVLink Bringup" text="perform a system bringup">}} to connect to telemetry and controller services.
+- After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser using the virtual cluster IP address. 
+- If you installed NetQ NVLink with `cert-mode` set to `user-cert`, {{<link title="Upload Custom Certificates" text="upload your certificates">}}. After that, {{<link title="NVLink Bringup" text="perform a system bringup">}}.

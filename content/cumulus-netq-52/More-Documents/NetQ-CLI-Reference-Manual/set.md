@@ -37,6 +37,56 @@ None
 - `netq add otlp endpoint`
 
 - - -
+## netq set otlp exporter-security-mode
+
+Sets the OTLP exporter security mode.
+
+### Syntax
+
+```
+netq set otlp exporter-security-mode (insecure | tls | mtls) 
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| exporter-security-mode | insecure, mtls, tls | Set the security mode to `mtls`, `tls` or `insecure` |
+
+### Options
+
+None
+
+### Related Commands
+
+`netq show otlp exporter-security-mode`
+
+- - -
+## netq set otlp ingress-security-mode
+
+Sets the OTLP ingress security mode.
+
+### Syntax
+
+```
+netq set otlp ingress-security-mode (disabled | mtls) 
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| ingress-security-mode | disabled, mtls | Set the security mode to `mtls` or disable security |
+
+### Options
+
+None
+
+### Related Commands
+
+`netq show otlp ingress-security-mode`
+
+- - -
 
 ## netq set otlp security-mode
 
@@ -45,14 +95,14 @@ Sets the OTLP security mode.
 ### Syntax
 
 ```
-netq set otlp security-mode <text-mode>
+netq set otlp security-mode (insecure | tls | mtls) 
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| security-mode | \<text-mode\> |  Enable TLS (`tls`) or disable (`insecure`) the OTLP security mode |
+| security-mode | insecure, mtls, tls | Set the security mode to `tls`, `mtls`, or `insecure` |
 
 ### Options
 

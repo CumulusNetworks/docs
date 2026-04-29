@@ -19,6 +19,7 @@ NetQ NVLink was previously packaged as NMX-M.
 - {{<link title="NetQ NVLink API User Guide">}}
 - {{<link title="NetQ NVLink API Changelog">}}
 - {{<link title="Collect KPIs">}}
+- {{<link title="Inventory and Devices">}}
 - {{<link title="Manage Alerts">}}
 - {{<link title="Manage Licenses">}}
 - {{<link title="Manage Partitions">}}

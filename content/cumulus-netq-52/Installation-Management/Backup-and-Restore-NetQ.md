@@ -21,18 +21,9 @@ Follow the process below for your deployment type to back up your NetQ data.
 {{<tabs "TabID19" >}}
 {{<tab "Ethernet and Combined (Ethernet + NVLink) Deployments" >}}
 
-{{%notice note%}}
-If your NetQ deployment uses combined Ethernet and NVLink mode, only your Ethernet data can be backed up and restored. NVLink data is excluded from the backup and restoration process.
-{{%/notice%}}
-
 1. Retrieve the `vm-backuprestore.sh` script:
 
-<p style="text-indent: 40px">a. Log in to the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.<br></p>
-<p style="text-indent: 40px">b. Select <b>NVIDIA Licensing Portal</b>.</p>
-<p style="text-indent: 40px">c. Select <b>Software Downloads</b> from the menu.</p>
-<p style="text-indent: 40px">d. In the search field, enter <b>NetQ</b>.</p>
-<p style="text-indent: 40px">e. Locate the latest <i>NetQ Upgrade Backup Restore</i> file and select <b>Download</b>.</p>
-<p style="text-indent: 40px">f. If prompted, read the license agreement and proceed with the download.<br></p>
+<p style="text-indent: 40px; margin: 0;">a. Log in to the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.</p><p style="text-indent: 40px; margin: 0;">b. Select <b>NVIDIA Licensing Portal</b>.</p><p style="text-indent: 40px; margin: 0;">c. Select <b>Software Downloads</b> from the menu.</p><p style="text-indent: 40px; margin: 0;">d. In the search field, enter <b>NetQ</b>.</p><p style="text-indent: 40px; margin: 0;">e. Locate the latest <i>NetQ Upgrade Backup Restore</i> file and select <b>Download</b>.</p><p style="text-indent: 40px; margin: 0;">f. If prompted, read the license agreement and proceed with the download.</p>
 
 2. Copy the `vm-backuprestore.sh` script to your NetQ server in standalone deployments, or to the master node in cluster deployments:
 

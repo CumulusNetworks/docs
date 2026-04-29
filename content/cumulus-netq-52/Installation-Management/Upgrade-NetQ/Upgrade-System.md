@@ -14,6 +14,10 @@ For deployments running:
 
 During the upgrade process, NetQ will be temporarily unavailable.
 
+{{%notice note%}}
+- NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
+{{%/notice%}}
+
 <!--
 ## Before You Upgrade
 
@@ -151,27 +155,27 @@ nvidia@<hostname>:~$ netq upgrade nvl bundle /mnt/installables/NetQ-5.2.0.tgz ko
 ```
 {{</tab>}}
 
-{{<tab "High-availbility Scale Cluster (NVLink + Ethernet)">}}
+{{<tab "High-availability Scale Cluster (NVLink + Ethernet)">}}
 
 Two upgrade options are available for this deployment model. One option upgrades your NetQ deployment to the latest version. The other option upgrades your NetQ deployment to the latest version and concurrently adds additional nodes to your existing cluster.
 
 ## Upgrade with Same Number of Nodes
 
-Run the upgrade command on your master node, specifying the current version's tarball and your cluster's virtual IP address:
+1. Run `netq install cluster config generate` to create a new JSON template. Specify `"version": "v3.0"` in the template.
 
-
-```
-nvidia@<hostname>:~$ netq upgrade cluster bundle /mnt/installables/NetQ-5.2.0.tgz <text-cluster-config>
-```
-## Upgrade and Add Additional Nodes
-
-<!--how to load json file? how to upgrade v2 to v3-->
-
-
-Run the installation command on your master node, specifying the current version's tarball and the full path to your cluster's JSON configuration file:
+2. Run the upgrade command on your master node, specifying the current version's tarball and the full path to your cluster's JSON configuration file:
 
 ```
-nvidia@<hostname>:~$ netq install cluster extend-cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
+nvidia@<hostname>:~$ netq upgrade cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
+```
+## Upgrade and Add Additional Nodes (Beta)
+
+1. Run `netq install cluster config extend-cluster /tmp/cluster-install-config.json <text-num-nodes>`. Specify the number of additional nodes you'd like to add with `<text-num-options>`.
+
+2. Run the installation command on your master node, specifying the current version's tarball and the full path to your cluster's JSON configuration file:
+
+```
+nvidia@<hostname>:~$ netq install cluster config extend-cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
 ```
 
 {{</tab>}}

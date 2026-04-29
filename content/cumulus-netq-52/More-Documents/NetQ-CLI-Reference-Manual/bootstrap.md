@@ -49,7 +49,9 @@ nvidia@switch:~$ netq bootstrap reset keep-db
 
 - `netq config reset premise`
 
-<!--not exposed to customers
+- - -
+
+<!--check this
 ## netq bootstrap worker
 
 ### Syntax
@@ -62,6 +64,7 @@ netq bootstrap worker
     cluster-vip <text-cluster-vip> 
     [password <text-password>] 
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
+    [keep-db]
 ```
 ### Required Arguments
 

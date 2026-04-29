@@ -182,6 +182,24 @@ cumulus@switch:~$ nv config apply
 
 - To set the server port (use the format `server:port`), source IP address, authentication type, and to enable Cumulus Linux to create a separate home directory for each TACACS+ user, edit the `/etc/tacplus_servers` and `/usr/share/pam-configs/tacplus` files. Restart `auditd`, then run `sudo pam-auth-update –enable tacplus`.
 - To set the timeout and the usernames to exclude from TACACS+ authentication, edit the `/etc/tacplus_nss.conf` file (you do not need to restart `auditd`).
+- Installing TACACS libraries modifies configuration files to allow TACACS authorization. If you see that TACACS library installation does not modify the configuration files, verify that:
+  - The `/usr/share/pam-configs/tacplus` file includes the correct `Priority` and `Auth` settings before calling `pam-auth-update`:
+
+  ```
+  Default: yes
+  Priority: 514
+  Auth-Type: Primary
+  Auth:
+     [default=ignore success=1] pam_succeed_if.so uid <= 1000 quiet
+     [authinfo_unavail=ignore success=end auth_err=ignore user_unknown=ignore default=ignore]    pam_tacplus.so
+  ```
+
+  - The `/etc/nsswitch.conf` file includes `tacplus` in the `group` and `passwd` settings:
+
+  ```
+  passwd:         tacplus files
+  group:          tacplus files
+  ```
 
 The following example sets the server port to 32, the authentication type to CHAP, the source IP address to 10.10.10.1, and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
 

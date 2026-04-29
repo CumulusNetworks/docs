@@ -1036,7 +1036,7 @@ You can use your gNMI client on a host to request capabilities and data to which
 
 {{%notice note%}}
 - Cumulus Linux processes gNMI client subscription create and delete requests sequentially (one at a time). The switch rejects concurrent subscription requests with a `CANCELLED: System is busy`​ gRPC status and the gNMI client must reinitiate the request with the appropriate backoff. This limitation applies only to subscription setup or teardown. After the subscription establishes, multiple subscriptions run concurrently and stream telemetry data independently.
-- For better performance, NVIDIA recommends that you enable gzip in your gNMI client tools by adding `gnmic --gzip` to the request header.
+- For better performance, NVIDIA recommends that you enable gzip in your gNMI client tools. For example, for `gnmic`, add `--gzip` to the command line arguments.
 {{%/notice%}}
 
 #### Dial-in Mode Examples

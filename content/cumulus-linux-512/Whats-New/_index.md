@@ -16,6 +16,10 @@ The upcoming Cumulus Linux 5.15.0 release includes updates to NVUE commands. The
 
 Cumulus Linux 5.12.2 includes a new SDK.
 
+{{%notice note%}}
+You can upgrade to 5.12.2 from 5.12.1 with optimized image upgrade (without warm boot) or you can install the 5.12.2 image with ONIE. Cumulus Linux 5.12.2 does *not* support package upgrade.
+{{%/notice%}}
+
 ## What's New in Cumulus Linux 5.12.1
 
 Cumulus Linux 5.12.1 includes a new {{<link title="Cumulus Linux 5.12 Packages" text="SDK, hardware management package, and kernel">}} and provides {{<link url="Cumulus-Linux-5.12-Release-Notes" text="bug fixes">}}. In addition, Cumulus Linux 5.12.1 supports the following new platform:

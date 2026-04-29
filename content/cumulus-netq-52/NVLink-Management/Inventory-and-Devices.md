@@ -91,7 +91,7 @@ curl -X GET "https://<ip_address>/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543"
 Retrieve GPUs from a specific slot within a chassis:
 
 ```
-curl -X GET "https://<ip_address>/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543&slot-id=3" \
+curl -X GET "https://<ip_address>/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543&slotID=3" \
   -H "accept: application/json" \
   -H "Authorization: Basic <auth-token>"
 ```
@@ -120,9 +120,9 @@ curl -X GET "https://<ip_address>/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543&
 Retrieve GPUs from a specific tray and host combination:
 
 ```
-curl -X GET "https://<ip_address>/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543&tray-index=1&host-id=compute-node-05" \
-  -H "accept: application/json" \
-  -H "Authorization: Basic <auth-token>"
+curl -X GET "https://<ip_address>/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543&trayIndex=1&hostID=1" \
+  -H "accept: application/json" \
+  -H "Authorization: Basic <auth-token>"
 ```
 {{< expand "Example response" >}}
 

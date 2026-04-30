@@ -1,0 +1,199 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: ndctl
+Source: https://github.com/pmem/ndctl
+Copyright: 2013-2018 Intel Corporation
+License: LGPL-2.1
+
+Files:     *
+Copyright: 2014-2018 Intel Corporation
+License:   LGPL-2.1
+
+Files:     test.h
+           daxctl/list.c
+Copyright: (c) 2015-2017 Intel Corporation
+           (c) 2013-2016 Intel Corporation
+License:   GPL-2
+
+Files:     ccan/*
+Copyright: Unknown
+License:   CC0-1.0
+
+Files:     ccan/list/*
+Copyright: Unknown
+License:   Expat
+
+Files:     daxctl/daxctl.c
+Copyright: (c) 2005 Andreas Ericsson.
+           (c) 2015-2017 Intel Corporation. All rights reserved
+License:   GPL-2
+
+Files:     daxctl/libdaxctl.h
+           daxctl/lib/libdaxctl-private.h
+           daxctl/lib/libdaxctl.c
+Copyright: (c) 2016, Intel Corporation.
+           (c) 2014-2016, Intel Corporation.
+License:   LGPL-2.1
+
+Files:     ndctl/dimm.c
+           ndctl/lib/ars.c
+           ndctl/lib/dimm.c
+           ndctl/lib/hpe1.c
+           ndctl/lib/hpe1.h
+           ndctl/lib/inject.c
+           ndctl/lib/intel.c
+           ndctl/lib/intel.h
+           ndctl/lib/libndctl.c
+           ndctl/lib/msft.c
+           ndctl/lib/msft.h
+           ndctl/lib/nfit.c
+           ndctl/lib/private.h
+           ndctl/lib/smart.c
+           ndctl/libndctl-nfit.h
+           ndctl/libndctl.h
+           ndctl/namespace.h
+           ndctl/ndctl.h
+Copyright: 2014-2015, Intel Corporation.
+           2014-2016, Intel Corporation.
+           2014-2017, Intel Corporation.
+           2016, Hewlett Packard Enterprise Development LP
+           2016, Intel Corporation.
+           2016-2017, Dell, Inc.
+           2016-2017, Intel Corporation.
+           2017, FUJITSU LIMITED.
+           2017, Hewlett Packard Enterprise Development LP
+           2017, Intel Corporation.
+License:   LGPL-2.1
+
+Files:     ndctl/inject-error.c
+           ndctl/list.c
+           ndctl/namespace.c
+           ndctl/region.c
+           ndctl/test.c
+           ndctl/inject-smart.c
+           ndctl/lib/firmware.c
+           ndctl/bat.c
+           ndctl/create-nfit.c
+           ndctl/check.c
+           ndctl/action.h
+           ndctl/bus.c
+Copyright: (c) 2015-2017 Intel Corporation.
+           (c) 2015-2016 Intel Corporation.
+           (c) 2018 Intel Corporation.
+           (c) 2014 Intel Corporation.
+License:   GPL-2
+
+Files:     ndctl/ndctl.c
+Copyright: (c) 2005 Andreas Ericsson.
+           (c) 2015-2017 Intel Corporation.
+License:   GPL-2
+
+Files:     util/*
+Copyright: (c) 2015-2017 Intel Corporation.
+           (c) 2005 Junio C Hamano.
+           (c) 2005 Linus Torvalds.
+           (c) 2006 Linus Torvalds.
+           (c) 2007 Pierre Habouzit.
+           (c) 2008 Miklos Vajna.
+           (c) 2009 Akinobu Mita.
+License:   GPL-2
+
+Files:     util/log.c
+           util/log.h
+           util/sysfs.c
+           util/sysfs.h
+Copyright: 2014-2016, Intel Corporation.
+           2016, Intel Corporation.
+License:   LGPL-2.1
+
+Files:     Documentation/*
+Copyright: 2005, Jonas Fonseca
+           2005, Sergey Vlasov
+           (c) 2017, Intel Corporation
+           (c) 2016 - 2017, Intel Corporation
+           2006, Sean Estabrooks
+           2009, Chris Johnsen
+           (c) 2018, Intel Corporation
+           (c) 2015-2017 Intel Corporation.
+License:   GPL-2
+
+Files:
+ test/btt-check.sh
+ test/btt-errors.sh
+ test/btt-pad-compat.sh
+ test/clear.sh
+ test/core.c
+ test/create.sh
+ test/dax-errors.c
+ test/dax-pmd.c
+ test/dax.sh
+ test/daxdev-errors.c
+ test/daxdev-errors.sh
+ test/device-dax-fio.sh
+ test/device-dax.c
+ test/inject-error.sh
+ test/firmware-update.sh
+ test/label-compat.sh
+ test/mmap.sh
+ test/multi-dax.sh
+ test/pmem-errors.sh
+ test/sector-mode.sh
+ test/smart-listen.c
+ test/smart-notify.c
+ test/ack-shutdown-count-set.c
+ test/rescan-partitions.sh
+Copyright: (c) 2015-2017 Intel Corporation.
+ (c) 2018 Intel Corporation.
+License: GPL-2
+
+Files:
+ test/dax-dev.c
+ test/dsm-fail.c
+ test/libndctl.c
+ test/pmem_namespaces.c
+Copyright: 2014-2016, Intel Corporation.
+  2015, Intel Corporation.
+License: LGPL-2.1
+
+Files: test/mmap.c
+Copyright: (c) 2015 Toshi Kani, Hewlett Packard Enterprise.
+License: GPL-2
+
+License:   GPL-2
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+
+License:   LGPL-2.1
+ On Debian systems, the full text of the GNU Lesser General Public
+ License version 2.1 can be found in the file
+ `/usr/share/common-licenses/LGPL-2.1'.
+
+License:   CC0-1.0
+ To the extent possible under law, the author(s) have dedicated all copyright
+ and related and neighboring rights to this software to the public domain
+ worldwide. This software is distributed without any warranty.
+ .
+ You should have received a copy of the CC0 Public Domain Dedication along with
+ this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+ .
+ On Debian systems, the complete text of the CC0 1.0 Universal license can be
+ found in "/usr/share/common-licenses/CC0-1.0".
+
+License:   Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.

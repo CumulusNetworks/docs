@@ -1,15 +1,17 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Name: base-passwd
-Maintainer: Colin Watson <cjwatson@debian.org>
+Upstream-Name: base-passwd
+Upstream-Contact: Colin Watson <cjwatson@debian.org>
 
-Files: update-passwd.c, man/*
+Files: *
 Copyright: Copyright 1999-2002 Wichert Akkerman <wichert@deephackmode.org>
  Copyright 2002, 2003, 2004 Colin Watson <cjwatson@debian.org>
 License: GPL-2
 
-Files: passwd.master, group.master
-License: PD
-X-Notes: Originally written by Ian Murdock <imurdock@debian.org> and
+Files:
+ passwd.master
+ group.master
+License: public-domain
+Copyright: PD; Originally written by Ian Murdock <imurdock@debian.org> and
  Bruce Perens <bruce@pixar.com>.
 
 Files: doc/*

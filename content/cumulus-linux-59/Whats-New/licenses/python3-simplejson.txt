@@ -9,9 +9,9 @@ License: MIT
 
 Files: debian/*
 Copyright: (c) 2006, Gustavo Noronha Silva <kov@debian.org>
-           (c) 2006-2015, Piotr Ożarowski <piotr@debian.org>
+           (c) 2006-2015, Piotr O?arowski <piotr@debian.org>
            (c) 2006, Tommi Virtanen <tv@debian.org>
-           (c) 2016, Ondřej Nový <novy@ondrej.org>
+           (c) 2016, Ond?ej Nov� <novy@ondrej.org>
 License: MIT
 
 License: MIT

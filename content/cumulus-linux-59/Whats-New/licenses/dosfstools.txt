@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: dosfstools
-Upstream-Contact: Andreas Bombe <aeb@debian.org>
+Upstream-Contact: Pali Rohár <pali.rohar@gmail.com>
 Source: https://github.com/dosfstools/dosfstools
 
 Files: *
@@ -11,7 +11,8 @@ Copyright: 1991 Linus Torvalds <torvalds@klaava.helsinki.fi>
            1999-2005 Werner Almesberger <werner.almesberger@lrc.di.epfl.ch>
            1999-2005 Roman Hodek <Roman.Hodek@informatik.uni-erlangen.de>
            2008-2014 Daniel Baumann <mail@daniel-baumann.ch>
-           2015-2016 Andreas Bombe <aeb@debian.org>
+           2015-2017 Andreas Bombe <aeb@debian.org>
+           2017-2021 Pali Rohár <pali.rohar@gmail.com>
 License: GPL-3+
 
 Files: src/blkdev/*

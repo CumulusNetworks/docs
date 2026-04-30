@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: pytz
 Upstream-Contact: Stuart Bishop <stuart@stuartbishop.net>
 Source: http://pypi.python.org/pypi/pytz/
@@ -8,7 +8,7 @@ Source: http://pypi.python.org/pypi/pytz/
 # According to tzdata, these files are in the public domain
 
 Files: *
-Copyright: (c) 2003-2009 Stuart Bishop <stuart@stuartbishop.net>
+Copyright: 2003-2019 Stuart Bishop <stuart@stuartbishop.net>
 License: Expat
  Permission is hereby granted, free of charge, to any person obtaining a
  copy of this software and associated documentation files (the "Software"),

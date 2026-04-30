@@ -32,8 +32,8 @@ License: MIT
 Files: debian/*
 Copyright: 2006-2007 Daniel Baumann <daniel@debian.org>
            2007 Philipp Benner <pbenner@uni-osnabrueck.de>
-	   2014 Maxime Chatelle <xakz@rxsoft.eu>
-	   2017 Chris Lamb <lamby@debian.org>
+           2014 Maxime Chatelle <xakz@rxsoft.eu>
+           2017 Chris Lamb <lamby@debian.org>
 License: GPL-2+
  This package was debianized by Daniel Baumann on Sat, 29 Jul 2006
  and is licensed under the GPL.

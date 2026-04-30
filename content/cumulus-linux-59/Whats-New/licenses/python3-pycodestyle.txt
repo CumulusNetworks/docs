@@ -5,11 +5,11 @@ Source: https://pypi.python.org/pypi/pycodestyle
 Files: *
 Copyright: 2006-2009 Johann C. Rocholl <johann@rocholl.net>
            2009-2014 Florent Xicluna <florent.xicluna@gmail.com>
-           2014-2017 Ian Lee <IanLee1521@gmail.com>
+           2014-2020 Ian Lee <IanLee1521@gmail.com>
 License: Expat
 
 Files: debian/*
-Copyright: 2016-2017 Ondřej Nový <onovy@debian.org>
+Copyright: 2016-2017 Ond?ej Nov� <onovy@debian.org>
 License: Expat
 
 License: Expat

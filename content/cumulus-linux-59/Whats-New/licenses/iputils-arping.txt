@@ -1,22 +1,26 @@
-This package was debianized by Anthony Towns <ajt@debian.org> on
-Sat,  5 Aug 2000 19:51:36 +1000.
-It has been maintained for Debian by Noah Meyerhans <noahm@debian.org>
-since 6 Feb 2001.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Comment:
+ This package was debianized by Anthony Towns <ajt@debian.org> on
+ Sat, 5 Aug 2000 19:51:36 +1000.
+ It has been maintained for Debian by Noah Meyerhans <noahm@debian.org>
+ since 6 Feb 2001.
+Source: https://github.com/iputils/iputils
+Upstream-Contact: Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>
 
-It was downloaded from https://github.com/iputils/iputils
-
-Upstream Author: Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>
-
+Files: *
 Copyright:
-
-Some of the code in this package is:
-
    Copyright (c) 1989 The Regents of the University of California.
    All rights reserved.
-  
+ .
    This code is derived from software contributed to Berkeley by
    Mike Muuss.
-  
+License: BSD-3-clause
+
+Files: *meson.build
+Copyright: (c) 2021 Petr Vorel <pvorel@suse.cz>
+License: BSD-3-clause
+
+License: BSD-3-clause
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions
    are met:
@@ -25,10 +29,10 @@ Some of the code in this package is:
    2. Redistributions in binary form must reproduce the above copyright
       notice, this list of conditions and the following disclaimer in the
       documentation and/or other materials provided with the distribution.
-   4. Neither the name of the University nor the names of its contributors
+   3. Neither the name of the University nor the names of its contributors
       may be used to endorse or promote products derived from this software
       without specific prior written permission.
-  
+ .
    THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -40,65 +44,25 @@ Some of the code in this package is:
    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
    SUCH DAMAGE.
-Comment:
- Delete the clause 3 (the advertising clause), as per announce
- by the University of California, Berkeley
- <ftp://ftp.cs.berkeley.edu/pub/4bsd/README.Impt.License.Change>:
- July 22, 1999
- .
- To All Licensees, Distributors of Any Version of BSD:
- .
- As you know, certain of the Berkeley Software Distribution ("BSD") source
- code files require that further distributions of products containing all or
- portions of the software, acknowledge within their advertising materials
- that such products contain software developed by UC Berkeley and its
- contributors.
- .
- Specifically, the provision reads:
- .
- "     * 3. All advertising materials mentioning features or use of this software
-       *    must display the following acknowledgement:
-       *    This product includes software developed by the University of
-       *    California, Berkeley and its contributors."
- .
- Effective immediately, licensees and distributors are no longer required to
- include the acknowledgement within advertising materials.  Accordingly, the
- foregoing paragraph of those BSD Unix files containing it is hereby deleted
- in its entirety.
- .
- William Hoskins
- Director, Office of Technology Licensing
- University of California, Berkeley
 
-Other parts are copyright Alexey Kuznetsov, and are distributed under the
-GNU General Public Licenses (version 2 or later), which is available in
-/usr/share/common-licenses/GPL.
+Files: ipv6.h
+Copyright: (c) 2020 Petr Vorel <petr.vorel@gmail.com>
+License: GPL-2+
 
-The rdisc program is distributed under the following terms:
+Files: arping.c
+       tracepath.c
+Copyright: Alexey Kuznetsov, <kuznet@ms2.inr.ac.ru>
+License: GPL-2+
 
- * Rdisc (this program) was developed by Sun Microsystems, Inc. and is 
- * provided for unrestricted use provided that this legend is included on 
- * all tape media and as a part of the software program in whole or part.  
- * Users may copy or modify Rdisc without charge, and they may freely 
- * distribute it.
- *
- * RDISC IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
- * WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
- *
- * Rdisc is provided with no support and without any obligation on the
- * part of Sun Microsystems, Inc. to assist in its use, correction,
- * modification or enhancement.
- *
- * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
- * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY RDISC
- * OR ANY PART THEREOF.
- *
- * In no event will Sun Microsystems, Inc. be liable for any lost revenue
- * or profits or other special, indirect and consequential damages, even if
- * Sun has been advised of the possibility of such damages.
- *
- * Sun Microsystems, Inc.
- * 2550 Garcia Avenue
- * Mountain View, California  94043
+License: GPL-2+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version
+ 2 of the License, or (at your option) any later version,
+ which is available in /usr/share/common-licenses/GPL-2.
 
+Files: md5.c
+Copyright: Colin Plumb
+License: public-domain
+ This code was written by Colin Plumb in 1993, no copyright is claimed.
+ This code is in the public domain; do with it what you wish.

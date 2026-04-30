@@ -11,25 +11,25 @@ License: Mellanox Proprietary
                  End-User Agreement
  .
  PLEASE READ THE FOLLOWING TERMS AND CONDITIONS OF THIS MELLANOX 
- END USER LICENSE AGREEMENT (THIS “AGREEMENT”) BEFORE INSTALLING 
+ END USER LICENSE AGREEMENT (THIS ?AGREEMENT?) BEFORE INSTALLING 
  OR USING THE MELLANOX SOFTWARE. THE MELLANOX SOFTWARE, WHICH 
  INCLUDES ALL COMPUTER SOFTWARE IN BINARY FORM THAT IS DELIVERED 
  TO LICENSEE, GENERALLY DESCRIBED AS THE MELLANOX FIRMWARE TOOL
  (MFT) SOFTWARE, AND ALL INTELLECTUAL PROPERTY RIGHTS THEREIN OR 
  THERETO AND ANY ASSOCIATED MEDIA AND PRINTED MATERIALS, AND ANY 
- “ONLINE” OR ELECTRONIC DOCUMENTATION, IS REFERRED TO HEREIN AS 
- THE “SOFTWARE”. INSTALLATION OR USAGE OF THE SOFTWARE INDICATES 
+ ?ONLINE? OR ELECTRONIC DOCUMENTATION, IS REFERRED TO HEREIN AS 
+ THE ?SOFTWARE?. INSTALLATION OR USAGE OF THE SOFTWARE INDICATES 
  YOUR ACCEPTANCE OF THE TERMS OF THIS AGREEMENT, AND CREATES 
  A LEGAL AND BINDING AGREEMENT BETWEEN YOU (EITHER AN INDIVIDUAL 
- OR AN ENTITY) (“YOU” OR “LICENSEE”) AND MELLANOX TECHNOLOGIES LTD. 
- AND ITS AFFILIATES (“MELLANOX”). IF YOU DO NOT AGREE WITH 
+ OR AN ENTITY) (?YOU? OR ?LICENSEE?) AND MELLANOX TECHNOLOGIES LTD. 
+ AND ITS AFFILIATES (?MELLANOX?). IF YOU DO NOT AGREE WITH 
  THE TERMS AND CONDITIONS OF THIS AGREEMENT, YOU SHALL NOT USE OR 
  COPY THIS SOFTWARE PRODUCT AND YOU MUST PROMPTLY RETURN 
  THIS PACKAGE TO MELLANOX. 
  .
  1. General
     Each copy of the Software is intended for use only in conjunction 
-    with Mellanox’s hardware products (“Mellanox Products”) 
+    with Mellanox?s hardware products (?Mellanox Products?) 
     and is subject to the terms of this Agreement.
  .
  2. Grant of License
@@ -60,14 +60,14 @@ License: Mellanox Proprietary
     modify the Software to eliminate bugs, facilitate porting of the software 
     to a given platform, or to achieve any other purpose approved in 
     writing by Mellanox. You agree to provide Mellanox with any such 
-    modifications, including improvements, within thirty (30) days of Mellanox’ 
+    modifications, including improvements, within thirty (30) days of Mellanox? 
     request for such modifications and improvements. You hereby grant 
     to Mellanox a non-exclusive, fully paid-up, royalty-free, worldwide 
     license to use and distribute any such modifications and improvement 
     without restrictions.
  .
  4.  NO WARRANTY
- 4.1 MELLANOX FURNISHES THE SOFTWARE AND THE DOCUMENTATION TO YOU “AS IS,” 
+ 4.1 MELLANOX FURNISHES THE SOFTWARE AND THE DOCUMENTATION TO YOU ?AS IS,? 
      UNSUPPORTED, WITHOUT WARRANTY OF ANY KIND. MELLANOX DISCLAIMS ALL WARRANTIES, 
      EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES 
      OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, 
@@ -130,12 +130,12 @@ License: Mellanox Proprietary
      laws and international treaty provisions.  
  8.3 The name Mellanox, MFT and all other trademarks, service marks, trade names, and 
      logos of Mellanox are owned by Mellanox, and may not be used in connection with 
-     any product or service that is not Mellanox’ without the prior written consent 
+     any product or service that is not Mellanox? without the prior written consent 
      of Mellanox. All other trademarks, service marks, trade names, or logos cited 
      herein are the property of their respective owners.
  8.4 This Software Product operates or interfaces with certain third party free software 
      programs, the details, and the limitations applying to the use, of which, are set 
-     forth in the “Third Party Free Software Rights Notice” attached hereto. 
+     forth in the ?Third Party Free Software Rights Notice? attached hereto. 
      If you wish to obtain source code pursuant to GPL or LGPL licenses for the items 
      listed in the attached, please contact Mellanox at the address detailed at:  
      http://www.mellanox.com/content/pages.php?pg=support_index.    
@@ -158,7 +158,7 @@ License: Mellanox Proprietary
  .
  10. Product Support
      Product support for the Software Product is provided by Mellanox or it authorized 
-     agents under a separate agreement, in accordance with Mellanox’ standard support and 
+     agents under a separate agreement, in accordance with Mellanox? standard support and 
      maintenance terms and conditions. For product support, please refer to Mellanox 
      support number provided in the documentation. 
  .

@@ -4,7 +4,7 @@ Upstream-Contact: Andrey Petrov <andrey.petrov@shazow.net>
 Source: https://pypi.org/project/urllib3/
 
 Files: *
-Copyright: 2008-2016, Andrey Petrov and contributors
+Copyright: 2008-2020, Andrey Petrov and contributors
 License: Expat
 
 Files: src/urllib3/contrib/_securetransport/*
@@ -19,12 +19,8 @@ Files: src/urllib3/packages/six.py
 Copyright: 2010-2015, Benjamin Peterson
 License: Expat
 
-Files: src/urllib3/packages/ssl_match_hostname/__init__.py
-Copyright: 2011, Python Software Foundation
-License: PSF-2
-
 Files: debian/*
-Copyright: 2012-2019, Daniele Tricoli <eriol@debian.org>
+Copyright: 2012-2022, Daniele Tricoli <eriol@debian.org>
 License: Expat
 
 License: Expat

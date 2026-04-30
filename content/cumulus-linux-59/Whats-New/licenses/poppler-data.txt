@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-name: poppler-data
 Source: https://poppler.freedesktop.org/
-Upstream-contact: poppler@lists.freedesktop.org
+Upstream-Name: poppler-data
+Upstream-Contact: poppler@lists.freedesktop.org
 
 Files: cMap/* ai0/* CMakeLists.txt poppler-data.pc*
 Copyright: 1990-2018, Adobe Systems Incorporated.
@@ -737,7 +737,7 @@ License: AGPL-3+
  the GNU AGPL, see <http://www.gnu.org/licenses/>.
 
 Files: debian/*
-Copyright: 2008-2018, Hideki Yamane (Debian-JP) <henrich@debian.or.jp>
+Copyright: 2008-2021, Hideki Yamane <henrich@debian.org>
 License: GPL-2
 
 Files: debian/SMgoJ
@@ -770,4 +770,3 @@ License: GPL-2
  On Debian systems, the full text of the GNU General Public
  License version 2 can be found in the file
  `/usr/share/common-licenses/GPL-2'.
-

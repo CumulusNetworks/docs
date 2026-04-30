@@ -4,16 +4,16 @@ Upstream-Contact: Hiroshi SHIBATA and Eric Hodel
 Source: https://github.com/ruby/rake
 
 Files: *
-Copyright: Â© Jim Weirich
+Copyright: © Jim Weirich
 License: Expat
 
 Files: debian/*
 Copyright: 2018 Georg Faerber <georg@riseup.net>
            2015 Christian Hofstaedtler <christian@hofstaedtler.name>
            2014 Caitlin Matos <caitlin.maots@zoho.com>
-           2013-2016 CÃ©dric Boutillier <boutil@debian.org>
+           2013-2016 Cédric Boutillier <boutil@debian.org>
            2011-2017 Antonio Terceiro <terceiro@debian.org>
-           2011-2014 OndÅ™ej SurÃ½ <ondrej@debian.org>
+           2011-2014 Ond?ej Surý <ondrej@debian.org>
            2011-2012 Paul van Tilburg <paul@luon.net>
 License: Expat
 

@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: OpenJPEG
 Upstream-Contact: openjpeg@googlegroups.com
 Source: http://openjpeg.org
@@ -28,58 +28,13 @@ Copyright: 2002-2011, Communications and Remote Sensing Laboratory, Universite c
  2011, Lucian Corlaciu, GSoC
 License: BSD-2
 
-Files: src/lib/openjp3d/*
+Files: src/lib/openjp2/mqc_inl.h
 Copyright: 2001-2003, David Janssens
  2002-2003, Yannick Verschueren
  2003-2005, Francois Devaux and Antonin Descampe
  2005, Herve Drolon, FreeImage Team
  2002-2005, Communications and remote sensing Laboratory, Universite catholique de Louvain, Belgium
-License: BSD-2
-
-Files: src/lib/openjp3d/jp3d.c
- src/lib/openjp3d/jp3d.h
- src/lib/openjp3d/openjp3d.h
- src/lib/openjp3d/pi.h
- src/lib/openjp3d/pi.c
- src/lib/openjp3d/dwt.h
- src/lib/openjp3d/dwt.c
- src/lib/openjp3d/tcd.h
- src/lib/openjp3d/tcd.c
- src/lib/openjp3d/t2.h
- src/lib/openjp2/mqc_inl.h
-Copyright: 2001-2003, David Janssens
- 2002-2003, Yannick Verschueren
- 2003-2005, Francois Devaux and Antonin Descampe
- 2005, Herve Drolon, FreeImage Team
- 2002-2005, Communications and remote sensing Laboratory, Universite catholique de Louvain, Belgium
- 2006, Mónica Díez García, Image Processing Laboratory, University of Valladolid, Spain
-License: BSD-2
-
-Files: src/lib/openjp3d/openjp3d.c
- src/lib/openjp3d/volume.h
-Copyright: 2005, Herve Drolon, FreeImage Team
- 2006, Mónica Díez García, Image Processing Laboratory, University of Valladolid, Spain
-License: BSD-2
-
-Files: src/lib/openjp3d/t1_3d.c
- src/lib/openjp3d/t1_3d.h
-Copyright: 2006, Mónica Díez, LPI-UVA, Spain
-License: BSD-2
-
-Files: src/lib/openjp3d/event.h
- src/lib/openjp3d/event.c
- src/lib/openjp3d/volume.c
- src/lib/openjp3d/opj_includes.h
- src/lib/openjp3d/jp3d_lib.h
- src/lib/openjp3d/jp3d_lib.c
-Copyright: 2005, Herve Drolon, FreeImage Team
-License: BSD-2
-
-Files: src/lib/openjp3d/raw.h
- src/lib/openjp3d/raw.c
-Copyright: 2003-2005, Francois Devaux and Antonin Descampe
- 2005, Herve Drolon, FreeImage Team
- 2002-2005, Communications and remote sensing Laboratory, Universite catholique de Louvain, Belgium
+ 2006, M�nica D�ez Garc�a, Image Processing Laboratory, University of Valladolid, Spain
 License: BSD-2
 
 Files: src/lib/openmj2/*
@@ -211,7 +166,6 @@ Files:
  CMakeLists.txt
  CTestConfig.cmake
  INSTALL.md
- LICENSE
  NEWS.md
  README.md
  THANKS.md
@@ -244,14 +198,6 @@ Files:
  src/bin/common/opj_apps_config.h.cmake.in
  src/bin/common/opj_getopt.h
  src/bin/jp2/CMakeLists.txt
- src/bin/jp3d/CMakeLists.txt
- src/bin/jp3d/getopt.h
- src/bin/jp3d/tcltk/LPI_JP3D_VM.tcl
- src/bin/jp3d/tcltk/README
- src/bin/jp3d/tcltk/Thumbs.db
- src/bin/jp3d/tcltk/decoder.tcl
- src/bin/jp3d/tcltk/encoder.tcl
- src/bin/jp3d/tcltk/logoLPI.gif
  src/bin/jpwl/CMakeLists.txt
  src/bin/mj2/CMakeLists.txt
  src/bin/mj2/meta_out.h
@@ -307,12 +253,9 @@ Files:
  wrapping/java/openjp2/CMakeLists.txt
  wrapping/java/openjp2/org_openJpeg_OpenJPEGJavaDecoder.h
  wrapping/java/openjp2/org_openJpeg_OpenJPEGJavaEncoder.h
- src/lib/openjp2/opj_malloc.c
  .travis.yml
  tools/abi-tracker/compat_report/2.1_to_current/compat_report.html
  tools/abi-tracker/openjpeg.json
- tools/ctest_scripts/toolchain-mingw32.cmake
- tools/ctest_scripts/toolchain-mingw64.cmake
  tools/ctest_scripts/travis-ci.cmake
  tools/travis-ci/abi-check.sh
  tools/travis-ci/detect-avx2.c
@@ -546,7 +489,7 @@ Copyright: 2002-2007, Communications and Remote Sensing Laboratory, Universite c
  2002-2003, Yannick Verschueren
  2003-2007, Francois-Olivier Devaux and Antonin Descampe
  2005, Herve Drolon, FreeImage Team
- 2007, Digital Signal Processing Laboratory, Università degli studi di Perugia (UPG), Italy
+ 2007, Digital Signal Processing Laboratory, Universit� degli studi di Perugia (UPG), Italy
 License: BSD-2
 
 Files: src/bin/wx/OPJViewer/source/OPJViewer.cpp
@@ -571,7 +514,6 @@ Copyright: 2002-2007, Communications and Remote Sensing Laboratory, Universite c
 License: BSD-2
 
 Files: src/bin/jp2/windirent.h
- src/bin/jp3d/windirent.h
 Copyright: 1998-2002 Toni Ronkko
 License: MIT
 
@@ -625,20 +567,7 @@ Copyright: 2010, Mathieu Malaterre, GDCM
  2012, CS Systemes d'Information, France
 License: BSD-2
 
-Files: src/bin/jp3d/opj_jp3d_decompress.c
- src/bin/jp3d/opj_jp3d_compress.c
- src/bin/jp3d/convert.h
- src/bin/jp3d/convert.c
-Copyright: 2001-2003, David Janssens
- 2002-2003, Yannick Verschueren
- 2003-2005, Francois Devaux and Antonin Descampe
- 2005, Herve Drolon, FreeImage Team
- 2002-2005, Communications and remote sensing Laboratory, Universite catholique de Louvain, Belgium
- 2006, Mónica Díez García, Image Processing Laboratory, University of Valladolid, Spain
-License: BSD-2
-
-Files: src/bin/jp3d/getopt.c
- src/bin/common/opj_getopt.c
+Files: src/bin/common/opj_getopt.c
 Copyright: 1987, 1993, 1994, The Regents of the University of California
 License: BSD-3
  Redistribution and use in source and binary forms, with or without
@@ -1006,7 +935,7 @@ Files: thirdparty/libtiff/tif_ojpeg.c
 Copyright: Joris Van Damme <info@awaresystems.be>
  AWare Systems <http://www.awaresystems.be/>
 License: LIBTIFF
-Comments: In addition :-
+Comment: In addition :-
  IN NO EVENT SHALL JORIS VAN DAMME OR AWARE SYSTEMS BE LIABLE FOR
  ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
  OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
@@ -1107,7 +1036,7 @@ Copyright: Copyright (c) 2016, Even Rouault
 License: BSD-2
 
 Files: debian/*
-Copyright: © 2014-2017, Mathieu Malaterre <malat@debian.org>
+Copyright: � 2014-2017, Mathieu Malaterre <malat@debian.org>
 License: BSD-2
 
 License: BSD-2

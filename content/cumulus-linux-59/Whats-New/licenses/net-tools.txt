@@ -5,23 +5,23 @@ Upstream-Contact: Phil Blundell <philb@gnu.org>
 Source: http://sourceforge.net/projects/net-tools/
 
 Files: *
-Copyright: Â© 1988-1994 MicroWalt Corporation
- Â© 1995-1996 Bernd Eckenfels
- Â© 1997-2000 Andi Kleen
- Â© 1997-2000 Donald Becker
+Copyright: © 1988-1994 MicroWalt Corporation
+ © 1995-1996 Bernd Eckenfels
+ © 1997-2000 Andi Kleen
+ © 1997-2000 Donald Becker
 License: GPL-2+
 
 Files: debian/*
-Copyright: Â© 2008-2009 Luk Claes, MartÃ­n Ferrari
- Â© 2000-2007 Bernd Eckenfels
- Â© 2000 Anthony Towns
+Copyright: © 2008-2009 Luk Claes, Martina Ferrari
+ © 2000-2007 Bernd Eckenfels
+ © 2000 Anthony Towns
 License: GPL-2+
 Comment:
  It is assumed that all contributors put their work under the same license
  as the module itself.
 
 Files: debian/iptunnel.8
-Copyright: Â© 2018 Sergio Durigan Junior
+Copyright: © 2018 Sergio Durigan Junior
 License: GPL-2+
 
 License: GPL-2+

@@ -34,6 +34,7 @@ Files-Excluded:
  doc/rfc1950.txt
  doc/rfc1951.txt
  doc/rfc1952.txt
+ win32
 
 Files: *
 Copyright: 1995-2013 Jean-loup Gailly and Mark Adler

@@ -5,53 +5,53 @@ Source: https://www.gnu.org/software/ed/
 
 Files: *
 Copyright: 2006-2017 Free Software Foundation, Inc
-           2006-2019 Antonio Diaz Diaz <antonio@gnu.org>
-License: GPL-3+
+           2006-2023 Antonio Diaz Diaz <antonio@gnu.org>
+License: GPL-2+
 
 Files: doc/ed.1
-Copyright: 2019 Antonio Diaz Diaz <antonio@gnu.org>
-           1994 Andrew Moore, Talke Studio <alm@netcom.com>
-License: GPL-3+
+Copyright: 2020 Antonio Diaz Diaz <antonio@gnu.org>
+           1994 Andrew L. Moore, Talke Studio <alm@netcom.com>
+License: GPL-2+
 
 Files: *.c *.h
-Copyright: 2006-2019 Antonio Diaz Diaz <antonio@gnu.org>
-           1993, 1994 Andrew Moore, Talke Studio <alm@netcom.com>
+Copyright: 2006-2020 Antonio Diaz Diaz <antonio@gnu.org>
+           1993, 1994 Andrew L. Moore, Talke Studio <alm@netcom.com>
 License: GPL-2+
 
 Files: main.c
-Copyright: 2006-2019 Antonio Diaz Diaz <antonio@gnu.org>
+Copyright: 2006-2020 Antonio Diaz Diaz <antonio@gnu.org>
 License: GPL-2+
 
 Files: carg_parser.*
-Copyright: 2006-2019 Antonio Diaz Diaz <antonio@gnu.org>
+Copyright: 2006-2020 Antonio Diaz Diaz <antonio@gnu.org>
 License: BSD-2-Clause
 
 Files: configure Makefile.in testsuite/check.sh
-Copyright: 2006-2019 Antonio Diaz Diaz <antonio@gnu.org>
+Copyright: 2006-2020 Antonio Diaz Diaz <antonio@gnu.org>
 License: FCONF
 
 Files: README
-Copyright: 2006-2019 Antonio Diaz Diaz <antonio@gnu.org>
-           1994 Andrew Moore <alm@netcom.com>
+Copyright: 2006-2020 Antonio Diaz Diaz <antonio@gnu.org>
+           1994 Andrew L. Moore <alm@netcom.com>
 License: FDOC
 
 Files: INSTALL
-Copyright: 2006-2019 Antonio Diaz Diaz <antonio@gnu.org>
+Copyright: 2006-2020 Antonio Diaz Diaz <antonio@gnu.org>
 License: FDOC
 
 Files: ChangeLog
-Copyright: 2006-2019 Antonio Diaz Diaz <antonio@gnu.org>
-           1994 Andrew Moore <alm@netcom.com>
-           1993 FranÃ§ois Pinard
+Copyright: 2006-2020 Antonio Diaz Diaz <antonio@gnu.org>
+           1994 Andrew L. Moore <alm@netcom.com>
+           1993 François Pinard
 License: FLOG
 
 Files: doc/ed.info doc/ed.texi
-Copyright: 1993, 1994, 2006-2019 Free Software Foundation, Inc.
+Copyright: 1993, 1994, 2006-2021 Free Software Foundation, Inc.
 License: GFDL-NIV-1.3+
 
 Files: debian/*
 Copyright: 2018 Nicolas Boulenguez <nicolas.boulenguez@free.fr>
-           2017-2019 Lev Lamberov <dogsleg@debian.org>
+           2017-2023 Lev Lamberov <dogsleg@debian.org>
            2008-2014 Martin Zobel-Helas <zobel@debian.org>
            1997-2007 James Troup <jjtroup@comp.brad.ac.uk>
 License: GPL-3+

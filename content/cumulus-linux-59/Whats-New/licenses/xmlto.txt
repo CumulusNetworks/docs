@@ -16,7 +16,7 @@ Copyright: 2002      christophe barbe <christophe@debian.org>
            2008-2012 Daniel Leidert (dale) <daniel.leidert@wgdd.de>
            2015      Hideki Yamane <henrich@debian.org>
            2016      Joao Eriberto Mota Filho <eriberto@debian.org>
-           2017      ChangZhuo Chen (陳昌倬) <czchen@debian.org>
+           2017      ChangZhuo Chen (???) <czchen@debian.org>
 License: GPL-2+
 
 License: GPL-2+

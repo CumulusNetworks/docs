@@ -25,7 +25,7 @@ Files: doc/edit-patch.1 scripts/edit-patch.sh
 Copyright: 2009-2011, Canonical Ltd.
 License: GPL-3
 
-Files: doc/what-patch.1 scripts/what-patch.sh test/test_uscan
+Files: doc/what-patch.1 scripts/what-patch.sh
 Copyright: 2009,      Jonathan Patrick Davies <jpds@ubuntu.com>
            2006-2008, Kees Cook <kees@ubuntu.com>
            2007-2008, Siegfried-Angel Gevatter Pujals <rainct@ubuntu.com>
@@ -36,18 +36,12 @@ License: GPL-3+
 Files: doc/suspicious-source.1
        doc/wrap-and-sort.1
        scripts/devscripts/*
-       scripts/devscripts/test/*
-       scripts/sadt*
        scripts/setup.py
        scripts/suspicious-source
        scripts/wrap-and-sort
 Copyright: 2008-2018, Benjamin Drung <bdrung@debian.org>
            2010-2011, Stefano Rivera <stefanor@ubuntu.com>
 License: ISC
-
-Files: examples/*.procmail
-Copyright: 1999, Edward Betts <edward@debian.org>
-License: GPL-2+
 
 Files:lib/Devscripts/DB_File_Lock.pm
 Copyright: 1999-2000, David Harris <dharris@drh.net>
@@ -80,13 +74,13 @@ Copyright: Christoph Lameter <clameter@debian.org>
 License: GPL-2+
 
 Files: po4a/po/fr.po
-Copyright: 2004-2009, Nicolas FranÃ§ois <nicolas.francois@centraliens.net>
+Copyright: 2004-2009, Nicolas François <nicolas.francois@centraliens.net>
  2005, Guillaume Delacour <guillaume.delacour@gmail.com>
  2006, Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>
  2006, Thomas Huriaux <thomas.huriaux@gmail.com>
  2006-2007, Julien Cristau <jcristau@debian.org>
  2009, PHAN Thi Thanh <pthanh2003@hotmail.com>
- 2010-2014, David PrÃ©vot <david@tilapin.org>
+ 2010-2014, David Prévot <david@tilapin.org>
  2017-2018, Jean-Pierre Giraud <jean-pierregiraud@neuf.fr>
 License: GPL-2+
 
@@ -105,7 +99,7 @@ License: GPL-2+
 
 Files: scripts/build-rdeps.pl
 Copyright: Patrick Schoenfeld
- 2015, Johannes Schauer <josch@debian.org>
+ 2015, Johannes Schauer Marin Rodrigues <josch@debian.org>
  2017, James McCoy <jamessan@debian.org>
 License: GPL-2+
 
@@ -130,10 +124,6 @@ Files: scripts/dcmd.sh
 Copyright: 2008, Romain Francoise <rfrancoise@debian.org>
  2008, Christoph Berg <myon@debian.org>
  2008, Adam D. Barratt <adsb@debian.org>
-License: GPL-2+
-
-Files: scripts/dcontrol.pl
-Copyright: 2009, Christoph Berg <myon@debian.org>
 License: GPL-2+
 
 Files: scripts/dd-list.*
@@ -164,6 +154,10 @@ Copyright: 1999, Jim Van Zandt <jrv@vanzandt.mv.com>
  1999-2003, Julian Gilbey <jdg@debian.org>
 License: GPL-2+
 
+Files: scripts/debootsnap
+Copyright: 2021 Johannes Schauer Marin Rodrigues <josch@debian.org>
+License: Expat
+
 Files: scripts/deb-reversion*
 Copyright: martin f. krafft <madduck@madduck.net>
 License: Artistic-2.0
@@ -180,6 +174,14 @@ License: GPL-2+
 Files: scripts/debsnap*
 Copyright: 2010, David Paleino <d.paleino@gmail.com>
 License: GPL-3+
+
+Files: scripts/deb-janitor
+Copyright: 2020-2021 Jelmer Vernoo? <jelmer@debian.org>
+License: GPL-3+
+
+Files: scripts/deb-why-removed*
+Copyright: 2017-2019 Guillem Jover <guillem@debian.org>
+License: GPL-2+
 
 Files: scripts/dep3changelog.pl
 Copyright: 2010, Steve Langasek <vorlon@debian.org>
@@ -288,7 +290,7 @@ Copyright: 2003, Anthony DeRobertis
 License: GPL-2+
 
 Files: scripts/reproducible-check
-Copyright: 2017, Chris Lamb <lamby@debian.org>
+Copyright: 2017-2020 Chris Lamb <lamby@debian.org>
 License: GPL-2+
 
 Files: scripts/rmadison.pl
@@ -303,7 +305,8 @@ License: GPL-2+
 Files: scripts/salsa* lib/Devscripts/Salsa/* test/test_salsa test/t/*
 Copyright: 2018, Xavier Guimard <yadd@debian.org>
 License: GPL-2+
-Comment: It contains code formerly found in dpt-salsa,
+Comment: It contains code formerly found in pkg-perl-tools,
+ copyright 2013-2014, Damyan Ivanov <dmn@debian.org>
  copyright 2018, gregor hermann <gregoa@debian.org>
 
 Files: test/t/salsa.*
@@ -312,17 +315,25 @@ License: GPL-2+
 Comment: Idea taken from GitLab::api::v4, copyright:
  2018, Aran Deltac <bluefeet@gmail.com>
 
-Files: scripts/suspicious-source
-Copyright: 2010-2018, Benjamin Drung <bdrung@debian.org>
-License: GPL-2+
+Files: scripts/debrebuild.pl
+Copyright: 2014-2016, Johannes Schauer Marin Rodrigues <josch@debian.org>
+           2020       Niels Thykier <niels@thykier.net>
+License: Expat
+
+Files: scripts/debbisect
+       scripts/run_bisect.sh
+       scripts/run_bisect_qemu.sh
+Copyright: 2014-2020, Johannes Schauer Marin Rodrigues <josch@debian.org>
+License: Expat
 
 Files: scripts/tagpending.pl scripts/transition-check.pl
 Copyright: 2008, Adam D. Barratt
 License: GPL-2+
 
-Files: scripts/uscan* lib/Devscripts/Uscan/*
+Files: scripts/uscan* lib/Devscripts/Uscan/* test/test_uscan*
 Copyright: 2002-2006, Julian Gilbey <jdg@debian.org>
- 2018, Xavier Guimard <yadd@debian.org>
+           2018-2020, Xavier Guimard <yadd@debian.org>
+           2019-2020, Andrius Merkys <merkys@debian.org>
 License: GPL-2+
 
 Files: scripts/uupdate*
@@ -339,14 +350,14 @@ Comment: The upstream distribution does not contain an explicit statement of
  its respective authors unless otherwise stated
 
 Files: scripts/who-permits-upload.pl
-Copyright: 2012, Arno TÃ¶ll <arno@debian.org>
+Copyright: 2012, Arno Töll <arno@debian.org>
 License: GPL-2+
 
 Files: scripts/who-uploads.sh
 Copyright: 2006, Julian Gilbey <jdg@debian.org>
 License: GPL-2+
 Comment: Based on an original script
- copyright 2006 Adeodato SimÃ³ <dato@net.com.org.es>
+ copyright 2006 Adeodato Simó <dato@net.com.org.es>
 
 Files: scripts/*.bash_completion
 Copyright: 2015, Nicholas Bamber <nicholas@periapt.co.uk>
@@ -549,6 +560,25 @@ License: Artistic-2.0
       LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
       DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE, EVEN
       IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
 
 License: GPL-1+
  This program is free software; you can redistribute it and/or modify

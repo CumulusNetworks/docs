@@ -9,7 +9,7 @@ It was downloaded from the Sourceforge.net download servers:
 Copyright:
 
   Copyright (C) 1999-2007 Norman Walsh.
-  Copyright (C) 2003 Jiří Kosek.
+  Copyright (C) 2003 Ji?� Kosek.
   Copyright (C) 2004-2007 Steve Ball.
   Copyright (C) 2005-2007 The DocBook Project.
 

@@ -1,14 +1,47 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: iperf
+Upstream-Name: iperf3
 Source: http://software.es.net/iperf/
 
 Files: *
-Copyright: 1991-2018, The Regents of the University of California
-License: BSD-3-clause
-
-Files: src/units.c
-Copyright: 1999-2003, The Board of Trustees of the University of Illinois
-License: NCSA
+Copyright: 2014-2022, The Regents of the University of California,
+ through Lawrence Berkeley National Laboratory (subject to receipt of any
+ required approvals from the U.S. Dept. of Energy).  All rights reserved.
+License: BSD-3-clause-iperf
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+ .
+ (1) Redistributions of source code must retain the above copyright notice, this
+ list of conditions and the following disclaimer.
+ .
+ (2) Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation and/
+ or other materials provided with the distribution.
+ .
+ (3) Neither the name of the University of California, Lawrence Berkeley
+ National Laboratory, U.S. Dept. of Energy nor the names of its contributors may
+ be used to endorse or promote products derived from this software without
+ specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ .
+ You are under no obligation whatsoever to provide any bug fixes, patches, or
+ upgrades to the features, functionality or performance of the source code
+ ("Enhancements") to anyone; however, if you choose to make your Enhancements
+ available either publicly, or directly to Lawrence Berkeley National
+ Laboratory, without imposing a separate written license agreement for such
+ Enhancements, then you hereby grant the following license: a  non-exclusive,
+ royalty-free perpetual license to install, use, modify, prepare derivative
+ works, incorporate into other computer software, distribute, and sublicense
+ such enhancements or derivative works thereof, in binary and source code form.
 
 Files: src/dscp.c
 Copyright: 2000 Markus Friedl, 2005,2006 Damien Miller
@@ -35,17 +68,81 @@ License: MIT/X11
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 
-Files: aclocal.m4 *Makefile.in config/* configure
-Copyright: 1992-2015 Free Software Foundation, Inc.
-License: GPL-2+
+Files: src/net.*
+Copyright: 2014-2019 The Regents of the University of California,
+ through Lawrence Berkeley National Laboratory (subject to receipt of any 
+ required approvals from the U.S. Dept. of Energy).  All rights reserved.;
+ 2005-2007 Russ Cox, Massachusetts Institute of Technology;
+ 2003 Lucent Technologies
+License: BSD-3-clause-iperf+MIT/X11+BSD-3-clause
+ This software contains source code (src/net.{c,h}) that is:
+  This software was developed as part of a project at MIT.
+  Copyright (c) 2005-2007 Russ Cox, Massachusetts Institute of Technology
+  See MIT/X11 license
+ ===
+  Contains parts of an earlier library that has:
+ .
+   The authors of this software are Rob Pike, Sape Mullender, and Russ Cox
+                Copyright (c) 2003 by Lucent Technologies.
+   Permission to use, copy, modify, and distribute this software for any
+   purpose without fee is hereby granted, provided that this entire notice
+   is included in all copies of any software which is or includes a copy
+   or modification of this software and in all copies of the supporting
+   documentation for such software.
+   THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR IMPLIED
+   WARRANTY.  IN PARTICULAR, NEITHER THE AUTHORS NOR LUCENT TECHNOLOGIES MAKE ANY
+   REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY
+   OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
+ .
+ =====
+  This software contains source code (src/net.c) that is:
+   Copyright (c) 2001 Eric Jackson <ericj@monkey.org>
+   See BSD-3-clause license
 
-Files: config/config.*
-Copyright: 1992-2016 Free Software Foundation, Inc.
-License: GPL-3
-
-Files: docs/_esnet/*
-Copyright: 2014, ESnet
+Files: src/queue.h
+Copyright: 1991, 1993 The Regents of the University of California
 License: BSD-3-clause
+
+Files: src/units.c
+Copyright: 1999-2003, The Board of Trustees of the University of Illinois
+License: NCSA
+
+Files: aclocal.m4 *Makefile.in
+Copyright: 1992-2022 Free Software Foundation, Inc.
+License: FSF-permissive1
+ This file is free software; the Free Software Foundation
+ gives unlimited permission to copy and/or distribute it,
+ with or without modifications, as long as this notice is preserved.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+ even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ PARTICULAR PURPOSE.
+
+Files: configure
+Copyright: 1992-2021 Free Software Foundation, Inc.
+License: FSF-permissive2
+ This configure script is free software; the Free Software Foundation
+ gives unlimited permission to copy, distribute and modify it.
+
+Files: config/compile config/depcomp config/ltmain.sh config/missing config/test-driver
+Copyright: 1999-2022 Free Software Foundation, Inc.
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-2'.
+
+Files: config/ax_check_openssl.m4
+Copyright: 2009,2010 Zmanda Inc. <http://www.zmanda.com/>, 2009,2010 Dustin J. Mitchell <dustin@zmanda.com>
+License: permissive
+ Copying and distribution of this file, with or without modification, are
+ permitted in any medium without royalty provided the copyright notice
+ and this notice are preserved. This file is offered as-is, without any
+ warranty.
 
 Files: config/install-sh
 Copyright: 1994, X Consortium
@@ -75,40 +172,16 @@ License: MIT
  .
  FSF changes to this file are in the public domain.
 
-Files: config/ax_check_openssl.m4
-Copyright: 2009,2010 Zmanda Inc. <http://www.zmanda.com/>, 2009,2010 Dustin J. Mitchell <dustin@zmanda.com>
-License: permissive
- Copying and distribution of this file, with or without modification, are
- permitted in any medium without royalty provided the copyright notice
- and this notice are preserved. This file is offered as-is, without any
- warranty.
-
 Files: config/mkinstalldirs
 Copyright: None
-License: public-domain
+License: public-domain-1
  Original author: Noah Friedman <friedman@prep.ai.mit.edu>
  Created: 1993-05-16
  Public domain.
 
-Files: src/portable_endian.h
-Copyright: None
-License: public-domain
- Original author: Mathias PanzenbÃ¶ck
- Public domain.
-
-Files: debian/*
-Copyright: 2014-2016 Raoul Gunnar Borenius <borenius@dfn.de>, 2018 Roberto Lumbreras <rover@debian.org>
-License: GPL-2+
-
-License: GPL-2+
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; version 2 dated June, 1991.
- .
- On Debian systems, the complete text of version 2 of the GNU General
- Public License can be found in `/usr/share/common-licenses/GPL-2'.
-
-License: GPL-3
+Files: config/config.*
+Copyright: 1992-2021 Free Software Foundation, Inc.
+License: GPL-3+
  This file is free software; you can redistribute it and/or modify it
  under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 3 of the License, or
@@ -116,6 +189,28 @@ License: GPL-3
  .
  On Debian systems, the complete text of version 3 of the GNU General
  Public License can be found in `/usr/share/common-licenses/GPL-3'.
+
+Files: docs/*
+Copyright: 2014-2019, ESnet
+License: BSD-3-clause
+
+Files: src/portable_endian.h
+Copyright: None
+License: public-domain-2
+ I, Mathias Panzenböck, place this file hereby into the public domain.
+ Use it at your own risk for whatever you like.
+
+Files: debian/*
+Copyright: 2014-2016 Raoul Gunnar Borenius <borenius@dfn.de>, 2018-2022 Roberto Lumbreras <rover@debian.org>
+License: GPL-2
+
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 dated June, 1991.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-2'.
 
 License: NCSA
  Permission is hereby granted, free of charge, to any person                  

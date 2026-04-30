@@ -4,21 +4,13 @@ Upstream-Contact: Bruce Korb <bkorb@gnu.org>
 Source: https://ftp.gnu.org/gnu/autogen/
 
 Files: *
-Copyright: (C) 1992-2016 by Bruce Korb
+Copyright: (C) 1992-2018 by Bruce Korb
 License: GPL-3+
- AutoGen is free software: you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free
- Software Foundation, either version 3 of the License, or (at your option)
- any later version.
- .
- AutoGen is distributed in the hope that it will be useful, but WITHOUT ANY
- WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- details.
 
 Files: autoopts/*
-Copyright: (C) 1992-2016 by Bruce Korb
-License: LGPL-3+ or Modified_BSD
+Copyright: (C) 1992-2018 by Bruce Korb
+License: LGPL-3+ or BSD-3-clause
+Comment:
  AutoOpts is available under any one of two licenses.  The license in use
  must be one of these two and the choice is under the control of the user of
  the license.
@@ -50,89 +42,30 @@ License: LGPL-3+ or Modified_BSD
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Files: autoopts/stdnoreturn.in.h
-Copyright: Copyright 2012-2016 Free Software Foundation, Inc.
+Copyright: Copyright 2012-2018 Free Software Foundation, Inc.
 License: LGPL-2.1+
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU Lesser General Public License as published by
-   the Free Software Foundation; either version 2.1, or (at your option)
-   any later version.
- .
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU Lesser General Public License for more details.
 
 Files: autoopts/gettext.h
-Copyright: 1995-1998, 2000-2002, 2004-2006, 2009-2016 Free Software
+Copyright: 1995-1998, 2000-2002, 2004-2006, 2009-2018 Free Software
    Foundation, Inc.
 License: LGPL-2.1+
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU Lesser General Public License as published by
-   the Free Software Foundation; either version 2.1, or (at your option)
-   any later version.
- .
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU Lesser General Public License for more details.
 
 Files: autoopts/parse-duration.*
 Copyright: 2008-2016 Free Software Foundation, Inc.
 License: LGPL-2.1+
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU Lesser General Public License as published by
-   the Free Software Foundation; either version 2.1 of the License, or
-   (at your option) any later version.
- .
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU Lesser General Public License for more details.
 
 Files: autoopts/intprops.h
-Copyright: 2001-2005, 2009-2016 Free Software Foundation, Inc.
+Copyright: 2001-2018 Free Software Foundation, Inc.
 License: LGPL-2.1+
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU Lesser General Public License as published by
-   the Free Software Foundation; either version 2.1 of the License, or
-   (at your option) any later version.
- .
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU Lesser General Public License for more details.
 
-Files: snprintfv/compat.h snprintfv/filament.c
-Copyright: 1999 Gary V. Vaughan snprintfv/mem.h
-License: GPL-2+ or LGPL-3+ or Modified_BSD
- * Snprintfv is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of the
- * License, or (at your option) any later version.
- *
- * Snprintfv program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses>.
- *
- * As a special exception to the GNU General Public License, if you
- * distribute this file as part of a program that also links with and
- * uses the libopts library from AutoGen, you may include it under
- * the same distribution terms used by the libopts library.
-Comment: Licensed GPL-2+ or "As a special exception to the GNU General Public
- License, if you distribute this file as part of a program that also links
- with and uses the libopts library from AutoGen, you may include it under
- the same distribution terms used by the libopts library."
-
-Files: snprintfv/filament.h snprintfv/filament.in snprintfv/format.c
+Files: snprintfv/compat.h snprintfv/filament.c  snprintfv/mem.h
+ snprintfv/filament.h snprintfv/filament.in snprintfv/format.c
  snprintfv/Makefile.am snprintfv/printf.c snprintfv/printf.h
  snprintfv/printf.in snprintfv/stream.c snprintfv/stream.h
  snprintfv/stream.in
-Copyright: 1998, 1999, 2000, 2002 Gary V. Vaughan
-License: GPL-2+ or LGPL-3+ or Modified_BSD
+ snprintfv/custom.c snprintfv/mem.c
+Copyright: 1998, 1999, 2000, 2002, 2003 Gary V. Vaughan
+ some files originally by Paolo Bonzini, 2002
  * Snprintfv is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation; either version 2 of the
@@ -150,128 +83,47 @@ License: GPL-2+ or LGPL-3+ or Modified_BSD
  * distribute this file as part of a program that also links with and
  * uses the libopts library from AutoGen, you may include it under
  * the same distribution terms used by the libopts library.
-Comment: Licensed GPL-2+ or "As a special exception to the GNU General Public
- License, if you distribute this file as part of a program that also links
- with and uses the libopts library from AutoGen, you may include it under
- the same distribution terms used by the libopts library."
-
-Files: snprintfv/custom.c
-Copyright: 2003 Gary V. Vaughan
- Originally by Paolo Bonzini, 2002
-License: GPL-2+ or LGPL-3+ or Modified_BSD
- * Snprintfv is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of the
- * License, or (at your option) any later version.
- *
- * Snprintfv program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses>.
- *
- * As a special exception to the GNU General Public License, if you
- * distribute this file as part of a program that also links with and
- * uses the libopts library from AutoGen, you may include it under
- * the same distribution terms used by the libopts library.
-Comment: Licensed GPL-2+ or "As a special exception to the GNU General Public
- License, if you distribute this file as part of a program that also links
- with and uses the libopts library from AutoGen, you may include it under
- the same distribution terms used by the libopts library."
-
-Files: snprintfv/mem.c
-Copyright: 2002 Gary V. Vaughan
- Originally by Paolo Bonzini, 2002
-License: GPL-2+ or LGPL-3+ or Modified_BSD
- * Snprintfv is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of the
- * License, or (at your option) any later version.
- *
- * Snprintfv program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses>.
- *
- * As a special exception to the GNU General Public License, if you
- * distribute this file as part of a program that also links with and
- * uses the libopts library from AutoGen, you may include it under
- * the same distribution terms used by the libopts library.
-Comment: Licensed GPL-2+ or "As a special exception to the GNU General Public
- License, if you distribute this file as part of a program that also links
- with and uses the libopts library from AutoGen, you may include it under
- the same distribution terms used by the libopts library."
+License: GPL-2+ or LGPL-3+ with libopts exception or BSD-3-clause with libopts exception
 
 Files: autoopts/tpl/man2mdoc.pl autoopts/tpl/mdoc2man.pl
  autoopts/tpl/mdoc2texi.pl
 Copyright: Harlan Stenn
-License: LGPL-3+ or Modified_BSD
- ## Author:	Harlan Stenn <stenn@ntp.org>
- ##
- ##
- ##  This file is part of AutoOpts, a companion to AutoGen.
- ##  AutoOpts is free software.
- ##  AutoOpts is Copyright (C) 1992-2015 by Bruce Korb - all rights reserved
- ##
- ##  AutoOpts is available under any one of two licenses.  The license
- ##  in use must be one of these two and the choice is under the control
- ##  of the user of the license.
- ##
- ##   The GNU Lesser General Public License, version 3 or later
- ##      See the files "COPYING.lgplv3" and "COPYING.gplv3"
- ##
- ##   The Modified Berkeley Software Distribution License
- ##      See the file "COPYING.mbsd"
+License: LGPL-3+ or BSD-3-clause
 
 Files: autoopts/tpl/Mdoc.pm
 Copyright: Oliver Kindernay (GSoC project for NTP.org)
-License: LGPL-3+ or Modified_BSD
- ## Author:	Oliver Kindernay (GSoC project for NTP.org)
- ##		
- ##
- ##  This file is part of AutoOpts, a companion to AutoGen.
- ##  AutoOpts is free software.
- ##  AutoOpts is Copyright (C) 1992-2015 by Bruce Korb - all rights reserved
- ##
- ##  AutoOpts is available under any one of two licenses.  The license
- ##  in use must be one of these two and the choice is under the control
- ##  of the user of the license.
- ##
- ##   The GNU Lesser General Public License, version 3 or later
- ##      See the files "COPYING.lgplv3" and "COPYING.gplv3"
- ##
- ##   The Modified Berkeley Software Distribution License
- ##      See the file "COPYING.mbsd"
-
+License: LGPL-3+ or BSD-3-clause
 
 Files: debian/*
 Copyright: (C) 2008-2012 Bradley Smith <brad@brad-smith.co.uk>
- (C) 2012-2016 Andreas Metzler <ametzler@debian.org>
-License: GPL-3+.
- This program is free software; you can redistribute it and/or modify it
- under the terms of the GNU General Public License as published by the Free
- Software Foundation; either version 3 of the License, or (at your option)
- any later version.
- .
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
- more details.
-
-License: GPL-2+
- On Debian GNU/Linux systems, the complete text of the GNU General
- Public License version 2 can be found in `/usr/share/common-licenses/GPL-2'.
+ (C) 2012-2019 Andreas Metzler <ametzler@debian.org>
+License: GPL-3+
 
 License: GPL-3+
+ AutoGen is free software: you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free
+ Software Foundation, either version 3 of the License, or (at your option)
+ any later version.
+ .
+ AutoGen is distributed in the hope that it will be useful, but WITHOUT ANY
+ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ details.
+ .
  On Debian GNU/Linux systems, the complete text of the GNU General
  Public License version 3 can be found in `/usr/share/common-licenses/GPL-3'.
 
 License: LGPL-2.1+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU Lesser General Public License as published by
+   the Free Software Foundation; either version 2.1, or (at your option)
+   any later version.
+ .
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Lesser General Public License for more details.
+ .
  On Debian GNU/Linux systems, the complete text of the GNU Lesser General
  Public License version 2.1 can be found in
  `/usr/share/common-licenses/LGPL-2.1'.
@@ -279,9 +131,9 @@ License: LGPL-2.1+
 License: LGPL-3+
  On Debian GNU/Linux systems, the complete text of the GNU Lesser General
  Public License version 3 can be found in
- `/usr/share/common-licenses/LGPL-3+'.
+ `/usr/share/common-licenses/LGPL-3'.
 
-License: Modified_BSD
+License: BSD-3-clause
  Here is the Modified Berkeley Software Distribution License:
  .
  Redistribution and use in source and binary forms, with or without
@@ -305,3 +157,22 @@ License: Modified_BSD
  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: GPL-2+
+ On Debian GNU/Linux systems, the complete text of the GNU Lesser General
+ Public License version 3 can be found in
+ `/usr/share/common-licenses/GPL-2'.
+
+License: LGPL-3+ with libopts exception
+ For LGPL-3+ see paragraph "License: LGPL-3+" above.
+ .
+ If you distribute this file as part of a program that also links with and
+ uses the libopts library from AutoGen, you may include it under
+ the same distribution terms used by the libopts library.
+
+License: BSD-3-clause with libopts exception
+ For BSD-3-clause see paragraph "License: BSD-3-clause" above.
+ .
+ If you distribute this file as part of a program that also links with and
+ uses the libopts library from AutoGen, you may include it under
+ the same distribution terms used by the libopts library.

@@ -1,10 +1,10 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: libnetfilter_conntrack
-Source: http://git.netfilter.org/libnetfilter_conntrack
+Source: https://git.netfilter.org/libnetfilter_conntrack
 
 Files: *
 Copyright: 2005-2011 Pablo Neira Ayuso <pablo@netfilter.org>
-	   2005-2011 Harald Welte <laforge@netfilter.org>
+    2005-2011 Harald Welte <laforge@netfilter.org>
 License: GPL-2+
 
 License: GPL-2+

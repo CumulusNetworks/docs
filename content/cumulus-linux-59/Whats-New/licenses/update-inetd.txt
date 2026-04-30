@@ -3,10 +3,10 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Files:
  *
 Copyright:
- Copyright Â© 1995, 1996 Peter Tobias <tobias@et-inf.fho-emden.de>
- Copyright Â© 1995, 1996 Ian Jackson <iwj10@cus.cam.ac.uk>
- Copyright Â© 2009-2012 Serafeim Zanikolas <sez@debian.org>
- Copyright Â© 2018 Guillem Jover <guillem@debian.org>
+ Copyright © 1995, 1996 Peter Tobias <tobias@et-inf.fho-emden.de>
+ Copyright © 1995, 1996 Ian Jackson <iwj10@cus.cam.ac.uk>
+ Copyright © 2009-2012 Serafeim Zanikolas <sez@debian.org>
+ Copyright © 2018-2023 Guillem Jover <guillem@debian.org>
 License: GPL-2+
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,4 +22,4 @@ License: GPL-2+
  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 Comment:
  On Debian systems, the complete text of the GNU General Public License
- can be found in â€˜/usr/share/common-licenses/GPL-2â€™.
+ can be found in ?/usr/share/common-licenses/GPL-2?.

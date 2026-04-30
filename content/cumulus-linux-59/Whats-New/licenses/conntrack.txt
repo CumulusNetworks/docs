@@ -5,22 +5,22 @@ Source: http://conntrack-tools.netfilter.org/downloads.html
 
 Files: *
 Copyright: 2005-2012 Pablo Neira Ayuso <pablo@netfilter.org>
-	   Harald Welte <laforge@netfilter.org>
+           Harald Welte <laforge@netfilter.org>
 License: GPL-2+
 
 Files: src/cache.c src/cache-ct.c src/cache-exp.c src/external_cache.c src/external_inject.c src/internal_bypass.c src/internal_cache.c src/main.c src/netlink.c src/network.c src/parse.c src/run.c src/stats-mode.c src/sync-alarm.c src/sync-ftfw.c src/sync-mode.c src/sync-notrack.c
 Copyright: 2006-2011 Pablo Neira Ayuso <pablo@netfilter.org>
-	   2011 Vyatta Inc. <http://www.vyatta.com>
+           2011 Vyatta Inc. <http://www.vyatta.com>
 License: GPL-2+
 
 Files: src/filter.c
 Copyright: 2006-2012 Pablo Neira Ayuso <pablo@netfilter.org>
-	   2011-2012 Vyatta Inc <http://www.vyatta.com>
+           2011-2012 Vyatta Inc <http://www.vyatta.com>
 License: GPL-2+
 
 Files: src/rbtree.c
 Copyright: 1999 Andrea Arcangeli <andrea@suse.de>
-	   2002  David Woodhouse <dwmw2@infradead.org>
+           2002  David Woodhouse <dwmw2@infradead.org>
 License: GPL-2+
 
 Files: src/utils.c
@@ -29,7 +29,7 @@ License: GPL-2+
 
 Files: src/conntrack.c
 Copyright: (C) 2005-2012 by Pablo Neira Ayuso <pablo@netfilter.org>
-	   (C) 2012 by Intra2net AG <http://www.intra2net.com>
+           (C) 2012 by Intra2net AG <http://www.intra2net.com>
 License: GPL-2+
 
 Files: src/systemd.c conntrackd.conf.5

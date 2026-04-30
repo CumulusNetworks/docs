@@ -70,7 +70,7 @@ PERFORMANCE OF THIS SOFTWARE.
 
 ***************************************************************************
 
-Copyright Â© 1992 by UniSoft Group Ltd.
+Copyright © 1992 by UniSoft Group Ltd.
 
 Permission to use, copy, modify, and distribute this documentation for
 any purpose and without fee is hereby granted, provided that the above
@@ -81,7 +81,7 @@ without express or implied warranty.
 
 ***************************************************************************
 
-Copyright Â© 1992, 1994, 1995 X Consortium
+Copyright © 1992, 1994, 1995 X Consortium
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),

@@ -4,7 +4,7 @@ This package was debianized by first time by David Martinez Moreno
 
 Upstream sources: http://invisible-island.net/xterm/xterm.html
 
-Copyright 1997-2019 by Thomas E. Dickey
+Copyright 1997-2023 by Thomas E. Dickey
 Copyright 1999-2000 by Steve Wall
 Copyright 2013,2014 by Ross Combs
 

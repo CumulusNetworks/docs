@@ -3,7 +3,7 @@ Upstream-Name: Little CMS
 Source: http://www.littlecms.com/
 
 Files: *
-Copyright: 1998-2014 Marti Maria Saguer <marti.maria@littlecms.com>
+Copyright: 1998-2022 Marti Maria Saguer <marti.maria@littlecms.com>
 License: MIT
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,76 @@ License: MIT
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
 
+Files: plugins/fast_float/* plugins/threaded/*
+Copyright: 1998-2022 Marti Maria Saguer <marti.maria@littlecms.com>
+License: GPL-3
+ This package is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 3 only.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".
+
+Files: utils/jpgicc/iccjpeg.*
+Copyright: 1991-2013, Thomas G. Lane, Guido Vollbeding.
+License: IJG
+ In plain English:
+ .
+ 1. We don't promise that this software works.  (But if you find any bugs,
+    please let us know!)
+ 2. You can use this software for whatever you want.  You don't have to pay us.
+ 3. You may not pretend that you wrote this software.  If you use it in a
+    program, you must acknowledge somewhere in your documentation that
+    you've used the IJG code.
+ .
+ In legalese:
+ .
+ The authors make NO WARRANTY or representation, either express or implied,
+ with respect to this software, its quality, accuracy, merchantability, or
+ fitness for a particular purpose.  This software is provided "AS IS", and you,
+ its user, assume the entire risk as to its quality and accuracy.
+ .
+ This software is copyright (C) 1991-2013, Thomas G. Lane, Guido Vollbeding.
+ All Rights Reserved except as specified below.
+ .
+ Permission is hereby granted to use, copy, modify, and distribute this
+ software (or portions thereof) for any purpose, without fee, subject to these
+ conditions:
+ (1) If any part of the source code for this software is distributed, then this
+ README file must be included, with this copyright and no-warranty notice
+ unaltered; and any additions, deletions, or changes to the original files
+ must be clearly indicated in accompanying documentation.
+ (2) If only executable code is distributed, then the accompanying
+ documentation must state that "this software is based in part on the work of
+ the Independent JPEG Group".
+ (3) Permission for use of this software is granted only if the user accepts
+ full responsibility for any undesirable consequences; the authors accept
+ NO LIABILITY for damages of any kind.
+ .
+ These conditions apply to any software derived from or based on the IJG code,
+ not just to the unmodified library.  If you use our work, you ought to
+ acknowledge us.
+ .
+ Permission is NOT granted for the use of any IJG author's name or company name
+ in advertising or publicity relating to this software or products derived from
+ it.  This software may be referred to only as "the Independent JPEG Group's
+ software".
+ .
+ We specifically permit and encourage the use of this software as the basis of
+ commercial products, provided that all warranty or liability claims are
+ assumed by the product vendor.
+
 Files: debian/*
 Copyright: 2011 Oleksandr Moskalenko <malex@debian.org>
-           2013 Thomas Weber <tweber@debian.org>
+           2013-2023 Thomas Weber <tweber@debian.org>
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

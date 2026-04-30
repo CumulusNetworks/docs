@@ -33,7 +33,7 @@ License: BSD-3-clause or GPL-2
 
 Files: debian/*
 Copyright: 2014, Daniel Baumann <mail@daniel-baumann.ch>
-           2014-2018, Christian Kastner <ckk@debian.org>
+           2014-2022, Christian Kastner <ckk@debian.org>
 License: BSD-3-clause or GPL-2+
 
 Files: debian/manpages/*

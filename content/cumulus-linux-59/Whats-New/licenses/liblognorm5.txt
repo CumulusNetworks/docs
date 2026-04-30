@@ -1,17 +1,20 @@
-Author: Rainer Gerhards
-Download: http://liblognorm.sourceforge.net/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: liblognorm
+Upstream-Contact: Rainer Gerhards <rgerhards@adiscon.com>, Adiscon GmbH.
+Source: https://github.com/rsyslog/liblognorm
 
 Files: *
-Copyright: 2010 Rainer Gerhards and Adiscon GmbH.
+Copyright: 2010-2018 Rainer Gerhards and Adiscon GmbH.
 License: LGPL-2.1+
 
-Files: compat/strndup.c
+Files: compat/asprintf.c compat/strndup.c
        tools/logrecord.h
 Copyright: 2015 Rainer Gerhards and Adiscon
 License: Apache-2.0
 
 Files: debian/*
 Copyright: 2010-2016 Pierre Chifflier <pollux@debian.org>
+ 2022 Florian Ernst <florian@debian.org>
 License: LGPL-2.1+
 
 License: LGPL-2.1+

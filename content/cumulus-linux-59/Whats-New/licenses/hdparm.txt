@@ -4,9 +4,10 @@ Source: http://sourceforge.net/projects/hdparm/files/hdparm/
 Files-Excluded:
  debian/*
  contrib/fix_standby
+ identify.c.orig
 
 Files: *
-Copyright: 2006-2010 Mark Lord <mlord@pobox.com>
+Copyright: 2006-2022 Mark Lord <mlord@pobox.com>
 License: hdparm
 
 Files: dvdspeed.c
@@ -29,9 +30,9 @@ Copyright: 2010-2012 Chris Caputo
 License: GPL-2+
 
 Files: debian/*
-Copyright: Â© 2016 Alex Mestiashvili <mestia@debian.org>
-           Â© 2001 Christopher L Cheney <ccheney@debian.org>
-           Â© 2000-2002 Massachusetts Institute of Technology
+Copyright: © 2016 Alex Mestiashvili <mestia@debian.org>
+           © 2001 Christopher L Cheney <ccheney@debian.org>
+           © 2000-2002 Massachusetts Institute of Technology
 License: GPL-2+
 
 License: BSD-2-clause

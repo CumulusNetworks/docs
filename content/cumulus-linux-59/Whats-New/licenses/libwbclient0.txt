@@ -1,0 +1,628 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: samba
+Upstream-Contact: Samba Developers <samba-technical@lists.samba.org>
+Source: http://www.samba.org/
+Files-Excluded:
+  third_party/heimdal/lib/wind/rfc*.txt
+  third_party/heimdal/doc/standardisation
+  source4/ldap_server/devdocs
+  docs/manpages/*.?
+  ctdb/doc/*.? ctdb/doc/*.?.html
+
+Files: *
+Copyright: 1992-2012 Andrew Tridgell and the Samba Team
+License: GPL-3.0+
+
+Files: third_party/heimdal/*
+Copyright:
+ 1996-2005 Kungliga Tekniska Högskolan
+ (Royal Institute of Technology, Stockholm, Sweden).
+License: BSD-3
+
+Files: source4/setup/ad-schema/*.txt
+Comment: part of the Microsoft protocol documentation
+Copyright: Microsoft Corporation
+License: MS-ADSL
+ License for the Active Directory schemas:
+ .
+ Intellectual Property Rights Notice for Protocol Documentation.
+ .
+ Copyrights.
+ This protocol documentation is covered by Microsoft copyrights. Regardless
+ of any other terms that are contained in the terms of use for the Microsoft
+ website that hosts this documentation, you may make copies of it in order to
+ develop implementations of the protocols, and may distribute portions of it
+ in your implementations of the protocols or your documentation as necessary
+ to properly document the implementation. You may also distribute in your
+ implementation, with or without modification, any schema, IDL?s, or code
+ samples that are included in the documentation. This permission also applies
+ to any documents that are referenced in the protocol documentation.
+ .
+ No Trade Secrets.
+ Microsoft does not claim any trade secret rights in this documentation.
+ .
+ Patents.
+ Microsoft has patents that may cover your implementations of the protocols.
+ Neither this notice nor Microsoft's delivery of the documentation grants any
+ licenses under those or any other Microsoft patents. However, the protocols
+ may be covered by Microsoft's Open Specification Promise (available here:
+ http://www.microsoft.com/interop/osp). If you would prefer a written
+ license, or if the protocols are not covered by the OSP, patent
+ licenses are available by contacting protocol@microsoft.com.
+ .
+ Trademarks.
+ The names of companies and products contained in this documentation may be
+ covered by trademarks or similar intellectual property rights. This notice
+ does not grant any licenses under those rights.
+ .
+ Reservation of Rights.
+ All other rights are reserved, and this notice does not grant any rights
+ other than specifically described above, whether by implication, estoppel,
+ or otherwise.
+ .
+ Tools.
+ This protocol documentation is intended for use in conjunction with
+ publicly available standard specifications and network programming art,
+ and assumes that the reader either is familiar with the aforementioned
+ material or has immediate access to it. A protocol specification does not
+ require the use of Microsoft programming tools or programming environments
+ in order for you to develop an implementation. If you have access to
+ Microsoft programming tools and environments you are free to take
+ advantage of them.
+
+Files: debian/*
+Copyright:
+  2005-2012 Jelmer Vernooij <jelmer@debian.org>
+  2005-2006 Steinar H. Gunderson
+  2001-2011 Steve Langasek <vorlon@debian.org>,
+  2005-2012 Christian Perrier <bubulle@debian.org>,
+  2005-2008 Noèl Köthe <noel@debian.org>,
+  2005-2008 Peter Eisentraut <petere@debian.org>, et al.
+License: GPL-3
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 3 dated June, 2007.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GPL v3 can be found in
+ /usr/share/common-licenses/GPL-3
+
+Files: lib/ldb/common/qsort.c
+Copyright: 1991,1992,1996,1997,1999,2004 Free Software Foundation, Inc.
+License: LGPL-3.0+
+
+Files: lib/ldb/tools/*
+Copyright:
+ 2004-2010 Andrew Tridgell <tridge@samba.org>
+ 2004 Stefan Metzmacher
+ 2009 Matthieu Patou
+License: GPL-3.0+
+
+Files: lib/replace/*.c
+Comment: This file is not used when building the Debian package.
+Copyright:
+  Copyright (c) Andrew Tridgell                1994-2006
+  Copyright (c) Jeremy Allison	               2000-2003,2007
+  Copyright (c) Michael Adam <obnox@samba.org> 2008
+  Copyright (c) Patrick Powell                 1995
+  Copyright (c) Free Software Foundation, Inc. 1991-2001
+  Copyright (c) Jelmer Vernooij                2006-2009
+  Copyright (c) Andreas Schneider              2009-2015
+  Copyright (c) Volker Lendecke                2011-2016
+  Copyright (c) Internet Software Consortium   1996-2001
+  Copyright (c) Aris Adamantiadis              2003-2009
+  Copyright (c) Aleksandar Kanchev             2009
+  Copyright (c) Matthieu Patou                 2010
+License: LGPL-3.0+
+
+Files: lib/replace/getaddrinfo.*
+Comment: This file is not used when building the Debian package.
+Copyright:
+  Copyright (c) PostgreSQL Global Development Group 1996-2007
+  Copyright (c) The Regents of the University of California 1994
+License: PostgreSQL
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose, without fee, and without a written agreement
+ is hereby granted, provided that the above copyright notice and this paragraph
+ and the following two paragraphs appear in all copies.
+ .
+ IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR
+ DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING
+ LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION,
+ EVEN IF THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+ .
+ THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE PROVIDED HEREUNDER IS
+ ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATIONS
+ TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+
+Files: lib/replace/inet_ntop.c lib/replace/inet_pton.c
+Comment: This file is not used when building the Debian package.
+Copyright: Internet Software Consortium. 1996-2001
+License: ISC
+
+Files: lib/replace/snprintf.c
+Comment: This file is not used when building the Debian package.
+Copyright:
+  Copyright (c) Patrick Powell 1995
+  Copyright (c) Brandon Long <blong@fiction.net> 1997
+  Copyright (c) Thomas Roessler <roessler@guug.de> 1998
+  Copyright (c) Michael Elkins <me@cs.hmc.edu> 1998
+  Copyright (c) Andrew Tridgell (tridge@samba.org) 1998-2001
+  Copyright (c) Martin Pool 2003
+  Copyright (c) Darren Tucker (dtucker@zip.com.au) 2005
+  Copyright (c) Simo Sorce (idra@samba.org) 2006
+License: BSD-3
+
+Files: lib/replace/strptime.c
+Comment: This file is not used when building the Debian package.
+Copyright:
+  Copyright (c) Ulrich Drepper <drepper@cygnus.com>, 1996
+License: LGPL-3.0+
+
+Files: lib/replace/timegm.c
+Comment: This file is not used when building the Debian package.
+Copyright:
+  Copyright (c) Kungliga Tekniska Högskolan    1997
+License: BSD-3
+
+Files: lib/replace/xattr.c
+Comment: This file is not used when building the Debian package.
+Copyright:
+  Copyright (c) Jeremy Allison  1998-2005
+  Copyright (C) Timur Bakeyev        2005
+  Copyright (C) Bjoern Jacke    2006-2007
+  Copyright (C) Herb Lewis           2003
+  Copyright (C) Andrew Bartlett      2012
+License: LGPL-3.0+
+
+Files: lib/talloc/*
+Copyright:
+ 2004-2010 Andrew Tridgell
+ 2008-2011 Jelmer Vernooij
+ 2006-2009 Stefan Metzmacher
+ 2015 Petr Viktorin <pviktori@redhat.com>
+License: LGPL-3.0+
+
+Files: lib/talloc/pytalloc*
+Copyright:
+  Copyright (C) Jelmer Vernooij <jelmer@samba.org> 2008-2011
+  Copyright (C) Andrew Bartlett <abartlet@samba.org> 2016
+License: GPL-3.0+
+
+Files: lib/tdb/*
+Copyright:
+ 2000-2010 Rusty Russell
+ 1999-2010 Andrew Tridgell
+ 2000-2006 Jeremy Allison
+ 2010 Volker Lendecke
+ 2005 Simon McVittie
+ 2001 Andrew Esh
+ 2004-2006 Tim Potter
+ 2007-2008 Jelmer Vernooij
+License: LGPL-3.0+
+
+Files: lib/tevent/*
+Copyright:
+ 2008 Volker Lendecke
+ 2005-2010 Stefan Metzmacher
+ 2003-2010 Andrew Tridgell
+ 2010 Jelmer Vernooij
+License: LGPL-3.0+
+
+Files:
+  buildtools/bin/waf
+  buildtools/wafsamba/stale_files.py
+  third_party/waf/*
+Comment: See https://gitlab.com/ita1024/waf/blob/master/waf-light#L6
+Copyright:
+  Copyright Scott Newton, 2005 (scottn)
+  Copyright Thomas Nagy, 2005-2018 (ita)
+License: BSD-3
+
+Files:
+  third_party/waf/waflib/extras/bjam.py
+  third_party/waf/waflib/extras/proc.py
+  third_party/waf/waflib/extras/softlink_libs.py
+Copyright:
+  Copyright rosengren 2011
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/blender.py
+Copyright:
+  Copyright Michal Proszek, 2014 (poxip)
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/boo.py
+Copyright:
+  Copyright Yannick LM 2011
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/boost.py
+Copyright:
+  Copyright Gernot Vormayr
+  Copyright Ruediger Sonderfeld <ruediger@c-plusplus.de>, 2008
+  Copyright Bjoern Michaelsen, 2008
+  Copyright Luca Fossati, 2008
+  Copyright Thomas Nagy, 2008
+  Copyright Sylvain Rouquette, 2011
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/buildcopy.py
+Copyright:
+  Copyright Calle Rosenquist, 2017 (xbreak)
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/cabal.py
+Copyright:
+  Copyright Anton Feldmann, 2012
+License: BSD-3
+
+Files:
+  third_party/waf/waflib/extras/c_bgxlc.py
+  third_party/waf/waflib/extras/c_nec.py
+  third_party/waf/waflib/extras/fc_bgxlf.py
+  third_party/waf/waflib/extras/fc_cray.py
+  third_party/waf/waflib/extras/fc_nag.py
+  third_party/waf/waflib/extras/fc_nec.py
+  third_party/waf/waflib/extras/fc_open64.py
+  third_party/waf/waflib/extras/fc_solstudio.py
+  third_party/waf/waflib/extras/fc_xlf.py
+Copyright:
+  Copyright harald at klimachs.de
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/clang_compilation_database.py
+Copyright:
+  Copyright Christoph Koke, 2013
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/codelite.py
+Copyright:
+  Copyright Christian Klein (chrikle@berlios.de)
+License: BSD-3
+
+Files:
+ third_party/waf/waflib/extras/color_gcc.py
+ third_party/waf/waflib/extras/color_rvct.py
+ third_party/waf/waflib/extras/cross_gnu.py
+ third_party/waf/waflib/extras/dcc.py
+ third_party/waf/waflib/extras/halide.py
+ third_party/waf/waflib/extras/qnxnto.py
+ third_party/waf/waflib/extras/remote.py
+ third_party/waf/waflib/extras/rst.py
+ third_party/waf/waflib/extras/ticgt.py
+Copyright:
+  Copyright Jérôme Carretero, 2011-2014
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/cppcheck.py
+Copyright:
+  Copyright Michel Mooij, michel.mooij7@gmail.com
+License: BSD-3
+
+Files:
+  third_party/waf/waflib/extras/cpplint.py
+  third_party/waf/waflib/extras/freeimage.py
+  third_party/waf/waflib/extras/pep8.py
+Copyright:
+  Copyright Sylvain Rouquette, 2011-2014
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/dpapi.py
+Copyright:
+  Copyright Matt Clarkson, 2012
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/eclipse.py
+Copyright:
+  Copyright Richard Quirk 2009-1011
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/erlang.py
+Copyright:
+  Copyright Thomas Nagy, 2010 (ita)
+  Copyright Przemyslaw Rzepecki, 2016
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/fluid.py third_party/waf/waflib/extras/objcopy.py
+Copyright:
+  Copyright Grygoriy Fuchedzhy 2009-2010
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/gdbus.py third_party/waf/waflib/extras/msvcdeps.py
+Copyright:
+  Copyright Copyright Garmin International or its subsidiaries, 2012-2018
+License: BSD-3
+
+Files:
+  third_party/waf/waflib/extras/gob2.py
+  third_party/waf/waflib/Tools/dbus.py
+  third_party/waf/waflib/Tools/gnu_dirs.py
+Copyright:
+  Copyright Ali Sabil, 2007
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/javatest.py third_party/waf/waflib/extras/pyqt5.py
+Copyright:
+  Copyright Federico Pellegrin, 2016-2018 (fedepell)
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/midl.py
+Copyright:
+  Copyright ultrix gmail com
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/msvs.py
+Copyright:
+  Copyright Avalanche Studios 2009-2011
+  Copyright Thomas Nagy 2011
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/pch.py
+Copyright:
+  Copyright Alexander Afanasyev (UCLA), 2014
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/pgicc.py third_party/waf/waflib/extras/pgicxx.py
+Copyright:
+  Copyright Antoine Dechaume 2011
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/protoc.py
+Copyright:
+  Copyright Philipp Bender, 2012
+  Copyright Matt Clarkson, 2012
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/pytest.py
+Copyright:
+  Copyright Calle Rosenquist, 2016-2018 (xbreak)
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/review.py
+Copyright:
+  Copyright Laurent Birtz, 2011
+License: BSD-3
+
+Files:
+  third_party/waf/waflib/extras/run_do_script.py
+  third_party/waf/waflib/extras/run_m_script.py
+  third_party/waf/waflib/extras/run_py_script.py
+  third_party/waf/waflib/extras/run_r_script.py
+Copyright:
+  Copyright Hans-Martin von Gaudecker, 2012
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/sas.py
+Copyright:
+  Copyright Mark Coggeshall, 2010
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/swig.py
+Copyright:
+  Copyright Petar Forai
+  Copyright Thomas Nagy 2008-2010 (ita)
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/use_config.py
+Copyright:
+  Copyright Mathieu Courtois - EDF R&D, 2013 - http://www.code-aster.org
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/valadoc.py
+Copyright:
+  Copyright Nicolas Joseph 2009
+License: BSD-3
+
+Files: third_party/waf/waflib/extras/xcode6.py
+Copyright:
+  Copyright Nicolas Mercier 2011
+  Copyright Simon Warg 2015, https://github.com/mimom
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/ar.py
+Copyright:
+  Copyright Thomas Nagy, 2006-2018 (ita)
+  Copyright Ralf Habacker, 2006 (rh)
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/bison.py
+Copyright:
+  Copyright John O'Meara, 2006
+  Copyright Thomas Nagy 2009-2018 (ita)
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/clang.py
+Copyright:
+  Copyright Krzysztof Kosi?ski 2014
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/compiler_c.py third_party/waf/waflib/Tools/compiler_cxx.py
+Copyright:
+  Copyright Matthias Jahn jahn dôt matthias ât freenet dôt de, 2007 (pmarat)
+License: BSD-3
+
+Files:
+  third_party/waf/waflib/Tools/compiler_d.py
+  third_party/waf/waflib/Tools/dmd.py
+  third_party/waf/waflib/Tools/d.py
+  third_party/waf/waflib/Tools/gdc.py
+  third_party/waf/waflib/Tools/waf_unit_test.py
+Copyright:
+  Copyright Carlos Rafael Giani, 2006-2007 (dv)
+  Copyright Thomas Nagy, 2008-2018 (ita)
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/flex.py
+Copyright:
+  Copyright John O'Meara, 2006
+  Thomas Nagy, 2006-2018 (ita)
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/g95.py
+Copyright:
+  Copyright KWS 2010
+  Copyright Thomas Nagy 2016-2018 (ita)
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/gcc.py third_party/waf/waflib/Tools/gxx.py
+Copyright:
+  Copyright Thomas Nagy, 2006-2018 (ita)
+  Copyright Ralf Habacker, 2006 (rh)
+  Copyright Yinon Ehrlich, 2009
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/icc.py
+Copyright:
+  Copyright Stian Selnes 2008
+  Copyright Thomas Nagy 2009-2018 (ita)
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/ldc2.py
+Copyright:
+  Copyright Alex Rønne Petersen, 2012 (alexrp/Zor)
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/lua.py
+Copyright:
+  Copyright Sebastian Schlingmann, 2008
+  Copyright Thomas Nagy, 2008-2018 (ita)
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/msvc.py
+Copyright:
+  Copyright Carlos Rafael Giani, 2006 (dv)
+  Copyright Tamas Pal, 2007 (folti)
+  Copyright Nicolas Mercier, 2009
+  Copyright Matt Clarkson, 2012
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/perl.py
+Copyright:
+  Copyright andersg at 0x63.nu 2007
+  Copyright Thomas Nagy 2016-2018 (ita)
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/python.py
+Copyright:
+  Copyright Thomas Nagy, 2007-2015 (ita)
+  Copyright Gustavo Carneiro (gjc), 2007
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/ruby.py
+Copyright:
+  Copyright daniel.svensson at purplescout.se 2008
+  Copyright Thomas Nagy 2016-2018 (ita)
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/suncc.py third_party/waf/waflib/Tools/suncxx.py
+Copyright:
+  Copyright Thomas Nagy, 2006-2018 (ita)
+  Copyright Ralf Habacker, 2006 (rh)
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/vala.py
+Copyright:
+  Copyright Ali Sabil, 2007
+  Copyright Rados?aw Szkodzi?ski, 2010
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/winres.py
+Copyright:
+  Copyright Brant Young, 2007
+License: BSD-3
+
+Files: third_party/waf/waflib/Tools/xlc.py third_party/waf/waflib/Tools/xlcxx.py
+Copyright:
+  Copyright Thomas Nagy, 2006-2018 (ita)
+  Copyright Ralf Habacker, 2006 (rh)
+  Copyright Yinon Ehrlich, 2009
+  Copyright Michael Kuhn, 2009
+License: BSD-3
+
+License: ISC
+ Permission to use, copy, modify, and distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS" AND INTERNET SOFTWARE CONSORTIUM
+ DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL
+ INTERNET SOFTWARE CONSORTIUM BE LIABLE FOR ANY SPECIAL, DIRECT,
+ INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING
+ FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+ NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+ WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: BSD-3
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ 3. Neither the name of the Institute nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+License: LGPL-3.0+
+ This package is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 3 of the License, or (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU Lesser General
+ Public License can be found in "/usr/share/common-licenses/LGPL-3".
+
+License: GPL-3.0+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".

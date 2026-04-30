@@ -1,11 +1,11 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: mako
 Upstream-Contact: Michael Bayer <mike@zzzcomputing.com>
-Source: http://www.makotemplates.org/
+Source: https://github.com/sqlalchemy/mako
 Files-Excluded: doc/*.html doc/*.js doc/_static Mako.egg-info
 
 Files: *
-Copyright: 2006-2015 the Mako authors and contributors
+Copyright: 2006-2022 the Mako authors and contributors
 License: Expat
 
 Files: examples/bench/basic.py
@@ -13,15 +13,13 @@ Copyright: 2006 Edgewall Software
 License: BSD-3-clause
 
 Files: debian/*
-Copyright: 2006-2015 Piotr Ożarowski <piotr@debian.org>
+Copyright: 2006-2015 Piotr O?arowski <piotr@debian.org>
 License: Expat
 
-# Source: http://www.vim.org/scripts/script.php?script_id=1858
 Files: debian/mako.vim
 Copyright: Armin Ronacher <armin.ronacher@active-4.com>
 License: BSD-3-clause
 
-# Source: http://www.vim.org/scripts/script.php?script_id=2663
 Files: debian/mako_indent.vim
 Copyright: 2004 Scott Torborg <storborg@mit.edu>
 License: WTFPL
@@ -29,7 +27,7 @@ License: WTFPL
 License: WTFPL
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
                     Version 2, December 2004
- . 
+ .
  Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
  .
  Everyone is permitted to copy and distribute verbatim or modified
@@ -72,7 +70,7 @@ License: BSD-3-clause
  3. Neither the name of the University nor the names of its contributors
     may be used to endorse or promote products derived from this software
     without specific prior written permission.
- . 
+ .
  THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE

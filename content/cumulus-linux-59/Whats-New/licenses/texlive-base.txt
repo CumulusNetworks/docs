@@ -17,7 +17,7 @@ Debian adaptions for these packages are licensed under the GNU General
 Public License, version 2, and are under Copyright by:
 
    Norbert Preining <preining@logic.at> (2005-)
-   Frank KÃ¼ster <frank@kuesterei.ch> (2006-)
+   Frank Küster <frank@kuesterei.ch> (2006-)
 
 All code generated for the Debian adaptions is under the GNU General
 Public License.
@@ -171,7 +171,7 @@ the list in Licenses, each package has a header line like this:
 indicating that the package ccfonts is under LPPL, exists in version
 1.1, the license has been checked in version 1.1 on 2006-03-14 by
 "frank" (the username among the Catalogue developers, actually Frank
-KÃ¼ster), and the license information is in a file "readme".  After
+Küster), and the license information is in a file "readme".  After
 that follows the list of files, 
 
  tex/latex/ccfonts/t1ccr.fd
@@ -269,7 +269,7 @@ name of the copyright holder, we do not list the license text.
 
 A. gpl (GNU General Public License)
 
-The full text of the GPL is given in /usr/share/common-licenses/GPL.
+The full text of the GPL is given in /usr/share/common-licenses/GPL-3.
 
 B. lppl (LaTeX Project Public License)
 

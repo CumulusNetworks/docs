@@ -1,14 +1,15 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: python-json-pointer
-Source: git://github.com/stefankoegl/python-json-pointer.git
+Source: https://github.com/stefankoegl/python-json-pointer
 
 Files: *
-Copyright: 2012, Stefan KÃ¶gl <stefan@skoegl.net>
+Copyright: 2012, Stefan Kögl <stefan@skoegl.net>
 License: BSD-3-clauses
 
 Files: debian/*
 Copyright: (c) 2012-2015, Thomas Goirand <zigo@debian.org>
-           (c) 2016, OndÅ™ej NovÃ½ <novy@ondrej.org>
+           (c) 2016, Ond?ej Nový <novy@ondrej.org>
+           (c) 2020, Michal Arbet <michal.arbet@ultimum.io>
 License: BSD-3-clauses
 
 License: BSD-3-clauses

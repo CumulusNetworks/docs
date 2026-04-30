@@ -1,11 +1,11 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: libeatmydata
 Upstream-Contact: Stewart Smith <stewart@flamingspork.com>
-Source: https://launchpad.net/libeatmydata
+Source: https://www.flamingspork.com/projects/libeatmydata/
 
 Files: *
 Copyright: 2008 Mohsen Hariri <m.hariri@gmail.com>
-           2008-2013 Stewart Smith <stewart@percona.com>
+           2008-2021 Stewart Smith <stewart@percona.com>
            2009 Eric Wong <normalperson@yhbt.net>
            2009 Joachim Berdal Haga <jobh@broadpark.no>
            2009 Tamas TEVESZ <ice@extreme.hu>
@@ -17,12 +17,15 @@ Copyright: 2008 Mohsen Hariri <m.hariri@gmail.com>
            2012 Blair Zajac <blair@imageworks.com>
            2012 Phillip Susi <psusi@ubuntu.com>
            2013 Alexey Bychko <alexey.bychko@percona.com>
-           2014 Mattia Rizzolo <mattia@mapreri.org>
+           2014-2020 Mattia Rizzolo <mattia@mapreri.org>
+           2017 Yura Sorokin
+           2019 Alberto Bertogli <albertito@blitiri.com.ar>
+           2020 Sam Thursfield <sam@afuera.me.uk>
 License: GPL-3+
 
 Files: debian/*
 Copyright: 2010 Modestas Vainius <modax@debian.org>
-           2014-2018 Mattia Rizzolo <mattia@debian.org>
+           2014-2021 Mattia Rizzolo <mattia@debian.org>
 License: GPL-3+
 
 License: GPL-3+

@@ -3,11 +3,14 @@ Upstream-Name: dupload
 
 Files: *
 Copyright:
- Copyright Â© 1996, 1997 Heiko Schlittermann <hs@schlittermann.de>
- Copyright Â© 1999 Stephane Bortzmeyer <bortzmeyer@debian.org>
- Copyright Â© 1999, 2002, 2003 Josip Rodin <joy-packages@debian.org>
- Copyright Â© 2005, 2006, 2008, 2011 Frank Lichtenheld <djpig@debian.org>
- Copyright Â© 2014-2018 Guillem Jover <guillem@debian.org>
+ Copyright © 1996, 1997 Heiko Schlittermann <hs@schlittermann.de>
+ Copyright © 1999 Stephane Bortzmeyer <bortzmeyer@debian.org>
+ Copyright © 1999, 2002, 2003 Josip Rodin <joy-packages@debian.org>
+ Copyright © 2002 Roland Mas <lolando@debian.org>
+ Copyright © 2005 Javier Fernandez-Sanguino Peña <jfs@computer.org>
+ Copyright © 2005, 2006, 2008, 2011 Frank Lichtenheld <djpig@debian.org>
+ Copyright © 2009 Paul Evans <leonerd@leonerd.org.uk>
+ Copyright © 2014-2023 Guillem Jover <guillem@debian.org>
 License: GPL-2+
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -23,4 +26,4 @@ License: GPL-2+
  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 Comment:
  On Debian systems, the complete text of the GNU General Public License
- can be found in â€˜/usr/share/common-licenses/GPL-2â€™.
+ can be found in ?/usr/share/common-licenses/GPL-2?.

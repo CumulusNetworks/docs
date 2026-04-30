@@ -1,6 +1,6 @@
 This is the Debian prepackaged version of the FSF's GNU m4 macro processor.
-GNU `m4' has been originally written by RenÃ© Seindal, from Denmark,
-with subsequent changes by FranÃ§ois Pinard and other volunteers on
+GNU `m4' has been originally written by René Seindal, from Denmark,
+with subsequent changes by François Pinard and other volunteers on
 the Internet. A list of contributors to the GNU program is in the
 THANKS file in the source distribution, or appended below in the
 binary package.
@@ -10,13 +10,13 @@ and is currently maintained by Santiago Vila <sanvila@debian.org>.
 
 The GNU sources for this release were obtained from
 
-http://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.xz
+https://ftp.gnu.org/gnu/m4/m4-1.4.19.tar.xz
 
 The changes were very minimal - merely adding support for the Debian
 package maintenance scheme, by adding various debian/* files.
 
 
-Program Copyright (C) 1989-2016 Free Software Foundation, Inc.
+Program Copyright (C) 1989-2021 Free Software Foundation, Inc.
 Modifications for Debian Copyright (C) 1994 Ian Jackson.
 
 This program is free software; you can redistribute it and/or modify
@@ -30,7 +30,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 General Public License for more details.
 
 
-M4 manual (m4.info) Copyright (C) 1989-1994, 2004-2014, 2016 Free Software Foundation, Inc.
+M4 manual (m4.info) Copyright (C) 1989?1994, 2004?2014, 2016?2017, 2020?2021 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,

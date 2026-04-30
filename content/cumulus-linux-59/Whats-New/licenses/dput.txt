@@ -2,10 +2,10 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 
 Files: *
 Copyright:
-    Copyright © 2015–2019 Ben Finney <bignose@debian.org>
-    Copyright © 2008–2013 Y Giridhar Appaji Nag <appaji@debian.org>
-    Copyright © 2006–2009 Thomas Viehmann <tv@beamnet.de>
-    Copyright © 2000–2005 Christian Kurz <shorty@debian.org>
+    Copyright � 2015?2022 Ben Finney <bignose@debian.org>
+    Copyright � 2008?2013 Y Giridhar Appaji Nag <appaji@debian.org>
+    Copyright � 2006?2009 Thomas Viehmann <tv@beamnet.de>
+    Copyright � 2000?2005 Christian Kurz <shorty@debian.org>
 License: GPL-3+
 License-Grant:
     This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ License-Grant:
 
 License: GPL-3+
     On Debian systems, the complete text of the GNU General Public License
-    version 3 can be found in the file ‘/usr/share/common-licenses/GPL-3’.
+    version 3 can be found in the file ?/usr/share/common-licenses/GPL-3?.
 
 
 # Local variables:

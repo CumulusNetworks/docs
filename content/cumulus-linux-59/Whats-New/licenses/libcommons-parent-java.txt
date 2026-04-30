@@ -1,0 +1,15 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Apache Commons Parent POM
+Source: http://svn.apache.org/repos/asf/commons/proper/commons-parent/trunk/
+
+Files: *
+Copyright: 2006-2015, The Apache Software Foundation
+License: Apache-2.0
+
+Files: debian/*
+Copyright: 2010, Ludovic Claude <ludovic.claude@laposte.net>
+License: Apache-2.0
+
+License: Apache-2.0
+  On Debian GNU/Linux system you can find the complete text of the
+  Apache-2.0 license in '/usr/share/common-licenses/Apache-2.0'

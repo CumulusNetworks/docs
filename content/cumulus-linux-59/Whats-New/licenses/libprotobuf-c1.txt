@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 
 Files: *
-Copyright: 2008-2018 Dave Benson and the protobuf-c authors
+Copyright: 2008-2019 Dave Benson and the protobuf-c authors
 License: BSD-2-Clause
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
@@ -62,7 +62,7 @@ License: BSD-3-Clause
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Files: debian/*
-Copyright: 2009-2018 Robert Edmonds <edmonds@debian.org>
+Copyright: 2009-2019 Robert Edmonds <edmonds@debian.org>
 License: permissive
  Copying and distribution of this package, with or without modification,
  are permitted in any medium without royalty provided the copyright notice

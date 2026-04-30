@@ -5,16 +5,16 @@ Upstream-Name: Net-DNS
 
 Files: *
 Copyright: Willem Toorop <willem@nlnetlabs.nl>
-	   Olaf Kolkman <olaf@net-dns.org>
-	   Michael Fuhr <mike@fuhr.org>
-	   Chris Reinhardt <ctriv@net-dns.org>
-	   Dick Franks <rwfranks@acm.org>
-License: Artistic or GPL-1+
+           Olaf Kolkman <olaf@net-dns.org>
+           Michael Fuhr <mike@fuhr.org>
+           Chris Reinhardt <ctriv@net-dns.org>
+           Dick Franks <rwfranks@acm.org>
+License: other
 
 Files: debian/*
 Copyright: 1998-2000, 2002-2010, Florian Hinzmann <fh@debian.org>
-	   2012, Florian Roscher <fh@debian.org>
-	   2014, Ondřej Surý <ondrej@debian.org>
+           2012, Florian Roscher <fh@debian.org>
+           2014, Ond?ej Sur� <ondrej@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic
@@ -32,3 +32,20 @@ License: GPL-1+
  .
  On Debian systems, the complete text of version 1 of the GNU General
  Public License can be found in `/usr/share/common-licenses/GPL-1'.
+
+License: other
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose and without fee is hereby granted, provided
+ that the original copyright notices appear in all copies and that both
+ copyright notice and this permission notice appear in supporting
+ documentation, and that the name of the author not be used in advertising or
+ publicity pertaining to distribution of the software without specific prior
+ written permission.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.

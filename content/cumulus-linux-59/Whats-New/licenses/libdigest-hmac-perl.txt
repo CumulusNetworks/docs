@@ -1,12 +1,13 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Digest-HMAC
-Upstream-Contact: Gisle Aas <gisle@activestate.com>
+Upstream-Contact: Andrew Rodland <arodland@cpan.org>
 Source: https://metacpan.org/release/Digest-HMAC
 Files-Excluded: t/rfc2202.t
 
 Files: *
 Copyright: 1998-2001, Gisle Aas
  1998, Graham Barr
+ 2021, Andrew Rodland <arodland@cpan.org>
 License: Artistic or GPL-1+
 
 Files: debian/*
@@ -14,7 +15,7 @@ Copyright: 2001, 2004, Michael Alan Dorman <mdorman@debian.org>
  2004, Matthias Urlichs <smurf@debian.org>
  2006, Zak B. Elep <zakame@spunge.org>
  2008, Gunnar Wolf <gwolf@debian.org>
- 2006-2010, gregor herrmann <gregoa@debian.org>
+ 2006-2021, gregor herrmann <gregoa@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic

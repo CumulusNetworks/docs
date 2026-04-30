@@ -3,7 +3,7 @@ Upstream-Name: lato
 Source: http://www.latofonts.com
 
 Files: *
-Copyright: (c) 2010-2011, Łukasz Dziedzic 
+Copyright: (c) 2010-2011, ?ukasz Dziedzic 
 License: OFL-1.1
  PREAMBLE
   The goals of the Open Font License (OFL) are to stimulate worldwide

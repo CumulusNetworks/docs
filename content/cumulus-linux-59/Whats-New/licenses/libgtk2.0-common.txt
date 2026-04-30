@@ -6,7 +6,7 @@ It was downloaded from <https://download.gnome.org/sources/gtk+/>.
 Copyright Holders:
 
 Please do not mail any of the authors listed here
-asking questions about this version of GTK+.
+asking questions about this version of GTK.
 
 Copyright:
 
@@ -23,7 +23,7 @@ Copyright:
   Copyright: 1995-2007 Peter Mattis
   Copyright: 1995-2007 Spencer Kimball
   Copyright: 1997-1998 Jay Painter
-  Copyright: 1997-2009 The GTK+ Team
+  Copyright: 1997-2009 The GTK Team
   Copyright: 1997 David Mosberger
   Copyright: 1997-1998 Owen Taylor
   Copyright: 1997 Paolo Molaro
@@ -78,7 +78,7 @@ Copyright:
   Copyright: 2004-2008 Canonical Ltd.
   Copyright: 2004-2008 Rosetta contributors
   Copyright: 2004 Adam Weinberger
-  Copyright: 2004 Gurban MÃ¼hemmet Tewekgeli
+  Copyright: 2004 Gurban Mühemmet Tewekgeli
   Copyright: 2004 Kakilik - Turkmen free software developers community
   Copyright: 2004 Zuza Software Foundation
   Copyright: 2004 Amir Hedayaty
@@ -105,7 +105,7 @@ Copyright:
   Copyright: 2007-2009 Cody Russell
   Copyright: 2007 John Stowers
   Copyright: 2007 Neil Jagdish Patel
-  Copyright: 2007 Xan LÃ³pez
+  Copyright: 2007 Xan López
   Copyright: 2008 Christian Kellner
   Copyright: 2008 Cody Russell
   Copyright: 2008 Jaap Haitsma
@@ -129,7 +129,7 @@ Peter Mattis      <petm@xcf.berkeley.edu>
 Spencer Kimball   <spencer@xcf.berkeley.edu>
 Josh MacDonald    <jmacd@xcf.berkeley.edu>
 
-The GTK+ Team (in alphabetical order)
+The GTK Team (in alphabetical order)
 -------------------------------------
 Shawn T. Amundson <amundson@gtk.org>
 Jerome Bolliet    <bolliet@gtk.org>
@@ -151,10 +151,10 @@ Manish Singh      <manish@gtk.org>
 Owen Taylor       <otaylor@gtk.org>
 
 There are many others who have contributed patches; we thank them,
-GTK+ is much better because of them.
+GTK is much better because of them.
 
 
-Over time, GTK+ has incorporated some pieces of software which
+Over time, GTK has incorporated some pieces of software which
 started as independent projects. We list the original authors here:
 
 

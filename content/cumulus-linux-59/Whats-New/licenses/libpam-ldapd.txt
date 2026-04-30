@@ -23,7 +23,7 @@ Davide Puricelli (evo), Sami Haahtinen and Stephen Frost.
 
   Copyright (C) 1997-2006 Luke Howard
   Copyright (C) 2006-2007 West Consulting
-  Copyright (C) 2006-2017 Arthur de Jong
+  Copyright (C) 2006-2019 Arthur de Jong
   Copyright (C) 2009 Howard Chu
   Copyright (C) 2010 Symas Corporation
 
@@ -49,15 +49,17 @@ common/expr.c:     Copyright (C) 2016 Giovanni Mascellani
 compat/pagectrl.c: Copyright (C) 2002 Max Caines
 debian/po/ca.po:   Copyright (C) 2004 Free Software Foundation, Inc.
 debian/po/da.po:   Copyright (C) 2008 Jonas Smedegaard
-debian/po/da.po:   Copyright (C) 2010, 2011, 2013 Joe Hansen
+debian/po/da.po:   Copyright (C) 2010, 2011, 2013, 2014 Joe Hansen
 debian/po/de.po:   Copyright (C) 2004 Erik Schanze
-debian/po/es.po:   Copyright (C) 2007 Rudy Godoy GuillÃ©n
+debian/po/es.po:   Copyright (C) 2007 Rudy Godoy Guillén
 debian/po/es.po:   Copyright (C) 2009, 2010, 2011 Software in the Public Interest
-debian/po/fi.po:   Copyright (C) 2009 Esko ArajÃ¤rvi
+debian/po/fi.po:   Copyright (C) 2009 Esko Arajärvi
 debian/po/fr.po:   Copyright (C) 2007, 2009, 2010 Debian French l10n team
 debian/po/it.po:   Copyright (C) 2013 Beatrice Torracca
-debian/po/sv.po:   Copyright (C) 2011, 2013 Martin Bagge
-debian/po/tr.po:   Copyright (C) 2013 Atila KOÃ‡
+debian/po/pl.po:   Copyright (C) 2013, 2014 Micha? Ku?ach
+debian/po/pt.po:   Copyright (C) 2007-2014 Américo Monteiro
+debian/po/sv.po:   Copyright (C) 2011, 2013, 2014 Martin Bagge
+debian/po/tr.po:   Copyright (C) 2012, 2013 Atila KOÇ
 debian/po/vi.po:   Copyright (C) 2010 Free Software Foundation, Inc.
 nslcd/group.c:     Copyright (C) 2013 Steve Hill
 nslcd/pam.c:       Copyright (C) 2015 Nokia Solutions and Networks
@@ -72,7 +74,7 @@ code is either licensed under the GNU General Public License with the extra
 permission to use it in a configure script under the licensing terms of that
 configure script or gives unlimited permission to copy and/or distribute it
 with or without modifications. The code is
-  Copyright (C) 1996-2016 Free Software Foundation, Inc.
+  Copyright (C) 1996-2018 Free Software Foundation, Inc.
 (years aggregated).
 
 The file m4/ax_pthread.m4 contains the following copyright statement:

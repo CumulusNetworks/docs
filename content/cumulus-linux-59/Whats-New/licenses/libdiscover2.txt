@@ -5,7 +5,7 @@ It was downloaded from <URL:http://archive.progeny.com/progeny/discover/>
 
 Copyright (C) 2001 Progeny Linux Systems, Inc.
   Authors: MandrakeSoft; Remy Card; David A. Hinds; GeaArt, Inc.;
-           Free Software Foundation, Inc.; Jes√∫s Bravo √Ålvarez;
+           Free Software Foundation, Inc.; Jes˙s Bravo ¡lvarez;
            Branden Robinson; Jeff Licquia; John R. Daily
 
 License:

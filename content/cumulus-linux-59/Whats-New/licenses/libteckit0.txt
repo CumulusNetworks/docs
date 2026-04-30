@@ -1,11 +1,11 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Debianized-By: Daniel Glassey <wdg@debian.org>
 Upstream-Name: TECkit
 Upstream-Contact: SIL International http://scripts.sil.org/Support
 Source: http://scripts.sil.org/TECkit
 Files-Excluded:
     SFconv/expat
-    zlib-1.2.3/*.c
+    zlib-1.2.*/*.c
 
 Files: *
 Copyright: Copyright 2002-2014, SIL International

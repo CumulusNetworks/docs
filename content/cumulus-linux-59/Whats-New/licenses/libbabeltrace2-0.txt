@@ -1,0 +1,1459 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0
+Upstream-Name: babeltrace
+Source: https://www.efficios.com/files/babeltrace/
+
+Files: *
+Copyright: 2010-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: aclocal.m4
+Copyright: 1996-2017, Free Software Foundation, Inc.
+License: FSFULLR
+
+Files: debian/*
+Copyright: 2020, Michael Jeanson <mjeanson@debian.org>
+License: GPL-3+
+
+Files: doc/api/*
+Copyright: 2010-2019, EfficiOS Inc. and Linux Foundation
+License: CC-BY-SA-4
+
+Files: include/babeltrace2/graph/message-iterator-class.h
+Copyright: 2014, 2016-2019, EfficiOS Inc.
+License: Expat
+
+Files: include/babeltrace2/logging-defs.h
+Copyright: 2014, 2016-2019, EfficiOS Inc.
+License: Expat
+
+Files: m4/*
+Copyright: 2004, 2005, 2007-2009, 2011-2015, Free Software
+License: FSFULLR
+
+Files: m4/ax_append_compile_flags.m4
+  m4/ax_append_link_flags.m4
+Copyright: 2011, Maarten Bosmans <mkbosmans@gmail.com>
+License: FSFAP
+
+Files: m4/ax_append_flag.m4
+  m4/ax_check_compile_flag.m4
+  m4/ax_check_link_flag.m4
+Copyright: 2011, Maarten Bosmans <mkbosmans@gmail.com>
+  2008, Guido U. Draheim <guidod@gmx.de>
+License: FSFAP
+
+Files: m4/ax_c___attribute__.m4
+Copyright: 2008, Stepan Kasal <skasal@redhat.com>
+  2008, Ryan McCabe <ryan@numb.org>
+  2008, Christian Haggstrom
+License: GPL-2+
+
+Files: m4/ax_compare_version.m4
+Copyright: 2008, Tim Toolan <toolan@ele.uri.edu>
+License: FSFAP
+
+Files: m4/ax_compiler_flags.m4
+Copyright: 2015, David King <amigadave@amigadave.com>
+  2014, 2015, Philip Withnall <philip@tecnocode.co.uk>
+License: FSFAP
+
+Files: m4/ax_compiler_flags_cflags.m4
+  m4/ax_compiler_flags_ldflags.m4
+Copyright: 2017, 2018, Reini Urban <rurban@cpan.org>
+  2014, 2015, Philip Withnall <philip@tecnocode.co.uk>
+License: FSFAP
+
+Files: m4/ax_compiler_flags_gir.m4
+Copyright: 2015, Philip Withnall <philip@tecnocode.co.uk>
+License: FSFAP
+
+Files: m4/ax_lib_socket_nsl.m4
+Copyright: 2008, Warren Young <warren@etr-usa.com>
+  2008, Stepan Kasal <kasal@ucw.cz>
+  2008, Russ Allbery <rra@stanford.edu>
+License: FSFAP
+
+Files: m4/ax_pkg_swig.m4
+Copyright: 2011, Murray Cumming <murrayc@openismus.com>
+  2008, Sebastian Huber <sebastian-huber@web.de>
+  2008, Rafael Laboissiere <rafael@laboissiere.net>
+  2008, Andrew Collier
+  2008, Alan W. Irwin
+License: GPL-2+
+
+Files: m4/ax_prog_bison_version.m4
+  m4/ax_prog_flex_version.m4
+Copyright: 2015, Jonathan Rajotte-Julien <jonathan.rajotte-julien@efficios.com>
+License: FSFAP
+
+Files: m4/ax_prog_doxygen.m4
+  m4/pprint.m4
+Copyright: 2010-2020, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: m4/ax_pthread.m4
+Copyright: 2011, Daniel Richard G. <skunk@iSKUNK.ORG>
+  2008, Steven G. Johnson <stevenj@alum.mit.edu>
+License: GPL-3+
+
+Files: m4/ax_require_defined.m4
+Copyright: 2014, Mike Frysinger <vapier@gentoo.org>
+License: FSFAP
+
+Files: m4/bt_lib_elfutils.m4
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: m4/extensions.m4
+  m4/ltversion.m4
+Copyright: 1996-2017, Free Software Foundation, Inc.
+License: FSFULLR
+
+Files: m4/libtool.m4
+Copyright: 1996-2001, 2003-2018, Free Software Foundation, Inc.
+License: GPL-2+
+
+Files: m4/python_modules.m4
+Copyright: 2014, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: FSFULLR
+
+Files: src/*
+Copyright: 2017, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/argpar/*
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/autodisc/*
+Copyright: 2010-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/babeltrace2-ctf-writer.pc.in
+  src/babeltrace2.pc.in
+Copyright: 2010-2020, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/bindings/python/bt2/bt2/error.py
+Copyright: 2010-2020, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/bindings/python/bt2/bt2/event.py
+  src/bindings/python/bt2/bt2/packet.py
+  src/bindings/python/bt2/bt2/stream.py
+Copyright: 2016, 2017, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/bindings/python/bt2/bt2/field_path.py
+Copyright: 2018, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: Expat
+
+Files: src/bindings/python/bt2/bt2/interrupter.py
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/bindings/python/bt2/bt2/native_bt_autodisc.i.h
+  src/bindings/python/bt2/bt2/native_bt_trace.i.h
+  src/bindings/python/bt2/bt2/native_bt_trace_class.i.h
+  src/bindings/python/bt2/bt2/native_bt_value.i.h
+Copyright: 2016, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/bindings/python/bt2/bt2/native_bt_error.i.h
+Copyright: 2019, Efficios, Inc.
+License: Expat
+
+Files: src/bindings/python/bt2/bt2/trace_class.py
+Copyright: 2019, Simon Marchi <simon.marchi@efficios.com>
+  2018, Francis Deslauriers <francis.deslauriers@efficios.com>
+  2017, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/bindings/python/bt2/setup.py.in
+Copyright: 2017, - Francis Deslauriers <francis.deslauriers@efficios.com>
+License: Expat
+
+Files: src/cli/babeltrace2-cfg-cli-args-default.c
+Copyright: 2017, - Philippe Proulx <pproulx@efficios.com> / 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/cli/babeltrace2-cfg-cli-args-default.h
+Copyright: 2016, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/cli/babeltrace2-cfg-cli-args.c
+  src/cli/babeltrace2-cfg.c
+Copyright: 2016, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/cli/babeltrace2-cfg-cli-args.h
+  src/cli/babeltrace2-cfg.h
+Copyright: 2016, 2017, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/cli/babeltrace2-log-level.c
+  src/cli/babeltrace2-log-level.h
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/cli/babeltrace2-plugins.c
+  src/cli/babeltrace2-plugins.h
+  src/cli/babeltrace2-query.c
+  src/cli/babeltrace2-query.h
+Copyright: 2014, 2016-2019, EfficiOS Inc.
+License: Expat
+
+Files: src/cli/babeltrace2.c
+Copyright: 2010-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/common/*
+Copyright: 2010, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/common/assert.c
+Copyright: 2014, 2016-2019, EfficiOS Inc.
+License: Expat
+
+Files: src/common/assert.h
+  src/common/common.h
+Copyright: 2015-2019, Philippe Proulx <pproulx@efficios.com>
+  2010, 2011, 2015-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/common/common.c
+Copyright: 2016, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/common/list.h
+Copyright: 2002, Free Software Foundation, Inc.
+License: LGPL-2.1
+
+Files: src/common/macros.h
+Copyright: 2012, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/common/safe.h
+Copyright: 2010-2020, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/common/uuid.c
+  src/common/uuid.h
+Copyright: 2019, Michael Jeanson <mjeanson@efficios.com>
+License: Expat
+
+Files: src/common/version.h
+Copyright: 2018, Michael Jeanson <mjeanson@efficios.com>
+License: Expat
+
+Files: src/compat/*
+Copyright: 2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/compat/bitfield.h
+Copyright: 2010-2019, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/compat/compiler.h
+Copyright: 2010, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/compat/fcntl.h
+Copyright: 2015, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/compat/glib.h
+  src/compat/stdlib.h
+Copyright: 2015, Michael Jeanson <mjeanson@efficios.com>
+License: Expat
+
+Files: src/compat/limits.h
+Copyright: 2014, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/compat/mman.c
+  src/compat/time.h
+Copyright: 2013, JP Ikaheimonen <jp_ikaheimonen@mentor.com>
+License: Expat
+
+Files: src/compat/mman.h
+Copyright: 2015, 2016, Michael Jeanson <mjeanson@efficios.com>
+License: Expat
+
+Files: src/compat/socket.h
+Copyright: 2015-2017, Michael Jeanson <mjeanson@efficios.com>
+License: Expat
+
+Files: src/compat/stdio.h
+Copyright: 2015, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/compat/string.h
+Copyright: 2013, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/compat/unistd.h
+Copyright: 2016, - Michael Jeanson <mjeanson@efficios.com>
+License: Expat
+
+Files: src/compat/utc.h
+Copyright: 2011-2013, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/ctf-writer/*
+Copyright: 2013, 2014, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/ctf-writer/assert-pre.h
+  src/ctf-writer/attributes.c
+  src/ctf-writer/attributes.h
+  src/ctf-writer/object-pool.c
+  src/ctf-writer/object-pool.h
+  src/ctf-writer/values.c
+  src/ctf-writer/values.h
+Copyright: 2015-2019, Philippe Proulx <pproulx@efficios.com>
+  2010, 2011, 2015-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/ctf-writer/clock.c
+  src/ctf-writer/event-class.c
+  src/ctf-writer/event.c
+  src/ctf-writer/field-path.c
+  src/ctf-writer/resolve.c
+  src/ctf-writer/resolve.h
+  src/ctf-writer/stream-class.c
+  src/ctf-writer/stream.c
+  src/ctf-writer/trace.c
+Copyright: 2016-2019, Philippe Proulx <pproulx@efficios.com>
+  2013-2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/ctf-writer/clock.h
+  src/ctf-writer/logging.c
+  src/ctf-writer/logging.h
+Copyright: 2017, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/ctf-writer/field-path.h
+  src/ctf-writer/validation.h
+Copyright: 2016, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/ctf-writer/field-wrapper.c
+  src/ctf-writer/field-wrapper.h
+Copyright: 2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/ctf-writer/object.c
+  src/ctf-writer/object.h
+  src/ctf-writer/utils.c
+Copyright: 2015, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/ctf-writer/stream-class.h
+  src/ctf-writer/trace.h
+Copyright: 2014, 2016-2019, EfficiOS Inc.
+License: Expat
+
+Files: src/ctf-writer/utils.h
+Copyright: 2010-2020, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/ctf-writer/validation.c
+Copyright: 2016-2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/ctf-writer/visitor.c
+  src/ctf-writer/visitor.h
+Copyright: 2016, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/ctfser/*
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/ctfser/ctfser.h
+Copyright: 2017-2019, Philippe Proulx <pproulx@efficios.com>
+  2013, 2014, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+  2010, 2011, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/fd-cache/*
+Copyright: 2019, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: Expat
+
+Files: src/lib/*
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/assert-post.h
+  src/lib/assert-pre.h
+Copyright: 2015-2019, Philippe Proulx <pproulx@efficios.com>
+  2010, 2011, 2015-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/lib/babeltrace2.c
+Copyright: 2010-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/lib/graph/*
+Copyright: 2016-2019, Philippe Proulx <pproulx@efficios.com>
+  2013-2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/lib/graph/component-class-sink-simple.c
+  src/lib/graph/component-class-sink-simple.h
+Copyright: 2017-2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/graph/component-descriptor-set.h
+  src/lib/graph/connection.c
+  src/lib/graph/connection.h
+  src/lib/graph/graph.c
+  src/lib/graph/graph.h
+  src/lib/graph/port.c
+  src/lib/graph/port.h
+Copyright: 2016, 2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+  2015-2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/graph/interrupter.c
+  src/lib/graph/interrupter.h
+  src/lib/graph/mip.c
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/graph/message-iterator-class.c
+Copyright: 2019, EfficiOS, Inc.
+License: Expat
+
+Files: src/lib/graph/message/discarded-items.c
+  src/lib/graph/message/discarded-items.h
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/graph/message/message-iterator-inactivity.c
+  src/lib/graph/message/message-iterator-inactivity.h
+Copyright: 2017, 2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/graph/query-executor.c
+  src/lib/graph/query-executor.h
+Copyright: 2017, 2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/lib-logging.c
+  src/lib/object-pool.c
+  src/lib/object-pool.h
+  src/lib/property.h
+Copyright: 2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/logging.c
+  src/lib/logging.h
+Copyright: 2017, 2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/object.h
+Copyright: 2016-2019, Philippe Proulx <pproulx@efficios.com>
+  2013-2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/lib/plugin/*
+Copyright: 2016-2019, Philippe Proulx <pproulx@efficios.com>
+  2013-2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/lib/prio-heap/*
+Copyright: 2011, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/lib/trace-ir/*
+Copyright: 2016-2019, Philippe Proulx <pproulx@efficios.com>
+  2013-2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/lib/trace-ir/attributes.c
+  src/lib/trace-ir/attributes.h
+Copyright: 2015-2019, Philippe Proulx <pproulx@efficios.com>
+  2010, 2011, 2015-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/lib/trace-ir/clock-snapshot.c
+  src/lib/trace-ir/clock-snapshot.h
+  src/lib/trace-ir/utils.h
+Copyright: 2017, 2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/trace-ir/field-path.h
+  src/lib/trace-ir/packet.c
+  src/lib/trace-ir/packet.h
+  src/lib/trace-ir/resolve-field-path.h
+Copyright: 2016-2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/trace-ir/field-wrapper.c
+  src/lib/trace-ir/field-wrapper.h
+  src/lib/trace-ir/resolve-field-path.c
+Copyright: 2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/lib/util.c
+  src/lib/value.c
+  src/lib/value.h
+Copyright: 2015-2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/logging/*
+Copyright: 2010-2020, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/logging/comp-logging.h
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/param-parse/*
+Copyright: 2016-2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/plugins/common/*
+Copyright: 2014, 2016-2019, EfficiOS Inc.
+License: Expat
+
+Files: src/plugins/common/muxing/*
+Copyright: 2019, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/*
+Copyright: 2016, - Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/common/*
+Copyright: 2015-2019, Philippe Proulx <pproulx@efficios.com>
+  2010, 2011, 2015-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/*
+Copyright: 2018, - Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/ast.h
+  src/plugins/ctf/common/metadata/scanner-symbols.h
+  src/plugins/ctf/common/metadata/scanner.h
+Copyright: 2011-2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/ctf-meta-configure-ir-trace.c
+  src/plugins/ctf/common/metadata/ctf-meta-configure-ir-trace.h
+  src/plugins/ctf/common/metadata/ctf-meta-update-stream-class-config.c
+Copyright: 2019, - Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/ctf-meta-resolve.c
+Copyright: 2016-2018, - Philippe Proulx <pproulx@efficios.com> / 2015, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/decoder-packetized-file-stream-to-buf.c
+  src/plugins/ctf/common/metadata/decoder.c
+  src/plugins/ctf/common/metadata/decoder.h
+Copyright: 2016-2017, - Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/decoder-packetized-file-stream-to-buf.h
+Copyright: 2019, - Efficios, Inc.
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/lexer.c
+Copyright: 2010-2020, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/logging.c
+  src/plugins/ctf/common/metadata/logging.h
+Copyright: 2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/objstack.c
+  src/plugins/ctf/common/metadata/objstack.h
+Copyright: 2013, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/parser-wrap.h
+Copyright: 2014, 2016-2019, EfficiOS Inc.
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/parser.c
+  src/plugins/ctf/common/metadata/parser.h
+Copyright: 1984, 1989, 1990, 2000-2015, Free Software Foundation, Inc.
+License: GPL-3+
+
+Files: src/plugins/ctf/common/metadata/visitor-generate-ir.c
+Copyright: 2015-2018, - Philippe Proulx <philippe.proulx@efficios.com> / 2010, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/common/metadata/visitor-parent-links.c
+  src/plugins/ctf/common/metadata/visitor-semantic-validator.c
+Copyright: 2010, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/common/print.h
+Copyright: 2016, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/fs-sink/*
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/fs-sink/fs-sink-ctf-meta.h
+Copyright: 2018-2019, - Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/fs-src/data-stream-file.c
+Copyright: 2016-2017, - Philippe Proulx <pproulx@efficios.com> / 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2010-2011, - EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/plugins/ctf/fs-src/fs.c
+Copyright: 2016, 2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+  2015-2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/fs-src/fs.h
+Copyright: 2016-2019, Philippe Proulx <pproulx@efficios.com>
+  2013-2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/fs-src/lttng-index.h
+Copyright: 2013, - Julien Desfossez <jdesfossez@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/fs-src/metadata.c
+Copyright: 2016, - Philippe Proulx <pproulx@efficios.com> / 2010-2011, - EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/plugins/ctf/fs-src/query.c
+  src/plugins/ctf/fs-src/query.h
+Copyright: 2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/lttng-live/data-stream.c
+Copyright: 2019, Francis Deslauriers <francis.deslauriers@efficios.com> / 2016, - Philippe Proulx <pproulx@efficios.com> / 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2010-2011, - EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/plugins/ctf/lttng-live/lttng-live.c
+  src/plugins/ctf/lttng-live/lttng-live.h
+Copyright: 2019, Francis Deslauriers <francis.deslauriers@efficios.com>
+  2016, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+  2016, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/lttng-live/lttng-viewer-abi.h
+Copyright: 2013, - Julien Desfossez <jdesfossez@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/lttng-live/metadata.c
+Copyright: 2019, - Francis Deslauriers <francis.deslauriers@efficios.com> / 2016, - Philippe Proulx <pproulx@efficios.com> / 2010-2011, - EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/plugins/ctf/lttng-live/viewer-connection.c
+Copyright: 2019, - Francis Deslauriers <francis.deslauriers@efficios.com> / 2016, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/lttng-live/viewer-connection.h
+Copyright: 2016, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: src/plugins/ctf/plugin.c
+Copyright: 2016, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/lttng-utils/*
+Copyright: 2016, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/lttng-utils/debug-info/*
+Copyright: 2015, Antoine Busque <abusque@efficios.com>
+License: Expat
+
+Files: src/plugins/lttng-utils/debug-info/crc32.c
+  src/plugins/lttng-utils/debug-info/crc32.h
+Copyright: 1991, 1993, The Regents of the University of California.
+License: BSD-4-clause
+
+Files: src/plugins/lttng-utils/debug-info/debug-info.c
+Copyright: 2019, Francis Deslauriers <francis.deslauriers@efficios.com>
+  2016, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+  2015, Philippe Proulx <pproulx@efficios.com>
+  2015, EfficiOS Inc. and Linux Foundation
+  2015, Antoine Busque <abusque@efficios.com>
+License: Expat
+
+Files: src/plugins/lttng-utils/debug-info/debug-info.h
+Copyright: 2019, Francis Deslauriers francis.deslauriers@efficios.com>
+  2015-2019, EfficiOS Inc.
+  2015, Antoine Busque <abusque@efficios.com>
+License: Expat
+
+Files: src/plugins/lttng-utils/debug-info/trace-ir-data-copy.c
+  src/plugins/lttng-utils/debug-info/trace-ir-data-copy.h
+  src/plugins/lttng-utils/debug-info/trace-ir-metadata-field-class-copy.h
+Copyright: 2019, Francis Deslauriers <francis.deslauriers@efficios.com>
+  2015-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/plugins/lttng-utils/debug-info/trace-ir-mapping.c
+  src/plugins/lttng-utils/debug-info/trace-ir-metadata-copy.c
+  src/plugins/lttng-utils/debug-info/trace-ir-metadata-copy.h
+  src/plugins/lttng-utils/debug-info/trace-ir-metadata-field-class-copy.c
+Copyright: 2019, Francis Deslauriers <francis.deslauriers@efficios.com>
+  2018, Philippe Proulx <pproulx@efficios.com>
+  2015-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/plugins/lttng-utils/debug-info/trace-ir-mapping.h
+Copyright: 2019, Francis Deslauriers francis.deslauriers@efficios.com>
+License: Expat
+
+Files: src/plugins/lttng-utils/debug-info/utils.c
+  src/plugins/lttng-utils/debug-info/utils.h
+Copyright: 2016, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/text/details/*
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/plugins/text/dmesg/dmesg.c
+Copyright: 2015-2019, Philippe Proulx <pproulx@efficios.com>
+  2010, 2011, 2015-2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/plugins/text/pretty/*
+Copyright: 2016, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+  2016, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/text/pretty/pretty.h
+Copyright: 2016, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/utils/muxer/muxer.h
+Copyright: 2016-2019, Philippe Proulx <pproulx@efficios.com>
+  2013-2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/utils/trimmer/*
+Copyright: 2016, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/plugins/utils/trimmer/trimmer.c
+Copyright: 2016-2019, Philippe Proulx <pproulx@efficios.com>
+  2013-2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: src/py-common/*
+Copyright: 2019, Simon Marchi <simon.marchi@efficios.com>
+  2019, Philippe Proulx <pproulx@efficios.com>
+  2019, EfficiOS Inc. and Linux Foundation
+License: Expat
+
+Files: src/python-plugin-provider/python-plugin-provider.h
+Copyright: 2017, 2018, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: src/string-format/*
+Copyright: EfficiOS, Inc.
+License: Expat
+
+Files: tests/*
+Copyright: 2019, EfficiOS Inc.
+License: GPL-2
+
+Files: tests/bindings/python/bt2/test_python_bt2
+Copyright: 2017, - Philippe Proulx <pproulx@efficios.com>
+License: GPL-2
+
+Files: tests/bitfield/*
+Copyright: 2010-2019, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: GPL-2
+
+Files: tests/cli/*
+Copyright: 2019, Simon Marchi <simon.marchi@efficios.com>
+License: GPL-2
+
+Files: tests/cli/convert/test_convert_args
+Copyright: 2017, Philippe Proulx <pproulx@efficios.com>
+License: GPL-2
+
+Files: tests/cli/list-plugins/*
+Copyright: 2019, EfficiOS Inc.
+License: GPL-2
+
+Files: tests/cli/test_exit_status
+  tests/cli/test_help
+Copyright: 2019, EfficiOS Inc.
+License: GPL-2
+
+Files: tests/cli/test_intersection
+  tests/cli/test_packet_seq_num
+  tests/cli/test_trimmer
+Copyright: 2015, 2017, Julien Desfossez <jdesfossez@efficios.com>
+License: GPL-2
+
+Files: tests/cli/test_output_path_ctf_non_lttng_trace
+Copyright: EfficiOS Inc.
+License: GPL-2
+
+Files: tests/cli/test_trace_copy
+Copyright: - 2017, Julien Desfossez <jdesfossez@efficios.com>
+License: GPL-2
+
+Files: tests/cli/test_trace_read
+Copyright: 2013, Christian Babeux <christian.babeux@efficios.com>
+License: GPL-2
+
+Files: tests/ctf-writer/*
+Copyright: 2013-2017, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: GPL-2
+
+Files: tests/ctf-writer/test_ctf_writer
+Copyright: 2013, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: GPL-2
+
+Files: tests/lib/*
+Copyright: 2017, Philippe Proulx <pproulx@efficios.com>
+License: GPL-2
+
+Files: tests/lib/test_bt_uuid.c
+Copyright: 2019, Michael Jeanson <mjeanson@efficios.com>
+License: GPL-2
+
+Files: tests/lib/test_bt_values.c
+Copyright: 2015, Philippe Proulx <pproulx@efficios.com>
+  2015, EfficiOS Inc. and Linux Foundation
+License: GPL-2
+
+Files: tests/lib/test_graph_topo.c
+Copyright: 2017, - Philippe Proulx <pproulx@efficios.com>
+License: GPL-2
+
+Files: tests/lib/test_remove_destruction_listener_in_destruction_listener.c
+Copyright: 2019, Efficios, Inc.
+License: GPL-2
+
+Files: tests/lib/test_simple_sink.c
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: GPL-2
+
+Files: tests/lib/test_trace_ir_ref.c
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: GPL-2
+
+Files: tests/param-validation/*
+Copyright: EfficiOS Inc.
+License: GPL-2
+
+Files: tests/plugins/*
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: GPL-2
+
+Files: tests/plugins/flt.lttng-utils.debug-info/*
+Copyright: 2019, Michael Jeanson <mjeanson@efficios.com>
+  2015, EfficiOS Inc. and Linux Foundation
+  2015, Antoine Busque <abusque@efficios.com>
+License: GPL-2
+
+Files: tests/plugins/flt.lttng-utils.debug-info/test_dwarf.c
+Copyright: 2015, EfficiOS Inc. and Linux Foundation
+  2015, Antoine Busque <abusque@efficios.com>
+License: GPL-2
+
+Files: tests/plugins/flt.lttng-utils.debug-info/test_succeed
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+  2019, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: GPL-2
+
+Files: tests/plugins/flt.utils.muxer/*
+Copyright: 2019, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: GPL-2
+
+Files: tests/plugins/flt.utils.trimmer/*
+Copyright: 2019, Simon Marchi <simon.marchi@efficios.com>
+License: GPL-2
+
+Files: tests/plugins/sink.ctf.fs/*
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: tests/plugins/sink.ctf.fs/succeed/test_succeed
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: GPL-2
+
+Files: tests/plugins/src.ctf.fs/*
+Copyright: 2019, Efficios, Inc.
+License: GPL-2
+
+Files: tests/plugins/src.ctf.fs/fail/*
+Copyright: 2019, EfficiOS Inc.
+License: GPL-2
+
+Files: tests/plugins/src.ctf.fs/query/*
+Copyright: 2019, Simon Marchi <simon.marchi@efficios.com>
+License: GPL-2
+
+Files: tests/plugins/src.ctf.fs/query/test_query_metadata_info
+Copyright: 2019, Simon Marchi <simon.marchi@efficios.com>
+  2019, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: GPL-2
+
+Files: tests/plugins/src.ctf.fs/succeed/*
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: GPL-2
+
+Files: tests/plugins/src.ctf.fs/succeed/gen-trace-simple.c
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: tests/python-plugin-provider/test_python_plugin_provider
+Copyright: 2017, Philippe Proulx <pproulx@efficios.com>
+License: GPL-2
+
+Files: tests/utils/*
+Copyright: 2012, - Yannick Brosseau <yannick.brosseau@gmail.com>
+License: GPL-2
+
+Files: tests/utils/common.h
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2012, - Yannick Brosseau <yannick.brosseau@gmail.com>
+License: GPL-2
+
+Files: tests/utils/python/cli_params_to_string.py
+Copyright: 2019, EfficiOS Inc.
+License: GPL-2
+
+Files: tests/utils/python/tap/*
+Copyright: 2016, Matt Layman
+License: BSD-2-clause
+
+Files: tests/utils/python/testrunner.py
+Copyright: 2016, Philippe Proulx <pproulx@efficios.com>
+License: Expat
+
+Files: tests/utils/run_python_bt2
+Copyright: 2019, Simon Marchi <simon.marchi@efficios.com>
+  2017, Philippe Proulx <pproulx@efficios.com>
+License: GPL-2
+
+Files: tests/utils/tap-driver.sh
+Copyright: 1996-2001, 2003-2018, Free Software Foundation, Inc.
+License: GPL-2+
+
+Files: tests/utils/tap/*
+Copyright: 2004, Nik Clayton
+License: BSD-2-clause
+
+Files: tests/utils/tap/tap.sh
+Copyright: 2010, Patrick LeBoutillier <patrick.leboutillier@gmail.com>
+License: GPL-3+
+
+Files: tests/utils/utils.sh
+Copyright: 2019, Philippe Proulx <pproulx@efficios.com>
+  2019, Michael Jeanson <mjeanson@efficios.com>
+License: GPL-2
+
+License: BSD-2-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+ .
+ * Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+ .
+ * Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-4-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. All advertising materials mentioning features or use of this software
+    must display the following acknowledgement:
+    This product includes software developed by the University of
+    California, Berkeley and its contributors.
+ 4. Neither the name of the University nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+License: CC-BY-SA-4
+ Creative Commons Attribution-ShareAlike 4.0 International
+ .
+ Creative Commons Corporation (?Creative Commons?) is not a law firm and does
+ not provide legal services or legal advice. Distribution of Creative Commons
+ public licenses does not create a lawyer-client or other relationship. Creative
+ Commons makes its licenses and related information available on an ?as-is?
+ basis. Creative Commons gives no warranties regarding its licenses, any
+ material licensed under their terms and conditions, or any related information.
+ Creative Commons disclaims all liability for damages resulting from their use
+ to the fullest extent possible. Using Creative Commons Public Licenses Creative
+ Commons public licenses provide a standard set of terms and conditions that
+ creators and other rights holders may use to share original works of authorship
+ and other material subject to copyright and certain other rights specified in
+ the public license below. The following considerations are for informational
+ purposes only, are not exhaustive, and do not form part of our licenses.
+ Considerations for licensors: Our public licenses are intended for use by those
+ authorized to give the public permission to use material in ways otherwise
+ restricted by copyright and certain other rights. Our licenses are irrevocable.
+ Licensors should read and understand the terms and conditions of the license
+ they choose before applying it. Licensors should also secure all rights
+ necessary before applying our licenses so that the public can reuse the
+ material as expected. Licensors should clearly mark any material not subject to
+ the license. This includes other CC-licensed material, or material used under
+ an exception or limitation to copyright. More considerations for licensors.
+ Considerations for the public: By using one of our public licenses, a licensor
+ grants the public permission to use the licensed material under specified terms
+ and conditions. If the licensor?s permission is not necessary for any
+ reason?for example, because of any applicable exception or limitation to
+ copyright?then that use is not regulated by the license. Our licenses grant
+ only permissions under copyright and certain other rights that a licensor has
+ authority to grant. Use of the licensed material may still be restricted for
+ other reasons, including because others have copyright or other rights in the
+ material. A licensor may make special requests, such as asking that all changes
+ be marked or described. Although not required by our licenses, you are
+ encouraged to respect those requests where reasonable. More considerations for
+ the public.
+ .
+ Creative Commons Attribution-ShareAlike 4.0 International Public License
+ .
+ By exercising the Licensed Rights (defined below), You accept and agree to be
+ bound by the terms and conditions of this Creative Commons
+ Attribution-ShareAlike 4.0 International Public License ("Public License"). To
+ the extent this Public License may be interpreted as a contract, You are
+ granted the Licensed Rights in consideration of Your acceptance of these terms
+ and conditions, and the Licensor grants You such rights in consideration of
+ benefits the Licensor receives from making the Licensed Material available
+ under these terms and conditions.
+ .
+ Section 1 ? Definitions.
+ .
+ a. Adapted Material means material subject to Copyright and Similar Rights that
+ is derived from or based upon the Licensed Material and in which the Licensed
+ Material is translated, altered, arranged, transformed, or otherwise modified
+ in a manner requiring permission under the Copyright and Similar Rights held by
+ the Licensor. For purposes of this Public License, where the Licensed Material
+ is a musical work, performance, or sound recording, Adapted Material is always
+ produced where the Licensed Material is synched in timed relation with a moving
+ image.
+ .
+ b. Adapter's License means the license You apply to Your Copyright and Similar
+ Rights in Your contributions to Adapted Material in accordance with the terms
+ and conditions of this Public License.
+ .
+ c. BY-SA Compatible License means a license listed at
+ creativecommons.org/compatiblelicenses, approved by Creative Commons as
+ essentially the equivalent of this Public License.
+ .
+ d. Copyright and Similar Rights means copyright and/or similar rights closely
+ related to copyright including, without limitation, performance, broadcast,
+ sound recording, and Sui Generis Database Rights, without regard to how the
+ rights are labeled or categorized. For purposes of this Public License, the
+ rights specified in Section 2(b)(1)-(2) are not Copyright and Similar Rights.
+ .
+ e. Effective Technological Measures means those measures that, in the absence
+ of proper authority, may not be circumvented under laws fulfilling obligations
+ under Article 11 of the WIPO Copyright Treaty adopted on December 20, 1996,
+ and/or similar international agreements.
+ .
+ f. Exceptions and Limitations means fair use, fair dealing, and/or any other
+ exception or limitation to Copyright and Similar Rights that applies to Your
+ use of the Licensed Material.
+ .
+ g. License Elements means the license attributes listed in the name of a
+ Creative Commons Public License. The License Elements of this Public License
+ are Attribution and ShareAlike.
+ .
+ h. Licensed Material means the artistic or literary work, database, or other
+ material to which the Licensor applied this Public License.
+ .
+ i. Licensed Rights means the rights granted to You subject to the terms and
+ conditions of this Public License, which are limited to all Copyright and
+ Similar Rights that apply to Your use of the Licensed Material and that the
+ Licensor has authority to license.
+ .
+ j. Licensor means the individual(s) or entity(ies) granting rights under this
+ Public License.
+ .
+ k. Share means to provide material to the public by any means or process that
+ requires permission under the Licensed Rights, such as reproduction, public
+ display, public performance, distribution, dissemination, communication, or
+ importation, and to make material available to the public including in ways
+ that members of the public may access the material from a place and at a time
+ individually chosen by them.
+ .
+ l. Sui Generis Database Rights means rights other than copyright resulting from
+ Directive 96/9/EC of the European Parliament and of the Council of 11 March
+ 1996 on the legal protection of databases, as amended and/or succeeded, as well
+ as other essentially equivalent rights anywhere in the world.
+ .
+ m. You means the individual or entity exercising the Licensed Rights under this
+ Public License. Your has a corresponding meaning.
+ .
+ Section 2 ? Scope.
+ .
+ a. License grant.
+ .
+ 1. Subject to the terms and conditions of this Public License, the Licensor
+ hereby grants You a worldwide, royalty-free, non-sublicensable, non-exclusive,
+ irrevocable license to exercise the Licensed Rights in the Licensed Material
+ to:
+ .
+ A. reproduce and Share the Licensed Material, in whole or in part; and
+ .
+ B. produce, reproduce, and Share Adapted Material.
+ .
+ 2. Exceptions and Limitations. For the avoidance of doubt, where Exceptions and
+ Limitations apply to Your use, this Public License does not apply, and You do
+ not need to comply with its terms and conditions.
+ .
+ 3. Term. The term of this Public License is specified in Section 6(a).
+ .
+ 4. Media and formats; technical modifications allowed. The Licensor authorizes
+ You to exercise the Licensed Rights in all media and formats whether now known
+ or hereafter created, and to make technical modifications necessary to do so.
+ The Licensor waives and/or agrees not to assert any right or authority to
+ forbid You from making technical modifications necessary to exercise the
+ Licensed Rights, including technical modifications necessary to circumvent
+ Effective Technological Measures. For purposes of this Public License, simply
+ making modifications authorized by this Section 2(a)(4) never produces Adapted
+ Material.
+ .
+ 5. Downstream recipients.
+ .
+ A. Offer from the Licensor ? Licensed Material. Every recipient of the Licensed
+ Material automatically receives an offer from the Licensor to exercise the
+ Licensed Rights under the terms and conditions of this Public License.
+ .
+ B. Additional offer from the Licensor ? Adapted Material. Every recipient of
+ Adapted Material from You automatically receives an offer from the Licensor to
+ exercise the Licensed Rights in the Adapted Material under the conditions of
+ the Adapter?s License You apply.
+ .
+ C. No downstream restrictions. You may not offer or impose any additional or
+ different terms or conditions on, or apply any Effective Technological Measures
+ to, the Licensed Material if doing so restricts exercise of the Licensed Rights
+ by any recipient of the Licensed Material.
+ .
+ 6. No endorsement. Nothing in this Public License constitutes or may be
+ construed as permission to assert or imply that You are, or that Your use of
+ the Licensed Material is, connected with, or sponsored, endorsed, or granted
+ official status by, the Licensor or others designated to receive attribution as
+ provided in Section 3(a)(1)(A)(i).
+ .
+ b. Other rights.
+ .
+ 1. Moral rights, such as the right of integrity, are not licensed under this
+ Public License, nor are publicity, privacy, and/or other similar personality
+ rights; however, to the extent possible, the Licensor waives and/or agrees not
+ to assert any such rights held by the Licensor to the limited extent necessary
+ to allow You to exercise the Licensed Rights, but not otherwise.
+ .
+ 2. Patent and trademark rights are not licensed under this Public License.
+ .
+ 3. To the extent possible, the Licensor waives any right to collect royalties
+ from You for the exercise of the Licensed Rights, whether directly or through a
+ collecting society under any voluntary or waivable statutory or compulsory
+ licensing scheme. In all other cases the Licensor expressly reserves any right
+ to collect such royalties.
+ .
+ Section 3 ? License Conditions.
+ .
+ Your exercise of the Licensed Rights is expressly made subject to the following
+ conditions.
+ .
+ a. Attribution.
+ .
+ 1. If You Share the Licensed Material (including in modified form), You must:
+ .
+ A. retain the following if it is supplied by the Licensor with the Licensed
+ Material:
+ .
+ i. identification of the creator(s) of the Licensed Material and any others
+ designated to receive attribution, in any reasonable manner requested by the
+ Licensor (including by pseudonym if designated);
+ .
+ ii. a copyright notice;
+ .
+ iii. a notice that refers to this Public License;
+ .
+ iv. a notice that refers to the disclaimer of warranties;
+ .
+ v. a URI or hyperlink to the Licensed Material to the extent reasonably
+ practicable;
+ .
+ B. indicate if You modified the Licensed Material and retain an indication of
+ any previous modifications; and
+ .
+ C. indicate the Licensed Material is licensed under this Public License, and
+ include the text of, or the URI or hyperlink to, this Public License.
+ .
+ 2. You may satisfy the conditions in Section 3(a)(1) in any reasonable manner
+ based on the medium, means, and context in which You Share the Licensed
+ Material. For example, it may be reasonable to satisfy the conditions by
+ providing a URI or hyperlink to a resource that includes the required
+ information.
+ .
+ 3. If requested by the Licensor, You must remove any of the information
+ required by Section 3(a)(1)(A) to the extent reasonably practicable.
+ .
+ b. ShareAlike.In addition to the conditions in Section 3(a), if You Share
+ Adapted Material You produce, the following conditions also apply.
+ .
+ 1. The Adapter?s License You apply must be a Creative Commons license with the
+ same License Elements, this version or later, or a BY-SA Compatible License.
+ .
+ 2. You must include the text of, or the URI or hyperlink to, the Adapter's
+ License You apply. You may satisfy this condition in any reasonable manner
+ based on the medium, means, and context in which You Share Adapted Material.
+ .
+ 3. You may not offer or impose any additional or different terms or conditions
+ on, or apply any Effective Technological Measures to, Adapted Material that
+ restrict exercise of the rights granted under the Adapter's License You apply.
+ .
+ Section 4 ? Sui Generis Database Rights.
+ .
+ Where the Licensed Rights include Sui Generis Database Rights that apply to
+ Your use of the Licensed Material:
+ .
+ a. for the avoidance of doubt, Section 2(a)(1) grants You the right to extract,
+ reuse, reproduce, and Share all or a substantial portion of the contents of the
+ database;
+ .
+ b. if You include all or a substantial portion of the database contents in a
+ database in which You have Sui Generis Database Rights, then the database in
+ which You have Sui Generis Database Rights (but not its individual contents) is
+ Adapted Material, including for purposes of Section 3(b); and
+ .
+ c. You must comply with the conditions in Section 3(a) if You Share all or a
+ substantial portion of the contents of the database.  For the avoidance of
+ doubt, this Section 4 supplements and does not replace Your obligations under
+ this Public License where the Licensed Rights include other Copyright and
+ Similar Rights.
+ .
+ Section 5 ? Disclaimer of Warranties and Limitation of Liability.
+ .
+ a. Unless otherwise separately undertaken by the Licensor, to the extent
+ possible, the Licensor offers the Licensed Material as-is and as-available, and
+ makes no representations or warranties of any kind concerning the Licensed
+ Material, whether express, implied, statutory, or other. This includes, without
+ limitation, warranties of title, merchantability, fitness for a particular
+ purpose, non-infringement, absence of latent or other defects, accuracy, or the
+ presence or absence of errors, whether or not known or discoverable. Where
+ disclaimers of warranties are not allowed in full or in part, this disclaimer
+ may not apply to You.
+ .
+ b. To the extent possible, in no event will the Licensor be liable to You on
+ any legal theory (including, without limitation, negligence) or otherwise for
+ any direct, special, indirect, incidental, consequential, punitive, exemplary,
+ or other losses, costs, expenses, or damages arising out of this Public License
+ or use of the Licensed Material, even if the Licensor has been advised of the
+ possibility of such losses, costs, expenses, or damages. Where a limitation of
+ liability is not allowed in full or in part, this limitation may not apply to
+ You.
+ .
+ c. The disclaimer of warranties and limitation of liability provided above
+ shall be interpreted in a manner that, to the extent possible, most closely
+ approximates an absolute disclaimer and waiver of all liability.
+ .
+ Section 6 ? Term and Termination.
+ .
+ a. This Public License applies for the term of the Copyright and Similar Rights
+ licensed here. However, if You fail to comply with this Public License, then
+ Your rights under this Public License terminate automatically.
+ .
+ b. Where Your right to use the Licensed Material has terminated under Section
+ 6(a), it reinstates:
+ .
+ 1. automatically as of the date the violation is cured, provided it is cured
+ within 30 days of Your discovery of the violation; or
+ .
+ 2. upon express reinstatement by the Licensor.
+ .
+ c. For the avoidance of doubt, this Section 6(b) does not affect any right the
+ Licensor may have to seek remedies for Your violations of this Public License.
+ .
+ d. For the avoidance of doubt, the Licensor may also offer the Licensed
+ Material under separate terms or conditions or stop distributing the Licensed
+ Material at any time; however, doing so will not terminate this Public License.
+ .
+ e. Sections 1, 5, 6, 7, and 8 survive termination of this Public License.
+ .
+ Section 7 ? Other Terms and Conditions.
+ .
+ a. The Licensor shall not be bound by any additional or different terms or
+ conditions communicated by You unless expressly agreed.
+ .
+ b. Any arrangements, understandings, or agreements regarding the Licensed
+ Material not stated herein are separate from and independent of the terms and
+ conditions of this Public License.
+ .
+ Section 8 ? Interpretation.
+ .
+ a. For the avoidance of doubt, this Public License does not, and shall not be
+ interpreted to, reduce, limit, restrict, or impose conditions on any use of the
+ Licensed Material that could lawfully be made without permission under this
+ Public License.
+ .
+ b. To the extent possible, if any provision of this Public License is deemed
+ unenforceable, it shall be automatically reformed to the minimum extent
+ necessary to make it enforceable. If the provision cannot be reformed, it shall
+ be severed from this Public License without affecting the enforceability of the
+ remaining terms and conditions.
+ .
+ c. No term or condition of this Public License will be waived and no failure to
+ comply consented to unless expressly agreed to by the Licensor.
+ .
+ d. Nothing in this Public License constitutes or may be interpreted as a
+ limitation upon, or waiver of, any privileges and immunities that apply to the
+ Licensor or You, including from the legal processes of any jurisdiction or
+ authority.
+ .
+ Creative Commons is not a party to its public licenses. Notwithstanding,
+ Creative Commons may elect to apply one of its public licenses to material it
+ publishes and in those instances will be considered the ?Licensor.? Except for
+ the limited purpose of indicating that material is shared under a Creative
+ Commons public license or as otherwise permitted by the Creative Commons
+ policies published at creativecommons.org/policies, Creative Commons does not
+ authorize the use of the trademark ?Creative Commons? or any other trademark or
+ logo of Creative Commons without its prior written consent including, without
+ limitation, in connection with any unauthorized modifications to any of its
+ public licenses or any other arrangements, understandings, or agreements
+ concerning use of licensed material. For the avoidance of doubt, this paragraph
+ does not form part of the public licenses.
+ .
+ Creative Commons may be contacted at creativecommons.org.
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+License: FSFAP
+ Copying and distribution of this file, with or without modification, are
+ permitted in any medium without royalty provided the copyright notice
+ and this notice are preserved.  This file is offered as-is, without any
+ warranty.
+
+License: FSFULLR
+ This file is free software; the Free Software Foundation
+ gives unlimited permission to copy and/or distribute it,
+ with or without modifications, as long as this notice is preserved.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+ even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ PARTICULAR PURPOSE.
+
+License: GPL-2
+ This package is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public
+ License version 2, as published by the Free Software Foundation.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License version 2
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License version 2
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: GPL-3+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".
+
+License: LGPL-2.1
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; under
+ version 2.1 of the License.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License version 2.1 can be found in "/usr/share/common-licenses/LGPL-2.1".

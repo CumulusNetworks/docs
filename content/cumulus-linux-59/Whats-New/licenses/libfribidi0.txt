@@ -6,13 +6,13 @@ Source: http://www.fribidi.org
 Files: *
 Copyright: 2001,2002,2004,2005 Behdad Esfahbod
            2004 Sharif FarsiWeb, Inc
-           1999,2000 Dov Grobgeld
+           1999,2000,2017 Dov Grobgeld
 License: LGPL-2.1+
 
 Files: debian/*
 Copyright: 2000-2002 Changwoo Ryu <cwryu@debian.org>
            2003-2007 Baruch Even <baruch@debian.org>
-           2010-2015 أحمد المحمودي (Ahmed El-Mahmoudy) <aelmahmoudy@users.sourceforge.net>
+           2010-2015,2017-2019 ???? ???????? (Ahmed El-Mahmoudy) <aelmahmoudy@users.sourceforge.net>
 License: LGPL-2.1+
 
 License: LGPL-2.1+

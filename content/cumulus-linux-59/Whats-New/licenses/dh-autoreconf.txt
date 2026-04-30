@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 
 Files: *
-Copyright: Â© 2010-2014 Julian Andres Klode <jak@debian.org>
+Copyright: © 2010-2014 Julian Andres Klode <jak@debian.org>
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

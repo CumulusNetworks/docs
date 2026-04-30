@@ -1,14 +1,14 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: netifaces
 Source: https://pypi.python.org/pypi/netifaces
+
+Files: *
+Copyright: (c) 2007, 2008 Alastair Houghton
+License: MIT-style
 
 Files: debian/*
 Copyright: (c) 2008-2013, Mario Izquierdo (mariodebian) <mariodebian@gmail.com>
            (c) 2014, Thomas Goirand <zigo@debian.org>
-License: MIT-style
-
-Files: *
-Copyright: (c) 2007, 2008 Alastair Houghton
 License: MIT-style
 
 License: MIT-style

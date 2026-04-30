@@ -15,7 +15,7 @@ Copyright: 1999-2001, John Goerzen <jgoerzen@complete.org>
  2008, Kees Cook <kees@outflux.net>
  2009-2010, Jonathan Yu <jawnsy@cpan.org>
  2010-2011, 2014, Angel Abad <angel@debian.org>
- 2010-2019, gregor herrmann <gregoa@debian.org>
+ 2010-2022, gregor herrmann <gregoa@debian.org>
  2011, Ansgar Burchardt <ansgar@debian.org>
 License: Artistic or GPL-1+
 

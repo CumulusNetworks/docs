@@ -5,13 +5,13 @@ maintained by Andreas Metzler <ametzler@debian.org>, Eric Dorland
 <eric@debian.org>, James Westby <jw+debian@jameswestby.net>,
 Peter Eisentraut <petere@debian.org>
 
-It was downloaded from http://ftp.gnupg.org/GnuPG/libksba/.
+It was downloaded from https://gnupg.org/ftp/gcrypt/libksba/.
 
 Upstream Authors: g10 Code GmbH and Fabio Fiorina.
 
 Copyright:
  | Copyright (C) 2001, 2002, 2003, 2004, 2005, 2006, 2010, 2011
- |               2012, 2013, 2014, 2015 g10 Code GmbH
+ |               2012, 2013, 2014, 2015, 2018, 2019 2020 2021 g10 Code GmbH
  | Copyright (C) 2001, 2002, 2003, 2007 Free Software Foundation, Inc.
  | Copyright (C) 2000, 2001 Fabio Fiorina
 
@@ -29,6 +29,7 @@ terms (LGPLv3+/GPLv2+):
  |
  |   - the GNU General Public License as published by the Free
  |     Software Foundation; either version 2 of the License, or (at
+ |     your option) any later version.
  |
  | or both in parallel, as here.
  |
@@ -83,3 +84,31 @@ under the following terms (see src/cms.asn):
 
 On Debian systems, the complete text of the GNU General Public License
 can be found in `/usr/share/common-licenses/GPL-3'.
+
+Files: src/asn1-constants.h
+Copyright: 2020 g10 Code Gmbh
+License: FSFUL
+
+Files: src/der-builder.c src/der-builder.h
+Copyright: 2020 g10 Code GmbH
+License: LGPL-2.1-or-later
+
+License: FSFUL
+ This file is free software; the authors give unlimited permission
+ to copy, distribute and modify it.
+ SPDX-License-Identifier: FSFUL
+
+License: LGPL-2.1-or-later
+ This file is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as
+ published by the Free Software Foundation; either version 2.1 of
+ the License, or (at your option) any later version.
+ .
+ This file is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program; if not, see <https://www.gnu.org/licenses/>.
+ SPDX-License-Identifier: LGPL-2.1-or-later

@@ -14,7 +14,7 @@ Debian adaptions for these packages are licensed under the GNU General
 Public License, version 2, and are under Copyright by:
 
    Norbert Preining <preining@logic.at> (2005-)
-   Frank KÃ¼ster <frank@kuesterei.ch> (2006-)
+   Frank Küster <frank@kuesterei.ch> (2006-)
    Julian Gilbey <jdg@debian.org> (2002-)
 
 All code generated for the Debian adaptions is under the GNU General

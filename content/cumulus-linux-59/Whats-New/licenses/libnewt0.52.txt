@@ -1,16 +1,74 @@
-This is the Debian version of the newt library.
-newt was written by Erik Troan <ewt@redhat.com>.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Comment:
+ This is the Debian version of the newt library.
+ newt was written by Erik Troan <ewt@redhat.com>.
+ .
+ The original package was put together by Enrique Zanardi <ezanard@debian.org>.
+Source: https://releases.pagure.org/newt/
 
-The original package was put together by Enrique Zanardi
-<ezanard@debian.org>, from sources obtained from:
-  ftp://ftp.redhat.com/pub/redhat/redhat-7.0-en/os/i386/SRPMS/newt-0.50.17-1.src.rpm
-Recent upstream versions can be found at: http://fedora.redhat.com/
+Files: *
+Copyright: (C) 1996-2016  Red Hat, Inc.
+License: LGPL-2
 
- Copyright (C) 1989, 1991 Free Software Foundation, Inc.,
- 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
+Files: listbox.c
+Copyright: (C) 1996, 1997 Elliot Lee
+License: LGPL-2
 
-newt is available under the terms of the GNU Library General Public
-License, version 2. On Debian GNU/Linux systems, the complete text of this
-license can be found in `/usr/share/common-licenses/LGPL-2'.
+Files: debian/patches/icelandic.patch
+ po/ast.po   po/ca.po    po/cs.po    po/da.po
+ po/de.po    po/dz.po    po/fr.po    po/ga.po
+ po/it.po    po/ja.po    po/eo.po    po/es.po
+ po/lt.po    po/mr.po    po/nb.po    po/nds.po
+ po/nn.po    po/pt_BR.po po/sl.po    po/sv.po
+ po/vi.po    po/zh_CN.po po/zh_TW.po
+Copyright: (C) 2003-2006 Free Software Foundation, Inc.
+License: LGPL-2
+
+Files: po/tl.po
+Copyright: (C) 2005 Eric Pareja
+License: LGPL-2
+
+Files: po/ms.po
+Copyright: (C) Fedora Project
+License: LGPL-2
+
+Files: po/pt.po
+Copyright: (C) 2003 Alastair McKinstry <mckinstry@debian.org>
+License: LGPL-2
+
+Files: po/xh.po
+Copyright: (C) 2005 Canonical Ltd.
+License: LGPL-2
+
+Files: debian/patches/kazakh.patch
+Copyright: (C) 2010 HZ
+Comment: This file is distributed under the same license as debian-installer.
+License: GPL-2+
+
+Files: po/ta.po  po/th.po
+Copyright: (C) 2003, 2006 Software in the Public Interest, Inc.
+Comment: This file is distributed under the same license as debian-installer.
+License: GPL-2+
+
+License: LGPL-2
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Library General Public
+ License version 2 as published by the Free Software Foundation.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Library General Public License for more details.
+ .
+ You should have received a copy of the GNU Library General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ .
+ newt is available under the terms of the GNU Library General Public
+ License, version 2. On Debian GNU/Linux systems, the complete text of this
+ license can be found in `/usr/share/common-licenses/LGPL-2'.
+
+License: GPL-2+
+ On Debian GNU/Linux systems, the complete text of this
+ license can be found in `/usr/share/common-licenses/GPL-2'.
+

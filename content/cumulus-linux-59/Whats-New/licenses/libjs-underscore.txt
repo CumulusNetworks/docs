@@ -9,8 +9,11 @@ Source: https://github.com/documentcloud/underscore
 Files-Excluded:
  underscore-min.js
  underscore-min.js.map
+ underscore-umd.js
+ underscore-umd-min.js
  docs/public/fonts
  test/vendor
+ *.map
 
 Files: *
 Copyright: 2009-2018, Jeremy Ashkenas <jeremy@documentcloud.org>
@@ -34,6 +37,10 @@ License-Grant:
  Free Software Foundation; either version 3, or (at your option) any
  later version.
 License: GPL-3+
+
+Files: types-*/*
+Copyright: Microsoft Corporation
+License: Expat
 
 License: Expat
  Permission is hereby granted, free of charge, to any person obtaining a

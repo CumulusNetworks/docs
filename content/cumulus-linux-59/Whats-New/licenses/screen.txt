@@ -7,8 +7,12 @@ Source: https://savannah.gnu.org/projects/screen
 Files: *
 Copyright: 1987      Oliver Laumann
            1991      Wayne Davidson
-           1993-2006 Juergen Weigert <jnweiger@immd4.informatik.uni-erlangen.de>
-           1993-2006 Michael Schroeder <mlschroe@immd4.informatik.uni-erlangen.de>
+           1993-2017 Juergen Weigert <jnweiger@immd4.informatik.uni-erlangen.de>
+           1993-2009 Michael Schroeder <mlschroe@immd4.informatik.uni-erlangen.de>
+           2008-2009 Micah Cowan <micah@cowan.name>
+           2008-2015 Sadrul Habib Chowdhury <sadrul@users.sourceforge.net>
+           2015-2022 Alexander Naumov <alexander_naumov@opensuse.org>
+           2015-2022 Amadeusz S?awi?ski <amade@asmblr.net>
 License: GPL-3+
 
 Files: debian/*
@@ -18,7 +22,7 @@ Copyright: 1996      Ian Murdock <imurdock@debian.org>
            2001-2003 Adam Lazur <zal@debian.org>
            2007-2009 Jan Christoph Nordholz <hesso@pool.math.tu-berlin.de>
            2011      Brian Kroth <bpkroth@gmail.com>
-           2011-2015 Axel Beckert <abe@debian.org>
+           2011-2023 Axel Beckert <abe@debian.org>
 License: GPL-3+
 Comment: It is assumed that the Debian packaging is licensed under the
  same terms as the upstream project unless stated otherwise.

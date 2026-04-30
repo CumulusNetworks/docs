@@ -1,51 +1,76 @@
-This package was downloaded from http://caca.zoy.org/wiki/libcaca
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: libcaca
+Upstream-Contact: Sam Hocevar <sam@hocevar.net>
+Source: https://github.com/cacalabs/libcaca
 
-Upstream authors: Sam Hocevar <sam@zoy.org>
-                  Jean-Yves Lamoureux <jylam@lnxscene.org>
-                  John Beppu <beppu@lbox.org>
+Files: *
+Copyright: 2009-2012, <carmie@zoy.org>
+           2009, Adrien Grand <jpountz@dinauz.org>
+           2010, Alex Foulon <alxf@lavabit.com>
+           2012, Bastian Märkisch <bmaerkisch@web.de>
+           2007, Ben Wiley Sittler <bsittler@gmail.com>
+           2006, Colin Delacroix <colin@zoy.org>
+           2003-2012, Jean-Yves Lamoureux <jylam@lnxscene.org>
+           1998, Michele Bini <mibin@tin.it>
+           2007-2014, Pascal Terjan <pterjan@linuxfr.org>
+           2002-2014, Sam Hocevar <sam@hocevar.net>
+License: WTFPL-2
 
-License for libcaca and all demos except cacafire
-=================================================
+Files: examples/conio-snake.cpp
+Copyright: 2009-2010, Sam Hocevar <sam@hocevar.net>
+           2003-2004, Simon Huggins <webmaster@simonhuggins.com>
+License: ISC
 
-Copyright (c) 2003-2008 Sam Hocevar <sam@zoy.org>
-              2003-2008 Jean-Yves Lamoureux <jylam@lnxscene.org>
-              2004-2005 John Beppu <beppu@lbox.org>
-              2006-2007 Ben Wiley Sittler <bsittler@gmail.com>
-              2007-2008 Pascal Terjan <pterjan@linuxfr.org>
+Files: examples/demo0.c
+       src/aafire.c
+Copyright: 1998-2001, Jan Hubicka <hubicka@freesoft.cz>
+           2003-2010, Sam Hocevar <sam@hocevar.net>
+License: LGPL-2+
 
- |             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
- |                     Version 2, December 2004
- |
- |  Copyright (C) 2004 Sam Hocevar
- |   22 rue de Plaisance, 75014 Paris, France
- |  Everyone is permitted to copy and distribute verbatim or modified
- |  copies of this license document, and changing it is allowed as long
- |  as the name is changed.
- |
- |             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
- |    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
- |
- |   0. You just DO WHAT THE FUCK YOU WANT TO.
+Files: kernel/multiboot.h
+Copyright: 1989-1999, Free Software Foundation, Inc
+License: GPL-2+
 
-License for cacafire
-====================
+Files: libcaca.spec
+Copyright: Sam Hocevar
+License: GPL
 
-Copyright (c) 1998, 1999, 2001 Jan Hubicka <hubicka@freesoft.cz>
-              2003, 2004, 2005, 2006 Sam Hocevar <sam@zoy.org>
+License: GPL
+  On Debian GNU/Linux systems, the complete text of the GNU General
+  Public License can be found in /usr/share/common-licenses/GPL-1
 
-    This program is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+License: GPL-2+
+  On Debian GNU/Linux systems, the complete text of the GNU General
+  Public License version 2 can be found in /usr/share/common-licenses/GPL-2
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+License: ISC
+  Permission to use, copy, modify, and/or distribute this software for any
+  purpose with or without fee is hereby granted, provided that the above
+  copyright notice and this permission notice appear in all copies.
+  .
+  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+License: LGPL-2+
+  On Debian GNU/Linux systems, the complete text of the Lesser GNU General
+  Public License version 2 can be found in /usr/share/common-licenses/LGPL-2
 
-On Debian GNU/Linux systems, the complete text of the GNU Lesser General
-Public License can be found in `/usr/share/common-licenses/LGPL'.
+License: WTFPL-2
+  DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+  Version 2, December 2004
+  .
+  Copyright (C) 2004 Sam Hocevar
+  .
+  Everyone is permitted to copy and distribute verbatim or modified
+  copies of this license document, and changing it is allowed as long
+  as the name is changed.
+  .
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+  .
+  0. You just DO WHAT THE FUCK YOU WANT TO.

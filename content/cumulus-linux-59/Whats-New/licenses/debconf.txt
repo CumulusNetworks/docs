@@ -12,13 +12,6 @@ Copyright: 2000 Randolph Chung <tausq@debian.org>
            2005-2010 Colin Watson <cjwatson@debian.org>
 License: BSD-2-clause
 
-Files: Debconf/FrontEnd/Qt* Debconf/Element/Qt*
-Copyright: 2003 Peter Rockai <mornfall@logisys.dyndns.org>
-           2003-2010 Colin Watson <cjwatson@debian.org>
-           2010 Sune Vuorela <sune@debian.org>
-           2011 Modestas Vainius <modax@debian.org>
-License: BSD-2-clause
-
 Files: Debconf/FrontEnd/Kde.pm
 Copyright: 2011 Modestas Vainius <modax@debian.org>
 License: BSD-2-clause

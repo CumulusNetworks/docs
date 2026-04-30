@@ -1,16 +1,15 @@
-This package was debianized by David Schleef <ds@debian.org> on
-Sat, 13 Jan 2001 10:48:08 -0800.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: mtd-utils
+Upstream-Contact: David Oberhollenzer <david.oberhollenzer@sigma-star.at>
+Source: git://git.infradead.org/mtd-utils.git
+License: GPL-2+
+Comment: This package was debianized by David Schleef <ds@debian.org>.
 
-It was downloaded from: git://git.infradead.org/mtd-utils.git
-Main web page for the project: http://www.linux-mtd.infradead.org/
-
-Upstream Author: David Woodhouse <dmwm2@infradead.org> and others
-
+Files: *
 Copyright:
-
-mtd-tools is copyrighted by following entities:
-
 	Copyright (C) 2007-2008 Nokia Corporation. All rights reserved.
+	Copyright (C) 2007, 2008 Artem Bityutskiy
+	Copyright (C) 2006-2008 International Business Machines Corp.
 	              2006 KaiGai Kohei <kaigai@ak.jp.nec.com>
 	              2005 Daniel Measurement and Control, Inc
 	Copyright (C) 2005 Sean Young <sean@mess.org>
@@ -29,32 +28,15 @@ mtd-tools is copyrighted by following entities:
 	              2000 Steven J. Hill (sjhill@realitydiluted.com)
 	Copyright (C) 1999 David A. Hinds.  All Rights Reserved.
 	          (C) 1999 Andrea Arcangeli <andrea@suse.de>
+        Copyright (C) 2014 Bootlin
+        Copyright 2021 NXP
+License: GPL-2+
 
-most of mtd-tools is licensed under the terms of GNU GPL v2 ; 
-the licence header is:
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
-
-On Debian systems, the complete text of the GNU General Public
-License, version 2, can be found in /usr/share/common-licenses/GPL-2.
-
-	flashcp.c, mtd_debug.c:
-
- * Copyright (c) 2d3D, Inc.
- * Written by Abraham vd Merwe <abraham@2d3d.co.za>
- *
+Files: misc-utils/flashcp.c
+       misc-utils/mtd_debug.c
+Copyright: Copyright (c) 2d3D, Inc.
+           Written by Abraham vd Merwe <abraham@2d3d.co.za>
+License: BSD-3-clause
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -78,14 +60,12 @@ License, version 2, can be found in /usr/share/common-licenses/GPL-2.
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-	fec.c is:
-
-	(C) 1997-98 Luigi Rizzo (luigi@iet.unipi.it)
-
- * Portions derived from code by Phil Karn (karn@ka9q.ampr.org),
- * Robert Morelos-Zaragoza (robert@spectra.eng.hawaii.edu) and Hari
- * Thirumoorthy (harit@spectra.eng.hawaii.edu), Aug 1995
- *
+Files: lib/libfec.c
+Copyright: (C) 1997-98 Luigi Rizzo (luigi@iet.unipi.it)
+           Portions derived from code by Phil Karn (karn@ka9q.ampr.org),
+           Robert Morelos-Zaragoza (robert@spectra.eng.hawaii.edu) and Hari
+           Thirumoorthy (harit@spectra.eng.hawaii.edu), Aug 1995
+License: BSD-2-clause
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -110,43 +90,54 @@ License, version 2, can be found in /usr/share/common-licenses/GPL-2.
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
 
-	crc32.c is: 
+Files: lib/libcrc32.c
+Copyright: COPYRIGHT (C) 1986 Gary S. Brown
+License: unrestricted
+ You may use this program, or code or tables extracted from it,
+ as desired without restriction.
 
-	COPYRIGHT (C) 1986 Gary S. Brown.  You may use this program, or
-	code or tables extracted from it, as desired without restriction.
+Files: include/dictionary.h
+       include/libiniparser.h
+       lib/dictionary.c
+       lib/libiniparser.c
+Copyright: Copyright (c) 2000-2007 by Nicolas Devillard.
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the "Software"),
+ to deal in the Software without restriction, including without limitation
+ the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
 
-	ubi-tools is GPL-2:
-	
-	Copyright (c) International Business Machines Corp., 2006-2008
-                  2007 Frank Haverkamp <haver@vnet.ibm.com>
-	Copyright (C) 2007, 2008 Nokia Corporation
-	Copyright (c) Artem Bityutskiy, 2007
-	Copyright (C) 2000-2004 Steven J. Hill (sjhill@realitydiluted.com)
-	              Toshiba America Electronics Components, Inc
+Files: ubifs-utils/mkfs.ubifs/sign.*
+Copyright: Copyright (C) 2018 Pengutronix
+License: GPL-2+
 
-
-	libiniparser is:
-
-Copyright (c) 2000-2007 by Nicolas Devillard.
-MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the "Software"),
-to deal in the Software without restriction, including without limitation
-the rights to use, copy, modify, merge, publish, distribute, sublicense,
-and/or sell copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE.
-
-
-
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License, version 2, can be found in /usr/share/common-licenses/GPL-2.

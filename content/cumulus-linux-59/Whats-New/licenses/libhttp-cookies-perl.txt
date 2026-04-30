@@ -1,10 +1,10 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: HTTP-Cookies
-Upstream-Contact: Gisle Aas <gisle@activestate.com>
+Upstream-Contact: Olaf Alders <olaf@wundercounter.com>
 Source: https://metacpan.org/release/HTTP-Cookies
 
 Files: *
-Copyright: 1997-2017, Gisle Aas <gisle@activestate.com>
+Copyright: 2002, Gisle Aas <gisle@activestate.com>
 License: Artistic or GPL-1+
 
 Files: lib/HTTP/Cookies/Microsoft.pm
@@ -13,7 +13,7 @@ License: Artistic or GPL-1+
 
 Files: debian/*
 Copyright: 2011, Nicholas Bamber <nicholas@periapt.co.uk>
- 2014, gregor herrmann <gregoa@debian.org>
+ 2014-2021, gregor herrmann <gregoa@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic

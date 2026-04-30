@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: time
 Upstream-Contact: bug-gnu-utils@gnu.org
-Source: http://ftp.gnu.org/pub/gnu/time/time-1.7.tar.gz
+Source: https://ftp.gnu.org/pub/gnu/time/time-1.9.tar.gz
 Comment: 
  This is Debian GNU/Linux's prepackaged version of the FSF's GNU time utility.
  `time' is a program that measures many of the CPU resources, such as time and
@@ -15,8 +15,8 @@ Comment:
  Tollef Fog Heen, Salvatore Bonaccorso, and Bob Proulx.
 
 Files: *
-Copyright: Copyright 1987-1996 Free Software Foundation, Inc.
-License: GPL-2+
+Copyright: Copyright 1987-2018 Free Software Foundation, Inc.
+License: GPL-3+
 
 Files: debian/*
 Copyright: Copyright 1995 Peter Tobias <tobias@et-inf.fho-emden.de>
@@ -28,8 +28,22 @@ License: GPL-2+
 
 Files: debian/time.1
 Copyright: Copyright 1996 Dirk Eddelbuettel <edd@miles.econ.queensu.ca>
-License: freely redistributable
+License: freely-redistributable
  Copyright Dirk Eddelbuettel but freely redistributable
+
+License: GPL-3+
+ GNU Time is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ GNU Time is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems, the full text of the GNU General Public
+ License can be found in the file `/usr/share/common-licenses/GPL'.
 
 License: GPL-2+
  This program is free software; you can redistribute it

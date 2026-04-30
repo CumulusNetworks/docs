@@ -1,101 +1,68 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: libglvnd
-Source: https://github.com/NVIDIA/libglvnd
+Source: https://gitlab.freedesktop.org/glvnd/libglvnd
 
-Files: *
-Copyright: 2013-2017 NVIDIA Corporation
-License: MIT
+Files:		*
+Copyright:	2013-2017 NVIDIA Corporation
+ 		2007-2013 VMware, Inc
+ 		2010 Intel Corporation
+ 		2010 Francisco Jerez
+ 		2007-2012 The Khronos Group Inc
+ 		1999-2006 Brian Paul
+ 		2010 LunarG Inc
+ 		2009 Dave Gamble
+License:	MIT
 
-Files: include/c99_compat.h
-Copyright: 2007-2013 VMware, Inc
-License: MIT
+Files:		include/GLES/egl.h
+ 		include/GLES/glplatform.h
+ 		include/GLES2/gl2platform.h
+ 		include/GLES3/gl3platform.h
+ 		src/generate/xml/gl.xml
+ 		src/generate/xml/glx.xml
+Copyright:	2008-2018 The Khronos Group Inc.
+License:	Apache-2.0
 
-Files: include/glvnd_list.h
-Copyright: 2010 Intel Corporation
-	   2010 Francisco Jerez
-License: MIT
-
-Files:	include/KHR/khrplatform.h
-	include/GL/glxext.h
-	include/GL/glext.h
-	include/EGL/egl.h
-	include/EGL/eglext.h
-	include/EGL/eglplatform.h
-Copyright: 2007-2012 The Khronos Group Inc
-License: MIT
-
-Files:	include/compiler.h
-	include/GL/gl.h
-Copyright: 2009 VMware, Inc.
-	   1999-2006 Brian Paul
-License: MIT
-
-Files:	include/GL/glx.h
-	include/glheader.h
-	src/GLdispatch/vnd-glapi/glapi.h
-	src/GLdispatch/vnd-glapi/u_execmem.c
-Copyright: 1999-2008 Brian Paul
-License: MIT
-
-Files: m4/ax_check_enable_debug.m4
-Copyright: 2011 Rhys Ulerich
-	  2014-2015 Philip Withnall
-License: public-domain
+Files:		m4/ax_check_enable_debug.m4
+Copyright:	2011 Rhys Ulerich
+ 		2014-2015 Philip Withnall
+License:	public-domain
  Public Domain.
 
-Files: m4/ax_check_link_flag.m4
-Copyright: 2008 Guido U. Draheim
-	   2011 Maarten Bosmans
-License: GPL-3+
+Files:		m4/ax_check_link_flag.m4
+Copyright:	2008 Guido U. Draheim
+ 		2011 Maarten Bosmans
+License:	GPL-3+
 
-Files: m4/ax_pthread.m4
-Copyright: 2008 Steven G. Johnson
-	  2011 Daniel Richard G.
-License: GPL-3+
+Files:		m4/ax_pthread.m4
+Copyright:	2008 Steven G. Johnson
+ 		2011 Daniel Richard G.
+License:	GPL-3+
 
-Files:	src/generate/gen_gldispatch_mapi.py
-	src/GLdispatch/vnd-glapi/entry_common.c
-	src/GLdispatch/vnd-glapi/entry_x86_64_common.c
-	src/GLdispatch/vnd-glapi/entry_x86_64_tsd.c
-Copyright: 2015 NVIDIA CORPORATION
-	   2010 LunarG Inc
-License: MIT
+Files:		src/util/uthash/*
+Copyright:	2005-2013 Troy D. Hanson
+License:	BSD-1-clause
 
-Files:	src/GLdispatch/vnd-glapi/entry.h
-	src/GLdispatch/vnd-glapi/mapi_tmp.h
-	src/GLdispatch/vnd-glapi/entry_x86_64_tls.c
-	src/GLdispatch/vnd-glapi/stub.h
-	src/GLdispatch/vnd-glapi/table.h
-	src/GLdispatch/vnd-glapi/entry_x86_tsd.c
-	src/GLdispatch/vnd-glapi/stub.c
-	src/GLdispatch/vnd-glapi/table.c
-	src/GLdispatch/vnd-glapi/entry_x86_tls.c
-	src/GLdispatch/vnd-glapi/entry_pure_c.c
-Copyright: 2010 LunarG Inc
-License: MIT
+Files:		src/util/uthash/doc/userguide.html
+Copyright:	2006 Troy D. Hanson
+ 		2006-2009 Stuart Rackham
+License:	GPL
 
-Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c
-	src/GLdispatch/vnd-glapi/u_current_tls.c
-Copyright: 2015 NVIDIA CORPORATION
-	   1999-2008 Brian Paul
-License: MIT
+Files:		debian/*
+Copyright:	2013 Timo Aaltonen <tjaalton@ubuntu.com>
+License:	MIT
 
-Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c
-Copyright: 2010 LunarG Inc
-	   1999-2008 Brian Paul
-License: MIT
-
-Files:	src/util/cJSON*
-Copyright: 2009 Dave Gamble
-License: MIT
-
-Files:	src/util/uthash/*
-Copyright: 2005-2013 Troy D. Hanson
-License: BSD-1-clause
-
-Files: debian/*
-Copyright: 2013 Timo Aaltonen <tjaalton@ubuntu.com>
-License: MIT
+License: Apache-2.0
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ .
+     http://www.apache.org/licenses/LICENSE-2.0
+ .
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 
 License: MIT
  Permission is hereby granted, free of charge, to any person obtaining a
@@ -136,6 +103,10 @@ License: BSD-1-clause
  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: GPL
+ On Debian machines the full text of the GNU General Public License
+ can be found in the file /usr/share/common-licenses/GPL.
 
 License: GPL-3+
  On Debian machines the full text of the GNU General Public License

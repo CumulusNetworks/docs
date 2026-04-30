@@ -9,10 +9,6 @@ later.
 
 Copyrights as follows:
 
-debian/kdump-config, debian/kdump-config.8, debian/kdump-tools.5:
- * Copyright (C) 2007-2009 Hewlett-Packard Development Company, L.P.
-   All rights reserved.
-
 diskdump_mod:
  * Copyright (C) 2004, 2005 David Anderson
  * Copyright (C) 2004, 2005 Red Hat, Inc. All rights reserved.

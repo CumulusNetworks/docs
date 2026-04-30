@@ -1,6 +1,6 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: roman
-Source: https://pypi.python.org/pypi/roman/
+Source: https://github.com/zopefoundation/roman
 
 Files: *
 Copyright: 2001 Mark Pilgrim

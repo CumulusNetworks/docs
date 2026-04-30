@@ -1,0 +1,83 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: RE2
+Upstream-Contact: The RE2 Authors <re2-dev@googlegroups.com>
+Source: https://github.com/google/re2
+Files-Excluded:
+ doc/*xkcd*
+ re2/perl_groups.cc
+ re2/unicode_casefold.cc
+ re2/unicode_groups.cc
+Comment: Source Repackaged:
+ The included XKCD comic (in doc) is under the non-free Creative Commons
+ Attribution-NonCommercial 2.5 License. It has been stripped from the Debian
+ version of this package.
+ .
+ The source files automatically generated from included Perl and Python scripts
+ have been stripped, as they are generated during building.
+
+Files: *
+Copyright: 2002-2020, Google Inc.,
+           2014,      Samsung Electronics,
+           2010-2016, Stefano Rivera <stefanor@debian.org>
+License: BSD-3-google
+
+Files: util/utf.h util/rune.cc
+Copyright: 2002, Lucent Technologies
+License: Lucent
+ Permission to use, copy, modify, and distribute this software for any purpose
+ without fee is hereby granted, provided that this entire notice is included in
+ all copies of any software which is or includes a copy or modification of this
+ software and in all copies of the supporting documentation for such software.
+ .
+ THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR IMPLIED
+ WARRANTY.  IN PARTICULAR, NEITHER THE AUTHORS NOR LUCENT TECHNOLOGIES MAKE ANY
+ REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY OF THIS
+ SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
+
+Files: re2/fuzzing/compiler-rt/*
+Copyright: The LLVM Contributors
+License: Apache-2.0 with LLVM exception
+ The Apache 2.0 License can be found in /usr/share/common-licenses/Apache-2.0
+ on a Debian system.
+ .
+ --- LLVM Exceptions to the Apache 2.0 License ----
+ .
+ As an exception, if, as a result of your compiling your source code, portions
+ of this Software are embedded into an Object form of such source code, you may
+ redistribute such embedded portions in such Object form without complying with
+ the conditions of Sections 4(a), 4(b) and 4(d) of the License.
+ .
+ In addition, if you combine or link compiled forms of this Software with
+ software that is licensed under the GPLv2 ("Combined Software") and if a court
+ of competent jurisdiction determines that the patent provision (Section 3),
+ the indemnity provision (Section 9) or other Section of the License conflicts
+ with the conditions of the GPLv2, you may retroactively and prospectively
+ choose to deem waived or otherwise exclude such Section(s) of the License, but
+ only in their entirety and only with respect to the Combined Software.
+
+Files: debian/*
+Copyright: 2010-2020, Stefano Rivera <stefanor@debian.org>
+License: BSD-3-google
+
+License: BSD-3-google
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+ 1. Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+ 3. Neither the name of Google Inc. nor the names of its contributors may be
+    used to endorse or promote products derived from this software without
+    specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

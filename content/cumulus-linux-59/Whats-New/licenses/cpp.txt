@@ -1,4 +1,4 @@
-gcc-defaults is Copyright (C) 2000, 2001, 2006, 2009 Debian.
+gcc-defaults is Copyright (C) 2000-2020 Debian.
 
 These scripts are free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
@@ -6,7 +6,7 @@ Free Software Foundation; either version 2, or (at your option) any
 later version.
 
 On Debian GNU/Linux systems, the complete text of the GNU General
-Public License can be found in `/usr/share/common-licenses/GPL'.
+Public License can be found in `/usr/share/common-licenses/GPL-2'.
 
 The c89 and c99 man pages are taken from netbsd:
 

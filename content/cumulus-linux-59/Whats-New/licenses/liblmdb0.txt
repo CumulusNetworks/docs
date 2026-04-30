@@ -1,14 +1,14 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Howard Chu, Symas Corp.
 Upstream-Contact: Howard Chu <hyc@highlandsun.com>
-Source: https://gitorious.org/mdb/mdb
+Source: http://symas.com/mdb/
 
 Files: *
 Copyright: 2011-2013 Howard Chu, Symas Corp.
 License: OpenLDAP-2.8
 
 Files: debian/*
-Copyright: 2013 Ondřej Surý
+Copyright: 2013 Ond?ej Sur�
 License: OpenLDAP-2.8
 
 License: OpenLDAP-2.8

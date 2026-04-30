@@ -1,0 +1,48 @@
+This is a common library for Debian GNU/Linux installer.
+
+Authors: David Whedon <dwhedon@debian.org>
+         Bastian Blank <waldi@debian.org>
+         many others
+
+The combined code is copyrighted by:
+
+Copyright © 2001-2002 David Whedon|Kimdon <dwhedon@debian.org>
+Copyright © 2001-2002 Tollef Fog Heen <tfheen@debian.org>
+Copyright © 2002-2003 Martin Sjogren <sjogren@debian.org>
+Copyright © 2002 Junichi Uekawa <dancer@debian.org>
+Copyright © 2002 Michael Cardenas <mbc@debian.org>
+Copyright © 2003-2009 Bastian Blank <waldi@debian.org>
+Copyright © 2003-2004 Petter Reinholdtsen <pere@debian.org>
+Copyright © 2003-2004 Petter Reinholdtsen <pere@debian.org>
+Copyright © 2003-2008 Joey Hess <joeyh@debian.org>
+Copyright © 2004 Matt Kraai <kraai@debian.org>
+Copyright © 2004 Alastair McKinstry <mckinstry@debian.org>
+Copyright © 2004-2008 Stephen R. Marenka <smarenka@debian.org>
+Copyright © 2004-2006 Thiemo Seufer <ths@debian.org>
+Copyright © 2004 Joshua Kwan <joshk@debian.org>
+Copyright © 2005 Matt Zimmerman <mdz@debian.org>
+Copyright © 2005-2009 Colin Watson <cjwatson@debian.org>
+Copyright © 2006-2009 Martin Michlmayr <tbm@cyrius.com>
+Copyright © 2007 Sven Luther <svenl@debian.org>
+Copyright © 2007-2009 Frans Pop <fjp@debian.org>
+Copyright © 2008 Aurélien Jarno <aurel32@debian.org>
+Copyright © 2008 Julien Blache <jblache@debian.org>
+Copyright © 2009 Michael Casadevall <sonicmctails@gmail.com>
+Copyright © 2019 Karsten Merker <merker@debian.org>
+
+   This package is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This package is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program. If not, see <http://www.gnu.org/licenses/>
+
+On Debian systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL-2'.
+

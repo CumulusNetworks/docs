@@ -1,41 +1,60 @@
-The Debian package was created by Adam Di Carlo <aph@debian.org>, who
-is also the current maintainer.  No changes, except bug-fixes were made
-to the upstream version of these materials.  All Debian integration scripts
-and packages are under the GPL v2 or later, a copy of which can be found
-on Debian systems in '/usr/share/common-licenses/GPL'.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: DocBook XML
+Upstream-Contact: docbook@lists.oasis-open.org
+Source: https://www.oasis-open.org/docbook/xml/
 
-The package is currently maintained as part of the Debian XML/SGML group.
+Files: *
+Copyright: 1992-2006 HaL Computer Systems, Inc., O'Reilly & Associates, Inc.,
+                     ArborText, Inc., Fujitsu Software Corporation, Norman
+                     Walsh, Sun Microsystems, Inc., and the Organization
+                     for the Advancement of Structured Information Standards
+                     (OASIS).
+License: Docbook
 
-Download:
+Files: debian/*
+Copyright: 1999-2006 Adam Di Carlo <aph@debian.org>
+           2004      Steve Langasek <vorlon@debian.org>
+           2007-2009 Daniel Leidert (dale) <daniel.leidert@wgdd.de>
+           2012      Jakub Wilk <jwilk@debian.org>
+           2013      Helmut Grohne
+           2013      Julien Cristau <jcristau@debian.org>
+           2015      Wookey <wookey@debian.org>
+           2016      Michael Biebl <biebl@debian.org>
+           2019      Niels Thykier <niels@thykier.net>
+           2021      João Seckler <jseckler@riseup.net>
+           2021      Marcos Talau <marcos@talau.info>
+License: GPL-2+
 
-  The original upstream materials may be downloaded from
-  <URL:http://www.oasis-open.org/docbook/xml/>. This process is
-  transparent via the `get-orig-source' target in debian/rules.
+License: Docbook
+ Permission to use, copy, modify and distribute the DocBook XML DTD and
+ its accompanying documentation for any purpose and without fee is
+ hereby granted in perpetuity, provided that the above copyright notice
+ and this paragraph appear in all copies. The copyright holders make no
+ representation about the suitability of the DTD for any purpose. It is
+ provided "as is" without expressed or implied warranty.
+ .
+ If you modify the DocBook DTD in any way, except for declaring and
+ referencing additional sets of general entities and declaring
+ additional notations, label your DTD as a variant of DocBook. See
+ the maintenance documentation for more information.
+ .
+ Please direct all questions, bug reports, or suggestions for
+ changes to the docbook@lists.oasis-open.org mailing list. For more
+ information, see http://www.oasis-open.org/docbook/.
 
-Copyright for DocBook XML v4.x:
-
-  Copyright 1992-2006 HaL Computer Systems, Inc.,
-  O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
-  Corporation, Norman Walsh, Sun Microsystems, Inc., and the
-  Organization for the Advancement of Structured Information
-  Standards (OASIS).
-
-License and Warranty for DocBook XML v4.x:
-
-  Permission to use, copy, modify and distribute the DocBook XML DTD
-  and its accompanying documentation for any purpose and without fee
-  is hereby granted in perpetuity, provided that the above copyright
-  notice and this paragraph appear in all copies.  The copyright
-  holders make no representation about the suitability of the DTD for
-  any purpose.  It is provided "as is" without expressed or implied
-  warranty.
-
-  If you modify the DocBook DTD in any way, except for declaring and
-  referencing additional sets of general entities and declaring
-  additional notations, label your DTD as a variant of DocBook.  See
-  the maintenance documentation for more information.
-
-  Please direct all questions, bug reports, or suggestions for 
-  changes to the docbook@lists.oasis-open.org mailing list. For more
-  information, see http://www.oasis-open.org/docbook/.
-
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License can be found in "/usr/share/common-licenses/GPL-2".

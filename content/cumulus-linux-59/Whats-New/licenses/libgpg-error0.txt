@@ -48,11 +48,6 @@ Copyright: 2005, 2013, 2015, 2016 g10 Code GmbH
  2006, 2008, 2011 Free Software Foundation, Inc.
 License: GPL-3+
 
-Files: potomo
-Copyright: 2008 g10 Code GmbH
- 2010 Free Software Foundation, Inc.
-License: g10-permissive
-
 License: g10-permissive
  This file is free software; as a special exception the author gives
  unlimited permission to copy and/or distribute it, with or without

@@ -8,7 +8,8 @@ Copyright: 2005-2012, Adam Kennedy <adamk@cpan.org>
  2000, Sean M. Burke.
  2006, Chris Nandor.
  2006, Stephen Steneker.
- 2009-2011, JÃ©rÃ´me Quelin.
+ 2009-2011, Jérôme Quelin.
+ 2017-2020, Jens Rehsack.
 License: Artistic or GPL-1+
 
 Files: debian/*
@@ -17,7 +18,7 @@ Copyright: 2006-2009, Jonas Genannt <jonas.genannt@capi2name.de>
  2008, Mark Hymers <mhy@debian.org>
  2010, Damyan Ivanov <dmn@debian.org>
  2011, Angel Abad <angelabad@gmail.com>
- 2011-2018, gregor herrmann <gregoa@debian.org>
+ 2011-2020, gregor herrmann <gregoa@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic

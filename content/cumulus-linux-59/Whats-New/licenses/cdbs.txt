@@ -11,15 +11,15 @@ Copyright:
   2003, Christopher L Cheney <ccheney@debian.org>
   2003, Jeff Bailey <jbailey@debian.org>
   2003, Stefan Gybas <sgybas@debian.org>
-  2003,2008-2019, Jonas Smedegaard <dr@jones.dk>
+  2003,2008-2020, Jonas Smedegaard <dr@jones.dk>
   2004, David B Harris <dbharris@eelf.ddts.net>
   2005-2010, Thomas Nagy
   2006, Fathi Boudra <fboudra@free.fr>
-  2006,2009, Marc DequÃ¨nes (Duck) <Duck@DuckCorp.org>
+  2006,2009, Marc Dequènes (Duck) <Duck@DuckCorp.org>
   2006-2009, Peter Eisentraut <petere@debian.org>
   2006, Peter Rockai <me@mornfall.net>
-  2010,2013, IOhannes m zmÃ¶lnig <zmoelnig@iem.at>
-  2010, RÃ©mi Thebault <remi.thebault@gmail.com>
+  2010,2013, IOhannes m zmölnig <zmoelnig@iem.at>
+  2010, Rémi Thebault <remi.thebault@gmail.com>
 License-Grant:
  This file is free software;
  you can redistribute it and/or modify it
@@ -42,7 +42,7 @@ Files: */config.guess
  */config.sub
  */depcomp
  */missing
-Copyright: 1992-2018, Free Software Foundation, Inc.
+Copyright: 1992-2020, Free Software Foundation, Inc.
 License-Grant:
  This file is free software;
  you can redistribute it and/or modify it
@@ -65,7 +65,7 @@ Copyright: 1994, X Consortium
 License: X11
 
 Files: */Makefile.in
-Copyright: 1994-2018, Free Software Foundation, Inc.
+Copyright: 1994-2020, Free Software Foundation, Inc.
   2002-2003, Colin Walters <walters@debian.org>
   2003, Jeff Bailey <jbailey@debian.org>
   2009-2011, Jonas Smedegaard <dr@jones.dk>
@@ -78,7 +78,6 @@ License-Grant:
 License: FSFULLR~Makefile.in and GPL-2+
 
 Files: tests/dist-py23pypy.at
- tests/dist-pypy.at
 Copyright: 2014, Vasudev Kamath <kamathvasudev@gmail.com>
   2016, Jonas Smedegaard <dr@jones.dk>
 License: GPL-3+

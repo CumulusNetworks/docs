@@ -1,0 +1,1 @@
+libsnmp40-dbgsym has no copyright file

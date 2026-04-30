@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: MariaDB Server
-Upstream-Contact: https://mariadb.org/jira
+Upstream-Contact: https://jira.mariadb.org
 Source: https://github.com/MariaDB/server
 Comment:
  Originally produced by a modified version of licensecheck2dep5
@@ -120,7 +120,7 @@ Comment:
  > Terms and Conditions.
  .
  The above text is subject to this copyright notice:
- ¬© 2010, Oracle and/or its affiliates.
+ © 2010, Oracle and/or its affiliates.
 
 Files: *
 Copyright:
@@ -147,10 +147,11 @@ Copyright:
  2009 Canonical Ltd
  2010 Xavier Oswald <xoswald@debian.org>
  2011 Clint Byrum <clint@ubuntu.com>
- 2011 Ond≈ôej Sur√Ω <ondrej@debian.org>
+ 2011 Ond?ej Sur˝ <ondrej@debian.org>
  2012 Nicholas Bamber <nicholas@periapt.co.uk>
  2013,2016 Kristian Nielsen <knielsen@askmonty.org>
- 2013-2016 Otto Kek√§l√§inen <otto@seravo.fi>
+ 2013-2020 Otto Kek‰l‰inen <otto@debian.org>
+ 2014 Daniel Schepler <schepler@debian.org>
  2014 Julien Muchembled <jm@jmuchemb.eu>
  2014 Tobias Frost <tobi@coldtobi.de>
  2015 Andreas Beckmann <anbe@debian.org>
@@ -167,14 +168,14 @@ Copyright:
  2016 James Cowgill <jcowgill@debian.org>
  2016 Paul Gevers <elbrus@debian.org>
  2016 Samuel Thibault <sthibault@debian.org>
- 2016 Vicen»õiu Ciorbaru <vicentiu@mariadb.org>
+ 2016 Vicen?iu Ciorbaru <vicentiu@mariadb.org>
 License: GPL-2+
 
 Files: plugin/feedback/*
 Copyright: 2010 Sergei Golubchik and Monty Program Ab
 License: GPL-2
 
-Files: debian/additions/mysqlreport*
+Files: debian/additions/mariadb-report*
 Copyright: 2006-2008 Daniel Nichter <public@codenode.com>
  2012-2015 Jean Weisbuch
 License: GPL-2+
@@ -189,13 +190,9 @@ Files:
  dbug/remove_function_from_trace.pl
  dbug/tests.c
  dbug/tests-t.pl
- include/probes_mysql_nodtrace.h.in
- libmysqld/resource.h
  mysql-test/*
  support-files/binary-configure.sh
  support-files/mysqld_multi.server.sh
- support-files/mysql-log-rotate.sh
- support-files/mysql.server-sys5.sh
  Docs/*
 Copyright: UNKNOWN
 Comment: These files fall under the blanket license specified in the file
@@ -212,7 +209,6 @@ License: GPL-2
 
 Files: BUILD/*
  client/*
- client/echo.c
  cmake/*
  dbug/dbug_add_tags.pl
  extra/*
@@ -257,8 +253,8 @@ Files: BUILD/*
  mysql-test/lib/v1/My/*
  mysql-test/lib/v1/mysql-test-run.pl
  mysql-test/lib/v1/mtr_misc.pl
- mysql-test/mysql-stress-test.pl
- mysql-test/mysql-test-run.pl
+ mysql-test/mariadb-stress-test.pl
+ mysql-test/mariadb-test-run.pl
  mysql-test/std_data/*
  mysql-test/suite/perfschema/include/*
  mysql-test/suite/perfschema_stress/include/*
@@ -298,12 +294,6 @@ Copyright: 1979-2009 MySQL AB
            2011 Kentoku SHIBA
 License: GPL-2
 
-Files: extra/yassl/COPYING* extra/yassl/taocrypt/COPYING*
-Copyright: 1989, 1991 Free Software Foundation, Inc
-License: GPL-verbatim
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
-
 Files: include/maria.h include/myisamchk.h
 Copyright: 2006-2008 MySQL AB
  2008-2009 Sun Microsystems, Inc
@@ -322,7 +312,7 @@ Files:  plugin/qc_info/qc_info.cc
 Copyright:  2008, Roland Bouman
 License: BSD-3-clause
 
-Files: tests/async_queries.c tests/nonblock-wrappers.h  sql-common/mysql_async.c
+Files: tests/async_queries.c tests/nonblock-wrappers.h
 Copyright: 2011 Kristian Nielsen and Monty Program Ab
 License: LGPL-2.1+
 
@@ -331,10 +321,6 @@ Files: include/ma_dyncol.h include/queues.h mysys/ma_dyncol.c mysys/queues.c
 Copyright: 2010,2011,2013 Monty Program Ab
  2011,2012 Oleksandr Byelkin
 License: BSD-2-clause
-
-Files: include/my_context.h mysys/my_context.c
-Copyright: 2011,2012 Kristian Nielsen and Monty Program Ab
-License: LGPL-2.1+
 
 Files: mysys/my_port.c
 Copyright: 2002 MySQL AB
@@ -352,7 +338,8 @@ Copyright: 2009-2013, Monty Program Ab
            2000,2003 TXT DataKonsult Ab & Monty Program Ab
 License: BSD-2-clause
 
-Files: strings/strxmov.c  strings/strxnmov.c strings/strxnmov.c  strings/strxmov.c
+Files: strings/strxmov.c
+ strings/strxnmov.c
  strings/strnlen.c
 Copyright: 2009-2011, Monty Program Ab
            2000 TXT DataKonsult Ab & Monty Program Ab
@@ -437,19 +424,6 @@ Copyright:
  2004-2008 MySQL AB & MySQL Finland AB & TCX DataKonsult AB
 License: GPL-2
 
-Files: storage/innobase/ut/ut0crc32.cc
-Copyright: 2009, 2010 Facebook, Inc.
-           2011 Oracle and/or its affiliates.
-License: GPL-2 and BSD-2-clause
-
-Files: storage/innobase/COPYING.Google
-Copyright: 2008 Google Inc
-License: BSD-3-clause
-
-Files: storage/innobase/COPYING.Percona
-Copyright: 2008-2009 Percona Inc
-License: BSD-3-clause
-
 Files: storage/sphinx/*
 Copyright: 2001-2014 Andrew Aksyonoff
  2008-2014 Sphinx Technologies Inc
@@ -476,7 +450,6 @@ Files: client/completion_hash.h
  support-files/MacOSX/postflight.sh
  support-files/MacOSX/preflight.sh
  mysql-test/lib/My/ConfigFactory.pm
- mysql-test/mysql-stress-test.pl
  BUILD/*.sh
  BUILD/compile-solaris-amd64
  BUILD/compile-amd64-valgrind-max
@@ -484,8 +457,7 @@ Files: client/completion_hash.h
  BUILD/compile-pentium64
  scripts/mysqlhotcopy.sh
  scripts/mysqld_multi.sh
- mysql-test/mysql-stress-test.pl
- mysql-test/std_data/checkDBI_DBD-mysql.pl
+ mysql-test/std_data/checkDBI_DBD-MariaDB.pl
 Copyright: 2000-2013 Oracle and/or its affiliates
            2000-2007 MySQL AB
            2009 Sun Microsystems Inc
@@ -494,29 +466,6 @@ License: LGPL
 Files: BUILD/util.sh
 Copyright: 2010 Kristian Nielsen and Monty Program AB
 License: GPL-2
-
-Files: storage/archive/azio.c
- storage/archive/azlib.h
- zlib/*
-Copyright:
- 1995-2005 Jean-loup Gailly
- 1995-2005 Mark Adler
-License: zlib/libpng
-  This software is provided 'as-is', without any express or implied
-  warranty.  In no event will the authors be held liable for any damages
-  arising from the use of this software.
-  .
-  Permission is granted to anyone to use this software for any purpose,
-  including commercial applications, and to alter it and redistribute it
-  freely, subject to the following restrictions:
-  .
-  1. The origin of this software must not be misrepresented; you must not
-     claim that you wrote the original software. If you use this software
-     in a product, an acknowledgment in the product documentation would be
-     appreciated but is not required.
-  2. Altered source versions must be plainly marked as such, and must not be
-     misrepresented as being the original software.
-  3. This notice may not be removed or altered from any source distribution.
 
 Files: sql-bench/innotest1.sh
  sql-bench/innotest1a.sh
@@ -551,10 +500,6 @@ Files: scripts/mysqld_safe.sh
 Copyright: 1996 Abandoned TCX DataKonsult AB & Monty Program KB & Detron HB
 License: public-domain
 
-Files: sql/sql_yacc.cc
-Copyright: 1984,1989-1990,2000-2011 Free Software Foundation, Inc.
-License: GPL-3+-with-bison-exception
-
 Files: storage/innobase/include/pars0grm.h storage/innobase/pars/pars0grm.cc
 Copyright: 1995-2009 Innobase Oy.
  1984,1989-1990,2000-2004 Free Software Foundation Inc.
@@ -588,7 +533,6 @@ License: GPL-2+-with-bison-exception
  version 2.2 of Bison.
 
 Files: storage/innobase/fts/fts0pars.cc
- storage/innobase/fts/fts0pars.cc
  storage/innobase/include/fts0pars.h
 Copyright: 1984, 1989-1990, 2000-2006  Free Software Foundation, Inc.
 License: GPL-3+-with-bison-exception
@@ -634,11 +578,6 @@ Copyright: Richard A. O'Keefe.
    2009-2011, Monty Program Ab
 License: BSD-2-clause
 
-Files: sql/nt_servc.cc
- sql/nt_servc.h
-Copyright: 1998 Abandoned Irena Pancirov - Irnet Snc
-License: public-domain
-
 Files: dbug/dbug.c
  dbug/dbug_long.h
 Copyright: 1987 Abandoned Fred Fish
@@ -676,27 +615,6 @@ License: LGPL-2.1+
 
 Files: storage/spider/*
 Copyright: 2008-2015 Kentoku Shiba
-License: GPL-2
-
-Files: pcre/*
-Copyright: 1997-2016 University of Cambridge
-           2003-2014 Google Inc
-           2009-2016 Zoltan Herczeg
-License: BSD-3-clause
-
-Files: */CMakeLists.txt
-Copyright:
- 2006-2011,2013 Oracle and/or its affiliates
- 2009, 2010 Sun Microsystems, Inc
- 2006,2007 MySQL AB
-License: GPL-2
-
-Files: mysys/CMakeLists.txt
-Copyright: 2006, 2014, Oracle and/or its affiliates
-License: GPL-2
-
-Files: plugin/server_audit/CMakeLists.txt
-Copyright: 2013 Alexey Botchkov and SkySQL Ab
 License: GPL-2
 
 Files: strings/ctype-win1250ch.c
@@ -762,89 +680,81 @@ Copyright:
  2008-2009 Patrick Galbraith
 License: BSD-3-clause
 
-Files: storage/tokudb/*
-Copyright: 2006-2015 Percona and/or its affiliates
-License: GPL-2
-
-Files: storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/build-aux/ltmain.sh
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/build-aux/depcomp
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/build-aux/config.guess
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/build-aux/compile
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/src/scripts/xzless.in
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/build-aux/config.sub
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/src/scripts/xzdiff.in
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/lib/getopt_int.h
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/lib/Makefile.am
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/src/scripts/xzmore.in
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/src/scripts/xzgrep.in
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/extra/scanlzma/scanlzma.c
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/build-aux/missing
- storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/m4/*
-Copyright: 1987-2009 Free Software Foundation, Inc.
- 1992,1993 Jean-loup Gailly
- Andrew Dudman
- Lasse Collin
- 2006 Timo Lindfors
- 1996 Fran,cois Pinard <pinard@iro.umontreal.ca>
- 1996 Gordon Matzigkeit
-License: GPL-2+
-
-Files: storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/m4/acx_pthread.m4
-Copyright:  2007 Steven G. Johnson <stevenj@alum.mit.edu>
-License: GPL-3+
-
-Files: storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/lib/getopt*
-Copyright: 1987-2009 Free Software Foundation, Inc.
-License: LGPL-2.1+
-
-Files: storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/lib/getopt_int.h
-Copyright: 1989-1994,1996-1999,2001,2003,2004 Free Software Foundation, Inc.
-License: GPL-2+
-
-Files: storage/tokudb/PerconaFT/third_party/xz-4.999.9beta/build-aux/install-sh
-Copyright: Copyright (C) 1994 X Consortium
-License: MIT/X11
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to
- deal in the Software without restriction, including without limitation the
- rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
- sell copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- .
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
- .
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
- X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
- AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNEC-
- TION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- .
- Except as contained in this notice, the name of the X Consortium shall not
- be used in advertising or otherwise to promote the sale, use or other deal-
- ings in this Software without prior written authorization from the X Consor-
- tium.
- .
- FSF changes to this file are in the public domain.
-
-Files: storage/tokudb/PerconaFT/third_party/snappy-1.1.2/*
-Copyright: 2005-2011 Google Inc.
-License: BSD-3-clause
-
-Files: zlib/CMakeLists.txt
-Copyright: 2006, 2014, Oracle and/or its affiliates
-License: GPL-2
-
 Files: cmake/systemd.cmake
  scripts/mariadb-service-convert
 Copyright: 2015 Daniel Black
 License: GPL-2
 
-Files: wsrep/*
+Files: wsrep-lib/*
  sql/wsrep_*
  scripts/wsrep_*
-Copyright: 2008-2015 Codership Oy <http://www.codership.com>
+Copyright: 2008-2019 Codership Oy <http://www.codership.com>
+License: GPL-2
+
+Files: libmariadb/*
+Copyright:
+ 2000-2012 MySQL AB & MySQL Finland AB & TCX DataKonsult AB
+ 2006-2011 The PHP Group
+ 2012-2013 Monty Program AB
+ 2014-2020 MariaDB Corporation Ab
+ 2014 Kristian Nielsen & MariaDB Corporation
+License: LGPL-2+
+
+Files: libmariadb/libmariadb/mariadb_dyncol.*
+Copyright:
+ 2011-2012 Oleksandr Byelkin
+ 2011-2013 Monty Program Ab
+License: BSD-2-clause
+
+Files: libmariadb/libmariadb/ma_dtoa.*
+Copyright:
+ 1991, 2000-2001, Lucent Technologies
+ 2007, 2012, Oracle and/or its affiliates.
+License: LGPL
+
+Files: libmariadb/unittest/libmariadb/getopt.*
+Copyright:
+ 1989-1994, Free Software Foundation, Inc
+License: LGPL-2+
+
+Files: libmariadb/cmake/FindIconv.cmake
+Copyright:
+ 2010, Michael Bell <michael.bell@web.de>
+License: BSD-2-Clause
+
+Files: storage/archive/azio.c
+ storage/archive/azlib.h
+ zlib/*
+Copyright:
+ 1995-2005 Jean-loup Gailly
+ 1995-2005 Mark Adler
+License: zlib/libpng
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+  .
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+  .
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+
+Files: mysys/CMakeLists.txt
+Copyright: 2006, 2014, Oracle and/or its affiliates
+License: GPL-2
+
+Files: plugin/server_audit/CMakeLists.txt
+Copyright: 2013 Alexey Botchkov and SkySQL Ab
+License: GPL-2
+
+Files: zlib/CMakeLists.txt
+Copyright: 2006, 2014, Oracle and/or its affiliates
 License: GPL-2
 
 License: GPL-2
@@ -882,25 +792,6 @@ License: GPL-2+
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-License: LGPL-2.1+
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU Lesser General Public License as published by
- the Free Software Foundation; either version 2.1, or (at your option)
- any later version.
- .
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU Lesser General Public License for more details.
- .
- You should have received a copy of the GNU Lesser General Public License along
- with this program; if not, write to the Free Software Foundation,
- Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
- .
- On Debian and systems the full text of the GNU Library General Public
- License version 2.1 can be found in the file
- `/usr/share/common-licenses/LGPL-2.1`
-
 License: LGPL
  This library is free software; you can redistribute it and/or
  modify it under the terms of the GNU Library General Public
@@ -920,6 +811,64 @@ License: LGPL
  On Debian and systems the full text of the GNU Library General Public
  License version 2 can be found in the file
  `/usr/share/common-licenses/LGPL-2`
+
+License: LGPL-2
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Library General Public
+ License as published by the Free Software Foundation; version 2
+ of the License.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Library General Public License for more details.
+ .
+ You should have received a copy of the GNU Library General Public
+ License along with this library; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+ MA 02110-1301, USA
+ .
+ On Debian and systems the full text of the GNU Library General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/LGPL-2`
+
+License: LGPL-2+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Library General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Library General Public License for more details.
+ .
+ You should have received a copy of the GNU Library General Public
+ License along with this library; if not see <https://www.gnu.org/licenses>
+ or write to the Free Software Foundation, Inc.,
+ 51 Franklin St., Fifth Floor, Boston, MA 02110, USA
+ .
+ On Debian systems, the complete text of the GNU Library General Public
+ License version 2 can be found in "/usr/share/common-licenses/LGPL-2".
+
+License: LGPL-2.1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1, or (at your option)
+ any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License along
+ with this program; if not, write to the Free Software Foundation,
+ Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+ .
+ On Debian and systems the full text of the GNU Library General Public
+ License version 2.1 can be found in the file
+ `/usr/share/common-licenses/LGPL-2.1`
 
 License: BSD-2-clause
  Redistribution and use in source and binary forms, with or without
@@ -959,9 +908,9 @@ License: BSD-3-clause
  SUCH DAMAGE.
 
 License: Artistic
- 			 The "Artistic License"
+ The "Artistic License"
  .
- 				Preamble
+ Preamble
  .
  The intent of this document is to state the conditions under which a
  Package may be copied, such that the Copyright Holder maintains some
@@ -972,30 +921,30 @@ License: Artistic
  .
  Definitions:
  .
- 	"Package" refers to the collection of files distributed by the
- 	Copyright Holder, and derivatives of that collection of files
- 	created through textual modification.
+ "Package" refers to the collection of files distributed by the
+ Copyright Holder, and derivatives of that collection of files
+ created through textual modification.
  .
- 	"Standard Version" refers to such a Package if it has not been
- 	modified, or has been modified in accordance with the wishes
- 	of the Copyright Holder as specified below.
+ "Standard Version" refers to such a Package if it has not been
+ modified, or has been modified in accordance with the wishes
+ of the Copyright Holder as specified below.
  .
- 	"Copyright Holder" is whoever is named in the copyright or
- 	copyrights for the package.
+ "Copyright Holder" is whoever is named in the copyright or
+ copyrights for the package.
  .
- 	"You" is you, if you're thinking about copying or distributing
- 	this Package.
+ "You" is you, if you're thinking about copying or distributing
+ this Package.
  .
- 	"Reasonable copying fee" is whatever you can justify on the
- 	basis of media cost, duplication charges, time of people involved,
- 	and so on.  (You will not be required to justify it to the
- 	Copyright Holder, but only to the computing community at large
- 	as a market that must bear the fee.)
+ "Reasonable copying fee" is whatever you can justify on the
+ basis of media cost, duplication charges, time of people involved,
+ and so on.  (You will not be required to justify it to the
+ Copyright Holder, but only to the computing community at large
+ as a market that must bear the fee.)
  .
- 	"Freely Available" means that no fee is charged for the item
- 	itself, though there may be fees involved in handling the item.
- 	It also means that recipients of the item may redistribute it
- 	under the same conditions they received it.
+ "Freely Available" means that no fee is charged for the item
+ itself, though there may be fees involved in handling the item.
+ It also means that recipients of the item may redistribute it
+ under the same conditions they received it.
  .
  1. You may make and give away verbatim copies of the source form of the
  Standard Version of this Package without restriction, provided that you
@@ -1085,40 +1034,7 @@ License: Artistic
  IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  .
- 				The End
+ The End
 
 License: public-domain
  The work is public domain (no license).
-
-License: GPL-3+
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- .
- This package is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- .
- You should have received a copy of the GNU General Public License
- along with this program. If not, see <http://www.gnu.org/licenses/>.
- .
- On Debian systems, the complete text of the GNU General
- Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".
-
-License: LGPL-2
- This package is free software; you can redistribute it and/or
- modify it under the terms of the GNU Lesser General Public
- License Version 2 as published by the Free Software Foundation.
- .
- This package is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- Lesser General Public License for more details.
- .
- You should have received a copy of the GNU General Public License
- along with this program. If not, see <http://www.gnu.org/licenses/>.
- .
- On Debian systems, the complete text of the GNU Lesser General
- Public License can be found in "/usr/share/common-licenses/LGPL-2".

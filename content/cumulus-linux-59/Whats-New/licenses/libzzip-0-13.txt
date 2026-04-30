@@ -5,6 +5,11 @@ It was downloaded from http://zziplib.sourceforge.net
 
 Upstream Author: Guido Draheim <guidod@gmx.de>
 
+The Windows binaries were delete for the DFSG tarball:
+./msvc7/pkzip.exe
+./msvc7/zip.exe
+./msvc8/zip.exe
+./msvc/*
 
 Copyright:
 
@@ -65,7 +70,7 @@ you to derive your own programs freely from these source code parts.
 
   The rules in section 6 of the LGPL are often inconvenient and
   not useful to promote and protect the opensource character of
-  this project. The recepient relinking freedom can be dropped as
+  this project. The recipient relinking freedom can be dropped as
   an extension to the LGPL rules, provided the following rules
   apply. Note that these rules only apply to static linking and 
   as an extension to section 6 and do not touch any other part 

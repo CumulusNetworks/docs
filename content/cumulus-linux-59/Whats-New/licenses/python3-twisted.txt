@@ -1,0 +1,94 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Twisted
+Files-Excluded:
+ .gitattributes
+
+Files: *
+Copyright:
+ 2001-2021 Twisted Matrix Laboratories
+           Allen Short
+           Amber Hawkie Brown
+           Andrew Bennetts
+           Andy Gayton
+           Antoine Pitrou
+           Apple Computer, Inc.
+           Ashwini Oruganti
+           Benjamin Bruheim
+           Bob Ippolito
+           Canonical Limited
+           Christopher Armstrong
+           Ciena Corporation
+           David Reid
+           Divmod Inc.
+           Donovan Preston
+           Eric Mangold
+           Eyal Lotem
+           Google Inc.
+           Hybrid Logic Ltd.
+           Hynek Schlawack
+           Itamar Turner-Trauring
+           James Knight
+           Jason A. Mobarak
+           Jean-Paul Calderone
+           Jessica McKellar
+           Jonathan D. Simms
+           Jonathan Jacobs
+           Jonathan Lange
+           Julian Berman
+           Jürgen Hermann
+           Kevin Horn
+           Kevin Turner
+           Laurens Van Houtven
+           Mary Gardiner
+           Massachusetts Institute of Technology
+           Matthew Lefkowitz
+           Moshe Zadka
+           Paul Swartz
+           Pavel Pergamenshchik
+           Rackspace, US Inc.
+           Ralph Meijer
+           Richard Wall
+           Sean Riley
+           Software Freedom Conservancy
+           Tavendo GmbH
+           Thijs Triemstra
+           Thomas Herve
+           Timothy Allen
+           Tom Prince
+           Travis B. Hartwell
+           and others
+ 2001-2005, Divmod Inc
+License: Expat
+
+Files: debian/*
+Copyright:
+ 2018, 2020 Andrej Shadura <andrewsh@debian.org>
+ 2018, 2019 Balint Reczey <rbalint@ubuntu.com>
+ 2018 Colin Watson <cjwatson@debian.org>
+ 2009 Esteve Fernandez <esteve@fluidinfo.com>
+ 2010, 2012-2018 Free Ekanayaka <freee@debian.org>
+ 2003 Martin Sjogren <sjogren@debian.org>
+ 2004-2011, 2014-2020 Matthias Klose <doko@debian.org>
+ 2018 Mattia Rizzolo <mattia@debian.org>
+ 2001-2004 Moshe Zadka <moshez@debian.org>
+License: Expat
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ .
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

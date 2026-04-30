@@ -1,16 +1,39 @@
-This is the Debian GNU/Linux prepackaged version of GNU cpio
-(including mt).
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Comment:
+ This is the Debian GNU/Linux prepackaged version of GNU cpio
+ (including mt).
+ .
+ This package was put together by Clint Adams <schizo@debian.org>.
+Source: ftp://ftp.gnu.org/gnu/cpio
 
-This package was put together by Clint Adams <schizo@debian.org>,
-from sources obtained from ftp://ftp.gnu.org:/gnu/cpio
+Files: *
+Copyright: (C) 1984-2019 Free Software Foundation, Inc.
+License: GPL-3+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 3, or (at your option)
+ any later version.
+Comment:
+ The text of the GPL version 3 can be found on Debian systems in
+ /usr/share/common-licenses/GPL-3.
 
-GNU cpio is Copyright (C) 1990, 1991, 1992, 2001, 2003, 2004, 2005,
-2006, 2007 Free Software Foundation, Inc.
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-The text of the GPL can be found on Debian systems in
-/usr/share/common-licenses/GPL-3 .
+Files: tests/argcv.*
+       src/tar.h
+Copyright: (C) 1992-2017 Free Software Foundation, Inc.
+License: LGPL-3+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 3 of the License, or (at your option) any later version.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+Comment:
+ The text of the LGPL version 3 can be found on Debian systems in
+ /usr/share/common-licenses/LGPL-3.

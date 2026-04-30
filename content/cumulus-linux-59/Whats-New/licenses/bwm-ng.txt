@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Bandwidth Monitor NG
 Upstream-Contact: Volker Gropp (bwmng@gropp.org)
 Source: https://github.com/vgropp/bwm-ng
@@ -8,10 +8,11 @@ Copyright: 2004-2015 Volker Gropp (bwmng@gropp.org)
 License: GPL-2+
 
 Files: debian/*
-Copyright: 2006-2008 DamiÃ¡n Viano <debian@damianv.com.ar>
+Copyright: 2006-2008 Damián Viano <debian@damianv.com.ar>
            2012      Jari Aalto <jari.aalto@cante.net>
            2015      Gregor Herrmann <gregoa@debian.org>
-           2016-2017 Samuel Henrique <samueloph@debian.org>
+           2018      Ond?ej Nový <onovy@debian.org>
+           2016-2019 Samuel Henrique <samueloph@debian.org>
 License: GPL-2+
 
 License: GPL-2+

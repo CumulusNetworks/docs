@@ -1,17 +1,62 @@
-This is the Debian GNU/Linux prepackaged version of kmod.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://www.kernel.org/pub/linux/utils/kernel/kmod/
 
-It has been packaged by Marco d'Itri <md@linux.it>.
+Files: *
+Copyright: (C) 2011-2013  ProFUSION embedded systems
+           (C) 2013-2016  Intel Corporation. All rights reserved.
+           (C) 2012  Lucas De Marchi <lucas.de.marchi@gmail.com>
+           (C) 2019  Alexey Gladkov <gladkov.alexey@gmail.com>
+           (C) 2012  Pedro Pedruzzi
+           (C) 2013 Michal Marek, SUSE
+License: LGPL-2.1+
 
-Original sources were obtained from:
-http://www.kernel.org/pub/linux/utils/kernel/kmod/
+Files: libkmod/python/*
+Copyright: (C) 2012 Red Hat, Inc.
+           (C) 2012 W. Trevor King <wking@tremily.us>
+License: LGPL-2.1+
 
+Files: shell-completion/bash/kmod
+Copyright: 2010 Ran Benita
+       (C) 2013  Intel Corporation. All rights reserved.
+License: LGPL-2.1+
 
-Copyright (C) 2011 ProFUSION embedded systems.
+Files: tools/*
+Copyright: (C) 2011-2013 ProFUSION embedded systems.
+           (C) 2014-2016 Intel Corporation. All rights reserved.
+           (C) 2012-2013  Lucas De Marchi <lucas.de.marchi@gmail.com>
+           (C) 2012  Pedro Pedruzzi
+License: GPL-2+
 
-The kmod tools are licensed under the GNU GPL version 2 or newer.
+License: GPL-2+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+Comment:
+ On Debian systems the complete text of the license can be found in
+ /usr/share/common-licenses/GPL-2 .
 
-libkmod is licensed under the GNU LGPL version 2.1 or newer.
-
-On Debian systems the complete text of the licenses can be found in
-/usr/share/common-licenses/GPL-2 and /usr/share/common-licenses/LGPL-2.1 .
-
+License: LGPL-2.1+
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program; if not, see <http://www.gnu.org/licenses/>.
+Comment:
+ On Debian systems the complete text of the license can be found in
+ /usr/share/common-licenses/LGPL-2.1 .

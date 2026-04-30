@@ -1,12 +1,11 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: cumulus-ztp
-Source: https://www.cumulusnetworks.com
+Source: https://nvidia.com
 Disclaimer: Not part of Debian distributions.
 
 Files: *
-Copyright (C) 2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
-Copyright: 2021 Cumulus Networks
-           2021 Cumulus Networks, Inc.
+Copyright (C) 2020-2021,2023 NVIDIA Corporation. ALL RIGHTS RESERVED.
+Copyright: 2021 Cumulus Networks, Inc.
 License: NVIDIA Cumulus Networks Proprietary
  All Rights reserved.
  .

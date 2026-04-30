@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: six
-Source: http://pypi.python.org/pypi/six/
+Source: https://github.com/benjaminp/six
 
 Files: *
 Copyright: Copyright (c) 2010-2017 Benjamin Peterson

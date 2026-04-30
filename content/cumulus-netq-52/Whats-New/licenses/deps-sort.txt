@@ -2,7 +2,7 @@ MIT License
 License: Expat
 
 Files: debian/*
-Copyright: 2017-2019 Bastien RoucariÃ¨s <rouca@debian.org>
+Copyright: 2017-2019 Bastien Roucariès <rouca@debian.org>
 License: Expat
 
 License: Expat

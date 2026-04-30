@@ -4,7 +4,7 @@ Upstream-Contact: Eli Bendersky <eliben@gmail.com>
 Source: http://pypi.python.org/pypi/pycparser
 
 Files: *
-Copyright: 2008-2017, Eli Bendersky <eliben@gmail.com>
+Copyright: 2008-2020, Eli Bendersky <eliben@gmail.com>
 License: bsd-3-bendersky
 
 Files: pycparser/ply/*
@@ -12,7 +12,7 @@ Copyright: 2001-2017 David M. Beazley (Dabeaz LLC) <dave@dabeaz.com>
 License: bsd-3-dabeaz
 
 Files: debian/*
-Copyright: 2012-2018, Stefano Rivera <stefanor@debian.org>
+Copyright: 2012-2021, Stefano Rivera <stefanor@debian.org>
 License: bsd-3-bendersky
 
 License: bsd-3-bendersky

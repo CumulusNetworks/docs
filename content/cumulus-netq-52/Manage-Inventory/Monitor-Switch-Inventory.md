@@ -37,12 +37,24 @@ Expand the Inventory/Switches card to full-screen to view, filter or export info
 Labels are key-value pairs that you can assign to switches. You can use labels to group, filter, and organize switches. You can also run validations against a set of switches that share a common label. There are two types of labels: system-generated labels and user-generated, or custom, labels.
 
 - System-generated labels reflect the static labels {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/#static-labels" text="applied to switches using NVUE commands">}}. System-generated labels include an icon in the NetQ UI. These labels can only be deleted using NVUE commands. These switches must be running the NetQ Agent for labels to appear in NetQ.
-    - To create plane labels, run the `nv set system telemetry label plane description <plane_id>` command on each switch that belongs to a given plane.
 - User-generated labels can be created and deleted using the NetQ UI.
 
 You can apply a maximum of 24 labels per hostname. From the menu, select **Manage labels** to view the label management dashboard.
 
 {{<img src="/images/netq/switch-labels-51.png" alt="" width="1200">}}
+### Create Static Labels with NVUE Commands
+
+To create labels, run the `nv set system telemetry label {key} description {value}` command. Replace `{key}` and `{value}` within the command. The following table reflects the key-value pairs for the logical groups {{<link title="Network Topology" text="topology dashboard">}}:
+
+| UI Name | Key | Values |
+| ---- | ---- | ---- |
+| Device type | `switch_type` | `leaf`, `spine`, `super_spine`, `exit`, `mgmt_switch` |
+| Rail group | `rail_group_index` | Any numerical value (`0`, `1`, `2`, etc.) |
+| Pod | `pod` |  Any numerical value (`0`, `1`, `2`, etc.) |
+| Scalable unit | `su` |  Any numerical value (`0`, `1`, `2`, etc.) |
+
+For example, run the `nv set system telemetry label switch_type description leaf` command on a given switch to label it as a leaf switch. You can then validate the device label configuration with the `nv show system telemetry label` command.
+
 ### Assign a Custom Label
 {{<tabs "TabID56" >}}
 

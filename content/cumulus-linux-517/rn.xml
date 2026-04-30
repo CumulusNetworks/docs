@@ -9,7 +9,7 @@
 <tr>
 <td>4992296</td>
 <td>Optimized image upgrade with warm reboot leaves the switch in a broken state, where all services fail and the configuration is removed.</td>
-<td>5.17.0</td>
+<td>5.16.0-5.17.0</td>
 <td></td>
 </tr>
 <tr>

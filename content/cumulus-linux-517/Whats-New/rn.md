@@ -14,7 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 4992296 | Optimized image upgrade with warm reboot leaves the switch in a broken state, where all services fail and the configuration is removed. | 5.17.0 | |
+| 4992296 | Optimized image upgrade with warm reboot leaves the switch in a broken state, where all services fail and the configuration is removed. | 5.16.0-5.17.0 | |
 | 4989434 | If the nginx <code>nvue.conf </code> file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the <code>nvue.conf</code> file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx <code>nvue.conf</code> file to update by making a basic change to system API, applying the change, then backing it out; for example:<br><pre>nv set system api compression gzip<br>nv config apply -y<br>nv unset system api compression gzip<br>nv config apply -y</pre> | 5.16.1-5.17.0 | |
 | 4989428 | In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage, potentially leading to a restart of the gNMI server. | 5.15.1-5.17.0 | |
 | 4989427 | GNMI subscriptions might not return interface counter metrics when there is an active, low-rate (1 second) subscription to transceiver data. | 5.16.0-5.17.0 | |

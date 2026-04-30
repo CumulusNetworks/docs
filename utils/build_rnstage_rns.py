@@ -245,6 +245,22 @@ def sanatize_rn_for_xls(string):
     output_string = output_string.replace("{noformat}", "")
     return output_string
 
+def format_ticket_for_display(ticket):
+    """
+    ticket may be a scalar id, comma/semicolon-separated string, or a JSON array of ids.
+    Returns plain ids, comma-separated when there is more than one.
+    """
+    if ticket is None:
+        return ""
+    if isinstance(ticket, (list, tuple, set)):
+        parts = [str(x).strip() for x in ticket if x is not None and str(x).strip()]
+        return ", ".join(parts)
+    s = str(ticket).strip()
+    if not s:
+        return ""
+    parts = [p.strip() for p in re.split(r"[,;]\s*", s) if p.strip()]
+    return ", ".join(parts)
+
 def build_rn_markdown(json_file, version, file_type):
     '''
     Builds a list of lines that contain the entire formatted release notes in markdown table format.
@@ -277,7 +293,7 @@ def build_rn_markdown(json_file, version, file_type):
     '''
     Generic JSON format is
     {
-        "ticket": "2556037",
+        "ticket": "2556037"  (or comma-separated ids, e.g. "2885305, 2887500, ..."),
         "jira_ticket": "CM-33012",
         "affects_versions": [
         "3.7.9-4.2.0"
@@ -288,13 +304,10 @@ def build_rn_markdown(json_file, version, file_type):
     for bug in json_file:
         '''
         With the conversion from Jira to Redmine the JSON file is now inconsistent.
-        "ticket" may be a Jira CM or Redmine issue number.
-        The filed "jira_ticket" is the Jira CM number, but not every issue has a mapped Jira ticket.
+        "ticket" may be a Jira CM or Redmine issue number, or a comma-separated list of numbers.
+        The field "jira_ticket" is the Jira CM number, but not every issue has a mapped Jira ticket.
         '''
-        if "jira_ticket" in bug and not bug["jira_ticket"] == "":
-                issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br /> | "
-        else:
-            issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br /> | "
+        issue_id_string = "| " + format_ticket_for_display(bug["ticket"]) + " | "
 
         if file_type == "affects":
             output.append(issue_id_string + sanatize_rn_for_markdown(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + ", ".join(bug["fixed_versions"]) + "|")
@@ -492,7 +505,7 @@ def build_rn_xls(json_file, version, file_type):
                 fixed_versions = ""
 
         output.append("<tr>\n")
-        output.append("<td>{}</td>\n".format(bug["ticket"]))
+        output.append("<td>{}</td>\n".format(format_ticket_for_display(bug["ticket"])))
         output.append("<td>{}</td>\n".format(rn_text))
         output.append("<td>{}</td>\n".format(affects_versions))
         if file_type == "affects":

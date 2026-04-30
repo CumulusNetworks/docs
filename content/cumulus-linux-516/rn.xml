@@ -243,12 +243,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4891771</td>
-<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
-<td>5.16.0-5.16.2</td>
-<td></td>
-</tr>
-<tr>
 <td>4889939</td>
 <td>In an MLAG configuration, when the MLAG node receives MLAG peer keepalives from an IP address that is not configured as the peer IP address, a peer IP address mismatch conflict occurs. Even after the conflict is resolved,  you sometimes see that the MLAG session still retains the peer IP mismatch conflict.</td>
 <td>5.14.0-5.16.2</td>
@@ -1277,7 +1271,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <tr>
 <td>4992296</td>
 <td>Optimized image upgrade with warm reboot leaves the switch in a broken state, where all services fail and the configuration is removed.</td>
-<td></td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4989440</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
+<td>5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4989438</td>
@@ -1327,22 +1326,9 @@ nv config apply -y</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4992435</td>
-<td>A rare timing scenario results in the following error log in {{switchd}}:
-ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
+<td>4992296</td>
+<td>Optimized image upgrade with warm reboot leaves the switch in a broken state, where all services fail and the configuration is removed.</td>
 <td>5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4989440</td>
-<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
-<td>5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4989435</td>
-<td>During warm and fast reboots, NVUE intentionally skips a comprehensive Git cleanup to adhere to strict service start-up SLAs. When this cleanup is bypassed, existing Git maintenance debt, such as unreachable loose objects or blocked Garbage Collection (GC) states, remain in place and accumulate across successive reboots. The lightweight housekeeping performed during a standard {{nv config apply}} is not equivalent to a full cleanup. Consequently, stale objects and blocked GC states can persist until the repository becomes unreadable, eventually causing git commit operations to fail with the error {{fatal: could not parse HEAD}}.To work around this issue, run {{sudo systemctl restart nvued.service}} manually after a warm or fast reboot to trigger the full cleanup path skipped during the automated startup sequence.</td>
-<td>5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1467,6 +1453,12 @@ nv config apply -y</td>
 <td>4940786, 4705183</td>
 <td>Transceiver firmware upgrade fails due to PMAOS register access failures.</td>
 <td>5.15.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4937657</td>
+<td>During warm and fast reboots, NVUE intentionally skips a comprehensive Git cleanup to adhere to strict service start-up SLAs. When this cleanup is bypassed, existing Git maintenance debt, such as unreachable loose objects or blocked Garbage Collection (GC) states, remain in place and accumulate across successive reboots. The lightweight housekeeping performed during a standard {{nv config apply}} is not equivalent to a full cleanup. Consequently, stale objects and blocked GC states can persist until the repository becomes unreadable, eventually causing git commit operations to fail with the error {{fatal: could not parse HEAD}}.To work around this issue, run {{sudo systemctl restart nvued.service}} manually after a warm or fast reboot to trigger the full cleanup path skipped during the automated startup sequence.</td>
+<td>5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1667,6 +1659,13 @@ nv config apply -y</td>
 <td>4879165</td>
 <td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
 <td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4875640</td>
+<td>A rare timing scenario results in the following error log in {{switchd}}:
+ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2731,15 +2730,8 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4992435</td>
-<td>A rare timing scenario results in the following error log in {{switchd}}:
-ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
-<td>5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4989440</td>
-<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
+<td>4992296</td>
+<td>Optimized image upgrade with warm reboot leaves the switch in a broken state, where all services fail and the configuration is removed.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -2774,18 +2766,6 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td></td>
 </tr>
 <tr>
-<td>4986333</td>
-<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
-<td>5.11.2-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4986329</td>
-<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
-<td>5.3.1-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4980055</td>
 <td>With very large configurations, {{nv config apply}} command performance might be slow.</td>
 <td>5.15.0-5.16.1</td>
@@ -2801,18 +2781,6 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td>4964154</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
 <td>5.15.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4963280</td>
-<td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
-<td>5.9.1-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4963277</td>
-<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
-<td>5.3.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2870,7 +2838,7 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td>5.9.5</td>
 </tr>
 <tr>
-<td>4925515</td>
+<td>4925419</td>
 <td>When you exceed the maximum number of ports allowed (30) in an 802.1x IPv6 profile, IPv6 addresses are not allocated to additional ports even if authentication is successful. To work around this issue, create additional profiles with the same configuration, associating no more than 30 interfaces to each profile.</td>
 <td>5.16.0</td>
 <td>5.16.1</td>
@@ -2888,26 +2856,8 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td></td>
 </tr>
 <tr>
-<td>4923828</td>
-<td>When cl-support files generate in quick succession due to a chain of faults, the cl-support files are not generated correctly.</td>
-<td>5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4923804</td>
-<td>If a switch reboots in the middle of a git operation, a git lock might be left. After rebooting, that git lock is stale and can prevent other git operations from running, preventing {{nvued}} from starting.</td>
-<td>5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4923776</td>
+<td>4923092</td>
 <td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are incorrectly categorized as fatal.  The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
-<td>5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4923647</td>
-<td>The graceful restart helper node experiences temporary traffic loss when the peer goes under warm boot.</td>
 <td>5.16.0</td>
 <td>5.16.1</td>
 </tr>
@@ -2925,61 +2875,7 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td></td>
 </tr>
 <tr>
-<td>4922108</td>
-<td>The vtysh {{show bgp ipv4 unreachability &lt;prefix&gt; json}} and {{show bgp ipv6 unreachability &lt;prefix&gt; json}} commands do not display BGP community attributes (including {{graceful-shutdown}}) in the JSON output even though they are shown correctly in the non-JSON text output.Network automation tools and scripts relying on JSON output might not detect the {{graceful-shutdown}} community on unreachability routes, making it difficult to identify routes that are withdrawn due to graceful shutdown procedures.</td>
-<td>5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4922106</td>
-<td>The NVUE {{nv show system dot1x ipv6-profile}} command does not show the correct {{preserve-on-link-down}} status. To work around this issue, use the {{--applied}} option ({{nv show system dot1x ipv6-profile --applied}}).</td>
-<td>5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4922105</td>
-<td>The JSON output for the vtysh {{show bgp &lt;address-family&gt; unreachability&gt; summary}} reports peers as {{Established}} even when the AFI or SAFI is not negotiated, while the plain summary shows {{NoNeg}}. This causes JSON to misrepresent  the per‑AFI or SAFI state for established sessions.</td>
-<td>5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4922104</td>
-<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
-<td>5.13.1-5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4922100</td>
-<td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are incorrectly categorized as fatal.  The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
-<td>5.15.1-5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4922099</td>
-<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
-<td>5.14.0-5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4922098</td>
-<td>When you enable conditional disaggregation and a SAFI_UNREACH NLRI for a prefix is received before the corresponding connected (redistributed) route exists in SAFI_UNICAST on the leaf (for example, before the interface has the /64 address prior to 802.1x authorization), the leaf does not originate the conditionally disaggregated route. After the interface gets the address (after 802.1x succeeds), the disaggregated route still does not originate because the code does not re-evaluate existing UNREACH entries against the newly installed unicast prefix. To work around this issue, clear the BGP session on the leaf that originates the UNREACH to resend the UNREACH NLRI toward the leaf that has the newly programmed interface address. The leaf runs conditional disaggregation and originates the disaggregated route.</td>
-<td>5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4922097</td>
-<td>When you upgrade Cumulus Linux from 5.13.1 to 5.16.0, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
-<td>5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4922093</td>
-<td>When core files generate or persist due to repeated faults after tech-support auto-generation deactivates, the switch repeatedly attempts to trigger tech-support collection resulting in continuous error messages.</td>
-<td>5.16.0</td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4922090</td>
+<td>4918539</td>
 <td>When you configure OTEL to generate a large number of metrics with a small sample interval but the remote receiver is unreachable, OTEL collector memory usage might increase rapidly leading to the OTEL collector being {{Out Of Memory Killed}}. </td>
 <td>5.16.0</td>
 <td>5.16.1</td>
@@ -3001,6 +2897,18 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>BGP sessions configured with an explicit IPv6 link local peer address might result in stale or invalid next hop tracking entries after a session disruption.</td>
 <td>5.14.0-5.16.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4916952</td>
+<td>When core files generate or persist due to repeated faults after tech-support auto-generation deactivates, the switch repeatedly attempts to trigger tech-support collection resulting in continuous error messages.</td>
+<td>5.16.0</td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>4913308</td>
+<td>When you upgrade Cumulus Linux from 5.13.1 to 5.16.0, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
+<td>5.16.0</td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4911812</td>
@@ -3027,10 +2935,28 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td></td>
 </tr>
 <tr>
+<td>4905121</td>
+<td>When you enable conditional disaggregation and a SAFI_UNREACH NLRI for a prefix is received before the corresponding connected (redistributed) route exists in SAFI_UNICAST on the leaf (for example, before the interface has the /64 address prior to 802.1x authorization), the leaf does not originate the conditionally disaggregated route. After the interface gets the address (after 802.1x succeeds), the disaggregated route still does not originate because the code does not re-evaluate existing UNREACH entries against the newly installed unicast prefix. To work around this issue, clear the BGP session on the leaf that originates the UNREACH to resend the UNREACH NLRI toward the leaf that has the newly programmed interface address. The leaf runs conditional disaggregation and originates the disaggregated route.</td>
+<td>5.16.0</td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>4901549</td>
+<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
+<td>5.14.0-5.16.0</td>
+<td>5.16.1</td>
+</tr>
+<tr>
 <td>4900970</td>
 <td>In an ECMP scenario, the zebra IP routing manager sends recursive next hop messages to BGP even if the resolution status and valid next hops do not change. As a result, zebra might eventually run out memory and terminate.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4895597</td>
+<td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are incorrectly categorized as fatal.  The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
+<td>5.15.1-5.16.0</td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4895589</td>
@@ -3113,9 +3039,22 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td></td>
 </tr>
 <tr>
+<td>4881679</td>
+<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
+<td>5.13.1-5.16.0</td>
+<td>5.16.1</td>
+</tr>
+<tr>
 <td>4879165</td>
 <td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
 <td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4875640</td>
+<td>A rare timing scenario results in the following error log in {{switchd}}:
+ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
+<td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3123,6 +3062,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>When you configure authentication for a BGP dynamic neighbor, removing the configuration does not bring back the sessions.</td>
 <td>5.15.0-5.16.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4875122</td>
+<td>The JSON output for the vtysh {{show bgp &lt;address-family&gt; unreachability&gt; summary}} reports peers as {{Established}} even when the AFI or SAFI is not negotiated, while the plain summary shows {{NoNeg}}. This causes JSON to misrepresent  the per‑AFI or SAFI state for established sessions.</td>
+<td>5.16.0</td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4873853</td>
@@ -3164,10 +3109,34 @@ where only the aggregate should be advertised.</td>
 <td></td>
 </tr>
 <tr>
+<td>4867633</td>
+<td>If a switch reboots in the middle of a git operation, a git lock might be left. After rebooting, that git lock is stale and can prevent other git operations from running, preventing {{nvued}} from starting.</td>
+<td>5.16.0</td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>4863582</td>
+<td>When cl-support files generate in quick succession due to a chain of faults, the cl-support files are not generated correctly.</td>
+<td>5.16.0</td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>4862680</td>
+<td>The vtysh {{show bgp ipv4 unreachability &lt;prefix&gt; json}} and {{show bgp ipv6 unreachability &lt;prefix&gt; json}} commands do not display BGP community attributes (including {{graceful-shutdown}}) in the JSON output even though they are shown correctly in the non-JSON text output.Network automation tools and scripts relying on JSON output might not detect the {{graceful-shutdown}} community on unreachability routes, making it difficult to identify routes that are withdrawn due to graceful shutdown procedures.</td>
+<td>5.16.0</td>
+<td>5.16.1</td>
+</tr>
+<tr>
 <td>4861733</td>
 <td>The NVUE {{nv set switch host interface}} command shows forwarding configuration for eth0 and the loopback interface.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4856402</td>
+<td>The graceful restart helper node experiences temporary traffic loss when the peer goes under warm boot.</td>
+<td>5.16.0</td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4855164</td>
@@ -3212,21 +3181,6 @@ where only the aggregate should be advertised.</td>
 <td></td>
 </tr>
 <tr>
-<td>4804084</td>
-<td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
-{{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
-interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
-interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
-<td>5.14.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4776471</td>
-<td>In Cumulus Linux 5.15.0, NTP and DNS configuration commands changed from {{nv set service}} to {{nv set system}}. However, after upgrading the switch to Cumulus Linux 5.15.1, the {{nv set service}} command might still appear in the configuration output because a stale {{nv set service}} command remains after the configuration is translated during the upgrade. If you save the configuration with the {{nv config show -o commands}}, then reapply the configuration with {{nv config replace}}, the command fails if the stale {{nv set service}} command is present.To workaround this issue, before applying the configuration with {{nv config replace}}, remove any stale {{nv set service}} commands from the saved configuration file, then reapply the configuration with the {{nv config replace &lt;config-file&gt;}} command.</td>
-<td>5.15.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4774686, 4764590</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
 <td>5.16.0-5.16.1</td>
@@ -3246,14 +3200,6 @@ sudo chown -R ntpsec /var/lib/ntpsec
 sudo chown -R Debian-snmp /var/lib/snmp
 sudo reboot</td>
 <td>5.11.4-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4717494</td>
-<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an {{ItemDoesNotExist }} error. To work around this issue, run the following commands to retrieve IPv6 routing information:
-nv show vrf default router rib ipv6
-nv show vrf default router rib ipv6 route</td>
-<td>5.15.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3278,18 +3224,6 @@ nv show vrf default router rib ipv6 route</td>
 <td>4648833, 4662556, 4687350</td>
 <td>Interfaces using PAM4 DAC cables on switches with Spectrum-4 and later might not come up after a link flap or reboot if auto-negotiation is disabled. Auto-negotiation is required for PAM4 DAC cables on these switches.</td>
 <td>5.15.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4641344</td>
-<td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
-<td>5.14.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4641343</td>
-<td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
-<td>5.14.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3341,27 +3275,9 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4535856</td>
-<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
-<td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4535843</td>
-<td>After a switch reboot, the {{nv show system health}} command shows incorrect system LED status and color.</td>
-<td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4535806</td>
 <td>After a factory reset, the switch does not clear the {{/var/tmp}} directory, which the switch uses for temporary files.</td>
 <td>5.14.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4535804</td>
-<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3392,12 +3308,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4531960</td>
 <td>The GNMI Subscription to xpath {{interfaces/interface[name=swp61s0]/state/counters/out-pkts}} with a high sample interval results in an initial response of zero but in subsequent updates, the value is correct. You do not see this issue when the sample interval is 1 second.</td>
 <td>5.14.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4513849</td>
-<td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
-<td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3455,36 +3365,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4423368</td>
-<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
-<td>5.12.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423360</td>
-<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
-<td>5.12.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423352</td>
-<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423335</td>
-<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.16.1</td>
@@ -3497,12 +3377,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4423235</td>
-<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
-<td>5.11.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423175</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
 <td>5.13.0-5.16.1</td>
@@ -3512,12 +3386,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4370954</td>
-<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
-<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -4109,6 +3977,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4879269</td>
 <td>Under certain conditions, {{switchd}} crashes with a segmentation fault (SIGSEGV) when cleaning up the layer 3 nexthop state or when freeing internal hash or cache structures.</td>
 <td>5.14.0-5.15.1</td>
+</tr>
+<tr>
+<td>4868066</td>
+<td>The NVUE {{nv show system dot1x ipv6-profile}} command does not show the correct {{preserve-on-link-down}} status. To work around this issue, use the {{--applied}} option ({{nv show system dot1x ipv6-profile --applied}}).</td>
+<td></td>
 </tr>
 <tr>
 <td>4864948</td>

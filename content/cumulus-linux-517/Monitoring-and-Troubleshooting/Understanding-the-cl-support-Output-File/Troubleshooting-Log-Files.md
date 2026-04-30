@@ -35,4 +35,5 @@ Read {{<exlink url="http://www.cyberciti.biz/faq/linux-log-files-location-and-ho
 | `/var/log/ptmd`| Prescriptive Topology Manager (PTM) errors and information. |
 | `/var/log/switchd.log` | The HAL log for Cumulus Linux.<br>This is specific to Cumulus Linux. The system logs `switchd` crashes here. |
 | `/var/log/syslog` | The main system log, which logs everything except auth-related messages.<br>The primary log; grep this file to see what problem occurred. |
+| `/var/log/tc_log` | Hardware management thermal control logs that incude detailed information about sensor and fan state and errors.  |
 | `/var/log/wtmp` | Login records file. |

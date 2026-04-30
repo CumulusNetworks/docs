@@ -345,6 +345,54 @@ cumulus@switch:~$ nv set qos remark default-global switch-priority 2 dscp 40
 cumulus@switch:~$ nv config apply
 ```
 
+To show global remarking configuration, run the `nv show qos remark default-global` command:
+
+```
+cumulus@switch:~$ nv show qos remark default-global
+         operational  applied
+-------  -----------  -------
+rewrite  l2           l2
+
+SP->PCP/DSCP mapping configuration
+=====================================
+    switch-priority  pcp  dscp
+    ---------------  ---  ----
+    0                0    0
+    1                7    8
+    2                2    16
+    3                3    24
+    4                4    32
+    5                5    40
+    6                6    48
+    7                7    56
+```
+
+To show global remarking configuration for a specific interface, run the `nv show interface <interface-id> qos remark` command:
+
+```
+cumulus@switch:~$ nv show interface swp5 qos remark
+         operational  applied
+-------  -----------  -------
+rewrite  l2
+
+SP->PCP/DSCP remark configuration
+====================================
+    switch-priority  pcp  dscp
+    ---------------  ---  ----
+    0                0    0
+    1                1    8
+    2                2    16
+    3                3    24
+    4                4    32
+    5                5    40
+    6                6    48
+    7                7    56
+```
+
+{{%notice note%}}
+When you configure global QoS remarking with `default-global`, the `nv show interface <interface-id> qos remark` command displays the default PCP and DSCP mappings derived from SDK defaults; however, the `nv show qos remark default-global` command only displays the PCP and DSCP mappings if you configure them.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -613,21 +661,6 @@ cumulus@switch:~$ nv set qos pfc default-global cable-length 50
 cumulus@switch:~$ nv config apply
 ```
 
-To show the PFC settings for the default profile, run the `nv show qos pfc default-global` command:
-
-```
-cumulus@switch:~$ nv show qos pfc default-global
-                   operational  applied  description
------------------  -----------  -------  --------------------------------
-cable-length       50           50       Cable Length (in meters)
-port-buffer        25000 B      25000 B  Port Buffer (in bytes)
-rx                 disable      disable  PFC Rx State
-tx                 enable       enable   PFC Tx State
-xoff-threshold     10000 B      10000 B  Xoff Threshold (in bytes)
-xon-threshold      2000 B       2000 B   Xon Threshold (in bytes)
-[switch-priority]  0            0        Collection of switch priorities.
-```
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -650,6 +683,109 @@ pfc.default-global.cable_length = 50
 
 To apply a custom profile to specific interfaces, see [Port Groups](#pfc).
 
+To show the PFC settings for the default profile, run the `nv show qos pfc default-global` command:
+
+```
+cumulus@switch:~$ nv show qos pfc default-global
+                          operational  applied 
+------------------------  -----------  ------- 
+cable-length              105          105     
+small-packet-probability               60
+tx                        enable       enable
+rx                        enable       enable
+[switch-priority]         3            3
+```
+
+To show the PFC settings for an interface, run the `nv show interface <interface-id> qos pfc` command:
+
+```
+cumulus@switch:~$ nv show interface swp1-5 qos pfc
+                 operational  applied 
+---------------  -----------  ------- 
+xoff-threshold   18.94 KB 
+xon-threshold    18.94 KB 
+port-buffer      35.25 KB 
+cable-length     100 
+tx               enable 
+rx               enable 
+switch-priority  3 
+small-packet-probability 60 
+```
+
+### Lossless Headroom Based on Small Packet Probability
+
+{{%notice note%}}
+Lossless headroom based on small packet probability is a Beta feature.
+{{%/notice%}}
+
+Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). On Spectrum-5 and earlier, the switch assumes a 100 percent probability of such packets arriving at line rate. On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
+
+To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}. Based on the configured small packet probability, `switchd` calculates the headroom reservation required for the lossless priority group.
+
+{{< tabs "TabID679 ">}}
+{{< tab "NVUE Commands ">}}
+
+To configure the probability of small packets for PFC, run the `nv set qos pfc <profile> small-packet-probability <percent>` command. To configure a profile for PFC, refer to {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}.
+
+The following command sets the small packet probability for all ports in the PFC `default-global` profile to 60 percent.
+
+```
+cumulus@switch:~$ nv set qos pfc default-global small-packet-probability 60
+cumulus@switch:~$ nv config apply
+```
+<!--
+To configure the probability of small packets for link pause, run the `nv set qos link-pause <profile> small-packet-probability <percent>` command. To configure a profile for link pause, refer to {{<link url="#link-pause" text="Link Pause">}}.
+
+The following command sets the small packet probability for all ports in the link pause `default-global` profile to 60 percent.
+
+```
+cumulus@switch:~$ nv set qos link-pause default-global small-packet-probability 60
+cumulus@switch:~$ nv config apply
+```
+-->
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To configure the probability of small packets for PFC, edit the `priority flow control` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+
+```
+pfc.default-global.small_packet_probability = 60
+```
+<!--
+To configure the probability of small packets for link pause, edit the `link-pause` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+
+```
+link-pause.default-global.small_packet_probability = 60
+```
+-->
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the PFC small packet probability setting for a profile, run the `nv show qos pfc <profile-id>` command. To show the PFC small packet probability setting for an interface, run the `nv show interface <interface-id> qos pfc` command.
+
+```
+cumulus@switch:~$ nv show qos pfc default-global
+                   operational  applied  pending
+-----------------  -----------  -------  -------
+cable-length                             100
+small-packet-probability                 60     
+tx                                       enable 
+rx                                       enable 
+[switch-priority]                        3
+```
+<!--
+To show the link pause small packet probability setting for a profile, run the `nv show qos link-pause <profile-id>` command. To show the link pause small packet probability setting for an interface, run the `nv show interface <interface-id> qos link-pause` command.
+
+```
+cumulus@switch:~$ nv show qos link-pause default-global
+                          operational  applied  pending
+------------------------  -----------  -------  -------
+cable-length                                    100    
+small-packet-probability                        60     
+tx                                              enable 
+rx                                              enable
+```
+-->
 ### PFC Watchdog
 
 PFC watchdog detects and mitigates pause storms on PFC-enabled ports.
@@ -772,51 +908,6 @@ To show PFC watchdog data for a specific traffic class, run the `nv show interfa
 
 To clear the PFC watchdog `deadlock-count` on an interface, run the `nv action clear interface <interface-id> qos pfc-watchdog deadlock-count` command.
 
-### Lossless Headroom Based on Small Packet Probability
-
-{{%notice note%}}
-Lossless headroom based on small packet probability is a Beta feature.
-{{%/notice%}}
-
-Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). On Spectrum-5 and earlier, the switch assumes a 100 percent probability of such packets arriving at line rate. On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
-
-To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}.
-
-To configure the probability of small packets on a port:
-
-{{< tabs "TabID783 ">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv set interface <interface-id> qos small-packet-probability <percent>` command.
-
-The following command sets the small packet probability on swp1 to 60 percent:
-
-```
-cumulus@switch:~$ nv set interface swp1 qos small-packet-probability 60
-cumulus@switch:~$ nv config apply
-```
-
-The following command sets the small packet probability on swp1 through swp10 to 60 percent:
-
-```
-cumulus@switch:~$ nv set interface swp1-10 qos small-packet-probability 60
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `small_pcket_probablity` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
-
-```
-swp1.qos.small_packet_probability = 60 
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To show the small packet probability configuration, run the `nv show interface <interface-id> qos small-packet-probability` command.
-
 ## Congestion Control (ECN)
 
 Explicit Congestion Notification (ECN) is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
@@ -923,10 +1014,10 @@ Dynamic ECN is a congestion marking mechanism optimized for high-performance tra
 
 {{%notice note%}}
 - Cumulus Linux supports dynamic ECN on switches with Spectrum-4 and later.
-- ECN marking probability has a hardware granularity of 1 percent; effective probabilities below 1 percent do not produce any marking.
+- ECN marking probability has a hardware granularity of one percent; effective probabilities below one percent do not produce any marking.
 {{%/notice%}}
 
-To configure dynamic ECN:
+To configure dynamic ECN, determine which traffic classes carry loss-sensitive or bursty traffic (such as RoCE on traffic class 3), determine the percentage of dynamic buffer allowance you want to trigger congestion marking, then set dynamic ECN:
 - Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`. 
 
   When you set the dynamic ECN mode to `relative`, the switch hardware ignores existing byte thresholds and the ASIC immediately begins marking based on the dynamic buffer calculation: threshold = (alpha_quota * percent) / 100. When you set the dynamic ECN mode to `absolute`, the switch hardware ignores percentage thresholds and the ASIC reverts to marking based on static cell counts derived from the configured byte values.
@@ -1916,6 +2007,54 @@ extra-threshold         9984         50000
 default-headroom        153600       153600 
 effective-max-headroom  163584
 ```
+### Lossless Headroom
+
+The QoS subsystem supports multiple lossless priority groups that share a single buffer pool allowing different PFC-enabled switch priority values to map to distinct priority groups, each with independent buffer thresholds. For example, you can assign storage traffic (switch priority 3 and 4) to priority group 7 with more aggressive flow-control thresholds while application traffic (switch priority 5) can use priority group 6 with more conservative settings.
+
+All lossless priority groups continue to share the same ingress and egress buffer pools. However, each priority groups maintains its own reserved buffers, xon and xoff thresholds, and descriptor buffer allocations. This design provides isolation and independent flow-control behavior while still making efficient use of shared buffer resources.
+
+You can configure the following headroom settings:
+- Required headroom per priority group in bytes. The switch converts this value to cells. 
+- Exclusive headroom per priority group in bytes. The switch converts this value to cells.
+- Oversubscription ratio for the shared headroom pool. You can set a value between 1 and 256.
+
+{{%notice note%}}
+The required headroom must be more than exclusive headroom.
+{{%/notice%}}
+
+The following example assigns switch priority 3 and 4 to priority group 3, configures the ingress lossless buffer service pool mapping to service-pool 1, and sets the required headroom for switch priority 3 and 4 to 1024, the exclusive headroom for switch priority 3 and 4 to 1010, and oversubscription ratio to 2. The example enables the shared headroom pool on swp10.
+
+{{< tabs "TabID1935 ">}}
+{{< tab "NVUE Commands ">}}
+
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group service7 switch-priority 3,4
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group service3 service-pool 1
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 1024 
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 1010
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio 2
+cumulus@switch:~$ nv set interface swp10 qos shared-headroom-pool enable
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file.
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
+...
+# Shared headroom pool configuration
+shared_headroom_pool.port_list = [swp10]
+shp.pg.oversubscription_ratio = 2
+shp.pg.exclusive_headroom = 1024
+shp.pg.required_headroom = 1028
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Ingress and Egress Management Buffers
 

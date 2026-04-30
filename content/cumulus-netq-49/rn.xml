@@ -55,7 +55,7 @@ To work around this issue, run the {{netq bootstrap reset keep-db}} command and 
 <td>4.10.0-4.15.1</td>
 </tr>
 <tr>
-<td>3808200</td>
+<td>3808200, 3788382</td>
 <td>When you perform a {{netq bootstrap reset}} on a NetQ cluster VM and perform a fresh install with the {{netq install}} command, the install might fail with the following error:
  master-node-installer: Running sanity check on cluster_vip: 10.10.10.10 Virtual IP 10.10.10.10 is already used
 To work around this issue, run the {{netq install}} command again.</td>
@@ -88,7 +88,7 @@ restore them after the upgrade.</td>
 <td>4.10.0-4.15.1</td>
 </tr>
 <tr>
-<td>3769936</td>
+<td>3769936, 3976289, 4122250</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
 <td>4.9.0-4.13.0</td>
 <td>4.14.0-4.15.1</td>
@@ -106,7 +106,7 @@ restore them after the upgrade.</td>
 <td>4.10.0-4.15.1</td>
 </tr>
 <tr>
-<td>3721754</td>
+<td>3721754, 3721794</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0-4.10.1</td>
 <td>4.11.0-4.15.1</td>
@@ -130,7 +130,7 @@ restore them after the upgrade.</td>
 <td>4.8.0</td>
 </tr>
 <tr>
-<td>3781503</td>
+<td>3781503, 3775625</td>
 <td>When you upgrade a Cumulus Linux switch running the nslcd service with NetQ LCM, the {{nslcd}} service fails to start after the upgrade. To work around this issue, manually back up your {{nslcd}} configuration and restore it after the upgrade.</td>
 <td>4.8.0</td>
 </tr>
@@ -188,7 +188,7 @@ sudo kubectl set image deployment/netq-prom-adapter prometheus=docker-registry:5
 <td>4.6.0-4.8.0</td>
 </tr>
 <tr>
-<td>3429528</td>
+<td>3429528, 3588417</td>
 <td>EVPN and RoCE validation cards in the NetQ UI might not display data when Cumulus Linux switches are configured with high VNI scale.</td>
 <td>4.6.0-4.8.0</td>
 </tr>

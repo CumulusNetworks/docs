@@ -81,7 +81,7 @@ To show buffer statistics configuration, run the `nv show system telemetry buffe
 
 ### Control Plane Statistics
 
-When you enable open telemetry for control plane statistics, the switch exports additional counters for [control plane packets](#control-plane-statistic-format):
+When you enable open telemetry for control plane statistics, the switch exports all counters for [control plane packets](#control-plane-statistic-format):
 
 ```
 cumulus@switch:~$ nv set system telemetry control-plane-stats export state enabled
@@ -95,7 +95,138 @@ cumulus@switch:~$ nv set system telemetry control-plane-stats sample-interval 10
 cumulus@switch:~$ nv config apply
 ```
 
-To show control plane statistics configuration, run the `nv show system telemetry control-plane-stats` command.
+You can enable these additional control plane statistics:
+- All ingress packets.
+- Ingress IPv4 packets.
+- Ingress IPv6 packets.
+- All egress packets.
+- Egress IPv4 packets.
+- Egress IPv6 packets.
+
+To enable all ingress packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats ingress export state enabled
+```
+
+To enable all ingress IPv4 packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats ingress ipv4 export state enabled
+```
+
+To enable all ingress IPv6 packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats ingress ipv6 export state enabled 
+```
+
+To enable all egress packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats egress export state enabled
+```
+
+To enable all egress IPv4 packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats egress ipv4 export state enabled
+```
+
+To enable all egress IPv6 packets:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats egress ipv6 export state enabled
+```
+
+To show control plane statistics, run the `nv show system telemetry control-plane-stats` command.
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics 
+                                   operational 
+---------------------------------  ----------- 
+ingress 
+  ipv4 
+    udp 
+      rcv-buf-errors               0 
+      no-ports                     0 
+      in-errors                    0 
+      in-datagrams                 4103 
+    tcp 
+      in-segs                      1224998 
+      in-errs                      0 
+    ipext 
+      in-truncated-pkts            0 
+      in-no-routes                 0 
+      in-no-ect-pkts               0 
+      in-mcast-pkts                0 
+      in-mcast-octets              0 
+      in-ect1-pkts                 0 
+      in-ect0-pkts                 0 
+      in-ce-pkts                   0 
+      in-bcast-pkts                0 
+    ip 
+      reasm-reqds                  0 
+      reasm-oks                    0 
+      reasm-fails                  0 
+      in-unknown-protos            0 
+      in-receives                  0 
+      in-hdr-errors                0 
+      in-discards                  0 
+      in-delivers                  0 
+      in-addr-errors               0 
+      forw-datagrams               0 
+    icmp 
+      in-time-excds                0 
+      in-redirects                 0 
+      in-msgs                      0 
+      in-errors                    0 
+      in-echos                     0 
+      in-echo-reps                 0 
+      in-dest-unreachs             0 
+  ipv6 
+    udp6 
+      rcv-buf-errors               0 
+      no-ports                     0 
+      in-errors                    0
+...
+```
+
+To show all control plane ingress statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics ingress 
+```
+
+To show all control plane ingress IPv4 statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics ingress ipv4 
+```
+
+To show all control plane ingress IPv6 statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics ingress ipv6  
+```
+
+To show all control plane egress statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics egress 
+```
+
+To show all control plane egress IPv4 statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics egress ipv4   
+```
+
+To show all control plane egress IPv6 statistics:
+
+```
+cumulus@switch:~$ nv show system control-plane software-statistics egress ipv6 
+```
 
 ### 802.1X Statistics
 
@@ -364,7 +495,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Platform Information">}}
 
-To enable platform information statistics, such as the time of last reboot, the last reboot reason, or firmware version:
+To enable platform information statistics, such as the time of last reboot, the last reboot reason, or hardware details such as the chasis version, model name, part number, serial number, and type:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class platform-info state enabled
@@ -569,7 +700,8 @@ To configure the open telemetry export destination:
 1. Configure gRPC to communicate with the collector by providing the collector destination IP address or hostname. Specify the port to use for communication if it is different from the default port 8443:
 
    ```
-   cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 port 4317
+   cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 
+   cumulus@switch:~$ nv set system telemetry export otlp grpc port 4317
    cumulus@switch:~$ nv config apply
    ```
 
@@ -683,14 +815,59 @@ cumulus@switch:~$ nv config apply
 The following example:
 - Configures STAT-GROUP9 to export link debounce statistics.
 - Applies the STAT-GROUP9 configuration to the OTLP destination 10.1.1.100.
-- Sets the sample interval of the debounce statistics to 120.
+- Sets the sample interval of the debounce statistics to 120 seconds. You can set a value between 10 and 86400. The default is 10 seconds.
 
 ```
-cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce export state enabled 
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce state enabled 
 cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group STAT-GROUP9
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce sample-interval 120
 cumulus@switch:~$ nv config apply
 ```
+
+### Granular Metric Selection
+
+{{%notice note%}}
+Granular metric selection is a Beta feature.
+{{%/notice%}}
+
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a statistics group or destination at varied collection frequencies.
+
+To configure granular metric selection, configure a group with the metrics you want to collect, then apply the group by either including or excluding the group.
+
+{{%notice note%}}
+The statistics category must be enabled. For example, to configure specific control plane metrics, you must enable the control plane statistics group with the `nv set system telemetry control-plane-stats export state enabled` command. Refer to {{<link url="#configure-open-telemetry" text="Configure Open Telemetry">}}.
+{{%/notice%}}
+
+The following example configures the platform memory metrics `node_memory_MemTotal_bytes` and `node_memory_MemFree_bytes`, and all `nvswitch_env_` and `node_cpu_` metrics in a group called PLATFORM_METRICS.
+
+```
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS description "Platform metrics" 
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_memory_MemTotal_bytes 
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_memory_MemFree_bytes 
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric nvswitch_env_* 
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_cpu_*
+cumulus@switch:~$ nv config apply
+```
+
+To apply the metric collection, run the `nv set system telemetry include-list` command or the `nv set system telemetry exclude-list` command.
+
+The following example includes the metrics in the PLATFORM_METRICS metric group in the collection:
+
+```
+cumulus@switch:~$ nv set system telemetry include-list PLATFORM_METRICS 
+cumulus@switch:~$ nv config apply
+```
+
+You can apply the metric collection to a statistics group (`stats-group`). The following example includes the metrics in the PLATFORM_METRICS metric group in the statistics group STAT-GROUP3:
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 include-list PLATFORM_METRICS
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+The metric list under the statistics group overwrites the metric list under the global telemetry group.
+{{%/notice%}}
 
 ### Show Telemetry Export Configuration
 
@@ -704,12 +881,18 @@ vrf                 default   default
 otlp                                  
   state             disabled  disabled
   grpc                                
-    insecure  disabled  disabled
+    insecure        disabled  disabled
     port            8443      8443    
     [destination]             
 ```
 
 To show the OTLP gRPC destination configuration, run the `nv show system telemetry export otlp grpc destination` command.
+
+To show the configured metric list groups, run the `nv show system telemetry metric-list` command. To show information about a specific metric list group, run the `nv show system telemetry metric-list <metric-list-id>` command.
+
+```
+cumulus@switch:~$ nv show system telemetry metric-list
+```
 
 ### Static Labels
 
@@ -821,6 +1004,9 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 | `nvswitch_dot1x_ipv6_profile_summary` | IPv6 prefix generated for each layer 3 authenticated session that is using an IPv6 profile. |
 | `nvswitch_dot1x_reauth_timeouts` | Counter of reauthentication attempts with the RADIUS server that timed out but were ignored, keeping the supplicant in Authorized state when the `reauth-timeout-ignore` flag is enabled. |
 | `nvswitch_dot1x_supplicant_dynamic_vrf` | Displays the VRF when an interface is dynamically associated to a VRF if the dynamic VRF assignment feature is enabled.|
+| `nvswitch_dot1x_interface_eapol_counters` | *|
+| `nvswitch_dot1x_tx_identity_request_info` | *|
+| `nvswitch_dot1x_interface_info`| *|
 
 {{< expand "Example JSON data for 802.1X:" >}}
 ```
@@ -1120,24 +1306,126 @@ When you enable control plane statistic telemetry, the switch exports the follow
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_control_plane_tx_packets` | Control plane transmit packets. |
-| `nvswitch_control_plane_tx_bytes` | Control plane transmit bytes. |
-| `nvswitch_control_plane_rx_packets` | Control plane receive packets. |
-| `nvswitch_control_plane_rx_bytes` | Control plane receive bytes. |
-| `nvswitch_control_plane_rx_buffer_drops` | Control plane receive buffer drops. |
-| `nvswitch_control_plane_trap_rx_packets` | Control plane trap group receive packets. |
-| `nvswitch_control_plane_trap_rx_event_count`| Control plane trap group receive events. |
-| `nvswitch_control_plane_trap_rx_drop` | Control plane trap group receive drops. |
-| `nvswitch_control_plane_trap_rx_bytes` | Control plane trap group receive bytes. |
-| `nvswitch_control_plane_trap_group_rx_packets` | Control plane trap group receive packets. |
-| `nvswitch_control_plane_trap_group_rx_bytes` | Control plane trap group receive bytes. |
-| `nvswitch_control_plane_trap_group_pkt_violations` | Control plane trap group packet violations. |
-| `node_netstat_Ip_InReceives` | Control plane input IPv4 packets |
-| `node_netstat_Ip_InAddrErrors` | Control plane input IPv4 errors. |
-| `node_netstat_Ip_InDelivers` | Control plane output IPv4 packets.. |
-| `node_netstat_Ip6_InReceives` | Control plane input IPv6 packets. |
-| `node_netstat_Ip6_InAddrErrors` | Control plane input IPv6 errors. |
-| `node_netstat_Ip6_InDelivers` | Control plane output IPv6 packets. |
+| `node_netstat_Ip_InReceives` | *The number of IP packets received. | 
+| `node_netstat_Ip_InAddrErrors` | *The umber of IP packets dropped upon receipt due to errors in the destination or source IP address.|  
+| `node_netstat_Ip_InDelivers` | *The number of received IP packets that were successfully delivered to higher-level protocols (such as TCP or UDP).|  
+| `node_netstat_Ip_InDiscards` | *The number of IP packets received but dropped, often due to errors.|  
+| `node_netstat_Ip_InHdrErrors` | *The number of input IP packets discarded due to errors in their headers (bad checksums, version mismatch, or invalid length). |  
+| `node_netstat_Ip_InUnknownProtos` | *The number of incoming IP packets received with an unknown or unsupported protocol. | 
+| `node_netstat_Ip_ForwDatagrams` | *The number of IP packets forwarded. | 
+| `node_netstat_Ip_ReasmOKs` | *The number of IP packets successfully reassembled after being fragmented.| 
+| `node_netstat_Ip_ReasmFails` | *The number of IP packets that failed to reassemble.| 
+| `node_netstat_Ip_ReasmReqds` | *The number of IP packets that required reassembly.| 
+| `node_netstat_IpExt_InNoRoutes` | *The number of incoming IP packets discarded because no route could be found to the destination address. | 
+| `node_netstat_IpExt_InOctets` | *The number of bytes received through IP, representing incoming network traffic. | 
+| `node_netstat_IpExt_InMcastPkts` | *The number of IP multicast packets received.| 
+| `node_netstat_IpExt_InMcastOctets` | *The number of IP multicast bytes received.| 
+| `node_netstat_IpExt_InBcastPkts` | *The number of incoming IP broadcast packets received.| 
+| `node_netstat_IpExt_InTruncatedPkts` | *The number of truncated packets received.| 
+| `node_netstat_Ip_OutRequests` | *The number of packets sent.| 
+| `node_netstat_Ip_OutDiscards` | *The number of outgoing IP packets that were discarded, even though no errors were detected to prevent their transmission.| 
+| `node_netstat_Ip_OutNoRoutes` |  *The number of IP packets dropped because a route could not be found. | 
+| `node_netstat_Ip_FragOKs` | *The number of IP packets that have been successfully fragmented. | 
+| `node_netstat_Ip_FragFails` |  *The number of IP packets that have been discarded because they needed to be fragmented but could not be, or were otherwise failing fragmentation.| 
+| `node_netstat_Ip_FragCreates` | *The number of IP packets that have been generated as a result of fragmentation.| 
+| `node_netstat_IpExt_OutOctets` |*The number of bytes sent. | 
+| `node_netstat_IpExt_OutMcastPkts` | *The number of IP multicast packets sent.| 
+| `node_netstat_IpExt_OutMcastOctets` | *The number of IP multicast bytes sent. | 
+| `node_netstat_IpExt_OutBcastPkts` | *The number of IP broadcast packets sent.| 
+| `node_netstat_Icmp_InMsgs` | *The number of ICMP messages received.| 
+| `node_netstat_Icmp_InErrors` | *The number of ICMP errors received.| 
+| `node_netstat_Icmp_InDestUnreachs` | *The number of ICMP Destination Unreachable received. | 
+| `node_netstat_Icmp_InTimeExcds` | *The number of ICMP Time Exceeded messages received.| 
+| `node_netstat_Icmp_InEchos` | *The number of ICMP Echo Request messages (pings) received.| 
+| `node_netstat_Icmp_InEchoReps` | *The number of ICMP Echo Reply messages received.| 
+| `node_netstat_Icmp_OutMsgs` | *The number of ICMP messages sent.| 
+| `node_netstat_Icmp_OutErrors` | *The number of ICMP errors sent.| 
+| `node_netstat_Icmp_OutDestUnreachs` | *The number of outgoing ICMP Destination Unreachable packets sent.| 
+| `node_netstat_Icmp_OutTimeExcds` | *The number of ICMP Time Exceeded messages sent.| 
+| `node_netstat_Icmp_OutEchos` | *The number of ICMP Echo Request messages sent. |
+| `node_netstat_Icmp_OutEchoReps` | *The number of ICMP Echo Reply (ping reply) messages sent.| 
+| `node_netstat_Tcp_InSegs` | *The number of TCP segments received.| 
+| `node_netstat_Tcp_InErrs` | *The number of TCP segments received that contained errors.| 
+| `node_netstat_Tcp_OutSegs` | *The number of TCP segments sent.| 
+| `node_netstat_Tcp_RetransSegs` | *The number of TCP segments retransmitted.| 
+| `node_netstat_Tcp_ActiveOpens` | *The number of TCP connections that have made a direct transition from the CLOSED state to the SYN-SENT state.| 
+| `node_netstat_Tcp_PassiveOpens` | *The number of TCP connections with a SYN that moved directly from the LISTEN state to SYN-RCVD.| 
+| `node_netstat_Tcp_AttemptFails` | *The number of times TCP connections have made a failed attempt to connect.| 
+| `node_netstat_Tcp_EstabResets` | *The number of TCP connections that have directly transitioned from an ESTABLISHED state to a CLOSED state.| 
+| `node_netstat_Tcp_CurrEstab` | *The number of TCP connections in the ESTABLISHED or CLOSE-WAIT state.| 
+| `node_netstat_Tcp_OutRsts` | *The number of TCP resends.| 
+| `node_netstat_TcpExt_ListenDrops` | *The number of TCP listne drops.| 
+| `node_netstat_TcpExt_ListenOverflows` | *The number of TCP listen overflows.| 
+| `node_netstat_TcpExt_TCPTimeouts` | *The number of TCP connections that timed out.| 
+| `node_netstat_TcpExt_TCPSynRetrans` | *The number of TCP SYN retransmissions.| 
+| `node_netstat_Udp_InDatagrams` | *The number of UDP packets received.| 
+| `node_netstat_Udp_InErrors` | *The number of UDP errors opens.| 
+| `node_netstat_Udp_NoPorts` | *The number of UDP no ports opens.| 
+| `node_netstat_Udp_RcvbufErrors` | *The number of UDP receive buffer errors. | 
+| `node_netstat_Udp_OutDatagrams` | *The number of UDP packets sent.| 
+| `node_netstat_Udp_SndbufErrors` | *The number of UDP send buffer errors.| 
+| `node_netstat_Ip6_InReceives` | *The number of IP packets received.| 
+| `node_netstat_Ip6_InAddrErrors` | *The number of IPv6 packets dropped due to address errors.| 
+| `node_netstat_Ip6_InDelivers` | *The number of incoming IPv6 packets delivered to upper-layer protocols.| 
+| `node_netstat_Ip6_InDiscards` |  *The number of incoming IPv6 packets discarded.| 
+| `node_netstat_Ip6_InHdrErrors` | *The number of incoming IPv6 packets with hardware errors.| 
+| `node_netstat_Ip6_InUnknownProtos` | *The number of incoming IPv6 packets with unknown protocols.| 
+| `node_netstat_Ip6_InNoRoutes` | *The number of incoming IPv6 packets with no routes.| 
+| `node_netstat_Ip6_InOctets` | *The number of bytes received through IPv6. | 
+| `node_netstat_Ip6_InMcastPkts` | *The number of incoming IPv6 multicast packets| 
+| `node_netstat_Ip6_InMcastOctets` | *The number of incoming multicast bytes received through IPv6.| 
+| `node_netstat_Ip6_InTruncatedPkts` | *The number of incoming IPv6 truncated packets.| 
+| `node_netstat_Ip6_OutRequests` | *The number of IPv6 packets sent.| 
+| `node_netstat_Ip6_OutDiscards` | *The number of outgoing IPv6 packets intentionally dropped.| 
+| `node_netstat_Ip6_OutNoRoutes` | *The number of IPv6 packets dropped because no route could be found to their destination.| 
+| `node_netstat_Ip6_OutForwDatagrams` | *The number of IPv6 packets that the local node forwarded to other destinations.| 
+| `node_netstat_Ip6_FragOKs` | *The number of IPv6 packets successfully fragmented.| 
+| `node_netstat_Ip6_FragFails` | *The number of IPv6 packets that could not be fragmented due to size restrictions or errors.| 
+| `node_netstat_Ip6_FragCreates` | *The number of IPv6 packets fragmented into multiple packets. | 
+| `node_netstat_Ip6_OutOctets` | *The number of bytes sent in IPv6 packets.| 
+| `node_netstat_Ip6_OutMcastPkts` | *The number of IPv6 multicast packets sent.| 
+| `node_netstat_Ip6_OutMcastOctets` | *The number of octets (bytes) transmitted in IPv6 multicast packets. | 
+| `node_netstat_Ip6_ReasmOKs` | *The number of IPv6 packets successfully reassembled.| 
+| `node_netstat_Ip6_ReasmFails` | *The number of IPv6 packets that failed to reassemble successfully.| 
+| `node_netstat_Ip6_ReasmReqds` | *The number of IPv6 fragments that need to be reassembled. | 
+| `node_netstat_Icmp6_InMsgs` | *The number of ICMPv6 messages received. | 
+| `node_netstat_Icmp6_InErrors` | *The number of ICMPv6 errors received.| 
+| `node_netstat_Icmp6_InDestUnreachs` | *The number of ICMPv6 Destination Unreachable packets received. | 
+| `node_netstat_Icmp6_InTimeExcds` | *The number of ICMPv6 "Time Exceeded" messages received.| 
+| `node_netstat_Icmp6_InEchos` | *The number of ICMPv6 Echo Request messages (pings) received.| 
+| `node_netstat_Icmp6_InEchoReplies` | *The number of ICMPv6 Echo Reply messages (pings) received.| 
+| `node_netstat_Icmp6_OutMsgs` | *The number of ICMPv6 messages sent. | 
+| `node_netstat_Icmp6_OutErrors` | *The number of ICMPv6 errors sent.| 
+| `node_netstat_Icmp6_OutDestUnreachs` | *The number of ICMPv6 Destination Unreachable packets sent.| 
+| `node_netstat_Icmp6_OutTimeExcds` | *The number of ICMPv6 "Time Exceeded" messages sent.| 
+| `node_netstat_Icmp6_OutEchos` | *The number of ICMPv6 Echo Request messages (pings) sent.| 
+| `node_netstat_Icmp6_OutEchoReplies` | *The number of ICMPv6 Echo Reply messages (pings) sent.| 
+| `node_netstat_Udp6_InDatagrams` | *The number of UDP packets delivered to IPv6 users.| 
+| `node_netstat_Udp6_InErrors` | *The number of received UDP6 datagrams that could not be delivered, often due to errors.| 
+| `node_netstat_Udp6_NoPorts` | *The number of UDP6 no ports.| 
+| `node_netstat_Udp6_RcvbufErrors` | *The number of times a UDP6 packet was dropped because the receive buffer (Rcvbuf) was full.| 
+| `node_netstat_Udp6_OutDatagrams` | *The number of UDP datagrams sent through IPv6.| 
+| `node_netstat_Udp6_SndbufErrors` | *The number of UDPv6 packets that could not be sent due to send buffer errors.| 
+| `node_netstat_Icmp6_InNeighborAdvertisements` | *The number of ICMPv6 Neighbor Advertisement messages received.| 
+| `node_netstat_Icmp6_InNeighborSolicits` | *The number of ICMPv6 Neighbor Solicitation messages received.| 
+| `node_netstat_Icmp6_InRedirects` | *The number of ICMPv6 redirect messages received. | 
+| `node_netstat_Icmp6_InRouterAdvertisements` | *The number of ICMPv6 Type 134 messages (Router Advertisements) received.| 
+| `node_netstat_Icmp6_InRouterSolicits` | *The number of ICMPv6 Router Solicitation (RS) messages received.| 
+| `node_netstat_Icmp6_OutNeighborAdvertisements` | *The number of ICMPv6 Neighbor Advertisement messages sent.| 
+| `node_netstat_Icmp6_OutNeighborSolicits` | *The number of ICMPv6 Neighbor Solicitation messages sent.| 
+| `node_netstat_Icmp6_OutRedirects` | *The number of ICMPv6 Redirect messages sent.| 
+| `node_netstat_Icmp6_OutRouterAdvertisements` | *The number of IPv6 Router Advertisement (RA) messages sent.| 
+| `node_netstat_Icmp6_OutRouterSolicits` | *The number of ICMPv6 Router Solicitation (Type 133) messages sent.| 
+| `node_netstat_Icmp_InRedirects` | *The number of ICMP Redirect messages received.| 
+| `node_netstat_Icmp_OutRedirects` | *The number of ICMP Out Redirects.| 
+| `node_netstat_Ip6_InCEPkts` | *The number of received IPv6 packets with the Congestion Experienced (CE) codepoint set.| 
+| `node_netstat_Ip6_InECT0Pkts` | *The number of received IPv6 packets with the ECN-Capable Transport (ECT) codepoint '0' set (ECT(0)).| 
+| `node_netstat_Ip6_InECT1Pkts` | *The number of incoming IPv6 packets received with the ECN (Explicit Congestion Notification) Codepoint 1 (ECT1) set. | 
+| `node_netstat_Ip6_InNoECTPkts` | *The number of incoming IPv6 packets received that do not have the ECN-Capable Transport (ECT) codepoint set.| 
+| `node_netstat_IpExt_InCEPkts` | *The number of incoming IP packets received with the Congestion Experienced (CE) codepoint set.| 
+| `node_netstat_IpExt_InECT0Pkts` | *The number of IP datagrams received with the ECN (Explicit Congestion Notification) codepoint "ECT(0)".| 
+| `node_netstat_IpExt_InECT1Pkts` | *The number of IP packets received with ECN (Explicit Congestion Notification) capable transport, specifically ECT(1) codepoint.| 
+| `node_netstat_IpExt_InNoECTPkts` | *The number of IP packets received with no ECN (Explicit Congestion Notification) capable transport.|
 
 {{< expand "Example JSON data for nvswitch_control_plane_trap_rx_drop:" >}}
 ```
@@ -2992,6 +3280,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_info_last_reboot_time` | Time of last reboot in ns since epoch.|
 | `nvswitch_platform_info_last_reboot_reason` | Information about the last reboot reason of a component.|
 | `nvswitch_platform_info_firmware_version` | Information about the firmware version of a component.|
+| `nvswitch_platform_info_hw_details` | *Component hardware details such as the version, model name, part number, serial number, type, and name.|
 
 {{< /tab >}}
 {{< /tabs >}}

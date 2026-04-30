@@ -99,10 +99,10 @@ The following example commands remove default NTP servers:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv unset service ntp default server 0.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ nv unset service ntp default server 1.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ nv unset service ntp default server 2.cumulusnetworks.pool.ntp.org
-cumulus@switch:~$ nv unset service ntp default server 3.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp server 0.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp server 1.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp server 2.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset system ntp server 3.cumulusnetworks.pool.ntp.org
 cumulus@switch:~$ nv config apply
 ```
 

@@ -97,3 +97,16 @@ curl --request GET \
 
 {{</tabs>}}
 
+## Remove a Registered Service
+
+NetQ NVLink includes a failover mechanism that transfers services to a secondary IP address in case the primary IP address is unavailable. Before you can remove a registered service, you must disable the failover feature.
+
+1. Run the following command to view the NetQ NVLink configuration file:
+
+```
+kubectl edit cm -n netq-nvl common-config
+```
+
+2. Locate the `feature-flags` section. Change the `service-failover-enabled` value from `true` to `false`.
+
+3. Make a `DELETE` request to the `v1/services` endpoint.

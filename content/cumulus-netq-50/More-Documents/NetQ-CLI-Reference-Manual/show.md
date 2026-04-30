@@ -1047,8 +1047,6 @@ netq <hostname> show ethtool-stats
 
 ### Required Arguments
 
-### Options
-
 <!-- vale off -->
 | Argument | Value | Description |
 | ---- | ---- | ---- |

@@ -2,14 +2,14 @@
 title: Sharing Images
 author: NVIDIA
 weight: 35
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
-Image sharing enables organizations to securely share custom OS images with other NVIDIA Air organizations.
+Image sharing enables organizations to securely share custom OS images with other NVIDIA DSX Air organizations.
 
 ## Overview
 
-When you upload a custom image to NVIDIA Air, that image is private to your organization by default. To share an image with another organization, you generate a claim code that the target organization uses to copy the image to their organization.
+When you upload a custom image to NVIDIA DSX Air, that image is private to your organization by default. To share an image with another organization, you generate a claim code that the target organization uses to copy the image to their organization.
 
 Image share requests expire after 24 hours by default.
 

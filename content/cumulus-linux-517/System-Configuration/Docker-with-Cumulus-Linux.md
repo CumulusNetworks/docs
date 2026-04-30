@@ -8,7 +8,7 @@ You can use Cumulus Linux to run the {{<exlink url="https://www.docker.com/" tex
 
 The Docker package installs as part of the Cumulus Linux installation or ONIE upgrade process and the service is running by default. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service.
 
-## Before Managing Docker Containers
+## Validate the Docker Service is Running
 
 Before managing Docker containers, validate that the service is running.
 
@@ -77,7 +77,6 @@ cumulus@switch:~$ nv config apply
 The {{<link title="What Just Happened (WJH)" text="What Just Happened">}} (WJH) service relies on Docker. If you disable Docker, WJH must also be disabled with the `nv set system wjh state disabled` command.
 {{%/notice%}}
 
-
 You can test Docker by running the `hello-world` container if Docker is running in a VRF with Internet access:
 
 ```
@@ -113,7 +112,9 @@ To disable and stop Docker:
 cumulus@switch:~$ sudo systemctl disable docker@mgmt.service
 cumulus@switch:~$ sudo systemctl stop docker@mgmt.service
 ```
+
 {{%notice note%}}
+
 The {{<link title="What Just Happened (WJH)" text="What Just Happened">}} (WJH) service relies on Docker. If you disable Docker, WJH must also be disabled.
 {{%/notice%}}
 
@@ -146,7 +147,6 @@ https://docs.docker.com/get-started/
 
 {{< /tab >}}
 {{< /tabs >}}
-
 
 ## Change the Docker Service VRF
 
@@ -193,6 +193,10 @@ NVUE provides commands to:
 - Create and run a new container from an image.
 - Stop a container.
 - Delete a Docker container.
+
+{{%notice note%}}
+Before you download any container image onto the switch, check the available disk space. You must have enough disk space to account for the size of the container image plus 25 percent more space just to download the image. In addition, consider how much extra space you need to run the container.
+{{%/notice%}}
 
 ### Docker Images
 
@@ -299,72 +303,7 @@ cumulus@switch:~$ sudo docker rm nginx-demo
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-### Container Resources
 
-By default, the switch restricts unknown containers to 20 percent of host resources and limited containers to 50 percent. You can customize these values by editing the `/etc/cumulus/docker/resources.conf` file.
-
-```
-cumulus@switch: sudo nano /etc/cumulus/docker/resources.conf
-RESTRICTED_PERCENT=10  # Tighter jail for unknown apps
-LIMITED_PERCENT=60     # Slightly more room for limited apps
-```
-
-After editing the `/etc/cumulus/docker/resources.conf` file, you must restart `cumulus-docker-resource-limit-calculator.service`.
-
-```
-cumulus@switch: systemctl restart cumulus-docker-resource-limit-calculator.service
-```
-
-The docker image whitelist maintains the list of trusted and limited images and is located in the `/etc/cumulus/docker/whitelist.json` file.
-
-By default, the `/etc/cumulus/docker/whitelist.json` file ships with the following content.
-
-```
-cumulus@switch: sudo cat /etc/cumulus/docker/whitelist.json
-{
-  "trusted_images": [ ],
-  "limited_images": ["docker-wjh"]
-}
-```
-
-You can edit this file to add trusted and limited images.
-
-```
-cumulus@switch: sudo nano /etc/cumulus/docker/whitelist.json
-{
-  "trusted_images": [
-    "internal-app",
-    "postgres"
-  ],
-  "limited_images": [
-    "jenkins-agent",
-    "python-worker"
-  ]
-}
-```
-
-To show memory resource usage for containers, run the Linux `sudo cat /sys/fs/cgroup/cumulus-docker-trusted/memory.current` command.
-
-```
-cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-trusted/memory.current
-
-```
-
-To show CPU resource usage for containers, run the Linux `sudo cat sys/fs/cgroup/cumulus-docker-trusted/cpu.stat` command and `sudo cat /sys/fs/cgroup/cumulus-docker-limited/cpu.stat` command.
-
-```
-cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-limited/cpu.stat
-
-```
-
-To show which container processes are trusted and which are limited, run the `sudo cat /sys/fs/cgroup/cumulus-docker-trusted/cgroup.procs` command or the `sudo cat /sys/fs/cgroup/cumulus-docker-limited/cgroup.procs` command:
-
-```
-cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-limited/cgroup.procs
-
-```
--->
 ## Show Docker Information
 
 To show Docker information on the switch, run the `nv show system docker` command:
@@ -502,3 +441,95 @@ log-level       json-file
                      "data-root": "/docker"
                   }
       ```
+
+## Docker Resource Tiering System
+
+Cumulus Linux includes a built-in Docker resource tiering system that acts as an automated governance layer for system resources. In a shared environment where users or automated scripts can launch arbitrary Docker containers, there is a significant risk that high-load compilation, a memory leak, or a stress test can consume 100 percent of the CPU or RAM, causing critical network services or the host OS itself to become unresponsive. The resource tiering system prevents resource exhaustion (Denial of Service) from untrusted workloads while guaranteeing performance for critical system applications.
+
+The built-in Docker resource tiering system is enabled by default and active after installation. The policy agent enforces runtime policy entirely in the background; no configuration is required.
+
+Cumulus Linux uses slices to apply shared resource limits to a group of processes:
+- `docker-restricted.slice` is the default tier for third-party containers that are not whitelisted. This tier uses 10 percent host CPU and 10 percent host memory.
+- `docker-limited.slice` is the intermediate tier for selected workloads that need more headroom than restricted but still need to be capped. This tier uses 50 percent host CPU and 50 percent host memory.
+- `docker.slice` is the trusted tier for trusted NVIDIA containers and other explicitly trusted workloads. There is no host CPU or host memory cap.
+
+To disable the resource tiering system, stop, then disable the cumulus Docker policy agent:
+
+```
+cumulus@switch:~$ systemctl stop cumulus-docker-policy-agent.service
+cumulus@switch:~$ systemctl disable cumulus-docker-policy-agent.service 
+```
+
+To re-enable the resource tiering system, enable, then start the cumulus Docker policy agent:
+
+```
+cumulus@switch:~$ systemctl enable cumulus-docker-policy-agent.service 
+cumulus@switch:~$ systemctl start cumulus-docker-policy-agent.service 
+```
+
+<!--
+### Container Resources
+
+You can customize these values by editing the `/etc/cumulus/docker/resources.conf` file.
+
+```
+cumulus@switch: sudo nano /etc/cumulus/docker/resources.conf
+RESTRICTED_PERCENT=10  # Tighter jail for unknown apps
+LIMITED_PERCENT=60     # Slightly more room for limited apps
+```
+
+After editing the `/etc/cumulus/docker/resources.conf` file, you must restart `cumulus-docker-resource-limit-calculator.service`.
+
+```
+cumulus@switch: systemctl restart cumulus-docker-resource-limit-calculator.service
+```
+
+The docker image whitelist maintains the list of trusted and limited images and is located in the `/etc/cumulus/docker/whitelist.json` file.
+
+By default, the `/etc/cumulus/docker/whitelist.json` file ships with the following content.
+
+```
+cumulus@switch: sudo cat /etc/cumulus/docker/whitelist.json
+{
+  "trusted_images": [ ],
+  "limited_images": ["docker-wjh"]
+}
+```
+
+You can edit this file to add trusted and limited images.
+
+```
+cumulus@switch: sudo nano /etc/cumulus/docker/whitelist.json
+{
+  "trusted_images": [
+    "internal-app",
+    "postgres"
+  ],
+  "limited_images": [
+    "jenkins-agent",
+    "python-worker"
+  ]
+}
+```
+
+To show memory resource usage for containers, run the Linux `sudo cat /sys/fs/cgroup/cumulus-docker-trusted/memory.current` command.
+
+```
+cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-trusted/memory.current
+
+```
+
+To show CPU resource usage for containers, run the Linux `sudo cat sys/fs/cgroup/cumulus-docker-trusted/cpu.stat` command and `sudo cat /sys/fs/cgroup/cumulus-docker-limited/cpu.stat` command.
+
+```
+cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-limited/cpu.stat
+
+```
+
+To show which container processes are trusted and which are limited, run the `sudo cat /sys/fs/cgroup/cumulus-docker-trusted/cgroup.procs` command or the `sudo cat /sys/fs/cgroup/cumulus-docker-limited/cgroup.procs` command:
+
+```
+cumulus@switch: sudo cat /sys/fs/cgroup/cumulus-docker-limited/cgroup.procs
+
+```
+-->

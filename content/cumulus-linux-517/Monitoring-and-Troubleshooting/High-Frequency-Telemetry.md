@@ -10,8 +10,8 @@ High frequency telemetry enables you to collect counters at very short sampling 
 High frequency telemetry data provides time-series data that traditional histograms cannot provide. This data can help you understand the shape of the traffic pattern and identify any variability, or jitter in the traffic.
 
 Cumulus Linux provides two different methods to collect and analyze high frequency telemetry data:
-- {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}}.
-- {{<link url="#collect-hft-in-json-file" text="Collect HFT data in a JSON format file">}} on the switch filesystem, and upload the file to an external location for analysis.
+- {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}} or through {{<link url="Open-Telemetry-Export/#ipfix-export" text="IP Flow Information Export (IPFIX)">}}.
+- {{<link url="#collect-hft-in-json-file" text="Collect HFT data in a JSON format file">}} on the switch filesystem and upload the file to an external location for analysis.
 
 {{%notice note%}}
 - Cumulus Linux supports high frequency telemetry on Spectrum-4 and later switches. 
@@ -22,59 +22,132 @@ Cumulus Linux provides two different methods to collect and analyze high frequen
 
 ## Streaming HFT Export
 
-You can stream HFT data to your {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export destination">}}.  To configure OTLP streaming of HFT data:
+To configure HFT data streaming:
 
-1. Configure {{<link url="Open-Telemetry-Export" text="open telemetry">}} and add your collector as a gRPC export destination.
+1. Add your collector as a gRPC OTEL export destination or an IPFIX export destination.
+
+  {{< tabs "TabID698 ">}}
+{{< tab "OTLP gRPC">}}
+
+a. Configure gRPC to communicate with the collector by providing the collector destination IP address or hostname. Specify the port to use for communication if it is different from the default port 8443:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 
+   cumulus@switch:~$ nv set system telemetry export otlp grpc port 4317
+   cumulus@switch:~$ nv config apply
+   ```
+
+b. Configure an X.509 certificate to secure the gRPC connection:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry export otlp grpc certificate <ca-certificate>
+   cumulus@switch:~$ nv config apply
+   ```
+
+By default, OTLP export is in **secure** mode that requires a CA certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
+
+c. Configure the VRF where the export destination is reachable. The `default` VRF is the default value:
+
+    ```
+    cumulus@switch:~$ set system telemetry export vrf RED
+    cumulus@switch:~$ nv config apply
+    ```
+
+d. Enable OTLP gRPC export:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry export otlp state enabled 
+   cumulus@switch:~$ nv config apply
+```
+
+   {{< /tab >}}
+{{< tab "IPFIX">}}
+
+a. Configure the IPFIX collector destination IP address or hostname. Specify the port to use for communication if it is different from the default port 8443:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry export ipfix destination 10.1.1.100
+   cumulus@switch:~$ nv set system telemetry export ipfix port 4317
+   ```
+
+   You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations.
+
+b. Specify the interval in seconds for IPFIX template and metadata export. You can specify a value between 1 and 86400. The default is 30 seconds.
+
+   ```
+   cumulus@switch:~$ nv set system telemetry export ipfix template-metadata-interval 40
+   ```
+
+c. Configure the VRF where the export destination is reachable. The `default` VRF is the default value:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry export ipfix vrf RED
+   ```
+
+d. Configure the maximum size for an exported IP packet containing HFT over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The default setting is determined from the outgoing interface MTU.
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix max-ip-packet-size 65535
+```
+
+e. Enable IPFIX export:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry export ipfix state enabled
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 2. Configure streaming HFT parameters:
 
-Configure the sampling interval for HFT data. The default value is 5000 microseconds. The interval must be specified in microseconds, with a valid range of 100 to 12,750 and in multiples of 50:
+   Configure the sampling interval for HFT data. The default value is 5000 microseconds. The interval must be specified in microseconds, with a valid range of 100 to 12,750 and in multiples of 50:
 
-```
-cumulus@switch:~$ nv set system telemetry hft sample-interval-usec 1000
-cumulus@switch:~$ nv config apply
-```
+   ```
+   cumulus@switch:~$ nv set system telemetry hft sample-interval-usec 1000
+   cumulus@switch:~$ nv config apply
+   ```
 
-Configure the counters that are sampled at the defined interval. The options for sampling are received bytes (`rx-byte`), transmitted bytes (`tx-byte`), received packets (`rx-packet`), transmitted packets (`tx-packet`), and traffic class buffer occupancy (`tc-occupancy`):
+   Configure the counters that are sampled at the defined interval. The options for sampling are received bytes (`rx-byte`), transmitted bytes (`tx-byte`), received packets (`rx-packet`), transmitted packets (`tx-packet`), and traffic class buffer occupancy (`tc-occupancy`):
 
-```
-cumulus@switch:~$ nv set system telemetry hft counter rx-byte
-cumulus@switch:~$ nv set system telemetry hft counter tx-byte
-cumulus@switch:~$ nv set system telemetry hft counter tc-occupancy
-cumulus@switch:~$ nv config apply
-```
+   ```
+   cumulus@switch:~$ nv set system telemetry hft counter rx-byte
+   cumulus@switch:~$ nv set system telemetry hft counter tx-byte
+   cumulus@switch:~$ nv set system telemetry hft counter tc-occupancy
+   cumulus@switch:~$ nv config apply
+   ```
 
-When collecting traffic class buffer occupancy counters, configure the traffic classes to monitor:
+   When collecting traffic class buffer occupancy counters, configure the traffic classes to monitor:
 
-```
-cumulus@switch:~$ nv set system telemetry hft egress-buffer traffic-class 0,1,5
-cumulus@switch:~$ nv config apply
-```
+   ```
+   cumulus@switch:~$ nv set system telemetry hft egress-buffer traffic-class 0,1,5
+   cumulus@switch:~$ nv config apply
+   ```
 
-Configure the interfaces that HFT monitors to collect data:
+   Configure the interfaces that HFT monitors to collect data:
 
-```
-cumulus@switch:~$ nv set interface swp1s0-3,swp2s0-3 telemetry hft state enabled
-cumulus@switch:~$ nv config apply
-```
+   ```
+   cumulus@switch:~$ nv set interface swp1s0-3,swp2s0-3 telemetry hft state enabled
+   cumulus@switch:~$ nv config apply
+   ```
 
-Configure a duration, in seconds, to stop streaming HFT data after a specified period. The maximum duration is 1 hour (3600 seconds):
+   Configure a duration, in seconds, to stop streaming HFT data after a specified period. The maximum duration is 1 hour (3600 seconds):
 
-```
-cumulus@switch:~$ nv set system telemetry hft duration 120
-cumulus@switch:~$ nv config apply
-```
+   ```
+   cumulus@switch:~$ nv set system telemetry hft duration 120
+   cumulus@switch:~$ nv config apply
+   ```
 
-3. Enable HFT streaming to export data to your configured {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export destination">}}:
+3. Enable streaming to export data to your configured export destination (`otlp` or `ipfix`):
 
-If you are only exporting OTEL data to a single collector from your switch, you can enable HFT export globally:
+   ```
+   cumulus@switch:~$ nv set system telemetry hft export-type ipfix
+   cumulus@switch:~$ nv set system telemetry hft export state enabled 
+   cumulus@switch:~$ nv config apply
+   ```
 
-```
-cumulus@switch:~$ nv set system telemetry hft export state enabled 
-cumulus@switch:~$ nv config apply
-```
-
-Otherwise, configure a new statistic group to enable only HFT export to a destination:
+For OTEL gRPC, you can configure a new statistic group to enable only HFT export to a destination:
 
 ```
 cumulus@switch:~$ nv set system telemetry stats-group ONLY-HFT hft export state enabled
@@ -112,13 +185,9 @@ cumulus@switch:mgmt:~# nv show system telemetry hft
 --------------------  -------------------  -------  -------
 export                                                     
   state                                    enabled  enabled
+export-type                                otlp     ipfix
 duration                                   120      120    
-sample-interval-usec                       1000     1000   
-session-status                                             
-  status              COMPLETED                            
-  timestamp           2025-10-29 08:02:08                  
-
-
+sample-interval-usec                       1000     1000                
 
 Counters
 ===========
@@ -128,17 +197,13 @@ Counters
     tc-occupancy
     tx-byte     
 
-
-
 Egress Buffer
 ================
     Traffic Class
     -------------
     0            
     1            
-    5            
-
-
+    5
 
 HFT Interfaces
 =================
@@ -153,8 +218,6 @@ HFT Interfaces
     swp2s2   
     swp2s3   
 
-
-
 profile
 ==========
     Profile   traffic-class  counter       sample-interval
@@ -162,10 +225,7 @@ profile
     standard  3              rx-byte       5000           
                              tc-occupancy                 
                              tx-byte                      
-
-
-
-job
+jobs
 ======
 No Data
 ```

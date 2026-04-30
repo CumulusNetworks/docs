@@ -2,12 +2,12 @@
 title: Cloud-Init
 author: NVIDIA
 weight: 50
-product: NVIDIA Air 2.0
+product: NVIDIA DSX Air
 ---
 
 ## Overview
 
-Cloud-init is an industry-standard tool for automating the initial configuration of virtual machines on first boot. NVIDIA Air supports cloud-init through the {{<exlink url="https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html" text="NoCloud datasource">}}, which allows you to inject user-data and meta-data into your simulation nodes.
+Cloud-init is an industry-standard tool for automating the initial configuration of virtual machines on first boot. NVIDIA DSX Air supports cloud-init through the {{<exlink url="https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html" text="NoCloud datasource">}}, which allows you to inject user-data and meta-data into your simulation nodes.
 
 With cloud-init, you can automate tasks such as:
 - Setting hostnames
@@ -32,7 +32,7 @@ Cloud-init is configured through the API. The general workflow is:
 
 1. Create a simulation with your desired topology, but do not start it yet.
 2. Create **UserConfig** resources containing your user-data and meta-data content. UserConfigs are reusable — for example, you can create one user-data config and share it across multiple nodes, while giving each node its own meta-data with a unique hostname.
-3. Assign the UserConfig resources to simulation nodes using the {{<exlink url="https://air-ngc.nvidia.com/api/docs/#tag/nodes/PATCH/api/v3/simulations/nodes/bulk-assign" text="bulk-assign endpoint">}}. This endpoint lets you assign both user-data and meta-data to multiple nodes in a single request.
+3. Assign the UserConfig resources to simulation nodes using the {{<exlink url="https://dsx-air.nvidia.com/api/docs/#tag/nodes/PATCH/api/v3/simulations/nodes/bulk-assign" text="bulk-assign endpoint">}}. This endpoint lets you assign both user-data and meta-data to multiple nodes in a single request.
 4. Start the simulation. Cloud-init runs automatically on each node during its first boot.
 
 {{%notice note%}}

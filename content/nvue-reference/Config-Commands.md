@@ -251,6 +251,10 @@ Replaces the pending configuration with the specified YAML configuration file.
 
 In Cumulus Linux 5.13 and later, you can specify a text file containing `nv set` and `nv unset` commands instead of a yaml file.
 
+{{%notice note%}}
+The `nv config replace <file>` command replaces the entire running configuration. You must include any configuration you want to keep in the replace file.
+{{%/notice%}}
+
 ### Command Syntax
 
 | <div style="width:250px">Syntax   |  Description  |

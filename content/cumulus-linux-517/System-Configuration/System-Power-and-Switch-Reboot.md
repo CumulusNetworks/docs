@@ -12,7 +12,7 @@ Cumulus Linux provides commands to:
 
 Cumulus Linux provides these reboot modes:
 - **immediate** reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
-- **halt** shuts down the system. Use this mode to stop the switch completely instead of rebooting.
+- **halt** shuts down the operating system and halts the CPU. The switch hardware may remain powered.
 - **power-cycle** lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
@@ -53,23 +53,36 @@ Restart the switchd service with the `sudo systemctl restart switchd.service` co
 {{< /tab >}}
 {{< /tabs >}}
 
-### Reboot
+### Reboot Commands
 
-To reboot the switch, run the following commands. The reboot command provides several options.
+The following table shows the NVUE reboot commands and their Linux command equivalents:
 
-When using NVUE, you can force the reboot without prompting for confirmation with the `force` option (`nv action reboot system mode <mode> force`).
+| NVUE Command  | Linux Command| Description |
+|-------------- | ------------- | ----------- |
+| `nv action reboot system` | `sudo csmgrctl -c` | Reboots the switch in cold mode. This command is equivalent to the `nv action reboot system mode cold` command. |
+| `nv action reboot system force` | `sudo csmgrctl -cf` | Reboots the switch in cold mode without prompting for confirmation. This is equivalent to the `nv action reboot system mode cold force` command. |
+| `nv action reboot system mode immediate`| No Linux command available. | Reboots the switch immediately without notifying any running processes. This command invokes the Linux command `sudo reboot --force` after you respond to the prompt with `Yes`.|
+| `nv action reboot system mode immediate force` | `sudo reboot --force` | Reboots the switch immediately without notifying any running processes and without prompting for confirmation. |
+| `nv action reboot system mode halt` | No native command available. | Shuts down the operating system and halts the CPU. The switch hardware may remain powered.  |
+| `nv action reboot system mode halt force` | `sudo reboot --halt` | Shuts down the system without prompting for confirmation.|
+| `nv action reboot system mode power-cycle` | `sudo cl-powercycle` | Power cycles the switch. |
+| `nv action reboot system mode power-cycle force` | `sudo cl-powercycle -noprompt` | Power cycles the switch without prompting for confirmation.|
+| `nv action reboot system mode cold` | `sudo csmgrctl -c` | Reboots the switch in cold mode. |
+| `nv action reboot system mode cold force` | `sudo csmgrctl -cf` | Reboots the switch in cold mode without prompting for confirmation.|
+| `nv action reboot system mode fast` | `sudo csmgrctl -f` | Reboots the switch in fast mode.|
+| `nv action reboot system mode fast force` | `sudo csmgrctl -ff` | Reboots the switch in fast mode without prompting for confirmation.|
+| `nv action reboot system mode warm` | `sudo csmgrctl -w` | Reboots the switch in warm mode. |
+| `nv action reboot system mode warm force` | `sudo csmgrctl -wf` | Reboots the switch in warm mode without prompting for confirmation.|
 
-The following command reboots the switch immediately without notifying any running processes.
+### Command Examples
+
+The following command reboots the switch immediately without notifying any running processes and without prompting for confirmation.
 
 {{< tabs "TabID78">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv action reboot system mode immediate
-
-Do you want to continue? [y/N]  
-Action executing ... 
-Action succeeded 
+cumulus@switch:~$ nv action reboot system mode immediate force
 ```
 
 {{< /tab >}}
@@ -82,7 +95,7 @@ cumulus@switch:~$ sudo reboot --force
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command shuts down the system.
+The following command shuts down the operating system and halts the CPU.
 
 {{< tabs "TabID101">}}
 {{< tab "NVUE Commands ">}}
@@ -100,6 +113,9 @@ Action succeded
 
 ```
 cumulus@switch:~$ sudo reboot --halt
+Broadcast message from root@leaf01 on pts/1 (Wed 2026-03-25 15:31:36 UTC):
+
+The system will halt now!
 ```
 
 {{< /tab >}}
@@ -126,6 +142,8 @@ Action succeeded
 
 ```
 cumulus@switch:~$ sudo cl-powercycle
+This script will now power cycle the switch.
+Do you want to proceed with power-cycle? (yes/no):
 ```
 
 {{< /tab >}}
@@ -138,6 +156,9 @@ The following command reboots the switch in cold mode.
 
 ```
 cumulus@switch:~$ nv action reboot system mode cold
+Use this option for a complete reboot without removing power.
+
+Do you want to continue? [y/N]
 ```
 
 You can also run `nv action reboot system force` because cold reboot is the default mode.
@@ -147,6 +168,8 @@ You can also run `nv action reboot system force` because cold reboot is the defa
 
 ```
 cumulus@switch:~$ sudo csmgrctl -c
+System will restart
+ Do you wish to continue? [Y/n]:
 ```
 
 {{< /tab >}}
@@ -159,10 +182,10 @@ The following command reboots the switch in fast mode.
 
 ```
 cumulus@switch:~$ nv action reboot system mode fast
+WARNING: This operation will perform reboot similar to cold reboot but with relatively lower impact on traffic.
+Use this option for quick testing or configuration reload.
 
-Do you want to continue? [y/N]  
-Action executing ... 
-Action succeeded 
+Do you want to continue? [y/N]
 ```
 
 {{< /tab >}}
@@ -170,6 +193,8 @@ Action succeeded
 
 ```
 cumulus@switch:~$ sudo csmgrctl -f
+System will restart
+ Do you wish to continue? [Y/n]
 ```
 
 {{< /tab >}}
@@ -182,6 +207,9 @@ The following command reboots the switch in warm mode.
 
 ```
 cumulus@switch:~$ nv action reboot system mode warm
+WARNING: This operation will perform a warm reboot (hitless restart that minimizes impact on traffic).
+
+Do you want to continue? [y/N]
 ```
 
 {{< /tab >}}
@@ -189,14 +217,16 @@ cumulus@switch:~$ nv action reboot system mode warm
 
 ```
 cumulus@switch:~$ sudo csmgrctl -w
+System will restart
+ Do you wish to continue? [Y/n]:
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-### Show Reboot
+### Show Reboot Information
 
-To show reboot information, such as the date and time, and reason, and the reboot mode, run the `nv show system reboot` command:
+To show reboot information, such as the date and time, and reason, the reboot mode, and the reboot status, run the `nv show system reboot` command:
 
 ```
 cumulus@switch:~$ nv show system reboot
@@ -205,17 +235,16 @@ reason
   gentime              2026-02-28T01:45:15.921195+00:00
   user                 system/root
 required               no
-last-reboot-operation  cold
+last-reboot-operation  warm
+status                 failed
+detailed-status        forwarding driver api failed
 ```
 
-<!-- COMMENTED OUT AS THIS COMMAND ISN'T OPERATIONAL IN 5.15
-To display the current resource mode, run the `nv show system forwarding resource-mode` command. 
+For cold and fast reboot, the `status` indicates `success` and the `detailed-status` is `none` immediately after reboot.
 
-```
-cumulus@switch:~$ nv show system forwarding resource-mode
-cumulus@switch:~$ nv config apply
-```
--->
+For warm reboot, the `status` transitions from `in-progress` to `success` after ISSU completes, or to `failed` with a `detailed-status` of `forwarding driver api failed` if ISSU fails.
+
+The switch also creates a syslog message to indicate if warm reboot is in progress or complete.
 
 ## Warm Reboot and ISSU Considerations
 

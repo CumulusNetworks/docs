@@ -22,7 +22,11 @@ You can download a Cumulus Linux image from the {{<exlink url="https://enterpris
 {{%notice warning%}}
 Installing the Cumulus Linux image is destructive; configuration files on the switch are not saved; copy them to a different server before installing.
 {{%/notice%}}
-
+<!--
+{{%notice note%}}
+The Spectrum-6 switch requires you to install the <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span> and <span class="a-tooltip">[EROT](## "Embedded Root of Trust")</span> components. For package download and installation instructions, refer to {{<link url="BMC-and-eRoT" text="BMC and eRoT">}}.
+{{%/notice%}}
+-->
 In the following procedures:
 
 - You can name your Cumulus Linux image using any of the
@@ -665,23 +669,21 @@ To show the system boot security state (`enabled`, `disabled`, or `not-supported
 
 ```
 cumulus@switch:~$ nv show system
-uptime             1 day, 1:52:24                                                 
-hostname           leaf01 
-product-name       Cumulus Linux                                                  
-platform           N/A                                                            
-system-memory      1.31 GB used / 363.36 MB free / 1.67 GB total                  
-swap-memory        0 Bytes used / 0 Bytes free / 0 Bytes total                    
-health-status      Not OK 
-security
-  secure-boot
-    state          enabled                                                        
-date-time          2025-04-18 12:48:46                                            
-status             N/A                                                            
-timezone           Etc/UTC                                                        
-version                                                                           
-  onie             N/A                                                            
-  kernel           6.1.0-cl-1-amd64                                               
-  base-os          Debian GNU/Linux 12.10    
+                   operational          applied                
+-----------------  -------------------  -----------------
+uptime             5:07:49                                                  
+hostname           leaf01               leaf01          
+fqdn               leaf01                                                   
+product-name       Cumulus Linux                                            
+security                                                                    
+  secure-boot                                                               
+    state          not-supported                                            
+dns                                                                         
+  domain                                                                    
+date-time                                                                   
+  local-time       2026-04-15 21:23:16                                      
+  timezone         Etc/UTC              Etc/UTC                                                        
+...    
 ```
 
 To show secure boot details, run the `nv show system security secure-boot` command. The output shows the Secure Boot Key Database (DB) and SBAT revocation values in a consolidated view so that you can review enrolled keys with certificate details, monitor validity status, and view SBAT revocation information.
@@ -700,6 +702,13 @@ SBAT revocation information includes:
 
 ```
 cumulus@switch:~$ nv show system security secure-boot
+key-database
+===============
+No Data
+
+sbat-revocation
+==================
+No Data
 ```
 
 {{< /tab >}}
@@ -757,6 +766,9 @@ You can also follow the steps below to recover a downgraded secure boot switch t
 
 5. Follow steps a through d above to **enable** secure boot in BIOS. In step c, change `Secure Boot` to `Enabled`.
 
+## Considerations
+
+If you run `onie-install` without the `-t` option and the `nv config patch <config>` or `nv config replace <config>` command fails, try to translate the configuration file with the `nv config translate <config.yaml> > <translated-config.yaml>` command before you run `onie-install`.
 ## Related Information
 
 - {{<exlink url="https://enterprise-support.nvidia.com/s/article/NVIDIA-Enterprise-Support-Guide-for-New-Users#NVIDIA-Enterprise-Support-Portal" text="NVIDIA Enterprise Support Portal User Guide">}}

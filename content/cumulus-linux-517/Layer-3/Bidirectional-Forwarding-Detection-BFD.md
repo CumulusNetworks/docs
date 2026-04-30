@@ -338,14 +338,12 @@ You configure the echo function by setting the following parameters in the topol
 
 ## BFD Offload
 
-BFD offload improves BFD session scale by offloading BFD numbered sessions to a kernel driver called `sx_bfd`, which is responsible for maintaining BFD sessions. BFD offload is disabled by default.
+BFD offload improves BFD session scale by offloading sessions to the kernel driver `sx_bfd`, which is responsible for maintaining those sessions. BFD offload supports numbered sessions and IPv6 unnumbered sessions. BFD offload is disabled by default.
 
 {{%notice note%}}
-<!--SUPPORTED IN 5.17 - BFD offload does not support BFD sessions based on the IPv6 link-local address.-->
 - When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
 - If a BFD peer is down; for example, due to path failures, (not admin-down), the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might cause an increase in CPU usage.
 - When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode.
-- If you have a mix of BFD sessions to non-link-local IPv4 or IPv6 destinations, NVIDIA recommends that you do *not* enable BFD offload.
 - Depending on the configured BFD intervals and the number of BFD sessions, enabling and disabling BFD offload might result in session flaps, especially with aggressive timers on lower-end platforms. BFD sessions are expected to run in offload mode in a steady state and moving offloaded sessions back to non-offload (control-plane) mode is rare. In the unlikely event that such a transition is required, you must set the BFD session timers to values appropriate for non-offload mode to avoid flaps. When running multiple BFD sessions in non-offload mode, the minimum recommended timer values are 3 for the detect multiplier, 300 milliseconds for the transmit interval, and 900 milliseconds for the receive interval.
 - If you use frequent BFD timers (such as 50 milliseconds and a multiplier of 3) for BFD sessions at scale, NVIDIA recommends increasing the BFD control plane policer values with the `nv set system control-plane policer bfd burst` and `nv set system control-plane policer bfd rate` commands.
 {{%/notice%}}
@@ -362,9 +360,10 @@ cumulus@switch:~$ nv set router bfd offload enabled
 cumulus@switch:~$ nv config apply
 ```
 
-For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` command; for example:
+For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd profile <profile-id>` and `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` commands; for example:
 
 ```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd profile BFD1
 cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd source 10.10.10.3
 ```
 
@@ -384,6 +383,18 @@ switch# write memory
 switch# exit
 ```
 
+For single hop static route BFD sessions in offload mode, you need to configure the source address:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# ip route 10.10.10.101/32 10.0.1.0 2 bfd source 10.10.10.3 profile BFD1
+switch(config-bfd)# end
+switch# write memory
+switch# exit
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -395,7 +406,7 @@ cumulus@switch:~$ nv show router bfd
 ---------  ---------------------------
 state      enabled
 offload    enabled
-[profile]  bfd_profile_bgp-bfd-profile
+...
 ```
 
 To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view brief` command or the vtysh `show bfd peer` command.
@@ -405,9 +416,12 @@ cumulus@switch:~$ nv show vrf default router bfd peers --view brief
 MHop - Multihop, Local - Local, Peer - Peer, Interface - Interface, State -
 State, Passive - Passive Mode, Time - Up/Down Time, Type - Config Type,
 Offloaded - Offloaded
-LocalId     MHop   Local       Peer        Interface    State  Passive  Time     Type     Offloaded
-----------  -----  ---------   ---------   -----------  -----  -------  -------  -------  ---------
-4481308     False  10.10.10.1  10.10.10.2  swp2         up     False    3:58:44  dynamic  offloaded
+LocalId     MHop   Local                      Peer                  Interface      State  Passive  Time     Type     Offloaded
+----------  -----  ---------                  ---------             -----------    -----  -------  -------  -------  ---------
+4481308     False  10.10.10.1                 10.10.10.2            swp2           up     False    3:58:44  dynamic  offloaded
+87960564    False  fe80::1e34:daff:fea2:bb11  fe80::202:ff:fe00:e   swp21s1.631    up     False    0:00:55  dynamic  offloaded
+88363335    False  fe80::1e34:daff:fea2:bb10  fe80::202:ff:fe00:d   swp21s0.510    up     False    0:00:57  dynamic  offloaded
+90679959    False  fe80::1e34:daff:fea2:bb10  fe80::202:ff:fe00:d   swp21s0.507    up     False    0:00:57  dynamic  offloaded
 ```
 
 The `Offloaded` field shows `offloaded` if the session is offloaded and `control-plane` if the session is not offloaded.
@@ -425,7 +439,7 @@ cumulus@switch:~$ nv show router bfd profile BFD1
 detect-multiplier  10 
 min-rx-interval    100 
 min-tx-interval    100 
-shutdown           enabled 
+shutdown           disabled 
 passive-mode       enabled 
 minimum-ttl        1 
 ```

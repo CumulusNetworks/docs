@@ -1434,6 +1434,34 @@ You can change the order of the revisions; for example, `GET /nvue_v1/<resource>
 
 Certain configurations, such as interfaces, bonds, VLANs, and transceivers, use a range. By default, the range configurations show in unexpanded format. To show the range configurations in expanded format (each item shows individually), add the `expand=true` query parameter. For example `curl -u 'cumulus:cumulus' --insecure -X GET /nvue_v1/interface?rev=startup&diff=applied&expand=true"`
 
+## Verify Configuration Before Applying
+
+The NVUE API provides a `dry-run` field for the apply endpoint so that you can validate configuration without reloading services or modifying the running system state. The API response shows any errors so that you can resolve them before applying the configuration.
+
+The `dry-run` field provides two modes:
+  - `brief` shows basic verification in the response (equivalent to the NVUE `nv config verify` command).
+  - `verbose` includes staged files and scheduled services in the response.
+
+The following example shows `dry-run` in `brief` mode:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"state":"apply","state-controls":{"dry-run": "brief"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/6
+```
+
+The following example shows `dry-run` in `verbose` mode:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"state":"apply","state-controls":{"dry-run": "verbose"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/6
+```
+
+The API response shows:
+- `dry_run_complete` if verification succeeded. The configuration is valid and successfully staged.
+- `invalid` if configuration validation failed with syntax, schema, or logic errors.
+- `verify_error` if an exception occurred during verification.
+- `ready_error` if an exception occurred during ready-apply.
+
+The failure states and their error messages are identical to those returned during a normal `nv config apply` operation.
+
 ### Troubleshoot Configuration Changes
 
 When a configuration change fails, you see an error in the change request.
@@ -2973,6 +3001,18 @@ This example deletes the `test1` user.
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -k -X DELETE https://127.0.0.1:8765/nvue_v1/system/aaa/user/test1?rev=6
 ```
 
+This command shows information about the user account test1:
+
+```
+cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/system/aaa/user/test1?
+```
+
+To see the hashed password for the user in the original form instead of with obfuscated values (asterisks), add `privileged=true`. You must have `sudo` privileges to view the hashed password.
+
+```
+cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765//nvue_v1/system/aaa/user/test1? privileged=true
+```
+
 {{< /tab >}}
 {{< tab "Python Code" >}}
 <!-- vale off -->
@@ -3163,6 +3203,18 @@ This example deletes the user `test1`.
 
 ```
 cumulus@switch:~$ nv unset system aaa user test1
+```
+
+This command shows information about the user account test1:
+
+```
+cumulus@switch:~$ nv show system aaa user test1
+```
+
+To see the hashed password for the user in the original form instead of with obfuscated values (asterisks), add the `--privileged` option to the `nv show system aaa user <user-id>` command. You must have `sudo` privileges to view the hashed password.
+
+```
+cumulus@switch:~$ nv show system aaa user test1 --privileged
 ```
 
 {{< /tab >}}
@@ -4579,7 +4631,7 @@ if __name__ == "__main__":
 
 ## Try the API
 
-To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/marketplace?demo_id=aa77bb13-6a7d-431c-9203-640510778beb" text="NVUE API Lab">}} available on NVIDIA Air. The lab provides a basic example to help you get started. You can also try out the other examples in this document.
+To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/marketplace?demo_id=aa77bb13-6a7d-431c-9203-640510778beb" text="NVUE API Lab">}} available on NVIDIA DSX Air. The lab provides a basic example to help you get started. You can also try out the other examples in this document.
 
 ## Resources
 

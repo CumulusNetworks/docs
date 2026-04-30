@@ -48,7 +48,6 @@ cumulus@switch:~$ nv action generate system tech-support
 ## Optimized Image Upgrade
 
 Optimized image upgrade uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
-
   - You can only use optimized image upgrade on a switch with a 30GB <span class="a-tooltip">[SSD](## "Solid state drive")</span> or larger to accommodate the second partition required for upgrade. To validate the size of the SSD, run the `sudo blockdev --getsize64 /dev/sda` command. As an alternative, run the `sudo blkid` command and confirm the `CL-SYSTEM-2` partition exists on the switch to support optimized upgrade.
   - You can use optimized image upgrade to upgrade the switch to Cumulus Linux 5.14 from 5.11.1 and later.
   - You cannot downgrade a Cumulus Linux 5.14 switch to Cumulus Linux 5.11.0 or earlier with optimized image upgrade; use ONIE instead.
@@ -56,7 +55,6 @@ Optimized image upgrade uses two partitions to upgrade the image with just one r
 {{%notice note%}}
 Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
-
 
 {{< tabs "TabID569 ">}}
 {{< tab "NVUE Commands ">}}
@@ -284,7 +282,6 @@ To upgrade the switch with package upgrade:
 {{< /tab >}}
 {{< /tabs >}}
 
-
 ## ONIE Image Upgrade
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch. ONIE upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.14).
@@ -304,6 +301,7 @@ As Cumulus Linux supports more features and functionality, NVUE syntax might cha
 - Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade. You must reimport the certificates after the new image is installed. 
 - If you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release. This method still requires reimporting certificates and CRLs after the image install.
 - If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
+- If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. Refer to {{<link url="#onie-install-issues" text="ONIE Install Issues">}}.
 {{%/notice%}}
 
 To back up the configuration file:
@@ -317,9 +315,7 @@ To back up the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
-
 
 {{< /tab >}}
 
@@ -346,7 +342,6 @@ As with other Linux distributions, the `/etc` directory is the primary location 
 | `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
-
 
 **Commonly Used Files:**
 
@@ -393,7 +388,6 @@ To show a list of files changed from the previous Cumulus Linux install, run the
 To show a list of generated `/etc/default/isc-*` files changed from the previous Cumulus Linux install, run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command.
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 2. Download the Cumulus Linux image.
@@ -579,7 +573,49 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 ## Considerations
 
+### /etc/os-release, /etc/lsb-release, and /etc/image-release Files
+
 - The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.14, these two files display the release as 5.14 after the upgrade.
 - The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.12, followed by a package upgrade to 5.14, the `/etc/image-release` file continues to display Cumulus Linux 5.12, which is the originally installed base image.
-- To downgrade a switch with Secure Boot enabled, see {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}}.
-- If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch. After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages. Package upgrade does **not** replace or remove third-party applications.
+
+### Downgrade a Switch with Secure Boot
+
+To downgrade a switch with Secure Boot enabled, see {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}}.
+
+### Third Party Applications
+
+If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch. After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages. Package upgrade does **not** replace or remove third-party applications.
+
+### ONIE Install Issues
+
+If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. To work around this issue, **before** you upgrade Cumulus Linux, upgrade the ONIE installer to ONIE version 5.3.0013 or later. The ONIE installer upgrade requires a switch reload and causes a complete switch factory reset.
+
+{{< expand "Upgrade the ONIE installer" >}}
+1. Log into Cumulus Linux.
+2. Run the following commands:
+
+   ```
+   cumulus@switch:~$ sudo -i
+   cumulus@switch:~$ mount LABEL=ONIE-BOOT /mnt/onie-boot
+   cumulus@switch:~$ ln -s /mnt/onie-boot/onie/tools/lib/onie /lib/onie
+   ```
+
+3. To check the existing ONIE version, run the `/mnt/onie-boot/onie/tools/bin/onie-fwpkg show` command.
+
+   ```
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   ```
+
+4. To upgrade the ONIE installer, run the following commands:
+
+   ```
+   cumulus@switch:~$ wget http://Image/onie-updater-x86_64-mlnx_x86-r0
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg purge
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg add onie-updater-x86_64-mlnx_x86-r0
+   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   cumulus@switch:~$ umount /mnt/onie-boot
+   cumulus@switch:~$ onie-select -pf
+   ```
+
+5. Reboot the switch, then upgrade Cumulus Linux.
+{{< /expand >}}

@@ -29,6 +29,7 @@ Docker Containers
     ------------------  -------------------------------  ------------  -------------------  -----  -------             
     what-just-happened  docker-wjh:latest                f834edf7fd3c  Up 6 days      
 ```
+
 {{< /tab >}}
 {{< tab "Linux Commands">}}
 
@@ -51,6 +52,7 @@ cumulus@switch:~$ sudo systemctl status docker@mgmt.service
                └─mgmt
                  └─733337 /usr/bin/dockerd --containerd=/run/containerd/containerd.sock
 ```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -76,7 +78,6 @@ cumulus@switch:~$ nv config apply
 {{%notice note%}}
 The {{<link title="What Just Happened (WJH)" text="What Just Happened">}} (WJH) service relies on Docker. If you disable Docker, WJH must also be disabled with the `nv set system wjh state disabled` command.
 {{%/notice%}}
-
 
 You can test Docker by running the `hello-world` container if Docker is running in a VRF with Internet access:
 
@@ -113,6 +114,7 @@ To disable and stop Docker:
 cumulus@switch:~$ sudo systemctl disable docker@mgmt.service
 cumulus@switch:~$ sudo systemctl stop docker@mgmt.service
 ```
+
 {{%notice note%}}
 The {{<link title="What Just Happened (WJH)" text="What Just Happened">}} (WJH) service relies on Docker. If you disable Docker, WJH must also be disabled.
 {{%/notice%}}
@@ -146,7 +148,6 @@ https://docs.docker.com/get-started/
 
 {{< /tab >}}
 {{< /tabs >}}
-
 
 ## Change the Docker Service VRF
 
@@ -193,6 +194,10 @@ NVUE provides commands to:
 - Create and run a new container from an image.
 - Stop a container.
 - Delete a Docker container.
+
+{{%notice note%}}
+Before you download a container image onto the switch, check the available disk space. You must have enough disk space to account for the size of the container image plus 25 percent more space just to download the image. In addition, consider how much extra space you need to run the container.
+{{%/notice%}}
 
 ### Docker Images
 
@@ -260,7 +265,6 @@ To create and run a new container from an image, run the `nv action run system d
 You must escape special characters used in any Docker `options` and `args` specified in NVUE commands. 
 {{%/notice%}}
 
-
 ```
 cumulus@switch:~$ nv action run system docker container nginx-demo image nginx:alpine option '\-\-hostname nginx-demo \-p 8080:80 \-\-restart unless-stopped \-e NGINX_ENTRYPOINT_QUIET_LOGS=1 \-v site:/usr/share/nginx/html:ro \-\-log-opt max-size=10m \-\-log-opt max-file=3' args "nginx -g 'daemon off; worker_processes auto; error_log /var/log/nginx/error.log warn;'"
 ```
@@ -312,8 +316,6 @@ cumulus@switch:~$ nv show system docker
 vrf    mgmt         mgmt   
 state  enabled      enabled
 
-
-
 Docker Containers
 ====================
     Container Name      Image                            Container ID  Status               Ports  Summary
@@ -360,7 +362,6 @@ stats
   net-io       0B / 0B                        
   block-io     160kB / 41kB                   
   pids         9                              
-
 ```
 
 To show all container statistics, run the `nv show system docker container stats` command:
@@ -386,7 +387,6 @@ mem-percent  0.05%
 net-io       0B / 0B     
 block-io     160kB / 41kB
 pids         9           
-
 ```
 
 To show Docker engine configuration, run the `nv show system docker engine` command. Add the `-o native` option to display additional data from Docker inspect.

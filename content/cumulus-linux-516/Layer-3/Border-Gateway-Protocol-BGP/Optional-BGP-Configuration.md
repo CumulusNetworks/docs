@@ -1749,7 +1749,7 @@ To configure BGP unreachability SAFI:
 - Optional on both leaf and spine: Set the prefix limits for a peer or peer group; see the table below.
 - Optional on both leaf and spine: Set the AS path options for a peer or peer group; see the table below.
 
-The following table describes the `prefix limit` options.
+The following table describes the prefix limit options (`prefix-limits inbound`).
 
 | Option | Description |
 | -------- | ------------ |
@@ -1783,10 +1783,10 @@ cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachabili
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-origin
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-unreach interfaces-match 2001:1:1::/48
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability state enabled
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits maximum 6
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits inbound maximum 6
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath allow-my-asn origin enabled
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability state enabled
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability prefix-limits maximum 6
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability prefix-limits inbound maximum 6
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability aspath allow-my-asn origin enabled
 cumulus@leaf01:~$ nv config apply
 ```
@@ -1799,7 +1799,7 @@ The following example enables BGP unreachability SAFI for IPv6 globally and on p
 ```
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
 cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability state enabled
-cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits maximum 6
+cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits inbound maximum 6
 cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-SUPERSPINE address-family ipv6-unreachability state enabled
 cumulus@spine01:~$ nv config apply
 ```
@@ -1937,8 +1937,9 @@ For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-i
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits 
                    operational  applied
 -----------------  -----------  ------- 
-maximum                         6   
-warning-threshold               75
+inbound
+  maximum                       6   
+  warning-threshold             75
 ```
 
 To show the BGP unreachability AS path configuration for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability aspath` command.

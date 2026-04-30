@@ -36,6 +36,7 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for 
   - Dual stack VXLAN mode (with both an IPv4 and IPv6 VTEP source address).
   - MLAG.
   - Static VXLAN tunnels.
+  - Q-in-Q tunneling.
   - The NVUE `nv set nve vxlan source address` command `auto` setting, which is applicable only for IPv4 VXLAN tunnels. If you want to configure IPv6 VXLAN tunnels, you must set the VXLAN source IP address manually as an IPv6 GUA address.
 
   {{%notice note%}}

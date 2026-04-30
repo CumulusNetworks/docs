@@ -1749,7 +1749,7 @@ To configure BGP unreachability SAFI:
 - Optional on both leaf and spine: Set the prefix limits for a peer or peer group; see the table below.
 - Optional on both leaf and spine: Set the AS path options for a peer or peer group; see the table below.
 
-The following table describes the `prefix limit` options.
+The following table describes the prefix limits options (`prefix-limits inbound`).
 
 | Option | Description |
 | -------- | ------------ |
@@ -1786,7 +1786,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits maximum 6
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath allow-my-asn origin enabled
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability state enabled
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability prefix-limits maximum 6
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability prefix-limits inbound maximum 6
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family ipv6-unreachability aspath allow-my-asn origin enabled
 cumulus@leaf01:~$ nv config apply
 ```
@@ -1799,13 +1799,13 @@ The following example enables BGP unreachability SAFI for IPv6 globally and on p
 ```
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
 cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability state enabled
-cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits maximum 6
+cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits inbound maximum 6
 cumulus@spine01:~$ nv set vrf default router bgp peer-group UNDERLAY-SUPERSPINE address-family ipv6-unreachability state enabled
 cumulus@spine01:~$ nv config apply
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
+  {{< /tab >}}
+  {{< /tabs >}}
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1937,8 +1937,11 @@ For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-i
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits 
                    operational  applied
 -----------------  -----------  ------- 
-maximum                         6   
-warning-threshold               75
+-------------------  -----------  -------
+
+inbound
+  maximum                         6   
+  warning-threshold               75
 ```
 
 To show the BGP unreachability AS path configuration for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability aspath` command.
@@ -2006,6 +2009,241 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
+
+
+## BGP-LLDP Unreachability in Disjoined Planes
+
+In disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. For scalability, leaf switches perform route aggregation, which can reduce visibility into individual host link failures. BGP-based unreachability signaling enables the advertisement of host reachability changes following a link failure. Upon receiving BGP unreachable route advertisements, leaf switches use LLDP TLVs to notify directly connected NICs to avoid forwarding traffic over unreachable paths.
+
+{{%notice note%}}
+- BGP-LLDP unreachability in disjoined planes is a Beta feature.
+- BGP unreachability signaling is not functional if all the leaf switch uplinks to spines go down.
+- When using BGP-LLDP unreachability in disjoined planes, route aggregation is required.
+- BGP-LLDP unreachability in disjoined planes does not work during a networking restart or forced reboot.
+- Cumulus Linux does not support mixing connected and disjoined planes on the same leaf switch.
+- Cumulus Linux does not support 802.1x dynamic VRF assignments with unreachability signaling in disjoined planes.
+- If you are migrating from connected planes with BGP disaggregation, remove BGP disaggregation configuration before configuring BGP-LLDP unreachability in disjoined planes.
+{{%/notice%}}
+
+{{< tabs "TabID2029">}}
+{{< tab "NVUE Commands ">}}
+
+{{< tabs "TabID2032">}}
+{{< tab "Leaf Configuration ">}}
+
+To enable BGP-LLDP unreachability signaling for disjoined multi-plane topologies on each leaf switch:
+
+1. Configure route aggregation in the tenant VRFs to summarize relevant network IPv4 and, or IPv6 prefixes:
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only enabled
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast aggregate-route 2001:db8::/64 summary-only enabled
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+2. Configure `bgp advertise-unreach interfaces-match <prefix>` under each IPv4 and, or IPv6 unreachability address-family to match interface prefixes attached to GPU NICs:
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unreachability advertise-unreach interfaces-match 10.1.0.0/16 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unreachability advertise-unreach interfaces-match 2001:db8::/64 
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+3. Enable the IPv4 and, or IPv6 unreachability SAFIs, and enable the SAFI on desired peer groups or neighbors:
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unreachability state enabled  
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unreachability state enabled
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unreachability state enabled
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+4. Enable {{<link url="/#bgp-prefix-independent-convergence" text="BGP PIC">}} for fast convergence using per-source next-hop groups:
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast advertise-origin
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+5. Configure BGP advertisement delay to avoid premature advertisement of aggregate routes after a leaf switch reboot or FRR service restart, allowing downlink interfaces to come up before drawing traffic to the switch. NVIDIA recommends setting the delay to at least 150 seconds when using 802.1x authentication, and at least 30 seconds in other scenarios:
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp advertisement-delay time 150
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+6. Enable {{<link url="/#graceful-bgp-restart" text="BGP Graceful Restart">}} to preserve forwarding state during service restarts. Configure `restart-time` and `stale-routes-time` with values greater than the configured `advertisement-delay`:
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart mode full 
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart restart-time 180 
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart stale-routes-time 180 
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart path-selection-deferral-time 180
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+7. Configure `bgp export lldp` to enable FRR to LLDP integration to send IPv4 and, or IPv6 prefix information to LLDP:
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unreachability export-lldp state enabled
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unreachability export-lldp state enabled
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+8. Enable the LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} to distribute unreachable prefix information to connected hosts.
+
+{{< /tab >}}
+{{< tab "Spine Configuration ">}}
+
+To enable BGP-LLDP unreachability signaling for disjoined multi-plane topologies on each spine switch:
+
+1. Enable the BGP unreachability SAFI under the IPv4 and, or IPv6 address families:
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unreachability state enabled  
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled 
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+2. Enable {{<link url="/#bgp-prefix-independent-convergence" text="BGP PIC">}} for fast convergence using per-source next-hop groups:
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin 
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+3. Enable {{<link url="/#graceful-bgp-restart" text="BGP Graceful Restart">}} to preserve forwarding state during service restarts:
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart mode full 
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart restart-time 180 
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart stale-routes-time 180 
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart path-selection-deferral-time 180
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+{{< tabs "TabID1776 ">}}
+{{< tab "Leaf Configuration ">}}
+
+The following commands configure:
+
+- BGP advertisement delay of 150 seconds.
+- BGP Graceful Restart.
+- Aggregate route of 10.1.0.0./16.
+- The BGP IPv4 unreachability SAFI, activated for peer-group SPINES.
+- Unreachability advertisements for interfaces matching 10.1.0.0./16.
+- BGP PIC with `advertise-origin` and `nhg-per-origin`.
+- BGP unerachable prefix export to LLDP.
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp advertisement-delay 150
+leaf01(config)# bgp graceful-restart
+leaf01(config)# router bgp 65000
+leaf01(config-router)#  bgp router-id 10.10.10.1
+leaf01(config-router)#  bgp graceful-restart stalepath-time 180
+leaf01(config-router)#  bgp graceful-restart restart-time 180
+leaf01(config-router)#  bgp graceful-restart select-defer-time 180
+leaf01(config-router)#  address-family ipv4 unicast
+leaf01(config-router-af)#   aggregate-address 10.1.0.0/16 summary-only
+leaf01(config-router-af)#   bgp advertise-origin
+leaf01(config-router-af)#   bgp nhg-per-origin
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)#  address-family ipv4 unreachability
+leaf01(config-router-af)#   bgp advertise-unreach interfaces-match 10.1.0.0/16
+leaf01(config-router-af)#   bgp export lldp
+leaf01(config-router-af)#   neighbor SPINES activate
+leaf01(config-router-af)#  exit-address-family
+leaf01(config-router)# exit
+leaf01(config)# end
+leaf01# write memory
+leaf01# 
+```
+
+Then enable the LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} to distribute unreachable prefix information to connected hosts.
+
+{{< /tab >}}
+{{< tab "Spine Configuration">}}
+
+The following commands configure:
+
+- BGP Graceful Restart
+- The BGP IPv4 unreachability SAFI, activated on peer-group LEAFS
+- BGP PIC with `nhg-per-origin`
+
+```
+cumulus@spine01:mgmt:~$ sudo vtysh
+...
+leaf01# configure terminal
+spine01(config)# bgp graceful-restart
+spine01(config)#  router bgp 65001
+spine01(config-router)#  bgp router-id 10.10.0.10
+spine01(config-router)#  bgp graceful-restart stalepath-time 180
+spine01(config-router)#  bgp graceful-restart restart-time 180
+spine01(config-router)#  bgp graceful-restart select-defer-time 180
+spine01(config-router)#  address-family ipv4 unicast
+spine01(config-router-af)#   bgp nhg-per-origin
+spine01(config-router-af)#  exit-address-family
+spine01(config-router)#  address-family ipv4 unreachability
+spine01(config-router-af)#   neighbor LEAFS activate
+spine01(config-router-af)#  exit-address-family
+spine01(config-router)# exit
+spine01(config)# end
+spine01# write memory
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Considerations
+
+- To extend BGP-LLDP unreachability to EVPN and tenant VRFs, refer to {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}}.
+- Multiple service failures across leaf switches (such as an FRR failure on one leaf, and FRR, BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
+- FRR can send a maximum of 25k prefixes for each VRF and 100k total prefixes across all VRFs to LLDP.
+- When you use BGP unreachability in disjoined planes with 802.1X, the radius servers must be reachable through the management VRF.
+- When the IPv6 SLAAC address for a connected host expires but the interface remains up, an unreachable route is not injected for the host.
+- The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
+- If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling. To work around this issue, manually configure the following vtysh commands using snippets to configure the original prefix to be injected and withdrawn:
+
+```
+bgp inject unreachability ipv4 10.1.0.0/24 local
+bgp inject unreachability ipv4 10.1.0.0/24 remote
+no bgp inject unreachability ipv4 10.1.0.0/24 local
+no bgp inject unreachability ipv4 10.1.0.0/24 remote
+```
+
+### Show BGP Unreachability Information
+
+To show BGP unreachability information for a specific IPv4 route, run the `nv show vrf <vrf-id> router bgp address-family ipv4-unreachability <route>` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unreachability 10.1.0.0/16
+```
+
+To show BGP unreachability signaling for a specific IPv6 route, run the `nv show vrf <vrf-id> router bgp address-family ipv6-unreachability <route>` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unreachability 2001:db8::/64
+```
+
+To show the unreachable prefixes in the RIB that are sent to LLDP, run the `nv show vrf default router rib unreachable-prefixes` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib unreachable-prefixes
+```
 
 ## BGP Timers
 

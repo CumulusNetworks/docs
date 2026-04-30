@@ -685,6 +685,10 @@ You can also follow the steps below to recover a downgraded secure boot switch t
 
 5. Follow steps a through d above to **enable** secure boot in BIOS. In step c, change `Secure Boot` to `Enabled`.
 
+## Considerations
+
+If you run `onie-install` without the `-t` option and the `nv config patch <config>` or `nv config replace <config>` command fails, try to translate the configuration file with the `nv config translate <config.yaml> > <translated-config.yaml>` command before you run `onie-install`.
+
 ## Related Information
 
 - {{<exlink url="https://enterprise-support.nvidia.com/s/article/NVIDIA-Enterprise-Support-Guide-for-New-Users#NVIDIA-Enterprise-Support-Portal" text="NVIDIA Enterprise Support Portal User Guide">}}

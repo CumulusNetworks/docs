@@ -15,47 +15,36 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 ### New Features and Enhancements
 
 - {{<link url="TACACS/#server-side-per-command-authorization" text="TACACS+ Server-side Per-command Authorization">}}
-- {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} (Beta)
-- {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} (Beta)
 - {{<link url="802.1X-Interfaces/#lldp-on-802.1x-unauthenticated-ports" text="Allow LLDP on 802.1X unauthenticated ports">}}
 - {{<link url="Interface-Configuration-and-Management/#link-debounce-timers" text="Interface debounce timer (link dampening)">}}
 - {{<link url="Zero-Touch-Provisioning-ZTP/#ztp-over-dhcp" text="Revert to DHCP if the ZTP URL is not reachable">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload support for BFD sessions based on the IPv6 link-local address">}}
-- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
+- {{<link url="Docker-with-Cumulus-Linux/#docker-resource-tiering-system" text="Docker Resource Governance & Policy Agent">}}
+- {{<link url="Quality-of-Service/#lossless-headroom" text="PFC headroom pool">}}
+- {{<link url="Link-Layer-Discovery-Protocol/#lldp-tlvs" text="Granular LLDP TLV definition and control">}}
+- {{<link url="Syslog/#thermal-control-logs" text="Thermal logging in syslog (sensor and fan state and errors)">}}
+- {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} (Beta)
+- {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} (Beta)
+- {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} (Beta)
+- {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} (Beta)
 - NVUE
   - {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#show-secure-boot-details" text="NVUE command to show secure boot status and details">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}
-  - New command to verify a configuration before applying
-  - Block NVUE CLI during Long Background Operations
+  - {{<link url="NVUE-CLI/#configuration-commands" text="NVUE prevents configuration changes during long background operations">}}
+  -  {{<link url="NVUE-CLI/#verify-configuration-before-applying" text="NVUE command">}} and {{<link url="NVUE-API/#verify-configuration-before-applying" text="NVUE API option">}} to verify configuration before applying
+  - {{<link url="System-Power-and-Switch-Reboot/#show-reboot-information" text="NVUE command to show warm boot status">}}
 - Telemetry
-  - {{<link url="Open-Telemetry-Export/#interface-statistics" text="New link debounce OTEL metrics">}}
-  - {{<link url="Open-Telemetry-Export/#interface-statistics" text="New link down OTEL metrics">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="New link debounce gNMI metrics">}}
-  - {{<link url="gNMI-Streaming/#metrics" text="New link down gNMI metrics">}}
+  - New OTEL metrics: {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="link debounce">}}, {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="PHY link down">}}, {{<link url="Open-Telemetry-Export/#control-plane-statistic-format" text="control plane">}}, and {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="platform information">}}
+  - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="PHY link down, link debounce, control plane, platform information, and systemd service">}}
+  - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} (Beta)
+  - {{<link url="High-Frequency-Telemetry/#streaming-hft-export" text="High frequency telemetry streaming over IPFIX">}}
 - Security
-  - Alert in the event of an audit processing failure
-  - Support organizational requirements to conduct backups of information system documentation
-  - Support "sudo" validation when TACACS server is connected to the default VRF
-  - Graceful SSD Wipe
-  - API to change SED password (Cumulus)
-  - Support PEAP-GTC tunneling for Radius
-- Instant Retransmission System (Beta)
-- LLDP BGP Route Redistribution Extension (Beta)
-- Open Telemetry Granular metric selection (Beta)
-- BGP/LLDP X-Plane multi-plane'd GPUs with disjoined planes (EVPN based deployments) (Beta)
-- Support SSD-SED disable in BIOS (Spectrum-6)
-- Routing Convergence Enhancement for full connectivity loss (all links Up/restart)
-- BER monitoring | GSHUT and port down due to error disabled
-- Integrate logs in tc_log to the syslog​, and update log level
-- High frequency telemetry - Nsight Integration - Phase 2 (Binary format) 
-- Granular LLDP TLV definition and control 
-- Ability to view Hashed password
-- Parity between OpenTelemetry and gNMI (Phase 3) 
-- Support PFC headroom pool 
-- Streaming Telemetry support for system software forwarding counters
-- Request to get Missing serial number of the device with GNMI subscription 
-- Request to Re authentication of dot1x supplicant(Phase 2) 
-- Docker Resource Governance & Policy Agent (GA)
+  - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
+  - {{<link url="Disk-Management/#erase-data-from-the-disk" text="Extended disk erase to support SED SSDs">}}
+  - {{<link url="Disk-Management/#change-the-sed-password" text="Change the SED disk password">}}
+  - Ability to view {{<link url="User-Accounts/#show-user-accounts" text="hashed password with NVUE">}} and {{<link url="NVUE-API/#configure-users" text="with API">}}
+  - {{<link url="Security-Alerts" text="Security alerts ">}} for audit processing failures
+  - {{<link url="802.1X-Interfaces/#8021x-reauthentication" text="802.1X reauthentication: maximum number of retries and interface configuration">}}
 
 ## Release Considerations
 
@@ -67,6 +56,10 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 
 To upgrade to Cumulus Linux 5.17 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
+<!--### Install BMC and EROT Components on the Spectrum-6 Switch
+
+The Spectrum-6 switch requires you to install the <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span> and <span class="a-tooltip">[EROT](## "Embedded Root of Trust")</span> components. For package download and installation instructions, refer to {{<link url="BMC-and-eRoT" text="BMC and eRoT">}}.
+-->
 ### Maximum Number of NVUE Revisions
 
 Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.17 from 5.12 or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
@@ -116,4 +109,4 @@ After you upgrade to Cumulus Linux, running NVUE configuration commands might ov
 
 ### Cumulus VX
 
-NVIDIA no longer releases Cumulus VX as a standalone image. To simulate a Cumulus Linux switch, use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA AIR">}}.
+NVIDIA no longer releases Cumulus VX as a standalone image. To simulate a Cumulus Linux switch, use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA DSX Air">}}.

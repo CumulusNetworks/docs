@@ -905,7 +905,7 @@ pdfhidden: True
 | {{<foss_file text="swagger-scala-module" url="cumulus-netq-52/Whats-New/licenses/swagger-scala-module.txt" >}} | 1.0.6 | Apache License 2.0 |
 | {{<foss_file text="uuid" url="cumulus-netq-52/Whats-New/licenses/uuid.txt" >}} | 3.2, 8.3.2, 3.4.0, 9.0.1 | MIT License |
 | {{<foss_file text="zstd-jni" url="cumulus-netq-52/Whats-New/licenses/zstd-jni.txt" >}} | 1.5.6-10, 1.5.5-5, 1.5.6-4 | BSD 2-clause "Simplified" License |
-| {{<foss_file text=""java-concurrency-in-practice"-book-annotations" url="cumulus-netq-52/Whats-New/licenses/"java-concurrency-in-practice"-book-annotations.txt" >}} | 1.0 | Creative Commons Attribution 2.5 |
+| {{<foss_file text="java-concurrency-in-practice-book-annotations" url="cumulus-netq-52/Whats-New/licenses/java-concurrency-in-practice-book-annotations.txt" >}} | 1.0 | Creative Commons Attribution 2.5 |
 | {{<foss_file text="aalto-xml" url="cumulus-netq-52/Whats-New/licenses/aalto-xml.txt" >}} | 1.3.3 | Apache License 2.0 |
 | {{<foss_file text="aggregate-designer-algorithm" url="cumulus-netq-52/Whats-New/licenses/aggregate-designer-algorithm.txt" >}} | 6.0 | Apache License 2.0 |
 | {{<foss_file text="aircompressor" url="cumulus-netq-52/Whats-New/licenses/aircompressor.txt" >}} | 2.0.2 | Apache License 2.0 |

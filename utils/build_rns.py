@@ -564,7 +564,7 @@ def build_rn_xls_files(product, version_list):
 # Product versions to exclude from release notes build (even if present in source JSON).
 # Key: product short name ("cl" or "netq"). Value: list of full version strings to skip.
 EXCLUDED_VERSIONS = {
-    "cl": ["5.16.2", "5.17.0"],
+    "cl": ["5.15.2", "5.16.2", "5.17.0"],
     "netq": ["2.4.0", "2.4.1", "3.0.0", "3.1.0", "3.2.0", "3.2.1", "3.3.0", "3.3.1", "4.0.0", "4.0.1", "4.1.0", "4.1.1", "4.2.0", "4.3.0", "4.4.0", "4.4.1", "4.5.0", "4.6.0", "4.7.0", "4.8.0", "5.0.0", "5.0.1"],
 }
 

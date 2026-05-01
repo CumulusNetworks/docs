@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Encode-Locale
 Upstream-Contact: Gisle Aas <gisle@activestate.com>
 Source: https://metacpan.org/release/Encode-Locale

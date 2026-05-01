@@ -11,6 +11,7 @@ Files-Excluded: mswin32
  liblua
  libpcap
  libpcre
+ libssh2
  libz
  nselib/data/jdwp-class/*.class
 
@@ -24,11 +25,11 @@ Copyright: 1997-1999, Bdale Garbee <bdale@gag.com>
            2012-2018, Hilko Bengen <bengen@debian.org>
            2016-2018, Samuel Henrique <samueloph@debian.org>
            2017, Lukas Schwaighofer <lukas@schwaighofer.name>
-           2018, RaphaÃ«l Hertzog <hertzog@debian.org>
+           2018, Raphaël Hertzog <hertzog@debian.org>
 License: nmap-GPL-2
 
 Files: aclocal.m4 configure depcomp ltmain.sh nbase/configure ncat/Makefile.in
- ncat/configure ncat/missing nmap-update/configure nping/configure
+ ncat/configure ncat/missing nping/configure
  nsock/src/aclocal.m4 nsock/src/configure
 Copyright: 1991-2015, Free Software Foundation, Inc.
 Comment: May be distributed under the same license as the rest of the program.
@@ -44,8 +45,8 @@ Copyright: 2001-2008, Insecure.Com LLC
 License: retain-copyright-cisco
 
 Files: docs/style/*
-copyright: 2011, Patrick Joseph Donnelly
 License: unlimited-retain-copyright
+Copyright: 2011, Patrick Joseph Donnelly
 
 Files: libdnet-stripped/*
 Copyright: 2000-2006, Dug Song <dugsong@monkey.org>
@@ -68,8 +69,7 @@ Copyright: 2000, Dug Song <dugsong@monkey.org>
            1980, 1982, 1983, 1986-1998, The Regents of the University of California.
 License: BSD-4-clause
 
-Files: libdnet-stripped/src/strlcat.c
-  libdnet-stripped/src/strlcpy.c
+Files: libdnet-stripped/src/strlcpy.c
 Copyright: 1998, Todd C. Miller <Todd.Miller@courtesan.com>
 License: BSD-3-clause-author2
 
@@ -94,12 +94,8 @@ Copyright: 1996-2017, Insecure.Com LLC ("The Nmap Project")
 License: nmap-GPL-2
 
 Files: nbase/snprintf.c
-Copyright: 1995-1999, Kungliga Tekniska HÃ¶gskolan
+Copyright: 1995-1999, Kungliga Tekniska Högskolan
 License: BSD-3-clause-institute
-
-Files: nmap-update/svn_auth.c
-Copyright: 2003-2006, 2008, CollabNet
-License: BSD-like-SVN
 
 Files: nse_fs.cc
 Copyright: Kepler Project 2003, (http://www.keplerproject.org/luafilesystem)
@@ -120,44 +116,6 @@ License: preserve-copyright
 Files: shtool
 Copyright: 1994-2008, Ralf S. Engelschall <rse@engelschall.com>
 License: GPL-2+
-
-Files: libssh2/*
-Copyright: 2004-2007 Sara Golemon <sarag@libssh2.org>
-  2005,2006 Mikhail Gusarov <dottedmag@dottedmag.net>
-  2006-2007 The Written Word, Inc.
-  2007 Eli Fant <elifantu@mail.ru>
-  2009-2014 Daniel Stenberg
-  2008, 2009 Simon Josefsson
-License: BSD-3-clause-copyright-holders-contributors
-
-Files: libssh2/Makefile.in libssh2/aclocal.m4 libssh2/configure libssh2/m4/*
- libssh2/src/Makefile.in
-Copyright: 1991-2015, Free Software Foundation, Inc.
-Comment: May be distributed under the same license as the rest of the program.
-License: BSD-3-clause-copyright-holders-contributors
-
-Files: libssh2/m4/autobuild.m4
-Copyright: 2004, 2006, Simon Josefsson
-Comment: May be distributed under the same license as the rest of the program.
-License: BSD-3-clause-copyright-holders-contributors
-
-Files: libssh2/nw/*
-Copyright: Guenter Knauf, Ulrich Neumann
-License: BSD-3-clause-copyright-holders-contributors
-
-Files: libssh2/os400/* libssh2/src/os400qc3.c libssh2/src/os400qc3.h
-Copyright: 2015, Patrick Monnerat, D+H <patrick.monnerat@dh.com>
-License: BSD-3-clause-copyright-holders-contributors
-
-Files: libssh2/src/libssh2_config_cmake.h.in
-Copyright: 2014, Alexander Lamaison <alexander.lamaison@gmail.com>
-  1999-2011, Douglas Gilbert
-License: BSD-3-clause-copyright-holders-contributors
-
-Files: libssh2/src/wincng.c
-  libssh2/src/wincng.h
-Copyright: 2013-2015, Marc Hoersken <info@marc-hoersken.de>
-License: BSD-3-clause-copyright-holders-contributors
 
 License: nmap-GPL-2
  This program is free software; you may redistribute and/or modify it
@@ -380,40 +338,6 @@ License: BSD-3-clause-institute
  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  SUCH DAMAGE.
 
-License: BSD-3-clause-copyright-holders-contributors
- Redistribution and use in source and binary forms,
- with or without modification, are permitted provided
- that the following conditions are met:
- .
-   Redistributions of source code must retain the above
-   copyright notice, this list of conditions and the
-   following disclaimer.
- .
-   Redistributions in binary form must reproduce the above
-   copyright notice, this list of conditions and the following
-   disclaimer in the documentation and/or other materials
-   provided with the distribution.
- .
-   Neither the name of the copyright holder nor the names
-   of any other contributors may be used to endorse or
-   promote products derived from this software without
-   specific prior written permission.
- .
- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
- CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
- INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
- BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
- USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
- OF SUCH DAMAGE.
-
 License: BSD-4-clause
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
@@ -521,46 +445,6 @@ License: GPL-2+
  .
  On Debian systems, the complete text of the GNU General Public License
  can be found in /usr/share/common-licenses/GPL-2 file.
-
-License: BSD-like-SVN
- Redistribution and use in source and binary forms, with or without
- modification, are permitted provided that the following conditions
- are met:
- .
- 1. Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
- .
- 2. Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in
-    the documentation and/or other materials provided with the
-    distribution.
- .
- 3. The end-user documentation included with the redistribution,
-    if any, must include the following acknowledgment:
-       "This product includes software developed by
-        CollabNet (http://www.Collab.Net/)."
-    Alternately, this acknowledgment may appear in the software itself,
-    if and wherever such third-party acknowledgments normally appear.
- .
- 4. The hosted project names must not be used to endorse or promote
-    products derived from this software without prior written
-    permission. For written permission, please contact info@collab.net.
- .
- 5. Products derived from this software may not use the "Tigris" name
-    nor may "Tigris" appear in their names without prior written
-    permission of CollabNet.
- .
- THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
- WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- IN NO EVENT SHALL COLLABNET OR ITS CONTRIBUTORS BE LIABLE FOR ANY
- DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
- IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
- OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
- ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 License: ISC
  Permission to use, copy, modify, and distribute this software for any

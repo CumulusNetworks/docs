@@ -1,4 +1,4 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: libxml2
 Source: ftp://xmlsoft.org/libxml2/
 Files-Excluded:
@@ -8,7 +8,7 @@ Comment:
  Bug about the removal of the above directories: https://bugs.debian.org/331534
 
 Files: *
-Copyright: 1998-2012 Daniel Veillard <daniel@veillard.com>
+Copyright: 1998-2017 Daniel Veillard <daniel@veillard.com>
 License: MIT-1
 
 Files: debian/*
@@ -16,7 +16,7 @@ Copyright: 1998-1999 Vincent Renardias <vincent@waw.com>
            1999-2000 Fredrik Hallenberg <hallon@debian.org>
            2003-2011 Mike Hommey <glandium@debian.org>
            2012-2016 Aron Xu <aron@debian.org>
-           2017-2018 Mattia Rizzolo <mattia@debian.org>
+           2017-2022 Mattia Rizzolo <mattia@debian.org>
 License: MIT-1
 
 Files: trio.c trio.h triop.h triostr.c triostr.h triodef.h trionan.c trionan.h
@@ -33,6 +33,12 @@ Files: list.c
 Copyright: 2000 Gary Pennington <Gary.Pennington@uk.sun.com>
            2000 Daniel Veillard <daniel@veillard.com>
 License: ISC
+
+Files: timsort.h
+Copyright: 2010-2017 Christopher Swenson
+           2012 Vojtech Fried
+           2012 Google Inc.
+License: MIT-1
 
 License: MIT-1
  Permission is hereby granted, free of charge, to any person obtaining a copy

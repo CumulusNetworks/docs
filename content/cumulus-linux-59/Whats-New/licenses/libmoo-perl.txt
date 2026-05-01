@@ -1,27 +1,27 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Moo
-Upstream-Contact: mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>
+Upstream-Contact: Graham Knop <haarg@cpan.org>
 Source: https://metacpan.org/release/Moo
 
 Files: *
-Copyright: 2010-2015, mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>
- 2010-2015, dg - David Leadbeater (cpan:DGL) <dgl@dgl.cx>
- 2010-2015, frew - Arthur Axel "fREW" Schmidt (cpan:FREW) <frioux@gmail.com>
- 2010-2015, hobbs - Andrew Rodland (cpan:ARODLAND) <arodland@cpan.org>
- 2010-2015, jnap - John Napiorkowski (cpan:JJNAPIORK) <jjn1056@yahoo.com>
- 2010-2015, ribasushi - Peter Rabbitson (cpan:RIBASUSHI) <ribasushi@cpan.org>
- 2010-2015, chip - Chip Salzenberg (cpan:CHIPS) <chip@pobox.com>
- 2010-2015, ajgb - Alex J. G. Burzyński (cpan:AJGB) <ajgb@cpan.org>
- 2010-2015, doy - Jesse Luehrs (cpan:DOY) <doy at tozt dot net>
- 2010-2015, perigrin - Chris Prather (cpan:PERIGRIN) <chris@prather.org>
- 2010-2015, Mithaldu - Christian Walde (cpan:MITHALDU) <walde.christian@googlemail.com>
- 2010-2015, ilmari - Dagfinn Ilmari Mannsåker (cpan:ILMARI) <ilmari@ilmari.org>
- 2010-2015, tobyink - Toby Inkster (cpan:TOBYINK) <tobyink@cpan.org>
- 2010-2015, haarg - Graham Knop (cpan:HAARG) <haarg@cpan.org>
- 2010-2015, mattp - Matt Phillips (cpan:MATTP) <mattp@cpan.org>
- 2010-2015, bluefeet - Aran Deltac (cpan:BLUEFEET) <bluefeet@gmail.com>
- 2010-2015, bubaflub - Bob Kuo (cpan:BUBAFLUB) <bubaflub@cpan.org>
- 2010-2015, ether - Karen Etheridge (cpan:ETHER) <ether@cpan.org>
+Copyright: 2010-2023, mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>
+ 2010-2023, dg - David Leadbeater (cpan:DGL) <dgl@dgl.cx>
+ 2010-2023, frew - Arthur Axel "fREW" Schmidt (cpan:FREW) <frioux@gmail.com>
+ 2010-2023, hobbs - Andrew Rodland (cpan:ARODLAND) <arodland@cpan.org>
+ 2010-2023, jnap - John Napiorkowski (cpan:JJNAPIORK) <jjn1056@yahoo.com>
+ 2010-2023, ribasushi - Peter Rabbitson (cpan:RIBASUSHI) <ribasushi@cpan.org>
+ 2010-2023, chip - Chip Salzenberg (cpan:CHIPS) <chip@pobox.com>
+ 2010-2023, ajgb - Alex J. G. Burzy?ski (cpan:AJGB) <ajgb@cpan.org>
+ 2010-2023, doy - Jesse Luehrs (cpan:DOY) <doy at tozt dot net>
+ 2010-2023, perigrin - Chris Prather (cpan:PERIGRIN) <chris@prather.org>
+ 2010-2023, Mithaldu - Christian Walde (cpan:MITHALDU) <walde.christian@googlemail.com>
+ 2010-2023, ilmari - Dagfinn Ilmari Manns�ker (cpan:ILMARI) <ilmari@ilmari.org>
+ 2010-2023, tobyink - Toby Inkster (cpan:TOBYINK) <tobyink@cpan.org>
+ 2010-2023, haarg - Graham Knop (cpan:HAARG) <haarg@cpan.org>
+ 2010-2023, mattp - Matt Phillips (cpan:MATTP) <mattp@cpan.org>
+ 2010-2023, bluefeet - Aran Deltac (cpan:BLUEFEET) <bluefeet@gmail.com>
+ 2010-2023, bubaflub - Bob Kuo (cpan:BUBAFLUB) <bubaflub@cpan.org>
+ 2010-2023, ether - Karen Etheridge (cpan:ETHER) <ether@cpan.org>
 License: Artistic or GPL-1+
 
 Files: debian/*

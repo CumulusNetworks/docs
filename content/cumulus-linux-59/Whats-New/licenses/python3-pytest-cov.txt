@@ -3,11 +3,11 @@ Upstream-Name: python-pytest-cov
 Source: https://github.com/schlamar/pytest-cov
 
 Files: *
-Copyright: Â© 2012, Marc Schlaich / Meme Dough <memedough@gmail.com>
+Copyright: © 2012, Marc Schlaich / Meme Dough <memedough@gmail.com>
 License: MIT
 
 Files: debian/*
-Copyright: Â© 2014 Federico Ceratto <federico.ceratto@gmail.com>
+Copyright: © 2014 Federico Ceratto <federico.ceratto@gmail.com>
 License: MIT
 
 License: MIT

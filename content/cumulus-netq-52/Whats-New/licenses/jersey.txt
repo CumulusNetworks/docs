@@ -268,10 +268,6 @@ exceptions or additional permissions here}.”
   You may add additional accurate notices of copyright ownership.
 
 
-Public Domain
-Public domain code is not subject to any license.
-
-
 Common Development and Distribution License 1.1
 COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.1
 ==============================================================

@@ -1,3 +1,6 @@
+This file will be updated to use the new dep5 schema soon, please
+reach out to the maintainers if you'd like to help with that.
+
 This is Debian's prepackaged version of Andrew Tridgell and
 Paul Mackerras' rsync utility.
 
@@ -9,14 +12,10 @@ This package was put together by Philip Hands <phil@hands.com>,
 from sources obtained from:
   http://rsync.samba.org/ftp/rsync/rsync-2.5.4.tar.gz
 The current version was downloaded from:
-  https://rsync.samba.org/ftp/rsync/src/rsync-3.1.3.tar.gz
+  https://rsync.samba.org/ftp/rsync/src/rsync-3.2.0.tar.gz
 on 2018-12-02 by Samuel Henrique <samueloph@debian.org>.
 
-The changes were very minimal - merely adding support for the Debian
-package maintenance scheme by adding various debian/* files.
-The only significant change is passing the -4 / -6 options through to ssh.
-See the debian/patches/ directory.
-
+See the debian/patches/ directory for the Debian specific changes.
 
 
 COPYRIGHT
@@ -36,3 +35,14 @@ the GNU General Public License, found in the file:
 on Debian systems, or at
 
   https://www.gnu.org/licenses/gpl.html
+
+The license of rsync also adds an OpenSSL exemption:
+
+REGARDING OPENSSL AND XXHASH
+
+In addition, as a special exception, the copyright holders give
+permission to dynamically link rsync with the OpenSSL and xxhash
+libraries when those libraries are being distributed in compliance
+with their license terms, and to distribute a dynamically linked
+combination of rsync and these libraries.  This is also considered
+to be covered under the GPL's System Libraries exception.

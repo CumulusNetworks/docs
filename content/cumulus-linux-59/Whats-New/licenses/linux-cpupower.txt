@@ -18,10 +18,6 @@ Copyright: 1996-2006 Manoj Srivastava
            2006-2009 Bastian Blank <waldi@debian.org>
 License: GPL-2
 
-Files: debian/rules.d/tools/hv/check-hyperv.c
-Copyright: 2011 Lennart Poettering
-License: LGPL-2.1
-
 Files:
  arch/arm/boot/dts/armada-370.dtsi
  arch/arm/boot/dts/armada-370-d*.dts*
@@ -65,17 +61,16 @@ Files:
  arch/arm64/boot/dts/cavium/thunder-*.dts*
  arch/arm64/boot/dts/freescale/fsl-*.dts*
  arch/arm64/boot/dts/marvell/armada-*.dts*
- arch/arm64/boot/dts/marvell/berlin4ct-*.dts*
  arch/arm64/boot/dts/rockchip/rk33*.dts*
  arch/arm64/boot/dts/socionext/uniphier-ld*.dts*
- arch/arm64/boot/dts/zte/zx296718*.dts*
+ arch/arm64/boot/dts/synaptics/berlin4ct-*.dts*
  include/dt-bindings/clock/sun*.h
  include/dt-bindings/dma/axi-dmac.h
  include/dt-bindings/dma/sun4i-a10.h
  include/dt-bindings/pinctrl/sun4i-a10.h
  include/dt-bindings/reset/sun*.h
 Copyright: 2012-2018 Linus Torvalds and many others
-License: GPL-2+ or X11
+License: GPL-2+-or-X11
 
 Files: drivers/crypto/vmx/*.pl
 Copyright: 2006,2014 Andy Polyakov <appro@openssl.org>
@@ -180,7 +175,7 @@ License: Xen-interface
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  DEALINGS IN THE SOFTWARE.
 
-Files: scripts/extract-cert.c scripts/sign-file.c
+Files: certs/extract-cert.c scripts/sign-file.c
 Copyright: 2014-2015 Red Hat, Inc.
            2015 Intel Corporation
 License: LGPL-2.1
@@ -254,7 +249,7 @@ License: LGPL-2.1
  On Debian systems, the complete text of the GNU Lesser General Public
  License version 2.1 can be found in `/usr/share/common-licenses/LGPL-2.1'.
 
-License: GPL-2+ or X11
+License: GPL-2+-or-X11
  This file is dual-licensed: you can use it either under the terms
  of the GPL or the X11 license, at your option. Note that this dual
  licensing only applies to this file, and not this project as a

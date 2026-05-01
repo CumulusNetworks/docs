@@ -3,7 +3,7 @@ Mon, 15 Jan 2001 18:21:37 -0500.
 
 It was downloaded from <http://gstreamer.freedesktop.org/>.
 
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: GStreamer core 1.0
 Upstream-Contact: gstreamer-devel@lists.freedesktop.org
 Source: http://gstreamer.freedesktop.org
@@ -132,11 +132,11 @@ Files: gst/gstparamspecs.c
  tests/check/libs/gstlibscpp.cc
  tests/check/libs/typefindhelper.c
  tests/check/pipelines/parse-disabled.c
-Copyright: 2006, Tim-Philipp MÃ¼ller <tim centricular net>
-  2007, Tim-Philipp MÃ¼ller <tim centricular net>
-  2009, Tim-Philipp MÃ¼ller <tim centricular net>
-  2010, Tim-Philipp MÃ¼ller <tim centricular net>
-  2011, Tim-Philipp MÃ¼ller <tim centricular net>
+Copyright: 2006, Tim-Philipp Müller <tim centricular net>
+  2007, Tim-Philipp Müller <tim centricular net>
+  2009, Tim-Philipp Müller <tim centricular net>
+  2010, Tim-Philipp Müller <tim centricular net>
+  2011, Tim-Philipp Müller <tim centricular net>
 License: LGPL-2+
 
 Files: gst/gsttaglist.c
@@ -164,11 +164,11 @@ Files: debian/gst-codec-info.c
  libs/gst/controller/gstlfocontrolsource.c
  libs/gst/controller/gsttimedvaluecontrolsource.c
  libs/gst/controller/gsttriggercontrolsource.c
-Copyright: 2007,2009, Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
-  2007,2010, Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
-  2008, Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
-  2009, Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
-  2010, Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
+Copyright: 2007,2009, Sebastian Dröge <sebastian.droege@collabora.co.uk>
+  2007,2010, Sebastian Dröge <sebastian.droege@collabora.co.uk>
+  2008, Sebastian Dröge <sebastian.droege@collabora.co.uk>
+  2009, Sebastian Dröge <sebastian.droege@collabora.co.uk>
+  2010, Sebastian Dröge <sebastian.droege@collabora.co.uk>
 License: LGPL-2+
 
 Files: gst/gstchildproxy.c
@@ -255,7 +255,7 @@ Files: gst/gstcontrolsource.c
  libs/gst/controller/gstlfocontrolsource.h
  libs/gst/controller/gsttimedvaluecontrolsource.h
  libs/gst/controller/gsttriggercontrolsource.h
-Copyright: 2007, Sebastian DrÃ¶ge <slomo@circular-chaos.org>
+Copyright: 2007, Sebastian Dröge <slomo@circular-chaos.org>
 License: LGPL-2+
 
 Files: gst/gstcontrolbinding.c
@@ -370,12 +370,12 @@ License: LGPL-2+
 Files: tests/check/gst/gstcontroller.c
  tests/check/libs/controller.c
 Copyright: <2005> Stefan Kost <ensonic at users dot sf dot net>
-  <2006-2007> Sebastian DrÃ¶ge <slomo@circular-chaos.org>
+  <2006-2007> Sebastian Dröge <slomo@circular-chaos.org>
 License: LGPL-2+
 
 Files: tests/check/libs/bitreader.c
  tests/check/libs/bytereader.c
-Copyright: <2008> Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
+Copyright: <2008> Sebastian Dröge <sebastian.droege@collabora.co.uk>
 License: LGPL-2+
 
 Files: libs/gst/net/gstnetaddressmeta.c
@@ -415,15 +415,15 @@ License: LGPL-2+
 Files: gst/gstinfo.c
  gst/gsturi.c
 Copyright: 1999-2000, Erik Walthinsen <omega@cse.ogi.edu>
-  2008-2009, Tim-Philipp MÃ¼ller <tim centricular net>
-  2011, Tim-Philipp MÃ¼ller <tim centricular net>
+  2008-2009, Tim-Philipp Müller <tim centricular net>
+  2011, Tim-Philipp Müller <tim centricular net>
 License: LGPL-2+
 
 Files: libs/gst/base/gsttypefindhelper.c
  libs/gst/base/gsttypefindhelper.h
 Copyright: 1999-2000, Erik Walthinsen <omega@cse.ogi.edu>
   2000,2005, Wim Taymans <wim@fluendo.com>
-  2006, Tim-Philipp MÃ¼ller <tim centricular net>
+  2006, Tim-Philipp Müller <tim centricular net>
 License: LGPL-2+
 
 Files: tests/check/gst/gstevent.c
@@ -450,14 +450,14 @@ License: LGPL-2+
 
 Files: libs/gst/base/gstbytereader.c
  libs/gst/base/gstbytereader.h
-Copyright: 2008, Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
-  2009, Tim-Philipp MÃ¼ller <tim centricular net>
+Copyright: 2008, Sebastian Dröge <sebastian.droege@collabora.co.uk>
+  2009, Tim-Philipp Müller <tim centricular net>
 License: LGPL-2+
 
 Files: gst/gstiterator.c
  gst/gstiterator.h
 Copyright: 2004, Wim Taymans <wim@fluendo.com>
-  2011, Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
+  2011, Sebastian Dröge <sebastian.droege@collabora.co.uk>
 License: LGPL-2+
 
 Files: gst/gstdatetime.c
@@ -508,22 +508,22 @@ License: LGPL-2+
 
 Files: tests/examples/typefind/typefind.c
 Copyright: <2005> Stefan Kost
-  <2006> Tim-Philipp MÃ¼ller
+  <2006> Tim-Philipp Müller
 License: LGPL-2+
 
 Files: tests/check/gst/gstminiobject.c
 Copyright: <2005> Thomas Vander Stichele <thomas at apestaart dot org>
-  <2005> Tim-Philipp MÃ¼ller <tim centricular net>
+  <2005> Tim-Philipp Müller <tim centricular net>
 License: LGPL-2+
 
 Files: tests/check/gst/gstutils.c
 Copyright: <2005> Thomas Vander Stichele <thomas at apestaart dot org>
-  <2006> Tim-Philipp MÃ¼ller <tim centricular net>
+  <2006> Tim-Philipp Müller <tim centricular net>
 License: LGPL-2+
 
 Files: tests/check/pipelines/parse-launch.c
 Copyright: <2005> Thomas Vander Stichele <thomas at apestaart dot org>
-  <2008> Tim-Philipp MÃ¼ller <tim centricular net>
+  <2008> Tim-Philipp Müller <tim centricular net>
 License: LGPL-2+
 
 Files: tests/check/gst/gstcaps.c
@@ -542,11 +542,11 @@ License: LGPL-2+
 Files: tests/check/elements/tee.c
 Copyright: <2007> Wim Taymans <wim dot taymans at gmail dot com>
   <2008> Christian Berentsen <christian.berentsen@tandberg.com>
-  <2008> Ole Andr? Vadla RavnÃ¥s <ole.andre.ravnas@tandberg.com>
+  <2008> Ole Andr? Vadla Ravnås <ole.andre.ravnas@tandberg.com>
 License: LGPL-2+
 
 Files: tests/check/elements/capsfilter.c
-Copyright: <2008> Tim-Philipp MÃ¼ller <tim centricular net>
+Copyright: <2008> Tim-Philipp Müller <tim centricular net>
 License: LGPL-2+
 
 Files: tests/benchmarks/gstbufferstress.c
@@ -554,7 +554,7 @@ Copyright: <2009> Edward Hervey <bilboed@bilboed.com>
 License: LGPL-2+
 
 Files: tests/check/libs/bytewriter.c
-Copyright: <2009> Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
+Copyright: <2009> Sebastian Dröge <sebastian.droege@collabora.co.uk>
 License: LGPL-2+
 
 Files: tests/benchmarks/gstclockstress.c
@@ -562,7 +562,7 @@ Copyright: <2009> Wim Taymans <wim taymans at gmail dot com>
 License: LGPL-2+
 
 Files: tests/check/gst/gstatomicqueue.c
-Copyright: <2011> Tim-Philipp MÃ¼ller <tim centricular net>
+Copyright: <2011> Tim-Philipp Müller <tim centricular net>
 License: LGPL-2+
 
 Files: tests/check/gst/gstmemory.c
@@ -585,7 +585,7 @@ License: LGPL-2+
 
 Files: libs/gst/net/gstnettimepacket.c
 Copyright: 2005, Andy Wingo <wingo@pobox.com>
-  2010, Tim-Philipp MÃ¼ller <tim centricular net>
+  2010, Tim-Philipp Müller <tim centricular net>
   2012, Collabora Ltd. <tim.muller@collabora.co.uk>
 License: LGPL-2+
 
@@ -596,12 +596,12 @@ Copyright: 2003, Julien Moutte <julien@moutte.net>
   2007, Andy Wingo <wingo@pobox.com>
   2007, Wim Taymans <wim.taymans@gmail.com>
   2008, Nokia Corporation. (contact <stefan.kost@nokia.com>)
-  2011, Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
+  2011, Sebastian Dröge <sebastian.droege@collabora.co.uk>
 License: LGPL-2+
 
 Files: tests/check/gst/gstbus.c
 Copyright: 2005, Andy Wingo <wingo@pobox.com>
-  2007, Tim-Philipp MÃ¼ller <tim centricular net>
+  2007, Tim-Philipp Müller <tim centricular net>
 License: LGPL-2+
 
 Files: tests/check/gst/gstdatetime.c
@@ -637,7 +637,7 @@ Files: plugins/elements/gstmultiqueue.c
 Copyright: 2006, Edward Hervey <edward@fluendo.com>
   2007, Jan Schmidt <jan@fluendo.com>
   2007, Wim Taymans <wim@fluendo.com>
-  2011, Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
+  2011, Sebastian Dröge <sebastian.droege@collabora.co.uk>
 License: LGPL-2+
 
 Files: gst/gstpoll.c
@@ -659,7 +659,7 @@ License: LGPL-2+
 
 Files: libs/gst/base/gstbaseparse.c
 Copyright: 2008, Nokia Corporation.
-  2008, Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
+  2008, Sebastian Dröge <sebastian.droege@collabora.co.uk>
   2011, Hewlett-Packard Development Company, L.P
 License: LGPL-2+
 
@@ -670,14 +670,14 @@ Copyright: 2003, Julien Moutte <julien@moutte.net>
 License: LGPL-2+
 
 Files: tests/check/pipelines/queue-error.c
-Copyright: 2007, Tim-Philipp MÃ¼ller <tim centricular net>
+Copyright: 2007, Tim-Philipp Müller <tim centricular net>
   2009, Mark Nauwelaerts <mnauw users sourceforge net>
 License: LGPL-2+
 
 Files: libs/gst/base/gstcollectpads2.c
 Copyright: 2005, Wim Taymans <wim@fluendo.com>
   2008, Mark Nauwelaerts <mnauw@users.sourceforge.net>
-  2010, Sebastian DrÃ¶ge <sebastian.droege@collabora.co.uk>
+  2010, Sebastian Dröge <sebastian.droege@collabora.co.uk>
 License: LGPL-2+
 
 Files: libs/gst/base/gstcollectpads2.h
@@ -712,7 +712,7 @@ License: LGPL-2+
 
 Files: tests/check/elements/filesink.c
 Copyright: 2006, Thomas Vander Stichele <thomas at apestaart dot org>
-  2007, Tim-Philipp MÃ¼ller <tim centricular net>
+  2007, Tim-Philipp Müller <tim centricular net>
 License: LGPL-2+
 
 Files: tests/check/gst/gstbin.c

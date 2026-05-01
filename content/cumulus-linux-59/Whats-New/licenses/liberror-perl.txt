@@ -5,7 +5,7 @@ Upstream-Name: Error
 
 Files: *
 Copyright: 1997-1998, Graham Barr <gbarr@pobox.com>
- 2018, Shlomi Fish http://www.shlomifish.org/
+ 2020, Shlomi Fish https://www.shlomifish.org/
 License: Artistic or GPL-1+
 Comment:
  # Based on my original Error.pm, and Exceptions.pm by Peter Seibel
@@ -23,7 +23,7 @@ Copyright: 1999, 2000, 2001, 2002, 2003, Paolo Molaro <lupus@debian.org>
  2003, Ardo van Rangelrooij <ardo@debian.org>
  2005, 2007, Clint Burfoot <clint@burfoot.info>
  2013, CSILLAG Tamas <cstamas@cstamas.hu>
- 2015-2019, gregor herrmann <gregoa@debian.org>
+ 2015-2020, gregor herrmann <gregoa@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic

@@ -12,8 +12,8 @@ License: Artistic or GPL-1+
 Files: debian/*
 Copyright: 2000, Michael Alan Dorman <mdorman@debian.org>
  2003-2005, Kenneth J. Pronovici <pronovic@debian.org>
- 2005-2008, Krzysztof Krzyżaniak (eloy) <eloy@debian.org>
- 2008, gregor herrmann <gregoa@debian.org>
+ 2005-2008, Krzysztof Krzy?aniak (eloy) <eloy@debian.org>
+ 2008-2019, gregor herrmann <gregoa@debian.org>
  2016, Florian Schlichting <fsfs@debian.org>
 License: Artistic or GPL-1+
 

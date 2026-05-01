@@ -1,0 +1,48 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Apache Commons Logging
+Upstream-Contact: Apache Commons Developers <dev@commons.apache.org>
+Source: https://commons.apache.org/proper/commons-logging/
+
+Files: *
+Copyright: 2001-2014, The Apache Software Foundation.
+License: Apache-2.0
+Comment:
+ Upstream authors: Juozas Baliuka <baliuka@apache.org>,
+                   Morgan Delagrange <morgand@apache.org>,
+                   Peter Donald <donaldp@apache.org>,
+                   Robert Burrell Donkin <rdonkin@apache.org>,
+                   Simon Kitching <skitching@apache.org>,
+                   Dennis Lundberg <dennisl@apache.org>,
+                   Costin Manolache <costin@apache.org>,
+                   Craig McClanahan <craigmcc@apache.org>,
+                   Thomas Neidhart <tn@apache.org>,
+                   Scott Sanders <sanders@apache.org>,
+                   Richard Sitze <rsitze@apache.org>,
+                   Brian Stansberry,
+                   Rodney Waldhoff <rwaldhoff@apache.org>,
+                   Matthew P. Del Buono,
+                   Vince Eagen <vince256@comcast.net>,
+                   Peter Lawrey,
+                   Berin Loritsch <bloritsch@apache.org>,
+                   Philippe Mouawad,
+                   Neeme Praks <neeme@apache.org>
+
+Files: debian/*
+License: Apache-2.0
+Copyright: 2001-2004, Takashi Okamoto <tora@debian.org>
+           2005-2007, Arnaud Vandyck <avdyk@debian.org>
+           2005-2007, Wolfgang Baer <WBaer@gmx.de>
+           2007, Kumar Appaiah <akumar@debian.org>
+           2007-2009, Michael Koch, <konqueror@gmx.de>
+           2007-2009, Varun Hiremath <varun@debian.org>
+           2009, Ludovic Claude <ludovic.claude@laposte.net>
+           2009, Niels Thykier <niels@thykier.net>
+           2009-2010, Torsten Werner <twerner@debian.org>
+           2012, Damien Raude-Morvan <drazzib@debian.org>
+           2013, Jakub Adam <jakub.adam@ktknet.cz>
+           2013-2018, Emmanuel Bourg <ebourg@apache.org>
+           2022, tony mancill <tmancill@debian.org>
+
+License: Apache-2.0
+ On Debian systems, the full text of the Apache License can be found
+ in the file `/usr/share/common-licenses/Apache-2.0'.

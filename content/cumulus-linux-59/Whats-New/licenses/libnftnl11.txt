@@ -11,22 +11,18 @@ Copyright: 2012 Ana Rey Botello <anarey@gmail.com>
 License: GPL-2+
 
 Files: debian/*
-Copyright: 2014 Arturo Borrero Gonzalez <arturo@debian.org>
+Copyright: 2021 Arturo Borrero Gonzalez <arturo@debian.org>
 License: GPL-2+
 
 Files: src/ruleset.c
 Copyright: 2012-2013 Pablo Neira Ayuso <pablo@nefilter.org>
-	   2013 Arturo Borrero Gonzalez <arturo.borrero.glez@gmail.com>
-	   2013 Alvaro Neira Ayuso <alvaroneay@gmail.com>
+           2013 Arturo Borrero Gonzalez <arturo.borrero.glez@gmail.com>
+           2013 Alvaro Neira Ayuso <alvaroneay@gmail.com>
 License: GPL-2+
 
 Files: src/utils.c
 Copyright: 2012-2013 Pablo Neira Ayuso <pablo@nefilter.org>
-	   2013 Arturo Borrero Gonzalez <arturo.borrero.glez@gmail.com>
-License: GPL-2+
-
-Files: src/jansson.c
-Copyright: 2013 Alvaro Neira Ayuso <alvaroneay@gmail.com>
+           2013 Arturo Borrero Gonzalez <arturo.borrero.glez@gmail.com>
 License: GPL-2+
 
 Files: src/expr/masq.c src/expr/redir.c
@@ -39,12 +35,7 @@ License: GPL-2+
 
 Files: src/expr/nat.c
 Copyright: 2012-2014 Pablo Neira Ayuso <pablo@netfilter.org>
-	   2012 Intel Corporation
-License: GPL-2+
-
-Files: examples/nft-chain-parse-add.c examples/nft-rule-parse-add.c examples/nft-table-parse-add.c examples/nft-set-parse-add.c
-Copyright: 2013 Pablo Neira Ayuso <pablo@nefilter.org>
-	   2013 Arturo Borrero Gonzalez <arturo.borrero.glez@gmail.com>
+           2012 Intel Corporation
 License: GPL-2+
 
 Files: examples/nft-ruleset-get.c

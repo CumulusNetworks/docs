@@ -1,0 +1,1 @@
+libstdc++-12-dev has no copyright file

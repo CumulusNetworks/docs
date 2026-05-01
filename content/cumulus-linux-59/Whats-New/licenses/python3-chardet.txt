@@ -1,13 +1,26 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: chardet
 Upstream-Contact: Daniel Blanchard <dan.blanchard@gmail.com>
-Source: https://pypi.python.org/pypi/chardet
+Source: https://github.com/chardet/chardet
+Files-Excluded: tests/ascii/howto.diveintomark.org.xml
+ tests/windows-1255-hebrew/hydepark.hevre.co.il.7957.xml
+Comment: The files in the test suite have mostly no detailed copyright
+ information since years. Also some usage conditions might be problematic
+ for some kind of users. The upstream issue tracker did get some entries
+ about that problem.
+ https://github.com/chardet/chardet/issues/231
+ https://github.com/chardet/chardet/issues/271
+ .
+ The test files are collected by the upstream project over time from random
+ places, some files which are clearly not DFSG compatible getting removed
+ from the repackaged tarball for Debian.
 
 Files: *
 Copyright: 1998, 2001, 2005 Netscape Communications Corporation
-           2003, Mozilla Foundation
-           2006, 2007, 2008 Mark Pilgrim
-           2012-2013, Ian Cordasco
+ 2003, Mozilla Foundation
+ 2006, 2007, 2008 Mark Pilgrim
+ 2012-2013, Ian Cordasco
+ 2013-2022, Dan Blanchard
 License: LGPL-2.1+
 
 Files: chardet/cli/chardetect.py
@@ -15,9 +28,14 @@ Copyright: 2012, Erik Rose <grinch@grinchcentral.com>
 License: LGPL-2.1+
 
 Files: debian/*
-Copyright: 2006-2011, Piotr Ożarowski <piotr@debian.org>
-           2014, 2016-2019, Daniele Tricoli <eriol@debian.org>
+Copyright: 2006-2011, Piotr O?arowski <piotr@debian.org>
+ 2014, 2016-2019, Daniele Tricoli <eriol@debian.org>
+ 2022, Carsten Schoenert <c.schoenert@t-online.de>
 License: LGPL-2.1+
+
+Files: tests/*
+Copyright: various people, organizations or companies
+License: non-given-in-english
 
 License: LGPL-2.1+
  This library is free software; you can redistribute it and/or modify
@@ -26,3 +44,7 @@ License: LGPL-2.1+
  License, or (at your option) any later version.
  .
  See /usr/share/common-licenses/LGPL-2.1 for the full license text.
+
+License: non-given-in-english
+ There are no specific license information available in English except some
+ year data of copyright holders.

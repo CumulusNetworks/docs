@@ -17,11 +17,11 @@ Copyright: 2000-2004, Davide Puricelli (evo) <evo@debian.org>
  2000, Christian Surchi <csurchi@debian.org>
  2005-2007, Florian Ragwitz <rafl@debian.org>
  2008-2009, Ansgar Burchardt <ansgar@debian.org>
- 2008-2016, gregor herrmann <gregoa@debian.org>
+ 2008-2022, gregor herrmann <gregoa@debian.org>
  2008, Mark Hymers <mhy@debian.org>
  2008, Rene Mayorga <rmayorga@debian.org.sv>
  2009, Antonio Radici <antonio@dyne.org>
- 2009-2018, Salvatore Bonaccorso <carnil@debian.org>
+ 2009-2023, Salvatore Bonaccorso <carnil@debian.org>
  2010-2011, 2014, Angel Abad <angel@debian.org>
 License: Artistic or GPL-1+
 

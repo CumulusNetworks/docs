@@ -4,7 +4,7 @@ Upstream-Contact: dmidecode-devel@nongnu.org
 Source: http://download.savannah.gnu.org/releases/demidecode/
 
 Files: *
-Copyright: 2002-2018 Jean Delvare <jdelvare@suse.de>
+Copyright: 2002-2020 Jean Delvare <jdelvare@suse.de>
            2002      Alan Cox <alan@redhat.com>
            2010      Anton Arapov <anton@redhat.com>
            2015      Xie XiuQi <xiexiuqi@huawei.com>
@@ -13,7 +13,7 @@ License: GPL-2+
 Files: debian/*
 Copyright: 2003-2007 Petter Reinholdtsen <pere@debian.org>
            2011-2012 Daniel Baumann <daniel.baumann@progress-technologies.net>
-           2014-2018 JÃ¶rg Frings-FÃ¼rst <debian@jff.email>
+           2014-2022 Jörg Frings-Fürst <debian@jff.email>
 License: GPL-2+
 
 License: GPL-2+

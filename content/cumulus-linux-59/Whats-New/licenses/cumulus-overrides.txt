@@ -1,6 +1,6 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: cumulus-tools
-Source: http://www.cumulusnetworks.com
+Source: https://nvidia.com
 
 License: NVIDIA Cumulus Networks Proprietary
  All Rights reserved.
@@ -29,11 +29,11 @@ License: GPL-2
 
 
 Files: *
-Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
+Copyright (C) 2020-2024 NVIDIA Corporation. ALL RIGHTS RESERVED.
 Copyright: 2013, 2014, 2015, 2016, 2017, 2018, 2019 Cumulus Networks, Inc.
 License: NVIDIA Cumulus Networks Proprietary
 
 Files: debian/*
-Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
+Copyright (C) 2020-2024 NVIDIA Corporation. ALL RIGHTS RESERVED.
 Copyright: 2013, 2014, 2015, 2016, 2017, 2018, 2019 Cumulus Networks, Inc.
 License: GPL-2

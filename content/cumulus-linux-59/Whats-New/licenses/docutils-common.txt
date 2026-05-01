@@ -1,5 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Files-Excluded: docs/user/rst/images/biohazard.swf
+Upstream-Name: docutils
 
 Files: *
 Copyright: Public domain
@@ -37,45 +38,76 @@ License: public-domain
  commercial or non-commercial, and in any way, including by methods
  that have not yet been invented or conceived.
 
-Files: docutils/writers/s5_html/themes/default/iepngfix.htc
-Copyright: 2005 Angus Turnbull
-License: LGPL-2.1+
-
-Files: docs/user/docutils-05-compat.sty.txt
+Files: docutils/__main__.py
+       docutils/parsers/commonmark_wrapper.py
+       docutils/parsers/recommonmark_wrapper.py
        docutils/utils/error_reporting.py
        docutils/utils/math/__init__.py
-       docutils/utils/math/latex2mathml.py
        docutils/utils/math/tex2mathml_extern.py
        docutils/utils/punctuation_chars.py
        docutils/writers/html5_polyglot/minimal.css
        docutils/writers/html5_polyglot/plain.css
-       docutils/writers/latex2e/docutils-05-compat.sty
+       docutils/writers/html5_polyglot/responsive.css
+       docutils/writers/latex2e/docutils.sty
        docutils/writers/xetex/__init__.py
        test/functional/input/data/minimal.css
        test/functional/input/data/plain.css
+       test/functional/input/data/responsive.css
+       test/test_CLI.py
+       test/test_parsers/test_recommonmark/test_block_quotes.py
+       test/test_parsers/test_recommonmark/test_bullet_lists.py
+       test/test_parsers/test_recommonmark/test_enumerated_lists.py
+       test/test_parsers/test_recommonmark/test_html_blocks.py
+       test/test_parsers/test_recommonmark/test_inline_markup.py
+       test/test_parsers/test_recommonmark/test_line_length_limit_default.py
+       test/test_parsers/test_recommonmark/test_line_length_limit.py
+       test/test_parsers/test_recommonmark/test_literal_blocks.py
+       test/test_parsers/test_recommonmark/test_misc.py
+       test/test_parsers/test_recommonmark/test_section_headers.py
+       test/test_parsers/test_recommonmark/test_targets.py
+       test/test_parsers/test_rst/test_directives/test__init__.py
+       test/test_parsers/test_rst/test_directives/test_code_parsing.py
+       test/test_parsers/test_rst/test_line_length_limit_default.py
+       test/test_parsers/test_rst/test_line_length_limit.py
+       test/test_parsers/test_rst/test_source_line.py
+       test/test_transforms/test_filter_messages.py
        test/test_transforms/test_smartquotes.py
+       test/test_writers/test_latex2e_misc.py
        tools/dev/generate_punctuation_chars.py
+       tools/docutils-cli.py
        tools/rst2html5.py
-Copyright: 2009-2017 GÃ¼nter Milde
+Copyright: 2010-2022 Günter Milde
 License: BSD-2-clause
 
 Files: docutils/writers/_html_base.py
        docutils/writers/html5_polyglot/__init__.py
 Copyright: 2016 David Goodger
-           2005-2016 GÃ¼nter Milde
+           2005-2016 Günter Milde
 License: BSD-2-clause
 
-Files: docutils/utils/smartquotes.py
+Files: docs/user/smartquotes.txt
+       docutils/utils/smartquotes.py
 Copyright: 2003 John Gruber
            2004, 2007 Chad Miller
-           2010 GÃ¼nter Milde
+           2010-2021 Günter Milde
 License: BSD-3-clause and BSD-2-clause
+
+Files: docutils/utils/math/latex2mathml.py
+Copyright: 2005 Jens Jørgen Mortensen
+           2010, 2021 Günter Milde
+License: BSD-2-clause
 
 Files: docutils/utils/math/math2html.py
        docutils/writers/html5_polyglot/math.css
        test/functional/input/data/math.css
-Copyright: 2009-2011 Alex FernÃ¡ndez
+Copyright: 2009-2011 Alex Fernández
+           2021 Günter Milde
 License: BSD-2-clause
+
+Files: docs/dev/enthought-plan.txt
+       docs/dev/enthought-rfp.txt
+Copyright: 2004 Enthought, Inc.
+License: BSD-3-clause
 
 Files: docutils/utils/roman.py
 Copyright: 2001 Mark Pilgrim
@@ -86,19 +118,11 @@ Files: tools/editors/emacs/rst.el
 Copyright: 2003-2017 Free Software Foundation, Inc.
 License: GPL-3+
 
-License: LGPL-2.1+
- This library is free software; you can redistribute it and/or
- modify it under the terms of the GNU Lesser General Public
- License as published by the Free Software Foundation; either
- version 2.1 of the License, or (at your option) any later version.
- .
- This library is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- Lesser General Public License for more details.
- .
- On Debian systems the text of the GNU Lesser General Public License
- version 2.1 can be found in /usr/share/common-licenses/LGPL-2.1.
+Files: docutils/writers/html5_polyglot/tuftig.css
+       test/functional/input/data/tuftig.css
+Copyright: 2014 Dave Liepmann
+           2020 Günter Milde
+License: Expat and BSD-2-clause
 
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
@@ -354,3 +378,22 @@ License: Python-2.1.1
  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
  OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.

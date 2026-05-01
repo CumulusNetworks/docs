@@ -17,7 +17,7 @@ License: Artistic or GPL-1+
 Files: debian/*
 Copyright: 2005-2008, Krzysztof Krzyzaniak (eloy) <eloy@debian.org>
  2008-2010, Ansgar Burchardt <ansgar@debian.org>
- 2014-2015, gregor herrmann <gregoa@debian.org>
+ 2014-2022, gregor herrmann <gregoa@debian.org>
  2014, intrigeri <intrigeri@debian.org>
  2016, Angel Abad <angel@debian.org>
  2016, Lucas Kanashiro <kanashiro@debian.org>

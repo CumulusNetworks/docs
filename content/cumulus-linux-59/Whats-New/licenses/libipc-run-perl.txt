@@ -17,9 +17,9 @@ Files: debian/*
 Copyright: 2002, 2003, Ardo van Rangelrooij <ardo@debian.org>
  2003, 2004, 2006, Jay Bonci <jaybonci@debian.org>
  2003, Jay Bonci <jay@bonci.com>
- 2008-2018, gregor herrmann <gregoa@debian.org>
+ 2008-2022, gregor herrmann <gregoa@debian.org>
  2009, Gunnar Wolf <gwolf@debian.org>
- 2010-2018, Salvatore Bonaccorso <carnil@debian.org>
+ 2010-2020, Salvatore Bonaccorso <carnil@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic

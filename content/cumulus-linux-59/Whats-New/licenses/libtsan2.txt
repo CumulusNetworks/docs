@@ -1,0 +1,1 @@
+libtsan2 has no copyright file

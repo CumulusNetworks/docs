@@ -1,7 +1,11 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: flot
 Upstream-Contact: Ole Laursen <olau@iola.dk>
 Source: https://github.com/flot/flot
+Files-Excluded:
+ examples/shared/jquery-ui/jquery-ui.min.css
+ examples/shared/jquery-ui/jquery-ui.min.js
+ flot-2.1.3.tgz
 
 Files: *
 Copyright: 2007-2013 IOLA and Ole Laursen

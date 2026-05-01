@@ -1,13 +1,16 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Net-SSLeay
-Upstream-Contact: Florian Ragwitz <rafl@debian.org>
- Mike McCauley <mikem@airspayce.com>
+Upstream-Contact: Chris Novakovic <chris@chrisn.me.uk>
 Source: https://metacpan.org/release/Net-SSLeay
 
 Files: *
-Copyright: 1996-2003, Sampo Kellomaki <sampo@iki.fi>
- 2005-2006, Florian Ragwitz <rafl@debian.org>
- 2005-2006, Mike McCauley <mikem@airspayce.com>
+Copyright: 1996-2003, Sampo Kellom�ki <sampo@iki.fi>
+ 2001, Jim Bowlin <jbowlin@linklint.org>
+ 2005-2010, Florian Ragwitz <rafl@debian.org>
+ 2005-2018, Mike McCauley <mikem@airspayce.com>
+ 2018-2021, Chris Novakovic <chris@chrisn.me.uk>
+ 2018-2021, Tuure Vartiainen <vartiait@radiatorsoftware.com>
+ 2018-2021, Heikki Vatiainen <hvn@radiatorsoftware.com>
 License: Artistic-2.0
 Comment:
  From README and lib/Net/SSLeay.pod:
@@ -24,13 +27,6 @@ Copyright: 2004-2010, Marcus Holland-Moritz <mhx-cpan@gmx.net>
  1999, Kenneth Albanowski <kjahds@kjahds.com> (Version 1.x)
 License: Artistic or GPL-1+
 
-Files: inc/Module/*
-Copyright:
- 2002-2012, Adam Kennedy <adamk@cpan.org>
- 2002-2012, Audrey Tang <autrijus@autrijus.org>
- 2002-2012, Brian Ingerson <ingy@cpan.org>
-License: Artistic or GPL-1+
-
 Files: debian/*
 Copyright: 1999-2001, Gergely Madarasz <gorgo@caesar.elte.hu>
  2001, Remi Lefebvre <remi@debian.org>
@@ -40,22 +36,9 @@ Copyright: 1999-2001, Gergely Madarasz <gorgo@caesar.elte.hu>
  2005-2006, Florian Ragwitz <rafl@debian.org>
  2008, Niko Tyni <ntyni@debian.org>
  2008, 2018, Damyan Ivanov <dmn@debian.org>
- 2008-2018, gregor herrmann <gregoa@debian.org>
+ 2008-2022, gregor herrmann <gregoa@debian.org>
  2010, Franck Joncourt <franck@debian.org>
 License: Artistic or GPL-1+
-
-Files:
- debian/patches/Adapt-CTX_get_min_proto_version-tests-to-system-wide.patch
- debian/patches/Adapt-to-OpenSSL-1.1.1.patch
- debian/patches/Avoid-SIGPIPE-in-t-local-36_verify.t.patch
- debian/patches/Move-SSL_ERROR_WANT_READ-SSL_ERROR_WANT_WRITE-retry-from_write_partial.patch
- debian/patches/Move-SSL_ERROR_WANT_READ-SSL_ERROR_WANT_WRITE-retry-.patch
-Copyright:
- 2018, Petr Písař <ppisar@redhat.com>
-License: Artistic-2.0
-Comment:
- Third-party patches to upstream code are assumed to have the same license as
- upstream.
 
 License: Artistic
  This program is free software; you can redistribute it and/or modify

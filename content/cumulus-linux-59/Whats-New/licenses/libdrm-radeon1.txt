@@ -175,8 +175,8 @@ Fri, 19 Aug 2005 21:11:18 -0600.
 
 
  Copyright 2005 Eric Anholt
- Copyright Â© 2007-2008 Intel Corporation
- Copyright Â© 2008 JÃ©rÃ´me Glisse
+ Copyright © 2007-2008 Intel Corporation
+ Copyright © 2008 Jérôme Glisse
  All Rights Reserved.
 
  Permission is hereby granted, free of charge, to any person obtaining a
@@ -222,13 +222,13 @@ Fri, 19 Aug 2005 21:11:18 -0600.
  DEALINGS IN THE SOFTWARE.
 
 
- Copyright Â© 2009 VMware, Inc., Palo Alto, CA., USA
- Copyright Â© 2007-2009 Red Hat Inc.
- Copyright Â© 2007 Intel Corporation
+ Copyright © 2009 VMware, Inc., Palo Alto, CA., USA
+ Copyright © 2007-2009 Red Hat Inc.
+ Copyright © 2007 Intel Corporation
  Copyright 2006 Tungsten Graphics, Inc., Bismarck, ND., USA
- Copyright Â© 2008 Dave Airlie
- Copyright Â© 2008 JÃ©rÃ´me Glisse
- Copyright Â© 2008 Nicolai Haehnle
+ Copyright © 2008 Dave Airlie
+ Copyright © 2008 Jérôme Glisse
+ Copyright © 2008 Nicolai Haehnle
  All Rights Reserved.
 
  Permission is hereby granted, free of charge, to any person obtaining a

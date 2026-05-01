@@ -8,12 +8,12 @@ License: LGPL-2.1+ or MPL-1.1 or GPL-2+
 
 Files: src/CMakeLists.txt tests/comparerenderer/* tests/featuremap/* tests/nametabletest/* tests/segcache/* tests/graphite.py
 Copyright: (C) 2010-2011, SIL International
-License: LGPL-2.1+ 
+License: LGPL-2.1+
 
 Files: tests/texts/udhr* tests/standards/scheherazade_arb.log tests/standards/charis.log tests/standards/piglatin.log tests/standards/charis_yor.log
-Copyright: © 1996 – 2009 The Office of the High Commissioner for Human Rights
+Copyright: � 1996 ? 2009 The Office of the High Commissioner for Human Rights
 License: public-domain
- 
+
 Files: contrib/perl/*
 Copyright: Copyright (C) 2011 Simon Cozens <simon@cpan.org>
 License: Artistic or GPL-1+
@@ -121,14 +121,14 @@ License: custom-sil-open-font-license
  -----------------------------------------------------------
  SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
  -----------------------------------------------------------
- . 
+ .
  PREAMBLE
  The goals of the Open Font License (OFL) are to stimulate worldwide
  development of collaborative font projects, to support the font creation
  efforts of academic and linguistic communities, and to provide a free and
  open framework in which fonts may be shared and improved in partnership
  with others.
- . 
+ .
  The OFL allows the licensed fonts to be used, studied, modified and
  redistributed freely as long as they are not sold by themselves. The
  fonts, including any derivative works, can be bundled, embedded,
@@ -137,32 +137,32 @@ License: custom-sil-open-font-license
  however, cannot be released under any other type of license. The
  requirement for fonts to remain under this license does not apply
  to any document created using the fonts or their derivatives.
- . 
+ .
  DEFINITIONS
  "Font Software" refers to the set of files released by the Copyright
  Holder(s) under this license and clearly marked as such. This may
  include source files, build scripts and documentation.
- . 
+ .
  "Reserved Font Name" refers to any names specified as such after the
  copyright statement(s).
- . 
+ .
  "Original Version" refers to the collection of Font Software components as
  distributed by the Copyright Holder(s).
- . 
+ .
  "Modified Version" refers to any derivative made by adding to, deleting,
  or substituting -- in part or in whole -- any of the components of the
  Original Version, by changing formats or by porting the Font Software to a
  new environment.
- . 
+ .
  "Author" refers to any designer, engineer, programmer, technical
  writer or other person who contributed to the Font Software.
- . 
+ .
  PERMISSION & CONDITIONS
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of the Font Software, to use, study, copy, merge, embed, modify,
  redistribute, and sell modified and unmodified copies of the Font
  Software, subject to the following conditions:
- . 
+ .
  1) Neither the Font Software nor any of its individual components,
  in Original or Modified Versions, may be sold by itself.
  .
@@ -204,4 +204,3 @@ License: custom-sil-open-font-license
  DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
  OTHER DEALINGS IN THE FONT SOFTWARE.
-

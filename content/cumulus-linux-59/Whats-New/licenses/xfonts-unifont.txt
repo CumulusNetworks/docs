@@ -1,97 +1,63 @@
-﻿This package was debianized by Paul Hardy <unifoundry@unifoundry.com> on
-Mon,  7 Jul 2008 00:28:10 -0700.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: GNU Unifont Glyphs
+Upstream-Contact: Paul Hardy <unifoundry@unifoundry.com>
+Source: https://unifoundry.com/unifont/
 
-It was downloaded from http://unifoundry.com
+Files: *
+Copyright: 1998-?    Jungshik Shin
+           1998-2014 Roman Czyborra
+           2004-2013 Qianqian Fang
+           2005      Luis Alejandro Gonzalez Miranda
+           2007-2019 Paul Hardy <unifoundry@unifoundry.com>
+           2013-2014 Andrew Miller
+           2017-2019 David Corbett
+           2018      Johnnie Weaver
+License: GPL-2+
+Comment: all copyright notices was taken from the source code. Some dates
+         were confirmed in upstream changelog.
 
-Upstream Author: Paul Hardy <unifoundry@unifoundry.com>
+Files: doc/unifont.info
+       doc/unifont.texi
+Copyright: 2008-2019 Paul Hardy <unifoundry@unifoundry.com>
+License: GFDL-NIV
 
-Upstream packaging:
-     Copyright (c) 2007-2017 Paul Hardy <unifoundry@unifoundry.com>
+Files: debian/*
+Copyright: 1999-2002 Bart Schuller <schuller@debian.org>
+           2006      Christoph Berg <myon@debian.org>
+           2006      Matej Vela <vela@debian.org>
+           2007      Robert Millan <rmh@aybabtu.com>
+           2008      Anthony Fok <foka@debian.org>
+           2008-2019 Paul Hardy <unifoundry@unifoundry.com>
+           2011      Christian Perrier <bubulle@debian.org>
+           2013      Colin Watson <cjwatson@debian.org>
+           2013      Paul Wise <pabs@debian.org>
+           2013      Samuel Bronson <naesten@gmail.com>
+           2017      Helmut Grohne <helmut@subdivi.de>
+           2019-2020 Joao Eriberto Mota Filho <eriberto@debian.org>
+License: GPL-2+
 
-Other files:
-     Original unifont.hex and Perl scripts:
-        (c) 1998-2003 Roman Czyborra;
-     Unibit and Wen Quan Yi glyphs:
-        (c) 2004-2013 Qianqian Fang and the Wen Quan Yi Board of Trustees;
-     Glyphs in Michael Everson's ConScript Unicode Registry (CSUR):
-        (c) 2012 Wojciech Stryjewski (Tengwar and Klingon CSUR scripts)
-        (c) 2013, 2014 Paul Hardy (Cirth and Aiha CSUR scripts)
-        (c) 2013, 2014 Andrew Miller (all other CSUR scripts)
-     Supplemental Multilingual Plane Glyphs pre-Unicode 7.0 release:
-        (c) 2013, 2014 Andrew Miller and Paul Hardy
-     Higher plane glyphs above Supplemental Multilingual Plane (above Plane 1):
-        (c) 2013 Andrew Miller
-     Shell, Perl, & FontForge scripts for converting unifont.hex
-        into TrueType:
-        (c) 2005-2008 Luis Alejandro González Miranda;
-     Additions to complete Unicode Plane 0, C & Perl programs,
-        modifications to original programs, & GNU/Linux packaging:
-        (c) 2007-2014 Paul Hardy, (c) 2013, 2014 Andrew Miller
-     Modifications to existing Unicode blocks (see ChangeLog for details):
-        (c) 2014 Paul Hardy, Joshua Krämer, Andrew Miller, Nils Dagsson
-        Moskopp, and Anonymous1.
-     Additions to Unicode Supplemental Multilingual Plane after Unicode 7.0
-        release (see ChangeLog for full details):
-        (c) 2014 Paul Hardy, Andrew Miller, Nils Dagsson Moskopp, and
-        Anonymous1.
-     Additions for Unicode 9.0 coverage (c) 2016 Paul Hardy, Johnny Weaver,
-        Terrence Eden.
-     Additions for Unicode 10.0 coverage (c) 2017 Paul Hardy, Johnny Weaver,
-        Anonymous1, David Corbett.
-     Additions for Unicode 11.0 coverage (c) 2017 Paul Hardy, Johnny Weaver,
-        David Corbett.
-     debian/ files:
-        (c) 2013, 2014, 2017 Paul Hardy
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
 
-
-License for the files doc/unifont.*:
-
-   Permission is granted to copy, distribute and/or modify this document
-   under the terms of the GNU Free Documentation License, Version 1.3 or
-   any later version published by the Free Software Foundation; with no
-   Invariant Sections, with no Front-Cover Texts and no Back-Cover Texts.
-
-On Debian systems, the complete text of the GNU Free Documentation License
-version 1.3 can be found in `/usr/share/common-licenses/GFDL-1.3'.
-
-
-License for all other non-font source code in this package:
-
-   This package is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2 of the License, or
-   (at your option) any later version.
-
-   This package is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this package; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
-
-On Debian systems, the complete text of the GNU General Public License
-version 2 can be found in `/usr/share/common-licenses/GPL-2'.
-
-
-License for font files:
-
-   All glyphs are released under the GNU General Public License
-   (GPL) version 2 or (at your option) a later version, with the
-   GNU font embedding exception:
-
-        ** GPL v2.0 license with font embedding exception:
-
-        As a special exception, if you create a document which
-        uses this font, and embed this font or unaltered portions
-        of this font into the document, this font does not by
-        itself cause the resulting document to be covered by
-        the GNU General Public License. This exception does not
-        however invalidate any other reasons why the document
-        might be covered by the GNU General Public License.
-        If you modify this font, you may extend this exception
-        to your version of the font, but you are not obligated
-        to do so. If you do not wish to do so, delete this
-        exception statement from your version.
-
+License: GFDL-NIV
+ Permission is granted to copy, distribute and/or modify this document
+ under the terms of the GNU Free Documentation License, Version 1.3
+ or any later version published by the Free Software Foundation;
+ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+ .
+ On Debian systems, the complete text of the GNU Free Documentation License
+ version 1.3 can be found in `/usr/share/common-licenses/GFDL-1.3'.

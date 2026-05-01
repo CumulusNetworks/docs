@@ -1,0 +1,1 @@
+ethtool-dbgsym has no copyright file

@@ -1,21 +1,9 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0
-Source: http://www.isc.org/downloads/dhcp
-Files-Excluded:
- aclocal.m4
- bind
- compile
- config.*
- configure
- depcomp
- install-sh
- */Makefile.in
- missing
- doc/References.txt
- doc/References.html
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://www.isc.org/downloads/dhcp
 
 Files: *
 Copyright:
- 2004-2018 by Internet Systems Consortium, Inc. ("ISC")
+ 2004-2022 by Internet Systems Consortium, Inc. ("ISC")
  1995-2003 by Internet Software Consortium
 License: MPL-2.0
 
@@ -23,6 +11,7 @@ Files: debian/*
 Copyright:
  2008-2013 Andrew Pollock <apollock@debian.org>
  2011-2018 Michael Gilbert <mgilbert@debian.org>
+ 2022 Santiagi Ruano Rincón <santiago@debian.org>
 License: MPL-2.0
 
 Files: debian/dhcp-lease-list.8

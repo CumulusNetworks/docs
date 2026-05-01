@@ -1,4 +1,4 @@
-This package was debianized by Piotr Ożarowski <piotr@debian.org> on
+This package was debianized by Piotr O?arowski <piotr@debian.org> on
 Wed, 23 Jun 2010 21:26:14 +0200.
 
 It was downloaded from http://pypi.python.org/pypi/MarkupSafe
@@ -38,5 +38,5 @@ SOFTWARE AND DOCUMENTATION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
 DAMAGE.
 
 
-The Debian packaging is © 2010, Piotr Ożarowski <piotr@debian.org> and
+The Debian packaging is � 2010, Piotr O?arowski <piotr@debian.org> and
 is licensed under the same license.

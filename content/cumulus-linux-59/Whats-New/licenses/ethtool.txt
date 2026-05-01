@@ -1,34 +1,32 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: https://www.kernel.org/pub/software/network/ethtool/
+
+Files: *
+Copyright: 1998, David S. Miller (davem@dm.cobaltmicro.com)
+           2001, Jeff Garzik <jgarzik@mandrakesoft.com>
+           2009-2013, Solarflare Communications
+           2013-2016, Ben Hutchings <ben@decadent.org.uk>
+           2016-2020, John W. Linville <linville@tuxdriver.com>
+License: GPL-2
 
 Files: amd8111e.c
 Copyright: 2003, Advanced Micro Devices Inc.
 License: GPL-2
- This program is free software; you can redistribute it
- and/or modify it under the terms of the GNU General Public
- License as published by the Free Software Foundation;
- version 2 of the License.
- .
- This program is distributed in the hope that it will be
- useful, but WITHOUT ANY WARRANTY; without even the implied
- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
- PURPOSE.  See the GNU General Public License for more
- details.
- .
- You should have received a copy of the GNU General Public
- License along with this package; if not, write to the Free
- Software Foundation, Inc., 51 Franklin St, Fifth Floor,
- Boston, MA  02110-1301 USA
- .
- On Debian systems, the full text of the GNU General Public
- License version 2 can be found in the file
- `/usr/share/common-licenses/GPL-2'.
 
 Files: at76c50x-usb.c
 Copyright: 2009, John W. Linville
 License: GPL-2
 
+Files: cpsw.c
+Copyright: 2022, Linutronix GmbH
+License: GPL-2
+
 Files: de2104x.c
 Copyright: 2001, Sun Microsystems (thockin@sun.com)
+License: GPL-2
+
+Files: dsa.c fec.c
+Copyright: 2018-2019, Vivien Didelot <vivien.didelot@gmail.com>
 License: GPL-2
 
 Files: e100.c e1000.c igb.c ixgb.c ixgbe.c ixgbevf.c
@@ -39,13 +37,15 @@ Files: et131x.c
 Copyright: 2012, 2013, Mark Einon
 License: GPL-2
 
-Files: ethtool-copy.h
+Files: fsl_enetc.c
+Copyright: 2022, NXP
+License: GPL-2
+
+Files: uapi/linux/ethtool.h
 Copyright: 1998, David S. Miller (davem@redhat.com)
            2001, Jeff Garzik <jgarzik@pobox.com>
-           2001, Sun Microsystems (thockin@sun.com)
-           2002, Intel (eli.kupermann@intel.com)
-           2001, Sun Microsystems (thockin@sun.com)
-           2002, Intel (scott.feldman@intel.com)
+           2001, 2008, Sun Microsystems (thockin@sun.com)
+           2002, Intel (eli.kupermann@intel.com, christopher.leech@intel.com, scott.feldman@intel.com)
 License: GPL-2
 
 Files: internal.h
@@ -63,17 +63,30 @@ Files: ethtool.c
 Copyright: 1998, David S. Miller (davem@dm.cobaltmicro.com)
            2001, 2008, Sun Microsystems
            2001, Jeff Garzik <jgarzik@mandrakesoft.com>
-           2002, Intel
+           2002, 2012, Intel
            2009, 2010, Solarflare Communications
+           2013-2016, Ben Hutchings <ben@decadent.org.uk>
 License: GPL-2
 
 Files: fec_8xx.c
 Copyright: 2004, Intracom S.A.
 License: GPL-2
 
+Files: fjes.c
+Copyright: 2016, Fujitsu
+License: GPL-2
+
 Files: ibm_emac.c
 Copyright: 2004, 2005 Zultys Technologies
            2015, IBM Corporation
+License: GPL-2
+
+Files: lan743x.c
+Copyright: 2022, Microchip Technology Inc. and its subsidiaries
+License: GPL-2
+
+Files: lan78xx.c
+Copyright: 2018, Microchip Technology
 License: GPL-2
 
 Files: marvell.c
@@ -84,12 +97,18 @@ Files: natsemi.c
 Copyright: 2001, Sun Microsystems (thockin@sun.com)
 License: GPL-2
 
-Files: net_tstamp-copy.h
+Files: uapi/linux/net_tstamp.h
 Copyright: 2008, 2009, Intel Corporation
 License: GPL-2
 
 Files: pcnet32.c
 Copyright: 2004, IBM Corporation (jklewis@us.ibm.com)
+License: GPL-2
+
+Files: qsfp.c qsfp.h sff-common.c sff-common.h
+Copyright: 2010, Solarflare Communications Inc.
+           2012, Aurelien Guillaume <aurelien@iwi.me>
+           2014, Cumulus networks Inc.
 License: GPL-2
 
 Files: realtek.c
@@ -106,6 +125,10 @@ License: GPL-2
 
 Files: sfpdiag.c
 Copyright: 2012, Aurelien Guillaume
+License: GPL-2
+
+Files: smsc911x.c
+Copyright: 2007, SMSC
 License: GPL-2
 
 Files: stmmac.c
@@ -132,5 +155,27 @@ License: GPL-2
 Files: debian/*
 Copyright: 2001-2005, Eric Delaunay <delaunay@debian.org>
            2006-2010, Anibal Monsalve Salazar <anibal@debian.org>
-           2008-2011, Ben Hutchings <ben@decadent.org.uk>
+           2008-2020, Ben Hutchings <ben@decadent.org.uk>
+           2022, Salvatore Bonaccorso <carnil@debian.org>
 License: GPL-2
+
+License: GPL-2
+ This program is free software; you can redistribute it
+ and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation;
+ version 2 of the License.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.

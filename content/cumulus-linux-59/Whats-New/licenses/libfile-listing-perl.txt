@@ -1,10 +1,10 @@
-Format-Specification: http://anonscm.debian.org/viewvc/dep/web/deps/dep5.mdwn?view=markup&pathrev=135
-Maintainer: Gisle Aas <gisle@activestate.com>
-Source: http://search.cpan.org/dist/File-Listing/
-Name: File-Listing
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: File-Listing
+Upstream-Contact: Graham Ollis <plicease@cpan.org>
+Source: https://metacpan.org/release/File-Listing
 
 Files: *
-Copyright: 1996-2010, Gisle Aas <gisle@activestate.com>
+Copyright: 1996-2020, Gisle Aas <gisle@activestate.com>
 License: Artistic or GPL-1+
 
 Files: debian/*

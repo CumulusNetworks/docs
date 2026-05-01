@@ -1,170 +1,446 @@
-The firmware and its source code may be downloaded from
-http://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: linux-firmware
+Upstream-Contact: linux-firmware@kernel.org
+Source: https://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git
+Files-Excluded:
+# Undistributable because:
+# - licence doesn't mention redistribution
+ 3com/3C359.bin
+ tr_smctr.bin
+# - licence allows redistribution only as part of a kernel
+ emi26/*.fw
+ emi62/*.fw
+ keyspan/mpr.fw
+ keyspan/usa*.fw
+ rsi_91x.fw
+ sdd_sagrad_1091_1098.bin
+ slicoss/*.sys
+ sxg/*.sys
+ wsm_22.bin
+# - licence is supposedly GPL, but no source is visible
+ adaptec/starfire_*.bin
+ atmsar11.fw
+ cpia2/stv0672_vp4.bin
+ edgeport/*
+ ositech/Xilinx7OD.bin
+ sb16/*.csp
+ ti_3410.fw
+ ti_5052.fw
+ whiteheat.fw
+ whiteheat_loader.fw
+ yamaha/yss225_registers.bin
+# - licence is GPL, but source is elsewhere
+ atusb/*
+# - licence is unknown
+ LICENCE.*
+ LICENSE.*
+ Makefile
+ README
+ WHENCE
+ acenic/*
+ configure
+ copy-firmware.sh
+ ess/maestro3_*.fw
+ intelliport2.bin
+ korg/k1212.dsp
+ lgs8g75.fw
+ mts_mt9234*.fw
+ myricom/lanai.bin
+ qlogic/isp1000.bin
+ sun/cassini.bin
+ ttusb-budget/dspbootcode.bin
+ vicam/firmware.fw
+ yam/*
+ yamaha/ds1*.fw
+# Non-free
+ 3com/typhoon.bin
+ RTL8192E/*
+ advansys/*
+ agere_*_fw.bin
+ amd/*
+ amd-ucode/*
+ amdgpu/*
+ ar3k/*
+ ar5523.bin
+ ar7010*.fw
+ ar9170*.fw
+ ar9271.fw
+ as102_*
+ ath10k/*
+ ath3k-1.fw
+ ath6k/*
+ ath9k_htc/*
+ atmel/*
+ brcm/*
+ bnx2/*
+ bnx2x-*
+ bnx2x/*
+ cadence/*
+ cavium/*
+ cbfw-*.bin
+ cmmb_*.inp
+ ct2fw-*.bin
+ ctefx.bin
+ ctfw-*.bin
+ ctspeq.bin
+ cxgb3/*
+ cxgb4/*
+ dabusb/*
+ dpaa2/*
+ dvb-fe-xc*.fw
+ dvb-usb-dib*.fw
+ dvb-usb-it*.fw
+ dvb-usb-terratec-*.fw
+ dvb_nova_*.inp
+ e100/*
+ ene-ub6250/*
+ f2255usb.bin
+ go7007/*
+ hfi1_*.fw
+ htc_*.fw
+ i2400m-*.sbcf
+ i6050-*.sbcf
+ i915/*
+ imx/*
+ inside-secure/*
+ intel/*
+ isdbt_*.inp
+ iwlwifi-*
+ kaweth/*.bin
+ libertas/*
+ lbtf_usb.bin
+ liquidio/*
+ matrox/*
+ mediatek/*
+ mellanox/*
+ meson/*
+ microchip/*
+ moxa/*
+ mrvl/*
+ mt76*.bin
+ mts_cdma.fw
+ mts_edge.fw
+ mts_gsm.fw
+ mwl8k/*
+ mwlwifi/*
+ myri10ge_*.dat
+ netronome/*
+ nvidia/*
+ phanfw.bin
+ qat_*.bin
+ qca/*
+ qcom/*
+ qed/*
+ ql*_fw.bin
+ qlogic/1*.bin
+ qlogic/sd7220.fw
+ r128/*
+ r8a779x_usb3_*
+ radeon/*
+ rockchip/*
+ rp2.fw
+ rsi/*
+ rt*.bin
+ rtl_bt/*
+ rtl_nic/*
+ rtlwifi/*
+ rtw88/*
+ s5p-mfc*.fw
+ sms1xxx-*
+ TDA7706*
+ tdmb*
+ tehuti/*
+ ti-connectivity/*
+ ti-keystone/*
+ tigon/*
+ tlg2300_firmware.bin
+ ueagle-atm/*
+ v4l-cx*.fw
+ vntwusb.fw
+ vpu_?.bin
+ vxge/*
+ wil6210.*
 
---------------------------------------------------------------------------
+Files: GPL-2
+Copyright: 1989, 1991, Free Software Foundation, Inc.
+License: verbatim-FSF
 
-Driver: keyspan_pda -- USB Keyspan PDA single-port serial device
+Files: GPL-3
+Copyright: 2007, Free Software Foundation, Inc.
+License: verbatim-FSF
 
-File: keyspan_pda/keyspan_pda.fw
-Source: keyspan_pda/keyspan_pda.S
+Files: av7110/*
+Copyright: 2001, Convergence integrated media GmbH
+           2006, Matthieu CASTET
+License: GPL-2+
 
-File: keyspan_pda/xircom_pgs.fw
-Source: keyspan_pda/xircom_pgs.S
+Files: carl9170fw/* carl9170-1.fw
+Copyright: 2000-2005, ZyDAS Technology Corporation
+           2007-2009, Atheros Communications, Inc.
+	   2008-2009, Johannes Berg <johannes@sipsolutions.net>
+           2009-2011, Christian Lamparter <chunkeey@googlemail.com>
+License: GPL-2+
 
-Licence: GPLv2+
+Files: carl9170fw/carlfw/src/ashlsi3.S carl9170fw/carlfw/src/udivsi3_i4i-Os.S
+Copyright: 1994-1995, 1997-2006, Free Software Foundation, Inc.
+License: GPL-2+
 
-Compiled from original 8051 source into Intel HEX, used in our binary ihex form.
+Files: carl9170fw/carlfw/src/memcpy.S carl9170fw/carlfw/src/memset.S
+Copyright: 1999, Niibe Yutaka
+License: GPL-2
 
---------------------------------------------------------------------------
+Files: carl9170fw/carlfw/src/printf.c
+Copyright: 2004, 2008, Kustaa Nyholm
+License: LGPL-2.1+
 
-Driver: dsp56k - Atari DSP56k support
+Files: carl9170fw/config/*
+Copyright: 2002-2005, Roman Zippel <zippel@linux-m68k.org>
+           2002-2005, Sam Ravnborg <sam@ravnborg.org>
+License: GPL-2
 
-File: dsp56k/bootstrap.bin
-Source: dsp56k/bootstrap.asm
+Files: carl9170fw/extra/FindGPERF.cmake
+ carl9170fw/extra/FindPackageHandleStandardArgs.cmake
+ carl9170fw/extra/GCCVersion.cmake
+Copyright: 2006-2009, Kitware, Inc.
+           2006-2008, Andreas Schneider <mail@cynapses.org>
+	   2006, Tristan Carel
+           2007, Wengo
+           2007, Mike Jackson
+           2008, Andreas Pakulat <apaku@gmx.de>
+           2008-2009, Philip Lowman <philip@yhbt.com>
+License: BSD-3-clause-Kitware
 
-Licence: GPLv2 or later
+Files: carl9170fw/extra/FindUSB-1.0.cmake
+Copyright: 2009, Andreas Schneider <mail@cynapses.org>
+License: BSD-3-clause-Schneider
 
-Copyright Frederik Noring
+Files: carl9170fw/include/linux/ieee80211.h
+Copyright: 2001-2002, SSH Communications Security Corp and Jouni Malinen <jkmaline@cc.hut.fi>
+           2002-2003, Jouni Malinen <jkmaline@cc.hut.fi>
+           2005, Devicescape Software, Inc.
+           2006, Michael Wu <flamingice@sourmilk.net>
+License: GPL-2
 
-DSP56001 assembler, possibly buildable with a56 from 
-http://www.zdomain.com/a56.html
+Files: carl9170fw/include/shared/fwcmd.h carl9170fw/include/shared/fwdesc.h
+ carl9170fw/include/shared/hw.h carl9170fw/include/shared/wlan.h
+ carl9170fw/tools/lib/carlfw.c carl9170fw/tools/lib/carlfw.h
+ carl9170fw/tools/src/checksum.c carl9170fw/tools/src/eeprom_fix.c
+ carl9170fw/tools/src/fwinfo.c carl9170fw/tools/src/miniboot.c
+ carl9170fw/tools/src/wol.c
+Copyright: 2008, Johannes Berg <johannes@sipsolutions.net>
+           2009-2011, Christian Lamparter <chunkeey@googlemail.com>
+License: GPL-2
 
---------------------------------------------------------------------------
+Files: carl9170fw/include/shared/phy.h
+Copyright: 2008-2009 Atheros Communications Inc.
+License: permissive-Atheros
 
-Driver: pcnet_cs - NE2000 compatible PCMCIA adapter
+Files: carl9170fw/tools/include/list.h
+Copyright: 2003-2006, Thomas Graf <tgraf@suug.ch>
+License: LGPL-2.1
 
-File: cis/LA-PCM.cis
-File: cis/PCMLM28.cis
-File: cis/DP83903.cis
-File: cis/NE2K.cis
-File: cis/tamarack.cis
-File: cis/PE-200.cis
-File: cis/PE520.cis
-Source: cis/src/LA-PCM.cis
-Source: cis/src/PCMLM28.cis
-Source: cis/src/DP83903.cis
-Source: cis/src/NE2K.cis
-Source: cis/src/tamarack.cis
-Source: cis/src/PE-200.cis
-Source: cis/src/PE520.cis
+Files: cis/src/* cis/3CCFEM556.cis cis/3CXEM556.cis cis/COMpad2.cis
+ cis/COMpad4.cis cis/DP83903.cis cis/LA-PCM.cis cis/MT5634ZLX.cis
+ cis/NE2K.cis cis/PCMLM28.cis cis/PE-200.cis cis/PE520.cis cis/RS-COM-2P.cis
+ cis/tamarack.cis
+Copyright: 1998-2000, David A. Hinds
+License: GPL-2 or MPL-1.1
 
-Licence: Dual GPLv2/MPL
+Files: av7110/Makefile check_whence.py cis/Makefile dsp56k/Makefile
+       dsp56k/concat-bootstrap.pl keyspan_pda/Makefile
+Copyright: 2011, 2016, Ben Hutchings <ben@decadent.org.uk>
+License: GPL-2+
 
-Originally developed by the pcmcia-cs project
-Copyright (C) 1998, 1999, 2000 David A. Hinds
+Files: cis/SW_*_SER.cis
+Copyright: 2002-2005, Sierra Wireless
+License: GPL-3
+Comment: These binary files are understood to be the preferred form for
+ modification.  They follow the PCMCIA Card Information Structure (CIS)
+ format.  The pcmcia-cs project <http://pcmcia-cs.sourceforge.net/>
+ distributes tools for converting between CIS and an unofficial text
+ format.
 
---------------------------------------------------------------------------
+Files: dsp56k/*
+Copyright: 1996-1997, Frederik Noring
+License: GPL-2+
 
-Driver: 3c589_cs - 3Com PCMCIA adapter
+Files: isci/*
+Copyright: 2011-2012, Intel
+License: GPL-2
 
-File: cis/3CXEM556.cis
-Source: cis/src/3CXEM556.cis
+Files: keyspan_pda/*
+Copyright: 1999-2000, Brian Warner <warner@lothar.com>
+           2001, Cristian M. Craciunescu <cristi@dnt.ro>
+License: GPL-2+
 
-Licence: Dual GPLv2/MPL
+Files: usbdux/* usbdux*.bin
+Copyright: 2004, 2009, 2010, 2015, Bernd Porr <mail@berndporr.me.uk>
+License: GPL-2+
 
-Originally developed by the pcmcia-cs project
-Copyright (C) 1998, 1999, 2000 David A. Hinds
+Files: debian/*
+Copyright: 2006-2009 Bastian Blank <waldi@debian.org>
+           2009-2018, 2020, Ben Hutchings <ben@decadent.org.uk>
+License: GPL-2+
 
---------------------------------------------------------------------------
+Files: debian/config/* debian/*.metainfo.xml
+Copyright: 2010-2013, 2016, Ben Hutchings <ben@decadent.org.uk>
+License: CC0-1.0
 
-Driver: 3c574_cs - 3Com PCMCIA adapter
+License: BSD-3-clause-Kitware
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. Redistributions in binary form must reproduce the copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ 3. Neither the name of Kitware, Inc., the Insight Software Consortium,
+    nor the names of their contributors may be used to endorse or promote
+    products derived from this software without specific prior written
+    permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-File: cis/3CCFEM556.cis
-Source: cis/src/3CCFEM556.cis
+License: BSD-3-clause-Schneider
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. The name of the author may not be used to endorse or promote products
+    derived from this software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+ IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Licence: Dual GPLv2/MPL
+License: CC0-1.0
+ To the extent possible under law, Ben Hutchings has waived all
+ copyright and related or neighboring rights to the firmware-free
+ metadata.
+ .
+ On Debian systems, the text of CC0 1.0 Universal can be found in
+ /usr/share/common-licenses/CC0-1.0.
 
-Originally developed by the pcmcia-cs project
-Copyright (C) 1998, 1999, 2000 David A. Hinds
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 2.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems the text of the GPL version 2 can be found in
+ /usr/share/common-licenses/GPL-2.
 
---------------------------------------------------------------------------
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems the text of the GPL version 2 can be found in
+ /usr/share/common-licenses/GPL-2.
 
-Driver: serial_cs - Serial PCMCIA adapter
+License: GPL-3
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 3.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems the text of the GPL version 3 can be found in
+ /usr/share/common-licenses/GPL-3.
 
-File: cis/MT5634ZLX.cis
-File: cis/RS-COM-2P.cis
-File: cis/COMpad2.cis
-File: cis/COMpad4.cis
-Source: cis/src/MT5634ZLX.cis
-Source: cis/src/RS-COM-2P.cis
-Source: cis/src/COMpad2.cis
-Source: cis/src/COMpad4.cis
+License: LGPL-2.1
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation, version 2.1.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ On Debian systems the text of the LGPL version 2.1 can be found in
+ /usr/share/common-licenses/LGPL-2.1.
 
-Licence: Dual GPLv2/MPL
+License: LGPL-2.1+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ On Debian systems the text of the LGPL version 2.1 can be found in
+ /usr/share/common-licenses/LGPL-2.1.
 
-Originally developed by the pcmcia-cs project
-Copyright (C) 1998, 1999, 2000 David A. Hinds
+License: MPL-1.1
+ The contents of this file are subject to the Mozilla Public License
+ Version 1.1 (the "License"); you may not use this file except in
+ compliance with the License. You may obtain a copy of the License at
+ https://www.mozilla.org/MPL/
+ .
+ Software distributed under the License is distributed on an "AS IS"
+ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ License for the specific language governing rights and limitations
+ under the License.
+ .
+ On Debian systems the text of the MPL version 1.1 can be found in
+ /usr/share/common-licenses/MPL-1.1.
 
---------------------------------------------------------------------------
+License: permissive-Atheros
+ Permission to use, copy, modify, and/or distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-Driver: serial_cs - Serial PCMCIA adapter
-
-File: cis/SW_555_SER.cis
-File: cis/SW_7xx_SER.cis
-File: cis/SW_8xx_SER.cis
-
-Licence: GPLv3
-
-Copyright Sierra Wireless
-
-These binary files are understood to be the preferred form for
-modification.  They follow the PCMCIA Card Information Structure (CIS)
-format.  The pcmcia-cs project <http://pcmcia-cs.sourceforge.net/>
-distributes tools for converting between CIS and an unofficial text
-format.
-
---------------------------------------------------------------------------
-
-Driver: dvb-ttpci -- AV7110 cards
-
-File: av7110/bootcode.bin
-Source: av7110/Boot.S
-
-Licence: GPLv2 or later
-
---------------------------------------------------------------------------
-
-Driver: usbdux/usbduxfast/usbduxsigma - usbdux data acquisition cards
-
-File: usbdux_firmware.bin
-File: usbduxfast_firmware.bin
-File: usbduxsigma_firmware.bin
-Source: usbdux/fx2-include.asm
-Source: usbdux/usbduxfast_firmware.asm
-Source: usbdux/usbdux_firmware.asm
-Source: usbdux/usbduxsigma_firmware.asm
-
-Licence: GPLv2. See source code in usbdux/ subdirectory.
-
-Provided from the author, Bernd Porr <BerndPorr@f2s.com>
-
---------------------------------------------------------------------------
-
-Driver: isci -- Intel C600 SAS controller driver
-
-File: isci/isci_firmware.bin
-Source: isci/create_fw.c
-Source: isci/create_fw.h
-Source: isci/probe_roms.h
-Source: isci/Makefile
-
-Licence: GPLv2
-
---------------------------------------------------------------------------
-
-Driver: carl9170 -- Atheros AR9170 802.11 draft-n USB driver
-
-File: carl9170-1.fw
-Version: 1.9.6
-Source: carl9170fw/
-
-Downloaded from http://linuxwireless.org/en/users/Drivers/carl9170
-
-Licence: GPLv2. Some build scripts use the New BSD (3-clause) licence.
-
---------------------------------------------------------------------------
-
-On Debian systems the text of the GPL version 2 can be found in
-/usr/share/common-licenses/GPL-2, and the text of the GPL version 3
-can be found in /usr/share/common-licenses/GPL-3.
-
+License: verbatim-FSF
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.

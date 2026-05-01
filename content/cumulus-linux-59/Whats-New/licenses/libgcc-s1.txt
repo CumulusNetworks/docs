@@ -1,0 +1,1 @@
+libgcc-s1 has no copyright file

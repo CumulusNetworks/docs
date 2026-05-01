@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Wireshark
-Source: http://www.wireshark.org/
+Source: https://www.wireshark.org/
 Files-Excluded: debian
 
 Files: *
@@ -15,7 +15,37 @@ Copyright: 1998-2008 Frederic Peters <fpeters@debian.org>
            2017-     Balint Reczey <balint.reczey@canonical.com>
 License: GPL-2+
 
-Files: wsutil/g711.c:
+Files: debian/po/*
+Copyright: 2009 Martin Sin <martin.sin@zshk.cz>
+           2010, 2019 Joe Hansen <joedalton2@yahoo.dk>
+           2009, 2010, 2017 Helge Kreutzmann <debian@helgefjell.de>
+           2009, 2010 Software in the Public Interest
+           2009, 2010 Francisco Javier Cuadrado <fcocuadrado@gmail.com>
+           2009 Piarres Beobide <pi@beobide.net>
+           2010 Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>
+           2009 Esko Arajärvi <edu@iki.fi>
+           2009, 2018 Debian French l10n team <debian-l10n-french@lists.debian.org>
+           2009 Simon Paillard <spaillard@debian.org>
+           2018 Jean-Philippe MENGUAL <mengualjeanphi@free.fr>
+           2011 Balint Reczey <balint@balintreczey.hu>
+           2009-2010 Luca Monducci <luca.mo@tiscali.it>
+           2009-2010 Hideki Yamane <henrich@debian.org>
+           2011 Jeroen Schot <schot@a-eskwadraat.nl>
+           2017 Frans Spiesschaert <Frans.Spiesschaert@yucom.be>
+           2009 Rafael Henrique da Silva Correia <rafaelhenriqu@gmail.com>
+           2010 Adriano Rafael Gomes <adrianorg@gmail.com>
+           2010,2017 Pedro Ribeiro <p.m42.ribeiro@gmail.com>
+           2018 Gali Anikina <merilaga@yandex.ru>
+           2009, 2010, 2018 Yuri Kozlov <yuray@komyakino.ru>
+           2011 Slavko <linux@slavino.sk>
+           2009, 2010 Martin Ågren <martin.agren@gmail.com>
+           2019 Balint Reczey <balint.reczey@canonical.com>
+           2014 Mert Dirik
+           2010 Free Software Foundation, Inc
+           2009-2010 Clytie Siddall <clytie@riverland.net.au>
+License: GPL-2+
+
+Files: wsutil/g711.c
 Copyright: Sun Microsystems, Inc.
 License: public-domain
  This source code is a product of Sun Microsystems, Inc. and is provided
@@ -95,18 +125,13 @@ License: BSD-3-clause
  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  SUCH DAMAGE.
 
-Files: wsutil/inet_ntop.c
-       wsutil/inet_pton.c
-Copyright: 1996-1999 by Internet Software Consortium.
-License: ISC
-
 Files: epan/dissectors/packet-enc.c
        epan/dissectors/packet-etherip.c
        epan/dissectors/packet-ipsec-udp.c
 Copyright: 2003 Markus Friedl
 License: BSD-2-clause
 
-Files: epan/dissectors/packet-pflog.c:
+Files: epan/dissectors/packet-pflog.c
 Copyright: 2001 Mike Frantzen
 License: BSD-2-clause-no-conditions
  Redistribution and use in source and binary forms, with or without
@@ -227,20 +252,6 @@ License: GPL-3+
  On Debian systems, the full text of the
  GNU General Public License version 3 can be found in the file
  `/usr/share/common-licenses/GPL-3'.
-
-License: ISC
- Permission to use, copy, modify, and distribute this software for any
- purpose with or without fee is hereby granted, provided that the above
- copyright notice and this permission notice appear in all copies.
- .
- THE SOFTWARE IS PROVIDED "AS IS" AND INTERNET SOFTWARE CONSORTIUM DISCLAIMS
- ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
- OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL INTERNET SOFTWARE
- CONSORTIUM BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL
- DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
- PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS
- ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
- SOFTWARE.
 
 License: LGPL-2+
  Copyright (C) 1991, 1992, 1996, 1998 Free Software Foundation, Inc.

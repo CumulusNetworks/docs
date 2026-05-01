@@ -1,11 +1,28 @@
-This package was created by Peter Tobias tobias@et-inf.fho-emden.de on
-Wed, 24 Aug 1994 21:33:28 +0200 and maintained by Anthony Towns
-<ajt@debian.org> until 2001.
-It is currently maintained by Marco d'Itri <md@linux.it>.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Comment:
+ This package was created by Peter Tobias tobias@et-inf.fho-emden.de on
+ Wed, 24 Aug 1994 21:33:28 +0200 and maintained by Anthony Towns
+ <ajt@debian.org> until 2001.
+ It is currently maintained by Marco d'Itri <md@linux.it>.
 
-Copyright 1994-2010 Peter Tobias, Anthony Towns and Marco d'Itri
-
-The programs in this package are distributed under the terms of the GNU
-General Public License, version 2 as distributed by the Free Software
-Foundation. On Debian systems, a copy of this license may be found in
-/usr/share/common-licenses/GPL-2.
+Files: *
+Copyright:
+ Copyright (c) 1994-1998 Peter Tobias
+ Copyright (c) 1998-2001 Anthony Towns
+ Copyright (c) 2002-2022 Marco d'Itri
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License, version 2, as
+ published by the Free Software Foundation.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License along
+ with this program; if not, write to the Free Software Foundation,
+ Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ version 2 can be found in '/usr/share/common-licenses/GPL-2'.

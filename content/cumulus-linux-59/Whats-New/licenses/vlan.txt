@@ -7,13 +7,13 @@ License: GPL-2+
 Note: originally from https://bitbucket.org/andrew_shadura/fake-vconfig/raw/2e8c89b663965814a6734439b52710c0ebcea7a6/vconfig
 
 Files: debian/*
-Copyright: Â© 2001-2005 Ard van Breemen <ard@kwaak.net>
-           Â© 2005-2007 Loic Minier <lool@dooz.org>
-           Â© 2016 Andreas Henriksson <andreas@fatal.se>
+Copyright: © 2001-2005 Ard van Breemen <ard@kwaak.net>
+           © 2005-2007 Loic Minier <lool@dooz.org>
+           © 2016 Andreas Henriksson <andreas@fatal.se>
 License: GPL-2+
 
 Files: vconfig.8
-Copyright: Â© Ard van Breemen <ard@kwaak.net>
+Copyright: © Ard van Breemen <ard@kwaak.net>
 License: GPL-2+
 
 License: GPL-2+

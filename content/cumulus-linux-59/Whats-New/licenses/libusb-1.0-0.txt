@@ -53,17 +53,17 @@ Authors:
   Sean McBride
   Sebastian Pipping
   Simon Haggett
-  Thomas Röfer
+  Thomas R�fer
   Tim Roberts
   Toby Peterson
-  Trygve Laugstøl
+  Trygve Laugst�l
   Uri Lublin
   Vasily Khoruzhick
   Vegard Storheil Eriksen
   Vitali Lovich
   Xiaofan Chen
-  Zoltán Kovács
-  Роман Донченко
+  Zolt�n Kov�cs
+  ????? ????????
   xantares
 
 

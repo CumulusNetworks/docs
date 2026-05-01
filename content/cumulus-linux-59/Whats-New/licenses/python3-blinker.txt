@@ -1,21 +1,20 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: blinker
-Source: https://pypi.python.org/pypi/blinker
+Upstream-Contact: Pallets Ecosystem <contact@palletsprojects.com>
+Source: https://github.com/pallets-eco/blinker
 
 Files: *
 Copyright: 2013 The Blinker authors and contributors (see AUTHORS file)
+ 2022 Pallets Ecosystem <contact@palletsprojects.com>
 License: Expat
 
 Files: blinker/_saferef.py tests/test_saferef.py
 Copyright: 2006 Patrick K. O'Brien, Mike C. Fletcher, Matthew R. Scott
-License: BSD3
-
-Files: docs/html/_static/*.css
-Copyright: (c) 2007-2011 by the Sphinx team (see AUTHORS file).
-License: BSD
+License: BSD-3-clause
 
 Files: debian/*
-Copyright: 2013 Ondřej Surý <ondrej@debian.org>
+Copyright: 2013 Ond?ej Sur� <ondrej@debian.org>
+ 2022 Carsten Schoenert <c.schoenert@t-online.de>
 License: Expat
 
 License: Expat
@@ -39,7 +38,7 @@ License: Expat
  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
 
-License: BSD3
+License: BSD-3-clause
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
  met:
@@ -55,32 +54,6 @@ License: BSD3
      * Neither the name of the <ORGANIZATION> nor the names of its
        contributors may be used to endorse or promote products derived
        from this software without specific prior written permission.
- .
- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-License: BSD
- All rights reserved.
- .
- Redistribution and use in source and binary forms, with or without
- modification, are permitted provided that the following conditions are
- met:
- .
- * Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
- .
- * Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
  .
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT

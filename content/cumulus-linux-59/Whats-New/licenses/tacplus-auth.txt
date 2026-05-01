@@ -1,6 +1,6 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: tacplus-auth
-Source: https://www.cumulusnetworks.com
+Source: https://nvidia.com
 
 Files: *
 Copyright: 2016, 2017, 2018 Cumulus Networks, Inc.  All rights reserved.,

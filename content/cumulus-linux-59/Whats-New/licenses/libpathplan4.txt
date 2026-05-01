@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: graphviz
 Upstream-Contact: Graphviz project <gviz-bugs@research.att.com>
 Source: https://github.com/ellson/graphviz/

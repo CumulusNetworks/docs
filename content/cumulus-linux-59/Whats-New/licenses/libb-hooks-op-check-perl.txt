@@ -3,7 +3,7 @@ Upstream-Name: B-Hooks-OP-Check
 Upstream-Contact: Florian Ragwitz <rafl@debian.org>
 Source: https://metacpan.org/release/B-Hooks-OP-Check
 
-Files: * 
+Files: *
 Copyright: 2008, Florian Ragwitz <rafl@debian.org>
 License: Artistic or GPL-1+
 

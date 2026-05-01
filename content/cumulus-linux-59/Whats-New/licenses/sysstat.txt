@@ -1,14 +1,14 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Sebastien Godar
 Upstream-Contact: sysstat <at> orange.fr
-Source: http://pagesperso-orange.fr/sebastien.godard/
+Source: http://sebastien.godard.pagesperso-orange.fr/
 
 Files: *
-Copyright: Â© 1998-2016, Sebastien Godard (sysstat <at> orange.fr)
+Copyright: © 1998-2022, Sebastien Godard (sysstat <at> orange.fr)
 License: GPL-2+
 
 Files: cifsiostat.c ioconf.c
-Copyright: Â© 2004, 2010, Red Hat, Inc.
+Copyright: © 2004, 2010, Red Hat, Inc.
 License: GPL-2+
 
 Files: tapestat.c
@@ -16,11 +16,11 @@ Copyright: 2015, Hewlett-Packard Development Company, L.P
 License: GPL-2+
 
 Files: contrib/isag/*
-Copyright: Â© 2000, 2001 David Doubrava (linux_monitor(at)volny(dot)cz)
+Copyright: © 2000, 2001 David Doubrava (linux_monitor(at)volny(dot)cz)
 License: GPL-2+
 
 Files: debian/*
-Copyright: Â© 2000-2016 Robert Luberda <robert@debian.org>
+Copyright: © 2000-2022 Robert Luberda <robert@debian.org>
 License: GPL-2+
 
 License: GPL-2+

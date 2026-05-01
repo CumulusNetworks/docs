@@ -4,17 +4,17 @@ Upstream-Contact: Grant McLean <grantm@cpan.org>
 Source: https://metacpan.org/release/XML-Simple
 
 Files: *
-Copyright: Â© 1999-2018, Grant McLean <grantm@cpan.org>
+Copyright: © 1999-2018, Grant McLean <grantm@cpan.org>
 License: Artistic or GPL-1+
 
 Files: debian/*
 Copyright:
- Â© 2000-2003, Ardo van Rangelrooij <ardo@debian.org>
- Â© 2003-2005, Kenneth J. Pronovici <pronovic@debian.org>
- Â© 2005-2006, Stephen Quinney <sjq@debian.org>
- Â© 2006-2009, Bart Martens <bartm@debian.org>
- Â© 2010,      Ansgar Burchardt <ansgar@debian.org>
- Â© 2012,      Nathan Handler <nhandler@debian.org>
+ © 2000-2003, Ardo van Rangelrooij <ardo@debian.org>
+ © 2003-2005, Kenneth J. Pronovici <pronovic@debian.org>
+ © 2005-2006, Stephen Quinney <sjq@debian.org>
+ © 2006-2009, Bart Martens <bartm@debian.org>
+ © 2010,      Ansgar Burchardt <ansgar@debian.org>
+ © 2012,      Nathan Handler <nhandler@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic

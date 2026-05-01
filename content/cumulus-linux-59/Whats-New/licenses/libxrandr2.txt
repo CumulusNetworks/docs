@@ -1,8 +1,8 @@
 This package was downloaded from
 https://xorg.freedesktop.org/releases/individual/lib/
 
-Copyright Â© 2000, Compaq Computer Corporation,
-Copyright Â© 2002, Hewlett Packard, Inc.
+Copyright © 2000, Compaq Computer Corporation,
+Copyright © 2002, Hewlett Packard, Inc.
 
 Permission to use, copy, modify, distribute, and sell this software and its
 documentation for any purpose is hereby granted without fee, provided that
@@ -21,11 +21,11 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
 OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-Copyright Â© 2000 Compaq Computer Corporation, Inc.
-Copyright Â© 2002 Hewlett-Packard Company, Inc.
-Copyright Â© 2006 Intel Corporation
-Copyright Â© 2008 Red Hat, Inc.
-Copyright Â© 2011 Dave Airlie
+Copyright © 2000 Compaq Computer Corporation, Inc.
+Copyright © 2002 Hewlett-Packard Company, Inc.
+Copyright © 2006 Intel Corporation
+Copyright © 2008 Red Hat, Inc.
+Copyright © 2011 Dave Airlie
 
 Permission to use, copy, modify, distribute, and sell this software and its
 documentation for any purpose is hereby granted without fee, provided that
@@ -45,9 +45,9 @@ DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
 TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
 OF THIS SOFTWARE.
 
-Copyright Â© 2000 Compaq Computer Corporation, Inc.
-Copyright Â© 2002 Hewlett Packard Company, Inc.
-Copyright Â© 2006 Keith Packard
+Copyright © 2000 Compaq Computer Corporation, Inc.
+Copyright © 2002 Hewlett Packard Company, Inc.
+Copyright © 2006 Keith Packard
 
 Permission to use, copy, modify, distribute, and sell this software and its
 documentation for any purpose is hereby granted without fee, provided that

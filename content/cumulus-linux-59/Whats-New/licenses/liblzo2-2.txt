@@ -1,20 +1,32 @@
-This package was debianized by Paolo Molaro <lupus@debian.org> on
-13 Feb 1998.  Since 09 Nov 2004 it has been maintained by Peter
-Eisentraut <petere@debian.org>.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: lzo
+Source: https://www.oberhumer.com/opensource/lzo/
 
-It was downloaded from <http://www.oberhumer.com/opensource/lzo/download/>.
+Files: *
+Copyright: 1996-2017 Markus Franz Xaver Johannes Oberhumer
+License: GPL-2+
 
-Upstream author: Markus F.X.J. Oberhumer <markus@oberhumer.com>
+Files: debian/*
+Copyright: 1998, 2000-2001, 2003 Paolo Molaro
+           2004, 2006-2009, 2011, 2014 Peter Eisentraut
+           2018, 2020 Stephen Kitt <skitt@debian.org>
+License: GPL-2+
 
-Copyright:
-
-  Copyright (C) 1996-2017 Markus Franz Xaver Johannes Oberhumer
-  All Rights Reserved.
-
-  The LZO library is free software; you can redistribute it and/or
-  modify it under the terms of the GNU General Public License as
-  published by the Free Software Foundation; either version 2 of
-  the License, or (at your option) any later version.
-
-On Debian systems, the complete text of the GNU GPL version 2 can be found in
-the file /usr/share/common-licenses/GPL-2.
+License: GPL-2+
+ lzop and the LZO library are free software; you can redistribute them
+ and/or modify them under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2 of the
+ License, or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301,
+ USA.
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 2 can be found in /usr/share/common-licenses/GPL-2

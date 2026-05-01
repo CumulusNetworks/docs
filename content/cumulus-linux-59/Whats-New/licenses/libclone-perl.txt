@@ -4,21 +4,27 @@ Source: https://metacpan.org/release/Clone
 Upstream-Contact: Ray Finch <rdf@cpan.org>
 
 Files: *
-Copyright: 2001-2018, Ray Finch <rdf@cpan.org>
+Copyright: 2001-2022, Ray Finch <rdf@cpan.org>
 License: Artistic or GPL-1+
 
 Files: t/dclone.t
  t/dump.pl
  t/tied.pl
 Copyright: 1995-2000, Raphael Manfredi
-License: Artistic
+License: Artistic or GPL-1+
+
+Files: ppport.h
+Copyright: 2004-2013, Marcus Holland-Moritz <mhx-cpan@gmx.net>
+ 2001, Paul Marquess <pmqs@cpan.org> (Version 2.x)
+ 1999, Kenneth Albanowski <kjahds@kjahds.com> (Version 1.x)
+License: Artistic or GPL-1+
 
 Files: debian/*
 Copyright: 2004-2007, Bastian Blank <waldi@debian.org>
  2008, Brian Cassidy <brian.cassidy@gmail.com>
  2008, Gunnar Wolf <gwolf@debian.org>
  2008-2011, Ansgar Burchardt <ansgar@debian.org>
- 2008-2015, gregor herrmann <gregoa@debian.org>
+ 2008-2022, gregor herrmann <gregoa@debian.org>
  2012-2018, Xavier Guimard <yadd@debian.org>
 License: Artistic or GPL-1+
 

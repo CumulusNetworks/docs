@@ -1,133 +1,70 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: nginx
-Source: https://nginx.org/en/download.html
+Upstream-Name: ngx_devel_kit
+Upstream-Contact: Marcus Clyne <maccaday@gmail.com>
+Source: https://github.com/simpl/ngx_devel_kit
 
 Files: *
-Copyright: 2002-2014 Igor Sysoev
-           2011-2014 Nginx, Inc.
-                     Maxim Dounin
-                     Valentin V. Bartenev
-                     Roman Arutyunyan
-                     Ruslan Ermilov
-License: BSD-2-clause
+Copyright: 2010-2018, Marcus Clyne
+License: BSD-3-clause
 
-Files: src/core/ngx_murmurhash.c
-Copyright: Copyright (C) Austin Appleby
-License: BSD-2-clause
-
-Files: src/http/modules/ngx_http_scgi_module.c
-       src/http/modules/ngx_http_uwsgi_module.c
-Copyright: Copyright (C) Igor Sysoev
-           Copyright (C) Nginx, Inc.
-           2009-2010 Unbit S.a.s.
-           2008      Manlio Perillo (manlio.perillo@gmail.com)
-License: BSD-2-clause
-
-Files: contrib/geo2nginx.pl
-Copyright: 2005, Andrei Nigmatulin
-License: BSD-2-clause
-
-Files: debian/*
-Copyright: 2007-2009, Fabio Tranchitella <kobold@debian.org>
-           2008,      Jose Parrella <joseparrella@cantv.net>
-           2009-2014, Kartik Mistry <kartik@debian.org>
-           2010-2014, Michael Lustfield <michael@lustfield.net>
-           2011       Dmitry E. Oboukhov <unera@debian.org>
-           2011-2013, Cyril Lavier <cyril.lavier@davromaniak.eu>
-           2013-2016, Christos Trochalakis <ctrochalakis@debian.org>
-License: BSD-2-clause
-
-Files: debian/modules/http-headers-more-filter/*
-Copyright: Copyright (c) 2009-2014, Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, CloudFlare Inc.
-           Copyright (c) 2010-2013, Bernd Dorn
-           Copyright (c) Igor Sysoev
-License: BSD-2-clause
-
-Files: debian/modules/http-ndk/*
+Files: auto/text/*
 Copyright: Marcus Clyne
 License: BSD-3-clause
 
-Files: debian/modules/http-ndk/src/hash/md5.h
-       debian/modules/http-ndk/src/hash/sha.h
-Copyright: Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
-License: BSD-4-clause
+Files: debian/*
+Copyright: 2022, Miao Wang <shankerwangmiao@gmail.com>
+ 2022, 2023, Jan Mojzis <jan.mojzis@gmail.com>
+License: BSD-3-clause
 
-Files: debian/modules/http-auth-pam/*
-Copyright: 2008-2013, Sergio Talens Oliag
-License: BSD-2-clause
+Files: docs/patches/*
+Copyright: Brian Moran - bmoran@onehub.com
+License: BSD-3-clause
 
-Files: debian/modules/http-echo/*
-Copyright: Copyright (c) 2009-2014, Yichun "agentzh" Zhang <agentzh@gmail.com>
-License: BSD-2-clause
+Files: examples/*
+Copyright: Marcus Clyne
+License: BSD-3-clause
 
-Files: debian/modules/http-lua/*
-Copyright: Copyright (C) 2009-2014, by Xiaozhe Wang (chaoslawful) <chaoslawful@gmail.com>.
-           Copyright (C) 2009-2014, by Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, CloudFlare Inc.
-License: BSD-2-clause
+Files: examples/http/*
+Copyright: 2010-2018, Marcus Clyne
+License: BSD-3-clause
 
-Files: debian/modules/http-upstream-fair/*
-Copyright: Copyright (c) 2007 Grzegorz Nosek
-           Igor Sysoev
-License: BSD-2-clause
+Files: examples/http/set_var/ngx_http_set_var_examples_module.c
+Copyright: Marcus Clyne
+License: BSD-3-clause
 
-Files: debian/modules/nchan/*
-Copyright: 2009-2016 Leo Ponomarev
-License: MIT
+Files: notes/*
+Copyright: 2010, Marcus Clyne, Simpl (simpl.it)
+License: BSD-3-clause
 
-Files: debian/modules/nchan/src/store/redis/cmp.*
-Copyright: 2015 Charles Gunyon
-License: MIT
+Files: notes/CHANGES
+Copyright: 2010-2018, Marcus Clyne
+License: BSD-3-clause
 
-Files: debian/modules/http-uploadprogress/*
-Copyright: Brice Figureau
-           2002-2007, Igor Sysoev
-License: BSD-2-clause
+Files: objs/*
+Copyright: Marcus Clyne
+License: BSD-3-clause
 
-Files: debian/modules/http-cache-purge/*
-Copyright: 2009-2012, FRiCKLE <info@frickle.com>,
-           2009-2012, Piotr Sikora <piotr.sikora@frickle.com>
-License: BSD-2-clause
+Files: objs/ndk_includes.h
+Copyright: 2010-2018, Marcus Clyne
+License: BSD-3-clause
 
-Files: debian/modules/http-dav-ext/*
-Copyright: Arutyunyan Roman <arut@qip.ru>
-License: BSD-2-clause
+Files: patches/expose_rewrite_functions
+Copyright: Marcus Clyne
+License: BSD-3-clause
 
-Files: debian/modules/http-fancyindex/*
-Copyright: Copyright (c) Adrian Perez <aperez@igalia.com>
-License: BSD-2-clause
+Files: src/hash/*
+Copyright: 1995-1998, Eric Young (eay@cryptsoft.com)
+License: SSLeay
 
-Files: debian/modules/http-subs-filter/*
-Copyright: Copyright (C) 2014 by Weibin Yao <yaoweibin@gmail.com>
-License: BSD-2-clause
+Files: src/hash/murmurhash2.c
+Copyright: Austin Appleby
+License: BSD-3-clause
 
-Files: debian/modules/rtmp/*
-Copyright: Copyright (C) 2012-2014, Roman Arutyunyan
-License: BSD-2-clause
-
-License: BSD-2-clause
- All rights reserved.
- .
- Redistribution and use in source and binary forms, with or without
- modification, are permitted provided that the following conditions are
- met:
- .
- 1. Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
- 2. Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
- .
- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
- PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+Files: src/ndk.c
+  src/ndk.h
+  src/ndk_set_var.h
+Copyright: Marcus Clyne
+License: BSD-3-clause
 
 License: BSD-3-clause
  All rights reserved.
@@ -156,46 +93,63 @@ License: BSD-3-clause
  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-License: BSD-4-clause
- Redistribution and use in source and binary forms, with or without
- modification, are permitted provided that the following conditions
- are met:
- 1. Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
- 2. Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
- 4. Neither the name of the University nor the names of its contributors
-    may be used to endorse or promote products derived from this software
-    without specific prior written permission.
+License: SSLeay
+ This software is Copyright (c) 2022 by X. Ample.
  .
- THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- SUCH DAMAGE.
-
-License: MIT
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to
- deal in the Software without restriction, including without limitation the
- rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
- sell copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
+ This is free software, licensed under:
  .
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
+   Original SSLeay License
  .
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- IN THE SOFTWARE.
+   Copyright (c) 1995-1998 Eric Young (eay@cryptsoft.com) All rights reserved.
+ .
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions are met:
+ .
+   This library is free for commercial and non-commercial use as long as
+   the following conditions are aheared to.  The following conditions
+   apply to all code found in this distribution, be it the RC4, RSA,
+   lhash, DES, etc., code; not just the SSL code.  The SSL documentation
+   included with this distribution is covered by the same copyright terms
+   except that the holder is Tim Hudson (tjh@cryptsoft.com).
+ .
+   Copyright remains Eric Young?s, and as such any Copyright notices in the code
+   are not to be removed. If this package is used in a product, Eric Young
+   should be given attribution as the author of the parts of the library used.
+   This can be in the form of a textual message at program startup or in
+   documentation (online or textual) provided with the package.
+ .
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions are met:
+ .
+     1. Redistributions of source code must retain the copyright
+        notice, this list of conditions and the following disclaimer.
+     2. Redistributions in binary form must reproduce the above copyright
+        notice, this list of conditions and the following disclaimer in the
+        documentation and/or other materials provided with the distribution.
+     3. All advertising materials mentioning features or use of this software
+        must display the following acknowledgement:
+        ?This product includes cryptographic software written by
+         Eric Young (eay@cryptsoft.com)?
+        The word ?cryptographic? can be left out if the rouines from the library
+        being used are not cryptographic related :-).
+     4. If you include any Windows specific code (or a derivative thereof) from
+        the apps directory (application code) you must include an
+        acknowledgement: ?This product includes software written by Tim Hudson
+        (tjh@cryptsoft.com)?
+ .
+   THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ??AS IS?? AND
+   ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+   FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+   DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+   OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+   HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+   LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+   OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+   SUCH DAMAGE.
+ .
+   The licence and distribution terms for any publically available version or
+   derivative of this code cannot be changed.  i.e. this code cannot simply be
+   copied and put under another distribution licence
+   [including the GNU Public Licence.]

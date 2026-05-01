@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: open-vm-tools
 Upstream-Contact: open-vm-tools-devel@lists.sourceforge.net
 Source: http://sourceforge.net/projects/open-vm-tools/files/
@@ -17,7 +17,7 @@ License: BSD-3
 
 Files: lib/misc/base64.c
 Copyright: 1996, 1998 Internet Software Consortium
-License: MIT(*)
+License: ISC-ibm-and-ibm-dhcp
 
 Files:
   services/plugins/resolutionSet/libvmwarectrl.h
@@ -25,18 +25,20 @@ Files:
   services/plugins/resolutionSet/vmwarectrl.h
   services/plugins/resolutionSet/libvmwarectrl.c
 Copyright: 2006 VMware, Inc. <http://www.vmware.com/>
-License: MIT(**)
+License: xfree86-1.0
 
 Files: debian/*
 Copyright: 2007-2013 Daniel Baumann <mail@daniel-baumann.ch>
-           2014      Bernd Zeimetz <bzed@debian.org>
+           2014-2022 Bernd Zeimetz <bzed@debian.org>
+           2017-2022 Christian Ehrhardt <christian.ehrhardt@canonical.com
+           2022 Bryce Harrington <bryce@canonical.com>
 License: GPL-2+
 
 License: BSD-3
  This code is derived from software contributed to Berkeley by Chris Torek.
  .
  Redistribution and use in source and binary forms, with or without
- modification, are permitted provided that the following conditions are	met:
+ modification, are permitted provided that the following conditions are met:
  .
  1. Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
@@ -109,7 +111,7 @@ License: LGPL-2.1
  The complete text of the GNU Lesser General Public License
  can be found in /usr/share/common-licenses/GPL-2.1 file.
 
-License: MIT(*)
+License: ISC-ibm-and-ibm-dhcp
  Permission to use, copy, modify, and distribute this software for any purpose
  with or without fee is hereby granted, provided that the above copyright notice
  and this permission notice appear in all copies.
@@ -121,8 +123,6 @@ License: MIT(*)
  DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
  CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- .
- Portions Copyright (C) 1995 International Business Machines, Inc.
  .
  International Business Machines, Inc. (hereinafter called IBM) grants
  permission under its copyrights to use, copy, modify, and distribute this
@@ -144,7 +144,7 @@ License: MIT(*)
  WITH THE USE OR PERFORMANCE OF THIS SOFTWARE, EVEN IF IBM IS APPRISED OF THE
  POSSIBILITY OF SUCH DAMAGES.
 
-License: MIT(**)
+License: xfree86-1.0
  Permission is hereby granted, free of charge, to any person obtaining a copy of
  this software and associated documentation files (the "Software"), to deal in
  the Software without restriction, including without limitation the rights to

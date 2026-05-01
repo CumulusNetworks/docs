@@ -1,7 +1,7 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: File-FnMatch
 Upstream-Contact: Michael J. Pomraning <mjp-perl@pilcrow.madison.wi.us>
-Source: https://metacpan.org/release/File-FnMatch/
+Source: https://metacpan.org/release/File-FnMatch
 
 Files: *
 Copyright: 2005, Michael J. Pomraning <mjp-perl@pilcrow.madison.wi.us>

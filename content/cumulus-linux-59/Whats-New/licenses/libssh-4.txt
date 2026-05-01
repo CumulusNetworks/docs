@@ -10,74 +10,8 @@ License: LGPL-2.1+~OpenSSL
 Comment:
  Using license from COPYING file.
 
-Files: include/libssh/auth.h
-       include/libssh/bignum.h
-       include/libssh/bind.h
-       include/libssh/buffer.h
-       include/libssh/channels.h
-       include/libssh/crc32.h
-       include/libssh/crypto.h
-       include/libssh/dh.h
-       include/libssh/ecdh.h
-       include/libssh/ed25519.h
-       include/libssh/gssapi.h
-       include/libssh/kex.h
-       include/libssh/keys.h
-       include/libssh/legacy.h
-       include/libssh/libcrypto.h
-       include/libssh/libgcrypt.h
-       include/libssh/libssh.h
-       include/libssh/libsshpp.hpp
-       include/libssh/messages.h
-       include/libssh/misc.h
-       include/libssh/packet.h
-       include/libssh/pcap.h
-       include/libssh/pki.h
-       include/libssh/pki_priv.h
-       include/libssh/poll.h
-       include/libssh/priv.h
-       include/libssh/scp.h
-       include/libssh/server.h
-       include/libssh/session.h
-       include/libssh/sftp.h
-       include/libssh/socket.h
-       include/libssh/string.h
-       include/libssh/threads.h
-       include/libssh/wrapper.h
-       src/auth1.c
-       src/base64.c
-       src/bignum.c
-       src/bind.c
-       src/buffer.c
-       src/client.c
-       src/connect.c
-       src/crc32.c
-       src/ecdh.c
-       src/error.c
-       src/gcrypt_missing.c
-       src/init.c
-       src/kex.c
-       src/kex1.c
-       src/legacy.c
-       src/libcrypto.c
-       src/libgcrypt.c
-       src/log.c
-       src/messages.c
-       src/packet.c
-       src/packet1.c
-       src/packet_cb.c
-       src/packet_crypt.c
-       src/pcap.c
-       src/pki_container_openssh.c
-       src/pki_ed25519.c
-       src/server.c
-       src/session.c
-       src/sftpserver.c
-       src/socket.c
-       src/string.c
-       src/threads.c
-       src/threads/pthread.c
-       src/wrapper.c
+Files: include/libssh/*.h
+       src/*.c
        tests/benchmarks/bench_raw.c
        tests/benchmarks/bench_scp.c
        tests/benchmarks/bench_sftp.c
@@ -89,17 +23,21 @@ Files: include/libssh/auth.h
        tests/client/torture_connect.c
        tests/client/torture_knownhosts.c
        tests/client/torture_session.c
-       tests/test_pcap.c
        tests/test_socket.c
-Copyright: 2003-2014, Aris Adamantiadis
+Copyright: 2003-2021, Aris Adamantiadis
+           2008-2018 Andreas Schneider <asn@cryptomilk.org>
+           2017 Sartura d.o.o.
+           2019 by Red Hat, Inc.
+           2020 by Heiko Thiery
+           1997 Niels Provos <provos@physnet.uni-hamburg.de>
+           2018-2019 by Anderson Toshiyuki Sasaki - Red Hat, Inc.
+           2019 Simo Sorce - Red Hat, Inc.
 License: LGPL-2.1+~OpenSSL
 
 Files: examples/exec.c
        examples/senddata.c
        examples/CMakeLists.txt
-       include/libssh/ssh1.h
        include/libssh/ssh2.h
-       tests/authentication.c
        tests/benchmarks/bench1.sh
        tests/benchmarks/bench2.sh
        tests/chmodtest.c
@@ -107,13 +45,7 @@ Files: examples/exec.c
        tests/client/torture_sftp_dir.c
        tests/client/torture_sftp_read.c
        tests/cmdline.c
-       tests/connection.c
        tests/generate.py
-       tests/sftp_stress/main.c
-       tests/test_exec.c
-       tests/test_ssh_bind_accept_fd.c
-       tests/test_tunnel.c
-       tests/tests.h
        tests/unittests/torture_buffer.c
        tests/unittests/torture_callbacks.c
        tests/unittests/torture_channel.c
@@ -138,7 +70,6 @@ Files: examples/authentication.c
        examples/libsshpp.cpp
        examples/libsshpp_noexcept.cpp
        examples/proxy.c
-       examples/sample.c
        examples/samplesftp.c
        examples/samplesshd-cb.c
        examples/samplesshd-kbdint.c
@@ -173,7 +104,6 @@ Copyright: 2014, Jon Simons
 License: LGPL-2.1+~OpenSSL
 
 Files: src/channels.c
-       src/channels1.c
        src/gzip.c
        src/known_hosts.c
        src/misc.c
@@ -193,7 +123,6 @@ Files: include/libssh/agent.h
        src/config.c
        tests/client/torture_forward.c
        tests/client/torture_request_env.c
-       tests/torture.c
        tests/torture.c
        tests/torture.h
 Copyright: 2008-2013, Andreas Schneider <asn@cryptomilk.org>
@@ -254,37 +183,40 @@ License: LGPL-2.1+~OpenSSL
 
 Files: cmake/Modules/DefineCMakeDefaults.cmake
        cmake/Modules/DefineCompilerFlags.cmake
-       cmake/Modules/DefineInstallationPaths.cmake
        cmake/Modules/DefinePlatformDefaults.cmake
 Copyright: *No copyright*
 License: BSD-3-clause
 Comment:
  Using license from cmake/Modules/COPYING-CMAKE-SCRIPTS
 
-Files: cmake/Modules/AddCMockaTest.cmake
+Files: cmake/Modules/AddCCompilerFlag.cmake
+       cmake/Modules/AddCMockaTest.cmake
        cmake/Modules/CheckCCompilerFlagSSP.cmake
+       cmake/Modules/ExtractSymbols.cmake
+       cmake/Modules/FindABIMap.cmake
        cmake/Modules/FindArgp.cmake
        cmake/Modules/FindCMocka.cmake
        cmake/Modules/FindGCrypt.cmake
        cmake/Modules/FindGSSAPI.cmake
-       cmake/Modules/FindNaCl.cmake
+       cmake/Modules/FindMbedTLS.cmake
        cmake/Modules/FindNSIS.cmake
+       cmake/Modules/FindNaCl.cmake
+       cmake/Modules/GenerateMap.cmake
+       cmake/Modules/GetFilesList.cmake
        cmake/Modules/MacroEnsureOutOfSourceBuild.cmake
-       cmake/Modules/UseDoxygen.cmake
-Copyright: 2007-2010 Andreas Schneider
-           2013, Aris Adamantiadis
-           2006, Oswald Buddenhagen
-           2006, Alexander Neundorf
-           2006, Laurent Montel
-           2006-2007  Wengo
-           2007, Daniel Gollub
-           2009-2011 Tobias Rautenkranz
+Copyright: 2007-2018 Andreas Schneider
+           2013 Aris Adamantiadis
+           2017 Sartura d.o.o.
+           2018 Anderson Toshiyuki Sasaki <ansasaki@redhat.com>
+           006, Alexander Neundorf, <neundorf@kde.org>
+           2007 Daniel Gollub <dgollub@suse.de>
 License: BSD-3-clause
 
 
 Files: debian/*
 Copyright: 2005-2006, Jean-Philippe Garcia Ballester <giga@le-pec.org>
-           2006-2016, Laurent Bigonville <bigon@debian.org>
+           2006-2020, Laurent Bigonville <bigon@debian.org>
+           2019-2021, Martin Pitt <mpitt@debian.org>
            2014, Mike Gabriel <sunweaver@debian.org>
 License: LGPL-2.1+~OpenSSL or BSD-2-clause or BSD-3-clause
 

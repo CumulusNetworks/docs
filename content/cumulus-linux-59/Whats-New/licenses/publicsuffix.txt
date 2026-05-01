@@ -4,19 +4,20 @@ Upstream-Contact: Public Suffix List <contact@publicsuffix.org>
 Source: https://publicsuffix.org/
 
 Files: *
-Copyright: 2010-2012 Daniel Veditz,
-   Ehsan Akhgari,
-   Gervase Markham,
-   Jason Duell,
-   Jothan Frakes,
-   Mitchell Field,
-   Mounir Lamouri,
-   Ruben Arakelyan,
-   Simone Carletti
+Copyright: 2010-2022 PSL maintainers,
+ Daniel Veditz,
+ Ehsan Akhgari,
+ Gervase Markham,
+ Jason Duell,
+ Jothan Frakes,
+ Mitchell Field,
+ Mounir Lamouri,
+ Ruben Arakelyan,
+ Simone Carletti
 License: MPL-2.0
 
 Files: debian/*
-Copyright: 2012 Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+Copyright: 2012-2023 Daniel Kahn Gillmor <dkg@fifthhorseman.net>
 License: MPL-2.0
 
 Files: tests/test_psl.txt

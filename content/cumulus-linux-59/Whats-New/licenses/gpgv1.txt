@@ -1,0 +1,206 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: GnuPG - The GNU Privacy Guard (classic version)
+Upstream-Contact: GnuPG development mailing list <gnupg-devel@gnupg.org>
+Source: https://www.gnupg.org/
+
+Files: * util/assuan-socket.c
+Copyright: 1998-2015 Free Software Foundation, Inc.
+           1997-2015 Werner Koch
+License: GPL-3+
+
+Files:
+ keyserver/gpgkeys_ldap.c
+ keyserver/gpgkeys_hkp.c
+ keyserver/gpgkeys_curl.c
+ keyserver/ksutil.c
+ keyserver/ksutil.h
+Copyright: 2001-2013 Free Softwrae Foundation, Inc.
+License: GPL-3+ with OpenSSL exception
+
+Files:
+ */ChangeLog-2011
+ ChangeLog-2011
+ g10/options.skel
+ keyserver/ksmalloc.c
+ m4/estream.m4
+ NEWS
+ PROJECTS
+ README
+ scripts/autogen.sh
+ scripts/mkdiff
+ scripts/mk-w32-dist
+ scripts/w32installer.nsi
+ THANKS
+ tools/clean-sat.c
+ tools/lspgpot
+ tools/mail-signed-keys
+ tools/mk-tdata.c
+ tools/ring-a-party
+ tools/shmtest.c
+ util/compat.c
+Copyright: 2006, 2007, 2009 Free Software Foundation, Inc.
+License: permissive
+
+Files:
+ include/dotlock.h
+ util/dotlock.c
+Copyright:
+ 2000, 2001, 2006, 2011 Free Software Foundation, Inc.
+License: LGPL-3+ or GPL-2+
+
+Files:
+ include/_regex.h
+ include/assuan.h
+ intl/*
+ m4/noexecstack.m4
+ mpi/longlong.h
+ util/assuan-*
+ util/reg*
+Copyright:
+ 1984, 1985, 1989-1993, 1995-2009 Free Software Foundation, Inc.
+License: LGPL-2.1+
+
+Files: debian/*
+Copyright: 1998-2006 James Troup
+ 2008-2014 Daniel Leidert, Sune Vuorela, Thijs Kinkhorst
+ 2014-2016 Daniel Kahn Gillmor
+License: GPL-3+
+
+License: GPL-3+
+ GnuPG is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free
+ Software Foundation; either version 3 of the License, or (at your
+ option) any later version.
+ .
+ GnuPG is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 3 can be found in the file
+ `/usr/share/common-licenses/GPL-3'.
+
+License: GPL-2+
+ These files are free software; you can redistribute and/or modify
+ them under the terms of the GNU General Public License as published
+ by the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ GnuPG is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+
+License: LGPL-2.1+
+ These files are free software; you can redistribute and/or modify
+ them under the terms of the GNU Lesser General Public License as
+ published by the Free Software Foundation; either version 2.1 of the
+ License, or (at your option) any later version.
+ .
+ GnuPG is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program; if not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the full text of the GNU Lesser General Public
+ License version 2.1 can be found in the file
+ `/usr/share/common-licenses/LGPL-2.1'.
+
+License: LGPL-3+
+ These files are free software; you can redistribute and/or modify
+ them under the terms of the GNU Lesser General Public License as
+ published by the Free Software Foundation; either version 3 of the
+ License, or (at your option) any later version.
+ .
+ GnuPG is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program; if not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the full text of the GNU Lesser General Public
+ License version 3 can be found in the file
+ `/usr/share/common-licenses/LGPL-3'.
+
+License: GPL-3+ with OpenSSL exception
+ GnuPG is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free
+ Software Foundation; either version 3 of the License, or (at your
+ option) any later version.
+ .
+ GnuPG is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 3 can be found in the file
+ `/usr/share/common-licenses/GPL-3'.
+ .
+ In addition, as a special exception, the Free Software Foundation
+ gives permission to link the code of the keyserver helper tools:
+ gpgkeys_ldap, gpgkeys_curl and gpgkeys_hkp with the OpenSSL project's
+ "OpenSSL" library (or with modified versions of it that use the same
+ license as the "OpenSSL" library), and distribute the linked
+ executables. You must obey the GNU General Public License in all
+ respects for all of the code used other than "OpenSSL". If you modify
+ this file, you may extend this exception to your version of the file,
+ but you are not obligated to do so. If you do not wish to do so,
+ delete this exception statement from your version.
+
+Files: doc/OpenPGP
+Copyright: 1998-2013 Free Software Foundation, Inc.
+           1997, 1998, 2013 Werner Koch
+           1998 The Internet Society
+License: RFC-Reference
+
+License: RFC-Reference
+ doc/OpenPGP merely cites and references IETF Draft
+ draft-ietf-openpgp-formats-07.txt. This is believed to be fair use;
+ but if not, it's covered by the source document's license under
+ the 'comment on' clause. The license statement follows.
+ .
+ This document and translations of it may be copied and furnished to
+ others, and derivative works that comment on or otherwise explain it
+ or assist in its implementation may be prepared, copied, published
+ and distributed, in whole or in part, without restriction of any
+ kind, provided that the above copyright notice and this paragraph
+ are included on all such copies and derivative works.  However, this
+ document itself may not be modified in any way, such as by removing
+ the copyright notice or references to the Internet Society or other
+ Internet organizations, except as needed for the purpose of
+ developing Internet standards in which case the procedures for
+ copyrights defined in the Internet Standards process must be
+ followed, or as required to translate it into languages other than
+ English.
+ .
+ The limited permissions granted above are perpetual and will not be
+ revoked by the Internet Society or its successors or assigns.
+
+License: permissive
+ This file is free software; as a special exception the author gives
+ unlimited permission to copy and/or distribute it, with or without
+ modifications, as long as this notice is preserved.
+ .
+ This file is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
+ implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

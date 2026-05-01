@@ -6,7 +6,7 @@ License: BSD-2-clause
 
 Files: *
 Copyright:
- (c) 2003-2016 Tim Kientzle
+ (c) 2003-2018 Tim Kientzle
 License: BSD-2-clause
 
 Files: cat/*
@@ -17,38 +17,6 @@ Copyright:
  (c) 2014 Sebastian Freundt
 License: BSD-2-clause
 
-Files: contrib/android/*
-Copyright:
- (c) 2014 Trevor Drake
-License: Apache-2.0
-
-Files: contrib/shar/shar.1
-Copyright:
- (c) 1990, 1993 The Regents of the University of California
-License: BSD-4-clause-UCB
-
-Files: contrib/shar/shar.c
-Copyright:
- (c) 2008 Jaakko Heinonen
-License: BSD-2-clause
-
-Files: cpio/cpio_windows.c
-       tar/bsdtar_windows.c
-Copyright:
- (c) 2003-2007 Tim Kientzle
- (c) 2009 Michihiro NAKAJIMA
- Portions Copyright (c) 1996-2008, PostgreSQL Global Development Group
- Portions Copyright (c) 1994, The Regents of the University of California
-License: BSD-2-clause and BSD-1-clause-UCB
-
-Files: cpio/cpio_windows.h
-       libarchive_fe/passphrase.h
-       tar/bsdtar_windows.h
-       tar/creation_set.c
-Copyright:
- (c) 2009-2014 Michihiro NAKAJIMA
-License: BSD-2-clause
-
 Files: cpio/test/*
        tar/test/*
        tar/write.c
@@ -56,12 +24,6 @@ Copyright:
  (c) 2003-2016 Tim Kientzle
  (c) 2012, 2014 Michihiro NAKAJIMA
 License: BSD-2-clause
-
-Files: doc/mdoc2man.awk
-       doc/mdoc2wiki.awk
-Copyright:
- (c) 2003 Peter Stuge <stuge-mdoc2man@cdy.org>
-License: Expat
 
 Files: libarchive/*
 Copyright:
@@ -92,6 +54,69 @@ Copyright:
  (c) 2012-2014  Yann Collet
 License: BSD-2-clause
 
+Files: contrib/android/*
+Copyright:
+ (c) 2014 Trevor Drake
+License: Apache-2.0
+
+Files: contrib/archivetest.c
+       libarchive/archive_entry_misc.3
+       libarchive/archive_read_support_filter_by_code.c
+       libarchive/archive_write_set_format_private.h
+       libarchive/test/test_pax_xattr_header.c
+       libarchive/test/test_read_format_7zip_packinfo_digests.c
+       libarchive/test/test_read_format_lha_filename_utf16.c
+       libarchive/test/test_read_format_tar_empty_with_gnulabel.c
+       libarchive/test/test_write_disk_fixup.c
+       tar/test/test_option_exclude_vcs.c
+       tar/test/test_option_safe_writes.c
+Copyright:
+ (c) 2019-2021 Martin Matuska
+License: BSD-2-clause
+
+Files: contrib/shar/shar.1
+Copyright:
+ (c) 1990, 1993 The Regents of the University of California
+License: BSD-4-clause-UCB
+
+Files: contrib/shar/shar.c
+Copyright:
+ (c) 2008 Jaakko Heinonen
+License: BSD-2-clause
+
+Files: cpio/cpio_windows.c
+       libarchive/archive_write_set_format_cpio_binary.c
+       libarchive/archive_write_set_format_cpio_odc.c
+       tar/bsdtar_windows.c
+Copyright:
+ (c) 2003-2007 Tim Kientzle
+ (c) 2009 Michihiro NAKAJIMA
+ Portions Copyright (c) 1996-2008, PostgreSQL Global Development Group
+ Portions Copyright (c) 1994, The Regents of the University of California
+License: BSD-2-clause and BSD-1-clause-UCB
+
+Files: cpio/cpio_windows.h
+       libarchive_fe/passphrase.h
+       tar/bsdtar_windows.h
+       tar/creation_set.c
+Copyright:
+ (c) 2009-2014 Michihiro NAKAJIMA
+License: BSD-2-clause
+
+Files: doc/mdoc2man.awk
+       doc/mdoc2wiki.awk
+Copyright:
+ (c) 2003 Peter Stuge <stuge-mdoc2man@cdy.org>
+License: Expat
+
+Files: libarchive/archive_blake2.h
+       libarchive/archive_blake2_impl.h
+       libarchive/archive_blake2s_ref.c
+       libarchive/archive_blake2sp_ref.c
+Copyright:
+ 2012, Samuel Neves <sneves@dei.uc.pt>
+License: Apache-2.0 or CC0-1.0 or OpenSSL+SSLeay
+
 Files: libarchive/archive_entry.c
        libarchive/archive_read_support_filter_compress.c
 Copyright:
@@ -115,6 +140,12 @@ Copyright:
  (c) 1996 David Mazieres <dm@uun.org>
  (c) 2008 Damien Miller <djm@openbsd.org>
 License: BSD-2-clause and Expat
+
+Files: libarchive/archive_read_support_format_rar5.c
+       libarchive/test/test_read_format_rar5.c
+Copyright:
+ (c) 2018 Grzegorz Antoniak (http://antoniak.org)
+License: BSD-2-clause
 
 Files: libarchive/archive_windows.c
 Copyright:
@@ -145,6 +176,39 @@ Copyright:
  (c) 2007-2010 Joerg Sonnenberger
 License: BSD-2-clause
 
+Files: libarchive/test/test_compat_tar_directory.c
+Copyright:
+ (c) 2021 Samanta Navarro
+License: BSD-2-clause
+
+Files: libarchive/test/test_read_format_rar_filter.c
+Copyright:
+ (c) 2003-2021 Wei-Cheng Pan
+License: BSD-2-clause
+
+Files: libarchive/test/test_read_format_zip_7075_utf8_paths.c
+Copyright:
+ (c) 2003-2007 Tim Kientzle
+ (c) 2011 Michihiro NAKAJIMA
+ (c) 2019 Mike Frysinger
+License: BSD-2-clause
+
+Files: libarchive/test/test_read_pax_xattr_rht_security_selinux.c
+Copyright:
+ (c) 2016 IBM Corporation
+ (c) 2003-2007 Tim Kientzle
+License: BSD-2-clause
+
+Files: libarchive/test/test_short_writes.c
+Copyright:
+ (c) 2021 Red Hat, Inc.
+License: BSD-2-clause
+
+Files: libarchive/test/test_write_format_zip_entry_size_unset.c
+Copyright:
+ (c) 2021 Jia Cheong Tan
+License: BSD-2-clause
+
 Files: libarchive_fe/line_reader.c
 Copyright:
  (c) 2008 Tim Kientzle
@@ -154,8 +218,13 @@ License: BSD-2-clause
 Files: libarchive_fe/passphrase.c
 Copyright:
  (c) 2014 Michihiro NAKAJIMA
- (c) 2000-2002, 2007 Todd C. Miller <Todd.Miller@courtesan.com>
+ (c) 2000-2002, 2007, 2010 Todd C. Miller <Todd.Miller@courtesan.com>
 License: BSD-2-clause and Expat
+
+Files: tar/test/test_option_ignore_zeros.c
+Copyright:
+ (c) 2021 Ryan Libby
+License: BSD-2-clause
 
 Files: test_utils/test_utils.c
        test_utils/test_utils.h
@@ -168,7 +237,7 @@ Files: debian/*
 Copyright:
  (c) 2005-2010 John Goerzen <jgoerzen@complete.org>
  (c) 2009-2019 Andreas Henriksson <andreas@fatal.se>
- (c) 2016-2019 Peter Pentchev <roam@debian.org>
+ (c) 2016-2022 Peter Pentchev <roam@debian.org>
 License: BSD-2-clause
 
 License: BSD-2-clause
@@ -209,6 +278,17 @@ License: Apache-2.0
  .
  On Debian systems, the full text of Version 2.0 of the Apache License
  can be found in "/usr/share/common-licenses/Apache-2.0".
+
+License: CC0-1.0
+ To the extent possible under law, the author(s) have dedicated all copyright
+ and related and neighboring rights to this software to the public domain
+ worldwide. This software is distributed without any warranty.
+ .
+ You should have received a copy of the CC0 Public Domain Dedication along with
+ this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+ .
+ On Debian systems, the full text of the CC0 1.0 Universal license can be found
+ in the file `/usr/share/common-licenses/CC0-1.0'.
 
 License: BSD-1-clause-UCB
  Permission to use, copy, modify, and distribute this software and its
@@ -329,3 +409,110 @@ License: Expat
  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: OpenSSL+SSLeay
+ OpenSSL License
+ ---------------
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the
+    distribution.
+ .
+ 3. All advertising materials mentioning features or use of this
+    software must display the following acknowledgment:
+    "This product includes software developed by the OpenSSL Project
+    for use in the OpenSSL Toolkit. (http://www.openssl.org/)"
+ .
+ 4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to
+    endorse or promote products derived from this software without
+    prior written permission. For written permission, please contact
+    openssl-core@openssl.org.
+ .
+ 5. Products derived from this software may not be called "OpenSSL"
+    nor may "OpenSSL" appear in their names without prior written
+    permission of the OpenSSL Project.
+ .
+ 6. Redistributions of any form whatsoever must retain the following
+    acknowledgment:
+    "This product includes software developed by the OpenSSL Project
+    for use in the OpenSSL Toolkit (http://www.openssl.org/)"
+ .
+ THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY
+ EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR
+ ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ OF THE POSSIBILITY OF SUCH DAMAGE.
+ ====================================================================
+ .
+ This product includes cryptographic software written by Eric Young
+ (eay@cryptsoft.com).  This product includes software written by Tim
+ Hudson (tjh@cryptsoft.com).
+ .
+ Original SSLeay License
+ -----------------------
+ This package is an SSL implementation written
+ by Eric Young (eay@cryptsoft.com).
+ The implementation was written so as to conform with Netscapes SSL.
+ .
+ This library is free for commercial and non-commercial use as long as
+ the following conditions are aheared to.  The following conditions
+ apply to all code found in this distribution, be it the RC4, RSA,
+ lhash, DES, etc., code; not just the SSL code.  The SSL documentation
+ included with this distribution is covered by the same copyright terms
+ except that the holder is Tim Hudson (tjh@cryptsoft.com).
+ .
+ Copyright remains Eric Young's, and as such any Copyright notices in
+ the code are not to be removed.
+ If this package is used in a product, Eric Young should be given attribution
+ as the author of the parts of the library used.
+ This can be in the form of a textual message at program startup or
+ in documentation (online or textual) provided with the package.
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. All advertising materials mentioning features or use of this software
+    must display the following acknowledgement:
+    "This product includes cryptographic software written by
+     Eric Young (eay@cryptsoft.com)"
+    The word 'cryptographic' can be left out if the rouines from the library
+    being used are not cryptographic related :-).
+ 4. If you include any Windows specific code (or a derivative thereof) from
+    the apps directory (application code) you must include an acknowledgement:
+    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
+ .
+ THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+ .
+ The licence and distribution terms for any publically available version or
+ derivative of this code cannot be changed.  i.e. this code cannot simply be
+ copied and put under another distribution licence
+ [including the GNU Public Licence.]

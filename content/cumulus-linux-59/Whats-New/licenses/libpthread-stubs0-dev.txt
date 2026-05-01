@@ -8,7 +8,7 @@ Upstream Authors: Jamey Sharp <sharpone@debian.org>
                   Josh Triplett <josh@freedesktop.org>
 
 Copyright:
-   Copyright (C) 2006 Diego PettenÃ²
+   Copyright (C) 2006 Diego Pettenò
    Inspired by libX11 code copyright (c) 1995 David E. Wexelblat.
    Copyright (C) 2007 Jamey Sharp <sharpone@debian.org>
    Copyright (C) 2007 Josh Triplett <josh@freedesktop.org>

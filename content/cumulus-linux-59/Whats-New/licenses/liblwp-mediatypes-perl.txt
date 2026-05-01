@@ -1,7 +1,7 @@
-Format-Specification: http://anonscm.debian.org/viewvc/dep/web/deps/dep5.mdwn?view=markup&pathrev=135
-Maintainer: Gisle Aas <gisle@activestate.com>
-Source: http://search.cpan.org/dist/LWP-MediaTypes/
-Name: LWP-MediaTypes
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: LWP-MediaTypes
+Upstream-Contact: Gisle Aas <gisle@activestate.com>
+Source: https://metacpan.org/release/LWP-MediaTypes
 
 Files: *
 Copyright: 1995-1999, Gisle Aas <gisle@activestate.com>

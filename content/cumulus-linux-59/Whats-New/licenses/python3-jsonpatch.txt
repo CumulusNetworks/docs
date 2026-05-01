@@ -2,16 +2,15 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: python-json-patch
 Source: git://github.com/stefankoegl/python-json-patch.git
 
-Files: debian/*
-Copyright: (c) 2012, Thomas Goirand <zigo@debian.org>
-           (c) 2017, Two Sigma Open Source, LLC <geofft@twosigma.com>
-License: BSD-3-clause
-
 Files: *
-Copyright: 2012, Stefan KÃ¶gl <stefan@skoegl.net>
-License: BSD-3-clause
+Copyright: 2012, Stefan Kögl <stefan@skoegl.net>
+License: BSD-3-clauses
 
-License: BSD-3-clause
+Files: debian/*
+Copyright: (c) 2012-2019, Thomas Goirand <zigo@debian.org>
+License: BSD-3-clauses
+
+License: BSD-3-clauses
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
  .

@@ -1,0 +1,66 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: paramiko
+Source: https://github.com/paramiko/paramiko/
+
+Files: *
+Copyright: 2003-2009 Robey Pointer <robeypointer@gmail.com>
+           2013-2014 science + computing ag
+           2013-2022 Jeff Forcier <jeff@bitprophet.org>
+License: LGPL-2.1
+
+Files: demos/demo_keygen.py
+Copyright: 2010 Sofian Brabez <sbz@6dev.net>
+License: LGPL-2.1
+
+Files: paramiko/agent.py
+Copyright: 2003-2007 John Rochester <john@jrochester.org>
+License: LGPL-2.1
+
+Files: paramiko/config.py
+Copyright: 2006-2007 Robey Pointer <robeypointer@gmail.com>
+           2012 Olle Lundberg <geek@nerd.sh>
+License: LGPL-2.1
+
+Files: paramiko/kex_group14.py
+Copyright: 2013 Torsten Landschoff <torsten@debian.org>
+License: LGPL-2.1
+
+Files: paramiko/kex_group16.py
+Copyright: 2019 Edgar Sousa <https://github.com/edgsousa>
+License: LGPL-2.1
+
+Files: paramiko/proxy.py
+Copyright: 2012 Yipit, Inc <coders@yipit.com>
+License: LGPL-2.1
+
+Files: paramiko/win_openssh.py
+Copyright: 2021 Lew Gordon <lew.gordon@genesys.com>
+           2022 Patrick Spendrin <ps_ml@gmx.de>
+License: LGPL-2.1
+
+Files: paramiko/win_pageant.py
+Copyright: 2005 John Arbash-Meinel <john@arbash-meinel.com>
+License: LGPL-2.1
+
+Files: debian/*
+Copyright: 2019-2022 Sandro Tosi <morph@debian.org>
+           2022 Benjamin Drung <bdrung@ubuntu.com>
+License: LGPL-2.1
+
+License: LGPL-2.1
+ Paramiko is free software; you can redistribute it and/or modify it under the
+ terms of the GNU Lesser General Public License as published by the Free
+ Software Foundation; either version 2.1 of the License, or (at your option)
+ any later version.
+ .
+ Paramiko is distributed in the hope that it will be useful, but WITHOUT ANY
+ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with Paramiko; if not, write to the Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ .
+ On Debian GNU/Linux systems, the complete text of the Lesser GNU General
+ Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.

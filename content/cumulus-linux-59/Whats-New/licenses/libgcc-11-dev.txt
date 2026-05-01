@@ -1,0 +1,1 @@
+libgcc-11-dev has no copyright file

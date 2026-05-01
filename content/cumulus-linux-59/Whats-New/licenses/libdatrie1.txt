@@ -4,7 +4,7 @@ Upstream-Contact: Theppitak Karoonboonyanan <theppitak@gmail.com>
 Source: https://linux.thai.net/pub/thailinux/software/libthai/
 
 Files: *
-Copyright: 2006-2018 Theppitak Karoonboonyanan <theppitak@gmail.com>
+Copyright: 2006-2021 Theppitak Karoonboonyanan <theppitak@gmail.com>
 License: LGPL-2.1+
  This library is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,7 @@ License: LGPL-2.1+
  License version 2.1 can be found in `/usr/share/common-licenses/LGPL-2.1'.
 
 Files: debian/*
-Copyright: 2006-2019 Theppitak Karoonboonyanan <thep@debian.org>
+Copyright: 2006-2021 Theppitak Karoonboonyanan <thep@debian.org>
 License: GPL-2+
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

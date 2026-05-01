@@ -1,33 +1,24 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Contact: contact@palletsprojects.com
 Upstream-Name: click
 Source: https://github.com/pallets/click
 
-
 Files: *
-Copyright: 2014 Armin Ronacher <armin.ronacher@active-4.com>
+Copyright: Copyright 2014 Pallets
+ 2016-2022 David Lord <davidism@gmail.com>
 License: BSD-3-clause
 
-Files: click/parser.py
+Files: src/click/parser.py
 Copyright: 2001-2006 Gregory P. Ward
-           2002-2006 Python Software Foundation
-License: BSD-3-clause 
+ 2002-2006 Python Software Foundation
+License: BSD-3-clause
 
 Files: debian/*
 Copyright: 2014 Alexandre Viau <alexandre@alexandreviau.net>
+ Copyright (C) 2019-2023 Sandro Tosi <morph@debian.org>
 License: BSD-3-clause
 
 License: BSD-3-clause
- Copyright (c) 2014 by Armin Ronacher.
- .
- Click uses parts of optparse written by Gregory P. Ward and maintained by the
- Python software foundation.  This is limited to code in the parser.py
- module:
- .
- Copyright (c) 2001-2006 Gregory P. Ward.  All rights reserved.
- Copyright (c) 2002-2006 Python Software Foundation.  All rights reserved.
- .
- Some rights reserved.
- .
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
  met:

@@ -4,15 +4,11 @@ Upstream-Contact: wbond <will@wbond.net>
 Source: https://github.com/wbond/asn1crypto
 
 Files: *
-Copyright: 2015-2017 Will Bond <will@wbond.net>
+Copyright: 2015-2022 Will Bond <will@wbond.net>
 License: Expat
 
 Files: asn1crypto/_ordereddict.py
 Copyright: 2009 Raymond Hettinger
-License: Expat
-
-Files: asn1crypto/_elliptic_curve.py
-Copyright: 2014 Peter Pearson
 License: Expat
 
 Files: debian/*

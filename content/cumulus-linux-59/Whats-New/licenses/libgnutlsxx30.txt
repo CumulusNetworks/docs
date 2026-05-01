@@ -1,0 +1,1 @@
+libgnutlsxx30 has no copyright file

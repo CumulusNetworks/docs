@@ -8,13 +8,13 @@ Comment: This package was debianized by Wichert Akkerman 7 Jun 1998.
          the pkg-alsa project at alioth.debian.org.
 
 Files: *
-Copyright: 1998-2017 Jarsolav Kysela <perex@suse.cz> and others
+Copyright: 1998-2022 Jarsolav Kysela <perex@suse.cz> and others
 License: LPGL-2.1+
 
 Files: debian/*
 Copyright: 1998-1999 Wichert Akkerman
            1999-2002 Masato Taruishi
-           2002-2017 Debian ALSA Maintainers
+           2002-2022 Debian ALSA Maintainers
 License: LPGL-2.1+
 
 License: LPGL-2.1+

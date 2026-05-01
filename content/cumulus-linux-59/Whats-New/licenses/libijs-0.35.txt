@@ -1,7 +1,8 @@
 Format: http://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?rev=174
 Upstream-Name: IJS
 Upstream-Contact: Artifex Software, Inc <bug-gs@ghostscript.com>
-Source: http://www.openprinting.org/download/ijs/download/
+Source: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases
+ git://git.ghostscript.com/ghostpdl.git
 
 Files: *
 Copyright: 2001-2004, artofcode LLC

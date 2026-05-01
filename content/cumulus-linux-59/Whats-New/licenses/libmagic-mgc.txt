@@ -74,7 +74,7 @@ Files:
  debian/*
 Copyright:
  2007-2013 Daniel Baumann <mail@daniel-baumann.ch>
- 2014-2019 Christoph Biedl <debian.axhn@manchmal.in-ulm.de>
+ 2014-2023 Christoph Biedl <debian.axhn@manchmal.in-ulm.de>
 License: BSD-2-Clause-alike
 
 License: BSD-2-Clause-alike

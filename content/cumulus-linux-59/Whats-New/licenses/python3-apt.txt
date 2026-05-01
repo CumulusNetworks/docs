@@ -1,54 +1,54 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 
 Files: *
-Copyright: Â© 2004-2009 Canonical Ltd.
-           Â© 2009 Julian Andres Klode <jak@debian.org>
+Copyright: © 2004-2009 Canonical Ltd.
+           © 2009 Julian Andres Klode <jak@debian.org>
 License: GPL-2+
 
 Files: tests/test_all.py tests/test_hashes.py
-Copyright: Â© 2009 Julian Andres Klode <jak@debian.org>
+Copyright: © 2009 Julian Andres Klode <jak@debian.org>
 License: Permissive
  Copying and distribution of this file, with or without modification,
  are permitted in any medium without royalty provided the copyright
  notice and this notice are preserved.
 
 Files: aptsources/*.py
-Copyright: Â© 2004-2009 Canonical Ltd.
-           Â© 2005 Gustavo Noronha Silva
-           Â© 2006-2007 Sebastian Heinlein
+Copyright: © 2004-2009 Canonical Ltd.
+           © 2005 Gustavo Noronha Silva
+           © 2006-2007 Sebastian Heinlein
 License: GPL-2+
 
 Files: doc/source/*
-Copyright: Â© 2009 Julian Andres Klode <jak@debian.org>
+Copyright: © 2009 Julian Andres Klode <jak@debian.org>
 License: GPL-2+
 
 Files: utils/get_*.py
-Copyright: Â© 2006 Free Software Foundation Europe
+Copyright: © 2006 Free Software Foundation Europe
 License: GPL-2+
 
 Files: po/*
-Copyright: Â© 2006 Canonical Ltd, and Rosetta Contributors 2006
+Copyright: © 2006 Canonical Ltd, and Rosetta Contributors 2006
 License: GPL-2+
 
 Files: po/de.po
-Copyright: Â© 2005 Michiel Sikkes <michiel@eyesopened.nl>
+Copyright: © 2005 Michiel Sikkes <michiel@eyesopened.nl>
 License: GPL-2+
 
 Files: po/en_CA.po
-Copyright: Â© 2005 Adam Weinberger and the GNOME Foundation
+Copyright: © 2005 Adam Weinberger and the GNOME Foundation
 License: GPL-2+
 
 Files: po/fi.po
-Copyright: Â© 2005-2006 Timo Jyrinki
+Copyright: © 2005-2006 Timo Jyrinki
 License: GPL-2+
 
 Files: po/fr.po
-Copyright: Â© 2007 Hugues NAULET <hnaulet@gmail.com>
+Copyright: © 2007 Hugues NAULET <hnaulet@gmail.com>
 License: GPL-2+
 
 Files: po/hu.po po/lt.po po/pt.po po/ro.po po/sv.po po/uk.po
        po/zh_HK.po
-Copyright: Â© 2005-2006 Free Software Foundation
+Copyright: © 2005-2006 Free Software Foundation
 License: GPL-2+
 
 License: GPL-2+

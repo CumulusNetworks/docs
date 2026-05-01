@@ -1,10 +1,10 @@
 This package contains an informational list of Build-Essential Debian
 packages.
 
-Copyright Â© 2003-2005 Scott James Remnant <scott@netsplit.com>
-Copyright Â© 2003 Colin Walters <walters@debian.org>
-Copyright Â© 1999-2002 Antti-Juhani Kaijanaho <ajk@debian.org>
-Copyright Â© 2006-2016 Matthas Klose <doko@debian.org>
+Copyright © 2003-2005 Scott James Remnant <scott@netsplit.com>
+Copyright © 2003 Colin Walters <walters@debian.org>
+Copyright © 1999-2002 Antti-Juhani Kaijanaho <ajk@debian.org>
+Copyright © 2006-2016 Matthas Klose <doko@debian.org>
 
 
 License:

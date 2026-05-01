@@ -4,11 +4,11 @@ Upstream-Contact: <lynx-dev@nongnu.org>
 Source: https://invisible-mirror.net/archives/lynx/tarballs/
 
 Files: *
-Copyright: 1997-2015, Thomas E. Dickey <dickey@invisible-island.net>
+Copyright: 1997-2023, Thomas E. Dickey <dickey@invisible-island.net>
 License: GPL-2
 Comment:
   == from COPYHEADER ==
- Copyright 1997-2014,2015 Thomas E. Dickey
+ Copyright 1997-2021,2022 Thomas E. Dickey
  .
  This copyright notice must be included in all copies or substantial
  portions of Lynx.  It outlines rights and restrictions for Lynx which
@@ -27,27 +27,27 @@ Comment:
  platform, irregardless of the manner in which the libraries are
  connected to the Lynx program:
  .
-        GNUTLS
+         GNUTLS
  .
-        libbsd               https://libbsd.freedesktop.org/releases/
+         libbsd               https://libbsd.freedesktop.org/releases/
  .
-        libidn
+         libidn
  .
-        OpenSSL              https://www.openssl.org/
+         OpenSSL              https://www.openssl.org
  .
  Additionally, the developers understand that these additional libraries
  have no licensing issues.  Permission is in any case granted to use Lynx
  without restriction for these as well:
  .
-        libbz2               http://www.bzip.org/
+         libbz2               https://www.bzip.org/
  .
-        libiconv
+         libiconv
  .
-        libutf8              https://www.haible.de/bruno/packages-libutf8.html
+         libutf8              https://www.haible.de/bruno/packages-libutf8.html
  .
-        nss_compat_ossl      https://fedoraproject.org/wiki/Nss_compat_ossl
+         nss_compat_ossl      https://fedoraproject.org/wiki/Nss_compat_ossl
  .
-        zlib                 http://www.gzip.org/zlib/
+         zlib                 https://www.gzip.org/zlib/
  .
  The list given is by no means exhaustive and may not be interpreted to
  limit the set of libraries with which Lynx can be used.
@@ -58,48 +58,50 @@ Comment:
  .
  Any licensing questions should be directed to the mailing list:
  .
-        lynx-dev@nongnu.org
+         lynx-dev@nongnu.org
  .
  or to the developer/maintainer (Thomas E. Dickey):
  .
-        dickey@invisible-island.net
+         dickey@invisible-island.net
  .
  ------------------------------------------------------------------------------
  For reference, below is the original copyright notice for Lynx (2.4.2).
  ------------------------------------------------------------------------------
  /* Copyright (C) 1995 University of Kansas.
  .
-   This file is part of Lynx, a text-based WWW browser.
+    This file is part of Lynx, a text-based WWW browser.
  .
-   Lynx is free software; you can redistribute it and/or modify it
-   under the terms of the GNU General Public License, version 2, as
-   published by the Free Software Foundation.
+    Lynx is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License, version 2, as
+    published by the Free Software Foundation.
  .
-   Lynx is distributed in the hope that it will be useful, but WITHOUT
-   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-   or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
-   License for more details.
+    Lynx is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+    or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
+    License for more details.
  .
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+    You should have received a copy of the GNU General Public License
+    along with Lynx; see the file COPYING.  If not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+    MA  02110-1301, USA.
  .
-   Any licensing or usage questions should be directed to Michael
-   Grobe <grobe@ku.edu>.
+    Any licensing or usage questions should be directed to Michael
+    Grobe <grobe@ukans.edu>.
  */
  ------------------------------------------------------------------------------
  -- vile:txtmode fc=72 noti
- -- $LynxId: COPYHEADER,v 1.12 2015/01/02 12:26:47 tom Exp $
+ -- $LynxId: COPYHEADER,v 1.20 2022/03/11 01:17:23 tom Exp $
  ------------------------------------------------------------------------------
  =====================
 
 Files: debian/*
 Copyright: 1999-2014, Atsuhito KOHDA <kohda@debian.org>
            2008     , Thomas Viehmann <tv@beamnet.de>
-           2008-2015, Andreas Metzler <ametzler@debian.org>
+           2008-2023, Andreas Metzler <ametzler@debian.org>
            2010     , Christian Perrier <bubulle@debian.org>
-           2015     , Axel Beckert <abe@debian.org>
-           2015     , Denis Briand <debian@denis-briand.fr>
+           2015-2021, Axel Beckert <abe@debian.org>
+           2015-2017, Denis Briand <debian@denis-briand.fr>
+           2015-2022. Elimar Riesebieter <riesebie@lxtec.de>
 License: GPL-2
 
 License: GPL-2

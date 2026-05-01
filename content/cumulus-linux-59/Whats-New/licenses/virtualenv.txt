@@ -1,22 +1,19 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: virtualenv
 Source: https://github.com/pypa/virtualenv
- The pristine upstream source contains convenience copies of python-pip-whl and
- python-setuptools-whl.
-Files-Excluded: virtualenv_support/*.whl
+Files-Excluded: src/virtualenv/seed/wheels/embed/*.whl
 
 Files: *
-Copyright: 2007, Ian Bicking and Contributors,
-           2009, Ian Bicking, The Open Planning Project,
-           2011-2014, The virtualenv developers - see AUTHORS
+Copyright: Copyright (c) 2020-202x The virtualenv developers
 License: Expat
 
 Files: debian/*
 Copyright: 2007-2009, Jeff Licquia <licquia@debian.org>,
            2010-2011, Carl Chenet <chaica@ohmytux.com>,
-           2010       Piotr Ożarowski <piotr@debian.org>,
-           2011-2014, Stefano Rivera <stefanor@debian.org>,
-           2012       Barry Warsaw <barry@python.org>
+           2010       Piotr O?arowski <piotr@debian.org>,
+           2011-2021, Stefano Rivera <stefanor@debian.org>,
+           2012       Barry Warsaw <barry@python.org>,
+           2020       Scott Kitterman <scott@kitterman.com>
 License: Expat
 
 License: Expat

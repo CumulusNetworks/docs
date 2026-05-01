@@ -14,7 +14,6 @@ Source: https://github.com/bitprophet/alabaster
 # packaged work, as it may make Debian's contributions unacceptable upstream.
 
 Files:     MANIFEST.in
-           LICENSE
            README.rst
            PKG-INFO
            alabaster/*
@@ -59,7 +58,7 @@ License:   BSD-3-clause
  POSSIBILITY OF SUCH DAMAGE.
 
 Files: debian/*
-Copyright: 2014, Jeremy T. Bouse <jbouse@debian.org>
+Copyright: 2014-2021, Jeremy T. Bouse <jbouse@debian.org>
 License: permissive
  Copying and distribution of this package, with or without
  modification, are permitted in any medium without royalty

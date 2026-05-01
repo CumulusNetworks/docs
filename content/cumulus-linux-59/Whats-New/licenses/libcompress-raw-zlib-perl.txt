@@ -1,0 +1,82 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://metacpan.org/release/Compress-Raw-Zlib
+Upstream-Contact: Paul Marquess <pmqs@cpan.org>
+Upstream-Name: Compress-Raw-Zlib
+
+Files: *
+Copyright: 2005-2023, Paul Marquess <pmqs@cpan.org>
+License: Artistic or GPL-1+
+
+Files: zlib-src/*
+Copyright: 1995-2022, Jean-loup Gailly <jloup@gzip.org>
+ 1995-2022, Mark Adler <madler@alumni.caltech.edu>
+License: other
+ This software is provided 'as-is', without any express or implied
+ warranty.  In no event will the authors be held liable for any damages
+ arising from the use of this software.
+ .
+ Permission is granted to anyone to use this software for any purpose,
+ including commercial applications, and to alter it and redistribute it
+ freely, subject to the following restrictions:
+ .
+   1. The origin of this software must not be misrepresented; you must not
+      claim that you wrote the original software. If you use this software
+      in a product, an acknowledgment in the product documentation would be
+      appreciated but is not required.
+   2. Altered source versions must be plainly marked as such, and must not be
+      misrepresented as being the original software.
+   3. This notice may not be removed or altered from any source distribution.
+ .
+   Jean-loup Gailly        Mark Adler
+   jloup@gzip.org          madler@alumni.caltech.edu
+ .
+ The data format used by the zlib library is described by RFCs (Request for
+ Comments) 1950 to 1952 in the files https://www.ietf.org/rfc/rfc1950.txt
+ (zlib format), rfc1951.txt (deflate format) and rfc1952.txt (gzip format).
+
+Files: ppport.h
+Copyright: 2004-2012, Marcus Holland-Moritz <mhx-cpan@gmx.net>
+ 2001, Paul Marquess <pmqs@cpan.org> (Version 2.x)
+ 1999, Kenneth Albanowski <kjahds@kjahds.com> (Version 1.x)
+License: Artistic or GPL-1+
+
+Files: t/Test/Builder.pm
+Copyright: 2002, 2004, chromatic <chromatic@wgz.org>
+ 2002,2004, Michael G Schwern <schwern@pobox.com>
+License: Artistic or GPL-1+
+
+Files: t/Test/Simple.pm t/Test/More.pm
+Copyright: 2001, 2002, 2004, Michael G Schwern <schwern@pobox.com>
+License: Artistic or GPL-1+
+
+Files: debian/*
+Copyright:
+ 2007-2008, Damyan Ivanov <dmn@debian.org>
+ 2007, Krzysztof Krzyzaniak (eloy) <eloy@debian.org>
+ 2007-2023, gregor herrmann <gregoa@debian.org>
+ 2008, Gunnar Wolf <gwolf@debian.org>
+ 2008, Roberto C. Sanchez <roberto@debian.org>
+ 2009, Jonathan Yu <jawnsy@cpan.org>
+ 2009, Niko Tyni <ntyni@debian.org>
+ 2009, Ryan Niebur <ryanryan52@gmail.com>
+ 2010-2011, Nicholas Bamber <nicholas@periapt.co.uk>
+ 2010, Chris Butler <chrisb@debian.org>
+ 2011-2012, Alessandro Ghedini <ghedo@debian.org>
+ 2012-2018, Xavier Guimard <yadd@debian.org>
+License: Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.

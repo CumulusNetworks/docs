@@ -16,20 +16,11 @@ Files: build-aux/install-sh
 Copyright: 1994 X Consortium
 License: MIT and public-domain
 
-Files: m4/ax_with_prog.m4
-Copyright: 2008 Francesco Salvestrini <salvestrini@users.sourceforge.net>
-           2008 Dustin J. Mitchell <dustin@cs.uchicago.edu>
-License: FSFAP
-
 Files: m4/ax_with_curses.m4
 Copyright: 2009 Mark Pulford <mark@kyne.com.au>
            2009 Damian Pietras <daper@daper.net>
            2009 Reuben Thomas <rrt@sc3d.org>
 License: GPL-3+
-
-Files: m4/ax_compare_version.m4
-Copyright: 2008 Tim Toolan <toolan@ele.uri.edu>
-License: FSFAP
 
 Files: debian/*
 Copyright: 1998      Joel Klecker <jk@espy.org>
@@ -79,9 +70,3 @@ License: MIT
 
 License: public-domain
  FSF changes to this file are in the public domain.
-
-License: FSFAP
- Copying and distribution of this file, with or without modification,
- are permitted in any medium without royalty provided the copyright
- notice and this notice are preserved. This file is offered as-is,
- without any warranty.

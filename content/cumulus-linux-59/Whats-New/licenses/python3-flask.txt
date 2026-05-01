@@ -5,14 +5,14 @@ Source: https://pypi.python.org/pypi/Flask
 Files: *
 Copyright: (c) 2010-2018, Pallets team and community contributors
            (c) 2010-2018, David Lord (davidism)
-           (c) 2010-2018, Adrian Mönnich (ThiefMaster)
+           (c) 2010-2018, Adrian M�nnich (ThiefMaster)
            (c) 2010-2018, Armin Ronacher (mitsuhiko)
            (c) 2010-2018, Marcus Unterwaditzer (untitaker)
 License: BSD-3-clause
 
 Files: debian/*
-Copyright: (c) 2010-2016, Piotr Ożarowski <piotr@debian.org>
-           (c) 2016-2018, Ondřej Nový <onovy@debian.org>
+Copyright: (c) 2010-2016, Piotr O?arowski <piotr@debian.org>
+           (c) 2016-2020, Ond?ej Nov� <onovy@debian.org>
 License: BSD-3-clause
 
 License: BSD-3-clause

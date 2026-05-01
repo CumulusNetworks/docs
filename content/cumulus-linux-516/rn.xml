@@ -14,6 +14,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td></td>
 </tr>
 <tr>
+<td>4992296</td>
+<td>Optimized image upgrade with warm reboot leaves the switch in a broken state, where all services fail and the configuration is removed.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4989440</td>
 <td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
 <td>5.16.0-5.16.1</td>
@@ -1408,6 +1414,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>4992435</td>
 <td>A rare timing scenario results in the following error log in {{switchd}}:
 ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4992296</td>
+<td>Optimized image upgrade with warm reboot leaves the switch in a broken state, where all services fail and the configuration is removed.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>

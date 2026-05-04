@@ -2015,13 +2015,11 @@ leaf01# exit
 In disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. For scalability, leaf switches perform route aggregation, which can reduce visibility into individual host link failures. BGP-based unreachability signaling enables the advertisement of host reachability changes following a link failure. Upon receiving BGP unreachable route advertisements, leaf switches use LLDP TLVs to notify directly connected NICs to avoid forwarding traffic over unreachable paths.
 
 {{%notice note%}}
-- BGP-LLDP unreachability in disjoined planes is a Beta feature.
 - BGP unreachability signaling is not functional if all the leaf switch uplinks to spines go down.
 - When using BGP-LLDP unreachability in disjoined planes, route aggregation is required.
 - BGP-LLDP unreachability in disjoined planes does not work during a networking restart or forced reboot.
 - Cumulus Linux does not support mixing connected and disjoined planes on the same leaf switch.
-- Cumulus Linux does not support 802.1x dynamic VRF assignments with unreachability signaling in disjoined planes.
-- If you are migrating from connected planes with BGP disaggregation, remove BGP disaggregation configuration before configuring BGP-LLDP unreachability in disjoined planes.
+- If you are migrating from connected planes with BGP disaggregation, remove BGP disaggregation configuration before configuring BGP-LLDP unreachability in disjoined planes in a maintenance window.
 {{%/notice%}}
 
 {{< tabs "TabID2029">}}
@@ -2066,7 +2064,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-5. Configure BGP advertisement delay to avoid premature advertisement of aggregate routes after a leaf switch reboot or FRR service restart, allowing downlink interfaces to come up before drawing traffic to the switch. NVIDIA recommends setting the delay to at least 150 seconds when using 802.1x authentication, and at least 30 seconds in other scenarios:
+5. Configure BGP advertisement delay to avoid premature advertisement of aggregate routes after a leaf switch reboot, service restart, and other events that disrupt the control plane. The delay timer allows downlink interfaces to come up before drawing traffic to the switch. NVIDIA recommends setting the delay to at least 150 seconds when using 802.1x authentication, and at least 30 seconds in other scenarios:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp advertisement-delay time 150
@@ -2077,7 +2075,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 When you configure advertisement delay in a VRF, multihop eBGP sessions are established after the `advertisement-delay` timer expires.
 {{%/notice%}}
 
-6. Enable {{<link url="/#graceful-bgp-restart" text="BGP Graceful Restart">}} to preserve forwarding state during service restarts. Configure `restart-time` and `stale-routes-time` with values greater than the configured `advertisement-delay`:
+6. Enable {{<link url="/#graceful-bgp-restart" text="BGP Graceful Restart">}} to preserve forwarding state during service restarts:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart mode full 
@@ -2214,19 +2212,10 @@ spine01# write memory
 ### Considerations
 
 - To extend BGP-LLDP unreachability to EVPN and tenant VRFs, refer to {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}}.
-- Multiple service failures across leaf switches (such as an FRR failure on one leaf, and FRR, BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
-- FRR can send a maximum of 25k prefixes for each VRF and 100k total prefixes across all VRFs to LLDP.
-- When you use BGP unreachability in disjoined planes with 802.1X, the radius servers must be reachable through the management VRF.
-- When the IPv6 SLAAC address for a connected host expires but the interface remains up, an unreachable route is not injected for the host.
+- Multiple failures across leaf switches (such as an BGP service failure on one leaf, and BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
+- The maximum number of unreachable prefixes sent to LLDP is 25k by default. You can adjust this limit to a maximum of 100k with the `nv set system lldp unreachable-prefix max-limit 100000` command.
 - The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
-- If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling. To work around this issue, manually configure the following vtysh commands using snippets to configure the original prefix to be injected and withdrawn:
-
-```
-bgp inject unreachability ipv4 10.1.0.0/24 local
-bgp inject unreachability ipv4 10.1.0.0/24 remote
-no bgp inject unreachability ipv4 10.1.0.0/24 local
-no bgp inject unreachability ipv4 10.1.0.0/24 remote
-```
+- If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling. 
 
 ### Show BGP Unreachability Information
 

@@ -203,11 +203,11 @@ pdfhidden: True
 | 2684925 | The NVUE <code>nv show vrf default router bgp peer</code> command produces a 404 not found error. | 4.4.0-4.4.5, 5.0.0-5.16.1 | |
 | 2671652 | In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink. | 4.4.0-4.4.5, 5.5.0-5.16.1 | |
 
-### Fixed Issues in 5.12.1
+### Fixed Issues in 5.12.1.2000
 
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| 5001905 | A fatal SDK event might occur during i2c or cable read events, observed with the following switchd log message:<br><pre>hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</pre> | 5.12.0-5.12.1, 5.13.0-5.16.1 |  |
+| 4924486, 4924487, 5001905 | A fatal SDK event might occur during i2c or cable read events, observed with the following switchd log message:<br><pre>hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</pre> | 5.12.0-5.12.1, 5.13.0-5.16.1 |  |
 
 ## 5.12.1 Release Notes
 ### Open Issues in 5.12.1

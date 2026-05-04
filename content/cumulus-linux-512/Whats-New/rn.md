@@ -10,9 +10,9 @@ pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-linux-512" >}}
 
-## 5.12.1.2000 Release Notes
+## 5.12.1.2001 Release Notes
 
-### Open Issues in 5.12.1.2000
+### Open Issues in 5.12.1.2001
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -203,7 +203,7 @@ pdfhidden: True
 | 2684925 | The NVUE <code>nv show vrf default router bgp peer</code> command produces a 404 not found error. | 4.4.0-4.4.5, 5.0.0-5.16.1 | |
 | 2671652 | In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink. | 4.4.0-4.4.5, 5.5.0-5.16.1 | |
 
-### Fixed Issues in 5.12.1.2000
+### Fixed Issues in 5.12.1.2001
 
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |

@@ -8,16 +8,16 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - For a list of open and fixed issues in Cumulus Linux 5.12, see the {{<link title="Cumulus Linux 5.12 Release Notes" text="Cumulus Linux 5.12 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.12, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
-## What's New in Cumulus Linux 5.12.1.2000
+## What's New in Cumulus Linux 5.12.1.2001
 
-Cumulus Linux 5.12.1.2000 includes a new SDK, resolving the following issue:
+Cumulus Linux 5.12.1.2001 includes a new SDK, resolving the following issue:
 
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | 4924486, 4924487, 5001905 | A fatal SDK event might occur during i2c or cable read events, observed with the following switchd log message:<br><pre>hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</pre> | 5.12.0-5.12.1, 5.13.0-5.16.1  |  |
 
 {{%notice infonopad%}}
-You can only upgrade to 5.12.1.2000 with an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE" text="ONIE image installation">}}. Cumulus Linux 5.12.1.2000 does *not* support optimized image or package upgrades.
+You can only upgrade to 5.12.1.2001 with an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE" text="ONIE image installation">}}. Cumulus Linux 5.12.1.2001 does *not* support optimized image or package upgrades.
 {{%/notice%}}
 ## What's New in Cumulus Linux 5.12.1
 

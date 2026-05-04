@@ -6,7 +6,7 @@ toc: 3
 ---
 
 {{%notice infonopad%}}
-You can only upgrade to 5.12.1.2000 with an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE" text="ONIE image installation">}}. Cumulus Linux 5.12.1.2000 does *not* support optimized image or package upgrades.
+You can only upgrade to 5.12.1.2001 with an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE" text="ONIE image installation">}}. Cumulus Linux 5.12.1.2001 does *not* support optimized image or package upgrades.
 {{%/notice%}}
 
 You can upgrade Cumulus Linux in one of two ways:

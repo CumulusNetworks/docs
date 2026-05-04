@@ -56,10 +56,6 @@ The table of switches is the starting point for network OS upgrades or NetQ inst
 
 A switch discovery searches your network for all Cumulus Linux switches (with and without NetQ currently installed) and determines the versions of Cumulus Linux and NetQ installed. These results can be used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure.
 
-{{<notice tip>}}
-Switch discovery is supported for both on-premises and cloud deployments. For cloud deployments, NVIDIA recommends upgrading to the latest NetQ version before attempting a discovery.
-{{</notice>}}
-
 If you intend to upgrade your switches, generate AuthKeys using the UI.  {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="Copy the access key and secret key">}} to an accessible location. You will enter the AuthKeys later on in this process.
 
 To discover switches running Cumulus Linux:

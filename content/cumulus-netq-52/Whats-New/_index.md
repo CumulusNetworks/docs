@@ -19,6 +19,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Added support for Arm-based systems
 - Added ability to {{<link title="Create a NetQ Simulation in DSX Air" text="create NetQ simulations in DSX Air">}}
 - Updated the {{<link title="Cable Validations" text="Cable Validation Tool">}} to version 1.9
+- Added IPv6 support for {{<link title="Switch Management/#switch-discovery" text="switch discovery">}} operations
 
 
 ### NetQ for NVLink API Changes

@@ -18,10 +18,10 @@ To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-
 
 Logical groups correspond to system labels that you assign to switches using NVUE commands. After you configure the labels, NetQ groups and displays devices according to their assigned labels. NetQ supports four system labels, which are {{<link title="Switch Inventory/#Create-Static-Labels-with-NVUE-Commands" text="configured at the switch level">}}: 
 
-- Device types: choose from leaf, spine, or superspine
-- Rail groups: vertical groups comprising spine and leaf switches
-- Scalable units: host devices. You cannot configure labels on hosts, so the placement is based on the most recently discovered LLDP connection to the leaf switches
-- Pods: made up of rail groups and scalable units
+- Device types (`switch_type`): choose from `leaf`, `spine`, or `super_spine`
+- Rail groups (`rail_group_index`): vertical groups comprising spine and leaf switches
+- Scalable units (`su`): host devices. You cannot configure labels on hosts, so the placement is based on the most recently discovered LLDP connection to the leaf switches
+- Pods (`pod`): made up of rail groups and scalable units
 
 For example, this topology displays a pod labeled `Pod:0`. Within `Pod:0`, there are four total rail groups and two scalable units. `Rail group:2` is fully expanded to show the spine and leaf switches that comprise the rail group. The dashed lines represent logical links between devices. Select **Show physical interfaces** to display the physical links as solid lines. The number represents an aggregate count of physical interfaces between the devices of the selected groups. Select **More details** to isolate the links and view their connections in greater detail.
 

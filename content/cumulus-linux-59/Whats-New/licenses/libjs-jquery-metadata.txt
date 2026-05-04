@@ -1,0 +1,165 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: galleriffic/*
+Copyright: (c) 2008, Trent Foley (http://trentacular.com)
+License: Expat
+Homepage: http://www.twospy.com/galleriffic
+
+Files: event-drag/*
+Copyright: (c) 2008, Three Dub Media (http://threedubmedia.com)
+License: Expat
+Homepage: http://threedubmedia.com/code/event/drag
+
+Files: event-drop/*
+Copyright: (c) 2008-2009, Three Dub Media (http://threedubmedia.com)
+License: Expat
+Homepage: http://threedubmedia.com/code/event/drop
+
+Files: jfeed/*
+Copyright: 2007, Jean-François Hovinne  (http://www.hovinne.com)
+License: Expat
+Homepage: http://hovinne.com/articles/jfeed-jquery-rss-atom-feed-parser-plugin
+
+Files: jush/*
+Copyright: 2007, Jakub Vrana, http://php.vrana.cz
+License: Apache-2.0
+Homepage: http://jush.sourceforge.net
+
+Files: meiomask/*
+Copyright: (c) 2008, Fabio M. Costa (http://www.meiocodigo.com)
+License: Expat
+Homepage: http://www.meiocodigo.com/projects/meiomask
+
+Files: mousewheel/*
+Copyright: (c) 2009, Brandon Aaron (http://brandonaaron.net)
+License: Expat
+Homepage: http://brandonaaron.net/code/mousewheel/docs
+
+Files: easing/jquery.easing.js
+Copyright: (c) 2008 George Smith
+License: BSD-3-clause
+Homepage: http://gsgd.co.uk/sandbox/jquery.easing.php
+
+Files: easing/jquery.easing.compatibility.js
+Copyright: (c) 2007 George Smith
+License: Expat
+Homepage: http://gsgd.co.uk/sandbox/jquery.easing.php
+
+Files: jquery-history/*
+Copyright: (c) 2006-2009 Taku Sano (Mikage Sawatari)
+License: Expat
+Homepage: https://tkyk.github.io/jquery-history-plugin/
+
+Files: opacityrollover/*
+Copyright: (c) 2009 Trent Foley (http://trentacular.com)
+License: Expat
+
+Files: form/*
+Copyright: (c) 2011 Mike Alsup <malsup@gmail.com>
+License: Expat
+
+Files: tipsy/*
+Copyright: (c) 2008-2009 Jason Frame <jason@onehackoranother.com>
+License: Expat
+
+Files: fancybox/*
+Copyright: Janis Skarnelis
+License: Expat
+
+Files: cookie/*
+Copyright: (c) 2010 Klaus Hartl (stilbuero.de)
+License: Expat
+Homepage: https://github.com/carhartl/jquery-cookie
+
+Files: metadata/*
+Copyright: (c) 2006 John Resig, Yehuda Katz, J?örn Zaefferer, Paul McLanahan
+License: Expat
+
+Files: treetable/*
+Copyright: (c) 2010, Ludo van den Boom
+License: Expat
+
+Files: livequery/*
+Copyright: (c) 2008 Brandon Aaron (http://brandonaaron.net)
+License: Expat
+
+Files: countdown/*
+Copyright: 2008 Keith Wood <kbwood@iinet.com.au>
+License: Expat
+
+Files: resize/*
+Copyright: 2012 Ben Alman <cowboy@rj3.net>
+License: Expat
+Homepage: http://benalman.com/projects/jquery-resize-plugin/
+
+Files: uploadify/*
+Copyright: 2012 Reactive Apps, Ronnie Garcia
+License: Expat
+Homepage: http://uploadify.com/
+
+Files: slides/*
+Copyright: 2011 Nathan Searles, http://nathansearles.com
+License: Apache-2.0
+
+Files: fullscreen/*
+Copyright: 2012 Martin Angelov
+License: Expat
+Homepage: http://tutorialzine.com/2012/02/enhance-your-website-fullscreen-api/
+
+Files: debian/*
+Copyright: (c) 2009-2011 Marcelo Jorge Vieira <metal@debian.org>
+License: Expat
+
+License: Apache-2.0
+  On Debian GNU/Linux systems, the complete text of the Apache License
+  can be found in `/usr/share/common-licenses/Apache-2.0'
+
+License: BSD-3-clause
+  Copyright (c) 2008 George McGinley Smith
+  All rights reserved.
+ .
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+  1. Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+  3. Neither the name of the University nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+ .
+  THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+  OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+  SUCH DAMAGE.
+
+License: Expat
+  Permission is hereby granted, free of charge, to any person
+  obtaining a copy of this software and associated documentation
+  files (the "Software"), to deal in the Software without
+  restriction, including without limitation the rights to use,
+  copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the
+  Software is furnished to do so, subject to the following
+  conditions:
+ .
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
+ .
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  OTHER DEALINGS IN THE SOFTWARE.

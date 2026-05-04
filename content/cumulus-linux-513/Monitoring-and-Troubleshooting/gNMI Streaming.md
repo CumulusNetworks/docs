@@ -45,11 +45,11 @@ To configure optional settings for gNMI dial-in mode:
 When you configure a CA certificate, entity certificate, or CRL, existing gNMI sessions are disconnected to apply the new certificate configuration.
 {{%/notice%}}
 
-The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
+The following example sets the gNMI server listening address to 10.10.10.1 and the port to 1024, and enables the gNMI server:
 
 ```
 cumulus@switch:~$ nv set system gnmi-server listening-address 10.10.10.1
-cumulus@switch:~$ nv set system gnmi-server port 443
+cumulus@switch:~$ nv set system gnmi-server port 1024
 cumulus@switch:~$ nv set system gnmi-server state enabled
 cumulus@switch:~$ nv config apply
 ```

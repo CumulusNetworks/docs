@@ -1,0 +1,170 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: libde265
+Upstream-Contact: struktur AG <opensource@struktur.de>
+Source: https://github.com/strukturag/libde265
+
+Files: *
+Copyright:
+  2013-2014 struktur AG, Dirk Farin <farin@struktur.de>
+  2013 openHEVC contributors
+License: LGPL-3+
+
+Files: dec265/dec265.cc
+ dec265/hdrcopy.cc
+ dec265/sdl.cc
+ dec265/sdl.hh
+ enc265/enc265.cc
+ sherlock265/VideoDecoder.cc
+ sherlock265/VideoDecoder.hh
+ sherlock265/VideoPlayer.cc
+ sherlock265/VideoPlayer.hh
+ sherlock265/VideoWidget.cc
+ sherlock265/VideoWidget.hh
+ sherlock265/sherlock265.cc
+ tools/bjoentegaard.cc
+ tools/block-rate-estim.cc
+ tools/gen-entropy-table.cc
+ tools/rd-curves.cc
+ tools/tests.cc
+ tools/yuv-distortion.cc
+Copyright:
+  2013-2014 struktur AG, Dirk Farin <farin@struktur.de>
+  2013-2014 struktur AG, Joachim Bauch <bauch@struktur.de>
+  1998-2013 Free Software Foundation, Inc
+License: GPL-3+
+Comment: Please note that only the sample applications are GPL-3+ while
+ the decoding library itself is licensed as LGPL-3+.
+
+Files: extra/getopt.c
+ extra/getopt.h
+ extra/getopt_long.c
+Copyright: 1987-1996 The Regents of the University of California
+License: BSD-4-clause
+
+Files: libde265/md5.cc
+ libde265/md5.h
+Copyright: No copyright holder
+License: public-domain-1
+ This software was written by Alexander Peslyak in 2001.  No copyright is
+ claimed, and the software is hereby placed in the public domain.
+ In case this attempt to disclaim copyright and place the software in the
+ public domain is deemed null and void, then the software is
+ Copyright (c) 2001 Alexander Peslyak and it is hereby released to the
+ general public under the following terms:
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted.
+ .
+ There's ABSOLUTELY NO WARRANTY, express or implied.
+ .
+ (This is a heavily cut-down "BSD license".)
+ .
+ This differs from Colin Plumb's older public domain implementation in that
+ no exactly 32-bit integer data type is required (any 32-bit or wider
+ unsigned integer data type will do), there's no compile-time endianness
+ configuration, and the function prototypes match OpenSSL's.  No code from
+ Colin Plumb's implementation has been reused; this comment merely compares
+ the properties of the two independent implementations.
+ .
+ The primary goals of this implementation are portability and ease of use.
+ It is meant to be fast, but not as fast as possible.  Some known
+ optimizations are not included to reduce source code size and avoid
+ compile-time configuration.
+
+Files: extra/win32cond.c
+ extra/win32cond.h
+Copyright:
+  1993-2009 Douglas C. Schmidt and his research group at
+ Washington University, University of California, Irvine, and
+ Vanderbilt University
+License: other-1
+ ACE(TM), TAO(TM), CIAO(TM), DAnCE>(TM), and CoSMIC(TM) (henceforth
+ referred to as "DOC software") are copyrighted by Douglas C. Schmidt
+ and his research group at Washington University, University of California,
+ Irvine, and Vanderbilt University, Copyright (c) 1993-2009, all rights
+ reserved.
+ .
+ Since DOC software is open-source, freely available software, you are free
+ to use, modify, copy, and distribute--perpetually and irrevocably--the DOC
+ software source code and object code produced from the source, as well as
+ copy and distribute modified versions of this software. You must, however,
+ include this copyright statement along with any code built using DOC
+ software that you release.
+ .
+ No copyright statement needs to be provided if you just ship binary
+ executables of your software products.
+ .
+ See "Strategies for Implementing POSIX Condition Variables on Win32" at
+ http://www.cs.wustl.edu/~schmidt/win32-cv-1.html
+
+Files: debian/*
+Copyright:
+  2014-2023 Joachim Bauch <jojo@struktur.de>
+  2014 Alessio Treglia <alessio@debian.org>
+License: LGPL-3+
+
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems the complete text of the GNU General Public License
+ can be found in the `/usr/share/common-licenses/GPL-3' file.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+License: LGPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems the complete text of the GNU Lesser General Public
+ License can be found in the `/usr/share/common-licenses/LGPL-3' file.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+License: BSD-4-clause
+ Copyright (c) 1987, 1993, 1994
+ The Regents of the University of California.  All rights reserved.
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. All advertising materials mentioning features or use of this software
+    must display the following acknowledgement:
+    This product includes software developed by the University of
+    California, Berkeley and its contributors.
+ 4. Neither the name of the University nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.

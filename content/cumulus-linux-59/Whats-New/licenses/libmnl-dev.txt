@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: libmnl
 Upstream-Contact: Pablo Neira Ayuso <pablo@netfilter.org>
 Source: http://www.netfilter.org/projects/libmnl/files

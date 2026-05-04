@@ -13,14 +13,14 @@ https://anonscm.debian.org/cgit/kernel/initramfs-tools.git
 
 Authors: maximilian attems <maks@debian.org>,
 	 Jeff Bailey <jbailey@ubuntu.com>,
-	 David HÃ¤rdeman <david@hardeman.nu>,
+	 David Härdeman <david@hardeman.nu>,
 	 Martin Michlmayr <tbm@cyrius.com>,
 	 Michael Prokop <mika@debian.org>,
 	 Scott James Remnant <scott@ubuntu.com>
 
 Copyright: 2005 - 2011 maximilian attems
 	   2005 Jeff Bailey
-	   2005 - 2007 David HÃ¤rdeman
+	   2005 - 2007 David Härdeman
 	   2008 - 2010 Martin Michlmayr
 	   2007 - 2011 Michael Prokop
 	   2005 - 2009 Scott James Remnant

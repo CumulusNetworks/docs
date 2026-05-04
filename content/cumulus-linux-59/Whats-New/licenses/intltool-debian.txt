@@ -13,7 +13,7 @@ License: GPL-2+
 
 Files: debian/*
 Copyright: 2003       Rodney.Dawes.<dobey@novell.com>
-           2003       Danilo.Šegan.<danilo@gnome.org>
+           2003       Danilo.?egan.<danilo@gnome.org>
            2003       Kenneth Christiansen <kenneth@gnu.org>
            2003       Darin Adler <darin@bentspoon.com>
            2003       Maciej Stachowiak <mjs@noisehavoc.org>

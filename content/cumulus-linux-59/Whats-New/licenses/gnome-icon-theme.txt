@@ -1,0 +1,75 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: gnome-icon-theme
+Source: https://download.gnome.org/sources/gnome-icon-theme/
+
+Files: *
+Copyright: 2002-2008 Andreas Nilsson <nisses.mail@home.se>
+           2002-2008 Hylke Bons <h.bons@student.rug.nl>
+           2002-2008 Jakub Steiner <jimmac@novell.com>
+           2002-2008 Josef Vybíral <cornelius@vybiral.info>
+           2002-2008 Lapo Calamandrei <calamandrei@gmail.com>
+           2002-2008 Luca Ferretti <elle.uca@libero.it>
+           2002-2008 Ricardo González <rick@jinlabs.com>
+           2002-2008 Riccardo Buzzotta <raozuzu@yahoo.it>
+           2002-2008 Rodney Dawes <dobey@novell.com>
+           2002-2008 Tuomas Kuosmanen <tigert@gimp.org>
+           2002-2008 Ulisse Perusin <uli.peru@gmail.com>
+License: GPL-2+
+
+Files: debian/*
+Copyright: 2003      Takuo KITAME <kitame@debian.org>
+           2004      Steve Langasek <vorlon@debian.org>
+           2004-2005 Jordi Mallach <jordi@debian.org>
+           2004-2005 Sebastien Bacher <seb128@debian.org>
+           2005-2007 Loic Minier <lool@dooz.org>
+           2005-2010 Josselin Mouette <joss@debian.org>
+           2007      Marc 'HE' Brockschmidt <he@debian.org>
+           2007-2010 Sebastian Dröge <slomo@debian.org>
+           2008      Luca Bruno <lethalman88@gmail.com>
+           2009      Andrea Veri <andrea.veri89@gmail.com>
+           2011      Emilio Pozuelo Monfort <pochu@debian.org>
+           2011      Frederic Peters <fpeters@debian.org>
+           2011      Martin Pitt <mpitt@debian.org>
+           2011-2013 Michael Biebl <biebl@debian.org>
+           2012      Simon McVittie <smcv@debian.org>
+           2013      Sjoerd Simons <sjoerd@debian.org>
+           2013-2014 Andreas Henriksson <andreas@fatal.se>
+           2016      Laurent Bigonville <bigon@debian.org>
+           2018      Jeremy Bicha <jbicha@debian.org>
+           2021      Boyuan Yang <byang@debian.org>
+           2022      Leonardo Rodrigues Pereira <leontecnicalonline@gmail.com>
+License: GPL-3+
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".

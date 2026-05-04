@@ -1,0 +1,176 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: pycryptodome
+Source: https://github.com/Legrandin/pycryptodome
+Files-Excluded: Doc/sphinx_rtd_theme/*
+
+Files: *
+Copyright: public-domain
+License: public-domain
+Comment: lib/Crypto/Cipher/_mode_ocb.py includes an implementation of the OCB
+ algorithm. The OCB algorithm is patented in the US, but a patent license is
+ granted for open source implementations:
+ .
+ http://web.cs.ucdavis.edu/~rogaway/ocb/license1.pdf
+ .
+ This license includes a weak patent retaliation clause. I don't interpret this
+ as contradicting the DFSG as:
+ .
+   * The patent retaliation clause applies to the patent license, not the
+     implementation license
+   * The GPL-3 has a weak patent retaliation clause and is DFSG-compatible
+   * Other implementations of OCB are already included in Debian e.g. mumble
+
+Files: lib/Crypto/Cipher/ChaCha20.py
+ lib/Crypto/Cipher/ChaCha20_Poly1305.py
+ lib/Crypto/Cipher/_EKSBlowfish.py
+ lib/Crypto/Cipher/_mode_cbc.py
+ lib/Crypto/Cipher/_mode_ccm.py
+ lib/Crypto/Cipher/_mode_eax.py
+ lib/Crypto/Cipher/_mode_gcm.py
+ lib/Crypto/Cipher/_mode_ocb.py
+ lib/Crypto/Cipher/_mode_openpgp.py
+ lib/Crypto/Cipher/_mode_siv.py
+ lib/Crypto/Hash/BLAKE2b.py
+ lib/Crypto/Hash/BLAKE2s.py
+ lib/Crypto/Hash/HMAC.py
+ lib/Crypto/Hash/MD2.py
+ lib/Crypto/Hash/MD4.py
+ lib/Crypto/Hash/RIPEMD160.py
+ lib/Crypto/Hash/SHAKE128.py
+ lib/Crypto/Hash/SHAKE256.py
+ lib/Crypto/Hash/cSHAKE128.py
+ lib/Crypto/Hash/cSHAKE256.py
+ lib/Crypto/Hash/keccak.py
+ lib/Crypto/IO/*
+ lib/Crypto/Math/*
+ lib/Crypto/Protocol/SecretSharing.py
+ lib/Crypto/Protocol/__init__.py
+ lib/Crypto/PublicKey/ECC.py
+ lib/Crypto/PublicKey/RSA.py
+ lib/Crypto/PublicKey/_openssh.py
+ lib/Crypto/SelfTest/Cipher/test_CBC.py
+ lib/Crypto/SelfTest/Cipher/test_CCM.py
+ lib/Crypto/SelfTest/Cipher/test_CFB.py
+ lib/Crypto/SelfTest/Cipher/test_CTR.py
+ lib/Crypto/SelfTest/Cipher/test_ChaCha20.py
+ lib/Crypto/SelfTest/Cipher/test_ChaCha20_Poly1305.py
+ lib/Crypto/SelfTest/Cipher/test_EAX.py
+ lib/Crypto/SelfTest/Cipher/test_GCM.py
+ lib/Crypto/SelfTest/Cipher/test_OCB.py
+ lib/Crypto/SelfTest/Cipher/test_OFB.py
+ lib/Crypto/SelfTest/Cipher/test_OpenPGP.py
+ lib/Crypto/SelfTest/Cipher/test_SIV.py
+ lib/Crypto/SelfTest/Hash/test_BLAKE2.py
+ lib/Crypto/SelfTest/Hash/test_CMAC.py
+ lib/Crypto/SelfTest/Hash/test_Poly1305.py
+ lib/Crypto/SelfTest/Hash/test_SHAKE.py
+ lib/Crypto/SelfTest/Hash/test_keccak.py
+ lib/Crypto/SelfTest/IO/*
+ lib/Crypto/SelfTest/Math/*
+ lib/Crypto/SelfTest/Protocol/test_SecretSharing.py
+ lib/Crypto/SelfTest/PublicKey/test_ECC.py
+ lib/Crypto/SelfTest/PublicKey/test_import_ECC.py
+ lib/Crypto/SelfTest/Signature/test_dss.py
+ lib/Crypto/SelfTest/Signature/test_pkcs1_15.py
+ lib/Crypto/SelfTest/Signature/test_pss.py
+ lib/Crypto/SelfTest/Util/test_Padding.py
+ lib/Crypto/SelfTest/Util/test_asn1.py
+ lib/Crypto/SelfTest/Util/test_strxor.py
+ lib/Crypto/SelfTest/loader.py
+ lib/Crypto/Signature/*
+ lib/Crypto/Util/Padding.py
+ lib/Crypto/Util/_cpu_features.py
+ lib/Crypto/Util/_file_system.py
+ lib/Crypto/Util/_raw_api.py
+ lib/Crypto/Util/strxor.py
+ src/AESNI.c
+ src/ARC2.c
+ src/MD5.c
+ src/SHA1.c
+ src/blake2.c
+ src/blake2b.c
+ src/blake2s.c
+ src/block_common.c
+ src/blowfish.c
+ src/chacha20.c
+ src/common.h
+ src/cpuid.c
+ src/ec_ws.c
+ src/ec_ws_p256.c
+ src/ec_ws_p384.c
+ src/ec_ws_p521.c
+ src/endianess.h
+ src/ghash_clmul.c
+ src/hash_SHA2_template.c
+ src/modexp.c
+ src/mont.c
+ src/multiply_32.c
+ src/multiply_64.c
+ src/pkcs1_decode.c
+ src/poly1305.c
+ src/raw_cbc.c
+ src/raw_cfb.c
+ src/raw_ctr.c
+ src/raw_ecb.c
+ src/raw_ocb.c
+ src/raw_ofb.c
+ src/scrypt.c
+ src/strxor.c
+Copyright: 2014-2021 Legrandin <helderijs@gmail.com>
+License: BSD-2-clause
+
+Files: debian/*
+Copyright: 2017 Christopher Hoskin <mans0954@debian.org>
+License: BSD-2-clause
+
+License: public-domain
+ All code originating from  PyCrypto is free and unencumbered software
+ released into the public domain.
+ .
+ Anyone is free to copy, modify, publish, use, compile, sell, or
+ distribute this software, either in source code form or as a compiled
+ binary, for any purpose, commercial or non-commercial, and by any
+ means.
+ .
+ In jurisdictions that recognize copyright laws, the author or authors
+ of this software dedicate any and all copyright interest in the
+ software to the public domain. We make this dedication for the benefit
+ of the public at large and to the detriment of our heirs and
+ successors. We intend this dedication to be an overt act of
+ relinquishment in perpetuity of all present and future rights to this
+ software under copyright law.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.
+ .
+ For more information, please refer to <http://unlicense.org>
+
+License: BSD-2-clause
+ All direct contributions to PyCryptodome are released under the following
+ license. The copyright of each piece belongs to the respective author.
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+ .
+   1. Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+ .
+   2. Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

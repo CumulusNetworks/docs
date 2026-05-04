@@ -1,11 +1,9 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Bison
 Upstream-Contact: bug-bison@gnu.org
-Source: http://ftp.gnu.org/pub/gnu/bison/
-Comment: 
- This file is extracted from upstream source with debian/repack, which
- moves the non-DFSG-free parts of the upstream source into a separate
- bison-doc package (which is not part of Debian).
+Source: https://ftp.gnu.org/pub/gnu/bison/
+Files-Excluded: doc/figs doc/bison.info doc/bison.info.bak doc/bison.texi
+Comment: GFDL documentation with Front-Cover Texts and Back-Cover Texts.
 
 Files: *
 Copyright: 1984, 1986, 1987-2015 Free Software Foundation, Inc.

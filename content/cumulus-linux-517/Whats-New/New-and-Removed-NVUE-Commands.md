@@ -30,7 +30,6 @@ nv show system lldp tlv profile <lldp-profile-name-id> egress-policy
 nv show system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-name-id>
 nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy
 nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-name-id>
-nv show system reboot
 nv show system security alerts
 nv show system security secure-boot
 nv show system telemetry export ipfix
@@ -51,8 +50,6 @@ nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom
 nv set qos advance-buffer-config <profile-id> shared-headroom required-headroom-per-pg
 nv set qos link-pause <profile-id> small-packet-probability
 nv set qos pfc <profile-id> small-packet-probability
-nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group <priority-group-id> switch-priority <switch-priority-id>
-nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group <priority-group-id> service-pool <service-pool-id>
 nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg
 nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg
 nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio
@@ -173,7 +170,6 @@ nv action change system security sed-password
 nv action clear interface debounce-counters 
 nv action clear interface <interface-id> counters link debounce
 nv action delete system file-path <path>
-nv action erase system disk
 nv action fetch system file-path <path> <uri> [file-permissions <value>] [vrf <vrf-name>]
 ```
 

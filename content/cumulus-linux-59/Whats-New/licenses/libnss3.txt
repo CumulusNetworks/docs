@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: NSS
 Source: http://ftp.mozilla.org/pub/security/nss/releases/
 
@@ -46,7 +46,7 @@ Copyright: 1991, 1993, 1994 The Regents of the University of California.
 License: BSD-3
   Copyright (c) 1991, 1993, 1994
   The Regents of the University of California.  All rights reserved.
-
+  .
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions
   are met:
@@ -60,7 +60,7 @@ License: BSD-3
   4. Neither the name of the University nor the names of its contributors
      may be used to endorse or promote products derived from this software
      without specific prior written permission.
-
+  .
   THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
   ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -73,8 +73,9 @@ License: BSD-3
   OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
   SUCH DAMAGE.
 
-Files: nss/lib/sqlite/sqlite3.c,
-       nss/lib/sqlite/sqlite3.h
+Files: nss/lib/sqlite/sqlite3.c
+  nss/lib/sqlite/sqlite3.h
+Copyright: D. Richard Hipp <drh@hwaci.com>
 License: public-domain
  The author disclaims copyright to this source code.  In place of
  a legal notice, here is a blessing:
@@ -82,78 +83,3 @@ License: public-domain
      May you do good and not evil.
      May you find forgiveness for yourself and forgive others.
      May you share freely, never taking more than you give.
-
-Files: nss/coreconf/mkdepend/cppsetup.c,
-       nss/coreconf/mkdepend/def.h,
-       nss/coreconf/mkdepend/include.c,
-       nss/coreconf/mkdepend/main.c,
-       nss/coreconf/mkdepend/mkdepend.man,
-       nss/coreconf/mkdepend/parse.c,
-       nss/coreconf/mkdepend/pr.c
-Copyright: 1993, 1994, 1998  The Open Group
-License: MIT
- Permission to use, copy, modify, distribute, and sell this software and its
- documentation for any purpose is hereby granted without fee, provided that
- the above copyright notice appear in all copies and that both that
- copyright notice and this permission notice appear in supporting
- documentation.
- .
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
- .
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
- OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
- AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- .
- Except as contained in this notice, the name of The Open Group shall not be
- used in advertising or otherwise to promote the sale, use or other dealings
- in this Software without prior written authorization from The Open Group.
-
-Files: nss/coreconf/mkdepend/ifparser.c,
-       nss/coreconf/mkdepend/ifparser.h
-Copyright: 1992 Network Computing Devices, Inc.
-License:
- Permission to use, copy, modify, and distribute this software and its
- documentation for any purpose and without fee is hereby granted, provided
- that the above copyright notice appear in all copies and that both that
- copyright notice and this permission notice appear in supporting
- documentation, and that the name of Network Computing Devices may not be
- used in advertising or publicity pertaining to distribution of the software
- without specific, written prior permission.  Network Computing Devices makes
- no representations about the suitability of this software for any purpose.
- It is provided ``as is'' without express or implied warranty.
- .
- NETWORK COMPUTING DEVICES DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS
- SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS,
- IN NO EVENT SHALL NETWORK COMPUTING DEVICES BE LIABLE FOR ANY SPECIAL,
- INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
- LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
- OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- PERFORMANCE OF THIS SOFTWARE.
-
-Files: nss/coreconf/mkdepend/imakemdep.h
-Copyright: 1993, 1994  X Consortium
-License: MIT
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- .
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
- .
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
- X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
- AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- .
- Except as contained in this notice, the name of the X Consortium shall not be
- used in advertising or otherwise to promote the sale, use or other dealings
- in this Software without prior written authorization from the X Consortium.

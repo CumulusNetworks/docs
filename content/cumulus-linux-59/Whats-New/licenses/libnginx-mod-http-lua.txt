@@ -1,107 +1,124 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: nginx
-Source: https://nginx.org/en/download.html
+Upstream-Name: lua-nginx-module
+Upstream-Contact: Yichun Zhang (agentzh) <yichun@openresty.com>
+Source: https://github.com/openresty/lua-nginx-module
 
 Files: *
-Copyright: 2002-2014 Igor Sysoev
-           2011-2014 Nginx, Inc.
-                     Maxim Dounin
-                     Valentin V. Bartenev
-                     Roman Arutyunyan
-                     Ruslan Ermilov
-License: BSD-2-clause
-
-Files: src/core/ngx_murmurhash.c
-Copyright: Copyright (C) Austin Appleby
-License: BSD-2-clause
-
-Files: src/http/modules/ngx_http_scgi_module.c
-       src/http/modules/ngx_http_uwsgi_module.c
-Copyright: Copyright (C) Igor Sysoev
-           Copyright (C) Nginx, Inc.
-           2009-2010 Unbit S.a.s.
-           2008      Manlio Perillo (manlio.perillo@gmail.com)
-License: BSD-2-clause
-
-Files: contrib/geo2nginx.pl
-Copyright: 2005, Andrei Nigmatulin
+Copyright: 2009-2019, by Yichun "agentzh" Zhang (???) <agentzh@gmail.com>, OpenResty Inc.
+ 2009-2017, by Xiaozhe Wang (chaoslawful) <chaoslawful@gmail.com>.
 License: BSD-2-clause
 
 Files: debian/*
-Copyright: 2007-2009, Fabio Tranchitella <kobold@debian.org>
-           2008,      Jose Parrella <joseparrella@cantv.net>
-           2009-2014, Kartik Mistry <kartik@debian.org>
-           2010-2014, Michael Lustfield <michael@lustfield.net>
-           2011       Dmitry E. Oboukhov <unera@debian.org>
-           2011-2013, Cyril Lavier <cyril.lavier@davromaniak.eu>
-           2013-2016, Christos Trochalakis <ctrochalakis@debian.org>
+Copyright: 2022, Miao Wang <shankerwangmiao@gmail.com>
+ 2022, 2023, Jan Mojzis <jan.mojzis@gmail.com>
 License: BSD-2-clause
 
-Files: debian/modules/http-headers-more-filter/*
-Copyright: Copyright (c) 2009-2014, Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, CloudFlare Inc.
-           Copyright (c) 2010-2013, Bernd Dorn
-           Copyright (c) Igor Sysoev
+Files: src/*
+Copyright: Yichun Zhang (agentzh)
+ Xiaozhe Wang (chaoslawful)
 License: BSD-2-clause
 
-Files: debian/modules/http-ndk/*
-Copyright: Marcus Clyne
-License: BSD-3-clause
-
-Files: debian/modules/http-ndk/src/hash/md5.h
-       debian/modules/http-ndk/src/hash/sha.h
-Copyright: Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
-License: BSD-4-clause
-
-Files: debian/modules/http-auth-pam/*
-Copyright: 2008-2013, Sergio Talens Oliag
+Files: src/api/*
+Copyright: Yichun Zhang (agentzh)
 License: BSD-2-clause
 
-Files: debian/modules/http-echo/*
-Copyright: Copyright (c) 2009-2014, Yichun "agentzh" Zhang <agentzh@gmail.com>
+Files: src/ddebug.h
+  src/ngx_http_lua_api.c
+  src/ngx_http_lua_args.h
+  src/ngx_http_lua_balancer.c
+  src/ngx_http_lua_balancer.h
+  src/ngx_http_lua_bodyfilterby.h
+  src/ngx_http_lua_config.c
+  src/ngx_http_lua_config.h
+  src/ngx_http_lua_consts.h
+  src/ngx_http_lua_ctx.c
+  src/ngx_http_lua_exitworkerby.c
+  src/ngx_http_lua_exitworkerby.h
+  src/ngx_http_lua_headerfilterby.c
+  src/ngx_http_lua_headerfilterby.h
+  src/ngx_http_lua_headers_in.c
+  src/ngx_http_lua_initby.c
+  src/ngx_http_lua_initby.h
+  src/ngx_http_lua_initworkerby.c
+  src/ngx_http_lua_initworkerby.h
+  src/ngx_http_lua_lex.c
+  src/ngx_http_lua_lex.h
+  src/ngx_http_lua_logby.c
+  src/ngx_http_lua_logby.h
+  src/ngx_http_lua_ndk.c
+  src/ngx_http_lua_ndk.h
+  src/ngx_http_lua_phase.c
+  src/ngx_http_lua_regex.c
+  src/ngx_http_lua_req_body.c
+  src/ngx_http_lua_req_method.c
+  src/ngx_http_lua_script.c
+  src/ngx_http_lua_script.h
+  src/ngx_http_lua_shdict.c
+  src/ngx_http_lua_shdict.h
+  src/ngx_http_lua_socket_tcp.c
+  src/ngx_http_lua_socket_tcp.h
+  src/ngx_http_lua_socket_udp.c
+  src/ngx_http_lua_socket_udp.h
+  src/ngx_http_lua_ssl.c
+  src/ngx_http_lua_ssl.h
+  src/ngx_http_lua_ssl_certby.c
+  src/ngx_http_lua_ssl_certby.h
+  src/ngx_http_lua_ssl_client_helloby.c
+  src/ngx_http_lua_ssl_client_helloby.h
+  src/ngx_http_lua_ssl_ocsp.c
+  src/ngx_http_lua_ssl_session_fetchby.c
+  src/ngx_http_lua_ssl_session_fetchby.h
+  src/ngx_http_lua_ssl_session_storeby.c
+  src/ngx_http_lua_ssl_session_storeby.h
+  src/ngx_http_lua_timer.c
+  src/ngx_http_lua_uthread.c
+  src/ngx_http_lua_uthread.h
+  src/ngx_http_lua_worker.c
+Copyright: Yichun Zhang (agentzh)
 License: BSD-2-clause
 
-Files: debian/modules/http-lua/*
-Copyright: Copyright (C) 2009-2014, by Xiaozhe Wang (chaoslawful) <chaoslawful@gmail.com>.
-           Copyright (C) 2009-2014, by Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, CloudFlare Inc.
+Files: src/ngx_http_lua_input_filters.c
+  src/ngx_http_lua_input_filters.h
+  src/ngx_http_lua_pipe.c
+  src/ngx_http_lua_pipe.h
+Copyright: OpenResty Inc.
 License: BSD-2-clause
 
-Files: debian/modules/http-upstream-fair/*
-Copyright: Copyright (c) 2007 Grzegorz Nosek
-           Igor Sysoev
+Files: src/ngx_http_lua_log_ringbuf.c
+  src/ngx_http_lua_log_ringbuf.h
+  src/ngx_http_lua_output.c
+  src/ngx_http_lua_probe.h
+  src/ngx_http_lua_setby.h
+Copyright: 2009-2019, by Yichun "agentzh" Zhang (???) <agentzh@gmail.com>, OpenResty Inc.
+ 2009-2017, by Xiaozhe Wang (chaoslawful) <chaoslawful@gmail.com>.
 License: BSD-2-clause
 
-Files: debian/modules/nchan/*
-Copyright: 2009-2016 Leo Ponomarev
-License: MIT
-
-Files: debian/modules/nchan/src/store/redis/cmp.*
-Copyright: 2015 Charles Gunyon
-License: MIT
-
-Files: debian/modules/http-uploadprogress/*
-Copyright: Brice Figureau
-           2002-2007, Igor Sysoev
+Files: src/ngx_http_lua_semaphore.c
+  src/ngx_http_lua_semaphore.h
+Copyright: cuiweixie
+ Yichun Zhang (agentzh)
 License: BSD-2-clause
 
-Files: debian/modules/http-cache-purge/*
-Copyright: 2009-2012, FRiCKLE <info@frickle.com>,
-           2009-2012, Piotr Sikora <piotr.sikora@frickle.com>
+Files: src/ngx_http_lua_worker_thread.c
+  src/ngx_http_lua_worker_thread.h
+Copyright: Yichun Zhang (agentzh)
+ Jinhua Luo (kingluo)
 License: BSD-2-clause
 
-Files: debian/modules/http-dav-ext/*
-Copyright: Arutyunyan Roman <arut@qip.ru>
-License: BSD-2-clause
+Files: t/lib/CRC32.lua
+Copyright: 2007, 2008, Neil Richardson (nrich@iinet.net.au)
+License: Expat
 
-Files: debian/modules/http-fancyindex/*
-Copyright: Copyright (c) Adrian Perez <aperez@igalia.com>
-License: BSD-2-clause
+Files: t/lib/Memcached.lua
+Copyright: 2006-2008, Neil Richardson (nrich@iinet.net.au)
+License: Expat
 
-Files: debian/modules/http-subs-filter/*
-Copyright: Copyright (C) 2014 by Weibin Yao <yaoweibin@gmail.com>
-License: BSD-2-clause
+Files: t/lib/Redis.lua
+Copyright: 2009-2011, Daniele Alessandri
+License: Expat
 
-Files: debian/modules/rtmp/*
-Copyright: Copyright (C) 2012-2014, Roman Arutyunyan
+Files: util/revim
+Copyright: 2010, chaoslawful
 License: BSD-2-clause
 
 License: BSD-2-clause
@@ -129,73 +146,22 @@ License: BSD-2-clause
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-License: BSD-3-clause
- All rights reserved.
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
  .
- Redistribution and use in source and binary forms, with or without
- modification, are permitted provided that the following conditions are
- met:
- 1. Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
- 2. Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
- 3. Neither the name of the University nor the names of its contributors
-    may be used to endorse or promote products derived from this
-    software without specific prior written permission.
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
  .
- THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS
- BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
- BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
- OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
- ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-License: BSD-4-clause
- Redistribution and use in source and binary forms, with or without
- modification, are permitted provided that the following conditions
- are met:
- 1. Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
- 2. Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
- 4. Neither the name of the University nor the names of its contributors
-    may be used to endorse or promote products derived from this software
-    without specific prior written permission.
- .
- THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- SUCH DAMAGE.
-
-License: MIT
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to
- deal in the Software without restriction, including without limitation the
- rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
- sell copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- .
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
- .
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- IN THE SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

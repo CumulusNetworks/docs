@@ -14,6 +14,7 @@ License: GPL-2
 
 Files: debian/*
 Copyright: 2018 Norbert Preining
+           2022 Josue Ortega <josue@debian.org>
 License: GPL-2
 
 License: BSD-2-clause

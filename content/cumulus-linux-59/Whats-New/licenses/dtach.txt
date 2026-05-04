@@ -8,7 +8,7 @@ Copyright: 2004-2016 Ned T. Crigler
 License: GPL-2+
 
 Files: debian/*
-Copyright: 2004-2016 Stefan VÃ¶lkel <bd@bc-bd.org>
+Copyright: 2004-2016 Stefan Völkel <bd@bc-bd.org>
 License: GPL-2+
 
 License: GPL-2+

@@ -1,8 +1,8 @@
 Files: *
-Copyright: Â© 2008-2013 Vincent Bernat <bernat@luffy.cx>
-           Â© 2003, 2004 Henning Brauer <henning@openbsd.org>
-           Â© 2006 Pierre-Yves Ritschard <pyr@openbsd.org>
-           Â© 2010 Andreas Hofmeister <andi@collax.com>
+Copyright: © 2008-2013 Vincent Bernat <bernat@luffy.cx>
+           © 2003, 2004 Henning Brauer <henning@openbsd.org>
+           © 2006 Pierre-Yves Ritschard <pyr@openbsd.org>
+           © 2010 Andreas Hofmeister <andi@collax.com>
 License: ISC
 
 Files: libevent/*
@@ -74,10 +74,6 @@ Comment:
  It is believed that header files are an interface for user space and
  therefore cannot be covered by copyright.
 
-Files: include/netinet/if_ether.h include/sys/queue.h
-Copyright: Copyright (c) 1982, 1986, 1993 The Regents of the University of California
-License: BSD-3-clause
-
 Files: include/osx/*
 Copyright: Copyright (c) 2003-2010 Apple Computer, Inc
 License: APSL-2
@@ -128,7 +124,7 @@ Copyright: Copyright (c) 2004 Ted Unangst and Todd Miller
 License: ISC
 
 Files: debian/*
-Copyright: Â© 2008 Vincent Bernat <bernat@debian.org>
+Copyright: © 2008 Vincent Bernat <bernat@debian.org>
 License: ISC
 
 License: ISC

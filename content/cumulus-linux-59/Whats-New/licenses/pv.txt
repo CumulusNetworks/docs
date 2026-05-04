@@ -10,9 +10,9 @@ License: Artistic
     can be found in `/usr/share/common-licenses/Artistic'.
 
 Files: debian/*
-Copyright: Â© 2014 Antoine BeauprÃ© <anarcat@debian.org>
-           Â© 2007-2011 Kevin Coyner <kcoyner@debian.org>
-           Â© 2002 Cedric Delfosse <cedric@debian.org>
+Copyright: © 2014 Antoine Beaupré <anarcat@debian.org>
+           © 2007-2011 Kevin Coyner <kcoyner@debian.org>
+           © 2002 Cedric Delfosse <cedric@debian.org>
 License: GPL-2+
     On Debian GNU/Linux systems, the complete text of the GNU General Public
     License version 2 can be found in `/usr/share/common-licenses/GPL-2'.

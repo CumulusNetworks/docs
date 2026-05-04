@@ -3,6 +3,7 @@ This package was created by Rob Browning <rlb@defaultvalue.org> on Sun,
 
 The source for this package was created by Robert Browning with some
 code borrowed from the previous Debian emacs 19 package.  Unless
-otherwise noted, the contents are Copyright Robert Browning, 1998-2012
-and all of the code is covered under the terms of the GPL.  See the
-file /usr/share/common-licenses/GPL for more information.
+otherwise noted, the contents are Copyright (C) Rob Browning
+<rlb@defaultvalue.org>, 1998-2014, 2017-2018, 2022, and all of the
+code is covered under the terms of the GPL.  See the file
+/usr/share/common-licenses/GPL for more information.

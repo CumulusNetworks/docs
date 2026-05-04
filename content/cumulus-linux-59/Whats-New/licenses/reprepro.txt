@@ -1,52 +1,122 @@
-This package was debianized by Bernhard R. Link <brlink@debian.org> on
-Tue,  1 Feb 2005 12:25:56 +0100.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://salsa.debian.org/debian/reprepro/-/tree/master
 
-The .orig.tar.gz was generated with make dist from the git checkout.
+Files: *
+Copyright: (C) 2003,2004,2005,2006,2007,2008,2009 Bernhard R. Link
+License: GPL-2
 
-With the exceptions given below, reprepro is:
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License version 2 as
+ published by the Free Software Foundation.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License with
+ your Debian GNU/Linux system, in /usr/share/common-licenses/GPL-2, or with
+ the source package as the file COPYING.  If not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ 02111-1301  USA.
 
-Copyright (C) 2003,2004,2005,2006,2007,2008,2009 Bernhard R. Link
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License version 2 as
-published by the Free Software Foundation.
+Files: docs/short-howto
+Copyright: (C) 2003,2004,2005,2006,2007,2008,2009 Bernhard R. Link
+           V. Stanley Jaddoe (debian@terabytemusic.cjb.net)
+Comment:
+ Some tagged parts of docs/short-howto and many fixes for
+ typos and bad English in the same file are from:
+ V. Stanley Jaddoe (debian@terabytemusic.cjb.net)
+ and under GPL as the rest of the file.
+License: GPL-2
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+Files: docs/di.example/*
+Copyright: Goswin Brederlow <brederlo@informatik.uni-tuebingen.de>
+License: GPL-2
 
-You should have received a copy of the GNU General Public License with
-your Debian GNU/Linux system, in /usr/share/common-licenses/GPL-2, or with
-the source package as the file COPYING.  If not, write to the Free
-Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
-02111-1301  USA.
+Files: docs/pdiff.example
+Copyright: (C) 2004-5  Anthony Towns <aj@azure.humbug.org.au>
+           (C) 2004-5  Andreas Barth <aba@not.so.argh.org>
+           2005 Bernhard R. Link <brlink@debian.org>
+License: GPL-2+
 
-Some tagged parts of docs/short-howto and many fixes for
-typos and bad English in the same file are from:
-V. Stanley Jaddoe (debian@terabytemusic.cjb.net)
-and under GPL as the rest of the file.
+Files: docs/sftp.py
+Copyright: 2013 Bernhard R. Link <brlink@debian.org>
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the "Software"),
+ to deal in the Software without restriction, including without limitation
+ the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+ SOFTWARE IN THE PUBLIC INTEREST, INC. BE LIABLE FOR ANY CLAIM, DAMAGES OR
+ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
 
-The files in docs/di.example are written
-by Goswin Brederlow <brederlo@informatik.uni-tuebingen.de>
-and fall under the same license.
+Files: dpkgversions.c
+Copyright: (C) 1995 Ian Jackson <ian@chiark.greenend.org.uk>
+License: GPL-2+
 
-The file dpkgversions.c is derived from files
-Copyright (C) 1995 Ian Jackson <ian@chiark.greenend.org.uk>
-also under GPL as above.
+License: GPL-2+
+ This is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 2,
+ or (at your option) any later version.
+ .
+ This is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with dpkg; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02111-1301  USA
 
-md5.[ch] are written by Colin Plumb in 1993 and modified by
-Ian Jackson in 1995 and are in the public domain.
+Files: md5.[ch]
+Copyright: 1993 Colin Plumb
+License: public-domain
+ This code was written by Colin Plumb in 1993, no copyright is claimed.
+ This code is in the public domain; do with it what you wish.
+ ...
+ Changed so as no longer to depend on Colin Plumb's `usual.h' header
+ definitions; now uses stuff from dpkg's config.h.
+  - Ian Jackson <ijackson@nyx.cs.du.edu>.
+ Still in the public domain.
+ .
+ Changed to no longer need things from dpkg,
+ and made MD5Transfor static...
+  - Bernhard R. Link <brlink@debian.org>
+ Still in public domain.
 
-sha1.c is based on something written by Steve Reid <sreid@sea-to-sky.net>,
-modified by James H. Brown <jbrown@burgoyne.com>, Saul Kravitz
-<Saul.Kravitz@celera.com> and Ralph Giles <giles@ghostscript.com>
-and in the public domain.
+Files: sha1.c
+Copyright: Steve Reid <sreid@sea-to-sky.net>
+           James H. Brown <jbrown@burgoyne.com>
+           Saul Kravitz <Saul.Kravitz@celera.com>
+           Ralph Giles <giles@ghostscript.com>
+           Bernhard R. Link <brlink@debian.org>
+License: public-domain
+ SHA-1 in C by Steve Reid <sreid@sea-to-sky.net>;
+ modified by James H. Brown <jbrown@burgoyne.com>, Saul Kravitz
+ <Saul.Kravitz@celera.com>, Ralph Giles <giles@ghostscript.com>,
+ and Bernhard R. Link <brlink@debian.org> and in the public domain.
 
-sha256.c is based on a file called sha256crypt.c, which is
-Released into the Public Domain by Ulrich Drepper <drepper@redhat.com>.
+Files: sha256.c
+Copyright: Ulrich Drepper <drepper@redhat.com>
+           Bernhard R. Link
+License: public-domain
+ taken (with minor modification) from sha256crypt.c, which states:
+ Released into the Public Domain by Ulrich Drepper <drepper@redhat.com>.
+ Neglegible modifications by Bernhard R. Link, also in the public domain.
 
-docs/tiffany.example if derived from
-http://ftp-master.debian.org/~ajt/tiffani/tiffani:
-Copyright (C) 2004-5  Anthony Towns <aj@azure.humbug.org.au>
-Copyright (C) 2004-5  Andreas Barth <aba@not.so.argh.org>
-also under GPL as above.
+Files: debian/*
+Copyright: 2005 Bernhard R. Link <brlink@debian.org>
+License: GPL-2

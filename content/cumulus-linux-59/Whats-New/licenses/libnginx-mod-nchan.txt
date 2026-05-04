@@ -1,108 +1,175 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: nginx
-Source: https://nginx.org/en/download.html
+Upstream-Name: nchan
+Upstream-Contact: Leo Ponomarev <junk@slact.net>
+Source: https://github.com/slact/nchan
+Comment:
+ * nchan_logo.png might have license issues (nginx logo)
+ * NchanSubscriber.js comes from another project
+   https://github.com/slact/nchan.js
+ * dev directory contains many other software, not part of upstream source
+ * nchan is just a useless symlink
+Files-Excluded:
+ dev
+ nchan_logo.png
+ NchanSubscriber.js
 
 Files: *
-Copyright: 2002-2014 Igor Sysoev
-           2011-2014 Nginx, Inc.
-                     Maxim Dounin
-                     Valentin V. Bartenev
-                     Roman Arutyunyan
-                     Ruslan Ermilov
-License: BSD-2-clause
-
-Files: src/core/ngx_murmurhash.c
-Copyright: Copyright (C) Austin Appleby
-License: BSD-2-clause
-
-Files: src/http/modules/ngx_http_scgi_module.c
-       src/http/modules/ngx_http_uwsgi_module.c
-Copyright: Copyright (C) Igor Sysoev
-           Copyright (C) Nginx, Inc.
-           2009-2010 Unbit S.a.s.
-           2008      Manlio Perillo (manlio.perillo@gmail.com)
-License: BSD-2-clause
-
-Files: contrib/geo2nginx.pl
-Copyright: 2005, Andrei Nigmatulin
-License: BSD-2-clause
+Copyright: Rog�rio Carvalho Schneider <stockrt@gmail.com>
+ Alexander Lyalin
+ 2014, Wandenberg Peixoto
+ 2009-2016, Leo Ponomarev (slact)
+License: Expat
 
 Files: debian/*
-Copyright: 2007-2009, Fabio Tranchitella <kobold@debian.org>
-           2008,      Jose Parrella <joseparrella@cantv.net>
-           2009-2014, Kartik Mistry <kartik@debian.org>
-           2010-2014, Michael Lustfield <michael@lustfield.net>
-           2011       Dmitry E. Oboukhov <unera@debian.org>
-           2011-2013, Cyril Lavier <cyril.lavier@davromaniak.eu>
-           2013-2016, Christos Trochalakis <ctrochalakis@debian.org>
-License: BSD-2-clause
-
-Files: debian/modules/http-headers-more-filter/*
-Copyright: Copyright (c) 2009-2014, Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, CloudFlare Inc.
-           Copyright (c) 2010-2013, Bernd Dorn
-           Copyright (c) Igor Sysoev
-License: BSD-2-clause
-
-Files: debian/modules/http-ndk/*
-Copyright: Marcus Clyne
+Copyright: 2022, Miao Wang <shankerwangmiao@gmail.com>
+ 2022, 2023, Jan Mojzis <jan.mojzis@gmail.com>
 License: BSD-3-clause
 
-Files: debian/modules/http-ndk/src/hash/md5.h
-       debian/modules/http-ndk/src/hash/sha.h
-Copyright: Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
-License: BSD-4-clause
+Files: src/store/redis/cmp.c
+  src/store/redis/cmp.h
+Copyright: 2017, Charles Gunyon
+License: Expat
 
-Files: debian/modules/http-auth-pam/*
-Copyright: 2008-2013, Sergio Talens Oliag
+Files: src/store/redis/hiredis/*
+Copyright: Jan-Erik Rediger <janerik.fnordig.com>
+ 2015, Matt Stancliff <matt@genges.com>
+ 2010, 2011, Pieter Noordhuis <pcnoordhuis@gmail.com>
+ 2006-2014, Salvatore Sanfilippo <antirez@gmail.com>
+ 2010, 2011, Pieter Noordhuis <pcnoordhuis at gmail dot com>
+ 2009-2011, Salvatore Sanfilippo <antirez at gmail dot com>
+License: BSD-3-clause
+
+Files: src/store/redis/hiredis/CHANGELOG.md
+  src/store/redis/hiredis/README.md
+  src/store/redis/hiredis/fmacros.h
+  src/store/redis/hiredis/test.c
+  src/store/redis/hiredis/win32.h
+Copyright: Jan-Erik Rediger <janerik.fnordig.com>
+ 2015, Matt Stancliff <matt@genges.com>
+ 2010, 2011, Pieter Noordhuis <pcnoordhuis@gmail.com>
+ 2006-2014, Salvatore Sanfilippo <antirez@gmail.com>
+License: BSD-3-clause
+
+Files: src/store/redis/hiredis/Makefile
+Copyright: 2010, 2011, Salvatore Sanfilippo <antirez at gmail dot com>
+ 2010, 2011, Pieter Noordhuis <pcnoordhuis at gmail dot com>
+License: BSD-3-clause
+
+Files: src/store/redis/hiredis/alloc.c
+  src/store/redis/hiredis/alloc.h
+Copyright: 2020, Michael Grunder <michael dot grunder at gmail dot com>
+License: BSD-3-clause
+
+Files: src/store/redis/hiredis/async.c
+  src/store/redis/hiredis/async.h
+  src/store/redis/hiredis/async_private.h
+  src/store/redis/hiredis/read.c
+  src/store/redis/hiredis/read.h
+Copyright: 2010, 2011, Pieter Noordhuis <pcnoordhuis at gmail dot com>
+ 2009-2011, Salvatore Sanfilippo <antirez at gmail dot com>
+License: BSD-3-clause
+
+Files: src/store/redis/hiredis/dict.c
+  src/store/redis/hiredis/dict.h
+Copyright: 2006-2010, Salvatore Sanfilippo <antirez at gmail dot com>
+License: BSD-3-clause
+
+Files: src/store/redis/hiredis/hiredis.c
+  src/store/redis/hiredis/hiredis.h
+  src/store/redis/hiredis/net.c
+  src/store/redis/hiredis/net.h
+Copyright: 2015, Matt Stancliff <matt at genges dot com>
+ 2010-2014, Pieter Noordhuis <pcnoordhuis at gmail dot com>
+ 2009-2011, Salvatore Sanfilippo <antirez at gmail dot com>
+License: BSD-3-clause
+
+Files: src/store/redis/hiredis/hiredis_ssl.h
+Copyright: 2019, Redis Labs
+License: BSD-3-clause
+
+Files: src/store/redis/hiredis/sds.c
+  src/store/redis/hiredis/sds.h
+  src/store/redis/hiredis/sdsalloc.h
+Copyright: 2015, Redis Labs, Inc
+ 2015, Oran Agra
+ 2006-2015, Salvatore Sanfilippo <antirez at gmail dot com>
+License: BSD-3-clause
+
+Files: src/store/redis/hiredis/sockcompat.c
+  src/store/redis/hiredis/sockcompat.h
+Copyright: 2019, Marcus Geelnard <m at bitsnbites dot eu>
+License: BSD-3-clause
+
+Files: src/store/redis/hiredis/ssl.c
+Copyright: 2019, Redis Labs
+ 2010, 2011, Pieter Noordhuis <pcnoordhuis at gmail dot com>
+ 2009-2011, Salvatore Sanfilippo <antirez at gmail dot com>
+License: BSD-3-clause
+
+Files: src/store/redis/redis_nginx_adapter.c
+Copyright: 2014, Wandenberg Peixoto
+License: Expat
+
+Files: src/store/redis/redis_nginx_adapter.h
+Copyright: 2015-2021, slact
+ 2014, Wandenberg Peixoto
+License: Expat
+
+Files: src/store/redis/redis_nodeset.c
+Copyright: 2010, Salvatore Sanfilippo
+ 2001-2010, Georges Menie
+License: BSD-3-clause
+
+Files: src/uthash.h
+Copyright: 2003-2017, Troy D. Hanson
+License: BSD-1-Clause
+
+Files: src/util/hdr_histogram.c
+  src/util/hdr_histogram.h
+Copyright: Rog�rio Carvalho Schneider <stockrt@gmail.com>
+ Alexander Lyalin
+ 2014, Wandenberg Peixoto
+ 2009-2016, Leo Ponomarev (slact)
+License: public-domain
+
+Files: src/util/nchan_accumulator.c
+Copyright: 2011-2017, Leo Ponomarev
+License: Expat
+
+Files: src/util/nchan_subrequest.c
+Copyright: 2009-2014, Yichun "agentzh" Zhang <agentzh@gmail.com>.
 License: BSD-2-clause
 
-Files: debian/modules/http-echo/*
-Copyright: Copyright (c) 2009-2014, Yichun "agentzh" Zhang <agentzh@gmail.com>
-License: BSD-2-clause
+Files: src/util/nchan_util.c
+Copyright: 2015, Alibaba Group Holding Limited
+License: Expat
 
-Files: debian/modules/http-lua/*
-Copyright: Copyright (C) 2009-2014, by Xiaozhe Wang (chaoslawful) <chaoslawful@gmail.com>.
-           Copyright (C) 2009-2014, by Yichun "agentzh" Zhang (章亦春) <agentzh@gmail.com>, CloudFlare Inc.
-License: BSD-2-clause
+Files: src/util/ngx_nchan_hacked_slab.c
+  src/util/ngx_nchan_hacked_slab.h
+Copyright: Nginx, Inc.
+ Igor Sysoev
+License: Expat
 
-Files: debian/modules/http-upstream-fair/*
-Copyright: Copyright (c) 2007 Grzegorz Nosek
-           Igor Sysoev
-License: BSD-2-clause
-
-Files: debian/modules/nchan/*
-Copyright: 2009-2016 Leo Ponomarev
-License: MIT
-
-Files: debian/modules/nchan/src/store/redis/cmp.*
-Copyright: 2015 Charles Gunyon
-License: MIT
-
-Files: debian/modules/http-uploadprogress/*
-Copyright: Brice Figureau
-           2002-2007, Igor Sysoev
-License: BSD-2-clause
-
-Files: debian/modules/http-cache-purge/*
-Copyright: 2009-2012, FRiCKLE <info@frickle.com>,
-           2009-2012, Piotr Sikora <piotr.sikora@frickle.com>
-License: BSD-2-clause
-
-Files: debian/modules/http-dav-ext/*
-Copyright: Arutyunyan Roman <arut@qip.ru>
-License: BSD-2-clause
-
-Files: debian/modules/http-fancyindex/*
-Copyright: Copyright (c) Adrian Perez <aperez@igalia.com>
-License: BSD-2-clause
-
-Files: debian/modules/http-subs-filter/*
-Copyright: Copyright (C) 2014 by Weibin Yao <yaoweibin@gmail.com>
-License: BSD-2-clause
-
-Files: debian/modules/rtmp/*
-Copyright: Copyright (C) 2012-2014, Roman Arutyunyan
-License: BSD-2-clause
+License: BSD-1-Clause
+ All rights reserved.
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+ PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+ OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 License: BSD-2-clause
  All rights reserved.
@@ -156,32 +223,7 @@ License: BSD-3-clause
  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-License: BSD-4-clause
- Redistribution and use in source and binary forms, with or without
- modification, are permitted provided that the following conditions
- are met:
- 1. Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
- 2. Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
- 4. Neither the name of the University nor the names of its contributors
-    may be used to endorse or promote products derived from this software
-    without specific prior written permission.
- .
- THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- SUCH DAMAGE.
-
-License: MIT
+License: Expat
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to
  deal in the Software without restriction, including without limitation the
@@ -199,3 +241,6 @@ License: MIT
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  IN THE SOFTWARE.
+
+License: public-domain
+  Public domain.

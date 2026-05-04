@@ -718,9 +718,10 @@ small-packet-probability 60
 Lossless headroom based on small packet probability is a Beta feature.
 {{%/notice%}}
 
-Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). On Spectrum-5 and earlier, the switch assumes a 100 percent probability of such packets arriving at line rate. On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
+Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). The switch assumes a 100 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
+<!--On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate.-->
 
-To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}. Based on the configured small packet probability, `switchd` calculates the headroom reservation required for the lossless priority group.
+To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with a {{<link url="#priority-flow-control-(pfc)" text="priority flow control profile">}}. Based on the configured small packet probability, `switchd` calculates the headroom reservation required for the lossless priority group.
 
 {{< tabs "TabID679 ">}}
 {{< tab "NVUE Commands ">}}
@@ -765,25 +766,26 @@ To show the PFC small packet probability setting for a profile, run the `nv show
 
 ```
 cumulus@switch:~$ nv show qos pfc default-global
-                   operational  applied  pending
------------------  -----------  -------  -------
-cable-length                             100
-small-packet-probability                 60     
-tx                                       enable 
-rx                                       enable 
-[switch-priority]                        3
+                          operational  applied
+------------------------  -----------  -------
+cable-length              100          100    
+small-packet-probability  40           40     
+tx                        enable       enable 
+rx                        enable       enable 
+[switch-priority]         3            3
 ```
 <!--
 To show the link pause small packet probability setting for a profile, run the `nv show qos link-pause <profile-id>` command. To show the link pause small packet probability setting for an interface, run the `nv show interface <interface-id> qos link-pause` command.
 
 ```
 cumulus@switch:~$ nv show qos link-pause default-global
-                          operational  applied  pending
-------------------------  -----------  -------  -------
-cable-length                                    100    
-small-packet-probability                        60     
-tx                                              enable 
-rx                                              enable
+                           operational  applied
+------------------------  -----------  -------
+cable-length              100          100    
+small-packet-probability  40           40     
+tx                        enable       enable 
+rx                        enable       enable 
+[switch-priority]         3            3
 ```
 -->
 ### PFC Watchdog
@@ -1020,16 +1022,22 @@ Dynamic ECN is a congestion marking mechanism optimized for high-performance tra
 To configure dynamic ECN, determine which traffic classes carry loss-sensitive or bursty traffic (such as RoCE on traffic class 3), determine the percentage of dynamic buffer allowance you want to trigger congestion marking, then set dynamic ECN:
 - Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`. 
 
-  When you set the dynamic ECN mode to `relative`, the switch hardware ignores existing byte thresholds and the ASIC immediately begins marking based on the dynamic buffer calculation: threshold = (alpha_quota * percent) / 100. When you set the dynamic ECN mode to `absolute`, the switch hardware ignores percentage thresholds and the ASIC reverts to marking based on static cell counts derived from the configured byte values.
+  Whenyou set dynamic ECN mode to `relative`, the switch hardware ignores any configured byte-based thresholds. The ASIC begins marking traffic based on percentage thresholds relative to the dynamically allocated buffer allowance of the traffic class, which is continuously recalculated based on current buffer usage and pool occupancy.
 
-- Configure the minumum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The switch marks packets when queue occupancy exceeds this percentage. The default value is 0.
+  When you set dynamic ECN mode to `absolute`, the switch hardware ignores percentage-based thresholds. The ASIC marks traffic using the configured absolute byte thresholds, which are treated as fixed limits.
+
+- Configure the minimum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The switch marks packets when queue occupancy exceeds this percentage. The default value is 0.
 - Configure the maximum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The value must be greater than or equal to the minumum threshold percent. The default value is 100.
 <!--
 {{%notice note%}}
 To maintain statistical integrity and prevent mixing `absolute` mark counts with `relative` mark counts in historical data, Cumulus Linux resets ECN counters for the affected traffic class to zero for any mode transition.
 {{%/notice%}}
 -->
-The following commands set dynamic ECN mode to `relative` for the default profile, configure the minumum ECN marking threshold to 20 percent and the maximum ECN marking threshold to 80 percent:
+The following commands set dynamic ECN mode to `relative` for the default profile, configure the minimum ECN marking threshold to 20 percent and the maximum ECN marking threshold to 80 percent.
+
+{{%notice note%}}
+You can set both absolute and relative mode in the same configuration when applied on different traffic classes.
+{{%/notice%}}
 
 {{< tabs "TabID936 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1041,7 +1049,7 @@ cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 3 m
 cumulus@switch:~$ nv config apply
 ```
 
-To disable dynamic ECN, set the mode to `absolute` with the `nv set qos congestion-control <profile> traffic-class 3 mode absolute` command. Reconfigure the {{<link title="#congestion-control-(ecn)" text="byte thresholds">}} if you do not want to use the default values.
+To disable dynamic ECN, set the mode to `absolute` with the `nv set qos congestion-control <profile> traffic-class <traffic-class> mode absolute` command. Reconfigure the {{<link title="#congestion-control-(ecn)" text="byte thresholds">}} if you do not want to use the default values.
 
 ```
 cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 3 mode absolute
@@ -1051,38 +1059,59 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Explicit Congestion Notification` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file to add relative mode, and the minimum and maximum threshold percentages.
+Edit the `Default ECN configuration` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file to add relative mode, and the minimum and maximum threshold percentages.
 
 ```
-default_ecn_red_conf.egress_queue_list = [4,5,7] 
-default_ecn_red_conf.ecn_enable = true 
-default_ecn_red_conf.red_enable = false 
-# Mode Setting 
-default_ecn_red_conf.mode = relative 
-# Byte Thresholds (Ignored/Zero) 
-default_ecn_red_conf.min_threshold_bytes = 0 
-default_ecn_red_conf.max_threshold_bytes = 0 
-# Percent Thresholds (Active) 
-default_ecn_red_conf.min_threshold_percent = 20 
-default_ecn_red_conf.max_threshold_percent = 80 
-default_ecn_red_conf.probability = 100
+# Default ECN configuration
+# Relative Mode (Dynamic) for TC [3]
+# ---------------------------------------------------------
+default_ecn_red_conf@1.egress_queue_list = [3]
+default_ecn_red_conf@1.ecn_enable = true
+default_ecn_red_conf@1.red_enable = true
+# Mode Setting
+default_ecn_red_conf@1.mode = relative
+# Byte Thresholds (Ignored/Zero)
+default_ecn_red_conf@1.min_threshold_bytes = 0
+default_ecn_red_conf@1.max_threshold_bytes = 0
+# Percent Thresholds (Active)
+default_ecn_red_conf@1.min_threshold_percent = 20
+default_ecn_red_conf@1.max_threshold_percent = 80
+default_ecn_red_conf@1.probability = 100
 ```
 
-To disable dynamic ECN, set the mode to `absolute`, and configure the `min_threshold_bytes` and `max_threshold_bytes` parameters.
+The following example sets relative mode for traffic class 3 and absolute mode for traffic class 4 and 5:
 
 ```
-default_ecn_red_conf.egress_queue_list = [4,5,7] 
-default_ecn_red_conf.ecn_enable = true 
-default_ecn_red_conf.red_enable = false 
-# Mode Setting 
-default_ecn_red_conf.mode = absolute 
-# Byte Thresholds (Active) 
-default_ecn_red_conf.min_threshold_bytes = 150000 
-default_ecn_red_conf.max_threshold_bytes = 1500000 
-# Percent Thresholds (Ignored/Zero) 
-default_ecn_red_conf.min_threshold_percent = 0 
-default_ecn_red_conf.max_threshold_percent = 0 
-default_ecn_red_conf.probability = 100
+#Default ECN configuration
+# Block 1: Relative Mode (Dynamic) for TC [3]
+# ---------------------------------------------------------
+default_ecn_red_conf@1.egress_queue_list = [3]
+default_ecn_red_conf@1.ecn_enable = true
+default_ecn_red_conf@1.red_enable = true
+# Mode Setting
+default_ecn_red_conf@1.mode = relative
+# Byte Thresholds (Ignored/Zero)
+default_ecn_red_conf@1.min_threshold_bytes = 0
+default_ecn_red_conf@1.max_threshold_bytes = 0
+# Percent Thresholds (Active)
+default_ecn_red_conf@1.min_threshold_percent = 20
+default_ecn_red_conf@1.max_threshold_percent = 80
+default_ecn_red_conf@1.probability = 100
+
+# Block 2: Absolute Mode (Legacy) for TC [4,5]
+# ---------------------------------------------------------
+default_ecn_red_conf@2.egress_queue_list = [4,5]
+default_ecn_red_conf@2.ecn_enable = true
+default_ecn_red_conf@2.red_enable = true
+# Mode Setting
+default_ecn_red_conf@2.mode = absolute
+# Byte Thresholds (Active)
+default_ecn_red_conf@2.min_threshold_bytes = 150000
+default_ecn_red_conf@2.max_threshold_bytes = 1500000
+# Percent Thresholds (Ignored/Zero)
+default_ecn_red_conf@2.min_threshold_percent = 0
+default_ecn_red_conf@2.max_threshold_percent = 0
+default_ecn_red_conf@2.probability = 100
 ```
 
 {{< /tab >}}
@@ -2007,32 +2036,29 @@ extra-threshold         9984         50000
 default-headroom        153600       153600 
 effective-max-headroom  163584
 ```
-### Lossless Headroom
+### Lossless Shared Headroom Pool
 
-The QoS subsystem supports multiple lossless priority groups that share a single buffer pool allowing different PFC-enabled switch priority values to map to distinct priority groups, each with independent buffer thresholds. For example, you can assign storage traffic (switch priority 3 and 4) to priority group 7 with more aggressive flow-control thresholds while application traffic (switch priority 5) can use priority group 6 with more conservative settings.
+Ports that have a lossless priority group enabled with priority flow control can share a single buffer pool allowing different PFC-enabled priority groups to have their own share of exclusive headroom.
 
-All lossless priority groups continue to share the same ingress and egress buffer pools. However, each priority groups maintains its own reserved buffers, xon and xoff thresholds, and descriptor buffer allocations. This design provides isolation and independent flow-control behavior while still making efficient use of shared buffer resources.
+QoS currently supports a single lossless priority group.
 
 You can configure the following headroom settings:
-- Required headroom per priority group in bytes. The switch converts this value to cells. 
-- Exclusive headroom per priority group in bytes. The switch converts this value to cells.
+- Required headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
+- Exclusive headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
 - Oversubscription ratio for the shared headroom pool. You can set a value between 1 and 256.
 
 {{%notice note%}}
-The required headroom must be more than exclusive headroom.
+Before you configure the lossless shared headroom pool, make sure you enable RoCE lossless with the `nv set qos roce` command.
 {{%/notice%}}
 
-The following example assigns switch priority 3 and 4 to priority group 3, configures the ingress lossless buffer service pool mapping to service-pool 1, and sets the required headroom for switch priority 3 and 4 to 1024, the exclusive headroom for switch priority 3 and 4 to 1010, and oversubscription ratio to 2. The example enables the shared headroom pool on swp10.
+The following example sets the required headroom to 21024, the exclusive headroom to 21010, and oversubscription ratio to 2. The example enables the shared headroom pool on swp10.
 
 {{< tabs "TabID1935 ">}}
 {{< tab "NVUE Commands ">}}
 
-
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group service7 switch-priority 3,4
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer priority-group service3 service-pool 1
-cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 1024 
-cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 1010
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 21024 
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 21010
 cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio 2
 cumulus@switch:~$ nv set interface swp10 qos shared-headroom-pool enable
 cumulus@switch:~$ nv config apply
@@ -2049,12 +2075,28 @@ cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
 # Shared headroom pool configuration
 shared_headroom_pool.port_list = [swp10]
 shp.pg.oversubscription_ratio = 2
-shp.pg.exclusive_headroom = 1024
-shp.pg.required_headroom = 1028
+shp.pg.exclusive_headroom = 21010
+shp.pg.required_headroom = 21024
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show shared headroom information for an interface, run the `nv show interface <interface-id> qos buffer shared-headroom-pool` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 qos buffer shared-headroom-pool
+                  operational
+----------------  -----------
+pool-id           41         
+shared-pool-size  49.22 KB   
+port-shp-size     2.81 KB    
+max-pool-loan     49.22 KB   
+xoff              18.98 KB   
+xon               18.98 KB
+```
+
+`max-pool-loan`is the shared headroom buffer for the pool. `max-pool-loan` together with the exclusive headroom buffer becomes the required headroom for a PFC-enabled priority group for a port.
 
 ### Ingress and Egress Management Buffers
 

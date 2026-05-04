@@ -1,12 +1,12 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://pagure.io/libaio.git
 Upstream-Name: libaio
 Upstream-Contact: Jeff Moyer <jmoyer@redhat.com>
-Source: https://pagure.io/libaio.git
 
 Files: *
 Copyright:
- Copyright Â© 2002-2003 Benjamin LaHaise <bcrl@redhat.com>
- Copyright Â© 2003-2006, 2008-2009, 2013, 2018 Jeff Moyer <jmoyer@redhat.com>
+ Copyright © 2002-2003 Benjamin LaHaise <bcrl@redhat.com>
+ Copyright © 2003-2022 Jeff Moyer <jmoyer@redhat.com>
 License: LGPL-2.1+
  This library is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public

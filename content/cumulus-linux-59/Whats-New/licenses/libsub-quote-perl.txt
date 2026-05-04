@@ -4,7 +4,7 @@ Upstream-Contact: mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>
 Upstream-Name: Sub-Quote
 
 Files: *
-Copyright: 2010-2016, mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>
+Copyright: 2010-2023, mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>
  2010-2016, frew - Arthur Axel "fREW" Schmidt (cpan:FREW) <frioux@gmail.com>
  2010-2016, ribasushi - Peter Rabbitson (cpan:RIBASUSHI) <ribasushi@cpan.org>
  2010-2016, Mithaldu - Christian Walde (cpan:MITHALDU) <walde.christian@googlemail.com>
@@ -12,7 +12,7 @@ Copyright: 2010-2016, mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>
  2010-2016, haarg - Graham Knop (cpan:HAARG) <haarg@cpan.org>
  2010-2016, bluefeet - Aran Deltac (cpan:BLUEFEET) <bluefeet@gmail.com>
  2010-2016, ether - Karen Etheridge (cpan:ETHER) <ether@cpan.org>
- 2010-2016, dolmen - Olivier MenguÃ© (cpan:DOLMEN) <dolmen@cpan.org>
+ 2010-2016, dolmen - Olivier Mengué (cpan:DOLMEN) <dolmen@cpan.org>
  2010-2016, alexbio - Alessandro Ghedini (cpan:ALEXBIO) <alexbio@cpan.org>
  2010-2016, getty - Torsten Raudssus (cpan:GETTY) <torsten@raudss.us>
  2010-2016, arcanez - Justin Hunter (cpan:ARCANEZ) <justin.d.hunter@gmail.com>
@@ -20,7 +20,7 @@ Copyright: 2010-2016, mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>
 License: Artistic or GPL-1+
 
 Files: debian/*
-Copyright: 2016-2018, gregor herrmann <gregoa@debian.org>
+Copyright: 2016-2023, gregor herrmann <gregoa@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic

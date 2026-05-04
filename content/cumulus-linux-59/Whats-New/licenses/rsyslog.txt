@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: rsyslog
-Source: http://www.rsyslog.com
+Source: https://www.rsyslog.com
 
 Files: *
 Copyright: 2003-2012  Rainer Gerhards and Adiscon GmbH
@@ -13,12 +13,6 @@ License: LGPL-3.0+ and Apache-2.0
 Files: runtime/hashtable*
 Copyright: 2002, 2004  Christopher Clark
 License: BSD-3-clause
-
-Files: plugins/imklog/ksym*
-Copyright: 1995, 1996  Dr. G.W. Wettstein <greg@wind.rmcc.com>
-           1996  Enjellic Systems Development
-           1998-2007  Martin Schulze <joey@infodrom.org>
-License: GPL-3.0+
 
 Files: debian/*
 Copyright: 2007-2012  Michael Biebl <biebl@debian.org>

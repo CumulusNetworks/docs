@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Contact: bug-gawk@gnu.org
 Source: http://ftp.gnu.org/gnu/gawk/
-Files-Excluded: doc/*.texi doc/*.info doc/gawktexi.in
+Files-Excluded: doc/*.texi doc/*/*.texi doc/*.info doc/*/*.info doc/gawktexi.in
 
 Files: *
 Copyright: 1986-2014, Free Software Foundation, Inc.

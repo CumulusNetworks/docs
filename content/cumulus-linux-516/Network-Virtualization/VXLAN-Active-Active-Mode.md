@@ -2200,7 +2200,6 @@ exit-address-family
 {{< /tabs >}}
 
 {{< /tab >}}
-
 {{< /tabs >}}
 
 For a full EVPN symmetric active-active configuration example, see {{<link url="Configuration-Examples#evpn-symmetric-routing" >}}.

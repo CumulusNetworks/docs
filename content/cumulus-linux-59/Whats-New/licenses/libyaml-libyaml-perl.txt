@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: YAML-LibYAML
-Upstream-Contact: Ingy dÃ¶t Net <ingy@cpan.org>
+Upstream-Contact: Ingy döt Net <ingy@cpan.org>
 Source: https://metacpan.org/release/YAML-LibYAML
 Files-Excluded:
  LibYAML/api.c
@@ -16,11 +16,11 @@ Files-Excluded:
  LibYAML/yaml_private.h
 
 Files: *
-Copyright: 2007-2018, Ingy dÃ¶t Net <ingy@cpan.org>
+Copyright: 2007-2023, Ingy döt Net <ingy@cpan.org>
 License: Artistic or GPL-1+
 
 Files: inc/Spiffy.pm
-Copyright: 2006, Ingy dÃ¶t Net <ingy@cpan.org>
+Copyright: 2006, Ingy döt Net <ingy@cpan.org>
  2004, Brian Ingerson <ingy@cpan.org>
 License: Artistic or GPL-1+
 
@@ -37,9 +37,9 @@ License: Artistic or GPL-1+
 Files: debian/*
 Copyright: 2009, Ryan Niebur <ryan@debian.org>
  2010, Jonathan Yu <jawnsy@cpan.org>
- 2010, Krzysztof KrzyÅ¼aniak (eloy) <eloy@debian.org>
- 2011-2019, gregor herrmann <gregoa@debian.org>
- 2012, JuliÃ¡n Moreno PatiÃ±o <darkjunix@gmail.com>
+ 2010, Krzysztof Krzy?aniak (eloy) <eloy@debian.org>
+ 2011-2023, gregor herrmann <gregoa@debian.org>
+ 2012, Julián Moreno Patiño <darkjunix@gmail.com>
 License: Artistic or GPL-1+
 
 License: Artistic

@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: MTR
 Upstream-Contact: Roger Wolff <R.E.Wolff@BitWizard.nl>
 Source: http://www.bitwizard.nl/mtr/

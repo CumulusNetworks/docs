@@ -7,7 +7,7 @@ Copyright: Copyright (c) 2009, Jay Loden, Dave Daeschler, Giampaolo Rodola
 License: BSD-3-clause
 
 Files: debian/*
-Copyright: Copyright (C) 2009-2019 Sandro Tosi <morph@debian.org>
+Copyright: Copyright (C) 2009-2022 Sandro Tosi <morph@debian.org>
 License: BSD-3-clause
 
 License: BSD-3-clause

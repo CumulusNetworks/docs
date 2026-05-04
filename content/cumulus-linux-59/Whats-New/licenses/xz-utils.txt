@@ -85,7 +85,7 @@ Copyright: 2006-2018, Lasse Collin
            2000, Wei Dai
            2003, Kevin Springle
            2009, Jonathan Nieder
-           2010, Anders F BjÃ¶rklund
+           2010, Anders F Björklund
 License: PD
  This file has been put in the public domain.
  You can do whatever you want with this file.
@@ -120,9 +120,9 @@ License: probably-PD
  See the note on AUTHORS, README, and so on above.
 
 Files: src/scripts/* lib/* extra/scanlzma/scanlzma.c
-Copyright: Â© 1993, Jean-loup Gailly
-           Â© 1989-1994, 1996-1999, 2001-2007, Free Software Foundation, Inc.
-           Â© 2006 Timo Lindfors
+Copyright: © 1993, Jean-loup Gailly
+           © 1989-1994, 1996-1999, 2001-2007, Free Software Foundation, Inc.
+           © 2006 Timo Lindfors
            2005, Charles Levert
            2005, 2009, Lasse Collin
            2009, Andrew Dudman
@@ -142,27 +142,27 @@ License: PD
  Not copyrighted -- provided to the public domain.
 
 Files: lib/getopt.c lib/getopt1.c lib/getopt.in.h
-Copyright: Â© 1987-2007 Free Software Foundation, Inc.
+Copyright: © 1987-2007 Free Software Foundation, Inc.
 Other-Authors: Ulrich Drepper
 License: LGPL-2.1+
 
 Files: m4/getopt.m4 m4/posix-shell.m4
-Copyright: Â© 2002-2006, 2008 Free Software Foundation, Inc.
-           Â© 2007-2008 Free Software Foundation, Inc.
+Copyright: © 2002-2006, 2008 Free Software Foundation, Inc.
+           © 2007-2008 Free Software Foundation, Inc.
 Other-Authors: Bruno Haible, Paul Eggert
 License: permissive-fsf
 
 Files: m4/acx_pthread.m4
-Copyright: Â© 2008, Steven G. Johnson <stevenj@alum.mit.edu>
+Copyright: © 2008, Steven G. Johnson <stevenj@alum.mit.edu>
 License: Autoconf
 
 files: m4/ax_check_capsicum.m4
-Copyright: Â© 2014, Google Inc.
-           Â© 2015, Lasse Collin <lasse.collin@tukaani.org>
+Copyright: © 2014, Google Inc.
+           © 2015, Lasse Collin <lasse.collin@tukaani.org>
 License: permissive-nowarranty
 
 Files: Doxyfile.in
-Copyright: Â© 1997-2007 by Dimitri van Heesch
+Copyright: © 1997-2007 by Dimitri van Heesch
 Origin: Doxygen 1.4.7
 License: GPL-2
 
@@ -202,7 +202,7 @@ Comment:
  and thus don't contain any copyrighted code.
 
 Files: po/cs.po po/de.po po/fr.po
-Copyright: 2010, Marek ÄŒernockÃ½
+Copyright: 2010, Marek ?ernocký
            2010, Andre Noll
            2011, Adrien Nader
 License: PD
@@ -217,12 +217,12 @@ License: PD
  This file is in the public domain
 
 Files: INSTALL.generic
-Copyright: Â© 1994, 1995, 1996, 1999, 2000, 2001, 2002, 2004, 2005,
+Copyright: © 1994, 1995, 1996, 1999, 2000, 2001, 2002, 2004, 2005,
              2006, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
 License: permissive-nowarranty
 
 Files: dos/config.h
-Copyright: Â© 1992, 1993, 1994, 1999, 2000, 2001, 2002, 2005
+Copyright: © 1992, 1993, 1994, 1999, 2000, 2001, 2002, 2005
              Free Software Foundation, Inc.
            2007-2010, Lasse Collin
 Other-Authors: Roland McGrath, Akim Demaille, Paul Eggert,
@@ -263,28 +263,28 @@ License: config-h
   # that constitutes the Autoconf program.
  .
  On Debian systems, the complete text of the GNU General Public
- License version 2 can be found in â€˜/usr/share/common-licenses/GPL-2â€™.
+ License version 2 can be found in ?/usr/share/common-licenses/GPL-2?.
  dos/config.h was generated with autoheader, which tells Autoconf to
  output a script to generate a config.h file and then runs it.
 
 Files: po/Makevars
 Origin: gettext-runtime/po/Makevars (gettext-0.12)
-Copyright: Â© 2003 Free Software Foundation, Inc.
+Copyright: © 2003 Free Software Foundation, Inc.
 Authors: Bruno Haible
 License: LGPL-2.1+
  The gettext-runtime package is under the LGPL, see files intl/COPYING.LIB-2.0
  and intl/COPYING.LIB-2.1.
  .
  On Debian systems, the complete text of intl/COPYING.LIB-2.0 from
- gettext-runtime 0.12 can be found in â€˜/usr/share/common-licenses/LGPL-2â€™
+ gettext-runtime 0.12 can be found in ?/usr/share/common-licenses/LGPL-2?
  and the text of intl/COPYING.LIB-2.1 can be found in
- â€˜/usr/share/common-licenses/LGPL-2.1â€™.
+ ?/usr/share/common-licenses/LGPL-2.1?.
  .
  po/Makevars consists mostly of helpful comments and does not contain a
  copyright and license notice.
 
 Files: COPYING.GPLv2 COPYING.GPLv3 COPYING.LGPLv2.1
-Copyright: Â© 1989, 1991, 1999, 2007 Free Software Foundation, Inc.
+Copyright: © 1989, 1991, 1999, 2007 Free Software Foundation, Inc.
 License: noderivs
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
@@ -311,7 +311,7 @@ License: LGPL-2.1+
  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  .
  On Debian systems, the complete text of the GNU Lesser General Public
- License version 2.1 can be found in â€˜/usr/share/common-licenses/LGPL-2.1â€™.
+ License version 2.1 can be found in ?/usr/share/common-licenses/LGPL-2.1?.
 
 License: GPL-2
  Permission to use, copy, modify, and distribute this software and its
@@ -326,7 +326,7 @@ License: GPL-2
  .
  On Debian systems, the complete text of the version of the GNU General
  Public License distributed with Doxygen can be found in
- â€˜/usr/share/common-licenses/GPL-2â€™.
+ ?/usr/share/common-licenses/GPL-2?.
 
 License: GPL-2+
  This program is free software; you can redistribute it and/or modify
@@ -344,7 +344,7 @@ License: GPL-2+
  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  .
  On Debian systems, the complete text of the GNU General Public License
- version 2 can be found in â€˜/usr/share/common-licenses/GPL-2â€™.
+ version 2 can be found in ?/usr/share/common-licenses/GPL-2?.
 
 License: Autoconf
  This program is free software: you can redistribute it and/or modify it
@@ -374,7 +374,7 @@ License: Autoconf
  exception to the GPL to apply to your modified version as well.
  .
  On Debian systems, the complete text of the GNU General Public
- License version 3 can be found in â€˜/usr/share/common-licenses/GPL-3â€™.
+ License version 3 can be found in ?/usr/share/common-licenses/GPL-3?.
 
 License: permissive-fsf
  This file is free software; the Free Software Foundation

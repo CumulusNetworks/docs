@@ -3,130 +3,111 @@ Upstream-Name: lttng-modules
 Source: https://lttng.org
 
 Files: *
-Copyright: 2005-2016 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-License: LGPL-2.1
-
-Files: ChangeLog
-  CodingStyle
-  Kconfig
-  Makefile
-  TODO
-  abi-debian-version.sh
-  abi-rhel-version.sh
-  built-in.sh
-  rt-patch-version.sh
-Copyright: 2005-2015 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+Copyright: 2005-2019 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
 Files: debian/*
-Copyright: 2011-2016 Michael Jeanson <mjeanson@ubuntu.com>
-           2011 StÃ©phane Graber <stephane.graber@canonical.com>
+Copyright: 2011-2019 Michael Jeanson <mjeanson@debian.org>
+           2011 Stéphane Graber <stephane.graber@canonical.com>
            2012-2016 Jon Bernard <jbernard@debian.org>
 License: GPL-2
 
-Files: filter-bytecode.h
+Files: include/lttng/bytecode.h
 Copyright: 2012 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
-Files: instrumentation/*
+Files: include/instrumentation/*
 Copyright: 2005-2015 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
-Files: instrumentation/syscalls/lttng-syscalls-extractor/lttng-syscalls-extractor.c
+Files: include/instrumentation/syscalls/lttng-syscalls-extractor/lttng-syscalls-extractor.c
 Copyright: 2011 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
            2011 Julien Desfossez <julien.desfossez@polymtl.ca>
 License: GPL-2+
 
-Files: lib/Kbuild
+Files: src/lib/Kbuild
 Copyright: 2005-2015 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
-Files: lib/bitfield.h
+Files: include/lttng/bitfield.h
 Copyright: 2010 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: Expat
 
-Files: lib/prio_heap/*
+Files: src/lib/prio_heap/*
 Copyright: 2011 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: Expat
 
-Files: lib/ringbuffer/ring_buffer_mmap.c
+Files: src/lib/ringbuffer/ring_buffer_mmap.c
 Copyright: 2008-2012 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
            2002-2005 Tom Zanussi <zanussi@us.ibm.com>, IBM Corp
            1999-2005 Karim Yaghmour <karim@opersys.com>
 License: GPL-2
 
-Files: lib/ringbuffer/ring_buffer_splice.c
+Files: src/lib/ringbuffer/ring_buffer_splice.c
 Copyright: 2008-2012 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
            2002-2005 Tom Zanussi <zanussi@us.ibm.com>, IBM Corp
            1999-2005 Karim Yaghmour <karim@opersys.com>
 License: LGPL-2.1
 
-Files: lttng-statedump-impl.c
+Files: src/lttng-statedump-impl.c
 Copyright: 2006-2012 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
            2005 Jean-Hugues Deschenes <jean-hugues.deschenes@polymtl.ca>
 License: LGPL-2.1
 
-Files: probes/*
+Files: src/probes/*
 Copyright: 2012, 2013, Mentor Graphics Corp
            2010-2012 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
-Files: probes/define_trace.h
-  probes/lttng-tracepoint-event-impl.h
+Files: include/lttng/define_trace.h
+  include/lttng/tracepoint-event-impl.h
 Copyright: 2009-2014 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
            2009 Steven Rostedt <rostedt@goodmis.org>
 License: LGPL-2.1
 
-Files: probes/lttng-events-nowrite.h
-  probes/lttng-events-reset.h
-  probes/lttng-events-write.h
-  probes/lttng-ftrace.c
-  probes/lttng-kprobes.c
-  probes/lttng-kretprobes.c
-  probes/lttng-probe-block.c
-  probes/lttng-probe-irq.c
-  probes/lttng-probe-kvm-x86-mmu.c
-  probes/lttng-probe-kvm-x86.c
-  probes/lttng-probe-kvm.c
-  probes/lttng-probe-sched.c
-  probes/lttng-probe-signal.c
-  probes/lttng-probe-statedump.c
-  probes/lttng-probe-timer.c
-  probes/lttng-probe-user.c
-  probes/lttng-probe-user.h
-  probes/lttng-probe-x86-exceptions.c
-  probes/lttng-probe-x86-irq-vectors.c
-  probes/lttng-tracepoint-event.h
-  probes/lttng-types.h
-  probes/lttng.c
-  probes/lttng.h
+Files: include/lttng/events-nowrite.h
+  include/lttng/events-reset.h
+  include/lttng/events-write.h
+  src/probes/lttng-kprobes.c
+  src/probes/lttng-kretprobes.c
+  src/probes/lttng-probe-block.c
+  src/probes/lttng-probe-irq.c
+  src/probes/lttng-probe-kvm-x86-mmu.c
+  src/probes/lttng-probe-kvm-x86.c
+  src/probes/lttng-probe-kvm.c
+  src/probes/lttng-probe-sched.c
+  src/probes/lttng-probe-signal.c
+  src/probes/lttng-probe-statedump.c
+  src/probes/lttng-probe-timer.c
+  src/probes/lttng-probe-user.c
+  include/lttng/probe-user.h
+  src/probes/lttng-probe-x86-exceptions.c
+  src/probes/lttng-probe-x86-irq-vectors.c
+  include/lttng/tracepoint-event.h
+  include/lttng/types.h
+  src/probes/lttng.c
 Copyright: 2005-2016 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
-Files: tests/Kbuild
+Files: src/tests/Kbuild
 Copyright: 2005-2015 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
-Files: wrapper/kallsyms.h
+Files: include/wrapper/kallsyms.h
 Copyright: 2011 Avik Sil (avik.sil@linaro.org)
            2011-2012 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
-Files: wrapper/kref.h
-  wrapper/list.h
+Files: include/wrapper/kref.h
+  include/wrapper/list.h
 Copyright: 2015-2016 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: GPL-2
 
-Files: wrapper/kstrtox.h
-  wrapper/vzalloc.h
-Copyright: 2015 Michael Jeanson <mjeanson@efficios.com>
-License: LGPL-2.1
-
-Files: wrapper/ringbuffer/*
+Files: include/ringbuffer/*
 Copyright: 2005-2015 Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
-Files: wrapper/writeback.h
+Files: include/wrapper/writeback.h
 Copyright: 2013, Mentor Graphics Corp
 License: LGPL-2.1
 

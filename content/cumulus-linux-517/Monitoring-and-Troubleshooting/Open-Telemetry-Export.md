@@ -830,9 +830,9 @@ cumulus@switch:~$ nv config apply
 Granular metric selection is a Beta feature.
 {{%/notice%}}
 
-To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a statistics group or destination at varied collection frequencies.
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
 
-To configure granular metric selection, configure a group with the metrics you want to collect, then apply the group by either including or excluding the group.
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
 
 {{%notice note%}}
 The statistics category must be enabled. For example, to configure specific control plane metrics, you must enable the control plane statistics group with the `nv set system telemetry control-plane-stats export state enabled` command. Refer to {{<link url="#configure-open-telemetry" text="Configure Open Telemetry">}}.
@@ -849,7 +849,7 @@ cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric no
 cumulus@switch:~$ nv config apply
 ```
 
-To apply the metric collection, run the `nv set system telemetry include-list` command or the `nv set system telemetry exclude-list` command.
+To apply the metric list globally to all destinations, run the `nv set system telemetry include-list` command or the `nv set system telemetry exclude-list` command.
 
 The following example includes the metrics in the PLATFORM_METRICS metric group in the collection:
 
@@ -858,7 +858,7 @@ cumulus@switch:~$ nv set system telemetry include-list PLATFORM_METRICS
 cumulus@switch:~$ nv config apply
 ```
 
-You can apply the metric collection to a statistics group (`stats-group`). The following example includes the metrics in the PLATFORM_METRICS metric group in the statistics group STAT-GROUP3:
+You can also apply the metric list to a statistics group (`stats-group`) to get granular control for a destination. The following example includes the metrics in the PLATFORM_METRICS metric list in the statistics group STAT-GROUP3:
 
 ```
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 include-list PLATFORM_METRICS
@@ -888,7 +888,7 @@ otlp
 
 To show the OTLP gRPC destination configuration, run the `nv show system telemetry export otlp grpc destination` command.
 
-To show the configured metric list groups, run the `nv show system telemetry metric-list` command. To show information about a specific metric list group, run the `nv show system telemetry metric-list <metric-list-id>` command.
+To show the configured metric lists, run the `nv show system telemetry metric-list` command. To show information about a specific metric list, run the `nv show system telemetry metric-list <metric-list-id>` command.
 
 ```
 cumulus@switch:~$ nv show system telemetry metric-list
@@ -1004,9 +1004,9 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 | `nvswitch_dot1x_ipv6_profile_summary` | IPv6 prefix generated for each layer 3 authenticated session that is using an IPv6 profile. |
 | `nvswitch_dot1x_reauth_timeouts` | Counter of reauthentication attempts with the RADIUS server that timed out but were ignored, keeping the supplicant in Authorized state when the `reauth-timeout-ignore` flag is enabled. |
 | `nvswitch_dot1x_supplicant_dynamic_vrf` | Displays the VRF when an interface is dynamically associated to a VRF if the dynamic VRF assignment feature is enabled.|
-| `nvswitch_dot1x_interface_eapol_counters` | *|
-| `nvswitch_dot1x_tx_identity_request_info` | *|
-| `nvswitch_dot1x_interface_info`| *|
+| `nvswitch_dot1x_tx_identity_request_info` | *Multicast EAPOL identity request information.|
+| `nvswitch_dot1x_interface_eapol_counters` | *Unsolicited Request/Identity TX counters.|
+| `nvswitch_dot1x_tx-identity-request_interface_info`| *Replaces `nvswitch_dot1x_interface_info`.|
 
 {{< expand "Example JSON data for 802.1X:" >}}
 ```
@@ -1865,12 +1865,10 @@ The interface statistic data samples that the switch exports to the OTEL collect
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_interface_link_debounce_ignored_up_events` | * UP events suppressed because debounce timer had not yet expired (transient UP spikes filtered). This metric indicates Noise or short UP spikes being filtered.  |
-| `nvswitch_interface_link_debounce_ignored_down_events`| * DOWN events suppressed because debounce timer had not yet expired (transient link loss filtered). This metric indicates short interruptions being filtered. |
-| `nvswitch_interface_link_debounce_received_up_events` | *UP events accepted and propagated after debounce delay (stable link recovery). This metric indicates stable link recovery events.  |
-| `nvswitch_interface_link_debounce_received_down_events` | *DOWN events accepted and propagated after debounce delay (sustained link failure). This metric indicates sustained link failure events.  |
-| `nvswitch_interface_link_debounce_timer_cancellations` | *Timer aborted because link state reverted before timer expired (quick reversal). This metric indicates Link flapping or oscillation. |
-| `nvswitch_interface_link_debounce_timer_expirations` | *Timer completed successfully, event sent after debounce delay (stable state change). This metric indicates Valid and stable state changes.  |
+| `nvswitch_interface_link_debounce_ignored_events[event][interface]` | * UP: Events suppressed because debounce timer had not yet expired (transient UP spikes filtered). This metric indicates Noise or short UP spikes being filtered.<br>DOWN: Events suppressed because debounce timer had not yet expired (transient link loss filtered). This metric indicates short interruptions being filtered.  |
+| `nvswitch_interface_link_debounce_received_events[event][interface]` | *UP: Events accepted and propagated after debounce delay (stable link recovery). This metric indicates stable link recovery events.<br>DOWN: Events accepted and propagated after debounce delay (sustained link failure). This metric indicates sustained link failure events.  |
+| `nvswitch_interface_link_debounce_timer_cancellations[interface]` | *Timer aborted because link state reverted before timer expired (quick reversal). This metric indicates Link flapping or oscillation. |
+| `nvswitch_interface_link_debounce_timer_expirations[interface]` | *Timer completed successfully, event sent after debounce delay (stable state change). This metric indicates Valid and stable state changes.  |
 
 {{< /tab >}}
 {{< tab "Traffic Class ">}}

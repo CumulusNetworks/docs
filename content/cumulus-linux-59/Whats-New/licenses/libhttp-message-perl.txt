@@ -4,12 +4,12 @@ Source: https://metacpan.org/release/HTTP-Message
 Upstream-Contact: Karen Etheridge <ether@cpan.org>
 
 Files: *
-Copyright: 1994-2017, Gisle Aas <gisle@activestate.com>
+Copyright: 1994, Gisle Aas <gisle@activestate.com>
 License: Artistic or GPL-1+
 
 Files: debian/*
 Copyright: 2011, Nicholas Bamber <nicholas@periapt.co.uk>
- 2013-2017, Xavier Guimard <x.guimard@free.fr>
+ 2013-2017, Xavier Guimard <yadd@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic

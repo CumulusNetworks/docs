@@ -34,7 +34,7 @@ wget --quiet \
 
 ## Apply Filters
 
-The REST API supports filtering based on health, inventory, and time ranges. To use these filters, append the filter parameter to the endpoint, for example `kpis?filter=HEALTH`. Refer to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="Swagger API">}} for a complete list of available filters.
+The REST API supports filtering based on health, inventory, and time ranges. To use these filters, append the filter parameter to the endpoint, for example `kpis?filter=HEALTH`. Refer to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-520/" text="Swagger API">}} for a complete list of available filters.
 
 {{< expand "Example with filtering" >}}
 

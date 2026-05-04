@@ -26,7 +26,7 @@ The network includes three servers and two Cumulus Linux switches. The switches 
 The switches implement the layer 2 network interconnecting the servers and the redundant switches. To configure the switches, add a bridge with the following interfaces to each switch:
 
 - One bond interface or switch port interface to each server. For networks using MLAG, use bond interfaces. Otherwise, use switch port interfaces.
-- One or more interfaces to each peer switch. To accommodate higher bandwidth between the switches and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have a unique IP address for both the physical and virtual interface; the switch uses the unique address when it initiates an ARP request.
+- One or more interfaces to each peer switch. To accommodate higher bandwidth between the switches and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. In an MLAG and VRR configuration, the physical IP address on a VLAN interface is unique for each device within an MLAG pair. The VRR IP address and MAC address are the same across all MLAG pairs, acting as the anycast gateway for hosts.
 
 {{%notice note%}}
 Cumulus Linux only supports VRR on an <span class="a-tooltip">[SVI](## "Switched Virtual Interface")</span>. You cannot configure VRR on a physical interface or virtual subinterface.
@@ -946,25 +946,6 @@ iface bond1.30
 
 {{< /tab >}}
 {{< /tabs >}}
-
-{{< /tab >}}
-{{< tab "Try It " >}}
-    {{< simulation name="Try It CL514 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
-
-The simulation is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
-
-To validate the configuration, run the `nv show interface <vlan> ip vrr` command:
-
-```
-cumulus@leaf02:mgmt:~$ nv show interface vlan10 ip vrr
-             operational        applied            description
------------  -----------------  -----------------  ------------------------------------------------------
-enable                          on                 Turn the feature 'on' or 'off'.  The default is 'off'.
-mac-address  00:00:5e:00:01:00  00:00:5e:00:01:00  Override anycast-mac
-mac-id                          none               Override anycast-id
-[address]    10.1.10.1/24       10.1.10.1/24       Virtual addresses with prefixes
-state        up                 up                 The state of the interface
-```
 
 {{< /tab >}}
 {{< /tabs >}}

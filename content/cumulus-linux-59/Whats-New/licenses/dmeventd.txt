@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: lvm2
-Source: https://sourceware.org/lvm2/
+Source: https://sourceware.org/pub/lvm2/
 
 Files: *
 Copyright:

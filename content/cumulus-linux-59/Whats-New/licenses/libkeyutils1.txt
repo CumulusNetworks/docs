@@ -14,7 +14,7 @@ License: LGPL-2+
 Files: debian/*
 Copyright: 2006-2013, Daniel Baumann <mail@daniel-baumann.ch>
            2013, Luk Claes <luk@debian.org>
-	   2014-2019, Christian Kastner <ckk@debian.org>
+	   2014-2022, Christian Kastner <ckk@debian.org>
 License: LGPL-2+
 
 License: GPL-2+

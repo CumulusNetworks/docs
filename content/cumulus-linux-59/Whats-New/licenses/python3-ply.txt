@@ -11,7 +11,7 @@ Files: debian/*
 Copyright:
  2006-2016, Arnaud Fontaine <arnau@debian.org>
  2018, Stefano Rivera <stefanor@debian.org>
- 2018, JCF Ploemen <linux@jcf.pm>
+ 2018, 2021 Jeroen Ploemen <jcfp@debian.org>
 License: BSD-3-clause
 
 License: BSD-3-clause

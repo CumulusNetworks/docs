@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Das U-Boot
-Source: ftp://ftp.denx.de/pub/u-boot/
+Source: https://www.denx.de/wiki/U-Boot
 Files-Excluded:
   drivers/dma/MCD_tasks.c
 
@@ -115,18 +115,8 @@ Files:
  drivers/gpio/tca642x.c
  include/splash.h
  include/linux/libfdt.h
- include/configs/controlcenterd.h
  include/configs/mxs.h
- include/configs/T1040QDS.h
  include/tca642x.h
- board/gdsys/p1022/tlb.c
- board/gdsys/p1022/sdhc_boot.c
- board/gdsys/p1022/ddr.c
- board/gdsys/p1022/controlcenterd-id.c
- board/gdsys/p1022/diu.c
- board/gdsys/p1022/controlcenterd-id.h
- board/gdsys/p1022/controlcenterd.c
- board/gdsys/p1022/law.c
  board/gdsys/common/dp501.h
  common/splash.c
  fs/jffs2/compr_lzo.c
@@ -159,7 +149,7 @@ Copyright: Clint Adams <clint@debian.org>
  Marc Singer <elf@debian.org>
  Per Andersson <avtobiff@gmail.com>
  Vagrant Cascadian <vagrant@debian.org>
- LoÃ¯c Minier <lool@debian.org>
+ Loïc Minier <lool@debian.org>
  Adam Borowski <kilobyte@angband.pl>
 License: GPL-2+
 
@@ -232,36 +222,6 @@ Files: scripts/dtc/libfdt/*
 Copyright: 2006 David Gibson, IBM Corporation
  2012 Kim Phillips, Freescale Semiconductor
 License: libfdt-BSD-GPL
-
-Files: include/pcmcia/yenta.h
-Copyright: 1999 David A. Hinds. All Rights Reserved
-License: MPL-GPL
-
-License: MPL-GPL
- * The contents of this file are subject to the Mozilla Public License
- * Version 1.1 (the "License"); you may not use this file except in
- * compliance with the License. You may obtain a copy of the License
- * at http://www.mozilla.org/MPL/
- *
- * Software distributed under the License is distributed on an "AS IS"
- * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See
- * the License for the specific language governing rights and
- * limitations under the License.
- *
- * The initial developer of the original code is David A. Hinds
- * <dahinds@users.sourceforge.net>.  Portions created by David A. Hinds
- * are Copyright (C) 1999 David A. Hinds.  All Rights Reserved.
- *
- * Alternatively, the contents of this file may be used under the
- * terms of the GNU General Public License version 2 (the "GPL"), in
- * which case the provisions of the GPL are applicable instead of the
- * above.  If you wish to allow the use of your version of this file
- * only under the terms of the GPL and not to allow others to use
- * your version of this file under the MPL, indicate your decision by
- * deleting the provisions above and replace them with the notice and
- * other provisions required by the GPL.  If you do not delete the
- * provisions above, a recipient may use your version of this file
- * under either the MPL or the GPL.
 
 License: libfdt-BSD-GPL
  * libfdt is dual licensed: you can use it either under the terms of

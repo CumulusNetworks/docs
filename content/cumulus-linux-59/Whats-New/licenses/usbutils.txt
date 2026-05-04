@@ -1,18 +1,43 @@
 This package was debianized by Christopher L Cheney <ccheney@debian.org> on
 Wed, 13 Jun 2001 11:20:06 -0500.
 
-It was downloaded from https://www.kernel.org/pub/software/utils/i2c-tools/
+It was downloaded from https://www.kernel.org/pub/linux/utils/usb/usbutils/
 
 Upstream Authors:
-  Thomas Sailer <sailer@ife.ee.ethz.ch>
-  Johannes Erdfelt <johannes@sventech.com>
-  Greg Kroah-Hartman <greg@kroah.com>
+  Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Copyright:
-  Copyright (C) 1999-2001, 2003 Thomas Sailer
+  Copyright 2011 (c) Greg Kroah-Hartman <gregkh@suse.de>
+  Copyright 2016 Stephan Linz <linz@li-pro.net>
+  Copyright (C) 1999, 2000 Thomas Sailer (sailer@ife.ee.ethz.ch)
+  Copyright (C) 1999-2001, 2003 Thomas Sailer (t.sailer@alumni.ethz.ch)
+  Copyright (c) 1999 Thomas Sailer <sailer@ife.ee.ethz.ch>
   Copyright (C) 2003-2005 David Brownell
-  Copyright (C) 2003 Aurelien Jarno
-  Copyright (C) 2009 Greg Kroah-Hartman
+  Copyright (C) 2003 Aurelien Jarno (aurelien@aurel32.net)
+  Copyright (c) 2004 Frans Pop <elendil@planet.nl>
+  Copyright (c) 2004 Greg Kroah-Hartman <greg@kroah.com>
+  Copyright (c) 2004 Randy Dunlap <rdunlap@xenotime.net>
+  Copyright (c) 2004 Thomas Sailer <sailer@ife.ee.ethz.ch>
+  Copyright (c) 2005-2006 David Brownell <dbrownell@users.sourceforge.net>
+  Copyright (c) 2009,2010 Greg Kroah-Hartman <gregkh@suse.de>
+  Copyright (C) 2009-2010 Nikolai Kondrashov
+  Copyright (c) 2009-2016 Alan Stern
+  Copyright (c) 2009 Frans Pop <elendil@planet.nl>
+  Copyright (c) 2009 Greg Kroah-Hartman <gregkh@suse.de>
+  Copyright (c) 2009 Greg Kroah-Hartman <greg@kroah.com>
+  Copyright (c) 2009 Kay Sievers <kay.sievers@vrfy.org>
+  Copyright (c) 2009 Kurt Garloff <garloff@suse.de>
+  Copyright (c) 2009 Randy Dunlap <rdunlap@xenotime.net>
+  Copyright (C) 2010-2011 Nikolai Kondrashov
+  Copyright (c) 2010 Nikolai Kondrashov <spbnick@gmail.com>
+  Copyright (c) 2010 Nikolai Kondrashov
+  Copyright (C) 2010 Nikolai Kondrashov
+  Copyright (c) 2013,2018 Kurt Garloff <kurt@garloff.de>
+  Copyright (C) 2013 Tom Gundersen (teg@jklm.no)
+  Copyright (C) 2013 Tom Gundersen <teg@jklm.no>
+  Copyright (C) 2017-2018 Michael Drake <michael.drake@codethink.co.uk>
+  Copyright (C) 2017 Michael Drake <michael.drake@codethink.co.uk>
+  Copyright (c) 2018 Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 License:
 

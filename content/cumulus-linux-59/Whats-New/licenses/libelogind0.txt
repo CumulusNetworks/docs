@@ -1,0 +1,89 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: elogind
+Source: https://github.com/elogind/elogind
+
+Files: *
+Copyright: 2010-2016 Lennart Poettering
+           2008-2013 Kay Sievers
+           2013-2017 Zbigniew J?drzejewski-Szmek
+           2014-2015 Tom Gundersen
+           2014-2015 Ronny Chevalier
+           1994-2014 Free Software Foundation, Inc.
+           2005-2014 Rich Felker, et al.
+           1999,2000 Tom Tromey
+           2000,2005 Red Hat, Inc.
+           2010 Harald Hoyer
+           2010 Ran Benita
+           2012 Josh Triplett <josh@joshtriplett.org>
+           2013 Intel Corporation
+           2013 Daniel Buch
+           2013 Dave Reisner
+           2013 David Herrmann
+           2013 David Strauss
+           2013 Holger Hans Peter Freyther
+           2013 Jan Janssen
+           2013 Shawn Landden
+           2013 Thomas H.P. Andersen
+           2014 Emil Renner Berthing <systemd@esmil.dk>
+           2014 Michael Marineau
+           2014 Michal Schmidt
+           2015 Daniel Mack
+           2016 Julian Orth
+           2016 Alexander Shopov <ash@kambanaria.org>
+           2017 Sven Eden
+License: LGPL-2.1+
+
+Files: src/basic/siphash24.c
+       src/basic/siphash24.h
+Copyright: 2012 Jean-Philippe Aumasson <jeanphilippe.aumasson@gmail.com>
+           2012 Daniel J. Bernstein <djb@cr.yp.to>
+License: CC0-1.0
+          
+Files: man/glib-event-glue.c:
+Copyright: 2014 Tom Gundersen
+License: Expat
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated documentation files
+ (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge,
+ publish, distribute, sublicense, and/or sell copies of the Software,
+ and to permit persons to whom the Software is furnished to do so,
+ subject to the following conditions:
+
+Files: debian/*
+Copyright: 2018 Andreas Messer <andi@bastelmap.de>
+License: LGPL-2.1+
+
+Files: debian/extra/metainfo/*
+Copyright: 2018 Mark Hindley <mark@hindley.org.uk>
+License: CC0-1.0
+
+License: CC0-1.0
+ To the extent possible under law, the author(s) have dedicated all copyright
+ and related and neighboring rights to this software to the public domain
+ worldwide. This software is distributed without any warranty.
+ .
+ You should have received a copy of the CC0 Public Domain Dedication along with
+ this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+  .
+ On Debian systems, the full text of the CC0 Public Domain Dedication version
+ version 1.0 can be found in the file `/usr/share/common-licenses/CC0-1.0,'.
+ 
+License: LGPL-2.1+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ .
+ On Debian systems, the full text of the GNU Lesser General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/LGPL-2.1'.

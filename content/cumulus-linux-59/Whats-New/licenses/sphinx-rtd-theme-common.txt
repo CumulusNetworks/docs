@@ -1,8 +1,9 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Sphinx ReadTheDocs theme
-Upstream-Contact: Dave Snider <dave.snider@gmail.com>
-Source: https://github.com/rtfd/sphinx_rtd_theme
-Files-Excluded: fonts sphinx_rtd_theme/static
+Source: https://github.com/readthedocs/sphinx_rtd_theme
+Files-Excluded: package-lock.json
+                sphinx_rtd_theme/locale/*/LC_MESSAGES/sphinx.mo
+                sphinx_rtd_theme/static
 
 Files: *
 Copyright: 2013-2018 Dave Snider, Read the Docs, Inc. & contributors
@@ -35,16 +36,16 @@ License: BSD-2-clause
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Files: debian/*
-Copyright: 2014 SÃ©bastien Villemot <sebastien@debian.org>
-           2015-2018 Dmitry Shachnev <mitya57@debian.org>
+Copyright: 2014 Sébastien Villemot <sebastien@debian.org>
+           2015-2022 Dmitry Shachnev <mitya57@debian.org>
 License: Expat
 
 Files: debian/missing-sources/bourbon/*
-Copyright: 2011-2013 thoughtbot, inc.
+Copyright: 2011-2017 thoughtbot, inc.
 License: Expat
 
-Files: debian/missing-sources/neat/*
-Copyright: 2012-2014 thoughtbot, inc.
+Files: debian/missing-sources/bourbon-neat/*
+Copyright: 2012-2015 thoughtbot, inc.
 License: Expat
 
 Files: debian/missing-sources/wyrm/*

@@ -11,6 +11,18 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 ## gNMI Metrics
 
 {{< tabs "TabID13 ">}}
+{{< tab "802.1X">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/system/dot1x/tx-identity-request/state/admin-status` | Admin Status. |
+| `/system/dot1x/tx-identity-request/state/delay` | Number of seconds to wait after a link-up event before sending the first EAP Identity request.|
+| `/system/dot1x/tx-identity-request/state/interval` | Frequency in seconds at which EAP Identity requests are sent until the switch detects a supplicant or the maximum number of retries is reached.|
+| `/system/dot1x/tx-identity-request/state/max-retries` | Maximum number of multicast EAPOL identity request retries.|
+| `/interfaces/interface[name]/ethernet/dot1x/state/tx-identity-request` | If 802.1X reauthentication is enabled or disabled on the interface. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/out-eapol-unsolicited-identity-request-frames` | Number of unsolicited identity request frames for the interface.|
+
+{{< /tab >}}
 {{< tab "Control Plane">}}
 
 |  Name | Description |
@@ -161,6 +173,7 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 {{< /tab >}}
 {{< tab "Platform">}}
+
 |  Name | Description |
 |------ | ----------- |
 | `/components/component[name]/state/name` | Component name.|
@@ -175,7 +188,16 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 ## OTEL Metrics
 
-{{< tabs "TabID167 ">}}
+{{< tabs "TabID190 ">}}
+{{< tab "802.1X">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_dot1x_tx_identity_request_info` | Multicast EAPOL identity request information.|
+| `nvswitch_dot1x_interface_eapol_counters` | Unsolicited Request/Identity TX counters.|
+| `nvswitch_dot1x_tx-identity-request_interface_info`| Replaces `nvswitch_dot1x_interface_info`.|
+
+{{< /tab >}}
 {{< tab "Control Plane">}}
 
 |  Name | Description |
@@ -306,12 +328,10 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_interface_link_debounce_ignored_up_events` | UP events suppressed because debounce timer had not yet expired (transient UP spikes filtered). This metric indicates Noise or short UP spikes being filtered.  |
-| `nvswitch_interface_link_debounce_ignored_down_events`| DOWN events suppressed because debounce timer had not yet expired (transient link loss filtered). This metric indicates short interruptions being filtered. |
-| `nvswitch_interface_link_debounce_received_up_events` | UP events accepted and propagated after debounce delay (stable link recovery). This metric indicates stable link recovery events.  |
-| `nvswitch_interface_link_debounce_received_down_events` | DOWN events accepted and propagated after debounce delay (sustained link failure). This metric indicates sustained link failure events.  |
-| `nvswitch_interface_link_debounce_timer_cancellations` | Timer aborted because link state reverted before timer expired (quick reversal). This metric indicates Link flapping or oscillation. |
-| `nvswitch_interface_link_debounce_timer_expirations` | Timer completed successfully, event sent after debounce delay (stable state change). This metric indicates Valid and stable state changes.  |
+| `nvswitch_interface_link_debounce_ignored_events[event][interface]` | UP: Events suppressed because debounce timer had not yet expired (transient UP spikes filtered). This metric indicates Noise or short UP spikes being filtered.<br>DOWN: Events suppressed because debounce timer had not yet expired (transient link loss filtered). This metric indicates short interruptions being filtered.  |
+| `nvswitch_interface_link_debounce_received_events[event][interface]` | UP: Events accepted and propagated after debounce delay (stable link recovery). This metric indicates stable link recovery events.<br>DOWN: Events accepted and propagated after debounce delay (sustained link failure). This metric indicates sustained link failure events.  |
+| `nvswitch_interface_link_debounce_timer_cancellations[interface]` | Timer aborted because link state reverted before timer expired (quick reversal). This metric indicates Link flapping or oscillation. |
+| `nvswitch_interface_link_debounce_timer_expirations[interface]` | Timer completed successfully, event sent after debounce delay (stable state change). This metric indicates Valid and stable state changes.  |
 
 {{< /tab >}}
 {{< tab "PHY">}}

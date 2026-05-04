@@ -15,7 +15,7 @@ See each individual source file or directory for the license that applies
 to that file.
 
 Copyright (C) 2003-2006,2008 Jamey Sharp, Josh Triplett
-Copyright Â© 2009 Red Hat, Inc.
+Copyright © 2009 Red Hat, Inc.
 Copyright 1990-1992,1999,2000,2004,2009,2010 Oracle and/or its affiliates.
 All rights reserved.
 
@@ -830,7 +830,7 @@ OR PERFORMANCE OF THIS SOFTWARE.
 
 		----------------------------------------
 
-Copyright Â© 2003 Keith Packard
+Copyright © 2003 Keith Packard
 
 Permission to use, copy, modify, distribute, and sell this software and its
 documentation for any purpose is hereby granted without fee, provided that

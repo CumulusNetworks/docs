@@ -52,7 +52,7 @@ General Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.
 
 This package is maintained by Manoj Srivastava <srivasta@debian.org>.
 
-The Debian specific changes are Â© 2005, 2006, Manoj Srivastava
+The Debian specific changes are © 2005, 2006, Manoj Srivastava
 <srivasta@debian.org>, and distributed under the terms of the GNU
 General Public License, version 2.
 

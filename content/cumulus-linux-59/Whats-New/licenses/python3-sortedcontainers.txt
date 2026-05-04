@@ -1,0 +1,15 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: sortedcontainers
+Source: https://github.com/grantjenks/sorted_containers
+
+Files: *
+Copyright: Copyright 2014-2019 Grant Jenks <contact@grantjenks.com>
+License: Apache-2.0
+
+Files: debian/*
+Copyright: 2015-2018 Sandro Tosi <morph@debian.org>
+License: Apache-2.0
+
+License: Apache-2.0
+ On Debian systems, the complete text of the Apache 2.0 can be found in
+ "/usr/share/common-licenses/Apache-2.0".

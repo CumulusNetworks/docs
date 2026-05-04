@@ -42,8 +42,8 @@ License:
 The Debian packaging is:
 
     Copyright (C) 2002-2009 Thomas Seyrat <tomasera@debian.org>
-    Copyright (C) 2010 Chris Taylor <ctaylor@debian.org>
-    Copyright (C) 2013- Laszlo Boszormenyi (GCS) <gcs@debian.org>
+    Copyright (C) 2010      Chris Taylor <ctaylor@debian.org>
+    Copyright (C) 2013-     Laszlo Boszormenyi (GCS) <gcs@debian.org>
 
 and is licensed under the GPL version 3,
 see "/usr/share/common-licenses/GPL-3".

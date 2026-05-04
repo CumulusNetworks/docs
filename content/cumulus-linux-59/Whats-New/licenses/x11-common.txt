@@ -75,7 +75,7 @@ not, write to the Free Software Foundation, Inc., 51 Franklin St,
 Fifth Floor, Boston, MA 02110-1301, USA.
 
 --------------------------------------------------------------------------------
-Â© 2010-2011 Cyril Brulebois <kibi@debian.org>
+© 2010-2011 Cyril Brulebois <kibi@debian.org>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

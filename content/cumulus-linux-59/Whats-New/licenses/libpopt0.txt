@@ -1,7 +1,8 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: popt
-Upstream-Contact: Jeff Johnson <jbj@rpm5.org>
-Source: http://rpm5.org/files/popt/
+Upstream-Contact: rpm-maint@lists.rpm.org
+Source: https://ftp.osuosl.org/pub/rpm/popt/releases/popt-1.x/
+Files-Excluded: popt.pdf
 Comment:
  popt was originally written by Erik Troan when he was with RedHat. It's
  now maintained as part of Fedora.
@@ -9,7 +10,7 @@ Comment:
 Files: *
 Copyright: Copyright (c) 1998  Red Hat Software
           (C) 1998-2002 Red Hat, Inc.
-License: X-Consortium
+License: expat
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
@@ -22,19 +23,17 @@ License: X-Consortium
  .
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
- X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
- AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- .
- Except as contained in this notice, the name of the X Consortium shall not be
- used in advertising or otherwise to promote the sale, use or other dealings
- in this Software without prior written authorization from the X Consortium.
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
 
 Files: debian/*
 Copyright: GNU copyright 1997 to 1999 by Joey Hess
            2012, Paul Martin <pm@debian.org>
            2018, Michael Jeanson <mjeanson@debian.org>
+           2022 Håvard F. Aasen <havard.f.aasen@pfft.no>
 License: GPL-2+
  This program is free software; you can redistribute it
  and/or modify it under the terms of the GNU General Public

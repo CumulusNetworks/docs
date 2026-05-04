@@ -3184,7 +3184,7 @@ Version                              Uptime                    Reinitialize Time
 
 ## netq show otlp
 
-Displays OpenTelemetry health, status, security, whitelist, or certificate information. Several forms of this command are available.
+Displays OpenTelemetry health, status, security, whitelist, or certificate information.
 
 ### Syntax
 
@@ -3196,9 +3196,15 @@ netq show otlp endpoint-ca-cert
 netq show otlp endpoints 
     [json]
 
+netq show otlp exporter-security-mode 
+    [json] 
+
 netq show otlp health 
     [verbose] 
     [json]
+
+netq show otlp ingress-security-mode 
+    [json] 
 
 netq show otlp security-mode 
     [json]
@@ -3235,6 +3241,8 @@ netq show otlp whitelist tsdb-name <text-tsdb-name>
 
 - `netq add otlp endpoint`
 - `netq modify otlp endpoint`
+- `netq set otlp exporter-security-mode `
+- `netq set otlp security-mode`
 
 - - -
 ## netq show ptp
@@ -3493,7 +3501,6 @@ Displays RoCE configuration.
 ### Syntax
 ```
 netq [<hostname>] show roce-config
-    [<text-port>]
     [host | dpu] 
     [around <text-time>] 
     [json]
@@ -3507,7 +3514,6 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
-| NA | \<text-port\> | Filter by a specified port |
 | host | NA | Only show RoCE configurations for hosts |
 | dpu | NA | Only show RoCE configurations for DPUs |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
@@ -4496,7 +4502,7 @@ Displays summary status of a scheduled validation for a given protocol or servic
 ```
 netq show validation summary
     [name <text-validation-name>]
-    type (addr | agents | bgp | evpn | interfaces | ip | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
+    type (addr | agents | ar | bgp | evpn | interfaces | ip | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
     [around <text-time-hr>]
     [json]
 ```

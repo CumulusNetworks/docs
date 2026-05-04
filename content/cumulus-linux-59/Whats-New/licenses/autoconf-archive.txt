@@ -4,11 +4,11 @@ Upstream-Contact: Autoconf Archive Maintainers <autoconf-archive-maintainers@gnu
 Source: https://www.gnu.org/software/autoconf-archive/
 
 Files: *
-Copyright: 2014-2017, Autoconf Archive Maintainers
+Copyright: 2014-2022, Autoconf Archive Maintainers
 License: GPL-3+
 
 Files: aclocal.m4
-Copyright: 1996-2014 Free Software Foundation, Inc.
+Copyright: 1996-2021 Free Software Foundation, Inc.
 License: GNU-All-Permissive-License-like
   This file is free softwar; the Free Software Foundation
   gives unlimited permission to copy and/or distribute it,
@@ -20,17 +20,17 @@ License: GNU-All-Permissive-License-like
   PARTICULAR PURPOSE.
 
 Files: configure
-Copyright: 1992-1996, 1998-2017 Free Software Foundation, Inc.
+Copyright: 1992-1996, 1998-2017, 2020-2021 Free Software Foundation, Inc.
 License: Unlimited-permission
   This configure script is free software; the Free Software Foundation
   gives unlimited permission to copy, distribute and modify it.
 
-Files: build-aux/gitlog-to-changelog
-Copyright: 2008-2016, Free Software Foundation, Inc.
+Files: build-aux/git-version-gen
+Copyright: 2007-2022, Free Software Foundation, Inc.
 License: GPL-3+
 
-Files: build-aux/git-version-gen
-Copyright: 2007-2017, Free Software Foundation, Inc.
+Files: build-aux/gitlog-to-changelog
+Copyright: 2008-2022, Free Software Foundation, Inc.
 License: GPL-3+
 
 Files: build-aux/install-sh
@@ -61,29 +61,35 @@ License: BSD-with-FSF-change-public-domain
   FSF changes to this file are in the public domain.
 
 Files: build-aux/mdate-sh
-Copyright: 1995-2014 Free Software Foundation, Inc
+Copyright: 1995-2021 Free Software Foundation, Inc
 License: GPL-2+
 
 Files: build-aux/missing
-Copyright: 1996-2014 Free Software Foundation, Inc.
+Copyright: 1996-2021 Free Software Foundation, Inc.
 License: GPL-2+
 
 Files: build-aux/texinfo.tex
-Copyright: 1985, 1986, 1988, 1990, 1991, 1992, 1993, 1994, 1995, 1996 Free Software Foundation, Inc.
-           1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006  Free Software Foundation, Inc.
-           2007, 2008, 2009, 2010, 2011, 2012  Free Software Foundation, Inc.
+Copyright: 1985, 1986, 1988, 1990-2021 Free Software Foundation, Inc.
 License: GPL-3+
 
 Files: debian/*
 Copyright: 2003--2004 Martin A. Godisch <godisch@debian.org>
            2004--2007 Qingning Hui <qhuo@mayhq.co.uk>
            2007--2011 Deng Xiyue <manphiz-guest@users.alioth.debian.org>
-           2011--2013 Bastien ROUCARIÃˆS <roucaries.bastien+debian@gmail.com>
+           2011--2022 Bastien ROUCARIÈS <rouca@debian.org>
 License: GPL-2+
 
 Files: doc/*
-Copyright: 2013-2015, Autoconf Archive Maintainers
+Copyright: 2013-2022, Autoconf Archive Maintainers
 License: GFDL-NIV-1.3+
+
+Files: INSTALL
+Copyright: 1994-1996, 1999-2002, 2004-2021 Free Software Foundation, Inc.
+License: GNU-All-Permissive-License
+
+Files: NEWS
+Copyright: Autoconf Archive Maintainers <autoconf-archive-maintainers@gnu.org>
+License: GNU-All-Permissive-License
 
 Files: m4/ax_absolute_header.m4
 Copyright: 2009, Derek Price
@@ -113,6 +119,7 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_add_fortify_source.m4
 Copyright: 2017, David Seifert <soap@gentoo.org>
+           2019 Reini Urban <rurban@cpan.org>
 License: GNU-All-Permissive-License
 
 Files: m4/ax_add_recursive_am_macro.m4
@@ -148,16 +155,16 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_append_compile_flags.m4
 Copyright: 2011, Maarten Bosmans <mkbosmans@gmail.com>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_append_flag.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
            2011, Maarten Bosmans <mkbosmans@gmail.com>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_append_link_flags.m4
 Copyright: 2011, Maarten Bosmans <mkbosmans@gmail.com>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_append_to_file.m4
 Copyright: 2008, Tom Howard <tomhoward@users.sf.net>
@@ -170,7 +177,7 @@ License: GPL3+-with-Autoconf-Macros-exception
 Files: m4/ax_asm_inline.m4
 Copyright: 2008, Alan Woodland <ajw05@aber.ac.uk>
            2009, Rhys Ulerich <rhys.ulerich@gmail.com>
-	   2017, Reini Urban <rurban@cpan.org>
+           2017, Reini Urban <rurban@cpan.org>
 License: GNU-All-Permissive-License
 
 Files: m4/ax_auto_include_headers.m4
@@ -194,6 +201,7 @@ License: GPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_blas.m4
 Copyright: 2008, Steven G. Johnson <stevenj@alum.mit.edu>
+           2019 Geoffrey M. Oxberry <goxberry@gmail.com>
 License: GPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_boost_asio.m4
@@ -201,12 +209,19 @@ Copyright: 2008, Thomas Porschberg <thomas@randspringer.de>
            2008, Pete Greenwell <pete@mu.org>
 License: GNU-All-Permissive-License
 
+Files: m4/ax_boost_atomic.m4
+Copyright: 2008, Thomas Porschberg <thomas@randspringer.de>
+           2008, Michael Tindal
+	   2013, Daniel Casimiro <dan.casimiro@gmail.com>
+           2021 Richard Winters <kirvedx@gmail.com>
+License: GNU-All-Permissive-License
+
 Files: m4/ax_boost_base.m4
 Copyright: 2008, Thomas Porschberg <thomas@randspringer.de>
            2009, Peter Adolphs
            2014, Alexander Afanasyev
-	   2017, Helmut Grohne
-	   2017, Nico Madysa
+           2017, Helmut Grohne
+           2017, Nico Madysa
 License: GNU-All-Permissive-License
 
 Files: m4/ax_boost_chrono.m4
@@ -246,8 +261,22 @@ Files: m4/ax_boost_iostreams.m4
 Copyright: 2008, Thomas Porschberg <thomas@randspringer.de>
 License: GNU-All-Permissive-License
 
+Files: m4/ax_boost_json.m4
+Copyright:  2008, Thomas Porschberg <thomas@randspringer.de>
+            2008, Michael Tindal
+            2013, Daniel Casimiro <dan.casimiro@gmail.com>
+            2021, Richard Winters <kirvedx@gmail.com>
+            2022, Luke Mewburn <Luke@Mewburn.net>
+License: GNU-All-Permissive-License
+
 Files: m4/ax_boost_locale.m4
 Copyright: 2012, Xiyue Deng <manphiz@gmail.com>
+License: GNU-All-Permissive-License
+
+Files: m4/ax_boost_process.m4
+Copyright: 2008, Thomas Porschberg <thomas@randspringer.de>
+           2008, Michael Tindal
+           2008, Daniel Casimiro <dan.casimiro@gmail.com>
 License: GNU-All-Permissive-License
 
 Files: m4/ax_boost_program_options.m4
@@ -258,6 +287,13 @@ Files: m4/ax_boost_python.m4
 Copyright: 2009, Michael Tindal
            2013, Daniel Mullner <daniel@danifold.net>
 License: GPL3+-with-Autoconf-Macros-exception
+
+Files: m4/ax_boost_random.m4
+Copyright: 2008, Thomas Porschberg <thomas@randspringer.de>
+           2008, Michael Tindal
+	   2013, Daniel Casimiro <dan.casimiro@gmail.com>
+           2021 Richard Winters <kirvedx@gmail.com>
+License: GNU-All-Permissive-License
 
 Files: m4/ax_boost_regex.m4
 Copyright: 2008, Thomas Porschberg <thomas@randspringer.de>
@@ -364,35 +400,36 @@ License: GPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_cflags_aix_option.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_cflags_force_c89.m4
 Copyright: 2009, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_cflags_hpux_option.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_cflags_irix_option.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_cflags_no_writable_strings.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_cflags_strict_prototypes.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_cflags_sun_option.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_cflags_warn_all.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
            2010, Rhys Ulerich <rhys.ulerich@gmail.com>
+          2018, John Zaitseff <J.Zaitseff@zap.org.au>
 License: GPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_c_float_words_bigendian.m4
@@ -401,7 +438,7 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_check_aligned_access_required.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_check_allocated_ctime.m4
 Copyright: 2008, Bruce Korb <bkorb@gnu.org>
@@ -626,7 +663,7 @@ License: GPL2+-with-Autoconf-Macros-exception
 Files: m4/ax_check_compile_flag.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
            2011, Maarten Bosmans <mkbosmans@gmail.com>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_check_define.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
@@ -658,7 +695,7 @@ License:  GNU-All-Permissive-License
 
 Files: m4/ax_check_func_in.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL2+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_check_gd.m4
 Copyright: 2008, Nick Markham <markhn@rpi.edu>
@@ -677,19 +714,19 @@ License: GNU-All-Permissive-License
 Files: m4/ax_check_gl.m4
 Copyright: 2009, Braden McDaniel <braden@endoframe.com>
            2012, Bastien Roucaries <roucaries.bastien+autoconf@gmail.com>
-	   2016, Felix Chern <idryman@gmail.com>
+           2016, Felix Chern <idryman@gmail.com>
 License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_check_glu.m4
 Copyright: 2009, Braden McDaniel <braden@endoframe.com>
            2012, Bastien Roucaries <roucaries.bastien+autoconf@gmail.com>
-	   2016, Felix Chern <idryman@gmail.com>
+           2016, Felix Chern <idryman@gmail.com>
 License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_check_glut.m4
 Copyright: 2009, Braden McDaniel <braden@endoframe.com>
            2012, Bastien Roucaries <roucaries.bastien+autoconf@gmail.com>
-	   2016, Felix Chern <idryman@gmail.com>
+           2016, Felix Chern <idryman@gmail.com>
 License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_check_glx.m4
@@ -725,7 +762,7 @@ License: GPL3+-with-Autoconf-Macros-exception
 Files: m4/ax_check_link_flag.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
            2011, Maarten Bosmans <mkbosmans@gmail.com>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_check_mysql.m4
 Copyright: 2011, University of Washington
@@ -763,6 +800,10 @@ Files: m4/ax_check_pathname_style.m4
 Copyright: 2008, Mark Elbrecht
 License: GPL2+-with-Autoconf-Macros-exception
 
+Files: m4/ax_check_pcre2.m4
+Copyright: 2020 Robert van Engelen <engelen@acm.org>
+License: GPL2+-with-Autoconf-Macros-exception
+
 Files: m4/ax_check_pgsql_db.m4
 Copyright: 2008, Moritz Sinn <moritz@freesources.org>
 License: GPL2+-with-Autoconf-Macros-exception
@@ -783,7 +824,7 @@ License: GNU-All-Permissive-License
 Files: m4/ax_check_preproc_flag.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
            2011, Maarten Bosmans <mkbosmans@gmail.com>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_check_rqrd_class.m4
 Copyright: 2008, Stephane Bortzmeyer <bortzmeyer@pasteur.fr>
@@ -807,7 +848,7 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_check_symbol.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_check_sys_siglist.m4
 Copyright: 2008, Bruce Korb <bkorb@gnu.org>
@@ -815,7 +856,7 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_check_typedef.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_check_uname_syscall.m4
 Copyright: 2008, Bruce Korb <bkorb@gnu.org>
@@ -848,8 +889,8 @@ Copyright: 2012, 2016, Philip Withnall
            2012, Christian Persch
            2012, Paolo Borelli
            2012, Dan Winship
-           2015, Bastien ROUCARIES
-	   2017, Vasil Velichkov<vasil_vel@abv.bg>
+           2015-2018, Bastien ROUCARIES
+           2017, Vasil Velichkov<vasil_vel@abv.bg>
 License: LGPL-2.1+
 
 Files: m4/ax_compare_version.m4
@@ -886,6 +927,7 @@ License: GNU-All-Permissive-License
 Files: m4/ax_compiler_vendor.m4
 Copyright: 2008, Steven G. Johnson <stevenj@alum.mit.edu>
            2008, Matteo Frigo
+          2018-2019, John Zaitseff <J.Zaitseff@zap.org.au>
 License: GPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_compiler_version.m4
@@ -903,7 +945,7 @@ License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_cond_with_level.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_config_feature.m4
 Copyright: 2008, Francesco Salvestrini <salvestrini@users.sourceforge.net>
@@ -911,7 +953,7 @@ License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_configure_args.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_count_cpus.m4
 Copyright: 2008, Michael Paul Bailey <jinxidoru@byu.net>
@@ -930,20 +972,20 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_create_generic_config.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_create_pkgconfig_info.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
            2008, Sven Verdoolaege <skimo@kotnet.org>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_create_stdint_h.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_create_target_h.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_c_referenceable_passed_va_list.m4
 Copyright: 2008, YAMAMOTO Kengo <yamaken@bp.iij4u.or.jp>
@@ -967,9 +1009,12 @@ Copyright: 2008, Benjamin Kosnik <bkoz@redhat.com>
            2012, Zack Weinberg <zackw@panix.com>
            2013, Roy Stogner <roystgnr@ices.utexas.edu>
            2014-2015, Google Inc (contributed by Alexey Sokolov) <sokolov@google.com>
-	   2015, Paul Norman <penorman@mac.com>
-	   2015, Moritz Klammler <moritz@klammler.eu>
-	   2016, Krzesimir Nowak <qdlacz@gmail.com>
+           2015, Paul Norman <penorman@mac.com>
+           2015, Moritz Klammler <moritz@klammler.eu>
+           2016, 2018 Krzesimir Nowak <qdlacz@gmail.com>
+           2019, Enji Cooper <yaneurabeya@gmail.com>
+           2020, Jason Merrill <jason@redhat.com>
+	   2021, Jörn Heusipp <osmanx@problemloesungsmaschine.de>
 License: GNU-All-Permissive-License
 
 Files: m4/ax_cxx_compile_stdcxx_0x.m4
@@ -981,7 +1026,7 @@ Copyright: 2008, Benjamin Kosnik <bkoz@redhat.com>
            2012, Zack Weinberg <zackw@panix.com>
            2013, Roy Stogner <roystgnr@ices.utexas.edu>
            2014-2015, Google Inc (contributed by Alexey Sokolov) <sokolov@google.com>
-	   2015, Paul Norman <penorman@mac.com>
+           2015, Paul Norman <penorman@mac.com>
 License: GNU-All-Permissive-License
 
 Files: m4/ax_cxx_compile_stdcxx_14.m4
@@ -1433,7 +1478,7 @@ License: GPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_expand_prefix.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_execinfo.m4
 Copyright: 2014, Thomas Jahns <jahns@dkrz.de>
@@ -1454,7 +1499,7 @@ License: GNU-All-Permissive-License
 Files: m4/ax_ext.m4
 Copyright: 2008, Christophe Tournayre <turn3r@users.sourceforge.net>
            2013, Michael Petch <mpetch@capp-sysware.com>
-	   2017, Rafael de Lucena Valle <rafaeldelucena@gmail.c
+           2017, Rafael de Lucena Valle <rafaeldelucena@gmail.c
 License: GNU-All-Permissive-License
 
 Files: m4/ax_extra_dist.m4
@@ -1554,7 +1599,7 @@ Files: m4/ax_gcc_archflag.m4
 Copyright: 2008, Steven G. Johnson <stevenj@alum.mit.edu>
            2008, Matteo Frigo
            2012-2014, Tsukasa Oi
-	   2017-2018, Alexey Kopytov
+           2017-2018, Alexey Kopytov
 License: GPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_gcc_builtin.m4
@@ -1563,7 +1608,7 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_gcc_const_call.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_gcc_func_attribute.m4
 Copyright: 2013, Gabriele Svelto <gabriele.svelto@gmail.com>
@@ -1585,7 +1630,7 @@ License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_gcc_malloc_call.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_gcc_var_attribute.m4
 Copyright: 2013, Gabriele Svelto <gabriele.svelto@gmail.com>
@@ -1593,7 +1638,7 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_gcc_warn_unused_result.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_gcc_x86_avx_xgetbv.m4
 Copyright: 2013, Michael Petch <mpetch@capp-sysware.com>
@@ -1648,6 +1693,10 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_install_files.m4
 Copyright: 2009, Tom Howard <tomhoward@users.sf.net>
+License: GNU-All-Permissive-License
+
+Files: m4/ax_int128.m4
+Copyright: 2019 Reuben Thomas <rrt@sc3d.org>
 License: GNU-All-Permissive-License
 
 Files: m4/ax_java_check_class.m4
@@ -1761,7 +1810,7 @@ License: GNU-All-Permissive-License
 Files: m4/ax_lib_postgresql.m4
 Copyright: 2008, Mateusz Loskot <mateusz@loskot.net>
            2014, Sree Harsha Totakura <sreeharsha@totakura.in>
-	   2018, Bastien RoucariÃ¨s <rouca@debian.org>
+           2018, Bastien Roucariès <rouca@debian.org>
 License: GNU-All-Permissive-License
 
 Files: m4/ax_lib_readline.m4
@@ -1840,7 +1889,7 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_maintainer_mode_auto_silent.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_missing_prog.m4
 Copyright: 2008, Francesco Salvestrini <salvestrini@users.sourceforge.net>
@@ -1855,6 +1904,13 @@ Files: m4/ax_mpip.m4
 Copyright: 2010, Rhys Ulerich <rhys.ulerich@gmail.com>
 License: GPL3+-with-Autoconf-Macros-exception
 
+
+Files: m4/ax_ms_cpprest.m4
+Copyright: 2008 Thomas Porschberg <thomas@randspringer.de>
+           2009 Peter Adolphs
+           2021 Richard Winters <kirvedx@gmail.com>
+License: GNU-All-Permissive-License
+
 Files: m4/ax_need_awk.m4
 Copyright: 2009, Francesco Salvestrini <salvestrini@users.sourceforge.net>
 License: GNU-All-Permissive-License
@@ -1865,11 +1921,11 @@ License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_not_enable_frame_pointer.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_numeric_namedlevel.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_open62541*.m4
 Copyright: 2016-2017, Olaf Mandel <olaf@mandel.name>
@@ -1878,15 +1934,16 @@ License: GNU-All-Permissive-License
 Files: m4/ax_openmp.m4
 Copyright: 2008, Steven G. Johnson <stevenj@alum.mit.edu>
            2015, John W. Peterson <jwpeterson@gmail.com>
-	   2016, Nick R. Papior <nickpapior@gmail.com>
+           2016, Nick R. Papior <nickpapior@gmail.com>
 License: GPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_patch_libtool_changing_cmds_ifs.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_path_bdb.m4
 Copyright: 2008, Tim Toolan <toolan@ele.uri.edu>
+           2020, Bastien Roucaries <rouca@debian.org>
 License: GNU-All-Permissive-License
 
 Files: m4/ax_path_generic.m4
@@ -1895,7 +1952,7 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_path_lib_pcre.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_path_milter.m4
 Copyright: 2008, Tim Toolan <toolan@ele.uri.edu>
@@ -1938,6 +1995,7 @@ Copyright: 2008, Sebastian Huber <sebastian-huber@web.de>
            2008, Rafael Laboissiere <rafael@laboissiere.net>
            2008, Andrew Collier
            2011, Murray Cumming <murrayc@openismus.com>
+	   2021, Vincent Danjean <Vincent.Danjean@ens-lyon.org>
 License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prefix_config_h.m4
@@ -1946,6 +2004,12 @@ Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
            2008, Gerald Point <Gerald.Point@labri.fr>
            2014, Reuben Thomas <rrt@sc3d.org>
 License: GPL3+-with-Autoconf-Macros-exception
+
+Files: m4/ax_prepend_flag.m4
+Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
+           2011, Maarten Bosmans <mkbosmans@gmail.com>
+          2018, John Zaitseff <J.Zaitseff@zap.org.au>
+License: GNU-All-Permissive-License
 
 Files: m4/ax_print_to_file.m4
 Copyright: 2008, Tom Howard <tomhoward@users.sf.net>
@@ -1970,7 +2034,7 @@ License:  GNU-All-Permissive-License
 
 Files: m4/ax_prog_cc_char_subscripts.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_prog_cc_for_build.m4
 Copyright: 2008, Paolo Bonzini <bonzini@gnu.org>
@@ -2022,11 +2086,11 @@ Copyright: 2010,2011 Olaf Lenz <olenz@icp.uni-stuttgart.de>
 License: GPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_fasm.m4
-Copyright: 2007, ,2009 Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_fasm_opt.m4
-Copyright: 2007, ,2009 Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_fig2dev.m4
@@ -2055,11 +2119,11 @@ Copyright: 2017, Harenome Ranaivoarivony-Razanajato <ranaivoarivony-razanajato@h
 License: GPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_hla.m4
-Copyright: 2007,2009 Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_hla_opt.m4
-Copyright: 2007, 2009 Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_httpd.m4
@@ -2099,11 +2163,11 @@ Copyright: 2008, Stephane Bortzmeyer <bortzmeyer@pasteur.fr>
 License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_masm.m4
-Copyright: 2007, 2009 Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_masm_opt.m4
-Copyright: 2007, 2009 Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_md5sum.m4
@@ -2135,11 +2199,11 @@ Copyright: 2008, Gleen Salmon <gleensalmon@yahoo.com>
 License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_nasm.m4
-Copyright: 2007, 2009 Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_nasm_opt.m4
-Copyright: 2007, 2009 Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_perl_modules.m4
@@ -2157,6 +2221,10 @@ License: GPL2+-with-Autoconf-Macros-exception
 Files: m4/ax_prog_python_version.m4
 Copyright: 2009, Francesco Salvestrini <salvestrini@users.sourceforge.net>
 License: GNU-All-Permissive-License
+
+Files: m4/ax_prog_robot.m4
+Copyright: 2020, Adam Chyla <adam@chyla.org>
+License: BSD-3-clause
 
 Files: m4/ax_prog_ruby_version.m4
 Copyright: 2009, Francesco Salvestrini <salvestrini@users.sourceforge.net>
@@ -2179,11 +2247,11 @@ Copyright: 2008, Gleen Salmon <gleensalmon@yahoo.com>
 License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_tasm.m4
-Copyright: 2007, 2009 Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_tasm_opt.m4
-Copyright: 2007, 2009 Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_tcl.m4
@@ -2197,11 +2265,11 @@ Copyright: 2008, 2009 Zmanda Inc. <http://www.zmanda.com/>
 License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_yasm.m4
-Copyright: 2007, 2009, Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prog_yasm_opt.m4
-Copyright: 2007, 2009, Bogdan Drozdowski <bogdandr@op.pl>
+Copyright: 2007, 2009, 2022 Bogdan Drozdowski <bogdandr@op.pl>
 License: LGPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_prototype_accept.m4
@@ -2314,7 +2382,7 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_set_default_paths_system.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_short_sleep.m4
 Copyright: 2008, Warren Young <warren@etr-usa.com>
@@ -2331,11 +2399,11 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_spec_file.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_spec_package_version.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_split_version.m4
 Copyright: 2008, Tom Howard <tomhoward@users.sf.net>
@@ -2359,11 +2427,11 @@ License: GPL3+-with-Autoconf-Macros-exception
 
 Files: m4/ax_subdir_files.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_subst_with.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_swig_enable_cxx.m4
 Copyright: 2008, Sebastian Huber <sebastian-huber@web.de>
@@ -2399,7 +2467,7 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_sys_largefile_sensitive.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_sys_perlsharpbang.m4
 Copyright: 2009, Soren Andersen <somian@pobox.com>
@@ -2514,11 +2582,11 @@ License: GPL2+-with-Autoconf-Macros-exception
 
 Files: m4/ax_warning_default_aclocaldir.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_warning_default_pkgconfig.m4
 Copyright: 2008, Guido U. Draheim <guidod@gmx.de>
-License: GPL3+-with-Autoconf-Macros-exception
+License: GNU-All-Permissive-License
 
 Files: m4/ax_wint_t.m4
 Copyright: 2008, Bruce Korb <bkorb@gnu.org>
@@ -2574,6 +2642,10 @@ License: GNU-All-Permissive-License
 
 Files: m4/ax_zoneinfo.m4
 Copyright: 2012, Sebastian Freundt <freundt@fresse.org>
+License: GNU-All-Permissive-License
+
+Files: TODO
+Copyright: 2021, Autoconf Archive Maintainers <autoconf-archive-maintainers@gnu.org>
 License: GNU-All-Permissive-License
 
 License: BSD-2-clause
@@ -2797,8 +2869,8 @@ License: GPL3+-with-Autoconf-Configure-Script-3-exception
  On Debian GNU/Linux systems, the complete text of the GNU General Public
  License can be found in /usr/share/common-licenses/GPL-3.
  .
-                  AUTOCONF CONFIGURE SCRIPT EXCEPTION
-                      Version 3.0, 18 August 2009
+                 AUTOCONF CONFIGURE SCRIPT EXCEPTION
+                     Version 3.0, 18 August 2009
  .
  Copyright (C) 2009 Free Software Foundation, Inc. <http://fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies

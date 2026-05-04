@@ -3,12 +3,12 @@ Upstream-Name: texttable
 Source: https://pypi.python.org/pypi/texttable
 
 Files: *
-Copyright: 2018 Gerome Fournier <jef@foutaise.org>
+Copyright: 2020 Gerome Fournier <jef@foutaise.org>
 License: Expat
 
 Files: debian/*
-Copyright: 2013 LÃ©o CavaillÃ© <leo@cavaille.net>
-           2016 Sergio Durigan Junior <sergiodj@sergiodj.net>
+Copyright: 2013 Léo Cavaillé <leo@cavaille.net>
+           2016-2022 Sergio Durigan Junior <sergiodj@debian.org>
 License: LGPL-2.1+
 
 License: Expat

@@ -1,8 +1,8 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: norm
 Upstream-Contact: https://publists.nrl.navy.mil/pipermail/norm-dev/
-Source: https://downloads.pf.itd.nrl.navy.mil/norm/
-Comment: Upstream tarball has been repackaged to unpack the binary waf file
+Source: https://github.com/USNavalResearchLaboratory
+Comment: Upstream tarball has been repackaged to remove the binary waf files
          and Win-specific sources with an unknown license. Java pre-compiled
          binaries are also removed.
 Files-Excluded: protolib/src/java/libprotolibjni.jnilib
@@ -10,6 +10,15 @@ Files-Excluded: protolib/src/java/libprotolibjni.jnilib
                 protolib/src/java/protolib-jni.jar*
                 protolib/src/win32
                 protolib/src/wince
+                protolib/android
+                protolib/makefiles
+                protolib/waf
+                protolib/wscript
+                android
+                makefiles
+                waf
+                wscript
+                _deps
 
 Files: *
 Copyright: 2005-2015 Naval Research Laboratory (NRL)
@@ -119,13 +128,8 @@ License: BSD-4-clause-UC
  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  SUCH DAMAGE.
 
-Files: waf 
-       waflib/*
-Copyright: 2005-2015 Thomas Nagy
-License: BSD-3-clause
-
 Files: debian/*
-Copyright: 2017-2018 Luca Boccassi <bluca@debian.org>
+Copyright: 2017-2021 Luca Boccassi <bluca@debian.org>
 License: BSD-3-clause
 
 License: NRL-2-clause

@@ -1,4 +1,4 @@
-This package was debianized by Sebastian DrÃ¶ge <slomo@debian.org> on
+This package was debianized by Sebastian Dröge <slomo@debian.org> on
 Mon, 01 Jun 2009 12:14:57 +0200
 
 It was downloaded from http://www.schleef.org/orc/download/.

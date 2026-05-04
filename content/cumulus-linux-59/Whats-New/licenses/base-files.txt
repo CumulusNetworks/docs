@@ -1,4 +1,4 @@
-This is the Debian GNU/Linux prepackaged version of the Debian Base System
+This is the Debian prepackaged version of the Debian Base System
 Miscellaneous files. These files were written by Ian Murdock
 <imurdock@debian.org> and Bruce Perens <bruce@pixar.com>.
 
@@ -24,5 +24,5 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
-On Debian GNU/Linux systems, the complete text of the GNU General
+On Debian systems, the complete text of the GNU General
 Public License can be found in `/usr/share/common-licenses/GPL'.

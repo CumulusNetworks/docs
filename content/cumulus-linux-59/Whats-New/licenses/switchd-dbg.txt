@@ -1,10 +1,10 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: switchd
-Source: https://www.cumulusnetworks.com
+Source: https://nvidia.com
 Disclaimer: Not part of Debian distributions.
 
 Files: *
-Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
+Copyright (C) 2020-2024 NVIDIA Corporation. ALL RIGHTS RESERVED.
 Copyright: 2013 Cumulus Networks
            2014, 2015, 2016, 2017, 2018, 2019, 2020 Cumulus Networks, Inc.
 License: NVIDIA Cumulus Networks Proprietary
@@ -17,7 +17,7 @@ License: NVIDIA Cumulus Networks Proprietary
  Cumulus Linux systems: /usr/share/cumulus/EULA.txt
 
 Files: debian/*
-Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
+Copyright (C) 2020-2024 NVIDIA Corporation. ALL RIGHTS RESERVED.
 Copyright: 2013 Cumulus Networks
            2014, 2015, 2016, 2017, 2018, 2019, 2020 Cumulus Networks, Inc.
 License: GPL-2
@@ -70,5 +70,5 @@ License: CC0-1.0
  this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
  .
  On Debian systems, the complete text of the CC0 1.0 Universal license can be
- found in ‘/usr/share/common-licenses/CC0-1.0’.
+ found in ?/usr/share/common-licenses/CC0-1.0?.
 

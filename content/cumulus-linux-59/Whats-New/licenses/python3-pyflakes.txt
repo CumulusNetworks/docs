@@ -8,9 +8,9 @@ Copyright: Copyright 2005-2011 Divmod, Inc
 License: MIT
 
 Files: debian/*
-Copyright: Â© 2005 - 2006, Andrew Mitchell <ajmitch@ubuntu.com>
-           Â© 2008 - 2011, Sandro Tosi <morph@debian.org>
-           Â© 2017, OndÅ™ej NovÃ½ <onovy@debian.org>
+Copyright: © 2005 - 2006, Andrew Mitchell <ajmitch@ubuntu.com>
+           © 2008 - 2011, Sandro Tosi <morph@debian.org>
+           © 2017, Ond?ej Nový <onovy@debian.org>
 License: MIT
 
 License: MIT

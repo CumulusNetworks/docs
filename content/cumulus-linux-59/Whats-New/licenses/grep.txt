@@ -12,7 +12,7 @@ Copyright: 1992, 1997-2002, 2004-2012 Free Software Foundation, Inc.
 License: GPL-3+
 
 Files: debian/*
-Copyright: 2005-2013 Anibal Monsalve Salazar <anibal@debian.org> and Santiago Ruano RincÃ³n <santiago@debian.org>
+Copyright: 2005-2013 Anibal Monsalve Salazar <anibal@debian.org> and Santiago Ruano Rincón <santiago@debian.org>
  2003-2004 Ryan M. Golbeck <rmgolbeck@debian.org>
  2003, Jeff Bailey <jbailey@nisa.net>
  2003, Clint Adams <schizo@debian.org>  Mon, 10 Mar 2003 02:10:32 -0500

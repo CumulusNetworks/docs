@@ -2157,5 +2157,8 @@ timers throttle spf 0 100 6000
 {{< /tabs >}}
 
 {{< /tab >}}
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/stage
 {{< /tabs >}}

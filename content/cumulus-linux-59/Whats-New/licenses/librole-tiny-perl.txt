@@ -4,24 +4,24 @@ Upstream-Contact: Matt S. Trout <mst@shadowcat.co.uk>
 Source: https://metacpan.org/release/Role-Tiny
 
 Files: *
-Copyright: 2010-2012, Matt S. Trout <mst@shadowcat.co.uk>
+Copyright: 2010-2021, Matt S. Trout <mst@shadowcat.co.uk>
  2010-2012, David Leadbeater <dgl@dgl.cx>
  2010-2012, Arthur Axel "fREW" Schmidt <frioux@gmail.com>
  2010-2012, Andrew Rodland <arodland@cpan.org>
  2010-2012, John Napiorkowski <jjn1056@yahoo.com>
  2010-2012, Peter Rabbitson <ribasushi@cpan.org>
  2010-2012, Chip Salzenberg <chip@pobox.com>
- 2010-2012, Alex J. G. Burzyński <ajgb@cpan.org>
+ 2010-2012, Alex J. G. Burzy?ski <ajgb@cpan.org>
  2010-2012, Jesse Luehrs <doy at tozt dot net>
  2010-2012, Chris Prather <chris@prather.org>
  2010-2012, Christian Walde <walde.christian@googlemail.com>
- 2010-2012, Dagfinn Ilmari Mannsåker <ilmari@ilmari.org>
+ 2010-2012, Dagfinn Ilmari Manns�ker <ilmari@ilmari.org>
  2010-2012, Toby Inkster <tobyink@cpan.org>
 License: Artistic or GPL-1+
 
 Files: debian/*
 Copyright: 2012, Alessandro Ghedini <ghedo@debian.org>
- 2012-2017, gregor herrmann <gregoa@debian.org>
+ 2012-2021, gregor herrmann <gregoa@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic

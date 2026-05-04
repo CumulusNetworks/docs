@@ -42,11 +42,11 @@ To configure optional settings for gNMI dial-in mode:
 When you configure a CA certificate, entity certificate, or CRL, the configuration will apply to any new gNMI sessions that establish. Existing dial-in connections will continue to use the prior configuration until they reestablish.
 {{%/notice%}}
 
-The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
+The following example sets the gNMI server listening address to 10.10.10.1 and the port to 1024, and enables the gNMI server:
 
 ```
 cumulus@switch:~$ nv set system gnmi-server listening-address 10.10.10.1
-cumulus@switch:~$ nv set system gnmi-server port 443
+cumulus@switch:~$ nv set system gnmi-server port 1024
 cumulus@switch:~$ nv set system gnmi-server state enabled
 cumulus@switch:~$ nv config apply
 ```
@@ -287,12 +287,12 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/state/ipv6-prefix` | The IPv6 prefix generated from all the IPv6 profile properties. |
 | `/interfaces/interface[name]/ethernet/authenticated-sessions/authenticated-session[mac]/counters/reauth-timeouts` | Counter that keeps track of authentication failures because the RADIUS server is unreachable after a successful authentication when the `reauth-timeout-ignore` option is enabled. |
 | `/system/dot1x/state/dynamic-vrf` | Shows if a VRF is `required` to be assigned dynamically by the RADIUS server to an 802.1X interface, is `optional` or `disabled`. |
-| `/system/dot1x/tx-identity-request/state/admin-status`| *|
-| `/system/dot1x/tx-identity-request/state/delay`| *| 
-| `/system/dot1x/tx-identity-request/state/interval`| *| 
-| `/system/dot1x/tx-identity-request/state/max-retries`| *| 
-| `/interfaces/interface[name]/ethernet/dot1x/state/tx-identity-request`| *| 
-| `/interfaces/interface[name]/ethernet/dot1x/state/out-eapol-unsolicited-identity-request-frames`| *|
+| `/system/dot1x/tx-identity-request/state/admin-status` | *Admin Status. |
+| `/system/dot1x/tx-identity-request/state/delay` | *Number of seconds to wait after a link-up event before sending the first EAP Identity request.|
+| `/system/dot1x/tx-identity-request/state/interval` | *Frequency in seconds at which EAP Identity requests are sent until the switch detects a supplicant or the maximum number of retries is reached.|
+| `/system/dot1x/tx-identity-request/state/max-retries` | *Maximum number of multicast EAPOL identity request retries.|
+| `/interfaces/interface[name]/ethernet/dot1x/state/tx-identity-request` | *If 802.1X reauthentication is enabled or disabled on the interface. |
+| `/interfaces/interface[name]/ethernet/dot1x/state/out-eapol-unsolicited-identity-request-frames` | *Number of unsolicited identity request frames for the interface.|
 
 {{< /tab >}}
 {{< tab "ACLs ">}}
@@ -819,9 +819,9 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/priority-group[pg-id]/state/max-occupancy` | Maximum headroom‑buffer occupancy in bytes for the specified buffer type (primary or secondary) in the priority group on the interface since the last watermark reset; software‑maintained.|
 | `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/priority-group[pg-id]/state/max-occupancy-timestamp` | Timestamp at which the highest headroom‑buffer occupancy for the specified buffer type (primary or secondary) in the priority group on the interface was recorded since the last watermark reset. Value is Unix epoch seconds (UTC).|
 | `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/priority-group[pg-id]/state/time-since-last-clear` | Elapsed time in milliseconds since watermark counters for the specified buffer type (primary or secondary) in the priority group on the interface were last cleared.|
-| `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/state/instant-occupancy` | Instantaneous headroom-buffer occupancy in bytes for the specified buffer type (primary or secondary) on the interface.|
-| `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/state/max-occupancy-since-last-sample` | Maximum headroom‑buffer occupancy in bytes for the specified buffer type (primary or secondary) on the interface during the most recent sampling interval.|
-| `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/state/max-occupancy` | Maximum headroom‑buffer occupancy in bytes for the specified buffer type (primary or secondary) on the interface since the last watermark reset; software‑maintained.|
+| `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/state/instant-occupancy` | Current shared headroom pool  for the specified buffer type (primary or secondary) on the interface. Only shown when the port is in 8x lane mode.|
+| `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/state/max-occupancy-since-last-sample` | Maximum shared headroom pool for the specified buffer type (primary or secondary) on the interface during the most recent sampling interval. Only shown when the port is in 8x lane mode.|
+| `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/state/max-occupancy` | Maximum shared headroom pool for the specified buffer type (primary or secondary) on the interface since the last watermark reset; software‑maintained. Only shown when the port is in 8x lane mode.|
 | `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/state/max-occupancy-timestamp` | Timestamp at which the highest headroom‑buffer occupancy for the specified buffer type (primary or secondary) on the interface was recorded since the last watermark reset. Value is Unix epoch seconds (UTC).|
 | `/qos/interfaces/interface[interface-id]/input/headroom-buffer[buffer-type]/state/time-since-last-clear` | Elapsed time in milliseconds since watermark counters for the specified buffer type (primary or secondary) on the interface were last cleared.|
 | `/qos/shared-buffer/state/cell-size` | Shared‑buffer allocation cell size in bytes; use to convert cell‑based counters to bytes.|
@@ -1035,7 +1035,8 @@ User authentication is enabled by default. gNMI subscription requests must inclu
 You can use your gNMI client on a host to request capabilities and data to which the gNMI agent subscribes.
 
 {{%notice note%}}
-Cumulus Linux processes gNMI client subscription create and delete requests sequentially (one at a time). The switch rejects concurrent subscription requests with a `CANCELLED: System is busy`​ gRPC status and the gNMI client must reinitiate the request with the appropriate backoff. This limitation applies only to subscription setup or teardown. After the subscription establishes, multiple subscriptions run concurrently and stream telemetry data independently.
+- Cumulus Linux processes gNMI client subscription create and delete requests sequentially (one at a time). The switch rejects concurrent subscription requests with a `CANCELLED: System is busy`​ gRPC status and the gNMI client must reinitiate the request with the appropriate backoff. This limitation applies only to subscription setup or teardown. After the subscription establishes, multiple subscriptions run concurrently and stream telemetry data independently.
+- For better performance, NVIDIA recommends that you enable gzip in your gNMI client tools. For example, for `gnmic`, add `--gzip` to the command line arguments.
 {{%/notice%}}
 
 #### Dial-in Mode Examples
@@ -1043,7 +1044,7 @@ Cumulus Linux processes gNMI client subscription create and delete requests sequ
 The following example shows a basic dial-in mode subscribe request in an HTTP basic authentication header:
 
 ```
-gnmic subscribe --mode stream -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic -a 192.168.200.3:9339 --prefix "system/cpus/cpu[index=0]" --path "state"
+gnmic subscribe gnmic --gzip --mode stream -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic -a 192.168.200.3:9339 --prefix "system/cpus/cpu[index=0]" --path "state"
 ...
 ```
 

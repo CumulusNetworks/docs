@@ -93,6 +93,7 @@ License: GPL-2
 
 Files: debian/*
 Copyright: 2007-2011 Canonical Ltd.
+           2014-2022 intrigeri
 License: GPL-2
 
 License: BSD-3-clause

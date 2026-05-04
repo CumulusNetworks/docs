@@ -4,11 +4,13 @@ Upstream-Contact: fuse-devel@lists.sourceforge.net
 Source: https://github.com/libfuse/libfuse
 
 Files: *
-Copyright: 2001-2013 Miklos Szeredi <miklos@szeredi.hu>
+Copyright: 2001-2015 Miklos Szeredi <miklos@szeredi.hu>,
+ 2015- Nikolaus Rath <Nikolaus@rath.org>
 License: GPL-2
 
 Files: lib/*
-Copyright: 2001-2013 Miklos Szeredi <miklos@szeredi.hu>
+Copyright: 2001-2015 Miklos Szeredi <miklos@szeredi.hu>,
+ 2015- Nikolaus Rath <Nikolaus@rath.org>
 License: LGPL-2
 
 Files: debian/*

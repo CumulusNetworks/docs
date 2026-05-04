@@ -6,7 +6,7 @@ It was downloaded from http://daniel.haxx.se/projects/c-ares/
 Upstream Author: Daniel Stenberg <daniel@haxx.se>
 
 Copyright: 
- Â© 2000-2009   Daniel Stenberg, Dominick Meglio, liren at vivisimo.com, 
+ © 2000-2009   Daniel Stenberg, Dominick Meglio, liren at vivisimo.com, 
                James Bursa, Duncan Wilcox, Dirk Manske, Dan Fandrich, 
 	       Gisle Vanem, Gunter Knauf, Henrik Stoerner, Yang Tse,
                Nick Mathewson, Alexander Lazic, Andreas Rieke, 
@@ -14,7 +14,7 @@ Copyright:
 	       William Ahern, Bram Matthys, Michael Wallner, 
 	       Vlad Dinulescu, Brad House, Shmulik Regev, 
 	       Ashish Sharma, Brad Spencer
- Â© 1998-2000   Massachusetts Institute of Technology,
+ © 1998-2000   Massachusetts Institute of Technology,
  	       Greg Hudson <ghudson@mit.edu>
 
 License:
@@ -49,7 +49,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 Some source files (bitncmp.c, inet_net_pton.c, inet_ntop.c) 
 contain this copyright notice:
 
-Copyright Â© 1996 by Internet Software Consortium.
+Copyright © 1996 by Internet Software Consortium.
 
 Permission to use, copy, modify, and distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
@@ -69,6 +69,6 @@ SOFTWARE.
 The file mkinstalldirs is in the Public domain.
 
 ======================================================================
-The Debian packaging is Â© 2007, Andreas Schuldei <andreas@debian.org> and
+The Debian packaging is © 2007, Andreas Schuldei <andreas@debian.org> and
 is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
 

@@ -7,7 +7,7 @@ Files: *
 Copyright: 2002-2006 Derek Foreman <derek@signalmarketing.com>
            2002-2006 Ben Jansens <xor@orodu.net>
            2006-2008 Mario Danic <mario.danic@gmail.com>
-           2006-2016 Thomas Schmitt <scdbackup@gmx.net>
+           2006-2021 Thomas Schmitt <scdbackup@gmx.net>
 License: GPL-2+
 
 Files: debian/*
@@ -17,7 +17,7 @@ Copyright: 2006      Ante Karamatic <ivoks@ubuntu.com>
            2008      Mario Danic <mario.danic@gmail.com>
            2011      Mats Erik Andersson <mats.andersson@gisladisker.se>
            2008-2012 George Danchev <danchev@spnet.net>
-           2015-2016 Thomas Schmitt <scdbackup@gmx.net>
+           2015-2021 Thomas Schmitt <scdbackup@gmx.net>
 License: GPL-2
 
 License: GPL-2

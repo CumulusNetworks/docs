@@ -1,9 +1,11 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: python-colorama
-Source: http://pypi.python.org/pypi/colorama/
+Upstream-Contact: Jonathan Hartley <tartley@tartley.com> and Arnon Yaari
+Source: https://github.com/tartley/colorama
 
 Files: *
-Copyright: © 2010 Jonathan Hartley <tartley@tartley.com>
+Copyright: 2010-2022 Jonathan Hartley <tartley@tartley.com> and
+                     Arnon Yaari
 License: BSD-3
  All rights reserved.
  .
@@ -30,7 +32,8 @@ License: BSD-3
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Files: debian/*
-Copyright: © 2012 Khalid El Fathi <khalid@elfathi.fr>
+Copyright: 2012 Khalid El Fathi <khalid@elfathi.fr>
+           2019-2022 G�rkan Myczko <tar@debian.org>
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

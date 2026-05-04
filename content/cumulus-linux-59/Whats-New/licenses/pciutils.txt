@@ -1,26 +1,48 @@
-This package was debianized by Remco van de Meent remco@debian.org on
-Sat, 6 Feb 1999 15:10:15 +0100.  Earlier versions were debianized by
-Christoph Lameter clameter@debian.org on Tue, 27 Jan 1998 20:37:16 -0800
-and Joel Klecker jk@espy.org took over the package on Thu, 26 Mar 1998.
-Blars Blarson, Colin Watson and Christian Perrier contributed to NMUs
-in 2005 and the package is currently team maintained by Anibal Monsalve
-Salazar, Matt Taggart and Matthew Wilcox.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Contact: Martin Mares <mj@ucw.cz>
 
-The package was downloaded from
-ftp://ftp.kernel.org/pub/software/utils/pciutils/
-
-Upstream Author: Martin Mares <mj@ucw.cz>
-
+Files:
+ *
 Copyright:
+ Copyright © 1997-2022 Martin Mares <mj@ucw.cz>
+ Copyright © 1999 Jari Kirma <kirma@cs.hut.fi>
+ Copyright © 2002 Quentin Garnier <cube@cubidou.net>
+ Copyright © 2003 Bill Moore <billm@eng.sun.com>
+ Copyright © 2003 Marco Gerards <metgerards@student.han.nl>
+ Copyright © 2003 Matthew Wilcox <matthew@wil.cx>
+ Copyright © 2004 Alexander Stock <stock.alexander@gmx.de>
+ Copyright © 2006 Samuel Thibault <samuel.thibault@ens-lyon.org>
+ Copyright © 2007 Thomas Schwinge <tschwinge@gnu.org>
+ Copyright © 2008 Solarflare Communications
+ Copyright © 2009 Francois Revol <revol@free.fr>
+ Copyright © 2010, 2017 Rudolf Marek <r.marek@assembler.cz>
+ Copyright © 2013 Apple, Inc.
+ Copyright © 2013-2014 Tom Gundersen <teg@jklm.no>
+ Copyright © 2014 Gerd Hoffmann <kraxel@redhat.com>
+ Copyright © 2017 Joan Lledó <jlledom@member.fsf.org>
+ Copyright © 2018 YuJian Gong <gongyujian@acoinfo.com>
+License: GPL-2+
 
-Copyright (c) 1997--2006 Martin Mares <mj@ucw.cz>
+Files:
+ debian/*
+Copyright:
+ Copyright © 2020-2023 Guillem Jover <guillem@debian.org>
+ Copyright © 2020 Collabora Ltd.
+License: GPL-2+
 
-All files in this package can be freely distributed and used according
-to the terms of the GNU General Public License, either version 2 or
-(at your opinion) any newer version. This is the same distribution
-policy as for the Linux kernel itself -- see /usr/src/linux/COPYING
-for details.
-
-
-A full copy of the GNU GPL can be found in /usr/share/common-licenses on
-Debian systems.
+License: GPL-2+
+ This program is free software: you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+Comment:
+ On Debian systems, the full text of the GNU General Public License
+ can be found in '/usr/share/common-licenses/GPL-2'.

@@ -27,8 +27,8 @@ Copyright: 2011, OpenStack LLC.
  Eugene Kirpichov <ekirpichov@gmail.com>
  Gary Kotton <gkotton@redhat.com>
  Giampaolo Lauria <lauria@us.ibm.com>
- Ionuț Arțăriși <iartarisi@suse.cz>
- Jason Kölker <jason@koelker.net>
+ Ionu? Ar??ri?i <iartarisi@suse.cz>
+ Jason K�lker <jason@koelker.net>
  Jay Pipes <jaypipes@gmail.com>
  Joe Gordon <jogo@cloudscaling.com>
  Joe Heck <heckj@mac.com>

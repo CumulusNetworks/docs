@@ -3,8 +3,8 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Files:
  *
 Copyright:
- Copyright Â© 2000-2008 Silicon Graphics, Inc.
- Copyright Â© 1999-2001,2007-2009 Andreas Gruenbacher
+ Copyright © 2000-2008 Silicon Graphics, Inc.
+ Copyright © 1999-2001,2007-2009 Andreas Gruenbacher
 License: GPL-2+
  This program is free software: you can redistribute it and/or modify it
  under the terms of the GNU General Public License as published by
@@ -34,8 +34,8 @@ Files:
  tools/setfacl.c
  tools/user_group.h
 Copyright:
- Copyright Â© 2001-2002 Silicon Graphics, Inc.
- Copyright Â© 1999-2003,2007,2009,2011 Andreas Gruenbacher
+ Copyright © 2001-2002 Silicon Graphics, Inc.
+ Copyright © 1999-2003,2007,2009,2011 Andreas Gruenbacher
 License: LGPL-2+
  This program is free software: you can redistribute it and/or modify it
  under the terms of the GNU Lesser General Public License as published by

@@ -1,0 +1,22 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: ShellCheck
+Upstream-Contact: Vidar Holen <vidar@vidarholen.net>
+Source: https://hackage.haskell.org/package/ShellCheck
+ Also http://www.shellcheck.net/
+ and https://github.com/koalaman/shellcheck
+
+Files: *
+Copyright: 2012-2015 Vidar Holen
+License: GPL-3+
+ ShellCheck is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ ShellCheck is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ can be found in `/usr/share/common-licenses/GPL-3'.

@@ -1,15 +1,17 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: mccabe
-Source: https://github.com/florentx/mccabe
+Source: https://github.com/pycqa/mccabe
 
 Files: *
 Copyright: 2008-2013 Ned Batchelder
-           2011-2013 Tarek Ziade <tarek@ziade.org>
-           2013 Florent Xicluna <florent.xicluna@gmail.com>
+ 2011-2022 Tarek Ziade <tarek@ziade.org>
+ 2013 Florent Xicluna <florent.xicluna@gmail.com>
+ Ian Stapleton Cordasco <graffatcolmingov@gmail.com>
 License: Expat
 
 Files: debian/*
 Copyright: 2013 Chris Johnston <chrisjohnston@ubuntu.com>
+ 2022 Carsten Schoenert <c.schoenert@t-online.de>
 License: Expat
 
 License: Expat

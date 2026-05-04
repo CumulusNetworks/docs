@@ -96,6 +96,6 @@ License: Mellanox Proprietary
  4.	iPythong . License information available at: http://ipython.org/ipython-doc/rel-0.13.2/about/license_and_copyright.html	
  5.	libnl - Netlink Library 3.2.13   License information available at: http://www.infradead.org/~tgr/libnl/
  6.	ltmain (autogen) License information available at: http://gnu.org	
- 7.	OpenFabrics Enterprise Distribution Â– OFED  2.1License information available at: http://www.openfabrics.org/	
+ 7.	OpenFabrics Enterprise Distribution – OFED  2.1License information available at: http://www.openfabrics.org/	
  8.	Scew	License information available at:http://www.nongnu.org/scew	
  9.	Swig	License information available at: http://www.swig.org/Release/LICENSE	

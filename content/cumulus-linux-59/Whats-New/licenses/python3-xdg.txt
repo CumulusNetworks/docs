@@ -1,0 +1,32 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: PyXDG
+Source: https://gitlab.freedesktop.org/xdg/pyxdg
+
+Files: *
+Copyright: Thomas Kluyver <thomas@kluyver.me.uk>
+ Sergey Kuleshov <svyatogor@gentoo.org>
+ Heinrich Wendel <lanius@gentoo.org>
+License: LGPL-2
+
+Files: debian/*
+Copyright:
+ 2004, Sebastien Bacher <seb128@debian.org>
+ 2006, Arnaud Fontaine <arnaud@andesi.org>
+ 2009-2010, Piotr Lewandowski <piotr.lewandowski@gmail.com>
+ 2011, Jakub Wilk <jwilk@debian.org>
+ 2012, Josselin Mouette <joss@debian.org>
+ 2012-2013, Dimitri John Ledkov <xnox@debian.org>
+ 2013, Dmitry Shachnev <mitya57@debian.org>
+ 2013-2018, Andrew Starr-Bochicchio <asb@debian.org>
+ 2016-2018, Ond?ej Nový <novy@ondrej.org>
+ 2018, Piotr O?arowski <piotr@debian.org>
+ 2019, Simon McVittie <smcv@debian.org>
+ 2019, Drew Parsons <dparsons@debian.org>
+ 2020, Emmanuel Arias <eamanu@yaerobi.com>
+ 2021, Andrej Shadura <andrew.shadura@collabora.co.uk>
+ 2022, Carsten Schoenert <c.schoenert@t-onlinde.de>
+License: LGPL-2
+
+License: LGPL-2
+ On Debian systems, the complete text of the GNU Lesser General
+ Public License can be found in `/usr/share/common-licenses/LGPL-2'.

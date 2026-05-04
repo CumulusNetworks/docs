@@ -1,0 +1,98 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: passwdqc
+Source: https://www.openwall.com/passwdqc/
+
+Files: *
+Copyright: 2000-2021, Solar Designer <solar@openwall.com>
+           2001, Networks Associates Technology, Inc.
+License: cut-down-BSD
+
+Files: pam_passwdqc.8
+Copyright: 2001, Networks Associates Technology, Inc.
+           2009, Dmitry V. Levin
+           2009 Solar Designer
+License: BSD-3-Clause
+
+Files: passwdqc.conf.5
+Copyright: 2000-2003,2005,2008, Solar Designer
+           2001, Networks Associates Technology, Inc.
+           2009, Dmitry V. Levin
+License: BSD-3-Clause
+
+Files: concat.c wordset_4k.c wordset_4k.h pam_macros.h
+Copyright: 2009, Solar Designer <solar@openwall.com>
+License: public-domain
+ No license required for any purpose; the work is not subject to
+ copyright in any jurisdiction.
+
+Files: debian/*
+Copyright: 2002?2005, Tollef Fog Heen <tfheen@debian.org>
+           2010, martin f. krafft <madduck@debian.org>
+           2013, Jackson Doak <noskcaj@ubuntu.com>
+           2020-2021, Unit 193 <unit193@debian.org>
+License: GPL-2+
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: cut-down-BSD
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND ANY
+ EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY
+ DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-3-Clause
+ Portions of this software were developed for the FreeBSD Project by
+ ThinkSec AS and NAI Labs, the Security Research Division of Network
+ Associates, Inc.  under DARPA/SPAWAR contract N66001-01-C-8035
+ ("CBOSS"), as part of the DARPA CHATS research program.
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. The name of the author may not be used to endorse or promote
+    products derived from this software without specific prior written
+    permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+ .
+ $FreeBSD: src/lib/libpam/modules/pam_passwdqc/pam_passwdqc.8,v 1.4 2002/05/30 14:49:57 ru Exp $
+ $Owl: Owl/packages/passwdqc/passwdqc/pam_passwdqc.8,v 1.15 2010/03/13 06:51:46 solar Exp $

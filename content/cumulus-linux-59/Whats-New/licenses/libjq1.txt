@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: jq
 Source: <https://github.com/stedolan/jq>
 
@@ -23,7 +23,7 @@ License: MIT
  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Files: docs/* jq.1
+Files: docs/*
 Copyright: 2012 Stephen Dolan <mu@netsoc.tcd.ie>
 License: CC-BY-3.0
  THE WORK (AS DEFINED BELOW) IS PROVIDED UNDER THE TERMS OF THIS CREATIVE
@@ -311,13 +311,7 @@ License: CC-BY-3.0
      License is not intended to restrict the license of any rights under
      applicable law.
 
-Files: docs/public/bootstrap/*
-Copyright: 2012 Twitter, Inc
-License: Apache-2.0
- On Debian systems the full text of the Apache-2.0 license can be found in the
-  `/usr/share/common-licenses/Apache-2.0' file.
-
-Files: jv_dtoa.c
+Files: src/jv_dtoa.c
 Copyright: 1991, 2000, 2001 by Lucent Technologies
            1991, 1996 by Lucent Technologies
 License: Expat

@@ -16,7 +16,7 @@ Copyright: 1999-2002 Aladdin Enterprises
            2012      Hewlett-Packard Development Company, L.P.
            2012      Pigeon Point Systems
            2013-2016 Zdenek Styblik
-           2014      JÃ¶rg Frings-FÃ¼rst
+           2014      Jörg Frings-Fürst
 License: BSD-3-clause
 
 Files: debian/*
@@ -34,7 +34,7 @@ Copyright: 2003-2005 Duncan Laurie <duncan@sun.com>
            2011-2013 Luk Claes <luk@debian.org>
            2012      Leo Iannacone <l3on@ubuntu.com>
            2013      Robie Basak <robie.basak@canonical.com>
-           2014-2018 JÃ¶rg Frings-FÃ¼rst <debian@jff.email>
+           2014-2022 Jörg Frings-Fürst <debian@jff.email>
 License: BSD-3-clause
 
 License: BSD-3-clause

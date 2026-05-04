@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: more-itertools
-Source: https://pypi.python.org/pypi/more-itertools
+Source: https://github.com/more-itertools/more-itertools
 
 Files: *
 Copyright: (c) 2017 Erik Rose

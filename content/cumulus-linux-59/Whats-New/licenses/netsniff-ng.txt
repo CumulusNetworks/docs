@@ -1,0 +1,49 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: netsniff-ng
+Upstream-Contact: Daniel Borkmann <danborkmann@googlemail.com>
+Source: http://www.netsniff-ng.org/
+
+Files: *
+Copyright: 2009-2013, Daniel Borkmann <danborkmann@googlemail.com>
+           2009-2012, Emmanuel Roullit <emmanuel@netsniff-ng.org>
+           2014, Tobias Klauser
+License: GPL-2
+
+Files: *.zsh
+Copyright: 2013, Hideo Hattori <hhatto.jp@gmail.com>
+License: GPL-2
+
+Files: proto*.h proto*.c
+Copyright: 2009-2010, Daniel Borkmann <danborkmann@googlemail.com>
+           2010, Emmanuel Roullit
+           2012, Markus Amend <markus@netsniff-ng.org>, Deutsche Flugsicherung GmbH
+           2012, Christoph Jaeger <christoph@netsniff-ng.org>
+           2014, Tobias Klauser
+License: GPL-2
+
+Files: staging/*
+Copyright: 2008-2010, Herbert Haas
+License: GPL-2
+
+Files: debian/*
+Copyright: 2009-2015, Daniel Borkmann <danborkmann@googlemail.com>
+           2011-2022, Kartik Mistry <kartik@debian.org>
+License: GPL-2
+
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 of the License.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ 02110-1301  USA
+ .
+ On Debian GNU/Linux systems, the complete text of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-2'.

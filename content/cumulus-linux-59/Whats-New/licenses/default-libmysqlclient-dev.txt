@@ -16,10 +16,10 @@ Copyright:
  2009, Canonical Ltd
  2010, Xavier Oswald <xoswald@debian.org>
  2011, Clint Byrum <clint@ubuntu.com>
- 2011, Ond≈ôej Sur√Ω <ondrej@debian.org>
+ 2011, Ond?ej Sur˝ <ondrej@debian.org>
  2012, Nicholas Bamber <nicholas@periapt.co.uk>
- 2013-2014, Otto Kek√§l√§inen <otto@seravo.fi>
- 2016-2018, Andreas Beckmann <anbe@debian.org>
+ 2013-2023, Otto Kek‰l‰inen <otto@debian.org>
+ 2016-2021, Andreas Beckmann <anbe@debian.org>
 License: GPL-2+
 
 Files: doc/*

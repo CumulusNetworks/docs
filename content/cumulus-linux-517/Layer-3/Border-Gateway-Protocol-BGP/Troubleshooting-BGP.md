@@ -1041,6 +1041,104 @@ bit-map
 [route-with-soo]          10.0.1.12/32
 ```
 
+To show peer-bit index mapping information about a specific SOO route, run the `nv show <vrf-id> default router bgp address-family <address-family> soo-route <prefix>` command:
+
+```
+cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 6.0.0.9
+                          operational
+------------------------  -------------------
+num-paths                 6
+nexthop-group-id          73545797
+num-routes-with-soo       13
+num-routes-using-soo-nhg  13
+soo-route-flag            I
+nhg-flags-string          V
+nhg-flags
+  nhg-valid               yes
+  nhg-install-pending     no
+  nhg-delete-pending      no
+[peer-index]              fe80::202:ff:fe11:1
+[peer-index]              fe80::202:ff:fe22:2
+bit-map
+  selected-path-bitmap     1 2 3 4 5 6
+  installed-path-bitmap    1 2 3 4 5 6
+[route-with-soo]          21.5.0.0/16
+[route-with-soo]          21.5.0.0/24
+[route-with-soo]          21.5.20.0/24
+[route-with-soo]          21.5.21.0/24
+[route-with-soo]          21.5.22.0/24
+[route-with-soo]          21.5.23.0/24
+[route-with-soo]          21.5.24.0/24
+[route-with-soo]          21.5.25.0/24
+[route-with-soo]          21.5.26.0/24
+[route-with-soo]          21.5.27.0/24
+[route-with-soo]          21.5.28.0/24
+[route-with-soo]          21.5.29.0/24
+[route-with-soo]          144.144.144.1/32
+
+peer-bit
+===========
+
+    PeerIP - Peer IP address, SooPeerBitIndex - Indicates Site-of-Origin peer bit
+    index mapping
+
+    Peer  PeerIP               SooPeerBitIndex
+    ----  -------------------  ---------------
+    swp2  fe80::202:ff:fe11:1  1
+    swp3  fe80::202:ff:fe11:1  2
+    swp4  fe80::202:ff:fe11:1  3
+    swp5  fe80::202:ff:fe22:2  4
+    swp6  fe80::202:ff:fe22:2  5
+    swp7  fe80::202:ff:fe22:2  6
+```
+
+To show the SOO peer bit mapping for an SOO route, run the `nv show <vrf-id> default router bgp address-family <address-family> soo-route <prefix> peer-bit` command. To show the information in json format, run the `nv show <vrf-id> default router bgp address-family <address-family> soo-route <prefix> peer-bit -o json` command.
+
+```
+cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 6.0.0.9 peer-bit
+PeerIP - Peer IP address, SooPeerBitIndex - Indicates Site-of-Origin peer bit
+index mapping
+
+Peer  PeerIP               SooPeerBitIndex
+----  -------------------  ---------------
+swp2  fe80::202:ff:fe11:1  1
+swp3  fe80::202:ff:fe11:1  2
+swp4  fe80::202:ff:fe11:1  3
+swp5  fe80::202:ff:fe22:2  4
+swp6  fe80::202:ff:fe22:2  5
+swp7  fe80::202:ff:fe22:2  6
+```
+
+```
+cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 6.0.0.9 peer-bit -o json
+{
+  "swp2": {
+    "bit-index": 1,
+    "peer-ip": "fe80::202:ff:fe11:1"
+  },
+  "swp3": {
+    "bit-index": 2,
+    "peer-ip": "fe80::202:ff:fe11:1"
+  },
+  "swp4": {
+    "bit-index": 3,
+    "peer-ip": "fe80::202:ff:fe11:1"
+  },
+  "swp5": {
+    "bit-index": 4,
+    "peer-ip": "fe80::202:ff:fe22:2"
+  },
+  "swp6": {
+    "bit-index": 5,
+    "peer-ip": "fe80::202:ff:fe22:2"
+  },
+  "swp7": {
+    "bit-index": 6,
+    "peer-ip": "fe80::202:ff:fe22:2"
+  }
+}
+```
+
 To show the SOO peer bit index mapping for an SOO route, run the `nv show <vrf-id> default router bgp address-family <address-family> soo-route <prefix> peer-index` command:
 
 ```

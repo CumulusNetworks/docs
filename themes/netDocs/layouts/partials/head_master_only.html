@@ -57,7 +57,7 @@ function OptanonWrapper() {
 <script type="text/javascript" src="https://images.nvidia.com/aem-dam/Solutions/ot-js/ot-custom.js"></script>
 {{ end }}
 
-{{ if eq .Page.Params.product "NVIDIA Air" }}
+{{ if eq .Page.Params.product "NVIDIA DSX Air" }}
 {{ $jsNetguru := resources.Get "js/netguru.js" }}
 
 <script src="{{ $jsNetguru.Permalink }}" id="chainlit-script"></script>

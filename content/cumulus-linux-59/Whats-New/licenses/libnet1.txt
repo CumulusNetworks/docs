@@ -7,25 +7,25 @@ Packaged-Date: Wed May 13 23:21:59 EEST 2009
 Original-Source-Location: http://libnet-dev.sourceforge.net/
 
 Files: debian/*
-Copyright: Â© 2008, David Paleino <d.paleino@gmail.com>
- Â© 2002-2008, Domenico Andreoli <cavok@debian.org>
- Â© 2009-2012, Stefanos Harhalakis <v13@v13.gr>
+Copyright: © 2008, David Paleino <d.paleino@gmail.com>
+ © 2002-2008, Domenico Andreoli <cavok@debian.org>
+ © 2009-2012, Stefanos Harhalakis <v13@v13.gr>
 License: BSD-2
 
 Files: include/bpf.h
  include/win32/getopt.h
  include/win32/in_systm.h
  sample/win32/getopt.c
-Copyright: Â© 1982-1997, The Regents of the University of California
+Copyright: © 1982-1997, The Regents of the University of California
 License: BSD-4
 
 Files: include/ifaddrlist.h
-Copyright: Â© 1997, The Regents of the University of California
+Copyright: © 1997, The Regents of the University of California
 License: BSD-3
 
 Files: include/libnet/libnet-asn1.h
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 1988-1989, Carnegie Mellon University
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 1988-1989, Carnegie Mellon University
 License: BSD-2 or other
 
 Files: sample/bgp4*
@@ -37,88 +37,88 @@ Files: sample/bgp4*
  sample/tftp.c
  src/libnet_build_bgp.c
  src/libnet_build_gre.c
-Copyright: Â© 2003-2004 FrÃ©dÃ©ric Raynal <pappy@security-labs.org>
+Copyright: © 2003-2004 Frédéric Raynal <pappy@security-labs.org>
 License: BSD-2
 
 Files: sample/icmp_redirect.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 2003, Alberto Ornaghi <alor@antifork.org>
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 2003, Alberto Ornaghi <alor@antifork.org>
 License: BSD-2
 
 Files: sample/icmp_timeexceed.c
  src/libnet_build_sebek.c
  src/libnet_cq.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 2003, FrÃ©dÃ©ric Raynal <pappy@security-labs.org>
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 2003, Frédéric Raynal <pappy@security-labs.org>
 License: BSD-2
 
 Files: sample/ospf*
  src/libnet_build_ospf.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 1999-2000, Andrew Reiter <areiter@bindview.com>
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 1999-2000, Andrew Reiter <areiter@bindview.com>
 License: BSD-2
 
 Files: sample/ping_of_death.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 1999-2001, Dug Song <dugsong@monkey.org>
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 1999-2001, Dug Song <dugsong@monkey.org>
 License: BSD-2
 
 Files: srct/libnet_asn1.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 1988-1992, Carnegie Mellon University
- Â© 1993-1996, 1998, The Regents of the University of California
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 1988-1992, Carnegie Mellon University
+ © 1993-1996, 1998, The Regents of the University of California
 License: BSD-3 or other
 
 Files: src/libnet_build_fddi.c
  src/libnet_build_rpc.c
  src/libnet_build_token_ring.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© Jason Damron <jsdamron@hushmail.com> <jdamron@stackheap.org>
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © Jason Damron <jsdamron@hushmail.com> <jdamron@stackheap.org>
 License: BSD-2
 
 Files: src/libnet_build_ipsec.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 2002, Jose Nazario <jose@crimelabs.net>
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 2002, Jose Nazario <jose@crimelabs.net>
 License: BSD-2
 
 Files: src/libnet_build_link.c
  src/libnet_write.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 2003, Roberto Larcher <roberto.larcher@libero.it>
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 2003, Roberto Larcher <roberto.larcher@libero.it>
 License: BSD-2
 
 Files: src/libnet_dll.c
-Copyright: Â© 2002, Roberto Larcher <roberto.larcher@libero.it>
+Copyright: © 2002, Roberto Larcher <roberto.larcher@libero.it>
 License: BSD-2
 
 Files: src/libnet_link_dlpi.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 1993-1997, The Regents of the University of California
- Â© Atanu Ghosh <atanu@cs.ucl.ac.uk>, University College London
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 1993-1997, The Regents of the University of California
+ © Atanu Ghosh <atanu@cs.ucl.ac.uk>, University College London
 License: BSD-3
 
 Files: src/libnet_link_nit.c
  src/libnet_link_none.c
  src/libnet_link_pf.c
  src/libnet_link_snoop.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 1990-1996, 1998, The Regents of the University of California.
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 1990-1996, 1998, The Regents of the University of California.
 License: BSD-3
 
 Files: src/libnet_link_snit.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 1990-1996, 1998, The Regents of the University of California.
- Â© 1989, Micky Liu <micky@cunixc.cc.columbia.edu>, Columbia University
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 1990-1996, 1998, The Regents of the University of California.
+ © 1989, Micky Liu <micky@cunixc.cc.columbia.edu>, Columbia University
 License: BSD-3
 
 Files: src/libnet_link_win32.c
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
- Â© 2001-2002, Don Bowman <don@sandvine.com>
- Â© 2002, Roberto Larcher <roberto.larcher@libero.it>
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+ © 2001-2002, Don Bowman <don@sandvine.com>
+ © 2002, Roberto Larcher <roberto.larcher@libero.it>
 License: BSD-2
 
 Files: *
-Copyright: Â© 1998-2004, Mike D. Schiffman <mike@infonexus.com>
+Copyright: © 1998-2004, Mike D. Schiffman <mike@infonexus.com>
 License: BSD-2
 
 License: BSD-2

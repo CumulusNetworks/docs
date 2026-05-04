@@ -33,7 +33,7 @@ None
 ### Sample Usage
 
 ```
-nvidia@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-mlnx-amd64.bin
+nvidia@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-5.9.0-mlnx-amd64.bin
 ```
 
 ### Related Commands
@@ -280,7 +280,7 @@ nvidia@switch:~$ netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
 
 ### Related Commands
 
-None
+- `netq lcm del role`
 
 - - -
 ## netq lcm add ztp-script
@@ -570,6 +570,37 @@ None
 
 - - -
 -->
+## netq lcm del role
+
+Deletes a role for one or more switches. Roles determine placement in a Clos topology and influence the order in which you can upgrade switches.
+
+### Syntax
+
+```
+netq lcm del role
+    switches <text-switch-hostnames>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| switches | \<text-switch-hostnames\> | Deletes the specified role to the switches with these hostnames. Use a comma-separated list (no spaces) to delete multiple switch roles concurrently. |
+
+### Options
+
+None
+
+### Sample Usage
+
+```
+nvidia@switch:~$ netq lcm del role switches spine01
+```
+
+### Related Commands
+
+- `netq lcm add role`
+- - -
 ## netq lcm del ztp-script
 
 Deletes a ZTP script from your NetQ server. Use the `netq lcm show ztp-scripts` command to view a list of all ZTP scripts along with their script identification numbers.

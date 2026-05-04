@@ -1,5 +1,5 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Source: http://search.cpan.org/dist/SGMLSpm/
+Source: https://metacpan.org/release/SGMLSpm
 Upstream-Contact: David Megginson <david.megginson@megginson.com>
 Upstream-Name: SGMLSpm
 

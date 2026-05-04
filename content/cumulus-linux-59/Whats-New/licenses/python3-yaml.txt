@@ -6,7 +6,8 @@ The maintainer is Debian Python Modules Team
 
 It was downloaded from http://pyyaml.org/
 
-Copyright Holder: Copyright Â© 2006 Kirill Simonov <xi@resolvent.net>
+Copyright (c) 2017-2019 Ingy döt Net
+Copyright (c) 2006-2016 Kirill Simonov
 
 License:
 
@@ -28,5 +29,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-The Debian packaging is Â© 2007, Scott Kitterman <scott@kitterman.com> and
+The Debian packaging is © 2007, Scott Kitterman <scott@kitterman.com> and
 is licensed under the same terms as PyYAML, see above.

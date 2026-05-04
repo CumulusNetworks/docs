@@ -42,7 +42,7 @@ MODIFICATIONS.
 
 lib/snprintf.c, lib/snprintf.h:
 
- * Copyright (c) 1995-1999 Kungliga Tekniska HÃ¶gskolan
+ * Copyright (c) 1995-1999 Kungliga Tekniska Högskolan
  * (Royal Institute of Technology, Stockholm, Sweden).
  * All rights reserved.
  * 

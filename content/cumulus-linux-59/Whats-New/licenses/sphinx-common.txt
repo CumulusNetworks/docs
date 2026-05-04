@@ -1,44 +1,53 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Sphinx
 
 Files: *
-Copyright: 2007-2019 the Sphinx team (see AUTHORS file)
+Copyright: 2007-2022 the Sphinx team (see AUTHORS file)
 License: BSD-2-clause
 
 Files: debian/dh-sphinxdoc/dh_sphinxdoc
        debian/jstest/jstest.py
 Copyright: 2011 Jakub Wilk <jwilk@debian.org>
-           2013-2018 Dmitry Shachnev <mitya57@debian.org>
+           2013-2022 Dmitry Shachnev <mitya57@debian.org>
 License: BSD-2-clause
 
 Files: sphinx/ext/apidoc.py
-Copyright: 2008 SociÃ©tÃ© des arts technologiques (SAT)
-           2007-2018 the Sphinx team
+Copyright: 2008 Société des arts technologiques (SAT)
+           2007-2022 the Sphinx team
 License: BSD-2-clause
 
 Files: sphinx/ext/napoleon/docstring.py
 Copyright: 2008 Stefan van der Walt <stefan@mentat.za.net>
            2008 Pauli Virtanen <pav@iki.fi>
-           2007-2018 the Sphinx team
+           2007-2022 the Sphinx team
 License: BSD-2-clause
 
 Files: sphinx/themes/basic/static/jquery*.js
-Copyright: 2016 jQuery Foundation and other contributors
+Copyright: 2021 OpenJS Foundation and other contributors
 License: Expat
 
 Files: sphinx/themes/basic/static/underscore*.js
-Copyright: 2009-2012 Jeremy Ashkenas, DocumentCloud
+Copyright: 2009-2021 Jeremy Ashkenas, Julian Gonggrijp, and DocumentCloud and Investigative Reporters & Editors
 License: Expat
+
+Files: sphinx/search/minified-js/*
+       sphinx/search/non-minified-js/*
+Copyright: 2001 Dr Martin Porter
+           2004-2005 Richard Boulton
+           2013 Yoshiki Shibukawa
+           2006-2021 Olly Betts
+License: BSD-3-clause
+
+Files: sphinx/themes/haiku/static/haiku.css_t
+Copyright: 2008-2009 Haiku
+           2007-2022 the Sphinx team
+License: BSD-2-clause
 
 Files: sphinx/util/smartypants.py
 Copyright: 2003 John Gruber
            2004-2007 Chad Miller
-           2010 GÃ¼nter Milde
+           2010 Günter Milde
 License: BSD-3-clause
-
-Files: sphinx/util/stemmer/porter.py
-Copyright: 2001 Vivake Gupta <v@nano.com>
-License: public-domain
- Can be used free of charge for any purpose.
 
 License: BSD-2-clause
  Redistribution and use in source and binary forms, with or without

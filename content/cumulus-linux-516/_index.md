@@ -16,4 +16,3 @@ Cumulus Linux includes the NVIDIA NetQ agent and CLI. You can use NetQ to monito
 
 For a list of the new features in this release, see {{<link url="Whats-New" text="What's New">}}. For bug fixes and known issues present in this release, refer to the {{<link url="Cumulus-Linux-5.16-Release-Notes" text="Cumulus Linux 5.16 Release Notes">}}.
 <!-- vale off -->
-

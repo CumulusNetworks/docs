@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: gperftools
 Upstream-Contact: google-perftools@googlegroups.com
 Source: https://github.com/gperftools/gperftools
@@ -33,7 +33,8 @@ License: BSD-3-clause
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Files: debian/*
-Copyright: Copyright 2011 Daigo Moriwaki <daigo@debian.org>
+Copyright: Copyright 2011-2016 Daigo Moriwaki <daigo@debian.org>,
+           Copyright 2018-     Laszlo Boszormenyi (GCS) <gcs@debian.org>
 License: GPL-2+
  This program is free software; you can redistribute it
  and/or modify it under the terms of the GNU General Public

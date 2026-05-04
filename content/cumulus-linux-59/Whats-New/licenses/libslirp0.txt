@@ -1,0 +1,161 @@
+Format: https://dep.debian.net/deps/dep5
+Upstream-Name: libslirp
+Source: https://gitlab.freedesktop.org/slirp/libslirp
+
+Files: *
+Copyright: 1995, 1996, Danny Gasparovski
+License: BSD-3-clause
+
+Files: src/*
+Copyright: 1995, 1996, Danny Gasparovski
+ 1982, 1986, 1988, 1990, 1992-1994, The Regents of the University of California.
+License: BSD-3-clause
+
+Files: src/arp_table.c
+Copyright: 2011, AdaCore
+License: Expat
+
+Files: src/bootp.c
+  src/slirp.c
+  src/state.c
+Copyright: 2004-2008, Fabrice Bellard
+License: Expat
+
+Files: src/debug.h
+  src/if.c
+  src/if.h
+  src/main.h
+  src/misc.c
+  src/misc.h
+  src/sbuf.c
+  src/sbuf.h
+  src/socket.c
+  src/socket.h
+Copyright: 1995, Danny Gasparovski.
+License: BSD-3-clause
+
+Files: src/dhcpv6.c
+  src/dhcpv6.h
+Copyright: 2016, Thomas Huth, Red Hat Inc.
+License: BSD-3-clause
+
+Files: src/dnssearch.c
+Copyright: 2012, Klaus Stengel
+License: Expat
+
+Files: src/ip6.h
+  src/ip6_icmp.c
+  src/ip6_icmp.h
+  src/ip6_input.c
+  src/ip6_output.c
+  src/ndp_table.c
+Copyright: 2013, Guillaume Subiron, Yann Bordenave, Serigne Modou Wagne.
+License: BSD-3-clause
+
+Files: src/mbuf.c
+Copyright: 1995, Danny Gasparovski
+License: BSD-3-clause
+
+Files: src/ncsi-pkt.h
+Copyright: Gavin Shan, IBM Corporation 2016.
+License: BSD-3-clause
+
+Files: src/ncsi.c
+Copyright: 2016-2018, IBM Corp.
+License: BSD-3-clause
+
+Files: src/stream.c
+Copyright: 2018, Red Hat, Inc.
+License: Expat
+
+Files: src/tftp.c
+Copyright: 2004, Magnus Damm <damm@opensource.se>
+License: Expat
+
+Files: src/udp6.c
+Copyright: 2013, Guillaume Subiron
+License: BSD-3-clause
+
+Files: src/util.c
+  src/util.h
+Copyright: 2010-2019, Red Hat, Inc.
+  2003-2008, Fabrice Bellard
+License: Expat
+
+Files: src/vmstate.c
+Copyright: 2009-2018, Red Hat Inc
+License: BSD-3-clause
+
+Files: src/vmstate.h
+Copyright: 2009-2011, Red Hat, Inc.
+License: BSD-3-clause
+
+License: BSD-3-clause
+ This software is Copyright (c) 2019 by foo.
+ .
+ This is free software, licensed under:
+ .
+   The (three-clause) BSD License
+ .
+ The BSD License
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are
+ met:
+ .
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+ .
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution. 
+ .
+   * Neither the name of foo nor the names of its
+     contributors may be used to endorse or promote products derived from
+     this software without specific prior written permission. 
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+ PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+ CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: Expat
+ This software is Copyright (c) 2019 by foo.
+ .
+ This is free software, licensed under:
+ .
+   The MIT (X11) License
+ .
+ The MIT License
+ .
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated
+ documentation files (the "Software"), to deal in the Software
+ without restriction, including without limitation the rights to
+ use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to
+ whom the Software is furnished to do so, subject to the
+ following conditions:
+ .
+ The above copyright notice and this permission notice shall
+ be included in all copies or substantial portions of the
+ Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
+ WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+ SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.

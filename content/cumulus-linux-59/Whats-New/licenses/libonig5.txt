@@ -2,7 +2,7 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0
 Source: https://github.com/kkos/oniguruma
 
 Files: *
-Copyright: 2002-2018 K.Kosako <kkosako0@gmail.com>
+Copyright: 2002-2020 K.Kosako <kkosako0@gmail.com>
 License: BSD-2-clause
 
 License: BSD-2-clause
@@ -30,7 +30,7 @@ License: BSD-2-clause
 
 Files: debian/*
 Copyright: 2006-2008 Max Kellermann <max@duempel.org>
-           2014-2018 JÃ¶rg Frings-FÃ¼rst <debian@jff.email>
+           2014-2022 Jörg Frings-Fürst <debian@jff.email>
 License: GPL-2+
 
 License: GPL-2+

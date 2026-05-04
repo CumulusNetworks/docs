@@ -1,5 +1,5 @@
 This package contains the encodings tarball downloaded from
-http://xorg.freedesktop.org/releases/individual/font/
+https://xorg.freedesktop.org/releases/individual/font/
 
 The XFree86/Xorg encoding files are in the public domain.
 

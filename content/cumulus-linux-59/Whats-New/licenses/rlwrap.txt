@@ -5,10 +5,7 @@ Source: https://github.com/hanslub42/rlwrap
 
 Files: *
 Copyright: 2000-2017 Hans Lub
-License: GPL-2+
-
-Files: src/ptytty.c
-Copyright: 1999-2001 Geoff Wing
+           1999-2001 Geoff Wing
 License: GPL-2+
 
 Files: src/completion.c src/redblack.h

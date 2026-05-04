@@ -9,7 +9,13 @@ License: BSD-ish
 
 Files: SEC.xs
  lib/Net/DNS/SEC/libcrypto.pod
-Copyright: 2018, Dick Franks
+ lib/Net/DNS/SEC/DSA.pm
+ lib/Net/DNS/SEC/Digest.pm
+ lib/Net/DNS/SEC/ECDSA.pm
+ lib/Net/DNS/SEC/EdDSA.pm
+ lib/Net/DNS/SEC/Private.pm
+ lib/Net/DNS/SEC/RSA.pm
+Copyright: 2014-2021, Dick Franks
 License: BSD-ish
 
 Files: lib/Net/DNS/SEC.pm
@@ -17,20 +23,19 @@ Copyright: 2014-2018, Dick Franks
  2001-2005, RIPE NCC
 License: BSD-ish
 
-Files: lib/Net/DNS/SEC/RSA.pm
- lib/Net/DNS/SEC/ECCGOST.pm
- lib/Net/DNS/SEC/Private.pm
- lib/Net/DNS/SEC/ECDSA.pm
- lib/Net/DNS/SEC/DSA.pm
- lib/Net/DNS/SEC/EdDSA.pm
-Copyright: 2014,2018 Dick Franks
+Files: demo/key2ds
+Copyright: 2002, Miek Gieben
+License: BSD-ish
+
+Files: demo/make-signed-keyset
+Copyright: 2002, Wes Griffin
 License: BSD-ish
 
 Files: debian/*
-Copyright: 2008-2017, Ondřej Surý <ondrej@debian.org>
+Copyright: 2008-2017, Ond?ej Sur� <ondrej@debian.org>
  2016, 2018, Angel Abad <angel@debian.org>
  2016, Axel Beckert <abe@debian.org>
- 2018, gregor herrmann <gregoa@debian.org>
+ 2018-2022, gregor herrmann <gregoa@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic
@@ -65,4 +70,3 @@ License: BSD-ish
  OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
  OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE
  USE OR PERFORMANCE OF THIS SOFTWARE.
-

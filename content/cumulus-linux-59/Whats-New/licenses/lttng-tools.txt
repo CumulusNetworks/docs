@@ -1,6 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: lttng-tools
 Source: https://lttng.org/files/lttng-tools/
+Upstream-Contact: https://lists.lttng.org/cgi-bin/mailman/listinfo/lttng-dev
 
 Files: *
 Copyright: 2011-2014, David Goulet <david.goulet@efficios.com>
@@ -10,7 +11,7 @@ License: LGPL-2.1
 
 Files: debian/*
 Copyright: 2011-2012, Alexandre Montplaisir <alexandre.montplaisir@gmail.com>
-           2011-2016, Michael Jeanson <mjeanson@ubuntu.com>
+           2011-2022, Michael Jeanson <mjeanson@debian.org>
            2012-2016, Jon Bernard <jbernard@debian.org>
 License: GPL-2+
 
@@ -31,15 +32,33 @@ Copyright: -2013, Simon Marchi <simon.marchi@polymtl.ca>
 License: GPL-2
 
 Files: include/*
-Copyright: 2013-2014, - RaphaÃ«l Beamonte <raphael.beamonte@gmail.com>
+Copyright: 2013-2014, - Raphaël Beamonte <raphael.beamonte@gmail.com>
 License: GPL-2
 
 Files: include/lttng/*
+Copyright: 2017, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
+Files: include/lttng/channel-internal.h
+Copyright: 2015, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
+Files: include/lttng/channel.h
+  include/lttng/constant.h
+  include/lttng/domain.h
+  include/lttng/handle.h
 Copyright: 2014, - David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
+Files: include/lttng/destruction-handle.h
+  include/lttng/session-descriptor-internal.h
+  include/lttng/session-descriptor.h
+  include/lttng/session-internal.h
+Copyright: 2019, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
 Files: include/lttng/event.h
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com> / 2014, - David Goulet <dgoulet@efficios.com>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2014, - David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
 Files: include/lttng/health-internal.h
@@ -52,7 +71,11 @@ License: LGPL-2.1
 
 Files: include/lttng/load-internal.h
   include/lttng/load.h
-Copyright: 2014, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: 2014, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
+Files: include/lttng/location.h
+Copyright: 2018, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: LGPL-2.1
 
 Files: include/lttng/lttng-error.h
@@ -63,9 +86,25 @@ Files: include/lttng/lttng.h
 Copyright: 2011, - David Goulet <david.goulet@polymtl.ca>
 License: LGPL-2.1
 
+Files: include/lttng/ref-internal.h
+Copyright: 2013, 2014, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
+Files: include/lttng/rotate-internal.h
+Copyright: 2017, - Julien Desfossez <jdesfossez@efficios.com>
+License: LGPL-2.1
+
+Files: include/lttng/rotation.h
+Copyright: 2018, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2017, - Julien Desfossez <jdesfossez@efficios.com>
+License: LGPL-2.1
+
 Files: include/lttng/save-internal.h
   include/lttng/save.h
-Copyright: 2013, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: 2013, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
+Files: include/lttng/session.h
+Copyright: 2019, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2014, - David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
 Files: include/lttng/snapshot-internal.h
@@ -73,7 +112,15 @@ Files: include/lttng/snapshot-internal.h
 Copyright: 2013, - David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
+Files: include/lttng/userspace-probe-internal.h
+Copyright: 2018, - Francis Deslauriers <francis.deslauriers@efficios.com> / 2017, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
 Files: src/*
+Copyright: 2017, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
+Files: src/bin/*
 Copyright: 2011, - David Goulet <david.goulet@polymtl.ca>
 License: GPL-2
 
@@ -98,6 +145,11 @@ Files: src/bin/lttng-relayd/*
 Copyright: 2013, - Julien Desfossez <jdesfossez@efficios.com>
 License: GPL-2
 
+Files: src/bin/lttng-relayd/cmd-2-11.c
+  src/bin/lttng-relayd/cmd-2-11.h
+Copyright: 2018, - Jonathan Rajotte <jonathan.rajotte-julien@efficios.com>
+License: GPL-2
+
 Files: src/bin/lttng-relayd/health-relayd.c
 Copyright: 2013, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: GPL-2
@@ -116,11 +168,19 @@ Files: src/bin/lttng-relayd/lttng-viewer-abi.h
 Copyright: 2013, - Julien Desfossez <jdesfossez@efficios.com>
 License: Expat
 
-Files: src/bin/lttng-relayd/stream-fd.c
-  src/bin/lttng-relayd/stream-fd.h
-  src/bin/lttng-relayd/tracefile-array.c
+Files: src/bin/lttng-relayd/sessiond-trace-chunks.c
+  src/bin/lttng-relayd/sessiond-trace-chunks.h
+Copyright: 2019, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: GPL-2
+
+Files: src/bin/lttng-relayd/tracefile-array.c
   src/bin/lttng-relayd/tracefile-array.h
 Copyright: 2015, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: GPL-2
+
+Files: src/bin/lttng-relayd/tcp_keep_alive.c
+  src/bin/lttng-relayd/tcp_keep_alive.h
+Copyright: 2017, - Jonathan Rajotte <jonathan.rajotte-julien@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng-relayd/testpoint.h
@@ -131,19 +191,19 @@ Files: src/bin/lttng-sessiond/agent-thread.c
   src/bin/lttng-sessiond/agent-thread.h
   src/bin/lttng-sessiond/buffer-registry.c
   src/bin/lttng-sessiond/buffer-registry.h
+  src/bin/lttng-sessiond/notify-apps.c
+  src/bin/lttng-sessiond/notify-apps.h
   src/bin/lttng-sessiond/snapshot.c
   src/bin/lttng-sessiond/snapshot.h
-  src/bin/lttng-sessiond/ust-ctl.h
+  src/bin/lttng-sessiond/ust-ctl-internal.h
   src/bin/lttng-sessiond/ust-registry.c
   src/bin/lttng-sessiond/ust-registry.h
-  src/bin/lttng-sessiond/ust-thread.c
-  src/bin/lttng-sessiond/ust-thread.h
 Copyright: 2013, - David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng-sessiond/agent.c
   src/bin/lttng-sessiond/agent.h
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com> / 2013, - David Goulet <dgoulet@efficios.com>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2013, - David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng-sessiond/channel.c
@@ -153,11 +213,11 @@ Files: src/bin/lttng-sessiond/channel.c
   src/bin/lttng-sessiond/trace-ust.h
   src/bin/lttng-sessiond/ust-app.c
   src/bin/lttng-sessiond/ust-app.h
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com> / 2011, - David Goulet <david.goulet@polymtl.ca>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2011, - David Goulet <david.goulet@polymtl.ca>
 License: GPL-2
 
 Files: src/bin/lttng-sessiond/cmd.c
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com> / 2012, - David Goulet <dgoulet@efficios.com>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2012, - David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng-sessiond/cmd.h
@@ -174,12 +234,16 @@ Files: src/bin/lttng-sessiond/fd-limit.c
 Copyright: 2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: GPL-2
 
+Files: src/bin/lttng-sessiond/health.c
+Copyright: 2018, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2012, - David Goulet <dgoulet@efficios.com>
+License: GPL-2
+
 Files: src/bin/lttng-sessiond/ht-cleanup.c
 Copyright: 2013, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng-sessiond/ht-cleanup.h
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng-sessiond/kern-modules.h
@@ -188,14 +252,13 @@ Files: src/bin/lttng-sessiond/kern-modules.h
 Copyright: 2011, - David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
-Files: src/bin/lttng-sessiond/load-session-thread.c
-  src/bin/lttng-sessiond/load-session-thread.h
-  src/bin/lttng-sessiond/save.c
-Copyright: 2014, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Files: src/bin/lttng-sessiond/lttng-sessiond.h
+Copyright: 2013, - Raphaël Beamonte <raphael.beamonte@gmail.com> / 2011, - David Goulet <david.goulet@polymtl.ca>
 License: GPL-2
 
-Files: src/bin/lttng-sessiond/lttng-sessiond.h
-Copyright: 2013, - RaphaÃ«l Beamonte <raphael.beamonte@gmail.com> / 2011, - David Goulet <david.goulet@polymtl.ca>
+Files: src/bin/lttng-sessiond/lttng-syscall.c
+  src/bin/lttng-sessiond/lttng-syscall.h
+Copyright: 2014, - David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng-sessiond/lttng-ust-abi.h
@@ -210,17 +273,42 @@ Files: src/bin/lttng-sessiond/lttng-ust-error.h
 Copyright: 2011, - David Goulet <david.goulet@polymtl.ca>
 License: LGPL-2.1
 
-Files: src/bin/lttng-sessiond/save.h
-Copyright: 2013, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Files: src/bin/lttng-sessiond/notification-thread-commands.c
+  src/bin/lttng-sessiond/notification-thread-commands.h
+  src/bin/lttng-sessiond/notification-thread-events.c
+  src/bin/lttng-sessiond/notification-thread-events.h
+  src/bin/lttng-sessiond/notification-thread-internal.h
+  src/bin/lttng-sessiond/notification-thread.c
+  src/bin/lttng-sessiond/notification-thread.h
+  src/bin/lttng-sessiond/sessiond-config.c
+  src/bin/lttng-sessiond/sessiond-config.h
+Copyright: 2017, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
-Files: src/bin/lttng-sessiond/syscall.c
-  src/bin/lttng-sessiond/syscall.h
-Copyright: 2014, - David Goulet <dgoulet@efficios.com>
+Files: src/bin/lttng-sessiond/rotate.c
+  src/bin/lttng-sessiond/rotate.h
+  src/bin/lttng-sessiond/rotation-thread.c
+  src/bin/lttng-sessiond/rotation-thread.h
+  src/bin/lttng-sessiond/timer.c
+  src/bin/lttng-sessiond/timer.h
+Copyright: 2018, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2017, - Julien Desfossez <jdesfossez@efficios.com>
+License: GPL-2
+
+Files: src/bin/lttng-sessiond/save.c
+Copyright: 2014, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: GPL-2
+
+Files: src/bin/lttng-sessiond/save.h
+Copyright: 2013, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng-sessiond/testpoint.h
 Copyright: 2012, - Christian Babeux <christian.babeux@efficios.com>
+License: GPL-2
+
+Files: src/bin/lttng-sessiond/thread.c
+  src/bin/lttng-sessiond/thread.h
+Copyright: 2018, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng-sessiond/ust-clock.h
@@ -228,12 +316,30 @@ Copyright: 2011, 2012, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
   2009, 2010, Pierre-Marc Fournier
 License: LGPL-2.1
 
+Files: src/bin/lttng-sessiond/ust-field-utils.c
+Copyright: 2018, - Francis Deslauriers <francis.deslauriers@efficios.com>
+License: GPL-2
+
+Files: src/bin/lttng-sessiond/ust-field-utils.h
+Copyright: 2018, - Francis Deslauriers francis.deslauriers@efficios.com>
+License: GPL-2
+
 Files: src/bin/lttng-sessiond/ust-metadata.c
 Copyright: 2010-2013, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng/commands/add_context.c
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com> / 2011, - David Goulet <david.goulet@polymtl.ca>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2011, - David Goulet <david.goulet@polymtl.ca>
+License: GPL-2
+
+Files: src/bin/lttng/commands/create.c
+Copyright: 2019, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2011, - David Goulet <david.goulet@polymtl.ca>
+License: GPL-2
+
+Files: src/bin/lttng/commands/disable_rotation.c
+  src/bin/lttng/commands/enable_rotation.c
+  src/bin/lttng/commands/rotate.c
+Copyright: 2017, - Julien Desfossez <jdesfossez@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng/commands/help.c
@@ -242,7 +348,7 @@ Copyright: 2015, - Philippe Proulx <pproulx@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng/commands/load.c
-Copyright: 2014, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: 2014, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng/commands/metadata.c
@@ -251,7 +357,7 @@ Copyright: 2015, - Julien Desfossez <jdesfossez@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng/commands/save.c
-Copyright: 2013, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: 2013, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: src/bin/lttng/commands/snapshot.c
@@ -277,18 +383,30 @@ Files: src/common/align.h
 Copyright: 2010-2011, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: Expat
 
-Files: src/common/bitfield.h
-Copyright: 2010, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-License: Expat
+Files: src/common/common.h
+  src/common/defaults.h
+  src/common/error.h
+  src/common/futex.c
+  src/common/futex.h
+  src/common/macros.h
+  src/common/runas.c
+  src/common/runas.h
+  src/common/unix.c
+Copyright: 2011, - David Goulet <david.goulet@polymtl.ca>
+License: GPL-2
 
 Files: src/common/compat/*
 Copyright: 2011, - David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
-Files: src/common/compat/compat-epoll.c
-  src/common/compat/compat-poll.c
+Files: src/common/compat/poll.c
   src/common/compat/poll.h
-Copyright: 2011, - David Goulet <david.goulet@polymtl.ca>
+Copyright: 2019, - Yannick Lamarre <ylamarre@efficios.com> / 2011, - David Goulet <david.goulet@polymtl.ca>
+License: GPL-2
+
+Files: src/common/compat/directory-handle.c
+  src/common/compat/directory-handle.h
+Copyright: 2019, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: src/common/compat/dirent.h
@@ -306,20 +424,12 @@ Files: src/common/compat/paths.h
 Copyright: 2015, - Michael Jeanson <mjeanson@efficios.com>
 License: GPL-2
 
-Files: src/common/compat/prctl.h
-Copyright: 2015, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
-License: GPL-2
-
 Files: src/common/compat/tid.h
-Copyright: 2012, (c) - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-License: Expat
-
-Files: src/common/compat/uuid.h
-Copyright: 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+Copyright: 2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: Expat
 
 Files: src/common/config/*
-Copyright: 2013, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: 2013, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: src/common/consumer/*
@@ -349,12 +459,17 @@ License: GPL-2
 
 Files: src/common/context.c
   src/common/filter.c
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: LGPL-2.1
 
 Files: src/common/context.h
   src/common/filter.h
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: GPL-2
+
+Files: src/common/credentials.h
+  src/common/optional.h
+Copyright: 2019, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: src/common/daemonize.c
@@ -366,12 +481,30 @@ Files: src/common/defaults.c
 Copyright: 2012, - Simon Marchi <simon.marchi@polymtl.ca>
 License: GPL-2
 
+Files: src/common/dynamic-array.c
+  src/common/dynamic-array.h
+  src/common/session-descriptor.c
+  src/common/trace-chunk-registry.h
+  src/common/trace-chunk.c
+  src/common/trace-chunk.h
+Copyright: 2019, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
 Files: src/common/error.c
   src/common/unix.h
   src/common/uri.c
   src/common/uri.h
   src/common/utils.h
 Copyright: 2012, - David Goulet <dgoulet@efficios.com>
+License: GPL-2
+
+Files: src/common/event.c
+  src/common/location.c
+Copyright: 2018, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
+Files: src/common/hashtable/*
+Copyright: 2011, - David Goulet <david.goulet@polymtl.ca>
 License: GPL-2
 
 Files: src/common/hashtable/hashtable-symbols.h
@@ -395,29 +528,36 @@ Copyright: 2013, - Julien Desfossez <jdesfossez@efficios.com>
 License: Expat
 
 Files: src/common/kernel-consumer/*
-Copyright: 2011, - Julien Desfossez <julien.desfossez@polymtl.ca>
+Copyright: 2017, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2011, - Julien Desfossez <julien.desfossez@polymtl.ca>
 License: GPL-2
 
 Files: src/common/kernel-consumer/kernel-consumer.h
-Copyright: 2011, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / 2011, - Julien Desfossez <julien.desfossez@polymtl.ca>
+Copyright: 2017, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2011, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / 2011, - Julien Desfossez <julien.desfossez@polymtl.ca>
 License: GPL-2
 
 Files: src/common/kernel-ctl/*
 Copyright: 2011, - Julien Desfossez <julien.desfossez@polymtl.ca>
 License: GPL-2
 
+Files: src/common/lttng-elf.c
+Copyright: 2017, Francis Deslauriers <francis.deslauriers@efficios.com>
+  2017, Erica Bugden <erica.bugden@efficios.com>
+  2015, Antoine Busque <abusque@efficios.com>
+License: LGPL-2.1+
+
+Files: src/common/lttng-elf.h
+Copyright: 2017, Francis Deslauriers <francis.deslauriers@efficios.com>
+  2017, Erica Bugden <erica.bugden@efficios.com>
+License: LGPL-2.1+
+
 Files: src/common/lttng-kernel-old.h
   src/common/lttng-kernel.h
 Copyright: 2011, - Julien Desfossez <julien.desfossez@polymtl.ca>
 License: GPL-2
 
-Files: src/common/mi-lttng-3.0.xsd
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com> / 2014, - Oliver Cotte <olivier.cotte@polymtl.ca>
-License: Expat
-
 Files: src/common/mi-lttng.c
   src/common/mi-lttng.h
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com> / 2014, - Jonathan Rajotte <jonathan.r.julien@gmail.com>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2014, - Jonathan Rajotte <jonathan.r.julien@gmail.com>
 License: GPL-2
 
 Files: src/common/pipe.c
@@ -439,7 +579,7 @@ Copyright: 2012, - David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
 Files: src/common/sessiond-comm/agent.h
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com> / 2013, - David Goulet <dgoulet@efficios.com>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2013, - David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
 Files: src/common/sessiond-comm/sessiond-comm.c
@@ -447,16 +587,28 @@ Files: src/common/sessiond-comm/sessiond-comm.c
 Copyright: 2011, - David Goulet <david.goulet@polymtl.ca>
 License: GPL-2
 
+Files: src/common/string-utils/*
+Copyright: 2017, - Philippe Proulx <pproulx@efficios.com>
+License: GPL-2
+
+Files: src/common/string-utils/format.h
+Copyright: 2019, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
 Files: src/common/testpoint/*
 Copyright: 2012, - Christian Babeux <christian.babeux@efficios.com>
 License: GPL-2
 
+Files: src/common/time.c
+Copyright: 2013, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: GPL-2
+
 Files: src/common/time.h
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: LGPL-2.1+
 
 Files: src/common/ust-consumer/*
-Copyright: 2011, - Julien Desfossez <julien.desfossez@polymtl.ca>
+Copyright: 2017, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2011, - Julien Desfossez <julien.desfossez@polymtl.ca>
 License: GPL-2
 
 Files: src/common/ust-consumer/ust-consumer.h
@@ -464,38 +616,48 @@ Copyright: 2011, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / 2011, - 
 License: GPL-2
 
 Files: src/common/utils.c
-Copyright: 2013, - RaphaÃ«l Beamonte <raphael.beamonte@gmail.com> / 2013, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com> / 2012, - David Goulet <dgoulet@efficios.com>
+Copyright: 2013, - Raphaël Beamonte <raphael.beamonte@gmail.com> / 2013, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2012, - David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
-Files: src/lib/*
-Copyright: 2013, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
-License: LGPL-2.1
-
-Files: src/lib/lttng-ctl/deprecated-symbols.c
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
-License: LGPL-2.1
-
-Files: src/lib/lttng-ctl/filter/*
+Files: src/common/waiter.c
+  src/common/waiter.h
 Copyright: 2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
-Files: src/lib/lttng-ctl/filter/filter-lexer.c
-Copyright: 2011, David Goulet <david.goulet@polymtl.ca>
-           2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-           2011, Julien Desfossez <julien.desfossez@polymtl.ca>
+Files: src/lib/lttng-ctl/deprecated-symbols.c
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: LGPL-2.1
 
-Files: src/lib/lttng-ctl/filter/filter-parser.c
-  src/lib/lttng-ctl/filter/filter-parser.h
+Files: src/lib/lttng-ctl/destruction-handle.c
+Copyright: 2019, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
+Files: src/common/filter/*
+Copyright: 2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1
+
+Files: src/common/filter/filter-lexer.c
+Copyright: 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+  2011, Julien Desfossez <julien.desfossez@polymtl.ca>
+  2011, David Goulet <david.goulet@polymtl.ca>
+License: LGPL-2.1
+
+Files: src/common/filter/filter-parser.c
+  src/common/filter/filter-parser.h
 Copyright: 1984, 1989, 1990, 2000-2015, Free Software Foundation, Inc.
 License: GPL-3+
 
-Files: src/lib/lttng-ctl/filter/filter-visitor-ir-validate-string.c
-Copyright: 2014, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Files: src/common/filter/filter-visitor-ir-normalize-glob-patterns.c
+  src/common/filter/filter-visitor-ir-validate-globbing.c
+Copyright: 2017, - Philippe Proulx <pproulx@efficios.com>
 License: LGPL-2.1
 
-Files: src/lib/lttng-ctl/filter/memstream.h
-Copyright: 2012, (c) - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+Files: src/common/filter/filter-visitor-ir-validate-string.c
+Copyright: 2014, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
+Files: src/common/filter/memstream.h
+Copyright: 2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: Expat
 
 Files: src/lib/lttng-ctl/load.c
@@ -512,7 +674,15 @@ Copyright: 2013, David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
 Files: src/lib/lttng-ctl/lttng-ctl.c
-Copyright: 2016, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com> / 2011, David Goulet <david.goulet@polymtl.ca>
+Copyright: 2016, - Jérémie Galarneau <jeremie.galarneau@efficios.com> / 2011, David Goulet <david.goulet@polymtl.ca>
+License: LGPL-2.1
+
+Files: src/lib/lttng-ctl/rotate.c
+Copyright: 2017, - Julien Desfossez <jdesfossez@efficios.com>
+License: LGPL-2.1
+
+Files: src/lib/lttng-ctl/save.c
+Copyright: 2013, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: LGPL-2.1
 
 Files: src/lib/lttng-ctl/snapshot.c
@@ -520,9 +690,9 @@ Copyright: 2013, - David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
 Files: tests/*
-Copyright: 2011-2014, David Goulet <david.goulet@efficios.com>
-           2011-2016, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-           2011, Julien Desfossez <julien.desfossez@polymtl.ca>
+Copyright: 2011-2016, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+  2011-2014, David Goulet <david.goulet@efficios.com>
+  2011, Julien Desfossez <julien.desfossez@polymtl.ca>
 License: LGPL-2.1
 
 Files: tests/destructive/*
@@ -530,7 +700,7 @@ Copyright: - 2015, Julien Desfossez <jdesfossez@efficios.com>
 License: GPL-2
 
 Files: tests/perf/*
-Copyright: -2013, 2016, Julien Desfossez <jdesfossez@efficios.com>
+Copyright: 2016, Julien Desfossez <jdesfossez@efficios.com>
 License: GPL-2
 
 Files: tests/perf/test_perf_raw.in
@@ -538,15 +708,7 @@ Copyright: - 2016, Julien Desfossez <jdesfossez@efficios.com>
 License: GPL-2
 
 Files: tests/regression/*
-Copyright: 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-License: Expat
-
-Files: tests/regression/kernel/*
-Copyright: -2016, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2013, Christian Babeux <christian.babeux@efficios.com>
-License: GPL-2
-
-Files: tests/regression/kernel/select_poll_epoll.c
-Copyright: 2013, Christian Babeux <christian.babeux@efficios.com>
+Copyright: - 2014, 2016 Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2013, Christian Babeux <christian.babeux@efficios.com>
 License: GPL-2
 
 Files: tests/regression/kernel/test_all_events
@@ -554,25 +716,25 @@ Files: tests/regression/kernel/test_all_events
 Copyright: - 2013, Christian Babeux <christian.babeux@efficios.com>
 License: GPL-2
 
-Files: tests/regression/kernel/test_select_poll_epoll
-Copyright: - 2016, Julien Desfossez <jdesfossez@efficios.com>
+Files: tests/regression/kernel/test_callstack
+Copyright: - 2017, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: GPL-2
+
+Files: tests/regression/kernel/test_lttng_logger
+Copyright: - 2017, Julien Desfossez <jdesfossez@efficios.com>
 License: GPL-2
 
 Files: tests/regression/tools/*
-Copyright: -2016, Julien Desfossez <jdesfossez@efficios.com>
+Copyright: - 2012, Christian Babeux <christian.babeux@efficios.com>
+License: GPL-2
+
+Files: tests/regression/tools/base-path/*
+Copyright: - 2019, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
 Files: tests/regression/tools/crash/*
 Copyright: - 2015, Jonathan Rajotte <jonathan.rajotte-julien@efficios.com>
 License: LGPL-2.1
-
-Files: tests/regression/tools/exclusion/*
-Copyright: - 2012, Christian Babeux <christian.babeux@efficios.com>
-License: GPL-2
-
-Files: tests/regression/tools/filtering/*
-Copyright: - 2012, Christian Babeux <christian.babeux@efficios.com>
-License: GPL-2
 
 Files: tests/regression/tools/filtering/gen-ust-events.c
   tests/regression/tools/filtering/tp.c
@@ -588,7 +750,6 @@ Copyright: - 2014, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2012, 
 License: GPL-2
 
 Files: tests/regression/tools/health/health_check.c
-  tests/regression/tools/health/health_exit.c
   tests/regression/tools/health/health_fail.c
   tests/regression/tools/health/health_stall.c
 Copyright: 2014, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / 2012, - Christian Babeux <christian.babeux@efficios.com>
@@ -602,16 +763,68 @@ Files: tests/regression/tools/live/live_test.c
 Copyright: -2013, 2016, Julien Desfossez <jdesfossez@efficios.com>
 License: GPL-2
 
-Files: tests/regression/tools/mi/*
-Copyright: -2014, Jonathan Rajotte <jonathan.r.julien@gmail.com>
+Files: tests/regression/tools/metadata/*
+Copyright: 2019, Jonathan Rajotte-Julien <jonathan.rajotte-julien@efficios.com>
 License: LGPL-2.1
 
-Files: tests/regression/tools/mi/extract_xml.c
+Files: tests/regression/tools/mi/*
 Copyright: 2014, - Jonathan Rajotte <jonathan.r.julien@gmail.com>
 License: GPL-2
 
+Files: tests/regression/tools/mi/test_mi
+Copyright: - 2014, Jonathan Rajotte <jonathan.r.julien@gmail.com>
+License: LGPL-2.1
+
+Files: tests/regression/tools/notification/*
+Copyright: 2017, Jonathan Rajotte <jonathan.rajotte-julien@efficios.com>
+License: Expat
+
+Files: tests/regression/tools/notification/consumer_testpoints.c
+Copyright: 2017, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: GPL-2
+
+Files: tests/regression/tools/notification/rotation.c
+Copyright: 2017, 2018, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: tests/regression/tools/notification/test_notification_multi_app
+Copyright: - 2017, Jonathan Rajotte <jonathan.rajotte-julien@efficiso.com>>
+License: LGPL-2.1
+
+Files: tests/regression/tools/notification/test_rotation
+Copyright: - 2017, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
+Files: tests/regression/tools/regen-metadata/*
+Copyright: - 2015, Julien Desfossez <jdesfossez@efficios.com>
+License: LGPL-2.1
+
+Files: tests/regression/tools/regen-statedump/*
+Copyright: - 2016, Julien Desfossez <jdesfossez@efficios.com>
+License: LGPL-2.1
+
+Files: tests/regression/tools/rotation/*
+Copyright: - 2017, Julien Desfossez <jdesfossez@efficios.com>
+License: LGPL-2.1
+
+Files: tests/regression/tools/rotation/schedule_api.c
+Copyright: 2017, 2018, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: Expat
+
+Files: tests/regression/tools/rotation/test_schedule_api
+Copyright: - 2018, Jérémie Galarneau <jdesfossez@efficios.com>
+License: LGPL-2.1
+
 Files: tests/regression/tools/save-load/*
 Copyright: - 2014, David Goulet <dgoulet@efficios.com>
+License: LGPL-2.1
+
+Files: tests/regression/tools/save-load/test_autoload
+Copyright: - 2018, Anders Wallin <wallinux@gmail.com>
+License: LGPL-2.1
+
+Files: tests/regression/tools/snapshots/*
+Copyright: - 2013, Julien Desfossez <jdesfossez@efficios.com>
 License: LGPL-2.1
 
 Files: tests/regression/tools/snapshots/test_kernel_streaming
@@ -624,35 +837,31 @@ Copyright: - 2012, David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
 Files: tests/regression/tools/streaming/test_high_throughput_limits
-Copyright: -2013, Christian Babeux <christian.babeux@efficios.com>
+Copyright: - 2012, Christian Babeux <christian.babeux@efficios.com>
 License: LGPL-2.1
 
 Files: tests/regression/tools/tracefile-limits/*
-Copyright: -2013, Christian Babeux <christian.babeux@efficios.com>
+Copyright: - 2013, Christian Babeux <christian.babeux@efficios.com>
 License: LGPL-2.1
 
 Files: tests/regression/tools/wildcard/*
-Copyright: -2016, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2013, Christian Babeux <christian.babeux@efficios.com>
+Copyright: - 2015, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2013, Christian Babeux <christian.babeux@efficios.com>
 License: GPL-2
+
+Files: tests/regression/ust/*
+Copyright: - 2012, David Goulet <dgoulet@efficios.com>
+License: LGPL-2.1
 
 Files: tests/regression/ust/baddr-statedump/*
 Copyright: 2012, David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
-Files: tests/regression/ust/baddr-statedump/test_baddr-statedump
-Copyright: - 2013, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
-License: GPL-2
-
 Files: tests/regression/ust/baddr-statedump/test_baddr-statedump.py
-Copyright: - 2015, Antoine Busque <abusque@efficios.com> / - 2013, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: - 2015, Antoine Busque <abusque@efficios.com> / - 2013, Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
-Files: tests/regression/ust/before-after/*
-Copyright: - 2012, David Goulet <dgoulet@efficios.com>
-License: LGPL-2.1
-
-Files: tests/regression/ust/buffers-pid/*
-Copyright: - 2012, David Goulet <dgoulet@efficios.com>
+Files: tests/regression/ust/blocking/*
+Copyright: - 2016, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2015, Jonathan Rajotte <jonathan.rajotte-julien@efficios.com>
 License: LGPL-2.1
 
 Files: tests/regression/ust/clock-override/*
@@ -665,7 +874,7 @@ Copyright: 2015, Jonthan Rajotte <jonathan.rajotte-julien@efficios.com>
 License: Expat
 
 Files: tests/regression/ust/daemon/*
-Copyright: - 2013, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: - 2013, Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: tests/regression/ust/daemon/daemon.c
@@ -678,7 +887,7 @@ Copyright: 2012, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: Expat
 
 Files: tests/regression/ust/exit-fast/*
-Copyright: - 2013, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: - 2013, Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: tests/regression/ust/exit-fast/exit-fast.c
@@ -691,7 +900,7 @@ Copyright: 2011, 2012, Matthew Khouzam <matthew.khouzam@ericsson.com>
 License: Expat
 
 Files: tests/regression/ust/fork/*
-Copyright: - 2013, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: - 2013, Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: tests/regression/ust/fork/fork.c
@@ -708,9 +917,7 @@ Copyright: 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: Expat
 
 Files: tests/regression/ust/getcpu-override/*
-Copyright: 2011, David Goulet <david.goulet@polymtl.ca>
-           2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-           2011, Julien Desfossez <julien.desfossez@polymtl.ca>
+Copyright: - 2015, Jonathan Rajotte <jonathan.rajotte-julien@efficios.com>
 License: LGPL-2.1
 
 Files: tests/regression/ust/getcpu-override/lttng-ust-getcpu-override-test.c
@@ -718,9 +925,9 @@ Copyright: 2015, Jonathan Rajotte <jonathan.rajotte-julien@efficios.com>
   2014, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: Expat
 
-Files: tests/regression/ust/getcpu-override/test_getcpu_override
-Copyright: - 2015, Jonathan Rajotte <jonathan.rajotte-julien@efficios.com>
-License: LGPL-2.1
+Files: tests/regression/ust/high-throughput/*
+Copyright: 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
 
 Files: tests/regression/ust/high-throughput/main.c
 Copyright: 2011, 2012, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
@@ -732,11 +939,11 @@ Copyright: - 2012, David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
 Files: tests/regression/ust/java-jul/*
-Copyright: - 2013, David Goulet <dgoulet@efficios.com>
+Copyright: 2015, - Michael Jeanson <mjeanson@efficios.com> / 2013, - David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
-Files: tests/regression/ust/java-jul/JTestLTTng.java
-Copyright: 2015, - Michael Jeanson <mjeanson@efficios.com> / 2013, - David Goulet <dgoulet@efficios.com>
+Files: tests/regression/ust/java-jul/test_java_jul
+Copyright: - 2013, David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
 Files: tests/regression/ust/java-log4j/*
@@ -748,12 +955,16 @@ Copyright: - 2014, David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
 Files: tests/regression/ust/libc-wrapper/*
-Copyright: - 2013, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: - 2013, Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: tests/regression/ust/libc-wrapper/prog.c
 Copyright: 2009, Pierre-Marc Fournier
 License: LGPL-2.1+
+
+Files: tests/regression/ust/linking/*
+Copyright: 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
 
 Files: tests/regression/ust/linking/demo.c
 Copyright: 2011, 2012, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
@@ -761,15 +972,19 @@ Copyright: 2011, 2012, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
 Files: tests/regression/ust/linking/demo_preload
-Copyright: 2011, David Goulet <david.goulet@polymtl.ca>
-           2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-           2011, Julien Desfossez <julien.desfossez@polymtl.ca>
+Copyright: 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+  2011, Julien Desfossez <julien.desfossez@polymtl.ca>
+  2011, David Goulet <david.goulet@polymtl.ca>
 License: LGPL-2.1
 
 Files: tests/regression/ust/linking/test_linking
   tests/regression/ust/linking/test_linking.py
-Copyright: - 2013, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: - 2013, Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
+
+Files: tests/regression/ust/low-throughput/*
+Copyright: 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
 
 Files: tests/regression/ust/low-throughput/main.c
 Copyright: 2012, - David Goulet <dgoulet@efficios.com>
@@ -779,12 +994,12 @@ Files: tests/regression/ust/low-throughput/test_low_throughput
 Copyright: - 2012, David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
-Files: tests/regression/ust/multi-session/*
-Copyright: - 2012, David Goulet <dgoulet@efficios.com> / - 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2009, Pierre-Marc Fournier
+Files: tests/regression/ust/multi-lib/*
+Copyright: - 2018, Francis Deslauriers <francis.deslauriers@efficios.com>
 License: LGPL-2.1
 
-Files: tests/regression/ust/multi-session/test_multi_session
-Copyright: - 2012, David Goulet <dgoulet@efficios.com>
+Files: tests/regression/ust/multi-session/gen-nevents.c
+Copyright: - 2012, David Goulet <dgoulet@efficios.com> / - 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2009, Pierre-Marc Fournier
 License: LGPL-2.1
 
 Files: tests/regression/ust/multi-session/tp.c
@@ -795,31 +1010,13 @@ Files: tests/regression/ust/multi-session/ust_gen_nevents.h
 Copyright: 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
 License: LGPL-2.1
 
-Files: tests/regression/ust/nprocesses/*
-Copyright: - 2012, David Goulet <dgoulet@efficios.com>
-License: LGPL-2.1
-
-Files: tests/regression/ust/overlap/demo/demo-trace
-Copyright: 2011, David Goulet <david.goulet@polymtl.ca>
-           2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
-           2011, Julien Desfossez <julien.desfossez@polymtl.ca>
-License: LGPL-2.1
+Files: tests/regression/ust/overlap/demo/*
+Copyright: 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
 
 Files: tests/regression/ust/overlap/demo/demo.c
 Copyright: 2011, 2012, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
   2009, 2010, Pierre-Marc Fournier
-License: LGPL-2.1
-
-Files: tests/regression/ust/overlap/test_overlap
-Copyright: - 2012, David Goulet <dgoulet@efficios.com>
-License: LGPL-2.1
-
-Files: tests/regression/ust/periodical-metadata-flush/*
-Copyright: - 2012, David Goulet <dgoulet@efficios.com>
-License: LGPL-2.1
-
-Files: tests/regression/ust/python-logging/*
-Copyright: 2015, - Philippe Proulx <pproulx@efficios.com> / 2014, - David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
 Files: tests/regression/ust/python-logging/test_python_logging.in
@@ -839,23 +1036,23 @@ Copyright: - 2014, Julien Desfossez <jdesfossez@efficios.com> / - 2013, Christia
 License: GPL-2
 
 Files: tests/regression/ust/test_event_tracef
-Copyright: -2016, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2013, Christian Babeux <christian.babeux@efficios.com>
+Copyright: - 2014, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2013, Christian Babeux <christian.babeux@efficios.com>
 License: GPL-2
 
 Files: tests/regression/ust/type-declarations/*
-Copyright: - 2016, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2014, GeneviÃ¨ve Bastien <gbastien@versatic.net>
+Copyright: - 2016, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2014, Geneviève Bastien <gbastien@versatic.net>
 License: LGPL-2.1
 
 Files: tests/regression/ust/type-declarations/test_type_declarations.py
-Copyright: - 2014, GeneviÃ¨ve Bastien <gbastien@versatic.net>
+Copyright: - 2014, Geneviève Bastien <gbastien@versatic.net>
 License: GPL-2
 
 Files: tests/regression/ust/type-declarations/type-declarations.c
-Copyright: 2014, GeneviÃ¨ve Bastien <gbastien@versatic.net>
+Copyright: 2014, Geneviève Bastien <gbastien@versatic.net>
 License: LGPL-2.1+
 
 Files: tests/regression/ust/type-declarations/ust_tests_td.h
-Copyright: 2014, GeneviÃ¨ve Bastien <gbastien@versatic.net>
+Copyright: 2014, Geneviève Bastien <gbastien@versatic.net>
 License: Expat
 
 Files: tests/regression/ust/ust-dl/*
@@ -863,11 +1060,11 @@ Copyright: 2012, David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
 Files: tests/regression/ust/ust-dl/test_ust-dl.in
-Copyright: - 2013, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: - 2013, Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: tests/regression/ust/ust-dl/test_ust-dl.py
-Copyright: - 2015, Antoine Busque <abusque@efficios.com> / - 2013, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: - 2015, Antoine Busque <abusque@efficios.com> / - 2013, Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: tests/run.sh
@@ -883,32 +1080,56 @@ Copyright: 2011, David Goulet <david.goulet@polymtl.ca>
 License: GPL-2
 
 Files: tests/unit/ini_config/*
-Copyright: - 2013, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: - 2013, Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
 Files: tests/unit/ini_config/test_ini_config
-Copyright: 2013, - JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: 2013, - Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: GPL-2
+
+Files: tests/unit/test_directory_handle.c
+Copyright: - 2019, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: GPL-2
+
+Files: tests/unit/test_notification.c
+Copyright: 2017, Jonathan Rajotte <jonathan.rajotte-julien@efficios.com>
+License: Expat
+
+Files: tests/unit/test_string_utils.c
+Copyright: - 2017, Philippe Proulx <pproulx@efficios.com>
 License: GPL-2
 
 Files: tests/unit/test_uri.c
 Copyright: - 2012, David Goulet <dgoulet@efficios.com>
 License: GPL-2
 
+Files: tests/unit/test_utils_compat_poll.c
+Copyright: 2019, Yannick Lamarre <ylamarre@efficios.com>
+License: GPL-2
+
 Files: tests/unit/test_utils_expand_path.c
-Copyright: - 2013, RaphaÃ«l Beamonte <raphael.beamonte@gmail.com>
+Copyright: - 2013, Raphaël Beamonte <raphael.beamonte@gmail.com>
 License: GPL-2
 
 Files: tests/unit/test_utils_parse_size_suffix.c
-Copyright: -2013, Simon Marchi <simon.marchi@polymtl.ca>
+Copyright: - 2013, Simon Marchi <simon.marchi@polymtl.ca>
+License: GPL-2
+
+Files: tests/unit/test_utils_parse_time_suffix.c
+Copyright: - 2015, Simon Marchi <simon.marchi@polymtl.ca>
 License: GPL-2
 
 Files: tests/utils/*
-Copyright: - 2015, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: - 2012, David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
 Files: tests/utils/babelstats.pl
 Copyright: - 2012, Christian Babeux <christian.babeux@efficios.com>
 License: GPL-2
+
+Files: tests/utils/parse-callstack.py
+Copyright: - 2017, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: LGPL-2.1
 
 Files: tests/utils/tap/*
 Copyright: 2004, Nik Clayton
@@ -919,15 +1140,23 @@ Copyright: 2010, Patrick LeBoutillier <patrick.leboutillier@gmail.com>
 License: GPL-3+
 
 Files: tests/utils/test_utils.py
-Copyright: - 2013, JÃ©rÃ©mie Galarneau <jeremie.galarneau@efficios.com>
+Copyright: - 2013, Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: GPL-2
 
-Files: tests/utils/testapp/*
-Copyright: - 2012, David Goulet <dgoulet@efficios.com>
+Files: tests/utils/testapp/gen-syscall-events-callstack/*
+Copyright: - 2017, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: LGPL-2.1
+
+Files: tests/utils/testapp/gen-syscall-events/*
+Copyright: - 2017, Francis Deslauriers <francis.deslauriers@efficios.com>
 License: LGPL-2.1
 
 Files: tests/utils/testapp/gen-ust-events/tp.h
 Copyright: 2011, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1
+
+Files: tests/utils/testapp/gen-ust-nevents-str/*
+Copyright: - 2017, Philippe Proulx <pproulx@efficios.com>
 License: LGPL-2.1
 
 Files: tests/utils/testapp/gen-ust-nevents/tp.h
@@ -938,8 +1167,33 @@ Files: tests/utils/testapp/gen-ust-tracef/*
 Copyright: - 2014, Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / - 2012, David Goulet <dgoulet@efficios.com>
 License: LGPL-2.1
 
-Files: tests/utils/utils.sh
-Copyright: - 2012, David Goulet <dgoulet@efficios.com>
+Files: tests/utils/testapp/signal-helper.h
+Copyright: - 2018, Jérémie Galarneau <jeremie.galarneau@efficios.com>
+License: LGPL-2.1
+
+Files: tests/utils/testapp/userspace-probe-elf-binary/*
+Copyright: 2018, - Francis Deslauriers <francis.deslauriers@efficios.com>
+License: LGPL-2.1+
+
+Files: tests/utils/testapp/userspace-probe-elf-binary/foo.h
+Copyright: 2018, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: LGPL-2.1+
+
+Files: tests/utils/testapp/userspace-probe-elf-binary/userspace-probe-elf-binary.c
+Copyright: 2017, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: LGPL-2.1+
+
+Files: tests/utils/testapp/userspace-probe-elf-cxx-binary/*
+Copyright: 2018, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: LGPL-2.1+
+
+Files: tests/utils/testapp/userspace-probe-sdt-binary/*
+Copyright: 2017, Francis Deslauriers <francis.deslauriers@efficios.com>
+License: LGPL-2.1+
+
+Files: tests/utils/utils.c
+  tests/utils/utils.h
+Copyright: - 2015, Jérémie Galarneau <jeremie.galarneau@efficios.com>
 License: LGPL-2.1
 
 Files: tests/utils/warn_processes.sh

@@ -25,7 +25,7 @@ Files: lang/cl/*
 Copyright: 2003, 2006, 2008 g10 Code GmbH
 License: GPL-2+
 
-Files: lang/python/* lang/python/*/* lang/python/src/constants/* lang/python/src/constants/*/*
+Files: lang/python/*
 Copyright:
  2002 John Goerzen,
  2004-2008 Igor Belyi,
@@ -34,15 +34,15 @@ Copyright:
  2016 g10 Code GmbH
 License: LGPL-2.1+
 
-Files: lang/cpp/* lang/cpp/src/* lang/cpp/src/interfaces/*
+Files: lang/cpp/*
 Copyright:
- 2003-2005, 2007-2010, 2016 Klar√§lvdalens Datakonsult AB,
+ 2003-2005, 2007-2010, 2016 Klar‰lvdalens Datakonsult AB,
  2016 Intevation GmbH,
 License: LGPL-2+
 
-Files: lang/qt/* lang/qt/*/*
+Files: lang/qt/*
 Copyright:
- 2004, 2005, 2007-2010, 2016 Klar√§lvdalens Datakonsult AB,
+ 2004, 2005, 2007-2010, 2016 Klar‰lvdalens Datakonsult AB,
  2016 Intevation GmbH
 License: GPL-2+
 

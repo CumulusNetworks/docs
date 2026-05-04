@@ -816,26 +816,6 @@ iface bond1.30
 {{< /tabs >}}
 
 {{< /tab >}}
-{{< tab "Try It " >}}
-    {{< simulation name="Try It CL53 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
-
-This demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
-
-To validate the configuration, run the `nv show interface <vlan> ip vrr` command:
-
-```
-cumulus@leaf02:mgmt:~$ nv show interface vlan10 ip vrr
-             operational        applied            description
------------  -----------------  -----------------  ------------------------------------------------------
-enable                          on                 Turn the feature 'on' or 'off'.  The default is 'off'.
-mac-address  00:00:5e:00:01:00  00:00:5e:00:01:00  Override anycast-mac
-mac-id                          none               Override anycast-id
-[address]    10.1.10.1/24       10.1.10.1/24       Virtual addresses with prefixes
-state        up                 up                 The state of the interface
-```
-
-
-{{< /tab >}}
 {{< /tabs >}}
 
 ## VRRP

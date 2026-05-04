@@ -1,121 +1,180 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Contact: Milan Broz <mbroz@redhat.com>
 Source: https://gitlab.com/cryptsetup/cryptsetup
+Upstream-Name: cryptsetup
 
 Files: *
-Copyright: Â© 2004      Christophe Saout <christophe@saout.de>
-           Â© 2004-2008 Clemens Fruhwirth <clemens@endorphin.org>
-           Â© 2008-2019 Red Hat, Inc.
-           Â© 2008-2019 Milan Broz <gmazyland@gmail.com>
+Copyright: © 2004      Christophe Saout <christophe@saout.de>
+           © 2004-2008 Clemens Fruhwirth <clemens@endorphin.org>
+           © 2008-2023 Red Hat, Inc.
+           © 2008-2023 Milan Broz <gmazyland@gmail.com>
 License: GPL-2+ with OpenSSL exception
 
 Files: debian/*
-Copyright: Â© 2004-2005 Wesley W. Terpstra <terpstra@debian.org>
-           Â© 2005-2006 Michael Gebetsroither <michael.geb@gmx.at>
-           Â© 2006-2008 David HÃ¤rdeman <david@hardeman.nu>
-           Â© 2005-2015 Jonas Meurer <jonas@freesources.org>
-           Â© 2016-2018 Guilhem Moulin <guilhem@debian.org>
+Copyright: © 2004-2005 Wesley W. Terpstra <terpstra@debian.org>
+           © 2005-2006 Michael Gebetsroither <michael.geb@gmx.at>
+           © 2006-2008 David Härdeman <david@hardeman.nu>
+           © 2005-2015 Jonas Meurer <jonas@freesources.org>
+           © 2016-2023 Guilhem Moulin <guilhem@debian.org>
 License: GPL-2+
 
+Files: debian/scripts/suspend/cryptsetup-suspend.c
+Copyright: © 2018 Guilhem Moulin <guilhem@debian.org>
+           © 2018-2020 Jonas Meurer <jonas@freesources.org>
+License: GPL-3+
+
+Files: debian/scripts/suspend/cryptsetup-suspend-wrapper
+Copyright: © 2019-2020 Tim <tim@systemli.org>
+           © 2019-2020 Jonas Meurer <jonas@freesources.org>
+           © 2020-2022 Guilhem Moulin <guilhem@debian.org>
+License: GPL-3+
+
 Files: debian/askpass.c debian/scripts/passdev.c
-Copyright: Â© 2008 David HÃ¤rdeman <david@hardeman.nu>
+Copyright: © 2008 David Härdeman <david@hardeman.nu>
 License: GPL-2+
 
 Files: debian/initramfs/cryptroot-unlock
-Copyright: Â© 2015-2018 Guilhem Moulin <guilhem@debian.org>
-License: GPL-2+
+Copyright: © 2015-2018 Guilhem Moulin <guilhem@debian.org>
+License: GPL-3+
 
 Files: debian/README.opensc
-Copyright: Â© 2008 Benjamin Kiessling <benjaminkiessling@bttec.org>
+Copyright: © 2008 Benjamin Kiessling <benjaminkiessling@bttec.org>
 License: GPL-2+
 
 Files: debian/scripts/cryptdisks_start
-Copyright: Â© 2007 Jon Dowland <jon@alcopop.org>
+Copyright: © 2007 Jon Dowland <jon@alcopop.org>
 License: GPL-2+
 
 Files: debian/scripts/luksformat
-Copyright: Â© 2005 Canonical Ltd.
+Copyright: © 2005 Canonical Ltd.
 License: GPL-2+
 
 Files: debian/scripts/decrypt_gnupg-sc debian/README.gnupg-sc debian/initramfs/hooks/cryptgnupg-sc debian/initramfs/scripts/local-bottom/cryptgnupg-sc
-Copyright: Â© 2005-2015 Jonas Meurer <jonas@freesources.org>
-           Â© 2016-2018 Guilhem Moulin <guilhem@debian.org>
-           Â© 2009,2014 Peter Lebbing <peter@digitalbrains.com>
-           Â© 2018 Erik Nellessen
+Copyright: © 2005-2015 Jonas Meurer <jonas@freesources.org>
+           © 2016-2018 Guilhem Moulin <guilhem@debian.org>
+           © 2009,2014 Peter Lebbing <peter@digitalbrains.com>
+           © 2018 Erik Nellessen
 License: GPL-2+
 
-Files: docs/examples/*
-Copyright: Â© 2011-2019 Red Hat, Inc.
+Files: debian/tests/*
+Copyright: © 2021-2022 Guilhem Moulin <guilhem@debian.org>
+License: GPL-3+
+
+Files: docs/examples/* tests/all-symbols-test.c
+Copyright: © 2011-2023 Red Hat, Inc.
 License: LGPL-2.1+
 
-Files: lib/base64.c
-Copyright: Â© 1999-2001, 2004-2006, 2009-2018 Free Software Foundation, Inc.
+Files: lib/bitlk/*
+Copyright: © 2019-2023 Red Hat, Inc.
+           © 2019-2023 Milan Broz <gmazyland@gmail.com>
+           © 2019-2023 Vojtech Trefny
+License: LGPL-2.1+
+
+Files: tokens/ssh/*
+Copyright: © 2016-2023 Milan Broz <gmazyland@gmail.com>
+           © 2020-2023 Vojtech Trefny
+License: LGPL-2.1+
+
+Files: tokens/ssh/cryptsetup-ssh.c
+Copyright: © 2016-2023 Milan Broz <gmazyland@gmail.com>
+           © 2021-2023 Vojtech Trefny
 License: GPL-2+
 
-Files: lib/crypto_backend/* lib/loopaes/* lib/tcrypt/* lib/verity/*
-Copyright: Â© 2009-2019 Red Hat, Inc.
-           Â© 2010-2019 Milan Broz <gmazyland@gmail.com>
+Files: lib/crypto_backend/* lib/integrity/* lib/loopaes/* lib/tcrypt/* lib/verity/*
+Copyright: © 2009-2023 Red Hat, Inc.
+           © 2010-2023 Milan Broz <gmazyland@gmail.com>
 License: LGPL-2.1+
+
+Files: lib/crypto_backend/base64.c
+Copyright: © 2010 Lennart Poettering
+           © 2021-2023 Milan Broz <gmazyland@gmail.com>
+License: LGPL-2.1+
+
+Files: lib/crypto_backend/utf8.c
+Copyright: © 2010 Lennart Poettering
+           © 2021-2023 Vojtech Trefny
+           © 1999 Tom Tromey
+           © 2000 Red Hat, Inc.
+License: GPL-2+
 
 Files: lib/crypto_backend/crypto_openssl.c
-Copyright: Â© 2009-2019 Red Hat, Inc.
-           Â© 2010-2019 Milan Broz <gmazyland@gmail.com>
+Copyright: © 2009-2023 Red Hat, Inc.
+           © 2010-2023 Milan Broz <gmazyland@gmail.com>
 License: LGPL-2.1+ with OpenSSL exception
 
+Files: lib/fvault2/fvault2.c lib/fvault2/fvault2.h
+Copyright: © 2021-2022 Pavel Tobias
+License: LGPL-2.1+ with OpenSSL exception
+
+Files: lib/keyslot_context.c lib/keyslot_context.h
+Copyright: © 2022-2023 Red Hat, Inc.
+           © 2022-2023 Ondrej Kozina <okozina@redhat.com>
+License: GPL-2+
+
 Files: lib/crypto_backend/argon2/*
-Copyright: Â© 2015 Daniel Dinu
-           Â© 2015 Dmitry Khovratovich
-           Â© 2015 Jean-Philippe Aumasson
-           Â© 2015 Samuel Neves
+Copyright: © 2015 Daniel Dinu
+           © 2015 Dmitry Khovratovich
+           © 2015 Jean-Philippe Aumasson
+           © 2015 Samuel Neves
 License: CC0 or Apache-2.0
 
 Files: lib/crypto_backend/argon2/encoding.c
-Copyright: Â© 2015 Thomas Pornin <pornin@bolet.org>
+Copyright: © 2015 Thomas Pornin <pornin@bolet.org>
 License: CC0 or Apache-2.0
 
 Files: lib/crypto_backend/crc32.c
-Copyright: Â© 1986 Gary S. Brown
+Copyright: © 1986 Gary S. Brown
 License: public-domain
- Gary S. Brown's licence is as follows:
+ Gary S. Brown's license is as follows:
  .
  You may use this program, or code or tables extracted from it, as
  desired without restriction.
 
+Files: lib/bitops.h
+Copyright: © Karel Zak <kzak@redhat.com>
+License: public-domain
+ Karel Zak's license is as follows:
+ .
+ No copyright is claimed.  This code is in the public domain; do with it
+ what you wish.
+
 License: GPL-2+
- This package is free software; you can redistribute it and/or modify
+ This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
  .
- This package is distributed in the hope that it will be useful,
+ This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
  .
  You should have received a copy of the GNU General Public License
- along with this package; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ 02110-1301 USA.
  .
  On Debian systems, the complete text of the GNU General Public
- License v2 can be found in `/usr/share/common-licenses/GPL-2'.
+ License version 2 can be found in `/usr/share/common-licenses/GPL-2'.
 
 License: GPL-2+ with OpenSSL exception
- This package is free software; you can redistribute it and/or modify
+ This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
  .
- This package is distributed in the hope that it will be useful,
+ This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
  .
  You should have received a copy of the GNU General Public License
- along with this package; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ 02110-1301 USA.
  .
  On Debian systems, the complete text of the GNU General Public
- License v2 can be found in `/usr/share/common-licenses/GPL-2'.
+ License version 2 can be found in `/usr/share/common-licenses/GPL-2'.
  .
  In addition, as a special exception, the copyright holders give
  permission to link the code of portions of this program with the
@@ -129,43 +188,61 @@ License: GPL-2+ with OpenSSL exception
  delete this exception statement from all source files in the program,
  then also delete it here.
 
+License: GPL-3+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+ Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ version 3 can be found in `/usr/share/common-licenses/GPL-3`.
+
 License: LGPL-2.1+
- This package is free software; you can redistribute it and/or modify it
+ This program is free software; you can redistribute it and/or modify it
  under the terms of the GNU Lesser General Public License as published
  by the Free Software Foundation; either version 2.1 of the License, or
  (at your option) any later version.
  .
- This package is distributed in the hope that it will be useful, but
+ This program is distributed in the hope that it will be useful, but
  WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
  .
  You should have received a copy of the GNU Lesser General Public
- License along with this package; if not, write to the Free Software
+ License along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  02110-1301 USA.
  .
  On Debian systems, the complete text of the GNU Lesser General Public
- License v2.1 can be found in `/usr/share/common-licenses/LGPL-2.1'.
+ License version 2.1 can be found in `/usr/share/common-licenses/LGPL-2.1'.
 
 License: LGPL-2.1+ with OpenSSL exception
- This package is free software; you can redistribute it and/or modify it
+ This program is free software; you can redistribute it and/or modify it
  under the terms of the GNU Lesser General Public License as published
  by the Free Software Foundation; either version 2.1 of the License, or
  (at your option) any later version.
  .
- This package is distributed in the hope that it will be useful, but
+ This program is distributed in the hope that it will be useful, but
  WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
  .
  You should have received a copy of the GNU Lesser General Public
- License along with this package; if not, write to the Free Software
+ License along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  02110-1301 USA.
  .
  On Debian systems, the complete text of the GNU Lesser General Public
- License v2.1 can be found in `/usr/share/common-licenses/LGPL-2.1'.
+ License version 2.1 can be found in `/usr/share/common-licenses/LGPL-2.1'.
  .
  In addition, as a special exception, the copyright holders give
  permission to link the code of portions of this program with the

@@ -1,6 +1,6 @@
 This is the Debian GNU/Linux prepackaged version of the GNU groff
-document formatting system. 
-GNU groff was written by James Clark <jjc@jclark.com>.  
+document formatting system.
+GNU groff was written by James Clark <jjc@jclark.com>.
 
 This Debian package was previously maintained by Fabrizio Polacco
 <fpolacco@debian.org>.
@@ -86,11 +86,11 @@ file containing the following text (excerpted):
 
   The groff program is a free software project.  It is licensed under the GNU
   General Public License (GNU GPL), version 3 or later.
-  
+
   The file COPYING in the top directory of the groff source package contains a
   copy of the GPL that was downloaded from the GNU web site
   http://www.gnu.org/copyleft/gpl.txt at 3 jan 2009.
-  
+
   All files part of groff are licensed under this version of the GPL (or
   licenses which are compatible with the GPL). You are free to choose
   version 3 or any subsequent version of the GPL.
@@ -102,20 +102,20 @@ the relevant part of the reply:
   To: cjwatson@debian.org
   Subject: Re: Clarifying the scope of groff/LICENSE
   Date: Thu, 18 Nov 2004 00:19:52 +0100 (CET)
-  
+
   > Since "compatible with the GPL" means to all intents and purposes
   > "may be distributed under the terms of the GPL", can I correctly
   > assume that groff/LICENSE grants me permission to distribute
   > groff/doc/groff.texinfo and groff/doc/pic.ms under the terms of the
   > GPL?
-  
+
   This is the intention, of course.
-  
+
   > If not, is the FDL thing from yesteryear going to be resolved some
   > other way?  I just want to make sure that I don't get forced to
   > remove the groff manual, since that would really diminish the
   > quality of the Debian package IMHO.
-  
+
   Sigh.  I haven't found time to revert the FDL stuff back to GPL.  It
   basically affects only Bernd Warken and me, and we have both agreed to
   return to GPL in case FDL makes problems.

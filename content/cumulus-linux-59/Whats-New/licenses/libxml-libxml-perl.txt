@@ -49,12 +49,12 @@ Files: debian/*
 Copyright: 2001-2003, Ardo van Rangelrooij <ardo@debian.org>
  2003-2004, Michael K. Edwards <mkedeb@sane.net>
  2004, Enrico Zini <enrico@debian.org>
- 2004, Michael KrÃ¶ll <michael.kroell@uibk.ac.at>
+ 2004, Michael Kröll <michael.kroell@uibk.ac.at>
  2005, Andrew Pollock <apollock@debian.org>
  2005-2007, Florian Ragwitz <rafl@debian.org>
  2007, Andreas Barth <aba@not.so.argh.org>
  2008, Gunnar Wolf <gwolf@debian.org>
- 2008-2019, gregor herrmann <gregoa@debian.org>
+ 2008-2022, gregor herrmann <gregoa@debian.org>
  2009, Jonathan Yu <jawnsy@cpan.org>
  2011, Alessandro Ghedini <ghedo@debian.org>
 License: Artistic or GPL-1+

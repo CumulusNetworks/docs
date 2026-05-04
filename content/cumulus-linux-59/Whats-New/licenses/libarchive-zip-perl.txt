@@ -24,9 +24,9 @@ Files: debian/*
 Copyright: 2001-2003, Ivo Timmermans <ivo@debian.org>
  2004, Matthias Klose <doko@debian.org>
  2005, 2007, Ben Burton <bab@debian.org>
- 2009-2018, Salvatore Bonaccorso <carnil@debian.org>
- 2009-2011, Ernesto Hern√°ndez-Novich (USB) <emhn@usb.ve>
- 2010-2018, gregor herrmann <gregoa@debian.org>
+ 2009-2019, Salvatore Bonaccorso <carnil@debian.org>
+ 2009-2011, Ernesto Hern·ndez-Novich (USB) <emhn@usb.ve>
+ 2010-2020, gregor herrmann <gregoa@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic

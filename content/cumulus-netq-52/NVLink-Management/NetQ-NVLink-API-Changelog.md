@@ -8,7 +8,7 @@ toc: 3
 
 ## 5.2 NetQ NVLink REST API Changelog
 
-<p><strong>Version 5.2.0</strong> (compared to 5.1.0). Breaking changes are indicated with ⚠️. For more information, see the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-510/" text="REST API in Swagger">}}.<br>
+<p><strong>Version 5.2.0</strong> (compared to 5.1.0). Breaking changes are indicated with ⚠️. For more information, see the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-520/" text="REST API in Swagger">}}.<br>
 
 <table id="api-changelog" class="sortable">
 <thead>
@@ -35,7 +35,7 @@ toc: 3
 <tr><td><code>GET /v1/compute-nodes/{id}</code></td><td><strong>Changed</strong>: ID-related schemas constraints</td><td><code>SlotID</code>, <code>TrayIndex</code>, <code>HostID</code> schemas now require minimum value 0</td></tr>
 <tr><td><code>PUT /v1/compute-nodes/{id}</code></td><td><strong>Changed</strong>: ID-related schemas constraints</td><td><code>SlotID</code>, <code>TrayIndex</code>, <code>HostID</code> schemas now require minimum value 0</td></tr>
 
-<tr><td><code>GET /v1/gpus</code></td><td><strong>Introduced</strong>: New filtered listing</td><td>Lists GPUs with filters on <code>deviceUID</code>, <code>chassisSerialNumber</code>, <code>slotID</code>, <code>trayIndex</code>, <code>hostID</code> (db-reader)</td></tr>
+<tr><td><code>GET /v1/gpus</code></td><td><strong>Introduced</strong>: New filtered listing</td><td>Lists GPUs with filters on <code>deviceUID</code>, <code>chassisSerialNumber</code>, <code>slotID</code>, <code>trayIndex</code>, <code>hostID</code></td></tr>
 <tr><td><code>GET /v1/gpus</code></td><td><strong>Changed</strong>: <code>GPU.DeviceUID</code> schema</td><td>Inlined <code>uint64</code> type and added JavaScript precision warning (was <code>$ref: uint64</code>)</td></tr>
 
 <tr><td><code>GET /v1/gpus/{id}</code></td><td><strong>Changed</strong>: ID-related schemas constraints</td><td><code>SlotID</code>, <code>TrayIndex</code>, <code>HostID</code> schemas now require minimum value 0</td></tr>
@@ -46,12 +46,12 @@ toc: 3
 <tr><td><code>POST /v1/images</code></td><td><strong>Added</strong>: Optional request field <code>ImageType</code></td><td>Extends <code>UploadImageRequest</code> with <code>ImageType</code></td></tr>
 <tr><td><code>GET /v1/images</code></td><td><strong>Changed ⚠️</strong>: <code>ImageMetadata.imageType</code> enum</td><td>Enum values changed from uppercase <code>NVOS</code> to lowercase <code>nvos</code>; new value <code>cpld</code> added (breaking change)</td></tr>
 
-<tr><td><code>GET /v1/kpi/compute-health</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns compute node health metrics time series (db-reader)</td></tr>
-<tr><td><code>GET /v1/kpi/connection-state</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns connection state metrics time series (db-reader)</td></tr>
-<tr><td><code>GET /v1/kpi/domain-health</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns domain health metrics time series (db-reader)</td></tr>
-<tr><td><code>GET /v1/kpi/gpu-health</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns GPU health metrics time series (db-reader)</td></tr>
-<tr><td><code>GET /v1/kpi/partition-health</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns partition health metrics time series (db-reader)</td></tr>
-<tr><td><code>GET /v1/kpi/switch-node-health</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns switch node health metrics time series (db-reader)</td></tr>
+<tr><td><code>GET /v1/kpi/compute-health</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns compute node health metrics time series </td></tr>
+<tr><td><code>GET /v1/kpi/connection-state</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns connection state metrics time series </td></tr>
+<tr><td><code>GET /v1/kpi/domain-health</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns domain health metrics time series </td></tr>
+<tr><td><code>GET /v1/kpi/gpu-health</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns GPU health metrics time series </td></tr>
+<tr><td><code>GET /v1/kpi/partition-health</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns partition health metrics time series </td></tr>
+<tr><td><code>GET /v1/kpi/switch-node-health</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns switch node health metrics time series </td></tr>
 
 <tr><td><code>GET /v1/kpis</code></td><td><strong>Changed</strong>: KPI enums and schema</td><td><code>KPIType</code> enum extended with <code>FW_VERSIONS</code>; <code>KPIResponse</code> schema gains <code>fw-versions</code> field</td></tr>
 
@@ -87,7 +87,7 @@ toc: 3
 
 <tr><td><code>POST /v1/upgrade-switch</code></td><td><strong>Changed</strong>: Upgrade request schema</td><td>Added <code>UpgradeType</code> enum (<code>nvos</code>, <code>cpld</code>) to <code>CreateSwitchUpgradeRequest</code>; description updated from “NVOS image” to “NVOS/Firmware image”; CPLD upgrade examples added</td></tr>
 
-<tr><td><code>GET /v1/validations/fw-versions</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns firmware version validation results per domain (db-reader)</td></tr>
+<tr><td><code>GET /v1/validations/fw-versions</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns firmware version validation results per domain </td></tr>
 
 <tr><td><code>GET /v1/version</code></td><td><strong>Changed</strong>: API version</td><td>API version updated from 5.1.0 to 5.2.0</td></tr>
 

@@ -1,16 +1,17 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: htop
-Upstream-Contact: Hisham Muhammad <lode@gobolinux.org>
-Source: http://hisham.hm/htop/releases/
+Upstream-Contact: htop dev team <htop@groups.io>
+Source: https://github.com/htop-dev/htop/releases
 
 Files: *
 License: GPL-2+
-Copyright: 2004-2018 Hisham Muhammad
+Copyright: 2004-2019 Hisham Muhammad
+           2020-2023 htop dev team
 
 Files: debian/*
 License: GPL-2+
-Copyright: 2016 Daniel Lange
-           2018 Graham Inggs
+Copyright: 2016-2023 Daniel Lange
+           2018-2021 Graham Inggs
            2008-2016 Eugene V. Lyubimkin
            2004-2008 Bartosz Fenski
 

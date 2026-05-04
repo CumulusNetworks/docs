@@ -1,19 +1,32 @@
-This is the Debian GNU/Linux prepackaged version of acpid.
-It was packaged by Cajus Pollmeier <cajus@debian.org>
-from sources obtained from http://acpid.sourceforge.net.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: acpid
+Source: https://sourceforge.net/projects/acpid2/
 
-Later on it was taken over by Michael Meskes <meskes@debian.org> who switched
-the package to the latest sources from http://www.tedfelix.com.
+Files: *
+Copyright: 2000 Andrew Henroid
+           2004 Tim Hockin (thockin@hockin.org)
+           2008-2011 Ted Felix (www.tedfelix.com)
+License: GPL-2
 
-Copyright:
+Files: debian/*
+Copyright: 2000 Wichert Akkerman <wakkerma@debian.org>
+           2001 Cajus Pollmeier <cajus@debian.org>
+           2008-2019 Michael Meskes <meskes@debian.org>
+           2022 Josue Ortega <josue@debian.org>
+License: GPL-2
 
-Copyright (C) 2000 Andrew Henroid
-              2004 Tim Hockin (thockin@hockin.org) 
-              2008-2011 Ted Felix (www.tedfelix.com)
-
-License:
-
-acpid is distributed under the terms of the GNU General Public License,
-version 2 or later. On Debian GNU/Linux system you can find a copy of this
-license in `/usr/share/common-licenses/GPL-2'.
-
+License: GPL-2
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".

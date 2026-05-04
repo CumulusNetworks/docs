@@ -19,13 +19,16 @@ You can add filters to `netq check` commands to suppress validation failures bas
     [check_filter_id <text-check-filter-id>] 
     [check_name <text-check-name-anchor>] 
     [test_name <text-test-name-anchor>] 
-    [scope <text-check-scope-anchor> | scope-append <text-check-scope-anchor>] 
+    (scope <text-check-scope-anchor> | scope-append <text-check-scope-anchor>) 
     [is_active true | is_active false] 
     [suppress_until <text-suppress-until>]
 ```
 ### Required Arguments
 
-None
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| scope | \<text-check-scope-anchor\> | Name of scope |
+| scope-append | \<text-check-scope-anchor\> | Appends defined scope to existing configuration |
 
 ### Options
 
@@ -34,8 +37,6 @@ None
 | check_filter_id | \<text-check-filter-id\> | Identifier for filter |
 | check_name | \<text-check-name-anchor\> | Name of validation check |
 | test_name | \<text-test-name-anchor\> | Name of validation test |
-| scope | \<text-check-scope-anchor\> | Name of scope |
-| scope-append | \<text-check-scope-anchor\> | Appends defined scope to existing configuration |
 | is_active | true, false | Enables or disables configuration |
 | suppress_until | \<text-suppress-until\> | Amount of time, in seconds, to suppress the specified events |
 
@@ -279,8 +280,7 @@ You must have at least one channel, one rule, and one filter to fully configure 
 ### Syntax
 
 ```
-netq add notification filter
-    <text-filter-name>
+netq add notification filter <text-filter-name>
     [severity info | severity error]
     [rule <text-rule-name-anchor>]
     [channel <text-channel-name-anchor>]
@@ -291,7 +291,7 @@ netq add notification filter
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-filter-name\> | Name of the filter |
+| filter| \<text-filter-name\> | Name of the filter |
 
 ### Options
 
@@ -436,7 +436,7 @@ netq add otlp endpoint
     tsdb-name <text-tsdb-endpoint> 
     tsdb-url <text-tsdb-endpoint-url> 
     [export true | export false] 
-    [security-mode <text-mode>]
+    [security-mode insecure | security-mode tls]
 ```
 ### Required Arguments
 
@@ -450,7 +450,7 @@ netq add otlp endpoint
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | export | true, false | Enable (true) or disable (false) OTLP data export to time series database |
-| security-mode | \<text-mode\> | Enable (TLS) or disable (insecure) OTLP security mode |
+| security-mode | insecure, tls | Enable (TLS) or disable (insecure) OTLP security mode |
 
 ### Related Commands
 
@@ -685,7 +685,7 @@ Creates a validation for various protocols and services to run on a regular inte
 ```
 netq add validation
     name <text-new-validation-name>
-    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
+    type (addr | agents | ar | bgp | evpn | interfaces | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
     interval <text-time-min>
     [alert-on-failure]
 ```
@@ -695,7 +695,7 @@ netq add validation
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | name | \<text-new-validation-name\> | Unique name for the validation |
-| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan | Protocol or service to validate |
+| type | addr, agents, ar, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan | Protocol or service to validate |
 | interval | \<text-time-min\> | Frequency to run the validation, in minutes. Value must include time unit of *m*, minutes. Default scheduled validations per type run every 60 minutes. |
 
 ### Options
@@ -729,7 +729,7 @@ Creates an on-demand validation for various protocols and services, with results
 
 ```
 netq add validation
-    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
+    type (addr | agents | ar | bgp | evpn | interfaces | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
     [alert-on-failure]
 ```
 
@@ -737,7 +737,7 @@ netq add validation
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan | Protocol or service to validate |
+| type | addr, agents, ar, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan | Protocol or service to validate |
 
 ### Options
 

@@ -1,0 +1,71 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: dbus-broker
+Source: https://github.com/bus1/dbus-broker/
+
+Files: *
+Copyright: 2015-2022 Red Hat, Inc.
+           2015-2020 Chris PeBenito <chpebeni@linux.microsoft.com>
+           2015-2020 Daniel Rusek <mail@asciiwolf.com>
+           2015-2020 Daniele Nicolodi <daniele@grinta.net>
+           2015-2020 David Herrmann <dh.herrmann@gmail.com>
+           2015-2020 David Rheinsberg <david.rheinsberg@gmail.com>
+           2015-2020 Georg Müller <georgmueller@gmx.net>
+           2015-2020 Jacob Alzén <jacob.alzen@gmail.com>
+           2015-2020 Kay Sievers <kay@vrfy.org>
+           2015-2020 Khem Raj <raj.khem@gmail.com>
+           2015-2020 Laurent Bigonville <bigon@bigon.be>
+           2015-2020 Luca Boccassi <luca.boccassi@microsoft.com>
+           2015-2020 Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+           2015-2020 Michal Schmidt <mschmidt@redhat.com>
+           2015-2020 Mike Gilbert <floppym@gentoo.org>
+           2015-2020 Thomas Haller <thaller@redhat.com>
+           2015-2020 Tom Gundersen <teg@jklm.no>
+           2015-2020 Yanko Kaneti <yaneti@declera.com>
+License: Apache-2.0
+
+Files: subprojects/*
+Copyright: 2015-2019 Red Hat, Inc.
+           2015-2020 David Herrmann <dh.herrmann@gmail.com>
+           2017-2020 David Rheinsberg <david.rheinsberg@gmail.com>
+           2016 Kay Sievers <kay@vrfy.org>
+           2019 Lucas De Marchi <lucas.de.marchi@gmail.com>
+           2016-2020 Thomas Haller <thaller@redhat.com>
+           2017-2020 Tom Gundersen <teg@jklm.no>
+           2019 William A. Kennington III <wak@google.com>
+           2020 Yuri Chornoivan <yurchor@ukr.net>
+License: Apache-2.0 or LGPL-2.1-or-later
+
+Files: debian/*
+Copyright: 2016-2018 Daniele Nicolodi <daniele@grinta.net>
+           2020-2023 Luca Boccassi <bluca@debian.org>
+License: Apache-2.0
+
+License: Apache-2.0
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ .
+ http://www.apache.org/licenses/LICENSE-2.0
+ .
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ .
+ On Debian systems, the complete text of the Apache License, Version 2.0
+ can be found in "/usr/share/common-licenses/Apache-2.0".
+
+License: LGPL-2.1-or-later
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published
+ by the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ Lesser General Public License for more details.
+ .
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License version 2.1 can be found in "/usr/share/common-licenses/LGPL-2.1".

@@ -1,0 +1,67 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Contact: Alain Knaff <Alain@linux.lu>
+Upstream-Name: mtools
+Source: https://ftp.gnu.org/gnu/mtools/
+
+Files: *
+Copyright:
+ © 1994?2018 Alain Knaff <Alain@linux.lu>
+ © 1994, 2002 David C. Niemi <niemi@tuxers.net>
+ © 1994, 2002 Emmet P. Gray
+ © 1999 Peter Schlaile
+ © 2007 Free Software Foundation
+License: GPL-3
+
+Files: scripts/amuFormat.sh
+Copyright:
+ © 2004 Feuz Stefan.
+ © 2007 Adam Tkac
+License: GPL-3
+
+Files: scripts/download
+Copyright: © 1996 Carlos Duarte
+License: GPL-3
+
+Files:
+ scripts/add-disk
+ scripts/format.dat
+Copyright: © 1997 Tim Hoogasian <hoogs@usa.net>
+License: GPL-3
+
+Files:
+ *.1
+ *.info
+Copyright:
+ © 2000 Robert A.R. King
+ © 2003 Luis Bustamante
+ © 2003?2018 Stefan Feuz, Lukas Meyer, Thomas Locher
+License: GFDL-1.1
+
+License: GPL-3
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation (version 3).
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian GNU/Linux systems, the complete text of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-3'
+
+License: GFDL-1.1
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Free Documentation License as published by
+ the Free Software Foundation (version 1.1).
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Free Documentation License for more details.
+ .
+ You should have received a copy of the GNU Free Documentation License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU Free Documentation License
+ can be found in "/usr/share/common-licenses/GFDL-1.1".

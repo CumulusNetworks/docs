@@ -1,0 +1,2679 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: strongswan
+Upstream-Contact: http://strongswan.org/
+Source: http://strongswan.org/
+License: GPL-2+ with OpenSSL exception
+Copyright: Martin Willi, Tobias Brunner, Andreas Steffen
+
+Files: debian/*
+Copyright: 2006-2011 Rene Mayrhofer <rene@mayrhofer.eu.org>,
+  2012-2018 Yves-Alexis Perez <corsac@debian.org>
+License: GPL-2+
+
+Files: conf/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: ltmain.sh
+Copyright: 1996-2001, 2003-2005, 2006
+License: GPL-2+
+
+Files: scripts/bin2array.c
+ scripts/bin2sql.c
+ scripts/dh_speed.c
+ scripts/id2sql.c
+ scripts/key2keyid.c
+ scripts/pubkey_speed.c
+Copyright: 2008, Martin Willi
+  2008-2009, Martin Willi
+  2009, Martin Willi
+License: GPL-2+
+
+
+Files: conf/format-options.py
+ fuzz/libFuzzerLocal.c
+ scripts/aes-test.c
+ scripts/settings-test.c
+Copyright: 2013, Tobias Brunner
+  2014-2017, Tobias Brunner
+  2014-2018, Tobias Brunner
+  2017, Tobias Brunner
+License: GPL-2+
+
+Files: scripts/crypt_burn.c
+ scripts/fetch.c
+ scripts/hash_burn.c
+ scripts/oid2der.c
+ scripts/tls_test.c
+Copyright: 2010, Martin Willi
+  2010, revosec AG
+  2012, Martin Willi
+  2012, revosec AG
+License: GPL-2+
+
+Files: scripts/dnssec.c
+Copyright: 2011, 2012, Reto Guadagnini
+License: GPL-2+
+
+Files: scripts/keyid2sql.c
+  scripts/thread_analysis.c
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: scripts/malloc_speed.c
+Copyright: 2013, revosec aG
+  2013, Martin Willi
+License: GPL-2+
+
+Files: src/aikgen/*
+Copyright: 2014, Andreas Steffen
+  2008, Hal Finney
+License: Expat
+
+Files: src/charon-cmd/*
+Copyright: 2010-2014, revosec AG
+  2009-2014, Tobias Brunner
+  2007-2014, Martin Willi
+License: GPL-2+
+
+Files: src/charon-cmd/charon-cmd.c
+Copyright: 2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2013, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/charon-cmd/cmd/cmd_connection.h
+  src/charon-cmd/cmd/cmd_creds.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/charon-nm/charon-nm.c
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/charon-nm/nm/nm_backend.c
+  src/charon-nm/nm/nm_service.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/charon-nm/nm/nm_backend.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/charon-svc/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/charon-systemd/*
+Copyright: 2010, 2014, revosec AG
+  2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2014, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/charon-tkm/*
+Copyright: 2012-2014, Reto Buerki
+  2012, 2013, Adrian-Ken Rueegsegger
+License: GPL-2+
+
+Files: src/charon-tkm/src/charon-tkm.c
+Copyright: 2012, 2013, 2015, Tobias Brunner
+  2012-2014, Reto Buerki
+  2012, Adrian-Ken Rueegsegger
+License: GPL-2+
+
+Files: src/charon-tkm/src/tkm/tkm_keymat.c
+Copyright: 2012, 2013, 2015, Tobias Brunner
+  2012-2014, Reto Buerki
+  2012, Adrian-Ken Rueegsegger
+License: GPL-2+
+
+Files: src/charon-tkm/tests/tests.c
+Copyright: 2012, 2013, 2015, Tobias Brunner
+  2012-2014, Reto Buerki
+  2012, Adrian-Ken Rueegsegger
+License: GPL-2+
+
+Files: src/charon/*
+Copyright: 2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2013, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/conftest/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/conftest/hooks/reset_seq.c
+Copyright: 2012, achelos GmbH
+  2010, revosec AG
+  2010, Martin Willi
+License: Expat and GPL-2+
+
+Files: src/include/*
+Copyright: *No copyright*
+License: GPL-2+
+
+Files: src/include/linux/if_alg.h
+Copyright: 2010, Herbert Xu <herbert@gondor.apana.org.au>
+License: GPL-2+
+
+Files: src/include/linux/udp.h
+Copyright: Fred N. van Kempen, <waltje@uWalt.NL.Mugnet.ORG>
+License: GPL-2+
+
+Files: src/include/sys/*
+Copyright: 1991, 1993
+License: BSD-3
+
+Files: src/libcharon/attributes/attributes.c
+  src/libcharon/attributes/attributes.h
+Copyright: 2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/attributes/mem_pool.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/attributes/mem_pool.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/bus/*
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/bus/listeners/logger.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/config/*
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/config/backend.h
+  src/libcharon/config/backend_manager.c
+  src/libcharon/config/backend_manager.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/config/ike_cfg.c
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/control/controller.c
+Copyright: 2010-2014, revosec AG
+  2009-2014, Tobias Brunner
+  2007-2014, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/daemon.c
+  src/libcharon/daemon.h
+Copyright: 2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2013, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/encoding/*
+Copyright: 2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/encoding/generator.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/encoding/generator.h
+  src/libcharon/encoding/parser.c
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/encoding/message.c
+Copyright: 2010, 2014, revosec AG
+  2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2014, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/encoding/message.h
+Copyright: 2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2013, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/encoding/payloads/auth_payload.c
+  src/libcharon/encoding/payloads/certreq_payload.c
+  src/libcharon/encoding/payloads/configuration_attribute.c
+  src/libcharon/encoding/payloads/cp_payload.c
+  src/libcharon/encoding/payloads/ke_payload.c
+  src/libcharon/encoding/payloads/nonce_payload.c
+  src/libcharon/encoding/payloads/traffic_selector_substructure.c
+  src/libcharon/encoding/payloads/transform_attribute.c
+  src/libcharon/encoding/payloads/transform_substructure.c
+  src/libcharon/encoding/payloads/ts_payload.c
+  src/libcharon/encoding/payloads/vendor_id_payload.c
+Copyright: 2010, revosec AG
+  2005-2010, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/encoding/payloads/cert_payload.c
+  src/libcharon/encoding/payloads/id_payload.c
+Copyright: 2010, 2011, revosec AG
+  2007-2013, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/encoding/payloads/cert_payload.h
+  src/libcharon/encoding/payloads/eap_payload.c
+  src/libcharon/encoding/payloads/ike_header.h
+  src/libcharon/encoding/payloads/proposal_substructure.c
+  src/libcharon/encoding/payloads/sa_payload.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/encoding/payloads/configuration_attribute.h
+  src/libcharon/encoding/payloads/cp_payload.h
+  src/libcharon/encoding/payloads/vendor_id_payload.h
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/encoding/payloads/delete_payload.c
+  src/libcharon/encoding/payloads/encrypted_payload.c
+  src/libcharon/encoding/payloads/encrypted_payload.h
+Copyright: 2011-2015, Tobias Brunner
+  2010, revosec AG
+  2005-2010, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/encoding/payloads/delete_payload.h
+  src/libcharon/encoding/payloads/eap_payload.h
+  src/libcharon/encoding/payloads/id_payload.h
+  src/libcharon/encoding/payloads/ike_header.c
+  src/libcharon/encoding/payloads/payload.c
+  src/libcharon/encoding/payloads/payload.h
+  src/libcharon/encoding/payloads/proposal_substructure.h
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/encoding/payloads/encrypted_fragment_payload.h
+  src/libcharon/encoding/payloads/endpoint_notify.c
+  src/libcharon/encoding/payloads/endpoint_notify.h
+  src/libcharon/encoding/payloads/fragment_payload.c
+  src/libcharon/encoding/payloads/fragment_payload.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/encoding/payloads/hash_payload.c
+  src/libcharon/encoding/payloads/hash_payload.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/encoding/payloads/notify_payload.c
+Copyright: 2010, 2014, revosec AG
+  2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2014, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/encoding/payloads/notify_payload.h
+Copyright: 2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/kernel/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/network/*
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/network/receiver.c
+  src/libcharon/network/sender.c
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/network/receiver.h
+  src/libcharon/network/sender.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/network/socket.c
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/network/socket.h
+Copyright: 2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2013, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/plugins/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/addrblock/addrblock_narrow.c
+Copyright: 2010, revosec AG
+  2010, Martin Willi
+  2009, Andreas Steffen
+License: GPL-2+
+
+Files: src/libcharon/plugins/addrblock/addrblock_validator.c
+Copyright: 2010, Martin Willi, revosec AG
+  2009, 2010, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+License: GPL-2+
+
+Files: src/libcharon/plugins/android_dns/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/plugins/android_dns/android_dns_handler.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/android_dns/android_dns_handler.h
+Copyright: 2008-2010, Martin Willi
+  2008-2012, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/plugins/android_log/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/plugins/attr/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/attr/attr_provider.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/attr_sql/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/attr_sql/attr_sql_plugin.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/dhcp/dhcp_plugin.c
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/dnscert/*
+Copyright: 2013, Ruslan Marchenko
+License: Expat
+
+Files: src/libcharon/plugins/dnscert/dnscert_cred.c
+  src/libcharon/plugins/dnscert/dnscert_plugin.c
+Copyright: 2013, Tobias Brunner
+  2013, Ruslan Marchenko
+  2012, Reto Guadagnini
+License: Expat and GPL-2+
+
+Files: src/libcharon/plugins/eap_aka/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_aka_3gpp2/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_dynamic/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_gtc/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_gtc/eap_gtc.c
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_identity/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_md5/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_mschapv2/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_mschapv2/eap_mschapv2.c
+Copyright: 2008-2010, Martin Willi
+  2008-2012, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_peap/*
+Copyright: 2010, 2011, HSR Hochschule fuer Technik Rapperswil
+  2010, 2011, Andreas Steffen
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_peap/eap_peap.c
+Copyright: 2010, Martin Willi, revosec AG
+  2009, 2010, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_radius/eap_radius.c
+  src/libcharon/plugins/eap_radius/eap_radius.h
+  src/libcharon/plugins/eap_radius/eap_radius_plugin.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_radius/eap_radius_plugin.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_sim/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_sim_file/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_sim_pcsc/*
+Copyright: 2011, Duncan Salerno
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_simaka_pseudonym/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_simaka_reauth/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_tnc/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_ttls/*
+Copyright: 2010, 2011, HSR Hochschule fuer Technik Rapperswil
+  2010, 2011, Andreas Steffen
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_ttls/eap_ttls.c
+Copyright: 2010, Martin Willi, revosec AG
+  2009, 2010, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+License: GPL-2+
+
+Files: src/libcharon/plugins/eap_ttls/eap_ttls_server.c
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libcharon/plugins/ext_auth/*
+Copyright: 2014, Vyronas Tsingaras (vtsingaras@it.auth.gr)
+License: Expat
+
+Files: src/libcharon/plugins/ext_auth/ext_auth_listener.c
+  src/libcharon/plugins/ext_auth/ext_auth_plugin.c
+Copyright: 2014, revosec AG
+  2014, Vyronas Tsingaras (vtsingaras@it.auth.gr)
+  2014, Martin Willi
+License: Expat
+
+Files: src/libcharon/plugins/ha/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/ha/ha_attribute.c
+  src/libcharon/plugins/ha/ha_attribute.h
+  src/libcharon/plugins/ha/ha_cache.c
+  src/libcharon/plugins/ha/ha_cache.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/ipseckey/*
+Copyright: 2011, 2012, Reto Guadagnini
+License: GPL-2+
+
+Files: src/libcharon/plugins/ipseckey/ipseckey_cred.c
+  src/libcharon/plugins/ipseckey/ipseckey_plugin.c
+Copyright: 2013, Tobias Brunner
+  2012, Reto Guadagnini
+License: GPL-2+
+
+Files: src/libcharon/plugins/kernel_libipsec/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/plugins/load_tester/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/load_tester/load_tester.c
+  src/libcharon/plugins/load_tester/load_tester_control.c
+  src/libcharon/plugins/load_tester/load_tester_control.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/medcli/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/medcli/medcli_plugin.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/medsrv/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/medsrv/medsrv_plugin.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/resolve/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/resolve/resolve_handler.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/smp/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/socket_default/socket_default_plugin.c
+Copyright: 2010-2014, revosec AG
+  2009-2014, Tobias Brunner
+  2007-2014, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/socket_default/socket_default_socket.c
+Copyright: 2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2013, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/plugins/socket_dynamic/socket_dynamic_plugin.c
+Copyright: 2010-2014, revosec AG
+  2009-2014, Tobias Brunner
+  2007-2014, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/socket_dynamic/socket_dynamic_socket.c
+Copyright: 2010, 2014, revosec AG
+  2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2014, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/plugins/sql/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/sql/sql_config.c
+Copyright: 2009-2015, Andreas Steffen
+  2005-2009, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/sql/sql_cred.c
+  src/libcharon/plugins/sql/sql_plugin.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/stroke/*
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/stroke/stroke_attribute.h
+  src/libcharon/plugins/stroke/stroke_control.h
+  src/libcharon/plugins/stroke/stroke_list.c
+  src/libcharon/plugins/stroke/stroke_list.h
+  src/libcharon/plugins/stroke/stroke_plugin.c
+  src/libcharon/plugins/stroke/stroke_plugin.h
+  src/libcharon/plugins/stroke/stroke_socket.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/stroke/stroke_counter.c
+  src/libcharon/plugins/stroke/stroke_counter.h
+  src/libcharon/plugins/stroke/stroke_handler.c
+  src/libcharon/plugins/stroke/stroke_handler.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/systime_fix/systime_fix_plugin.c
+Copyright: 2010-2014, revosec AG
+  2009-2014, Tobias Brunner
+  2007-2014, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/tnc_ifmap/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libcharon/plugins/tnc_pdp/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libcharon/plugins/uci/*
+Copyright: 2008, Thomas Kallenberg
+  2008, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/uci/uci_config.c
+  src/libcharon/plugins/uci/uci_creds.c
+Copyright: 2008, Tobias Brunner
+  2008, Thomas Kallenberg
+  2008, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/uci/uci_control.h
+  src/libcharon/plugins/uci/uci_plugin.c
+Copyright: 2008, Thomas Kallenberg
+License: GPL-2+
+
+Files: src/libcharon/plugins/unity/unity_handler.c
+  src/libcharon/plugins/unity/unity_narrow.c
+  src/libcharon/plugins/unity/unity_provider.c
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/updown/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/updown/updown_handler.c
+  src/libcharon/plugins/updown/updown_handler.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/updown/updown_listener.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/vici/ruby/*
+Copyright: 2014, revosec AG
+  2014, Martin Willi
+License: Expat
+
+Files: src/libcharon/plugins/vici/vici_attribute.c
+Copyright: 2010-2014, revosec AG
+  2009-2014, Tobias Brunner
+  2007-2014, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/plugins/xauth_generic/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/plugins/xauth_noauth/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/plugins/xauth_pam/xauth_pam_listener.c
+  src/libcharon/plugins/xauth_pam/xauth_pam_listener.h
+Copyright: 2013, Endian srl
+License: Expat
+
+Files: src/libcharon/processing/jobs/adopt_children_job.c
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/processing/jobs/adopt_children_job.h
+  src/libcharon/processing/jobs/dpd_timeout_job.c
+  src/libcharon/processing/jobs/dpd_timeout_job.h
+  src/libcharon/processing/jobs/initiate_tasks_job.c
+  src/libcharon/processing/jobs/initiate_tasks_job.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/processing/jobs/delete_ike_sa_job.c
+  src/libcharon/processing/jobs/delete_ike_sa_job.h
+Copyright: 2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/processing/jobs/initiate_mediation_job.c
+  src/libcharon/processing/jobs/initiate_mediation_job.h
+  src/libcharon/processing/jobs/mediation_job.c
+  src/libcharon/processing/jobs/mediation_job.h
+  src/libcharon/processing/jobs/retry_initiate_job.c
+  src/libcharon/processing/jobs/retry_initiate_job.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/processing/jobs/migrate_job.c
+  src/libcharon/processing/jobs/migrate_job.h
+  src/libcharon/processing/jobs/start_action_job.c
+  src/libcharon/processing/jobs/start_action_job.h
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libcharon/processing/jobs/process_message_job.c
+  src/libcharon/processing/jobs/process_message_job.h
+  src/libcharon/processing/jobs/retransmit_job.c
+  src/libcharon/processing/jobs/retransmit_job.h
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/processing/jobs/send_dpd_job.c
+  src/libcharon/processing/jobs/send_dpd_job.h
+  src/libcharon/processing/jobs/send_keepalive_job.c
+  src/libcharon/processing/jobs/send_keepalive_job.h
+Copyright: 2006, Tobias Brunner, Daniel Roethlisberger
+License: GPL-2+
+
+Files: src/libcharon/sa/*
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/authenticator.h
+  src/libcharon/sa/ike_sa_manager.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/sa/child_sa.c
+  src/libcharon/sa/ike_sa.h
+Copyright: 2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2013, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/sa/child_sa.h
+Copyright: 2006-2008, Tobias Brunner
+  2006-2008, Martin Willi
+  2006, Daniel Roethlisberger
+License: GPL-2+
+
+Files: src/libcharon/sa/child_sa_manager.c
+  src/libcharon/sa/child_sa_manager.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/eap/eap_inner_method.h
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libcharon/sa/eap/eap_method.c
+  src/libcharon/sa/eap/eap_method.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ike_sa.c
+Copyright: 2014, Volker Rümelin
+  2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2009, Martin Willi
+  2005, Jan Hutter
+License: Expat and GPL-2+
+
+Files: src/libcharon/sa/ike_sa_id.c
+  src/libcharon/sa/ike_sa_id.h
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ike_sa_manager.c
+Copyright: 2010, 2011, revosec AG
+  2007-2013, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev1/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev1/keymat_v1.c
+  src/libcharon/sa/ikev1/keymat_v1.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev1/phase1.c
+Copyright: 2010-2014, revosec AG
+  2009-2014, Tobias Brunner
+  2007-2014, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev1/task_manager_v1.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev1/tasks/aggressive_mode.c
+Copyright: 2010-2014, revosec AG
+  2009-2014, Tobias Brunner
+  2007-2014, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev1/tasks/isakmp_cert_pre.c
+Copyright: 2013, Volker Rümelin
+  2011, revosec AG
+  2011, Martin Willi
+License: Expat and GPL-2+
+
+Files: src/libcharon/sa/ikev1/tasks/isakmp_delete.c
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev1/tasks/isakmp_natd.c
+Copyright: 2012, Volker Rümelin
+  2006-2011, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2006, 2007, Martin Willi
+License: Expat and GPL-2+
+
+Files: src/libcharon/sa/ikev1/tasks/isakmp_natd.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev1/tasks/isakmp_vendor.c
+Copyright: 2012-2014, Volker Rümelin
+  2012, 2013, Tobias Brunner
+  2009, Martin Willi
+License: Expat and GPL-2+
+
+Files: src/libcharon/sa/ikev1/tasks/main_mode.c
+Copyright: 2011, 2012, 2014, revosec AG
+  2011, 2012, 2014, Martin Willi
+  2008, 2011-2013, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev1/tasks/quick_delete.c
+Copyright: 2013, Oliver Smith
+  2011, revosec AG
+  2011, Martin Willi
+License: Expat and GPL-2+
+
+Files: src/libcharon/sa/ikev1/tasks/quick_mode.c
+Copyright: 2012, Volker Rümelin
+  2012, Tobias Brunner
+  2011, revosec AG
+  2011, Martin Willi
+License: Expat and GPL-2+
+
+Files: src/libcharon/sa/ikev2/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/authenticators/*
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/authenticators/eap_authenticator.h
+  src/libcharon/sa/ikev2/authenticators/psk_authenticator.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/authenticators/psk_authenticator.c
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/authenticators/pubkey_authenticator.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/keymat_v2.c
+  src/libcharon/sa/ikev2/task_manager_v2.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/task_manager_v2.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/tasks/*
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/tasks/child_create.c
+  src/libcharon/sa/ikev2/tasks/ike_auth.c
+  src/libcharon/sa/ikev2/tasks/ike_init.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/tasks/child_rekey.c
+  src/libcharon/sa/ikev2/tasks/ike_rekey.c
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/tasks/ike_cert_post.c
+  src/libcharon/sa/ikev2/tasks/ike_cert_pre.c
+  src/libcharon/sa/ikev2/tasks/ike_mobike.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/tasks/ike_config.c
+Copyright: 2007, Martin Willi
+  2006, 2007, Fabian Hartmann, Noah Heusser
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/tasks/ike_me.c
+  src/libcharon/sa/ikev2/tasks/ike_me.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/tasks/ike_natd.c
+Copyright: 2006, Tobias Brunner, Daniel Roethlisberger
+  2006, 2007, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/ikev2/tasks/ike_reauth_complete.c
+  src/libcharon/sa/ikev2/tasks/ike_reauth_complete.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/keymat.c
+  src/libcharon/sa/task_manager.c
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libcharon/sa/keymat.h
+  src/libcharon/sa/task_manager.h
+  src/libcharon/sa/trap_manager.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/shunt_manager.c
+  src/libcharon/sa/shunt_manager.h
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libcharon/sa/xauth/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/sa/xauth/xauth_method.c
+  src/libcharon/sa/xauth/xauth_method.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/tests/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libcharon/tests/suites/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libfast/fast_smtp.c
+  src/libfast/fast_smtp.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libimcv/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libimcv/imcv.c
+  src/libimcv/imcv.h
+Copyright: 2010, 2011, 2013, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+License: GPL-2+
+
+Files: src/libimcv/plugins/imc_attestation/*
+Copyright: 2011-2014, Andreas Steffen
+  2011, 2012, Sansar Choinyambuu
+License: GPL-2+
+
+Files: src/libimcv/plugins/imc_attestation/imc_attestation_process.c
+Copyright: 2011, 2012, Sansar Choinyambuu, Andreas Steffen
+License: GPL-2+
+
+Files: src/libimcv/plugins/imc_attestation/imc_attestation_process.h
+  src/libimcv/plugins/imc_attestation/imc_attestation_state.h
+Copyright: 2010, 2011, Sansar Choinyambuu
+License: GPL-2+
+
+Files: src/libimcv/plugins/imc_scanner/imc_scanner_state.h
+Copyright: 2010, 2011, 2013, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+License: GPL-2+
+
+Files: src/libimcv/plugins/imc_test/imc_test_state.h
+Copyright: 2010, 2011, 2013, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+License: GPL-2+
+
+Files: src/libimcv/plugins/imv_attestation/imv_attestation_agent.c
+  src/libimcv/plugins/imv_attestation/imv_attestation_build.c
+  src/libimcv/plugins/imv_attestation/imv_attestation_process.c
+  src/libimcv/plugins/imv_attestation/imv_attestation_state.c
+Copyright: 2011-2014, Andreas Steffen
+  2011, 2012, Sansar Choinyambuu
+License: GPL-2+
+
+Files: src/libimcv/plugins/imv_attestation/imv_attestation_build.h
+  src/libimcv/plugins/imv_attestation/imv_attestation_process.h
+Copyright: 2010, 2011, Sansar Choinyambuu
+License: GPL-2+
+
+Files: src/libimcv/plugins/imv_attestation/imv_attestation_state.h
+Copyright: 2011, 2012, Sansar Choinyambuu, Andreas Steffen
+License: GPL-2+
+
+Files: src/libimcv/plugins/imv_test/imv_test_state.h
+Copyright: 2010, 2011, 2013, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+License: GPL-2+
+
+Files: src/libimcv/pts/components/ita/ita_comp_func_name.h
+Copyright: 2010, 2011, Sansar Choinyambuu
+License: GPL-2+
+
+Files: src/libimcv/pts/components/ita/ita_comp_tboot.h
+  src/libimcv/pts/components/ita/ita_comp_tgrub.h
+Copyright: 2011, 2012, Sansar Choinyambuu, Andreas Steffen
+License: GPL-2+
+
+Files: src/libimcv/pts/components/pts_comp_evidence.c
+  src/libimcv/pts/components/pts_comp_evidence.h
+  src/libimcv/pts/components/pts_comp_func_name.h
+Copyright: 2011, 2012, Sansar Choinyambuu, Andreas Steffen
+License: GPL-2+
+
+Files: src/libimcv/pts/components/tcg/tcg_comp_func_name.h
+Copyright: 2010, 2011, Sansar Choinyambuu
+License: GPL-2+
+
+Files: src/libimcv/pts/pts.c
+  src/libimcv/pts/pts.h
+  src/libimcv/pts/pts_database.c
+  src/libimcv/pts/pts_file_meas.c
+  src/libimcv/pts/pts_file_meas.h
+  src/libimcv/pts/pts_meas_algo.h
+Copyright: 2011-2014, Andreas Steffen
+  2011, 2012, Sansar Choinyambuu
+License: GPL-2+
+
+Files: src/libimcv/pts/pts_dh_group.c
+  src/libimcv/pts/pts_dh_group.h
+  src/libimcv/pts/pts_error.c
+  src/libimcv/pts/pts_error.h
+  src/libimcv/pts/pts_file_meta.c
+  src/libimcv/pts/pts_file_meta.h
+  src/libimcv/pts/pts_file_type.h
+  src/libimcv/pts/pts_proto_caps.h
+  src/libimcv/pts/pts_req_func_comp_evid.h
+Copyright: 2010, 2011, Sansar Choinyambuu
+License: GPL-2+
+
+Files: src/libimcv/tcg/pts/*
+Copyright: 2011-2014, Andreas Steffen
+  2011, 2012, Sansar Choinyambuu
+License: GPL-2+
+
+Files: src/libipsec/*
+Copyright: 2012, Tobias Brunner
+  2012, Ralf Sager
+  2012, Giuliano Grassi
+License: GPL-2+
+
+Files: src/libipsec/esp_context.c
+  src/libipsec/esp_context.h
+  src/libipsec/esp_packet.c
+Copyright: 2012, Ralf Sager
+  2012, Giuliano Grassi
+  2012, 2013, Tobias Brunner
+License: GPL-2+
+
+Files: src/libipsec/ip_packet.c
+  src/libipsec/ip_packet.h
+  src/libipsec/ipsec_event_listener.h
+  src/libipsec/ipsec_processor.c
+  src/libipsec/ipsec_processor.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libipsec/ipsec_event_relay.h
+Copyright: 2012, Ralf Sager
+  2012, Giuliano Grassi
+License: GPL-2+
+
+Files: src/libpttls/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libradius/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libradius/radius_client.c
+  src/libradius/radius_client.h
+  src/libradius/radius_message.c
+  src/libradius/radius_message.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libradius/radius_mppe.h
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/asn1/*
+Copyright: 2006, Martin Will
+  2000-2008, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/asn1/oid.c
+  src/libstrongswan/asn1/oid.h
+Copyright: 2003-2008, Andreas Steffen, Hochschule fuer Technik Rapperswil
+License: GPL-2+
+Comment: generated from oid.pl
+
+Files: src/libstrongswan/asn1/oid.pl
+Copyright: 2003-2008, Andreas Steffen, Hochschule fuer Technik Rapperswil";
+  2003-2008, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/bio/*
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/collections/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/collections/array.c
+  src/libstrongswan/collections/array.h
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/collections/blocking_queue.c
+  src/libstrongswan/collections/blocking_queue.h
+Copyright: 2012, Tobias Brunner
+  2012, Ralf Sager
+  2012, Giuliano Grassi
+License: GPL-2+
+
+Files: src/libstrongswan/collections/enumerator.c
+  src/libstrongswan/collections/enumerator.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/collections/linked_list.c
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/collections/linked_list.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/credentials/auth_cfg.c
+  src/libstrongswan/credentials/auth_cfg.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/credentials/cert_validator.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/credentials/certificates/ac.h
+  src/libstrongswan/credentials/certificates/pkcs10.h
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/credentials/certificates/crl.c
+  src/libstrongswan/credentials/certificates/crl.h
+Copyright: 2008, 2009, Martin Willi
+  2002-2009, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/credentials/containers/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/credentials/containers/container.h
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/credentials/containers/pkcs12.c
+  src/libstrongswan/credentials/containers/pkcs12.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/credentials/keys/public_key.c
+  src/libstrongswan/credentials/keys/public_key.h
+Copyright: 2015, Tobias Brunner
+  2014, Andreas Steffen
+  2007, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/credentials/sets/auth_cfg_wrapper.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/credentials/sets/callback_cred.c
+  src/libstrongswan/credentials/sets/callback_cred.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/credentials/sets/mem_cred.c
+  src/libstrongswan/credentials/sets/mem_cred.h
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/*
+Copyright: 2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/aead.c
+  src/libstrongswan/crypto/aead.h
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/crypto_factory.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/crypto_factory.h
+  src/libstrongswan/crypto/crypto_tester.h
+  src/libstrongswan/crypto/transform.c
+  src/libstrongswan/crypto/transform.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/crypto_tester.c
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/hashers/*
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/hashers/hash_algorithm_set.c
+  src/libstrongswan/crypto/hashers/hash_algorithm_set.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/iv/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/nonce_gen.h
+Copyright: 2012, Adrian-Ken Rueegsegger
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/pkcs5.c
+  src/libstrongswan/crypto/pkcs5.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/prfs/mac_prf.c
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/prfs/mac_prf.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/proposal/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/proposal/proposal_keywords.c
+  src/libstrongswan/crypto/proposal/proposal_keywords.h
+Copyright: 2012, Tobias Brunner
+  2012, Nanoteq Pty Ltd
+License: Expat and GPL-2+
+
+Files: src/libstrongswan/crypto/rngs/*
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/signers/mac_signer.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/signers/mac_signer.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/crypto/signers/signer.h
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/database/database.c
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/database/database.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/eap/*
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/eap/eap.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/fetcher/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/fetcher/fetcher_manager.c
+  src/libstrongswan/fetcher/fetcher_manager.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/ipsec/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/library.c
+  src/libstrongswan/library.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/networking/*
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/networking/host.c
+Copyright: 2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/networking/host.h
+Copyright: 2006-2014, Tobias Brunner
+  2006, Daniel Roethlisberger
+  2005-2013, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/networking/host_resolver.c
+  src/libstrongswan/networking/host_resolver.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/networking/streams/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/networking/tun_device.c
+Copyright: 2012, Tobias Brunner
+  2012, Ralf Sager
+  2012, Martin Willi
+  2012, Giuliano Grassi
+License: GPL-2+
+
+Files: src/libstrongswan/networking/tun_device.h
+Copyright: 2012, Tobias Brunner
+  2012, Ralf Sager
+  2012, Giuliano Grassi
+License: GPL-2+
+
+Files: src/libstrongswan/pen/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/acert/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/aes/aes_crypter.c
+Copyright: 2005, Jan Hutter
+  2005, 2006, Martin Willi
+  2001, Dr B. R. Gladman <brg@gladman.uk.net>
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/aes/aes_crypter.h
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/af_alg/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/bliss/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/bliss/bliss_huffman.c
+Copyright: 2012, 2014, Tobias Brunner
+  2006, 2008, 2014, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/blowfish/*
+Copyright: 1995-1998, Eric Young (eay@cryptsoft.com)
+License: BSD-Young
+Comment: not compiled since 4-clause BSD is incompatible with GPL
+
+Files: src/libstrongswan/plugins/blowfish/blowfish_crypter.h
+  src/libstrongswan/plugins/blowfish/blowfish_plugin.c
+  src/libstrongswan/plugins/blowfish/blowfish_plugin.h
+Copyright: 2009-2015, Andreas Steffen
+  2005-2009, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/ccm/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/cmac/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/constraints/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/ctr/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/curl/curl_fetcher.c
+Copyright: 2008, 2009, Martin Willi
+  2002-2009, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/des/des_crypter.c
+Copyright: 2009, Tobias Brunner
+  2006, Martin Willi
+  1995-1997, Eric Young (eay@cryptsoft.com)
+License: BSD-Young
+Comment: not compiled since 4-clause BSD is incompatible with GPL
+
+Files: src/libstrongswan/plugins/dnskey/dnskey_encoder.c
+  src/libstrongswan/plugins/dnskey/dnskey_encoder.h
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/files/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/gcm/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/gcrypt/gcrypt_dh.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/gmp/gmp_diffie_hellman.c
+Copyright: 2010, Tobias Brunner
+  2005-2008, Martin Willi
+  2005, Jan Hutter
+  1999-2001, Henry Spencer
+  1998-2002, D. Hugh Redelmeier
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/gmp/gmp_diffie_hellman.h
+  src/libstrongswan/plugins/gmp/gmp_rsa_public_key.c
+  src/libstrongswan/plugins/gmp/gmp_rsa_public_key.h
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/gmp/gmp_rsa_private_key.c
+Copyright: 2012, Andreas Steffen
+  2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/hmac/hmac.c
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/hmac/hmac.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/keychain/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/ldap/ldap_fetcher.c
+Copyright: 2008, 2009, Martin Willi
+  2002-2009, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/md4/md4_hasher.c
+Copyright: 2005, Jan Hutter
+  2005, 2006, Martin Willi
+  1990-1992, RSA Data Security, Inc. Created 1990
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/md4/md4_hasher.h
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/md5/md5_hasher.c
+Copyright: 2005, Jan Hutter
+  2005, 2006, Martin Willi
+  1991, 1992, RSA Data Security, Inc. Created 1991
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/md5/md5_hasher.h
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/mysql/mysql_database.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/nonce/*
+Copyright: 2012, Adrian-Ken Rueegsegger
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/ntru/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/ntru/ntru_convert.c
+  src/libstrongswan/plugins/ntru/ntru_convert.h
+  src/libstrongswan/plugins/ntru/ntru_param_set.c
+  src/libstrongswan/plugins/ntru/ntru_param_set.h
+  src/libstrongswan/plugins/ntru/ntru_poly.c
+  src/libstrongswan/plugins/ntru/ntru_private_key.c
+  src/libstrongswan/plugins/ntru/ntru_public_key.c
+Copyright: 2014, Andreas Steffen
+  2009-2013, Security Innovation
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/openssl/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/openssl/openssl_crl.c
+Copyright: 2010, secunet Security Networks AG
+  2010, revosec AG
+  2010, Thomas Egerer
+  2010, Martin Willi
+License: Expat and GPL-2+
+
+Files: src/libstrongswan/plugins/openssl/openssl_crl.h
+  src/libstrongswan/plugins/openssl/openssl_pkcs7.c
+  src/libstrongswan/plugins/openssl/openssl_pkcs7.h
+  src/libstrongswan/plugins/openssl/openssl_x509.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/openssl/openssl_diffie_hellman.c
+  src/libstrongswan/plugins/openssl/openssl_plugin.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/openssl/openssl_ec_private_key.c
+  src/libstrongswan/plugins/openssl/openssl_ec_public_key.c
+  src/libstrongswan/plugins/openssl/openssl_rsa_private_key.c
+  src/libstrongswan/plugins/openssl/openssl_rsa_public_key.c
+  src/libstrongswan/plugins/openssl/openssl_util.c
+Copyright: 2008-2010, Martin Willi
+  2008-2012, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/openssl/openssl_hmac.c
+Copyright: 2012, Tobias Brunner
+  2012, Aleksandr Grinberg
+License: Expat and GPL-2+
+
+Files: src/libstrongswan/plugins/openssl/openssl_rng.c
+  src/libstrongswan/plugins/openssl/openssl_rng.h
+Copyright: 2012, Aleksandr Grinberg
+License: Expat
+
+Files: src/libstrongswan/plugins/openssl/openssl_sha1_prf.c
+  src/libstrongswan/plugins/openssl/openssl_sha1_prf.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/openssl/openssl_x509.c
+Copyright: 2013, Technische Universität Ilmenau
+  2013, Michael Rossberg
+  2011, Tobias Brunner
+  2010, secunet Security Networks AG
+  2010, revosec AG
+  2010, Thomas Egerer
+  2010, Martin Willi
+License: Expat and GPL-2+
+
+Files: src/libstrongswan/plugins/padlock/*
+Copyright: 2008, Thomas Kallenberg
+  2008, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/padlock/padlock_plugin.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/padlock/padlock_plugin.h
+  src/libstrongswan/plugins/padlock/padlock_rng.c
+  src/libstrongswan/plugins/padlock/padlock_rng.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pem/pem_builder.c
+Copyright: 2008, 2013, Tobias Brunner
+  2008, 2009, Martin Willi
+  2000-2008, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pem/pem_builder.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pem/pem_encoder.c
+  src/libstrongswan/plugins/pem/pem_encoder.h
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pgp/pgp_builder.c
+Copyright: 2008, 2009, Martin Willi
+  2002-2009, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pkcs1/pkcs1_builder.c
+Copyright: 2008, 2013, Tobias Brunner
+  2008, 2009, Martin Willi
+  2000-2008, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pkcs11/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pkcs11/pkcs11.h
+Copyright: 2006, 2007 g10 Code GmbH / 2006, Andreas Jellinghaus
+License: MIT
+
+Files: src/libstrongswan/plugins/pkcs11/pkcs11_dh.c
+  src/libstrongswan/plugins/pkcs11/pkcs11_dh.h
+  src/libstrongswan/plugins/pkcs11/pkcs11_rng.c
+  src/libstrongswan/plugins/pkcs11/pkcs11_rng.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pkcs11/pkcs11_library.c
+  src/libstrongswan/plugins/pkcs11/pkcs11_library.h
+  src/libstrongswan/plugins/pkcs11/pkcs11_plugin.c
+  src/libstrongswan/plugins/pkcs11/pkcs11_private_key.c
+  src/libstrongswan/plugins/pkcs11/pkcs11_private_key.h
+  src/libstrongswan/plugins/pkcs11/pkcs11_public_key.c
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pkcs12/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pkcs7/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pkcs7/pkcs7_attributes.c
+  src/libstrongswan/plugins/pkcs7/pkcs7_attributes.h
+Copyright: 2012, 2014, Tobias Brunner
+  2006, 2008, 2014, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pkcs7/pkcs7_encrypted_data.c
+  src/libstrongswan/plugins/pkcs7/pkcs7_encrypted_data.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pkcs7/pkcs7_enveloped_data.c
+  src/libstrongswan/plugins/pkcs7/pkcs7_generic.c
+Copyright: 2012, revosec AG
+  2012, Tobias Brunner
+  2012, Martin Willi
+  2005, Jan Hutter, Martin Willi
+  2002-2008, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/pkcs8/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/plugin_feature.c
+  src/libstrongswan/plugins/plugin_feature.h
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/plugin_loader.c
+  src/libstrongswan/plugins/plugin_loader.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/random/random_rng.c
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/rc2/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/rdrand/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/revocation/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/revocation/revocation_validator.c
+Copyright: 2010, revosec AG
+  2010, Martin Willi
+  2009, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/sha1/sha1_hasher.c
+Copyright: 2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/sha1/sha1_hasher.h
+Copyright: 2005-2009, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/sha2/sha2_hasher.c
+Copyright: 2006, Martin Willi
+  2001, Jari Ruusu
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/soup/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/sqlite/sqlite_database.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/sshkey/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/test_vectors/test_vectors/*
+Copyright: 2009, Martin Willi
+License: GPL
+
+Files: src/libstrongswan/plugins/test_vectors/test_vectors/3des_cbc.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/camellia_cbc.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/cast.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/des.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/idea.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/md4.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/null.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/rc5.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/serpent_cbc.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/twofish_cbc.c
+Copyright: 2009, Andreas Steffen
+License: GPL
+
+Files: src/libstrongswan/plugins/test_vectors/test_vectors/aes_ccm.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/aes_ctr.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/aes_gcm.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/camellia_ctr.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/camellia_xcbc.c
+Copyright: 2010, revosec AG
+  2010, Martin Willi
+License: GPL
+
+Files: src/libstrongswan/plugins/test_vectors/test_vectors/aes_cmac.c
+  src/libstrongswan/plugins/test_vectors/test_vectors/rc2.c
+Copyright: 2012, 2013, Tobias Brunner
+License: GPL
+
+Files: src/libstrongswan/plugins/test_vectors/test_vectors/blowfish.c
+Copyright: 2009, Martin Willi
+  2009, Andreas Steffen
+  , JuanJo Ciarlante <jjo-ipsec@mendoza.gov.ar>
+License: GPL
+
+Files: src/libstrongswan/plugins/unbound/*
+Copyright: 2011, 2012, Reto Guadagnini
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/winhttp/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/x509/x509_ac.c
+  src/libstrongswan/plugins/x509/x509_ac.h
+Copyright: 2009, Martin Willi
+  2003, Martin Berner, Lukas Suter
+  2002-2014, Andreas Steffen
+  2002, Ueli Galizzi, Ariane Seiler
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/x509/x509_cert.c
+Copyright: 2008, Tobias Brunner
+  2006-2009, Martin Willi
+  2002, Mario Strasser
+  2001, Marco Bertossa, Andreas Schleiss
+  2000-2006, Andreas Steffen
+  2000, Andreas Hess, Patric Lichtsteiner, Roger Wegmann
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/x509/x509_ocsp_request.c
+  src/libstrongswan/plugins/x509/x509_ocsp_response.c
+Copyright: 2008, 2009, Martin Willi
+  2007-2014, Andreas Steffen
+  2003, Christoph Gysin, Simon Zwahlen
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/x509/x509_pkcs10.c
+Copyright: 2009, Andreas Steffen
+  2005, Jan Hutter, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/x509/x509_pkcs10.h
+Copyright: 2009-2015, Andreas Steffen
+  2005-2009, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/plugins/xcbc/xcbc.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/processing/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/processing/jobs/callback_job.c
+Copyright: 2010-2014, revosec AG
+  2009-2014, Tobias Brunner
+  2007-2014, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/processing/jobs/callback_job.h
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/processing/jobs/job.h
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/processing/processor.c
+Copyright: 2010, 2011, revosec AG
+  2007-2013, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/processing/processor.h
+  src/libstrongswan/processing/scheduler.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/processing/scheduler.c
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/resolver/*
+Copyright: 2011, 2012, Reto Guadagnini
+License: GPL-2+
+
+Files: src/libstrongswan/selectors/*
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/selectors/traffic_selector.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/settings/*
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/settings/settings_parser.c
+  src/libstrongswan/settings/settings_parser.h
+Copyright: 1984, 1989, 1990, 2000-2013, Free Software Foundation, Inc
+License: GPL-3+
+
+Files: src/libstrongswan/settings/settings_types.c
+  src/libstrongswan/settings/settings_types.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/tests/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/tests/suites/test_array.c
+  src/libstrongswan/tests/suites/test_vectors.c
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/tests/suites/test_asn1.c
+  src/libstrongswan/tests/suites/test_asn1_parser.c
+  src/libstrongswan/tests/suites/test_crypter.c
+  src/libstrongswan/tests/suites/test_hasher.c
+  src/libstrongswan/tests/suites/test_mgf1.c
+  src/libstrongswan/tests/suites/test_ntru.c
+  src/libstrongswan/tests/suites/test_pen.c
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/tests/suites/test_bio_reader.c
+  src/libstrongswan/tests/suites/test_bio_writer.c
+  src/libstrongswan/tests/suites/test_crypto_factory.c
+  src/libstrongswan/tests/suites/test_enum.c
+  src/libstrongswan/tests/suites/test_hashtable.c
+  src/libstrongswan/tests/suites/test_host.c
+  src/libstrongswan/tests/suites/test_linked_list.c
+  src/libstrongswan/tests/suites/test_linked_list_enumerator.c
+  src/libstrongswan/tests/suites/test_settings.c
+  src/libstrongswan/tests/suites/test_utils.c
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/tests/suites/test_chunk.c
+  src/libstrongswan/tests/suites/test_enumerator.c
+  src/libstrongswan/tests/suites/test_identification.c
+  src/libstrongswan/tests/suites/test_threading.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/tests/test_runner.c
+  src/libstrongswan/tests/test_suite.h
+Copyright: 2010-2014, revosec AG
+  2009-2014, Tobias Brunner
+  2007-2014, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/tests/tests.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/threading/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/threading/condvar.h
+  src/libstrongswan/threading/mutex.h
+  src/libstrongswan/threading/rwlock.h
+Copyright: 2008-2010, Martin Willi
+  2008-2012, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/threading/lock_profiler.h
+  src/libstrongswan/threading/mutex.c
+  src/libstrongswan/threading/rwlock.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/threading/windows/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/utils/backtrace.c
+  src/libstrongswan/utils/process.c
+  src/libstrongswan/utils/process.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/utils/capabilities.c
+Copyright: 2011, 2012, 2014, revosec AG
+  2011, 2012, 2014, Martin Willi
+  2008, 2011-2013, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/utils/capabilities.h
+Copyright: 2010-2015, Tobias Brunner
+  2010-2013, revosec AG
+  2007-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/utils/chunk.c
+Copyright: 2007-2015, Tobias Brunner
+  2005, Jan Hutter
+  2005, 2006, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/utils/chunk.h
+  src/libstrongswan/utils/identification.c
+  src/libstrongswan/utils/identification.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2011, Martin Willi
+  2005, Jan Hutter
+License: GPL-2+
+
+Files: src/libstrongswan/utils/compat/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/utils/enum.h
+  src/libstrongswan/utils/leak_detective.c
+  src/libstrongswan/utils/utils.c
+  src/libstrongswan/utils/utils.h
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/utils/lexparser.c
+  src/libstrongswan/utils/lexparser.h
+  src/libstrongswan/utils/optionsfrom.c
+  src/libstrongswan/utils/optionsfrom.h
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libstrongswan/utils/parser_helper.c
+  src/libstrongswan/utils/parser_helper.h
+  src/libstrongswan/utils/test.c
+  src/libstrongswan/utils/test.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libstrongswan/utils/printf_hook/*
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/utils/printf_hook/printf_hook_builtin.c
+Copyright: 2013, revosec AG
+  2013, Martin Willi
+  2002-2006, H. Peter Anvin
+License: Expat and GPL-2+
+
+Files: src/libstrongswan/utils/printf_hook/printf_hook_builtin.h
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libstrongswan/utils/utils/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/libtls/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/libtls/tls_application.h
+Copyright: 2010, 2011, HSR Hochschule fuer Technik Rapperswil
+  2010, 2011, Andreas Steffen
+License: GPL-2+
+
+Files: src/libtnccs/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnc_imc/tnc_imc_bind_function.c
+Copyright: 2010, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+  2006, Mike McCauley
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnc_imc/tnc_imc_manager.c
+Copyright: 2010, 2011, Andreas Steffen
+  2006, Mike McCauley
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnc_imv/tnc_imv_bind_function.c
+Copyright: 2010, 2011, Andreas Steffen
+  2006, Mike McCauley
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnccs_11/batch/*
+Copyright: 2010, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+  2006, Mike McCauley (mikem@open.com.au)
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnccs_11/batch/tnccs_batch.h
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnccs_11/messages/imc_imv_msg.c
+  src/libtnccs/plugins/tnccs_11/messages/tnccs_error_msg.c
+  src/libtnccs/plugins/tnccs_11/messages/tnccs_msg.c
+  src/libtnccs/plugins/tnccs_11/messages/tnccs_preferred_language_msg.c
+  src/libtnccs/plugins/tnccs_11/messages/tnccs_reason_strings_msg.c
+  src/libtnccs/plugins/tnccs_11/messages/tnccs_recommendation_msg.c
+Copyright: 2010, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+  2006, Mike McCauley (mikem@open.com.au)
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnccs_11/messages/tnccs_tncs_contact_info_msg.c
+Copyright: 2010, 2011, 2013, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnccs_20/batch/pb_tnc_batch.c
+Copyright: 2010-2015, Andreas Steffen
+  2010, Sansar Choinyanbuu
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnccs_20/messages/ietf/*
+Copyright: 2010, 2011, Sansar Choinyambuu
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnccs_20/messages/ietf/pb_experimental_msg.c
+  src/libtnccs/plugins/tnccs_20/messages/ietf/pb_pa_msg.h
+  src/libtnccs/plugins/tnccs_20/messages/ietf/pb_remediation_parameters_msg.c
+  src/libtnccs/plugins/tnccs_20/messages/ietf/pb_remediation_parameters_msg.h
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnccs_20/messages/ietf/pb_pa_msg.c
+Copyright: 2010, Sansar Choinyanbuu
+  2010, Andreas Steffen
+License: GPL-2+
+
+Files: src/libtnccs/plugins/tnccs_20/tnccs_20.c
+Copyright: 2010-2015, Andreas Steffen
+  2010, Sansar Choinyanbuu
+License: GPL-2+
+
+Files: src/libtncif/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/libtncif/tncif.h
+  src/libtncif/tncifimc.h
+  src/libtncif/tncifimv.h
+Copyright: 2005-2011, Trusted Computing Group, Inc. All rights
+License: BSD-3-clause
+
+Files: src/libtncif/tncif_pa_subtypes.h
+Copyright: 2010, 2011, 2013, Andreas Steffen, HSR Hochschule fuer Technik Rapperswil
+License: GPL-2+
+
+Files: src/manager/templates/*
+Copyright: *No copyright*
+License: GPL-2+
+
+Files: src/medsrv/*
+Copyright: 2008, Philip Boetschi, Adrian Doerig
+  2008, Martin Willi
+License: GPL-2+
+
+Files: src/medsrv/templates/*
+Copyright: *No copyright*
+License: GPL-2+
+
+Files: src/medsrv/user.c
+  src/medsrv/user.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/pki/commands/*
+Copyright: 2009-2015, Andreas Steffen
+  2005-2009, Martin Willi
+License: GPL-2+
+
+Files: src/pki/commands/keyid.c
+  src/pki/commands/verify.c
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/pki/commands/pkcs12.c
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/pki/commands/pkcs7.c
+  src/pki/commands/print.c
+  src/pki/commands/signcrl.c
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/pki/pki.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/pool/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/pool/pool.c
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/pool/pool_usage.c
+  src/pool/pool_usage.h
+Copyright: 2009-2015, Andreas Steffen
+  2005-2009, Martin Willi
+License: GPL-2+
+
+Files: src/pt-tls-client/*
+Copyright: 2013-2015, Andreas Steffen
+  2010-2013, Martin Willi, revosec AG
+License: GPL-2+
+
+Files: src/starter/*
+Copyright: 2001, 2002, Mathieu Lafon - Arkoon Network Security
+License: GPL-2+
+
+Files: src/starter/args.c
+Copyright: 2012, 2014, Tobias Brunner
+  2006, 2008, 2014, Andreas Steffen
+License: GPL-2+
+
+Files: src/starter/args.h
+  src/starter/keywords.c
+  src/starter/keywords.h
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/starter/confread.c
+Copyright: 2014, Tobias Brunner
+  2001, 2002, Mathieu Lafon - Arkoon Network Security
+License: GPL-2+
+
+Files: src/starter/confread.h
+Copyright: 2001, 2002, Mathieu Lafon
+License: GPL-2+
+
+Files: src/starter/invokecharon.c
+  src/starter/invokecharon.h
+Copyright: 2006, Martin Willi - Hochschule fuer Technik Rapperswil
+  2001, 2002, Mathieu Lafon - Arkoon Network Security
+License: GPL-2+
+
+Files: src/starter/parser/*
+Copyright: 1984, 1989, 1990, 2000-2013, Free Software Foundation, Inc
+License: GPL-3+
+
+Files: src/starter/parser/conf_parser.c
+  src/starter/parser/conf_parser.h
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/starter/starterstroke.c
+  src/starter/starterstroke.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/starter/tests/*
+Copyright: 2007-2015, Tobias Brunner
+License: GPL-2+
+
+Files: src/stroke/*
+Copyright: 2001-2015, Andreas Steffen
+License: GPL-2+
+
+Files: src/stroke/stroke.c
+Copyright: 2007-2015, Tobias Brunner
+  2005-2013, Martin Willi
+License: GPL-2+
+
+Files: src/stroke/stroke_msg.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: src/swanctl/*
+Copyright: 2010-2015, revosec AG
+  2006-2015, Martin Willi
+License: GPL-2+
+
+Files: src/swanctl/command.c
+  src/swanctl/command.h
+Copyright: 2005-2011, Martin Willi
+License: GPL-2+
+
+Files: testing/*
+Copyright: Hochschule fuer Technik Rapperswil
+License: GPL-2+
+
+License: BSD-3
+ The BSD License
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are
+ met:
+ .
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+ .
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+ .
+   * Neither the name of foo nor the names of its
+     contributors may be used to endorse or promote products derived from
+     this software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+ PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+ CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-3-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ o Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ o Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in
+   the documentation and/or other materials provided with the
+   distribution.
+ o Neither the name of the Trusted Computing Group nor the names of
+   its contributors may be used to endorse or promote products
+   derived from this software without specific prior written
+   permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-Young
+ This library is free for commercial and non-commercial use as long as
+ the following conditions are adhered to.  The following conditions
+ apply to all code found in this distribution, be it the RC4, RSA,
+ lhash, DES, etc., code; not just the SSL code.  The SSL documentation
+ included with this distribution is covered by the same copyright terms
+ except that the holder is Tim Hudson (tjh@cryptsoft.com).
+ .
+ Copyright remains Eric Young's, and as such any Copyright notices in
+ the code are not to be removed.
+ If this package is used in a product, Eric Young should be given attribution
+ as the author of the parts of the library used.
+ This can be in the form of a textual message at program startup or
+ in documentation (online or textual) provided with the package.
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. All advertising materials mentioning features or use of this software
+    must display the following acknowledgement:
+    "This product includes cryptographic software written by
+     Eric Young (eay@cryptsoft.com)"
+    The word 'cryptographic' can be left out if the routines from the library
+    being used are not cryptographic related :-).
+ 4. If you include any Windows specific code (or a derivative thereof) from
+    the apps directory (application code) you must include an acknowledgement:
+    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
+ .
+ THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+ .
+ The licence and distribution terms for any publically available version or
+ derivative of this code cannot be changed.  i.e. this code cannot simply be
+ copied and put under another distribution licence
+ [including the GNU General Public License.]
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+
+License: GPL
+ On Debian systems, the complete text of the GNU General
+ Public License can be found in
+ `/usr/share/common-licenses/GPL'.
+
+License: GPL-2+
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in
+ `/usr/share/common-licenses/GPL-2'.
+
+License: GPL-2+ with OpenSSL exception
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
+ .
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License along with
+ this program; if not, see <http://www.gnu.org/licenses>.
+ .
+ Linking strongSwan statically or dynamically with other modules is making a
+ combined work based on strongSwan. Thus, the terms and conditions of the GNU
+ General Public License cover the whole combination.
+ .
+ In addition, as a special exception, the copyright holders of strongSwan give
+ you permission to combine strongSwan with free software programs or libraries
+ that are released under the GNU LGPL and with code included in the standard
+ release of the OpenSSL project's OpenSSL library under the OpenSSL or SSLeay
+ licenses (or modified versions of such code, with unchanged license). You may
+ copy and distribute such a system following the terms of the GNU GPL for
+ strongSwan and the licenses of the other code concerned, provided that you
+ include the source code of that other code when and as the GNU GPL requires
+ distribution of source code.
+ .
+ Note that people who make modified versions of strongSwan are not obligated to
+ grant this special exception for their modified versions; it is their choice
+ whether to do so. The GNU General Public License gives permission to release a
+ modified version without this exception; this exception also makes it possible
+ to release a modified version which carries forward this exception.
+ .
+ On Debian systems, the full text of the GNU General Public License version 2
+ can be found in the file `/usr/share/common-licenses/GPL-2'.
+
+License: GPL-3+
+ On Debian systems, the complete text of the GNU General
+ Public License version 3 can be found in
+ `/usr/share/common-licenses/GPL-3'.
+
+License: MIT
+ This file is free software; as a special exception the author gives
+ unlimited permission to copy and/or distribute it, with or without
+ modifications, as long as this notice is preserved.
+ .
+ This file is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY, to the extent permitted by law; without even
+ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.

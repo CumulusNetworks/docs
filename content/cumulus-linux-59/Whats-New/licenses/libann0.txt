@@ -1,0 +1,38 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: ANN
+Upstream-Contact: David Mount <mount@cs.umd.edu>
+ Sunil Arya <arya@cse.ust.hk>
+Source: http://www.cs.umd.edu/~mount/ANN/
+
+Files: *
+Copyright: 1997-2010 University of Maryland and Sunil Arya and David Mount
+License: LGPL-2.1+
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published by the
+ Free Software Foundation; either version 2.1 of the License, or (at your
+ option) any later version.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ Disclaimer
+ ----------
+ The University of Maryland and the authors make no representations about
+ the suitability or fitness of this software for any purpose.  It is
+ provided "as is" without express or implied warranty.
+ .
+ On Debian systems, the GNU Lesser General Public
+ License (LGPL) is contained in /usr/share/common-licenses/LGPL-2.1.
+
+Files: debian/*
+Copyright: 2004 Alexander Bornik <bornik@icg.tu-graz.ac.at>,
+ 2008 Rafael Laboissiere <rafael@debian.org>, 2011 Sylvestre Ledru,
+ 2013,2018 Teemu Ikonen
+License: GPL-3.0+
+ The Debian packaging files are released under the terms of the GNU General
+ Public License, version 3 or later.
+ .
+ On Debian systems, the GNU General Public License (GPL) is can be found
+ at /usr/share/common-licenses/GPL-3.

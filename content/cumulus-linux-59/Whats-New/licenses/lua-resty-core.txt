@@ -1,0 +1,100 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: lua-resty-core
+Upstream-Contact: Yichun Zhang (agentzh) <yichun@openresty.com>
+Source: https://github.com/openresty/lua-resty-core
+
+Files: *
+Copyright: 2013-2019, Yichun "agentzh" Zhang, OpenResty Inc.
+License: BSD-2-clause
+
+Files: .github/*
+Copyright: 2013-2019, by Yichun "agentzh" Zhang, OpenResty Inc.
+License: BSD-2-clause
+
+Files: Makefile
+Copyright: 2013-2019, by Yichun "agentzh" Zhang, OpenResty Inc.
+License: BSD-2-clause
+
+Files: debian/*
+Copyright: 2022, Jan Mojzis <jan.mojzis@gmail.com>
+License: BSD-2-clause
+
+Files: lib/ngx/balancer.lua
+  lib/ngx/errlog.lua
+  lib/ngx/ocsp.lua
+  lib/ngx/process.lua
+  lib/ngx/ssl.lua
+Copyright: Yichun Zhang (agentzh)
+License: BSD-2-clause
+
+Files: lib/ngx/base64.lua
+Copyright: Yichun Zhang (agentzh)
+ OpenResty Inc.
+License: BSD-2-clause
+
+Files: lib/ngx/pipe.lua
+  lib/ngx/req.lua
+Copyright: OpenResty Inc.
+License: BSD-2-clause
+
+Files: lib/ngx/pipe.md
+Copyright: 2018, OpenResty Inc.
+License: BSD-2-clause
+
+Files: lib/ngx/resp.lua
+Copyright: Yichun Zhang.
+License: BSD-2-clause
+
+Files: lib/ngx/semaphore.lua
+Copyright: cuiweixie
+ Yichun Zhang (agentzh)
+License: BSD-2-clause
+
+Files: lib/ngx/ssl/clienthello.lua
+  lib/ngx/ssl/session.lua
+Copyright: Yichun Zhang (agentzh)
+License: BSD-2-clause
+
+Files: lib/resty/*
+Copyright: Yichun Zhang (agentzh)
+License: BSD-2-clause
+
+Files: lib/resty/core/coroutine.lua
+  lib/resty/core/phase.lua
+  lib/resty/core/socket.lua
+  lib/resty/core/time.md
+Copyright: 2018, OpenResty Inc.
+License: BSD-2-clause
+
+Files: lib/resty/core/ndk.lua
+Copyright: OpenResty Inc.
+License: BSD-2-clause
+
+Files: t/*
+Copyright: 2013-2019, by Yichun "agentzh" Zhang, OpenResty Inc.
+License: BSD-2-clause
+
+License: BSD-2-clause
+ All rights reserved.
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are
+ met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+ PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

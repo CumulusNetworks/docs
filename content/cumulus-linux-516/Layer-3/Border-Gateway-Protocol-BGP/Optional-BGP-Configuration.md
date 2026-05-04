@@ -1958,6 +1958,63 @@ allow-my-asn
   route-map                   ROUTEMAP1  ROUTEMAP1
 ```
 
+You can also use vtysh commands to show IPv6 unreachability details:
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# show bgp ipv6 unreachability detail json
+{
+  "2001:1:1:e103::/64":{
+    "prefix":"2001:1:1:e103::/64",
+    "paths":[
+      {
+        "metric":0,
+        "weight":0,
+        "reporters":{
+          "6.1.1.3":{
+            "AS":64600,
+            "subtlv":{
+              "reason":"Local-Link-Down"
+            }
+          }
+        },
+        "path":"64601 64599 64603 64600",
+        "origin":"incomplete",
+        "valid":true,
+        "best":true,
+        "stale":false,
+        "multipath":false,
+        "pathFrom":"external",
+        "lastUpdate":{
+          "epoch":1776877544,
+          "string":"Wed Apr 22 17:05:44 2026\n"
+        },
+        "extendedCommunity":{
+          "string":"SoO:51.1.1.1:0"
+        },
+        "peer":{
+          "hostname":"spine1-plane1",
+          "peerId":"2001:db8:13::",
+          "routerId":"7.1.1.1"
+        }
+      }
+    ],
+    "pathCount":1,
+    "multiPathCount":0,
+    "flags":{
+      "bestPathExists":"true"
+    },
+    "advertisedTo":{
+      "2001:db8:13::":{
+        "hostname":"spine1-plane1"
+      }
+    }
+  },
+  "numPrefixes":1
+}
+```
+
 ## BGP Conditional Disaggregation
 
 In large scale deployments, route aggregation keeps BGP routing tables manageable by reducing the number of paths. However, when used in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer), leaf switches often advertise one aggregate route covering all of its connected hosts while suppressing more specific routes. When a single link fails and an individual host becomes unreachable, the aggregate remains advertised and the switch continues to send traffic to the failed path with no mechanism to reroute through healthy planes.

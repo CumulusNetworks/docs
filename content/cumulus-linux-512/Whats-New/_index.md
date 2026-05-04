@@ -21,7 +21,7 @@ Cumulus Linux 5.12.1.2000 includes a new SDK, resolving the following issue:
 | 5001905 | A fatal SDK event might occur during i2c or cable read events, observed with the following switchd log message:<br><pre>hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</pre> | 5.12.0-5.12.1, 5.13.0-5.16.1  |  |
 
 {{%notice note%}}
-You can only upgrade to 5.12.1.2000 from 5.12.1 with an ONIE image installation. Cumulus Linux 5.12.1.2000 does *not* support optimized image or package upgrades.
+You can only upgrade to 5.12.1.2000 with an ONIE image installation. Cumulus Linux 5.12.1.2000 does *not* support optimized image or package upgrades.
 {{%/notice%}}
 ## What's New in Cumulus Linux 5.12.1
 

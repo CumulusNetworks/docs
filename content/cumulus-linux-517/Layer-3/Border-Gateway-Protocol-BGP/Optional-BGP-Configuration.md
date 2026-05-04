@@ -2239,6 +2239,65 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router rib unreachable-prefixes
 
 To show if FRR to LLDP integration is enabled to send IPv4 or IPv6 prefix information to LLDP, run the `nv show vrf <vrf-id> router bgp address-family ipv4-unreachability export-lldp` command for IPv4 or the `nv show vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp` command for IPv6.
 
+You can also use vtysh commands to show IPv6 unreachability details:
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# show bgp ipv6 unreachability detail json
+{
+  "2001:1:1:e103::/64":[
+    {
+      "reporters":{
+        "6.1.1.3":{
+          "AS":64600,
+          "subtlv":{
+            "reason":"Local-Link-Down",
+            "timestamp":{
+              "epoch":1776853839,
+              "string":"Wed Apr 22 10:30:39 2026\n"
+            }
+          }
+        }
+      },
+      "peer":{
+        "hostname":"spine1-plane1",
+        "peerId":"2001:db8:13::",
+        "routerId":"7.1.1.1"
+      },
+      "origin":"incomplete",
+      "valid":true,
+      "best":true,
+      "stale":false,
+      "multipath":false,
+      "pathFrom":"external",
+      "lastUpdate":{
+        "epoch":1776877544,
+        "string":"Wed Apr 22 17:05:44 2026\n"
+      },
+      "extendedCommunity":{
+        "string":"SoO:51.1.1.1:0"
+      },
+      "aspath":{
+        "string":"64601 64599 64603 64600",
+        "segments":[
+          {
+            "type":"as-sequence",
+            "list":[
+              64601,
+              64599,
+              64603,
+              64600
+            ]
+          }
+        ],
+        "length":4
+      }
+    }
+  ]
+}
+```
+
 ## BGP Timers
 
 BGP includes several timers that you can configure.

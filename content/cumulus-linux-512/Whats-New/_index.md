@@ -11,6 +11,18 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 {{%notice infonopad%}}
 The upcoming Cumulus Linux 5.15.0 release includes updates to NVUE commands. These changes aim to standardize commands across Cumulus Linux, NVIDIA OS (NVOS), and Host-based Networking. To help you prepare, NVIDIA recommends reviewing the [list of NVUE command changes]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/NVUE-Command-Changes-515" >}}) so that you can update any automation accordingly.
 {{%/notice%}}
+
+## What's New in Cumulus Linux 5.12.1.2000
+
+Cumulus Linux 5.12.1.2000 includes a new SDK, resolving the following issue:
+
+|  Issue ID 	|   Description	|   Affects	|
+|---	        |---	        |---	    |
+| 5001905 | A fatal SDK event might occur during i2c or cable read events, observed with the following switchd log message:<br><pre>hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</pre> | 5.12.0-5.12.1, 5.15.0-5.16.1 |  |
+
+{{%notice note%}}
+You can only upgrade to 5.12.1.2000 from 5.12.1 with an ONIE image installation. Cumulus Linux 5.12.1.2000 does *not* support optimized image or package upgrades.
+{{%/notice%}}
 ## What's New in Cumulus Linux 5.12.1
 
 Cumulus Linux 5.12.1 includes a new {{<link title="Cumulus Linux 5.12 Packages" text="SDK, hardware management package, and kernel">}} and provides {{<link url="Cumulus-Linux-5.12-Release-Notes" text="bug fixes">}}. In addition, Cumulus Linux 5.12.1 supports the following new platform:

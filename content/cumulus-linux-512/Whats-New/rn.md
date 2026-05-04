@@ -207,7 +207,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| 5001905 | A fatal SDK event might occur during i2c or cable read events, observed with the following switchd log message:<br><pre>hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</pre> | 5.12.0-5.12.1, 5.15.0-5.16.1 |  |
+| 5001905 | A fatal SDK event might occur during i2c or cable read events, observed with the following switchd log message:<br><pre>hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</pre> | 5.12.0-5.12.1, 5.13.0-5.16.1 |  |
 
 ## 5.12.1 Release Notes
 ### Open Issues in 5.12.1

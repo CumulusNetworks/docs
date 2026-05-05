@@ -43,7 +43,7 @@ nv show vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp
 {{< tab "nv set ">}}
 
 ```
-nv set interface <interface-id> dot1x tx-identity-request
+nv set interface <interface-id> dot1x tx-identity-request max-retries
 nv set interface <interface-id> link debounce down
 nv set interface <interface-id> link debounce up
 nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom-per-pg
@@ -187,4 +187,6 @@ nv config verify revision revision <revision>
 
 ## Removed NVUE Commands
 
-No NVUE commands are removed in Cumulus Linux 5.17.
+```
+nv set system docker state
+```

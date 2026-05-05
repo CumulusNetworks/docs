@@ -103,6 +103,46 @@ You can revert a simulation only when:
 
 After the revert completes, the state badge changes to **Editable** and you can modify the topology again.
 
+## Sleep
+
+Sleep is the normal way to stop a running simulation while preserving its state. When a simulation goes to sleep, Air shuts down its nodes, saves a checkpoint of their disk state, and releases the compute resources. The simulation transitions through **Shutting Down** and **Saving** before reaching **Inactive**, where it stays until you start it again.
+
+Sleeping is reversible. Starting a slept simulation restores all nodes from the saved checkpoint, so any configuration changes and in-memory state captured at sleep time are preserved.
+
+### Putting a Simulation to Sleep Manually
+
+To put a running simulation to sleep:
+
+1. Open the simulation.
+2. In the action bar at the top of the page, click **Stop Simulation and Store Checkpoint**.
+
+The simulation transitions to **Saving** while the checkpoint is written, then to **Inactive**.
+
+To stop a simulation without saving a checkpoint, open the dropdown next to **Stop Simulation and Store Checkpoint** and select **Stop Simulation Without Checkpoint**. Any unsaved changes since the last checkpoint are lost.
+
+### Scheduling Automatic Sleep
+
+You can schedule a simulation to go to sleep automatically by setting a sleep date. When the sleep date is reached, Air puts the simulation to sleep and saves a checkpoint.
+
+To set or change the sleep date:
+
+1. Open the simulation.
+2. In the action bar at the top of the page, click **Edit Simulation**.
+3. Set the **Sleep date** and **Sleep time** to when you want the simulation to sleep. Times are entered in your local timezone and stored as UTC.
+4. Click **Save**.
+
+The sleep date persists across runs. Clear it if you no longer want the simulation to sleep automatically.
+
+{{%notice note%}}
+Free trial accounts have an automatic sleep date applied to their simulations and cannot remove it. Contact NVIDIA to upgrade your account if you need simulations that do not sleep automatically.
+{{%/notice%}}
+
+### Waking a Simulation
+
+To wake a sleeping simulation, start it the same way you would start any inactive simulation. By default, Air resumes from the most recent checkpoint. To wake from a different checkpoint, see [Starting from a Checkpoint](#starting-from-a-checkpoint).
+
+If the sleep date has already passed when you wake the simulation, Air clears it so the simulation does not immediately go back to sleep.
+
 ## Simulation History
 
 The History tab provides a detailed log of all events that occurred during your simulation's lifecycle. This is useful for understanding what happened to your simulation and for debugging issues.

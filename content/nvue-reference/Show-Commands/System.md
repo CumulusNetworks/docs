@@ -782,6 +782,14 @@ cumulus@switch:~$ nv show system message
 
 Shows system reboot information, such as the time when the switch rebooted, the reason for the reboot, and the restart mode (fast, warm, cold).
 
+In Cumulus Linux 5.17 and later:
+- For cold and fast reboot, the status indicates success and the detailed-status is none immediately after reboot.
+- For warm reboot, the status transitions from:
+  - `in-progress` to `success` after ISSU completes.
+  - `failed` with a `detailed-status of forwarding driver api failed` if ISSU fails, or `unexpected module restart` if any registered module involved with warm reboot restarting fails during the duration of warm reboot progression.
+
+The switch also creates a syslog message to indicate if warm reboot is in progress or complete.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.2.0
@@ -789,14 +797,15 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system reboot
-          operational                       applied
----------  --------------------------------  -------
-reason                                              
-  gentime  2023-04-26T15:47:34.033663+00:00         
-  reason   Unknown                                  
-  user     system/root                              
-mode       cold                              cold
+cumulus@switch:~$ cumulus@switch:~$ nv show system reboot
+reason
+  reason               SW asserted reset through CPLD
+  gentime              2026-02-28T01:45:15.921195+00:00
+  user                 system/root
+required               no
+last-reboot-operation  warm
+status                 failed
+detailed-status        forwarding driver api failed
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

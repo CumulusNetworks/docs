@@ -14,6 +14,7 @@ Before managing Docker containers, validate that the service is running.
 
 {{< tabs "TabID22 ">}}
 {{< tab "NVUE Commands">}}
+
 Check the status of the docker service with the `nv show system docker` command:
 
 ```
@@ -29,6 +30,7 @@ Docker Containers
     ------------------  -------------------------------  ------------  -------------------  -----  -------             
     what-just-happened  docker-wjh:latest                f834edf7fd3c  Up 6 days      
 ```
+
 {{< /tab >}}
 {{< tab "Linux Commands">}}
 
@@ -53,7 +55,7 @@ cumulus@switch:~$ sudo systemctl status docker@mgmt.service
 ```
 {{< /tab >}}
 {{< /tabs >}}
-
+<!--
 If the service is not currently running, enable and start the service.
 
 {{< tabs "TabID66 ">}}
@@ -147,7 +149,7 @@ https://docs.docker.com/get-started/
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## Change the Docker Service VRF
 
 By default, the Docker service runs in the management VRF. To run Docker in a different VRF, run the following commands.

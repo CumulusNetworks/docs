@@ -187,4 +187,6 @@ nv config verify revision revision <revision>
 
 ## Removed NVUE Commands
 
-No NVUE commands are removed in Cumulus Linux 5.17.
+```
+nv set system docker state
+```

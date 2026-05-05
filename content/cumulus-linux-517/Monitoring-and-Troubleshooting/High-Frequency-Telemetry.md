@@ -70,7 +70,7 @@ a. Configure the IPFIX collector destination IP address or hostname. Specify the
    cumulus@switch:~$ nv set system telemetry export ipfix port 4317
    ```
 
-   You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations.
+   You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations. You configure HFT parameters globally; statistics groups are not supported.
 
 b. Specify the interval in seconds for IPFIX template and metadata export. You can specify a value between 1 and 86400. The default is 30 seconds.
 

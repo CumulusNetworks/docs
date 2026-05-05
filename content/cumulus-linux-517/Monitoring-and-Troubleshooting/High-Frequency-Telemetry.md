@@ -48,17 +48,17 @@ By default, OTLP export is in **secure** mode that requires a CA certificate. Fo
 
 c. Configure the VRF where the export destination is reachable. The `default` VRF is the default value:
 
-    ```
-    cumulus@switch:~$ set system telemetry export vrf RED
-    cumulus@switch:~$ nv config apply
-    ```
+   ```
+   cumulus@switch:~$ set system telemetry export vrf RED
+   cumulus@switch:~$ nv config apply
+   ```
 
 d. Enable OTLP gRPC export:
 
    ```
    cumulus@switch:~$ nv set system telemetry export otlp state enabled 
    cumulus@switch:~$ nv config apply
-```
+   ```
 
    {{< /tab >}}
 {{< tab "IPFIX">}}
@@ -86,9 +86,9 @@ c. Configure the VRF where the export destination is reachable. The `default` VR
 
 d. Configure the maximum size for an exported IP packet containing HFT over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The default setting is determined from the outgoing interface MTU.
 
-```
-cumulus@switch:~$ nv set system telemetry export ipfix max-ip-packet-size 65535
-```
+   ```
+   cumulus@switch:~$ nv set system telemetry export ipfix max-ip-packet-size 65535
+   ```
 
 e. Enable IPFIX export:
 

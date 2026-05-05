@@ -412,6 +412,72 @@ cumulus@switch:~$ nv set interface swp1 link breakout 2x lanes-per-port 2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> link debounce up</h>
+
+Configures link debounce up timer. You can set a value between 0 and 5000. The default value is 10 milliseconds. A value of 0 disables the timer.
+
+A flapping port can cause network instability and disruption as layer 2 and layer 3 protocols are constantly forced to reconverge and rebuild the topology with every port status change. If flapping occurs at short intervals, it can also cause a spike in CPU utilization. To enhance the stability of Ethernet port link state transitions and mitigate network disruptions resulting from port flapping, Cumulus Linux provides link debounce hold timers for link state transitions. The switch waits until the port status is stable for a configured period before notifying layer 2 and layer 3 protocols about the status change (up or down).
+
+When a link transitions up, the debounce timer starts. The switch reports the link change only after the timer expires, and the link remains in that state. If the link toggles back before the timer expires, the switch ignores the event and does not report any state change.
+
+{{%notice note%}}
+- You can configure link debounce timers on physical switch ports only.
+- The maximum debounce timer values are limited by SDK capabilities (5000ms).
+- NVIDIA recommends that you use identical or similar debounce timer values on both ends of the link.
+- Link debounce and link flap protection are complementary features that work at different time scales. Link debounce filters transient noise and micro-interruptions whereas link flap protection detects excessive legitimate state transitions and protects the system by placing the interface into a protodown state. If you configure both features, set the link flap protection interval to be significantly larger than the debounce timers to ensure proper coordination.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 link debounce up 2000  
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> link debounce down</h>
+
+Configures the link debounce down timer. You can set a value between 0 and 5000. The default value is 10 milliseconds. A value of 0 disables the timer.
+
+A flapping port can cause network instability and disruption as layer 2 and layer 3 protocols are constantly forced to reconverge and rebuild the topology with every port status change. If flapping occurs at short intervals, it can also cause a spike in CPU utilization. To enhance the stability of Ethernet port link state transitions and mitigate network disruptions resulting from port flapping, Cumulus Linux provides link debounce hold timers for link state transitions. The switch waits until the port status is stable for a configured period before notifying layer 2 and layer 3 protocols about the status change (up or down).
+
+When a link transitions down, the debounce timer starts. The switch reports the link change only after the timer expires, and the link remains in that state. If the link toggles back before the timer expires, the switch ignores the event and does not report any state change.
+
+{{%notice note%}}
+- You can configure link debounce timers on physical switch ports only.
+- The maximum debounce timer values are limited by SDK capabilities (5000ms).
+- NVIDIA recommends that you use identical or similar debounce up timer values on both ends of the link.
+- Link debounce and link flap protection are complementary features that work at different time scales. Link debounce filters transient noise and micro-interruptions whereas link flap protection detects excessive legitimate state transitions and protects the system by placing the interface into a protodown state. If you configure both features, set the link flap protection interval to be significantly larger than the debounce timer to ensure proper coordination.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 link debounce down 1000  
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> link duplex</h>
 
 Configures duplex mode for the interface; full or half.

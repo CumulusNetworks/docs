@@ -20,7 +20,9 @@ Image sharing requires specific roles assigned to your account:
 | Action | Required Role | Scope |
 |--------|---------------|-------|
 | Share an image (create claim code) | `AIR_IMAGE_SHARER` | `air:image_sharing` |
-| Claim a shared image | `AIR_IMAGE_UPLOADER` or `AIR_IMAGE_PUBLISHER` | `air:image_write` |
+| Claim a shared image | `AIR_IMAGE_UPLOADER`, `AIR_IMAGE_PUBLISHER`, or `AIR_IMAGE_CLAIMER` | `air:image_write` or `air:image_claiming` |
+
+The `AIR_IMAGE_CLAIMER` role grants only the ability to claim shared images. Assign this role to organizations that should receive shared images but should not be able to upload, edit, or publish their own.
 
 For information on how roles are assigned, see {{<link title="API Authentication">}}.
 

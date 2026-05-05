@@ -48,17 +48,17 @@ By default, OTLP export is in **secure** mode that requires a CA certificate. Fo
 
 c. Configure the VRF where the export destination is reachable. The `default` VRF is the default value:
 
-    ```
-    cumulus@switch:~$ set system telemetry export vrf RED
-    cumulus@switch:~$ nv config apply
-    ```
+   ```
+   cumulus@switch:~$ set system telemetry export vrf RED
+   cumulus@switch:~$ nv config apply
+   ```
 
 d. Enable OTLP gRPC export:
 
    ```
    cumulus@switch:~$ nv set system telemetry export otlp state enabled 
    cumulus@switch:~$ nv config apply
-```
+   ```
 
    {{< /tab >}}
 {{< tab "IPFIX">}}
@@ -70,7 +70,7 @@ a. Configure the IPFIX collector destination IP address or hostname. Specify the
    cumulus@switch:~$ nv set system telemetry export ipfix port 4317
    ```
 
-   You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations.
+   You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations. You configure HFT parameters globally; statistics groups are not supported.
 
 b. Specify the interval in seconds for IPFIX template and metadata export. You can specify a value between 1 and 86400. The default is 30 seconds.
 
@@ -86,9 +86,9 @@ c. Configure the VRF where the export destination is reachable. The `default` VR
 
 d. Configure the maximum size for an exported IP packet containing HFT over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The default setting is determined from the outgoing interface MTU.
 
-```
-cumulus@switch:~$ nv set system telemetry export ipfix max-ip-packet-size 65535
-```
+   ```
+   cumulus@switch:~$ nv set system telemetry export ipfix max-ip-packet-size 65535
+   ```
 
 e. Enable IPFIX export:
 
@@ -109,7 +109,31 @@ e. Enable IPFIX export:
    cumulus@switch:~$ nv config apply
    ```
 
-   Configure the counters that are sampled at the defined interval. The options for sampling are received bytes (`rx-byte`), transmitted bytes (`tx-byte`), received packets (`rx-packet`), transmitted packets (`tx-packet`), and traffic class buffer occupancy (`tc-occupancy`):
+   Configure the counters that are sampled at the defined interval. The following table lists the available counters.
+
+   | Counter | Description |
+   | -------- | --------- |
+   | `ar-grade-high` | Adaptive routing counters. |
+   | `ar-grade-low`  | Adaptive routing counters. |
+   | `if-in-discards` | Discarded ingress packets.|
+   | `pause-mac-ctrl-frames-rx` | Received paused MAC control frames.|
+   | `pause-mac-ctrl-frames-tx` | Transmitted paused MAC control frames.|
+   | `pg-headroom-occupancy` | Priority group headroom occupancy counters.|
+   | `pg-headroom-watermark` | Priority group headroom watermark counters.|
+   | `pg-occupancy` | Priority group occupancy counters.|
+   | `pg-watermark`  | Priority group watermark counters.|
+   | `rx-byte` | Received bytes.|
+   | `rx-packet` | Received packets.|
+   | `sp-octets-rx` | Switch priority received octets.|
+   | `sp-pause-rx` | Switch priority received paused packets.|
+   | `sp-pause-tx` | Switch priority transmitted paused packets.|
+   | `tc-ecn-marked` | Traffic class ECN marked counters.|
+   | `tc-occupancy` | Traffic class buffer occupancy counters. |
+   | `tc-octets-tx` | Traffic class transmitted octets counters.|
+   | `tc-watermark` | Traffic class watermark counters. |
+   | `tx-byte` | Transmitted bytes.|
+
+   The following example configures received bytes (`rx-byte`), transmitted bytes (`tx-byte`), and traffic class buffer occupancy (`tc-occupancy`) counters:
 
    ```
    cumulus@switch:~$ nv set system telemetry hft counter rx-byte
@@ -118,10 +142,42 @@ e. Enable IPFIX export:
    cumulus@switch:~$ nv config apply
    ```
 
-   When collecting traffic class buffer occupancy counters, configure the traffic classes to monitor:
+   When collecting traffic class counters, configure the traffic classes to monitor:
 
    ```
    cumulus@switch:~$ nv set system telemetry hft egress-buffer traffic-class 0,1,5
+   cumulus@switch:~$ nv config apply
+   ```
+
+   The following example configures switch priority received octets (`sp-octets-rx`), received paused packets (`sp-pause-rx`), and transmitted pause packets (`sp-pause-tx`):
+
+   ```
+   cumulus@switch:~$ nv set system telemetry hft counter sp-octets-rx
+   cumulus@switch:~$ nv set system telemetry hft counter sp-pause-rx
+   cumulus@switch:~$ nv set system telemetry hft counter sp-pause-tx
+   cumulus@switch:~$ nv config apply
+   ```
+
+   When collecting switch priority counters, configure the switch priority to monitor:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry hft switch-priority 3,4,6
+   cumulus@switch:~$ nv config apply
+   ```
+
+   The following example configures priority group occupancy (`pg-occupancy`), watermark (`pg-watermark`), and headroom occupancy (`pg-headroom-occupancy`) counters:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry hft counter pg-occupancy
+   cumulus@switch:~$ nv set system telemetry hft counter pg-watermark
+   cumulus@switch:~$ nv set system telemetry hft counter pg-headroom-occupancy
+   cumulus@switch:~$ nv config apply
+   ```
+
+   When collecting priority group counters, configure the priority group to monitor:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry hft ingress-buffer priority-group 3
    cumulus@switch:~$ nv config apply
    ```
 

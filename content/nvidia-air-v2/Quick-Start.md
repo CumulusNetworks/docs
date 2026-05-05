@@ -90,7 +90,7 @@ You can also rebuild all nodes in a simulation simultaneously by clicking the {{
 
 You can edit important attributes of a simulation with the {{<img src="/images/guides/nvidia-air-v2/Edit.png" alt="" width="22px" >}} **Edit** button in the **Topology** tab.
 - **Simulation Name** is the simulation name. Simulations can share the same name. Air assigns a unique identifier to each simulation to differentiate between each one.
-- **Sleep date** is when the simulation goes into sleep mode automatically; Air saves the state of the simulation and stores it to free up account resources.
+- **Sleep date** is when the simulation goes into sleep mode automatically; Air saves the state of the simulation and stores it to free up account resources. For details, see {{<link title="Simulation Management">}}.
 
 {{<img src="/images/guides/nvidia-air-v2/EditSim.png" alt="" width="400px">}}
 

@@ -779,12 +779,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4535843</td>
-<td>After a switch reboot, the {{nv show system health}} command shows incorrect system LED status and color.</td>
-<td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4535806</td>
 <td>After a factory reset, the switch does not clear the {{/var/tmp}} directory, which the switch uses for temporary files.</td>
 <td>5.14.0-5.16.1</td>
@@ -2288,12 +2282,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4535856</td>
 <td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
-<td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4535843</td>
-<td>After a switch reboot, the {{nv show system health}} command shows incorrect system LED status and color.</td>
 <td>5.13.0-5.16.1</td>
 <td></td>
 </tr>

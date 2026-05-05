@@ -10,7 +10,7 @@ This document supports the Cumulus Linux 5.16 release, and lists new features an
 
 ## What’s New in Cumulus Linux 5.16.3
 
-Cumulus Linux 5.16.3 provides bug fixes and security updates.
+Cumulus Linux 5.16.3 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and a security update.
 
 ## What’s New in Cumulus Linux 5.16.2
 

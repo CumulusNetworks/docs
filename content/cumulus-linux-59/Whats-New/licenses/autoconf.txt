@@ -1,5 +1,5 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Source: http://www.gnu.org/software/autoconf/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://www.gnu.org/software/autoconf/
 Upstream-Name: Autoconf
 Upstream-Contact: GNU Autoconf Maintainers <autoconf@gnu.org>
 
@@ -75,8 +75,8 @@ License: GPL-3+ with Autoconf exception
  .
  The Autoconf Configure Script Exception version 3 is below:
  .
-		    AUTOCONF CONFIGURE SCRIPT EXCEPTION
-			Version 3.0, 18 August 2009
+                    AUTOCONF CONFIGURE SCRIPT EXCEPTION
+                        Version 3.0, 18 August 2009
  .
   Copyright (C) 2009 Free Software Foundation, Inc. <http://fsf.org/>
   Everyone is permitted to copy and distribute verbatim copies
@@ -119,7 +119,7 @@ License: GPL-3+ with Autoconf exception
  that third-party software is unaffected by the copyleft requirements of
  the license of Autoconf.
 
-Files: BUGS README INSTALL NEWS README TODO doc/install.texi
+Files: BUGS README INSTALL NEWS TODO
  m4/m4.m4 m4/make-case.m4
 Copyright: 1992-1996, 1998-2012 Free Software Foundation, Inc.
 License: permissive-short-disclaimer
@@ -140,7 +140,7 @@ License: permissive-long-disclaimer
  even the implied warranty of MERCHANTABILITY or FITNESS FOR A
  PARTICULAR PURPOSE.
 
-Files: emacs/Makefile.in m4/autobuild.m4
+Files: m4/autobuild.m4
 Copyright: 1994-2012 Free Software Foundation, Inc.
 License: permissive-without-disclaimer
  This Makefile.in is free software; the Free Software Foundation
@@ -157,7 +157,6 @@ Files:
  build-aux/config.guess
  build-aux/config.sub
  build-aux/elisp-comp
- build-aux/mdate-sh
  build-aux/mdate-sh
  build-aux/missing
 Copyright: 1992-2012 Free Software Foundation, Inc.
@@ -276,7 +275,7 @@ License: no-modification
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
 
-Files: doc/gen-oids.texi
+Files: doc/gnu-oids.texi
 Copyright: 2008-2010 Free Software Foundation, Inc.
 License: permissive
  Copying and distribution of this file, with or without modification,

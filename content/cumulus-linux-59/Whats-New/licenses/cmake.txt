@@ -3,7 +3,7 @@ Upstream-Name: cmake
 Source: http://www.cmake.org/files/v*/
 
 Files: *
-Copyright: 2000-2011 Kitware, Inc., Insight Software Consortium
+Copyright: 2000-2022 Kitware, Inc., Insight Software Consortium
 License: BSD-3-clause
 Comments: CMake was initially developed by Kitware with the following
  sponsorship:
@@ -19,229 +19,225 @@ Comments: CMake was initially developed by Kitware with the following
  .
  * Kitware, Inc.
 
-Files: debian/*
-Copyright: 2001-2006 A. Maitland Bottoms <bottoms@debian.org>
-  2007-2008 Pierre Habouzit <madcoder@debian.org>
-  2008-2010 Modestas Vainius <modax@debian.org>
-  2010 Kai WasserbÃ¤ch <debian@carbon-project.org>
-  2014 Felix Geyer <fgeyer@debian.org>
-License: BSD-3-clause
-
-Files: debian/debtoolchainfilegen
-Copyright: 2018 Helmut Grohne <helmut@subdivi.de>
-License: BSD-2-clause
-
-Files: Source/LexerParser/cmFortranParserTokens.h
-Copyright: 1984, 1989-1990, 2000-2011 Free Software Foundation, Inc.
-License: GPL-3+with_exception
-
-Files: Source/LexerParser/cmFortranParser.cxx
-Copyright: 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
-  2000-2015 Kitware, Inc., Insight Software Consortium
-  2000-2006 Erik Edelmann <erik.edelmann@iki.fi>
-License: GPL-3+with_exception
-
-Files: Source/LexerParser/cmDependsJavaParser.cxx
-  Source/LexerParser/cmCommandArgumentParserTokens.h
-  Source/LexerParser/cmExprParserTokens.h
-  Source/LexerParser/cmExprParser.cxx
-  Source/LexerParser/cmCommandArgumentParser.cxx
-  Source/LexerParser/cmDependsJavaParserTokens.h
-Copyright: 2000-2009 Kitware, Inc., Insight Software Consortium
-  1984, 1989, 1990, 2000-2006 Free Software Foundation, Inc.
-License: GPL-2+with_exception
-
 Files: Source/cmcldeps.cxx
-Copyright: 2011 Google Inc.
+Copyright: 2011, Google Inc.
 License: Apache-2.0
 
-Files: Utilities/cmlibarchive/libarchive/*
-Copyright: 2007-2010 Joerg Sonnenberger
-  2003-2011 Tim Kientzle
-  2003-2008 Miklos Vajna
-  2009-2012 Michihiro NAKAJIMA
-  2011-2012 libarchive Project
-  2011 Andres Mejia
-  2001 The NetBSD Foundation, Inc.
-  2007 Kai Wang
-  2008 Anselm Strauss
-  2010 Nokia Corporation and/or its subsidiary(-ies).
-  2006 Rudolf Marek SYSGO s.r.o.
-  2002 Thomas Moestl <tmm@FreeBSD.org>
-  2009 Andreas Henriksson <andreas@fatal.se>
-  1994 The Regents of the University of California
-  1996-2008 PostgreSQL Global Development Group
-  2003-2007 Kees Zeelenberg
-  2012 Ondrej Holy
-License: BSD-2-clause
+Files: Source/CursesDialog/*
+Copyright: 1998-2000, Free Software Foundation, Inc
+License: Expat
 
-Files: Utilities/cmlibarchive/libarchive/archive_read_support_filter_compress.c
-  Utilities/cmlibarchive/libarchive/archive_write_add_filter_compress.c
-Copyright: 2003-2007 Tim Kientzle
-  1985-1986 1992-1993 The Regents of the University of California
-  2008 Joerg Sonnenberger
-License: BSD-3-clause
+Files: Source/LexerParser/cmFortranParser.cxx
+       Source/LexerParser/cmFortranParserTokens.h
+Copyright: 2000-2006, Erik Edelmann <erik.edelmann@iki.fi>
+           1984-2021, Free Software Foundation
+           1984-2013, Free Software Foundation, Inc
+           2000-2015, Kitware, Inc., Insight Software Consortium
+License: GPL-3+ with Bison exception
+
+Files: Source/kwsys/MD5.c
+Copyright: 1999-2002, Aladdin Enterprises
+License: Zlib
+
+Files: Source/LexerParser/cmCommandArgumentParser.cxx
+       Source/LexerParser/cmCommandArgumentParserTokens.h
+       Source/LexerParser/cmDependsJavaParser.cxx
+       Source/LexerParser/cmDependsJavaParserTokens.h
+       Source/LexerParser/cmExprParser.cxx
+       Source/LexerParser/cmExprParserTokens.h
+Copyright: 1984-2006, Free Software Foundation, Inc
+           2000-2009, Kitware, Inc., Insight Software Consortium
+License: GPL-2+ with Bison exception
 
 Files: Utilities/cmcurl/*
-Copyright: 1998-2007 Daniel Stenberg <daniel@haxx.se>
-  1996 Internet Software Consortium
+Copyright: 2001, Alexander Peslyak
+           2014, Bill Nagel <wnagel@tycoint.com>
+           2019-2020, Björn Stenberg <bjorn@haxx.se>
+           2001-2004, Damien Miller <djm@openbsd.org>
+           1997-2022, Daniel Stenberg <daniel@haxx.se>
+           2014, Exacq Technologies
+           2017, Florin Petriuc <petriuc.florin@gmail.com>
+           2010-2011, Hoi-Ho Chan <hoiho.chan@gmail.com>
+           2010-2020, Howard Chu <hyc@highlandsun.com>
+           1996-2021, Internet Software Consortium
+           2020-2021, Jacob Hoffman-Andrews
+           2012-2016, Linus Nielsen Feltzing <linus@haxx.se>
+           2012-2016, Marc Hoersken <info@marc-hoersken.de>
+           2012, Mark Salisbury <mark.salisbury@hp.com>
+           2009-2011, Markus Moeller <markus_moeller@compuserve.com>
+           2019-2021, Michael Forney <mforney@mforney.org>
+           2012-2017, Nick Zitzmann <nickzman@gmail.com>
+           2017-2021, Red Hat, Inc
+           2020-2021, Simon Josefsson <simon@josefsson.org>
+           2014-2021, Steve Holme <steve_holme@hotmail.com>
+           2017-2018, Yiming Jing <jingyiming@baidu.com>
 License: ISC
 
-Files: Utilities/cmcompress/*
-Copyright: 1985-1986 The Regents of the University of California
-License: BSD-4-clause
+Files: Utilities/cmlibarchive/*
+Copyright: 2016-2020, Martin Matuska
+           2018, Grzegorz Antoniak
+           2009-2017, Sean Purcell
+           2003-2015, Tim Kientzle
+           2015, Okhotnikov Kirill
+           2008-2014, Michihiro NAKAJIMA
+           2012-2014, Yann Collet
+           2014, Sebastian Freundt
+           2013, Konrad Kleine
+           2013, Marek Kubica
+           2012, Ondrej Holy
+           2011-2012, libarchive Project
+           2011, Andres Mejia
+           2007-2010, Joerg Sonnenberger
+           2010, Nokia Corporation and/or its subsidiary(-ies).
+           2009, Andreas Henriksson <andreas@fatal.se>
+           1996-2008, PostgreSQL Global Development Group
+           2003-2008, Miklos Vajna
+           2008, Anselm Strauss
+           2003-2007, Kees Zeelenberg
+           2007, Kai Wang
+           2006, Rudolf Marek SYSGO s.r.o.
+           2002, Thomas Moestl <tmm@FreeBSD.org>
+           2001, The NetBSD Foundation, Inc.
+           1994, The Regents of the University of California
+License: BSD-2-Clause
 
-Files: Source/CursesDialog/*
-Copyright: 1998 Free Software Foundation, Inc.
-  2000-2009 Kitware
-  2000-2009 Insight Software Consortium
-License: MIT-like
+Files: Utilities/cmlibuv/*
+Copyright: 2015, libuv project contributors
+License: Expat
+
+Files: Utilities/cmlibuv/src/heap-inl.h
+       Utilities/cmlibuv/src/idna.c
+       Utilities/cmlibuv/src/idna.h
+       Utilities/cmlibuv/src/inet.c
+       Utilities/cmlibuv/src/queue.h
+       Utilities/cmlibuv/src/unix/atomic-ops.h
+       Utilities/cmlibuv/src/unix/spinlock.h
+Copyright: 2011-2018, Ben Noordhuis <info@bnoordhuis.nl>
+           1996-1999, Internet Software Consortium
+           2004, Internet Systems Consortium, Inc. ("ISC")
+License: ISC
+
+Files: Utilities/cmzstd/*
+Copyright: 2017-2020, Facebook, Inc
+           2016-2020, Przemyslaw Skibinski
+           Przemyslaw Skibinski, Yann Collet, Facebook, Inc
+           2016, Tino Reichardt
+           2012-2020, Yann Collet
+           Yann Collet, Facebook, Inc
+           2016, present, Facebook, Inc
+License: BSD-3-Clause
+
+Files: Utilities/cmnghttp2/*
+Copyright: 2012-2016, Tatsuhiro Tsujikawa
+           2012-2016, nghttp2 contributors
+License: Expat
+
+Files: Utilities/cmlibrhash/*
+Copyright: 2005, Aleksey Kravchenko
+           2005-2013, Aleksey Kravchenko <rhash.admin@gmail.com>
+License: BSD-0-Clause
 
 Files: Utilities/cmzlib/*
-Copyright: 1995-2005 Jean-loup Gailly
-  1995-2005 Mark Adler
-License: zlib
+Copyright: 1995-2005, Jean-loup Gailly and Mark Adler
+License: Zlib
 
-License: BSD-3-clause
- Copyright (c) 2002 Kitware, Inc., Insight Consortium
- All rights reserved.
- .
- Redistribution and use in source and binary forms, with or without
- modification, are permitted provided that the following conditions are
- met:
- .
-  * Redistributions of source code must retain the above copyright notice,
-    this list of conditions and the following disclaimer.
- .
-  * Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
- .
-  * The names of Kitware, Inc., the Insight Consortium, or the names of
-    any consortium members, or of any contributors, may not be used to
-    endorse or promote products derived from this software without
-    specific prior written permission.
- .
- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER AND CONTRIBUTORS ``AS IS''
- AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS BE LIABLE FOR
- ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+Files: Utilities/cmexpat/*
+Copyright: 2017, Alexander Bluhm <alexander.bluhm@gmx.net>
+           2018, Anton Maklakov <antmak.pub@gmail.com>
+           2019-2020, Ben Wagner <bungeman@chromium.org>
+           2017, Benbuck Nason <bnason@netflix.com>
+           2018, Benjamin Peterson <benjamin@python.org>
+           2020, Boris Kolpackov <boris@codesynthesis.com>
+           2017, Chanho Park <chanho61.park@samsung.com>
+           2000, Clark Cooper <coopercc@users.sourceforge.net>
+           2016, Cristian Rodríguez <crrodriguez@opensuse.org>
+           2019, David Loffredo <loffredo@steptools.com>
+           2016, Don Lewis <truckman@apache.org>
+           2021, Dong-hee Na <donghee.na@python.org>
+           2016, Ed Schouten <ed@nuxi.nl>
+           2016, Eric Rahm <erahm@mozilla.com>
+           2001-2019, Expat maintainers
+           2000-2006, Fred L. Drake, Jr <fdrake@users.sourceforge.net>
+           2016, Gaurav <g.gupta@samsung.com>
+           2001-2003, Greg Stein <gstein@users.sourceforge.net>
+           2016, Gustavo Grieco <gustavo.grieco@imag.fr>
+           2017, Hans Wennborg <hans@chromium.org>
+           2017, José Gutiérrez de la Concha <jose@zeroc.com>
+           2002-2016, Karl Waclawek <karl@waclawek.net>
+           2018, Marco Maggi <marco.maggi-ipsu@poste.it>
+           2018, Mariusz Zaborski <oshogbo@vexillium.org>
+           2016, Pascal Cuoq <cuoq@trust-in-soft.com>
+           2017-2018, Rhodri James <rhodri@wildebeest.org.uk>
+           2017, Rolf Eike Beer <eike@sf-mail.de>
+           2022, Samanta Navarro <ferivoz@riseup.net>
+           2016-2022, Sebastian Pipping <sebastian@pipping.org>
+           2005-2009, Steven Solie <steven@solie.ca>
+           1997-2000, Thai Open Source Software Center Ltd
+           1998-2000, Thai Open Source Software Center Ltd and Clark Cooper
+           2016, Thomas Beutlich <tc@tbeu.de>
+           2019, Vadim Zeitlin <vadim@zeitlins.org>
+           2017, Viktor Szakats <commit@vsz.me>
+           2017, Václav Slavík <vaclav@slavik.io>
+           2018, Yury Gribov <tetra2005@gmail.com>
+License: Expat
 
-License: MIT-like
- Permission is hereby granted, free of charge, to any person
- obtaining a copy of this software and associated documentation
- files (the "Software"), to deal in the Software without
- restriction, including without limitation the rights to use,
- copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the
- Software is furnished to do so, subject to the following
- conditions:
- .
- The above copyright notice and this permission notice shall be
- included in all copies or substantial portions of the Software.
- .
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- OTHER DEALINGS IN THE SOFTWARE.
+Files: Utilities/cmbzip2/*
+Copyright: 1996-2019, Julian Seward
+           1996-2019, Julian Seward <jseward@acm.org>
+License: BSD-4-Clause
 
-License: BSD-4-clause
-  Copyright (c) 1988, 1993
-   The Regents of the University of California.  All rights reserved.
-  .
-  This code is derived from software contributed to Berkeley by
-  Guido van Rossum.
-  .
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
-  are met:
-  1. Redistributions of source code must retain the above copyright
-     notice, this list of conditions and the following disclaimer.
-  2. Redistributions in binary form must reproduce the above copyright
-     notice, this list of conditions and the following disclaimer in the
-     documentation and/or other materials provided with the distribution.
-  3. All advertising materials mentioning features or use of this software
-     must display the following acknowledgement:
-   This product includes software developed by the University of
-   California, Berkeley and its contributors.
-  4. Neither the name of the University nor the names of its contributors
-     may be used to endorse or promote products derived from this software
-     without specific prior written permission.
-  .
-  THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
-  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-  ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
-  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-  OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-  SUCH DAMAGE.
+Files: Utilities/cmjsoncpp/*
+Copyright: 2007-2011, Baptiste Lepilleur and The JsonCpp Authors
+           2016, InfoTeCS JSC
+License: Expat
 
-License: GPL-2+with_exception
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2, or (at your option)
-  any later version.
-  .
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  .
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin Street, Fifth Floor,
-  Boston, MA 02110-1301, USA.
-  .
-  As a special exception, you may create a larger work that contains
-  part or all of the Bison parser skeleton and distribute that work
-  under terms of your choice, so long as that work isn't itself a
-  parser generator using the skeleton or a modified version thereof
-  as a parser skeleton.  Alternatively, if you modify or redistribute
-  the parser skeleton itself, you may (at your option) remove this
-  special exception, which will cause the skeleton and the resulting
-  Bison output files to be licensed under the GNU General Public
-  License without this special exception.
-  .
-  On Debian systems, the complete text of the GNU General Public License
-  version 2 can be found in /usr/share/common-licenses/GPL-2
+Files: Utilities/cmelf/*
+Copyright: 2000-2011, David E. O'Brien
+           2017-2018, Dell EMC
+           1996-1998, John D. Polstra
+License: BSD-2-Clause
 
-License: GPL-3+with_exception
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  .
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  .
-  On Debian systems, the complete text of the GNU General Public License
-  version 2 can be found in /usr/share/common-licenses/GPL-3
-  .
-  As a special exception, you may create a larger work that contains
-  part or all of the Bison parser skeleton and distribute that work
-  under terms of your choice, so long as that work isn't itself a
-  parser generator using the skeleton or a modified version thereof
-  as a parser skeleton.  Alternatively, if you modify or redistribute
-  the parser skeleton itself, you may (at your option) remove this
-  special exception, which will cause the skeleton and the resulting
-  Bison output files to be licensed under the GNU General Public
-  License without this special exception.
+Files: Utilities/cmlibuv/include/uv/stdint-msvc2008.h
+       Utilities/cmlibuv/include/uv/tree.h
+Copyright: 2006-2008, Alexander Chemeris
+           2002, Niels Provos <provos@citi.umich.edu>
+License: BSD-2-Clause
+
+Files: Utilities/cmzstd/lib/dictBuilder/divsufsort.c
+       Utilities/cmzstd/lib/dictBuilder/divsufsort.h
+Copyright: 2003-2008, Yuta Mori
+License: Expat
+
+Files: Utilities/cmlibarchive/libarchive/archive_windows.c
+Copyright: 2003-2007, Kees Zeelenberg
+           2009-2011, Michihiro NAKAJIMA
+           1996-2008, PostgreSQL Global Development Group
+           1994, The Regents of the University of California
+           below
+License: BSD-2-Clause
+
+Files: Utilities/cmlibarchive/libarchive/archive_random.c
+Copyright: 2008, Damien Miller <djm@openbsd.org>
+           1996, David Mazieres <dm@uun.org>
+           2014, Michihiro NAKAJIMA
+License: BSD-2-Clause or ISC
+
+Files: debian/*
+Copyright: 2001-2006, A. Maitland Bottoms <bottoms@debian.org>
+           2014, Felix Geyer <fgeyer@debian.org>
+           2010, Kai Wasserbäch <debian@carbon-project.org>
+           2008-2010, Modestas Vainius <modax@debian.org>
+           2007-2008, Pierre Habouzit <madcoder@debian.org>
+           2021-2022, Timo Röhlng <roehling@debian.org>
+License: BSD-3-Clause
+
+Files: debian/debtoolchainfilegen
+Copyright: 2018, Helmut Grohne <helmut@subdivi.de>
+License: BSD-2-Clause
+
+Files: debian/com.kitware.cmake_gui.metainfo.xml
+Copyright: 2022, Timo Röhling <roehling@debian.org>
+License: FSFAP
 
 License: Apache-2.0
   Version 2.0, January 2004
@@ -401,7 +397,19 @@ License: Apache-2.0
   incurred by, or claims asserted against, such Contributor by reason of your
   accepting any such warranty or additional liability.
 
-License: BSD-2-clause
+License: BSD-0-Clause
+ Permission to use, copy, modify, and/or distribute this software for any
+ purpose with or without fee is hereby granted.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ REGARD TO THIS SOFTWARE  INCLUDING ALL IMPLIED WARRANTIES OF  MERCHANTABILITY
+ AND FITNESS.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ INDIRECT,  OR CONSEQUENTIAL DAMAGES  OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ LOSS OF USE,  DATA OR PROFITS,  WHETHER IN AN ACTION OF CONTRACT,  NEGLIGENCE
+ OR OTHER TORTIOUS ACTION,  ARISING OUT OF  OR IN CONNECTION  WITH THE USE  OR
+ PERFORMANCE OF THIS SOFTWARE.
+
+License: BSD-2-Clause
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are met:
   .
@@ -424,7 +432,164 @@ License: BSD-2-clause
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE.
 
-License: zlib
+License: BSD-3-Clause
+ Copyright (c) 2002 Kitware, Inc., Insight Consortium
+ All rights reserved.
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are
+ met:
+ .
+  * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+ .
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+ .
+  * The names of Kitware, Inc., the Insight Consortium, or the names of
+    any consortium members, or of any contributors, may not be used to
+    endorse or promote products derived from this software without
+    specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER AND CONTRIBUTORS ``AS IS''
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS BE LIABLE FOR
+ ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-4-Clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. The origin of this software must not be misrepresented; you must
+    not claim that you wrote the original software.  If you use this
+    software in a product, an acknowledgment in the product
+    documentation would be appreciated but is not required.
+ .
+ 3. Altered source versions must be plainly marked as such, and must
+    not be misrepresented as being the original software.
+ .
+ 4. The name of the author may not be used to endorse or promote
+    products derived from this software without specific prior written
+    permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
+ OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+ DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated documentation
+ files (the "Software"), to deal in the Software without
+ restriction, including without limitation the rights to use,
+ copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following
+ conditions:
+ .
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.
+
+License: FSFAP
+ Copying and distribution of this file, with or without modification, are
+ permitted in any medium without royalty provided the copyright notice and
+ this notice are preserved. This file is offered as-is, without any warranty.
+
+License: GPL-2+ with Bison exception
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2, or (at your option)
+  any later version.
+  .
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  .
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor,
+  Boston, MA 02110-1301, USA.
+  .
+  As a special exception, you may create a larger work that contains
+  part or all of the Bison parser skeleton and distribute that work
+  under terms of your choice, so long as that work isn't itself a
+  parser generator using the skeleton or a modified version thereof
+  as a parser skeleton.  Alternatively, if you modify or redistribute
+  the parser skeleton itself, you may (at your option) remove this
+  special exception, which will cause the skeleton and the resulting
+  Bison output files to be licensed under the GNU General Public
+  License without this special exception.
+  .
+  On Debian systems, the complete text of the GNU General Public License
+  version 2 can be found in /usr/share/common-licenses/GPL-2
+
+License: GPL-3+ with Bison exception
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  .
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  .
+  On Debian systems, the complete text of the GNU General Public License
+  version 2 can be found in /usr/share/common-licenses/GPL-3
+  .
+  As a special exception, you may create a larger work that contains
+  part or all of the Bison parser skeleton and distribute that work
+  under terms of your choice, so long as that work isn't itself a
+  parser generator using the skeleton or a modified version thereof
+  as a parser skeleton.  Alternatively, if you modify or redistribute
+  the parser skeleton itself, you may (at your option) remove this
+  special exception, which will cause the skeleton and the resulting
+  Bison output files to be licensed under the GNU General Public
+  License without this special exception.
+
+License: ISC
+  Permission to use, copy, modify, and distribute this software for any
+  purpose with or without fee is hereby granted, provided that the above
+  copyright notice and this permission notice appear in all copies.
+  .
+  THE SOFTWARE IS PROVIDED "AS IS" AND INTERNET SOFTWARE CONSORTIUM DISCLAIMS
+  ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
+  OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL INTERNET SOFTWARE
+  CONSORTIUM BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL
+  DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+  PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS
+  ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
+  SOFTWARE.
+
+License: Zlib
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
   arising from the use of this software.
@@ -441,16 +606,3 @@ License: zlib
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 
-License: ISC
-  Permission to use, copy, modify, and distribute this software for any
-  purpose with or without fee is hereby granted, provided that the above
-  copyright notice and this permission notice appear in all copies.
-  .
-  THE SOFTWARE IS PROVIDED "AS IS" AND INTERNET SOFTWARE CONSORTIUM DISCLAIMS
-  ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
-  OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL INTERNET SOFTWARE
-  CONSORTIUM BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL
-  DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
-  PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS
-  ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
-  SOFTWARE.

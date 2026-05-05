@@ -3,12 +3,13 @@ Upstream-Contact: https://github.com/indutny/brorand/issues
 Source: https://github.com/indutny/brorand
 
 Files: *
-Copyright: 2014-2017 Fedor Indutny <fedor@indutny.com>
+Copyright: 2014, Fedor Indutny <fedor@indutny.com>
 License: Expat
 
 Files: debian/*
-Copyright: 2017 Tushar Agey <agey.tushar3@gmail.com>
- 2018 Bastien Roucariès <rouca@debian.org>
+Copyright: 2017, Tushar Agey <agey.tushar3@gmail.com>
+ 2018, Bastien Roucariès <rouca@debian.org>
+ 2019, Xavier Guimard <yadd@debian.org>
 License: Expat
 
 License: Expat

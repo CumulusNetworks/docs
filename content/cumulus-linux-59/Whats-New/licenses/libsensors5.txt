@@ -1,15 +1,14 @@
-This package was debianized by Stephen Crowley crow@debian.org and is now
+This package was debianized by Stephen Crowley <crow@debian.org> and is now
 maintained by Aurelien Jarno <aurel32@debian.org>.
 
 It was downloaded from https://hwmon.wiki.kernel.org/lm_sensors
-i
 
 Authors:
   Frodo Looijaard <frodol@dds.nl>
   Merlin Hughes <merlin@merlin.org>
   Mark M. Hoffman <mhoffman@lightlink.com>
   Jean Delvare <khali@linux-fr.org>
-  Ondřej Lysoněk <olysonek@redhat.com>
+  Ond?ej Lyson?k <olysonek@redhat.com>
 
 
 Copyright:
@@ -22,7 +21,7 @@ Copyright:
   Copyright 2003 Marius Reiner <marius.reiner@hdev.de>
   Copyright 2005, 2006 Mark M. Hoffman <mhoffman@lightlink.com>
   Copyright 2008, Juerg Haefliger <juergh@gmail.com>
-  Copyright 2018 Ondřej Lysoněk <olysonek@redhat.com>
+  Copyright 2018 Ond?ej Lyson?k <olysonek@redhat.com>
 
 
 License of the lm-sensors library as a whole (libsensors4-dev, libsensors5
@@ -37,8 +36,8 @@ and libsensors-config packages):
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU Lesser General Public License for more details.
 
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
+  You should have received a copy of the GNU Lesser General Public
+  License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
   MA 02110-1301 USA.
 
@@ -57,10 +56,9 @@ License of the lm-sensors tools (fancontrol and lm-sensors packages):
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 51 Franklin St, 
-  Fifth Floor, Boston, MA  02110-1301 USA
+  You should have received a copy of the GNU General Public License along
+  with this program; if not, write to the Free Software Foundation, Inc.,
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 On Debian systems, the complete text of the GNU General Public
 License, version 2, can be found in /usr/share/common-licenses/GPL-2.

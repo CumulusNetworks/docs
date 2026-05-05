@@ -1,21 +1,25 @@
-This package was debianized by Mario Jou/3en <joussen@debian.org> on
-Wed, 26 Dec 2001 17:07:09 +0100.
-Martin F. Krafft <madduck@debian.org> took over on
-Tue, 16 May 2006 13:21:06 -0500
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: mdadm
+Upstream-Contact: Neil Brown <neilb@suse.de>
+Source: https://www.kernel.org/pub/linux/utils/raid/mdadm/
 
-The mdadm source was downloaded from
-  http://www.kernel.org/pub/linux/utils/raid/mdadm/
+Files: *
+Copyright:
+ © 2001-2006 Neil Brown <neilb@suse.de>
+License: GPL-2+
 
-Upstream Author: Neil Brown <neilb@suse.de>
+Files: debian/*
+Copyright:
+ © 2001-2005 Mario Jou/3en <joussen@debian.org>
+ © 2005-2008 Martin F. Krafft <madduck@debian.org>
+ © 2020 Felix Lechner <felix.lechner@lease-up.com>
+License: GPL-2+
 
-Copyright Â© 2001-2006 Neil Brown <neilb@suse.de>
-Packaging copyright Â© 2001-2005 Mario Jou/3en <joussen@debian.org>
-Packaging copyright Â© 2005-2008 Martin F. Krafft <madduck@debian.org>
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-On Debian GNU/Linux systems, the complete text of the GNU General
-Public License can be found in '/usr/share/common-licenses/GPL-2'.
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ On Debian GNU/Linux systems, the complete text of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.

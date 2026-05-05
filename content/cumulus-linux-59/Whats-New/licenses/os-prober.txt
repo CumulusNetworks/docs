@@ -1,0 +1,11 @@
+The majority of code in os-prober is Copyright 2004-2011 by Joshua
+Kwan, Joey Hess, Christian Perrier, Colin Watson and Otavio Salvador.
+This is licensed $under the terms of the GNU GPL, either version 2 or,
+at your option, any later version.
+
+
+Some portions of os-prober by other contributors has an unclear license
+of "GNU GPL", with the version not specified.
+
+On Debian systems, a copy of the GNU General Public License is available in
+/usr/share/common-licenses/GPL-2.

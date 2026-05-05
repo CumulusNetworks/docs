@@ -34,10 +34,9 @@ Copyright: 2004-2010, Marcus Holland-Moritz <mhx-cpan@gmx.net>
  1999, Kenneth Albanowski <kjahds@kjahds.com> (Version 1.x)
 License: Artistic or GPL-1+
 
-Files: inc/Test/NoWarnings.pm
-Copyright: 2003-2007, Fergal Daly <fergal@esatclear.ie>
- 2010, Adam Kennedy <adamk@cpan.org>
-License: Artistic or GPL-1+
+Files: inc/Test/FailWarnings.pm
+Copyright: 2013, David Golden
+License: Apache-2.0
 
 Files: lib/DBD/SQLite/Fulltext_search.pod
  lib/DBD/SQLite/VirtualTable*
@@ -46,9 +45,9 @@ License: Artistic or GPL-1+
 
 Files: debian/*
 Copyright: 2002-2003, Ardo van Rangelrooij <ardo@debian.org>
- 2003-2009, Krzysztof Krzyżaniak (eloy) <eloy@debian.org>
+ 2003-2009, Krzysztof Krzy?aniak (eloy) <eloy@debian.org>
  2005, Marcelo E. Magallon <mmagallo@debian.org>
- 2006-2019, gregor herrmann <gregoa@debian.org>
+ 2006-2022, gregor herrmann <gregoa@debian.org>
  2006, Andreas Barth <aba@not.so.argh.org>
  2006-2008, Niko Tyni <ntyni@debian.org>
  2007, David Paleino <d.paleino@gmail.com>
@@ -60,6 +59,20 @@ Copyright: 2002-2003, Ardo van Rangelrooij <ardo@debian.org>
  2010-2018, Salvatore Bonaccorso <carnil@debian.org>
  2018, Xavier Guimard <yadd@debian.org>
 License: Artistic or GPL-1+
+
+License: Apache-2.0
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     https://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ .
+ On Debian systems, the complete text of the Apache License,
+ Version 2.0 can be found in `/usr/share/common-licenses/Apache-2.0'.
 
 License: Artistic
  This program is free software; you can redistribute it and/or modify

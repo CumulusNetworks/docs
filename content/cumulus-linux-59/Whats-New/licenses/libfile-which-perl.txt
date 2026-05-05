@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: File-Which
-Upstream-Contact: Adam Kennedy <adamk@cpan.org>
+Upstream-Contact: Graham Ollis <plicease@cpan.org>
 Source: https://metacpan.org/release/File-Which
 
 Files: *
@@ -12,9 +12,10 @@ License: GPL-1+ or Artistic
 Files: debian/*
 Copyright: 2002-2004, Ardo van Rangelrooij <ardo@debian.org>
  2004, Daniel Ruoso <daniel@ruoso.com>
- 2006-2019, gregor herrmann <gregoa@debian.org>
+ 2006-2021, gregor herrmann <gregoa@debian.org>
  2009, Jonathan Yu <jawnsy@cpan.org>
  2012-2015, Florian Schlichting <fsfs@debian.org>
+ 2022, Nick Morrott <nickm@debian.org>{
 License: GPL-1+ or Artistic
 
 License: Artistic

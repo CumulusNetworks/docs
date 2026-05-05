@@ -1,0 +1,20 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: go-envparse
+Source: https://github.com/hashicorp/go-envparse
+
+Files: *
+Copyright: 2017 HashiCorp Inc.
+License: MPL-2.0
+
+Files: debian/*
+Copyright: 2021-2022 Benjamin Drung <bdrung@debian.org>
+License: MPL-2.0
+Comment: Debian packaging is licensed under the same terms as upstream
+
+License: MPL-2.0
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ .
+ On Debian systems, the complete text of the MPL-2.0 license can be found
+ in "/usr/share/common-licenses/MPL-2.0".

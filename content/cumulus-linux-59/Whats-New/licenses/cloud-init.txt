@@ -2,22 +2,23 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: https://launchpad.net/cloud-init/trunk/0.7.4/+download/cloud-init-0.7.4.tar.gz
 
 Files: *
-Copyright: Â© 2009-2015, Canonical Ltd.
-           Â© 2012-2013 Hewlett-Packard Development Company, L.P.
-           Â© 2012 Cosmin Luta
-           Â© 2012-2014 Yahoo! Inc.
-           Â© 2012 Gerard Dethier
-           Â© 2013 Craig Tracey
-           Â© 2012-2013 CERIT Scientific Cloud
-           Â© 2012-2013 OpenNebula.org
-           Â© 2013 Google Inc.
-           Â© 2014 CloudSigma
-           Â© 2014 Rackspace, US Inc.
-           Â© 2014 Harm Weites
-           Â© 2014 Consejo Superior de Investigaciones Cientificas
-           Â© 2014 Vaidas Jablonskis
-           Â© 2015 Red Hat, Inc.
+Copyright: © 2009-2015, Canonical Ltd.
+           © 2012-2013 Hewlett-Packard Development Company, L.P.
+           © 2012 Cosmin Luta
+           © 2012-2014 Yahoo! Inc.
+           © 2012 Gerard Dethier
+           © 2013 Craig Tracey
+           © 2012-2013 CERIT Scientific Cloud
+           © 2012-2013 OpenNebula.org
+           © 2013 Google Inc.
+           © 2014 CloudSigma
+           © 2014 Rackspace, US Inc.
+           © 2014 Harm Weites
+           © 2014 Consejo Superior de Investigaciones Cientificas
+           © 2014 Vaidas Jablonskis
+           © 2015 Red Hat, Inc.
 License: GPL-3 or Apache-2.0
+
 License: GPL-3
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License version 3, as
@@ -33,6 +34,7 @@ License: GPL-3
  .
  The complete text of the GPL version 3 can be seen in
  /usr/share/common-licenses/GPL-3.
+
 License: Apache-2.0
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.

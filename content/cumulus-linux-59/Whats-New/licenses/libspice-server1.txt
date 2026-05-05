@@ -1,18 +1,20 @@
-Format: http://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?op=file&rev=174
+Format: https://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?op=file&rev=174
 Upstream-Name: spice
-Source: http://www.spice-space.org/
+Source: https://www.spice-space.org/
 
 Files: *
 Copyright: Copyright (C) 2009-2017 Red Hat, Inc.
            Copyright (C) 2010-2017 Liang Guo <bluestonechina@gmail.com>
 License: LGPL-2.1+
 
-Files: spice-common/common/draw.h spice-common/common/messages.h
+Files: subprojects/spice-common/common/draw.h
+       subprojects/spice-common/common/messages.h
        server/zlib-encoder.h server/jpeg-encoder.h
 Copyright: Copyright (C) 2009-2010 Red Hat, Inc.
 License: BSD-3-clause
 
-Files: spice-common/common/lines.h spice-common/common/lines.c
+Files: subprojects/spice-common/common/lines.h
+       subprojects/spice-common/common/lines.c
 Copyright: Copyright 1987, 1998  The Open Group
            Copyright 1987 by Digital Equipment Corporation
 License:
@@ -58,13 +60,14 @@ License:
  ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  SOFTWARE.
 
-Files: spice-common/common/lz_decompress_tmpl.c spice-common/common/lz.c
-       spice-common/common/lz_compress_tmpl.c
+Files: subprojects/spice-common/common/lz_decompress_tmpl.c
+       subprojects/spice-common/common/lz.c
+       subprojects/spice-common/common/lz_compress_tmpl.c
 Copyright: Copyright 2009 Red Hat, Inc. and/or its affiliates
            Copyright (C) 2005, 2006, 2007 Ariya Hidayat (ariya@kde.org)
 License: LGPL-2.1+
 
-Files: spice-common/common/lz.h
+Files: subprojects/spice-common/common/lz.h
 Copyright: NOT COPYRIGHTED
 License: MIT
 

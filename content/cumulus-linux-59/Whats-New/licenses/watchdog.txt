@@ -1,9 +1,9 @@
 This is the Debian GNU/Linux prepackaged version of watchdog.
-Watchdog was written by Michael Meskes <meskes@informatik.rwth-aachen.de>.
+Watchdog was written by Michael Meskes <meskes@debian.org>
 
 Copying:
 
-   Copyright (C) 1996-2012 Michael Meskes
+   Copyright (C) 1996-2020 Michael Meskes, Paul Crawford
 
    WATCHDOG is free software; you can redistribute it and/or modify it under
    the terms of the GNU General Public License as published by the Free
@@ -16,10 +16,10 @@ Copying:
    more details.
 
 On Debian GNU/Linux systems, the complete text of the GNU General
-Public License can be found in `/usr/share/common-licenses/GPL'.
+Public License can be found in `/usr/share/common-licenses/GPL-2'.
 
-* Michael Meskes <meskes@debian.org> Wed Jan  15 11:36:42 +0100 1997
+* Michael Meskes <meskes@debian.org> Fri 24 Apr 2020 10:29:55 AM CEST
 
-Modifications for Debian are copyright (C) 1997-2012 Michael Meskes, (C)
+Modifications for Debian are copyright (C) 1997-2020 Michael Meskes, (C)
 1997-2000 Johnie Ingram, and also released under the terms of the GPL
 as stated above.

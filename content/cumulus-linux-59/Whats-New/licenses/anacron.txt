@@ -1,0 +1,22 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: anacron
+Upstream-Contact: Sean 'Shaleh' Perry <shaleh@debian.org>
+Source: https://sourceforge.net/projects/anacron/
+
+Files: *
+Copyright: 1988 Itai Tzur <itzur@actcom.co.il>, 1999 Sean 'Shaleh' Perry <shaleh@debian.org>
+License: GPL-2+
+
+Files: debian/*
+Copyright: 1999-2023 Sean 'Shaleh' Perry <shaleh@debian.org>
+License: GPL-2+
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ On Debian GNU/Linux systems, the complete text of the GNU General
+ Public License is in `/usr/share/common-licenses/GPL-2', version 2 of this
+ license in `/usr/share/common-licenses/GPL-2'.

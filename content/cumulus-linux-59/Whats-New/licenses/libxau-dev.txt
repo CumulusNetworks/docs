@@ -1,5 +1,5 @@
 This package was downloaded from
-http://xorg.freedesktop.org/releases/individual/lib/
+https://xorg.freedesktop.org/releases/individual/lib/
 
 Copyright 1988, 1998  The Open Group
 

@@ -17,7 +17,7 @@ License: GPL-3.0+
 Files: debian/*
 Copyright: 1996-1997 Martin Schulze <joey@debian.org>
            1997-1999 James Troup <james@nocrew.org>
-           1998      FranÃ§ois Gouget <fgouget@mygale.org>
+           1998      François Gouget <fgouget@mygale.org>
            1999-2002 Zephaniah E. Hull <warp@debian.org>
            2004-2008 Guillem Jover <guillem@debian.org>
            2004-2012 Peter Samuelson <peter@p12n.org>
@@ -28,7 +28,7 @@ Comment: It is assumed that the packaging is licensed under the same
  terms as the upstream code unless stated otherwise.
 
 Files: debian/gpm-microtouch-setup.8
-Copyright: 2008 FranÃ§ois Wendling <frwendling@free.fr>
+Copyright: 2008 François Wendling <frwendling@free.fr>
 License: GPL-2.0+
 Comment: It is assumed that the packaging is licensed under the same
  terms as the upstream code unless stated otherwise.

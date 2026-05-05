@@ -4,11 +4,11 @@ Upstream-Contact: Hynek Schlawack <hs@ox.cx>
 Source: https://attrs.readthedocs.org/
 
 Files: *
-Copyright: 2015 Hynek Schlawack
+Copyright: 2015, Hynek Schlawack and the attrs contributors
 License: Expat
 
 Files: debian/*
-Copyright: 2015 Tristan Seligmann <mithrandi@debian.org>
+Copyright: 2015, Tristan Seligmann <mithrandi@debian.org>
 License: Expat
 
 License: Expat

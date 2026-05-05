@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: lksctp-tools
 Source: https://github.com/sctp/lksctp-tools/
 Files-Excluded: doc/rfc*
@@ -15,7 +15,7 @@ Copyright: 1999-2000, 2003 Cisco, Inc.
 License: GPL-2.0+
 
 Files: src/lib/*
-       src/include/netinet/sctp.h
+       src/include/netinet/sctp.h.in
 Copyright: 2001, 2003, 2005 IBM Corp.
            2001-2003 Intel Corp.
 License: LGPL-2.1+

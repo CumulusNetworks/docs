@@ -1,12 +1,12 @@
 This package was debianized by Santiago Garcia Mantinan <manty@debian.org>
 on Wed,  8 Nov 2000 20:09:10 +0100.
 
-It was downloaded from the sourceforge bridge project at:
+It was downloaded from the bridge project at:
 
-	http://sourceforge.net/project/showfiles.php?group_id=26089
+	https://git.kernel.org/pub/scm/linux/kernel/git/shemminger/bridge-utils.git
 
 Upstream Authors:
-	Stephen Hemminger <shemminger@vyatta.com>
+	Stephen Hemminger <stephen@networkplumber.org>
 	Lennert Buytenhek <buytenh@gnu.org>
 
 Copyright:

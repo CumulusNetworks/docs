@@ -1,37 +1,37 @@
-This work was packaged for Debian by:
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: libestr
+Upstream-Contact: Rainer Gerhards <rgerhards@adiscon.com>, Adiscon GmbH.
+Source: https://github.com/rsyslog/libestr
 
-    Pierre Chifflier <pollux@debian.org> on Sat, 11 Dec 2010 12:03:47 +0100
+Files: *
+Copyright: 2010, Rainer Gerhards and Adiscon GmbH.
+  2010-2011, Rainer Gerhards and Adiscon GmbH.
+License: LGPL-2.1+
 
-It was downloaded from:
+Files: debian/*
+Copyright: 2022, Florian Ernst <florian@debian.org>
+License: LGPL-2.1+
 
-    http://libestr.sourceforge.net/
+Files: debian/tests/*
+Copyright: 2012, Canonical Ltd. and Vibhav Pant <vibhavp@ubuntu.com>
+  2022, Florian Ernst <florian@debian.org>
+License: LGPL-2.1+
 
-Upstream Author:
-
-    Rainer Gerhards
-
-Copyright:
-
-    Copyright 2010 by Rainer Gerhards and Adiscon GmbH.
-
-License:
-
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
-    
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
-
-Complete LGPL version 2.1 text can be found in 
-"/usr/share/common-licenses/LGPL-2.1".
-
-The Debian packaging is:
-
-    Copyright (C) 2010 Pierre Chifflier <pollux@debian.org>
-
-and is licensed under the LGPL version 2.1,
-see "/usr/share/common-licenses/LGPL-2.1".
+License: LGPL-2.1+
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published
+ by the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program; if not, write to the Free Software Foundation,
+ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ .
+ On Debian systems, the full text of the GNU Lesser General Public
+ License version 2.1 can be found in the file
+ `/usr/share/common-licenses/LGPL-2.1'.

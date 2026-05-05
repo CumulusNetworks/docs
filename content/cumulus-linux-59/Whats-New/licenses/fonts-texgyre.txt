@@ -1,0 +1,310 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Contact: http://www.gust.org.pl/projects/e-foundry/tex-gyre/
+Source: http://www.gust.org.pl/projects/e-foundry/tex-gyre/
+
+Comment: Common Files
+Files:	fonts/enc/dvips/tex-gyre/*.enc
+ 	doc/fonts/tex-gyre*/MANIFEST*
+ 	doc/fonts/tex-gyre*/*LICENSE*
+ 	doc/fonts/tex-gyre*/README*
+ 	doc/fonts/tex-gyre-math/INSTALL.txt
+ 	doc/fonts/tex-gyre-math/math-test*
+ 	doc/fonts/tex-gyre/goadb999.nam
+ 	tlpkg/tlpobj/*
+Copyright: Copyright (C) 2006-2018 Bogus?aw Jackowski and Janusz M. Nowacki
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Adventor
+Files:	doc/fonts/tex-gyre/qag*
+ 	fonts/map/dvips/tex-gyre/qag*
+ 	fonts/tfm/public/tex-gyre/*qag*
+ 	fonts/afm/public/tex-gyre/qag*
+ 	fonts/type1/public/tex-gyre/qag*
+ 	fonts/opentype/public/tex-gyre/texgyreadventor*
+ 	source/fonts/tex-gyre/*adventor*
+ 	tex/latex/tex-gyre/*qag*
+ 	tex/latex/tex-gyre/tgadventor.sty
+Copyright: Copyright (C) 2007-2018 Bogus?aw Jackowski and Janusz M. Nowacki
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Bonum
+Files:	doc/fonts/tex-gyre/qbk*
+ 	fonts/map/dvips/tex-gyre/qbk*
+ 	fonts/tfm/public/tex-gyre/*qbk*
+ 	fonts/afm/public/tex-gyre/qbk*
+ 	fonts/type1/public/tex-gyre/qbk*
+ 	fonts/opentype/public/tex-gyre/texgyrebonum*
+ 	tex/latex/tex-gyre/*qbk*
+ 	tex/latex/tex-gyre/qbookman.sty
+ 	tex/latex/tex-gyre/tgbonum.sty
+Copyright: Copyright (C) 2007-2009 Bogus?aw Jackowski and Janusz M. Nowacki
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Chorus
+Files:	doc/fonts/tex-gyre/qzc*
+ 	fonts/map/dvips/tex-gyre/qzc*
+ 	fonts/tfm/public/tex-gyre/*qzc*
+ 	fonts/afm/public/tex-gyre/qzc*
+ 	fonts/type1/public/tex-gyre/qzc*
+ 	fonts/opentype/public/tex-gyre/texgyrechorus*
+ 	tex/latex/tex-gyre/*qzc*
+ 	tex/latex/tex-gyre/qzapfcha.sty
+ 	tex/latex/tex-gyre/tgchorus.sty
+Copyright: Copyright (C) 2007-2009 Bogus?aw Jackowski and Janusz M. Nowacki
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Cursor
+Files:	doc/fonts/tex-gyre/qcr*
+ 	fonts/map/dvips/tex-gyre/qcr*.map
+ 	fonts/tfm/public/tex-gyre/*qcr*
+ 	fonts/afm/public/tex-gyre/qcr*.afm
+ 	fonts/type1/public/tex-gyre/qcr*.pfb
+ 	fonts/type1/public/tex-gyre/qcr*.pfm
+ 	fonts/opentype/public/tex-gyre/texgyrecursor*
+ 	tex/latex/tex-gyre/*qcr*
+ 	tex/latex/tex-gyre/qcourier.sty
+ 	tex/latex/tex-gyre/tgcursor.sty
+Copyright: Copyright (C) 2007-2009 Bogus?aw Jackowski and Janusz M. Nowacki
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Heros
+Files:	doc/fonts/tex-gyre/qhv*
+ 	fonts/map/dvips/tex-gyre/qhv*
+ 	fonts/tfm/public/tex-gyre/*qhv*
+ 	fonts/afm/public/tex-gyre/qhv*
+ 	fonts/type1/public/tex-gyre/qhv*
+ 	fonts/opentype/public/tex-gyre/texgyreheros*
+ 	tex/latex/tex-gyre/*qhv*
+ 	tex/latex/tex-gyre/qswiss.sty
+ 	tex/latex/tex-gyre/tgheros.sty
+Copyright: Copyright (C) 2007-2018  Bogus?aw Jackowski and Janusz M. Nowacki
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Pagella
+Files:	doc/fonts/tex-gyre/qpl*
+ 	fonts/map/dvips/tex-gyre/qpl*
+ 	fonts/tfm/public/tex-gyre/*qpl*
+ 	fonts/afm/public/tex-gyre/qpl*
+ 	fonts/type1/public/tex-gyre/qpl*
+ 	fonts/opentype/public/tex-gyre/texgyrepagella*
+ 	source/fonts/tex-gyre/*pagella*
+ 	tex/latex/tex-gyre/*qpl*
+ 	tex/latex/tex-gyre/qpalatin.sty
+ 	tex/latex/tex-gyre/tgpagella.sty
+Copyright: Copyright (C) 2007-2018  Bogus?aw Jackowski and Janusz M. Nowacki
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Schola
+Files:	doc/fonts/tex-gyre/qcs*
+ 	fonts/map/dvips/tex-gyre/qcs*
+ 	fonts/tfm/public/tex-gyre/*qcs*
+ 	fonts/afm/public/tex-gyre/qcs*
+ 	fonts/type1/public/tex-gyre/qcs*
+ 	fonts/opentype/public/tex-gyre/texgyreschola*
+ 	tex/latex/tex-gyre/*qcs*
+ 	tex/latex/tex-gyre/tgschola.sty
+Copyright: Copyright (C) 2007-2009  Bogus?aw Jackowski and Janusz M. Nowacki
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Termes
+Files:	doc/fonts/tex-gyre/qtm*
+ 	fonts/map/dvips/tex-gyre/qtm*
+ 	fonts/tfm/public/tex-gyre/*qtm*
+ 	fonts/afm/public/tex-gyre/qtm*
+ 	fonts/type1/public/tex-gyre/qtm*
+ 	fonts/opentype/public/tex-gyre/texgyretermes*
+ 	tex/latex/tex-gyre/*qtm*
+ 	tex/latex/tex-gyre/qtimes.sty
+ 	tex/latex/tex-gyre/tgtermes.sty
+Copyright: Copyright (C) 2006-2009  Bogus?aw Jackowski and Janusz M. Nowacki
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Bonum-Math
+Files: doc/fonts/tex-gyre-math/test-*-texgyre_bonum_math.*
+ 	fonts/opentype/public/tex-gyre-math/texgyrebonum-math.otf
+Copyright: Copyright (C) 2013-2014  B. Jackowski, P. Strzelczyk and P. Pianowski
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Pagella-Math
+Files: doc/fonts/tex-gyre-math/test-*-texgyre_pagella_math.*
+ 	fonts/opentype/public/tex-gyre-math/texgyrepagella-math.otf
+Copyright: Copyright (C) 2012-2014  B. Jackowski, P. Strzelczyk and P. Pianowski
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Schola-Math
+Files: doc/fonts/tex-gyre-math/test-*-texgyre_schola_math.*
+ 	fonts/opentype/public/tex-gyre-math/texgyreschola-math.otf
+Copyright: Copyright (C) 2014  B. Jackowski, P. Strzelczyk and P. Pianowski
+License: GUST-Font-License
+
+Comment: TeX-Gyre-Termes-Math
+Files: doc/fonts/tex-gyre-math/test-*-texgyre_termes_math.*
+ 	fonts/opentype/public/tex-gyre-math/texgyretermes-math.otf
+Copyright: Copyright (C) 2012-2014  B. Jackowski, P. Strzelczyk and P. Pianowski
+License: GUST-Font-License
+
+Comment: TeX-Gyre-DejaVu-Math
+Files: doc/fonts/tex-gyre-math/test-*-texgyre_dejavu_math.*
+ 	fonts/opentype/public/tex-gyre-math/texgyredejavu-math.otf
+ 	source/fonts/tex-gyre-math/texgyredejavu-math.sfd
+Copyright: Copyright (C) 2016  B. Jackowski, P. Strzelczyk and P. Pianowski
+License: GUST-Font-License and DejaVu-License
+
+Files: debian/*
+Copyright: Copyright (C) 2004-2007 Florent Rougon
+           Copyright (C) 2007-2016 Norbert Preining
+           Copyright (C) 2020-2022 Hilmar Preusse
+License: GPL-2+
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 2 can be found in `/usr/share/common-licenses/GPL-2'.
+
+License: GUST-Font-License
+ This is a preliminary version (2006-09-30), barring acceptance from
+ the LaTeX Project Team and other feedback, of the GUST Font License.
+ (GUST is the Polish TeX Users Group, http://www.gust.org.pl)
+ .
+ For the most recent version of this license see
+ http://www.gust.org.pl/fonts/licenses/GUST-FONT-LICENSE.txt
+ or
+ http://tug.org/fonts/licenses/GUST-FONT-LICENSE.txt
+ .
+ This work may be distributed and/or modified under the conditions
+ of the LaTeX Project Public License, either version 1.3c of this
+ license or (at your option) any later version.
+ .
+ Please also observe the following clause:
+ 1) it is requested, but not legally required, that derived works be
+    distributed only after changing the names of the fonts comprising this
+    work and given in an accompanying "manifest", and that the
+    files comprising the Work, as listed in the manifest, also be given
+    new names. Any exceptions to this request are also given in the
+    manifest.
+ .
+    We recommend the manifest be given in a separate file named
+    MANIFEST-<fontid>.txt, where <fontid> is some unique identification
+    of the font family. If a separate "readme" file accompanies the Work,
+    we recommend a name of the form README-<fontid>.txt.
+ .
+ The latest version of the LaTeX Project Public License is in
+ http://www.latex-project.org/lppl.txt and version 1.3c or later
+ is part of all distributions of LaTeX version 2006/05/20 or later.
+
+License: DejaVu-License
+ What follows is the exact contents of LICENSE-DejaVu.txt from the
+ upstream distribution of the TeX Gyre fonts.
+ .
+ Fonts are (c) Bitstream (see below). DejaVu changes are in public domain.
+ Glyphs imported from Arev fonts are (c) Tavmjong Bah (see below)
+ .
+ Bitstream Vera Fonts Copyright
+ ------------------------------
+ .
+ Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera is
+ a trademark of Bitstream, Inc.
+ .
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of the fonts accompanying this license ("Fonts") and associated
+ documentation files (the "Font Software"), to reproduce and distribute the
+ Font Software, including without limitation the rights to use, copy, merge,
+ publish, distribute, and/or sell copies of the Font Software, and to permit
+ persons to whom the Font Software is furnished to do so, subject to the
+ following conditions:
+ .
+ The above copyright and trademark notices and this permission notice shall
+ be included in all copies of one or more of the Font Software typefaces.
+ .
+ The Font Software may be modified, altered, or added to, and in particular
+ the designs of glyphs or characters in the Fonts may be modified and
+ additional glyphs or characters may be added to the Fonts, only if the fonts
+ are renamed to names not containing either the words "Bitstream" or the word
+ "Vera".
+ .
+ This License becomes null and void to the extent applicable to Fonts or Font
+ Software that has been modified and is distributed under the "Bitstream
+ Vera" names.
+ .
+ The Font Software may be sold as part of a larger software package but no
+ copy of one or more of the Font Software typefaces may be sold by itself.
+ .
+ THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT,
+ TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL BITSTREAM OR THE GNOME
+ FOUNDATION BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING
+ ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+ THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE
+ FONT SOFTWARE.
+ .
+ Except as contained in this notice, the names of Gnome, the Gnome
+ Foundation, and Bitstream Inc., shall not be used in advertising or
+ otherwise to promote the sale, use or other dealings in this Font Software
+ without prior written authorization from the Gnome Foundation or Bitstream
+ Inc., respectively. For further information, contact: fonts at gnome dot
+ org.
+ .
+ Arev Fonts Copyright
+ ------------------------------
+ .
+ Copyright (c) 2006 by Tavmjong Bah. All Rights Reserved.
+ .
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of the fonts accompanying this license ("Fonts") and
+ associated documentation files (the "Font Software"), to reproduce
+ and distribute the modifications to the Bitstream Vera Font Software,
+ including without limitation the rights to use, copy, merge, publish,
+ distribute, and/or sell copies of the Font Software, and to permit
+ persons to whom the Font Software is furnished to do so, subject to
+ the following conditions:
+ .
+ The above copyright and trademark notices and this permission notice
+ shall be included in all copies of one or more of the Font Software
+ typefaces.
+ .
+ The Font Software may be modified, altered, or added to, and in
+ particular the designs of glyphs or characters in the Fonts may be
+ modified and additional glyphs or characters may be added to the
+ Fonts, only if the fonts are renamed to names not containing either
+ the words "Tavmjong Bah" or the word "Arev".
+ .
+ This License becomes null and void to the extent applicable to Fonts
+ or Font Software that has been modified and is distributed under the
+ "Tavmjong Bah Arev" names.
+ .
+ The Font Software may be sold as part of a larger software package but
+ no copy of one or more of the Font Software typefaces may be sold by
+ itself.
+ .
+ THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+ OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL
+ TAVMJONG BAH BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+ DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+ OTHER DEALINGS IN THE FONT SOFTWARE.
+ .
+ Except as contained in this notice, the name of Tavmjong Bah shall not
+ be used in advertising or otherwise to promote the sale, use or other
+ dealings in this Font Software without prior written authorization
+ from Tavmjong Bah. For further information, contact: tavmjong @ free
+ . fr.
+ .
+ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $

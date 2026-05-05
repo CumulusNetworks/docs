@@ -1,0 +1,232 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: FreeRADIUS server
+Source: https://github.com/FreeRADIUS/freeradius-server
+Files-Excluded:
+  doc/rfc/*
+  debian/*
+
+Files: *
+Copyright: 2000-2014, The FreeRADIUS Server Project
+ 1997-1999, Cistron Internet Services B.V.
+License: GPL-2+
+
+Files: debian/*
+Copyright: 2000, Chad Miller <cmiller@debian.org>
+  2003, Paul Hampson <Paul.Hampson@anu.edu.au>
+  2008, Stephen Gran <sgran@debian.org>
+  2016, Michael Stapelberg <stapelberg@debian.org>
+License: GPL-2+
+
+Files: scripts/boiler.mk
+  scripts/install.mk
+  scripts/libtool.mk
+Copyright: 2008, 2009, 2010 Dan Moulding, Alan T. DeKok
+License: GPL-3+
+
+Files: scripts/jlibtool.c
+Copyright: Justin Erenkrantz
+License: Apache-2.0
+
+Files: scripts/snmp-proxy/freeradius-snmp.pl
+Copyright: 2008 Sky Network Services
+License: GPL-1+ or Artistic
+Comment:
+ This program is free software; you can redistribute it and/or modify it
+ under the same terms as Perl itself.
+
+Files: src/*
+Copyright: 2000-2014, The FreeRADIUS Server Project
+ 1997-1999, Cistron Internet Services B.V.
+License: GPL-2+ with OpenSSL exception
+
+Files: src/include/exfile.h
+  src/include/libradius.h
+  src/include/md4.h
+  src/include/md5.h
+  src/include/regex.h
+  src/include/threads.h
+  src/lib/dict.c
+  src/lib/event.c
+  src/lib/fifo.c
+  src/lib/filters.c
+  src/lib/hash.c
+  src/lib/hmacmd5.c
+  src/lib/log.c
+  src/lib/md4.c
+  src/lib/md5.c
+  src/lib/misc.c
+  src/lib/missing.c
+  src/lib/packet.c
+  src/lib/pair.c
+  src/lib/print.c
+  src/lib/radius.c
+  src/lib/snprintf.*
+  src/lib/token.c
+  src/lib/udpfromto.c
+  src/lib/value.c
+  src/modules/proto_dhcp/dhcp.c
+  src/modules/proto_vmps/vqp.c
+Copyright: See individual files
+License: LGPL-2.1+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+ .
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License can be found in /usr/share/common-licenses/LGPL-2.1.
+
+Files: src/lib/strlcat.c
+  src/lib/strlcpy.c
+Copyright: 1998 Todd C. Miller <Todd.Miller@courtesan.com>
+License: MIT-Old-Style-with-legal-disclaimer-2
+
+Files: src/modules/rlm_eap/types/rlm_eap_pwd/eap_pwd.c
+  src/modules/rlm_eap/types/rlm_eap_pwd/eap_pwd.h
+  src/modules/rlm_eap/types/rlm_eap_pwd/rlm_eap_pwd.c
+  src/modules/rlm_eap/types/rlm_eap_pwd/rlm_eap_pwd.h
+Copyright: 2012, Dan Harkins
+License: other
+ Copyright holder grants permission for redistribution and use in source
+ and binary forms, with or without modification, provided that the
+ following conditions are met:
+    1. Redistribution of source code must retain the above copyright
+     notice, this list of conditions, and the following disclaimer
+     in all source files.
+    2. Redistribution in binary form must retain the above copyright
+     notice, this list of conditions, and the following disclaimer
+     in the documentation and/or other materials provided with the
+     distribution.
+ .
+  "DISCLAIMER OF LIABILITY
+ .
+ THIS SOFTWARE IS PROVIDED BY DAN HARKINS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE INDUSTRIAL LOUNGE BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE."
+ .
+ This license and distribution terms cannot be changed. In other words,
+ this code cannot simply be copied and put under a different distribution
+ license (including the GNU General Public License).
+
+License: MIT-Old-Style-with-legal-disclaimer-2
+ Permission to use, copy, modify, and distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: Apache-2.0
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ .
+      http://www.apache.org/licenses/LICENSE-2.0
+ .
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ .
+ On Debian systems, the complete text of the Apache 2.0 License
+ can be found in /usr/share/common-licenses/Apache-2.0 file.
+
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-3'.
+
+License: GPL-2+
+ This program is free software; you can redistribute it
+ and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later
+ version.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+
+License: GPL-2+ with OpenSSL exception
+ This program is free software; you can redistribute it
+ and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later
+ version.
+ .
+ In addition, as a special exception, the author of this
+ program gives permission to link the code of its
+ release with the OpenSSL project's "OpenSSL" library (or
+ with modified versions of it that use the same license as
+ the "OpenSSL" library), and distribute the linked
+ executables. You must obey the GNU General Public
+ License in all respects for all of the code used other
+ than "OpenSSL".  If you modify this file, you may extend
+ this exception to your version of the file, but you are
+ not obligated to do so.  If you do not wish to do so,
+ delete this exception statement from your version.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+
+License: Artistic
+ Comment:
+ .
+ On Debian systems the 'Artistic License' is located in
+ '/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ Comment:
+ .
+ On Debian systems the 'GNU General Public License' version 1 is located
+ in '/usr/share/common-licenses/GPL-1'.

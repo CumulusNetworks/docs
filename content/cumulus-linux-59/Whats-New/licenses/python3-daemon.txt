@@ -1,16 +1,16 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: python-daemon
 Upstream-Contact: Ben Finney <ben+python@benfinney.id.au>
-Source: http://pypi.python.org/packages/source/p/python-daemon/
+Source: https://pypi.org/project/python-daemon/
 
 Files: *
 Copyright:
-    Â© 2008â€“2019 Ben Finney <ben+python@benfinney.id.au>
-    Â© 2007â€“2008 Robert Niederreiter, Jens Klein
-    Â© 2004â€“2005 Chad J. Schroeder
-    Â© 2003 Clark Evans
-    Â© 2002 Noah Spurrier
-    Â© 2001 JÃ¼rgen Hermann
+    © 2008?2022 Ben Finney <ben+python@benfinney.id.au>
+    © 2007?2008 Robert Niederreiter, Jens Klein
+    © 2004?2005 Chad J. Schroeder
+    © 2003 Clark Evans
+    © 2002 Noah Spurrier
+    © 2001 Jürgen Hermann
 License: Apache-2
 License-Grant:
     This is free software: you may copy, modify, and/or distribute this work
@@ -19,8 +19,8 @@ License-Grant:
 
 Files: setup.py
 Copyright:
-    Â© 2008â€“2019 Ben Finney <ben+python@benfinney.id.au>
-    Â© 2008 Robert Niederreiter, Jens Klein
+    © 2008?2022 Ben Finney <ben+python@benfinney.id.au>
+    © 2008 Robert Niederreiter, Jens Klein
 License: GPL-3+
 License-Grant:
     This is free software: you may copy, modify, and/or distribute this work
@@ -29,20 +29,21 @@ License-Grant:
 
 Files: debian/*
 Copyright:
-    Â© 2008â€“2019 Ben Finney <bignose@debian.org>
+    © 2008?2022 Ben Finney <bignose@debian.org>
 License: GPL-3+
 License-Grant:
     This is free software; you may copy, modify, and/or distribute this work
     under the terms of the GNU General Public License, version 3 or later.
     No warranty expressed or implied.
 
+
 License: Apache-2
     On Debian systems, the complete text of the Apache License version 2.0
-    can be found in the file â€˜/usr/share/common-licenses/Apache-2.0â€™.
+    can be found in the file ?/usr/share/common-licenses/Apache-2.0?.
 
 License: GPL-3+
     On Debian systems, the complete text of the GNU General Public License
-    version 3 can be found in the file â€˜/usr/share/common-licenses/GPL-3â€™.
+    version 3 can be found in the file ?/usr/share/common-licenses/GPL-3?.
 
 
 # Local variables:

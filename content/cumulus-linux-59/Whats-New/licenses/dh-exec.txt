@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: dh-exec
 Upstream-Contact: Gergely Nagy <algernon@debian.org>
 Source: git://github.com/algernon/dh-exec.git

@@ -5,8 +5,6 @@ Source: https://www.sqlite.org/cgi/src/dir?ci=trunk
 Files: *
 Copyright: D. Richard Hipp <drh@hwaci.com>
 License: public-domain
- The files listed have been put on the public domain by the sqlite3
- contributors.
 
 Files: debian/*
 Copyright: 2006-     Laszlo Boszormenyi (GCS) <gcs@debian.org>,
@@ -28,3 +26,25 @@ License: GPL-2+
  .
  On Debian systems, the full text of the GNU General Public License
  version 2 can be found in the file `/usr/share/common-licenses/GPL-2'.
+
+Files: debian/sqlite3_analyzer.1
+Copyright: 2018 Yuriy M. Kaminskiy Aq yumkam+debian@gmail.com
+License: public-domain
+
+
+Files: debian/patches/*
+Copyright: D. Richard Hipp <drh@hwaci.com>
+License: public-domain
+
+Files: debian/patches/02-use-packaged-lempar.c.patch
+ debian/patches/31-increase_SQLITE_MAX_DEFAULT_PAGE_SIZE_to_32k.patch
+Copyright: 2006-     Laszlo Boszormenyi (GCS) <gcs@debian.org>
+License: public-domain
+
+Files: debian/patches/40-amalgamation_configure.patch
+Copyright: Jan Palus <atler@pld-linux.org>
+License: public-domain
+
+License: public-domain
+ The files listed have been put on the public domain by the sqlite3
+ contributors.

@@ -244,7 +244,7 @@ To configure EVPN unreachability in disjoined planes, configure {{<link url="Opt
 - IPv4 and IPv6 aggregate routes to summarize relevant networks in the `TENANT1` VRF.
 - IPv4 and IPv6 unreachability for interfaces matching the aggregate prefixes in the `TENANT1` VRF.
 - EVPN IPv4 and IPv6 unreachability advertisements in the `l2vpn-evpn` address-family.
-- BGP `advertisement-delay` to 150 seconds in the `TENANT1` VRF. 
+- BGP `advertisement-delay` to 150 seconds in the `TENANT1` VRF. Only configure `advertisement-delay` in non-default VRFs.
 - BGP prefix export to LLDP in the `TENANT1` VRF.
 - The LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}}.
 

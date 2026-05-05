@@ -1,7 +1,7 @@
-This package was debianized by Mohammed AdnÃ¨ne Trojette
+This package was debianized by Mohammed Adnène Trojette
 <adn+deb@diwi.org> on Fri May 5 18:01:06 CEST 2006.
 
-The current Debian maintainer is Mohammed AdnÃ¨ne Trojette
+The current Debian maintainer is Mohammed Adnène Trojette
 <adn+deb@diwi.org>.
 
 It was downloaded from <http://www.7-zip.org/sdk.html>.
@@ -10,7 +10,7 @@ LZMA SDK is Copyright (C) 1999-2011 Igor Pavlov.
 
 LZMA SDK is placed in the public domain.
 
-The current Debian packaging is (C) 2006-2011, Mohammed AdnÃ¨ne Trojette
+The current Debian packaging is (C) 2006-2011, Mohammed Adnène Trojette
 <adn+deb@diwi.org> and is placed under the BSD license, see below:
 
     Copyright (c) The Regents of the University of California.

@@ -10,7 +10,7 @@ License: GPL-2+
 Files: lib/deb822.py lib/debian/deb822.py lib/debian/tests/test_deb822.py
 Copyright: Copyright (C) 2005-2006  dann frazier <dannf@dannf.org>
            Copyright (C) 2006-2010  John Wright <john@johnwright.org>
-           Copyright (C) 2006       Adeodato SimÃ³ <dato@net.com.org.es>
+           Copyright (C) 2006       Adeodato Simó <dato@net.com.org.es>
            Copyright (C) 2008       Stefano Zacchiroli <zack@upsilon.cc>
            Copyright (C) 2014       Google, Inc.
 License: GPL-2+
@@ -63,6 +63,18 @@ Files:
  lib/debian/copyright.py
  lib/debian/tests/test_copyright.py
 Copyright: Copyright (C) 2014   Google, Inc.
+License: GPL-2+
+
+Files:
+ lib/debian/_deb822_repro/*
+Copyright: Copyright (C) 2021 Niels Thykier <niels@thykier.net>
+License: GPL-2+
+
+Files: lib/debian/_arch_table.py
+Copyright: Copyright © 2006-2015 Guillem Jover <guillem@debian.org>
+           Copyright (C) 2014, Ansgar Burchardt <ansgar@debian.org>
+           Copyright (C) 2014-2017, Johannes Schauer Marin Rodrigues <josch@debian.org>
+           Copyright (C) 2022, Niels Thykier <niels@thykier.net>
 License: GPL-2+
 
 License: GPL-2+

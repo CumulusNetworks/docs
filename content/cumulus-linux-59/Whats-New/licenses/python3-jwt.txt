@@ -1,14 +1,14 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: PyJWT
-Upstream-Contact: JosÃ© Padilla <hello@jpadilla.com>
+Upstream-Contact: José Padilla <hello@jpadilla.com>
 Source: https://pypi.python.org/pypi/PyJWT
 
 Files: *
-Copyright: 2015 JosÃ© Padilla
+Copyright: 2015-2022 José Padilla
 License: Expat
 
 Files: debian/*
-Copyright: 2014-18 Daniele Tricoli <eriol@mornie.org>
+Copyright: 2014-2023 Daniele Tricoli <eriol@debian.org>
 License: Expat
 
 License: Expat

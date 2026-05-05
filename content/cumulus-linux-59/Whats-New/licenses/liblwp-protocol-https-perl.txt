@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: LWP-Protocol-https
-Upstream-Contact: Gisle Aas <gisle@activestate.com>
+Upstream-Contact: Olaf Alders <olaf@wundercounter.com>
 Source: https://metacpan.org/release/LWP-Protocol-https
 
 Files: *

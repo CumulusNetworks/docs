@@ -1,7 +1,7 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: ruamel.yaml
 Upstream-Contact: Anthon van der Neut <a.van.der.neut@ruamel.eu>
-Source: https://bitbucket.org/ruamel/yaml
+Source: https://sourceforge.net/p/ruamel-yaml/code/ci/default/tree
 
 Files: *
 Copyright: Anthon van der Neut <a.van.der.neut@ruamel.eu>
@@ -27,5 +27,5 @@ License: Expat
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.

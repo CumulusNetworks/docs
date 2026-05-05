@@ -1,14 +1,16 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: python-tabulate
-Source: https://bitbucket.org/astanin/python-tabulate
+Source: https://github.com/astanin/python-tabulate
 
 Files: *
-Copyright: Copyright (c) 2011-2016 Sergey Astanin <s.astanin@gmail.com>
+Copyright: Copyright (c) 2011-2020 Sergey Astanin <s.astanin@gmail.com> and
+ contributors
 License: Expat
 
 Files: debian/*
-Copyright: 2015 ChangZhuo Chen (陳昌倬) <czchen@debian.org>
+Copyright: 2015 ChangZhuo Chen (???) <czchen@debian.org>
  2016 Sandro Tosi <morph@debian.org>
+ 2018-2021 Yago Gonz�lez <yagogonzalezg@gmail.com>
 License: Expat
 
 License: Expat

@@ -5,14 +5,14 @@ Source: http://pypi.python.org/packages/source/l/lockfile/
 
 Files: *
 Copyright:
-    © 2014–2015 OpenStack Foundation <openstack-dev@lists.openstack.org>
-    © 2007–2012 Skip Montanaro <skip@pobox.com>
-    © 2008–2014 Ben Finney <ben+python@benfinney.id.au>
+    � 2014?2015 OpenStack Foundation <openstack-dev@lists.openstack.org>
+    � 2007?2012 Skip Montanaro <skip@pobox.com>
+    � 2008?2014 Ben Finney <ben+python@benfinney.id.au>
 License: Expat
 
 Files: lockfile/pidlockfile.py
 Copyright:
-    © 2008–2009 Ben Finney <ben+python@benfinney.id.au>
+    � 2008?2009 Ben Finney <ben+python@benfinney.id.au>
 License: Expat
 License-Grant:
     This is free software; you may copy, modify, and/or distribute this work
@@ -24,7 +24,7 @@ Comment:
 
 Files: debian/*
 Copyright:
-    © 2009–2016 Ben Finney <bignose@debian.org>
+    � 2009?2016 Ben Finney <bignose@debian.org>
 License: Expat
 License-Grant:
     This is free software; you may copy, modify, and/or distribute this work
@@ -35,7 +35,7 @@ Files:
     debian/tests/smoke_test.py
     debian/tests/smoke-python*
 Copyright:
-    © 2016 Ben Finney <bignose@debian.org>
+    � 2016 Ben Finney <bignose@debian.org>
 License: GPL-3+
 License-Grant:
     This is free software; you may copy, modify, and/or distribute this work
@@ -64,7 +64,7 @@ License: Expat
 
 License: GPL-3+
     On Debian systems, the complete text of the GNU General Public
-    License version 3 can be found in ‘/usr/share/common-licenses/GPL-3’.
+    License version 3 can be found in ?/usr/share/common-licenses/GPL-3?.
 
 
 # Local variables:

@@ -1,25 +1,21 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: test-unit
 Source: https://github.com/test-unit/test-unit/
 
 Files: *
-Copyright: 2008-2013 Kouhei Sutou <kou@clear-code.com>
-           Ryan Davis <ryand-ruby@zenspider.com>
-           2000-2003 Nathaniel Talbott <nathaniel@talbott.ws>
+Copyright: 2008-2020 Kouhei Sutou <kou@clear-code.com>
+           2008 Ryan Davis <ryand-ruby@zenspider.com>
+           2003-2007 Nathaniel Talbott <nathaniel@talbott.ws>
            2011 Haruka Yoshihara <yoshihara@clear-code.com>
 License: BSD-2-clause or Ruby
 
 Files: lib/test/unit/diff.rb
 Copyright: Copyright 2001-2008 Python Software Foundation
-           Copyright 2008-2013 Kouhei Sutou <kou@clear-code.com>
+           Copyright 2008-2011 Kouhei Sutou <kou@clear-code.com>
 License: BSD-2-clause or Ruby, and PSF
 
-Files: lib/test-unit.rb
-Copyright: 2012 Kouhei Sutou <kou@clear-code.com>
-License: BSD-2-clause or Ruby or LGPL-2.1
-
 Files: debian/*
-Copyright: 2011-2013 CÃ©dric Boutillier <boutil@debian.org>
+Copyright: 2011-2013 Cédric Boutillier <boutil@debian.org>
 License: BSD-2-clause or Ruby
 
 License: BSD-2-clause
@@ -43,10 +39,6 @@ License: BSD-2-clause
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-License: LGPL-2.1
- On Debian systems, the full text of the GNU General Public
- License version 2 can be found in the file
- `/usr/share/common-licenses/LGPL-2.1'.
 
 License: PSF
  1. This LICENSE AGREEMENT is between the Python Software Foundation
@@ -108,8 +100,8 @@ License: Ruby
  .
         a) place your modifications in the Public Domain or otherwise
            make them Freely Available, such as by posting said
- 	  modifications to Usenet or an equivalent medium, or by allowing
- 	  the author to include your modifications in the software.
+           modifications to Usenet or an equivalent medium, or by allowing
+           the author to include your modifications in the software.
  .
         b) use the modified software only within your corporation or
            organization.
@@ -123,11 +115,11 @@ License: Ruby
       provided that you do at least ONE of the following:
  .
         a) distribute the binaries and library files of the software,
- 	  together with instructions (in the manual page or equivalent)
- 	  on where to get the original distribution.
+           together with instructions (in the manual page or equivalent)
+           on where to get the original distribution.
  .
         b) accompany the distribution with the machine-readable source of
- 	  the software.
+           the software.
  .
         c) give non-standard binaries non-standard names, with
            instructions on where to get the original software distribution.

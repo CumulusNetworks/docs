@@ -1,5 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: https://github.com/amoffat/sh
+Upstream-Name: sh
 
 Files: *
 Copyright: 2011-2012 Andrew Moffat

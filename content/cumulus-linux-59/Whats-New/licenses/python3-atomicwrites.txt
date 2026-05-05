@@ -3,7 +3,7 @@ Upstream-Name: python-atomicwrites
 Source: https://github.com/untitaker/python-atomicwrites
 
 Files: *
-Copyright: 2015-2016 Markus Unterwaditzer <markus@unterwaditzer.net>
+Copyright: 2015-2019 Markus Unterwaditzer <markus@unterwaditzer.net>
 License: Expat
 
 Files: debian/*

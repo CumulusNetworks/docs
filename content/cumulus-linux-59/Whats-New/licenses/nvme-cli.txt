@@ -1,38 +1,114 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Source: https://github.com/linux-nvme/nvme-cli
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: nvme-cli
+Upstream-Contact: https://github.com/linux-nvme/nvme-cli/issues
+Source: https://github.com/linux-nvme/nvme-cli/releases
 
 Files: *
-Copyright: 2011-2015 Intel Corporation
-           2014 PMC-Sierra, Inc
+Copyright: 2011-2023 Intel Corporation.
 License: GPL-2+
 
-Files: linux/lightnvm.h
-Copyright: 2015 CNEX Labs
+Files: fabrics.c
+Copyright: 2016 Intel Corporation.
+           2016 HGST, a Western Digital Company.
+           2016 Samsung Electronics Co., Ltd.
 License: GPL-2
 
+Files: linux/lightnvm.h nvme-lightnvm.h
+Copyright: 2015-2016 CNEX Labs
+License: GPL-2
+
+Files: nvme-lightnvm.c
+Copyright: 2015-2016 CNEX Labs
 License: GPL-2+
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- as published by the Free Software Foundation; either version 2
- of the License, or (at your option) any later version.
+
+Files: nvme-rpmb.c
+Copyright: 2020 Micron Techology Inc.
+License: GPL-2
+
+Files: plugins/netapp/*
+Copyright: 2018 NetApp, Inc.
+License: GPL-2+
+
+Files: plugins/seagate/*
+Copyright: 2017-2018 Seagate Technology LLC and/or its Affiliates.
+License: GPL-2+
+
+Files: plugins/wdc/*
+Copyright: 2017-2018 Western Digital Corporation or its affiliates.
+License: GPL-2+
+
+Files: plugins/huawei/*
+Copyright: 2017-2019 Huawei Corporation or its affiliates.
+License: GPL-2+
+
+Files: regress scripts/latency util/suffix.h util/argconfig.* util/suffix.c
+Copyright: 2014-2015 PMC-Sierra, Inc.
+License: GPL-2+
+
+Files: tests/*
+Copyright: 2015-2016 Western Digital Corporation or its affiliates.
+License: GPL-2+
+
+Files: util/log.c
+Copyright: 2021 SUSE LLC
+License: GPL-2
+
+Files: util/log.h
+Copyright: 2021 Martin Wilck
+           2021 SUSE LLC
+License: LGPL-2.1+
+
+Files: debian/*
+Copyright: 2021-2023 Daniel Baumann <daniel.baumann@progress-linux.org>
+License: GPL-2+
+
+License: GPL-2
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 2 of the License.
  .
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  GNU General Public License for more details.
  .
- On Debian systems, the full text of the GNU General Public License
- version 2 can be found in `/usr/share/common-licenses/GPL-2'.
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ .
+ The complete text of the GNU General Public License
+ can be found in /usr/share/common-licenses/GPL-2 file.
 
-License: GPL-2
- This program is free software; you can redistribute it and/or modify it
- under the terms and conditions of the GNU General Public License,
- version 2, as published by the Free Software Foundation.
+License: GPL-2+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 2 of the License, or
+ (at your option) any later version.
  .
- This program is distributed in the hope it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
- more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
  .
- On Debian systems, the full text of the GNU General Public License
- version 2 can be found in `/usr/share/common-licenses/GPL-2'.
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ .
+ The complete text of the GNU General Public License
+ can be found in /usr/share/common-licenses/GPL-2 file.
+
+License: LGPL-2.1+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ .
+ The complete text of the GNU Lesser General Public License
+ can be found in /usr/share/common-licenses/LGPL-2.1 file.

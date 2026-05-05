@@ -1,27 +1,280 @@
-This package was debianized by Alberto Gonzalez Iniesta <agi@agi.as> on
-Thu, 08 May 2003 15:22:45 +0200
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: scapy
+Source: https://github.com/secdev/scapy
+Files-Excluded: doc/scapy
+Comment: scapy documentation (doc/scapy/*) is licensed as CC-BY-NC-SA-2.5.
+         NC stands for Non Commercial which is an infringement of DFSG's "No
+         Discrimination Against Fields of Endeavor" clause.
+         .
+         test/contrib/cdp.uts contain the copyright of the protocol, not the
+         copyright of the source code.
 
-It was downloaded from http://www.secdev.org/projects/scapy/files/ 
+Files: *
+Copyright: 2005-2009 Arnaud Ebalard <arnaud.ebalard@eads.net>
+           2005-2020 Guillaume Valadon <guillaume@valadon.net>
+           2006      Nicolas Bareil <nicolas.bareil AT eads DOT net>
+           2006      EADS/CRC security team
+           2009      Jochen Bartl <jochen.bartl gmail com>
+           2009      Massimo Ciani
+           2011-2012 Ryan Speers <ryan@rmspeers.com>
+           2012      Roger Meyer <roger.meyer@csus.edu>
+           2012      Steeve Barbeau <http:www.sbarbeau.fr>
+           2012      ffranz <ffranz@iniqua.com>
+           2012      Luca Invernizzi <invernizzi.l@gmail.com>
+           2014      6WIND <olivier.matz@6wind.com>
+           2014-2017 Maxence Tury <maxence.tury@ssi.gouv.fr>
+           2016      Florian Maury <florian.maury@ssi.gouv.fr>
+           2017      Alessio Deiana <adeiana@gmail.com>
+           2017      Alexis Sultan    <alexis.sultan@sfr.com>
+           2018      antoine.torre <torreantoine1@gmail.com>
+           2018      Jose Amores
+           2018      Leonardo Monteiro <decastromonteiro@gmail.com>
+           2018-2019 Gabriel Potter <gabriel[]potter[]fr>
+           2019      Freie Universitaet Berlin
+           2019      Martine Lenders <m.lenders@fu-berlin.de>
+           2019      Juciano Cardoso <cjuciano@gmail.com>
+           2019      Brandon Ewing <brandon.ewing@warningg.com>
+           2019      Romain Perez
+           2020-2021 Dimitrios-Georgios Akestoridis <akestoridis@cmu.edu>
+                     Airbus DS CyberSecurity
+                     Alexander Schroeder <alexander1.schroeder@st.othr.de>
+                     Andreas Korb <andreas.d.korb@gmail.com>
+                     Carmine Scarpitta <carmine.scarpitta@uniroma2.it>
+                     Cesar A. Bernardini <mesarpe@gmail.com>
+                     Enrico Pozzobon <enricopozzobon@gmail.com>
+                     Fabian Wiche <f.wiche@gmx.de>
+                     FlUxIuS (Sebastien Dudek)
+                     Friedrich Feigel <friedrich.feigel@e-mundo.de>
+                     Gauthier Sebaux
+                     Haggai Eran <haggai.eran@gmail.com>
+                     Leonard Crestez <cdleonard@gmail.com>
+                     Lucas Preston <lucas.preston@infinite.io>
+                     Jan Sebechlebsky <sebechlebskyjan@gmail.com>
+                     Jonas Schmidt <jonas.schmidt@st.othr.de>
+                     Markus Schroetter <project.m.schroetter@gmail.com>
+                     Mathieu RENARD <mathieu.renard(at)gmail.com>
+                     Michael Farrell <micolous+git@gmail.com>
+                     Mike Ryan <mikeryan@lacklustre.net>
+                     Nils Weiss <nils@we155.de>
+                     Parag Bhide
+                     Pavel Oborin <oborin.p@gmail.com>
+                     Philippe Biondi <phil@secdev.org>
+                     Sabrina Dubroca <sd@queasysnail.net>
+                     Santiago Hernandez Ramos <shramos@protonmail.com>
+                     Sebastian Baar <sebastian.baar@gmx.de>
+                     Tabea Spahn <tabea.spahn@e-mundo.de>
+                     Thomas Tannhaeuser <hecke@naberius.de>
+License: GPL-2
 
-Upstream Authors: Philippe Biondi <phil@secdev.org>
+Files: scapy/contrib/altbeacon.py
+       scapy/contrib/bp.py
+       scapy/contrib/coap.py
+       scapy/contrib/eigrp.py
+       scapy/contrib/enipTCP.py
+       scapy/contrib/exposure_notification.py
+       scapy/contrib/gtp_v2.py
+       scapy/contrib/isis.py
+       scapy/contrib/ldp.py
+       scapy/contrib/loraphy2wan.py
+       scapy/contrib/ltp.py
+       scapy/contrib/geneve.py
+       scapy/contrib/ibeacon.py
+       scapy/contrib/knx.py
+       scapy/contrib/modbus.py
+       scapy/contrib/ospf.py
+       scapy/contrib/pfcp.py
+       scapy/contrib/pnio.py
+       scapy/contrib/pnio_dcp.py
+       scapy/contrib/rpl.py
+       scapy/contrib/rpl_metrics.py
+       scapy/contrib/rtps/*
+       scapy/contrib/rtr.py
+       scapy/contrib/scada/pcom.py
+       scapy/contrib/send.py
+       scapy/contrib/sdnv.py
+       scapy/contrib/tacacs.py
+       scapy/layers/dcerpc.py
+       scapy/layers/clns.py
+       scapy/tools/generate_ethertypes.py
+       test/contrib/rtps.uts
+Copyright: 2008      Dirk Loss <dirk-loss de>
+           2009      Adline Stephane <adline.stephane@gmail.com>
+           2009-2010 Jochen Bartl <jochen.bartl gmail com>
+           2010      Florian Duraffourg
+           2012      The MITRE Corporation
+           2014-2016 BENOCS GmbH, Berlin (Germany)
+           2016      Anmol Sarma <me@anmolsarma.in>
+           2016      Gauthier Sebaux
+           2017      Alessio Deiana <adeiana@gmail.com>
+           2017      Alexis Sultan    <alexis.sultan@sfr.com>
+           2017      Arthur Gervais
+           2017      Ken Le PRADO
+           2017      Sebastien Mainand
+           2017      Thomas Aurel
+           2017-2018 Francois Contat <francois.contat@ssi.gouv.fr>
+           2018      Hao Zheng <haozheng10@gmail.com>
+           2018-2022 Gabriel Potter <gabriel[]potter[]fr>
+           2019      Travelping GmbH <info@travelping.com>
+           2019      Luis Rosa <lmrosa@dei.uc.pt>
+           2019      Jose Diogo Monteiro <jdlopes@student.dei.uc.pt>
+           2019      Stefan Mehner (stefan.mehner@b-tu.de)
+           2020      Rahul Jadhav <nyrahul@gmail.com>
+           2020      Sebastien Dudek (@FlUxIuS)
+           2020      Metaswitch, London (UK)
+           2020      Michael Farrell <micolous+git@gmail.com>
+           2021      Claire VACHEROT <lex[at]lex.os>
+           2021      Trend Micro Incorporated
+           2021      Alias Robotics S.L.
+           2021      Julien BEDEL <contact[at]julienbedel.com>
+                     GuillaumeF <guillaume4favre@gmail.com>
+License: GPL-2+
 
-Copyright (C) 2003 Philippe Biondi <phil@secdev.org>
+Files: test/contrib/automotive/someip.uts
+       scapy/libs/six.py
+Copyright: 2018      Jose Amores
+           2010-2020 Benjamin Peterson
+License: MIT
 
-    This program is free software; you can redistribute it and/or modify it 
-    under the terms of the GNU General Public License version 2 as
-    published by the Free Software Foundation.
+Files: scapy/layers/tls/crypto/md4.py
+Copyright: 2019 James Seo <james@equiv.tech> (github.com/kangtastic)
+License: WTFPL
 
-    This program is distributed in the hope that it will be useful, but     
-    WITHOUT ANY WARRANTY; without even the implied warranty of              
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU       
-    General Public License for more details.                                
-                                                                         
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+Files: scapy/libs/rfc3961.py
+Copyright: 2013 Marc Horowitz
+License: BSD-2-Clause
 
-On Debian GNU/Linux systems, the complete text of the GNU General
-Public License can be found in `/usr/share/common-licenses/GPL-2'.
+Files: scapy/libs/ethertypes.py
+Copyright: 1982-1993 The Regents of the University of California
+License: BSD-3-Clause
 
-The Debian packaging is (C) 2007,2008 David Villa <David.Villa@uclm.es> and
-is licensed under the GPL.
+Files: debian/*
+Copyright: 2003-2006 Alberto Gonzalez Iniesta <agi@agi.as>
+           2006-2011 David Villa <David.Villa@uclm.es>
+           2007      Piotr O?arowski <piotr@debian.org>
+           2007-2020 Sandro Tosi <morph@debian.org>
+           2009      Yves-Alexis Perez <corsac@debian.org>
+           2016-2019 Iain R. Learmonth <irl@debian.org>
+           2017      Hilko Bengen <bengen@debian.org>
+           2018      Ana Custura  <ana@netstat.org.uk>
+           2019      Gabriel Potter  <gabriel[]potter[]fr>
+           2019-2021 Raphaël Hertzog <raphael@offensive-security.com>
+           2020      Sophie Brun <sophie@offensive-security.com>
+           2020      Samuel Henrique <samueloph@debian.org>
+           2021      Romain Francoise <rfrancoise@debian.org>
+           2022      Neil Williams <codehelp@debian.org>
+           2023      Carlos Henrique Lima Melara <charlesmelara@outlook.com>
+License: GPL-2
+
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License version 2 as published
+ by the Free Software Foundation.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License along
+ with this program; if not, write to the Free Software Foundation, Inc.,
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: MIT
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the "Software"),
+ to deal in the Software without restriction, including without limitation
+ the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+License: WTFPL
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                    Version 2, December 2004
+ .
+ Everyone is permitted to copy and distribute verbatim or modified
+ copies of this license document, and changing it is allowed as long
+ as the name is changed.
+ .
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+ .
+  0. You just DO WHAT THE FUCK YOU WANT TO.
+
+License: BSD-2-Clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+License: BSD-3-Clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+ 3. Neither the name of the University nor the names of its contributors
+   may be used to endorse or promote products derived from this software
+   without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.

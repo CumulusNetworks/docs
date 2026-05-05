@@ -1,14 +1,15 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: HTTP-Date
-Upstream-Contact: Gisle Aas <gisle@activestate.com>
-Source: http://search.cpan.org/dist/HTTP-Date/
+Upstream-Contact: Olaf Alders <olaf@wundercounter.com>
+Source: https://metacpan.org/release/HTTP-Date
 
 Files: *
-Copyright: 1995-1999, Gisle Aas <gisle@activestate.com>
+Copyright: 1995-2019, Gisle Aas <gisle@activestate.com>
 License: Artistic or GPL-1+
 
 Files: debian/*
 Copyright: 2011, Nicholas Bamber <nicholas@periapt.co.uk>
+           2019, Nick Morrott <nickm@debian.org>
 License: Artistic or GPL-1+
 
 License: Artistic
@@ -26,4 +27,3 @@ License: GPL-1+
  .
  On Debian systems, the complete text of version 1 of the GNU General
  Public License can be found in `/usr/share/common-licenses/GPL-1'.
-

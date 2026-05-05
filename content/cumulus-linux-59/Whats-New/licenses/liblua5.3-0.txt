@@ -1,13 +1,13 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Lua team
 Upstream-Contact: team@lua.org
 Source: http://www.lua.org/
 
 Files: *
-Copyright: 1994–2015 Lua.org, PUC-Rio. 
+Copyright: 1994?2020 Lua.org, PUC-Rio.
 Comment: In the Lua community this license is better known as "MIT".
   Unfortunately other variants of this license are also known as "MIT".
-  To obtain a machine intepretable copyright file Debian prefers to name this
+  To obtain a machine interpretable copyright file Debian prefers to name this
   version of the MIT license using the non ambiguous term "Expat".
 License: Expat
   Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: requests-file
 Upstream-Contact: David Shea <dshea@redhat.com>
 Source: http://github.com/dashea/requests-file
@@ -8,7 +8,7 @@ Copyright: 2015 Red Hat, Inc.
 License: Apache-2.0
 
 Files: debian/*
-Copyright: 2017 Â© Antoine BeauprÃ© <anarcat@debian.org>
+Copyright: 2017 © Antoine Beaupré <anarcat@debian.org>
 License: Apache-2.0
 
 License: Apache-2.0

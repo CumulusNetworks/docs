@@ -1,6 +1,6 @@
 This package was debianized by Aurelien Jarno <aurel32@debian.org>.
 
-It was downloaded from https://www.kernel.org/pub/software/utils/i2c-tools/ 
+It was downloaded from https://www.kernel.org/pub/software/utils/i2c-tools/
 
 Copyright:
   Copyright (C) 1995-1997  Simon G. Vogl
@@ -68,10 +68,10 @@ License of the I2C tools (i2c-tools package):
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 51 Franklin St, 
-  Fifth Floor, Boston, MA  02110-1301 USA
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+  MA 02110-1301, USA.
 
 On Debian systems, the complete text of the GNU General Public
 License, version 2, can be found in /usr/share/common-licenses/GPL-2.

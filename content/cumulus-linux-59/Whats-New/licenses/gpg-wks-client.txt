@@ -4,7 +4,7 @@ Upstream-Contact: GnuPG development mailing list <gnupg-devel@gnupg.org>
 Source: https://gnupg.org/download/
 
 Files: *
-Copyright: 1992, 1995-2016, Free Software Foundation, Inc
+Copyright: 1992, 1995-2020, Free Software Foundation, Inc
 License: GPL-3+
 
 Files: agent/command.c
@@ -70,7 +70,7 @@ Copyright: 2000, Dimitrios Souflis
 License: TinySCHEME
 
 Files: debian/*
-Copyright: 1998-2018 Debian GnuPG packagers, including
+Copyright: 1998-2022 Debian GnuPG packagers, including
  Eric Dorland <eric@debian.org>
  Daniel Kahn Gillmor <dkg@fifthhorseman.net>
  NIIBE Yutaka <gniibe@fsij.org>

@@ -4,7 +4,7 @@ Upstream-Contact: gnupg-devel@gnupg.org
 Source: https://gnupg.org/ftp/gcrypt/pinentry/
 
 Files: *
-Copyright: 2002-2015, g10 Code GmbH
+Copyright: 2002-2021, g10 Code GmbH
 License: GPL-2+
 
 Files: fltk/*
@@ -13,7 +13,7 @@ License: GPL-2+
 
 Files: tqt/Makefile.am tqt/main.cpp tqt/pinentrydialog.h tqt/pinentrydialog.cpp
 Copyright: 2002-2015 g10 Code GmbH
- 2002 Klar√§lvdalens Datakonsult AB
+ 2002 Klar‰lvdalens Datakonsult AB
 License: GPL-2+
 
 Files: tqt/secqinternal.cpp tqt/secqinternal_p.h
@@ -36,7 +36,7 @@ License: X11
 Files: gtk+-2/pinentry-gtk-2.c
 Copyright: 1999 Robert Bihlmeyer <robbe@orcus.priv.at>
  2001, 2002, 2007 g10 Code GmbH
- 2004 Albrecht Dre√ü
+ 2004 Albrecht Dreﬂ
 License: GPL-2+
 
 Files: m4/pkg.m4
@@ -73,8 +73,8 @@ Copyright: 2014 Serge Voilokov
 License: GPL-2+
 
 Files: qt/pinentrydialog.*
-Copyright: 2002, 2008 Klar√§lvdalens Datakonsult AB <steffen@klaralvdalens-datakonsult.se>
- 2007 Ingo Kl√∂cker
+Copyright: 2002, 2008 Klar‰lvdalens Datakonsult AB <steffen@klaralvdalens-datakonsult.se>
+ 2007 Ingo Klˆcker
 License: GPL-2+
 
 Files: qt/pinentryconfirm.*
@@ -82,18 +82,18 @@ Copyright: 2011 Ben Kibbey <bjk@luxsci.net>
 License: GPL-2+
 
 Files: qt/main.cpp
-Copyright: 2002, 2008 Klar√§lvdalens Datakonsult AB (KDAB)
+Copyright: 2002, 2008 Klar‰lvdalens Datakonsult AB (KDAB)
  2003 g10 Code GmbH
- 2007 Ingo Kl√∂cker
+ 2007 Ingo Klˆcker
 License: GPL-2+
 
 Files: qt/Makefile.am
-Copyright: 2002 Klar√§lvdalens Datakonsult AB (KDAB)
+Copyright: 2002 Klar‰lvdalens Datakonsult AB (KDAB)
  2008 g10 Code GmbH
 License: GPL-2+
 
 Files: debian/*
-Copyright: 2004-2015 Peter Eisentraut <petere@debian.org>
+Copyright: 2004-2022 Peter Eisentraut <petere@debian.org>
  Marcus Brinkmann
  Michael Brame
  Daniel Kahn Gillmor <dkg@fifthhorseman.net>

@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: GNU EFI
 Upstream-Contact: Nigel Croxon <nigel.croxon@hp.com>
 Source: http://sourceforge.net/projects/gnu-efi/files/

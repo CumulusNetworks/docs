@@ -1,18 +1,19 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: gptfdisk
 Source: http://sourceforge.net/projects/gptfdisk/
 
 Files: *
-Copyright: 2011 Rod Smith <rodsmith@rodsbooks.com>
+Copyright: 2009-2018 Roderick W. Smith <rodsmith@rodsbooks.com>
 License: LGPL-2.0+
 
 Files: debian/*
-Copyright: 2011 Guillaume Delacour <gui@iroqwa.org>
+Copyright: 2019 Jonathan Carter <jcc@debian.org>
+           2011 Guillaume Delacour <gui@iroqwa.org>
 License: LGPL-2.0+
 
 Files: crc32.cc crc32.h
 Copyright: 1999, 2000 Krzysztof Dabrowski
-	   1999, 2000 ElysiuM deeZine
+           1999, 2000 ElysiuM deeZine
 License: LGPL-2.0+
 
 License: LGPL-2.0+

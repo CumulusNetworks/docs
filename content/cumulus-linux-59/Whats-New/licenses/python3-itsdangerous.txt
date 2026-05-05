@@ -1,10 +1,10 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: itsdangerous
 Upstream-Contact: Armin Ronacher <armin.ronacher@active-4.com>
 Source: https://github.com/mitsuhiko/itsdangerous
 
 Files: *
-Copyright: 2011 by Armin Ronacher and the Django Software Foundation
+Copyright: 2011-2022 by Armin Ronacher and the Django Software Foundation
 License: BSD-3-clause
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
@@ -36,7 +36,8 @@ License: BSD-3-clause
 
 Files: debian/*
 Copyright: 2013, Simon Fondrie-Teitler <simonft@riseup.net>
-           2016, Ondřej Nový <onovy@debian.org>
+           2016, Ond?ej Nov� <onovy@debian.org>
+           2020-2022, Julien Puydt <jpuydt@debian.org>
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

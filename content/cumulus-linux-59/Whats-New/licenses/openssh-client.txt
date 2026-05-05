@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: OpenSSH
 Upstream-Contact: openssh-unix-dev@mindrot.org
-Source: http://www.openssh.com/portable.html
+Source: https://www.openssh.com/portable.html
 Comment:
  The overall licence of the OpenSSH upstream code amounts to BSD-3-clause or
  various less restrictive licences, with the additional restrictions that
@@ -34,7 +34,7 @@ Copyright:
  Gert Doering
  Jakob Schlyter
  Jason Downs
- Juha YrjÃ¶lÃ¤
+ Juha Yrjölä
  Michael Stone
  Networks Associates Technology, Inc.
  Solar Designer
@@ -179,15 +179,6 @@ License: BSD-3-clause
  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  SUCH DAMAGE.
-
-Files: md5crypt.*
-Copyright: Poul-Henning Kamp
-License: Beer-ware
- "THE BEER-WARE LICENSE" (Revision 42):
- <phk@login.dknet.dk> wrote this file.  As long as you retain this
- notice you can do whatever you want with this stuff. If we meet
- some day, and you think this stuff is worth it, you can buy me a
- beer in return.   Poul-Henning Kamp
 
 Files: openbsd-compat/bsd-snprintf.c
 Copyright: 1995 Patrick Powell

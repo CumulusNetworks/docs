@@ -90,7 +90,7 @@ License: GPL-2+
 Files: debian/*
 Copyright: 2001, Ivo Timmermans <ivo@debian.org>
 	2002-2010, Jonas Smedegaard <dr@jones.dk>
-	2013, Ondřej Surý <ondrej@debian.org>
+	2013, Ond?ej Sur� <ondrej@debian.org>
 License: GPL-2+
 
 License: GPL-2+
@@ -200,7 +200,7 @@ License: WEBP
    without specific prior written permission.
  .
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ ?AS IS? AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
  HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
@@ -214,7 +214,7 @@ License: WEBP
  .
  Additional IP Rights Grant (Patents)
  .
- “This implementation” means the copyrightable works distributed by
+ ?This implementation? means the copyrightable works distributed by
  Google as part of the WebM Project.
  .
  Google hereby grants to you a perpetual, worldwide, non-exclusive,
@@ -235,5 +235,3 @@ License: WEBP
  of patent infringement, then any patent rights granted to you under
  this License for this implementation of VP8 shall terminate as of the
  date such litigation is filed.
-
- 

@@ -7,16 +7,16 @@ It was downloaded from <https://download.gnome.org/sources/adwaita-icon-theme/>
 
 Files: *
 Copyright:
- ¬© 2002-2014:
+ © 2002-2014:
  .
   Full Color Icons
   ================
  .
   Ulisse Perusin <uli.peru@gmail.com>
   Riccardo Buzzotta <raozuzu@yahoo.it>
-  Josef Vyb√≠ral <cornelius@vybiral.info>
+  Josef VybÌral <cornelius@vybiral.info>
   Hylke Bons <h.bons@gmail.com>
-  Ricardo Gonz√°lez <rick@jinlabs.com>
+  Ricardo Gonz·lez <rick@jinlabs.com>
   Lapo Calamandrei <calamandrei@gmail.com>
   Rodney Dawes <dobey@novell.com>
   Luca Ferretti <elle.uca@libero.it>
@@ -60,197 +60,198 @@ Comment:
 
 Files:
  po/*
+ 41/po/*
 Copyright:
- ¬© 2004 Abdulaziz Al-Arfaj
- ¬© 2003-2006 Abel Cheung
- ¬© 2004-2005 Adam Weinberger
- ¬© 2009 Adi Roiban
- ¬© 2004 Aleksandar Uro≈°eviƒá
- ¬© 2003-2010 Ales Nyakhaychyk
- ¬© 2004-2008 Alexander Shopov
- ¬© 2014 Alexandre Franke
- ¬© 2003 Allan Sims
- ¬© 2004-2014 Amanpreet Singh Alam
- ¬© 2009 Amitakhya Phukan
- ¬© 2014 Anders Jonsson
- ¬© 2014 Andika Triwidada
- ¬© 2002-2004 Andras Timar
- ¬© 2006 Ani Peter
- ¬© 2004-2007 Ankit Patel
- ¬© 2003 Arafat Medini
- ¬© 2004-2008 Arangel Angov
- ¬© 2002 Artis Trops
- ¬© 2003-2005 Artur Flinta
- ¬© 2005 Augustin KIBERWA
- ¬© 2008 Automatski Prijevod
- ¬© 2007-2014 Aviary.pl
- ¬© 2014 Bal√°zs Mesk√≥
- ¬© (unspecified) Branko Ivanoviƒá
- ¬© 2005-2011 Canonical Ltd.
- ¬© 2005 Carole Karema
- ¬© 2014 Changwoo Ryu
- ¬© 2006-2014 Christian Kintner
- ¬© 2002-2004 Christian Neumair
- ¬© 2002-2005 Christian Rose
- ¬© 2014 Claudio Arseni
- ¬© 2005-2007 Clytie Siddall
- ¬© 2014 Daniel Korostil
- ¬© 2011 Daniel Martinez Cucalon
- ¬© 2014 Daniel Mustieles
- ¬© 2007 Daniel Nylander
- ¬© 2007 Danishka Navin
- ¬© 2003 Deep_Dark
- ¬© 2008 Denis Lackovic
- ¬© 2014 Dimitris Spingos (ŒîŒ∑ŒºŒÆœÑœÅŒ∑œÇ Œ£œÄŒØŒ≥Œ≥ŒøœÇ)
- ¬© 2003 Dinesh Nadarajah
- ¬© 2007 Djavan Fagundes
- ¬© 2006 Djihed Afifi
- ¬© 2005 Donatien NSENGIYUMVA
- ¬© 2007 Dr.T.Vasudevan
- ¬© 2003-2007 Duarte Loreto
- ¬© 2005 Elnaz Sarbar
- ¬© 2014 Enrico Nicoletto
- ¬© 2010 Erdal Ronah√Æ
- ¬© 2008 Erzhan Shaniev
- ¬© 2002-2003 Evandro Fernandes Giovanini
- ¬© 2008 F Wolff
- ¬© 2003 FSF-India
- ¬© 2010-2014 Fran Di√©guez
- ¬© 2003-2004 Francisco Javier F. Serrador
- ¬© 2002-2010 Free Software Foundation, Inc.
- ¬© 2003-2004 Funda Wang
- ¬© 2003 G Karunakar
- ¬© 2005-2008 Gabor Kelemen
- ¬© 2004 Gareth Owen
- ¬© 2010 Gheyret T.Kenji
- ¬© 2014 Gil Forcada
- ¬© 2002-2004 Gil Osher
- ¬© 2007 Gintautas Miliauskas
- ¬© 2006 Giulia
- ¬© 2002-2012 Gnome Software Foundation
- ¬© 2007 Gnome i18n Project for Vietnamese
- ¬© 2011 GunChleoc
- ¬© 2002 Hasbullah Bin Pit
- ¬© 2003 He Qiangqiang
- ¬© 2005-2007 Hendrik Richter
- ¬© 2004-2007 Ignacion Casal Quinteiro
- ¬© 2005 Igor Nestoroviƒá
- ¬© 2002-2003 Igor Petreski
- ¬© 2011 Ihar Hrachyshka
- ¬© 2004-2005 Ivan Noris
- ¬© 2005-2007 Ivar Smolin
- ¬© 2003-2007 I√±aki Larra√±aga Murgoitio
- ¬© 2005 JEAN BAPTISTE NGENDAHAYO
- ¬© 2002 Jeroen van der Vegt
- ¬© 2002-2007 Jordi Mallach
- ¬© 2012 Jorge Becerril
- ¬© 2009 Jorge Gonz√°lez
- ¬© 2014 Juhani Numminen
- ¬© 2003 KAMAGASAKO Masatoshi
- ¬© 2004 Kemal ≈†anjta
- ¬© 2006 Khaled Hosny
- ¬© 2012 Khoem Sokhem
- ¬© 2014 Kjartan Maraas
- ¬© 2003-2012 Kostas Papadimas
- ¬© 2010 Kristjan SCHMIDT
- ¬© 2004 Laszlo Dvornik
- ¬© 2003-2008 Laurent Dhima
- ¬© 2010 Loba Yeasmeen
- ¬© 2002-2007 Luca Ferretti
- ¬© 2014 M.Hanny Sabbagh
- ¬© 2004 MagNet
- ¬© 2005 Mahay Alam Khan
- ¬© 2009-2010 Manoj Kumar Giri
- ¬© 2008 Marcel Telka
- ¬© 2014 Marek ƒåernock√Ω
- ¬© 2006 Maris ZInbergs
- ¬© 2005 Martin Willemoes Hansen
- ¬© 2007 Massimo Furlani
- ¬© 2014 Matej Urbanƒçiƒç
- ¬© 2003 Mathieu van Woerkom
- ¬© 2009 Michael MORONI
- ¬© 2014 Miroslav Nikoliƒá
- ¬© 2003-2004 Mi»ôu Moldovan
- ¬© 2005 Mohammad DAMT
- ¬© 2008 Moldabekov Margulan
- ¬© 2012 Morn Met
- ¬© 2014 Muhammet Kara
- ¬© 2003-2004 M…ôtin ∆èmirov
- ¬© 2007 Nabin Gautam
- ¬© 2007 Nguy·ªÖn Th√°i Ng·ªçc Duy
- ¬© 2012-2014 Nilamdyuti Goswami
- ¬© 2009 Nils-Christoph Fiedler
- ¬© 2005 No√´lla Mupole
- ¬© 2009 Nurali Abdurahmonov
- ¬© 2002-2004 Ole Laursen
- ¬© 2002 Pablo Gonzalo del Campo
- ¬© 2003 Pablo Saratxaga
- ¬© 2004 Paisa Seeluangsawat
- ¬© 2003 Paul Duffy
- ¬© 2005 Philibert Ndandali
- ¬© 2014 Piotr DrƒÖg
- ¬© 2008 Praveen|‡¥™‡µç‡¥∞‡¥µ‡µÄ‡¥£‡µç‚Äç A|‡¥é
- ¬© 2003-2014 Prevod.org team
- ¬© 2006 Rahul Bhalerao
- ¬© 2009 Raivis Dejus
- ¬© 2005-2009 Rajesh Ranjan
- ¬© 2004-2005 Raphael Higino
- ¬© 2004 Ravishankar Shrivastava
- ¬© (unspecified) Renuka Prasad
- ¬© 2009 Re≈üat SABIQ
- ¬© 2008 Robert Sedak
- ¬© 2003 Roozbeh Pournader
- ¬© 2006-2011 Rosetta Contributors
- ¬© 2004 Roy Chan
- ¬© 2012 R≈´dolfs Mazurs
- ¬© 2005 Samia Niamatullah
- ¬© 2004 Sam√∫el J√≥n Gunnarsson
- ¬© 2008 Sandeep Shedmake
- ¬© 2009 Sangeeta Kumari
- ¬© 2003 Sanlig Badral
- ¬© 2008 Santhosh Thottingal
- ¬© 2010 Sense Hofstede
- ¬© 2008 Se√°n de B√∫rca
- ¬© 2008 Shankar Prasad
- ¬© 2003-2005 Sharif FarsiWeb, Inc.
- ¬© 2003-2004 Stanislav Visnovsky
- ¬© 2014 Stas Solovey
- ¬© 2005 Steve Murphy
- ¬© 2006 Subhransu Behera
- ¬© 2007 Swecha Telugu Localisation Team
- ¬© 2002 T.M.Thanh
- ¬© 2010 Takayuki KUSANO
- ¬© 2003-2007 Takeshi AIHANA
- ¬© 2003 Taneem Ahmed
- ¬© 2007 The GNOME Project
- ¬© 2007 Theppitak Karoonboonyanan
- ¬© 2006 Thierry Randrianiriana
- ¬© 2009 Thomas Thurman
- ¬© 2003 Tiago Cardoso Menezes
- ¬© 2003-2004 Tino Meinen
- ¬© 2003-2004 Tomas Kuliavas
- ¬© 2007-2008 Tomasz Dominikowski
- ¬© 2010 Torstein Adolf Winterseth
- ¬© 2007 Tshewang Norbu
- ¬© 2003 T√µivo Leedj√§rv
- ¬© 2005 Viateur MUGENZI
- ¬© 2013 Victor Ibragimov
- ¬© 2005 Vijay Kiran Kamuju
- ¬© 2006 Vladimer Sichinava
- ¬© 2004 Vladimir Petkov
- ¬© 2007 Wouter Bolsterlee
- ¬© 2007 Y.Kiran Chandra
- ¬© 2007 Yannig Marchegay (Kokoyaya)
- ¬© 2014 Yosef Or Boczko
- ¬© 2011 Yurek Hinz
- ¬© 2008 Zabeeh Khan
- ¬© 2003 Zbigniew Chyla
- ¬© 2011 Zenat Rahnuma
- ¬© 2010 argistitori
- ¬© 2003 the GNOME team
- ¬© 2003 www.gyfieithu.co.uk
- ¬© 2004 √Ösmund Skj√¶veland
- ¬© 2004-2014 ≈Ωygimantas Beruƒçka
+ © 2004 Abdulaziz Al-Arfaj
+ © 2003-2006 Abel Cheung
+ © 2004-2005 Adam Weinberger
+ © 2009 Adi Roiban
+ © 2004 Aleksandar Uro?evi?
+ © 2003-2010 Ales Nyakhaychyk
+ © 2004-2008 Alexander Shopov
+ © 2014 Alexandre Franke
+ © 2003 Allan Sims
+ © 2004-2014 Amanpreet Singh Alam
+ © 2009 Amitakhya Phukan
+ © 2014 Anders Jonsson
+ © 2014 Andika Triwidada
+ © 2002-2004 Andras Timar
+ © 2006 Ani Peter
+ © 2004-2007 Ankit Patel
+ © 2003 Arafat Medini
+ © 2004-2008 Arangel Angov
+ © 2002 Artis Trops
+ © 2003-2005 Artur Flinta
+ © 2005 Augustin KIBERWA
+ © 2008 Automatski Prijevod
+ © 2007-2014 Aviary.pl
+ © 2014 Bal·zs MeskÛ
+ © (unspecified) Branko Ivanovi?
+ © 2005-2011 Canonical Ltd.
+ © 2005 Carole Karema
+ © 2014 Changwoo Ryu
+ © 2006-2014 Christian Kintner
+ © 2002-2004 Christian Neumair
+ © 2002-2005 Christian Rose
+ © 2014 Claudio Arseni
+ © 2005-2007 Clytie Siddall
+ © 2014 Daniel Korostil
+ © 2011 Daniel Martinez Cucalon
+ © 2014 Daniel Mustieles
+ © 2007 Daniel Nylander
+ © 2007 Danishka Navin
+ © 2003 Deep_Dark
+ © 2008 Denis Lackovic
+ © 2014 Dimitris Spingos (???????? ???????)
+ © 2003 Dinesh Nadarajah
+ © 2007 Djavan Fagundes
+ © 2006 Djihed Afifi
+ © 2005 Donatien NSENGIYUMVA
+ © 2007 Dr.T.Vasudevan
+ © 2003-2007 Duarte Loreto
+ © 2005 Elnaz Sarbar
+ © 2014 Enrico Nicoletto
+ © 2010 Erdal RonahÓ
+ © 2008 Erzhan Shaniev
+ © 2002-2003 Evandro Fernandes Giovanini
+ © 2008 F Wolff
+ © 2003 FSF-India
+ © 2010-2014 Fran DiÈguez
+ © 2003-2004 Francisco Javier F. Serrador
+ © 2002-2010 Free Software Foundation, Inc.
+ © 2003-2004 Funda Wang
+ © 2003 G Karunakar
+ © 2005-2008 Gabor Kelemen
+ © 2004 Gareth Owen
+ © 2010 Gheyret T.Kenji
+ © 2014 Gil Forcada
+ © 2002-2004 Gil Osher
+ © 2007 Gintautas Miliauskas
+ © 2006 Giulia
+ © 2002-2012 Gnome Software Foundation
+ © 2007 Gnome i18n Project for Vietnamese
+ © 2011 GunChleoc
+ © 2002 Hasbullah Bin Pit
+ © 2003 He Qiangqiang
+ © 2005-2007 Hendrik Richter
+ © 2004-2007 Ignacion Casal Quinteiro
+ © 2005 Igor Nestorovi?
+ © 2002-2003 Igor Petreski
+ © 2011 Ihar Hrachyshka
+ © 2004-2005 Ivan Noris
+ © 2005-2007 Ivar Smolin
+ © 2003-2007 IÒaki LarraÒaga Murgoitio
+ © 2005 JEAN BAPTISTE NGENDAHAYO
+ © 2002 Jeroen van der Vegt
+ © 2002-2007 Jordi Mallach
+ © 2012 Jorge Becerril
+ © 2009 Jorge Gonz·lez
+ © 2014 Juhani Numminen
+ © 2003 KAMAGASAKO Masatoshi
+ © 2004 Kemal ?anjta
+ © 2006 Khaled Hosny
+ © 2012 Khoem Sokhem
+ © 2014 Kjartan Maraas
+ © 2003-2012 Kostas Papadimas
+ © 2010 Kristjan SCHMIDT
+ © 2004 Laszlo Dvornik
+ © 2003-2008 Laurent Dhima
+ © 2010 Loba Yeasmeen
+ © 2002-2007 Luca Ferretti
+ © 2014 M.Hanny Sabbagh
+ © 2004 MagNet
+ © 2005 Mahay Alam Khan
+ © 2009-2010 Manoj Kumar Giri
+ © 2008 Marcel Telka
+ © 2014 Marek ?ernock˝
+ © 2006 Maris ZInbergs
+ © 2005 Martin Willemoes Hansen
+ © 2007 Massimo Furlani
+ © 2014 Matej Urban?i?
+ © 2003 Mathieu van Woerkom
+ © 2009 Michael MORONI
+ © 2014 Miroslav Nikoli?
+ © 2003-2004 Mi?u Moldovan
+ © 2005 Mohammad DAMT
+ © 2008 Moldabekov Margulan
+ © 2012 Morn Met
+ © 2014 Muhammet Kara
+ © 2003-2004 M?tin ?mirov
+ © 2007 Nabin Gautam
+ © 2007 Nguy?n Th·i Ng?c Duy
+ © 2012-2014 Nilamdyuti Goswami
+ © 2009 Nils-Christoph Fiedler
+ © 2005 NoÎlla Mupole
+ © 2009 Nurali Abdurahmonov
+ © 2002-2004 Ole Laursen
+ © 2002 Pablo Gonzalo del Campo
+ © 2003 Pablo Saratxaga
+ © 2004 Paisa Seeluangsawat
+ © 2003 Paul Duffy
+ © 2005 Philibert Ndandali
+ © 2014 Piotr Dr?g
+ © 2008 Praveen|???????? A|?
+ © 2003-2014 Prevod.org team
+ © 2006 Rahul Bhalerao
+ © 2009 Raivis Dejus
+ © 2005-2009 Rajesh Ranjan
+ © 2004-2005 Raphael Higino
+ © 2004 Ravishankar Shrivastava
+ © (unspecified) Renuka Prasad
+ © 2009 Re?at SABIQ
+ © 2008 Robert Sedak
+ © 2003 Roozbeh Pournader
+ © 2006-2011 Rosetta Contributors
+ © 2004 Roy Chan
+ © 2012 R?dolfs Mazurs
+ © 2005 Samia Niamatullah
+ © 2004 Sam˙el JÛn Gunnarsson
+ © 2008 Sandeep Shedmake
+ © 2009 Sangeeta Kumari
+ © 2003 Sanlig Badral
+ © 2008 Santhosh Thottingal
+ © 2010 Sense Hofstede
+ © 2008 Se·n de B˙rca
+ © 2008 Shankar Prasad
+ © 2003-2005 Sharif FarsiWeb, Inc.
+ © 2003-2004 Stanislav Visnovsky
+ © 2014 Stas Solovey
+ © 2005 Steve Murphy
+ © 2006 Subhransu Behera
+ © 2007 Swecha Telugu Localisation Team
+ © 2002 T.M.Thanh
+ © 2010 Takayuki KUSANO
+ © 2003-2007 Takeshi AIHANA
+ © 2003 Taneem Ahmed
+ © 2007 The GNOME Project
+ © 2007 Theppitak Karoonboonyanan
+ © 2006 Thierry Randrianiriana
+ © 2009 Thomas Thurman
+ © 2003 Tiago Cardoso Menezes
+ © 2003-2004 Tino Meinen
+ © 2003-2004 Tomas Kuliavas
+ © 2007-2008 Tomasz Dominikowski
+ © 2010 Torstein Adolf Winterseth
+ © 2007 Tshewang Norbu
+ © 2003 Tıivo Leedj‰rv
+ © 2005 Viateur MUGENZI
+ © 2013 Victor Ibragimov
+ © 2005 Vijay Kiran Kamuju
+ © 2006 Vladimer Sichinava
+ © 2004 Vladimir Petkov
+ © 2007 Wouter Bolsterlee
+ © 2007 Y.Kiran Chandra
+ © 2007 Yannig Marchegay (Kokoyaya)
+ © 2014 Yosef Or Boczko
+ © 2011 Yurek Hinz
+ © 2008 Zabeeh Khan
+ © 2003 Zbigniew Chyla
+ © 2011 Zenat Rahnuma
+ © 2010 argistitori
+ © 2003 the GNOME team
+ © 2003 www.gyfieithu.co.uk
+ © 2004 ≈smund SkjÊveland
+ © 2004-2014 ?ygimantas Beru?ka
 License: CC-BY-SA-3.0-US or LGPL-3
  This work is licenced under the terms of either the GNU LGPL v3 or
  Creative Commons Attribution-Share Alike 3.0 United States License.
@@ -264,9 +265,10 @@ License: CC-BY-SA-3.0-US or LGPL-3
 
 Files:
  po/tk.po
+ 41/po/tk.po
 Copyright:
- ¬© 2004 Free Software Foundation
- ¬© 2004 Gurban M√ºhemmet Tewekgeli and Kakilik - Turkmen free software developers community
+ © 2004 Free Software Foundation
+ © 2004 Gurban M¸hemmet Tewekgeli and Kakilik - Turkmen free software developers community
 License: GPL-unspecified
  This file is distributed under the terms of GNU General Public License (GPL)
 Comment:
@@ -274,13 +276,37 @@ Comment:
  Public License can be found in `/usr/share/common-licenses/GPL'.
 
 Files:
- src/fullcolor/accessories-dictionary.svg
+ Adwaita/scalable/status/night-light-symbolic.svg
+ Adwaita/scalable/ui/pan-down-symbolic.svg
+ Adwaita/scalable/ui/pan-end-symbolic-rtl.svg
+ Adwaita/scalable/ui/pan-end-symbolic.svg
+ Adwaita/scalable/ui/pan-start-symbolic-rtl.svg
+ Adwaita/scalable/ui/pan-start-symbolic.svg
+ Adwaita/scalable/ui/pan-up-symbolic.svg
+ src/fullcolor/application-x-sharedlib.svg
+ src/symbolic/gnome-stencils.svg
+ 41/Adwaita/scalable/status/night-light-symbolic.svg
+ 41/Adwaita/scalable/ui/pan-down-symbolic.svg
+ 41/Adwaita/scalable/ui/pan-end-symbolic-rtl.svg
+ 41/Adwaita/scalable/ui/pan-end-symbolic.svg
+ 41/Adwaita/scalable/ui/pan-start-symbolic-rtl.svg
+ 41/Adwaita/scalable/ui/pan-start-symbolic.svg
+ 41/Adwaita/scalable/ui/pan-up-symbolic.svg
+ 41/src/fullcolor/application-x-sharedlib.svg
+ 41/src/symbolic/gnome-stencils.svg
 Copyright:
- ¬© Ulisse Perusin
- ¬© Lapo Calamandrei
- ¬© SoylentGreen
- ¬© Luigi Chiesa
- ¬© unknown contributor to FreeSeamlessTextures.com
+ unspecified, possibly © Jakub Steiner
+License: CC-BY-SA-4.0
+
+Files:
+ src/fullcolor/accessories-dictionary.svg
+ 41/src/fullcolor/accessories-dictionary.svg
+Copyright:
+ © Ulisse Perusin
+ © Lapo Calamandrei
+ © SoylentGreen
+ © Luigi Chiesa
+ © unknown contributor to FreeSeamlessTextures.com
 License: GFDL-1.2+ or CC-BY-SA-3.0-Unported or CC-BY-SA-2.0-IT, and CC-BY-3.0-US
 
 License: CC-BY-SA-3.0-Unported
@@ -289,14 +315,14 @@ License: CC-BY-SA-3.0-Unported
  .
  You are free:
  .
- ‚Ä¢ to share ‚Äì to copy, distribute and transmit the work
- ‚Ä¢ to remix ‚Äì to adapt the work
+ ? to share ? to copy, distribute and transmit the work
+ ? to remix ? to adapt the work
  .
  Under the following conditions:
- ‚Ä¢ attribution ‚Äì You must attribute the work in the manner specified
+ ? attribution ? You must attribute the work in the manner specified
    by the author or licensor (but not in any way that suggests that they
    endorse you or your use of the work).
- ‚Ä¢ share alike ‚Äì If you alter, transform, or build upon this work,
+ ? share alike ? If you alter, transform, or build upon this work,
    you may distribute the resulting work only under the same or similar
    license to this one.
  .
@@ -668,6 +694,438 @@ License: CC-BY-SA-3.0-Unported
    this trademark restriction does not form part of the License.
  .
    Creative Commons may be contacted at http://creativecommons.org/.
+
+License: CC-BY-SA-4.0
+ http://creativecommons.org/licenses/by-sa/4.0/
+ .
+ Attribution-ShareAlike 4.0 International
+ .
+ =======================================================================
+ .
+ Creative Commons Corporation ("Creative Commons") is not a law firm and
+ does not provide legal services or legal advice. Distribution of
+ Creative Commons public licenses does not create a lawyer-client or
+ other relationship. Creative Commons makes its licenses and related
+ information available on an "as-is" basis. Creative Commons gives no
+ warranties regarding its licenses, any material licensed under their
+ terms and conditions, or any related information. Creative Commons
+ disclaims all liability for damages resulting from their use to the
+ fullest extent possible.
+ .
+ Using Creative Commons Public Licenses
+ .
+ Creative Commons public licenses provide a standard set of terms and
+ conditions that creators and other rights holders may use to share
+ original works of authorship and other material subject to copyright
+ and certain other rights specified in the public license below. The
+ following considerations are for informational purposes only, are not
+ exhaustive, and do not form part of our licenses.
+ .
+      Considerations for licensors: Our public licenses are
+      intended for use by those authorized to give the public
+      permission to use material in ways otherwise restricted by
+      copyright and certain other rights. Our licenses are
+      irrevocable. Licensors should read and understand the terms
+      and conditions of the license they choose before applying it.
+      Licensors should also secure all rights necessary before
+      applying our licenses so that the public can reuse the
+      material as expected. Licensors should clearly mark any
+      material not subject to the license. This includes other CC-
+      licensed material, or material used under an exception or
+      limitation to copyright. More considerations for licensors:
+ 	wiki.creativecommons.org/Considerations_for_licensors
+ .
+      Considerations for the public: By using one of our public
+      licenses, a licensor grants the public permission to use the
+      licensed material under specified terms and conditions. If
+      the licensor's permission is not necessary for any reason--for
+      example, because of any applicable exception or limitation to
+      copyright--then that use is not regulated by the license. Our
+      licenses grant only permissions under copyright and certain
+      other rights that a licensor has authority to grant. Use of
+      the licensed material may still be restricted for other
+      reasons, including because others have copyright or other
+      rights in the material. A licensor may make special requests,
+      such as asking that all changes be marked or described.
+      Although not required by our licenses, you are encouraged to
+      respect those requests where reasonable. More_considerations
+      for the public: 
+ 	wiki.creativecommons.org/Considerations_for_licensees
+ .
+ =======================================================================
+ .
+ Creative Commons Attribution-ShareAlike 4.0 International Public
+ License
+ .
+ By exercising the Licensed Rights (defined below), You accept and agree
+ to be bound by the terms and conditions of this Creative Commons
+ Attribution-ShareAlike 4.0 International Public License ("Public
+ License"). To the extent this Public License may be interpreted as a
+ contract, You are granted the Licensed Rights in consideration of Your
+ acceptance of these terms and conditions, and the Licensor grants You
+ such rights in consideration of benefits the Licensor receives from
+ making the Licensed Material available under these terms and
+ conditions.
+ .
+ .
+ Section 1 -- Definitions.
+ .
+   a. Adapted Material means material subject to Copyright and Similar
+      Rights that is derived from or based upon the Licensed Material
+      and in which the Licensed Material is translated, altered,
+      arranged, transformed, or otherwise modified in a manner requiring
+      permission under the Copyright and Similar Rights held by the
+      Licensor. For purposes of this Public License, where the Licensed
+      Material is a musical work, performance, or sound recording,
+      Adapted Material is always produced where the Licensed Material is
+      synched in timed relation with a moving image.
+ .
+   b. Adapter's License means the license You apply to Your Copyright
+      and Similar Rights in Your contributions to Adapted Material in
+      accordance with the terms and conditions of this Public License.
+ .
+   c. BY-SA Compatible License means a license listed at
+      creativecommons.org/compatiblelicenses, approved by Creative
+      Commons as essentially the equivalent of this Public License.
+ .
+   d. Copyright and Similar Rights means copyright and/or similar rights
+      closely related to copyright including, without limitation,
+      performance, broadcast, sound recording, and Sui Generis Database
+      Rights, without regard to how the rights are labeled or
+      categorized. For purposes of this Public License, the rights
+      specified in Section 2(b)(1)-(2) are not Copyright and Similar
+      Rights.
+ .
+   e. Effective Technological Measures means those measures that, in the
+      absence of proper authority, may not be circumvented under laws
+      fulfilling obligations under Article 11 of the WIPO Copyright
+      Treaty adopted on December 20, 1996, and/or similar international
+      agreements.
+ .
+   f. Exceptions and Limitations means fair use, fair dealing, and/or
+      any other exception or limitation to Copyright and Similar Rights
+      that applies to Your use of the Licensed Material.
+ .
+   g. License Elements means the license attributes listed in the name
+      of a Creative Commons Public License. The License Elements of this
+      Public License are Attribution and ShareAlike.
+ .
+   h. Licensed Material means the artistic or literary work, database,
+      or other material to which the Licensor applied this Public
+      License.
+ .
+   i. Licensed Rights means the rights granted to You subject to the
+      terms and conditions of this Public License, which are limited to
+      all Copyright and Similar Rights that apply to Your use of the
+      Licensed Material and that the Licensor has authority to license.
+ .
+   j. Licensor means the individual(s) or entity(ies) granting rights
+      under this Public License.
+ .
+   k. Share means to provide material to the public by any means or
+      process that requires permission under the Licensed Rights, such
+      as reproduction, public display, public performance, distribution,
+      dissemination, communication, or importation, and to make material
+      available to the public including in ways that members of the
+      public may access the material from a place and at a time
+      individually chosen by them.
+ .
+   l. Sui Generis Database Rights means rights other than copyright
+      resulting from Directive 96/9/EC of the European Parliament and of
+      the Council of 11 March 1996 on the legal protection of databases,
+      as amended and/or succeeded, as well as other essentially
+      equivalent rights anywhere in the world.
+ .
+   m. You means the individual or entity exercising the Licensed Rights
+      under this Public License. Your has a corresponding meaning.
+ .
+ .
+ Section 2 -- Scope.
+ .
+   a. License grant.
+ .
+        1. Subject to the terms and conditions of this Public License,
+           the Licensor hereby grants You a worldwide, royalty-free,
+           non-sublicensable, non-exclusive, irrevocable license to
+           exercise the Licensed Rights in the Licensed Material to:
+ .
+             a. reproduce and Share the Licensed Material, in whole or
+                in part; and
+ .
+             b. produce, reproduce, and Share Adapted Material.
+ .
+        2. Exceptions and Limitations. For the avoidance of doubt, where
+           Exceptions and Limitations apply to Your use, this Public
+           License does not apply, and You do not need to comply with
+           its terms and conditions.
+ .
+        3. Term. The term of this Public License is specified in Section
+           6(a).
+ .
+        4. Media and formats; technical modifications allowed. The
+           Licensor authorizes You to exercise the Licensed Rights in
+           all media and formats whether now known or hereafter created,
+           and to make technical modifications necessary to do so. The
+           Licensor waives and/or agrees not to assert any right or
+           authority to forbid You from making technical modifications
+           necessary to exercise the Licensed Rights, including
+           technical modifications necessary to circumvent Effective
+           Technological Measures. For purposes of this Public License,
+           simply making modifications authorized by this Section 2(a)
+           (4) never produces Adapted Material.
+ .
+        5. Downstream recipients.
+ .
+             a. Offer from the Licensor -- Licensed Material. Every
+                recipient of the Licensed Material automatically
+                receives an offer from the Licensor to exercise the
+                Licensed Rights under the terms and conditions of this
+                Public License.
+ .
+             b. Additional offer from the Licensor -- Adapted Material.
+                Every recipient of Adapted Material from You
+                automatically receives an offer from the Licensor to
+                exercise the Licensed Rights in the Adapted Material
+                under the conditions of the Adapter's License You apply.
+ .
+             c. No downstream restrictions. You may not offer or impose
+                any additional or different terms or conditions on, or
+                apply any Effective Technological Measures to, the
+                Licensed Material if doing so restricts exercise of the
+                Licensed Rights by any recipient of the Licensed
+                Material.
+ .
+        6. No endorsement. Nothing in this Public License constitutes or
+           may be construed as permission to assert or imply that You
+           are, or that Your use of the Licensed Material is, connected
+           with, or sponsored, endorsed, or granted official status by,
+           the Licensor or others designated to receive attribution as
+           provided in Section 3(a)(1)(A)(i).
+ .
+   b. Other rights.
+ .
+        1. Moral rights, such as the right of integrity, are not
+           licensed under this Public License, nor are publicity,
+           privacy, and/or other similar personality rights; however, to
+           the extent possible, the Licensor waives and/or agrees not to
+           assert any such rights held by the Licensor to the limited
+           extent necessary to allow You to exercise the Licensed
+           Rights, but not otherwise.
+ .
+        2. Patent and trademark rights are not licensed under this
+           Public License.
+ .
+        3. To the extent possible, the Licensor waives any right to
+           collect royalties from You for the exercise of the Licensed
+           Rights, whether directly or through a collecting society
+           under any voluntary or waivable statutory or compulsory
+           licensing scheme. In all other cases the Licensor expressly
+           reserves any right to collect such royalties.
+ .
+ .
+ Section 3 -- License Conditions.
+ .
+ Your exercise of the Licensed Rights is expressly made subject to the
+ following conditions.
+ .
+   a. Attribution.
+ .
+        1. If You Share the Licensed Material (including in modified
+           form), You must:
+ .
+             a. retain the following if it is supplied by the Licensor
+                with the Licensed Material:
+ .
+                  i. identification of the creator(s) of the Licensed
+                     Material and any others designated to receive
+                     attribution, in any reasonable manner requested by
+                     the Licensor (including by pseudonym if
+                     designated);
+ .
+                 ii. a copyright notice;
+ .
+                iii. a notice that refers to this Public License;
+ .
+                 iv. a notice that refers to the disclaimer of
+                     warranties;
+ .
+                  v. a URI or hyperlink to the Licensed Material to the
+                     extent reasonably practicable;
+ .
+             b. indicate if You modified the Licensed Material and
+                retain an indication of any previous modifications; and
+ .
+             c. indicate the Licensed Material is licensed under this
+                Public License, and include the text of, or the URI or
+                hyperlink to, this Public License.
+ .
+        2. You may satisfy the conditions in Section 3(a)(1) in any
+           reasonable manner based on the medium, means, and context in
+           which You Share the Licensed Material. For example, it may be
+           reasonable to satisfy the conditions by providing a URI or
+           hyperlink to a resource that includes the required
+           information.
+ .
+        3. If requested by the Licensor, You must remove any of the
+           information required by Section 3(a)(1)(A) to the extent
+           reasonably practicable.
+ .
+   b. ShareAlike.
+ .
+      In addition to the conditions in Section 3(a), if You Share
+      Adapted Material You produce, the following conditions also apply.
+ .
+        1. The Adapter's License You apply must be a Creative Commons
+           license with the same License Elements, this version or
+           later, or a BY-SA Compatible License.
+ .
+        2. You must include the text of, or the URI or hyperlink to, the
+           Adapter's License You apply. You may satisfy this condition
+           in any reasonable manner based on the medium, means, and
+           context in which You Share Adapted Material.
+ .
+        3. You may not offer or impose any additional or different terms
+           or conditions on, or apply any Effective Technological
+           Measures to, Adapted Material that restrict exercise of the
+           rights granted under the Adapter's License You apply.
+ .
+ .
+ Section 4 -- Sui Generis Database Rights.
+ .
+ Where the Licensed Rights include Sui Generis Database Rights that
+ apply to Your use of the Licensed Material:
+ .
+   a. for the avoidance of doubt, Section 2(a)(1) grants You the right
+      to extract, reuse, reproduce, and Share all or a substantial
+      portion of the contents of the database;
+ .
+   b. if You include all or a substantial portion of the database
+      contents in a database in which You have Sui Generis Database
+      Rights, then the database in which You have Sui Generis Database
+      Rights (but not its individual contents) is Adapted Material,
+ .
+      including for purposes of Section 3(b); and
+   c. You must comply with the conditions in Section 3(a) if You Share
+      all or a substantial portion of the contents of the database.
+ .
+ For the avoidance of doubt, this Section 4 supplements and does not
+ replace Your obligations under this Public License where the Licensed
+ Rights include other Copyright and Similar Rights.
+ .
+ .
+ Section 5 -- Disclaimer of Warranties and Limitation of Liability.
+ .
+   a. UNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE
+      EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS
+      AND AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF
+      ANY KIND CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS,
+      IMPLIED, STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION,
+      WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR
+      PURPOSE, NON-INFRINGEMENT, ABSENCE OF LATENT OR OTHER DEFECTS,
+      ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER OR NOT
+      KNOWN OR DISCOVERABLE. WHERE DISCLAIMERS OF WARRANTIES ARE NOT
+      ALLOWED IN FULL OR IN PART, THIS DISCLAIMER MAY NOT APPLY TO YOU.
+ .
+   b. TO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE
+      TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION,
+      NEGLIGENCE) OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT,
+      INCIDENTAL, CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES,
+      COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR
+      USE OF THE LICENSED MATERIAL, EVEN IF THE LICENSOR HAS BEEN
+      ADVISED OF THE POSSIBILITY OF SUCH LOSSES, COSTS, EXPENSES, OR
+      DAMAGES. WHERE A LIMITATION OF LIABILITY IS NOT ALLOWED IN FULL OR
+      IN PART, THIS LIMITATION MAY NOT APPLY TO YOU.
+ .
+   c. The disclaimer of warranties and limitation of liability provided
+      above shall be interpreted in a manner that, to the extent
+      possible, most closely approximates an absolute disclaimer and
+      waiver of all liability.
+ .
+ .
+ Section 6 -- Term and Termination.
+ .
+   a. This Public License applies for the term of the Copyright and
+      Similar Rights licensed here. However, if You fail to comply with
+      this Public License, then Your rights under this Public License
+      terminate automatically.
+ .
+   b. Where Your right to use the Licensed Material has terminated under
+      Section 6(a), it reinstates:
+ .
+        1. automatically as of the date the violation is cured, provided
+           it is cured within 30 days of Your discovery of the
+           violation; or
+ .
+        2. upon express reinstatement by the Licensor.
+ .
+      For the avoidance of doubt, this Section 6(b) does not affect any
+      right the Licensor may have to seek remedies for Your violations
+      of this Public License.
+ .
+   c. For the avoidance of doubt, the Licensor may also offer the
+      Licensed Material under separate terms or conditions or stop
+      distributing the Licensed Material at any time; however, doing so
+      will not terminate this Public License.
+ .
+   d. Sections 1, 5, 6, 7, and 8 survive termination of this Public
+      License.
+ .
+ .
+ Section 7 -- Other Terms and Conditions.
+ .
+   a. The Licensor shall not be bound by any additional or different
+      terms or conditions communicated by You unless expressly agreed.
+ .
+   b. Any arrangements, understandings, or agreements regarding the
+      Licensed Material not stated herein are separate from and
+      independent of the terms and conditions of this Public License.
+ .
+ .
+ Section 8 -- Interpretation.
+ .
+   a. For the avoidance of doubt, this Public License does not, and
+      shall not be interpreted to, reduce, limit, restrict, or impose
+      conditions on any use of the Licensed Material that could lawfully
+      be made without permission under this Public License.
+ .
+   b. To the extent possible, if any provision of this Public License is
+      deemed unenforceable, it shall be automatically reformed to the
+      minimum extent necessary to make it enforceable. If the provision
+      cannot be reformed, it shall be severed from this Public License
+      without affecting the enforceability of the remaining terms and
+      conditions.
+ .
+   c. No term or condition of this Public License will be waived and no
+      failure to comply consented to unless expressly agreed to by the
+      Licensor.
+ .
+   d. Nothing in this Public License constitutes or may be interpreted
+      as a limitation upon, or waiver of, any privileges and immunities
+      that apply to the Licensor or You, including from the legal
+      processes of any jurisdiction or authority.
+ .
+ .
+ =======================================================================
+ .
+ Creative Commons is not a party to its public
+ licenses. Notwithstanding, Creative Commons may elect to apply one of
+ its public licenses to material it publishes and in those instances
+ will be considered the ?Licensor.? The text of the Creative Commons
+ public licenses is dedicated to the public domain under the CC0 Public
+ Domain Dedication. Except for the limited purpose of indicating that
+ material is shared under a Creative Commons public license or as
+ otherwise permitted by the Creative Commons policies published at
+ creativecommons.org/policies, Creative Commons does not authorize the
+ use of the trademark "Creative Commons" or any other trademark or logo
+ of Creative Commons without its prior written consent including,
+ without limitation, in connection with any unauthorized modifications
+ to any of its public licenses or any other arrangements,
+ understandings, or agreements concerning use of licensed material. For
+ the avoidance of doubt, this paragraph does not form part of the
+ public licenses.
+ .
+ Creative Commons may be contacted at creativecommons.org.
+ .
 
 License: CC-BY-3.0-US
  <!-- Seamless texture provided by FreeSeamlessTextures.com -->
@@ -1270,15 +1728,15 @@ License: CC-BY-SA-2.0-IT
  .
  You are free:
  .
- ‚Ä¢ to share ‚Äì to copy, distribute and transmit the work
- ‚Ä¢ to remix ‚Äì to adapt the work
+ ? to share ? to copy, distribute and transmit the work
+ ? to remix ? to adapt the work
  .
  Under the following conditions:
  .
- ‚Ä¢ attribution ‚Äì You must attribute the work in the manner specified
+ ? attribution ? You must attribute the work in the manner specified
    by the author or licensor (but not in any way that suggests that they
    endorse you or your use of the work).
- ‚Ä¢ share alike ‚Äì If you alter, transform, or build upon this work,
+ ? share alike ? If you alter, transform, or build upon this work,
    you may distribute the resulting work only under the same or similar
    license to this one.
  .
@@ -1286,25 +1744,25 @@ License: CC-BY-SA-2.0-IT
  .
  [Creative Commons Legal Code]
  .
- Attribuzione‚ÄìCondividi allo stesso modo 2.0 (ITALIA)
+ Attribuzione?Condividi allo stesso modo 2.0 (ITALIA)
  .
- L‚ÄôASSOCIAZIONE CREATIVE COMMONS (DI SEGUITO ‚ÄòCREATIVE COMMONS‚Äô) NON √à
+ L?ASSOCIAZIONE CREATIVE COMMONS (DI SEGUITO ?CREATIVE COMMONS?) NON »
  UNO STUDIO LEGALE E NON FORNISCE SERVIZI DI CONSULENZA LEGALE. LA
  DISTRIBUZIONE DI QUESTO MODELLO DI CONTRATTO DI LICENZA NON INSTAURA UN
  RAPPORTO AVVOCATO-CLIENTE. CREATIVE COMMONS FORNISCE INFORMAZIONI DA
- CONSIDERARSI ‚ÄúCOSI‚Äô COME SONO‚Äù. CREATIVE COMMONS NON PRESTA ALCUNA
- GARANZIA PER LE INFORMAZIONI FORNITE E SI ESIME DA OGNI RESPONSABILIT√Ä
- PER I DANNI DERIVANTI DALL‚ÄôUSO DELLE STESSE.
+ CONSIDERARSI ?COSI? COME SONO?. CREATIVE COMMONS NON PRESTA ALCUNA
+ GARANZIA PER LE INFORMAZIONI FORNITE E SI ESIME DA OGNI RESPONSABILIT¿
+ PER I DANNI DERIVANTI DALL?USO DELLE STESSE.
  .
  La Licenza
  .
- L‚ÄôOPERA (COME SOTTO DEFINITA) √à MESSA A DISPOSIZIONE SULLA BASE DEI
- TERMINI DELLA PRESENTE LICENZA ‚ÄúCREATIVE COMMONS PUBLIC LICENCE‚Äù (‚ÄòCCPL‚Äô
- O ‚ÄòLICENZA‚Äô). L‚ÄôOPERA E‚Äô PROTETTA DAL DIRITTO D‚ÄôAUTORE E/O DALLE ALTRE
- LEGGI APPLICABILI. OGNI UTILIZZAZIONE DELL‚ÄôOPERA CHE NON SIA AUTORIZZATA
- AI SENSI DELLA PRESENTE LICENZA O DEL DIRITTO D‚ÄôAUTORE √à PROIBITA.
+ L?OPERA (COME SOTTO DEFINITA) » MESSA A DISPOSIZIONE SULLA BASE DEI
+ TERMINI DELLA PRESENTE LICENZA ?CREATIVE COMMONS PUBLIC LICENCE? (?CCPL?
+ O ?LICENZA?). L?OPERA E? PROTETTA DAL DIRITTO D?AUTORE E/O DALLE ALTRE
+ LEGGI APPLICABILI. OGNI UTILIZZAZIONE DELL?OPERA CHE NON SIA AUTORIZZATA
+ AI SENSI DELLA PRESENTE LICENZA O DEL DIRITTO D?AUTORE » PROIBITA.
  .
- CON IL SEMPLICE ESERCIZIO SULL‚ÄôOPERA DI UNO QUALUNQUE DEI DIRITTI QUI DI
+ CON IL SEMPLICE ESERCIZIO SULL?OPERA DI UNO QUALUNQUE DEI DIRITTI QUI DI
  SEGUITO ELENCATI, TU ACCETTI E TI OBBLIGHI A RISPETTARE INTEGRALMENTE I
  TERMINI DELLA PRESENTE LICENZA AI SENSI DEL PUNTO 8.f. IL LICENZIANTE
  CONCEDE A TE I DIRITTI QUI DI SEGUITO ELENCATI A CONDIZIONE CHE TU
@@ -1314,37 +1772,37 @@ License: CC-BY-SA-2.0-IT
  1. Definizioni. Ai fini e per gli effetti della presente licenza, si
  intende per
  .
- 1.  "Collezione di Opere", un‚Äôopera, come un numero di un periodico,
-     un‚Äôantologia o un‚Äôenciclopedia, nella quale l‚ÄôOpera nella sua
+ 1.  "Collezione di Opere", un?opera, come un numero di un periodico,
+     un?antologia o un?enciclopedia, nella quale l?Opera nella sua
      interezza e forma originale, unitamente ad altri contributi
      costituenti loro stessi opere distinte ed autonome, sono raccolti in
-     un‚Äôunit√† collettiva. Un‚Äôopera che costituisce Collezione di Opere
-     non verr√† considerata Opera Derivata (come sotto definita) ai fini
+     un?unit‡ collettiva. Un?opera che costituisce Collezione di Opere
+     non verr‡ considerata Opera Derivata (come sotto definita) ai fini
      della presente Licenza;
- 2.  "Opera Derivata", un‚Äôopera basata sull‚ÄôOpera ovvero sull‚ÄôOpera
+ 2.  "Opera Derivata", un?opera basata sull?Opera ovvero sull?Opera
      insieme con altre opere preesistenti, come una traduzione, un
      arrangiamento musicale, un adattamento teatrale, narrativo,
      cinematografico, una registrazione di suoni, una riproduzione
-     d‚Äôarte, un digesto, una sintesi, od ogni altra forma in cui l‚ÄôOpera
+     d?arte, un digesto, una sintesi, od ogni altra forma in cui l?Opera
      possa essere riproposta, trasformata o adattata. Nel caso in cui
-     un‚ÄôOpera tra quelle qui descritte costituisca gi√† Collezione di
-     Opere, essa non sar√† considerata Opera Derivata ai fini della
-     presente Licenza. Al fine di evitare dubbi √® inteso che, quando
-     l‚ÄôOpera sia una composizione musicale o registrazione di suoni, la
-     sincronizzazione dell‚ÄôOpera in relazione con un‚Äôimmagine in
-     movimento (‚Äúsynching‚Äù) sar√† considerata Opera Derivata ai fini di
+     un?Opera tra quelle qui descritte costituisca gi‡ Collezione di
+     Opere, essa non sar‡ considerata Opera Derivata ai fini della
+     presente Licenza. Al fine di evitare dubbi Ë inteso che, quando
+     l?Opera sia una composizione musicale o registrazione di suoni, la
+     sincronizzazione dell?Opera in relazione con un?immagine in
+     movimento (?synching?) sar‡ considerata Opera Derivata ai fini di
      questa Licenza;
- 3.  "Licenziante", l‚Äôindividuo o l‚Äôente che offre l‚ÄôOpera secondo i
+ 3.  "Licenziante", l?individuo o l?ente che offre l?Opera secondo i
      termini e le condizioni della presente Licenza;
- 4.  "Autore Originario", il soggetto che ha creato l‚ÄôOpera;
- 5.  "Opera", l‚Äôopera dell‚Äôingegno suscettibile di protezione in forza
-     delle leggi sul diritto d‚Äôautore, la cui utilizzazione √® offerta nel
+ 4.  "Autore Originario", il soggetto che ha creato l?Opera;
+ 5.  "Opera", l?opera dell?ingegno suscettibile di protezione in forza
+     delle leggi sul diritto d?autore, la cui utilizzazione Ë offerta nel
      rispetto dei termini della presente Licenza;
- 6.  "Tu"/"Te", l‚Äôindividuo o l‚Äôente che esercita i diritti derivanti
+ 6.  "Tu"/"Te", l?individuo o l?ente che esercita i diritti derivanti
      dalla presente Licenza e che non abbia precedentemente violato i
-     termini della presente Licenza relativi all‚ÄôOpera, o che, nonostante
+     termini della presente Licenza relativi all?Opera, o che, nonostante
      una precedente violazione degli stessi, abbia ricevuto espressa
-     autorizzazione dal Licenziante all‚Äôesercizio dei diritti derivanti
+     autorizzazione dal Licenziante all?esercizio dei diritti derivanti
      dalla presente Licenza;
  7.  "Elementi della Licenza", gli attributi fondamentali della Licenza
      scelti dal Licenziante ed indicati nel titolo della Licenza:
@@ -1352,30 +1810,30 @@ License: CC-BY-SA-2.0-IT
  .
  2. Libere utilizzazioni. La presente Licenza non intende in alcun modo
  ridurre, limitare o restringere alcun diritto di libera utilizzazione o
- l‚Äôoperare della regola dell‚Äôesaurimento del diritto o altre limitazioni
- dei diritti esclusivi sull‚ÄôOpera derivanti dalla legge sul diritto
- d‚Äôautore o da altre leggi applicabili.
+ l?operare della regola dell?esaurimento del diritto o altre limitazioni
+ dei diritti esclusivi sull?Opera derivanti dalla legge sul diritto
+ d?autore o da altre leggi applicabili.
  .
  3. Concessione della Licenza. Nel rispetto dei termini e delle
  condizioni contenute nella presente Licenza, il Licenziante concede a Te
  una licenza per tutto il mondo, gratuita, non esclusiva e perpetua (per
- la durata del diritto d‚Äôautore applicabile) che autorizza ad esercitare
- i diritti sull‚ÄôOpera qui di seguito elencati:
+ la durata del diritto d?autore applicabile) che autorizza ad esercitare
+ i diritti sull?Opera qui di seguito elencati:
  .
- 1.  riproduzione dell‚ÄôOpera, incorporazione dell‚ÄôOpera in una o pi√π
-     Collezioni di Opere e riproduzione dell‚ÄôOpera come incorporata nelle
+ 1.  riproduzione dell?Opera, incorporazione dell?Opera in una o pi˘
+     Collezioni di Opere e riproduzione dell?Opera come incorporata nelle
      Collezioni di Opere;
- 2.  creazione e riproduzione di un‚ÄôOpera Derivata;
- 3.  distribuzione di copie dell‚ÄôOpera o di supporti fonografici su cui
-     l‚ÄôOpera √® registrata, comunicazione al pubblico, rappresentazione,
+ 2.  creazione e riproduzione di un?Opera Derivata;
+ 3.  distribuzione di copie dell?Opera o di supporti fonografici su cui
+     l?Opera Ë registrata, comunicazione al pubblico, rappresentazione,
      esecuzione, recitazione o esposizione in pubblico, ivi inclusa la
-     trasmissione audio digitale dell‚ÄôOpera, e ci√≤ anche quando l‚ÄôOpera
+     trasmissione audio digitale dell?Opera, e ciÚ anche quando l?Opera
      sia incorporata in Collezioni di Opere;
- 4.  distribuzione di copie dell‚ÄôOpera o di supporti fonografici su cui
-     l‚ÄôOpera Derivata √® registrata, comunicazione al pubblico,
+ 4.  distribuzione di copie dell?Opera o di supporti fonografici su cui
+     l?Opera Derivata Ë registrata, comunicazione al pubblico,
      rappresentazione, esecuzione, recitazione o esposizione in pubblico,
      ivi inclusa la trasmissione audio digitale di Opere Derivate.
- 5.  Al fine di evitare dubbi √® inteso che, se l‚ÄôOpera sia di tipo
+ 5.  Al fine di evitare dubbi Ë inteso che, se l?Opera sia di tipo
      musicale
  .
      1.  Compensi per la comunicazione al pubblico o la rappresentazione
@@ -1384,118 +1842,118 @@ License: CC-BY-SA-2.0-IT
          personalmente o per il tramite di un ente di gestione collettiva
          (ad es. SIAE), per la comunicazione al pubblico o la
          rappresentazione od esecuzione, anche in forma digitale (ad es.
-         tramite webcast) dell‚ÄôOpera.
+         tramite webcast) dell?Opera.
      2.  Compensi per versioni cover. Il Licenziante rinuncia al diritto
          esclusivo di riscuotere compensi, personalmente o per il tramite
          di un ente di gestione collettiva (ad es. SIAE), per ogni disco
-         che Tu crei e distribuisci a partire dall‚ÄôOpera (versione
+         che Tu crei e distribuisci a partire dall?Opera (versione
          cover).
  .
- 6.  Compensi per la comunicazione al pubblico dell‚ÄôOpera mediante
-     fonogrammi. Al fine di evitare dubbi, √® inteso che se l‚ÄôOpera √® una
+ 6.  Compensi per la comunicazione al pubblico dell?Opera mediante
+     fonogrammi. Al fine di evitare dubbi, Ë inteso che se l?Opera Ë una
      registrazione di suoni, il Licenziante rinuncia al diritto esclusivo
      di riscuotere compensi, personalmente o per il tramite di un ente di
      gestione collettiva (ad es. IMAIE), per la comunicazione al pubblico
-     dell‚ÄôOpera, anche in forma digitale.
+     dell?Opera, anche in forma digitale.
  7.  Altri compensi previsti dalla legge italiana. Al fine di evitare
-     dubbi, √® inteso che il Licenziante rinuncia al diritto esclusivo di
+     dubbi, Ë inteso che il Licenziante rinuncia al diritto esclusivo di
      riscuotere i compensi a lui attribuiti dalla legge italiana sul
-     diritto d‚Äôautore (ad es. per l‚Äôinserimento dell‚ÄôOpera in
-     un‚Äôantologia ad uso scolastico ex art. 70 l. 633/1941). Al
+     diritto d?autore (ad es. per l?inserimento dell?Opera in
+     un?antologia ad uso scolastico ex art. 70 l. 633/1941). Al
      Licenziante spettano in ogni caso i compensi irrinunciabili a lui
-     attribuiti dalla medesima legge (ad es. l‚Äôequo compenso spettante
-     all‚Äôautore di opere musicali, cinematografiche, audiovisive o di
+     attribuiti dalla medesima legge (ad es. l?equo compenso spettante
+     all?autore di opere musicali, cinematografiche, audiovisive o di
      sequenze di immagini in movimento nel caso di noleggio ai sensi
-     dell‚Äôart. 18-bis l. 633/1941).
+     dell?art. 18-bis l. 633/1941).
  .
  I diritti sopra descritti potranno essere esercitati con ogni mezzo di
  comunicazione e in tutti i formati. Tra i diritti di cui sopra si
- intende compreso il diritto di apportare all‚ÄôOpera le modifiche che si
- rendessero tecnicamente necessarie per l‚Äôesercizio di detti diritti
+ intende compreso il diritto di apportare all?Opera le modifiche che si
+ rendessero tecnicamente necessarie per l?esercizio di detti diritti
  tramite altri mezzi di comunicazione o su altri formati. Tutti i diritti
  non espressamente concessi dal Licenziante rimangono riservati.
  .
- 4. Restrizioni. La Licenza concessa in conformit√† al precedente punto 3
- √® espressamente assoggettata a, e limitata da, le seguenti restrizioni
+ 4. Restrizioni. La Licenza concessa in conformit‡ al precedente punto 3
+ Ë espressamente assoggettata a, e limitata da, le seguenti restrizioni
  .
  1.  Tu puoi distribuire, comunicare al pubblico, rappresentare,
-     eseguire, recitare o esporre in pubblico l‚ÄôOpera, anche in forma
+     eseguire, recitare o esporre in pubblico l?Opera, anche in forma
      digitale, solo assicurando che i termini di cui alla presente
-     Licenza siano rispettati e, insieme ad ogni copia dell‚ÄôOpera (o
-     supporto fonografico su cui √® registrata l‚ÄôOpera) che distribuisci,
+     Licenza siano rispettati e, insieme ad ogni copia dell?Opera (o
+     supporto fonografico su cui Ë registrata l?Opera) che distribuisci,
      comunichi al pubblico o rappresenti, esegui, reciti o esponi in
      pubblico, anche in forma digitale, devi includere una copia della
      presente Licenza o il suo Uniform Resource Identifier. Non puoi
-     proporre od imporre alcuna condizione relativa all‚ÄôOpera che alteri
-     o restringa i termini della presente Licenza o l‚Äôesercizio da parte
+     proporre od imporre alcuna condizione relativa all?Opera che alteri
+     o restringa i termini della presente Licenza o l?esercizio da parte
      del beneficiario dei diritti qui concessi. Non puoi concedere
-     l‚ÄôOpera in sublicenza. Devi mantenere intatte tutte le informative
-     che si riferiscono alla presente Licenza ed all‚Äôesclusione delle
+     l?Opera in sublicenza. Devi mantenere intatte tutte le informative
+     che si riferiscono alla presente Licenza ed all?esclusione delle
      garanzie. Non puoi distribuire, comunicare al pubblico,
-     rappresentare, eseguire, recitare o esporre in pubblico l‚ÄôOpera,
+     rappresentare, eseguire, recitare o esporre in pubblico l?Opera,
      neanche in forma digitale, usando misure tecnologiche miranti a
-     controllare l‚Äôaccesso all‚ÄôOpera ovvero l‚Äôuso dell‚ÄôOpera, in maniera
+     controllare l?accesso all?Opera ovvero l?uso dell?Opera, in maniera
      incompatibile con i termini della presente Licenza. Quanto sopra si
-     applica all‚ÄôOpera anche quando questa faccia parte di una Collezione
-     di Opere, anche se ci√≤ non comporta che la Collezione di Opere di
-     per s√© ed indipendentemente dall‚ÄôOpera stessa debba essere soggetta
+     applica all?Opera anche quando questa faccia parte di una Collezione
+     di Opere, anche se ciÚ non comporta che la Collezione di Opere di
+     per sÈ ed indipendentemente dall?Opera stessa debba essere soggetta
      ai termini ed alle condizioni della presente Licenza. Qualora Tu
      crei una Collezione di Opere, su richiesta di qualsiasi Licenziante,
      devi rimuovere dalla Collezione di Opere stessa, ove materialmente
      possibile, ogni riferimento a tale Licenziante o, su richiesta di
      qualsiasi Autore Originario, a tale Autore Originario, come da
-     richiesta. Qualora tu crei un‚ÄôOpera Derivata, su richiesta di
-     qualsiasi Licenziante devi rimuovere dall‚ÄôOpera Derivata stessa,
-     nella misura in cui ci√≤ sia possibile, ogni riferimento a tale
+     richiesta. Qualora tu crei un?Opera Derivata, su richiesta di
+     qualsiasi Licenziante devi rimuovere dall?Opera Derivata stessa,
+     nella misura in cui ciÚ sia possibile, ogni riferimento a tale
      Licenziante o, su richiesta di qualsiasi Autore Originario, a tale
      Autore Originario, come da richiesta.
  2.  Tu puoi distribuire, comunicare al pubblico, rappresentare,
-     eseguire, recitare o esporre in pubblico l‚ÄôOpera, anche in forma
+     eseguire, recitare o esporre in pubblico l?Opera, anche in forma
      digitale, solo assicurando che i termini di cui alla presente
-     Licenza siano rispettati e, insieme ad ogni copia dell‚ÄôOpera (o
-     supporto fonografico su cui √® registrata l‚ÄôOpera) che distribuisci,
+     Licenza siano rispettati e, insieme ad ogni copia dell?Opera (o
+     supporto fonografico su cui Ë registrata l?Opera) che distribuisci,
      comunichi al pubblico o rappresenti, esegui, reciti o esponi in
      pubblico, anche in forma digitale, devi includere una copia della
      presente Licenza o il suo Uniform Resource Identifier. Non puoi
-     proporre od imporre alcuna condizione relativa all‚ÄôOpera che alteri
-     o restringa i termini della presente Licenza o l‚Äôesercizio da parte
+     proporre od imporre alcuna condizione relativa all?Opera che alteri
+     o restringa i termini della presente Licenza o l?esercizio da parte
      del beneficiario dei diritti qui concessi. Non puoi concedere
-     l‚ÄôOpera in sublicenza. Devi mantenere intatte tutte le informative
-     che si riferiscono alla presente Licenza ed all‚Äôesclusione delle
+     l?Opera in sublicenza. Devi mantenere intatte tutte le informative
+     che si riferiscono alla presente Licenza ed all?esclusione delle
      garanzie. Non puoi distribuire, comunicare al pubblico,
-     rappresentare, eseguire, recitare o esporre in pubblico l‚ÄôOpera,
+     rappresentare, eseguire, recitare o esporre in pubblico l?Opera,
      neanche in forma digitale, usando misure tecnologiche miranti a
-     controllare l‚Äôaccesso all‚ÄôOpera ovvero l‚Äôuso dell‚ÄôOpera, in maniera
+     controllare l?accesso all?Opera ovvero l?uso dell?Opera, in maniera
      incompatibile con i termini della presente Licenza. Quanto sopra si
-     applica all‚ÄôOpera anche quando questa faccia parte di una Collezione
-     di Opere, anche se ci√≤ non comporta che la Collezione di Opere di
-     per s√© ed indipendentemente dall‚ÄôOpera stessa debba essere soggetta
+     applica all?Opera anche quando questa faccia parte di una Collezione
+     di Opere, anche se ciÚ non comporta che la Collezione di Opere di
+     per sÈ ed indipendentemente dall?Opera stessa debba essere soggetta
      ai termini ed alle condizioni della presente Licenza. Qualora Tu
      crei una Collezione di Opere, su richiesta di qualsiasi Licenziante,
      devi rimuovere dalla Collezione di Opere stessa, ove materialmente
      possibile, ogni riferimento a tale Licenziante o, su richiesta di
      qualsiasi Autore Originario, a tale Autore Originario, come da
-     richiesta. Qualora tu crei un‚ÄôOpera Derivata, su richiesta di
-     qualsiasi Licenziante devi rimuovere dall‚ÄôOpera Derivata stessa,
-     nella misura in cui ci√≤ sia possibile, ogni riferimento a tale
+     richiesta. Qualora tu crei un?Opera Derivata, su richiesta di
+     qualsiasi Licenziante devi rimuovere dall?Opera Derivata stessa,
+     nella misura in cui ciÚ sia possibile, ogni riferimento a tale
      Licenziante o, su richiesta di qualsiasi Autore Originario, a tale
      Autore Originario, come da richiesta.
  3.  Qualora Tu distribuisca, comunichi al pubblico, rappresenti, esegua,
-     reciti o esponga in pubblico, anche in forma digitale, l‚ÄôOpera o
+     reciti o esponga in pubblico, anche in forma digitale, l?Opera o
      qualsiasi Opera Derivata o Collezione di Opere, devi mantenere
-     intatte tutte le informative sul diritto d‚Äôautore sull‚ÄôOpera. Devi
-     riconoscere all‚ÄôAutore Originale una menzione adeguata rispetto al
+     intatte tutte le informative sul diritto d?autore sull?Opera. Devi
+     riconoscere all?Autore Originale una menzione adeguata rispetto al
      mezzo di comunicazione o supporto che utilizzi citando il nome (o lo
-     pseudonimo, se del caso) dell‚ÄôAutore Originale, ove fornito; il
-     titolo dell‚ÄôOpera, ove fornito; nella misura in cui sia
-     ragionevolmente possibile, l‚ÄôUniform Resource Identifier, che il
-     Licenziante specifichi dover essere associato con l‚ÄôOpera, salvo che
+     pseudonimo, se del caso) dell?Autore Originale, ove fornito; il
+     titolo dell?Opera, ove fornito; nella misura in cui sia
+     ragionevolmente possibile, l?Uniform Resource Identifier, che il
+     Licenziante specifichi dover essere associato con l?Opera, salvo che
      tale URI non faccia riferimento alla informazione di protezione di
-     diritto d‚Äôautore o non dia informazioni sulla licenza dell‚ÄôOpera;
-     inoltre, in caso di Opera Derivata, devi menzionare l‚Äôuso dell‚ÄôOpera
-     nell‚ÄôOpera Derivata (ad esempio, ‚Äútraduzione francese dell‚ÄôOpera
-     dell‚ÄôAutore Originario‚Äù, o ‚Äúsceneggiatura basata sull‚ÄôOpera
-     originaria dell‚ÄôAutore Originario‚Äù). Tale menzione deve essere
+     diritto d?autore o non dia informazioni sulla licenza dell?Opera;
+     inoltre, in caso di Opera Derivata, devi menzionare l?uso dell?Opera
+     nell?Opera Derivata (ad esempio, ?traduzione francese dell?Opera
+     dell?Autore Originario?, o ?sceneggiatura basata sull?Opera
+     originaria dell?Autore Originario?). Tale menzione deve essere
      realizzata in qualsiasi maniera ragionevole possibile; in ogni caso,
      in ipotesi di Opera Derivata o Collezione di Opere, tale menzione
      deve quantomeno essere posta nel medesimo punto dove viene indicato
@@ -1503,112 +1961,112 @@ License: CC-BY-SA-2.0-IT
      risalto concesso alla menzione di altri autori di rilevanza
      paragonabile.
  .
- 5. Dichiarazioni, Garanzie ed Esonero da responsabilit√†
+ 5. Dichiarazioni, Garanzie ed Esonero da responsabilit‡
  .
  SALVO CHE SIA ESPRESSAMENTE CONVENUTO ALTRIMENTI PER ISCRITTO FRA LE
- PARTI, IL LICENZIANTE OFFRE L‚ÄôOPERA IN LICENZA ‚ÄúCOSI‚Äô COM‚ÄôE‚Äô‚Äù E NON
+ PARTI, IL LICENZIANTE OFFRE L?OPERA IN LICENZA ?COSI? COM?E?? E NON
  FORNISCE ALCUNA DICHIARAZIONE O GARANZIA DI QUALSIASI TIPO CON RIGUARDO
- ALL‚ÄôOPERA, SIA ESSA ESPRESSA OD IMPLICITA, DI FONTE LEGALE O DI ALTRO
+ ALL?OPERA, SIA ESSA ESPRESSA OD IMPLICITA, DI FONTE LEGALE O DI ALTRO
  TIPO, ESSENDO QUINDI ESCLUSE, FRA LE ALTRE, LE GARANZIE RELATIVE AL
- TITOLO, ALLA COMMERCIABILIT√Ä, ALL‚ÄôIDONEIT√Ä PER UN FINE SPECIFICO E ALLA
+ TITOLO, ALLA COMMERCIABILIT¿, ALL?IDONEIT¿ PER UN FINE SPECIFICO E ALLA
  NON VIOLAZIONE DI DIRITTI DI TERZI O ALLA MANCANZA DI DIFETTI LATENTI O
- DI ALTRO TIPO, ALL‚ÄôESATTEZZA OD ALLA PRESENZA DI ERRORI, SIANO ESSI
- ACCERTABILI O MENO. ALCUNE GIURISDIZIONI NON CONSENTONO L‚ÄôESCLUSIONE DI
- GARANZIE IMPLICITE E QUINDI TALE ESCLUSIONE PU√í NON APPLICARSI A TE.
+ DI ALTRO TIPO, ALL?ESATTEZZA OD ALLA PRESENZA DI ERRORI, SIANO ESSI
+ ACCERTABILI O MENO. ALCUNE GIURISDIZIONI NON CONSENTONO L?ESCLUSIONE DI
+ GARANZIE IMPLICITE E QUINDI TALE ESCLUSIONE PU“ NON APPLICARSI A TE.
  .
- 6. Limitazione di Responsabilit√†. SALVI I LIMITI STABILITI DALLA LEGGE
- APPLICABILE, IL LICENZIANTE NON SAR√Ä IN ALCUN CASO RESPONSABILE NEI TUOI
+ 6. Limitazione di Responsabilit‡. SALVI I LIMITI STABILITI DALLA LEGGE
+ APPLICABILE, IL LICENZIANTE NON SAR¿ IN ALCUN CASO RESPONSABILE NEI TUOI
  CONFRONTI A QUALUNQUE TITOLO PER ALCUN TIPO DI DANNO, SIA ESSO SPECIALE,
  INCIDENTALE, CONSEQUENZIALE, PUNITIVO OD ESEMPLARE, DERIVANTE DALLA
- PRESENTE LICENZA O DALL‚ÄôUSO DELL‚ÄôOPERA, ANCHE NEL CASO IN CUI IL
- LICENZIANTE SIA STATO EDOTTO SULLA POSSIBILIT√Ä DI TALI DANNI. NESSUNA
- CLAUSOLA DI QUESTA LICENZA ESCLUDE O LIMITA LA RESPONSABILITA‚Äô NEL CASO
+ PRESENTE LICENZA O DALL?USO DELL?OPERA, ANCHE NEL CASO IN CUI IL
+ LICENZIANTE SIA STATO EDOTTO SULLA POSSIBILIT¿ DI TALI DANNI. NESSUNA
+ CLAUSOLA DI QUESTA LICENZA ESCLUDE O LIMITA LA RESPONSABILITA? NEL CASO
  IN CUI QUESTA DIPENDA DA DOLO O COLPA GRAVE.
  .
  7. Risoluzione
  .
- 1.  La presente Licenza si intender√† risolta di diritto e i diritti con
-     essa concessi cesseranno automaticamente, senza necessit√† di alcuna
+ 1.  La presente Licenza si intender‡ risolta di diritto e i diritti con
+     essa concessi cesseranno automaticamente, senza necessit‡ di alcuna
      comunicazione in tal senso da parte del Licenziante, in caso di
      qualsivoglia inadempimento dei termini della presente Licenza da
      parte Tua, ed in particolare delle disposizioni di cui ai punti 4.a,
      4.b e 4.c, essendo la presente Licenza condizionata risolutivamente
      al verificarsi di tali inadempimenti. In ogni caso, la risoluzione
-     della presente Licenza non pregiudicher√† i diritti acquistati da
+     della presente Licenza non pregiudicher‡ i diritti acquistati da
      individui o enti che abbiano acquistato da Te Opere Derivate o
      Collezioni di Opere, ai sensi della presente Licenza, a condizione
      che tali individui o enti continuino a rispettare integralmente le
      licenze di cui sono parte. Le sezioni 1, 2, 5, 6, 7 e 8 rimangono
      valide in presenza di qualsiasi risoluzione della presente Licenza.
  2.  Sempre che vengano rispettati i termini e le condizioni di cui
-     sopra, la presente Licenza √® perpetua (e concessa per tutta la
-     durata del diritto d‚Äôautore sull‚ÄôOpera applicabile). Nonostante ci√≤,
-     il Licenziante si riserva il diritto di rilasciare l‚ÄôOpera sulla
+     sopra, la presente Licenza Ë perpetua (e concessa per tutta la
+     durata del diritto d?autore sull?Opera applicabile). Nonostante ciÚ,
+     il Licenziante si riserva il diritto di rilasciare l?Opera sulla
      base dei termini di una differente licenza o di cessare la
-     distribuzione dell‚ÄôOpera in qualsiasi momento; fermo restando che,
+     distribuzione dell?Opera in qualsiasi momento; fermo restando che,
      in ogni caso, tali decisioni non comporteranno recesso dalla
      presente Licenza (o da qualsiasi altra licenza che sia stata
      concessa, o che sia richiesto che venga concessa, ai termini della
-     presente Licenza), e la presente Licenza continuer√† ad avere piena
+     presente Licenza), e la presente Licenza continuer‡ ad avere piena
      efficacia, salvo che vi sia risoluzione come sopra indicato.
  .
  8. Varie
  .
  1.  Ogni volta che Tu distribuisci, o rappresenti, esegui o reciti
-     pubblicamente in forma digitale l‚ÄôOpera o una Collezione di Opere,
-     il Licenziante offre al destinatario una licenza per l‚ÄôOpera nei
+     pubblicamente in forma digitale l?Opera o una Collezione di Opere,
+     il Licenziante offre al destinatario una licenza per l?Opera nei
      medesimi termini e condizioni che a Te sono stati concessi dalla
      presente Licenza.
  2.  Ogni volta che Tu distribuisci, o rappresenti, esegui o reciti
-     pubblicamente in forma digitale un‚ÄôOpera Derivata, il Licenziante
-     offre al destinatario una licenza per l‚ÄôOpera originale nei medesimi
+     pubblicamente in forma digitale un?Opera Derivata, il Licenziante
+     offre al destinatario una licenza per l?Opera originale nei medesimi
      termini e condizioni che a Te sono stati concessi dalla presente
      Licenza.
- 3.  L‚Äôinvalidit√† o l‚Äôinefficacia, secondo la legge applicabile, di una o
-     pi√π fra le disposizioni della presente Licenza, non comporter√†
-     l‚Äôinvalidit√† o l‚Äôinefficacia dei restanti termini e, senza bisogno
+ 3.  L?invalidit‡ o l?inefficacia, secondo la legge applicabile, di una o
+     pi˘ fra le disposizioni della presente Licenza, non comporter‡
+     l?invalidit‡ o l?inefficacia dei restanti termini e, senza bisogno
      di ulteriori azioni delle parti, le disposizioni invalide od
      inefficaci saranno da intendersi rettificate nei limiti della misura
      che sia indispensabile per renderle valide ed efficaci.
  4.  In nessun caso i termini e le disposizioni di cui alla presente
-     Licenza possono essere considerati rinunciati, n√© alcuna violazione
-     pu√≤ essere considerata consentita, salvo che tale rinuncia o
+     Licenza possono essere considerati rinunciati, nÈ alcuna violazione
+     puÚ essere considerata consentita, salvo che tale rinuncia o
      consenso risultino per iscritto da una dichiarazione firmata dalla
      parte contro cui operi tale rinuncia o consenso.
- 5.  La presente Licenza costituisce l‚Äôintero accordo tra le parti
-     relativamente all‚ÄôOpera qui data in licenza. Non esistono altre
-     intese, accordi o dichiarazioni relative all‚ÄôOpera che non siano
-     quelle qui specificate. Il Licenziante non sar√† vincolato ad alcuna
+ 5.  La presente Licenza costituisce l?intero accordo tra le parti
+     relativamente all?Opera qui data in licenza. Non esistono altre
+     intese, accordi o dichiarazioni relative all?Opera che non siano
+     quelle qui specificate. Il Licenziante non sar‡ vincolato ad alcuna
      altra disposizione addizionale che possa apparire in alcuna
-     comunicazione da Te proveniente. La presente Licenza non pu√≤ essere
+     comunicazione da Te proveniente. La presente Licenza non puÚ essere
      modificata senza il mutuo consenso scritto del Licenziante e Tuo.
  6.  Clausola iCommons. Questa Licenza trova applicazione nel caso in cui
-     l‚ÄôOpera sia utilizzata in Italia. Ove questo sia il caso, si applica
-     anche il diritto d‚Äôautore italiano. Negli altri casi le parti si
-     obbligano a rispettare i termini dell‚Äôattuale Licenza Creative
+     l?Opera sia utilizzata in Italia. Ove questo sia il caso, si applica
+     anche il diritto d?autore italiano. Negli altri casi le parti si
+     obbligano a rispettare i termini dell?attuale Licenza Creative
      Commons generica che corrisponde a questa Licenza Creative Commons
      iCommons.
  .
- Creative Commons non √® parte della presente Licenza e non d√† alcuna
- garanzia connessa all‚ÄôOpera. Creative Commons non √® responsabile nei
+ Creative Commons non Ë parte della presente Licenza e non d‡ alcuna
+ garanzia connessa all?Opera. Creative Commons non Ë responsabile nei
  Tuoi confronti o nei confronti di altre parti ad alcun titolo per alcun
  danno, incluso, senza limitazioni, qualsiasi danno generale. speciale,
  incidentale o consequenziale che sorga in connessione alla presente
  Licenza. Nonostante quanto previsto nelle due precedenti frasi, qualora
  Creative Commons espressamente identificasse se stesso quale Licenziante
- nei termini di cui al presente accordo, avr√† tutti i diritti e tutti gli
+ nei termini di cui al presente accordo, avr‡ tutti i diritti e tutti gli
  obblighi del Licenziante.
  .
- Salvo che per il solo scopo di indicare al pubblico che l‚ÄôOpera √® data
- in licenza secondo i termini della CCPL, nessuna parte potr√† utilizzare
- il marchio ‚ÄúCreative Commons‚Äù o qualsiasi altro marchio correlato, o il
+ Salvo che per il solo scopo di indicare al pubblico che l?Opera Ë data
+ in licenza secondo i termini della CCPL, nessuna parte potr‡ utilizzare
+ il marchio ?Creative Commons? o qualsiasi altro marchio correlato, o il
  logo di Creative Commons, senza il preventivo consenso scritto di
- Creative Commons. Ogni uso consentito sar√† realizzato con l‚Äôosservanza
- delle linee guida per l‚Äôuso del marchio Creative Commons, in forza in
+ Creative Commons. Ogni uso consentito sar‡ realizzato con l?osservanza
+ delle linee guida per l?uso del marchio Creative Commons, in forza in
  quel momento, come di volta in volta pubblicate sul sito Internet di
  Creative Commons o altrimenti messe a disposizione a richiesta.
  .
- Creative Commons pu√≤ essere contattata al sito
+ Creative Commons puÚ essere contattata al sito
  http://creativecommons.org/.
 
 License: GFDL-1.2+

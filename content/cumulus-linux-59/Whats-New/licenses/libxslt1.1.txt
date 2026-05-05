@@ -1,4 +1,4 @@
-This package was debianized by Nicol√°s Lichtmaier <nick@debian.org> on
+This package was debianized by Nicol·s Lichtmaier <nick@debian.org> on
 Thu, 22 Feb 2001 23:09:08 -0300.  The current package maintainer is
 Ardo van Rangelooij <ardo@debian.org>.
 

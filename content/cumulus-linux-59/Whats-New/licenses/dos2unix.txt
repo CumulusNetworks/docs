@@ -9,7 +9,7 @@ X-Upstream-Bugs: https://sourceforge.net/p/dos2unix/bugs/
 
 Files: *
 Copyright:
- 2009-2017 Erwin Waterlander <waterlan@xs4all.nl>,
+ 2009-2022 Erwin Waterlander <waterlan@xs4all.nl>,
  1998 Christian Wurll <wurll@ira.uka.de>
  1988 Bernd Johannes Wuebben <wuebben@kde.org>
  1989, 1994, 1995 Benjamin Lin <blin@socs.uts.edu.au>
@@ -39,7 +39,7 @@ License: Public-Domain
 Files: debian/*
 Copyright:
  2009-2016 Jari Aalto <jari.aalto@cante.net>
- 2018 tony mancill <tmancill@debian.org>
+ 2018-2022 tony mancill <tmancill@debian.org>
 License: GPL-2+
 
 License: BSD-2-clause

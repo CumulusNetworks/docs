@@ -6,7 +6,7 @@ http://xorg.freedesktop.org/releases/individual/lib/
 
 Upstream copyright:
 
-  Copyright Â© 2001,2003 Keith Packard
+  Copyright © 2001,2003 Keith Packard
 
 Upstream license:
 

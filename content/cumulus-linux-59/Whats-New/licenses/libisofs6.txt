@@ -5,7 +5,7 @@ Source: http://files.libburnia-project.org/releases/
 
 Files: *
 Copyright: 2012, Vladimir Serbinenko
-  2007-2016, Thomas Schmitt <scdbackup@gmx.net>
+  2007-2021, Thomas Schmitt <scdbackup@gmx.net>
   2007, 2008, Vreixo Formoso <metalpain2002@yahoo.es>
   2007, 2008, Mario Danic <mario.danic@gmail.com>
 License: GPL-2+
@@ -36,7 +36,7 @@ Copyright: 1992-1996, 1998-2012, Free Software Foundation, Inc.
 License: FSFUL
 
 Files: debian/*
-Copyright: 2015, 2016, Thomas Schmitt <scdbackup@gmx.net>
+Copyright: 2015-2021 Thomas Schmitt <scdbackup@gmx.net>
   2011, Mats Erik Andersson <mats.andersson@gisladisker.se>
   2008-2012, George Danchev <danchev@spnet.net>
   2008, Simon Huggins <huggie@earth.li>
@@ -49,7 +49,7 @@ Copyright: 2007-2016, Vreixo Formoso, Thomas Schmitt
 License: GPL-2+
 
 Files: libisofs/*
-Copyright: 2009-2018, Thomas Schmitt
+Copyright: 2009-2021, Thomas Schmitt
   2007, 2008, Vreixo Formoso
 License: GPL-2+
 
@@ -83,13 +83,13 @@ Files: libisofs/ecma119.c
   libisofs/rockridge.c
   libisofs/rockridge.h
   libisofs/util.c
-Copyright: 2009-2018, Thomas Schmitt
+Copyright: 2009-2021, Thomas Schmitt
   2007, Vreixo Formoso
   2007, Mario Danic
 License: GPL-2+
 
 Files: libisofs/filters/*
-Copyright: 2008-2015, Thomas Schmitt
+Copyright: 2008-2021, Thomas Schmitt
 License: GPL-2+
 
 Files: libisofs/hfsplus.c
@@ -132,11 +132,11 @@ License: GPL-2+
 
 Files: libisofs/libiso_msgs.c
   libisofs/libiso_msgs.h
-Copyright: 2006-2016, Thomas Schmitt <scdbackup@gmx.net>
+Copyright: 2006-2021, Thomas Schmitt <scdbackup@gmx.net>
 License: GPL-2+
 
 Files: libisofs/libisofs.h
-Copyright: 2009-2018, Thomas Schmitt
+Copyright: 2009-2021, Thomas Schmitt
   2007, 2008, Vreixo Formoso, Mario Danic
 License: GPL-2+
 

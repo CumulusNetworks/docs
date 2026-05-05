@@ -13,7 +13,7 @@ License: MIT
 Comment: from cli-spinners
 
 Files: debian/*
-Copyright: 2020-2021 Â© Sandro Tosi <morph@debian.org>
+Copyright: 2020-2023 © Sandro Tosi <morph@debian.org>
 License: MIT
 
 License: MIT

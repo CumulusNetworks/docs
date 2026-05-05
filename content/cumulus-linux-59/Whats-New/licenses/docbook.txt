@@ -1,39 +1,58 @@
-This package was debianized by Mark Eichin <eichin@thok.org> on Mon,
-30 Jun 1997 14:11:38 -0400.  It is currently maintained by Adam Di
-Carlo <aph@debian.org> and the Debian XML/SGML group
-<debian-xml-sgml-devel@lists.alioth.debian.org>.  No changes were made
-to the upstream version of these materials, although the provided SGML
-Open catalogs were trimmed or enhanced to suit Debian's SGML
-infrastructure.  All Debian integration scripts and packages are under
-the GPL v2 or later, a copy of which can be found on Debian systems
-in '/usr/share/common-licenses/GPL-2'.
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: DocBook
+Upstream-Contact: docbook@lists.oasis-open.org (mailing list)
+Source: http://www.oasis-open.org/docbook/sgml/
 
-Download:
+Files: *
+Copyright: 1992-2006 ArborText, Inc.
+           1992-2006 Fujitsu Software Corporation
+           1992-2006 HaL Computer Systems, Inc.
+           1992-2006 Norman Walsh
+           1992-2006 O'Reilly & Associates, Inc.
+           1992-2006 Organization for the Advancement of Structured Information Standards (OASIS)
+           1992-2006 Sun Microsystems, Inc.
+License: DocBook
 
-  The original upstream materials may be downloaded from
-  <URL:http://www.oasis-open.org/docbook/sgml/>. This process is
-  transparent via the `get-orig-source' target in debian/rules.
+Files: debian/*
+Copyright: 1997-1999 Mark W. Eichin <eichin@thok.org>
+           1999-2006 Adam Di Carlo <aph@debian.org>
+           1999      J.H.M. Dassen (Ray) <jdassen@debian.org>
+           2000      Yann Dirson <dirson@debian.org>
+           2005      Steve Langasek <vorlon@debian.org>
+           2007-2012 Daniel Leidert (dale) <daniel.leidert@wgdd.de>
+           2012      Jakub Wilk <jwilk@debian.org>
+           2012      Mathieu Malaterre <malat@debian.org>
+           2016      Helmut Grohne <helmut@subdivi.de>
+           2021-2022 Joao Eriberto Mota Filho <eriberto@debian.org>
+License: GPL-2+
 
-Copyright:
+License: DocBook
+ Permission to use, copy, modify and distribute the DocBook DTD and
+ its accompanying documentation for any purpose and without fee is
+ hereby granted in perpetuity, provided that the above copyright
+ notice and this paragraph appear in all copies.  The copyright
+ holders make no representation about the suitability of the DTD for
+ any purpose. It is provided "as is" without expressed or implied
+ warranty.
+ .
+ If you modify the DocBook DTD in any way, except for declaring and
+ referencing additional sets of general entities and declaring
+ additional notations, label your DTD as a variant of DocBook. See
+ the maintenance documentation for more information.
 
-  Copyright 1992-2006 HaL Computer Systems, Inc.,
-  O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
-  Corporation, orman Walsh, un Microsystems, Inc.,  and the
-  Organization for the Advancement of Structured Information
-  Standards (OASIS).
-
-License and Warranty:
-
-  Permission to use, copy, modify and distribute the DocBook DTD and
-  its accompanying documentation for any purpose and without fee is
-  hereby granted in perpetuity, provided that the above copyright
-  notice and this paragraph appear in all copies.  The copyright
-  holders make no representation about the suitability of the DTD for
-  any purpose.  It is provided "as is" without expressed or implied
-  warranty.
-
-  If you modify the DocBook DTD in any way, except for declaring and
-  referencing additional sets of general entities and declaring
-  additional notations, label your DTD as a variant of DocBook.  See
-  the maintenance documentation for more information.
-
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".

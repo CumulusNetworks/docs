@@ -1,0 +1,177 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: FreeTDS
+Upstream-Contact: freetds@lists.ibiblio.org
+Source: ftp://mirrors.ibiblio.org/freetds/
+Files-Excluded:
+  doc/userguide
+  doc/reference
+  doc/*.1
+  doc/*.5
+
+Files: *
+Copyright: 1998-2021, Brian Bruns, James K. Lowden, Frediano Ziglio et al.
+License: LGPL-2+
+
+Files: vms/*
+Copyright: 2003-2010, Craig A. Berry <craigberry@mac.com>
+License: LGPL-2+
+
+Files: src/apps/fisql/*
+Copyright: 2007, Nicholas S. Castellano
+License: GPL-2.0+
+
+Files: doc/userguide*
+Copyright: 2001-2016, James K. Lowden et al
+License: GFDL-NIV-1.1+
+
+Files: include/freetds/utils/bjoern-utf8.h
+       src/utils/bjoern-utf8.c
+Copyright: 2008-2010, Bjoern Hoehrmann <bjoern@hoehrmann.de>
+License: Expat
+
+Files: src/replacements/poll.c
+       src/utils/md5.c
+License: public-domain
+ This code implements the MD5 message-digest algorithm.
+ The algorithm is due to Ron Rivest.  This code was
+ written by Colin Plumb in 1993, no copyright is claimed.
+ This code is in the public domain; do with it what you wish.
+
+Files: src/replacements/getopt.c
+Copyright: 1987-1994, The Regents of the University of California
+License: BSD-3-clause
+
+Files: include/freetds/replacements/readpassphrase.h
+Copyright: 2000, Todd C. Miller <Todd.Miller@courtesan.com>
+License: BSD-3-clause
+
+Files: src/replacements/readpassphrase.c
+Copyright: 2000-2002, Todd C. Miller <Todd.Miller@courtesan.com>
+License: ISC
+
+Files: src/apps/defncopy.c
+Copyright: 2004-2011, James K. Lowden
+License: GPL-2.0+
+
+Files: src/pool/*
+Copyright: 2001-2005, Brian Bruns
+License: GPL-2.0+
+
+Files: debian/*
+Copyright: 2000-2018 Steve Langasek <vorlon@debian.org>
+           2022-2023 Joseph Nahmias <jello@debian.org>
+License: LGPL-2+
+
+Files: debian/po/de.po
+Copyright: 2006-2007, Helge Kreutzmann <debian@helgefjell.de>
+           2004, Michael Bramer <grisu@debian.org>
+License: LGPL-2+
+
+Files: debian/po/da.po
+Copyright: 2011, freetds & nedenstående oversættere
+License: LGPL-2+
+
+Files: debian/po/pt.po
+Copyright: 2007, Carlos Lisboa
+License: LGPL-2+
+
+License: BSD-3-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. Neither the name of the University nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+
+ THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights to
+ use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+ of the Software, and to permit persons to whom the Software is furnished to do
+ so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+License: GFDL-NIV-1.1+
+ Permission is granted to copy, distribute and/or modify this document under
+ the terms of the GNU Free Documentation License, Version 1.1 or any later
+ version published by the Free Software Foundation; with no Invariant
+ Sections, with no Front-Cover Texts, and with no Back-Cover Texts.
+ .
+ On Debian systems, the complete text of the GNU Free Documentation License
+ can be found in `/usr/share/common-licenses/GFDL'.
+
+License: GPL-2.0+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: ISC
+ Permission to use, copy, modify, and distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
+
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: LGPL-2+
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Library General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or (at your
+ option) any later version.
+ .
+ This library is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Library General Public
+ License for more details.
+ .
+ You should have received a copy of the GNU Library General Public License
+ along with this library; if not, write to the Free Software Foundation,
+ Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ .
+ On Debian systems, the complete text of the Library General Public License
+ can be found in `/usr/share/common-licenses/LGPL'.

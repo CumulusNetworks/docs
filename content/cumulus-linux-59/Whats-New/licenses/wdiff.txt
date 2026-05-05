@@ -1,6 +1,6 @@
 This is the Debian prepackaged version of GNU wdiff, a program
 to compare two files word by word. GNU wdiff was written by
-FranÃ§ois Pinard <pinard@iro.umontreal.ca>.
+François Pinard <pinard@iro.umontreal.ca>.
 
 This package was put together by Santiago Vila <sanvila@debian.org>,
 from sources obtained from:

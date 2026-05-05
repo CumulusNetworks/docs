@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: cl-parsers
-Source: https://www.cumulusnetworks.com
+Source: https://nvidia.com
 Disclaimer: Not part of Debian distributions.
 
 Files: *

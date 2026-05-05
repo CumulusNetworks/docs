@@ -166,7 +166,7 @@ html.decl is also from the W3O.
    portions thereof, that you use:
     1. A link or URL to the original W3C document.
     2. The pre-existing copyright notice of the original author, if it
-       doesn't exist, a notice of the form: "Copyright Â© [5]World Wide
+       doesn't exist, a notice of the form: "Copyright © [5]World Wide
        Web Consortium, ([6]Massachusetts Institute of Technology,
        [7]Institut National de Recherche en Informatique et en
        Automatique, [8]Keio University). All Rights Reserved.

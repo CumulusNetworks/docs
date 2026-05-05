@@ -1,7 +1,8 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Emacs
-Upstream-Contact: bug-gnu-emacs@gnu.org
-Upstream-Contact: emacs-devel@gnu.org
+Upstream-Contact:
+ bug-gnu-emacs@gnu.org
+ emacs-devel@gnu.org
 Source: https://savannah.gnu.org/projects/emacs
 Comment:
   This package was debianized by Rob Browning <rlb@defaultvalue.org>
@@ -9,8 +10,8 @@ Comment:
 
   The original source for this package can be found at
   git://git.savannah.gnu.org/emacs.git under the
-  emacs-26.1 tag.  That tag was used to create the
-  Debian upstream archive (emacs_1:26.1+1.orig.tar.xz)
+  emacs-28.2 tag.  That tag was used to create the
+  Debian upstream archive (emacs_28.2+1.orig.tar.xz)
   after making adjustments to comply with the DFSG (see below).
 
   Please see /usr/share/doc/emacs-common/README.Debian.gz for a
@@ -43,6 +44,9 @@ Files:
   admin/unidata/NormalizationTest.txt
   admin/unidata/SpecialCasing.txt
   admin/unidata/UnicodeData.txt
+  admin/unidata/emoji-data.txt
+  admin/unidata/emoji-sequences.txt
+  admin/unidata/emoji-zwj-sequences.txt
   test/manual/BidiCharacterTest.txt
 License:
   admin/unidata/copyright.html
@@ -190,7 +194,43 @@ Files:
   etc/images/undo.xpm
   etc/images/up-arrow.pbm
   etc/images/up-arrow.xpm
+  lib/af_alg.h
+  lib/attribute.h
+  lib/dynarray.h
+  lib/eloop-threshold.h
+  lib/filename.h
+  lib/free.c
+  lib/getrandom.c
+  lib/idx.h
+  lib/malloc.c
+  lib/malloc/dynarray-skeleton.c
+  lib/malloc/dynarray.h
+  lib/malloc/dynarray_at_failure.c
+  lib/malloc/dynarray_emplace_enlarge.c
+  lib/malloc/dynarray_finalize.c
+  lib/malloc/dynarray_resize.c
+  lib/malloc/dynarray_resize_clear.c
+  lib/malloc/scratch_buffer.h
+  lib/malloc/scratch_buffer_dupfree.c
+  lib/malloc/scratch_buffer_grow.c
+  lib/malloc/scratch_buffer_grow_preserve.c
+  lib/malloc/scratch_buffer_set_array_size.c
+  lib/md5-stream.c
+  lib/nproc.c
+  lib/nproc.h
+  lib/rawmemchr.c
+  lib/rawmemchr.valgrind
+  lib/realloc.c
+  lib/scratch_buffer.h
+  lib/sigdescr_np.c
+  lib/sys_random.in.h
 License: LGPL-2+
+
+Files: lib/futimens.c
+License: LGPL-3+
+
+Files: lib/mini-gmp-gnulib.c
+License: GPL-2+ or LGPL-3+
 
 Files:
   etc/images/attach.pbm
@@ -305,6 +345,11 @@ Files:
   etc/images/mail/spam.xpm
 License: GPL-2+
 
+Files:
+  etc/org/csl/chicago-author-date.csl
+  etc/org/csl/locales-en-US.xml
+License: Creative Commons Attribution-ShareAlike 3.0 License
+
 Files: etc/publicsuffix.txt
 License: MPL-2.0
 
@@ -343,6 +388,38 @@ License:
   INFRINGE ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR
   FITNESS FOR A PARTICULAR PURPOSE.
 
+Files: etc/schema/OpenDocument-schema-v1.3+libreoffice.rnc
+License:
+  Open Document Format for Office Applications (OpenDocument) Version 1.3
+  OASIS Standard, In progress
+  Relax-NG Schema
+  Source: https://tools.oasis-open.org/version-control/svn/office/
+  Copyright (c) OASIS Open 2002-2015. All Rights Reserved.
+
+  All capitalized terms in the following text have the meanings assigned to them
+  in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The
+  full Policy may be found at the OASIS website.
+
+  This document and translations of it may be copied and furnished to others, and
+  derivative works that comment on or otherwise explain it or assist in its
+  implementation may be prepared, copied, published, and distributed, in whole or
+  in part, without restriction of any kind, provided that the above copyright
+  notice and this section are included on all such copies and derivative works.
+  However, this document itself may not be modified in any way, including by
+  removing the copyright notice or references to OASIS, except as needed for the
+  purpose of developing any document or deliverable produced by an OASIS
+  Technical Committee (in which case the rules applicable to copyrights, as set
+  forth in the OASIS IPR Policy, must be followed) or as required to translate it
+  into languages other than English.
+
+  The limited permissions granted above are perpetual and will not be revoked by
+  OASIS or its successors or assigns.
+
+  This document and the information contained herein is provided on an "AS IS"
+  basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+  LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT
+  INFRINGE ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR
+  FITNESS FOR A PARTICULAR PURPOSE.
 
 File: lisp/obsolete/meese.el
 License: meese.el license
@@ -428,6 +505,18 @@ License:
   WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
   implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
   PURPOSE.
+
+File: test/manual/etags/merc-src/accumulator.m
+License: GPL-2
+Comment:
+  Near the top of the file is this:
+    % This file may only be copied under the terms of the GNU General
+    % Public License - see the file COPYING in the Mercury distribution.
+  And the file appears to correspond with mercury git version-22_01_1
+  d19847ec2739a547fa2618228d254e77669f68ab after emacs deleted a few
+  lines in git commit 6af9f1f3efc98f3ad736db9e2cf6dfb63bf7e3ff.
+  Finally, the COPYING file in the mercury version-22_01_1 tree
+  contains the GPL-2.
 
 File: test/src/regex-resources/BOOST.tests
 License:

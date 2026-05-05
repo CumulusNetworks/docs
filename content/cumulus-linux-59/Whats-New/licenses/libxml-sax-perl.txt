@@ -20,7 +20,7 @@ Copyright:
  2006, Gunnar Wolf <gwolf@debian.org>
  2007, Robert S. Edmonds <edmonds@debian.org>
  2007-2008, Niko Tyni <ntyni@debian.org>
- 2009-2018, gregor herrmann <gregoa@debian.org>
+ 2009-2021, gregor herrmann <gregoa@debian.org>
  2009, Franck Joncourt
  2009, Antonio Radici <antonio@dyne.org>
  2011-2012, Florian Schlichting <fschlich@zedat.fu-berlin.de>

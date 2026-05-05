@@ -11,7 +11,7 @@ License: Expat
 
 Files: debian/*
 Copyright: 2014-2016 Sebastian Ramacher <sramacher@debian.org>
-           2018 Ondřej Nový <onovy@debian.org>
+           2018-2019 Ond?ej Nov� <onovy@debian.org>
 License: Expat
 Comment:
  Previous Debian packaging was done by Guilherme Salgado <salgado@async.com.br>

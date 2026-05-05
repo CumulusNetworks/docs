@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: TimeDate
 Upstream-Contact: Graham Barr <gbarr@pobox.com>
 Source: https://metacpan.org/release/TimeDate
@@ -16,7 +16,7 @@ Copyright: 1997-1999, Christian Leutloff <leutloff@debian.org>
  1999, Raphael Hertzog <rhertzog@hrnet.fr>
  1999-2009, Christian Hammers <ch@debian.org>
  2007, Joey Hess <joeyh@debian.org>
- 2010, 2011, gregor herrmann <gregoa@debian.org>
+ 2010-2021, gregor herrmann <gregoa@debian.org>
  2010, Jonathan Yu <jawnsy@cpan.org>
  2013, Florian Schlichting <fsfs@debian.org>
 License: Artistic or GPL-1+

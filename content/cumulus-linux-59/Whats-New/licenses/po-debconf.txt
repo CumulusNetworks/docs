@@ -9,7 +9,7 @@ License: GPL-2 or GPL-2+
 Files: podebconf-report-po
 Copyright: 2004-2006, Fabio Tranchitella <kobold@kobold.it>
                       Denis Barbier <barbier@debian.org>
-           2007-2008, Nicolas FranÃ§ois <nicolas.francois@centraliens.net>
+           2007-2008, Nicolas François <nicolas.francois@centraliens.net>
 License: GPL-2+
 
 Files: doc/po4a/po/de.po
@@ -53,7 +53,7 @@ License: GPL-2
 Files: debian/*
 Copyright: 2002-2006, Denis Barbier <barbier@debian.org>
            2006-2009, Nicolas FRANCOIS <nicolas.francois@centraliens.net>
-           2010,      David PrÃ©vot <david@tilapin.org>
+           2010,      David Prévot <david@tilapin.org>
            2011,      Christian Perrier <bubulle@debian.org>
            2014,      Wookey <wookey@debian.org>
            2015-2018, Herbert Parentes Fortes Neto <hpfn@debian.org>

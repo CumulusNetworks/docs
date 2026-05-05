@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://salsa.debian.org/srivasta/ucf
 Upstream-Name: ucf
 Upstream-Contact:  Manoj Srivastava <srivasta@debian.org>
-Source: https://anonscm.debian.org/users/srivasta/debian/ucf.git
 Copyright: 2002, 2003, 2003, 2004, 2005, 2006, 2015 Manoj Srivastava <srivasta@debian.org>
 License: GPL-2
 
@@ -31,22 +31,22 @@ License: GPL-2
 Files: debian/po/es.po
 Copyright: 2004 Lucas Wall <kthulhu@usa.net>
            2007, 2010 Javier Fernandez-Sanguino <jfs@debian.org>
-	   2014,2018 Mat√≠as Bellone <matiasbellone+debian@gmail.com>
+           2014,2018 MatÌas Bellone <matiasbellone+debian@gmail.com>
 License: GPL-2
 
 Files: debian/po/eu.po
 Copyright: 2007, 2009 Piarres Beobide <pi@beobide.net>, 2007, 2009
-           2009, 2014 I√±aki Larra√±aga Murgoitio <dooteo@zundan.com>
+           2009, 2014 IÒaki LarraÒaga Murgoitio <dooteo@zundan.com>
 License: GPL-2
 
 Files: debian/po/fi.po
-Copyright: 2009, 2014 Esko Araj√§rvi <edu@iki.fi>
+Copyright: 2009, 2014 Esko Araj‰rvi <edu@iki.fi>
 License: GPL-2
 
 Files: debian/po/fr.po
 Copyright: 2007 Eric Madesclair <eric-m@wanadoo.fr>
            2009, 2014 Christian Perrier <bubulle@debian.org>
-	   2018 Jean-Pierre Giraud <jean-pierregiraud@neuf.fr>
+           2018 Jean-Pierre Giraud <jean-pierregiraud@neuf.fr>
 License: GPL-2
 
 Files: debian/po/gl.po
@@ -65,12 +65,12 @@ License: GPL-2
 Files: debian/po/nl.po
 Copyright: 2006 Kurt De Bree <kdebree@telenet.be>
            2011 Jeroen Schot <schot@a-eskwadraat.nl>
-	   2016 Frans Spiesschaert <Frans.Spiesschaert@yucom.be>
+           2016 Frans Spiesschaert <Frans.Spiesschaert@yucom.be>
 License: GPL-2
 
 Files: debian/po/pl.po
-Copyright: 2007 Wojciech Zarƒôba <wojtekz@comp.waw.pl>
-           2012, 2014 Micha≈Ç Ku≈Çach <michal.kulach@gmail.com>
+Copyright: 2007 Wojciech Zar?ba <wojtekz@comp.waw.pl>
+           2012, 2014 Micha? Ku?ach <michal.kulach@gmail.com>
 License: GPL-2
 
 Files: debian/po/pt_BR.po
@@ -80,7 +80,7 @@ License: GPL-2
 
 Files: debian/po/pt.po
 Copyright: 2007 Bruno Queiros <brunomiguelqueiros@sapo.pt>
-           2010-2018 Am√©rico Monteiro <a_monteiro@gmx.com>
+           2010-2018 AmÈrico Monteiro <a_monteiro@gmx.com>
 License: GPL-2
 
 Files: debian/po/ru.po
@@ -94,7 +94,7 @@ License: GPL-2
 
 Files: debian/po/sv.po
 Copyright: 2007 Daniel Nylander <po@danielnylander.se>
-	   2009, 2014 Martin Bagge <brother@bsnet.se>
+           2009, 2014 Martin Bagge <brother@bsnet.se>
 License: GPL-2
 
 Files: debian/po/vi.po

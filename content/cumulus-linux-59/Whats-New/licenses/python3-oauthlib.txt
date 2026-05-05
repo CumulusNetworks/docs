@@ -8,7 +8,7 @@ Copyright: 2011, Idan Gazit and contributors
 License: BSD-3-clause
 
 Files: debian/*
-Copyright: 2012-2018 Daniele Tricoli <eriol@debian.org>
+Copyright: 2012-2023 Daniele Tricoli <eriol@debian.org>
 License: BSD-3-clause
 
 License: BSD-3-clause

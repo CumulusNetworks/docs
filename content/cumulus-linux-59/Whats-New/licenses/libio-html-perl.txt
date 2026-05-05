@@ -1,11 +1,11 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: IO::HTML
 Upstream-Contact: Christopher J. Madsen <perl@cjmweb.net>
-Source: http://search.cpan.org/dist/IO-HTML/
- git://github.com/madsen/io-html.git
+Source: https://metacpan.org/release/IO-HTML
+ https://github.com/madsen/io-html.git
 
 Files: *
-Copyright: 2012-2014, Christopher J. Madsen <perl@cjmweb.net>
+Copyright: 2020, Christopher J. Madsen <perl@cjmweb.net>
 License: Artistic or GPL-1+
 Comment:
  License:
@@ -19,7 +19,7 @@ Comment:
  General Public License' version 1 or later.
 
 Files: debian/*
-Copyright: 2012-2014, Jonas Smedegaard <dr@jones.dk>
+Copyright: 2012-2014,2020, Jonas Smedegaard <dr@jones.dk>
 License: GPL-3+
 
 License: Artistic

@@ -1,18 +1,18 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: usbredir
-Source: http://spice-space.org/page/UsbRedir
+Source: https://gitlab.freedesktop.org/spice/usbredir
 
 Files: *
 Copyright: Copyright 2010-2012 Red Hat, Inc.
 License: LGPL-2.1+
 
-Files: usbredirserver/usbredirserver.c
-       usbredirtestclient/usbredirtestclient.c
+Files: usbredirtestclient/usbredirtestclient.c
 Copyright: Copyright 2010-2011 Red Hat, Inc.
 License: GPL-2+
 
 Files: debian/*
 Copyright: 2012 Liang Guo <bluestonechina@gmail.com>
+           2021-2023 Lance Lin <lq27267@gmail.com>
 License: LGPL-2.1+
 
 License: LGPL-2.1+

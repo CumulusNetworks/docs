@@ -1,6 +1,6 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: iptraf-ng
-Source: https://fedorahosted.org/iptraf-ng/
+Source: https://github.com/iptraf-ng/iptraf-ng
 
 Files: *
 Copyright: 1997-2004 Gerard Paul Java <riker@seul.org>

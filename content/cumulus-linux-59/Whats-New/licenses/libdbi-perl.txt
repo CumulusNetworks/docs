@@ -107,7 +107,7 @@ Copyright:
  1999-2007, Christian Hammers <ch@debian.org>
  2002, Dirk Eddelbuettel <edd@debian.org>
  2007-2017, Damyan Ivanov <dmn@debian.org>
- 2008-2018, gregor herrmann <gregoa@debian.org>
+ 2008-2020, gregor herrmann <gregoa@debian.org>
  2008, Niko Tyni <ntyni@debian.org>
  2009, Ryan Niebur <ryan@debian.org>
  2010, Ansgar Burchardt <ansgar@debian.org>

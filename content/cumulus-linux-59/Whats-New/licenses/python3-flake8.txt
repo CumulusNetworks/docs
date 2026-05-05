@@ -9,7 +9,7 @@ License: Expat
 
 Files: debian/*
 Copyright: 2013 Chris Johnston <chrisjohnston@ubuntu.com>
-           2016-2017 Ondřej Nový <onovy@debian.org>
+           2016-2017 Ond?ej Nov� <onovy@debian.org>
 License: Expat
 
 License: Expat

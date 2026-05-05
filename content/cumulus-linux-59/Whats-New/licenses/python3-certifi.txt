@@ -7,7 +7,7 @@ Copyright: Kenneth Reitz me@kennethreitz.com
 License: MPL-2
 
 Files: debian/*
-Copyright: 2015 SÃ©bastien Delafond
+Copyright: 2015 Sébastien Delafond
 License: GPL-2
  See /usr/share/common-licenses/GPL-2
 
@@ -39,7 +39,7 @@ License: MPL-2
  1.6. "Executable Form"
      means any form of the work other than Source Code Form.
  1.7. "Larger Work"
-     means a work that combines Covered Software with other material, in 
+     means a work that combines Covered Software with other material, in
      a separate file or files, that is not Covered Software.
  1.8. "License"
      means this document.

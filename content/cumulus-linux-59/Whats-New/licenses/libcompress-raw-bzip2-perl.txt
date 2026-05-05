@@ -1,0 +1,82 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: https://metacpan.org/release/Compress-Raw-Bzip2
+Upstream-Contact: Paul Marquess <pmqs@cpan.org>
+Upstream-Name: Compress-Raw-Bzip2
+
+Files: *
+Copyright: 2005-2023, Paul Marquess <pmqs@cpan.org>
+License: Artistic or GPL-1+
+
+Files: bzip2-src/*
+Copyright: 1996-2019, Julian R Seward <jseward@bzip.org>
+License: BSD-other
+
+Files: t/Test/*
+Copyright: 2001, 2002, 2004, Michael G Schwern <schwern@pobox.com>
+License: Artistic or GPL-1+
+
+Files: t/Test/Builder.pm
+Copyright: 2002, 2004 by chromatic <chromatic@wgz.org>
+ 2002, 2004, Michael G Schwern <schwern@pobox.com>
+License: Artistic or GPL-1+
+
+Files: ppport.h
+Copyright: 2004-2012, Marcus Holland-Moritz <mhx-cpan@gmx.net>
+ 2001, Paul Marquess <pmqs@cpan.org> (Version 2.x)
+ 1999, Kenneth Albanowski <kjahds@kjahds.com> (Version 1.x)
+License: Artistic or GPL-1+
+
+Files: debian/*
+Copyright: 2008-2010, Bas Zoetekouw <bas@debian.org>
+ 2011-2023, gregor herrmann <gregoa@debian.org>
+ 2011-2012, Alessandro Ghedini <ghedo@debian.org>
+ 2012-2018, Xavier Guimard <yadd@debian.org>
+License: BSD-other or Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: BSD-other
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+ .
+  1. Redistributions of source code must retain the above copyright
+  notice, this list of conditions and the following disclaimer.
+ .
+  2. The origin of this software must not be misrepresented; you must
+  not claim that you wrote the original software.  If you use this
+  software in a product, an acknowledgment in the product
+  documentation would be appreciated but is not required.
+ .
+  3. Altered source versions must be plainly marked as such, and must
+  not be misrepresented as being the original software.
+ .
+  4. The name of the author may not be used to endorse or promote
+  products derived from this software without specific prior written
+  permission.
+ .
+  THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
+  OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+  DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.

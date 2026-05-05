@@ -62,7 +62,7 @@ Files: src/libsodium/crypto_stream/aes128ctr/portable/beforenm_aes128ctr.c
  src/libsodium/crypto_stream/aes128ctr/portable/afternm_aes128ctr.c
 Copyright: no copyright claimed
 License: public-domain
-Comment: Written by Peter Schwabe, Emilia KÃ¤sper 2009
+Comment: Written by Peter Schwabe, Emilia Käsper 2009
 
 Files: src/libsodium/crypto_scalarmult/curve25519/ref/base_curve25519_ref.c
  src/libsodium/crypto_scalarmult/curve25519/ref/smult_curve25519_ref.c
@@ -105,7 +105,7 @@ License: CC0
 
 Files: debian/*
 Copyright: 2014- Laszlo Boszormenyi (GCS) <gcs@debian.org>,
- 2013-2014 RaÃºl SÃ¡nchez Siles <rasasi78@gmail.com>
+ 2013-2014 Raúl Sánchez Siles <rasasi78@gmail.com>
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -157,3 +157,5 @@ License: CC0
  .
  You should have received a copy of the CC0 Public Domain Dedication along with
  this software. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>
+ On Debian systems, the complete text of the CC0 Public Domain Dedication
+ License can be found in "/usr/share/common-licenses/CC0-1.0".

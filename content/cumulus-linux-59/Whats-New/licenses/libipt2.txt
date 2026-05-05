@@ -1,14 +1,14 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: processor-trace
-Source: https://github.com/01org/processor-trace/
+Source: https://github.com/intel/libipt
 
 Files: *
-Copyright: 2013-2018, Intel Corporation
+Copyright: 2013-2020, Intel Corporation
 License: Expat
 
 Files: debian/*
 Copyright: 2015 Victor Seva <linuxmaniac@torreviejawireless.org>
-           2018 Sergio Durigan Junior <sergiodj@redhat.com>
+           2018-2020 Sergio Durigan Junior <sergiodj@debian.org>
 License: Expat
 
 License: Expat

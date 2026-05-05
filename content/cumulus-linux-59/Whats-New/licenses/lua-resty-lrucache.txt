@@ -1,0 +1,105 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: lua-resty-lrucache
+Upstream-Contact: Yichun Zhang (agentzh) <yichun@openresty.com>
+Source: https://github.com/openresty/lua-resty-lrucache
+
+Files: *
+Copyright: 2014-2019, Yichun "agentzh" Zhang, OpenResty Inc.
+ 2014-2017, Shuxin Yang.
+License: BSD-2-clause
+
+Files: Makefile
+Copyright: 2014-2019, by Yichun "agentzh" Zhang, OpenResty Inc.
+ 2014-2017, by Shuxin Yang.
+License: BSD-2-clause
+
+Files: debian/*
+Copyright: 2022, 2023, Jan Mojzis <jan.mojzis@gmail.com>
+License: BSD-2-clause
+
+Files: debian/tests/perl/*
+Copyright: 2011, 2012, Antoine Bonavita `<antoine.bonavita@gmail.com>`.
+ 2009-2017, Yichun Zhang (agentzh) `<agentzh@gmail.com>`, OpenResty Inc.
+License: BSD-2-clause
+
+Files: debian/tests/perl/Test-Nginx-0.30/Changes
+  debian/tests/perl/Test-Nginx-0.30/MANIFEST
+Copyright: 2014-2019, Yichun "agentzh" Zhang, OpenResty Inc.
+ 2014-2017, Shuxin Yang.
+License: BSD-2-clause
+
+Files: debian/tests/perl/Test-Nginx-0.30/inc/*
+Copyright: 2014-2019, by Yichun "agentzh" Zhang, OpenResty Inc.
+ 2014-2017, by Shuxin Yang.
+License: BSD-2-clause
+
+Files: debian/tests/perl/Test-Nginx-0.30/inc/Module/Install.pm
+Copyright: 2008-2012, Adam Kennedy.
+License: BSD-2-clause
+
+Files: debian/tests/perl/Test-Nginx-0.30/lib/*
+Copyright: 2014-2019, by Yichun "agentzh" Zhang, OpenResty Inc.
+ 2014-2017, by Shuxin Yang.
+License: BSD-2-clause
+
+Files: debian/tests/perl/Test-Nginx-0.30/lib/Test/Nginx.pm
+Copyright: 2011, 2012, Antoine Bonavita C<< <antoine.bonavita@gmail.com> >>.
+ 2009-2017, Yichun Zhang (agentzh) C<< <agentzh@gmail.com> >>, OpenResty Inc.
+License: BSD-2-clause
+
+Files: debian/tests/perl/Test-Nginx-0.30/lib/Test/Nginx/LWP.pm
+Copyright: 2009-2016, agentzh C<< <agentzh@gmail.com> >>.
+License: BSD-2-clause
+
+Files: debian/tests/perl/Test-Nginx-0.30/lib/Test/Nginx/Socket.pm
+Copyright: 2011, 2012, Antoine BONAVITA C<< <antoine.bonavita@gmail.com> >>.
+ 2009-2016, Yichun Zhang C<< <agentzh@gmail.com> >>, OpenResty Inc.
+License: BSD-2-clause
+
+Files: debian/tests/perl/Test-Nginx-0.30/lib/Test/Nginx/Socket/*
+Copyright: 2009-2016, Yichun Zhang C<< <agentzh@gmail.com> >>, OpenResty Inc.
+License: BSD-2-clause
+
+Files: debian/tests/perl/Test-Nginx-0.30/t/*
+Copyright: 2014-2019, by Yichun "agentzh" Zhang, OpenResty Inc.
+ 2014-2017, by Shuxin Yang.
+License: BSD-2-clause
+
+Files: lib/*
+Copyright: Yichun Zhang (agentzh)
+ Shuxin Yang
+License: BSD-2-clause
+
+Files: lib/resty/lrucache.lua
+Copyright: Yichun Zhang (agentzh)
+License: BSD-2-clause
+
+Files: t/*
+Copyright: 2014-2019, by Yichun "agentzh" Zhang, OpenResty Inc.
+ 2014-2017, by Shuxin Yang.
+License: BSD-2-clause
+
+License: BSD-2-clause
+ All rights reserved.
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are
+ met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+ PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

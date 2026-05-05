@@ -1,15 +1,15 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 
 Files: *
-Copyright: Â© 2006-2008, Ian Macdonald <ian@caliban.org>
- Â© 2008-2018, Bash Completion Maintainers
+Copyright: © 2006-2008, Ian Macdonald <ian@caliban.org>
+ © 2008-2018, Bash Completion Maintainers
 License: GPL-2+
 
 Files: debian/*
-Copyright: Â© 2008, Luk Claes <luk@debian.org>
- Â© 2008, Matthias Klose <doko@ubuntu.com>
- Â© 2008-2013, David Paleino <d.paleino@gmail.com>
- Â© 2017-2018, Gabriel F. T. Gomes <gabriel@inconstante.eti.br>
+Copyright: © 2008, Luk Claes <luk@debian.org>
+ © 2008, Matthias Klose <doko@ubuntu.com>
+ © 2008-2013, David Paleino <d.paleino@gmail.com>
+ © 2017-2019, Gabriel F. T. Gomes <gabriel@inconstante.net.br>
 License: GPL-2+
 
 License: GPL-2+

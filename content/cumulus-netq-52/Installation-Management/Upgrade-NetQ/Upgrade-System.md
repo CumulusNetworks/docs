@@ -170,12 +170,12 @@ nvidia@<hostname>:~$ netq upgrade cluster bundle /mnt/installables/NetQ-5.2.0.tg
 ```
 ## Upgrade and Add Additional Nodes (Beta)
 
-1. Run `netq install cluster config extend-cluster /tmp/cluster-install-config.json <text-num-nodes>`. Specify the number of additional nodes you'd like to add with `<text-num-options>`.
+1. Run `netq install cluster extend-cluster bundle <text-bundle-url> <text-num-nodes>`. Specify the number of additional nodes you'd like to add with `<text-num-nodes>`.
 
 2. Run the installation command on your master node, specifying the current version's tarball and the full path to your cluster's JSON configuration file:
 
 ```
-nvidia@<hostname>:~$ netq install cluster config extend-cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
+nvidia@<hostname>:~$ netq install cluster extend-cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
 ```
 
 {{</tab>}}

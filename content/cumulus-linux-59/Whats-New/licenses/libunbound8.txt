@@ -1,7 +1,8 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: unbound
 
 Files: *
-Copyright: 2001-2017 NLnet Labs
+Copyright: 2001-2021 NLnet Labs
            2008-2009 W.C.A. Wijngaards
            2008-2009 Wouter Wijngaards
 License: BSD-3-NLnetLabs
@@ -35,7 +36,7 @@ License: BSD-3-NLnetLabs
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Files: debian/*
-Copyright: 2008-2016 Robert Edmonds
+Copyright: 2008-2021 Robert Edmonds
 License: GPL-3
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -52,6 +53,25 @@ License: GPL-3
  .
  On Debian systems, the full text of the GNU General Public License
  version 3 can be found in the file `/usr/share/common-licenses/GPL-3'.
+
+Files: debian/patches/*
+Copyright: 2022 Michael Tokarev
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License, v2, as
+ published by the Free Software Foundation
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License along
+ with this program.  If not, see <http://www.gnu.org/licenses/>
+ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 2 can be found in `/usr/share/common-licenses/GPL-2'.
 
 Files: compat/arc4random.c
        compat/arc4random_uniform.c
@@ -234,8 +254,8 @@ License: BSD-3-NLnetLabs-Mekking
 
 Files: dns64/dns64.c
        dns64/dns64.h
-Copyright: 2009 Viag√©nie
-License: BSD-3-Viag√©nie
+Copyright: 2009 ViagÈnie
+License: BSD-3-ViagÈnie
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
  are met:
@@ -247,7 +267,7 @@ License: BSD-3-Viag√©nie
  this list of conditions and the following disclaimer in the documentation
  and/or other materials provided with the distribution.
  .
- Neither the name of Viag√©nie nor the names of its contributors may
+ Neither the name of ViagÈnie nor the names of its contributors may
  be used to endorse or promote products derived from this software without
  specific prior written permission.
  .

@@ -8,9 +8,9 @@ Copyright: 2003-2015, Michael Foord <fuzzyman@voidspace.org.uk>
 License: BSD-3-clause
 
 Files: debian/*
-Copyright: 2012-2015, Michael Fladischer <fladi@debian.org>
+Copyright: 2012-2022, Michael Fladischer <fladi@debian.org>
            2009, David Watson <david@kutoken.com>
-           2016, Ondřej Nový <onovy@debian.org>
+           2016-2019, Ond?ej Nov� <onovy@debian.org>
 License: BSD-3-clause
 
 License: BSD-3-clause

@@ -4,13 +4,13 @@ Upstream-Contact: Thomas Habets <thomas@habets.pp.se>
 Source: http://www.habets.pp.se/synscan/programs.php?prog=arping
 
 Files: *
-Copyright: 2000-2017, Thomas Habets <thomas@habets.pp.se>
+Copyright: 2000-2022, Thomas Habets <thomas@habets.pp.se>
 License: GPL-2+
 
 Files: debian/*
 Copyright: 2001, Lenart Janos <ocsi@debian.org>
  2008, Giuseppe Iuculano <giuseppe@iuculano.it>
- 2017-2018, Salvatore Bonaccorso <carnil@debian.org>
+ 2017-2022, Salvatore Bonaccorso <carnil@debian.org>
 License: GPL-2+
 
 License: GPL-2+

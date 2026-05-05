@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: pytest-runner
 Upstream-Contact: Jason R. Coombs
 Source: http://pypi.python.org/pypi/pytest-runner/
@@ -9,7 +9,7 @@ License: Expat
 
 Files: debian/*
 Copyright: 2015, Brian May <bam@debian.org>
-           2016, Ondřej Nový <novy@ondrej.org>
+           2016, Ond?ej Nov� <novy@ondrej.org>
 License: Expat
 
 License: Expat

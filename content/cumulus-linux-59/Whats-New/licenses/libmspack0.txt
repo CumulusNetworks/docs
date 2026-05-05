@@ -7,12 +7,12 @@ Files-excluded: doc/html
 
 
 Files: *
-Copyright: Â© 2003-2013 Stuart Caie
+Copyright: © 2003-2013 Stuart Caie
 License: LGPL-2.1
 
 Files: mspack/qtm* mspack/lzx*
-Copyright: Â© 2003-2013 Stuart Caie
-           Â© 2003-2013 Matthew Russotto
+Copyright: © 2003-2013 Stuart Caie
+           © 2003-2013 Matthew Russotto
 License: LGPL-2.1
 
 License: LGPL-2.1

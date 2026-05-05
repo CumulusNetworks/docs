@@ -5,13 +5,13 @@ Copyright: 2006-2015, MaxMind LLC
 License: LGPL-2.1+
 
 Files: debian/*
-Copyright: 2011, Patrick Matth√§i
+Copyright: 2011-2022, Patrick Matth‰i
   2009, Kalle Olavi Niemitalo
 License: ISC
 
 Files: debian/src/geoip-csv-to-dat.cpp
 Copyright: 2014, Andrew Moise
-  2011, Patrick Matth√§i
+  2011, Patrick Matth‰i
   2009, Kalle Olavi Niemitalo
 License: ISC
 

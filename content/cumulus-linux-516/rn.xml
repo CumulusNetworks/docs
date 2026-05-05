@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4996421</td>
-<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
-<td>5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4992435</td>
 <td>A rare timing scenario results in the following error log in {{switchd}}:
 ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
@@ -592,12 +586,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4535856</td>
 <td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
-<td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4535843</td>
-<td>After a switch reboot, the {{nv show system health}} command shows incorrect system LED status and color.</td>
 <td>5.13.0-5.16.1</td>
 <td></td>
 </tr>
@@ -2047,12 +2035,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4535856</td>
 <td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
-<td>5.13.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4535843</td>
-<td>After a switch reboot, the {{nv show system health}} command shows incorrect system LED status and color.</td>
 <td>5.13.0-5.16.1</td>
 <td></td>
 </tr>

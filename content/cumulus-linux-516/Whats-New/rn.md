@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 4996421 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1 | |
 | 4992435 | A rare timing scenario results in the following error log in <code>switchd</code>:<br><pre>ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</pre> | 5.16.0-5.16.1 | |
 | 4992296 | Optimized image upgrade with warm reboot leaves the switch in a broken state, where all services fail and the configuration is removed. | 5.16.0-5.16.1 | |
 | 4989440 | The <code>nv show interface qos-roce-status</code> command causes HIGH CPU. | 5.16.0-5.16.1 | |

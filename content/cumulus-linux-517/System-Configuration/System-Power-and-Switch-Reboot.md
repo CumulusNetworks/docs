@@ -242,9 +242,12 @@ detailed-status        forwarding driver api failed
 
 For cold and fast reboot, the `status` indicates `success` and the `detailed-status` is `none` immediately after reboot.
 
-For warm reboot, the `status` transitions from:
-- `in-progress` to `success` after ISSU completes.
-- `failed` with a `detailed-status` of `forwarding driver api failed` if ISSU fails, or `unexpected module restart` if any registered module involved with warm reboot restarting fails during the duration of warm reboot progression.
+For warm reboot:
+- During warm reboot the status is `in-progress`.
+- When warm reboot completes successfully, the status transitions to `success`.
+- If there is a warm reboot failure, the status is `failed`, and the detailed status indicates the cause:
+  - `forwarding driver API failed` indicates that the warm reboot forwarding driver process returned an error.
+  - `unexpected module restart` indicates that a registered module participating in warm reboot restarted unexpectedly before warm reboot completed.
 
 The switch also creates a syslog message to indicate if warm reboot is in progress or complete.
 

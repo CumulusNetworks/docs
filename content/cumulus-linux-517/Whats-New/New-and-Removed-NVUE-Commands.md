@@ -46,19 +46,11 @@ nv show vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp
 nv set interface <interface-id> dot1x tx-identity-request max-retries
 nv set interface <interface-id> link debounce down
 nv set interface <interface-id> link debounce up
-nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom-per-pg
-nv set qos advance-buffer-config <profile-id> shared-headroom required-headroom-per-pg
-nv set qos link-pause <profile-id> small-packet-probability
-nv set qos pfc <profile-id> small-packet-probability
-nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg
-nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg
-nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio
 nv set interface <interface-id> qos shared-headroom-pool
-nv set qos congestion-control default-global traffic-class <traffic-class-id> mode
-nv set qos congestion-control default-global traffic-class <traffic-class-id> min-threshold-percent
-nv set qos congestion-control default-global traffic-class <traffic-class-id> max-threshold-percent
-nv set router bfd offload
-nv set system config backup restore <snapshot-id>
+nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom-per-pg
+nv set qos advance-buffer-config <profile-id> shared-headroom oversubscription-ratio
+nv set qos advance-buffer-config <profile-id> shared-headroom required-headroom-per-pg
+nv set qos pfc <profile-id> small-packet-probability
 nv set system dot1x pre-auth allow-protocol lldp ingress
 nv set system dot1x pre-auth allow-protocol lldp egress
 nv set system dot1x pre-auth allow-protocol lldp both
@@ -189,4 +181,5 @@ nv config verify revision revision <revision>
 
 ```
 nv set system docker state
+nv show system docker state
 ```

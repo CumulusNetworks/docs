@@ -526,7 +526,7 @@ cumulus@switch:~$ sudo rm ~tacacs0/bin/*
 
 ## Server-side Per-command Authorization
 
-Whe you use server-side per-command authorization, Cumulus Linux sends every command that the TACACS+ user enters to the TACACS server for authorization before executing the command.
+When you use server-side per-command authorization, Cumulus Linux sends every command that the TACACS+ user enters to the TACACS server for authorization before executing the command.
 
 {{%notice note%}}
 - You can use server-side per-command authorization together with specific command authorization so that Cumulus Linux authorizes certain commands locally and forwards all other commands *only* to the TACACS server.

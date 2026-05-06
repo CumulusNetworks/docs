@@ -14,6 +14,50 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp address-family l2vpn-evpn advertise ipv4-unreachability state</h>
+
+Enables and disables unreachability advertisements with IPv4 routes for EVPN unreachability in disjoined planes.
+
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf TENANT1 router bgp address-family l2vpn-evpn advertise ipv4-unreachability state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp address-family l2vpn-evpn advertise ipv6-unreachability state</h>
+
+Enables and disables unreachability advertisements with IPv6 routes for EVPN unreachability in disjoined planes.
+
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf TENANT1 router bgp address-family l2vpn-evpn advertise ipv6-unreachability state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp address-family l2vpn-evpn state</h>
 
 Enables or disables the EVPN address family for the specified VRF. The default setting is `disabled`.

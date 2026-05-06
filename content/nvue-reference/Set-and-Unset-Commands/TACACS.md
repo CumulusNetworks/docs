@@ -114,6 +114,30 @@ cumulus@switch:~$ nv set system aaa tacacs authentication per-user-homedir enabl
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system aaa tacacs authorization \<privilege-level\> all-commands</h>
+
+Enables server-side per-command authorization for a TACACS privilege level.
+
+When you use server-side per-command authorization, Cumulus Linux sends every command that the TACACS+ user enters to the TACACS server for authorization before executing the command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<privilege-level>`  |  The TACACS privilege level. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa tacacs authorization 0 all-commands enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa tacacs debug-level</h>
 
 Configures the debugging level for troubleshooting:

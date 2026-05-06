@@ -24,7 +24,7 @@ Installing the Cumulus Linux image is destructive; configuration files on the sw
 {{%/notice%}}
 <!--
 {{%notice note%}}
-The Spectrum-6 switch requires you to install the <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span> and <span class="a-tooltip">[EROT](## "Embedded Root of Trust")</span> components. For package download and installation instructions, refer to {{<link url="BMC-and-eRoT" text="BMC and eRoT">}}.
+The Spectrum-6 switch requires you to install the <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span> and <span class="a-tooltip">[EROT](## "Embedded Root of Trust")</span> components. For package download and installation instructions, refer to **BMC AND EROT — PLACEHOLDER (DOC LINK PENDING)**.
 {{%/notice%}}
 -->
 In the following procedures:

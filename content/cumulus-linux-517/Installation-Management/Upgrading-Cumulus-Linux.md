@@ -13,7 +13,7 @@ To upgrade Cumulus Linux, choose one of the three upgrade methods:
 - Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you need to manually back up and restore your switch configuration).
 
 <!--{{%notice note%}}
-The Spectrum-6 switch requires you to install the <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span> and <span class="a-tooltip">[EROT](## "Embedded Root of Trust")</span> components. For package download and installation instructions, refer to {{<link url="BMC-and-eRoT" text="BMC and eRoT">}}.
+The Spectrum-6 switch requires you to install the <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span> and <span class="a-tooltip">[EROT](## "Embedded Root of Trust")</span> components. For package download and installation instructions, refer to **BMC AND EROT — PLACEHOLDER (DOC LINK PENDING)**.
 {{%/notice%}}
 -->
 ## Upgrades with ISSU

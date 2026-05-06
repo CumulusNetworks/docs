@@ -58,7 +58,7 @@ To upgrade to Cumulus Linux 5.17 from a release that does not support package up
 
 <!--### Install BMC and EROT Components on the Spectrum-6 Switch
 
-The Spectrum-6 switch requires you to install the <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span> and <span class="a-tooltip">[EROT](## "Embedded Root of Trust")</span> components. For package download and installation instructions, refer to {{<link url="BMC-and-eRoT" text="BMC and eRoT">}}.
+The Spectrum-6 switch requires you to install the <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span> and <span class="a-tooltip">[EROT](## "Embedded Root of Trust")</span> components. For package download and installation instructions, refer to **BMC AND EROT — PLACEHOLDER (DOC LINK PENDING)**.
 -->
 ### Maximum Number of NVUE Revisions
 

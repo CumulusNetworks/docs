@@ -30,5 +30,5 @@ To obtain a complete list of open source packages included in Cumulus Linux 5.17
 | BMC | ???? | Baseboard Management Controller |
 | eRoT |???? | Embedded Root of Trust |
 
-For package download and installation instructions, refer to {{<link url="BMC-and-eRoT" text="BMC and eRoT">}}.
+For package download and installation instructions, refer to **BMC AND EROT — PLACEHOLDER (DOC LINK PENDING)**.
 -->

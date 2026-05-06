@@ -300,6 +300,33 @@ cumulus@switch:~$ nv set interface swp1 qos pfc profile MYPROFILE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> qos pfc-watchdog state</h>
+
+Enables or disables PFC watchdog on the interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON. The default setting is `disable`.
+
+- PFC watchdog only works for lossless traffic queues.
+- You can only configure PFC watchdog on a port with PFC (or link pause) configuration.
+- You can only enable PFC watchdog on a physical interface (swp).
+- You cannot enable the watchdog on a bond (for example, bond0) but you can enable the watchdog on a port that is a member of a bond (for example, swp1).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 qos qos pfc-watchdog state enable
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> qos remark</h>
 
 Configures QoS remarking on the specified interface.
@@ -345,14 +372,13 @@ cumulus@switch:~$ nv set interface swp1 qos remark profile MYPROFILE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> qos pfc-watchdog state</h>
+## <h>nv set interface \<interface-id\> qos shared-headroom-pool</h>
 
-Enables or disables PFC watchdog on the interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON. The default setting is `disable`.
+Enables and disables the shared headroom pool on an interface.
 
-- PFC watchdog only works for lossless traffic queues.
-- You can only configure PFC watchdog on a port with PFC (or link pause) configuration.
-- You can only enable PFC watchdog on a physical interface (swp).
-- You cannot enable the watchdog on a bond (for example, bond0) but you can enable the watchdog on a port that is a member of a bond (for example, swp1).
+Ports that have a lossless priority group enabled with priority flow control can share a single buffer pool allowing different PFC-enabled priority groups to have their own share of exclusive headroom.
+
+QoS currently supports a single lossless priority group.
 
 ### Command Syntax
 
@@ -362,12 +388,12 @@ Enables or disables PFC watchdog on the interface. PFC watchdog detects and miti
 
 ### Version History
 
-Introduced in Cumulus Linux 5.6.0
+Introduced in Cumulus Linux 5.17.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 qos qos pfc-watchdog state enable
+cumulus@switch:~$ nv set interface swp1 qos shared-headroom-pool enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2317,6 +2343,32 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv set qos pfc default-global port-buffer 20000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc \<profile-id\> small-packet-probability</h>
+
+Configures the probability of small packets on ports applied with a priority flow control profile.
+
+Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). The switch assumes a 100 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
+
+To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with a priority flow control profile. Based on the configured small packet probability, switchd calculates the headroom reservation required for the lossless priority group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc default-global small-packet-probability 60
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

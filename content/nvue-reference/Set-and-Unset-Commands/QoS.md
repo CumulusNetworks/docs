@@ -300,6 +300,33 @@ cumulus@switch:~$ nv set interface swp1 qos pfc profile MYPROFILE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> qos pfc-watchdog state</h>
+
+Enables or disables PFC watchdog on the interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON. The default setting is `disable`.
+
+- PFC watchdog only works for lossless traffic queues.
+- You can only configure PFC watchdog on a port with PFC (or link pause) configuration.
+- You can only enable PFC watchdog on a physical interface (swp).
+- You cannot enable the watchdog on a bond (for example, bond0) but you can enable the watchdog on a port that is a member of a bond (for example, swp1).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 qos qos pfc-watchdog state enable
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> qos remark</h>
 
 Configures QoS remarking on the specified interface.
@@ -345,14 +372,13 @@ cumulus@switch:~$ nv set interface swp1 qos remark profile MYPROFILE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> qos pfc-watchdog state</h>
+## <h>nv set interface \<interface-id\> qos shared-headroom-pool</h>
 
-Enables or disables PFC watchdog on the interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON. The default setting is `disable`.
+Enables and disables the shared headroom pool on an interface.
 
-- PFC watchdog only works for lossless traffic queues.
-- You can only configure PFC watchdog on a port with PFC (or link pause) configuration.
-- You can only enable PFC watchdog on a physical interface (swp).
-- You cannot enable the watchdog on a bond (for example, bond0) but you can enable the watchdog on a port that is a member of a bond (for example, swp1).
+Ports that have a lossless priority group enabled with priority flow control can share a single buffer pool allowing different PFC-enabled priority groups to have their own share of exclusive headroom.
+
+QoS currently supports a single lossless priority group.
 
 ### Command Syntax
 
@@ -362,12 +388,12 @@ Enables or disables PFC watchdog on the interface. PFC watchdog detects and miti
 
 ### Version History
 
-Introduced in Cumulus Linux 5.6.0
+Introduced in Cumulus Linux 5.17.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 qos qos pfc-watchdog state enable
+cumulus@switch:~$ nv set interface swp1 qos shared-headroom-pool enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1426,6 +1452,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 
 Configures the egress management reserved buffer allocation in bytes.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -1441,6 +1473,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-mgmt-buffer service-pool</h>
 
 Configures the QoS egress management buffer service pool mapping. You can specify a value between 0 and 7.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
 
 ### Version History
 
@@ -1458,6 +1496,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 
 Configures the dynamic egress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -1473,6 +1517,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-mgmt-buffer shared-bytes</h>
 
 Configures the QoS static egress management shared buffer allocation in bytes.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
 
 ### Version History
 
@@ -1490,6 +1540,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 
 Configures the QoS ingress management buffer headroom in bytes.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -1505,6 +1561,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-b
 ## <h>nv set qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer service-pool</h>
 
 Configures the QoS ingress management buffer service pool mapping. You can specify a value between 0 and 7.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
 
 ### Version History
 
@@ -1522,6 +1584,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-b
 
 Configures the QoS dynamic ingress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -1538,6 +1606,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-b
 
 Configures the static ingress management shared buffer allocation in bytes.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -1546,6 +1620,73 @@ Introduced in Cumulus Linux 5.10.0
 
 ```
 cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-bytes 14000
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> shared-headroom exclusive-headroom-per-pg</h>
+
+Configures the exclusive headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 21024
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> shared-headroom required-headroom-per-pg</h>
+
+Configures the required headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 21024
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> shared-headroom oversubscription-ratio</h>
+
+Configures the oversubscription ratio for the shared headroom pool. You can set a value between 1 and 256.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2202,6 +2343,32 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv set qos pfc default-global port-buffer 20000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc \<profile-id\> small-packet-probability</h>
+
+Configures the probability of small packets on ports applied with a priority flow control profile.
+
+Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). The switch assumes a 100 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
+
+To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with a priority flow control profile. Based on the configured small packet probability, switchd calculates the headroom reservation required for the lossless priority group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc default-global small-packet-probability 60
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

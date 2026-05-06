@@ -132,6 +132,7 @@ e. Enable IPFIX export:
    | `tc-octets-tx` | Traffic class transmitted octets counters.|
    | `tc-watermark` | Traffic class watermark counters. |
    | `tx-byte` | Transmitted bytes.|
+   | `tx-packet` | Transmitted packets. |
 
    The following example configures received bytes (`rx-byte`), transmitted bytes (`tx-byte`), and traffic class buffer occupancy (`tc-occupancy`) counters:
 

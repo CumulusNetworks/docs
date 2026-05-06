@@ -59,6 +59,9 @@ hugo
 # Common Python Venv #
 ######################
 venv/*
+__pycache__/
+*.py[cod]
+*$py.class
 
 
 # We ignore the link shortcode by default to prevent

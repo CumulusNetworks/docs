@@ -620,21 +620,16 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to set the `vlan-bridge-binding` parameter to `off` in the bridge stanza, then reload the configuration with the `sudo ifreload -a` command:
+Edit the `/etc/network/interfaces` file to set the `vlan-bridge-binding` parameter to `off`, then reload the configuration with the `sudo ifreload -a` command:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
-auto br_default
-iface br_default
-    bridge-ports bond1 bond2 bond3 peerlink
-    hwaddress 48:b0:2d:4e:ad:89
-    bridge-vlan-aware yes
-    bridge-vids 10 20 30
-    bridge-pvid 1
-    bridge-stp yes
-    bridge-mcsnoop no
+auto vlan100
+iface vlan100
+    address 10.1.10.2/24
+    vlan-id 100
     vlan-bridge-binding off
-    mstpctl-forcevers rstp
+    vlan-raw-device br_default
 ```
 
 ```

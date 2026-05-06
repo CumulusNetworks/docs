@@ -63,11 +63,11 @@ d. Enable OTLP gRPC export:
    {{< /tab >}}
 {{< tab "IPFIX">}}
 
-a. Configure the IPFIX collector destination IP address or hostname. Specify the port to use for communication if it is different from the default port 8443:
+a. Configure the IPFIX collector destination IP address or hostname. Specify the port to use for communication if it is different from the default port 4739:
 
    ```
    cumulus@switch:~$ nv set system telemetry export ipfix destination 10.1.1.100
-   cumulus@switch:~$ nv set system telemetry export ipfix port 4317
+   cumulus@switch:~$ nv set system telemetry export ipfix port 4741
    ```
 
    You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations. You configure HFT parameters globally; statistics groups are not supported.
@@ -78,7 +78,7 @@ b. Specify the interval in seconds for IPFIX template and metadata export. You c
    cumulus@switch:~$ nv set system telemetry export ipfix template-metadata-interval 40
    ```
 
-c. Configure the VRF where the export destination is reachable. The `default` VRF is the default value:
+c. Configure the VRF where the export destination is reachable. The `default` VRF is the value set by the `nv set system telemetry export vrf` command. If no value is set with `nv set system telemetry export vrf` command, the default value is `default`.
 
    ```
    cumulus@switch:~$ nv set system telemetry export ipfix vrf RED
@@ -132,6 +132,7 @@ e. Enable IPFIX export:
    | `tc-octets-tx` | Traffic class transmitted octets counters.|
    | `tc-watermark` | Traffic class watermark counters. |
    | `tx-byte` | Transmitted bytes.|
+   | `tx-packet` | Transmitted packets. |
 
    The following example configures received bytes (`rx-byte`), transmitted bytes (`tx-byte`), and traffic class buffer occupancy (`tc-occupancy`) counters:
 
@@ -188,7 +189,7 @@ e. Enable IPFIX export:
    cumulus@switch:~$ nv config apply
    ```
 
-   Configure a duration, in seconds, to stop streaming HFT data after a specified period. The maximum duration is 1 hour (3600 seconds):
+   Configure a duration, in seconds, to stop streaming HFT data after a specified period. You can set a value between 1 and 3600. For IPFIX, you can set the duration to 0 to run the HFT session until disabled.
 
    ```
    cumulus@switch:~$ nv set system telemetry hft duration 120

@@ -814,6 +814,46 @@ cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 500
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry exclude-list</h>
+
+Configures the metrics to exclude from the metric group in the Open Telemetry collection.
+
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by excluding the list globally or in each statistics group.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry exclude-list PLATFORM_METRICS
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry include-list</h>
+
+Configures the metrics to include in the metric group in the Open Telemetry collection.
+
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by including the list globally or in each statistics group.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry include-list PLATFORM_METRICS
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry export ipfix destination</h>
 
 Configures the IPFIX collector destination IP address or hostname for <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span>.
@@ -1817,6 +1857,84 @@ cumulus@switch:~$ nv set system telemetry lldp sample-interval 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry metric-list \<metric-list-id\></h>
+
+Configures the name of the metric list.
+
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<metric-list-id>`  |  The name of the metric list.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry metric-list \<metric-list-id\> description</h>
+
+Configures a description for the metric list.
+
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<metric-list-id>`  |  The name of the metric list.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS description "Platform metrics"
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry metric-list \<metric-list-id\> metric</h>
+
+Configures the specific metrics you want to collect in a metric group.
+
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<metric-list-id>`  |  The name of the metric list.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_memory_MemTotal_bytes 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry platform-stats class transceiver-info sample-interval</h>
 
 Sets the sample interval for transceiver metrics. The default value is 60 seconds.
@@ -2277,6 +2395,93 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> exclude-list</h>
+
+Configures the Open Telemetry metrics to exclude in a statistics group to get granular control for a destination:
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 exclude-list PLATFORM_METRICS
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> include-list</h>
+
+Configures the Open Telemetry metrics to include in a statistics group to get granular control for a destination:
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 include-list PLATFORM_METRICS
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> interface-stats class debounce sample-interval</h>
+
+Configures the sample interval of the Open Telemetry link debounce statistics. You can set a value between 10 and 86400. The default is 10 seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce sample-interval 120
+```
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> interface-stats class debounce state</h>
+
+Enables and disables link debounce statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce state enabled 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

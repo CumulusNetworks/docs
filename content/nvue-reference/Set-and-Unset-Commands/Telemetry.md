@@ -814,6 +814,106 @@ cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 500
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry export ipfix destination</h>
+
+Configures the IPFIX collector destination IP address or hostname for <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span>.
+
+{{%notice note%}}
+You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix destination 10.1.1.100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export ipfix max-ip-packet-size</h>
+
+Configures the maximum size for an exported IP packet containing <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span> over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The default setting is determined from the outgoing interface MTU.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix max-ip-packet-size 65535
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export ipfix port</h>
+
+Configures the port to use for communication with the IPFIX collector for <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span> if it is different from the default port 4739.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix port 4741
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export ipfix template-metadata-interval</h>
+
+Configures the interval in seconds for IPFIX template and metadata export for <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span>. You can specify a value between 1 and 86400. The default is 30 seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix template-metadata-interval 40
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export ipfix state</h>
+
+Enables and disables IPFIX export for <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span>.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export ipfix vrf</h>
+
+Configures the the VRF where the export destination is reachable. The default VRF is the value set by the `nv set system telemetry export vrf` command. If no value is set with `nv set system telemetry export vrf` command, the default value is `default`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix vrf RED
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry export otlp state</h>
 
 Enables and disables open telemetry export so that you can export interface counters and histogram collection data to an external collector. You can specify `enabled` or `disabled`.

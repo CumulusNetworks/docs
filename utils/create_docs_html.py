@@ -3,10 +3,13 @@
 Build Hugo offline HTML docs and zip selected content for distribution.
 
 Run from any directory; paths are resolved relative to the repository root.
+
+Use --noRN to skip utils/build_rns.py (same as declining regeneration when prompted).
 '''
 
 from __future__ import annotations
 
+import argparse
 import os
 import re
 import shutil
@@ -327,12 +330,30 @@ def print_ls_line_and_warnings(archive: Path, content_dir: str) -> None:
         )
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Build offline HTML docs with Hugo and zip selected content.",
+    )
+    parser.add_argument(
+        "--noRN",
+        action="store_true",
+        help="Skip {} (do not regenerate release notes).".format(BUILD_RNS_SCRIPT),
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     root = repo_root()
     print(
         "\nOffline docs HTML zip — repository root: {!s}".format(root),
         flush=True,
     )
+    if args.noRN:
+        print(
+            "Option --noRN: release notes script will be skipped.",
+            flush=True,
+        )
     content_dir = input(
         "Which content directory should this HTML zip include?\n"
         "  e.g. cumulus-linux-516, cumulus-netq-51, or nvidia-air-v2\n"
@@ -355,14 +376,38 @@ def main() -> None:
         flush=True,
     )
 
+    if args.noRN:
+        skip_rn = True
+    else:
+        rn_choice = input(
+            "\nRegenerate release notes with {!s}?\n"
+            "  (Downloads JSON from CloudFront and rewrites RN markdown in content/.)\n"
+            "[Y/n]: ".format(BUILD_RNS_SCRIPT)
+        ).strip().lower()
+        skip_rn = rn_choice in ("n", "no")
+
     progress(1, "Checking git branch (expect {!r})…".format(REQUIRED_BRANCH))
     ensure_generate_offlinedocs_branch(root)
 
-    progress(
-        2,
-        "Running release notes script {!s} before Hugo build…".format(BUILD_RNS_SCRIPT),
-    )
-    run_build_rns(root)
+    if skip_rn:
+        progress(
+            2,
+            "Skipping release notes ({!s}); using existing RN markdown.".format(BUILD_RNS_SCRIPT),
+        )
+        print(
+            "         {}".format(
+                "Skipping because of --noRN."
+                if args.noRN
+                else "Skipping because you chose not to regenerate."
+            ),
+            flush=True,
+        )
+    else:
+        progress(
+            2,
+            "Running release notes script {!s} before Hugo build…".format(BUILD_RNS_SCRIPT),
+        )
+        run_build_rns(root)
 
     progress(3, "Removing previous Hugo output directory public/…")
     remove_public(root)

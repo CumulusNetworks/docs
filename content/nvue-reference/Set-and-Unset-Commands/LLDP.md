@@ -349,9 +349,489 @@ cumulus@switch:~$ nv set system lldp state disabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system lldp tx-hold-multiplier</h>
+## nv set system lldp tlv egress-policy dcbx-app-priority state</h>
 
-Configures the amount of time to hold LLDP information before discarding it. The hold time interval is a multiple of the tx-interval.
+Configures a global egress policy across all ports to transmit the DCBX Application priority TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy dcbx-app-priority state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## nv set system lldp tlv egress-policy dcbx-ets-config state</h>
+
+Configures a global egress policy across all ports to transmit the DCBX ETS Configuration TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy dcbx-ets-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy dcbx-ets-recomm state</h>
+
+Configures a global egress policy across all ports to transmit the DCBX ETS Recommendation TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy dcbx-ets-recomm state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy dcbx-pfc state</h>
+
+Configures a global egress policy across all ports to transmit the DCBX PFC configuration TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy dcbx-pfc state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy link-aggregation state</h>
+
+Configures a global egress policy across all ports to transmit the link-aggregation TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy link-aggregation state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy mac-phy-config state</h>
+
+Configures a global egress policy across all ports to transmit the mac-phy-config TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy mac-phy-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy management-address state</h>
+
+Configures a global egress policy across all ports to transmit the management-address TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy management-address state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy max-frame-size state</h>
+
+Configures a global egress policy across all ports to transmit the max-frame-size TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy max-frame-size state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy media-capabilities state</h>
+
+Configures a global egress policy across all ports to transmit the media-capabilities TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy media-capabilities state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy port-description state</h>
+
+Configures a global egress policy across all ports to transmit the port description TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy port-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy port-vlan-id state</h>
+
+Configures a global egress policy across all ports to transmit the port VLAN ID TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy port-vlan-id state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy system-description state</h>
+
+Configures a global egress policy across all ports to transmit the system description TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy system-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy system-name state</h>
+
+Configures a global egress policy across all ports to transmit the system name TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy system-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy unreachable-prefix state</h>
+
+Configures a global egress policy across all ports to transmit the unreachable-prefix TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy unreachable-prefix state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy vlan-name state</h>
+
+Configures a global egress policy across all ports to transmit the VLAN name TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy vlan-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## nv set system lldp tlv ingress-policy dcbx-app-priority state</h>
+
+Configures a global ingress policy across all ports to transmit the DCBX Application priority TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy dcbx-app-priority state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## nv set system lldp tlv ingress-policy dcbx-ets-config state</h>
+
+Configures a global ingress policy across all ports to transmit the DCBX ETS Configuration TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy dcbx-ets-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy dcbx-ets-recomm state</h>
+
+Configures a global ingress policy across all ports to transmit the DCBX ETS Recommendation TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy dcbx-ets-recomm state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy dcbx-pfc state</h>
+
+Configures a global ingress policy across all ports to transmit the DCBX PFC configuration TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy dcbx-pfc state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy link-aggregation state</h>
+
+Configures a global ingress policy across all ports to transmit the link-aggregation TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy link-aggregation state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy mac-phy-config state</h>
+
+Configures a global ingress policy across all ports to transmit the mac-phy-config TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy mac-phy-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy management-address state</h>
+
+Configures a global ingress policy across all ports to transmit the management-address TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy management-address state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy max-frame-size state</h>
+
+Configures a global ingress policy across all ports to transmit the max-frame-size TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy max-frame-size state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy media-capabilities state</h>
+
+Configures a global ingress policy across all ports to transmit the media-capabilities TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy media-capabilities state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy port-description state</h>
+
+Configures a global ingress policy across all ports to transmit the port description TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy port-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy port-vlan-id state</h>
+
+Configures a global ingress policy across all ports to transmit the port VLAN ID TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy port-vlan-id state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy system-description state</h>
+
+Configures a global ingress policy across all ports to transmit the system description TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy system-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy system-name state</h>
+
+Configures a global ingress policy across all ports to transmit the system name TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy system-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy unreachable-prefix state</h>
+
+Configures a global ingress policy across all ports to transmit the unreachable-prefix TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy unreachable-prefix state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy vlan-name state</h>
+
+Configures a global ingress policy across all ports to transmit the VLAN name TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy vlan-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tx-hold-multiplier
+Configures th</h>
+e amount of time to hold LLDP information before discarding it. The hold time interval is a multiple of the tx-interval.
 
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, this command is `nv set service tx-hold-multiplier`.

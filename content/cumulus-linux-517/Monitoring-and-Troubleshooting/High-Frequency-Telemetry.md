@@ -189,7 +189,7 @@ e. Enable IPFIX export:
    cumulus@switch:~$ nv config apply
    ```
 
-   Configure a duration, in seconds, to stop streaming HFT data after a specified period. The maximum duration is 1 hour (3600 seconds). You can set a value between 1 and 3600. For IPFIX, you can set the duration to 0 to run the HFT session until disabled.
+   Configure a duration, in seconds, to stop streaming HFT data after a specified period. You can set a value between 1 and 3600. For IPFIX, you can set the duration to 0 to run the HFT session until disabled.
 
    ```
    cumulus@switch:~$ nv set system telemetry hft duration 120

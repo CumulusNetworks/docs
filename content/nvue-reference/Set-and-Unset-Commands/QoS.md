@@ -1601,7 +1601,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-b
 
 ## <h>nv set qos advance-buffer-config \<profile-id\> shared-headroom exclusive-headroom-per-pg</h>
 
-Configures 
+Configures the exclusive headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
 
 ### Command Syntax
 
@@ -1616,7 +1616,51 @@ Introduced in Cumulus Linux 5.17.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 21024
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> shared-headroom required-headroom-per-pg</h>
+
+Configures the required headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 21024
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> shared-headroom oversubscription-ratio</h>
+
+Configures the oversubscription ratio for the shared headroom pool. You can set a value between 1 and 256.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

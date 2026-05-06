@@ -813,6 +813,28 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unreachabili
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unreachability export-lldp state</h>
+
+Configures BGP to send IPv6 prefix information to LLDP for BGP-LLDP unreachability signaling for disjoined multi-plane topologies.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unreachability export-lldp state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unreachability state</h>
 
 Enables and disables BGP unreachability SAFI (failure signaling) globally for IPv6. You can specify `enabled` or `disabled`.

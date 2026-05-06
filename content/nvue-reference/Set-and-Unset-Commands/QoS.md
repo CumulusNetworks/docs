@@ -1426,6 +1426,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 
 Configures the egress management reserved buffer allocation in bytes.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -1441,6 +1447,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-mgmt-buffer service-pool</h>
 
 Configures the QoS egress management buffer service pool mapping. You can specify a value between 0 and 7.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
 
 ### Version History
 
@@ -1458,6 +1470,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 
 Configures the dynamic egress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -1473,6 +1491,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-mgmt-buffer shared-bytes</h>
 
 Configures the QoS static egress management shared buffer allocation in bytes.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
 
 ### Version History
 
@@ -1490,6 +1514,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 
 Configures the QoS ingress management buffer headroom in bytes.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -1505,6 +1535,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-b
 ## <h>nv set qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer service-pool</h>
 
 Configures the QoS ingress management buffer service pool mapping. You can specify a value between 0 and 7.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
 
 ### Version History
 
@@ -1522,6 +1558,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-b
 
 Configures the QoS dynamic ingress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -1538,6 +1580,12 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-b
 
 Configures the static ingress management shared buffer allocation in bytes.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -1546,6 +1594,29 @@ Introduced in Cumulus Linux 5.10.0
 
 ```
 cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-bytes 14000
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> shared-headroom exclusive-headroom-per-pg</h>
+
+Configures 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -2060,7 +2060,7 @@ The following example sets the required headroom to 21024, the exclusive headroo
 cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 21024 
 cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 21010
 cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio 2
-cumulus@switch:~$ nv set interface swp10 qos shared-headroom-pool enable
+cumulus@switch:~$ nv set interface swp10 qos shared-headroom-pool enabled
 cumulus@switch:~$ nv config apply
 ```
 

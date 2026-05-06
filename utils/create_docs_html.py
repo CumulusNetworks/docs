@@ -23,6 +23,12 @@ RN_MARKDOWN_LINE = re.compile(r"^Building markdown for (.+?)\s+(.+?)\s*$")
 CL_SIZE_WARN_BYTES = 25 * 1024 * 1024
 NETQ_SIZE_WARN_BYTES = 100 * 1024 * 1024
 
+STEP_TOTAL = 8
+
+
+def progress(step: int, message: str) -> None:
+    print("\n[Step {}/{}] {}".format(step, STEP_TOTAL, message), flush=True)
+
 
 def repo_root() -> Path:
     return Path(__file__).resolve().parent.parent
@@ -57,6 +63,10 @@ def working_tree_clean(root: Path) -> bool:
 def ensure_generate_offlinedocs_branch(root: Path) -> None:
     branch = current_git_branch(root)
     if branch == REQUIRED_BRANCH:
+        print(
+            "         Already on branch {!r}.".format(REQUIRED_BRANCH),
+            flush=True,
+        )
         return
 
     print(
@@ -70,6 +80,10 @@ def ensure_generate_offlinedocs_branch(root: Path) -> None:
         )
         sys.exit(1)
 
+    print(
+        "         Checking for uncommitted or staged changes…",
+        flush=True,
+    )
     if not working_tree_clean(root):
         print(
             "Your working tree has uncommitted or staged changes. "
@@ -77,9 +91,14 @@ def ensure_generate_offlinedocs_branch(root: Path) -> None:
         )
         sys.exit(1)
 
+    print(
+        "         Checking out {!r}…".format(REQUIRED_BRANCH),
+        flush=True,
+    )
     checkout = run_git(["checkout", REQUIRED_BRANCH], cwd=root)
     if checkout.returncode != 0:
         sys.exit(checkout.returncode)
+    print("         Checkout complete.", flush=True)
 
 
 def summarize_build_rns_output(text: str) -> None:
@@ -105,12 +124,21 @@ def summarize_build_rns_output(text: str) -> None:
 
     pairs.sort(key=sort_key)
 
-    print("\nRelease notes markdown (from {}): {}".format(BUILD_RNS_SCRIPT, len(pairs)))
+    print(
+        "\n         Release notes markdown summary (from {}): {}".format(
+            BUILD_RNS_SCRIPT,
+            len(pairs),
+        ),
+        flush=True,
+    )
     if not pairs:
-        print("  (no “Building markdown for …” lines found in script output)")
+        print(
+            "         (no “Building markdown for …” lines found in script output)",
+            flush=True,
+        )
         return
     for product, version in pairs:
-        print("  - {} {}".format(product, version))
+        print("         - {} {}".format(product, version), flush=True)
 
 
 def run_build_rns(root: Path) -> None:
@@ -119,6 +147,10 @@ def run_build_rns(root: Path) -> None:
         print("Missing script: {}".format(script), file=sys.stderr)
         sys.exit(1)
 
+    print(
+        "         (Output suppressed; summary follows when finished.)",
+        flush=True,
+    )
     proc = subprocess.run(
         [sys.executable, str(script)],
         cwd=str(root),
@@ -135,16 +167,30 @@ def run_build_rns(root: Path) -> None:
 def remove_public(root: Path) -> None:
     public = root / "public"
     if public.is_dir():
+        print("         Removing {!s}…".format(public), flush=True)
         shutil.rmtree(public)
+        print("         Removed.", flush=True)
+    else:
+        print("         No existing {!s} to remove.".format(public), flush=True)
 
 
 def run_hugo_minify(root: Path) -> None:
+    print(
+        "         Hugo output will appear below (this may take a while)…",
+        flush=True,
+    )
     proc = subprocess.run(["hugo", "--minify"], cwd=str(root))
     if proc.returncode != 0:
         sys.exit(proc.returncode)
 
 
 def prune_public(public: Path, content_dir: str) -> None:
+    print(
+        "         Stripping listed images, {}, and related paths…".format(
+            "{}/api".format(content_dir),
+        ),
+        flush=True,
+    )
     cmds = [
         ["rm", "-rf", "images/netq"],
         ["rm", "-rf", "images/old_doc_images"],
@@ -156,9 +202,14 @@ def prune_public(public: Path, content_dir: str) -> None:
     ]
     for cmd in cmds:
         subprocess.run(cmd, cwd=str(public), check=False)
+    print("         Prune finished.", flush=True)
 
 
 def copy_icons_into_subdirs(public: Path) -> None:
+    print(
+        "         Running find + cp -r (warnings suppressed; may take a minute)…",
+        flush=True,
+    )
     subprocess.run(
         [
             "find",
@@ -180,6 +231,7 @@ def copy_icons_into_subdirs(public: Path) -> None:
         cwd=str(public),
         stderr=subprocess.DEVNULL,
     )
+    print("         Icon copy finished.", flush=True)
 
 
 def normalize_zip_filename(answer: str) -> str:
@@ -230,6 +282,13 @@ def zip_docs(public: Path, zip_filename: str, content_dir: str) -> Path:
         print("No files matched the zip member list under {}.".format(public), file=sys.stderr)
         sys.exit(1)
     archive = public / zip_filename
+    print(
+        "         Adding {!s} items to {!s} (quiet zip; may take a minute)…".format(
+            len(members),
+            zip_filename,
+        ),
+        flush=True,
+    )
     cmd = ["zip", "-q", "-r", zip_filename, *members]
     proc = subprocess.run(cmd, cwd=str(public))
     if proc.returncode != 0:
@@ -238,6 +297,7 @@ def zip_docs(public: Path, zip_filename: str, content_dir: str) -> Path:
 
 
 def print_ls_line_and_warnings(archive: Path, content_dir: str) -> None:
+    print("\n         Archive:", flush=True)
     ls = subprocess.run(
         ["ls", "-lh", archive.name],
         cwd=str(archive.parent),
@@ -245,10 +305,10 @@ def print_ls_line_and_warnings(archive: Path, content_dir: str) -> None:
         text=True,
     )
     if ls.returncode == 0 and ls.stdout:
-        print(ls.stdout.rstrip())
+        print(ls.stdout.rstrip(), flush=True)
     else:
         size = archive.stat().st_size
-        print("{}  ({:,} bytes)".format(archive.name, size))
+        print("{}  ({:,} bytes)".format(archive.name, size), flush=True)
 
     nbytes = archive.stat().st_size
     if content_dir.startswith("cumulus-linux") and nbytes > CL_SIZE_WARN_BYTES:
@@ -269,6 +329,10 @@ def print_ls_line_and_warnings(archive: Path, content_dir: str) -> None:
 
 def main() -> None:
     root = repo_root()
+    print(
+        "\nOffline docs HTML zip — repository root: {!s}".format(root),
+        flush=True,
+    )
     content_dir = input(
         "Which content directory should this HTML zip include?\n"
         "  e.g. cumulus-linux-516, cumulus-netq-51, or nvidia-air-v2\n"
@@ -286,9 +350,24 @@ def main() -> None:
         )
         sys.exit(1)
 
+    print(
+        "\nUsing content directory {!r} ({!s}).".format(content_dir, content_src),
+        flush=True,
+    )
+
+    progress(1, "Checking git branch (expect {!r})…".format(REQUIRED_BRANCH))
     ensure_generate_offlinedocs_branch(root)
+
+    progress(
+        2,
+        "Running release notes script {!s} before Hugo build…".format(BUILD_RNS_SCRIPT),
+    )
     run_build_rns(root)
+
+    progress(3, "Removing previous Hugo output directory public/…")
     remove_public(root)
+
+    progress(4, "Building site with hugo --minify…")
     run_hugo_minify(root)
 
     public = root / "public"
@@ -304,9 +383,16 @@ def main() -> None:
         )
         sys.exit(1)
 
+    progress(
+        5,
+        "Pruning unused paths from public/ (images, {}/api, …)…".format(content_dir),
+    )
     prune_public(public, content_dir)
+
+    progress(6, "Fixing up icons (copy into each subdirectory)…")
     copy_icons_into_subdirs(public)
 
+    progress(7, "ZIP filename — archive will be created under public/")
     zip_prompt = input(
         "\nZIP filename (created under public/):\n"
         "  e.g. CL5.16.1-docs-html.zip, NetQ5.1.0-docs-html.zip, DSX-Air-docs-html.zip\n"
@@ -314,8 +400,10 @@ def main() -> None:
     ).strip()
     zip_name = normalize_zip_filename(zip_prompt)
 
+    progress(8, "Creating zip archive {!s}…".format(zip_name))
     archive = zip_docs(public, zip_name, content_dir)
     print_ls_line_and_warnings(archive, content_dir)
+    print("\n[Done] All steps finished.", flush=True)
 
 
 if __name__ == "__main__":

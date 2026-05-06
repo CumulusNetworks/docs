@@ -51,7 +51,6 @@ nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom
 nv set qos advance-buffer-config <profile-id> shared-headroom oversubscription-ratio
 nv set qos advance-buffer-config <profile-id> shared-headroom required-headroom-per-pg
 nv set qos pfc <profile-id> small-packet-probability
-nv set router bfd offload
 nv set system config backup restore <snapshot-id>
 nv set system dot1x pre-auth allow-protocol lldp ingress
 nv set system dot1x pre-auth allow-protocol lldp egress

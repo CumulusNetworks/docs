@@ -56,6 +56,7 @@ Roles are assigned to users in your NGC organization and apply to Personal API K
 | `air-image-uploader` | Can upload custom images |
 | `air-image-publisher` | Can publish images for public availability |
 | `air-image-sharer` | Can create cross-org image sharing links |
+| `air-image-claimer` | Can claim images shared from another organization |
 | `air-instructor` | Can create and manage training sessions |
 
 ### Scopes
@@ -74,6 +75,7 @@ Scopes are the permissions that the Air API checks to authorize requests. For Pe
 | `air:image_write` | Upload and edit images |
 | `air:image_publish` | Publish images for public availability (not restricted to any org) |
 | `air:image_sharing` | Create cross-org image share links |
+| `air:image_claiming` | Claim images shared from another organization |
 | `air:marketplace_demo_read` | View and interact with marketplace demos |
 | `air:marketplace_demo_write` | Create and edit marketplace demos |
 | `air:marketplace_demo_publish` | Publish demos to the marketplace |

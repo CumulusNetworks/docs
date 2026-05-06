@@ -189,4 +189,5 @@ nv config verify revision revision <revision>
 
 ```
 nv set system docker state
+nv show system docker state
 ```

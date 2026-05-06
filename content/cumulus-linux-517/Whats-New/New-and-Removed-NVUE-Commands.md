@@ -150,7 +150,6 @@ nv set vrf <vrf-id> router bgp address-family ipv4-unreachability export-lldp st
 nv set vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp state
 nv set vrf <vrf-id> router bgp address-family l2vpn-evpn advertise ipv4-unreachability state
 nv set vrf <vrf-id> router bgp address-family l2vpn-evpn advertise ipv6-unreachability state
-nv set vrf <vrf-id> router bgp address-family l2vpn-evpn advertise state
 ```
 
 {{< /tab >}}

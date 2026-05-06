@@ -90,7 +90,7 @@ nv set system lldp tlv ingress-policy link-aggregation
 nv set system lldp tlv ingress-policy port-vlan-id         
 nv set system lldp tlv ingress-policy mac-phy-config
 nv set system lldp tlv ingress-policy system-capabilities
-nv set system lldp tlv profile <lldp-profile-name-id> description <value>
+nv set system lldp tlv profile <lldp-profile-name-id> description
 nv set system lldp tlv profile <lldp-profile-name-id> egress-policy
 nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-app-priority
 nv set system lldp tlv profile <lldp-profile-name-id> egress-policy management-address
@@ -109,7 +109,7 @@ nv set system lldp tlv profile <lldp-profile-name-id> egress-policy port-vlan-id
 nv set system lldp tlv profile <lldp-profile-name-id> egress-policy mac-phy-config
 nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-capabilities
 nv set interface <interface-id> lldp tlv profile <lldp-profile-name-id>
-nv set system lldp tlv profile <lldp-profile-name-id> description <value>
+nv set system lldp tlv profile <lldp-profile-name-id> description
 nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy
 nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-app-priority
 nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy management-address
@@ -135,15 +135,15 @@ nv set system telemetry export ipfix port
 nv set system telemetry export ipfix template-metadata-interval
 nv set system telemetry export ipfix vrf <vrf-id>
 nv set system telemetry hft export ipfix state
-nv set system telemetry exclude-list <value>
-nv set system telemetry include-list <value>
+nv set system telemetry exclude-list
+nv set system telemetry include-list
 nv set system telemetry interface-stats class debounce sample-interval
 nv set system telemetry interface-stats class debounce state
 nv set system telemetry metric-list <metric-list-id>
-nv set system telemetry metric-list <metric-list-id> description <value>
+nv set system telemetry metric-list <metric-list-id> description
 nv set system telemetry metric-list <metric-list-id> metric <metric-id>
-nv set system telemetry stats-group <stats-group-id> exclude-list <value>
-nv set system telemetry stats-group <stats-group-id> include-list <value>
+nv set system telemetry stats-group <stats-group-id> exclude-list
+nv set system telemetry stats-group <stats-group-id> include-list
 nv set system telemetry stats-group <stats-group-id> interface-stats class debounce sample-interval
 nv set system telemetry stats-group <stats-group-id> interface-stats class debounce state
 nv set vrf <vrf-id> router bgp address-family ipv4-unreachability export-lldp state
@@ -151,8 +151,6 @@ nv set vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp st
 nv set vrf <vrf-id> router bgp address-family l2vpn-evpn advertise ipv4-unreachability state
 nv set vrf <vrf-id> router bgp address-family l2vpn-evpn advertise ipv6-unreachability state
 nv set vrf <vrf-id> router bgp address-family l2vpn-evpn advertise state
-nv set vrf <vrf-id> router bgp address-family ipv6-unreachability state
-nv set vrf <vrf-id> router bgp address-family ipv4-unreachability state
 ```
 
 {{< /tab >}}

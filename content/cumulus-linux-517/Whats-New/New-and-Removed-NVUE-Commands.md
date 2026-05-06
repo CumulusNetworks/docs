@@ -130,6 +130,7 @@ nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy system-capa
 nv set system security alerts audit-failure
 nv set system aaa tacacs authorization <privilege-level> all-commands
 nv set system telemetry export ipfix destination
+nv set system telemetry export ipfix max-ip-packet-size
 nv set system telemetry export ipfix port
 nv set system telemetry export ipfix template-metadata-interval
 nv set system telemetry export ipfix vrf <vrf-id>

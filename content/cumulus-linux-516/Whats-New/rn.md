@@ -225,12 +225,14 @@ pdfhidden: True
 ### Fixed Issues in 5.16.3
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| 5008545 | After upgrading Cumulus Linux, NVUE becomes unresponsive and the NVIDIA collector stops receiving gNMI telemetry data. | 5.16.0-5.16.2  | |
 
 ## 5.16.2 Release Notes
 ### Open Issues in 5.16.2
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5008545 | After upgrading Cumulus Linux, NVUE becomes unresponsive and the NVIDIA collector stops receiving gNMI telemetry data. | 5.16.2 | |
 | 4986343 | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1-5.16.2 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.16.2 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.16.2 | |

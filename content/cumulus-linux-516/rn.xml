@@ -1327,6 +1327,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 </tr>
+<tr>
+<td>5008545</td>
+<td>After upgrading Cumulus Linux, NVUE becomes unresponsive and the NVIDIA collector stops receiving gNMI telemetry data.</td>
+<td></td>
+</tr>
 </table>
 <table name="Open Issues in 5.16.2">
 <tr>
@@ -1334,6 +1339,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5008545</td>
+<td>After upgrading Cumulus Linux, NVUE becomes unresponsive and the NVIDIA collector stops receiving gNMI telemetry data.</td>
+<td>5.16.2</td>
+<td></td>
 </tr>
 <tr>
 <td>4986343</td>

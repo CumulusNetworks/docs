@@ -46,6 +46,7 @@ nv show vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp
 nv set interface <interface-id> dot1x tx-identity-request max-retries
 nv set interface <interface-id> link debounce down
 nv set interface <interface-id> link debounce up
+nv set interface <interface-id> lldp tlv profile <lldp-profile-name-id>
 nv set interface <interface-id> qos shared-headroom-pool
 nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom-per-pg
 nv set qos advance-buffer-config <profile-id> shared-headroom oversubscription-ratio
@@ -106,8 +107,6 @@ nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-descr
 nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-name state
 nv set system lldp tlv profile <lldp-profile-name-id> egress-policy unreachable-prefix state
 nv set system lldp tlv profile <lldp-profile-name-id> egress-policy vlan-name state
-nv set interface <interface-id> lldp tlv profile <lldp-profile-name-id>
-nv set system lldp tlv profile <lldp-profile-name-id> description
 nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-app-priority state
 nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-ets-config state
 nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-ets-recomm state

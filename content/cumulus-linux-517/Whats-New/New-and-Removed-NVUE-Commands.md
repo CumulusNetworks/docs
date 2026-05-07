@@ -46,120 +46,106 @@ nv show vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp
 nv set interface <interface-id> dot1x tx-identity-request max-retries
 nv set interface <interface-id> link debounce down
 nv set interface <interface-id> link debounce up
-nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom-per-pg
-nv set qos advance-buffer-config <profile-id> shared-headroom required-headroom-per-pg
-nv set qos link-pause <profile-id> small-packet-probability
-nv set qos pfc <profile-id> small-packet-probability
-nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg
-nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg
-nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio
+nv set interface <interface-id> lldp tlv profile <lldp-profile-name-id>
 nv set interface <interface-id> qos shared-headroom-pool
-nv set qos congestion-control default-global traffic-class <traffic-class-id> mode
-nv set qos congestion-control default-global traffic-class <traffic-class-id> min-threshold-percent
-nv set qos congestion-control default-global traffic-class <traffic-class-id> max-threshold-percent
-nv set router bfd offload
-nv set system config backup restore <snapshot-id>
+nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom-per-pg
+nv set qos advance-buffer-config <profile-id> shared-headroom oversubscription-ratio
+nv set qos advance-buffer-config <profile-id> shared-headroom required-headroom-per-pg
+nv set qos pfc <profile-id> small-packet-probability
 nv set system dot1x pre-auth allow-protocol lldp ingress
 nv set system dot1x pre-auth allow-protocol lldp egress
 nv set system dot1x pre-auth allow-protocol lldp both
 nv set system dot1x pre-auth allow-protocol lldp none
 nv set system dot1x tx-identity-request max-retries
-nv set system lldp tlv egress-policy 
-nv set system lldp tlv egress-policy dcbx-app-priority
-nv set system lldp tlv egress-policy management-address
-nv set system lldp tlv egress-policy system-description
-nv set system lldp tlv egress-policy dcbx-ets-config
-nv set system lldp tlv egress-policy max-frame-size
-nv set system lldp tlv egress-policy system-name
-nv set system lldp tlv egress-policy dcbx-ets-recomm
-nv set system lldp tlv egress-policy media-capabilities
-nv set system lldp tlv egress-policy unreachable-prefix
-nv set system lldp tlv egress-policy dcbx-pfc 
-nv set system lldp tlv egress-policy port-description
-nv set system lldp tlv egress-policy vlan-name
-nv set system lldp tlv egress-policy link-aggregation
-nv set system lldp tlv egress-policy port-vlan-id         
-nv set system lldp tlv egress-policy mac-phy-config
-nv set system lldp tlv egress-policy system-capabilities
+nv set system lldp tlv egress-policy dcbx-app-priority state
+nv set system lldp tlv egress-policy dcbx-ets-config state
+nv set system lldp tlv egress-policy dcbx-ets-recomm state
+nv set system lldp tlv egress-policy dcbx-pfc state
+nv set system lldp tlv egress-policy link-aggregation state
+nv set system lldp tlv egress-policy management-address state
+nv set system lldp tlv egress-policy mac-phy-config state
+nv set system lldp tlv egress-policy max-frame-size state
+nv set system lldp tlv egress-policy media-capabilities state
+nv set system lldp tlv egress-policy system-capabilities state
+nv set system lldp tlv egress-policy system-description state
+nv set system lldp tlv egress-policy system-name state
+nv set system lldp tlv egress-policy port-description state
+nv set system lldp tlv egress-policy port-vlan-id state      
 nv set system lldp tlv egress-policy unreachable-prefix state
-nv set system lldp tlv ingress-policy dcbx-app-priority
-nv set system lldp tlv ingress-policy management-address
-nv set system lldp tlv ingress-policy system-description
-nv set system lldp tlv ingress-policy dcbx-ets-config
-nv set system lldp tlv ingress-policy max-frame-size
-nv set system lldp tlv ingress-policy system-name
-nv set system lldp tlv ingress-policy dcbx-ets-recomm
-nv set system lldp tlv ingress-policy media-capabilities
-nv set system lldp tlv ingress-policy unreachable-prefix
-nv set system lldp tlv ingress-policy dcbx-pfc
-nv set system lldp tlv ingress-policy port-description
-nv set system lldp tlv ingress-policy vlan-name
-nv set system lldp tlv ingress-policy link-aggregation
-nv set system lldp tlv ingress-policy port-vlan-id         
-nv set system lldp tlv ingress-policy mac-phy-config
-nv set system lldp tlv ingress-policy system-capabilities
-nv set system lldp tlv profile <lldp-profile-name-id> description <value>
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-app-priority
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy management-address
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-description
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-ets-config
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy max-frame-size
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-name
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-ets-recomm
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy media-capabilities
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy unreachable-prefix
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-pfc
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy port-description
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy vlan-name
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy link-aggregation
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy port-vlan-id
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy mac-phy-config
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-capabilities
-nv set interface <interface-id> lldp tlv profile <lldp-profile-name-id>
-nv set system lldp tlv profile <lldp-profile-name-id> description <value>
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-app-priority
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy management-address
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy system-description
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-ets-config
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy max-frame-size
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy system-name
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-ets-recomm
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy media-capabilities
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy unreachable-prefix
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-pfc
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy port-description
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy vlan-name
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy link-aggregation
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy port-vlan-id
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy mac-phy-config
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy system-capabilities 
+nv set system lldp tlv egress-policy vlan-name state
+nv set system lldp tlv egress-policy unreachable-prefix state state
+nv set system lldp tlv ingress-policy dcbx-app-priority state
+nv set system lldp tlv ingress-policy dcbx-ets-config state
+nv set system lldp tlv ingress-policy dcbx-ets-recomm state
+nv set system lldp tlv ingress-policy dcbx-pfc state
+nv set system lldp tlv ingress-policy link-aggregation state
+nv set system lldp tlv ingress-policy mac-phy-config state
+nv set system lldp tlv ingress-policy max-frame-size state
+nv set system lldp tlv ingress-policy management-address state
+nv set system lldp tlv ingress-policy media-capabilities state
+nv set system lldp tlv ingress-policy system-capabilities state
+nv set system lldp tlv ingress-policy system-description state
+nv set system lldp tlv ingress-policy system-name state
+nv set system lldp tlv ingress-policy port-description state
+nv set system lldp tlv ingress-policy port-vlan-id state         
+nv set system lldp tlv ingress-policy unreachable-prefix state
+nv set system lldp tlv ingress-policy vlan-name state
+nv set system lldp tlv profile <lldp-profile-name-id> description
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-app-priority state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-ets-config state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-ets-recomm state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-pfc state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy mac-phy-config state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy management-address state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy max-frame-size state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy media-capabilities state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy link-aggregation state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy port-description state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy port-vlan-id state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-capabilities state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-description state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-name state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy unreachable-prefix state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy vlan-name state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-app-priority state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-ets-config state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-ets-recomm state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-pfc state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy link-aggregation state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy mac-phy-config state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy management-address state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy max-frame-size state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy media-capabilities state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy port-description state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy port-vlan-id state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy system-capabilities state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy system-description state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy system-name state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy unreachable-prefix state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy vlan-name state
 nv set system security alerts audit-failure
 nv set system aaa tacacs authorization <privilege-level> all-commands
 nv set system telemetry export ipfix destination
+nv set system telemetry export ipfix max-ip-packet-size
 nv set system telemetry export ipfix port
 nv set system telemetry export ipfix template-metadata-interval
 nv set system telemetry export ipfix vrf <vrf-id>
 nv set system telemetry hft export ipfix state
-nv set system telemetry exclude-list <value>
-nv set system telemetry include-list <value>
+nv set system telemetry exclude-list
+nv set system telemetry include-list
 nv set system telemetry interface-stats class debounce sample-interval
 nv set system telemetry interface-stats class debounce state
 nv set system telemetry metric-list <metric-list-id>
-nv set system telemetry metric-list <metric-list-id> description <value>
+nv set system telemetry metric-list <metric-list-id> description
 nv set system telemetry metric-list <metric-list-id> metric <metric-id>
-nv set system telemetry stats-group <stats-group-id> exclude-list <value>
-nv set system telemetry stats-group <stats-group-id> include-list <value>
+nv set system telemetry stats-group <stats-group-id> exclude-list
+nv set system telemetry stats-group <stats-group-id> include-list
 nv set system telemetry stats-group <stats-group-id> interface-stats class debounce sample-interval
 nv set system telemetry stats-group <stats-group-id> interface-stats class debounce state
 nv set vrf <vrf-id> router bgp address-family ipv4-unreachability export-lldp state
 nv set vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp state
 nv set vrf <vrf-id> router bgp address-family l2vpn-evpn advertise ipv4-unreachability state
 nv set vrf <vrf-id> router bgp address-family l2vpn-evpn advertise ipv6-unreachability state
-nv set vrf <vrf-id> router bgp address-family l2vpn-evpn advertise state
-nv set vrf <vrf-id> router bgp address-family ipv6-unreachability state
-nv set vrf <vrf-id> router bgp address-family ipv4-unreachability state
 ```
 
 {{< /tab >}}
@@ -189,4 +175,5 @@ nv config verify revision revision <revision>
 
 ```
 nv set system docker state
+nv show system docker state
 ```

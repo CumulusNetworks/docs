@@ -23,7 +23,7 @@ Cumulus Linux can send proactive alerts as SNMPv3 traps to configured trap desti
 - Disk full and disk I/O error events are logged to syslog only (no SNMP traps). The `space_left` and `admin_space_left` thresholds provide an early warning through SNMP traps before these critical conditions are reached.
 - A clean `auditd` restart (`sudo service auditd restart`) does not trigger an alert.
 - The security alerts manage only the `alert-related` action parameters in the `auditd` configuration (`space_left_action`, `admin_space_left_action`, `disk_full_action`, `disk_error_action`).
-- If the `auditd.conf` file contains invalid values (for example, if `admin_space_left` has a higher setting than `space_left`), enabling or disabling security alerts fails because the `auditd` service cannot restart. To recover, correct the values in `/etc/audit/auditd.conf` file, then run the `sudo systemctl reset-failed auditd` and 
+- If the `auditd.conf` file contains invalid values (for example, if `admin_space_left` has a higher setting than `space_left`), enabling or disabling security alerts fails because the `auditd` service cannot restart. To recover, correct the values in the `/etc/audit/auditd.conf` file, then run the `sudo systemctl reset-failed auditd` and 
 `sudo systemctl restart auditd` commands.
 {{%/notice%}}
 

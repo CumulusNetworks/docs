@@ -225,7 +225,7 @@ pdfhidden: True
 ### Fixed Issues in 5.16.3
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| 5008545 | After upgrading Cumulus Linux, NVUE becomes unresponsive and the NVIDIA collector stops receiving gNMI telemetry data. | 5.16.0-5.16.2  | |
+| 5008545 | After upgrading Cumulus Linux, NVUE becomes unresponsive and the collector stops receiving gNMI telemetry data. | 5.16.0-5.16.2  | |
 
 ## 5.16.2 Release Notes
 ### Open Issues in 5.16.2

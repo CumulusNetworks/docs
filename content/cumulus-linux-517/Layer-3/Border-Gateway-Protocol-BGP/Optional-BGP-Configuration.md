@@ -1969,7 +1969,7 @@ BGP conditional disaggregation advertises specific prefixes when a failure is de
 {{%notice note%}}
 - You can configure conditional disaggregation in the default VRF only.
 - Conditionally disaggregated routes and leaf loopback routes do not carry the anycast SOO, even when you configure the advertise origin.
-- You can configure a BGP convergence wait timer on the leaf switch to avoid premature advertising of the aggregate route before all host-facing links are ready.
+- NVIDIA recommends configuring BGP {{<link url="Optional-BGP-Configuration/#advertisement-delay" text="advertisement delay">}} to avoid traffic disruption during a leaf switch reboot, service restart, and other events that might disrupt the control plane. 
 {{%/notice%}}
 
 To configure BGP conditional disaggregation:
@@ -2064,18 +2064,8 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-5. Configure BGP advertisement delay to avoid premature advertisement of aggregate routes after a leaf switch reboot, service restart, and other events that disrupt the control plane. The delay timer allows downlink interfaces to come up before drawing traffic to the switch. NVIDIA recommends setting the delay to at least 150 seconds when using 802.1x authentication, and at least 30 seconds in other scenarios:
 
-```
-cumulus@leaf01:mgmt:~$ nv set vrf default router bgp advertisement-delay time 150
-cumulus@leaf01:mgmt:~$ nv config apply
-```
-
-{{%notice note%}}
-When you configure advertisement delay in a VRF, multihop eBGP sessions are established after the `advertisement-delay` timer expires.
-{{%/notice%}}
-
-6. Enable {{<link url="/#graceful-bgp-restart" text="BGP Graceful Restart">}} to preserve forwarding state during service restarts:
+5. Enable {{<link url="/#graceful-bgp-restart" text="BGP Graceful Restart">}} to preserve forwarding state during service restarts:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart mode full 
@@ -2085,7 +2075,7 @@ cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart path-selection-deferra
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-7. Configure `bgp export lldp` to enable FRR to LLDP integration to send IPv4 and, or IPv6 prefix information to LLDP:
+6. Configure `bgp export lldp` to enable FRR to LLDP integration to send IPv4 and, or IPv6 prefix information to LLDP:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unreachability export-lldp state enabled
@@ -2093,7 +2083,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unreach
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-8. Enable the LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} to distribute unreachable prefix information to connected hosts.
+7. Enable the LLDP {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} to distribute unreachable prefix information to connected hosts.
 
 {{< /tab >}}
 {{< tab "Spine Configuration ">}}
@@ -2136,7 +2126,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 The following commands configure:
 
-- BGP advertisement delay of 150 seconds.
+- BGP advertisement delay of 90 seconds.
 - BGP Graceful Restart.
 - Aggregate route of 10.1.0.0./16.
 - The BGP IPv4 unreachability SAFI, activated for peer-group SPINES.
@@ -2148,9 +2138,9 @@ The following commands configure:
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# configure terminal
-leaf01(config)# bgp advertisement-delay 150
 leaf01(config)# bgp graceful-restart
 leaf01(config)# router bgp 65000
+leaf01(config-router)# bgp advertisement-delay 90
 leaf01(config-router)#  bgp router-id 10.10.10.1
 leaf01(config-router)#  bgp graceful-restart stalepath-time 180
 leaf01(config-router)#  bgp graceful-restart restart-time 180
@@ -2215,7 +2205,8 @@ spine01# write memory
 - Multiple failures across leaf switches (such as an BGP service failure on one leaf, and BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
 - The maximum number of unreachable prefixes sent to LLDP is 25k by default. You can adjust this limit to a maximum of 100k with the `nv set system lldp unreachable-prefix max-limit 100000` command.
 - The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
-- If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling. 
+- If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling.
+- NVIDIA recommends configuring BGP {{<link url="Optional-BGP-Configuration/#advertisement-delay" text="advertisement delay">}} to avoid traffic disruption during a leaf switch reboot, service restart, and other events that might disrupt the control plane. 
 
 ### Show BGP Unreachability Information
 
@@ -3363,6 +3354,44 @@ Total number of neighbors 1
 ```
 
 The vtysh `show ip bgp summary json` command shows the last convergence event.
+
+## Advertisement Delay
+
+BGP advertisement delay defers outbound BGP updates for a configured time after the first BGP neighbor reaches the established state. During this delay, BGP session establishment, capability negotiation, best-path selection, and FIB programming proceed as normal; only outbound update generation is held. When the timer expires, all queued advertisements are sent to all established neighbors. 
+
+Use advertisement-delay to allow downlink interfaces and access services to stabilize before attracting traffic to the switch. NVIDIA recommends a delay of at least 90 seconds when using 802.1X authentication, and at least 30 seconds in other deployments. When using advertisement-delay, deploy the RADIUS server (if used) in the management VRF for reliable reachability during boot and convergence.
+
+The following example configures BGP advertisement delay:
+
+
+{{< tabs "3366">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf default bgp advertisement-delay time 90
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp
+leaf01(config-router)# bgp advertisement-delay 90
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+The {{<link url="Optional-BGP-Configuration/#enable-read-only-mode" text="`convergence-wait time`">}} and `advertisement-delay` are independent timers. Each can be configured on its own; you can have neither, only one, or both configured at the same time. Both update-delay and advertisement-delay are triggered when the first BGP peer reaches Established and both re-trigger on startup and when BGP neighbors are cleared.
+{{%/notice%}}
 
 ## BGP Community Lists
 <!-- vale off -->

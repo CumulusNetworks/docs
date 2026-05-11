@@ -1136,89 +1136,102 @@ profile
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry hft profile</h>
+## <h>nv show system telemetry hft counter</h>
 
-Shows the high frequency telemetry profiles configured on the switch.
+Shows high frequency telemetry counters that are sampled at the defined interval.
+
+{{%notice note%}}
+This command shows sensitive information and requires sudo privileges.
+{{%/notice%}}
 
 ### Version History
 
-Introduced in Cumulus Linux 5.10.0
+Introduced in Cumulus Linux 5.17.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry hft profile
-Profile   traffic-class  counter       sample-interval
---------  -------------  ------------  ---------------
-profile2  0              rx-byte       1000           
-          1              tx-byte                      
-          2                                           
-          3                                           
-          4                                           
-          5                                           
-          6                                           
-          7                                           
-          8                                           
-          9                                           
-standard  3              rx-byte       5000           
-                         tc-occupancy                 
-                         tx-byte
+cumulus@switch:~$ nv show system telemetry hft counter
+Counter     
+------------
+rx-byte     
+tc-occupancy
+tx-byte
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry hft profile \<profile-id\></h>
+## <h>nv show system telemetry hft egress-buffer traffic-class \<traffic-class-id\></h>
 
-Shows the configuration settings for a specific profile:
+Shows the HFT egress buffer configuration for a traffic class.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<profile-id>` |  The name of the profile. High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).|
+| `<traffic-class-id>` |  The traffic class ID. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.10.0
+Introduced in Cumulus Linux 5.17.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry hft profile profile2
-                 operational  applied
----------------  -----------  -------
-sample-interval  1000         1000   
-[traffic-class]  0            0      
-[traffic-class]  1            1      
-[traffic-class]  2            2      
-[traffic-class]  3            3      
-[traffic-class]  4            4      
-[traffic-class]  5            5      
-[traffic-class]  6            6      
-[traffic-class]  7            7      
-[traffic-class]  8            8      
-[traffic-class]  9            9      
-[counter]        rx-byte      rx-byte
-[counter]        tx-byte      tx-byte
+cumulus@switch:~$ nv show system telemetry hft egress-buffer traffic-class 5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry hft target</h>
+## <h>nv show system telemetry hft ingress-buffer</h>
 
-Shows the high frequency telemetry configured targets.
+Shows the HFT ingress buffer priority group configuration.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.10.0
+Introduced in Cumulus Linux 5.17.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry hft target
-applied
--------
-local
+cumulus@switch:~$ nv show system telemetry hft ingress-buffer
+Ingress Buffer Priority Groups
+=================================
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft ingress-buffer priority-group</h>
+
+Shows the HFT ingress buffer configuration for all priority groups.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft ingress-buffer priority-group
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft ingress-buffer priority-group \<priority-group\></h>
+
+Shows the HFT ingress buffer configuration for a priority group.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft ingress-buffer priority-group 5
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1283,6 +1296,144 @@ target                 scp://abc@server1:/hft-data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry hft profile</h>
+
+Shows the high frequency telemetry profiles configured on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft profile
+Profile   traffic-class  counter       sample-interval
+--------  -------------  ------------  ---------------
+profile2  0              rx-byte       1000           
+          1              tx-byte                      
+          2                                           
+          3                                           
+          4                                           
+          5                                           
+          6                                           
+          7                                           
+          8                                           
+          9                                           
+standard  3              rx-byte       5000           
+                         tc-occupancy                 
+                         tx-byte
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft profile \<profile-id\> traffic-class</h>
+
+Shows the specified HFT traffic class configuration settings for a specific profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The name of the profile. High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft profile profile2 traffic-class
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft profile \<profile-id\> traffic-class \<traffic-class-id\></h>
+
+Shows configuration settings for all HFT traffic classes for a specific profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The name of the profile. High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).|
+| `<traffic-class-id>` |  The traffic class ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft profile profile2 traffic-class 5
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft switch-priority</h>
+
+Shows the HFT configuration for all switch priorities.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft switch-priority
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft switch-priority \<switch-priority\></h>
+
+Shows the HFT configuration for a specific switch priority.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<switch-priority-id>` |  The switch priority ID.|
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft switch-priority 5
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft target</h>
+
+Shows the high frequency telemetry configured targets.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft target
+applied
+-------
+local
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry histogram</h>
 
 Shows telemetry histogram configuration settings and operational data.
@@ -1303,12 +1454,12 @@ cumulus@switch:~$ nv show system telemetry histogram
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry histogram ingress-buffer</h>
+## <h>nv show system telemetry histogram counter</h>
 
-Shows ingress queue length histogram configuration settings and operational data.
+Shows counter histogram configuration settings and operational data.
 
 {{%notice note%}}
-In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram ingress-buffer`.
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram counter`.
 {{%/notice%}}
 
 ### Version History
@@ -1318,7 +1469,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry histogram ingress-buffer
+cumulus@switch:~$ nv show system telemetry histogram counter
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1343,12 +1494,12 @@ cumulus@switch:~$ nv show system telemetry histogram egress-buffer
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry histogram counter</h>
+## <h>nv show system telemetry histogram ingress-buffer</h>
 
-Shows counter histogram configuration settings and operational data.
+Shows ingress queue length histogram configuration settings and operational data.
 
 {{%notice note%}}
-In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram counter`.
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram ingress-buffer`.
 {{%/notice%}}
 
 ### Version History
@@ -1358,7 +1509,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry histogram counter
+cumulus@switch:~$ nv show system telemetry histogram ingress-buffer
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1601,6 +1752,104 @@ rib
     state        enabled
 export                   
   state          enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry metric-list</h>
+
+Shows the configured metric lists.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry metric-list
+                  description       Summary                           
+----------------  ----------------  ----------------------------------
+PLATFORM_METRICS  Platform metrics  metric: node_memory_MemTotal_bytes
+                                    metric:  node_memory_MemFree_bytes
+                                    metric:             nvswitch_env_*
+                                    metric:                 node_cpu_*
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry metric-list \<metric-list-id\></h>
+
+Shows configuration for the specified metric list.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<metric-list-id>`  |  The name of the metric list. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry metric-list PLATFORM_METRICS
+             applied                   
+-----------  --------------------------
+description  Platform metrics          
+[metric]     node_cpu_*                
+[metric]     node_memory_MemFree_bytes 
+[metric]     node_memory_MemTotal_bytes
+[metric]     nvswitch_env_*
+```
+
+## <h>nv show system telemetry metric-list \<metric-list-id\> metric</h>
+
+Shows metrics for the specified metric list.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<metric-list-id>`  |  The name of the metric list. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry metric-list PLATFORM_METRICS metric
+--------------------------
+node_cpu_*                
+node_memory_MemFree_bytes 
+node_memory_MemTotal_bytes
+nvswitch_env_*
+```
+
+## <h>nv show system telemetry metric-list \<metric-list-id\> metric \<metric-id\></h>
+
+Shows information about a specific metric for the specified metric list.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<metric-list-id>`  |  The name of the metric list. |
+| `<metric-id>`  |  The metric ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry metric-list PLATFORM_METRICS metric node_cpu_*
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

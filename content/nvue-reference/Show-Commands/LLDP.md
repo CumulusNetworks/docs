@@ -460,6 +460,73 @@ cumulus@switch:~$ nv show interface swp1 lldp neighbor leaf02 bridge vlan 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> lldp tlv summary</h>
+
+Shows a summary of the TLV configuration on a specific interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`    |  The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 lldp tlv summary
+TLV Name             egress-policy  ingress-policy
+-------------------  -------------  --------------
+dcbx-app-priority    enabled        enabled       
+dcbx-ets-config      disabled       disabled      
+dcbx-ets-recomm      disabled       disabled      
+dcbx-pfc             disabled       disabled      
+link-aggregation     enabled        enabled       
+mac-phy-config       enabled        enabled       
+management-address   enabled        enabled       
+max-frame-size       enabled        enabled       
+media-capabilities   enabled        enabled       
+port-description     enabled        enabled       
+port-vlan-id         disabled       enabled       
+system-capabilities  enabled        enabled       
+system-description   enabled        enabled       
+system-name          enabled        enabled       
+unreachable-prefix   disabled       disabled      
+vlan-name            disabled       enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> lldp tlv summary \<tlv-id\></h>
+
+Shows a summary for the TLV type configuration on a specific interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`    |  The interface name.|
+| `<tlv-id>` | The TLV ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 lldp tlv summary unreachable-prefix 
+                operational  applied  
+--------------  -----------  -------
+egress-policy   disabled     enabled                    
+ingress-policy  disabled     enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system lldp</h>
 
 Shows global LLDP configuration, such as the LLDP mode, and LLDP timers and if 802.1 TLV transmission is on or off. By default, 802.1 TLV transmission is off and the switch sends all LLDP frames without 802.1 TLVs.
@@ -823,6 +890,24 @@ Introduced in Cumulus Linux 5.17.0
 
 ```
 cumulus@switch:~$ nv show system lldp tlv summary
+TLV Name             egress-policy  ingress-policy
+-------------------  -------------  --------------
+dcbx-app-priority    enabled        enabled       
+dcbx-ets-config      disabled       disabled      
+dcbx-ets-recomm      disabled       disabled      
+dcbx-pfc             disabled       disabled      
+link-aggregation     enabled        enabled       
+mac-phy-config       enabled        enabled       
+management-address   enabled        enabled       
+max-frame-size       enabled        enabled       
+media-capabilities   enabled        enabled       
+port-description     enabled        enabled       
+port-vlan-id         disabled       enabled       
+system-capabilities  enabled        enabled       
+system-description   enabled        enabled       
+system-name          enabled        enabled       
+unreachable-prefix   disabled       disabled      
+vlan-name            disabled       enabled       
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -845,4 +930,8 @@ Introduced in Cumulus Linux 5.17.0
 
 ```
 cumulus@switch:~$ nv show system lldp tlv summary unreachable-prefix
+                operational  applied
+--------------  -----------  -------
+egress-policy   disabled                     
+ingress-policy  disabled
 ```

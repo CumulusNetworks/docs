@@ -19,6 +19,9 @@ The following NVUE commands are new in Cumulus Linux 5.17.
 nv show interface <interface-id> counters link debounce
 nv show interface <interface-id> link debounce
 nv show interface debounce-counters
+nv show interface <interface-id> lldp tlv
+nv show interface <interface-id> lldp tlv summary
+nv show interface <interface-id> lldp tlv summary <tlv-id>
 nv show interface <interface-id> qos buffer shared-headroom-pool
 nv show qos advance-buffer-config <profile-id> shared-headroom
 nv show system aaa user cumulus --privileged
@@ -27,9 +30,13 @@ nv show system dot1x pre-auth allow-protocol
 nv show system lldp tlv profile
 nv show system lldp tlv profile <lldp-profile-name-id>
 nv show system lldp tlv profile <lldp-profile-name-id> egress-policy
-nv show system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-name-id>
+nv show system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-id>
 nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy
-nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-name-id>
+nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-id>
+nv show system lldp tlv profile <lldp-profile-name-id> summary
+nv show system lldp tlv profile <lldp-profile-name-id> summary <tlv-id>
+nv show system lldp tlv summary
+nv show system lldp tlv summary <tlv-id>
 nv show system security alerts
 nv show system security secure-boot
 nv show system telemetry export ipfix

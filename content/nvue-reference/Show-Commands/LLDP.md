@@ -743,7 +743,7 @@ cumulus@switch:~$ nv show system lldp tlv profile fabric-full egress-policy
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system lldp tlv profile \<profile-id\> egress-policy \<tlv-name-id\></h>
+## <h>nv show system lldp tlv profile \<profile-id\> egress-policy \<tlv-id\></h>
 
 Shows LLDP TLV egress-policy configuration for a specific TLV type.
 
@@ -752,6 +752,7 @@ Shows LLDP TLV egress-policy configuration for a specific TLV type.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<profile-id>`    |  The profile ID.|
+| `<tlv-id>` | The TLV ID.|
 
 ### Version History
 
@@ -787,7 +788,7 @@ cumulus@switch:~$ nv show system lldp tlv profile fabric-full ingress-policy
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system lldp tlv profile \<profile-id\> ingress-policy \<tlv-name-id\></h>
+## <h>nv show system lldp tlv profile \<profile-id\> ingress-policy \<tlv-id\></h>
 
 Shows LLDP TLV ingress-policy configuration for a specific TLV type.
 
@@ -796,6 +797,7 @@ Shows LLDP TLV ingress-policy configuration for a specific TLV type.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<profile-id>` | The profile ID.|
+| `<tlv-id>` | The TLV ID.|
 
 ### Version History
 
@@ -805,4 +807,42 @@ Introduced in Cumulus Linux 5.17.0
 
 ```
 cumulus@switch:~$ nv show system lldp tlv profile fabric-full ingress-policy unreachable-prefix
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system lldp tlv summary</h>
+
+Shows a summary of the LLDP TLV configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system lldp tlv summary
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system lldp tlv summary \<tlv-id\></h>
+
+Shows a summary for a specific LLDP TLV type.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<tlv-id>` | The TLV ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system lldp tlv summary unreachable-prefix
 ```

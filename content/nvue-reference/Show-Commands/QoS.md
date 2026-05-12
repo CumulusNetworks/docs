@@ -256,7 +256,7 @@ Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface <interface-id> qos buffer shared-headroom-pool</h>
+## <h>nv show interface \<interface-id\> qos buffer shared-headroom-pool</h>
 
 Shows the shared headroom pool information for an interface.
 
@@ -2116,6 +2116,11 @@ Introduced in Cumulus Linux 5.17.0
 
 ```
 cumulus@switch:~$ nv show qos advance-buffer-config default-global shared-headroom
+                           operational  applied
+-------------------------  -----------  -------
+required-headroom-per-pg                21024  
+exclusive-headroom-per-pg               21010  
+oversubscription-ratio                  2 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

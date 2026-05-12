@@ -502,7 +502,7 @@ vlan-name            disabled       enabled
 
 ## <h>nv show interface \<interface-id\> lldp tlv summary \<tlv-id\></h>
 
-Shows a summary for the TLV type configuration on a specific interface.
+Shows the configuration for the TLV type on a specific interface.
 
 ### Command Syntax
 
@@ -762,6 +762,9 @@ Introduced in Cumulus Linux 5.17.0
 
 ```
 cumulus@switch:~$ nv show system lldp tlv profile
+Profile      description
+-----------  -----------
+FABRIC-FULL
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -783,7 +786,56 @@ Introduced in Cumulus Linux 5.17.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system lldp tlv profile fabric-full
+cumulus@switch:~$ nv show system lldp tlv profile FABRIC-FULL
+             operational  applied
+-----------  -----------  -------
+description                      
+
+egress-policy
+================
+    TLV                  state   
+    -------------------  --------
+    dcbx-app-priority    disabled
+    dcbx-ets-config      disabled
+    dcbx-ets-recomm      disabled
+    dcbx-pfc             disabled
+    link-aggregation     disabled
+    mac-phy-config       disabled
+    management-address   enabled 
+    max-frame-size       disabled
+    media-capabilities   disabled
+    port-description     disabled
+    port-vlan-id         disabled
+    system-capabilities  enabled 
+    system-description   enabled 
+    system-name          enabled 
+    unreachable-prefix   disabled
+    vlan-name            disabled
+
+ingress-policy
+=================
+    TLV                  state   
+    -------------------  --------
+    dcbx-app-priority    disabled
+    dcbx-ets-config      disabled
+    dcbx-ets-recomm      disabled
+    dcbx-pfc             disabled
+    link-aggregation     disabled
+    mac-phy-config       disabled
+    management-address   disabled
+    max-frame-size       disabled
+    media-capabilities   disabled
+    port-description     disabled
+    port-vlan-id         disabled
+    system-capabilities  disabled
+    system-description   disabled
+    system-name          disabled
+    unreachable-prefix   disabled
+    vlan-name            disabled
+
+summary
+==========
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -805,7 +857,26 @@ Introduced in Cumulus Linux 5.17.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system lldp tlv profile fabric-full egress-policy 
+cumulus@switch:~$ nv show system lldp tlv profile FABRIC-FULL egress-policy
+ 
+TLV                  state   
+-------------------  --------
+dcbx-app-priority    disabled
+dcbx-ets-config      disabled
+dcbx-ets-recomm      disabled
+dcbx-pfc             disabled
+link-aggregation     disabled
+mac-phy-config       disabled
+management-address   enabled 
+max-frame-size       disabled
+media-capabilities   disabled
+port-description     disabled
+port-vlan-id         disabled
+system-capabilities  enabled 
+system-description   enabled 
+system-name          enabled 
+unreachable-prefix   disabled
+vlan-name            disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -828,7 +899,10 @@ Introduced in Cumulus Linux 5.17.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system lldp tlv profile fabric-full egress-policy unreachable-prefix
+cumulus@switch:~$ nv show system lldp tlv profile FABRIC-FULL egress-policy unreachable-prefix
+       operational  applied
+-----  -----------  -------
+state  disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -850,7 +924,25 @@ Introduced in Cumulus Linux 5.17.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system lldp tlv profile fabric-full ingress-policy 
+cumulus@switch:~$ nv show system lldp tlv profile FABRIC-FULL ingress-policy
+TLV                  state   
+-------------------  --------
+dcbx-app-priority    disabled
+dcbx-ets-config      disabled
+dcbx-ets-recomm      disabled
+dcbx-pfc             disabled
+link-aggregation     disabled
+mac-phy-config       enabled
+management-address   disabled
+max-frame-size       disabled
+media-capabilities   disabled
+port-description     disabled
+port-vlan-id         disabled
+system-capabilities  enabled
+system-description   disabled
+system-name          disabled
+unreachable-prefix   disabled
+vlan-name            disabled 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -873,7 +965,72 @@ Introduced in Cumulus Linux 5.17.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system lldp tlv profile fabric-full ingress-policy unreachable-prefix
+cumulus@switch:~$ nv show system lldp tlv profile FABRIC-FULL ingress-policy unreachable-prefix
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system lldp tlv profile \<profile-id\> summary</h>
+
+Shows LLDP TLV profile configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system lldp tlv profile FABRIC-FULL summary
+TLV Name             egress-policy  ingress-policy
+-------------------  -------------  --------------
+dcbx-app-priority    disabled       disabled      
+dcbx-ets-config      disabled       disabled      
+dcbx-ets-recomm      disabled       disabled      
+dcbx-pfc             disabled       disabled      
+link-aggregation     disabled       disabled      
+mac-phy-config       disabled       disabled      
+management-address   enabled        disabled      
+max-frame-size       disabled       disabled      
+media-capabilities   disabled       disabled      
+port-description     disabled       disabled      
+port-vlan-id         disabled       disabled      
+system-capabilities  enabled        disabled      
+system-description   enabled        disabled      
+system-name          enabled        disabled      
+unreachable-prefix   disabled       disabled      
+vlan-name            disabled       disabled 
+```
+
+## <h>nv show system lldp tlv profile \<profile-id\> summary \<tlv-id\></h>
+
+Shows LLDP TLV profile configuration for a TLV type.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile ID.|
+| `<tlv-id>` | The TLV ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system lldp tlv profile FABRIC-FULL summary system-description
+                 operational  applied 
+--------------  -----------  --------
+egress-policy   enabled      enabled 
+ingress-policy  disabled     disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

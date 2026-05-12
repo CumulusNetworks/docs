@@ -1161,6 +1161,27 @@ tx-byte
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry hft counter \<counter-id\></h>
+
+Shows high frequency telemetry configuration for a specific counter.
+
+{{%notice note%}}
+This command shows sensitive information and requires sudo privileges.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft counter rx-byte
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry hft egress-buffer traffic-class \<traffic-class-id\></h>
 
 Shows the HFT egress buffer configuration for a traffic class.

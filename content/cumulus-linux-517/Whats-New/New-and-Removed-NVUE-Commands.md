@@ -19,6 +19,9 @@ The following NVUE commands are new in Cumulus Linux 5.17.
 nv show interface <interface-id> counters link debounce
 nv show interface <interface-id> link debounce
 nv show interface debounce-counters
+nv show interface <interface-id> lldp tlv
+nv show interface <interface-id> lldp tlv summary
+nv show interface <interface-id> lldp tlv summary <tlv-id>
 nv show interface <interface-id> qos buffer shared-headroom-pool
 nv show qos advance-buffer-config <profile-id> shared-headroom
 nv show system aaa user cumulus --privileged
@@ -27,16 +30,46 @@ nv show system dot1x pre-auth allow-protocol
 nv show system lldp tlv profile
 nv show system lldp tlv profile <lldp-profile-name-id>
 nv show system lldp tlv profile <lldp-profile-name-id> egress-policy
-nv show system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-name-id>
+nv show system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-id>
 nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy
-nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-name-id>
+nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-id>
+nv show system lldp tlv profile <lldp-profile-name-id> summary
+nv show system lldp tlv profile <lldp-profile-name-id> summary <tlv-id>
+nv show system lldp tlv summary
+nv show system lldp tlv summary <tlv-id>
 nv show system security alerts
 nv show system security secure-boot
 nv show system telemetry export ipfix
+nv show system telemetry hft counter <counter-id>
+nv show system telemetry hft egress-buffer traffic-class <traffic-class-id>
+nv show system telemetry hft ingress-buffer 
+nv show system telemetry hft ingress-buffer priority-group
+nv show system telemetry hft ingress-buffer priority-group <priority-group-id>
+nv show system telemetry hft profile <profile-id> traffic-class <traffic-class-id>
+nv show system telemetry hft switch-priority
+nv show system telemetry hft switch-priority <switch-priority-id>
 nv show system telemetry interface-stats class debounce
+nv show system telemetry interface-stats switch-priority <switch-priority-id>
+nv show system telemetry metric-list
+nv show system telemetry metric-list <metric-list-id>
+nv show system telemetry metric-list <metric-list-id> metric <metric-id>
 nv show system telemetry stats-group <stats-group-id> interface-stats class debounce
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability export-lldp
+nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route <route-id> path <path-id> community
+nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route <route-id> path <path-id> large-community
+nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route <route-id> path <path-id> nexthop
+nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route <route-id> path <path-id> reporters
+nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route <route-id> path <path-id> reporters <reporter-id>
 nv show vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp
+nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route <route-id> path <path-id> community
+nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route <route-id> path <path-id> large-community
+nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route <route-id> path <path-id> nexthop
+nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route <route-id> path <path-id> reporters
+nv show vrf <vrf-id> router bgp address-family ipv6-unreachability route <route-id> path <path-id> reporters <reporter-id>
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn advertise
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn advertise ipv4-unreachability
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn advertise ipv6-unreachability
+nv show vrf <vrf-id> router rib <afi> unreachable-prefixes
 ```
 
 {{< /tab >}}

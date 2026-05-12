@@ -80,33 +80,35 @@ The following example looks up the route in the routing table for the destinatio
 ```
 cumulus@switch:~$ nv action lookup vrf default router fib ipv4 10.10.10.3
 Action executing ...
-
-dst: 10.10.10.4
-nhid: 106
-protocol: bgp
-metric: 20
-flags: []
-
-id: 106
-group: 62,102
-protocol: zebra
-flags: []
-
-id: 62
-gateway: fe80::4ab0:2dff:feff:6ac0
-dev: swp52
-scope: link
-protocol: zebra
-flags: []
-
-id: 102
-gateway: fe80::4ab0:2dff:fe8b:d6bf
-dev: swp51
-scope: link
-protocol: zebra
-flags: []
-
-Action succeeded 
+  {
+      "dst": "10.10.10.3/32",
+      "nhid": 106,
+      "protocol": "bgp",
+      "metric": 20,
+      "flags": [],
+      "nexthop": {
+          "id": 106,
+          "group": {
+              "62": {
+                  "gateway": "fe80::4ab0:2dff:feff:6ac0",
+                  "dev": "swp52",
+                  "scope": "link",
+                  "protocol": "zebra",
+                  "flags": []
+              },
+              "102": {
+                  "gateway": "fe80::4ab0:2dff:fe8b:d6bf",
+                  "dev": "swp51",
+                  "scope": "link",
+                  "protocol": "zebra",
+                  "flags": []
+              }
+          },
+          "protocol": "zebra",
+          "flags": []
+      }
+  }
+  Action succeeded 
 ```
 
 The following example shows the route in the routing table for the destination with the IPv6 address 228:35::5
@@ -114,15 +116,15 @@ The following example shows the route in the routing table for the destination w
 ```
 cumulus@switch:~$ nv action lookup vrf default router fib ipv6 fe80::4ab0:2dff:fe8b:d6bf
 Action executing ...
-
-dst: fe80::/64
-dev: br_default
-protocol: kernel
-metric: 256
-flags: []
-pref: medium
-
-Action succeeded
+  {
+      "dst": "fe80::/64",
+      "dev": "br_default",
+      "protocol": "kernel",
+      "metric": 256,
+      "flags": [],
+      "pref": "medium"
+  }
+  Action succeeded
 ```
 
 ## Show FIB Table Entries
@@ -180,9 +182,9 @@ To show IPv4 FIB table entries for a specific prefix in a VRF, run the `nv show 
 ```
 cumulus@leaf01:~$ nv show vrf default router fib ipv4 route 10.10.10.1/32 
 
-Prefix             Next-hop               Proto  Scope  Summary 
------------------- ---------------------- ------ ------ ----------------------- 
-10.10.10.1/32      nhid 68                bgp    global Metric: 20
+Prefix         Next-hop  Protocol  Scope   Summary
+-------------  --------  --------  ------  ----------
+10.10.10.1/32  nhid 68   bgp       global  Metric: 20
 ```
 
 To show IPv6 FIB table entries for a specific prefix in a VRF, run the `nv show vrf <vrf-id> router fib ipv6 route <prefix>` command.

@@ -20,6 +20,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td></td>
 </tr>
 <tr>
+<td>4992204</td>
+<td>Cumulus Linux does not support the NVUE {{nv set nve vxlan port &lt;udp-port&gt;}} command; you do not see the configured UDP port in the outer VXLAN packet header.</td>
+<td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4989440</td>
 <td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
 <td>5.16.0-5.16.1</td>
@@ -43,7 +49,7 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>4989428</td>
-<td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage, potentially leading to a restart of the gNMI server.</td>
+<td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage and potentially leading to a gNMI server restart.</td>
 <td>5.15.1-5.16.1</td>
 <td></td>
 </tr>
@@ -62,6 +68,19 @@ nv config apply -y</td>
 <tr>
 <td>4989425</td>
 <td>Upgrading Cumulus Linux to 5.16.x causes a long boot delay and the {{nvued}} service remains in an activating state. To work around this issue, run {{nvue-git-manual-recovery.sh}} as a root user during maintenance on each node before upgrade, or on any node that has this issue. When successful, upgrade Cumulus Linux. If the script exits non-zero or reports time exceeded, follow the on-screen steps before continuing the upgrade. </td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4988339</td>
+<td>Sxd-kernel errors about late completion and "new maximum time between iterations detected"  reported.
+
+
+ kernel: [875348.575113] sxd_kernel: dev_id=1: Receive late completion for dqn (0) idx (65)
+
+ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time between iterations detected: 7224 msecs (jiffies_now=4519869758, last_work_launch_jiffies=4519867952, HZ=250)
+
+</td>
 <td>5.16.1</td>
 <td></td>
 </tr>
@@ -132,6 +151,12 @@ nv config apply -y</td>
 <td></td>
 </tr>
 <tr>
+<td>4957677</td>
+<td>If FSM cable information does not finish or does not start within three seconds (due to other, higher priority FSM handling), recovery flow is triggered. In some edge cases, this recovery flow does not clean all necessary parameters.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4957394</td>
 <td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
 <td>5.9.5-5.16.1</td>
@@ -153,6 +178,12 @@ nv config apply -y</td>
 <td>4940786, 4705183</td>
 <td>Transceiver firmware upgrade fails due to PMAOS register access failures.</td>
 <td>5.15.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4937867</td>
+<td>If FSM cable info does not finish or does not start within three seconds (due to other, higher priority FSM handling), recovery flow is triggered. In some edge cases, this recovery flow does not clean all necessary parameters.</td>
+<td>5.12.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -216,6 +247,13 @@ nv config apply -y</td>
 <td></td>
 </tr>
 <tr>
+<td>4924486, 4924487</td>
+<td>A fatal SDK event might occur during i2c or cable read events, observed with the following {{switchd}} log message:
+hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</td>
+<td>5.12.1-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4922188</td>
 <td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
 <td>5.16.0-5.16.1</td>
@@ -258,6 +296,12 @@ nv config apply -y</td>
 <td></td>
 </tr>
 <tr>
+<td>4907468</td>
+<td>When you configure more than 256 SRv6 static SIDs, NVUE accepts the configuration without error. However, Cumulus Linux only programs the first 256 entries in hardware and drops traffic matching the remaining entries. Counters for the remaining entries are not available with the {{nv show router segment-routing srv6 stats sid}} command.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4905123</td>
 <td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
 <td>5.16.0-5.16.1</td>
@@ -270,8 +314,26 @@ nv config apply -y</td>
 <td></td>
 </tr>
 <tr>
+<td>4899807</td>
+<td>For BGP unnumbered, SOO routes in the NVUE BGP SOO table have incomplete peer bitindex mappings.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4895589</td>
 <td>When you run the {{nv set vrf default router bgp address-family ipv4-unicast state disabled}} command, you still see IPv4 exchanged between BGP peers. This is because FRR enables IPv4 by default even when there is no explicit configuration.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4895582</td>
+<td>Setting the AS path {{allow-my-asn occurrences}} when the AS path {{allow-my-asn origin}} is already configured on the same BGP neighbor or peer group causes an FRR reload failure. This issue affects all AFI and SAFIs, including IPv4, IPv6, EVPN, IPv4 unreachability, and IPv6 unreachability.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4895525</td>
+<td> During a long-run repeated execution of {{ethtool -m &lt;interface&gt;}}, the command occasionally returns RAW hexadecimal EEPROM data instead of decoded transceiver fields.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -425,6 +487,12 @@ where only the aggregate should be advertised.</td>
 <td></td>
 </tr>
 <tr>
+<td>4850539</td>
+<td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4840423</td>
 <td>Running {{traceroute}} in an SRv6 topology is unsuccessful.</td>
 <td>5.16.0-5.16.1</td>
@@ -439,6 +507,12 @@ where only the aggregate should be advertised.</td>
 <tr>
 <td>4840271</td>
 <td>When you configure a static SRv6 Static SID, NVUE does not enable SRv6 automatically and requires you to run the {{nv set router segment-routing srv6 state enabled}} command manually.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4824902, 4944347</td>
+<td>NVUE no longer supports the {{nv set system docker state}} and {{nv show system docker state}} commands. Docker remains enabled because core services such as UMF, gNMI and WJH run in containers. During upgrade to Cumulus Linux 5.17 or later, the upgrade process removes any existing system Docker state configuration.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -489,6 +563,12 @@ sudo chown -R ntpsec /var/lib/ntpsec
 sudo chown -R Debian-snmp /var/lib/snmp
 sudo reboot</td>
 <td>5.11.4-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4722589, 4866475</td>
+<td>In a large scale configuration, a full MIB walk times out.</td>
+<td>5.15.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1430,6 +1510,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td></td>
 </tr>
 <tr>
+<td>4992204</td>
+<td>Cumulus Linux does not support the NVUE {{nv set nve vxlan port &lt;udp-port&gt;}} command; you do not see the configured UDP port in the outer VXLAN packet header.</td>
+<td>5.14.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4989440</td>
 <td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
 <td>5.16.0-5.16.1</td>
@@ -1437,7 +1523,7 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 </tr>
 <tr>
 <td>4989428</td>
-<td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage, potentially leading to a restart of the gNMI server.</td>
+<td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage and potentially leading to a gNMI server restart.</td>
 <td>5.15.1-5.16.1</td>
 <td></td>
 </tr>
@@ -1526,6 +1612,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td></td>
 </tr>
 <tr>
+<td>4937867</td>
+<td>If FSM cable info does not finish or does not start within three seconds (due to other, higher priority FSM handling), recovery flow is triggered. In some edge cases, this recovery flow does not clean all necessary parameters.</td>
+<td>5.12.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4933966</td>
 <td>When moving from split 4 to split 2 on a port, FIFO corruption occurs, causing packets to become stuck in the egress queue.</td>
 <td>5.16.0-5.16.1</td>
@@ -1571,6 +1663,13 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td>4924838</td>
 <td>When the a BGP neighbor is up for more than a day (24 hours), the uptime depicts correctly but the reset time which indicates the last connection reset time, does not account for the time elapsed past a day after the BGP neighbor resets. This is a display issue in NVUE; there is no direct traffic or functional impact.</td>
 <td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4924486, 4924487</td>
+<td>A fatal SDK event might occur during i2c or cable read events, observed with the following {{switchd}} log message:
+hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</td>
+<td>5.12.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1707,6 +1806,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td></td>
 </tr>
 <tr>
+<td>4907468</td>
+<td>When you configure more than 256 SRv6 static SIDs, NVUE accepts the configuration without error. However, Cumulus Linux only programs the first 256 entries in hardware and drops traffic matching the remaining entries. Counters for the remaining entries are not available with the {{nv show router segment-routing srv6 stats sid}} command.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4905123</td>
 <td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
 <td>5.16.0-5.16.1</td>
@@ -1719,8 +1824,26 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td></td>
 </tr>
 <tr>
+<td>4899807</td>
+<td>For BGP unnumbered, SOO routes in the NVUE BGP SOO table have incomplete peer bitindex mappings.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4895589</td>
 <td>When you run the {{nv set vrf default router bgp address-family ipv4-unicast state disabled}} command, you still see IPv4 exchanged between BGP peers. This is because FRR enables IPv4 by default even when there is no explicit configuration.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4895582</td>
+<td>Setting the AS path {{allow-my-asn occurrences}} when the AS path {{allow-my-asn origin}} is already configured on the same BGP neighbor or peer group causes an FRR reload failure. This issue affects all AFI and SAFIs, including IPv4, IPv6, EVPN, IPv4 unreachability, and IPv6 unreachability.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4895525</td>
+<td> During a long-run repeated execution of {{ethtool -m &lt;interface&gt;}}, the command occasionally returns RAW hexadecimal EEPROM data instead of decoded transceiver fields.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -1874,6 +1997,12 @@ where only the aggregate should be advertised.</td>
 <td></td>
 </tr>
 <tr>
+<td>4850539</td>
+<td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4840423</td>
 <td>Running {{traceroute}} in an SRv6 topology is unsuccessful.</td>
 <td>5.16.0-5.16.1</td>
@@ -1888,6 +2017,12 @@ where only the aggregate should be advertised.</td>
 <tr>
 <td>4840271</td>
 <td>When you configure a static SRv6 Static SID, NVUE does not enable SRv6 automatically and requires you to run the {{nv set router segment-routing srv6 state enabled}} command manually.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4824902, 4944347</td>
+<td>NVUE no longer supports the {{nv set system docker state}} and {{nv show system docker state}} commands. Docker remains enabled because core services such as UMF, gNMI and WJH run in containers. During upgrade to Cumulus Linux 5.17 or later, the upgrade process removes any existing system Docker state configuration.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -1938,6 +2073,12 @@ sudo chown -R ntpsec /var/lib/ntpsec
 sudo chown -R Debian-snmp /var/lib/snmp
 sudo reboot</td>
 <td>5.11.4-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4722589, 4866475</td>
+<td>In a large scale configuration, a full MIB walk times out.</td>
+<td>5.15.1-5.16.1</td>
 <td></td>
 </tr>
 <tr>

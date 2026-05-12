@@ -650,6 +650,10 @@ Total number of neighbors 1
 
 To prevent loops, the switch automatically discards BGP network prefixes if it sees its own ASN in the AS path. However, you can configure Cumulus Linux to receive and process routes even if it detects its own ASN in the AS path (allowas-in).
 
+{{%notice note%}}
+BGP allowas-in is supported only under the IPv4 and IPv6 address family.
+{{%/notice%}}
+
 To enable allowas-in:
 
 {{< tabs "602 ">}}

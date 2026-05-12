@@ -49,7 +49,6 @@ nv show system telemetry hft profile <profile-id> traffic-class <traffic-class-i
 nv show system telemetry hft switch-priority
 nv show system telemetry hft switch-priority <switch-priority-id>
 nv show system telemetry interface-stats class debounce
-nv show system telemetry interface-stats switch-priority <switch-priority-id>
 nv show system telemetry metric-list
 nv show system telemetry metric-list <metric-list-id>
 nv show system telemetry metric-list <metric-list-id> metric <metric-id>

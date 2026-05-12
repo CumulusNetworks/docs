@@ -1616,3 +1616,19 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set system lldp tx-interval 100
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp unreachable-prefix max-limit</h>
+
+Configures the maximum number of unreachable prefixes tracked. You can specify a value between 1 and 100000. The default value is 25000.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp unreachable-prefix max-limit 10000
+```

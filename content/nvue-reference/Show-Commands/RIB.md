@@ -689,3 +689,27 @@ cumulus@switch:~$ nv show vrf default router rib ipv4 fib-filter protocol bgp
 ---------  ------- 
 route-map  routemap
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router rib \<afi\> unreachable-prefixes</h>
+
+Shows the unreachable prefix list for IPv4 or IPv6.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (`ipv4` or `ipv6`). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 unreachable-prefixes
+No Data
+```

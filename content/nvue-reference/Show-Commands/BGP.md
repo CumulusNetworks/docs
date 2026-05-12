@@ -1759,29 +1759,6 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unreachability export-lldp</h>
-
-Shows if FRR to LLDP integration is enabled to send IPv6 prefix information to LLDP.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.17.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachability export-lldp
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unreachability route</h>
 
 Shows BGP unreachability routes.

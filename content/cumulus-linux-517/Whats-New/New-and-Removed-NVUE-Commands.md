@@ -90,72 +90,12 @@ nv set system dot1x pre-auth allow-protocol lldp egress
 nv set system dot1x pre-auth allow-protocol lldp both
 nv set system dot1x pre-auth allow-protocol lldp none
 nv set system dot1x tx-identity-request max-retries
-nv set system lldp tlv egress-policy dcbx-app-priority state
-nv set system lldp tlv egress-policy dcbx-ets-config state
-nv set system lldp tlv egress-policy dcbx-ets-recomm state
-nv set system lldp tlv egress-policy dcbx-pfc state
-nv set system lldp tlv egress-policy link-aggregation state
-nv set system lldp tlv egress-policy management-address state
-nv set system lldp tlv egress-policy mac-phy-config state
-nv set system lldp tlv egress-policy max-frame-size state
-nv set system lldp tlv egress-policy media-capabilities state
-nv set system lldp tlv egress-policy system-capabilities state
-nv set system lldp tlv egress-policy system-description state
-nv set system lldp tlv egress-policy system-name state
-nv set system lldp tlv egress-policy port-description state
-nv set system lldp tlv egress-policy port-vlan-id state      
-nv set system lldp tlv egress-policy unreachable-prefix state
-nv set system lldp tlv egress-policy vlan-name state
-nv set system lldp tlv egress-policy unreachable-prefix state state
-nv set system lldp tlv ingress-policy dcbx-app-priority state
-nv set system lldp tlv ingress-policy dcbx-ets-config state
-nv set system lldp tlv ingress-policy dcbx-ets-recomm state
-nv set system lldp tlv ingress-policy dcbx-pfc state
-nv set system lldp tlv ingress-policy link-aggregation state
-nv set system lldp tlv ingress-policy mac-phy-config state
-nv set system lldp tlv ingress-policy max-frame-size state
-nv set system lldp tlv ingress-policy management-address state
-nv set system lldp tlv ingress-policy media-capabilities state
-nv set system lldp tlv ingress-policy system-capabilities state
-nv set system lldp tlv ingress-policy system-description state
-nv set system lldp tlv ingress-policy system-name state
-nv set system lldp tlv ingress-policy port-description state
-nv set system lldp tlv ingress-policy port-vlan-id state         
-nv set system lldp tlv ingress-policy unreachable-prefix state
-nv set system lldp tlv ingress-policy vlan-name state
+nv set system lldp tlv egress-policy <tlv-type> state
+nv set system lldp tlv ingress-policy <tlv-type> state
 nv set system lldp tlv profile <lldp-profile-name-id> description
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-app-priority state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-ets-config state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-ets-recomm state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy dcbx-pfc state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy mac-phy-config state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy management-address state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy max-frame-size state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy media-capabilities state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy link-aggregation state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy port-description state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy port-vlan-id state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-capabilities state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-description state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy system-name state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy unreachable-prefix state
-nv set system lldp tlv profile <lldp-profile-name-id> egress-policy vlan-name state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-app-priority state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-ets-config state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-ets-recomm state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy dcbx-pfc state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy link-aggregation state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy mac-phy-config state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy management-address state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy max-frame-size state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy media-capabilities state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy port-description state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy port-vlan-id state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy system-capabilities state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy system-description state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy system-name state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy unreachable-prefix state
-nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy vlan-name state
+nv set system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-type> state
+nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-type> state
+nv set system lldp unreachable-prefix max-limit
 nv set system security alerts audit-failure
 nv set system aaa tacacs authorization <privilege-level> all-commands
 nv set system telemetry export ipfix destination
@@ -164,6 +104,9 @@ nv set system telemetry export ipfix port
 nv set system telemetry export ipfix template-metadata-interval
 nv set system telemetry export ipfix vrf <vrf-id>
 nv set system telemetry hft export ipfix state
+nv set system telemetry hft export-type 
+nv set system telemetry hft ingress-buffer priority-group <hft-priority-group-id>
+nv set system telemetry hft switch-priority <hft-switch-priority-id>
 nv set system telemetry exclude-list
 nv set system telemetry include-list
 nv set system telemetry interface-stats class debounce sample-interval

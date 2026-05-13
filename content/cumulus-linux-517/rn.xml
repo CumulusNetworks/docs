@@ -19,9 +19,9 @@
 <td></td>
 </tr>
 <tr>
-<td>4989428</td>
-<td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage, potentially leading to a restart of the gNMI server.</td>
-<td>5.15.1-5.17.0</td>
+<td>4990537</td>
+<td>After you run the {{nv action clear system link flap-protection violation}} command, the clear status does not show for each interface. This is a display issue and does not impact functionality.</td>
+<td>5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -34,6 +34,12 @@
 <td>4871161</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
 <td>5.9.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4840423</td>
+<td>Running {{traceroute}} in an SRv6 topology is unsuccessful.</td>
+<td>5.16.0-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -809,9 +815,36 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5005096</td>
+<td>The AI Ethernet statistics metrics collection sometimes times out and does not return any data.</td>
+<td></td>
+</tr>
+<tr>
+<td>4992204</td>
+<td>Cumulus Linux does not support the NVUE {{nv set nve vxlan port &lt;udp-port&gt;}} command; you do not see the configured UDP port in the outer VXLAN packet header.</td>
+<td>5.14.0-5.16.1</td>
+</tr>
+<tr>
+<td>4989386</td>
+<td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage and potentially leading to a gNMI server restart.</td>
+<td>5.15.1-5.16.1</td>
+</tr>
+<tr>
 <td>4989352, 4989413</td>
 <td>GNMI subscriptions might not return interface counter metrics when there is an active, low-rate (1 second) subscription to transceiver data.</td>
 <td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4988339</td>
+<td>Sxd-kernel errors about late completion and "new maximum time between iterations detected"  reported.
+
+
+ kernel: [875348.575113] sxd_kernel: dev_id=1: Receive late completion for dqn (0) idx (65)
+
+ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time between iterations detected: 7224 msecs (jiffies_now=4519869758, last_work_launch_jiffies=4519867952, HZ=250)
+
+</td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4983561</td>
@@ -858,6 +891,11 @@ nv config apply -y</td>
 <td></td>
 </tr>
 <tr>
+<td>4957677</td>
+<td>If FSM cable information does not finish or does not start within three seconds (due to other, higher priority FSM handling), recovery flow is triggered. In some edge cases, this recovery flow does not clean all necessary parameters.</td>
+<td>5.16.1</td>
+</tr>
+<tr>
 <td>4957394</td>
 <td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
 <td>5.9.5-5.16.1</td>
@@ -876,6 +914,11 @@ nv config apply -y</td>
 <td>4940786, 4705183</td>
 <td>Transceiver firmware upgrade fails due to PMAOS register access failures.</td>
 <td>5.15.0-5.16.1</td>
+</tr>
+<tr>
+<td>4937867</td>
+<td>If FSM cable info does not finish or does not start within three seconds (due to other, higher priority FSM handling), recovery flow is triggered. In some edge cases, this recovery flow does not clean all necessary parameters.</td>
+<td>5.12.0-5.16.1</td>
 </tr>
 <tr>
 <td>4937657</td>
@@ -938,6 +981,12 @@ nv config apply -y</td>
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
+<td>4924486, 4924487</td>
+<td>A fatal SDK event might occur during i2c or cable read events, observed with the following {{switchd}} log message:
+hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</td>
+<td>5.12.1-5.16.1</td>
+</tr>
+<tr>
 <td>4923092</td>
 <td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are incorrectly categorized as fatal.  The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
 <td>5.16.0</td>
@@ -993,6 +1042,11 @@ nv config apply -y</td>
 <td>5.15.1-5.16.1</td>
 </tr>
 <tr>
+<td>4907468</td>
+<td>When you configure more than 256 SRv6 static SIDs, NVUE accepts the configuration without error. However, Cumulus Linux only programs the first 256 entries in hardware and drops traffic matching the remaining entries. Counters for the remaining entries are not available with the {{nv show router segment-routing srv6 stats sid}} command.</td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
 <td>4905123</td>
 <td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
 <td>5.16.0-5.16.1</td>
@@ -1013,6 +1067,11 @@ nv config apply -y</td>
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
+<td>4899807</td>
+<td>For BGP unnumbered, SOO routes in the NVUE BGP SOO table have incomplete peer bitindex mappings.</td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
 <td>4895597</td>
 <td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are incorrectly categorized as fatal.  The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
 <td>5.15.1-5.16.0</td>
@@ -1020,6 +1079,16 @@ nv config apply -y</td>
 <tr>
 <td>4895589</td>
 <td>When you run the {{nv set vrf default router bgp address-family ipv4-unicast state disabled}} command, you still see IPv4 exchanged between BGP peers. This is because FRR enables IPv4 by default even when there is no explicit configuration.</td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4895582</td>
+<td>Setting the AS path {{allow-my-asn occurrences}} when the AS path {{allow-my-asn origin}} is already configured on the same BGP neighbor or peer group causes an FRR reload failure. This issue affects all AFI and SAFIs, including IPv4, IPv6, EVPN, IPv4 unreachability, and IPv6 unreachability.</td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4895525</td>
+<td> During a long-run repeated execution of {{ethtool -m &lt;interface&gt;}}, the command occasionally returns RAW hexadecimal EEPROM data instead of decoded transceiver fields.</td>
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
@@ -1194,8 +1263,18 @@ where only the aggregate should be advertised.</td>
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
+<td>4850539</td>
+<td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
 <td>4840271</td>
 <td>When you configure a static SRv6 Static SID, NVUE does not enable SRv6 automatically and requires you to run the {{nv set router segment-routing srv6 state enabled}} command manually.</td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4824902, 4944347</td>
+<td>NVUE no longer supports the {{nv set system docker state}} and {{nv show system docker state}} commands. Docker remains enabled because core services such as UMF, gNMI and WJH run in containers. During upgrade to Cumulus Linux 5.17 or later, the upgrade process removes any existing system Docker state configuration.</td>
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
@@ -1212,6 +1291,11 @@ where only the aggregate should be advertised.</td>
 <td>4731091, 4857885</td>
 <td>During optimized image upgrade, the switch logs an error because a new file is added. There is no functional impact.</td>
 <td>5.11.4-5.16.1</td>
+</tr>
+<tr>
+<td>4722589, 4866475</td>
+<td>In a large scale configuration, a full MIB walk times out.</td>
+<td>5.15.1-5.16.1</td>
 </tr>
 </table>
 </tables>

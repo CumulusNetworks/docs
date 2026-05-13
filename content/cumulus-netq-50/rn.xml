@@ -123,13 +123,19 @@
 <td></td>
 </tr>
 <tr>
+<td>4780773</td>
+<td>The NetQ for NVLink Swagger UI might incorrectly display 500 status placeholder text in example responses.</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4693161</td>
 <td>In cluster and scale cluster deployments, the snapshot comparison feature may time out when comparing MAC addresses.</td>
 <td>5.0.0</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>4689932</td>
+<td>4689932, 4702436</td>
 <td>Node reservation for NetQ is not supported in shared multi-node clusters. To work around this issue, deploy NetQ in a dedicated single-node or three-node cluster first, and then scale the deployment by adding nodes for other applications.</td>
 <td>5.0.0</td>
 <td>5.1.0</td>
@@ -195,7 +201,7 @@
 <td></td>
 </tr>
 <tr>
-<td>4100882</td>
+<td>4100882, 4119697</td>
 <td>When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export.</td>
 <td>4.12.0-4.15.1, 5.0.0-5.1.0</td>
 <td></td>
@@ -223,7 +229,7 @@
 <td>4.15.0-4.15.1</td>
 </tr>
 <tr>
-<td>4572526</td>
+<td>4572526, 4572527</td>
 <td>NetQ for NVLink deployments might fail in air-gapped environments.</td>
 <td></td>
 </tr>
@@ -233,7 +239,7 @@
 <td>4.14.0-4.15.1</td>
 </tr>
 <tr>
-<td>4532058</td>
+<td>4532058, 4526493</td>
 <td>When you run a validation for a past date, NetQ might display incorrect values for session counts and active links.</td>
 <td>4.15.0-4.15.1</td>
 </tr>
@@ -243,12 +249,12 @@
 <td>4.15.0-4.15.1</td>
 </tr>
 <tr>
-<td>4023716</td>
+<td>4023716, 4022819, 4282514</td>
 <td>NetQ might display duplicate validations results.</td>
 <td>4.11.0-4.15.1</td>
 </tr>
 <tr>
-<td>3993538</td>
+<td>3993538, 4379389</td>
 <td>When you re-position a card on your workbench and then manually refresh the workbench, NetQ might reposition the cards.</td>
 <td>4.11.0-4.15.1</td>
 </tr>

@@ -916,6 +916,11 @@ nv config apply -y</td>
 <td>5.15.0-5.16.1</td>
 </tr>
 <tr>
+<td>4938139</td>
+<td>On the Spectrum-4 switch, the firmware's cable information recovery flow (triggered when the cable info FSM does not start or complete within three seconds due to contention with higher-priority FSM handling) does not always clean up all parameters. This results in an invalid I2C gateway unlock that is incorrectly raised as a fatal assert, triggering a Health Check event and causing an unexpected switch reboot.</td>
+<td></td>
+</tr>
+<tr>
 <td>4937867</td>
 <td>If FSM cable info does not finish or does not start within three seconds (due to other, higher priority FSM handling), recovery flow is triggered. In some edge cases, this recovery flow does not clean all necessary parameters.</td>
 <td>5.12.0-5.16.1</td>
@@ -973,6 +978,11 @@ nv config apply -y</td>
 <tr>
 <td>4925316</td>
 <td>Known registered multicast traffic is duplicated to receivers behind an EVPN-MH dual-homed access switch.</td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4925207</td>
+<td>The graceful restart helper node experiences temporary traffic loss when the peer goes under warm boot.</td>
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>

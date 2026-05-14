@@ -10,14 +10,14 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 5.2
 
-- Re-designed the {{<link title="Network Topology" text="network topology dashboard">}} so that you can visualize your network's topology according to system labels assigned to a device (beta)
-- Added ability to {{<link title="Disaster Recovery Using NFS" text="back up your NetQ data using an NFS server">}} for disaster recovery scenarios (beta)
-- Added a {{<link title="System Events Reference/#correlation-events" text="fault correlation system event">}} which groups of events linked to the same underlying issue and displays the association between host-based errors and devices within a network’s fabric (beta)
+- Re-designed the {{<link title="Network Topology" text="network topology dashboard">}} so that you can visualize your network's topology according to the system labels assigned to a device (beta)
+- You can now {{<link title="Disaster Recovery Using NFS" text="back up your NetQ data using an NFS server">}} for disaster recovery scenarios (beta)
+- NetQ now supports {{<link title="System Events Reference/#correlation-events" text="fault correlation system events">}} which group events linked to the same underlying issue and displays the association between host-based errors and devices within a network’s fabric (beta)
 - Added {{<link title="Validation Tests Reference/#adaptive-routing-validation-tests" text="adaptive routing validations">}} that verify configuration consistencies across switches in your network's fabric (beta)
-- Added support for node addition for NetQ NVLink + Ethernet combined mode deployments (beta)
+- You can now add nodes to your existing NetQ NVLink + Ethernet combined mode deployments (beta)
 - Added {{<link title="Validation Tests Reference/#roce-validation-tests" text="RoCE validations">}} that verify configuration consistencies across the entire network fabric, including switches, host NICs, and DPUs (beta)
 - Added support for Arm-based systems
-- Added ability to {{<link title="Create a NetQ Simulation in DSX Air" text="create NetQ simulations in DSX Air">}}
+- You can now {{<link title="Create a NetQ Simulation in DSX Air" text="create NetQ simulations">}} using the NVIDIA DSX Air platform
 - Updated the {{<link title="Cable Validations" text="Cable Validation Tool">}} to version 1.9
 - Added IPv6 support for {{<link title="Switch Management/#switch-discovery" text="switch discovery">}} operations
 
@@ -45,7 +45,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
     - Flow analysis (deprecated)
     - Validations: duplicate IP addresses, agents, VXLAN, MLAG bond VLAN consistency test (deprecated)
     - ECMP without adaptive routing (removed)
-    - High-availability scale cluster deployment for Ethernet only (removed). You can upgrade this deployment type using the upgrade instructions for NVLink + Ethernet combined mode.
+    - High-availability scale cluster deployment for Ethernet only (removed). You can upgrade this deployment type using the upgrade instructions for the NVLink + Ethernet combined mode deployment.
 
 ## Upgrade Paths
 

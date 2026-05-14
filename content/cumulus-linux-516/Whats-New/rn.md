@@ -219,6 +219,7 @@ pdfhidden: True
 ### Fixed Issues in 5.16.4
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| 5030199 | The <code>rsyslog</code> event logger configuration file (<code>12-event-logger.conf</code>) defines a <code>$outchannel</code> with a 1MB size limit and rotation command. However, the <code>omfile</code> action that writes to <code>/var/log/event_logger</code> does not reference the outchannel and lacks inline rotation directives. As a result, <code>rsyslog</code> does not invoke <code>rotate_now</code> to trigger <code>logrotate</code> when the file exceeds 1MB. | 5.16.1-5.16.3 | |
 | 5027908 | RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests. | 5.15.0-5.16.3 | |
 
 ## 5.16.3 Release Notes

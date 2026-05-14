@@ -1295,6 +1295,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5030199</td>
+<td>The {{rsyslog}} event logger configuration file ({{12-event-logger.conf}}) defines a {{$outchannel}} with a 1MB size limit and rotation command. However, the {{omfile}} action that writes to {{/var/log/event_logger}} does not reference the outchannel and lacks inline rotation directives. As a result, {{rsyslog}} does not invoke {{rotate_now}} to trigger {{logrotate}} when the file exceeds 1MB.</td>
+<td>5.16.1-5.16.3</td>
+</tr>
+<tr>
 <td>5027908</td>
 <td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
 <td>5.15.0-5.16.3</td>

@@ -32,14 +32,9 @@
 </tr>
 <tr>
 <td>4988339</td>
-<td>Sxd-kernel errors about late completion and "new maximum time between iterations detected"  reported.
-
-
- kernel: [875348.575113] sxd_kernel: dev_id=1: Receive late completion for dqn (0) idx (65)
-
- kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time between iterations detected: 7224 msecs (jiffies_now=4519869758, last_work_launch_jiffies=4519867952, HZ=250)
-
-</td>
+<td>You see the following Sxd-kernel errors about late completion and new maximum time between iterations detected.
+kernel: [875348.575113] sxd_kernel: dev_id=1: Receive late completion for dqn (0) idx (65)
+kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time between iterations detected: 7224 msecs (jiffies_now=4519869758, last_work_launch_jiffies=4519867952, HZ=250)</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -63,7 +58,7 @@
 </tr>
 <tr>
 <td>4983144</td>
-<td>If the nginx {{nvue.conf }} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+<td>If the nginx {{nvue.conf}} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
 nv set system api compression gzip
 nv config apply -y
 nv unset system api compression gzip
@@ -1296,7 +1291,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5030199</td>
-<td>The {{rsyslog}} event logger configuration file ({{12-event-logger.conf}}) defines a {{$outchannel}} with a 1MB size limit and rotation command. However, the {{omfile}} action that writes to {{/var/log/event_logger}} does not reference the outchannel and lacks inline rotation directives. As a result, {{rsyslog}} does not invoke {{rotate_now}} to trigger {{logrotate}} when the file exceeds 1MB.</td>
+<td>The {{/var/log/event_logger}} file does not rotate when the file size exceeds 1MB, which might unexpectedly fill the {{/var}} partition.</td>
 <td>5.16.1-5.16.3</td>
 </tr>
 <tr>

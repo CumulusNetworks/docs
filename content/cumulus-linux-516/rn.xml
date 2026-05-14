@@ -241,6 +241,12 @@ nv config apply -y</td>
 <td></td>
 </tr>
 <tr>
+<td>4925207</td>
+<td>The graceful restart helper node experiences temporary traffic loss when the peer goes under warm boot.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4924838</td>
 <td>When the a BGP neighbor is up for more than a day (24 hours), the uptime depicts correctly but the reset time which indicates the last connection reset time, does not account for the time elapsed past a day after the BGP neighbor resets. This is a display issue in NVUE; there is no direct traffic or functional impact.</td>
 <td>5.16.0-5.16.1</td>
@@ -1656,6 +1662,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <tr>
 <td>4925316</td>
 <td>Known registered multicast traffic is duplicated to receivers behind an EVPN-MH dual-homed access switch.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4925207</td>
+<td>The graceful restart helper node experiences temporary traffic loss when the peer goes under warm boot.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>

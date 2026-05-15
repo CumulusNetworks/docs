@@ -37,6 +37,16 @@
 <td></td>
 </tr>
 <tr>
+<td>4989434</td>
+<td>If the nginx {{nvue.conf }} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+nv set system api compression gzip
+nv config apply -y
+nv unset system api compression gzip
+nv config apply -y</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4875306</td>
 <td>Fixed traffic drops on SLAAC and 802.1x interfaces by deferring UNREACH withdrawal until the first host actually resolves through ARP or NDP, instead of withdrawing immediately on linkup.</td>
 <td>5.16.0-5.17.0</td>
@@ -860,15 +870,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <tr>
 <td>4983375</td>
 <td>Upgrading Cumulus Linux to 5.16.x causes a long boot delay and the {{nvued}} service remains in an activating state. To work around this issue, run {{nvue-git-manual-recovery.sh}} as a root user during maintenance on each node before upgrade, or on any node that has this issue. When successful, upgrade Cumulus Linux. If the script exits non-zero or reports time exceeded, follow the on-screen steps before continuing the upgrade. </td>
-<td>5.16.1</td>
-</tr>
-<tr>
-<td>4983144</td>
-<td>If the nginx {{nvue.conf}} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
-nv set system api compression gzip
-nv config apply -y
-nv unset system api compression gzip
-nv config apply -y</td>
 <td>5.16.1</td>
 </tr>
 <tr>

@@ -1300,7 +1300,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5030199</td>
-<td>The {{rsyslog}} event logger configuration file ({{12-event-logger.conf}}) defines a {{$outchannel}} with a 1MB size limit and rotation command. However, the {{omfile}} action that writes to {{/var/log/event_logger}} does not reference the outchannel and lacks inline rotation directives. As a result, {{rsyslog}} does not invoke {{rotate_now}} to trigger {{logrotate}} when the file exceeds 1MB.</td>
+<td>The {{/var/log/event_logger}} file does not rotate when the file size exceeds 1MB, which might unexpectedly fill the {{/var}} partition. To work around this issue, remove the rsyslog configuration file {{/etc/rsyslog.d/12-event-logger.conf}} for event-logger and restart the rsyslog daemon with the {{systemctl restart rsyslog}} command to restore the default configuration.</td>
 <td>5.16.1-5.16.3</td>
 </tr>
 <tr>
@@ -1344,6 +1344,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4992204</td>
 <td>Cumulus Linux does not support the NVUE {{nv set nve vxlan port &lt;udp-port&gt;}} command; you do not see the configured UDP port in the outer VXLAN packet header.</td>
 <td>5.14.0-5.16.3</td>
+<td></td>
+</tr>
+<tr>
+<td>4989434</td>
+<td>If the nginx {{nvue.conf }} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+nv set system api compression gzip
+nv config apply -y
+nv unset system api compression gzip
+nv config apply -y</td>
+<td>5.16.1-5.16.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2812,6 +2822,16 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
+<td>4983144</td>
+<td>If the nginx {{nvue.conf}} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+nv set system api compression gzip
+nv config apply -y
+nv unset system api compression gzip
+nv config apply -y</td>
+<td>5.16.1-5.16.2</td>
+<td></td>
+</tr>
+<tr>
 <td>4980055</td>
 <td>With very large configurations, {{nv config apply}} command performance might be slow.</td>
 <td>5.15.0-5.16.2</td>
@@ -4153,7 +4173,7 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 </tr>
 <tr>
 <td>4989434</td>
-<td>If the nginx {{nvue.conf}} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+<td>If the nginx {{nvue.conf }} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
 nv set system api compression gzip
 nv config apply -y
 nv unset system api compression gzip
@@ -4239,7 +4259,7 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 </tr>
 <tr>
 <td>4989434</td>
-<td>If the nginx {{nvue.conf}} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+<td>If the nginx {{nvue.conf }} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
 nv set system api compression gzip
 nv config apply -y
 nv unset system api compression gzip
@@ -4300,6 +4320,16 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <tr>
 <td>4983561</td>
 <td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4983144</td>
+<td>If the nginx {{nvue.conf}} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+nv set system api compression gzip
+nv config apply -y
+nv unset system api compression gzip
+nv config apply -y</td>
 <td>5.16.1</td>
 <td></td>
 </tr>

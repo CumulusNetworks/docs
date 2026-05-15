@@ -105,7 +105,7 @@ date-time
 health                                                  
   status           Not OK                               
 version                                                 
-  product-release  5.16.0                               
+  product-release  5.17.0                               
 global                                                  
   system-mac       44:38:39:22:01:b1    auto  
   anycast-mac      none                 none                                        

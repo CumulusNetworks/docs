@@ -831,6 +831,10 @@ cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-im
 
 Configures BGP to send IPv4 prefix information to LLDP for BGP-LLDP unreachability signaling for disjoined multi-plane topologies.
 
+{{%notice note%}}
+BGP-LLDP unreachability in disjoined planes is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -839,7 +843,7 @@ Configures BGP to send IPv4 prefix information to LLDP for BGP-LLDP unreachabili
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.17.0 (Beta)
 
 ### Example
 

@@ -1187,6 +1187,10 @@ cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy syste
 
 Configures an egress profile to transmit the unreachable prefix TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
 
+{{%notice note%}}
+BGP Unreachable Prefix TLV is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1195,7 +1199,7 @@ Configures an egress profile to transmit the unreachable prefix TLV. You apply t
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.17.0 (Beta)
 
 ### Example
 

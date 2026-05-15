@@ -960,7 +960,7 @@ Enables and disables open telemetry export so that you can export interface coun
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History
@@ -1421,7 +1421,7 @@ Enables and disables `insecure` mode for <span class="a-tooltip">[gRPC ](## "Rem
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History
@@ -1442,7 +1442,7 @@ Configures an X.509 certificate to secure the <span class="a-tooltip">[gRPC ](##
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 - In Cumulus Linux 5.14 and earlier, this command is `nv set system telemetry export otlp grpc cert-id`.
 {{%/notice%}}
 
@@ -1523,7 +1523,7 @@ Configures open telemetry export to use <span class="a-tooltip">[gRPC ](## "Remo
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Command Syntax
@@ -1577,7 +1577,7 @@ Enables or disables open telemetry export for histogram collection. You can spec
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 - When you enable open telemetry export for histogram data, your histogram collection configuration defines the data that the switch exports.
 {{%/notice%}}
 
@@ -1675,7 +1675,7 @@ Configures the egress buffer traffic class for open telemetry export for interfa
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History
@@ -1696,7 +1696,7 @@ Configures the ingress buffer priority group for open telemetry export for inter
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History
@@ -1717,7 +1717,7 @@ Enables and disables open telemetry export for interface statistics. You can spe
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 - When you enable open telemetry export for interface statistics, the switch exports counters on all interfaces.
 {{%/notice%}}
 
@@ -1739,7 +1739,7 @@ Configures the interface statistics sample interval for open telemetry export. Y
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 - When you enable open telemetry export for interface statistics, the switch exports counters on all interfaces.
 {{%/notice%}}
 

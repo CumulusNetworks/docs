@@ -1774,6 +1774,102 @@ cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> mode</h>
+
+Configures dynamic ECN for the traffic class in the specified ECN profile. Specify `remote` to enable dynamic ECN or `absolute` to disable dynamic ECN. If you disable dynamic ECN, configure the byte thresholds if you do not want to use the default values with the `nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> min-threshold` and ``nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> max-threshold`` commands.
+
+Dynamic ECN is a congestion marking mechanism optimized for high-performance traffic, where bursty traffic requires immediate congestion signals to prevent buffer exhaustion. This feature provides extremely fast and aggressive feedback to mitigate microbursts and sudden congestion by triggering ECN marking based on the percentage of available shared buffer instead of static byte thresholds.
+
+- Cumulus Linux supports dynamic ECN on switches with Spectrum-4 and later.
+- ECN marking probability has a hardware granularity of one percent; effective probabilities below one percent do not produce any marking.
+
+{{%notice note%}}
+Dynamic ECN is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0 (Beta)
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 mode relative
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> max-threshold-percent</h>
+
+Configures the maximum ECN marking threshold for dynamic ECN.
+
+Dynamic ECN is a congestion marking mechanism optimized for high-performance traffic, where bursty traffic requires immediate congestion signals to prevent buffer exhaustion. This feature provides extremely fast and aggressive feedback to mitigate microbursts and sudden congestion by triggering ECN marking based on the percentage of available shared buffer instead of static byte thresholds.
+
+- Cumulus Linux supports dynamic ECN on switches with Spectrum-4 and later.
+- ECN marking probability has a hardware granularity of one percent; effective probabilities below one percent do not produce any marking.
+
+{{%notice note%}}
+Dynamic ECN is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0 (Beta)
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 max-threshold-percent 80
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> min-threshold-percent</h>
+
+Configures the minimum ECN marking threshold for dynamic ECN.
+
+Dynamic ECN is a congestion marking mechanism optimized for high-performance traffic, where bursty traffic requires immediate congestion signals to prevent buffer exhaustion. This feature provides extremely fast and aggressive feedback to mitigate microbursts and sudden congestion by triggering ECN marking based on the percentage of available shared buffer instead of static byte thresholds.
+
+- Cumulus Linux supports dynamic ECN on switches with Spectrum-4 and later.
+- ECN marking probability has a hardware granularity of one percent; effective probabilities below one percent do not produce any marking.
+
+{{%notice note%}}
+Dynamic ECN is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0 (Beta)
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 min-threshold-percent 20
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> probability</h>
 
 Configures the probability that Cumulus Linux marks an ECN-capable packet when buffer congestion is between the minimum threshold and the maximum threshold. You can set a value between 1 and 100.

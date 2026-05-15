@@ -12,6 +12,10 @@ This document supports the Cumulus Linux 5.16 release, and lists new features an
 
 Cumulus Linux 5.16.4 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and a security update.
 
+{{%notice note%}}
+Package upgrade to Cumulus Linux 5.16.4 is not supported; use optimized image upgrade or ONIE install.
+{{%/notice%}}
+
 ## What’s New in Cumulus Linux 5.16.3
 
 Cumulus Linux 5.16.3 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and a security update.

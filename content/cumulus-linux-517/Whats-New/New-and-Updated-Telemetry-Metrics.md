@@ -8,7 +8,7 @@ toc: 1
 ---
 The following tables list the new, updated, and deprecated gNMI and OTEL metrics in Cumulus Linux 5.17.
 
-## gNMI Metrics
+## New gNMI Metrics
 
 {{< tabs "TabID13 ">}}
 {{< tab "802.1X">}}
@@ -186,7 +186,7 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 {{< /tab >}}
 {{< /tabs >}}
 
-## OTEL Metrics
+## New OTEL Metrics
 
 {{< tabs "TabID190 ">}}
 {{< tab "802.1X">}}
@@ -355,3 +355,9 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Updated OTEL Metrics
+
+|  Old Name | New Name |
+|------ | ----------- |
+| `nvswitch_interface_ether_stats_octets` | nvswitch_interface_if_in_octets<br>nvswitch_interface_if_out_octets |

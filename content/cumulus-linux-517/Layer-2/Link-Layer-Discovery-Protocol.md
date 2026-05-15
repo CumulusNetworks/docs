@@ -500,11 +500,11 @@ To show egress policy configuration for an LLDP TLV profile, run the `nv show sy
 
 ### BGP Unreachable Prefix TLV
 
-The BGP unreachable prefix TLV allows LLDP to send prefix information learned from {{<link url="FRRouting/" text="FRRouting">}} to connected hosts. This is required in certain use cases such as EVPN unreachability signaling in disjoined planes.
-
 {{%notice note%}}
 BGP unreachable prefix TLV is a Beta feature.
 {{%/notice%}}
+
+The BGP unreachable prefix TLV allows LLDP to send prefix information learned from {{<link url="FRRouting/" text="FRRouting">}} to connected hosts. This is required in certain use cases such as EVPN unreachability signaling in disjoined planes.
 
 The following example enables the BGP unreachable prefix TLV globally:
 

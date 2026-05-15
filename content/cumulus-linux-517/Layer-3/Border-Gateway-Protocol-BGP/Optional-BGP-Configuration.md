@@ -2016,6 +2016,10 @@ leaf01# exit
 
 ## BGP-LLDP Unreachability in Disjoined Planes
 
+{{%notice note%}}
+BGP-LLDP Unreachability in Disjoined Planes is a Beta feature.
+{{%/notice%}}
+
 In disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. For scalability, leaf switches perform route aggregation, which can reduce visibility into individual host link failures. BGP-based unreachability signaling enables the advertisement of host reachability changes following a link failure. Upon receiving BGP unreachable route advertisements, leaf switches use LLDP TLVs to notify directly connected NICs to avoid forwarding traffic over unreachable paths.
 
 {{%notice note%}}

@@ -57,7 +57,7 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 </tr>
 <tr>
 <td>4989434</td>
-<td>If the nginx {{nvue.conf}} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+<td>If the nginx {{nvue.conf }} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
 nv set system api compression gzip
 nv config apply -y
 nv unset system api compression gzip
@@ -118,6 +118,16 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <tr>
 <td>4983561</td>
 <td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4983144</td>
+<td>If the nginx {{nvue.conf}} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+nv set system api compression gzip
+nv config apply -y
+nv unset system api compression gzip
+nv config apply -y</td>
 <td>5.16.1</td>
 <td></td>
 </tr>

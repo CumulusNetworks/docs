@@ -18,6 +18,10 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Enables and disables unreachability advertisements with IPv4 routes for EVPN unreachability in disjoined planes.
 
+{{%notice note%}}
+EVPN unreachability in disjoined planes is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Command |  Description   |
@@ -26,7 +30,7 @@ Enables and disables unreachability advertisements with IPv4 routes for EVPN unr
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.17.0 (Beta)
 
 ### Example
 
@@ -40,6 +44,10 @@ cumulus@switch:~$ nv set vrf TENANT1 router bgp address-family l2vpn-evpn advert
 
 Enables and disables unreachability advertisements with IPv6 routes for EVPN unreachability in disjoined planes.
 
+{{%notice note%}}
+EVPN unreachability in disjoined planes is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Command |  Description   |
@@ -48,7 +56,7 @@ Enables and disables unreachability advertisements with IPv6 routes for EVPN unr
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.17.0 (Beta)
 
 ### Example
 

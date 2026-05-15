@@ -542,7 +542,7 @@ Configures the restart mode for the switch. You can restart the switch in one of
 {{%notice note%}}
 - Cumulus Linux 5.15 no longer supports this command.
 - Cumulus Linux 5.7 and earlier supports fast mode for all protocols and warm boot for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
-- Cumulus Linux 5.8 supports fast mode for all protocols and warm mode for 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, and static routing. Warm mode for VXLAN routing with EVPN is available for Beta and open to customer feedback. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
+- Cumulus Linux 5.8 supports fast mode for all protocols and warm mode for 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, and static routing. Warm mode for VXLAN routing with EVPN is available for Beta in Cumulus Linux 5.8 and open to customer feedback. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
 {{%/notice%}}
 
 ### Version History

@@ -562,7 +562,7 @@ cumulus@switch:~$ nv config show --expand
     model: vx
     nvue-api-version: nvue_v1
     rev-id: 1.0
-    version: Cumulus Linux 5.16.0
+    version: Cumulus Linux 5.17.0
 - set:
     bridge:
       domain:

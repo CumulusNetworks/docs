@@ -26,7 +26,7 @@ In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` inste
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -42,7 +42,7 @@ Configures Cumulus Linux to send accounting records to all servers (`all`) or to
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -58,7 +58,7 @@ Configures the TACACS+ authentication mode. You can specify `pap` to send clear 
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -104,7 +104,7 @@ In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -167,7 +167,7 @@ Cumulus Linux 5.12 and later does not provide this command.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -195,7 +195,7 @@ Configures TACACS to exclude the specified user from going to the TACACS+ server
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -221,7 +221,7 @@ Cumulus Linux 5.12 and later does not provide this command; Use `nv set system a
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -247,7 +247,7 @@ Cumulus Linux 5.12 and later does not provide this command; Use `nv set system a
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -273,7 +273,7 @@ Cumulus Linux 5.12 and later does not provide this command; Use `nv set system a
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -325,7 +325,7 @@ Cumulus Linux 5.12 and later does not provide this command; Use `nv set system a
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -454,7 +454,7 @@ Configures the source IP address to use when communicating with the TACACS+ serv
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -470,7 +470,7 @@ Configures the TACACS timeout value, which is the number of seconds to wait for 
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 
@@ -492,7 +492,7 @@ Configures the VRF you want to use to communicate with the TACACS+ server. This 
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ### Example
 

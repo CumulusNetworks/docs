@@ -42,7 +42,7 @@ Shows if adaptive routing is enabled on the switch.
 
 {{%notice note%}}
 Cumulus Linux 5.6 supports adaptive routing on Spectrum-4.
-Cumulus Linux 5.5 and earlier supports adaptive routing on Spectrum-3 and Spectrum-2 as a beta feature for evaluation.
+Cumulus Linux 5.5 and earlier supports adaptive routing on Spectrum-3 and Spectrum-2 as a Beta feature for evaluation.
 {{%/notice%}}
 
 ### Version History

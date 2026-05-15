@@ -2355,6 +2355,10 @@ Cumulus Linux calculates the headroom size for lossless priority groups based on
 
 To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with a priority flow control profile. Based on the configured small packet probability, switchd calculates the headroom reservation required for the lossless priority group.
 
+{{%notice note%}}
+Lossless headroom based on small packet probability is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -2363,7 +2367,7 @@ To enable more accurate headroom calculations, providing for better buffer alloc
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.17.0 (Beta)
 
 ### Example
 

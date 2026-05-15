@@ -817,7 +817,7 @@ Shows telemetry export configuration on the switch.
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History
@@ -868,7 +868,7 @@ Shows OTLP gRPC export configuration on the switch.
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History
@@ -893,7 +893,7 @@ Shows OTLP gRPC destination configuration on the switch.
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History
@@ -914,7 +914,7 @@ Shows specific OTLP gRPC destination configuration on the switch.
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History

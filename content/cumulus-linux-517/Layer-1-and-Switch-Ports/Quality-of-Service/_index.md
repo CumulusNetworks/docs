@@ -1022,12 +1022,12 @@ Dynamic ECN is a congestion marking mechanism optimized for high-performance tra
 To configure dynamic ECN, determine which traffic classes carry loss-sensitive or bursty traffic (such as RoCE on traffic class 3), determine the percentage of dynamic buffer allowance you want to trigger congestion marking, then set dynamic ECN:
 - Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`. 
 
-  Whenyou set dynamic ECN mode to `relative`, the switch hardware ignores any configured byte-based thresholds. The ASIC begins marking traffic based on percentage thresholds relative to the dynamically allocated buffer allowance of the traffic class, which is continuously recalculated based on current buffer usage and pool occupancy.
+  When you set dynamic ECN mode to `relative`, the switch hardware ignores any configured byte-based thresholds. The ASIC begins marking traffic based on percentage thresholds relative to the dynamically allocated buffer allowance of the traffic class, which is continuously recalculated based on current buffer usage and pool occupancy.
 
   When you set dynamic ECN mode to `absolute`, the switch hardware ignores percentage-based thresholds. The ASIC marks traffic using the configured absolute byte thresholds, which are treated as fixed limits.
 
 - Configure the minimum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The switch marks packets when queue occupancy exceeds this percentage. The default value is 0.
-- Configure the maximum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The value must be greater than or equal to the minumum threshold percent. The default value is 100.
+- Configure the maximum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The value must be greater than or equal to the minimum threshold percent. The default value is 100.
 <!--
 {{%notice note%}}
 To maintain statistical integrity and prevent mixing `absolute` mark counts with `relative` mark counts in historical data, Cumulus Linux resets ECN counters for the affected traffic class to zero for any mode transition.
@@ -1995,7 +1995,7 @@ In certain cases, higher forwarding latency and a high probability of small pack
 To configure additional headroom (on top of the default threshold of 153600 bytes) for lossy priority groups before the switch drops packets, run the `nv set interface <interface-id> qos headroom lossy extra-threshold` command. You can specify a value between 192 and 1236480 bytes.
 
 {{%notice note%}}
-Switches with Spectrum-2 and later support extra lossy headroom.
+Switches with Spectrum-3 and later support extra lossy headroom.
 {{%/notice%}}
 
 The following example configures the extra lossy headroom to 50000 bytes for swp1:
@@ -2060,7 +2060,7 @@ The following example sets the required headroom to 21024, the exclusive headroo
 cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 21024 
 cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom exclusive-headroom-per-pg 21010
 cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio 2
-cumulus@switch:~$ nv set interface swp10 qos shared-headroom-pool enable
+cumulus@switch:~$ nv set interface swp10 qos shared-headroom-pool enabled
 cumulus@switch:~$ nv config apply
 ```
 

@@ -1987,32 +1987,19 @@ leaf01# show bgp ipv6 unreachability detail json
         "multipath":false,
         "pathFrom":"external",
         "lastUpdate":{
-          "epoch":1776877544,
-          "string":"Wed Apr 22 17:05:44 2026\n"
+          "epoch":1776853839,
+          "string":"Wed Apr 22 10:30:39 2026\n"
         },
         "extendedCommunity":{
           "string":"SoO:51.1.1.1:0"
         },
-        "peer":{
+        "from":{
           "hostname":"spine1-plane1",
           "peerId":"2001:db8:13::",
           "routerId":"7.1.1.1"
         }
-      }
-    ],
-    "pathCount":1,
-    "multiPathCount":0,
-    "flags":{
-      "bestPathExists":"true"
-    },
-    "advertisedTo":{
-      "2001:db8:13::":{
-        "hostname":"spine1-plane1"
-      }
-    }
-  },
-  "numPrefixes":1
-}
+      },
+...
 ```
 
 ## BGP Conditional Disaggregation

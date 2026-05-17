@@ -45,6 +45,42 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td></td>
 </tr>
 <tr>
+<td>4977342</td>
+<td>The NetQ UI might not display a complete list of interfaces. To work around this issue, restart the NetQ agent or upgrade to the latest NetQ version.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4964170</td>
+<td>When you create a partition, the operation might fail with a BAD_PARAM error. To work around this issue, retry the operation until it is successful. </td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4897897</td>
+<td>The NetQ NVLink API might fail to return a 400 error response when unsupported parameters are included in the API request.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4894672</td>
+<td>NVOS upgrades on switches might fail if the image filename contains spaces or special characters.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4890084</td>
+<td>The NetQ CLI might not delete threshold-crossing alerts configured for ACL resources. To work around this issue, use the UI to delete the alerts.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4876932</td>
+<td>The NMX controller service might intermittently fail to switch to an alternate out-of-band (OOB) port when the primary registration port becomes unavailable. As a result, partition management operations might not function correctly on the secondary OOB port if the registered management port goes down.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4867933</td>
 <td>Threshold-crossing events created before version 5.1.0 may not display event values correctly after you upgrade NetQ.</td>
 <td>5.1.0</td>
@@ -63,6 +99,18 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td></td>
 </tr>
 <tr>
+<td>4838526</td>
+<td>NMX controller and telemetry services might display a DOWN status if the primary out-of-band (OOB) management port is unavailable.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4830357</td>
+<td>When you try to filter images in the NetQ UI based on image type, NetQ might ignore the filter.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4794266</td>
 <td>Power sensor (PSU) events might show inconsistent sensor names. Additionally, NetQ might not generate PSU events reliably.</td>
 <td>5.1.0</td>
@@ -71,6 +119,12 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <tr>
 <td>4784336</td>
 <td>The NetQ for NVLink deployment option is not supported in air-gapped environments.</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4780773</td>
+<td>The NetQ for NVLink Swagger UI might incorrectly display 500 status placeholder text in example responses.</td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>

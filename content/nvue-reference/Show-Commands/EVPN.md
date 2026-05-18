@@ -1778,6 +1778,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn adver
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn advertise ipv4-unreachability</h>
 
+{{%notice note%}}
+EVPN unreachability in disjoined planes is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
 Shows EVPN advertise IPv4 unreachability information.
 
 ### Command Syntax
@@ -1788,7 +1792,7 @@ Shows EVPN advertise IPv4 unreachability information.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.17.0 (Beta)
 
 ### Example
 
@@ -1800,6 +1804,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn adver
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn advertise ipv6-unreachability</h>
 
+{{%notice note%}}
+EVPN unreachability in disjoined planes is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
 Shows EVPN advertise IPv6 unreachability information.
 
 ### Command Syntax
@@ -1810,7 +1818,7 @@ Shows EVPN advertise IPv6 unreachability information.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.17.0 (Beta)
 
 ### Example
 

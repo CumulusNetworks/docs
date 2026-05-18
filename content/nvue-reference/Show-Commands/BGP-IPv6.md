@@ -1334,7 +1334,7 @@ Shows the IPv6 unreachability route path communities.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<route-id>` | The route name. |
+| `<route-id>` | The IPv6 route. |
 | `<path-id>` | The path name. |
 
 ### Version History
@@ -1358,7 +1358,7 @@ Shows the IPv6 unreachability route path large communities.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<route-id>` | The route name. |
+| `<route-id>` | The IPv6 route. |
 | `<path-id>` | The path name. |
 
 ### Version History
@@ -1382,7 +1382,7 @@ Shows the IPv6 unreachability route path next hop.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<route-id>` | The route name. |
+| `<route-id>` | The IPv6 route. |
 | `<path-id>` | The path name. |
 
 ### Version History
@@ -1406,7 +1406,7 @@ Shows the IPv6 unreachability route path reporters.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<route-id>` | The route name. |
+| `<route-id>` | The IPv6 route. |
 | `<path-id>` | The path name. |
 
 ### Version History
@@ -1430,7 +1430,7 @@ Shows information for the specified IPv6 unreachability route path reporter.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<route-id>` | The route name. |
+| `<route-id>` | The IPv6 route. |
 | `<path-id>` | The path name. |
 | `<reporter-id>` | The reporter ID. |
 

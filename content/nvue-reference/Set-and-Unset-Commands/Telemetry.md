@@ -1653,6 +1653,38 @@ cumulus@switch:~$ nv set system telemetry histogram ingress-buffer sample-interv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry interface-stats class debounce sample-interval</h>
+
+Configures the sample interval for debounce statistics. You can set a value between 10 and 86400. The default is 10 seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats class debounce sample-interval 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry interface-stats class debounce state</h>
+
+Enables and disables link debounce statistics export. You can specify `enabled` or `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats class debounce state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry interface-stats class phy state</h>
 
 Configures collection and export of interface PHY metrics. You can specify `enabled` or `disabled`.
@@ -1907,7 +1939,7 @@ cumulus@switch:~$ nv set system telemetry lldp sample-interval 10
 
 ## <h>nv set system telemetry metric-list \<metric-list-id\></h>
 
-Configures the name of the metric list.
+Configures the name of the telemetry metric list.
 
 To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
 
@@ -1933,7 +1965,7 @@ cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS
 
 ## <h>nv set system telemetry metric-list \<metric-list-id\> description</h>
 
-Configures a description for the metric list.
+Configures a description for the telemetry metric list.
 
 To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
 
@@ -1959,7 +1991,7 @@ cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS descripti
 
 ## <h>nv set system telemetry metric-list \<metric-list-id\> metric</h>
 
-Configures the specific metrics you want to collect in a metric group.
+Configures the specific telemetry metrics you want to collect in a metric group.
 
 To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
 
@@ -2449,7 +2481,7 @@ cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1
 
 ## <h>nv set system telemetry stats-group \<stats-group-id\> exclude-list</h>
 
-Configures the Open Telemetry metrics to exclude in a statistics group to get granular control for a destination:
+Configures the Open Telemetry metrics to exclude in a statistics group to get granular control for a destination.
 
 ### Command Syntax
 

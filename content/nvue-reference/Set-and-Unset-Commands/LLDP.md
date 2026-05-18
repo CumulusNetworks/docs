@@ -159,9 +159,11 @@ cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv disabled
 
 ## <h>nv set interface \<interface-id\> lldp tlv profile</h>
 
-Applies a profile to an interface.
+Applies an LLDP profile to an interface. For multiple interfaces, use a comma-separated list (swp1,swp2,swp3-4).
 
-For multiple interfaces, use a comma-separated list (swp1,swp2,swp3-4).
+- A profile fully replaces system defaults on the interface to which you apply it.
+- Inside a profile, every TLV defaults to disabled; you must enable each TLV you want.
+- The switch always sends the mandatory TLVs (Chassis ID, Port ID, TTL, End of LLDPDU) regardless of profile.
 
 ### Command Syntax
 

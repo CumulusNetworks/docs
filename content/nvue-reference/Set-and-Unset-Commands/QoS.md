@@ -1647,28 +1647,6 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroo
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> shared-headroom required-headroom-per-pg</h>
-
-Configures the required headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<profile-id>` |  The profile name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.17.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 21024
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set qos advance-buffer-config \<profile-id\> shared-headroom oversubscription-ratio</h>
 
 Configures the oversubscription ratio for the shared headroom pool. You can set a value between 1 and 256.
@@ -1687,6 +1665,28 @@ Introduced in Cumulus Linux 5.17.0
 
 ```
 cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom oversubscription-ratio 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> shared-headroom required-headroom-per-pg</h>
+
+Configures the required headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global shared-headroom required-headroom-per-pg 21024
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2445,15 +2445,15 @@ cumulus@switch:~$ nv set qos pfc default-global port-buffer 20000
 
 ## <h>nv set qos pfc \<profile-id\> small-packet-probability</h>
 
+{{%notice note%}}
+Lossless headroom based on small packet probability is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
 Configures the probability of small packets on ports applied with a priority flow control profile.
 
 Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). The switch assumes a 100 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
 
 To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with a priority flow control profile. Based on the configured small packet probability, switchd calculates the headroom reservation required for the lossless priority group.
-
-{{%notice note%}}
-Lossless headroom based on small packet probability is a Beta feature for Cumulus Linux 5.17.
-{{%/notice%}}
 
 ### Command Syntax
 

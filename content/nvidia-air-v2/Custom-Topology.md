@@ -124,6 +124,38 @@ Outbound interfaces appear in the **Services** tab, where you can create service
 An outbound interface connects directly to the external network. It cannot also be connected to another node's interface.
 {{%/notice%}}
 
+#### Can't connect?
+If you don't have service connectivity to an outbound link, try fully bringing up the affected interface:
+1. Make sure the interface is up:
+   ```
+   ubuntu@my-image:~$ sudo ip link set eth1 up
+   ```
+
+2. Enable the interface to recieve a DHCP address from the network:
+   ```
+   ubuntu@my-image:~$ sudo nano /etc/netplan/40-air.yaml 
+   ####################################################### ########                
+   # IMPORTANT: When using NVIDIA Air services,
+                                                                  #
+   #  your Internet-facing interface must include the following:  #
+   #   dhcp6: false                                               #
+   #   accept-ra: true                                            #
+   ################################################################
+   network:
+     version: 2
+     renderer: networkd
+     ethernets:
+       eth0:
+         dhcp4: true
+       eth1:            <-------------------
+         dhcp4: true    <-------------------
+   ```
+3. Apply the config: 
+   ```
+   ubuntu@my-image:~$ sudo netplan apply
+   ```
+4. Recreate the service in DSX Air and try to connect again.
+
 ### OOB Management Network
 
 On the **System Palette**, there is an option to **Enable OOB**. This setting enables the out-of-band management network that connects all nodes to each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you enable SSH, you connect to the `oob-mgmt-server`, making this node an ideal starting point for configurations. Air handles the configuration automatically for you.

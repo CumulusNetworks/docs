@@ -813,6 +813,28 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unreachabili
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unreachability export-lldp state</h>
+
+Configures BGP to send IPv6 prefix information to LLDP for BGP-LLDP unreachability signaling for disjoined multi-plane topologies.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unreachability export-lldp state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unreachability state</h>
 
 Enables and disables BGP unreachability SAFI (failure signaling) globally for IPv6. You can specify `enabled` or `disabled`.
@@ -2770,9 +2792,40 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits inbound maximum</h>
+
+Configures the maximum number of IPv6 prefixes that can be received from the peer group for BGP unreachability SAFI (failure signaling). This is CRITICAL for security to prevent state exhaustion.
+
+{{%notice note%}}
+In 5.16, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits maximum`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits inbound maximum 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits maximum</h>
 
 Configures the maximum number of IPv6 prefixes that can be received from the peer group for BGP unreachability SAFI (failure signaling). This is CRITICAL for security to prevent state exhaustion.
+
+{{%notice note%}}
+In 5.17 and later, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unreachability prefix-limits inbound maximum`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2793,9 +2846,40 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits inbound reestablish-wait</h>
+
+Configures the time in minutes to wait before establishing the BGP session again with the peer group for BGP unreachability SAFI (failure signaling). The default value is `auto`, which uses standard BGP timers and processing. 
+
+{{%notice note%}}
+In 5.16, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits reestablish-wait`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits inbound reestablish-wait 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits reestablish-wait</h>
 
 Configures the time in minutes to wait before establishing the BGP session again with the peer group for BGP unreachability SAFI (failure signaling). The default value is `auto`, which uses standard BGP timers and processing. 
+
+{{%notice note%}}
+In 5.17 and later, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unreachability prefix-limits inbound reestablish-wait`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2816,9 +2900,40 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits inbound warning-only</h>
+
+Configures the switch for BGP unreachability SAFI (failure signaling) to only generate a warning syslog if the number of received unreachability IPv6 prefixes exceeds the limit, but does not bring down the BGP session. You can set this option to `enabled` or `disabled`.
+
+{{%notice note%}}
+In 5.16, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits warning-only`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits inbound warning-only enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits warning-only</h>
 
 Configures the switch for BGP unreachability SAFI (failure signaling) to only generate a warning syslog if the number of received unreachability IPv6 prefixes exceeds the limit, but does not bring down the BGP session. You can set this option to `enabled` or `disabled`.
+
+{{%notice note%}}
+In 5.17 and later, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unreachability prefix-limits inbound warning-only`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2839,9 +2954,40 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits inbound warning-threshold</h>
+
+Configures the prefix limits for a peer group for BGP unreachability SAFI (failure signaling). Sets the percentage of the maximum at which a syslog warning is generated. You can set the value between 1 and 100. The default value is 75.
+
+{{%notice note%}}
+In 5.16, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits warning-threshold`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv6-unreachability prefix-limits inbound warning-threshold 50
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unreachability prefix-limits warning-threshold</h>
 
 Configures the prefix limits for a peer group for BGP unreachability SAFI (failure signaling). Sets the percentage of the maximum at which a syslog warning is generated. You can set the value between 1 and 100. The default value is 75.
+
+{{%notice note%}}
+In 5.17 and later, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unreachability prefix-limits inbound warning-threshold`.
+{{%/notice%}}
 
 ### Command Syntax
 

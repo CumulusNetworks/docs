@@ -12,7 +12,7 @@ For deployments running:
 - 5.1: upgrade directly to NetQ 5.2 using the steps outlined on this page
 - 5.0: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
 
-During the upgrade process, NetQ will be temporarily unavailable.
+During the upgrade, NetQ will be temporarily unavailable. After the upgrade is complete, it may take some time for topology and search data to fully repopulate.
 
 {{%notice note%}}
 - NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.

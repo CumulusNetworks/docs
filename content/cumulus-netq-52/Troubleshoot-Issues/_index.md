@@ -29,8 +29,8 @@ The `netq show status verbose` command shows the status of NetQ components after
 nvidia@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 5.1.0
-Installer Version: 5.1.0
+Version: 5.2.0
+Installer Version: 5.2.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==
@@ -113,6 +113,7 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 | Error: Bootstrapped IP does not belong to any local IPs | | The IP address used for bootstrapping should be from the local network. |
 | ERROR: IP address mismatch. Bootstrapped with: {} kube_Config: {} Admin_kube_config: {}| | The bootstrap IP address must match the kube config and admin kube config IP addresses. |
 | ERROR: Clock not synchronised. Please check `timedatectl`. | | The system clock must be synchronized. Verify synchronization using the `timedatectl` command. |
+| ERROR: Failed to install the master node. | Combined Ethernet + NVLink with node addition | This error might occur if a node loses connectivity after running the `netq install cluster extend-cluster bundle` command. To recover from this state:<br> 1. Identify the backup created during the cluster extension by listing the contents of `/mnt/admin/backup_metadata` using the `ls -lrt /mnt/admin/backup_metadata` command. The listed timestamps can help you identify the correct backup file.<br> 2. Run `netq bootstrap reset keep-db` on each node in the cluster. You can safely ignore warnings about missing critical data.<br> 3. As the root user, update the `/mnt/admin/backup_metadata/backup_marker` path. Run `vi /mnt/admin/backup_metadata/backup_marker` and modify the file to reference the backup path from step 1.<br> 4. Perform a fresh NetQ installation using the same mode and number of nodes as the original cluster configuration (before the extension attempt).
 | {} does not have sse4.2 capabilities. Check lscpu. | | The CPU model used for the installation must support SSE4.2. |
 | NTP is installed. Please uninstall NTP as it will conflict with chrony installation.| | Uninstall NTP and any other NTP services, such as `ntpd` or SNTP.|
 | Netqd service is not running | | Verify that the `netqd` service is up and running prior to installation. |
@@ -214,17 +215,17 @@ kubectl get recurringjobs -n longhorn-system
 
 ## Installation and Upgrade Hook Scripts
 
-NVIDIA might provide hook scripts to patch issues encountered during a NetQ installation or upgrade. When you run the `netq install` or `netq upgrade` command, NetQ checks for specific hook script filenames in the `/usr/bin` directory. The expected filenames for NetQ 5.1.0 are:
+NVIDIA might provide hook scripts to patch issues encountered during a NetQ installation or upgrade. When you run the `netq install` or `netq upgrade` command, NetQ checks for specific hook script filenames in the `/usr/bin` directory. The expected filenames for NetQ 5.2.0 are:
 
-- Pre-install script: `/usr/bin/pre_install_5.1.0.sh`
-- Post-install script: `/usr/bin/post_install_5.1.0.sh`
-- Pre-upgrade script: `/usr/bin/pre_upgrade_5.1.0.sh`
-- Post-upgrade script: `/usr/bin/post_upgrade_5.1.0.sh`
+- Pre-install script: `/usr/bin/pre_install_5.2.0.sh`
+- Post-install script: `/usr/bin/post_install_5.2.0.sh`
+- Pre-upgrade script: `/usr/bin/pre_upgrade_5.2.0.sh`
+- Post-upgrade script: `/usr/bin/post_upgrade_5.2.0.sh`
 
 After placing the script in the `/usr/bin` directory, set executable permissions with the `chmod +x /usr/bin/<filename>` command:
 
 ```
-nvidia@netq-server:~$ sudo chmod +x /usr/bin/pre_install_5.1.0.sh
+nvidia@netq-server:~$ sudo chmod +x /usr/bin/pre_install_5.2.0.sh
 ```
 
 After copying the script to the expected path and setting it to executable, the script will run during the next installation or upgrade attempt.

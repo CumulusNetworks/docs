@@ -701,7 +701,7 @@ eb2b
 
 The following example shows how to add a Cumulus Linux installation image to the NetQ repository on the switch:
 
-    netq lcm add cl-image /path/to/download/cumulus-linux-5.12.0-mlnx-amd64.bin
+    netq lcm add cl-image /path/to/download/cumulus-linux-5.15.0-mlnx-amd64.bin
 
 ### Trace Commands
 

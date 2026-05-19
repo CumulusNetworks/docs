@@ -660,6 +660,10 @@ Total number of neighbors 1
 
 To prevent loops, the switch automatically discards BGP network prefixes if it sees its own ASN in the AS path. However, you can configure Cumulus Linux to receive and process routes even if it detects its own ASN in the AS path (allowas-in).
 
+{{%notice note%}}
+BGP allowas-in is supported only under the IPv4 and IPv6 address family.
+{{%/notice%}}
+
 To enable allowas-in:
 
 {{< tabs "602 ">}}
@@ -2011,6 +2015,10 @@ leaf01# exit
 {{< /tabs >}}
 
 ## BGP-LLDP Unreachability in Disjoined Planes
+
+{{%notice note%}}
+BGP-LLDP Unreachability in Disjoined Planes is a Beta feature.
+{{%/notice%}}
 
 In disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. For scalability, leaf switches perform route aggregation, which can reduce visibility into individual host link failures. BGP-based unreachability signaling enables the advertisement of host reachability changes following a link failure. Upon receiving BGP unreachable route advertisements, leaf switches use LLDP TLVs to notify directly connected NICs to avoid forwarding traffic over unreachable paths.
 

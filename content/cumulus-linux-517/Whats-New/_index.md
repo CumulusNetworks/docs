@@ -33,6 +33,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - {{<link url="NVUE-CLI/#configuration-commands" text="NVUE prevents configuration changes during long background operations">}}
   -  {{<link url="NVUE-CLI/#verify-configuration-before-applying" text="NVUE command">}} and {{<link url="NVUE-API/#verify-configuration-before-applying" text="NVUE API option">}} to verify configuration before applying
   - {{<link url="System-Power-and-Switch-Reboot/#show-reboot-information" text="NVUE command to show warm boot status">}}
+  - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Telemetry
   - New OTEL metrics: {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="link debounce">}}, {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="PHY link down">}}, {{<link url="Open-Telemetry-Export/#control-plane-statistic-format" text="control plane">}}, and {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="platform information">}}
   - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="PHY link down, link debounce, control plane, platform information, and systemd service">}}
@@ -56,10 +57,6 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 
 To upgrade to Cumulus Linux 5.17 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
-<!--### Install BMC and EROT Components on the Spectrum-6 Switch
-
-The Spectrum-6 switch requires you to install the <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span> and <span class="a-tooltip">[EROT](## "Embedded Root of Trust")</span> components. For package download and installation instructions, refer to **BMC AND EROT — PLACEHOLDER (DOC LINK PENDING)**.
--->
 ### Maximum Number of NVUE Revisions
 
 Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.17 from 5.12 or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.

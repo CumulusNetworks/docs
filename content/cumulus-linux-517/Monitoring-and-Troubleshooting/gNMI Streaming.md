@@ -235,7 +235,7 @@ Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
 
 ### Metrics
 
-Cumulus Linux provides a list of supported gNMI metrics here (ADD LINK). To see a list of the new metrics for Cumulus Linux 5.17, refer to {{<link url="New-and-Updated-Telemetry-Metrics" text="New and Updated Telemetry Metrics">}}.
+Cumulus Linux provides a list of supported gNMI metrics {{<exlink url="https://github.com/NVIDIA/networking-yang" text="here" >}}. To see a list of the new metrics for Cumulus Linux 5.17, refer to {{<link url="New-and-Updated-Telemetry-Metrics" text="New and Updated Telemetry Metrics">}}.
 <!--
 Cumulus Linux supports the following metrics.
 
@@ -1233,10 +1233,10 @@ INFO[0000] "10.1.1.100:9339" file "/tmp/gnmic_ca.crt" written successfully
 cumulus@host:mgmt:~$
 ```
 
-The following example uses the `install` RPC to copy the `/media/node/cumulus-linux-mlx-amd64-5.16.bin.devsigned` image file on the local client to the switch with the version `5.16.0`:
+The following example uses the `install` RPC to copy the `/media/node/cumulus-linux-mlx-amd64-5.16.bin.devsigned` image file on the local client to the switch with the version `5.17.0`:
 
 ```
-cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os install --pkg /media/node/cumulus-linux-mlx-amd64-5.16.bin.devsigned --version 5.16.0
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os install --pkg /media/node/cumulus-linux-mlx-amd64-5.17.bin.devsigned --version 5.17.0
 INFO[0000] starting install RPC
 INFO[0000] target "10.1.1.100:9339": starting Install stream
 INFO[0000] target "10.1.1.100:9339": TransferProgress bytes_received:5242880
@@ -1251,18 +1251,18 @@ INFO[0011] target "10.1.1.100:9339": TransferProgress bytes_received:994600465
 cumulus@host:mgmt:~$
 ```
 
-The following example uses the `activate` RPC to activate the `5.16.0` image as the next boot image without reboot the switch:
+The following example uses the `activate` RPC to activate the `5.17.0` image as the next boot image without reboot the switch:
 
 ```
-cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os activate --version 5.16.0 --no-reboot
+cumulus@host:mgmt:~$ gnoic  --username test1 --password test1 --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os activate --version 5.17.0 --no-reboot
 INFO[0190] target "10.1.1.100:9339" activate response "activate_ok:{}"
 cumulus@host:mgmt:~$
 ```
 
-The following example uses the `activate` RPC to activate the `5.16.0` image as the next boot image and reboots the switch.
+The following example uses the `activate` RPC to activate the `5.17.0` image as the next boot image and reboots the switch.
 
 ```
-cumulus@host:mgmt:~$ gnoic  --username cumulus --password NvidiaR0cks! --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os activate --version 5.16.0 
+cumulus@host:mgmt:~$ gnoic  --username cumulus --password NvidiaR0cks! --address 10.1.1.100 --port 9339 --tls-ca /home/cumulus/dut_ca.crt --tls-cert /home/cumulus/gnmic_client.crt --tls-key /home/cumulus/gnmic_client.key os activate --version 5.1.0 
 INFO[0182] target "10.1.1.100:9339" activate response "activate_ok:{}"
 cumulus@host:mgmt:~$
 ```

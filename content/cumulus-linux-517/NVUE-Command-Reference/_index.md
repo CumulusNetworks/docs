@@ -1,7 +1,7 @@
 ---
 title: NVUE Command Reference
 author: Cumulus Networks
-weight: 5
+weight: 1650
 cascade:
   type: nojsscroll
 toc: 2

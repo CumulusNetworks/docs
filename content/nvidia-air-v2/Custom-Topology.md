@@ -99,9 +99,9 @@ To break out a port:
 4. Choose the split type (number of sub-ports) and click **Confirm**.
 
 {{<img src="/images/guides/nvidia-air-v2/BreakoutPorts.png" alt="Breakout Port dialog showing port selection and split type">}}
-
+<br>
+<br>
 The available split options depend on the switch model. To revert a breakout, select **Delete Breakout** in the Breakout Port dialog.
-
 {{%notice note%}}
 Breakout ports can only be configured before the simulation starts for the first time. Only data plane interfaces on switch nodes support breakout — management and OOB interfaces do not.
 {{%/notice%}}
@@ -114,24 +114,25 @@ To configure an outbound link:
 
 1. Select a node to open its properties panel.
 2. In the **Connectors** section, click the port you want to connect externally.
-3. In the Connect dialog, toggle **Outbound link** on.
+3. In the Connect dialog, select **Outbound link**.
 
 {{<img src="/images/guides/nvidia-air-v2/OutboundLink.png" alt="Connect dialog showing outbound link toggle">}}
-
+<br>
+<br>
 Outbound interfaces appear in the **Services** tab, where you can create services (such as SSH or HTTP) that terminate on the outbound interface.
 
 {{%notice note%}}
 An outbound interface connects directly to the external network. It cannot also be connected to another node's interface.
 {{%/notice%}}
 
-#### Can't connect?
-If you don't have service connectivity to an outbound link, try fully bringing up the affected interface:
-1. Make sure the interface is up:
+#### Troubleshoot Outbound Links
+If you do not have service connectivity to an outbound link, try fully initializing the affected interface:
+1. Ensure the interface is up:
    ```
    ubuntu@my-image:~$ sudo ip link set eth1 up
    ```
 
-2. Enable the interface to recieve a DHCP address from the network:
+2. Configure the interface to receive a DHCP address from the network:
    ```
    ubuntu@my-image:~$ sudo nano /etc/netplan/40-air.yaml 
    ####################################################### ########                
@@ -150,11 +151,11 @@ If you don't have service connectivity to an outbound link, try fully bringing u
        eth1:            <-------------------
          dhcp4: true    <-------------------
    ```
-3. Apply the config: 
+3. Apply the configuration: 
    ```
    ubuntu@my-image:~$ sudo netplan apply
    ```
-4. Recreate the service in DSX Air and try to connect again.
+4. Recreate the service in DSX Air and attempt to connect again.
 
 ### OOB Management Network
 
@@ -165,7 +166,7 @@ On the **System Palette**, there is an option to **Enable OOB**. This setting en
 <br>
 You can add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation manually even when **Enable OOB** is set to off. However, you must switch **Enable OOB** on to use the out-of-band network.
 
-## Importing Custom Topologies with External Files
+## Import Custom Topologies with External Files
 You can create custom topologies in Air by importing either JSON (recommended) or DOT files. These files define a network's nodes, attributes, and connections. You can modify the file with any text editor.
 
 When you upload external topology files directly to Air, you can: 
@@ -175,10 +176,10 @@ When you upload external topology files directly to Air, you can:
 - Streamline automation
 - Generate very large topologies
 
-### JSON
+### JSON Files
 The following JSON topology is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf. 
 
-{{< expand "View Sample JSON Topology" >}}
+{{< expand "JSON Topology Example" >}}
 
 ```
 {
@@ -248,7 +249,7 @@ If you omit the `oob` key in your JSON file, the **Enable OOB** will still be se
 
 You can specify an `oob-mgmt-switch` and `oob-mgmt-server` to customize allocated resources.
 
-{{< expand "View Custom OOB Network Example" >}}
+{{< expand "Custom OOB Network Example" >}}
 
 ```
 {
@@ -289,7 +290,7 @@ When viewing the nodes within Air after starting the simulation, notice that the
 #### Custom NetQ Node
 You can create and customize a NetQ instance for your simulation.
 
-{{< expand "View Custom NetQ Node Example" >}}
+{{< expand "Custom NetQ Node Example" >}}
 
 ```
 {
@@ -325,15 +326,15 @@ When viewing the nodes within Air, notice that the resources are allocated based
 
 {{<img src="/images/guides/nvidia-air-v2/JSONNetQExample.png" alt="">}}
 
-### DOT
+### DOT Files
 
 You can also create custom topologies in Air using a DOT file, which is the file type used with the open-source graph visualization software, Graphviz. DOT files are simple, customizable, text-based files. DOT files use the `.dot` file extension.
 
-{{%notice info%}}
+{{%notice infonopad%}}
 NVIDIA strongly recommends using JSON over DOT files due to improved validation, scalability, and broader adoption levels. 
 {{%/notice%}}
 
-The following is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf.
+The following is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf:
 
 ```
 graph "Demo" {
@@ -392,7 +393,7 @@ You can customize RAM (in MB) with the `memory` option:
 "server" [os="generic/ubuntu2404"  memory="2048"]
 ```
 
-### Examples
+### Example Topology Files
 
 Labs in the [Demo Marketplace](https://dsx-air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` or `topology.json` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository, where you can download the file used for the demo topology.
 
@@ -415,28 +416,9 @@ To import and upload a DOT or JSON topology file to Air, navigate to [dsx-air.nv
 {{<img src="/images/guides/nvidia-air-v2/ImportJSON.png" alt="" >}}
 <br>
 <br>
-Air redirects you to the [topology builder](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/#the-drag-and-drop-topology-builder) with your custom topology created. You can continue to make adjustments as necessary.
+Air redirects you to the topology builder, where you can continue to make adjustments.
 
-### Export a Topology
-You can export the topology for any existing simulation as a JSON file. From the **Topology** tab, click the **Export** icon in the toolbar to download the topology file. 
-
-### Storage Limits
-
-If you increase the storage of a node higher than its default, and Air does not recognize the increased storage, run the following commands **on the affected node** (not the `oob-mgmt-server`) to extend the partition and resize the file system:
-
-```
-sudo growpart /dev/vda 1
-sudo resize2fs /dev/vda1
-```
-
-Verify the change:
-
-```
-df -h | grep vda1
-/dev/vda1        20G  2.1G   18G  11% /
-```
-
-## Import a Topology with the API
+#### Import a Topology with the API
 
 You can import JSON formatted topologies through the API.
 
@@ -500,6 +482,29 @@ The string `"exit"` is also accepted as an alias for `"outbound"` in the links a
 
 For additional schemas, refer to the [API documentation](https://dsx-air.nvidia.com/api/#/Simulations/api_v3_simulations_import_create).
 
-## Export a Topology through the API
+### Export a Topology
+You can export the topology for any existing simulation as a JSON file. From the **Topology** tab, click the **Export** icon in the toolbar to download the topology file.
+
+#### Export a Topology with the API
 
 You can export existing simulations into a JSON representation using the API. Refer to the [API documentation](https://dsx-air.nvidia.com/api/#/Simulations/api_v3_simulations_export_retrieve) for additional schema details.
+
+### Storage Limits
+
+If you increase the storage of a node higher than its default, and Air does not recognize the increased storage, run the following commands **on the affected node** (not the `oob-mgmt-server`) to extend the partition and resize the file system:
+
+```
+sudo growpart /dev/vda 1
+sudo resize2fs /dev/vda1
+```
+
+Verify the change:
+
+```
+df -h | grep vda1
+/dev/vda1        20G  2.1G   18G  11% /
+```
+
+
+
+

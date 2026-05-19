@@ -256,6 +256,28 @@ Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> qos buffer shared-headroom-pool</h>
+
+Shows the shared headroom pool information for an interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp5 qos buffer shared-headroom-pool
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> qos congestion-control</h>
 
 Shows QoS congestion control configuration settings for the specified interface.
@@ -2027,6 +2049,13 @@ mode            dynamic      dynamic
 
 Shows the lossy egress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of control traffic originating from or destined to the switch CPU.
 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -2047,6 +2076,12 @@ shared-bytes   13.53 KB         13.53 KB
 
 Shows the lossy ingress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of control traffic originating from or destined to the switch CPU.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -2059,6 +2094,33 @@ cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-mgmt-
 ------------  -----------       ---- 
 headroom       1000 Bytes       1000 Bytes 
 shared-bytes   19.53 KB         19.53 KB 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos advance-buffer-config \<profile-id\> shared-headroom</h>
+
+Shows QoS advance-buffer shared headroom information, such as the required headroom and exclusive headroom for each priority group in bytes, and the oversubscription ratio for the shared headroom pool.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global shared-headroom
+                           operational  applied
+-------------------------  -----------  -------
+required-headroom-per-pg                21024  
+exclusive-headroom-per-pg               21010  
+oversubscription-ratio                  2 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

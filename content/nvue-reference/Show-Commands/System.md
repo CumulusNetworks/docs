@@ -66,6 +66,10 @@ protocols             all
 
 Shows information about the switch, such as the hostname, version information, the switch uptime, time zone, memory, and health status.
 
+{{%notice note%}}
+In Cumulus Linux 5.17 and later, the `nv show system` command shows the system boot security state (`enabled`, `disabled`, or `not-supported`).
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.2.0
@@ -74,20 +78,21 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show system
-uptime             1 day, 1:52:24                                                 
-hostname           leaf01 
-product-name       Cumulus Linux                                                  
-platform           N/A                                                            
-system-memory      1.31 GB used / 363.36 MB free / 1.67 GB total                  
-swap-memory        0 Bytes used / 0 Bytes free / 0 Bytes total                    
-health-status      Not OK                                                         
-date-time          2025-04-18 12:48:46                                            
-status             N/A                                                            
-timezone           Etc/UTC                                                        
-version                                                                           
-  onie             N/A                                                            
-  kernel           6.1.0-cl-1-amd64                                               
-  base-os          Debian GNU/Linux 12.10                                         
+                   operational          applied                
+-----------------  -------------------  -----------------
+uptime             5:07:49                                                  
+hostname           leaf01               leaf01          
+fqdn               leaf01                                                   
+product-name       Cumulus Linux                                            
+security                                                                    
+  secure-boot                                                               
+    state          not-supported                                            
+dns                                                                         
+  domain                                                                    
+date-time                                                                   
+  local-time       2026-04-15 21:23:16                                      
+  timezone         Etc/UTC              Etc/UTC                                                        
+...                                         
 ```
 
 Cumulus Linux 5.12 and earlier also shows build and product-release fields. NVUE removed these fields in Cumulus Linux 5.13.
@@ -777,6 +782,14 @@ cumulus@switch:~$ nv show system message
 
 Shows system reboot information, such as the time when the switch rebooted, the reason for the reboot, and the restart mode (fast, warm, cold).
 
+In Cumulus Linux 5.17 and later:
+- For cold and fast reboot, the status indicates success and the detailed-status is none immediately after reboot.
+- For warm reboot, the status transitions from:
+  - `in-progress` to `success` after ISSU completes.
+  - `failed` with a `detailed-status of forwarding driver api failed` if ISSU fails, or `unexpected module restart` if any registered module involved with warm reboot restarting fails during the duration of warm reboot progression.
+
+The switch also creates a syslog message to indicate if warm reboot is in progress or complete.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.2.0
@@ -784,14 +797,15 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system reboot
-          operational                       applied
----------  --------------------------------  -------
-reason                                              
-  gentime  2023-04-26T15:47:34.033663+00:00         
-  reason   Unknown                                  
-  user     system/root                              
-mode       cold                              cold
+cumulus@switch:~$ cumulus@switch:~$ nv show system reboot
+reason
+  reason               SW asserted reset through CPLD
+  gentime              2026-02-28T01:45:15.921195+00:00
+  user                 system/root
+required               no
+last-reboot-operation  warm
+status                 failed
+detailed-status        forwarding driver api failed
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

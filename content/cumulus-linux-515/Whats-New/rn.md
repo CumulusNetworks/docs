@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5027908 | RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests. | 5.15.0-5.16.1 | |
 | 4992204 | Cumulus Linux does not support the NVUE <code>nv set nve vxlan port <udp-port></code> command; you do not see the configured UDP port in the outer VXLAN packet header. | 5.14.0-5.16.1 | |
 | 4989428 | In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage and potentially leading to a gNMI server restart. | 5.15.1-5.16.1 | |
 | 4986343 | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1-5.16.1 | |
@@ -268,6 +269,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5027908 | RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests. | 5.15.0-5.16.1 | |
 | 4992204 | Cumulus Linux does not support the NVUE <code>nv set nve vxlan port <udp-port></code> command; you do not see the configured UDP port in the outer VXLAN packet header. | 5.14.0-5.16.1 | |
 | 4980055 | With very large configurations, <code>nv config apply</code> command performance might be slow. | 5.15.0-5.16.1 | |
 | 4968081 | During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause <code>/var/run/lldpd.socket</code> to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover. | 5.14.0-5.16.1 | |

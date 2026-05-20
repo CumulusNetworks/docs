@@ -7,11 +7,11 @@ toc: 1
 ---
 
 This page summarizes new features and improvements for the NetQ {{<version>}} release. For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.2 Release Notes" text="release notes">}}.
-<!--
-## What's New in 5.2.1
+
+## What's New in NetQ 5.2.1
 
 - NetQ 5.2.1 includes bug fixes and provides updated instructions to {{<link title="Install a Custom Signed Certificate" text="install a custom-signed certificate">}}
--->
+
 ## What's New in NetQ 5.2.0
 
 - Re-designed the {{<link title="Network Topology" text="network topology dashboard">}} so that you can visualize your network's topology according to the system labels assigned to a device (beta)

@@ -67,7 +67,6 @@ The ZTP process over DHCP follows these steps:
 6. If provisioning is necessary, the script executes locally on the switch with root privileges.
 7. ZTP examines the return code of the script. If the return code is 0, ZTP marks the provisioning state as complete in the autoprovisioning configuration file.
 
-
 ### Trigger ZTP Over DHCP
 
 If you have not yet provisioned the switch, you can trigger the ZTP process over DHCP when eth0 uses DHCP and one of the following events occur:
@@ -88,7 +87,7 @@ For example, the `/etc/dhcp/dhcpd.conf` file for an ISC DHCP server looks like:
 option cumulus-provision-url code 239 = text;
 
   subnet 192.0.2.0 netmask 255.255.255.0 {
-  range 192.0.2.100 192.168.0.200;
+  range 192.0.2.100 192.0.2.200;
   option cumulus-provision-url "http://192.0.2.1/demo.sh";
 }
 ```

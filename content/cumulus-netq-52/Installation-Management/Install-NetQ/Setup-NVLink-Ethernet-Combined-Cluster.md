@@ -76,7 +76,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.1.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.1.0 VMware Scale** image<br>
+    e. For deployments using KVM, download the **NetQ SW 5.2.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.2.0 VMware Scale** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -85,9 +85,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.1">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.2">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="5.1">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="5.2">}}
 
 3. Log in to the VM and change the password.
 
@@ -262,7 +262,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 {{< tab "New Install">}}
 
 ```
-nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/cluster-install-config.json
+nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/cluster-install-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -292,7 +292,7 @@ nvidia@netq-server:~$ vim /tmp/cluster-install-config.json
 2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
 
 ```
-nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.1.0.tgz /tmp/cluster-install-config.json restore /home/nvidia/combined_backup_20241211111316.tar
+nvidia@<hostname>:~$ netq install cluster combined bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/cluster-install-config.json restore /home/nvidia/combined_backup_20241211111316.tar
 ```
 
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -308,8 +308,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 5.1.0
-    Installer Version: 5.1.0
+    Version: 5.2.0
+    Installer Version: 5.2.0
     Installation Type: Cluster
     Installation Mode: Combined
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==

@@ -17,7 +17,7 @@ To access DSX Air, you need an NGC account and organization. Refer to the {{<exl
 1. Click **New Simulation**, enter a name, select **Blank Canvas**, then click **Create**.  
 1. A blank canvas appears with a "System Palette" containing switches and servers. Drag and drop switches onto the canvas. Do not use the switch named `oob-mgmt-switch`.  
 1. Build your topology by placing switches on the canvas. Click on any switch to configure links between switches.
-1. Rename switches (e.g., `SN2100-1`, `SN2201-1`) by clicking each switch.  
+1. You can rename switches (e.g., `SN2100-1`, `SN2201-1`) by selecting a switch and editing its properties.  
 1. After you're finished configuring switches and links, enable OOB (out-of-band network) by selecting the toggle under your username.
 1. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> **Export Simulation** to download the topology as a JSON file.  
 
@@ -29,21 +29,21 @@ To access DSX Air, you need an NGC account and organization. Refer to the {{<exl
 
 ```
 "netq-master": {
-  "memory": 65536,
   "cpu": 16,
+  "memory": 65536,
   "storage": 500,
   "os": "netq-5.2.0",
   "cpu_mode": "host-passthrough"
 }
 ```
-3. If a newer NetQ image is available, update the `os` value accordingly.
+If a newer NetQ image is available, update the `os` value accordingly. You can search for images hosted in DSX Air from the **Images** menu.
 
 
-## Create the Simulation Using the Updated JSON
+## Create the Simulation Using the Updated JSON File
 
 1. Click **New Simulation** and enter a name.  
-2. Select **JSON** as the simulation type and upload the JSON file you created in the previous section.  
-3. Enable **Apply ZTP Template**. Delete the contents and replace them with `ZTPScript.sh`. The ZTP script sets the OOB management server IP address to `192.168.200.1` and updates the default switch password from `cumulus` to `netq_123`:
+1. Select **JSON** as the simulation type and upload the JSON file you created in the previous section.  
+1. Enable **Apply ZTP Template**. Delete the contents and replace them with `ZTPScript.sh`. The ZTP script sets the OOB management server IP address to `192.168.200.1` and updates the default switch password from `cumulus` to `netq_123`:
 {{<expand "ZTPScript.sh">}}
 ```
 #!/bin/bash
@@ -82,9 +82,8 @@ exit 0
 ```
 {{</expand>}}
 
-4. Click **Create**. After the simulation is loaded, select the play button to start the simulation.
-
-5. It can take up to a minute to load the simulation. After the simulation is loaded, refresh the page to view it. You can drag the nodes using your mouse to reposition them.
+1. Click **Create**. After the simulation is loaded, select the play button to start the simulation.
+1. It can take up to a minute to load the simulation. After the simulation is loaded, refresh the page to view it. You can drag the nodes using your mouse to reposition them.
 
 After the ZTP script runs on all switches and NetQ fully boots, configure the NetQ agents and load the UI, as described in the next section.
 

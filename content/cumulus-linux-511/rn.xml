@@ -1103,16 +1103,22 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>4805286</td>
+<td>4829843</td>
 <td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
 <td>5.11.3-5.11.4</td>
-<td>5.9.5, 5.11.5-5.16.4, 5.16.0-5.16.4</td>
+<td>5.9.5, 5.11.5-5.16.4</td>
 </tr>
 <tr>
 <td>4789097</td>
 <td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
 <td>5.9.4-5.15.1</td>
 <td>5.16.0-5.16.4</td>
+</tr>
+<tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.11.4</td>
+<td>5.9.5, 5.11.5-5.16.4</td>
 </tr>
 <tr>
 <td>4771521</td>
@@ -1157,12 +1163,6 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.16.4</td>
-</tr>
-<tr>
-<td>4683602</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.11.4</td>
-<td>5.9.5, 5.11.5-5.16.4, 5.16.0-5.16.4</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -2140,16 +2140,22 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4805286</td>
+<td>4829843</td>
 <td>During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck.</td>
 <td>5.11.3-5.11.4</td>
-<td>5.9.5, 5.11.5-5.16.4, 5.16.0-5.16.4</td>
+<td>5.9.5, 5.11.5-5.16.4</td>
 </tr>
 <tr>
 <td>4789097</td>
 <td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
 <td>5.9.4-5.15.1</td>
 <td>5.16.0-5.16.4</td>
+</tr>
+<tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.11.4</td>
+<td>5.9.5, 5.11.5-5.16.4</td>
 </tr>
 <tr>
 <td>4771521</td>
@@ -2168,12 +2174,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.16.4</td>
-</tr>
-<tr>
-<td>4683602</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.11.4</td>
-<td>5.9.5, 5.11.5-5.16.4, 5.16.0-5.16.4</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -3152,6 +3152,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.0-5.16.4</td>
 </tr>
 <tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.11.4</td>
+<td>5.9.5, 5.11.5-5.16.4</td>
+</tr>
+<tr>
 <td>4771521</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1</td>
@@ -3162,12 +3168,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.16.4</td>
-</tr>
-<tr>
-<td>4683602</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.11.4</td>
-<td>5.9.5, 5.11.5-5.16.4, 5.16.0-5.16.4</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -4336,6 +4336,12 @@ nv config apply -y</td>
 <td>5.16.0-5.16.4</td>
 </tr>
 <tr>
+<td>4771874</td>
+<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
+<td>5.11.1-5.11.4</td>
+<td>5.9.5, 5.11.5-5.16.4</td>
+</tr>
+<tr>
 <td>4771521</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1</td>
@@ -4346,12 +4352,6 @@ nv config apply -y</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.16.4</td>
-</tr>
-<tr>
-<td>4683602</td>
-<td>When you poll optical module data with {{ethtool -m}}, {{switchd}} might crash due to a firmware timeout that triggers a fatal health-check failure.</td>
-<td>5.11.1-5.11.4</td>
-<td>5.9.5, 5.11.5-5.16.4, 5.16.0-5.16.4</td>
 </tr>
 <tr>
 <td>4647646</td>

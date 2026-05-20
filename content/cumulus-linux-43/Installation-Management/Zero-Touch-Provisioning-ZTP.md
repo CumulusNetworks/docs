@@ -107,7 +107,7 @@ For example, the `/etc/dhcp/dhcpd.conf` file for an ISC DHCP server looks like:
 option cumulus-provision-url code 239 = text;
 
   subnet 192.0.2.0 netmask 255.255.255.0 {
-  range 192.0.2.100 192.168.0.200;
+  range 192.0.2.100 192.0.2.200;
   option cumulus-provision-url "http://192.0.2.1/demo.sh";
 }
 ```

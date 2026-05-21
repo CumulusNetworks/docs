@@ -14,38 +14,16 @@ Cumulus Linux 5.18 contains new features and improvements, and provides bug fixe
 
 ### New Features and Enhancements
 
-- {{<link url="TACACS/#server-side-per-command-authorization" text="TACACS+ Server-side Per-command Authorization">}}
-- {{<link url="802.1X-Interfaces/#lldp-on-802.1x-unauthenticated-ports" text="Allow LLDP on 802.1X unauthenticated ports">}}
-- {{<link url="Interface-Configuration-and-Management/#link-debounce-timers" text="Interface debounce timer (link dampening)">}}
-- {{<link url="Zero-Touch-Provisioning-ZTP/#ztp-over-dhcp" text="Revert to DHCP if the ZTP URL is not reachable">}}
-- {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD offload support for BFD sessions based on the IPv6 link-local address">}}
-- {{<link url="Docker-with-Cumulus-Linux/#docker-resource-tiering-system" text="Docker Resource Governance & Policy Agent">}}
-- {{<link url="Quality-of-Service/#lossless-shared-headroom-pool" text="Lossless shared headroom pool">}}
-- {{<link url="Link-Layer-Discovery-Protocol/#lldp-tlvs" text="Granular LLDP TLV definition and control">}}
-- {{<link url="Syslog/#thermal-control-logs" text="Thermal logging in syslog (sensor and fan state and errors)">}}
-- {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} (Beta)
-- {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} (Beta)
-- {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} (Beta)
-- {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} (Beta)
+- {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available
+- {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
+- {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
+- {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
 - NVUE
-  - {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#show-secure-boot-details" text="NVUE command to show secure boot status and details">}}
-  - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#verify-roce-configuration" text="nv show interface <interface-id> qos roce counters supports multiple interfaces, including ranges">}}
-  - {{<link url="NVUE-CLI/#configuration-commands" text="NVUE prevents configuration changes during long background operations">}}
-  -  {{<link url="NVUE-CLI/#verify-configuration-before-applying" text="NVUE command">}} and {{<link url="NVUE-API/#verify-configuration-before-applying" text="NVUE API option">}} to verify configuration before applying
-  - {{<link url="System-Power-and-Switch-Reboot/#show-reboot-information" text="NVUE command to show warm boot status">}}
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Telemetry
-  - New OTEL metrics: {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="link debounce">}}, {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="PHY link down">}}, {{<link url="Open-Telemetry-Export/#control-plane-statistic-format" text="control plane">}}, and {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="platform information">}}
-  - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="PHY link down, link debounce, control plane, platform information, and systemd service">}}
-  - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} (Beta)
-  - {{<link url="High-Frequency-Telemetry/#streaming-hft-export" text="High frequency telemetry streaming over IPFIX">}}
-- Security
-  - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
-  - {{<link url="Disk-Management/#erase-data-from-the-disk" text="Extended disk erase to support SED SSDs">}}
-  - {{<link url="Disk-Management/#change-the-sed-password" text="Change the SED disk password">}}
-  - Ability to view {{<link url="User-Accounts/#show-user-accounts" text="hashed password with NVUE">}} and {{<link url="NVUE-API/#configure-users" text="with API">}}
-  - {{<link url="Security-Alerts" text="Security alerts ">}} for audit processing failures
-  - {{<link url="802.1X-Interfaces/#8021x-reauthentication" text="802.1X reauthentication: maximum number of retries and interface configuration">}}
+  - New OTEL metrics:
+  - New gNMI metrics:
+  - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
 
 ## Release Considerations
 

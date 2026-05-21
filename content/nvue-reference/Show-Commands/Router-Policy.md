@@ -1147,29 +1147,6 @@ cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action perm
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ebgp-policy</h>
-
-Shows the eBGP policy configuration on the switch.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 ebgp-policy
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family</h>
 
 Shows the IPv4, IPv6, and EVPN configuration settings for the specified BGP neighbor.

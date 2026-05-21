@@ -124,9 +124,9 @@ None
 ### Sample Usage
 
 ```
-nvidia@switch:~$ netq lcm add default-version cl-images 5.13.1
+nvidia@switch:~$ netq lcm add default-version cl-images 5.16.0
 
-nvidia@switch:~$ netq lcm add default-version netq-images 4.15.0
+nvidia@switch:~$ netq lcm add default-version netq-images 5.2.0
 ```
 
 ### Related Commands

@@ -3731,35 +3731,6 @@ extended-nexthop               auto
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ebgp-policy</h>
-
-Shows the Default External BGP (EBGP) route propagation behavior for the specified BGP neighbor.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 ebgp-policy
-  operational
-  -----------
-  inbound                      
-  outbound                     
-  inbound                      
-  outbound
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> graceful-restart</h>
 
 Shows BGP graceful restart configuration for the specified BGP neighbor. BGP graceful restart minimizes the negative effects that occur when BGP restarts.

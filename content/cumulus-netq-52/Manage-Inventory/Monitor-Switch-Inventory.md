@@ -48,10 +48,10 @@ To create labels, run the `nv set system telemetry label {key} description {valu
 
 | UI Name | Key | Values |
 | ---- | ---- | ---- |
-| Device type | `switch_type` | `leaf`, `spine`, `super_spine`, `exit`, `mgmt_switch` |
-| Rail group | `rail_group_index` | Any numerical value (`0`, `1`, `2`, etc.) |
-| Pod | `pod` |  Any numerical value (`0`, `1`, `2`, etc.) |
-| Scalable unit | `su` |  Any numerical value (`0`, `1`, `2`, etc.) |
+| Device type | `switch_type` | `leaf`, `spine`, `super_spine` |
+| Rail group | `rail_group_index` | Any string value; numerical values recommended (`0`, `1`, `2`, etc.) |
+| Pod | `pod` |  Any string value; numerical values recommended (`0`, `1`, `2`, etc.) |
+| Scalable unit | `su` |  Any string value; numerical values recommended (`0`, `1`, `2`, etc.) |
 
 For example, run the `nv set system telemetry label switch_type description leaf` command on a given switch to label it as a leaf switch. You can then validate the device label configuration with the `nv show system telemetry label` command.
 

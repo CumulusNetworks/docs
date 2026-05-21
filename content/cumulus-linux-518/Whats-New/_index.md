@@ -14,6 +14,7 @@ Cumulus Linux 5.18 contains new features and improvements, and provides bug fixe
 
 ### New Features and Enhancements
 
+- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
 - {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available

@@ -159,7 +159,7 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 </tr>
 <tr>
 <td>4909312</td>
-<td>Cumulus Linux 5.14  removed the OTEL metric {{nvswitch_interface_if_in_octets}} because it duplicated {{nvswitch_interface_ether_stats_octets}}.  Cumulus Linux 5.17 restores the {{nvswitch_interface_if_in_octets}} metric so that existing telemetry consumers can continue to use the previous metric name.</td>
+<td>Cumulus Linux 5.14  removed the OTEL metric {{nvswitch_interface_if_in_octets}} because it duplicated {{nvswitch_interface_ether_stats_octets}}. </td>
 <td>5.15.0-5.16.4</td>
 <td></td>
 </tr>
@@ -1673,7 +1673,7 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 </tr>
 <tr>
 <td>4909312</td>
-<td>Cumulus Linux 5.14  removed the OTEL metric {{nvswitch_interface_if_in_octets}} because it duplicated {{nvswitch_interface_ether_stats_octets}}.  Cumulus Linux 5.17 restores the {{nvswitch_interface_if_in_octets}} metric so that existing telemetry consumers can continue to use the previous metric name.</td>
+<td>Cumulus Linux 5.14  removed the OTEL metric {{nvswitch_interface_if_in_octets}} because it duplicated {{nvswitch_interface_ether_stats_octets}}. </td>
 <td>5.15.0-5.16.4</td>
 <td></td>
 </tr>

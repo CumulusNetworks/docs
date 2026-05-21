@@ -894,7 +894,7 @@ mac-address              48:b0:2d:fa:a1:14
 fec                                               auto   
 mtu                      9000                     9216   
 fast-linkup              disabled
-tx-squelch               auto                     enabled  
+tx-squelch               enabled                  auto  
 ```
 
 {{< /tab >}}

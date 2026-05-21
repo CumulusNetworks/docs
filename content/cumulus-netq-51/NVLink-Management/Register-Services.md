@@ -35,11 +35,11 @@ Files created:
 Done.
 ```
 
-3. Copy the `example-ca.crt` and `example-tls.p12` files to the switch tray. Replace the filenames with the actual names of the files. Use the {{<exlink url="https://docs.nvidia.com/networking/display/nvidianvosusermanualfornvlinkswitchesv25022225/cluster+manager+commands" text="NVOS cluster manager commands">}} to apply the certificates to both NMX-C and NMX-T.
+3. Copy the `example-ca.crt` and `example-tls.p12` files to the switch tray. Replace the filenames with the actual names of the files. Use the {{<exlink url="https://docs.nvidia.com/networking/display/nvidianvosusermanualfornvlinkswitchesv25022225/cluster+manager+commands" text="NVOS cluster manager commands">}} to apply the certificates to both NMX-C and NMX-T. Applying the certificates is not enough, be sure to enable the manager using `nv action update cluster apps <app-name> manager` to get the port open for both apps. 
 
 ## Register Services
 
-Register the services by making a POST request to the `v1/services` endpoint.
+Register the services by making a POST request to the `v1/services` endpoint. NMX-c aka the controller is listening on port 9370 while NMX-t aka TELEMETRY is listening on port 9351.
 
 {{<tabs "TabID42" >}}
 

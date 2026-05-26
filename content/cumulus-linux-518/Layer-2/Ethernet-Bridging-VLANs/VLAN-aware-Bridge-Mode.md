@@ -163,6 +163,36 @@ On NVIDIA Spectrum-2 switches and later, if you enable multiple VLAN-aware bridg
   Increasing the `broadcast_domain.max_vlans` parameter can affect layer 2 multicast scale support.
 {{%/notice%}}
 
+## Configure the Default VLAN Identifier
+
+VLAN 1 is often used for in-band management and carries critical control plane protocols like Spanning Tree Protocol (STP) and Cisco Discovery Protocol (CDP). Because it is a globally known default, it is a primary target for VLAN hopping and double-tagging attacks, where an unauthorized user can bypass layer 2 isolation to gain access to other segments. To avoid using VLAN 1 in Cumulus Linux for user data and management traffic and to mitigate security risks, you can configure the default VLAN identifier (PVID) to override the default VLAN 1.
+
+Changing the default VLAN from VLAN 1 to a different identifier supports DoD security requirements.
+
+- The default VLAN applies to all bridge instances that do not have a specific PVID configured.
+- Any bridge PVID you configure on an individual bridge instance takes precedence over the default VLAN.
+
+To configure the default VLAN so that VLAN 1 is not used on the trunk and access ports by default, run the `nv set bridge default-vlan` command:
+
+{{< tabs "TabID177 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set bridge default-vlan 10
+cumulus@switch:~$ nv config apply
+```
+
+To unset the default VLAN and use VLAN 1, run the `nv unset bridge default-vlan` command.
+
+To show the default VLAN, run the `nv show bridge` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Reserved VLAN Range
 
 For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux reserves a range of VLANs by default; the reserved range is 3725-3999.
@@ -171,7 +201,7 @@ If the reserved VLAN range conflicts with any user-defined VLANs, you can modify
 
 The following example changes the reserved VLAN range to be between 4064 and 4094:
 
-{{< tabs "TabID177 ">}}
+{{< tabs "TabID197 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```

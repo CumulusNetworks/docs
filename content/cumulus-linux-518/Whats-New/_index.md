@@ -12,6 +12,9 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 
 Cumulus Linux 5.18 contains new features and improvements, and provides bug fixes.
 
+Multi-ASIC CPO Switch SN5800-LD
+Single ASIC CPO switch | SN5810-LD
+
 ### New Features and Enhancements
 
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
@@ -19,12 +22,37 @@ Cumulus Linux 5.18 contains new features and improvements, and provides bug fixe
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
 - {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
+- EVPN MH/MLAG without Unique SVI IP
+- Password changed within 8- character differences
+- VRF scale limits for 802.1x and dynamic VRF provisioning
+- FW based BFD acceleration with Cumulus
+- Simplified User Profile support
+- Systemd Target-Based Service Management for multi-asic
+- Spectrum-X" Profile Support 
+- Avoid FRR service restart when a FRR daemon (non-zebra) is dynamically enabled or disabled
+- Remove Support for Vlan 1
+- Support for IP source guard on user-facing access port
+- Dynamic ARP and DAI on all user vlans
+- X-plane graceful fabric maintenance - node level
+- Xplane extensions for XGS
+- Supporting BMC Flows On Salamandra
+- Tx/Rx Module's pre-coding control for 3rd party modules | APSU disabled mode |
+- Advertise BOTH SAFI 254 AND SAFI 81 in capability negotiation
 - NVUE
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
+  - Support Scheduling of Binary Image Installation (ONIE-Install)
+  - Look at pieces of the Config
+  - nv show interface - no view for Link phy-detail
+  - nv show interface - no view for transceiver
+  - Support uplink tracking with NVUE 
+  - Zebra phase 2: Remaining Operational
 - Telemetry
   - New OTEL metrics:
   - New gNMI metrics:
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
+  - What Just Happened gNMI metrics
+  - Support 802.1x RADIUS GNMI metrics
+  - Streaming Telemetry support for ASIC resources
 
 ## Release Considerations
 

@@ -1084,18 +1084,18 @@ To disable fast leave processing, edit the `/etc/network/interfaces` file and se
 ## PIM Active-active with MLAG
 <!-- vale on -->
 
-When a **multicast sender** attaches to an MLAG bond, the sender hashes the outbound multicast traffic over a single member of the bond. Traffic arrives on one of the MLAG enabled switches. Regardless of which switch receives the traffic, it goes over the MLAG peer link to the other MLAG-enabled switch, because the peerlink is always the multicast router port and always receives the multicast stream.
+When a **multicast sender** attaches to an MLAG bond, the sender hashes the outbound multicast traffic over a single member of the bond. Traffic arrives on one of the MLAG enabled switches. Regardless of which switch receives the traffic, it goes over the MLAG peer link to the other MLAG-enabled switch, because the peer link is always the multicast router port and always receives the multicast stream.
 
 {{%notice note%}}
-Traffic from multicast sources attached to an MLAG bond always goes over the MLAG peerlink. Be sure to
-{{<link url="Multi-Chassis-Link-Aggregation-MLAG#peer-link-sizing" text="size the peerlink appropriately">}} to accommodate this traffic.
+Traffic from multicast sources attached to an MLAG bond always goes over the MLAG peer link. Be sure to
+{{<link url="Multi-Chassis-Link-Aggregation-MLAG#peer-link-sizing" text="size the peer link appropriately">}} to accommodate this traffic.
 {{%/notice%}}
 
 The <span class="a-tooltip">[PIM DR](## "PIM Designated Router")</span> for the VLAN where the source resides sends the PIM register towards the RP. The PIM DR is the PIM speaker with the highest IP address on the segment. After the PIM register process is complete and traffic is flowing along the <span class="a-tooltip">[SPT](## "Shortest Path Tree ")<span>, either MLAG switch forwards traffic towards the receivers.
 
 PIM joins sent towards the source can be ECMP load shared by upstream PIM neighbors. Either MLAG member can receive the PIM join and forward traffic, regardless of DR status.
 
-A dual-attached **multicast receiver** sends an IGMP join on the attached VLAN. One of the MLAG switches receives the IGMP join, then adds the IGMP join to the IGMP Join table and layer 2 MDB table. The layer 2 MDB table, like the unicast MAC address table, synchronizes through MLAG control messages over the peerlink. This allows both MLAG switches to program IGMP and MDB table forwarding information. Both switches send *,G PIM Join messages towards the RP. If the source is already sending, both MLAG switches receive the multicast stream.
+A dual-attached **multicast receiver** sends an IGMP join on the attached VLAN. One of the MLAG switches receives the IGMP join, then adds the IGMP join to the IGMP Join table and layer 2 MDB table. The layer 2 MDB table, like the unicast MAC address table, synchronizes through MLAG control messages over the peer link. This allows both MLAG switches to program IGMP and MDB table forwarding information. Both switches send *,G PIM Join messages towards the RP. If the source is already sending, both MLAG switches receive the multicast stream.
 
 {{%notice note%}}
 Traditionally, the PIM DR is the only node to send the PIM *,G Join. To provide resiliency in case of failure, both MLAG switches send PIM *,G Joins towards the RP to receive the multicast stream.
@@ -1109,7 +1109,7 @@ The examples below show the flow of traffic between server02 and server03:
 
 | Step 1 |  |
 |--------|--------|
-|{{< figure src = "/images/cumulus-linux/pim-mlag-citc-topology1.png" >}}| **1**. server02 sends traffic to leaf02.<br><br>**2**. leaf02 forwards traffic to leaf01 because the peerlink is a multicast router port.<br><br>**3**. spine01 receives a PIM register from leaf01, the DR.<br><br>**4**. leaf02 syncs the *,G table from leaf01 as an MLAG active-active peer. |
+|{{< figure src = "/images/cumulus-linux/pim-mlag-citc-topology1.png" >}}| **1**. server02 sends traffic to leaf02.<br><br>**2**. leaf02 forwards traffic to leaf01 because the peer link is a multicast router port.<br><br>**3**. spine01 receives a PIM register from leaf01, the DR.<br><br>**4**. leaf02 syncs the *,G table from leaf01 as an MLAG active-active peer. |
 
 | Step 2 |  |
 |--------|--------|

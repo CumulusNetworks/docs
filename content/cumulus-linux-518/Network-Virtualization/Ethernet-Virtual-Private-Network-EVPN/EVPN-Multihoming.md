@@ -7,7 +7,7 @@ toc: 4
 
 *EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> in data centers deploying Clos topologies. Replacing MLAG provides these benefits:
 
-- Eliminates the need for peerlinks or inter-switch links between the top of rack switches
+- Eliminates the need for peer links or inter-switch links between the top of rack switches
 - Allows more than two <span class="a-tooltip">[ToR](## "Top of Rack")</span> switches a redundancy group
 - Provides a single BGP-EVPN control plane
 - Allows multi-vendor interoperability
@@ -59,7 +59,7 @@ Device Version       0x26   1 16
 {{%notice warning%}}
 To use EVPN-MH, you must remove any MLAG configuration on the switch:
 - Remove the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
-- Remove the peerlink interfaces in the `/etc/network/interfaces` file.
+- Remove the peer link interfaces in the `/etc/network/interfaces` file.
 - Remove any existing `hwaddress` (from a Cumulus Linux 3.x MLAG configuration) or `address-virtual` (from a Cumulus Linux 4.x MLAG configuration) entries from all SVIs corresponding to a layer 3 VNI in the `/etc/network/interfaces` file.
 - Remove any `clagd-vxlan-anycast-ip` configuration in the `/etc/network/interfaces` file.
 - Run the `sudo ifreload` command to reload the configuration.

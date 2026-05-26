@@ -161,7 +161,7 @@ iface br_l3vni
 ```
 
 {{%notice note%}}
-When you are using MLAG, the VNIs and VXLAN device must belong to the same bridge as your MLAG peerlink. In environments without MLAG configured, you can configure a separate bridge for L3VNIs as displayed above.
+When you are using MLAG, the VNIs and VXLAN device must belong to the same bridge as your MLAG peer link. In environments without MLAG configured, you can configure a separate bridge for L3VNIs as displayed above.
 {{%/notice%}}
 
 2. Specify the VRF to layer 3 VNI mapping. This configuration is for the BGP control plane.

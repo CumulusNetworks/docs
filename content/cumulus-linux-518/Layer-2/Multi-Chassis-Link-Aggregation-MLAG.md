@@ -143,7 +143,7 @@ iface bond2
 
 4. Add the bonds you created above to a bridge. The example commands below add bond1 and bond2 to a VLAN-aware bridge.
 
-   You must add **all** VLANs configured on the MLAG bond to the bridge so that traffic to the downstream device connected in MLAG redirects over the peerlink in case the MLAG bond fails.
+   You must add **all** VLANs configured on the MLAG bond to the bridge so that traffic to the downstream device connected in MLAG redirects over the peer link in case the MLAG bond fails.
 
    {{< tabs "TabID150 ">}}
 {{< tab "NVUE Commands ">}}
@@ -483,7 +483,7 @@ iface br0.10
 ```
 
 {{%notice note%}}
-In an MLAG and traditional bridge configuration, NVIDIA recommends that you set bridge learning to off on all VLANs over the peerlink except for the layer 3 peer link subinterface; for example:
+In an MLAG and traditional bridge configuration, NVIDIA recommends that you set bridge learning to off on all VLANs over the peer link except for the layer 3 peer link subinterface; for example:
 
 ```
 ...
@@ -530,7 +530,7 @@ To unconfigure MLAG:
 {{< tabs "TabID532 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the following commands to unset MLAG, and unset the peerlink and the peerlink VLAN subinterface that Cumulus Linux creates automatically. You must run the commands at the same time with the `nv config apply` command.
+Run the following commands to unset MLAG, and unset the peer link and the peer link VLAN subinterface that Cumulus Linux creates automatically. You must run the commands at the same time with the `nv config apply` command.
 
 ```
 cumulus@leaf01:~$ nv unset mlag

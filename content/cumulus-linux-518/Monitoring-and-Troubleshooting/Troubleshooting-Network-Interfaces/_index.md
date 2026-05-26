@@ -416,4 +416,4 @@ This error can occur when the bridge port does not have a valid hardware address
 
 ## MLAG Interface Drops Packets
 
-Losing a large number of packets across an MLAG peerlink interface is often not a problem. This can occur to prevent BUM (broadcast, unknown unicast and multicast) packet looping. For more details, and for information on how to detect these drops, refer to the {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG section">}}.
+Losing a large number of packets across an MLAG peer link interface is often not a problem. This can occur to prevent BUM (broadcast, unknown unicast and multicast) packet looping. For more details, and for information on how to detect these drops, refer to the {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG section">}}.

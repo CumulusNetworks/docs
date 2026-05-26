@@ -365,7 +365,7 @@ For active-active configuration, make sure that:
 - The `clagd-vxlan-anycast-ip` and `vxlan-local-tunnelip` parameters are under the loopback stanza on both peers.
 - Both peers advertise the anycast address to the routed fabric.
 - The VNI configuration is identical on both peers.
-- The peerlink belongs to the bridge.
+- The peer link belongs to the bridge.
 
 MLAG synchronizes information between the two switches in the MLAG pair; EVPN does not synchronize.
 

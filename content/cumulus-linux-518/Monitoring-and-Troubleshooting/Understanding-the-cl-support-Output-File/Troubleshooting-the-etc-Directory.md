@@ -1,0 +1,223 @@
+---
+title: Troubleshooting the etc Directory
+author: NVIDIA
+weight: 1070
+toc: 4
+---
+The `{{<link url="Understanding-the-cl-support-Output-File" text="cl-support">}}` script replicates the /`etc` directory, however, it excludes certain files, such as `/etc/nologin`, which prevents unprivileged users from logging into the system.
+
+The following shows example output from `ls -l` on the `/etc` directory structure, which `cl-support` creates.
+
+```
+cumulus@leaf02:mgmt:~$ ls -l /etc
+total 1040
+drwxr-xr-x 3 root root    4096 Apr 26 10:08 acpi
+-rw-r--r-- 1 root root    3040 May 25  2023 adduser.conf
+drwxr-xr-x 2 root root    4096 Apr 26 11:21 alternatives
+drwxr-xr-x 3 root root    4096 Apr 26 10:04 apparmor
+drwxr-xr-x 6 root root    4096 Apr 26 10:09 apparmor.d
+drwxr-xr-x 8 root root    4096 Apr 26 11:26 apt
+drwxr-x--- 4 root root    4096 Apr 26 10:09 audit
+-rw-r--r-- 1 root root    2119 Apr 26 10:08 bash.bashrc
+-rw-r--r-- 1 root root      45 Jan 24  2020 bash_completion
+drwxr-xr-x 2 root root    4096 Apr 26 10:10 bash_completion.d
+-rw-r--r-- 1 root root     367 Apr 10 07:01 bindresvport.blacklist
+drwxr-xr-x 2 root root    4096 Jan 26 21:48 binfmt.d
+drwxr-xr-x 3 root root    4096 Apr 26 10:05 ca-certificates
+-rw-r--r-- 1 root root    5989 Apr 26 10:08 ca-certificates.conf
+drwxr-xr-x 2 root root    4096 Apr 26 10:08 console-setup
+drwxr-xr-x 2 root root    4096 Apr 26 10:08 containerd
+drwxr-xr-x 2 root root    4096 Apr 26 10:08 cracklib
+drwxr-xr-x 2 root root    4096 Apr 26 10:09 cron.d
+drwxr-xr-x 2 root root    4096 Apr 26 10:08 cron.daily
+drwxr-xr-x 2 root root    4096 Apr 26 10:03 cron.hourly
+drwxr-xr-x 2 root root    4096 Apr 26 10:08 cron.monthly
+-rw-r--r-- 1 root root    1042 Mar  2  2023 crontab
+drwxr-xr-x 2 root root    4096 Apr 26 10:08 cron.weekly
+drwxr-xr-x 2 root root    4096 Apr 26 10:03 cron.yearly
+drwxr-xr-x 7 root root    4096 Apr 27 21:43 cumulus
+-rw-r--r-- 1 root root       0 Apr 26 16:07 cumulus-firstboot-after-networking-done
+-rw-r--r-- 1 root root       0 Apr 26 11:22 cumulus-firstboot-done
+drwxr-xr-x 4 root root    4096 Apr 26 10:04 dbus-1
+-rw-r--r-- 1 root root    2969 Jan  8  2023 debconf.conf
+-rw-r--r-- 1 root root       5 Jan 28 21:20 debian_version
+drwxr-xr-x 4 root root    4096 Apr 26 11:25 default
+-rw-r--r-- 1 root root    1706 May 25  2023 deluser.conf
+drwxr-xr-x 4 root root    4096 Apr 26 10:08 dhcp
+drwxr-xr-x 3 root root    4096 Apr 26 10:08 dhcpsnoop
+drwxr-xr-x 2 root root    4096 Apr 26 10:08 discover.conf.d
+-rw-r--r-- 1 root root     346 Jul 16  2005 discover-modprobe.conf
+-rw-r--r-- 1 root root   27885 Jan 13  2023 dnsmasq.conf
+drwxr-xr-x 2 root root    4096 Apr 26 10:06 dnsmasq.d
+drwxr-xr-x 2 root root    4096 Apr 26 10:09 docker
+drwxr-xr-x 4 root root    4096 Apr 26 10:03 dpkg
+-rw-r--r-- 1 root root      85 Apr 19 12:05 e2fsck.conf
+-rw-r--r-- 1 root root     685 Mar  5  2023 e2scrub.conf
+-rw-r--r-- 1 root root       0 Apr 26 10:03 environment
+drwxr-xr-x 3 root root    4096 Apr 26 10:04 etc
+-rw-r--r-- 1 root root    1853 Oct 17  2022 ethertypes
+drwxr-xr-x 2 root root    4096 Apr 26 11:24 firefly_servo
+drwxr-xr-x 4 root root    4096 Apr 26 10:08 fonts
+drwxr-xr-x 2 root root    4096 Apr 26 10:08 freeipmi
+drwxr-x--- 2 frr  frr     4096 Apr 27 21:43 frr
+-rw------- 1 root root     471 Apr 26 11:21 fstab
+-rw-r--r-- 1 root root    2584 Jul 29  2022 gai.conf
+-rw-r--r-- 1 root root    3886 Jan 14  2023 gprofng.rc
+drwxr-xr-x 2 root root    4096 Apr 26 10:03 groff
+-rw-r--r-- 1 root root     852 Apr 26 11:24 group
+-rw-r--r-- 1 root root     894 Apr 26 10:10 group-
+drwxr-xr-x 2 root root    4096 Apr 26 11:21 grub.d
+-rw-r----- 1 root shadow   705 Apr 26 11:24 gshadow
+-rw-r----- 1 root shadow   747 Apr 26 10:10 gshadow-
+drwxr-xr-x 3 root root    4096 Apr 26 10:03 gss
+-rw-r--r-- 1 root root    4436 Oct  6  2022 hdparm.conf
+drwxr-xr-x 2 root root    4096 Apr 26 10:09 hostapd
+-rw-r----- 1 root root     669 Apr 26 11:24 hostapd.conf
+-rw-r--r-- 1 root root       9 Aug  7  2006 host.conf
+-rw-r--r-- 1 root root     150 Apr 26 16:06 hostname
+-rw-r--r-- 1 root root     306 Apr 26 16:06 hosts
+-rw-r--r-- 1 root root     411 Apr 26 10:08 hosts.allow
+-rw-r--r-- 1 root root     711 Apr 26 10:08 hosts.deny
+drwxr-xr-x 3 root root    4096 Apr 26 10:06 hsflowd
+-rw-r--r-- 1 root root    1010 Mar 15 06:40 hsflowd.conf
+drwxr-xr-x 2 root root    4096 Apr 26 11:21 hw_init.d
+-rw-r--r-- 1 root root     258 Apr 26 10:21 image-release
+drwxr-xr-x 2 root root    4096 Apr 26 10:09 init
+drwxr-xr-x 2 root root    4096 Apr 26 10:10 init.d
+drwxr-xr-x 5 root root    4096 Apr 26 10:09 initramfs-tools
+-rw-r--r-- 1 root root    1875 Jan  3  2023 inputrc
+drwxr-xr-x 3 root root    4096 Apr 26 10:06 insserv
+-rw-r--r-- 1 root root     874 Feb 22  2022 insserv.conf
+drwxr-xr-x 2 root root    4096 Apr 26 10:09 insserv.conf.d
+drwxr-xr-x 5 root root    4096 Apr 26 10:03 iproute2
+-rw-r--r-- 1 root root      27 Jan 28 21:20 issue
+-rw-r--r-- 1 root root      20 Jan 28 21:20 issue.net
+drwxr-xr-x 2 root root    4096 Apr 26 10:09 kdump
+drwxr-xr-x 5 root root    4096 Apr 26 10:04 kernel
+-rw-r--r-- 1 root root   29522 Apr 26 11:25 ld.so.cache
+-rw-r--r-- 1 root root      34 Apr 10 07:01 ld.so.conf
+drwxr-xr-x 2 root root    4096 Apr 26 10:03 ld.so.conf.d
+drwxr-xr-x 3 root root    4096 Apr 26 10:04 letsencrypt
+-rw-r--r-- 1 root root     191 Feb  9  2023 libaudit.conf
+drwxr-xr-x 2 root root    4096 Apr 26 10:08 libnl
+drwxr-xr-x 2 root root    4096 Apr 26 11:24 linuxptp
+drwxr-xr-x 2 root root    4096 Apr 26 11:24 lldpd.d
+-rw-r--r-- 1 root root    2996 Apr 19 16:34 locale.alias
+-rw-r--r-- 1 root root    9449 Apr 26 10:04 locale.gen
+lrwxrwxrwx 1 root root      27 Apr 26 10:03 localtime -> /usr/share/zoneinfo/Etc/UTC
+drwxr-xr-x 4 root root    4096 Apr 26 10:05 logcheck
+-rw-r--r-- 1 root root   10216 Apr 26 11:23 login.defs
+-rw-r--r-- 1 root root   10217 Apr 19 12:05 login.defs.cumulus
+-rw-r--r-- 1 root root   12569 Nov 11  2022 login.defs.cumulus-orig
+lrwxrwxrwx 1 root root      22 Apr 26 10:10 logrotate.conf -> logrotate.conf.cumulus
+-rw-r--r-- 1 root root     474 Apr 19 12:05 logrotate.conf.cumulus
+-rw-r--r-- 1 root root     494 Dec 14  2022 logrotate.conf.cumulus-orig
+drwxr-xr-x 2 root root    4096 Apr 26 10:10 logrotate.d
+-rw-r--r-- 1 root root      91 Apr 20 15:39 lsb-release
+drwxr-xr-x 3 root root    4096 Apr 26 10:04 lttng
+drwxr-xr-x 3 root root    4096 Apr 26 10:10 lvm
+-r--r--r-- 1 root root      33 Apr 26 10:03 machine-id
+-rw-r--r-- 1 root root     111 Jan 28  2023 magic
+-rw-r--r-- 1 root root     111 Jan 28  2023 magic.mime
+-rw-r--r-- 1 root root    3310 Apr 26 11:21 mailcap
+-rw-r--r-- 1 root root     449 Nov 29  2021 mailcap.order
+-rw-r--r-- 1 root root      13 Apr 26 10:08 mailname
+-rw-r--r-- 1 root root     125 Apr 14  2022 mail.rc
+-rw-r--r-- 1 root root    5230 Mar 12  2023 manpath.config
+-rw-r--r-- 1 root root   73816 Feb 11  2023 mime.types
+-rw-r--r-- 1 root root     782 Mar  5  2023 mke2fs.conf
+drwxr-xr-x 3 root root    4096 Apr 26 10:06 mlx
+drwxr-xr-x 2 root root    4096 Apr 26 16:07 modprobe.d
+-rw-r--r-- 1 root root     248 Apr 26 10:03 modules
+drwxr-xr-x 2 root root    4096 Apr 26 11:21 modules-load.d
+-rw-r--r-- 1 root root     456 Apr 26 11:21 motd.distrib
+lrwxrwxrwx 1 root root      19 Apr 26 11:22 mtab -> ../proc/self/mounts
+drwxr-xr-x 4 root root    4096 Apr 26 10:08 mysql
+-rw-r--r-- 1 root root   11399 Jan 18  2023 nanorc
+-rw-r--r-- 1 root root     767 Aug 11  2022 netconfig
+drwxr-xr-x 4 root root    4096 Apr 26 10:09 netq
+drwxr-xr-x 2 root root    4096 Apr 26 10:09 netsniff-ng
+drwxr-xr-x 7 root root    4096 Apr 27 18:12 network
+drwxr-xr-x 3 root root    4096 Apr 26 10:04 NetworkManager
+-rw-r--r-- 1 root root      60 Apr 26 10:03 networks
+drwxr-xr-x 9 root root    4096 Apr 27 21:43 nginx
+-rw-r--r-- 1 root root     636 Apr 26 11:24 nsswitch.conf
+drwxr-xr-x 2 root root    4096 Apr 26 11:24 ntpsec
+drwxr-xr-x 3 root root    4096 Apr 26 10:05 nvue
+-rw-r--r-- 1 root root     978 Apr 26 02:46 nvue-auth.yaml
+drwxr-xr-x 3 root root    4096 Apr 27 21:43 nvue.d
+drwxr-xr-x 2 root root    4096 Apr 26 10:02 opt
+lrwxrwxrwx 1 root root      21 Jan 28 21:20 os-release -> ../usr/lib/os-release
+-rw-r--r-- 1 root root     552 Sep 21  2023 pam.conf
+drwxr-xr-x 2 root root    4096 Apr 26 11:24 pam.d
+-rw-r----- 1 root shadow  2997 Apr 26 11:24 pam_radius_auth.conf
+-rw-r--r-- 1 root root    1544 Apr 26 11:24 passwd
+-rw-r--r-- 1 root root    1554 Apr 26 10:10 passwd-
+drwxr-xr-x 3 root root    4096 Apr 26 10:04 perl
+lrwxrwxrwx 1 root root      15 Apr 26 10:10 profile -> profile.cumulus
+-rw-r--r-- 1 root root     746 Apr 19 12:05 profile.cumulus
+-rw-r--r-- 1 root root     769 Apr 10  2021 profile.cumulus-orig
+drwxr-xr-x 2 root root    4096 Apr 26 11:24 profile.d
+-rw-r--r-- 1 root root    3144 Oct 17  2022 protocols
+drwxr-xr-x 2 root root    4096 Apr 26 10:10 ptm.d
+-rw-r--r-- 1 root root     343 Apr 26 11:24 ptp4l.conf
+drwxr-xr-x 2 root root    4096 Apr 26 10:09 python3
+drwxr-xr-x 2 root root    4096 Apr 26 10:04 python3.11
+drwxr-xr-x 3 root root    4096 Apr 26 10:04 ras
+-rw-r--r-- 1 root root     985 Apr  9 05:47 rdnbrd.conf
+-rw-r--r-- 1 root root      72 Apr 28 18:48 resolv.conf
+drwxr-xr-x 3 root root    4096 Apr 26 10:06 resolvconf
+-rw-r--r-- 1 root root      61 Apr 28 18:48 resolv.conf.bak
+lrwxrwxrwx 1 root root      13 Jan 20 09:27 rmt -> /usr/sbin/rmt
+-rw-r--r-- 1 root root     911 Oct 17  2022 rpc
+lrwxrwxrwx 1 root root      20 Apr 26 10:10 rsyslog.conf -> rsyslog.conf.cumulus
+-rw-r--r-- 1 root root    1483 Apr 19 12:05 rsyslog.conf.cumulus
+-rw-r--r-- 1 root root    1430 Feb 22  2023 rsyslog.conf.cumulus-orig
+drwxr-xr-x 2 root root    4096 Apr 26 10:10 rsyslog.d
+drwxr-xr-x 3 root root    4096 Apr 26 10:04 runit
+-rw-r--r-- 1 root root    3663 Jun  9  2015 screenrc
+drwxr-xr-x 4 root root    4096 Apr 26 16:07 security
+drwxr-xr-x 2 root root    4096 Apr 26 10:03 selinux
+-rw-r--r-- 1 root root   10593 Oct 15  2022 sensors3.conf
+drwxr-xr-x 2 root root    4096 Apr 26 11:21 sensors.d
+-rw-r--r-- 1 root root   12813 Mar 27  2021 services
+-rw-r----- 1 root shadow  1083 Apr 26 16:07 shadow
+-rw-r----- 1 root shadow   945 Apr 26 11:24 shadow-
+-rw-r--r-- 1 root root     158 Apr 26 10:10 shells
+drwxr-xr-x 2 root root    4096 Apr 26 10:10 skel
+-rw-r--r-- 1 root root    7042 Oct 16  2022 smartd.conf
+drwxr-xr-x 4 root root    4096 Apr 26 10:07 smartmontools
+-rw-r--r-- 1 root root    1201 Dec  2  2018 smi.conf
+drwxr-xr-x 3 root root    4096 Apr 26 10:10 snmp
+drwxr-xr-x 4 root root    4096 Apr 26 11:24 ssh
+drwxr-xr-x 4 root root    4096 Apr 26 10:08 ssl
+drwxr-x--- 2 root mail    4096 Apr 26 10:08 ssmtp
+-rw-r--r-- 1 root root      21 Apr 26 10:10 subgid
+-rw-r--r-- 1 root root       0 Apr 26 10:03 subgid-
+-rw-r--r-- 1 root root      21 Apr 26 10:10 subuid
+-rw-r--r-- 1 root root       0 Apr 26 10:03 subuid-
+-rw-r--r-- 1 root root    4343 Dec 29 22:00 sudo.conf
+-r--r----- 1 root root    4233 Dec 29 22:00 sudoers
+drwxr-xr-x 2 root root    4096 Apr 26 16:03 sudoers.d
+drwxr-xr-x 6 root root    4096 Apr 26 10:06 sv
+drwxr-xr-x 2 root root    4096 Apr 26 11:24 synced
+-rw-r--r-- 1 root root    2355 Dec 19  2022 sysctl.conf
+drwxr-xr-x 2 root root    4096 Apr 26 11:23 sysctl.d
+drwxr-xr-x 6 root root    4096 Apr 26 10:10 systemd
+drwxr-xr-x 2 root root    4096 Apr 26 10:03 terminfo
+-rw-r--r-- 1 root root       8 Apr 26 10:03 timezone
+drwxr-xr-x 2 root root    4096 Apr 26 10:08 tmpfiles.d
+-rw-r--r-- 1 root root    1260 Jan 27  2023 ucf.conf
+drwxr-xr-x 4 root root    4096 Apr 26 10:03 udev
+drwxr-xr-x 3 root root    4096 Apr 26 10:04 ufw
+drwxr-xr-x 2 root root    4096 Apr 26 10:03 update-motd.d
+drwxr-xr-x 2 root root    4096 Apr 26 10:10 vim
+drwxr-xr-x 2 root root    4096 Apr 26 10:08 vrf
+-rw-r--r-- 1 root root     435 Mar 14 17:01 watchdog.conf
+-rw-r--r-- 1 root root    4942 May 14  2022 wgetrc
+drwxr-xr-x 2 root root    4096 Apr 26 11:24 what-just-happened
+drwxr-xr-x 2 root root    4096 Apr 26 11:25 wireshark
+drwxr-xr-x 4 root root    4096 Apr 26 10:04 X11
+-rw-r--r-- 1 root root     681 Jan 17  2023 xattr.conf
+drwxr-xr-x 3 root root    4096 Apr 26 10:03 xdg
+```

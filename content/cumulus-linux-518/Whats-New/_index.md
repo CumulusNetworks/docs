@@ -23,7 +23,7 @@ Single ASIC CPO switch | SN5810-LD
 - {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
 - EVPN MH/MLAG without Unique SVI IP
-- Password changed within 8- character differences
+- Password changed within 8-character differences
 - VRF scale limits for 802.1x and dynamic VRF provisioning
 - FW based BFD acceleration with Cumulus
 - Simplified User Profile support
@@ -61,6 +61,10 @@ Review the following considerations before you upgrade to Cumulus Linux 5.18.
 ### Upgrade Requirements
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18 from Cumulus Linux 5.16 and later. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+
+{{%notice note%}}
+The Spectrum-6 switch does not support ISSU.
+{{%/notice%}}
 
 To upgrade to Cumulus Linux 5.18 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 

@@ -14,6 +14,10 @@ To upgrade Cumulus Linux, choose one of the three upgrade methods:
 
 ## Upgrades with ISSU
 
+{{%notice note%}}
+The Spectrum-6 switch does not support ISSU.
+{{%/notice%}}
+
 <span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to perform a hitless upgrade of the switch software while the network continues to forward packets. ISSU hitless upgrade minimizes data plane traffic disruption to sub-second levels and automatically translates the switch NVUE configuration to the schema of the new version. During ISSU, the routing control plane is temporarily unavailable; however, the {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} capability maintains traffic flow through the switch.
 
 Cumulus Linux supports two methods that can use ISSU:

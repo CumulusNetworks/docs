@@ -39,13 +39,14 @@ Single ASIC CPO switch | SN5810-LD
 - Tx/Rx Module's pre-coding control for 3rd party modules | APSU disabled mode |
 - Advertise BOTH SAFI 254 AND SAFI 81 in capability negotiation
 - NVUE
-  - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
+  - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
   - Support Scheduling of Binary Image Installation (ONIE-Install)
-  - Look at pieces of the Config
+  - View parts of the switch configuration
   - nv show interface - no view for Link phy-detail
   - nv show interface - no view for transceiver
   - Support uplink tracking with NVUE 
   - Zebra phase 2: Remaining Operational
+  - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Telemetry
   - New OTEL metrics:
   - New gNMI metrics:

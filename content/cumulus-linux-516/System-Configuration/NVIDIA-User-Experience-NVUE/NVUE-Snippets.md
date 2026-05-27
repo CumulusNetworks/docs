@@ -14,7 +14,7 @@ NVUE supports both traditional snippets and flexible snippets:
 - Setting the snippet value replaces any existing snippet value.
 - Cumulus Linux supports only one snippet for a configuration file.
 - Only certain configuration files support a snippet.
-- NVUE does not parse or validate the snippet content and does not validate the resulting file after you apply the snippet.
+- NVUE does not validate the snippet content except to make sure the destination conforms to NVUE policy during apply. For example, NVUE ensures that you do not create a snippet to add configuration to files in critical system directories, such as `/usr/bin`, `/root`, or `/boot`.
 - PATCH is only the method of applying snippets and does not refer to any snippet capabilities.
 - As NVUE supports more features and introduces new syntax, snippets and flexible snippets become invalid. **Before** you upgrade Cumulus Linux to a new release, review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax and remove the snippet if NVUE introduces new syntax for the feature that the snippet configures.
 {{%/notice%}}

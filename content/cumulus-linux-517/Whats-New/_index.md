@@ -40,12 +40,12 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} (Beta)
   - {{<link url="High-Frequency-Telemetry/#streaming-hft-export" text="High frequency telemetry streaming over IPFIX">}}
 - Security
-  - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
   - {{<link url="Disk-Management/#erase-data-from-the-disk" text="Extended disk erase to support SED SSDs">}}
   - {{<link url="Disk-Management/#change-the-sed-password" text="Change the SED disk password">}}
   - Ability to view {{<link url="User-Accounts/#show-user-accounts" text="hashed password with NVUE">}} and {{<link url="NVUE-API/#configure-users" text="with API">}}
   - {{<link url="Security-Alerts" text="Security alerts ">}} for audit processing failures
   - {{<link url="802.1X-Interfaces/#8021x-reauthentication" text="802.1X reauthentication: maximum number of retries and interface configuration">}}
+  <!-- - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}-->
 
 ## Release Considerations
 

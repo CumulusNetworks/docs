@@ -63,5 +63,5 @@ NetQ 5.2 is available exclusively for on-premises deployments. You can upgrade t
 
 The NetQ 5.2 server is compatible with NetQ agents 5.2 and 5.1. You can install NetQ agents on switches and servers running:
 
-- Cumulus Linux 5.16, 5.15, 5.11.3, 5.9.4 <!--need to verify-->
+- Cumulus Linux 5.17, 5.16, 5.15, 5.11
 - Ubuntu 24.04, 22.04

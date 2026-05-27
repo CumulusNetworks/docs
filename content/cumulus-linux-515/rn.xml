@@ -13,6 +13,12 @@
 <td>5.16.4</td>
 </tr>
 <tr>
+<td>5012295</td>
+<td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
+<td>5.15.0-5.16.4</td>
+<td></td>
+</tr>
+<tr>
 <td>4992204</td>
 <td>Cumulus Linux does not support the NVUE {{nv set nve vxlan port &lt;udp-port&gt;}} command; you do not see the configured UDP port in the outer VXLAN packet header.</td>
 <td>5.14.0-5.16.4</td>
@@ -595,6 +601,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>When you run the {{nv show vrf default router rib}} command, NVUE returns an {{ItemDoesNotExist }} error. To work around this issue, run the following commands to retrieve IPv6 routing information:
 nv show vrf default router rib ipv6
 nv show vrf default router rib ipv6 route</td>
+<td>5.15.0-5.16.4</td>
+<td></td>
+</tr>
+<tr>
+<td>4717493</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
 <td>5.15.0-5.16.4</td>
 <td></td>
 </tr>
@@ -1581,10 +1593,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5027908</td>
+<td>5018899</td>
 <td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
 <td>5.15.0-5.16.3</td>
 <td>5.16.4</td>
+</tr>
+<tr>
+<td>5012295</td>
+<td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
+<td>5.15.0-5.16.4</td>
+<td></td>
 </tr>
 <tr>
 <td>4992204</td>
@@ -2097,6 +2115,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>When you run the {{nv show vrf default router rib}} command, NVUE returns an {{ItemDoesNotExist }} error. To work around this issue, run the following commands to retrieve IPv6 routing information:
 nv show vrf default router rib ipv6
 nv show vrf default router rib ipv6 route</td>
+<td>5.15.0-5.15.1</td>
+<td>5.16.0-5.16.4</td>
+</tr>
+<tr>
+<td>4717493</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
 <td>5.15.0-5.15.1</td>
 <td>5.16.0-5.16.4</td>
 </tr>

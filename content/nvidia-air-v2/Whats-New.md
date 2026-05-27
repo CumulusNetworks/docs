@@ -7,15 +7,21 @@ product: NVIDIA DSX Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://dsx-air.nvidia.com" text="NVIDIA DSX Air">}}.
 
-## April 2026
+## May 2026
 <!-- Air:WhatsNew -->
-### 82.2.1.8.11
-- Fixed issue where high-fidelity nodes with outbound interfaces could not consistently use their data ports.
-- Fixed an issue where users were able to select enablement durations exceeding the five‑year limit enforced by NGC.
+### 82.2.1.15.2
+- Updated and added Jupiter Notebook examples in the SDK
+- Fixed a UI issue where not all valid interfaces were displayed during service creation 
+- Fixed an issue causing the console to remain stuck in a loading state when opened during a simulation rebuild
 <!-- Air:WhatsNew -->
 
+## April 2026
+### 82.2.1.8.11
+- Fixed an issue where high-fidelity nodes with outbound interfaces could not consistently use their data ports
+- Fixed an issue where users were able to select enablement durations exceeding the five‑year limit enforced by NGC
+
 ### 82.2.1.7.3
-- Reduced the risk of S3 throttling during cloning operations.
+- Reduced the risk of S3 throttling during cloning operations
 
 ## March 2026
 ### 82.2.1.5.7

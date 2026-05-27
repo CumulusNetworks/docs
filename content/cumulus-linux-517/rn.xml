@@ -7,10 +7,40 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4992296</td>
-<td>Optimized image upgrade with warm reboot leaves the switch in a broken state, where all services fail and the configuration is removed.</td>
-<td>5.16.0-5.16.1, 5.17.0</td>
-<td>5.16.2</td>
+<td>5032793</td>
+<td>A timing issue allows a route marked for removal to still appear selected during EVPN type-5 re-advertisement. Because the EVPN advertisement path does not exclude removed paths, the route might leak and later avoid withdrawal after it becomes suppressed again.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5025704</td>
+<td>When you set or change a password that contains a username, you see a misleading password validation error.</td>
+<td>5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5025459</td>
+<td>During FRR shutdown (reboot or upgrade), zebra might crash. There is no impact on normal switch operation or the data plane. The switch comes up cleanly after reboot. </td>
+<td>5.16.3-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5024254</td>
+<td>When you apply an incorrect VLAN configuration to peer link bond member ports on the secondary MLAG switch, the MLAG peer link goes down and peer link member ports on both the primary and secondary MLAG switch go into a protodown state. The switch does not recover after NVUE rolls back the misconfiguration. To work around this issue (to restore the peer link and clear the protodown state}}), run the {{ifreload -a}} command or reboot the switch.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4996657</td>
+<td>On the Spectrum-3 switch, you might see changes in the lossy headroom extra threshold as a negative value.</td>
+<td>5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4993970</td>
+<td> Under certain conditions, AAA authentication restriction lockout attempts might not lock TACACS users out for failed REST API logins.</td>
+<td>5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4992289</td>
@@ -22,6 +52,25 @@
 <td>4990537</td>
 <td>After you run the {{nv action clear system link flap-protection violation}} command, the clear status does not show for each interface. This is a display issue and does not impact functionality.</td>
 <td>5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4988127</td>
+<td> Under certain conditions, AAA authentication restriction lockout attempts might not lock TACACS users out for failed REST API logins.</td>
+<td>5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4957546</td>
+<td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
+{{- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlanXXX: |
+              vlan-bridge-binding off}}</td>
+<td>5.16.0-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -170,6 +219,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4509255, 4546858</td>
 <td>In PTP two-step, the hardware incorrectly modifies the SYNC message correction field.</td>
 <td>5.12.0-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4508830</td>
+<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
+<td>5.11.2-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -819,6 +874,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.1-5.16.3</td>
 </tr>
 <tr>
+<td>5018899</td>
+<td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
+<td>5.15.0-5.16.3</td>
+</tr>
+<tr>
+<td>5012295</td>
+<td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
+<td>5.15.0-5.16.4</td>
+</tr>
+<tr>
 <td>5005096</td>
 <td>The AI Ethernet statistics metrics collection sometimes times out and does not return any data.</td>
 <td>5.16.2-5.16.4</td>
@@ -827,6 +892,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4992204</td>
 <td>Cumulus Linux does not support the NVUE {{nv set nve vxlan port &lt;udp-port&gt;}} command; you do not see the configured UDP port in the outer VXLAN packet header.</td>
 <td>5.14.0-5.16.4</td>
+</tr>
+<tr>
+<td>4989932</td>
+<td>Cumulus Linux 5.16 released with updated {{kexec-tools}} without required patches.</td>
+<td>5.16.0-5.16.4</td>
 </tr>
 <tr>
 <td>4989386</td>
@@ -853,6 +923,15 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <tr>
 <td>4983375</td>
 <td>Upgrading Cumulus Linux to 5.16.x causes a long boot delay and the {{nvued}} service remains in an activating state. To work around this issue, run {{nvue-git-manual-recovery.sh}} as a root user during maintenance on each node before upgrade, or on any node that has this issue. When successful, upgrade Cumulus Linux. If the script exits non-zero or reports time exceeded, follow the on-screen steps before continuing the upgrade. </td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>4983144, 5032819</td>
+<td>If the nginx {{nvue.conf}} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+nv set system api compression gzip
+nv config apply -y
+nv unset system api compression gzip
+nv config apply -y</td>
 <td>5.16.1</td>
 </tr>
 <tr>
@@ -1032,8 +1111,13 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>5.16.0-5.16.4</td>
 </tr>
 <tr>
+<td>4910990</td>
+<td>TACACS authentication is not working with flat files. The Cumulus Linux user guide is missing the {{sudo pam-auth-update --enable tacplus}} command.</td>
+<td>5.16.0-5.16.4</td>
+</tr>
+<tr>
 <td>4909312</td>
-<td>Cumulus Linux 5.14  removed the OTEL metric {{nvswitch_interface_if_in_octets}} because it duplicated {{nvswitch_interface_ether_stats_octets}}.  Cumulus Linux 5.17 restores the {{nvswitch_interface_if_in_octets}} metric so that existing telemetry consumers can continue to use the previous metric name.</td>
+<td>Cumulus Linux 5.14  removed the OTEL metric {{nvswitch_interface_if_in_octets}} because it duplicated {{nvswitch_interface_ether_stats_octets}}. </td>
 <td>5.15.0-5.16.4</td>
 </tr>
 <tr>
@@ -1274,7 +1358,7 @@ where only the aggregate should be advertised.</td>
 </tr>
 <tr>
 <td>4824902, 4944347</td>
-<td>NVUE no longer supports the {{nv set system docker state}} and {{nv show system docker state}} commands. Docker remains enabled because core services such as UMF, gNMI and WJH run in containers. During upgrade to Cumulus Linux 5.17 or later, the upgrade process removes any existing system Docker state configuration.</td>
+<td>NVUE no longer supports the {{nv set system docker state}} and {{nv show system docker state}} commands. Docker remains enabled because core services such as UMF, gNMI and WJH run in containers.</td>
 <td>5.16.0-5.16.4</td>
 </tr>
 <tr>

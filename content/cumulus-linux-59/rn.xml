@@ -432,7 +432,7 @@ cumulus@switch:~$ nv set acl one type mac
 </tr>
 <tr>
 <td>3655681</td>
-<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive BPDUs. To work around this issue, configure the port as an admin-edge port.</td>
 <td>5.7.0-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -841,16 +841,22 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
+<td>4850551</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.9.4</td>
+<td>5.9.5-5.15.1, 5.16.0-5.16.1</td>
+</tr>
+<tr>
 <td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
 <td>5.9.1-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4797691</td>
+<td>4815029</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
-<td>5.0.0-5.9.4, 5.15.1</td>
-<td>5.9.5, 5.16.0-5.16.1</td>
+<td>5.0.0-5.9.4, 5.15.1, 5.16.0-5.16.1</td>
+<td>5.9.5</td>
 </tr>
 <tr>
 <td>4789097</td>
@@ -865,16 +871,10 @@ You can safely ignore this warning.</td>
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
-<td>4714845</td>
-<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
-<td>5.9.2-5.9.4</td>
-<td>5.9.5-5.15.1, 5.16.0-5.16.1</td>
-</tr>
-<tr>
-<td>4663076, 3963232</td>
+<td>4717752, 3963232</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
 <td>5.3.1-5.9.4</td>
-<td>5.9.5-5.15.1, 5.11.5-5.15.1, 5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td>5.9.5-5.15.1, 5.11.5-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -1248,7 +1248,7 @@ cumulus@switch:~$ nv set acl one type mac
 </tr>
 <tr>
 <td>3655681</td>
-<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive BPDUs. To work around this issue, configure the port as an admin-edge port.</td>
 <td>5.7.0-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -1624,7 +1624,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4535696</td>
-<td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
+<td>When you configure the RADIUS authentication order with {{local}} first and {{radius}} second, the RADIUS user is authenticated as a default user name. </td>
 <td>5.12.1-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
@@ -1901,16 +1901,22 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td></td>
 </tr>
 <tr>
+<td>4850551</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.9.4</td>
+<td>5.9.5-5.15.1, 5.16.0-5.16.1</td>
+</tr>
+<tr>
 <td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
 <td>5.9.1-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4797691</td>
+<td>4815029</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
-<td>5.0.0-5.9.4, 5.15.1</td>
-<td>5.9.5, 5.16.0-5.16.1</td>
+<td>5.0.0-5.9.4, 5.15.1, 5.16.0-5.16.1</td>
+<td>5.9.5</td>
 </tr>
 <tr>
 <td>4771521</td>
@@ -1919,16 +1925,10 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
-<td>4714845</td>
-<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
-<td>5.9.2-5.9.4</td>
-<td>5.9.5-5.15.1, 5.16.0-5.16.1</td>
-</tr>
-<tr>
-<td>4663076, 3963232</td>
+<td>4717752, 3963232</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
 <td>5.3.1-5.9.4</td>
-<td>5.9.5-5.15.1, 5.11.5-5.15.1, 5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td>5.9.5-5.15.1, 5.11.5-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -2491,7 +2491,7 @@ cumulus@switch:~$ nv set acl one type mac
 </tr>
 <tr>
 <td>3655681</td>
-<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive BPDUs. To work around this issue, configure the port as an admin-edge port.</td>
 <td>5.7.0-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -2860,16 +2860,22 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
+<td>4850551</td>
+<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
+<td>5.9.2-5.9.4</td>
+<td>5.9.5-5.15.1, 5.16.0-5.16.1</td>
+</tr>
+<tr>
 <td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
 <td>5.9.1-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4797691</td>
+<td>4815029</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
-<td>5.0.0-5.9.4, 5.15.1</td>
-<td>5.9.5, 5.16.0-5.16.1</td>
+<td>5.0.0-5.9.4, 5.15.1, 5.16.0-5.16.1</td>
+<td>5.9.5</td>
 </tr>
 <tr>
 <td>4771521</td>
@@ -2878,16 +2884,10 @@ You can safely ignore this warning.</td>
 <td>5.16.0-5.16.1</td>
 </tr>
 <tr>
-<td>4714845</td>
-<td>The switch installs suboptimal routes in the routing table and advertises them out.</td>
-<td>5.9.2-5.9.4</td>
-<td>5.9.5-5.15.1, 5.16.0-5.16.1</td>
-</tr>
-<tr>
-<td>4663076, 3963232</td>
+<td>4717752, 3963232</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
 <td>5.3.1-5.9.4</td>
-<td>5.9.5-5.15.1, 5.11.5-5.15.1, 5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td>5.9.5-5.15.1, 5.11.5-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -3444,7 +3444,7 @@ cumulus@switch:~$ nv set acl one type mac
 </tr>
 <tr>
 <td>3655681</td>
-<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive BPDUs. To work around this issue, configure the port as an admin-edge port.</td>
 <td>5.7.0-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -4059,16 +4059,16 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td></td>
 </tr>
 <tr>
-<td>4797691</td>
+<td>4815029</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
-<td>5.0.0-5.9.4, 5.15.1</td>
-<td>5.9.5, 5.16.0-5.16.1</td>
+<td>5.0.0-5.9.4, 5.15.1, 5.16.0-5.16.1</td>
+<td>5.9.5</td>
 </tr>
 <tr>
-<td>4663076, 3963232</td>
+<td>4717752, 3963232</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
 <td>5.3.1-5.9.4</td>
-<td>5.9.5-5.15.1, 5.11.5-5.15.1, 5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td>5.9.5-5.15.1, 5.11.5-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -4839,7 +4839,7 @@ cumulus@switch:~$ nv set acl one type mac
 </tr>
 <tr>
 <td>3655681</td>
-<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive BPDUs. To work around this issue, configure the port as an admin-edge port.</td>
 <td>5.7.0-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -5195,16 +5195,16 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
-<td>4797691</td>
+<td>4815029</td>
 <td>The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues.</td>
-<td>5.0.0-5.9.4, 5.15.1</td>
-<td>5.9.5, 5.16.0-5.16.1</td>
+<td>5.0.0-5.9.4, 5.15.1, 5.16.0-5.16.1</td>
+<td>5.9.5</td>
 </tr>
 <tr>
-<td>4663076, 3963232</td>
+<td>4717752, 3963232</td>
 <td>When you add or remove routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
 <td>5.3.1-5.9.4</td>
-<td>5.9.5-5.15.1, 5.11.5-5.15.1, 5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td>5.9.5-5.15.1, 5.11.5-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -5798,7 +5798,7 @@ cumulus@switch:~$ nv set acl one type mac
 </tr>
 <tr>
 <td>3655681</td>
-<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive BPDUs. To work around this issue, configure the port as an admin-edge port.</td>
 <td>5.7.0-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>

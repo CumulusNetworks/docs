@@ -549,7 +549,7 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 </tr>
 <tr>
 <td>3655681</td>
-<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive BPDUs. To work around this issue, configure the port as an admin-edge port.</td>
 <td>5.7.0-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>

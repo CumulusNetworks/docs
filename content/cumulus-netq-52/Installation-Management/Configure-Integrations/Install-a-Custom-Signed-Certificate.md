@@ -8,7 +8,7 @@ toc: 3
 When you first log in to the NetQ UI as part of an on-premises deployment, your browser will display a warning indicating that the default certificate is not trusted. You can avoid this warning by installing your own, custom-signed certificate using the steps outlined on this page. The self-signed certificate is sufficient for non-production environments or cloud deployments. 
 
 {{%notice note%}}
-The steps outlined in this section apply to NetQ version 5.2.1 or later.
+The steps outlined in this section apply to NetQ version 5.2.1 or later. For earlier versions, refer to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-51/Installation-Management/Configure-Integrations/Install-a-Custom-Signed-Certificate/" text="previous version of this guide">}}.
 {{%/notice%}}
 {{%notice note%}}
 If you already have a certificate installed and want to change or update it, run `kubectl delete secret netq-gateway-tls \--namespace kgateway-system` before following the steps in this section.
@@ -18,9 +18,7 @@ You need the following items to perform the certificate installation:
 - A valid X509 certificate, containing a Subject Alternative Name (SAN) attribute.
 - A private key file for the certificate.
 - A DNS record name configured to access the NetQ UI. The FQDN should match the common name of the certificate. If you use a wild card in the common name &mdash; for example, if the common name of the certificate is _*.example.com_ &mdash; then the NetQ telemetry server should reside on a subdomain of that domain, accessible via a URL like _netq.example.com_.
-- A functioning and healthy NetQ instance.
-
-You can verify this by running the `netq show opta-health` command.
+- A functioning and healthy NetQ instance.You can verify this by running the `netq show opta-health` command.
 
 ## Install a Certificate using the NetQ CLI
 
@@ -52,43 +50,42 @@ You can verify this by running the `netq show opta-health` command.
     1. Create a new file called `ingress.yaml`.
 
     2. Copy and add the following content to the file. Replace `<your-hostname>` with the FQDN of the NetQ VM.
-<!--need updated and formatted yaml from Shyamala-->
+
 ```
-apiVersion: networking.k8s.io/v1
+apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: netq-gui-httproute-external
-  namespace: netq-infra
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+  namespace: netq-eth
 spec:
-  ingressClassName: ingress-nginx-class
-  rules:
-  - host: <your-hostname>
-    http:
-      paths:
-      - path: /(api/netq|netq|netq-gui|nmx).*
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: kong-dp-kong-proxy
-            port:
-              number: 8443
-  tls:
-  - hosts:
+  parentRefs:
+    - name: netq-gateway
+      namespace: kgateway-system
+      sectionName: https
+  hostnames:
     - <your-hostname>
-    secretName: netq-gui-ingress-tls
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: netq-gui
+          port: 80
+      timeouts:
+        request: 3600s
+        backendRequest: 3600s
 ```
 
 
 5. Apply the new rule:
 
-    ```
-    nvidia@netq-ts:~$ kubectl apply -f ingress.yaml
-    ingress.extensions/netq-gui-ingress-external configured
-    ```
-    
-    The message above appears if your ingress rule is successfully configured.
+```
+nvidia@netq-ts:~$ kubectl apply -f ingress.yaml
+
+httproute.gateway.networking.k8s.io/netq-gui-httproute-external configured
+```
+The message above appears if your ingress rule is successfully configured.
 
  
 {{</tab>}}

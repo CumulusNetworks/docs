@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5058751 | The NVUE <code>nv show interface <interface-id qos pfc</code> command does not support interface ranges. | 5.16.5 | |
 | 5057192 | With <code>svi-force-up</code> enabled, the SVI link state is unexpectedly <code>NO-CARRIER</code> and <code>LOWERLAYERDOWN</code> when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply <code>vlan-bridge-binding off</code> to each SVI with a snippet; for example:<br><pre><code>- set:<br><br />   system:<br><br />     config:<br><br />       snippet:<br><br />         ifupdown2_eni:<br><br />           vlanXXX: \|<br><br />             vlan-bridge-binding off</code><br></pre> | 5.16.0-5.16.5 | |
 | 5057191 | With <code>svi-force-up</code> enabled, the SVI link state is unexpectedly <code>NO-CARRIER</code> and <code>LOWERLAYERDOWN</code> when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply <code>vlan-bridge-binding off</code> to each SVI with a snippet; for example:<br><pre><code>- set:<br><br />   system:<br><br />     config:<br><br />       snippet:<br><br />         ifupdown2_eni:<br><br />           vlanXXX: \|<br><br />             vlan-bridge-binding off</code><br></pre> | 5.16.0-5.16.5 | |
 | 5025459 | During FRR shutdown (reboot or upgrade), zebra might crash. There is no impact on normal switch operation or the data plane. The switch comes up cleanly after reboot.  | 5.16.3-5.16.5 | |
@@ -218,7 +219,7 @@ pdfhidden: True
 ### Fixed Issues in 5.16.5
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| 5057365 | If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created. | 5.16.1-5.16.4 | |
+| 5057365 | If the NGINX <code>nvue.conf</code> configuration file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the <code>nvue.conf</code> file being taken from the debian package instead of from the NVUE configuration. | 5.16.1-5.16.4 | |
 | 5057188 | The <code>nv show interface <interface-id> qos pfc</code> command takes approximately three minutes to execute. | 5.16.1-5.16.4 | |
 | 5057187 | A timing issue allows a route marked for removal to still appear selected during EVPN type-5 re-advertisement. Because the EVPN advertisement path does not exclude removed paths, the route might leak and later avoid withdrawal after it becomes suppressed again. | 5.16.1-5.16.4 | |
 | 5057186 | During warm boot on adaptive routing enabled interfaces, you might see momentary traffic disruption. | 5.16.1-5.16.4 | |

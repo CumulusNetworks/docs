@@ -7,7 +7,33 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5032793</td>
+<td>5057192</td>
+<td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
+{{- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlanXXX: |
+              vlan-bridge-binding off}}</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5057191</td>
+<td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
+{{- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlanXXX: |
+              vlan-bridge-binding off}}</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5057187</td>
 <td>A timing issue allows a route marked for removal to still appear selected during EVPN type-5 re-advertisement. Because the EVPN advertisement path does not exclude removed paths, the route might leak and later avoid withdrawal after it becomes suppressed again.</td>
 <td>5.16.1</td>
 <td></td>
@@ -1551,6 +1577,32 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5057192</td>
+<td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
+{{- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlanXXX: |
+              vlan-bridge-binding off}}</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5057191</td>
+<td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
+{{- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlanXXX: |
+              vlan-bridge-binding off}}</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>5027908</td>

@@ -5,7 +5,7 @@ weight: 325
 toc: 3
 ---
 
-NetQ must register with the NMX-T and NMX-C services to begin receiving network telemetry and control data. Communication between these services is secured using certificate-based mTLS encryption. These certificates are automatically created during the installation process, but you must configure them on the switch trays hosting NMX-C and NMX-T.
+NetQ must register with the NMX-T (telemetry) and NMX-C (controller) services to begin receiving network telemetry and control data. Communication between these services is secured using certificate-based mTLS encryption. These certificates are automatically created during the installation process, but you must configure them on the switch trays hosting NMX-C and NMX-T.
 
 {{<notice tip>}}
 You can also perform the steps outlined on this page using the <code>/v1/switch-profiles</code> endpoint. Refer to {{<link url="NVLink-Bringup" text="NVLink Bringup">}} for more information.

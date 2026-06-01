@@ -20,7 +20,7 @@ You can specify the following options with the `nv config apply` command:
 
 - `--y` or `--assume-yes` automatically replies yes to all prompts.
 - `--assume-no` automatically replies no to all prompts.
-- `--confirm` applies the configuration change, but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the `apply --confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
+- `--confirm` applies the configuration change, but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the `apply --confirm <time>` command. For example, `nv config apply --confirm 60m` requires you to confirm within one hour. You can specify the time units in seconds (`s`), minutes (`m`), or hours (`h`).
 - `--confirm-status` shows the amount of time left before the automatic rollback.
 
 ### Version History
@@ -31,6 +31,24 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv config apply --y
+```
+
+```
+cumulus@switch:~$ nv config apply --confirm
+Applied configuration will be rolled back after 10 minutes unless confirmed.
+  Configuration will be rolled back at 2025-09-17T15:47:59+00:00
+
+To keep this configuration, use
+
+    nv config apply [<revision>] --confirm-yes
+
+To roll this configuration back immediately, use
+
+    nv config apply [<revision>] --confirm-no
+
+To see how much time is left until automatic roll back, use
+
+    nv config apply [<revision>] --confirm-status
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

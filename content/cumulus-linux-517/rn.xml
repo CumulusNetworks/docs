@@ -7,6 +7,38 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5057192</td>
+<td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
+{{- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlanXXX: |
+              vlan-bridge-binding off}}</td>
+<td>5.16.0-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057191</td>
+<td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
+{{- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlanXXX: |
+              vlan-bridge-binding off}}</td>
+<td>5.16.0-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5032793</td>
+<td>A timing issue allows a route marked for removal to still appear selected during EVPN type-5 re-advertisement. Because the EVPN advertisement path does not exclude removed paths, the route might leak and later avoid withdrawal after it becomes suppressed again.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5025704</td>
 <td>When you set or change a password that contains a username, you see a misleading password validation error.</td>
 <td>5.17.0</td>
@@ -16,6 +48,18 @@
 <td>5025459</td>
 <td>During FRR shutdown (reboot or upgrade), zebra might crash. There is no impact on normal switch operation or the data plane. The switch comes up cleanly after reboot. </td>
 <td>5.16.3-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5024254</td>
+<td>When you apply an incorrect VLAN configuration to peer link bond member ports on the secondary MLAG switch, the MLAG peer link goes down and peer link member ports on both the primary and secondary MLAG switch go into a protodown state. The switch does not recover after NVUE rolls back the misconfiguration. To work around this issue (to restore the peer link and clear the protodown state}}), run the {{ifreload -a}} command or reboot the switch.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5015786</td>
+<td>The BGP allowas-in route map configured under EVPN with NVUE generates invalid FRR configuration and results in an apply failure with rollback. The command is only supported for IPv4 and IPv6.</td>
+<td>5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -40,6 +84,25 @@
 <td>4990537</td>
 <td>After you run the {{nv action clear system link flap-protection violation}} command, the clear status does not show for each interface. This is a display issue and does not impact functionality.</td>
 <td>5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4988127</td>
+<td> Under certain conditions, AAA authentication restriction lockout attempts might not lock TACACS users out for failed REST API logins.</td>
+<td>5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4957546</td>
+<td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
+{{- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlanXXX: |
+              vlan-bridge-binding off}}</td>
+<td>5.16.0-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -133,10 +196,10 @@ sudo reboot</td>
 <tr>
 <td>4548512</td>
 <td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
-This issue can occur in the following conditions:
+This issue can occur under the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change, such as a link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command. </td>
 <td>5.11.0-5.17.0</td>
 <td></td>
 </tr>
@@ -162,13 +225,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4535699</td>
-<td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
+<td>When you configure the RADIUS authentication order with {{local}} first and {{radius}} second, the RADIUS user is authenticated as a default user name. </td>
 <td>5.11.3-5.17.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4535696</td>
-<td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
+<td>When you configure the RADIUS authentication order with {{local}} first and {{radius}} second, the RADIUS user is authenticated as a default user name. </td>
 <td>5.12.1-5.17.0</td>
 <td>5.9.4</td>
 </tr>
@@ -188,6 +251,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4509255, 4546858</td>
 <td>In PTP two-step, the hardware incorrectly modifies the SYNC message correction field.</td>
 <td>5.12.0-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4508830</td>
+<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
+<td>5.11.2-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -258,7 +327,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4337278</td>
-<td>In certain cases, statically configured VXLAN entries age out after a peerlink flap.</td>
+<td>Statically configured VXLAN entries sometimes age out after a peer link flap.</td>
 <td>5.12.0-5.17.0</td>
 <td></td>
 </tr>
@@ -312,7 +381,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4177067</td>
-<td>When performing a package upgrade, {{nslcd}} installation might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
+<td>When performing a package upgrade, {{nslcd}} installation might open an interactive dialog to configure {{nslcd.conf}}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
 <td>5.11.0-5.17.0</td>
@@ -328,7 +397,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4142857</td>
-<td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR] messages.</td>
+<td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR]}} messages.</td>
 <td>5.10.0-5.17.0</td>
 <td></td>
 </tr>
@@ -536,7 +605,7 @@ cumulus@switch:~$ sudo apt upgrade
 </tr>
 <tr>
 <td>3655681</td>
-<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive BPDUs. To work around this issue, configure the port as an admin-edge port.</td>
 <td>5.7.0-5.17.0</td>
 <td></td>
 </tr>
@@ -837,6 +906,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.1-5.16.3</td>
 </tr>
 <tr>
+<td>5018899</td>
+<td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
+<td>5.15.0-5.16.3</td>
+</tr>
+<tr>
+<td>5012295</td>
+<td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
+<td>5.15.0-5.16.4</td>
+</tr>
+<tr>
 <td>5005096</td>
 <td>The AI Ethernet statistics metrics collection sometimes times out and does not return any data.</td>
 <td>5.16.2-5.16.4</td>
@@ -845,6 +924,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4992204</td>
 <td>Cumulus Linux does not support the NVUE {{nv set nve vxlan port &lt;udp-port&gt;}} command; you do not see the configured UDP port in the outer VXLAN packet header.</td>
 <td>5.14.0-5.16.4</td>
+</tr>
+<tr>
+<td>4989932</td>
+<td>Cumulus Linux 5.16 released with updated {{kexec-tools}} without required patches.</td>
+<td>5.16.0-5.16.4</td>
 </tr>
 <tr>
 <td>4989386</td>
@@ -944,7 +1028,7 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>4937657</td>
-<td>During warm and fast reboots, NVUE intentionally skips a comprehensive Git cleanup to adhere to strict service start-up SLAs. When this cleanup is bypassed, existing Git maintenance debt, such as unreachable loose objects or blocked Garbage Collection (GC) states, remain in place and accumulate across successive reboots. The lightweight housekeeping performed during a standard {{nv config apply}} is not equivalent to a full cleanup. Consequently, stale objects and blocked GC states can persist until the repository becomes unreadable, eventually causing git commit operations to fail with the error {{fatal: could not parse HEAD}}.To work around this issue, run {{sudo systemctl restart nvued.service}} manually after a warm or fast reboot to trigger the full cleanup path skipped during the automated startup sequence.</td>
+<td>During warm and fast reboots, NVUE intentionally skips a comprehensive Git cleanup to adhere to strict service start-up SLAs. When this cleanup is bypassed, existing Git maintenance debt, such as unreachable loose objects or blocked Garbage Collection (GC) states, remain in place and accumulate across successive reboots. The lightweight housekeeping performed during a standard {{nv config apply}} is not equivalent to a full cleanup. Consequently, stale objects and blocked GC states can persist until the repository becomes unreadable, eventually causing git commit operations to fail with the error {{fatal: could not parse HEAD}}.To work around this issue, run {{sudo systemctl restart nvued.service}} manually after a warm or fast reboot to trigger the full cleanup path.</td>
 <td>5.16.1</td>
 </tr>
 <tr>
@@ -954,7 +1038,7 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>4931956</td>
-<td>Upgrading Cumulus Linux from 5.13.1 or earlier by package (APT) upgrade with NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package (APT) upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package (APT) upgrade with NVUE commands.</td>
+<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade using NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks ,or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package upgrade with NVUE commands.</td>
 <td>5.13.1-5.16.4</td>
 </tr>
 <tr>
@@ -1056,6 +1140,11 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <tr>
 <td>4911812</td>
 <td>Running {{snmpwalk}} of entity-mib displays empty values for the {{entPhysicalName}} and {{entPhysicalAlias}} parameters.</td>
+<td>5.16.0-5.16.4</td>
+</tr>
+<tr>
+<td>4910990</td>
+<td>TACACS authentication is not working with flat files. The Cumulus Linux user guide is missing the {{sudo pam-auth-update --enable tacplus}} command.</td>
 <td>5.16.0-5.16.4</td>
 </tr>
 <tr>

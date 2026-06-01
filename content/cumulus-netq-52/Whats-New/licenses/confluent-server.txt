@@ -182,6 +182,10 @@ third-party archives.
   governing permissions and limitations under the License.
 
 
+Unknown License
+The license has not been identified.
+
+
 Basic Proprietary Commercial License
 END-USER LICENSE AGREEMENT FOR ACME SOFTWARE
 ============================================
@@ -368,10 +372,6 @@ Services Agreement, ACMEs entire liability regarding Support Services shall be
 governed by the terms of that agreement. Because some states and jurisdictions do
 not allow the exclusion or limitation of liability, the above limitation may not
 apply to you.
-
-
-Unknown License
-The license has not been identified.
 
 
 Apache License 2.0

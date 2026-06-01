@@ -44,7 +44,7 @@
 </tr>
 <tr>
 <td>4931956</td>
-<td>Upgrading Cumulus Linux from 5.13.1 or earlier by package (APT) upgrade with NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package (APT) upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package (APT) upgrade with NVUE commands.</td>
+<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade using NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks ,or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package upgrade with NVUE commands.</td>
 <td>5.13.1-5.16.4</td>
 <td></td>
 </tr>
@@ -60,6 +60,12 @@
 hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</td>
 <td>5.12.1-5.16.4</td>
 <td></td>
+</tr>
+<tr>
+<td>4922104</td>
+<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
+<td>5.13.1-5.16.0</td>
+<td>5.16.1-5.16.4</td>
 </tr>
 <tr>
 <td>4918342, 4641291</td>
@@ -92,12 +98,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
 <td>5.9.1-5.16.4</td>
 <td></td>
-</tr>
-<tr>
-<td>4881679</td>
-<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
-<td>5.13.1-5.16.0</td>
-<td>5.16.1-5.16.4</td>
 </tr>
 <tr>
 <td>4871161</td>
@@ -379,10 +379,10 @@ To work around this issue, disable SNMP with the {{nv set system snmp-server sta
 <tr>
 <td>4548512</td>
 <td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
-This issue can occur in the following conditions:
+This issue can occur under the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change, such as a link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command. </td>
 <td>5.11.0-5.16.4</td>
 <td></td>
 </tr>
@@ -430,13 +430,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4535699</td>
-<td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
+<td>When you configure the RADIUS authentication order with {{local}} first and {{radius}} second, the RADIUS user is authenticated as a default user name. </td>
 <td>5.11.3-5.16.4</td>
 <td></td>
 </tr>
 <tr>
 <td>4535696</td>
-<td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
+<td>When you configure the RADIUS authentication order with {{local}} first and {{radius}} second, the RADIUS user is authenticated as a default user name. </td>
 <td>5.12.1-5.16.4</td>
 <td>5.9.4</td>
 </tr>
@@ -898,7 +898,7 @@ onie-nos-install /$devname/onie-installer</td>
 </tr>
 <tr>
 <td>4337278</td>
-<td>In certain cases, statically configured VXLAN entries age out after a peerlink flap.</td>
+<td>Statically configured VXLAN entries sometimes age out after a peer link flap.</td>
 <td>5.12.0-5.16.4</td>
 <td></td>
 </tr>
@@ -952,7 +952,7 @@ onie-nos-install /$devname/onie-installer</td>
 </tr>
 <tr>
 <td>4177067</td>
-<td>When performing a package upgrade, {{nslcd}} installation might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
+<td>When performing a package upgrade, {{nslcd}} installation might open an interactive dialog to configure {{nslcd.conf}}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
 <td>5.11.0-5.16.4</td>
@@ -968,7 +968,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4142857</td>
-<td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR] messages.</td>
+<td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR]}} messages.</td>
 <td>5.10.0-5.16.4</td>
 <td></td>
 </tr>
@@ -1188,7 +1188,7 @@ cumulus@switch:~$ sudo apt upgrade
 </tr>
 <tr>
 <td>3655681</td>
-<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive BPDUs. To work around this issue, configure the port as an admin-edge port.</td>
 <td>5.7.0-5.16.4</td>
 <td></td>
 </tr>
@@ -1780,10 +1780,10 @@ To work around this issue, disable SNMP with the {{nv set system snmp-server sta
 <tr>
 <td>4548512</td>
 <td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
-This issue can occur in the following conditions:
+This issue can occur under the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change, such as a link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command. </td>
 <td>5.11.0-5.16.4</td>
 <td></td>
 </tr>
@@ -1819,13 +1819,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4535699</td>
-<td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
+<td>When you configure the RADIUS authentication order with {{local}} first and {{radius}} second, the RADIUS user is authenticated as a default user name. </td>
 <td>5.11.3-5.16.4</td>
 <td></td>
 </tr>
 <tr>
 <td>4535696</td>
-<td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
+<td>When you configure the RADIUS authentication order with {{local}} first and {{radius}} second, the RADIUS user is authenticated as a default user name. </td>
 <td>5.12.1-5.16.4</td>
 <td>5.9.4</td>
 </tr>
@@ -2254,7 +2254,7 @@ onie-nos-install /$devname/onie-installer</td>
 </tr>
 <tr>
 <td>4337278</td>
-<td>In certain cases, statically configured VXLAN entries age out after a peerlink flap.</td>
+<td>Statically configured VXLAN entries sometimes age out after a peer link flap.</td>
 <td>5.12.0-5.16.4</td>
 <td></td>
 </tr>
@@ -2308,7 +2308,7 @@ onie-nos-install /$devname/onie-installer</td>
 </tr>
 <tr>
 <td>4177067</td>
-<td>When performing a package upgrade, {{nslcd}} installation might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
+<td>When performing a package upgrade, {{nslcd}} installation might open an interactive dialog to configure {{nslcd.conf}}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
 <td>5.11.0-5.16.4</td>
@@ -2324,7 +2324,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4142857</td>
-<td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR] messages.</td>
+<td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR]}} messages.</td>
 <td>5.10.0-5.16.4</td>
 <td></td>
 </tr>
@@ -2544,7 +2544,7 @@ cumulus@switch:~$ sudo apt upgrade
 </tr>
 <tr>
 <td>3655681</td>
-<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive BPDUs. To work around this issue, configure the port as an admin-edge port.</td>
 <td>5.7.0-5.16.4</td>
 <td></td>
 </tr>

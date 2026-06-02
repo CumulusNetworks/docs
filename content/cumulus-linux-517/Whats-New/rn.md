@@ -14,8 +14,12 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5057217 | When you gracefully shut down the switch, traffic continues to send on BGP peers. | 5.16.1-5.17.0 | |
 | 5057192 | With <code>svi-force-up</code> enabled, the SVI link state is unexpectedly <code>NO-CARRIER</code> and <code>LOWERLAYERDOWN</code> when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply <code>vlan-bridge-binding off</code> to each SVI with a snippet; for example:<br><pre><code>- set:<br><br />   system:<br><br />     config:<br><br />       snippet:<br><br />         ifupdown2_eni:<br><br />           vlanXXX: \|<br><br />             vlan-bridge-binding off</code><br></pre> | 5.16.0-5.17.0 | |
 | 5057191 | With <code>svi-force-up</code> enabled, the SVI link state is unexpectedly <code>NO-CARRIER</code> and <code>LOWERLAYERDOWN</code> when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply <code>vlan-bridge-binding off</code> to each SVI with a snippet; for example:<br><pre><code>- set:<br><br />   system:<br><br />     config:<br><br />       snippet:<br><br />         ifupdown2_eni:<br><br />           vlanXXX: \|<br><br />             vlan-bridge-binding off</code><br></pre> | 5.16.0-5.17.0 | |
+| 5057189 | The NVUE REST API returns an HTTP 503 <code>Service Temporarily Unavailable</code> for all requests. | 5.16.1-5.17.0 | |
+| 5057186 | During warm boot on adaptive routing enabled interfaces, you might see momentary traffic disruption. | 5.16.1-5.17.0 | |
+| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.17.0 | |
 | 5032793 | A timing issue allows a route marked for removal to still appear selected during EVPN type-5 re-advertisement. Because the EVPN advertisement path does not exclude removed paths, the route might leak and later avoid withdrawal after it becomes suppressed again. | 5.16.1-5.17.0 | |
 | 5025704 | When you set or change a password that contains a username, you see a misleading password validation error. | 5.17.0 | |
 | 5025459 | During FRR shutdown (reboot or upgrade), zebra might crash. There is no impact on normal switch operation or the data plane. The switch comes up cleanly after reboot.  | 5.16.3-5.17.0 | |
@@ -152,6 +156,10 @@ pdfhidden: True
 ### Fixed Issues in 5.17.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| 5058751 | The NVUE <code>nv show interface <interface-id qos pfc</code> command does not support interface ranges. |  | |
+| 5056596 | The <code>nv show interface <interface-id> qos pfc</code> command takes approximately three minutes to execute. | 5.16.1-5.16.4 | |
+| 5032841, 4913679 | On Spectrum-1 switch, creating a bridge interface (SVI) fails with the error message <code>STATUS_NO_RESOURCES</code>.  | 5.16.1-5.16.4 | |
+| 5032819, 4983144 | If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created. | 5.16.1-5.16.4 | |
 | 5029624 | The <code>/var/log/event_logger</code> file does not rotate when the file size exceeds 1MB, which might unexpectedly fill the <code>/var</code> partition. To work around this issue, remove the rsyslog configuration file <code>/etc/rsyslog.d/12-event-logger.conf</code> for event-logger and restart the rsyslog daemon with the <code>systemctl restart rsyslog</code> command to restore the default configuration. | 5.16.1-5.16.3 | |
 | 5023394 |  On Spectrum-1 switches, where the allocated MAC range crosses the hardware MAC profile boundary, the range check incorrectly identifies out-of-range MAC addresses as compatible. This causes the switch to program a router interface with a MAC address that the hardware cannot accept, resulting in interface creation failures with a <code>No More Resources</code> error. | 5.16.1-5.16.3 | |
 | 5018899 | RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests. | 5.15.0-5.16.3 | |

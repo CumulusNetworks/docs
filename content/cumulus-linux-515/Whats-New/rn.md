@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.16.4 | |
 | 5027908 | RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests. | 5.15.0-5.16.3 | 5.16.4|
 | 5012295 | Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload.  | 5.15.0-5.16.4 | |
 | 4992204 | Cumulus Linux does not support the NVUE <code>nv set nve vxlan port <udp-port></code> command; you do not see the configured UDP port in the outer VXLAN packet header. | 5.14.0-5.16.4 | |
@@ -271,6 +272,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.16.4 | |
 | 5018899 | RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests. | 5.15.0-5.16.3 | 5.16.4|
 | 5012295 | Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload.  | 5.15.0-5.16.4 | |
 | 4992204 | Cumulus Linux does not support the NVUE <code>nv set nve vxlan port <udp-port></code> command; you do not see the configured UDP port in the outer VXLAN packet header. | 5.14.0-5.16.4 | |

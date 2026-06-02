@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5057217</td>
+<td>When you gracefully shut down the switch, traffic continues to send on BGP peers.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5057192</td>
 <td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
 {{- set:
@@ -30,6 +36,24 @@
             vlanXXX: |
               vlan-bridge-binding off}}</td>
 <td>5.16.0-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057189</td>
+<td>The NVUE REST API returns an HTTP 503 {{Service Temporarily Unavailable}} for all requests.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057186</td>
+<td>During warm boot on adaptive routing enabled interfaces, you might see momentary traffic disruption.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5056358</td>
+<td>sFlow does not work on 100GbE 8x breakout ports.</td>
+<td>5.9.2-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -894,6 +918,26 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>5058751</td>
+<td>The NVUE {{nv show interface &lt;interface-id qos pfc}} command does not support interface ranges.</td>
+<td></td>
+</tr>
+<tr>
+<td>5056596</td>
+<td>The {{nv show interface &lt;interface-id&gt; qos pfc}} command takes approximately three minutes to execute.</td>
+<td>5.16.1-5.16.4</td>
+</tr>
+<tr>
+<td>5032841, 4913679</td>
+<td>On Spectrum-1 switch, creating a bridge interface (SVI) fails with the error message {{STATUS_NO_RESOURCES}}. </td>
+<td>5.16.1-5.16.4</td>
+</tr>
+<tr>
+<td>5032819, 4983144</td>
+<td>If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created.</td>
+<td>5.16.1-5.16.4</td>
 </tr>
 <tr>
 <td>5029624</td>

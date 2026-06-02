@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5056358</td>
+<td>sFlow does not work on 100GbE 8x breakout ports.</td>
+<td>5.9.2-5.16.4</td>
+<td></td>
+</tr>
+<tr>
 <td>4986333</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.16.4</td>
@@ -1049,6 +1055,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5056358</td>
+<td>sFlow does not work on 100GbE 8x breakout ports.</td>
+<td>5.9.2-5.16.4</td>
+<td></td>
+</tr>
+<tr>
 <td>4986333</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.16.4</td>
@@ -2086,6 +2098,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5056358</td>
+<td>sFlow does not work on 100GbE 8x breakout ports.</td>
+<td>5.9.2-5.16.4</td>
+<td></td>
+</tr>
+<tr>
 <td>4986333</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.16.4</td>
@@ -3096,6 +3114,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5056358</td>
+<td>sFlow does not work on 100GbE 8x breakout ports.</td>
+<td>5.9.2-5.16.4</td>
+<td></td>
 </tr>
 <tr>
 <td>4986333</td>
@@ -4286,6 +4310,12 @@ nv config apply -y</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5056358</td>
+<td>sFlow does not work on 100GbE 8x breakout ports.</td>
+<td>5.9.2-5.16.4</td>
+<td></td>
 </tr>
 <tr>
 <td>4986329</td>
@@ -5538,6 +5568,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5056358</td>
+<td>sFlow does not work on 100GbE 8x breakout ports.</td>
+<td>5.9.2-5.16.4</td>
+<td></td>
 </tr>
 <tr>
 <td>4986329</td>

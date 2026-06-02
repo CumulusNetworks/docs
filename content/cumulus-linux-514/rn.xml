@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5056358</td>
+<td>sFlow does not work on 100GbE 8x breakout ports.</td>
+<td>5.9.2-5.16.4</td>
+<td></td>
+</tr>
+<tr>
 <td>4992204</td>
 <td>Cumulus Linux does not support the NVUE {{nv set nve vxlan port &lt;udp-port&gt;}} command; you do not see the configured UDP port in the outer VXLAN packet header.</td>
 <td>5.14.0-5.16.4</td>

@@ -29,7 +29,7 @@ Cumulus Linux 5.18 contains new features and improvements, and provides bug fixe
 - VRF scale limits for 802.1x and dynamic VRF provisioning
 - FW based BFD acceleration with Cumulus
 - Systemd Target-Based Service Management for multi-asic
-- Spectrum-X" Profile Support 
+- Spectrum-X" Profile Support
 - Avoid FRR service restart when a FRR daemon (non-zebra) is dynamically enabled or disabled
 - Remove Support for Vlan 1
 - Support for IP source guard on user-facing access port

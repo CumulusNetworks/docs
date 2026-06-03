@@ -12,8 +12,9 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 
 Cumulus Linux 5.18 contains new features and improvements, and provides bug fixes.
 
-Multi-ASIC CPO Switch SN5800-LD
-Single ASIC CPO switch | SN5810-LD
+- NVIDIA SN6600_LD (Beta)
+- NVIDIA SN5800-LD (Multi-ASIC CPO)
+- NVIDIA SN5810-LD (Single ASIC CPO)
 
 ### New Features and Enhancements
 
@@ -22,13 +23,13 @@ Single ASIC CPO switch | SN5810-LD
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
 - {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
-- EVPN MH/MLAG without Unique SVI IP
+- {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
+- EVPN Multihoming and MLAG without a u nique SVI IP address
 - Password changed within 8-character differences
 - VRF scale limits for 802.1x and dynamic VRF provisioning
 - FW based BFD acceleration with Cumulus
-- Simplified User Profile support
 - Systemd Target-Based Service Management for multi-asic
-- Spectrum-X" Profile Support 
+- Spectrum-X" Profile Support
 - Avoid FRR service restart when a FRR daemon (non-zebra) is dynamically enabled or disabled
 - Remove Support for Vlan 1
 - Support for IP source guard on user-facing access port

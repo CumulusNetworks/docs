@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 5027908 | RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests. | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 5012295 | Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload.  | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 4992204 | Cumulus Linux does not support the NVUE <code>nv set nve vxlan port <udp-port></code> command; you do not see the configured UDP port in the outer VXLAN packet header. | 5.14.0-5.15.1, 5.16.0-5.16.1 | |
@@ -64,6 +65,7 @@ pdfhidden: True
 | 4838527 | On a high port scale system, streaming telemetry for interface and buffer statistics (GNMI or OTEL) together with the PFC watchdog feature, causes samples of telemetry data to fail to export from the system periodically and kernel memory use might increase. | 5.14.0-5.15.1 | 5.16.0-5.16.1|
 | 4835058 | When you add or remove bond members, the sflow state and rate are incorrect.  | 5.13.1-5.15.1 | 5.16.0-5.16.1|
 | 4830305, 4830251, 4834348 | After an optimized image upgrade, certain disabled <code>systemd</code> services that are replaced with VRF-based services are reenabled. This results in multiple instances of the applications running, where they either fail to start or run with incorrect configuration. This issue occurs with, but is not limited to SSH, NTP and streaming telemetry services running with a custom VRF configuration. To work around this issue, after the upgrade, stop and disable the incorrect services, then restart the correct ones as required. | 5.15.0-5.15.1 | 5.16.0-5.16.1|
+| 4830228, 4799012 | When you configure RoCE lossless priority groups and you use ISSU to perform a hitless upgrade, <code>switchd</code> restarts and ISSU fails. | 5.15.1, 5.16.0-5.16.1 | |
 | 4829730 | The interface-stats-collector might crash during boot or when services restart if the SDK process is not fully up. The interface-stats-collector eventually comes up on a subsequent restart.  | 5.15.1 | 5.16.0-5.16.1|
 | 4826181 | When you apply EVPN layer 3 VNI and BGP AS configurations together for a VRF, an internal AS number inconsistency might occur between the FRR running configuration and the <code>/etc/frr/frr.conf</code> file. When you try to apply any configuration using f<code>rr-reload</code>, NVUE detects this pre-existing inconsistency and triggers an unnecessary FRR restart, causing BGP session flaps. To work around this issue, apply BGP configuration before EVPN layer 3 VNI configuration in separate commits.  | 5.14.0-5.15.1 | 5.16.0-5.16.1|
 | 4823999 | When making interface changes with NVUE, you might see the following message after you run the <code>nv config apply</code> command:<pre><br><br />update-ports returned with error (code 254): switchd ports.conf node status not ready switchd validate_node is absent/not ready ports configuration(ports.conf/ports_width.conf) is invalid</pre> | 5.14.0-5.15.1 | 5.16.0-5.16.1|
@@ -271,6 +273,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 5018899 | RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests. | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 5012295 | Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload.  | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 4992204 | Cumulus Linux does not support the NVUE <code>nv set nve vxlan port <udp-port></code> command; you do not see the configured UDP port in the outer VXLAN packet header. | 5.14.0-5.15.1, 5.16.0-5.16.1 | |

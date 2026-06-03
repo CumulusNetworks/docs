@@ -7,6 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5067291</td>
+<td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5067286</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5067278</td>
+<td>In rare cases, when an 802.1x enabled port is flapped, it can cause 802.1x to lock up. As a result, the show status commands on 802.1x do not work, no new sessions are authorized and there are no re-authorizations. To work around this issue and recover from the blocked state, restart the {{hostapd.service}}.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5057365, 4983144</td>
+<td>If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5057217</td>
+<td>When you gracefully shut down the switch, traffic continues to send on BGP peers.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5057192</td>
 <td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
 {{- set:
@@ -33,8 +63,38 @@
 <td></td>
 </tr>
 <tr>
+<td>5057189</td>
+<td>The NVUE REST API returns an HTTP 503 {{Service Temporarily Unavailable}} for all requests.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5057188</td>
+<td>The {{nv show interface &lt;interface-id&gt; qos pfc}} command takes approximately three minutes to execute.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5057187</td>
 <td>A timing issue allows a route marked for removal to still appear selected during EVPN type-5 re-advertisement. Because the EVPN advertisement path does not exclude removed paths, the route might leak and later avoid withdrawal after it becomes suppressed again.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5057186</td>
+<td>During warm boot on adaptive routing enabled interfaces, you see momentary traffic disruption.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5056358</td>
+<td>sFlow does not work on 100GbE 8x breakout ports.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5032841, 4913679</td>
+<td>On Spectrum-1 switch, creating a bridge interface (SVI) fails with the error message {{STATUS_NO_RESOURCES}}. </td>
 <td>5.16.1</td>
 <td></td>
 </tr>
@@ -464,6 +524,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td></td>
 </tr>
 <tr>
+<td>4885068</td>
+<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4883698</td>
 <td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
 <td>5.16.0-5.16.1</td>
@@ -587,6 +653,12 @@ where only the aggregate should be advertised.</td>
 <td></td>
 </tr>
 <tr>
+<td>4830228, 4799012</td>
+<td>When you configure RoCE lossless priority groups and you use ISSU to perform a hitless upgrade, {{switchd}} restarts and ISSU fails.</td>
+<td>5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4824902, 4944347</td>
 <td>NVUE no longer supports the {{nv set system docker state}} and {{nv show system docker state}} commands. Docker remains enabled because core services such as UMF, gNMI and WJH run in containers.</td>
 <td>5.16.0-5.16.1</td>
@@ -622,6 +694,12 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <tr>
 <td>4774686, 4764590</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4771988, 4958439</td>
+<td>After you enable BFD offload, BFD control packet counters stops incrementing. Control plane BFD sessions are unaffected by this issue.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -1579,6 +1657,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5067291</td>
+<td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5057192</td>
 <td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
 {{- set:
@@ -1602,6 +1686,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
             vlanXXX: |
               vlan-bridge-binding off}}</td>
 <td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5056358</td>
+<td>sFlow does not work on 100GbE 8x breakout ports.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2160,6 +2250,12 @@ where only the aggregate should be advertised.</td>
 <td></td>
 </tr>
 <tr>
+<td>4830228, 4799012</td>
+<td>When you configure RoCE lossless priority groups and you use ISSU to perform a hitless upgrade, {{switchd}} restarts and ISSU fails.</td>
+<td>5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4824902, 4944347</td>
 <td>NVUE no longer supports the {{nv set system docker state}} and {{nv show system docker state}} commands. Docker remains enabled because core services such as UMF, gNMI and WJH run in containers.</td>
 <td>5.16.0-5.16.1</td>
@@ -2195,6 +2291,12 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <tr>
 <td>4774686, 4764590</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4771988, 4958439</td>
+<td>After you enable BFD offload, BFD control packet counters stops incrementing. Control plane BFD sessions are unaffected by this issue.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>

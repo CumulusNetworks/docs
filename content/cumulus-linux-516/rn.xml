@@ -113,12 +113,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
-<td>4977145</td>
-<td>In rare cases, when an 802.1x enabled port is flapped, it can cause 802.1x to lock up. As a result, the show status commands on 802.1x do not work, no new sessions are authorized and there are no re-authorizations. To work around this issue and recover from the blocked state, restart the {{hostapd.service}}.</td>
-<td>5.16.1-5.16.5</td>
-<td></td>
-</tr>
-<tr>
 <td>4968081</td>
 <td>During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause {{/var/run/lldpd.socket}} to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover.</td>
 <td>5.14.0-5.16.5</td>
@@ -165,12 +159,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4951125</td>
 <td>API calls to NVUE generate a TACACS author request for a local user bypassing the authentication order. </td>
 <td>5.14.0-5.16.5</td>
-<td></td>
-</tr>
-<tr>
-<td>4949347, 4949346</td>
-<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
-<td>5.16.1-5.16.5</td>
 <td></td>
 </tr>
 <tr>
@@ -1334,6 +1322,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>5067286, 4949346</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>5.16.1-5.16.4</td>
+</tr>
+<tr>
+<td>5067278</td>
+<td>In rare cases, when an 802.1x enabled port is flapped, it can cause 802.1x to lock up. As a result, the show status commands on 802.1x do not work, no new sessions are authorized and there are no re-authorizations. To work around this issue and recover from the blocked state, restart the {{hostapd.service}}.</td>
+<td>5.16.1-5.16.4</td>
 </tr>
 <tr>
 <td>5057365, 4983144</td>

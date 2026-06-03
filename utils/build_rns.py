@@ -261,7 +261,7 @@ def format_ticket_for_display(ticket):
 # No JSON download, no markdown/XLS tables, no per-version headers for these releases.
 # Key: product short name ("cl" or "netq"). Value: full version strings to skip.
 EXCLUDED_VERSIONS = {
-    "cl": ["5.15.2", "5.16.2", "5.16.3", "5.16.4", "5.16.5", "5.17.0"],
+    "cl": ["5.15.2", "5.16.2", "5.16.3", "5.16.4", "5.17.0"],
     "netq": ["2.4.0", "2.4.1", "3.0.0", "3.1.0", "3.2.0", "3.2.1", "3.3.0", "3.3.1", "4.0.0", "4.0.1", "4.1.0", "4.1.1", "4.2.0", "4.3.0", "4.4.0", "4.4.1", "4.5.0", "4.6.0", "4.7.0", "4.8.0", "5.0.0", "5.0.1", "5.2.0", "5.2.1"],
 }
 
@@ -269,7 +269,7 @@ EXCLUDED_VERSIONS = {
 # filter_version_list_for_display): singles removed, ranges split around them.
 # Key: product short name ("cl" or "netq"). Value: full version strings to hide.
 HIDDEN_VERSIONS = {
-    "cl": ["5.15.2", "5.16.2", "5.16.3", "5.16.4", "5.16.5", "5.17.0"],
+    "cl": ["5.15.2", "5.16.2", "5.16.3", "5.16.4", "5.17.0"],
     "netq": [],
 }
 

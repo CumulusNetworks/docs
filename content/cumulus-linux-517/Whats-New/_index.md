@@ -11,7 +11,12 @@ This document supports the Cumulus Linux 5.17 release, and lists new features an
 ## What's New in Cumulus Linux 5.17
 
 Cumulus Linux 5.17 contains new features and improvements, and provides bug fixes.
-
+<!--
+{{%notice note%}}
+Cumulus Linux 5.17.0 is tested and validated as part of the Spectrum-X reference architecture 2.2 release.
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+-->
 ### New Features and Enhancements
 
 - {{<link url="TACACS/#server-side-per-command-authorization" text="TACACS+ Server-side Per-command Authorization">}}

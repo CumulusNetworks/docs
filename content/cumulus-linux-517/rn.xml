@@ -45,12 +45,6 @@
 <td></td>
 </tr>
 <tr>
-<td>5057186</td>
-<td>During warm boot on adaptive routing enabled interfaces, you might see momentary traffic disruption.</td>
-<td>5.16.1-5.17.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5056358</td>
 <td>sFlow does not work on 100GbE 8x breakout ports.</td>
 <td>5.9.2-5.17.0</td>
@@ -130,6 +124,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4885068</td>
+<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4875306</td>
 <td>Fixed traffic drops on SLAAC and 802.1x interfaces by deferring UNREACH withdrawal until the first host actually resolves through ARP or NDP, instead of withdrawing immediately on linkup.</td>
 <td>5.16.0-5.17.0</td>
@@ -150,6 +150,12 @@
 <tr>
 <td>4774686, 4764590</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
+<td>5.16.0-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4771988, 4958439</td>
+<td>After you enable BFD offload, BFD control packet counters stops incrementing. Control plane BFD sessions are unaffected by this issue.</td>
 <td>5.16.0-5.17.0</td>
 <td></td>
 </tr>
@@ -1056,6 +1062,11 @@ nv config apply -y</td>
 <td>5.16.1-5.16.4</td>
 </tr>
 <tr>
+<td>4944244</td>
+<td>During warm boot on adaptive routing enabled interfaces, you see momentary traffic disruption.</td>
+<td>5.16.1-5.16.4</td>
+</tr>
+<tr>
 <td>4940786, 4705183</td>
 <td>Transceiver firmware upgrade fails due to PMAOS register access failures.</td>
 <td>5.15.0-5.16.4</td>
@@ -1431,6 +1442,11 @@ where only the aggregate should be advertised.</td>
 <td>4840271</td>
 <td>When you configure a static SRv6 Static SID, NVUE does not enable SRv6 automatically and requires you to run the {{nv set router segment-routing srv6 state enabled}} command manually.</td>
 <td>5.16.0-5.16.4</td>
+</tr>
+<tr>
+<td>4830228, 4799012</td>
+<td>When you configure RoCE lossless priority groups and you use ISSU to perform a hitless upgrade, {{switchd}} restarts and ISSU fails.</td>
+<td>5.15.1-5.16.4</td>
 </tr>
 <tr>
 <td>4824902, 4944347</td>

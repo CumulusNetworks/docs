@@ -12,9 +12,9 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 
 Cumulus Linux 5.18 contains new features and improvements, and provides bug fixes.
 
-- NVIDIA SN6600_LD (Beta)
-- NVIDIA SN5800-LD (Multi-ASIC CPO)
-- NVIDIA SN5810-LD (Single ASIC CPO)
+- NVIDIA SN6600_LD (800G Spectrum-6) Beta
+- NVIDIA SN5800-LD (800G Spectrum-6 Multi-ASIC)
+- NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC)
 
 ### New Features and Enhancements
 
@@ -24,7 +24,8 @@ Cumulus Linux 5.18 contains new features and improvements, and provides bug fixe
 - {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
 - {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
-- EVPN Multihoming and MLAG without a u nique SVI IP address
+- {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
+- EVPN Multihoming and MLAG without a unique SVI IP address
 - Password changed within 8-character differences
 - VRF scale limits for 802.1x and dynamic VRF provisioning
 - FW based BFD acceleration with Cumulus
@@ -33,7 +34,6 @@ Cumulus Linux 5.18 contains new features and improvements, and provides bug fixe
 - Avoid FRR service restart when a FRR daemon (non-zebra) is dynamically enabled or disabled
 - Remove Support for Vlan 1
 - Support for IP source guard on user-facing access port
-- Dynamic ARP and DAI on all user vlans
 - X-plane graceful fabric maintenance - node level
 - Xplane extensions for XGS
 - Supporting BMC Flows On Salamandra
@@ -41,11 +41,11 @@ Cumulus Linux 5.18 contains new features and improvements, and provides bug fixe
 - Advertise BOTH SAFI 254 AND SAFI 81 in capability negotiation
 - NVUE
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
+  - {{<link url="Interface-Configuration-and-Management/#uplink-tracking" text="Uplink tracking ">}}
   - Support Scheduling of Binary Image Installation (ONIE-Install)
   - View parts of the switch configuration
   - nv show interface - no view for Link phy-detail
   - nv show interface - no view for transceiver
-  - Support uplink tracking with NVUE 
   - Zebra phase 2: Remaining Operational
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Telemetry

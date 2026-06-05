@@ -13,8 +13,8 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 Cumulus Linux 5.18 contains new features and improvements, and provides bug fixes.
 
 - NVIDIA SN6600_LD (800G Spectrum-6) Beta
-- NVIDIA SN5800-LD (800G Spectrum-6 Multi-ASIC)
-- NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC)
+- NVIDIA SN5800-LD (800G Spectrum-6 Multi-ASIC) Beta
+- NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC) Beta
 
 ### New Features and Enhancements
 
@@ -42,6 +42,7 @@ Cumulus Linux 5.18 contains new features and improvements, and provides bug fixe
 - NVUE
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
   - {{<link url="Interface-Configuration-and-Management/#uplink-tracking" text="Uplink tracking ">}}
+  - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}
   - Support Scheduling of Binary Image Installation (ONIE-Install)
   - View parts of the switch configuration
   - nv show interface - no view for Link phy-detail

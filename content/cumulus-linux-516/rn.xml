@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5072100</td>
+<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
+<td>5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5067291</td>
 <td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
 <td>5.16.0-5.16.1</td>
@@ -27,12 +33,6 @@
 <tr>
 <td>5057365, 4983144</td>
 <td>If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created.</td>
-<td>5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>5057217</td>
-<td>When you gracefully shut down the switch, traffic continues to send on BGP peers.</td>
 <td>5.16.1</td>
 <td></td>
 </tr>
@@ -64,7 +64,7 @@
 </tr>
 <tr>
 <td>5057189</td>
-<td>The NVUE REST API returns an HTTP 503 {{Service Temporarily Unavailable}} for all requests.</td>
+<td>When the {{/var}} directory runs out of disk space, the NVUE service goes down and you see the message {{NVUE Service temporarily unavailable. Please try again later}}. To work around this issue, restart the NVUE service after {{/var}} frees up.</td>
 <td>5.16.1</td>
 <td></td>
 </tr>
@@ -503,12 +503,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>4885474, 4891596</td>
 <td>During warm boot, a transient error {{ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1}} appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
 <td>5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4885068</td>
-<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
-<td>5.16.1</td>
 <td></td>
 </tr>
 <tr>

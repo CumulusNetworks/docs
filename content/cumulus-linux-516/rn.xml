@@ -301,12 +301,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td></td>
 </tr>
 <tr>
-<td>4905123</td>
-<td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
-<td>5.16.0-5.16.5</td>
-<td></td>
-</tr>
-<tr>
 <td>4900970</td>
 <td>In an ECMP scenario, the zebra IP routing manager sends recursive next hop messages to BGP even if the resolution status and valid next hops do not change. As a result, zebra might eventually run out memory and terminate.</td>
 <td>5.16.0-5.16.5</td>
@@ -378,12 +372,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>4885474, 4891596</td>
 <td>During warm boot, a transient error {{ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1}} appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
 <td>5.16.0-5.16.5</td>
-<td></td>
-</tr>
-<tr>
-<td>4885068</td>
-<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
-<td>5.16.1-5.16.5</td>
 <td></td>
 </tr>
 <tr>
@@ -1324,8 +1312,13 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5067291</td>
+<td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
+<td>5.16.0-5.16.4</td>
+</tr>
+<tr>
 <td>5067286, 4949346</td>
-<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
 <td>5.16.1-5.16.4</td>
 </tr>
 <tr>
@@ -1334,8 +1327,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.1-5.16.4</td>
 </tr>
 <tr>
+<td>5060341</td>
+<td>When you perform an ISSU upgrade from Cumulus Linux 5.13 or 5.14 to Cumulus Linux 5.16.x, the switch does perform ISSU as expected; however, the {{nv show system reboot}} command displays the {{last-reboot-operation}} as {{cold}} instead of {{warm}}. </td>
+<td></td>
+</tr>
+<tr>
 <td>5057365, 4983144</td>
 <td>If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created.</td>
+<td>5.16.1-5.16.4</td>
+</tr>
+<tr>
+<td>5057189</td>
+<td>When the {{/var}} directory runs out of disk space, the NVUE service goes down and you see the message {{NVUE Service temporarily unavailable. Please try again later}}. To work around this issue, restart the NVUE service after {{/var}} frees up.</td>
 <td>5.16.1-5.16.4</td>
 </tr>
 <tr>
@@ -1362,14 +1365,20 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5072100</td>
+<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
+<td>5.16.1-5.16.4</td>
+<td></td>
+</tr>
+<tr>
 <td>5067291</td>
 <td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
 <td>5.16.0-5.16.4</td>
 <td></td>
 </tr>
 <tr>
-<td>5067286</td>
-<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>5067286, 4949346</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -1380,14 +1389,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5057365, 4983144</td>
-<td>If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created.</td>
-<td>5.16.1-5.16.4</td>
+<td>5067233</td>
+<td>The switch transmits router advertisements on host-facing interfaces before 802.1X RADIUS authentication completes.</td>
+<td>5.16.3-5.16.4</td>
 <td></td>
 </tr>
 <tr>
-<td>5057217</td>
-<td>When you gracefully shut down the switch, traffic continues to send on BGP peers.</td>
+<td>5057365, 4983144</td>
+<td>If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -1419,7 +1428,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5057189</td>
-<td>The NVUE REST API returns an HTTP 503 {{Service Temporarily Unavailable}} for all requests.</td>
+<td>When the {{/var}} directory runs out of disk space, the NVUE service goes down and you see the message {{NVUE Service temporarily unavailable. Please try again later}}. To work around this issue, restart the NVUE service after {{/var}} frees up.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -1528,12 +1537,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
-<td>4977145</td>
-<td>In rare cases, when an 802.1x enabled port is flapped, it can cause 802.1x to lock up. As a result, the show status commands on 802.1x do not work, no new sessions are authorized and there are no re-authorizations. To work around this issue and recover from the blocked state, restart the {{hostapd.service}}.</td>
-<td>5.16.1-5.16.4</td>
-<td></td>
-</tr>
-<tr>
 <td>4968081</td>
 <td>During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause {{/var/run/lldpd.socket}} to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover.</td>
 <td>5.14.0-5.16.4</td>
@@ -1592,12 +1595,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4951125</td>
 <td>API calls to NVUE generate a TACACS author request for a local user bypassing the authentication order. </td>
 <td>5.14.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
-<td>4949347, 4949346</td>
-<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
-<td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
 <tr>
@@ -1740,12 +1737,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td></td>
 </tr>
 <tr>
-<td>4905123</td>
-<td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
-<td>5.16.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
 <td>4900970</td>
 <td>In an ECMP scenario, the zebra IP routing manager sends recursive next hop messages to BGP even if the resolution status and valid next hops do not change. As a result, zebra might eventually run out memory and terminate.</td>
 <td>5.16.0-5.16.4</td>
@@ -1817,12 +1808,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>4885474, 4891596</td>
 <td>During warm boot, a transient error {{ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1}} appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
 <td>5.16.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
-<td>4885068</td>
-<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
-<td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
 <tr>
@@ -2887,14 +2872,20 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5072100</td>
+<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
+<td>5.16.1-5.16.4</td>
+<td></td>
+</tr>
+<tr>
 <td>5067291</td>
 <td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
 <td>5.16.0-5.16.4</td>
 <td></td>
 </tr>
 <tr>
-<td>5067286</td>
-<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>5067286, 4949346</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -2905,14 +2896,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5057365, 4983144</td>
-<td>If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created.</td>
-<td>5.16.1-5.16.4</td>
+<td>5067233</td>
+<td>The switch transmits router advertisements on host-facing interfaces before 802.1X RADIUS authentication completes.</td>
+<td>5.16.3-5.16.4</td>
 <td></td>
 </tr>
 <tr>
-<td>5057217</td>
-<td>When you gracefully shut down the switch, traffic continues to send on BGP peers.</td>
+<td>5057365, 4983144</td>
+<td>If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -2944,7 +2935,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5057189</td>
-<td>The NVUE REST API returns an HTTP 503 {{Service Temporarily Unavailable}} for all requests.</td>
+<td>When the {{/var}} directory runs out of disk space, the NVUE service goes down and you see the message {{NVUE Service temporarily unavailable. Please try again later}}. To work around this issue, restart the NVUE service after {{/var}} frees up.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -3071,12 +3062,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
-<td>4977145</td>
-<td>In rare cases, when an 802.1x enabled port is flapped, it can cause 802.1x to lock up. As a result, the show status commands on 802.1x do not work, no new sessions are authorized and there are no re-authorizations. To work around this issue and recover from the blocked state, restart the {{hostapd.service}}.</td>
-<td>5.16.1-5.16.4</td>
-<td></td>
-</tr>
-<tr>
 <td>4968081</td>
 <td>During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause {{/var/run/lldpd.socket}} to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover.</td>
 <td>5.14.0-5.16.4</td>
@@ -3135,12 +3120,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4951125</td>
 <td>API calls to NVUE generate a TACACS author request for a local user bypassing the authentication order. </td>
 <td>5.14.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
-<td>4949347, 4949346</td>
-<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
-<td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
 <tr>
@@ -3283,12 +3262,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td></td>
 </tr>
 <tr>
-<td>4905123</td>
-<td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
-<td>5.16.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
 <td>4900970</td>
 <td>In an ECMP scenario, the zebra IP routing manager sends recursive next hop messages to BGP even if the resolution status and valid next hops do not change. As a result, zebra might eventually run out memory and terminate.</td>
 <td>5.16.0-5.16.4</td>
@@ -3360,12 +3333,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>4885474, 4891596</td>
 <td>During warm boot, a transient error {{ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1}} appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
 <td>5.16.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
-<td>4885068</td>
-<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
-<td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
 <tr>
@@ -4420,14 +4387,20 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5072100</td>
+<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
+<td>5.16.1-5.16.4</td>
+<td></td>
+</tr>
+<tr>
 <td>5067291</td>
 <td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
 <td>5.16.0-5.16.4</td>
 <td></td>
 </tr>
 <tr>
-<td>5067286</td>
-<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>5067286, 4949346</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -4440,12 +4413,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5057365, 4983144</td>
 <td>If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created.</td>
-<td>5.16.1-5.16.4</td>
-<td></td>
-</tr>
-<tr>
-<td>5057217</td>
-<td>When you gracefully shut down the switch, traffic continues to send on BGP peers.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -4477,7 +4444,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5057189</td>
-<td>The NVUE REST API returns an HTTP 503 {{Service Temporarily Unavailable}} for all requests.</td>
+<td>When the {{/var}} directory runs out of disk space, the NVUE service goes down and you see the message {{NVUE Service temporarily unavailable. Please try again later}}. To work around this issue, restart the NVUE service after {{/var}} frees up.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -4604,12 +4571,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
-<td>4977145</td>
-<td>In rare cases, when an 802.1x enabled port is flapped, it can cause 802.1x to lock up. As a result, the show status commands on 802.1x do not work, no new sessions are authorized and there are no re-authorizations. To work around this issue and recover from the blocked state, restart the {{hostapd.service}}.</td>
-<td>5.16.1-5.16.4</td>
-<td></td>
-</tr>
-<tr>
 <td>4968081</td>
 <td>During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause {{/var/run/lldpd.socket}} to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover.</td>
 <td>5.14.0-5.16.4</td>
@@ -4668,12 +4629,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4951125</td>
 <td>API calls to NVUE generate a TACACS author request for a local user bypassing the authentication order. </td>
 <td>5.14.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
-<td>4949347, 4949346</td>
-<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
-<td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
 <tr>
@@ -4816,12 +4771,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td></td>
 </tr>
 <tr>
-<td>4905123</td>
-<td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
-<td>5.16.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
 <td>4900970</td>
 <td>In an ECMP scenario, the zebra IP routing manager sends recursive next hop messages to BGP even if the resolution status and valid next hops do not change. As a result, zebra might eventually run out memory and terminate.</td>
 <td>5.16.0-5.16.4</td>
@@ -4893,12 +4842,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>4885474, 4891596</td>
 <td>During warm boot, a transient error {{ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1}} appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
 <td>5.16.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
-<td>4885068</td>
-<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
-<td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
 <tr>
@@ -6013,14 +5956,20 @@ nv config apply -y</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5072100</td>
+<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
+<td>5.16.1-5.16.4</td>
+<td></td>
+</tr>
+<tr>
 <td>5067291</td>
 <td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
 <td>5.16.0-5.16.4</td>
 <td></td>
 </tr>
 <tr>
-<td>5067286</td>
-<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>5067286, 4949346</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -6033,12 +5982,6 @@ nv config apply -y</td>
 <tr>
 <td>5057365, 4983144</td>
 <td>If the nginx nvue.conf file is updated (for example, during package update) and the authenticator service is not running, the startup configuration might fail, which results in the nginx nvue.conf file being taken from the debian package instead of from the nvue configuration you created.</td>
-<td>5.16.1-5.16.4</td>
-<td></td>
-</tr>
-<tr>
-<td>5057217</td>
-<td>When you gracefully shut down the switch, traffic continues to send on BGP peers.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -6070,7 +6013,7 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>5057189</td>
-<td>The NVUE REST API returns an HTTP 503 {{Service Temporarily Unavailable}} for all requests.</td>
+<td>When the {{/var}} directory runs out of disk space, the NVUE service goes down and you see the message {{NVUE Service temporarily unavailable. Please try again later}}. To work around this issue, restart the NVUE service after {{/var}} frees up.</td>
 <td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
@@ -6238,12 +6181,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
-<td>4977145</td>
-<td>In rare cases, when an 802.1x enabled port is flapped, it can cause 802.1x to lock up. As a result, the show status commands on 802.1x do not work, no new sessions are authorized and there are no re-authorizations. To work around this issue and recover from the blocked state, restart the {{hostapd.service}}.</td>
-<td>5.16.1-5.16.4</td>
-<td></td>
-</tr>
-<tr>
 <td>4968081</td>
 <td>During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause {{/var/run/lldpd.socket}} to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover.</td>
 <td>5.14.0-5.16.4</td>
@@ -6302,12 +6239,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4951125</td>
 <td>API calls to NVUE generate a TACACS author request for a local user bypassing the authentication order. </td>
 <td>5.14.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
-<td>4949347, 4949346</td>
-<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
-<td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
 <tr>
@@ -6450,12 +6381,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td></td>
 </tr>
 <tr>
-<td>4905123</td>
-<td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
-<td>5.16.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
 <td>4900970</td>
 <td>In an ECMP scenario, the zebra IP routing manager sends recursive next hop messages to BGP even if the resolution status and valid next hops do not change. As a result, zebra might eventually run out memory and terminate.</td>
 <td>5.16.0-5.16.4</td>
@@ -6527,12 +6452,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>4885474, 4891596</td>
 <td>During warm boot, a transient error {{ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1}} appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
 <td>5.16.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
-<td>4885068</td>
-<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
-<td>5.16.1-5.16.4</td>
 <td></td>
 </tr>
 <tr>
@@ -8049,12 +7968,6 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>4907468</td>
 <td>When you configure more than 256 SRv6 static SIDs, NVUE accepts the configuration without error. However, Cumulus Linux only programs the first 256 entries in hardware and drops traffic matching the remaining entries. Counters for the remaining entries are not available with the {{nv show router segment-routing srv6 stats sid}} command.</td>
-<td>5.16.0-5.16.4</td>
-<td></td>
-</tr>
-<tr>
-<td>4905123</td>
-<td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
 <td>5.16.0-5.16.4</td>
 <td></td>
 </tr>

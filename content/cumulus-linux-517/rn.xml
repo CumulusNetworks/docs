@@ -7,9 +7,9 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5057217</td>
-<td>When you gracefully shut down the switch, traffic continues to send on BGP peers.</td>
-<td>5.16.1-5.17.0</td>
+<td>5067233</td>
+<td>The switch transmits router advertisements on host-facing interfaces before 802.1X RADIUS authentication completes.</td>
+<td>5.16.3-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -39,15 +39,15 @@
 <td></td>
 </tr>
 <tr>
-<td>5057189</td>
-<td>The NVUE REST API returns an HTTP 503 {{Service Temporarily Unavailable}} for all requests.</td>
-<td>5.16.1-5.17.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5056358</td>
 <td>sFlow does not work on 100GbE 8x breakout ports.</td>
 <td>5.9.2-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5041547</td>
+<td>When the {{/var}} directory runs out of disk space, the NVUE service goes down and you see the message {{NVUE Service temporarily unavailable. Please try again later}}. To work around this issue, restart the NVUE service after {{/var}} frees up.</td>
+<td>5.16.1-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -121,12 +121,6 @@
             vlanXXX: |
               vlan-bridge-binding off}}</td>
 <td>5.16.0-5.17.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4885068</td>
-<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
-<td>5.16.1-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1058,7 +1052,7 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>4949347, 4949346</td>
-<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The hostapd_cli slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and correctly configured, and that client credentials and certificates are valid. The slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
 <td>5.16.1-5.16.4</td>
 </tr>
 <tr>

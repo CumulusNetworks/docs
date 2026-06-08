@@ -1327,6 +1327,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.1-5.16.4</td>
 </tr>
 <tr>
+<td>5067233</td>
+<td>The switch transmits router advertisements on host-facing interfaces before 802.1X RADIUS authentication completes.</td>
+<td>5.16.3-5.16.4</td>
+</tr>
+<tr>
 <td>5060341</td>
 <td>When you perform an ISSU upgrade from Cumulus Linux 5.13 or 5.14 to Cumulus Linux 5.16.x, the switch does perform ISSU as expected; however, the {{nv show system reboot}} command displays the {{last-reboot-operation}} as {{cold}} instead of {{warm}}. </td>
 <td></td>

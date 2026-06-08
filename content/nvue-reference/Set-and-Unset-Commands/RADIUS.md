@@ -60,9 +60,10 @@ cumulus@switch:~$ nv set system aaa radius accounting state enabled
 
 ## <h>nv set system aaa radius auth-type</h>
 
-Configures the method used for authentication with the RADIUS server. Options are `pap`, `chap`, and the default value of `mschapv2`. If you use multiple RADIUS servers, you can specify a different `auth-type` for each server.
+Configures the method used for authentication with the RADIUS server. Options are `pap`, `chap`, `peap-gtc`, and the default value of `mschapv2`. If you use multiple RADIUS servers, you can specify a different auth-type for each server. `peap-gtc` is the only authentication type for RADIUS authentication in FIPS mode.
 
 {{%notice note%}}
+- In Cumulus Linux 5.16 and earlier, the `peap-gtc` is not available.
 - With the default auth-type of `mschapv2`, configure your RADIUS server to use PEAP with MSCHAPv2; do not configure md5 authentication.
 - Additionally, to ensure the correct privilege level is applied to users with MSCHAPv2, if you are using FreeRADIUS, configure `/etc/freeradius/3.0/mods-enabled/eap` with `use_tunneled_reply = yes`. For example:
 
@@ -84,7 +85,7 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system aaa radius auth-type mschapv2
+cumulus@switch:~$ nv set system aaa radius auth-type peap-gtc
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -155,9 +155,9 @@ cumulus@switch:~$ nv set system wjh channel buffer aggregate-cache-size 1000
 cumulus@switch:~$ nv config apply
 ```
 
-To set the aggregation interval for a channel back to the default value, run the `nv set system wjh channel <channel-id> polling-interval` command.
+To unset the aggregation interval for a channel, run the `nv unset system wjh channel <channel-id> polling-interval` command.
 
-To set the aggregate cache size back to the default value, run the `nv set system wjh channel <channel-id> aggregate-cache-size` command.
+To unset the aggregate cache size, run the `nv unset system wjh channel <channel-id> aggregate-cache-size` command.
 
 ### Latency and Congestion Thresholds
 

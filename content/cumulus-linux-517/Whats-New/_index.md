@@ -28,6 +28,7 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 - {{<link url="Quality-of-Service/#lossless-shared-headroom-pool" text="Lossless shared headroom pool">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-tlvs" text="Granular LLDP TLV definition and control">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}}
+- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
 - {{<link url="Syslog/#thermal-control-logs" text="Thermal logging in syslog - sensor and fan state and errors">}}
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} (Beta)
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} (Beta)
@@ -51,7 +52,6 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
   - Ability to view {{<link url="User-Accounts/#show-user-accounts" text="hashed password with NVUE">}} and {{<link url="NVUE-API/#configure-users" text="with API">}}
   - {{<link url="Security-Alerts" text="Security alerts ">}} for audit processing failures
   - {{<link url="802.1X-Interfaces/#8021x-reauthentication" text="802.1X reauthentication: maximum number of retries and interface configuration">}}
-  <!-- - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}-->
 
 ## Release Considerations
 

@@ -1063,26 +1063,26 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4986333</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
-<td>5.11.2-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
+<td>5.11.2-5.14.0</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4986329</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
-<td>5.3.1-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
+<td>5.3.1-5.14.0</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
-<td>4963280</td>
-<td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
-<td>5.9.1-5.15.1, 5.16.0-5.16.1</td>
+<td>4964407</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4963277</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
-<td>5.3.1-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
+<td>5.3.1-5.14.0</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4957394</td>
@@ -1261,8 +1261,8 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
+<td>5.10.0-5.11.5</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4535749</td>
@@ -1315,36 +1315,21 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>4499025</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
-<td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
-</tr>
-<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4486200</td>
-<td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
+<td>4486668</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
 <td>5.11.2-5.13.1</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
-<td>4475117</td>
-<td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
-sudo chown -R nvue /var/lib/nvue
-sudo chown -R ntpsec /var/lib/ntpsec
-sudo chown -R Debian-snmp /var/lib/snmp
-To restart the services, either reboot the switch, or run the following commands:
-sudo systemctl restart nvued.service
-sudo systemctl restart nvue-startup.service
-systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
-systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
-</td>
-<td>5.11.1-5.13.1</td>
+<td>4486200</td>
+<td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
+<td>5.11.2-5.13.1</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
@@ -1368,20 +1353,20 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4423352</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
+<td>5.11.0-5.11.5</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
+<td>5.9.0-5.11.5</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4423269</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
+<td>5.11.0-5.12.1</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4423248</td>
@@ -1398,8 +1383,8 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4423235</td>
 <td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
-<td>5.11.0-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
+<td>5.11.0-5.12.1</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4408387</td>

@@ -768,6 +768,38 @@ To clear link debounce statistics for all interfaces, run the `nv action clear i
 cumulus@switch:~$ nv action clear interface debounce-counters 
 ```
 
+## APSU and Link Precoding Control
+
+Cumulus Linux supports Autonomous Path Start-Up (APSU) for link initialization and precoding control for negotiation between connected devices on a Spectrum-6 switch while preserving the default firmware-managed behavior for standard deployments.
+
+{{%notice note%}}
+- APSU and link precoding control are supported on NVIDIA Spectrum-6 and later, and with firmware that has APSU and precoding support enabled.
+- APSU and link precoding control are advanced features. Do not overwrite the default firmware-managed behavior unless you are an advanced user.
+{{%/notice%}}
+
+To enable or disable APSU, run the `nv set interface <interface-id> link apsu-mode enabled` command or the `nv set interface <interface-id> link apsu-mode disabled` command.
+
+```
+cumulus@switch:~$ nv set interface swp1 link apsu-mode enabled
+cumulus@switch:~$ nv config apply
+```
+
+To enable or disable link precoding, run the `nv set interface <interface-id> link module-precoding enabled` command or the `nv set interface <interface-id> link module-precoding disabled` command.
+
+```
+cumulus@switch:~$ nv set interface swp1 link module-precoding enabled
+cumulus@switch:~$ nv config apply
+```
+
+The default for both APSU and link precoding is `auto`, which maps to the firmware default.
+
+To show APSU and link precoding configuration, run the `nv show interface <interface-id>` command:
+
+```
+cumulus@switch:~$ nv show interface swp1
+
+```
+
 ## Tx Squelch Control
 
 {{%notice note%}}

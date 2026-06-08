@@ -793,7 +793,7 @@ cumulus@switch:~$ nv config apply
 
 The default for both APSU and link precoding is `auto`, which maps to the firmware default.
 
-To show APSU and link precoding configuration, run the `nv show interface <interface-id>` command:
+To show APSU and link precoding information, run the `nv show interface <interface-id>` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1

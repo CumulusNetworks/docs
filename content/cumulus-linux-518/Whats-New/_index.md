@@ -10,14 +10,14 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 
 ## What's New in Cumulus Linux 5.18
 
-Cumulus Linux 5.18 contains new features and improvements, and provides bug fixes.
+Cumulus Linux 5.18 supports new platforms, contains new features and improvements, and provides bug fixes.
 
-- NVIDIA SN6600_LD (800G Spectrum-6) Beta
+## Platforms
+- NVIDIA SN6600_LD (800G Spectrum-6)
 - NVIDIA SN5800-LD (800G Spectrum-6 Multi-ASIC) Beta
 - NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC) Beta
 
 ### New Features and Enhancements
-
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
 - {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available

@@ -558,21 +558,15 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td>5.2.0-5.16.4</td>
 </tr>
 <tr>
-<td>3123556</td>
+<td>3120423</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
-<td>3.7.15-5.1.0</td>
-<td>5.2.0-5.16.4</td>
+<td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
+<td>4.3.1, 5.2.0-5.16.4</td>
 </tr>
 <tr>
 <td>3119673, 2888040</td>
 <td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
 <td>5.0.0-5.1.0</td>
-<td>5.2.0-5.16.4</td>
-</tr>
-<tr>
-<td>3119615</td>
-<td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
-<td>3.7.15-5.1.0</td>
 <td>5.2.0-5.16.4</td>
 </tr>
 <tr>
@@ -624,12 +618,6 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>5.2.0-5.16.4</td>
 </tr>
 <tr>
-<td>3085285</td>
-<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.16.4</td>
-</tr>
-<tr>
 <td>3084476</td>
 <td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.16.4</td>
@@ -659,13 +647,6 @@ This issue impacts customers with these conditions: CL 5.1.0, CLAG, NTP, and a s
 <td>3082463</td>
 <td>On the NVIDIA SN4800 switch,  the LED on the line cards does not match the CLI command output.</td>
 <td>5.1.0</td>
-<td>5.2.0-5.16.4</td>
-</tr>
-<tr>
-<td>3081232</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-5.1.0</td>
 <td>5.2.0-5.16.4</td>
 </tr>
 <tr>
@@ -699,6 +680,12 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 </td>
 <td>5.0.1-5.3.1</td>
 <td>5.4.0-5.16.4</td>
+</tr>
+<tr>
+<td>3072674</td>
+<td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.16.4</td>
 </tr>
 <tr>
 <td>3071652</td>
@@ -862,10 +849,10 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 <td>5.2.0-5.16.4</td>
 </tr>
 <tr>
-<td>3021693</td>
+<td>3020254</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4-4.4.5, 5.2.0-5.16.4</td>
+<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.16.4</td>
 </tr>
 <tr>
 <td>3016882</td>

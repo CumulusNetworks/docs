@@ -482,20 +482,20 @@ As Cumulus Linux supports more features and functionality, NVUE syntax might cha
 
 {{%notice note%}}
 - Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade. You must reimport the certificates after the new image is installed. 
-- If you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release. This method still requires reimporting certificates and CRLs after the image install.
+- If you reinstall Cumulus Linux with an embedded `startup.yaml` file using the `nv action install system image onie <image> startup-config <file-name>` command or the `onie-install -t` command, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release. This method still requires reimporting certificates and CRLs after the image install.
 - If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
 {{%/notice%}}
 
 To back up the configuration file:
 
-1. Save the configuration to the `/etc/nvue.d/startup.yaml` file with the `nv config save` command:
+a. Save the configuration to the `/etc/nvue.d/startup.yaml` file with the `nv config save` command:
 
    ```
    cumulus@switch:~$ nv config save
    saved
    ```
 
-2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
+b. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
@@ -585,12 +585,12 @@ cumulus@switch:~$ nv action install system image onie http://10.0.1.251/cumulus-
 Action executing ... 
 Installing ONIE image 
 Action executing ... 
-ONIE install comple nv ted successfully 
+ONIE install completed successfully 
 Action succeeded 
 ```
 
 {{< /tab >}}
-{{< tab "onie">}}
+{{< tab "ONIE">}}
 
 Run the `sudo onie-install -a -i <image> -t <file-name> && sudo reboot` command.
 
@@ -615,6 +615,7 @@ cumulus@switch:~$ nv config apply startup
 ```
 
 NVUE normalizes IPv6 addresses to their canonical form. However, for IPv4-mapped IPv6 addresses, NUE normalizes only the IPv6 portion of the address. The IPv4 portion of the address is retained in the IETF-recommended mixed-notation format and remains unchanged. For example, NVUE normalizes the IPv4-mapped IPv6 address 0::ffff:10.0.0.1 to ::ffff:10.0.0.1.
+{{%/notice%}}
 
 5. Verify correct operation with the old configurations on the new release.
 6. Reinstall third party applications and associated configurations.

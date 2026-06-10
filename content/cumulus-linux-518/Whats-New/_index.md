@@ -26,6 +26,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
 - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
+- {{<link url="System-Snapshots" text="Automatic Configuration Snapshots">}}
 - EVPN Multihoming and MLAG without a unique SVI IP address
 - Password changed within 8-character differences
 - VRF scale limits for 802.1x and dynamic VRF provisioning

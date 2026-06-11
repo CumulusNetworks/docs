@@ -1143,7 +1143,6 @@ Route
 ## NVUE and FRR Restart
 
 NVUE restarts the FRR service when you:
-- Change the `/etc/frr/daemons` file.
 - Change the BGP ASN.
 - Remove the default instance.
 - Disable the SNMP server with `agentx` configured.

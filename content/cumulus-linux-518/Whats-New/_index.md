@@ -27,13 +27,13 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
 - {{<link url="System-Snapshots" text="Automatic Configuration Snapshots">}}
+- /etc/frr/daemons file updates no longer require FRR service restart; you can use FRR reload
 - EVPN Multihoming and MLAG without a unique SVI IP address
 - Password changed within 8-character differences
 - VRF scale limits for 802.1x and dynamic VRF provisioning
 - FW based BFD acceleration with Cumulus
 - Systemd Target-Based Service Management for multi-asic
 - Spectrum-X" Profile Support
-- Avoid FRR service restart when a FRR daemon (non-zebra) is dynamically enabled or disabled
 - Support for IP source guard on user-facing access port
 - X-plane graceful fabric maintenance - node level
 - Xplane extensions for XGS
@@ -43,7 +43,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
   - {{<link url="Interface-Configuration-and-Management/#uplink-tracking" text="Uplink tracking ">}}
   - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}
-  - Support Scheduling of Binary Image Installation (ONIE-Install)
+  - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
   - View parts of the switch configuration
   - nv show interface - no view for Link phy-detail
   - nv show interface - no view for transceiver

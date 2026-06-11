@@ -124,6 +124,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4885068</td>
+<td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4875306</td>
 <td>Fixed traffic drops on SLAAC and 802.1x interfaces by deferring UNREACH withdrawal until the first host actually resolves through ARP or NDP, instead of withdrawing immediately on linkup.</td>
 <td>5.16.0-5.17.0</td>

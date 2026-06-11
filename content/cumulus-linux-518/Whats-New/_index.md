@@ -43,7 +43,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
   - {{<link url="Interface-Configuration-and-Management/#uplink-tracking" text="Uplink tracking ">}}
   - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}
-  - Support Scheduling of Binary Image Installation (ONIE-Install)
+  - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
   - View parts of the switch configuration
   - nv show interface - no view for Link phy-detail
   - nv show interface - no view for transceiver

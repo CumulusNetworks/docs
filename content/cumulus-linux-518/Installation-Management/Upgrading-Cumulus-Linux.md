@@ -474,15 +474,15 @@ To upgrade the switch with ONIE:
 1. Back up the configurations off the switch.
 
 {{< tabs "TabID189">}}
-{{< tab "Back up Configuration with NVUE">}}
+{{< tab "NVUE Commands">}}
 
-If you manage your switch configuration with NVUE, use the following procedure to up the configuration.
+If you manage your switch configuration with NVUE, use the following procedure to back up the configuration.
 
 As Cumulus Linux supports more features and functionality, NVUE syntax might change between releases and the content of snippets and flexible snippets might become invalid. Before you back up and restore configuration across different Cumulus Linux releases, make sure to review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax and other configuration file changes.
 
 {{%notice note%}}
 - Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade. You must reimport the certificates after the new image is installed. 
-- If you reinstall Cumulus Linux with an embedded `startup.yaml` file using the `nv action install system image onie <image> startup-config <file-name>` command or the `onie-install -t` command, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release. This method still requires reimporting certificates and CRLs after the image install.
+- If you reinstall Cumulus Linux with an embedded `startup.yaml` file with the `nv action install system image onie <image> startup-config <file-name>` or `onie-install -t` command, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release. This method still requires reimporting certificates and CRLs after the image install.
 - If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
 {{%/notice%}}
 
@@ -500,7 +500,7 @@ b. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different locati
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
 {{< /tab >}}
-{{< tab "Back up Linux Configuration Files">}}
+{{< tab "Linux Configuration Files">}}
 
 If you do not use NVUE to manage your switch configuration, reference this section to back up your configuration files.
 
@@ -576,7 +576,7 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
 3. Install the Cumulus Linux image and boot the switch into ONIE. The following example installs the image from a web server, defines the current NVUE startup configuration to back up and restore in the new image, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
 
 {{< tabs "TabID578">}}
-{{< tab "NVUE">}}
+{{< tab "NVUE Commands">}}
 
 Run the `nv action install system image onie <image> startup-config <file-name> force activate reboot` command. The `force` option suppresses the prompt and the action proceeds non-interactively. NVIDIA recommends using the `force` option for scripted, automated, or REST API invocations.
 
@@ -590,7 +590,7 @@ Action succeeded
 ```
 
 {{< /tab >}}
-{{< tab "ONIE">}}
+{{< tab "ONIE Commands">}}
 
 Run the `sudo onie-install -a -i <image> -t <file-name> && sudo reboot` command.
 
@@ -601,12 +601,12 @@ cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.18.0
 {{< /tab >}}
 {{< /tabs >}}
 
-4. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and, or, CRLs configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` originally assigned to each certificate in the prior release. Certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}.
+4. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and, or, CRLs configured in the previous release with the `nv action import system security` command. Be sure to use the same `certificate-id` originally assigned to each certificate in the previous release. Certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, and so on) remain unavailable until you {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimport the certificates">}}.
 
 {{%notice note%}}
-In Cumulus Linux 5.16 and later, NVUE uses IPv6 address normalization, where it stores and looks up all IPv6 addresses in their normalized (canonical) form (for example, 2001:db8::1 instead of 2001:0db8::0001). When you copy the `startup.yaml` file manually from Cumulus Linux 5.15 or earlier to Cumulus Linux 5.16 or later, the file bypasses the standard upgrade translation process. As a result, the configuration might contain unnormalized IPv6 addresses that are valid in earlier Cumulus Linux releases, which might cause failed lookups during NVUE show commands, unexpected configuration mismatches and failed or silent misconfigurations.
+In Cumulus Linux 5.16 and later, NVUE uses IPv6 address normalization, where it stores and looks up all IPv6 addresses in their normalized (canonical) form (for example, 2001:db8::1 instead of 2001:0db8::0001). When you copy the `startup.yaml` file manually from Cumulus Linux 5.15 or earlier to Cumulus Linux 5.16 or later, the file bypasses the standard upgrade translation process. As a result, the configuration might contain unnormalized IPv6 addresses that are valid in earlier Cumulus Linux releases, which might cause failed lookups during NVUE show commands, unexpected configuration mismatches, and failed or silent misconfigurations.
 
-Before you run the `nv config apply startup` command after the upgrade, first translate the file to ensure all IPv6 addresses are normalized, then replace the `startup.yaml` with the normalized version:
+Before you run the `nv config apply startup` command after upgrade, translate the file to ensure all IPv6 addresses are normalized, then replace the `startup.yaml` with the normalized version:
 
 ```
 cumulus@switch:~$ nv config translate filename /home/cumulus/startup.yaml > /home/cumulus/ipv6_normalized_startup.yaml

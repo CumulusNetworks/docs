@@ -394,7 +394,8 @@ The following table describes the password policies that Cumulus Linux provides 
 | Uppercase | Passwords must include at least one uppercase character. You can specify `enabled` or `disabled`.  | `enabled` |
 | Digits | Passwords must include at least one digit. You can specify `enabled` or `disabled`.| `enabled` |
 | Special characters | Passwords must include at least one special character. You can specify `enabled` or `disabled`. | `enabled` |
-| Password length |The minimum password length. You can specify a value between 6 and 32 characters. | 8 characters |
+| Password length |The minimum password length. You can specify a value between 6 and 32 characters.| 8 characters |
+| Minimum password character difference | The minimum password character difference between the current and new password when updating user passwords. You can specify a value between 0 and 10 characters. The minimum password length setting must be equal to or more than the minimum password character difference. | 0 characters (disabled)|
 | Expiration in days | The duration in days after which passwords expire. You can set a value between 1 and 365 days.| 180 days|
 | Password expiration warning | The number of days before a password expires to send a warning. You can set a value between 1 and 30 days.| 15 days|
 | Prevent usernames as passwords | Passwords cannot be usernames. You can specify `enabled` or `disabled`.| `enabled` |
@@ -407,6 +408,7 @@ cumulus@switch:~$ nv set system security password-hardening lower-class disabled
 cumulus@switch:~$ nv set system security password-hardening upper-class disabled
 cumulus@switch:~$ nv set system security password-hardening digits-class disabled
 cumulus@switch:~$ nv set system security password-hardening special-class disabled
+cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
@@ -419,6 +421,7 @@ The following example commands set the minimum password length to 10 characters,
 cumulus@switch:~$ nv set system security password-hardening len-min 10
 cumulus@switch:~$ nv set system security password-hardening expiration 30
 cumulus@switch:~$ nv set system security password-hardening expiration-warning 5
+cumulus@switch:~$ nv config apply
 ```
 
 The following example commands allow usernames as passwords and sets the number of times you can reuse a password to 20:
@@ -426,6 +429,15 @@ The following example commands allow usernames as passwords and sets the number 
 ```
 cumulus@switch:~$ nv set system security password-hardening reject-user-passw-match disabled
 cumulus@switch:~$ nv set system security password-hardening history-cnt 20
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands set the minimum password length to 10 characters and the minimum password character difference to 8:
+
+```
+cumulus@switch:~$ nv set system security password-hardening len-min 10
+cumulus@switch:~$ nv set system security password-hardening min-char-diff 8 
+cumulus@switch:~$ nv config apply 
 ```
 
 ### Show Password Policies
@@ -445,7 +457,8 @@ special-class            disabled     disabled
 expiration-warning       15           15      
 expiration               180          180     
 history-cnt              20           20      
-len-min                  8            8
+len-min                  10           10
+min-char-diff            8            8
 ```
 
 ## AAA Authentication Restrictions

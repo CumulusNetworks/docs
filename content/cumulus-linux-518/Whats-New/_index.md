@@ -23,18 +23,13 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
 - {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
-- {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
-- {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
-- {{<link url="System-Snapshots" text="Automatic Configuration Snapshots">}}
-- /etc/frr/daemons file updates no longer require FRR service restart; you can use FRR reload
+- Changes to the /etc/frr/daemons file no longer require FRR service restart; you can use FRR reload
 - EVPN Multihoming and MLAG without a unique SVI IP address
-- Password changed within 8-character differences
 - VRF scale limits for 802.1x and dynamic VRF provisioning
 - FW based BFD acceleration with Cumulus
 - Systemd Target-Based Service Management for multi-asic
 - Spectrum-X" Profile Support
-- Support for IP source guard on user-facing access port
 - X-plane graceful fabric maintenance - node level
 - Xplane extensions for XGS
 - Supporting BMC Flows On Salamandra
@@ -49,6 +44,12 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - nv show interface - no view for transceiver
   - Zebra phase 2: Remaining Operational
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
+- Security
+  - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference between the current and new password">}}
+  - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
+  - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
+  - {{<link url="System-Snapshots" text="Automatic Configuration Snapshots">}}
+  - Support for IP source guard on user-facing access port
 - Telemetry
   - New OTEL metrics:
   - New gNMI metrics:

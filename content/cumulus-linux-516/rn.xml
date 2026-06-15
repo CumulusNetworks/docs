@@ -87,12 +87,6 @@
 <td></td>
 </tr>
 <tr>
-<td>5056358</td>
-<td>sFlow does not work on 100GbE 8x breakout ports.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>5032841, 4913679</td>
 <td>On Spectrum-1 switch, creating a bridge interface (SVI) fails with the error message {{STATUS_NO_RESOURCES}}. </td>
 <td>5.16.1</td>
@@ -490,6 +484,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <tr>
 <td>4893569</td>
 <td>NVUE allows invalid interfaces with leading zeroes; for example, swp000001.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4891440</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>
@@ -1671,12 +1671,6 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td></td>
 </tr>
 <tr>
-<td>5056358</td>
-<td>sFlow does not work on 100GbE 8x breakout ports.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>5027908</td>
 <td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
@@ -2087,6 +2081,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>4893569</td>
 <td>NVUE allows invalid interfaces with leading zeroes; for example, swp000001.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4891440</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>

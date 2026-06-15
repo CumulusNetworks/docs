@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
 | 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.15.1, 5.16.0-5.16.1 | |
@@ -184,7 +183,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
 | 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.15.1, 5.16.0-5.16.1 | |
@@ -195,15 +193,15 @@ pdfhidden: True
 | 4882392 | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4871161 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4840299 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
-| 4829843 | During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck. | 5.11.3-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
+| 4805286 | During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck. | 5.11.3-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
 | 4789097 | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | 5.16.0-5.16.1|
-| 4771874 | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
 | 4771521 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1 | 5.16.0-5.16.1|
 | 4731091, 4857885 | During optimized image upgrade, the switch logs an error because a new file is added. There is no functional impact. | 5.11.4-5.15.1, 5.16.0-5.16.1 | |
 | 4729839 | In an MLAG configuration, when you reboot the primary MLAG switch with PVRST spanning tree mode configured on both MLAG switches, PVRST mode briefly changes to RSTP, then back to PVRST when the primary switch comes back up. | 5.11.3-5.15.1 | 5.16.0-5.16.1|
 | 4722680 | If you install RADIUS client packages when rolling back a two partition upgrade, the <code>/var/lib/nvue</code>, <code>/var/lib/ntpsec</code>, and <code>/var/lib/snmp</code> directories might have incorrect ownership after rollback and the <code>nvued</code> service might fail to start up. To work around this issue, run the following commands:<br><pre>sudo chown -R nvue /var/lib/nvue<br>sudo chown -R ntpsec /var/lib/ntpsec<br>sudo chown -R Debian-snmp /var/lib/snmp<br>sudo reboot</pre> | 5.11.4-5.15.1, 5.16.0-5.16.1 | |
 | 4722539 | Optimized image upgrade with warm boot mode is supported in Cumulus Linux 5.13 and later. When you try to run the <code>nv action boot-next</code> command during optimized image upgrade in Cumulus Linux 5.12 and earlier to any target release while the system is in warm boot mode, the <code>boot-next</code> operation fails with the following error:<br><pre>cumulus&#64;switch:~$ nv action boot-next system image other<br>Error: Action failed with the following issue:>br><br /> Failed to set boot-next due to Unknown error</pre><br>To work around this issue, verify system boot mode with the <code>nv show system reboot</code> command before you perform optimized image upgrade and switch to cold boot mode if necessary with the <code>nv set system reboot mode cold</code> command. You can then proceed with the optimized image upgrade <code>boot-next</code> operation. | 5.11.4-5.15.1 | 5.16.0-5.16.1|
 | 4721298 | When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database. | 5.11.0-5.15.1 | 5.9.5, 5.16.0-5.16.1|
+| 4683602 | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
 | 4647646 | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
 | 4640898 | When a new LLDP neighbor is discovered with an empty or missing Port Description TLV; for example, when introducing a new third-party switch into the fabric, a <code>ptmd</code> defect might cause a segmentation fault (crash). | 5.11.2-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
 | 4640126 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
@@ -353,7 +351,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
 | 4963280 | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
@@ -363,12 +360,12 @@ pdfhidden: True
 | 4882392 | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4871161 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4840299 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
-| 4829843 | During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck. | 5.11.3-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
+| 4805286 | During port‑mapping configuration, an edge case might lead to an invalid configuration state, causing the system to eventually become stuck. | 5.11.3-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
 | 4789097 | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | 5.16.0-5.16.1|
-| 4771874 | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
 | 4771521 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1 | 5.16.0-5.16.1|
 | 4729839 | In an MLAG configuration, when you reboot the primary MLAG switch with PVRST spanning tree mode configured on both MLAG switches, PVRST mode briefly changes to RSTP, then back to PVRST when the primary switch comes back up. | 5.11.3-5.15.1 | 5.16.0-5.16.1|
 | 4721298 | When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database. | 5.11.0-5.15.1 | 5.9.5, 5.16.0-5.16.1|
+| 4683602 | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
 | 4647646 | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
 | 4640898 | When a new LLDP neighbor is discovered with an empty or missing Port Description TLV; for example, when introducing a new third-party switch into the fabric, a <code>ptmd</code> defect might cause a segmentation fault (crash). | 5.11.2-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
 | 4640126 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
@@ -518,7 +515,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
 | 4963280 | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
@@ -528,9 +524,9 @@ pdfhidden: True
 | 4871161 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4840299 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4789097 | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | 5.16.0-5.16.1|
-| 4771874 | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
 | 4771521 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1 | 5.16.0-5.16.1|
 | 4721298 | When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database. | 5.11.0-5.15.1 | 5.9.5, 5.16.0-5.16.1|
+| 4683602 | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
 | 4647646 | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
 | 4640898 | When a new LLDP neighbor is discovered with an empty or missing Port Description TLV; for example, when introducing a new third-party switch into the fabric, a <code>ptmd</code> defect might cause a segmentation fault (crash). | 5.11.2-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
 | 4640126 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
@@ -717,7 +713,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
 | 4963280 | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4963277 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
@@ -726,9 +721,9 @@ pdfhidden: True
 | 4871161 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4840299 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4789097 | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | 5.16.0-5.16.1|
-| 4771874 | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
 | 4771521 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1 | 5.16.0-5.16.1|
 | 4721298 | When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database. | 5.11.0-5.15.1 | 5.9.5, 5.16.0-5.16.1|
+| 4683602 | When you poll optical module data with <code>ethtool -m</code>, <code>switchd</code> might crash due to a firmware timeout that triggers a fatal health-check failure. | 5.11.1-5.11.4 | 5.9.5, 5.11.5-5.15.1, 5.16.0-5.16.1|
 | 4647646 | If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel.  | 4.4.2-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
 | 4637200 | When more than one IPv4 and/or IPv6 addresses are configured on a remote interface, NVUE LLDP commands such as <code>nv show interface lldp-detail</code> only reflect one address. To work around this issue, use <code>lldpctl</code> to view LLDP information. For example, <code>sudo lldpctl -d -f json swp1</code>.  | 5.9.0-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
 | 4633514 | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
@@ -926,7 +921,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
 | 4963280 | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4963277 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |

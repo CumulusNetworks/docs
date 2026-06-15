@@ -48,7 +48,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference between the current and new password">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
-  - {{<link title="Automatic Backup" text="Automatic Snapshots">}}
+  - {{<link title="Automatic Configuration Backup" text="Automatic Snapshots">}}
   - Support for IP source guard on user-facing access port
 - Telemetry
   - New OTEL metrics:

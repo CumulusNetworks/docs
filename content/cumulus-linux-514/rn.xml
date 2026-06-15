@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5056358</td>
-<td>sFlow does not work on 100GbE 8x breakout ports.</td>
-<td>5.9.2-5.16.4</td>
-<td></td>
-</tr>
-<tr>
 <td>4992204</td>
 <td>Cumulus Linux does not support the NVUE {{nv set nve vxlan port &lt;udp-port&gt;}} command; you do not see the configured UDP port in the outer VXLAN packet header.</td>
 <td>5.14.0-5.16.4</td>
@@ -92,6 +86,18 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td></td>
 </tr>
 <tr>
+<td>4922104</td>
+<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
+<td>5.13.1-5.16.0</td>
+<td>5.16.1-5.16.4</td>
+</tr>
+<tr>
+<td>4922099</td>
+<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
+<td>5.14.0-5.16.0</td>
+<td>5.16.1-5.16.4</td>
+</tr>
+<tr>
 <td>4918342, 4641291</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
 <td>5.13.0-5.16.4</td>
@@ -102,12 +108,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>BGP sessions configured with an explicit IPv6 link local peer address might result in stale or invalid next hop tracking entries after a session disruption.</td>
 <td>5.14.0-5.16.4</td>
 <td></td>
-</tr>
-<tr>
-<td>4901549</td>
-<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
-<td>5.14.0-5.16.0</td>
-<td>5.16.1-5.16.4</td>
 </tr>
 <tr>
 <td>4895563</td>
@@ -146,12 +146,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
 <td>5.9.1-5.16.4</td>
 <td></td>
-</tr>
-<tr>
-<td>4881679</td>
-<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
-<td>5.13.1-5.16.0</td>
-<td>5.16.1-5.16.4</td>
 </tr>
 <tr>
 <td>4879269</td>
@@ -255,6 +249,12 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td>5.16.0-5.16.4</td>
 </tr>
 <tr>
+<td>4769255</td>
+<td>When using the CPU port as a SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
+<td>5.14.0-5.15.0</td>
+<td>5.15.1-5.16.4</td>
+</tr>
+<tr>
 <td>4751060, 4637733</td>
 <td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
 sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>
@@ -355,12 +355,6 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.16.4</td>
-</tr>
-<tr>
-<td>4717888</td>
-<td>When using the CPU port as a SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
-<td>5.14.0-5.15.0</td>
-<td>5.15.1-5.16.4, 5.16.0-5.16.4</td>
 </tr>
 <tr>
 <td>4714618</td>

@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5056358</td>
-<td>sFlow does not work on 100GbE 8x breakout ports.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>5027908</td>
 <td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
@@ -64,6 +58,12 @@
 <td>4968081</td>
 <td>During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause {{/var/run/lldpd.socket}} to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover.</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4964407</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1605,12 +1605,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5056358</td>
-<td>sFlow does not work on 100GbE 8x breakout ports.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>5018899</td>
 <td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
@@ -1638,6 +1632,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4968081</td>
 <td>During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause {{/var/run/lldpd.socket}} to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover.</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4964407</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1</td>
 <td></td>
 </tr>
 <tr>

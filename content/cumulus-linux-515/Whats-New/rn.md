@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 5027908 | RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests. | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 5012295 | Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload.  | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 4992204 | Cumulus Linux does not support the NVUE <code>nv set nve vxlan port <udp-port></code> command; you do not see the configured UDP port in the outer VXLAN packet header. | 5.14.0-5.15.1, 5.16.0-5.16.1 | |
@@ -24,6 +23,7 @@ pdfhidden: True
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
 | 4980055 | With very large configurations, <code>nv config apply</code> command performance might be slow. | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 4968081 | During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause <code>/var/run/lldpd.socket</code> to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover. | 5.14.0-5.15.1, 5.16.0-5.16.1 | |
+| 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.15.1, 5.16.0-5.16.1 | |
 | 4964154 | When you run the <code>nv config apply</code> command or the <code>sudo systemctl reload frr.service</code> command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run <code>sudo systemctl edit frr.service</code> to change the <code>TimeoutSec=2m</code> to a higher value and apply the changes with <code>sudo systemctl daemon-reload</code>. | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 4963280 | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4963277 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
@@ -273,12 +273,12 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 5018899 | RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests. | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 5012295 | Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload.  | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 4992204 | Cumulus Linux does not support the NVUE <code>nv set nve vxlan port <udp-port></code> command; you do not see the configured UDP port in the outer VXLAN packet header. | 5.14.0-5.15.1, 5.16.0-5.16.1 | |
 | 4980055 | With very large configurations, <code>nv config apply</code> command performance might be slow. | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 4968081 | During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause <code>/var/run/lldpd.socket</code> to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover. | 5.14.0-5.15.1, 5.16.0-5.16.1 | |
+| 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.15.1, 5.16.0-5.16.1 | |
 | 4964154 | When you run the <code>nv config apply</code> command or the <code>sudo systemctl reload frr.service</code> command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run <code>sudo systemctl edit frr.service</code> to change the <code>TimeoutSec=2m</code> to a higher value and apply the changes with <code>sudo systemctl daemon-reload</code>. | 5.15.0-5.15.1, 5.16.0-5.16.1 | |
 | 4957394 | During <code>snmpwalk</code>, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes <code>GET</code> or <code>GETNEXT</code> for the requests. | 5.9.5-5.15.1, 5.16.0-5.16.1 | |
 | 4951125 | API calls to NVUE generate a TACACS author request for a local user bypassing the authentication order.  | 5.14.0-5.15.1, 5.16.0-5.16.1 | |

@@ -14,9 +14,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
+| 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.15.1, 5.16.0-5.16.1 | |
 | 4963280 | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4963277 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
 | 4957394 | During <code>snmpwalk</code>, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes <code>GET</code> or <code>GETNEXT</code> for the requests. | 5.9.5-5.15.1, 5.16.0-5.16.1 | |
@@ -221,9 +221,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5056358 | sFlow does not work on 100GbE 8x breakout ports. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
+| 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.15.1, 5.16.0-5.16.1 | |
 | 4963280 | Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak. | 5.9.1-5.15.1, 5.16.0-5.16.1 | |
 | 4963277 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
 | 4957394 | During <code>snmpwalk</code>, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes <code>GET</code> or <code>GETNEXT</code> for the requests. | 5.9.5-5.15.1, 5.16.0-5.16.1 | |

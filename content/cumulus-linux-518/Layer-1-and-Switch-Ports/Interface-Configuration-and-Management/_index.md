@@ -777,19 +777,23 @@ Cumulus Linux supports Autonomous Path Start-Up (APSU) for link initialization a
 - APSU and link precoding control are advanced features. Do not overwrite the default firmware-managed behavior unless you are an advanced user.
 {{%/notice%}}
 
-To enable or disable APSU, run the `nv set interface <interface-id> link apsu-mode enabled` command or the `nv set interface <interface-id> link apsu-mode disabled` command.
+To enable APSU, run the `nv set interface <interface-id> link apsu-mode enabled` command: 
 
 ```
 cumulus@switch:~$ nv set interface swp1 link apsu-mode enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable or disable link precoding, run the `nv set interface <interface-id> link module-precoding enabled` command or the `nv set interface <interface-id> link module-precoding disabled` command.
+To disable APSU, run the `nv set interface <interface-id> link apsu-mode disabled` command.
+
+To enable link precoding, run the `nv set interface <interface-id> link module-precoding enabled` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 link module-precoding enabled
 cumulus@switch:~$ nv config apply
 ```
+
+To disable link precoding, run the `nv set interface <interface-id> link module-precoding disabled` command.
 
 The default for both APSU and link precoding is `auto`, which maps to the firmware default.
 
@@ -797,7 +801,6 @@ To show APSU and link precoding information, run the `nv show interface <interfa
 
 ```
 cumulus@switch:~$ nv show interface swp1
-
 ```
 
 ## Tx Squelch Control

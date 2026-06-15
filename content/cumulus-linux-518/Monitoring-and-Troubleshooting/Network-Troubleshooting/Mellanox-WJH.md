@@ -121,9 +121,9 @@ cumulus@switch:~$ sudo systemctl restart what-just-happened
 
 ### Filter Traffic Drops
 
-You can filter traffic drops to prevent them from being monitored based on the reason for the drop (such as cable or transceiver is unplugged, decapsulation error, or multicast MAC mismatch), severity level (notice, warning, or error), or source and destination IP address.
+You can filter traffic drops to prevent them from being monitored based on the reason for the drop (such as an unplugged cable or transceiver, decapsulation error or multicast MAC mismatch), severity level (notice, warning, or error), or source and destination IP address.
 
-The following example filters layer 1 packet drops due to cables or transceivers being unplugged, layer 2 packet drops with severity level notice, and dropped packets with the IP address 10.10.10.10.
+The following example filters drops to prevent WJH from monitoring layer 1 packet drops due to unplugged cables or transceivers, layer 2 packet drops with severity level notice, and dropped packets with the IP address 10.10.10.10.
 
 ```
 cumulus@switch:~$ nv set system wjh channel drop-filter drop-type l1 drop-reason cable/transceiver is unplugged
@@ -132,7 +132,7 @@ cumulus@switch:~$ nv set system wjh channel drop-filter ip 10.10.10.10
 cumulus@switch:~$ nv config apply
 ```
 
-To unset a traffic drop filter, run the `nv set system wjh channel drop-filter drop-type <drop-type> drop-reason`, `nv set system wjh channel drop-filter drop-type <drop-type> severity`, or `nv set system wjh channel drop-filter ip` command.
+To unset a traffic drop filter, run the `nv unset system wjh channel drop-filter drop-type <drop-type> drop-reason`, `nv unset system wjh channel drop-filter drop-type <drop-type> severity`, or `nv unset system wjh channel drop-filter ip` command.
 
 To show traffic drop filter configuration, run the `nv show system wjh channel drop-filter` command.
 
@@ -155,13 +155,12 @@ cumulus@switch:~$ nv set system wjh channel buffer aggregate-cache-size 1000
 cumulus@switch:~$ nv config apply
 ```
 
-To unset the aggregation interval for a channel, run the `nv unset system wjh channel <channel-id> polling-interval` command.
-
-To unset the aggregate cache size, run the `nv unset system wjh channel <channel-id> aggregate-cache-size` command.
+- To unset the aggregation interval for a channel, run the `nv unset system wjh channel <channel-id> polling-interval` command.
+- To unset the aggregate cache size, run the `nv unset system wjh channel <channel-id> aggregate-cache-size` command.
 
 ### Latency and Congestion Thresholds
 
-If you configure a channel to monitor buffer packet drops, you can specify latency and congestion thresholds to apply to buffer drops for all or specific traffic classes for all or specific interfaces. WJH collects and sends events when a metric crosses the thresholds.
+If you configure a channel to monitor buffer packet drops, you can specify latency and congestion thresholds to apply to buffer drops for all or specific traffic classes and interfaces. WJH collects and sends events when a metric crosses the thresholds.
 - Packet latency is the time spent in the switch.
 - Congestion is a percentage of the buffer occupancy on the switch.
 
@@ -173,7 +172,8 @@ cumulus@switch:~$ nv set system wjh channel buffer-threshold congestion tc 3 int
 cumulus@switch:~$ nv config apply
 ```
 
-To unset the packet latency threshold, run the `nv set system wjh channel buffer-threshold latency` command. To unset the packet congestion threshold, run the `nv set system wjh channel buffer-threshold congestion` command.
+- To unset the packet latency threshold, run the `nv unset system wjh channel buffer-threshold latency` command.
+- To unset the packet congestion threshold, run the `nv unset system wjh channel buffer-threshold congestion` command.
 
 To show the latency and congestion threshold configuration, run the `nv show system wjh channel buffer-threshold` command:
 
@@ -205,8 +205,8 @@ You can run the following commands to show information about dropped packets and
 To show information about packet drops for all the channels you configure, run the `nv show system wjh packet-buffer` command. The command output includes the reason for the drop and the recommended action to take.
 
 You can also show the WJH configuration on the switch:
-- To show the configuration for a channel, run the `nv show system wjh channel <channel>` command. For example, `nv show system wjh channel forwarding`.
-- To show the configuration for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command. For example, `nv show system wjh channel forwarding trigger`.
+- To show the configuration for a channel, run the `nv show system wjh channel <channel>` command.
+- To show the configuration for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command.
 
 The following example shows information about layer 1 packet drops:
 

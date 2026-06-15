@@ -39,12 +39,6 @@
 <td></td>
 </tr>
 <tr>
-<td>5056358</td>
-<td>sFlow does not work on 100GbE 8x breakout ports.</td>
-<td>5.9.2-5.17.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5041547</td>
 <td>When the {{/var}} directory runs out of disk space, the NVUE service goes down and you see the message {{NVUE Service temporarily unavailable. Please try again later}}. To work around this issue, restart the NVUE service after {{/var}} frees up.</td>
 <td>5.16.1-5.17.0</td>
@@ -1301,11 +1295,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 </tr>
 <tr>
 <td>4891771</td>
-<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
-<td>5.16.0-5.16.1</td>
-</tr>
-<tr>
-<td>4891440</td>
 <td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
 <td>5.16.0-5.16.1</td>
 </tr>

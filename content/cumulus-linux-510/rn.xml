@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5056358</td>
-<td>sFlow does not work on 100GbE 8x breakout ports.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4986329</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.15.1, 5.16.0-5.16.1</td>
@@ -997,12 +991,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5056358</td>
-<td>sFlow does not work on 100GbE 8x breakout ports.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4986329</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.15.1, 5.16.0-5.16.1</td>
@@ -1329,6 +1317,12 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.10.1-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
+<td>4062271, 4048679</td>
+<td>ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see the &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations"&gt;Release Considerations section of the What’s New&lt;/a&gt;.</td>
+<td>5.10.0</td>
+<td>5.10.1-5.15.1, 5.16.0-5.16.1</td>
+</tr>
+<tr>
 <td>4062001</td>
 <td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed in the kernel. </td>
 <td>5.8.0-5.10.1</td>
@@ -1391,6 +1385,12 @@ To work around this issue, power-cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
+<td>4043575</td>
+<td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
+<td>5.10.0</td>
+<td>5.9.2, 5.10.1-5.15.1, 5.16.0-5.16.1</td>
+</tr>
+<tr>
 <td>4042657</td>
 <td>The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
 </td>
@@ -1428,12 +1428,6 @@ To work around this issue, power-cycle the switch.</td>
 <td>5.11.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
-<td>4037224, 4048679</td>
-<td>ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see the &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations"&gt;Release Considerations section of the What’s New&lt;/a&gt;.</td>
-<td>5.10.0</td>
-<td>5.10.1-5.15.1, 5.11.0-5.15.1, 5.16.0-5.16.1</td>
-</tr>
-<tr>
 <td>4030380</td>
 <td>When you roll back interface configuration to the default setting with the {{nv unset interface}} command, NVUE removes the complete entry for the interface from the {{/etc/network/interface}} file, and puts the interface in admin down. As a result, you cannot configure FEC on the interface at the lower layers.</td>
 <td>5.10.0-5.15.1, 5.16.0-5.16.1</td>
@@ -1462,12 +1456,6 @@ To work around this issue, power-cycle the switch.</td>
 <td>If you change  the switch hostname, the histogram data producer service restarts.</td>
 <td>5.10.0-5.12.1</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1</td>
-</tr>
-<tr>
-<td>4016216</td>
-<td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
-<td>5.10.0</td>
-<td>5.9.2, 5.10.1-5.15.1, 5.11.0-5.15.1, 5.16.0-5.16.1</td>
 </tr>
 <tr>
 <td>4005422, 4015452</td>

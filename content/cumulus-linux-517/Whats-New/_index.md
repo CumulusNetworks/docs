@@ -11,7 +11,12 @@ This document supports the Cumulus Linux 5.17 release, and lists new features an
 ## What's New in Cumulus Linux 5.17
 
 Cumulus Linux 5.17 contains new features and improvements, and provides bug fixes.
-
+<!--
+{{%notice note%}}
+Cumulus Linux 5.17.0 is tested and validated as part of the Spectrum-X reference architecture 2.2 release.
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+-->
 ### New Features and Enhancements
 
 - {{<link url="TACACS/#server-side-per-command-authorization" text="TACACS+ Server-side Per-command Authorization">}}
@@ -23,6 +28,7 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
 - {{<link url="Quality-of-Service/#lossless-shared-headroom-pool" text="Lossless shared headroom pool">}}
 - {{<link url="Link-Layer-Discovery-Protocol/#lldp-tlvs" text="Granular LLDP TLV definition and control">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}}
+- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
 - {{<link url="Syslog/#thermal-control-logs" text="Thermal logging in syslog - sensor and fan state and errors">}}
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} (Beta)
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} (Beta)
@@ -46,7 +52,6 @@ Cumulus Linux 5.17 contains new features and improvements, and provides bug fixe
   - Ability to view {{<link url="User-Accounts/#show-user-accounts" text="hashed password with NVUE">}} and {{<link url="NVUE-API/#configure-users" text="with API">}}
   - {{<link url="Security-Alerts" text="Security alerts ">}} for audit processing failures
   - {{<link url="802.1X-Interfaces/#8021x-reauthentication" text="802.1X reauthentication: maximum number of retries and interface configuration">}}
-  <!-- - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}-->
 
 ## Release Considerations
 

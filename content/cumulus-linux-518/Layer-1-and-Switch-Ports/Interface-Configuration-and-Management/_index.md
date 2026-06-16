@@ -768,6 +768,41 @@ To clear link debounce statistics for all interfaces, run the `nv action clear i
 cumulus@switch:~$ nv action clear interface debounce-counters 
 ```
 
+## APSU and Link Precoding Control
+
+Cumulus Linux supports Autonomous Path Start-Up (APSU) for link initialization and precoding control for negotiation between connected devices on a Spectrum-6 switch while preserving the default firmware-managed behavior for standard deployments.
+
+{{%notice note%}}
+- APSU and link precoding control are supported on NVIDIA Spectrum-6 and later, and with firmware that has APSU and precoding support enabled.
+- APSU and link precoding control are advanced features. Do not overwrite the default firmware-managed behavior unless you are an advanced user.
+{{%/notice%}}
+
+To enable APSU, run the `nv set interface <interface-id> link apsu-mode enabled` command: 
+
+```
+cumulus@switch:~$ nv set interface swp1 link apsu-mode enabled
+cumulus@switch:~$ nv config apply
+```
+
+To disable APSU, run the `nv set interface <interface-id> link apsu-mode disabled` command.
+
+To enable link precoding, run the `nv set interface <interface-id> link module-precoding enabled` command:
+
+```
+cumulus@switch:~$ nv set interface swp1 link module-precoding enabled
+cumulus@switch:~$ nv config apply
+```
+
+To disable link precoding, run the `nv set interface <interface-id> link module-precoding disabled` command.
+
+The default for both APSU and link precoding is `auto`, which maps to the firmware default.
+
+To show APSU and link precoding information, run the `nv show interface <interface-id>` command:
+
+```
+cumulus@switch:~$ nv show interface swp1
+```
+
 ## Tx Squelch Control
 
 {{%notice note%}}
@@ -834,6 +869,124 @@ To disable Tx squelch control, set the `interface.<interface-id>.tx_squelch` par
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Uplink Tracking
+
+Uplink tracking enables you to monitor uplink interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of the uplinks, ensuring predictable network operations, and improving overall resiliency.
+
+To configure and enable uplink tracking:
+- Create an uplink tracking group with a set of uplinks that you want to monitor.
+  - Only switch port interfaces that already exist are supported for uplink tracking.
+  - The group name can be a minimum of 1 character and a maximum of 16 characters. You can use alphanumeric characters, hyphens (-), and underscores (_).
+- Specify the minimum number of uplinks that must be operationally up to keep the associated downlinks active. The minimum number of uplinks must not exceed the number of uplink interfaces configured in the group.
+- Associate a set of downlinks to the uplink tracking group. These are the downlinks that have a relationship with the uplinks that are part of the group. You cannot configure an interface as both an uplink and a downlink.
+- Specify the action you want to take when the number of available uplinks goes below the minimum threshold.
+  - Mark the downlinks protodown so that the switch does not send traffic to these links from their downstream devices.
+  - In a multi-plane scenario, notify the control plane to reroute traffic away from this plane.
+- Enable uplink tracking.
+
+When you configure uplink interfaces and enable uplink tracking, the `ifplugd` service becomes active and starts running. When you disable uplink tracking, the `ifplugd` service stops.
+
+The following example creates an uplink tracking group called GROUP1 that configures swp51 through swp54 as the uplinks to monitor. The minimum number of uplinks that must be operationally up is 3 and the associated downlinks are swp1 through swp3. When the number of available uplinks goes below the minimum threshold of 3, the control plane reroutes traffic away from this plane.
+
+```
+cumulus@switch:~$ nv set system uplink-tracking group GROUP1 interface swp51-54
+cumulus@switch:~$ nv set system uplink-tracking group GROUP1 min-links 3
+cumulus@switch:~$ nv set interface swp1-3 uplink-tracking group GROUP1
+cumulus@switch:~$ nv set system uplink-tracking state-change-action control-plane-action
+cumulus@switch:~$ nv set system uplink-tracking state enabled
+cumulus@switch:~$ nv config apply
+```
+
+- To disable uplink tracking, run the `nv set system uplink-tracking state disabled` command.
+- To remove a downlink interface from a group, run the `nv unset interface <interface-id> uplink-tracking group` command.
+- To unset the action to take when the number of available uplinks goes below the minimum threshold, run the `nv unset system uplink-tracking state-change-action` command.
+- To set the minimum number of uplinks that must be operationally back to the default value, run the `nv unset system uplink-tracking group <group-name> min-links` command.
+- To remove an uplink-tracking group, run the `nv unset system uplink-tracking group <group-name>` command.
+
+To show uplink configuration:
+- To show uplink tracking configuration, such as the uplink interfaces to monitor, the state (enabled or disabled), and the action to take when the number of available uplinks goes below the minimum threshold, run the `nv show system uplink-tracking` command.
+- To show all the configured uplink tracking groups, run the `nv show system uplink-tracking group` command.
+- To show the uplinks and minimum uplink threshold for a specific group, run the `nv show system uplink-tracking group <group-name>` command.
+- To show all uplink interfaces in a group, run the `nv show system uplink-tracking group <group-name> interface` command.
+
+```
+cumulus@switch:~$ nv show system uplink-tracking
+                     operational           applied 
+-------------------  --------------------  -------------------- 
+state                enabled               enabled 
+state-change-action  control-plane-action  control-plane-action 
+
+group 
+======== 
+    Uplink Tracking Group  Interface  Min Links 
+    ---------------------  ---------  --------- 
+    GROUP1                 swp51      3
+                           swp52 
+                           swp53
+                           swp54
+```
+
+```
+cumulus@switch:~$ nv show system uplink-tracking group
+Uplink Tracking Group  Interface  Min Links 
+---------------------  ---------  --------- 
+GROUP1                 swp51       3 
+                       swp52 
+                       swp53 
+                       swp54
+```
+
+```
+cumulus@switch:~$ nv show system uplink-tracking group GROUP1
+             operational  applied 
+-----------  -----------  ------- 
+min-links    3            3 
+[interface]  swp51        swp51 
+[interface]  swp52        swp52 
+[interface]  swp53        swp53 
+[interface]  swp54        swp54
+```
+
+```
+cumulus@switch:~$ nv show system uplink-tracking group GROUP1 interface 
+Interface 
+--------- 
+swp51 
+swp52 
+swp53
+swp54
+```
+
+To show downlink configuration:
+- To show the downlinks in each configured group, run the `nv show interface uplink-tracking` command.
+- To show the groups where a downlink interface is configured, run the `nv show interface <interface-id> uplink-tracking` command.
+- To show the downlink interfaces for a specific group, run the `nv show interface uplink-tracking --filter "group=<group-name>"` command.
+
+```
+cumulus@switch:~$ nv show interface uplink-tracking 
+Interface  Uplink Tracking Group 
+---------  --------------------- 
+swp1       GROUP1 
+swp2       GROUP1 
+swp3       GROUP1
+```
+
+```
+cumulus@switch:~$ nv show interface swp1 uplink-tracking 
+        operational applied 
+-----  -----------  ------- 
+group  GROUP1       GROUP1
+```
+
+```
+cumulus@switch:~$ nv show interface uplink-tracking --filter "group=GROUP1" 
+Interface  Uplink Tracking Group 
+---------  --------------------- 
+swp1       GROUP1 
+swp2       GROUP1
+swp3       GROUP1
+```
 
 ## Source Interface File Snippets
 

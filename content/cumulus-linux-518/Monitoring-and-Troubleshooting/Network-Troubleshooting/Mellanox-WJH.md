@@ -119,6 +119,82 @@ cumulus@switch:~$ sudo systemctl restart what-just-happened
 {{< /tab >}}
 {{< /tabs >}}
 
+### Filter Traffic Drops
+
+You can filter traffic drops to prevent them from being monitored based on the reason for the drop (such as an unplugged cable or transceiver, decapsulation error or multicast MAC mismatch), severity level (notice, warning, or error), or source and destination IP address.
+
+The following example filters drops to prevent WJH from monitoring layer 1 packet drops due to unplugged cables or transceivers, layer 2 packet drops with severity level notice, and dropped packets with the IP address 10.10.10.10.
+
+```
+cumulus@switch:~$ nv set system wjh channel drop-filter drop-type l1 drop-reason cable/transceiver is unplugged
+cumulus@switch:~$ nv set system wjh channel drop-filter drop-type l2 severity notice 
+cumulus@switch:~$ nv set system wjh channel drop-filter ip 10.10.10.10
+cumulus@switch:~$ nv config apply
+```
+
+To unset a traffic drop filter, run the `nv unset system wjh channel drop-filter drop-type <drop-type> drop-reason`, `nv unset system wjh channel drop-filter drop-type <drop-type> severity`, or `nv unset system wjh channel drop-filter ip` command.
+
+To show traffic drop filter configuration, run the `nv show system wjh channel drop-filter` command.
+
+```
+cumulus@switch:~$ nv show system wjh channel drop-filter
+
+```
+
+### Aggregation Interval and Cache Size
+
+You can control the rate at which metrics are sent for a channel (the polling interval) and the number of WJH drops and aggregates to maintain in the cache (the aggregate cache size).
+
+The polling interval for a channel can be between 5 and 300 seconds and the cache size between 500 and 5000.
+
+The following example sets the aggregation interval for the buffer channel to 100 seconds and the cache size to 1000:
+
+```
+cumulus@switch:~$ nv set system wjh channel buffer polling-interval 100
+cumulus@switch:~$ nv set system wjh channel buffer aggregate-cache-size 1000
+cumulus@switch:~$ nv config apply
+```
+
+- To unset the aggregation interval for a channel, run the `nv unset system wjh channel <channel-id> polling-interval` command.
+- To unset the aggregate cache size, run the `nv unset system wjh channel <channel-id> aggregate-cache-size` command.
+
+### Latency and Congestion Thresholds
+
+If you configure a channel to monitor buffer packet drops, you can specify latency and congestion thresholds to apply to buffer drops for all or specific traffic classes and interfaces. WJH collects and sends events when a metric crosses the thresholds.
+- Packet latency is the time spent in the switch.
+- Congestion is a percentage of the buffer occupancy on the switch.
+
+The following example sets the latency threshold to 10 seconds for all traffic classes on ports swp1, swp2, and swp3 and the congestion threshold to 4 for traffic class 3 on all interfaces.
+
+```
+cumulus@switch:~$ nv set system wjh channel buffer-threshold latency tc all interface swp1-3 high 10
+cumulus@switch:~$ nv set system wjh channel buffer-threshold congestion tc 3 interface all high 4
+cumulus@switch:~$ nv config apply
+```
+
+- To unset the packet latency threshold, run the `nv unset system wjh channel buffer-threshold latency` command.
+- To unset the packet congestion threshold, run the `nv unset system wjh channel buffer-threshold congestion` command.
+
+To show the latency and congestion threshold configuration, run the `nv show system wjh channel buffer-threshold` command:
+
+```
+cumulus@switch:~$ nv show system wjh channel buffer-threshold
+```
+
+## Save Dropped Packets to a PCAP File
+
+To save the most recent dropped packets to a PCAP file, run the `nv action export system wjh packet-buffer <filename>` command.  
+
+```
+cumulus@switch:~$ nv action export system wjh packet-buffer FILE1
+```
+
+To exclude metadata in the file, add `no-metadata` to the command:
+
+```
+cumulus@switch:~$ nv action export system wjh packet-buffer FILE1 no-metadata
+```
+
 ## Show Information about Dropped Packets
 
 You can run the following commands to show information about dropped packets and diagnose problems.
@@ -129,8 +205,8 @@ You can run the following commands to show information about dropped packets and
 To show information about packet drops for all the channels you configure, run the `nv show system wjh packet-buffer` command. The command output includes the reason for the drop and the recommended action to take.
 
 You can also show the WJH configuration on the switch:
-- To show the configuration for a channel, run the `nv show system wjh channel <channel>` command. For example, `nv show system wjh channel forwarding`.
-- To show the configuration for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command. For example, `nv show system wjh channel forwarding trigger`.
+- To show the configuration for a channel, run the `nv show system wjh channel <channel>` command.
+- To show the configuration for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command.
 
 The following example shows information about layer 1 packet drops:
 
@@ -142,6 +218,13 @@ cumulus@switch:~$ nv show system wjh packet-buffer
 2   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp18    N/A          22/11/03 01:00:35.458  N/A
 3   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp19    N/A          22/11/03 01:00:35.458  N/A
 4   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp20    N/A          22/11/03 01:00:35.458  N/A
+```
+
+To show the most recent aggregate buffer drop events, up to the maximum aggregate cache size specified, run the `nv show system wjh aggregate-buffer` command. To show layer 1 buffer events, run the `nv show system wjh l1-buffer` command.
+
+```
+cumulus@switch:~$ nv show system wjh aggregate-buffer
+
 ```
 
 {{< /tab >}}

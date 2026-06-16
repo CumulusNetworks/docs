@@ -10,43 +10,46 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 
 ## What's New in Cumulus Linux 5.18
 
-Cumulus Linux 5.18 contains new features and improvements, and provides bug fixes.
+Cumulus Linux 5.18 supports new platforms, contains new features and improvements, and provides bug fixes.
 
-Multi-ASIC CPO Switch SN5800-LD
-Single ASIC CPO switch | SN5810-LD
+## Platforms
+- NVIDIA SN6600_LD (800G Spectrum-6) Beta
+- NVIDIA SN5800-LD (800G Spectrum-6 Multi-ASIC) Beta
+- NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC) Beta
 
 ### New Features and Enhancements
-
-- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="Support for RADIUS PEAP-GTC authentication type">}}
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
 - {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
-- EVPN MH/MLAG without Unique SVI IP
-- Password changed within 8-character differences
+- {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
+- {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
+- Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
+- EVPN Multihoming and MLAG without a unique SVI IP address
 - VRF scale limits for 802.1x and dynamic VRF provisioning
 - FW based BFD acceleration with Cumulus
-- Simplified User Profile support
 - Systemd Target-Based Service Management for multi-asic
-- Spectrum-X" Profile Support 
-- Avoid FRR service restart when a FRR daemon (non-zebra) is dynamically enabled or disabled
-- Remove Support for Vlan 1
-- Support for IP source guard on user-facing access port
-- Dynamic ARP and DAI on all user vlans
+- Spectrum-X" Profile Support
 - X-plane graceful fabric maintenance - node level
 - Xplane extensions for XGS
 - Supporting BMC Flows On Salamandra
-- Tx/Rx Module's pre-coding control for 3rd party modules | APSU disabled mode |
 - Advertise BOTH SAFI 254 AND SAFI 81 in capability negotiation
 - NVUE
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
-  - Support Scheduling of Binary Image Installation (ONIE-Install)
+  - {{<link url="Interface-Configuration-and-Management/#uplink-tracking" text="Uplink tracking ">}}
+  - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}
+  - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
   - View parts of the switch configuration
   - nv show interface - no view for Link phy-detail
   - nv show interface - no view for transceiver
-  - Support uplink tracking with NVUE 
   - Zebra phase 2: Remaining Operational
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
+- Security
+  - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference between the current and new password">}}
+  - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
+  - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
+  - {{<link url="System-Snapshots" text="Automatic Configuration Snapshots">}}
+  - Support for IP source guard on user-facing access port
 - Telemetry
   - New OTEL metrics:
   - New gNMI metrics:

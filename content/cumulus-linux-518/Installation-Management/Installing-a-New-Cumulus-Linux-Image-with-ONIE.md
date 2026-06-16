@@ -83,13 +83,35 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
 
+{{< tabs "TabID86 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Place the Cumulus Linux image in a directory on the web server.
+
+2. From the Cumulus Linux command prompt, run the `nv action install system image onie <image> force activate reboot` command. This command installs the Cumulus Linux image without prompts and reboots the switch.
+
+```
+cumulus@switch:~$ nv action install system image onie http://10.0.1.251/cumulus-linux-5.18.0-mlx-amd64.bin force activate reboot 
+Action executing ... 
+Installing ONIE image 
+Action executing ... 
+ONIE install completed successfully 
+Action succeeded 
+```
+
+{{< /tab >}}
+{{< tab "ONIE Commands ">}}
+
 1. Place the Cumulus Linux image in a directory on the web server.
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
-    ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-x86_64.bin
-    ```
+```
+cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-x86_64.bin
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -136,13 +158,35 @@ You need a console connection to access the switch; you cannot perform this proc
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
 
+{{< tabs "TabID161 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Place the Cumulus Linux image in a directory on your web server.
+
+2. From the Cumulus Linux command prompt, run the `nv action install system image onie <image> force activate reboot` command. This command installs the Cumulus Linux image without prompts and reboots the switch.
+
+```
+cumulus@switch:~$ nv action install system image onie http://10.0.1.251/cumulus-linux-5.18.0-mlx-amd64.bin force activate reboot 
+Action executing ... 
+Installing ONIE image 
+Action executing ... 
+ONIE install completed successfully 
+Action succeeded 
+```
+
+{{< /tab >}}
+{{< tab "ONIE commands ">}}
+
 1. Place the Cumulus Linux image in a directory on your web server.
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
-    ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-x86_64.bin
-    ```
+```
+cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-x86_64.bin
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -151,49 +195,65 @@ You need a console connection to access the switch; you cannot perform this proc
 
 Follow the steps below if your laptop is on the same network as the switch eth0 interface but *no* DHCP server is available.
 
-{{< tabs "TabID162 ">}}
+{{< tabs "TabID197 ">}}
 {{< tab "Install from ONIE ">}}
 
 1. [Boot into ONIE install mode](#boot-into-onie-install-mode)
 
 2. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
-    ```
-    ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
-    ```
+```
+ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
+```
 
 3. If you are using static addressing, disable ONIE discovery mode:
 
-    ```
-    onie# onie-discovery-stop
-    ```
+```
+onie# onie-discovery-stop
+```
 
-    On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
+On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
 
-    ```
-    onie# /etc/init.d/discover.sh stop
-    ```
+```
+onie# /etc/init.d/discover.sh stop
+```
 
 4. Place the Cumulus Linux image into a TFTP or FTP directory.
 
 5. If you are not using DHCP options, run one of the following commands (tftp for TFTP or ftp for FTP):
 
-    ```
-    ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-x86_64.bin
-
-    ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
-    ```
+```
+ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-x86_64.bin
+ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
+```
 
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
+
+{{< tabs "TabID233 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in  Cumulus Linux).
+
+2. From the Cumulus Linux command prompt, run the `nv action install system image onie ftp://<image> force activate reboot` command. This command installs the Cumulus Linux image without prompts and reboots the switch..
+
+```
+cumulus@switch:~$ sudo onie-install nv action install system image onie ftp://local-ftp-server/cumulus-install-x86_64.bin force activate reboot
+```
+
+{{< /tab >}}
+{{< tab "ONIE commands ">}}
 
 1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in  Cumulus Linux).
 
 2. From the Cumulus Linux command prompt, run the following command, then reboot the switch.
 
-    ```
-    cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-x86_64.bin
-    ```
+```
+cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-x86_64.bin
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -236,14 +296,44 @@ Follow the steps below to install the Cumulus Linux image referencing a local fi
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
 
-The `onie-install` command lets you stage a Cumulus Linux image and other files, such as a ZTP script or an NVUE `startup.yaml` file, then run the installation on the switch when you are ready.
+You can stage a Cumulus Linux image and other files, such as a ZTP script or an NVUE `startup.yaml` file, then run the installation on the switch when you are ready.
 
-You can provide the following file paths with the `onie-install` command:
+You can provide the following file paths:
 - The local file path (absolute or relative path)
 - `http://server/path/`
 - `https://server/path/`
 - `scp://user@server/path/`
 - `ftp://server/path/` (anonymous only)
+
+{{< tabs "TabID287 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example stages an image on an HTTP server:
+
+```
+cumulus@cumulus:~$ nv action install system image onie http://203.0.113.10/image-installer
+```
+
+The following example stages an image and a ZTP script on an HTTP server:
+
+```
+cumulus@cumulus:~$ nv action install system image onie http://203.0.113.10/image-installer ztp http://203.0.113.10/ztp-script
+```
+
+The following example stages an image on an HTTP server and a local NVUE `startup.yaml` file:
+
+```
+cumulus@cumulus:~$ nv action install system image onie http://203.0.113.10/image-installer startup-config /etc/nvue.d/startup.yaml
+``` 
+
+You can combine the options. For example to stage an image on an HTTP server, a local NVUE `startup.yaml` file, and a ZTP script, run the `nv action install system image onie http://203.0.113.10/image-installer ztp http://203.0.113.10/ztp-script startup-config /etc/nvue.d/startup.yaml` command.
+
+To activate the staged installation and reboot the switch, add the `activate reboot` commands; for example, `nv action install system image onie http://203.0.113.10/image-installer startup-config /etc/nvue.d/startup.yaml activate reboot`.
+
+To suppress the prompts and allow the action to proceed non-interactively, use the `force` option. NVIDIA recommends using the `force` option for scripted, automated, or REST API invocations; for example, `nv action install system image onie http://203.0.113.10/image-installer startup-config /etc/nvue.d/startup.yaml force activate reboot`.
+
+{{< /tab >}}
+{{< tab "ONIE commands ">}}
 
 Use these options to stage additional files with the Cumulus Linux image:
 - `-z` stages a <span class="a-tooltip">[ZTP](## "Zero Touch Provisioning")</span> script.
@@ -267,15 +357,7 @@ The following example stages an image on an HTTP server and a local NVUE `startu
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -t /etc/nvue.d/startup.yaml
 ```
 
-{{%notice note%}}
-If your NVUE `startup.yaml` file includes certificate configuration for gNMI, the NVUE API, or other features, NVUE does not restore the certificate files. Perform a package upgrade when possible, or manually back up and restore your certificate files to the same path after the ONIE image upgrade is complete.
-{{%/notice%}}
-
-{{%notice note%}}
-When you stage an NVUE `startup.yaml` file, ZTP still runs after the new image installs. To prevent ZTP from running after the new image installs, either:
-- Run the `sudo ztp -d` or `nv action disable system ztp` commands to disable ZTP after the new image is running.
-- Use the `-z` option to specify an existing ZTP script that takes no action. For example, create a file called `/tmp/cumulus_ztp.sh` that contains the line `#!/bin/bash # CUMULUS-AUTOPROVISIONING` and specify `sudo onie-install -fa -i <image-path> -z /tmp/cumulus_ztp.sh -t /etc/nvue.d/startup.yaml`.
-{{%/notice%}}
+Use the `-z` option to specify an existing ZTP script that takes no action. For example, create a file called `/tmp/cumulus_ztp.sh` that contains the line `#!/bin/bash # CUMULUS-AUTOPROVISIONING` and specify `sudo onie-install -fa -i <image-path> -z /tmp/cumulus_ztp.sh -t /etc/nvue.d/startup.yaml`.
 
 To activate the staged installation, use the `-a` option, then reboot the switch:
 
@@ -299,6 +381,19 @@ Reboot required to take effect.
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+If your NVUE `startup.yaml` file includes certificate configuration for gNMI, the NVUE API, or other features, NVUE does not restore the certificate files. Perform a package upgrade when possible, or manually back up and restore your certificate files to the same path after the ONIE image upgrade is complete.
+{{%/notice%}}
+
+{{%notice note%}}
+When you stage an NVUE `startup.yaml` file, ZTP still runs after the new image installs. To prevent ZTP from running after the new image installs, either:
+- Run the `nv action disable system ztp` or `sudo ztp -d` command to disable ZTP after the new image is running.
+{{%/notice%}}
+
 
 ## Install Using a USB Drive
 

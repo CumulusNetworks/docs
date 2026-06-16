@@ -3127,7 +3127,7 @@ When you enable platform statistic telemetry globally, or when you enable teleme
 {{< tabs "TabID723 ">}}
 {{< tab "ASIC ">}}
 
-ASIC statistics include the ASIC resource used percentage, maximum, free, high watermark, and high watermark timestamp.
+ASIC statistics include the ASIC resource used percentage, the maximum number of entries, the number of free entries, the high watermark, and the high watermark timestamp.
 
 | Name | Description |
 |----- | ----------- |

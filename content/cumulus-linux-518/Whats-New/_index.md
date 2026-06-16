@@ -24,10 +24,10 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
 - {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
+- {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload-to-firmware" text="BFD offload to firmware">}}
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - EVPN Multihoming and MLAG without a unique SVI IP address
 - VRF scale limits for 802.1x and dynamic VRF provisioning
-- FW based BFD acceleration with Cumulus
 - Systemd Target-Based Service Management for multi-asic
 - Spectrum-X" Profile Support
 - X-plane graceful fabric maintenance - node level

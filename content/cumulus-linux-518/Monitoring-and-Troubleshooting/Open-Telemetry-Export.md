@@ -390,8 +390,26 @@ cumulus@switch:~$ nv config apply
 
 If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 60 seconds.
 
-{{< tabs "TabID115 ">}}
-{{< tab "CPU ">}}
+{{< tabs "TabID393 ">}}
+{{< tab "ASIC ">}}
+
+To enable ASIC statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To adjust the sample interval for ASIC statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+
+{{< /tab >}}
+{{< tab "CPU">}}
 
 To enable CPU statistics:
 
@@ -2753,14 +2771,14 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_lldp_chassis_info` | LLDP chassis information. |
-| `nvswitch_lldp_chassis_capabilities` | LLDP chassis capabilities as a bitmap. IEEE 802.1AB defines the capabilities.|
-| `nvswitch_lldp_neighbor_age` | LLDP neighbor age information in seconds.|
-| `nvswitch_lldp_neighbor_capabilities` | LLDP neighbor capabilities as a bitmap. IEEE 802.1AB defines the capabilities. |
-| `nvswitch_lldp_neighbor_info` | LLDP neighbor information.|
-| `nvswitch_lldp_neighbor_ttl` | LLDP neighbor port TTL in seconds.|
-| `nvswitch_lldp_neighbor_management_address-info` | LLDP neighbor management address information.|
-| `nvswitch_lldp_interface_enabled` | Per-directional status on whether LLDP is enabled per interface.|
+| `nvswitch_lldp_chassis_info` | *LLDP chassis information. |
+| `nvswitch_lldp_chassis_capabilities` | *LLDP chassis capabilities as a bitmap. IEEE 802.1AB defines the capabilities.|
+| `nvswitch_lldp_neighbor_age` | *LLDP neighbor age information in seconds.|
+| `nvswitch_lldp_neighbor_capabilities` | *LLDP neighbor capabilities as a bitmap. IEEE 802.1AB defines the capabilities. |
+| `nvswitch_lldp_neighbor_info` | *LLDP neighbor information.|
+| `nvswitch_lldp_neighbor_ttl` | *LLDP neighbor port TTL in seconds.|
+| `nvswitch_lldp_neighbor_management_address-info` | *LLDP neighbor management address information.|
+| `nvswitch_lldp_interface_enabled` | *Per-directional status on whether LLDP is enabled per interface.|
 
 {{< expand "Example JSON data for nvswitch_lldp_chassis_info:" >}}
 
@@ -3107,7 +3125,20 @@ When you enable {{<link url="Latency-Monitoring/" text="latency monitoring">}}, 
 When you enable platform statistic telemetry globally, or when you enable telemetry for the individual components, the switch exports the following statistics:
 
 {{< tabs "TabID723 ">}}
-{{< tab "CPU ">}}
+{{< tab "ASIC ">}}
+
+ASIC statistics include the ASIC resource used percentage, the maximum number of entries, the number of free entries, the high watermark, and the high watermark timestamp.
+
+| Name | Description |
+|----- | ----------- |
+| `nvswitch_platform_asic_resource_used` | | 
+| `nvswitch_platform_asic_resource_free` | | 
+| `nvswitch_platform_asic_resource_max_limit` | |
+| `nvswitch_platform_asic_resource_high_watermark` | | 
+| `nvswitch_platform_asic_resource_high_watermark_timestamp` | | 
+
+{{< /tab >}}
+{{< tab "Disk ">}}
 
 CPU statistics include the CPU core number and operation mode (user, system, idle, iowait, irq, softirq, steal, guest, guest_nice).
 

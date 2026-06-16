@@ -24,10 +24,10 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
 - {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
+- {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload-to-firmware" text="BFD offload to firmware">}}
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - EVPN Multihoming and MLAG without a unique SVI IP address
 - VRF scale limits for 802.1x and dynamic VRF provisioning
-- FW based BFD acceleration with Cumulus
 - Systemd Target-Based Service Management for multi-asic
 - Spectrum-X" Profile Support
 - X-plane graceful fabric maintenance - node level
@@ -48,11 +48,11 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference between the current and new password">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
-  - {{<link url="System-Snapshots" text="Automatic Configuration Snapshots">}}
+  - {{<link title="Automatic Configuration Backup" text="Automatic Snapshots">}}
   - Support for IP source guard on user-facing access port
 - Telemetry
-  - New OTEL metrics:
-  - New gNMI metrics:
+  - New OTEL metrics: {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="ASIC">}}
+  - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="ASIC">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
   - What Just Happened gNMI metrics
   - Support 802.1x RADIUS GNMI metrics

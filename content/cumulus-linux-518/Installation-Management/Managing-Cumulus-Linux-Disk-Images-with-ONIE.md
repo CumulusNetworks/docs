@@ -227,7 +227,7 @@ Cancelling pending rescue at next reboot...done.
 
 ## Show ONIE Installer Information
 
-To show the ONIE installer staged information and the installed images on both partitions, run the`nv show system image` command:
+To show the ONIE installer staged information and the installed images on both partitions, run the `nv show system image` command:
 
 ```
 cumulus@switch:~$ nv show system image 
@@ -259,7 +259,7 @@ startup-url                  /etc/nvue.d/startup.yaml
 When the ONIE installer is not staged, onie information does not show.
 {{%/notice%}}
 
-To show the onie installer staged information only:
+To show the onie installer staged information only, run the `nv show system image onie` command:
 
 ```
 cumulus@switch:~$ nv show system image onie

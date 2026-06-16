@@ -357,7 +357,7 @@ To enable BFD offload:
 Run the `nv set router bfd offload kernel` command.
 
 ```
-cumulus@switch:~$ nv set router bfd offload kernel
+cumulus@switch:~$ nv set router bfd offload mode kernel
 cumulus@switch:~$ nv config apply
 ```
 
@@ -368,7 +368,7 @@ cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 vi
 cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd source 10.10.10.3
 ```
 
-To disable BFD offload, run the `nv set router bfd offload none` command.
+To disable BFD offload, run the `nv set router bfd offload mode none` command.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -427,18 +427,18 @@ LocalId     MHop   Local                      Peer                  Interface   
 
 The `Offloaded` field shows `offloaded` if the session is offloaded and `control-plane` if the session is not offloaded.
 
-## BFD Offload to Firmware
+## BFD Offload to Hardware
 
 {{%notice note%}}
-You can set BFD to firmware:
+You can set BFD to hardware:
 - On Spectrum-6 switches only.
 - On all single-hop interface types (physical, subinterface, bond, SVI, BGP unnumbered).
 - Before you change the BFD offlooad mode to firmware, configure BFD sessions to enter the admin-down state to notify peers gracefully. This prevents peers from interpreting the mode transition as a link or path failure, avoiding unnecessary routing reconvergence.
 {{%/notice%}}
 
-Under heavy CPU load (such as route churn, ACL updates, large-scale provisioning), software-based BFD timers can drift, leading to false session flaps, especially at aggressive intervals. To avoid such issues, you can configure the switch to handle receiving and transmitting BFD packets entirely in firmware with 10ms timer precision, independent of CPU load.
+Under heavy CPU load (such as route churn, ACL updates, large-scale provisioning), software-based BFD timers can drift, leading to false session flaps, especially at aggressive intervals. To avoid such issues, you can configure the switch to handle receiving and transmitting BFD packets entirely in hardware with 10ms timer precision, independent of CPU load.
 
-To configure BFD to firmware, run the `nv set router bfd offload mode hardware` command:
+To configure BFD to hardware, run the `nv set router bfd offload mode hardware` command:
 
 ```
 cumulus@switch:~$ nv set router bfd offload mode hardware   

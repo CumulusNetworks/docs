@@ -100,6 +100,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4881770</td>
+<td>On an 802.1x port with dynamic VRF enabled, the switch might not restore the port correctly to the configured VRF after the supplicant deauthenticates and the dynamic VRF is removed. To work around this issue and to restore the port VRF configuration correctly, run the {{sudo ifreload -a}} command after the supplicant is deauthenticated.</td>
+<td>5.16.0-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4875306</td>
 <td>Fixed traffic drops on SLAAC and 802.1x interfaces by deferring UNREACH withdrawal until the first host actually resolves through ARP or NDP, instead of withdrawing immediately on linkup.</td>
 <td>5.16.0-5.17.0</td>

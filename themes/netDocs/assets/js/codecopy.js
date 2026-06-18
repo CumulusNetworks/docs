@@ -21,6 +21,23 @@ document.addEventListener('DOMContentLoaded', function () {
               div.innerHTML = "<img src=\"https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg\" width=\"20\" height=\"20\">";
             }, 2000);
         });
+    async function cleanClipboard() {
+    try {
+        let text = await navigator.clipboard.readText();
+
+        // Remove specific text
+        const textToRemove = "cumulus@switch:~$ ";
+        text = text.replaceAll(textToRemove, "");
+
+        await navigator.clipboard.writeText(text);
+        console.log("Clipboard updated:", text);
+    } catch (err) {
+        console.error("Failed to access clipboard:", err);
+    }
+}
+
+cleanClipboard();
+
     });
 
       var pre = codeBlock.parentNode;
@@ -42,3 +59,4 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(script);
   }
 });
+

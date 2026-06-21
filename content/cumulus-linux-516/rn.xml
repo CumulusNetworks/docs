@@ -536,6 +536,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td></td>
 </tr>
 <tr>
+<td>4881770</td>
+<td>On an 802.1x port with dynamic VRF enabled, the switch might not restore the port correctly to the configured VRF after the supplicant deauthenticates and the dynamic VRF is removed. To work around this issue and to restore the port VRF configuration correctly, run the {{sudo ifreload -a}} command after the supplicant is deauthenticated.</td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4879165</td>
 <td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
@@ -2129,6 +2135,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>4881914</td>
 <td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
+<td>5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4881770</td>
+<td>On an 802.1x port with dynamic VRF enabled, the switch might not restore the port correctly to the configured VRF after the supplicant deauthenticates and the dynamic VRF is removed. To work around this issue and to restore the port VRF configuration correctly, run the {{sudo ifreload -a}} command after the supplicant is deauthenticated.</td>
 <td>5.16.0-5.16.1</td>
 <td></td>
 </tr>

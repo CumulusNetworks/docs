@@ -14,13 +14,13 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 
 ## Platforms
 - NVIDIA SN6600_LD (800G Spectrum-6) Beta
-- NVIDIA SN5800-LD (800G Spectrum-6 Multi-ASIC) Beta
-- NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC) Beta
+- NVIDIA SN5800-LD (800G Spectrum-6 Multi-ASIC)
+- NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC)
 
 ### New Features and Enhancements
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
-- {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
+- {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
 - {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
@@ -56,7 +56,6 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
   - What Just Happened gNMI metrics
   - Support 802.1x RADIUS GNMI metrics
-  - Streaming Telemetry support for ASIC resources
 
 ## Release Considerations
 

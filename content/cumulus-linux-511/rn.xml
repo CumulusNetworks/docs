@@ -7,6 +7,38 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5093941</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093940</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093873</td>
+<td>When you configure BGP dynamic neighbors and 
+{{default-originate}} with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the {{default-originate}} with the route map command or toggle 
+{{default-route-origination}} off, then on.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093853</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093852</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4986333</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.15.1, 5.16.0-5.16.1</td>
@@ -1055,6 +1087,30 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5093941</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093940</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093853</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093852</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4986333</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.15.1, 5.16.0-5.16.1</td>
@@ -2098,6 +2154,30 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5093941</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093940</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093853</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093852</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4986333</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.15.1, 5.16.0-5.16.1</td>
@@ -3108,6 +3188,30 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5093941</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093940</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093853</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093852</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4986333</td>
@@ -4298,6 +4402,30 @@ nv config apply -y</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5093941</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093940</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093853</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093852</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4986329</td>
@@ -5550,6 +5678,30 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5093941</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093940</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093853</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093852</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4986329</td>

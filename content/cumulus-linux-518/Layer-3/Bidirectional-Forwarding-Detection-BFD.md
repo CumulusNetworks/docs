@@ -429,14 +429,14 @@ The `Offloaded` field shows `offloaded` if the session is offloaded and `control
 
 ## BFD Offload to Hardware
 
+Under heavy CPU load (such as route churn, ACL updates, large-scale provisioning), software-based BFD timers can drift, leading to false session flaps, especially at aggressive intervals. To avoid such issues, you can configure the switch to handle receiving and transmitting BFD packets entirely in hardware with 10ms timer precision, independent of CPU load.
+
 {{%notice note%}}
 You can set BFD to hardware:
 - On Spectrum-6 switches only.
 - On all single-hop interface types (physical, subinterface, bond, SVI, BGP unnumbered).
 - Before you change the BFD offlooad mode to firmware, configure BFD sessions to enter the admin-down state to notify peers gracefully. This prevents peers from interpreting the mode transition as a link or path failure, avoiding unnecessary routing reconvergence.
 {{%/notice%}}
-
-Under heavy CPU load (such as route churn, ACL updates, large-scale provisioning), software-based BFD timers can drift, leading to false session flaps, especially at aggressive intervals. To avoid such issues, you can configure the switch to handle receiving and transmitting BFD packets entirely in hardware with 10ms timer precision, independent of CPU load.
 
 To configure BFD to hardware, run the `nv set router bfd offload mode hardware` command:
 

@@ -14,6 +14,12 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5093941 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
+| 5093940 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
+| 5093917 | If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:<br><pre>sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 &#91;'SDK thread issue'&#93;, irisc=255, desc='Health check: SDK thread &#91;sxSniffer&#93; TID &#91;0x7f81cffff6c0&#93; bit &#91;4&#93; does not respond &#91;5&#93; seconds')</pre> | 5.12.0-5.15.1, 5.16.0-5.16.1 | |
+| 5093873 | When you configure BGP dynamic neighbors and <code>default-originate</code> with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the <code>default-originate</code> with the route map command or toggle <code>default-route-origination</code> off, then on. | 5.11.5-5.15.1, 5.16.0-5.16.1 | |
+| 5093853 | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.15.1, 5.16.0-5.16.1 | |
+| 5093852 | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.15.1, 5.16.0-5.16.1 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
 | 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.15.1, 5.16.0-5.16.1 | |
@@ -221,6 +227,12 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5093941 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
+| 5093940 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1, 5.16.0-5.16.1 | |
+| 5093917 | If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:<br><pre>sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 &#91;'SDK thread issue'&#93;, irisc=255, desc='Health check: SDK thread &#91;sxSniffer&#93; TID &#91;0x7f81cffff6c0&#93; bit &#91;4&#93; does not respond &#91;5&#93; seconds')</pre> | 5.12.0-5.15.1, 5.16.0-5.16.1 | |
+| 5093873 | When you configure BGP dynamic neighbors and <code>default-originate</code> with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the <code>default-originate</code> with the route map command or toggle <code>default-route-origination</code> off, then on. | 5.11.5-5.15.1, 5.16.0-5.16.1 | |
+| 5093853 | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.15.1, 5.16.0-5.16.1 | |
+| 5093852 | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.15.1, 5.16.0-5.16.1 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.15.1, 5.16.0-5.16.1 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.15.1, 5.16.0-5.16.1 | |
 | 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.15.1, 5.16.0-5.16.1 | |

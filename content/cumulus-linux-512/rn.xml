@@ -7,6 +7,45 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5093941</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093940</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093917</td>
+<td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
+sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093873</td>
+<td>When you configure BGP dynamic neighbors and 
+{{default-originate}} with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the {{default-originate}} with the route map command or toggle 
+{{default-route-origination}} off, then on.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093853</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093852</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4986333</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.15.1, 5.16.0-5.16.1</td>
@@ -1295,6 +1334,45 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5093941</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093940</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093917</td>
+<td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
+sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093873</td>
+<td>When you configure BGP dynamic neighbors and 
+{{default-originate}} with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the {{default-originate}} with the route map command or toggle 
+{{default-route-origination}} off, then on.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093853</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093852</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4986333</td>

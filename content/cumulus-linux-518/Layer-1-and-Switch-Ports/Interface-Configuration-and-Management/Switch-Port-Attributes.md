@@ -2174,6 +2174,41 @@ Laser output power                        : 0.5230 mW / -2.81 dBm
 Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 ```
 
+To show a tabular summary of transceiver temperature, voltage, and per-channel optical power and bias values for all switch port interfaces, run the `nv show interface --view dom` command: 
+
+```
+cumulus@switch:~$ nv show interface --view dom
+swp1s0  temperature 65.98 C       voltage 3.2097 V 
+        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
+        ----     ------------   ---------       ------------ 
+        1        1.0000/0.00    110.400         1.0000/0.00 
+        2        1.0000/0.00    80.100          0.6310/-2.00 
+swp1s1  temperature 65.98 C       voltage 3.2097 V 
+        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
+        ----     ------------   ---------       ------------ 
+        3        1.0000/0.00    75.100          1.0000/0.00 
+        4        1.5849/2.00    80.400          1.0000/0.00 
+swp1s2  temperature 65.98 C       voltage 3.2097 V 
+        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
+        ----     ------------   ---------       ------------ 
+        5        1.5849/2.00    86.966          1.0000/0.00 
+        6        1.5849/2.00    77.400          1.0000/0.00 
+swp1s3  temperature 65.98 C       voltage 3.2097 V 
+        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
+        ----     ------------   ---------       ------------ 
+        7        1.5849/2.00    94.480          1.0000/0.00 
+        8        1.5849/2.00    85.000          1.0000/0.00 
+swp2s0  temperature 68.79 C       voltage 3.2225 V 
+        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
+        ----     ------------   ---------       ------------ 
+        1        1.5849/2.00    80.300          0.6310/-2.00 
+        2        1.5849/2.00    65.400          1.0000/0.00 
+...
+```
+
+- Use the `--filter` option to filter the view for a range of interfaces; for example the `nv show interface --view dom --filter "*>=swp20&*<=swp22"` command shows transceiver information for swp20, swp21, and swp22.
+- Use the -o json option to show the information in json format; for example the `nv show interface --view dom --filter "*>=swp20&*<=swp22" -o json` command shows transceiver information for swp20, swp21, and swp22 in json format.
+
 ## Considerations
 <!-- vale off -->
 <!-- Vale issue #253 -->

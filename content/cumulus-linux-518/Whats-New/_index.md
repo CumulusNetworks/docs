@@ -18,6 +18,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC) Beta
 
 ### New Features and Enhancements
+- Kernel update to Debian 6.1.174-1
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
 - {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
@@ -39,10 +40,9 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="Interface-Configuration-and-Management/#uplink-tracking" text="Uplink tracking ">}}
   - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}
   - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
-  - View parts of the switch configuration
-  - nv show interface - no view for Link phy-detail
-  - nv show interface - no view for transceiver
-  - Zebra phase 2: Remaining Operational
+  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="nv show interface --ber command to show a tabular summary of PHY health statistics for all switch port interfaces ">}}
+  {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show a tabular summary of transceiver information for all switch port interfaces">}}
+  - {{<link url="NVUE-CLI/#show-specific-configuration" text="Show specific configuration on the switch">}}
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Security
   - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference between the current and new password">}}

@@ -962,7 +962,7 @@ cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 state e
 cumulus@switch:~$ nv config apply
 ```
 
-To enable DAI on certain trusted interfaces only, run the `nv set bridge domain <bridge> arp-inspection vlan <vid> interface <port>` command. Ports not listed have no DAI filters (the switch forwards the packets).
+To set a trusted (opt-out) port,  run the `nv set bridge domain <bridge> arp-inspection vlan <vid> interface <port>` command. The listed ports have no DAI filters and the packets pass through the switch.
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 interface swp1

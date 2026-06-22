@@ -358,6 +358,21 @@ snr-media-lane6            23.12 dB
 snr-media-lane7            24.05 dB
 ```
 
+To show a tabular summary of PHY health statistics for all switch port interfaces in a single command, such as the error counters for all ports, run the `nv show interface --view ber` command: 
+
+```
+cumulus@switch$ nv show interface --view ber
+Interface  Eff-BER  Raw-BER  Sym-BER  Sym-Errs  Eff-Errs  Last-Clr(min) 
+---------  -------  -------  -------  --------  --------  -------------
+swp1       15E-255  15E-255  0        0         0         27251 
+swp2       15E-255  15E-255  0        0         0         27251 
+swp3       15E-255  15E-255  0        0         0         27251 
+swp4       15E-255  15E-255  0        0         0         27251 
+```
+
+- Use the `--filter` option to filter the view for a range of interfaces; for example the `nv show interface --view ber --filter "*>=swp20&*<=swp22"` command shows PHY health statistics for swp20, swp21, and swp22.
+- Use the -o json option to show the information in json format; for example the `nv show interface --view ber --filter "*>=swp20&*<=swp22" -o json` command shows PHY health statistics for swp20, swp21, and swp22 in json format.
+
 To show physical layer diagnostic information for a port, run the `nv show interface <interface-id> link phy detail` command:
 
 ```

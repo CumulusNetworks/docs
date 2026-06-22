@@ -26,8 +26,8 @@ To set profile‑based configuration on the switch:
 | Role | Direction rules |
 | ---- | --------------- |
 | `leaf` | Both uplink and downlink required. Adaptive routing **not** applied on downlinks (host facing).|
-| `spine-2` (2-tier) | Downlink only.|
-| `spine-3` (3-tier) | Both uplink (SSP-facing) and downlink (leaf-facing). Adaptive routing applied on both directions. |
+| `spine-2`&nbsp;(2-tier) | Downlink only.|
+| `spine-3`&nbsp;(3-tier) | Both uplink (SSP-facing) and downlink (leaf-facing). Adaptive routing applied on both directions. |
 | `super-spine` | Downlink only (spine-facing). No ISSU. 3-tier topology only. |
 
 The following example sets profile-based configuration on the leaf and applies the profile:

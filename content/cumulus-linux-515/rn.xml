@@ -7,6 +7,99 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5093941</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093940</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093939</td>
+<td>When {{nvued.log}} triggers log rotation, it also forces rotation of all three logs ({{nvued}}, {{nv-cli}}, and {{nv-api}}). As a result, the {{nv-cli}} logs are rotated unnecessarily, which might eventually lead to missing {{nv-cli.log}} entries due to excessive rotations.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093938</td>
+<td>When {{nvued.log}} triggers log rotation, it also forces rotation of all three logs ({{nvued}}, {{nv-cli}}, and {{nv-api}}). As a result, the {{nv-cli}} logs are rotated unnecessarily, which might eventually lead to missing {{nv-cli.log}} entries due to excessive rotations.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093933</td>
+<td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093931</td>
+<td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093926</td>
+<td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093924</td>
+<td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093923</td>
+<td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093919</td>
+<td>In an MLAG configuration with PVRST spanning tree mode configured on both switches, when the primary switch comes back up after a reboot, PVRST mode briefly changes to RSTP, then back to PVRST.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093917</td>
+<td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
+sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093874</td>
+<td>When you configure PTP on a trunk interface, where the selected PTP VLAN is the PVID (untagged native VLAN), the PTP packets might be tagged incorrectly with the VLAN ID.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093873</td>
+<td>When you configure BGP dynamic neighbors and 
+{{default-originate}} with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the {{default-originate}} with the route map command or toggle 
+{{default-route-origination}} off, then on.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093853</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093852</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5027908</td>
 <td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
@@ -1603,6 +1696,99 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5093941</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093940</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093939</td>
+<td>When {{nvued.log}} triggers log rotation, it also forces rotation of all three logs ({{nvued}}, {{nv-cli}}, and {{nv-api}}). As a result, the {{nv-cli}} logs are rotated unnecessarily, which might eventually lead to missing {{nv-cli.log}} entries due to excessive rotations.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093938</td>
+<td>When {{nvued.log}} triggers log rotation, it also forces rotation of all three logs ({{nvued}}, {{nv-cli}}, and {{nv-api}}). As a result, the {{nv-cli}} logs are rotated unnecessarily, which might eventually lead to missing {{nv-cli.log}} entries due to excessive rotations.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093933</td>
+<td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093931</td>
+<td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093926</td>
+<td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093924</td>
+<td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093923</td>
+<td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093919</td>
+<td>In an MLAG configuration with PVRST spanning tree mode configured on both switches, when the primary switch comes back up after a reboot, PVRST mode briefly changes to RSTP, then back to PVRST.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093917</td>
+<td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
+sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093874</td>
+<td>When you configure PTP on a trunk interface, where the selected PTP VLAN is the PVID (untagged native VLAN), the PTP packets might be tagged incorrectly with the VLAN ID.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093873</td>
+<td>When you configure BGP dynamic neighbors and 
+{{default-originate}} with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the {{default-originate}} with the route map command or toggle 
+{{default-route-origination}} off, then on.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093853</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5093852</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1</td>
+<td></td>
 </tr>
 <tr>
 <td>5027908</td>

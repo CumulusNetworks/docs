@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5093853 | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
+| 5093852 | When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash. | 5.8.0-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
 | 4963277 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.14.0 | 5.15.0-5.15.1, 5.16.0-5.16.1|
 | 4797691 | The message that the switch displays when you generate a cl-support file or as a post login banner contains an invalid Cumulus Support email address, which is no longer the formal channel for reporting support issues. | 5.0.0-5.9.4, 5.15.1 | 5.9.5, 5.16.0-5.16.1|

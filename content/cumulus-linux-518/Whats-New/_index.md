@@ -18,6 +18,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC)
 
 ### New Features and Enhancements
+- Kernel update to Debian 6.1.174-1
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
@@ -41,8 +42,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="nv show interface --ber command to show a tabular summary of PHY health statistics for all switch port interfaces ">}}
   {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show a tabular summary of transceiver information for all switch port interfaces">}}
-  - View parts of the switch configuration
-  - Zebra phase 2: Remaining Operational
+  - {{<link url="NVUE-CLI/#show-specific-configuration" text="Show specific configuration on the switch">}}
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Security
   - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference between the current and new password">}}

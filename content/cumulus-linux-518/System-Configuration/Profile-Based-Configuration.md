@@ -21,14 +21,15 @@ Before you set profile-based configuration, NVIDIA recommends you back up the cu
 To set profile‑based configuration on the switch:
 - Specify the role of the switch: `leaf`, `spine-2` (two-tier spine), `spine-3` (three-tier spine), or `super-spine`.
 - Specify the upinks and, or, downlinks. For the direction rules, refer to the table below.
+- Optional: Set a QoS RoCE profile, such as dci-1, or lossy-multi-tc. If you do not set a QoS profile, the switch uses the {{<link url="RDMA-over-Converged-Ethernet-RoCE/#default-roce-configuration" text="default RoCE lossless mode configuration">}}.
 - Apply the profile.
 
 | Role | Direction rules |
 | ---- | --------------- |
-| `leaf` | Both uplink and downlink required. Adaptive routing **not** applied on downlinks (host facing).|
-| `spine-2`&nbsp;(2-tier) | Downlink only.|
-| `spine-3`&nbsp;(3-tier) | Both uplink (SSP-facing) and downlink (leaf-facing). Adaptive routing applied on both directions. |
-| `super-spine` | Downlink only (spine-facing). No ISSU. 3-tier topology only. |
+| `leaf` | Both uplink and downlink required. Adaptive routing applied on uplinks (spine-facing ports) only.|
+| `spine-2`&nbsp;(2-tier) | Downlink only. Adaptive routing applied on spine downlink. |
+| `spine-3`&nbsp;(3-tier) | Both uplink (SSP-facing) and downlink (leaf-facing). Adaptive routing applied in both directions. |
+| `super-spine` | Downlink only (spine-facing ports). No ISSU. 3-tier topology only. |
 
 The following example sets profile-based configuration on the leaf and applies the profile:
 
@@ -93,6 +94,23 @@ Action executing ...
 patching rendered do-spx profile: super-spine
 Action executing ...
 do-spx profile 'super-spine' staged in revision 18. Review: nv config diff applied 18. Apply: nv config apply --rev 18.
+Action succeeded
+```
+
+The following example sets profile-based configuration on the leaf, adds the dci-1 QoS configuration, and applies the profile:
+
+```
+cumulus@switch:~$ nv set system do-spx profile leaf uplink swp1-swp32 breakout x4 
+cumulus@switch:~$ nv set system do-spx profile leaf downlink swp33-swp64 breakout x1
+cumulus@switch:~$ nv set system do-spx qos profile dci-1 
+cumulus@switch:~$ nv config apply 
+cumulus@switch:~$ nv action activate system do-spx profile leaf
+Action executing ...
+Rendering do-spx profile: leaf
+Action executing ...
+patching rendered do-spx profile: leaf
+Action executing ...
+do-spx profile 'leaf' staged in revision 18. Review: nv config diff applied 18. Apply: nv config apply --rev 18.
 Action succeeded
 ```
 

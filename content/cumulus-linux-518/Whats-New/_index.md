@@ -13,11 +13,15 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 Cumulus Linux 5.18 supports new platforms, contains new features and improvements, and provides bug fixes.
 
 ## Platforms
+
+- NVIDIA SN5800-LD (400G Spectrum-5 Multi-ASIC)
+- NVIDIA SN5810-LD (400G Spectrum-5 Single ASIC)
 - NVIDIA SN6600_LD (800G Spectrum-6) Beta
 - NVIDIA SN5800-LD (800G Spectrum-6 Multi-ASIC) Beta
 - NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC) Beta
 
 ### New Features and Enhancements
+
 - Kernel update to Debian 6.1.174-1
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
@@ -28,9 +32,9 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload-to-firmware" text="BFD offload to firmware">}}
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
+- Layer 3 VXLAN interface
 - EVPN Multihoming and MLAG without a unique SVI IP address
-- Xplane extensions for XGS
-- Supporting BMC Flows On Salamandra
+- Xplane extensions
 - Advertise BOTH SAFI 254 AND SAFI 81 in capability negotiation
 - NVUE
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
@@ -40,6 +44,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="nv show interface --ber command to show PHY health statistics for all interfaces ">}}
   - {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show transceiver information for all interfaces">}}
   - {{<link url="NVUE-CLI/#show-specific-configuration" text="Show specific configuration on the switch">}}
+  - {{<link url="BMC" text="BMC commands">}}
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Security
   - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference between the current and new password">}}

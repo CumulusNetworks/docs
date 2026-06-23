@@ -40,8 +40,8 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="Interface-Configuration-and-Management/#uplink-tracking" text="Uplink tracking ">}}
   - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}
   - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
-  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="nv show interface --ber command to show a tabular summary of PHY health statistics for all switch port interfaces ">}}
-  {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show a tabular summary of transceiver information for all switch port interfaces">}}
+  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="nv show interface --ber command to show PHY health statistics for all interfaces ">}}
+  - {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show transceiver information for all interfaces">}}
   - {{<link url="NVUE-CLI/#show-specific-configuration" text="Show specific configuration on the switch">}}
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Security

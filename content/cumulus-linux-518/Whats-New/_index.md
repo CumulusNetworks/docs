@@ -24,13 +24,13 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
 - {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE/#data-center-interconnect-(dci-1)-profile" text="Data Center Interconnect (DCI-1) QoS profile">}}
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload-to-firmware" text="BFD offload to firmware">}}
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - EVPN Multihoming and MLAG without a unique SVI IP address
 - VRF scale limits for 802.1x and dynamic VRF provisioning
 - Systemd Target-Based Service Management for multi-asic
-- Spectrum-X" Profile Support
 - X-plane graceful fabric maintenance - node level
 - Xplane extensions for XGS
 - Supporting BMC Flows On Salamandra
@@ -49,7 +49,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
   - {{<link title="Automatic Configuration Backup" text="Automatic Snapshots">}}
-  - Support for IP source guard on user-facing access port
+  - {{<link url="VLAN-aware-Bridge-Mode/#ip-source-guard" text="IP Source Guard">}}
 - Telemetry
   - New OTEL metrics: {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="ASIC">}}
   - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="ASIC">}}

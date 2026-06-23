@@ -29,9 +29,6 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload-to-firmware" text="BFD offload to firmware">}}
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - EVPN Multihoming and MLAG without a unique SVI IP address
-- VRF scale limits for 802.1x and dynamic VRF provisioning
-- Systemd Target-Based Service Management for multi-asic
-- X-plane graceful fabric maintenance - node level
 - Xplane extensions for XGS
 - Supporting BMC Flows On Salamandra
 - Advertise BOTH SAFI 254 AND SAFI 81 in capability negotiation

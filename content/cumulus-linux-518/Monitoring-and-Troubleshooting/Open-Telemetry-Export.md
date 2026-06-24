@@ -4421,6 +4421,8 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 
 | Name | Description |
 |----- | ----------- |
+| `nvrouting_bgp_peer_enabled` | *The admin status of the BGP peer (up or down). |
+| `nvrouting_bgp_peer_rib_adj_in_pre_policy` | *The number of prefixes received from the peer before applying any policies.<br><br>The pre-policy count requires soft-reconfiguration inbound to be enabled for the peer (`nv set vrf default router bgp neighbor <neighbor-id> address-family <address-family> soft-reconfiguration enabled`).|
 | `nvrouting_bgp_peer_state` |  BGP peer state: `Established`, `Idle`, `Connect`, `Active`, `OpenSent`.  |
 | `nvrouting_bgp_peer_fsm_established_transitions` | Number of BGP peer state transitions to the `Established` state for the peer session.|
 | `nvrouting_bgp_peer_rib_adj_in_installed` | Tracks the number of prefixes received from the neighbor, installed in the RIB and actively used for forwarding.  |

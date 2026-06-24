@@ -31,6 +31,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#data-center-interconnect-(dci-1)-profile" text="Data Center Interconnect (DCI-1) QoS profile">}}
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload-to-firmware" text="BFD offload to firmware">}}
+- {{<link title="Automatic Configuration Backup" text="Automatic configuration backups">}}
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - Layer 3 VXLAN interface
 - EVPN Multihoming and MLAG without a unique SVI IP address
@@ -47,11 +48,10 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="BMC" text="BMC commands">}}
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Security
-  - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference between the current and new password">}}
+  - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
-  - {{<link title="Automatic Configuration Backup" text="Automatic Snapshots">}}
-  - {{<link url="VLAN-aware-Bridge-Mode/#ip-source-guard" text="IP Source Guard">}}
+  - {{<link url="IP-Source-Guard" text="IP Source Guard">}}
 - Telemetry
   - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="ASIC, BGP,">}}
   - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="ASIC, BGP,">}}

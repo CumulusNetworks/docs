@@ -30,11 +30,13 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received-pre-policy`| The number of prefixes received from the peer before applying any policies.<br><br>The pre-policy count requires soft-reconfiguration inbound to be enabled for the peer (`nv set vrf default router bgp neighbor <neighbor-id> address-family <address-family> soft-reconfiguration enabled`).|
 
 {{< /tab >}}
-{{< tab " ">}}
+{{< tab "WJH">}}
 
 |  Name | Description |
 |------ | ----------- |
-
+| `/wjh/channels/channel[name]/aggregate-events` | |
+| `/wjh/channels/channel[name]/l1-events` | |
+| `/wjh/channels/channel[name]/state` | |
 
 {{< /tab >}}
 {{< tab "">}}
@@ -52,6 +54,16 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Deprecated gNMI Metrics
+
+|  Name | Description |
+|------ | ----------- |
+| `interfaces/interface[name]/wjh/aggregate/l1` | |
+| `interfaces/interface[name]/wjh/aggregate/l2/` | |
+| `/interfaces/interface[name]/wjh/aggregate/router` | |
+| `/interfaces/interface[name]/wjh/aggregate/tunnel` | |
+| `/interfaces/interface[name]/wjh/aggregate/buffer` | |
 
 For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Streaming">}}.
 
@@ -77,10 +89,13 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 | `nvrouting_bgp_peer_rib_adj_in_pre_policy` | The number of prefixes received from the peer before applying any policies.<br><br>The pre-policy count requires soft-reconfiguration inbound to be enabled for the peer (`nv set vrf default router bgp neighbor <neighbor-id> address-family <address-family> soft-reconfiguration enabled`).|
 
 {{< /tab >}}
-{{< tab "">}}
+{{< tab "WJH">}}
 
 |  Name | Description |
 |------ | ----------- |
+| `nvswitch_wjh_total_events_channel_forwarding` |  |
+| `nvswitch_wjh_total_events_channel_acl` | |
+| `nvswitch_wjh_total_events_channel_buffer` | |
 
 {{< /tab >}}
 {{< tab "">}}
@@ -98,4 +113,4 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 {{< /tabs >}}
 
 
-- For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export">}}.
+For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export">}}.

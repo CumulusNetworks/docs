@@ -53,8 +53,8 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link title="Automatic Configuration Backup" text="Automatic Snapshots">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#ip-source-guard" text="IP Source Guard">}}
 - Telemetry
-  - New OTEL metrics: {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="ASIC">}}
-  - New gNMI metrics: {{<link url="gNMI-Streaming/#metrics" text="ASIC">}}
+  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="ASIC, BGP,">}}
+  - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="ASIC, BGP,">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
   - What Just Happened gNMI metrics
   - Support 802.1x RADIUS GNMI metrics

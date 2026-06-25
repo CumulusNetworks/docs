@@ -33,10 +33,10 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload-to-firmware" text="BFD offload to firmware">}}
 - {{<link title="Automatic Configuration Backup" text="Automatic configuration backups">}}
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
+- {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}}
 - Layer 3 VXLAN interface
 - EVPN Multihoming and MLAG without a unique SVI IP address
 - Xplane extensions
-- Advertise BOTH SAFI 254 AND SAFI 81 in capability negotiation
 - NVUE
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
   - {{<link url="Interface-Configuration-and-Management/#uplink-tracking" text="Uplink tracking ">}}

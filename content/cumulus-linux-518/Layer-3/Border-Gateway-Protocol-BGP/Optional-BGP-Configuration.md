@@ -1745,6 +1745,10 @@ Cumulus Linux provides several show commands to help you troubleshoot BGP PIC. R
 
 BGP unreachability SAFI signals prefix unreachability without affecting the routing table.
 
+{{%notice note%}}
+In Cumulus Linux 5.18 and later, the BGP unreachability SAFI uses the IANA assigned value of 81. In Cumulus Linux 5.16 and 5.17,  the BGP unreachability SAFI uses a private SAFI value of 254 from the RFC 4760 private use range.
+{{%/notice%}}
+
 ### Configuration
 
 To configure BGP unreachability SAFI:
@@ -1820,7 +1824,7 @@ cumulus@spine01:~$ nv config apply
 The following example:
 - Enables BGP unreachability SAFI for IPv6 globally and on neighbors swp51 and swp52 (for IPv4, run the `address-family ipv4 unreachability` command).
 - Enables unreachability advertisements for interfaces matching the network 2001:1:1::/48.
-- Sets the prefix limit to a maximum of 6 for neighbors swp51 and swp52 .
+- Sets the prefix limit to a maximum of 6 for neighbors swp51 and swp52.
 - Sets the `allow-my-asn` option for neighbors swp51 and swp52 to `origin` to allow a received AS path containing the ASN of the local system only if it is the originating AS.
 
 ```
@@ -1941,8 +1945,6 @@ For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-i
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits 
                    operational  applied
 -----------------  -----------  ------- 
--------------------  -----------  -------
-
 inbound
   maximum                         6   
   warning-threshold               75

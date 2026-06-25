@@ -172,7 +172,7 @@ Changing the default VLAN from VLAN 1 to a different identifier supports DoD sec
 - The default VLAN applies to all bridge instances that do not have a specific PVID configured.
 - Any bridge PVID you configure on an individual bridge instance takes precedence over the default VLAN.
 
-To configure the default VLAN so that VLAN 1 is not used on the trunk and access ports by default, run the `nv set bridge default-vlan` command:
+To configure the default VLAN so that VLAN 1 is not used on the trunk and access ports by default, run the `nv set bridge default-vlan <vlan-id>` command:
 
 {{< tabs "TabID177 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1029,7 +1029,6 @@ To show dynamic ARP inspection information for a specific static binding, run th
 cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 static-binding server1
 
 ```
-
 
 ## Troubleshooting
 

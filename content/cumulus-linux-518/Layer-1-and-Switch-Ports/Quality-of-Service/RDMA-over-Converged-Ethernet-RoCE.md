@@ -113,6 +113,25 @@ lossy-multi-tc-network-group           SP->PCP/DSCP mapping configuration: 4
 
 To disable the lossy multi TC profile, run the `nv unset qos roce mode lossy-multi-tc` command.
 
+## DCI-1 Profile
+
+{{%notice note%}}
+The Data Center Interconnect profile (DCI-1) is supported on Spectrum‑X platforms only (Spectrum-4, Spectrum-5, and Spectrum-6).
+{{%/notice%}}
+
+The DCI‑1 profile provides QoS settings for data center to data center connections. DCI‑1 configures the switch to run mixed classes: traffic class 3 with PFC (lossless intra‑data center) and traffic class 4 with ECN (lossy data center to data center, without PFC).
+
+To enable the DCI‑1 profile:
+
+```
+cumulus@switch:~$ nv set qos roce mode dci-1
+cumulus@switch:~$ nv config apply
+```
+
+To disable the DCI‑1 profile, run the `nv unset qos roce mode dci-1` command.
+
+To show the port profiles created when you enabled the RoCE DCI-1 profile, run the `nv show qos roce` command.
+
 ## Remove RoCE Configuration
 
 To remove RoCE configuration:

@@ -2205,58 +2205,6 @@ spine01# write memory
 {{< /tab >}}
 {{< /tabs >}}
 
-## Multi-plane BGP-LLDP Unreachability and Conditional Disaggregation
-
-{{%notice note%}}
-Cumulus Linux supports multi-plane BGP-LLDP unreachability and conditional disaggregation on Spectrum‑X platforms only (Spectrum-4, Spectrum-5, and Spectrum-6).
-{{%/notice%}}
-
-Multi-plane BGP-LLDP unreachability and conditional disaggregation enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines: 
-- Conditional disaggregation that triggers disaggregated routes at merged planes. 
-- In-plane LLDP exception signaling that informs GPUs of link or plane failures within a plane. 
-
-To configure BGP-LLDP unreachability and conditional disaggregation in a multi-plane topology, you must provide a plane ID on each leaf switch. The switch tags unreachable routes with the plane ID. When BGP exports unreachable routes to LLDP, the switch filters out routes that originate from a non-local plane as part of the conditional disaggregation functionality.
-
-Before you configure the plane ID, you must configure the following BGP features on each leaf switch:
-- {{<link url="/#bgp-pic-anycast" text="Anycast PIC">}} 
-- {{<link url="/#bgp-unreachability-safi" text="BGP Unreachability SAFI">}}
-- {{<link url="/#bgp-conditional-disaggregation" text="Conditional disaggregation">}}
-- {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP LLDP Unreachability in Disjoined Planes">}} 
-
-To configure the plane ID, run the following commands. You can specify a value between 1 and 16. The default value is 0.  
-
-{{< tabs "TabID23258">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv set vrf <vfr-id> router bgp plane-id` command on each leaf switch. The following example sets the plane ID to 8.
-
-{{%notice note%}}
-Only the default VRF is supported.
-{{%/notice%}}
-
-```
-cumulus@leaf01:~$ nv set vrf default router bgp plane-id 8
-cumulus@leaf01:~$ nv config apply
-```
- 
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# router bgp 65000
-leaf01(config-router)# bgp plane-id 8
-leaf01(config-router)# exit
-leaf01(config)# end
-leaf01# write memory
-leaf01# 
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 ### Considerations
 
 - To extend BGP-LLDP unreachability to EVPN and tenant VRFs, refer to {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}}.
@@ -2346,6 +2294,58 @@ leaf01# show bgp ipv6 unreachability detail json
   ]
 }
 ```
+
+## Inter-DC BGP-LLDP Unreachability and Conditional Disaggregation
+
+{{%notice note%}}
+Cumulus Linux supports inter-DC BGP-LLDP unreachability and conditional disaggregation on Spectrum‑X platforms only (Spectrum-4, Spectrum-5, and Spectrum-6).
+{{%/notice%}}
+
+Inter-DC BGP-LLDP unreachability and conditional disaggregation enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines: 
+- Conditional disaggregation that triggers disaggregated routes at merged planes. 
+- In-plane LLDP exception signaling that informs GPUs of link or plane failures within a plane. 
+
+To configure inter-DC BGP-LLDP unreachability and conditional disaggregation, you must provide a plane ID on each leaf switch. The switch tags unreachable routes with the plane ID. When BGP exports unreachable routes to LLDP, the switch filters out routes that originate from a non-local plane as part of the conditional disaggregation functionality.
+
+Before you configure the plane ID, you must configure the following BGP features on each leaf switch:
+- {{<link url="/#bgp-pic-anycast" text="Anycast PIC">}} 
+- {{<link url="/#bgp-unreachability-safi" text="BGP Unreachability SAFI">}}
+- {{<link url="/#bgp-conditional-disaggregation" text="Conditional disaggregation">}}
+- {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP LLDP Unreachability in Disjoined Planes">}} 
+
+To configure the plane ID, run the following commands. You can specify a value between 1 and 16. The default value is 0.  
+
+{{< tabs "TabID23258">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set vrf <vfr-id> router bgp plane-id` command on each leaf switch. The following example sets the plane ID to 8.
+
+{{%notice note%}}
+Only the default VRF is supported.
+{{%/notice%}}
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp plane-id 8
+cumulus@leaf01:~$ nv config apply
+```
+ 
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65000
+leaf01(config-router)# bgp plane-id 8
+leaf01(config-router)# exit
+leaf01(config)# end
+leaf01# write memory
+leaf01# 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## BGP Timers
 

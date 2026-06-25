@@ -13,7 +13,6 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 Cumulus Linux 5.18 supports new platforms, contains new features and improvements, and provides bug fixes.
 
 ## Platforms
-
 - NVIDIA SN5800-LD (400G Spectrum-5 Multi-ASIC)
 - NVIDIA SN5810-LD (400G Spectrum-5 Single ASIC)
 - NVIDIA SN6600_LD (800G Spectrum-6) Beta
@@ -21,7 +20,6 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC) Beta
 
 ### New Features and Enhancements
-
 - Kernel update to Debian 6.1.174-1
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available

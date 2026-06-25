@@ -34,9 +34,9 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link title="Automatic Configuration Backup" text="Automatic configuration backups">}}
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}}
+- {{<link url="Optional-BGP-Configuration/#multi-plane-bgp-lldp-unreachability-and-conditional-disaggregation" text="BGP-LLDP unreachability and conditional disaggregation in a multi-plane topology">}}
 - Layer 3 VXLAN interface
 - EVPN Multihoming and MLAG without a unique SVI IP address
-- Xplane extensions
 - NVUE
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
   - {{<link url="Interface-Configuration-and-Management/#uplink-tracking" text="Uplink tracking ">}}

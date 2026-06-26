@@ -1025,7 +1025,13 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 | `nvswitch_dot1x_tx_identity_request_info` | Multicast EAPOL identity request information.|
 | `nvswitch_dot1x_interface_eapol_counters` | Unsolicited Request/Identity TX counters.|
 | `nvswitch_dot1x_tx-identity-request_interface_info`| Replaces `nvswitch_dot1x_interface_info`.|
-
+| `nvswitch_dot1x_radius_server_errors_total` | *All RADIUS error counters from `hostapd`, exposed per server. Each time-series is aggregated across 802.1x interfaces communicating with the server. |
+| `nvswitch_dot1x_radius_server_requests_total` | *Number of access and accounting requests. |
+| `nvswitch_dot1x_radius_server_accounting_requests_total` | *Number of accounting requests. |
+| `nvswitch_dot1x_radius_server_responses_total`  | *Total number of responses. |
+| `nvswitch_dot1x_radius_server_retransmissions_total` | *Number of timeout access requests  or  accounting timeouts. |
+| `nvswitch_dot1x_radius_server_pending_requests` | *Number of RADIUS requests destined for the server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
+| `nvswitch_dot1x_radius_server_round_trip_time_ms`  | *Most recent round-trip time, in milliseconds, between a RADIUS request and its matching response.  |
 {{< expand "Example JSON data for 802.1X:" >}}
 ```
  {

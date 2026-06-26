@@ -51,10 +51,9 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
   - {{<link url="IP-Source-Guard" text="IP Source Guard">}}
 - Telemetry
-  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="ASIC, BGP, WJH,">}}
-  - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="ASIC, BGP,WJH">}}
+  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC, BGP, WJH,">}}
+  - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC, BGP, WJH">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
-  - 802.1x RADIUS
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.18.

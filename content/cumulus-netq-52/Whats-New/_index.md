@@ -7,11 +7,6 @@ toc: 1
 ---
 
 This page summarizes new features and improvements for the NetQ {{<version>}} release. For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.2 Release Notes" text="release notes">}}.
-
-## What's New in NetQ 5.2.1
-
-- NetQ 5.2.1 includes bug fixes and provides updated instructions to {{<link title="Install a Custom Signed Certificate" text="install a custom-signed certificate">}}
-
 ## What's New in NetQ 5.2.0
 
 - Re-designed the {{<link title="Network Topology" text="network topology dashboard">}} so that you can visualize your network's topology according to the system labels assigned to a device (beta)
@@ -42,8 +37,6 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## Release Considerations
 
-
-- NetQ 5.2.0 is tested and validated as part of the Spectrum-X reference architecture 2.2 release. For a full compatibility matrix, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 - When your NetQ deployment operates in combined Ethernet and NVLink mode, certain NVLink data is not preserved during the backup and restore process. Information related to network entities such as switches, GPUs, and partitions is not saved. However, data for services, switch profiles, and domains is saved during the backup and restore process.
 - The following features have been removed or deprecated:
     - Flow analysis (deprecated)

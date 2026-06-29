@@ -187,15 +187,24 @@ def run_hugo_minify(root: Path) -> None:
         sys.exit(proc.returncode)
 
 
+def product_image_prune_path(content_dir: str) -> str:
+    '''Return images/ path to remove for the selected product bundle.'''
+    if content_dir.startswith("cumulus-netq"):
+        return "images/cumulus-linux"
+    return "images/netq"
+
+
 def prune_public(public: Path, content_dir: str) -> None:
+    product_images = product_image_prune_path(content_dir)
     print(
-        "         Stripping listed images, {}, and related paths…".format(
+        "         Stripping {!s}, {}, and other unused paths…".format(
+            product_images,
             "{}/api".format(content_dir),
         ),
         flush=True,
     )
     cmds = [
-        ["rm", "-rf", "images/netq"],
+        ["rm", "-rf", product_images],
         ["rm", "-rf", "images/old_doc_images"],
         ["rm", "-rf", "images/sonic"],
         ["rm", "-rf", "images/knowledge-base/"],
@@ -428,9 +437,18 @@ def main() -> None:
         )
         sys.exit(1)
 
+    if content_dir.startswith("cumulus-netq"):
+        prune_detail = "keeping images/netq; removing images/cumulus-linux"
+    elif content_dir.startswith("cumulus-linux"):
+        prune_detail = "keeping images/cumulus-linux; removing images/netq"
+    else:
+        prune_detail = "removing images/netq (default for non-NetQ bundles)"
     progress(
         5,
-        "Pruning unused paths from public/ (images, {}/api, …)…".format(content_dir),
+        "Pruning unused paths from public/ ({}, {}/api, …)…".format(
+            prune_detail,
+            content_dir,
+        ),
     )
     prune_public(public, content_dir)
 

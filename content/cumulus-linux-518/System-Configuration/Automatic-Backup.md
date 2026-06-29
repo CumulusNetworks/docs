@@ -7,7 +7,7 @@ toc: 3
 
 Cumulus Linux provides an automatic configuration backup feature that takes snapshots each time the `nv config apply` command runs successfully. The switch also takes a snapshot weekly to ensure that at least one valid weekly snapshot is available, subject to disk space and backup success.
 
-The switch stores the snapshots in the `/var/lib/nvue/backup/applied` directory and the weekly snapshots in the `/var/lib/nvue/backup/weekly/` directory. When you reach the maximum storage limit of 512 MiB, the switch deletes the oldest snapshots and logs the deleted snapshots.
+The switch stores the snapshots in the `/var/lib/nvue/backup/applied` directory and the `/var/lib/nvue/backup/weekly/` directory. When you reach the maximum storage limit of 512 MiB, the switch deletes the oldest snapshots and logs the deleted snapshots.
 
 {{%notice note%}}
 - Root owns the snapshot directories; you can view the directories only if you have root privileges.

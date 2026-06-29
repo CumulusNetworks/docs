@@ -13,51 +13,47 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 Cumulus Linux 5.18 supports new platforms, contains new features and improvements, and provides bug fixes.
 
 ## Platforms
+- NVIDIA SN5800-LD (400G Spectrum-5 Multi-ASIC)
+- NVIDIA SN5810-LD (400G Spectrum-5 Single ASIC)
 - NVIDIA SN6600_LD (800G Spectrum-6) Beta
 - NVIDIA SN5800-LD (800G Spectrum-6 Multi-ASIC) Beta
 - NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC) Beta
 
 ### New Features and Enhancements
+- Kernel update to Debian 6.1.174-1
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
-- {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} and {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
+- {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} are generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
 - {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE/#dci-1-profile" text="Data Center Interconnect (DCI-1) QoS profile">}}
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
+- {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload-to-hardware" text="BFD offload to hardware">}}
+- {{<link title="Automatic Configuration Backup" text="Automatic configuration backups">}}
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
+- {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}}
+- {{<link url="Optional-BGP-Configuration/#inter-dc-bgp-lldp-unreachability-and-conditional-disaggregation" text="Inter-DC BGP-LLDP unreachability and conditional disaggregation">}}
+- Layer 3 VXLAN interface
 - EVPN Multihoming and MLAG without a unique SVI IP address
-- VRF scale limits for 802.1x and dynamic VRF provisioning
-- FW based BFD acceleration with Cumulus
-- Systemd Target-Based Service Management for multi-asic
-- Spectrum-X" Profile Support
-- X-plane graceful fabric maintenance - node level
-- Xplane extensions for XGS
-- Supporting BMC Flows On Salamandra
-- Advertise BOTH SAFI 254 AND SAFI 81 in capability negotiation
 - NVUE
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
   - {{<link url="Interface-Configuration-and-Management/#uplink-tracking" text="Uplink tracking ">}}
   - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}
   - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
-  - View parts of the switch configuration
-  - nv show interface - no view for Link phy-detail
-  - nv show interface - no view for transceiver
-  - Zebra phase 2: Remaining Operational
+  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="nv show interface --ber command to show PHY health statistics for all interfaces ">}}
+  - {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show transceiver information for all interfaces">}}
+  - {{<link url="NVUE-CLI/#show-specific-configuration" text="Show specific configuration on the switch">}}
+  - {{<link url="BMC" text="BMC commands for Spectrum-6 switches">}}
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Security
-  - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference between the current and new password">}}
+  - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
-  - {{<link url="System-Snapshots" text="Automatic Configuration Snapshots">}}
-  - Support for IP source guard on user-facing access port
+  - {{<link url="IP-Source-Guard" text="IP Source Guard">}}
 - Telemetry
-  - New OTEL metrics:
-  - New gNMI metrics:
+  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC, BGP, WJH,">}}
+  - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC, BGP, WJH">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
-  - What Just Happened gNMI metrics
-  - Support 802.1x RADIUS GNMI metrics
-  - Streaming Telemetry support for ASIC resources
-
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.18.

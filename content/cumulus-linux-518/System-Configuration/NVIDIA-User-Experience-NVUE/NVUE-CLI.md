@@ -525,6 +525,8 @@ To renable auto save, run the `nv set system config auto-save state enabled` com
 
 ## Show Switch Configuration
 
+### Show All Configuration
+
 To show the applied configuration on the switch, run the `nv config show` command:
 
 ```
@@ -597,6 +599,10 @@ cumulus@switch:~$ nv config show --expand
         type: bond
 ...
 ```
+
+### Show Specific Configuration
+
+To show specific configuration on the switch, run the `nv config show <configuration-type>` command. For example, to show BGP configuration under the default VRF, run the `nv config show vrf default router bgp` command, to show QoS configuration, run the `nv config show qos` command.
 
 ## Add Configuration Apply Messages
 

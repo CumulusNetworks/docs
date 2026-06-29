@@ -390,8 +390,26 @@ cumulus@switch:~$ nv config apply
 
 If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 60 seconds.
 
-{{< tabs "TabID115 ">}}
-{{< tab "CPU ">}}
+{{< tabs "TabID393 ">}}
+{{< tab "ASIC ">}}
+
+To enable ASIC statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To adjust the sample interval for ASIC statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+
+{{< /tab >}}
+{{< tab "CPU">}}
 
 To enable CPU statistics:
 
@@ -1007,7 +1025,13 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 | `nvswitch_dot1x_tx_identity_request_info` | Multicast EAPOL identity request information.|
 | `nvswitch_dot1x_interface_eapol_counters` | Unsolicited Request/Identity TX counters.|
 | `nvswitch_dot1x_tx-identity-request_interface_info`| Replaces `nvswitch_dot1x_interface_info`.|
-
+| `nvswitch_dot1x_radius_server_errors_total` | *All RADIUS error counters from `hostapd`, exposed per server. Each time-series is aggregated across 802.1x interfaces communicating with the server. |
+| `nvswitch_dot1x_radius_server_requests_total` | *Number of access and accounting requests. |
+| `nvswitch_dot1x_radius_server_accounting_requests_total` | *Number of accounting requests. |
+| `nvswitch_dot1x_radius_server_responses_total`  | *Total number of responses. |
+| `nvswitch_dot1x_radius_server_retransmissions_total` | *Number of timeout access requests  or  accounting timeouts. |
+| `nvswitch_dot1x_radius_server_pending_requests` | *Number of RADIUS requests destined for the server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
+| `nvswitch_dot1x_radius_server_round_trip_time_ms`  | *Most recent round-trip time, in milliseconds, between a RADIUS request and its matching response.  |
 {{< expand "Example JSON data for 802.1X:" >}}
 ```
  {
@@ -2753,14 +2777,14 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_lldp_chassis_info` | LLDP chassis information. |
-| `nvswitch_lldp_chassis_capabilities` | LLDP chassis capabilities as a bitmap. IEEE 802.1AB defines the capabilities.|
-| `nvswitch_lldp_neighbor_age` | LLDP neighbor age information in seconds.|
-| `nvswitch_lldp_neighbor_capabilities` | LLDP neighbor capabilities as a bitmap. IEEE 802.1AB defines the capabilities. |
-| `nvswitch_lldp_neighbor_info` | LLDP neighbor information.|
-| `nvswitch_lldp_neighbor_ttl` | LLDP neighbor port TTL in seconds.|
-| `nvswitch_lldp_neighbor_management_address-info` | LLDP neighbor management address information.|
-| `nvswitch_lldp_interface_enabled` | Per-directional status on whether LLDP is enabled per interface.|
+| `nvswitch_lldp_chassis_info` | *LLDP chassis information. |
+| `nvswitch_lldp_chassis_capabilities` | *LLDP chassis capabilities as a bitmap. IEEE 802.1AB defines the capabilities.|
+| `nvswitch_lldp_neighbor_age` | *LLDP neighbor age information in seconds.|
+| `nvswitch_lldp_neighbor_capabilities` | *LLDP neighbor capabilities as a bitmap. IEEE 802.1AB defines the capabilities. |
+| `nvswitch_lldp_neighbor_info` | *LLDP neighbor information.|
+| `nvswitch_lldp_neighbor_ttl` | *LLDP neighbor port TTL in seconds.|
+| `nvswitch_lldp_neighbor_management_address-info` | *LLDP neighbor management address information.|
+| `nvswitch_lldp_interface_enabled` | *Per-directional status on whether LLDP is enabled per interface.|
 
 {{< expand "Example JSON data for nvswitch_lldp_chassis_info:" >}}
 
@@ -3107,7 +3131,20 @@ When you enable {{<link url="Latency-Monitoring/" text="latency monitoring">}}, 
 When you enable platform statistic telemetry globally, or when you enable telemetry for the individual components, the switch exports the following statistics:
 
 {{< tabs "TabID723 ">}}
-{{< tab "CPU ">}}
+{{< tab "ASIC ">}}
+
+ASIC statistics include the ASIC resource used percentage, the maximum number of entries, the number of free entries, the high watermark, and the high watermark timestamp.
+
+| Name | Description |
+|----- | ----------- |
+| `nvswitch_platform_asic_resource_used` | | 
+| `nvswitch_platform_asic_resource_free` | | 
+| `nvswitch_platform_asic_resource_max_limit` | |
+| `nvswitch_platform_asic_resource_high_watermark` | | 
+| `nvswitch_platform_asic_resource_high_watermark_timestamp` | | 
+
+{{< /tab >}}
+{{< tab "Disk ">}}
 
 CPU statistics include the CPU core number and operation mode (user, system, idle, iowait, irq, softirq, steal, guest, guest_nice).
 
@@ -4390,6 +4427,8 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 
 | Name | Description |
 |----- | ----------- |
+| `nvrouting_bgp_peer_enabled` | *The admin status of the BGP peer (up or down). |
+| `nvrouting_bgp_peer_rib_adj_in_pre_policy` | *The number of prefixes received from the peer before applying any policies.<br><br>The pre-policy count requires soft-reconfiguration inbound to be enabled for the peer (`nv set vrf default router bgp neighbor <neighbor-id> address-family <address-family> soft-reconfiguration enabled`).|
 | `nvrouting_bgp_peer_state` |  BGP peer state: `Established`, `Idle`, `Connect`, `Active`, `OpenSent`.  |
 | `nvrouting_bgp_peer_fsm_established_transitions` | Number of BGP peer state transitions to the `Established` state for the peer session.|
 | `nvrouting_bgp_peer_rib_adj_in_installed` | Tracks the number of prefixes received from the neighbor, installed in the RIB and actively used for forwarding.  |

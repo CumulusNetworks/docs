@@ -163,7 +163,9 @@ You need a console connection to access the switch; you cannot perform this proc
 
 1. Place the Cumulus Linux image in a directory on your web server.
 
-2. From the Cumulus Linux command prompt, run the `nv action install system image onie <image> force activate reboot` command. This command installs the Cumulus Linux image without prompts and reboots the switch.
+2. If necessary, assign a static address to eth0. Refer to {{<link url="Quick-Start-Guide/#wired-ethernet-management" text="Wired Ethernet Management">}}.
+
+3. From the Cumulus Linux command prompt, run the `nv action install system image onie <image> force activate reboot` command. This command installs the Cumulus Linux image without prompts and reboots the switch.
 
 ```
 cumulus@switch:~$ nv action install system image onie http://10.0.1.251/cumulus-linux-5.18.0-mlx-amd64.bin force activate reboot 
@@ -179,7 +181,9 @@ Action succeeded
 
 1. Place the Cumulus Linux image in a directory on your web server.
 
-2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
+2. If necessary, assign a static address to eth0. Refer to {{<link url="Quick-Start-Guide/#wired-ethernet-management" text="Wired Ethernet Management">}}.
+
+3. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
 ```
 cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-x86_64.bin
@@ -238,7 +242,7 @@ ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 2. From the Cumulus Linux command prompt, run the `nv action install system image onie ftp://<image> force activate reboot` command. This command installs the Cumulus Linux image without prompts and reboots the switch..
 
 ```
-cumulus@switch:~$ sudo onie-install nv action install system image onie ftp://local-ftp-server/cumulus-install-x86_64.bin force activate reboot
+cumulus@switch:~$ nv action install system image onie ftp://local-ftp-server/cumulus-install-x86_64.bin force activate reboot
 ```
 
 {{< /tab >}}

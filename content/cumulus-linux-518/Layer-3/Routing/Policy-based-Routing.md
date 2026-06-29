@@ -113,9 +113,9 @@ When you configure PBR with NVUE commands, NVUE enables the `pbrd` service and r
     pbrd=yes
     ...
     ```
-<!-- vale off -->
-2. {{<cl/restart-frr>}}
-<!-- vale on -->
+
+2. Reload FRR with the `sudo systemctl reload frr.service` command.
+
 3. Configure the policy map.
 
     The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.

@@ -2183,7 +2183,7 @@ cumulus@spine01:mgmt:~$ sudo vtysh
 ...
 leaf01# configure terminal
 spine01(config)# bgp graceful-restart
-spine01(config)#  router bgp 65001
+spine01(config)# router bgp 65001
 spine01(config-router)#  bgp router-id 10.10.0.10
 spine01(config-router)#  bgp graceful-restart stalepath-time 180
 spine01(config-router)#  bgp graceful-restart restart-time 180
@@ -2313,7 +2313,7 @@ Before you configure the plane ID, you must configure the following BGP features
 - {{<link url="/#bgp-conditional-disaggregation" text="Conditional disaggregation">}}
 - {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP LLDP Unreachability in Disjoined Planes">}} 
 
-To configure the plane ID, run the following commands. You can specify a value between 1 and 16. The default value is 0.  
+To configure the plane ID, run the following commands. You can specify a value between 1 and 16. The default value is 0 (disabled).  
 
 {{< tabs "TabID23258">}}
 {{< tab "NVUE Commands ">}}
@@ -2336,7 +2336,7 @@ cumulus@leaf01:~$ nv config apply
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# configure terminal
-leaf01(config)# router bgp 65000
+leaf01(config)# router bgp 65101
 leaf01(config-router)# bgp plane-id 8
 leaf01(config-router)# exit
 leaf01(config)# end

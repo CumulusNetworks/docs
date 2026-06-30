@@ -1958,8 +1958,8 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>3135801</td>
 <td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
 When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.3.1-4.4.5</td>
+<td>3.7.12-3.7.15</td>
+<td>3.7.16, 4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>3129819, 3040075</td>
@@ -3955,8 +3955,8 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3135801</td>
 <td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
 When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.3.1-4.4.5</td>
+<td>3.7.12-3.7.15</td>
+<td>3.7.16, 4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>3073668</td>
@@ -5678,8 +5678,8 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3135801</td>
 <td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
 When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.3.1-4.4.5</td>
+<td>3.7.12-3.7.15</td>
+<td>3.7.16, 4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>3073668</td>
@@ -7611,8 +7611,8 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3135801</td>
 <td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
 When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.3.1-4.4.5</td>
+<td>3.7.12-3.7.15</td>
+<td>3.7.16, 4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>3073668</td>
@@ -9723,8 +9723,8 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3135801</td>
 <td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
 When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.3.1-4.4.5</td>
+<td>3.7.12-3.7.15</td>
+<td>3.7.16, 4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>3073668</td>

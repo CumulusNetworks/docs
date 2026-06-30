@@ -187,6 +187,132 @@ When you are using MLAG, the VNIs and VXLAN device must belong to the same bridg
 
 If you need to convert a layer 2 VNI to a layer 3 VNI, refer to {{<link url="Network-Virtualization/#change-a-layer-2-vni-to-layer-3" text="Change a Layer 2 VNI to Layer 3">}}.
 
+### Layer 3 VXLAN Interfaces
+
+Instead of using a single VXLAN device for all layer 3 VNIs (as described above), you can configure the switch to use layer 3 VXLAN interfaces. The interface is within its own single VXLAN device enslaved over a VFR instead of a bridge domain. 
+
+Using layer 3 VXLAN interfaces simplifies EVPN configuration and improves performance at scale.
+ 
+To enable layer 3 VXLAN Interfaces, run the `nv set evpn l3vxi state enabled` command.
+
+```
+cumulus@leaf01:~$ nv set evpn l3vxi state enabled
+cumulus@leaf01:~$ nv config apply
+```
+
+NVUE removes all single VXLAN devices and creates layer 3 single VXLAN devices for each layer 3 VNI using the naming format `vxi_<vni_id>`.
+
+The following dropdowns show the different configurations as a comparison.
+
+{{< expand "Layer 3 Single VXLAN Device" >}}
+
+```
+auto vlan10 
+iface vlan10 
+    address 10.1.10.2/24 
+    address-virtual 00:00:00:00:00:10 10.1.10.1/24 
+    hwaddress 44:38:39:22:01:b1 
+    vrf RED 
+    vlan-raw-device br_default 
+    vlan-id 10 
+auto vlan20 
+iface vlan20 
+    address 10.1.20.2/24 
+    address-virtual 00:00:00:00:00:20 10.1.20.1/24 
+    hwaddress 44:38:39:22:01:b1 
+    vrf RED 
+    vlan-raw-device br_default 
+    vlan-id 20 
+auto vlan30 
+iface vlan30 
+    address 10.1.30.2/24 
+    address-virtual 00:00:00:00:00:30 10.1.30.1/24 
+    hwaddress 44:38:39:22:01:b1 
+    vrf BLUE 
+    vlan-raw-device br_default 
+    vlan-id 30
+auto vxlan48 
+iface vxlan48 
+    bridge-vlan-vni-map 10=10 20=20 30=30 4024=4001 4036=4002 
+    bridge-vids 10 20 30 4024 4036 
+    bridge-learning off 
+auto br_default 
+iface br_default 
+    bridge-ports bond1 bond2 bond3 peerlink vxlan48 
+    hwaddress 44:38:39:22:01:b1 
+    bridge-vlan-aware yes 
+    bridge-vids 10 20 30 
+    bridge-pvid 1 
+auto vxi_4002 
+iface vxi_4002 
+    vxlan-vni 4002 
+    hwaddress 44:38:39:22:01:b1       ---- System mac 
+    address-virtual 44:38:39:BE:EF:AA ---Anycast MAC for CLAG setup  
+      vrf BLUE 
+auto vx_4001 
+iface vx_4001 
+    vxlan-vni 4001 
+    hwaddress 44:38:39:22:01:b1       --- System MAC 
+    address-virtual 44:38:39:Be:EF:AA ---Anycast mac for CLAG setup 
+    vrf RED
+```
+{{< /expand >}}
+
+{{< expand "Single VXLAN Device for All Layer 3 VNIs" >}}
+
+```
+...
+auto vlan10 
+iface vlan10 
+    address 10.1.10.2/24 
+    address-virtual 00:00:00:00:00:10 10.1.10.1/24 
+    hwaddress 44:38:39:22:01:b1 
+    vrf RED 
+    vlan-raw-device br_default 
+    vlan-id 10 
+auto vlan20 
+iface vlan20 
+    address 10.1.20.2/24 
+    address-virtual 00:00:00:00:00:20 10.1.20.1/24 
+    hwaddress 44:38:39:22:01:b1 
+    vrf RED 
+    vlan-raw-device br_default 
+    vlan-id 20 
+auto vlan30 
+iface vlan30 
+    address 10.1.30.2/24 
+    address-virtual 00:00:00:00:00:30 10.1.30.1/24 
+    hwaddress 44:38:39:22:01:b1 
+    vrf BLUE 
+    vlan-raw-device br_default 
+    vlan-id 30 
+auto vlan4024_l3 
+iface vlan4024_l3 
+    vrf RED 
+    vlan-raw-device br_default 
+    address-virtual 44:38:39:BE:EF:AA 
+    vlan-id 4024 
+auto vlan4036_l3 
+iface vlan4036_l3 
+    vrf BLUE 
+    vlan-raw-device br_default 
+    address-virtual 44:38:39:BE:EF:AA 
+    vlan-id 4036 
+auto vxlan48 
+iface vxlan48 
+    bridge-vlan-vni-map 10=10 20=20 30=30 4024=4001 4036=4002 
+    bridge-vids 10 20 30 4024 4036 
+    bridge-learning off 
+auto br_default 
+iface br_default 
+    bridge-ports bond1 bond2 bond3 peerlink vxlan48 
+    hwaddress 44:38:39:22:01:b1 
+    bridge-vlan-aware yes 
+    bridge-vids 10 20 30 
+    bridge-pvid 1
+```
+{{< /expand >}}
+
 ### Configure RD and RTs for the Tenant VRF
 
 If you do not want Cumulus Linux to derive the <span class="a-tooltip">[RD](## "route distinguisher")</span> and <span class="a-tooltip">[RTs](## "route targets")</span> (layer 3 RTs) for the tenant VRF automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.

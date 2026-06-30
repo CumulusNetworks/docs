@@ -178,13 +178,11 @@ To configure the default VLAN so that VLAN 1 is not used on the trunk and access
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set bridge default-vlan 10
+cumulus@switch:~$ nv set bridge default-vlan 101
 cumulus@switch:~$ nv config apply
 ```
 
 To unset the default VLAN and use VLAN 1, run the `nv unset bridge default-vlan` command.
-
-To show the default VLAN, run the `nv show bridge` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -194,12 +192,14 @@ Edit the `/etc/network/interfaces` file and update the bridge stanza:
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto br_default
-iface br_default
-    bridge-ports swp1 swp2
-    bridge-vids 10 20
-    bridge-pvid 10
+bridge-ports swp1 swp2
+    hwaddress 48:b0:2d:00:0e:10
     bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 101
+    bridge-stp yes
+    bridge-mcsnoop no
+    mstpctl-forcevers rstp
 ...
 ```
 
@@ -211,6 +211,16 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show the default VLAN, run the `nv show bridge` command.
+
+```
+cumulus@switch:~$ nv show bridge
+              operational  applied
+------------  -----------  -------
+default-vlan               101
+... 
+```
 
 ## Reserved VLAN Range
 

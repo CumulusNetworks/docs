@@ -488,9 +488,9 @@ To enable the IPv6 route replacement option:
     ospfd_options=" -M snmp -A 127.0.0.1"
     ...
     ```
-<!-- vale off -->
-2. {{<cl/restart-frr>}}
-<!-- vale on -->
+
+2. Reload FRR with the `sudo systemctl reload frr.service` command.
+
 To verify that IPv6 route replacement, run the `systemctl status frr` command:
 
 ```

@@ -108,9 +108,9 @@ The <span class="a-tooltip">[FRR](## "FRRouting")</span> package includes PIM. F
    pimd=yes
    ...
    ```
-<!-- vale off -->
-2. {{<cl/restart-frr>}}
-<!-- vale on -->
+
+2. Reload FRR with the `sudo systemctl reload frr.service` command.
+
 3. In the vtysh shell, run the following commands to configure the PIM interfaces. PIM must be on all interfaces facing multicast sources or multicast receivers, as well as on the interface with the RP address.
 
    ```
@@ -153,9 +153,9 @@ The <span class="a-tooltip">[FRR](## "FRRouting")</span> package includes PIM. F
    pimd=yes
    ...
    ```
-<!-- vale off -->
-2. {{<cl/restart-frr>}}
-<!-- vale on -->
+
+2. Reload FRR with the `sudo systemctl reload frr.service` command.
+
 3. In the vtysh shell, run the following commands to configure the PIM interfaces. PIM must be on all interfaces facing multicast sources or multicast receivers, as well as on the interface with the RP address.
 
    ```
@@ -198,9 +198,9 @@ The <span class="a-tooltip">[FRR](## "FRRouting")</span> package includes PIM. F
    pimd=yes
    ...
    ```
-<!-- vale off -->
-2. {{<cl/restart-frr>}}
-<!-- vale on -->
+
+2. Reload FRR with the `sudo systemctl reload frr.service` command.
+
 3. In the vtysh shell, run the following commands to configure the PIM interfaces. PIM must be on all interfaces facing multicast sources or multicast receivers, as well as on the interface with the RP address.
 
    ```

@@ -2295,7 +2295,7 @@ leaf01# show bgp ipv6 unreachability detail json
 }
 ```
 
-## X-plane Graceful Fabric Maintenance
+## Graceful Fabric Maintenance
 
 Cumulus Linux enables you to drain a leaf switch gracefully by steering traffic onto other healthy planes before maintenance. This feature works with {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP unreachability signaling">}} and uses UPA (Unreachable Prefix Announcement) to mark advertised aggregate routes as unreachable during maintenance.
 

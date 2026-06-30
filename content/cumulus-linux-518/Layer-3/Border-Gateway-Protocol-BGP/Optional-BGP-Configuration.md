@@ -2295,6 +2295,29 @@ leaf01# show bgp ipv6 unreachability detail json
 }
 ```
 
+## X-plane Graceful Fabric Maintenance
+
+Cumulus Linux enables you to drain a leaf switch gracefully by steering traffic onto other healthy planes before maintenance.
+
+When you enable graceful fabric maintenance, the switch programs a local default route LLDP drain exception so that locally attached NICs are drained, and attaches the unreachable marking to its advertised aggregate routes; remote leaves program LLDP exceptions and steer traffic away from the node.
+
+To use graceful fabric maintenance, you **must** first configure {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} for each VRF and address family.
+
+{{%notice note%}}
+- All leaf switches in the fabric must be running Cumulus Linux 5.18 or later.
+- Graceful fabric maintenance does not support {{<link url="/#inter-dc-bgp-lldp-unreachability-and-conditional-disaggregation" text="Inter-DC BGP-LLDP unreachability and conditional disaggregation">}}
+{{%/notice%}}
+
+To enable graceful fabric maintenance, run the `nv set maintenance unit system mode enabled` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv set maintenance unit system mode enabled
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+To disable graceful fabric maintenance and return traffic to the switch after it converges, run the `nv set maintenance unit system mode disabled` command. 
+
+
 ## Inter-DC BGP-LLDP Unreachability and Conditional Disaggregation
 
 {{%notice note%}}

@@ -523,7 +523,62 @@ When you disable auto save, you must run the `nv config save` command to save th
 
 To renable auto save, run the `nv set system config auto-save state enabled` command.
 
+## Automatic Configuration Backup and Restore
+
+NVUE provides an automatic configuration backup and restore feature that takes snapshots each time the `nv config apply` command runs successfully. NVUE also takes a snapshot weekly (even if no configuration change occurs) to ensure that at least one valid weekly snapshot is available. You can then restore a snapshot when needed.
+
+The switch stores snapshots as compressed archives in the `/var/lib/config-backup/auto-snapshots/applied` and `/var/lib/config-backup/auto-snapshots/weekly` directories in `config_backup-<YYYY-MM-DD-HH.MM.SS>_<hostname>` format; for example, `/var/lib/config-backup/auto-snapshots/applied/config_backup-2026-07-28-08.55.10_leaf01`. When you reach the maximum storage limit of 512 MiB, the switch deletes the oldest snapshots and logs the deleted snapshots.
+
+{{%notice note%}}
+- Automatic configuration backup requires {{<link url="/#auto-save" text="NVUE auto save">}}. Make sure that auto save is enabled before enabling automatic configuration backup.
+- You can view the snapshot directory only if you have root privileges.
+- The snapshots contain potentially sensitive information such as certificates, interface IDs and routing configuration, services and IP addresses.
+- If the `nv config apply` command fails verification, exits on warning prompts, or rolls back due to a `--confirm` timeout, the automatic configuration backup does not run.
+{{%/notice%}}
+
+### Backup
+
+Automatic configuration backup is disabled by default. To enable automatic configuration backup, run the `nv system config backup state enabled` command. When enabled, NVUE takes a weekly snapshot immediately.
+
+```
+cumulus@switch:~$ nv set system config backup state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To disable automatic configuration backup, run the `nv system config backup state disabled` command.
+
+To show if automatic configuration backup is enabled, run the `nv show system config backup` command:
+
+```
+cumulus@switch:~$ nv show system config backup
+       operational  applied
+-----  -----------  -------
+state  enabled      enabled
+```
+
+### Restore
+
+{{%notice note%}}
+Configuration restore is a BETA feature.
+{{%/notice%}}
+
+To restore the switch to the configuration captured in a snapshot, identify the snapshot you want to restore by inspecting the `/var/lib/config-backup/auto-snapshots/applied` and `/var/lib/config-backup/auto-snapshots/weekly` directories, then run the `nv action restore system config snapshot <snapshot>` command. You must provide the absolute path for the snapshot.
+
+NVUE takes a pre-restore rollback snapshot, restores the files in the snapshot, rebuilds the NVUE state from the restored `startup.yaml` file, and reboots.
+
+```
+cumulus@switch:~$ nv action restore system config snapshot /var/lib/config-backup/auto-snapshots/weekly-20260320-121030
+```
+
+To skip the confirmation prompt, add the `force` option:
+
+```
+cumulus@switch:~$ nv action restore system config snapshot /var/lib/config-backup/auto-snapshots/weekly-20260320-121030 force
+```
+
 ## Show Switch Configuration
+
+You can show all applied switch configuration or specific configuration.
 
 ### Show All Configuration
 
@@ -732,7 +787,7 @@ cumulus@switch:~$ nv config translate filename /home/cumulus/backup.yaml
 
 If the revision or yaml file is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.
 
-## Back Up and Restore Configuration with NVUE
+## Manual Back Up and Restore
 
 Use the following procedure to cleanly reinstall a Cumulus Linux image or move the configuration from one switch to another.
 
@@ -775,6 +830,7 @@ To back up and restore the configuration file:
 {{%notice infonopad%}}
 If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
 {{%/notice%}}
+
 ## Maximum Revisions Limit
 
 You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them. The lower revision number is the oldest; for example revision 10 is older than revision 100.

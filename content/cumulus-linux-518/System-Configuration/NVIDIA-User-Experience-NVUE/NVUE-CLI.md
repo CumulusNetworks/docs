@@ -527,7 +527,7 @@ To renable auto save, run the `nv set system config auto-save state enabled` com
 
 NVUE provides an automatic configuration backup and restore feature that takes snapshots each time the `nv config apply` command runs successfully. NVUE also takes a snapshot weekly (even if no configuration change occurs) to ensure that at least one valid weekly snapshot is available. You can then restore a snapshot when needed.
 
-The switch stores snapshots as compressed archives in the `/var/lib/config-backup/auto-snapshots/applied` and `/var/lib/config-backup/auto-snapshots/weekly` directories in `config_backup-<YYYY-MM-DD-HH.MM.SS>_<hostname>` format; for example, `/var/lib/config-backup/auto-snapshots/applied/config_backup-2026-07-28-08.55.10_leaf01`. When you reach the maximum storage limit of 512 MiB, the switch deletes the oldest snapshots and logs the deleted snapshots.
+The switch stores snapshots as compressed archives in the `/var/lib/config-backup/auto-snapshots/applied` and `/var/lib/config-backup/auto-snapshots/weekly` directories in `config_backup-<YYYY-MM-DD-HH.MM.SS>_<hostname>` format; for example, `/var/lib/config-backup/auto-snapshots/applied/config_backup-2026-07-28-08.55.10_leaf01`. When you reach the maximum storage limit of 512 MB, the switch deletes the oldest snapshots and logs the deleted snapshots.
 
 {{%notice note%}}
 - Automatic configuration backup requires {{<link url="/#auto-save" text="NVUE auto save">}}. Make sure that auto save is enabled before enabling automatic configuration backup.

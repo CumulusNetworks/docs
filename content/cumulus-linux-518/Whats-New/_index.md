@@ -33,7 +33,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}}
 - {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="BGP graceful fabric maintenance">}} 
 - {{<link url="Optional-BGP-Configuration/#inter-dc-bgp-lldp-unreachability-and-conditional-disaggregation" text="Inter-DC BGP-LLDP unreachability and conditional disaggregation">}}
-- Layer 3 VXLAN interface
+- {{<link url="Inter-subnet-Routing/#layer-3-vxlan-interfaces" text="Layer 3 VXLAN interfaces">}}
 - EVPN Multihoming and MLAG without a unique SVI IP address
 - NVUE
   - {{<link url="NVUE-CLI/#automatic-configuration-backup-and-restore" text="Automatic configuration backup and restore">}}

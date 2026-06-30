@@ -29,13 +29,14 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#dci-1-profile" text="Data Center Interconnect (DCI-1) QoS profile">}}
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload-to-hardware" text="BFD offload to hardware">}}
-- {{<link title="Automatic Configuration Backup" text="Automatic configuration backups">}}
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}}
+- - {{<link url="Optional-BGP-Configuration/#x-plane-graceful-fabric-maintenance" text="X-plane graceful fabric maintenance">}} 
 - {{<link url="Optional-BGP-Configuration/#inter-dc-bgp-lldp-unreachability-and-conditional-disaggregation" text="Inter-DC BGP-LLDP unreachability and conditional disaggregation">}}
 - Layer 3 VXLAN interface
 - EVPN Multihoming and MLAG without a unique SVI IP address
 - NVUE
+  - {{<link url="NVUE-CLI/#automatic-configuration-backup-and-restore" text="Automatic configuration backup and restore">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
   - {{<link url="Interface-Configuration-and-Management/#uplink-tracking" text="Uplink tracking ">}}
   - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}

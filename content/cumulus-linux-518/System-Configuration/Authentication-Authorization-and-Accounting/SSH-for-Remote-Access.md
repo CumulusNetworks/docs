@@ -360,7 +360,7 @@ You can configure the following SSH timeout and session options:
 - The number of login attempts allowed before rejecting the SSH session. You can specify a value between 3 and 100. The default value is 3 login attempts.
 - The number of seconds allowed before login times out. You can specify a value between 1 and 600. The default value is 120 seconds.
 - The TCP port numbers that listen for incoming SSH sessions. You can specify a value between 1 and 65535.
-- The number of minutes a session can be inactive before the SSH server terminates the connection. The default value is 0 minutes.
+- The number of minutes a session can be inactive before the SSH server terminates the connection. The default value is 20 minutes. 0 disables the timeout.
 - The maximum number of SSH sessions allowed for each TCP connection. You can specify a value between 1 and 100. The default value is 10.
 - The maximum number of SSH sessions allowed for a specific user. You can specify a value between 1 and 100. The default value is 10.
 - The maximum number of SSH sessions allowed for a specific user group.  You can specify a value between 1 and 100. The default value is 10. This setting does not affect user groups that do not contain any users in the `/etc/group` file. To check a user group, run the `groups <username>` command.
@@ -432,7 +432,7 @@ Port 443
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example configures the amount of time a session can be inactive before the SSH server terminates the connection to 5 minutes (300 seconds) and the maximum number of SSH sessions allowed per TCP connection to 5. The default `inactive-timeout` is 15 minutes and the default `max-sessions-per-connection` is 10:
+The following example configures the amount of time a session can be inactive before the SSH server terminates the connection to 5 minutes (300 seconds) and the maximum number of SSH sessions allowed per TCP connection to 5. The default `inactive-timeout` is 20 minutes and the default `max-sessions-per-connection` is 10:
 
 {{< tabs "TabID427 ">}}
 {{< tab "NVUE Commands ">}}
@@ -447,7 +447,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 Edit the `Authentication` section of the `/etc/ssh/sshd_config` file.
-- To configure the amount of time (in seconds) a session can be inactive before the SSH server terminates the connection, change the `ClientAliveInterval` parameter. 
+- To configure the amount of time (in seconds) a session can be inactive before the SSH server terminates the connection, set the `ChannelTimeout session:*=<minutes>m` and `UnusedConnectionTimeout <minutes>m` parameters (these parameters enforce the idle timeout). The `ClientAliveInterval` parameter remains set but only terminates unresponsive clients, not idle sessions.
 - To configure the maximum number of SSH sessions allowed for each TCP connection, change the `MaxSessions` parameter.
 
 ```
@@ -473,12 +473,20 @@ PrintMotd no
 #TCPKeepAlive yes
 #PermitUserEnvironment no
 #Compression delayed
-ClientAliveInterval 300
+ClientAliveInterval 100
+ChannelTimeout session:*=5m
+UnusedConnectionTimeout 5m
 ...
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+The inactive timeout closes a session after the configured number of minutes with no SSH channel activity (keystrokes, command output, or file-transfer bytes reset the timer). The timeout applies to sessions established after being set. You can set the inactive timeout to 0 to disable it. 
+
+The inactive timeout tracks SSH channel activity (not if a remote process is still running); therefore, a long-running command that produces no output for longer than the timeout can be closed; active SCP and SFTP transfers, and any session with ongoing traffic are not affected. An idle connection with no open channel; for example an idle SSH multiplexing master (ControlMaster or ControlPersist), is also closed after the timeout.
+{{%/notice%}}
 
 The following example configures the maximum number of concurrent sessions allowed for the user USER1 and for the user group GROUP1:
 
@@ -539,6 +547,10 @@ MaxStartups 5:22:20
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+The SSH inactivity timeout (`nv set system ssh-server inactive-timeout`) is independent of the {{<link url="CLI-Configuration/#set-the-cli-session-timeout" text="CLI login-session timeout">}} (`nv set system cli inactive-timeout`), which logs out an idle command-line session. They operate at different layers and you configure them independently.
+{{%/notice%}}
 
 ## Message of the Day
 

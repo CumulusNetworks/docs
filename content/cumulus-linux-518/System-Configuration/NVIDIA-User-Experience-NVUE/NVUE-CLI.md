@@ -667,6 +667,42 @@ The `<search-path>` cannot contain partial completions (for example, `vrf/defaul
 
 For any path that does not resolve to an actual subtree of the configuration, NVUE shows the error message `Error: The provided search-path is invalid and could not be resolved to a configuration subtree`.
 
+The following examples show configuration for the search path in space-separated format and slash-separated format:
+
+```
+cumulus@switch:~$ nv config lookup "vrf default router bgp address-family ipv4-unicast"
+- set:
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                network:
+                  10.10.10.1/32: {}
+                redistribute:
+                  connected:
+                    state: enabled
+                state: enabled
+```
+
+```
+cumulus@switch:~$ nv config lookup /vrf/default/router/bgp/address-family/ipv4-unicast
+- set:
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                network:
+                  10.10.10.1/32: {}
+                redistribute:
+                  connected:
+                    state: enabled
+                state: enabled
+```
+
 ## Add Configuration Apply Messages
 
 When you run the `nv config apply` command, you can add a message that describes the configuration updates you make. You can see the message when you run the `nv config history` command.

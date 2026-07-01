@@ -679,12 +679,9 @@ cumulus@switch:~$ nv config lookup "vrf default router bgp address-family ipv4-u
             address-family:
               ipv4-unicast:
                 network:
-                  10.10.3.11/32: {}
+                  10.10.10.1/32: {}
                 redistribute:
-                  static:
-                    state: enabled
-                route-export:
-                  to-evpn:
+                  connected:
                     state: enabled
                 state: enabled
 ```
@@ -699,12 +696,9 @@ cumulus@switch:~$ nv config lookup /vrf/default/router/bgp/address-family/ipv4-u
             address-family:
               ipv4-unicast:
                 network:
-                  10.10.3.11/32: {}
+                  10.10.10.1/32: {}
                 redistribute:
-                  static:
-                    state: enabled
-                route-export:
-                  to-evpn:
+                  connected:
                     state: enabled
                 state: enabled
 ```

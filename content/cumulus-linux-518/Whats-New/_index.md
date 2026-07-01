@@ -43,7 +43,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="nv show interface --ber command to show PHY health statistics for all interfaces ">}}
   - {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show transceiver information for all interfaces">}}
-  - {{<link url="NVUE-CLI/#show-specific-configuration" text="Show specific configuration on the switch">}}
+  - {{<link url="NVUE-CLI/#show-specific-configuration" text="NVUE command to show specific configuration on the switch">}} and {{<link url="NVUE-API/#view-specific-configuration" text="NVUE API query parameter to show specific configuration on the switch">}}
   - {{<link url="BMC" text="BMC commands for Spectrum-6 switches">}}
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Security

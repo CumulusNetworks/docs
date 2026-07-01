@@ -657,7 +657,51 @@ cumulus@switch:~$ nv config show --expand
 
 ### Show Specific Configuration
 
-To show specific configuration on the switch, run the `nv config show <configuration-type>` command. For example, to show BGP configuration under the default VRF, run the `nv config show vrf default router bgp` command, to show QoS configuration, run the `nv config show qos` command.
+To show a specific piece of configuration on the switch, run the `nv config lookup <search-path>` command. For example, to show BGP configuration under the default VRF, run the `nv config lookup vrf default router bgp` command.
+
+The `<search-path>` can be either:
+- Separated with spaces and enclosed in quotes (`"vrf default router bgp"`).
+- Separated with slashes but no quotes (`vrf/default/router/bgp`).
+
+The `<search-path>` cannot contain partial completions (for example, `vrf/default/rout/bgp`). You must spell out every keyword in its entirety.
+
+For any path that does not resolve to an actual subtree of the configuration, NVUE shows the error message `Error: The provided search-path is invalid and could not be resolved to a configuration subtree`.
+
+The following examples show configuration for the search path in space-separated format and slash-separated format:
+
+```
+cumulus@switch:~$ nv config lookup "vrf default router bgp address-family ipv4-unicast"
+- set:
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                network:
+                  10.10.10.1/32: {}
+                redistribute:
+                  connected:
+                    state: enabled
+                state: enabled
+```
+
+```
+cumulus@switch:~$ nv config lookup /vrf/default/router/bgp/address-family/ipv4-unicast
+- set:
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                network:
+                  10.10.10.1/32: {}
+                redistribute:
+                  connected:
+                    state: enabled
+                state: enabled
+```
 
 ## Add Configuration Apply Messages
 

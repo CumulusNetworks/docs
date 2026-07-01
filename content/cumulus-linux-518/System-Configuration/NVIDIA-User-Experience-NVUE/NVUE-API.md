@@ -786,6 +786,66 @@ cumulus@switch:~$ nv config show
 {{< /tab >}}
 {{< /tabs >}}
 
+### View Specific Configuration
+
+To view a specific piece of configuration on the switch, provide the `search-path` query parameter in the root level GET request.
+
+The `search-path` can be either:
+- Separated with spaces (`search-path=vrf default router bgp address-family ipv6-unicast`).
+- Separated with slashes (`vrf/default/router/bgp/address-family/ipv6-unicast`).
+
+For any path that does not resolve to an actual subtree of the configuration, NVUE shows the error message `Error: The provided search-path is invalid and could not be resolved to a configuration subtree`.
+
+The following examples show configuration in space-separated format and slash-separated format.
+
+```
+cumulus@switch:~$ curl -u 'cumulus:NvidiaR0cks!' -G --data-urlencode "search-path=vrf default router bgp address-family ipv6-unicast" --insecure -X GET 'https://127.0.0.1:8765/nvue_v1/?rev=applied&filled=False'
+{
+  "vrf": {
+    "default": {
+      "router": {
+        "bgp": {
+          "address-family": {
+            "ipv6-unicast": {
+              "route-export": {
+                "to-evpn": {
+                  "state": "enabled"
+                }
+              },
+              "state": "enabled"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+```
+cumulus@switch:~$ curl -u 'cumulus:NvidiaR0cks!' -G --data-urlencode "search-path=vrf/default/router/bgp/address-family/ipv6-unicast" --insecure -X GET 'https://127.0.0.1:8765/nvue_v1/?rev=applied&filled=False'
+{
+  "vrf": {
+    "default": {
+      "router": {
+        "bgp": {
+          "address-family": {
+            "ipv6-unicast": {
+              "route-export": {
+                "to-evpn": {
+                  "state": "enabled"
+                }
+              },
+              "state": "enabled"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 ### Replace an Entire Configuration
 
 To replace an entire configuration:

@@ -123,6 +123,8 @@ This behavior is different in an MLAG environment. If you configure MLAG and you
 - Adds the mapping `vlan4055 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan48` in bridge `br_default`.
 
 The {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="global reserved layer 3 VNI VLAN range">}} is different than the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="switch internal reserved VLAN range.">}} You can configure the range with the {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="`nv set system global reserved vlan l3-vni-vlan` command">}}.
+
+You can configure only one VNI for each VRF. Before you configure a new VNI, make sure to unset the existing VNI.
 {{%/notice%}}
 
 {{< /tab >}}

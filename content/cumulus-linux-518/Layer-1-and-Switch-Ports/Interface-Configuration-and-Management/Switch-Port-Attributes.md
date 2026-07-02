@@ -2206,8 +2206,8 @@ swp2s0  temperature 68.79 C       voltage 3.2225 V
 ...
 ```
 
-- Use the `--filter` option to filter the view for a range of interfaces; for example the `nv show interface --view dom --filter "*>=swp20&*<=swp22"` command shows transceiver information for swp20, swp21, and swp22.
-- Use the -o json option to show the information in json format; for example the `nv show interface --view dom --filter "*>=swp20&*<=swp22" -o json` command shows transceiver information for swp20, swp21, and swp22 in json format.
+- To filter the view for a range of interfaces, use the `--filter` option; for example, the `nv show interface --view dom --filter "*>=swp1s0&*<=swp1s3"` command shows transceiver information for swp1s0, swp1s1, swp1s2, and swp1s3.
+- To show the information in json format, use the `-o json` option; for example, the `nv show interface --view dom --filter "*>=swp1s0&*<=swp1s3" -o json` command shows transceiver information for swp1s0, swp1s1, swp1s2, and swp1s3 in json format.
 
 ## Considerations
 <!-- vale off -->

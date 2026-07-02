@@ -132,6 +132,69 @@ To disable the DCI‑1 profile, run the `nv unset qos roce mode dci-1` command.
 
 To show the port profiles created when you enabled the RoCE DCI-1 profile, run the `nv show qos roce` command.
 
+```
+cumulus@switch:~$ nv show qos roce
+                    operational  applied
+------------------  -----------  -------
+state               enabled      enabled
+mode                dci-1        dci-1  
+pfc                                     
+  pfc-priority      3                   
+  rx-enabled        enabled             
+  tx-enabled        enabled             
+  cable-length      100                 
+congestion-control                      
+  congestion-mode   ECN                 
+  enabled-tc        0,3,4               
+  min-threshold     146.48 KB           
+  max-threshold     1.43 MB             
+  probability       100                 
+trust                                   
+  trust-mode        pcp,dscp            
+
+RoCE PCP/DSCP->SP mapping configurations
+===========================================
+       pcp  dscp                     switch-prio  pg
+    -  ---  -----------------------  -----------  --
+    0  0    0,1,2,3,4,5,6,7          0              
+    1  1    8,9,10,11,12,13,14,15    1              
+    2  2    16,17,18,19,20,21,22,23  2              
+    3  3    24,25,26,27,28,29,30,31  3              
+    4  4    32,33,34,35,36,37,38,39  4              
+    5  5    40,41,42,43,44,45,46,47  5              
+    6  6    48,49,50,51,52,53,54,55  6              
+    7  7    56,57,58,59,60,61,62,63  7              
+
+RoCE SP->TC mapping and ETS configurations
+=============================================
+       switch-prio  traffic-class  scheduler-weight
+    -  -----------  -------------  ----------------
+    0  0            0              DWRR-33%        
+    1  1            0              DWRR-33%        
+    2  2            0              DWRR-33%        
+    3  3            3              DWRR-33%        
+    4  4            4              DWRR-33%        
+    5  5            0              DWRR-33%        
+    6  6            6              strict-priority 
+    7  7            0              DWRR-33%        
+
+RoCE pool config
+===================
+       name                   mode     size  switch-priorities  traffic-class
+    -  ---------------------  -------  ----  -----------------  -------------
+    0  lossy-default-ingress  Dynamic  99%   0,1,2,3,4,5,6,7    -            
+    2  lossy-default-egress   Dynamic  99%   -                  0,4,6        
+    3  roce-reserved-egress   Dynamic  inf   -                  3            
+
+Exception List
+=================
+No Data
+
+Extended Features
+====================
+No Data
+```
+
 ## Remove RoCE Configuration
 
 To remove RoCE configuration:

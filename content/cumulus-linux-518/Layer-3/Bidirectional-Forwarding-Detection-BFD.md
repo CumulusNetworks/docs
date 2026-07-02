@@ -338,8 +338,7 @@ You configure the echo function by setting the following parameters in the topol
 
 ## BFD Offload to Kernel
 
-
-BFD offload improves BFD session scale by offloading sessions to the kernel driver `sx_bfd`, which is responsible for maintaining those sessions. BFD offload supports numbered sessions and IPv6 unnumbered sessions. BFD offload is disabled by default.
+BFD offload improves BFD session scale by offloading sessions to the kernel driver (`sx_bfd`), which is responsible for maintaining those sessions. BFD offload supports numbered sessions and IPv6 unnumbered sessions. BFD offload is disabled by default.
 
 {{%notice note%}}
 - When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
@@ -378,7 +377,7 @@ cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
 switch(config)# bfd
-switch(config-bfd)# offload-mode
+switch(config-bfd)# offload-mode kernel
 switch(config-bfd)# end
 switch# write memory
 switch# exit
@@ -432,13 +431,17 @@ The `Offloaded` field shows `offloaded` if the session is offloaded and `control
 Under heavy CPU load (such as route churn, ACL updates, large-scale provisioning), software-based BFD timers can drift, leading to false session flaps, especially at aggressive intervals. To avoid such issues, you can configure the switch to handle receiving and transmitting BFD packets entirely in hardware with 10ms timer precision, independent of CPU load.
 
 {{%notice note%}}
-You can set BFD to hardware:
-- On Spectrum-6 switches only.
-- On all single-hop interface types (physical, subinterface, bond, SVI, BGP unnumbered).
-- Before you change the BFD offlooad mode to firmware, configure BFD sessions to enter the admin-down state to notify peers gracefully. This prevents peers from interpreting the mode transition as a link or path failure, avoiding unnecessary routing reconvergence.
+- You can set BFD to hardware on Spectrum-6 switches only.
+- You can set BFD to hardware on all single-hop interface types (physical, subinterface, bond, SVI, BGP unnumbered). The switch does not support multi-hop BFD offload.
+- Before you change the BFD offlooad mode to hardware, configure BFD sessions to enter the admin down state to notify peers gracefully. This prevents peers from interpreting the mode transition as a link or path failure, avoiding unnecessary routing reconvergence.
 {{%/notice%}}
 
-To configure BFD to hardware, run the `nv set router bfd offload mode hardware` command:
+To configure BFD to hardware:
+
+{{< tabs "TabID442 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set router bfd offload mode hardware` command:
 
 ```
 cumulus@switch:~$ nv set router bfd offload mode hardware   
@@ -446,7 +449,27 @@ cumulus@switch:~$ nv config apply
 ```
 
 - To set BFD offload back to the defaut value of no offload, run the `nv set router bfd offload mode none` command.
-- To set BFD offload to kernel offload (`sx_bfd`), run the `nv set router bfd offload mode kernel` command.
+- To set BFD offload to the kernel, run the `nv set router bfd offload mode kernel` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# bfd
+switch(config-bfd)# offload-mode hardware
+switch(config-bfd)# end
+switch# write memory
+switch# exit
+```
+
+- To set BFD offload back to the defaut value of no offload, set `offload-mode` to `none` (`offload-mode none`).
+- To set BFD offload to the kernel, set `offload-mode` to `kernel` (`offload-mode kernel`).
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Show BFD Information
 

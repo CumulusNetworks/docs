@@ -20,7 +20,11 @@ Cumulus Linux 5.16.5 provides {{<link title="Cumulus Linux 5.16 Release Notes" t
 ## What's New in Cumulus Linux 5.16.1
 
 Cumulus Linux 5.16.1 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}}.
-
+<!--
+{{%notice note%}}
+NVIDIA recommends that you do not upgrade to Cumulus Linux 5.16.1 on the NVIDIA SN2201 switch; upgrade to Cumulus Linux 5.16.5 instead.
+{{%/notice%}}
+--?
 ## What's New in Cumulus Linux 5.16.0
 
 Cumulus Linux 5.16.0 contains new features and improvements, and provides bug fixes.

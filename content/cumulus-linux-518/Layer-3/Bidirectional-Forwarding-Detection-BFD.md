@@ -338,8 +338,7 @@ You configure the echo function by setting the following parameters in the topol
 
 ## BFD Offload to Kernel
 
-
-BFD offload improves BFD session scale by offloading sessions to the kernel driver `sx_bfd`, which is responsible for maintaining those sessions. BFD offload supports numbered sessions and IPv6 unnumbered sessions. BFD offload is disabled by default.
+BFD offload improves BFD session scale by offloading sessions to the kernel driver (`sx_bfd`), which is responsible for maintaining those sessions. BFD offload supports numbered sessions and IPv6 unnumbered sessions. BFD offload is disabled by default.
 
 {{%notice note%}}
 - When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
@@ -378,7 +377,7 @@ cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
 switch(config)# bfd
-switch(config-bfd)# offload-mode
+switch(config-bfd)# offload-mode kernel
 switch(config-bfd)# end
 switch# write memory
 switch# exit
@@ -437,7 +436,12 @@ Under heavy CPU load (such as route churn, ACL updates, large-scale provisioning
 - Before you change the BFD offlooad mode to hardware, configure BFD sessions to enter the admin down state to notify peers gracefully. This prevents peers from interpreting the mode transition as a link or path failure, avoiding unnecessary routing reconvergence.
 {{%/notice%}}
 
-To configure BFD to hardware, run the `nv set router bfd offload mode hardware` command:
+To configure BFD to hardware:
+
+{{< tabs "TabID442 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set router bfd offload mode hardware` command:
 
 ```
 cumulus@switch:~$ nv set router bfd offload mode hardware   
@@ -446,6 +450,23 @@ cumulus@switch:~$ nv config apply
 
 - To set BFD offload back to the defaut value of no offload, run the `nv set router bfd offload mode none` command.
 - To set BFD offload to the kernel, run the `nv set router bfd offload mode kernel` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# bfd
+switch(config-bfd)# offload-mode hardware
+switch(config-bfd)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Show BFD Information
 

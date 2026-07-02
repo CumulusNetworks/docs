@@ -340,8 +340,8 @@ swp53      15E-255  15E-255  15E-255  0         0         1
 swp54      15E-255  15E-255  15E-255  0         0         1 
 ```
 
-- Use the `--filter` option to filter the view for a range of interfaces; for example the `nv show interface --view ber --filter "*>=swp49&*<=swp54"` command shows PHY health statistics for swp49 through swp54.
-- Use the -o json option to show the information in json format; for example the `nv show interface --view ber --filter "*>=swp49&*<=swp54" -o json` command shows PHY health statistics for swp49 through swp54 in json format.
+- To filter the view for a range of interfaces, use the `--filter` option; for example, the `nv show interface --view ber --filter "*>=swp49&*<=swp54"` command shows PHY health statistics for swp49 through swp54.
+- To show the information in json format, use the `-o json` option; for example, the `nv show interface --view ber --filter "*>=swp49&*<=swp54" -o json` command shows PHY health statistics for swp49 through swp54 in json format.
 
 To show physical layer diagnostic information for a port, run the `nv show interface <interface-id> link phy detail` command:
 

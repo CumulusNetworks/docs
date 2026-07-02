@@ -465,6 +465,9 @@ switch# write memory
 switch# exit
 ```
 
+- To set BFD offload back to the defaut value of no offload, set `offload-mode` to `none` (`offload-mode none`).
+- To set BFD offload to the kernel, set `offload-mode` to `kernel` (`offload-mode kernel`).
+
 {{< /tab >}}
 {{< /tabs >}}
 

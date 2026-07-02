@@ -791,7 +791,7 @@ cumulus@switch:~$ nv config show
 To view a specific piece of configuration on the switch, provide the `search-path` query parameter in the root level GET request.
 
 The `search-path` can be either:
-- Separated with spaces (`search-path=vrf default router bgp address-family ipv6-unicast`).
+- Separated with spaces (`vrf default router bgp address-family ipv6-unicast`).
 - Separated with slashes (`vrf/default/router/bgp/address-family/ipv6-unicast`).
 
 For any path that does not resolve to an actual subtree of the configuration, NVUE shows the error message `Error: The provided search-path is invalid and could not be resolved to a configuration subtree`.

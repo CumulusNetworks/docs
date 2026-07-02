@@ -329,14 +329,19 @@ To show a tabular summary of PHY health statistics for all switch port interface
 cumulus@switch$ nv show interface --view ber
 Interface  Eff-BER  Raw-BER  Sym-BER  Sym-Errs  Eff-Errs  Last-Clr(min) 
 ---------  -------  -------  -------  --------  --------  -------------
-swp1       15E-255  15E-255  0        0         0         27251 
-swp2       15E-255  15E-255  0        0         0         27251 
-swp3       15E-255  15E-255  0        0         0         27251 
-swp4       15E-255  15E-255  0        0         0         27251 
+swp1       15E-255  15E-255  15E-255  0         0         1            
+swp2       15E-255  15E-255  15E-255  0         0         1            
+swp3       15E-255  15E-255  15E-255  0         0         1            
+swp49      15E-255  15E-255  15E-255  0         0         1            
+swp50      15E-255  15E-255  15E-255  0         0         1            
+swp51      15E-255  15E-255  15E-255  0         0         1            
+swp52      15E-255  15E-255  15E-255  0         0         1            
+swp53      15E-255  15E-255  15E-255  0         0         1            
+swp54      15E-255  15E-255  15E-255  0         0         1 
 ```
 
-- Use the `--filter` option to filter the view for a range of interfaces; for example the `nv show interface --view ber --filter "*>=swp20&*<=swp22"` command shows PHY health statistics for swp20, swp21, and swp22.
-- Use the -o json option to show the information in json format; for example the `nv show interface --view ber --filter "*>=swp20&*<=swp22" -o json` command shows PHY health statistics for swp20, swp21, and swp22 in json format.
+- Use the `--filter` option to filter the view for a range of interfaces; for example the `nv show interface --view ber --filter "*>=swp49&*<=swp54"` command shows PHY health statistics for swp49 through swp54.
+- Use the -o json option to show the information in json format; for example the `nv show interface --view ber --filter "*>=swp49&*<=swp54" -o json` command shows PHY health statistics for swp49 through swp54 in json format.
 
 To show physical layer diagnostic information for a port, run the `nv show interface <interface-id> link phy detail` command:
 

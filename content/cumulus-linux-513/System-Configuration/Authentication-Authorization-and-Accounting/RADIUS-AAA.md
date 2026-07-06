@@ -101,7 +101,7 @@ You can configure the following global RADIUS settings and server specific setti
 | `vrf` | The global VRF you want to use to communicate with a RADIUS server. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. If you use multiple RADIUS servers, you can specify a different VRF for each server. |
 | `privilege-level` | The minimum privilege level that determines if users can configure the switch with NVUE commands and sudo, or have read-only rights. The default privilege level is 15, which provides full administrator access. This is a global option only; you cannot set the minimum privilege level for specific RADIUS servers.|
 | `retransmit` | The maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out. This is a global option only; you cannot set the number of retransmission attempts for specific RADIUS servers.|
-| `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
+| `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 5 seconds (the NVUE default value of 5 seconds is different from the Linux default of 3 seconds). If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
 | `source-ipv4`</br>`source-ipv6`| A specific interface to reach all RADIUS servers. To configure the source IP address for a specific RADIUS server, use the `source-ip` option.|
 | `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. You enable the debug option globally for all the servers.|
 | `require-message-authenticator` | Requires authentication packets to have the Message-Authenticator attribute; the switch discards as Access-Reject all packets that do not have the Message-Authenticator attribute.|
@@ -329,7 +329,7 @@ debug            disabled       disabled
 privilege-level                 15            
 retransmit       0              0             
 port                            1812          
-timeout                         3             
+timeout                         5             
 accounting       enabled        enabled       
 [server]         192.168.0.254  192.168.0.254 
 ```

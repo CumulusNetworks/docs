@@ -330,6 +330,9 @@ You can set the NAS (Network Access Server) IP address or the NAS identifier tha
 
 The NAS IP address can be either IPv4 or IPv6. The NAS identifier must be between 1 and 253 characters with no whitespace.
 
+{{< tabs "TabID333 ">}}
+{{< tab "NVUE Commands">}}
+
 To set the NAS IPv4 address, run the `nv set system aaa radius nas-ip-address <ip-address>` command. To set the NAS IPv6 address, run the `nv set system aaa radius nas-ipv6-address <ip-address>` command. The following example sets the NAS IPv4 address to 10.10.10.3 and the NAS IPv6 address to 2001:DB8::1
 
 ```
@@ -349,6 +352,23 @@ cumulus@switch:~$ nv config apply
 
 To unset the NAS identifier, run the `nv unset system aaa radius nas-identifier` command.
 
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/pam_radius_auth.conf` file to add the `nas-ip-address`, `nas-ipv6-address`, and, or `client_id` parameters:
+
+```
+cumulus@switch:~$ sudo nano /etc/pam_radius_auth.conf
+...
+nas-ip-address 10.10.10.3
+nas-ipv6-address 2001:DB8::1
+client_id AB-123
+192.168.0.254:42   myradius$key  10  mgmt   192.168.1.10
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 To show the configured NAS IP address and identifier, run the `nv show system aaa radius` command.
 
 ## Show RADIUS Configuration
@@ -365,8 +385,7 @@ privilege-level                 15
 retransmit       0              0             
 port                            1812
 auth-type                       mschapv2
-timeout                         5
-nas-ip-address   10.10.10.3     10.10.10.3             
+timeout                         5             
 accounting       enabled        enabled       
 [server]         192.168.0.254  192.168.0.254 
 ```

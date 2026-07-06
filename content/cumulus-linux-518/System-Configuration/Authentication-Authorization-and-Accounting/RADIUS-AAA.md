@@ -321,8 +321,35 @@ In this example, the `admin` user is a privileged RADIUS user (with privilege le
 
 ```
 admin@leaf01:~$ nv set interface swp1
-admin@leaf01:~$ nv apply
+admin@leaf01:~$ nv config apply
 ```
+
+## NAS IP Address and Identifier
+
+You can set the NAS (Network Access Server) IP address or the NAS identifier that the switch sends in RADIUS requests. The NAS IP address and NAS identifier are global settings that override the source IP address set for each RADIUS server.
+
+The NAS IP address can be either IPv4 or IPv6. The NAS identifier must be between 1 and 253 characters with no whitespace.
+
+To set the NAS IPv4 address, run the `nv set system aaa radius nas-ip-address <ip-address>` command. To set the NAS IPv6 address, run the `nv set system aaa radius nas-ipv6-address <ip-address>` command. The following example sets the NAS IPv4 address to 10.10.10.3 and the NAS IPv6 address to 2001:DB8::1
+
+```
+cumulus@switch:~$ nv set system aaa radius nas-ip-address 10.10.10.3
+cumulus@switch:~$ nv set system aaa radius nas-ipv6-address 2001:DB8::1
+cumulus@switch:~$ nv config apply
+```
+
+To unset the NAS IP address, run the `nv unset system aaa radius nas-ip-address` command or `nv unset system aaa radius nas-ipv6-address` command.
+
+To set the NAS identifier, run the `nv set system aaa radius nas-identifier <identifier>` command. The following example sets the NAS identifier to AB-123:
+
+```
+cumulus@switch:~$ nv set system aaa radius nas-identifier AB-123
+cumulus@switch:~$ nv config apply
+```
+
+To unset the NAS identifier, run the `nv unset system aaa radius nas-identifier` command.
+
+To show the configured NAS IP address and identifier, run the `nv show system aaa radius` command.
 
 ## Show RADIUS Configuration
 
@@ -338,7 +365,8 @@ privilege-level                 15
 retransmit       0              0             
 port                            1812
 auth-type                       mschapv2
-timeout                         5             
+timeout                         5
+nas-ip-address   10.10.10.3     10.10.10.3             
 accounting       enabled        enabled       
 [server]         192.168.0.254  192.168.0.254 
 ```

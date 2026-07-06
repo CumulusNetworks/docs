@@ -120,7 +120,7 @@ To unset profile based configuration, restore the configuration you backed up pr
 
 ## Show Profile‑based Configuration
 
-To show the profile‑based configuration on a switch (profile, directions, interface ranges, and breakout values), run the `nv show system do-spx` command:
+To show the configured profile on a switch, run the `nv show system do-spx` command:
 
 ```
 cumulus@switch:~$ nv show system do-spx
@@ -130,7 +130,7 @@ role                           		leaf
 [uplink]                       		swp1
 [downlink]			                  swp2
 [exception-list]               
-
 ```
 
-The persistent configuration records only the profile name and the parameters you provide. Other operational NVUE show commands show the fully resolved state.
+- The `exception-list` shows any differences between the profile and the applied configuration.
+- The persistent configuration records only the profile name and the parameters you provide. Other operational NVUE show commands show the fully resolved state.

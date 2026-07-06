@@ -35,7 +35,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="Optional-BGP-Configuration/#inter-dc-bgp-lldp-unreachability-and-conditional-disaggregation" text="Inter-DC BGP-LLDP unreachability and conditional disaggregation">}}
 - {{<link url="Inter-subnet-Routing/#layer-3-vxlan-interfaces" text="Layer 3 VXLAN interfaces">}}
 - EVPN Multihoming and MLAG without a unique SVI IP address
-- {{<link url="RADIUS-AAA/#nas-ip-address-and-identifier-configuration" text="RADIUS NAS IP address and identifier configuration">}}
+- {{<link url="RADIUS-AAA/#nas-ip-address-and-identifier" text="RADIUS NAS IP address and identifier configuration">}}
 - NVUE
   - {{<link url="NVUE-CLI/#automatic-configuration-backup-and-restore" text="Automatic configuration backup and restore">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}

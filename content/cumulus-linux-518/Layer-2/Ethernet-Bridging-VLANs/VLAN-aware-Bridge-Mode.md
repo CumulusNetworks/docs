@@ -967,7 +967,7 @@ cumulus@switch:~$ nv config apply
 To set a trusted port, run the `nv set bridge domain <bridge> arp-inspection vlan <vid> interface <port>` command. The listed ports have no DAI filters and the packets pass through the switch.
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 interface swp1
+cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 interface swp2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -976,7 +976,7 @@ To configure dynamic ARP inspection for static MAC to IP and port bindings for h
 ```
 cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 mac 00:02:00:00:00:05
 cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 ip 192.0.2.42 
-cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 port swp1
+cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 port swp2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -986,22 +986,50 @@ To show dynamic ARP inspection information such as the state, interfaces, and bi
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default arp-inspection
+ARP Inspection Table
+=======================
+    Vlan  State     Trusted-Port  Binding  MAC                IP          Port
+    ----  --------  ------------  -------  -----------------  ----------  ----
+    10    disabled  swp2          server1  00:02:00:00:00:05  192.0.2.42  swp2
 ```
 
-- To show dynamic ARP inspection information for all VLANs, run the `nv show bridge domain <bridge> arp-inspection vlan` command.
-- To show dynamic ARP inspection information for a specific VLAN, run the `nv show bridge domain <bridge> arp-inspection vlan <vid>` command.
-- To show dynamic ARP inspection information for all VLAN interfaces, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> interface` command.
-- To show dynamic ARP inspection information for a specific VLAN interface, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> interface <interface-id>` command.
-- To show dynamic ARP inspection information for all static bindings, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> static-binding` command.
-- To show dynamic ARP inspection information for a specific static binding, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> static-binding <name>` command:
+To show dynamic ARP inspection information for all VLANs, run the `nv show bridge domain <bridge> arp-inspection vlan` command. To show dynamic ARP inspection information for a specific VLAN, run the `nv show bridge domain <bridge> arp-inspection vlan <vid>` command:
 
 ```
-cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 static-binding server1
-      operational  applied     
-----  -----------  -------
-mac                00:02:00:00:00:05
-ip                 192.0.2.42       
-port               swp1
+cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10
+       operational  applied 
+-----  -----------  --------
+state  disabled     disabled
+
+ARP Inspection Trusted Interfaces
+====================================
+    Port
+    ----
+    swp2
+
+ARP Inspection Static Bindings
+=================================
+    Name     MAC                IP          Port
+    -------  -----------------  ----------  ----
+    server1  00:02:00:00:00:05  192.0.2.42  swp2
+```
+
+To show dynamic ARP inspection information for all VLAN interfaces, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> interface` command. To show dynamic ARP inspection information for a specific VLAN interface, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> interface <interface-id>` command.
+
+```
+cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 interface
+Port
+----
+swp2
+```
+
+To show dynamic ARP inspection information for all static bindings, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> static-binding` command. To show dynamic ARP inspection information for a specific static binding, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> static-binding <name>` command.
+
+```
+cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 static-binding
+Name     MAC                IP          Port
+-------  -----------------  ----------  ----
+server1  00:02:00:00:00:05  192.0.2.42  swp2
 ```
 
 ## Troubleshooting

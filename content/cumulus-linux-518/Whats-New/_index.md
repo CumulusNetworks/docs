@@ -46,6 +46,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show transceiver information for all interfaces">}}
   - {{<link url="NVUE-CLI/#show-specific-configuration" text="NVUE command to show specific configuration on the switch">}} and {{<link url="NVUE-API/#view-specific-configuration" text="NVUE API query parameter to show specific configuration on the switch">}}
   - {{<link url="BMC" text="BMC commands for Spectrum-6 switches">}}
+  - {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="NVUE commands to show and clear RADIUS counters">}}
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Security
   - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference">}}

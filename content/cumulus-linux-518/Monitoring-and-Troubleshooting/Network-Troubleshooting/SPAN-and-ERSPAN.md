@@ -15,7 +15,7 @@ Cumulus Linux supports both <span class="a-tooltip">[SPAN](## "Switched Port Ana
   ```
 
 {{%notice note%}}
-The Spectrum-6 switch does not support SPAN and ERSPAN egress port mirroring.
+The Spectrum-6 switch does not support SPAN or ERSPAN egress port mirroring.
 {{%/notice%}}
 
 ## SPAN

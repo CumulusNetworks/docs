@@ -52,3 +52,14 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 |{{<link url="Network-Address-Translation-NAT" >}}| <font color="red">No</font> | <font color="green">yes</font>|
 |{{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" >}}| <font color="red">No</font> |
 -->
+
+## SimX on DSX Air
+
+SimX is a specialized simulation platform developed by NVIDIA to emulate network hardware. SimX runs on a physical server with a Linux hypervisor, embedded inside a Docker container. High-speed ports are available inside the container through virtual network interfaces.
+
+The SimX platform:
+- Creates virtualized versions of the switch and firmware within a virtual machine (VM). These devices appear and function like real hardware but they are actually soft simulations running within the VM.
+- Allows real drivers, libraries, and host software to interact with these virtual devices as if they are actual physical devices.
+- Supports advanced features like layer 2 and layer 3 forwarding tables, ACL tunnels, and more.
+- Enables you to simulate and test network device behavior in a controlled, virtualized environment without requiring physical hardware.
+

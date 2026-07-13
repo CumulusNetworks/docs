@@ -43,8 +43,8 @@ After you install the required RADIUS packages, configure the following required
   - If you include special characters in the key (such as $), you must enclose the key in single quotes ('). NVUE restricts the secret key to a maximum of 32 characters.
   - Cumulus Linux 5.16 and later supports yubikey <span class="a-tooltip">[OTP](## "One-Time Password")</span> authentication with RADIUS. You can log into the switch then touch the YubiKey to generate the OTP. Depending on the configuration, you either need to provide the password and touch the YubiKey or the touch the YubiKey without the password.
 - If you use NVUE commands to configure RADIUS, you must also:
-  - Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
-  - Set the priority for the authentication order for local and RADIUS users. You can set a value between 1 and 100. The lower value is the higher priority.
+  - Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 8. The default value is 1. The lower value is the higher priority.
+  - Set the priority for the authentication order for local and RADIUS users. You can set the value to `local`, `radius`, `ldap` and `tacacs`. The default value is `local`.
 
 {{%notice note%}}
 After you configure any RADIUS settings with NVUE and you run `nv config apply`, you must restart the NVUE service with the `sudo systemctl restart nvued.service` command.
@@ -56,7 +56,7 @@ After you configure any RADIUS settings with NVUE and you run `nv config apply`,
 The following example commands set:
 - The IP address of the RADIUS server to 192.168.0.254 and the port to 42.
 - The secret to `'myradius$key'`.
-- The priority at which Cumulus Linux contacts the RADIUS server to 10.
+- The priority at which Cumulus Linux contacts the RADIUS server to 8.
 - The authentication order so that RADIUS authentication has priority over local.
 
 ```

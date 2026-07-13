@@ -950,7 +950,9 @@ cumulus@switch:~$ sudo bridge fdb show
 
 ## Dynamic ARP Inspection
 
-Dynamic ARP Inspection protects against ARP spoofing and ARP poisoning attacks by validating ARP packets on untrusted bridge ports against trusted IP-to-MAC bindings, and drops packets that do not match. Bindings come from the DHCP snooping table and from static bindings you configure. On an untrusted port, the switch permits an ARP packet only when its Ethernet source MAC, ARP sender MAC, ARP sender IP address, and ingress port all match a binding. The switch does not inspect DHCP snooping trusted ports (uplinks and server-facing ports).
+Dynamic ARP Inspection protects against ARP spoofing and ARP poisoning attacks by validating ARP packets on untrusted bridge ports against trusted IP-to-MAC bindings, and drops packets that do not match. Bindings come from the DHCP snooping table and from static bindings you configure. On an untrusted port, the switch permits an ARP packet only when its Ethernet source MAC, ARP sender MAC, ARP sender IP address, and ingress port all match a binding.
+
+The switch does not inspect ports you list as ARP Inspection trusted interfaces. This list is independent of the DHCP snooping trust configuration; a DHCP snooping trusted uplink is still ARP inspected unless it is also an ARP Inspection trusted interface.
 
 {{%notice note%}}
 - Before you enable dynamic ARP inspection on a bridge VLAN, you must configure {{<link url="DHCP-Snooping" text="DHCP snooping">}} for the VLAN.

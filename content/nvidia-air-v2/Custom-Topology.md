@@ -287,6 +287,43 @@ When viewing the nodes within Air after starting the simulation, notice that the
 
 {{<img src="/images/guides/nvidia-air-v2/JSONOOBExample.png" alt="">}}
 
+#### Boot Order
+
+By default a node boots from its disk (`hd`). Use the optional `boot` attribute to choose the boot device, or to specify an ordered list of devices to try. Provide either:
+
+- **A single device** — for example `"hd"` or `"network"`. The default is `"hd"`.
+- **An ordered list** of up to 3 unique devices. Air tries each device in the order listed and falls through to the next if a device does not boot.
+
+Accepted devices are `hd` (the boot disk), `network` (network/PXE boot, applied to every network interface on the node), and `cdrom` (an attached CD-ROM image).
+
+{{< expand "Boot Order Example" >}}
+
+```
+{
+    "format": "JSON",
+    "name": "Demo",
+    "ztp": null,
+    "content": {
+        "nodes": {
+            "server01": {
+                "os": "generic/ubuntu2204",
+                "boot": ["network", "hd"]
+            }
+        },
+        "links": []
+    }
+}
+```
+{{< /expand >}}
+
+{{%notice note%}}
+The `boot` attribute is mutually exclusive with the legacy `pxehost: true` field, which is an alias for `boot: "network"`. Set one or the other.
+{{%/notice%}}
+
+{{%notice note%}}
+If `boot` includes `cdrom`, the node must also have a CD-ROM image attached through its `cdrom` attribute.
+{{%/notice%}}
+
 #### Custom NetQ Node
 You can create and customize a NetQ instance for your simulation.
 
@@ -374,6 +411,14 @@ You can customize the number of allocated CPUs with the `cpu` option:
 
 ```
 "server" [os="generic/ubuntu2404" cpu="4"]
+```
+
+#### Boot Order
+
+You can set the boot device(s) with the `boot` option. Provide a single device (`hd`, `network`, or `cdrom`), or a comma-separated list of up to 3 unique devices for ordered fall-through:
+
+```
+"server" [os="generic/ubuntu2204" boot="network,hd"]
 ```
 
 #### Create Connections

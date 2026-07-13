@@ -10,14 +10,15 @@ IP Source Guard is a layer 2 security feature that prevents IP address spoofing 
 Before you enable IP Source Guard on an interface, you must configure {{<link url="DHCP-Snooping" text="DHCP snooping">}} for the bridge VLAN.
 {{%/notice%}}
 
-To enable IP Source Guard on an interface, run the `nv set interface <interface-id> security ip-source-guard state enabled` command:
+To enable IP Source Guard on an interface, run the `nv set interface <interface-id> security ip-source-guard enabled` command:
 
 ```
-cumulus@switch:~$ nv set interface swp1 security ip-source-guard state enabled
-cumulus@switch:~$ nv set interface swp2 security ip-source-guard state enabled
+cumulus@switch:~$ nv set interface swp1 security ip-source-guard enabled
+cumulus@switch:~$ nv set interface swp5-7 security ip-source-guard enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable IP Source Guard on an interface, run the `nv set interface <interface-id> security ip-source-guard state disabled` command.
+To disable IP Source Guard on an interface, run the `nv set interface <interface-id> security ip-source-guard disabled` command.
 
 To show the IP Source Guard configuration and operational status for an interface, run the `nv show interface <interface-id> security` command.
+

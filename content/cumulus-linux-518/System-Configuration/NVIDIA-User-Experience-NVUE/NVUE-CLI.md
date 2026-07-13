@@ -562,18 +562,18 @@ state  enabled      enabled
 Configuration restore is a BETA feature.
 {{%/notice%}}
 
-To restore the switch to the configuration captured in a snapshot, identify the snapshot you want to restore by inspecting the `/var/lib/config-backup/auto-snapshots/applied` and `/var/lib/config-backup/auto-snapshots/weekly` directories, then run the `nv action restore system config snapshot <snapshot>` command. You must provide the absolute path for the snapshot.
+To restore the switch to the configuration captured in a snapshot, identify the snapshot you want to restore by inspecting the `/var/lib/config-backup/auto-snapshots/applied` and `/var/lib/config-backup/auto-snapshots/weekly` directories, then run the `nv action restore system config backup <snapshot>` command. You must provide the absolute path for the snapshot.
 
 NVUE takes a pre-restore rollback snapshot, restores the files in the snapshot, rebuilds the NVUE state from the restored `startup.yaml` file, and reboots.
 
 ```
-cumulus@switch:~$ nv action restore system config snapshot /var/lib/config-backup/auto-snapshots/weekly-20260320-121030
+cumulus@switch:~$ nv action restore system config backup /var/lib/config-backup/auto-snapshots/weekly-20260320-121030
 ```
 
 To skip the confirmation prompt, add the `force` option:
 
 ```
-cumulus@switch:~$ nv action restore system config snapshot /var/lib/config-backup/auto-snapshots/weekly-20260320-121030 force
+cumulus@switch:~$ nv action restore system config backup /var/lib/config-backup/auto-snapshots/weekly-20260320-121030 force
 ```
 
 ## Show Switch Configuration

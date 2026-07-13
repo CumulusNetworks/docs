@@ -193,7 +193,7 @@ nv action install system image onie <path> [activate reboot]
 nv action install system image onie <path> ztp <script> [activate reboot]
 nv action install system image onie <path> startup-config <file-name> [activate reboot]
 nv action install system image onie ftp:<path> activate reboot
-nv action restore system config snapshot <path>
+nv action restore system config backup <path>
 ```
 
 {{< /tab >}}

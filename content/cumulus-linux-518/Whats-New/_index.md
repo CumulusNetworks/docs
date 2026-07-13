@@ -49,6 +49,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Security
   - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference">}}
+  - {{<link url="User-Accounts/#password-security" text="Password hardening is now disabled by default">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
   - {{<link url="IP-Source-Guard" text="IP Source Guard">}}
@@ -56,7 +57,6 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC, BGP, WJH,">}}
   - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC, BGP, WJH">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
-- {{<link url="User-Accounts/#password-security" text="Password hardening is now disabled by default">}}
 
 ## Release Considerations
 

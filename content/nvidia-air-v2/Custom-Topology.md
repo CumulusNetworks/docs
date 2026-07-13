@@ -289,25 +289,35 @@ When viewing the nodes within Air after starting the simulation, notice that the
 
 #### Boot Order
 
-By default a node boots from its disk (`hd`). Use the optional `boot` attribute to choose the boot device, or to specify an ordered list of devices to try. Provide either:
+A node accepts an optional `boot` attribute that controls which device the node attempts to boot from. It accepts either of two forms:
 
-- **A single device** — for example `"hd"` or `"network"`. The default is `"hd"`.
-- **An ordered list** of up to 3 unique devices. Air tries each device in the order listed and falls through to the next if a device does not boot.
+- **Single device (string)** — a single boot device, for example `"hd"` or `"network"`. The default is `"hd"`.
+- **Boot order (list)** — a list of up to 3 unique boot devices tried in order. Firmware attempts each device in the order listed and falls through to the next if the previous device does not boot. Accepted device literals are `hd` (the boot disk), `cdrom` (the first user-supplied CD-ROM), and `network` (every network interface, tried in sequence).
 
-Accepted devices are `hd` (the boot disk), `network` (network/PXE boot, applied to every network interface on the node), and `cdrom` (an attached CD-ROM image).
+When you supply a list, only the devices you name receive a boot preference; any device not named is left to firmware-level fall-through. The `network` literal expands to every NIC on the node, each assigned a consecutive boot position. Listing a device that the node does not have (for example `network` on a node with no NIC) is ignored — the node still boots from the remaining devices.
 
-{{< expand "Boot Order Example" >}}
+{{%notice note%}}
+The `boot` field is mutually exclusive with `pxehost: true`. Setting `pxehost: true` is a legacy alias for `boot: "network"`; do not set both unless `boot` is `"network"`.
+{{%/notice%}}
+
+{{%notice note%}}
+If `boot` includes `cdrom`, the node must also have a `cdrom` image attached. See [CD-ROM](#cd-rom).
+{{%/notice%}}
+
+The following example makes `host1` try its disk first, then fall through to network boot:
+
+{{< expand "View Boot Order Example" >}}
 
 ```
 {
     "format": "JSON",
-    "name": "Demo",
+    "name": "Boot Order",
     "ztp": null,
     "content": {
         "nodes": {
-            "server01": {
+            "host1": {
                 "os": "generic/ubuntu2204",
-                "boot": ["network", "hd"]
+                "boot": ["hd", "network"]
             }
         },
         "links": []
@@ -316,13 +326,30 @@ Accepted devices are `hd` (the boot disk), `network` (network/PXE boot, applied 
 ```
 {{< /expand >}}
 
-{{%notice note%}}
-The `boot` attribute is mutually exclusive with the legacy `pxehost: true` field, which is an alias for `boot: "network"`. Set one or the other.
-{{%/notice%}}
+#### CD-ROM
 
-{{%notice note%}}
-If `boot` includes `cdrom`, the node must also have a CD-ROM image attached through its `cdrom` attribute.
-{{%/notice%}}
+A node accepts an optional `cdrom` attribute that inserts an image into the node's CD-ROM drive. Set it to the name (or ID) of an image your organization can read. A CD-ROM must be attached whenever the node's `boot` order includes `cdrom`.
+
+{{< expand "View CD-ROM Boot Example" >}}
+
+```
+{
+    "format": "JSON",
+    "name": "CD-ROM Boot",
+    "ztp": null,
+    "content": {
+        "nodes": {
+            "host1": {
+                "os": "generic/ubuntu2204",
+                "cdrom": "cdrom-nonbootable",
+                "boot": ["cdrom", "hd"]
+            }
+        },
+        "links": []
+    }
+}
+```
+{{< /expand >}}
 
 #### Custom NetQ Node
 You can create and customize a NetQ instance for your simulation.
@@ -418,7 +445,7 @@ You can customize the number of allocated CPUs with the `cpu` option:
 You can set the boot device(s) with the `boot` option. Provide a single device (`hd`, `network`, or `cdrom`), or a comma-separated list of up to 3 unique devices for ordered fall-through:
 
 ```
-"server" [os="generic/ubuntu2204" boot="network,hd"]
+"server" [os="generic/ubuntu2404" boot="network,hd"]
 ```
 
 #### Create Connections

@@ -291,7 +291,7 @@ When viewing the nodes within Air after starting the simulation, notice that the
 
 A node accepts an optional `boot` attribute that controls which device the node attempts to boot from. It accepts either of two forms:
 
-- **Single device (string)** — a single boot device, for example `"hd"` or `"network"`. The default is `"hd"`.
+- **Single device (string)** — a single boot device, for example `"hd"`, `"network"`, or `"cdrom"`. The default is `"hd"`.
 - **Boot order (list)** — a list of up to 3 unique boot devices tried in order. Firmware attempts each device in the order listed and falls through to the next if the previous device does not boot. Accepted device literals are `hd` (the boot disk), `cdrom` (the first user-supplied CD-ROM), and `network` (every network interface, tried in sequence).
 
 When you supply a list, only the devices you name receive a boot preference; any device not named is left to firmware-level fall-through. The `network` literal expands to every NIC on the node, each assigned a consecutive boot position. Listing a device that the node does not have (for example `network` on a node with no NIC) is ignored — the node still boots from the remaining devices.

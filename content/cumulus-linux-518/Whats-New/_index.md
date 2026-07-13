@@ -56,6 +56,8 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC, BGP, WJH,">}}
   - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC, BGP, WJH">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
+- {{<link url="User-Accounts/#password-security" text="Password hardening is now disabled by default">}}
+
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.18.

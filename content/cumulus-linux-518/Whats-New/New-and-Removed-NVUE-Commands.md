@@ -40,6 +40,7 @@ nv show platform firmware BMC
 nv show platform firmware BMC files
 nv show platform environment leakage
 nv show qos advance-buffer-config <profile-id> shared-headroom
+nv show system aaa radius server <server> counters
 nv show system aaa user cumulus --privileged
 nv show system config backup
 nv show system dot1x pre-auth
@@ -186,6 +187,7 @@ nv action cancel system image onie
 nv action change system security sed-password
 nv action clear interface debounce-counters 
 nv action clear interface <interface-id> counters link debounce
+nv action clear system aaa radius counters
 nv action delete system file-path <path>
 nv action export system wjh packet-buffer <file-name>
 nv action fetch system file-path <path> <uri> [file-permissions <value>] [vrf <vrf-name>]

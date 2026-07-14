@@ -28,7 +28,6 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#dci-1-profile" text="Data Center Interconnect (DCI-1) QoS profile">}}
 - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}
-- {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload-to-hardware" text="BFD offload to hardware">}}
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}}
 - {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="BGP graceful fabric maintenance">}} 

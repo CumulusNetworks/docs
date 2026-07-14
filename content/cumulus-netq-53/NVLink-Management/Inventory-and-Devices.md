@@ -5,7 +5,7 @@ weight: 850
 toc: 4
 ---
 
-The NetworkEntity section of the API lets you manage inventory and hardware objects in the NVLink fabric, including switches, chassis, compute nodes, GPUs, ports, and domains.
+The NetworkEntity section of the API lets you manage inventory and hardware objects in the NVLink fabric, including switches, chassis, compute nodes, GPUs, ports, and domains. You can also delete entities from the fabric directly through the API.
 
 ## GPU API Endpoints
 
@@ -153,3 +153,56 @@ curl -X GET "https://<ip_address>/nmx/v1/gpus?chassisSerialNumber=CH-SN-9876543&
 ]
 ```
 {{< /expand >}}
+
+## Delete Entities
+
+Use the `DELETE` endpoints for chassis, compute nodes, switch nodes, and domains. Deletions cascade automatically to child entities so you do not need to delete them individually beforehand.
+
+{{< notice note >}}
+Deletion operations do not require a request body. Pass only the entity ID in the path.
+{{< /notice >}}
+
+### Delete a Chassis
+
+`DELETE /v1/chassis/{id}` is a synchronous operation. It deletes the chassis and cascades to all child entities (compute nodes, switch nodes, switches, GPUs, ports, and partitions) in a single transaction. Returns `204` on success.
+
+```
+curl -X DELETE "https://<ip_address>/nmx/v1/chassis/<chassis-id>" \
+  -H "Authorization: Basic <auth-token>"
+```
+
+### Delete a Compute Node
+
+`DELETE /v1/compute-nodes/{id}` is a synchronous operation. It deletes the compute node and its associated GPUs and ports in a single transaction. Returns `204` on success. If any of the compute node's GPUs is a member of an active partition, the request returns `409 Conflict`. Detach or delete the partition before retrying.
+
+
+```
+curl -X DELETE "https://<ip_address>/nmx/v1/compute-nodes/<compute-node-id>" \
+  -H "Authorization: Basic <auth-token>"
+```
+
+### Delete a Switch Node
+
+`DELETE /v1/switch-nodes/{id}` is a synchronous operation. It deletes the switch node and its switches and ports in a single transaction. Returns `204` on success.
+
+```
+curl -X DELETE "https://<ip_address>/nmx/v1/switch-nodes/<switch-node-id>" \
+  -H "Authorization: Basic <auth-token>"
+```
+
+### Delete a Domain
+
+`DELETE /v1/domains/{id}` is an asynchronous operation. Unlike the other delete endpoints, it returns `202 Accepted` immediately and runs in the background. It deletes the domain and all related entities: chassis, switch nodes, compute nodes, switches, GPUs, ports, partitions, and associated NMX services.
+
+```
+curl -X DELETE "https://<ip_address>/nmx/v1/domains/<domain-id>" \
+  -H "accept: application/json" \
+  -H "Authorization: Basic <auth-token>"
+```
+Use the returned `operationId` to track progress:
+
+```
+curl -X GET "https://<ip_address>/nmx/v1/operations/551137c2f9e1fac808a5f572" \
+  -H "accept: application/json" \
+  -H "Authorization: Basic <auth-token>"
+```

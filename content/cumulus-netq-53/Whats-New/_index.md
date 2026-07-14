@@ -13,7 +13,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 ### NetQ for NVLink API Changes
 
 - Added ability to replace the CA, server, or switch P12 certificates in-place, without reinstalling NetQ NVLink. See {{<link title="Upload Custom Certificates/#rotate-certificates" text="Rotate Certificates">}} for step-by-step workflows.
-- Added delete endpoints for compute nodes, switch nodes, chassis, and domains
+- Added {{<link title="Inventory and Devices/#delete-entities" text="delete endpoints">}} for compute nodes, switch nodes, chassis, and domains
 - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
 - View the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-530/" text="REST API in Swagger">}}
 

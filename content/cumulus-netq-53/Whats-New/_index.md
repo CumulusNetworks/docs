@@ -10,20 +10,16 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 5.3.0
 
-
 ### NetQ for NVLink API Changes
 
 - Added ability to replace the CA, server, or switch P12 certificates in-place, without reinstalling NetQ NVLink. See {{<link title="Upload Custom Certificates/#rotate-certificates" text="Rotate Certificates">}} for step-by-step workflows.
 - Added delete endpoints for compute nodes, switch nodes, chassis, and domains
 - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
-- View the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-520/" text="REST API in Swagger">}}
+- View the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-530/" text="REST API in Swagger">}}
 
 ## Release Considerations
 
-
 - NetQ 5.2.0 is tested and validated as part of the Spectrum-X reference architecture 2.2 release. For a full compatibility matrix, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
-
-- The following features have been removed or deprecated:
 
 
 ## Upgrade Paths

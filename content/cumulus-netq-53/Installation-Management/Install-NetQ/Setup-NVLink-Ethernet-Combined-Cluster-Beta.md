@@ -75,7 +75,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.2.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.2.0 VMware Scale** image<br>
+    e. For deployments using KVM, download the **NetQ SW 5.3.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.3.0 VMware Scale** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -84,9 +84,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.2">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="5.3">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="5.2">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="5.3">}}
 
 3. Log in to the VM and change the password.
 
@@ -214,7 +214,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `version` | The version of the JSON template. For NetQ 5.2, specify "v3.0". |
+| `version` | The version of the JSON template. For NetQ 5.2 or 5.3, specify "v3.0". |
 | `interface` | The local network interface on your master node used for NetQ connectivity. Use a static IP address. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
@@ -272,7 +272,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 
 | Attribute | Description |
 |----- | ----------- |
-| `version` | The version of the JSON template. For NetQ 5.2, specify "v3.0". |
+| `version` | The version of the JSON template. For NetQ 5.2 or 5.3, specify "v3.0". |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your server nodes. |
 | `master-ip` | The IP address of the primary master node in your cluster. |
@@ -292,7 +292,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {{< tab "New Install">}}
 
 ```
-nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
+nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-5.3.0.tgz /tmp/combined-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -308,8 +308,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 5.2.0
-    Installer Version: 5.2.0
+    Version: 5.3.0
+    Installer Version: 5.3.0
     Installation Type: Cluster
     Installation Mode: Combined
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==

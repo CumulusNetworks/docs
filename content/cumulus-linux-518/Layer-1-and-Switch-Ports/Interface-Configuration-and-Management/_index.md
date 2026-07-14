@@ -767,7 +767,7 @@ To clear link debounce statistics for all interfaces, run the `nv action clear i
 ```
 cumulus@switch:~$ nv action clear interface debounce-counters 
 ```
-
+<!-- NOT YET SUPPORTED IN 5.18
 ## APSU and Link Precoding Control
 
 Cumulus Linux supports Autonomous Path Start-Up (APSU) for link initialization and precoding control for negotiation between connected devices on a Spectrum-6 switch while preserving the default firmware-managed behavior for standard deployments.
@@ -802,7 +802,7 @@ To show APSU and link precoding information, run the `nv show interface <interfa
 ```
 cumulus@switch:~$ nv show interface swp1
 ```
-
+-->
 ## Tx Squelch Control
 
 {{%notice note%}}

@@ -133,25 +133,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action change system security sed-password</h>
-
-Changes the SED factory-set password with a custom password to strengthen data protection and reduce the risk of offline attacks.
-You can change the SED password only on switches with SED enabled.
-
-The Trusted Platform Module (TPM) on the disk maintains two distinct persistent storage locations, referred to as TPM Banks, which serve as primary and secondary storage for the SED management password. During the boot process, the Pre-Boot Authentication (PBA) mechanism attempts to unlock the SED using the password stored in the primary bank. If the decryption attempt fails, the PBA automatically retries using the secondary bank.
-
-### Version History
-
-Introduced in Cumulus Linux 5.17.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action change system security sed-password NewPassword
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action clear acl counters</h>
 
 Clears all ACL counters.
@@ -471,22 +452,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear interface debounce-counters</h>
-
-Clears link debounce statistics for all interfaces.
-
-### Version History
-
-Introduced in Cumulus Linux 5.17.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear interface debounce-counters
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action clear interface \<interface-id\> bond mlag lacp-conflict</h>
 
 Clears the MLAG LACP conflict on the specified interface bond. A conflict can be an LACP partner MAC address mismatch or a duplicate LACP partner MAC address.
@@ -555,29 +520,6 @@ Introduced in Cumulus Linux 5.5.0
 ```
 cumulus@switch:~$ nv action clear interface swp1 counters
 swp1 counters cleared.
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear interface \<interface-id\> counters link debounce</h>
-
-Clears link debounce statistics for an interface.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ---------- | ------------ |
-| `<interface-id>` | The interface on which you want to clear link debounce counters. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.17.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear interface swp1 counters link debounce
 Action succeeded
 ```
 
@@ -2860,26 +2802,25 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system file-path \<file-path\></h>
+## <h>nv action delete system file-path \<path-id\></h>
 
-Deletes the specified file from local system.
+Deletes the specified file from the switch.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<file-path>` | The local file path on the system. |
+| `<path-id>` | The path to the file you want to delete from the switch. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.13.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action delete system system file-path /path/file
+cumulus@switch:~$ nv action delete system file-path /path/to/file
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3253,6 +3194,7 @@ When you erase all data on the switch, most services stop except for critical on
 NVUE prompts you to confirm that you want to proceed before destroying all data.
 
 {{%notice note%}}
+- This command is in Beta.
 - You can erase all data only on switches with the Spectrum-4 and later ASIC.
 - You can erase all data on a functioning SSD only.
 - You cannot recover erased data.
@@ -3295,20 +3237,27 @@ Introduced in Cumulus Linux 5.14.0
 cumulus@switch:~$ nv action fetch platform firmware SSD http://10.0.1.251/firmware-file
 ```
 
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action fetch system file-path</h>
+## <h>nv action fetch system file-path \<path-id\></h>
 
 Fetches a file from a remote location and saves it locally.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path-id>` |  The file path.|
+
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.13.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action fetch system file-path REMOTEPATH
+cumulus@switch:~$ nv action fetch system file-path /path/to/file
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3684,15 +3633,15 @@ cumulus@switch:~$ nv action install system image files cumulus-linux-5.12.0-mlx-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action list system file-path \<path\></h>
+## <h>nv action list system file-path \<path-id\></h>
 
-Lists the contents of a directory, including files, subdirectories, and other file system objects. This NVUE command is equivalent to the Linux `ls -la --full-time <path>` command.
+Lists the contents of a directory, including files, subdirectories, and other file system objects. This NVUE command is equivalent to the Linux `ls -la --full-time <path-id>` command.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<path>` |  The path to the directory you want to list.|
+| `<path-id>` |  The path to the directory you want to list.|
 
 ### Version History
 
@@ -4856,18 +4805,24 @@ cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action upload system file-path</h>
+## <h>nv action upload system file-path \<path-id\></h>
 
 Uploads a file to remote location.
 
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<path-id>` |  The path to the file you want to upload.  |
+
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.13.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action upload file-path 
+cumulus@switch:~$ nv action upload system file-path /path/to/file
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -848,7 +848,7 @@ cumulus@switch:~$ nv config apply
 Granular metric selection is a Beta feature.
 {{%/notice%}}
 
-To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group and at varied collection frequencies.
 
 To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
 
@@ -910,6 +910,12 @@ To show the configured metric lists, run the `nv show system telemetry metric-li
 
 ```
 cumulus@switch:~$ nv show system telemetry metric-list
+                  description       Summary                           
+----------------  ----------------  ----------------------------------
+PLATFORM_METRICS  Platform metrics  metric: node_memory_MemTotal_bytes
+                                    metric:  node_memory_MemFree_bytes
+                                    metric:             nvswitch_env_*
+                                    metric:                 node_cpu_*
 ```
 
 ### Static Labels

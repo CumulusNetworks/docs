@@ -870,122 +870,132 @@ To disable Tx squelch control, set the `interface.<interface-id>.tx_squelch` par
 {{< /tab >}}
 {{< /tabs >}}
 
-## Uplink Tracking
+## Link Tracking
 
-Uplink tracking enables you to monitor uplink interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of the uplinks, ensuring predictable network operations, and improving overall resiliency.
+Link tracking enables you to monitor interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
 
-To configure and enable uplink tracking:
-- Create an uplink tracking group with a set of uplinks that you want to monitor.
-  - Only switch port interfaces that already exist are supported for uplink tracking.
+To configure and enable link tracking:
+- Create a link tracking group with the set of links that you want to monitor.
+  - Only switch port interfaces that already exist are supported for link tracking.
   - The group name can be a minimum of 1 character and a maximum of 16 characters. You can use alphanumeric characters, hyphens (-), and underscores (_).
-- Specify the minimum number of uplinks that must be operationally up to keep the associated downlinks active. The minimum number of uplinks must not exceed the number of uplink interfaces configured in the group.
-- Associate a set of downlinks to the uplink tracking group. These are the downlinks that have a relationship with the uplinks that are part of the group. You cannot configure an interface as both an uplink and a downlink.
-- Specify the action you want to take when the number of available uplinks goes below the minimum threshold.
-  - Mark the downlinks protodown so that the switch does not send traffic to these links from their downstream devices.
+- Specify the minimum number of links that must be operationally up to keep the associated target interfaces active. The minimum number of links must not exceed the number of interfaces configured in the group. The default value is 1.
+- Associate a set of target interfaces to the link tracking group. These are the interfaces that have a relationship with the uplinks that are part of the group. You cannot configure an interface as both an uplink and a target interface.
+- Specify the action you want to take when the number of available interfaces goes below the minimum threshold.
+  - Mark the target interfaces protodown so that the switch does not send traffic to these links from their downstream devices.
   - In a multi-plane scenario, notify the control plane to reroute traffic away from this plane.
-- Enable uplink tracking.
+- Enable link tracking.
 
-When you configure uplink interfaces and enable uplink tracking, the `ifplugd` service becomes active and starts running. When you disable uplink tracking, the `ifplugd` service stops.
+When you configure and enable link tracking, the `ifplugd` service becomes active and starts running. When you disable link tracking, the `ifplugd` service stops.
 
-The following example creates an uplink tracking group called GROUP1 that configures swp51 through swp54 as the uplinks to monitor. The minimum number of uplinks that must be operationally up is 3 and the associated downlinks are swp1 through swp3. When the number of available uplinks goes below the minimum threshold of 3, the control plane reroutes traffic away from this plane.
+The following example creates a link tracking group called GROUP1 that configures swp51 through swp54 as the links to monitor. The minimum number of links that must be operationally up is 3 and the associated target interfaces are swp1 through swp3. When the number of available links goes below the minimum threshold of 3, the control plane reroutes traffic away from this plane.
 
 ```
-cumulus@switch:~$ nv set system uplink-tracking group GROUP1 interface swp51-54
-cumulus@switch:~$ nv set system uplink-tracking group GROUP1 min-links 3
-cumulus@switch:~$ nv set interface swp1-3 uplink-tracking group GROUP1
-cumulus@switch:~$ nv set system uplink-tracking state-change-action control-plane-action
-cumulus@switch:~$ nv set system uplink-tracking state enabled
+cumulus@switch:~$ nv set system link-tracking group GROUP1 watch-interface swp51-54
+cumulus@switch:~$ nv set system link-tracking group GROUP1 min-links 3
+cumulus@switch:~$ nv set interface swp1-3 link-tracking group GROUP1
+cumulus@switch:~$ nv set system link-tracking group GROUP1 state-change-action control-plane-action
+cumulus@switch:~$ nv set system link-tracking state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-- To disable uplink tracking, run the `nv set system uplink-tracking state disabled` command.
-- To remove a downlink interface from a group, run the `nv unset interface <interface-id> uplink-tracking group` command.
-- To unset the action to take when the number of available uplinks goes below the minimum threshold, run the `nv unset system uplink-tracking state-change-action` command.
-- To set the minimum number of uplinks that must be operationally back to the default value, run the `nv unset system uplink-tracking group <group-name> min-links` command.
-- To remove an uplink-tracking group, run the `nv unset system uplink-tracking group <group-name>` command.
+- To disable link tracking, run the `nv set system link-tracking state disabled` command.
+- To remove a target interface from a group, run the `nv unset interface <interface-id> link-tracking group` command.
+- To unset the action to take when the number of available links goes below the minimum threshold, run the `nv unset system link-tracking group <group-id> state-change-action` command.
+- To set the minimum number of links that must be operationally up back to the default value of 1, run the `nv unset system link-tracking group <group-id> min-links` command.
+- To remove a link-tracking group, run the `nv unset system link-tracking group <group-id>` command.
 
-To show uplink configuration:
-- To show uplink tracking configuration, such as the uplink interfaces to monitor, the state (enabled or disabled), and the action to take when the number of available uplinks goes below the minimum threshold, run the `nv show system uplink-tracking` command.
-- To show all the configured uplink tracking groups, run the `nv show system uplink-tracking group` command.
-- To show the uplinks and minimum uplink threshold for a specific group, run the `nv show system uplink-tracking group <group-name>` command.
-- To show all uplink interfaces in a group, run the `nv show system uplink-tracking group <group-name> interface` command.
-
-```
-cumulus@switch:~$ nv show system uplink-tracking
-                     operational           applied 
--------------------  --------------------  -------------------- 
-state                enabled               enabled 
-state-change-action  control-plane-action  control-plane-action 
-
-group 
-======== 
-    Uplink Tracking Group  Interface  Min Links 
-    ---------------------  ---------  --------- 
-    GROUP1                 swp51      3
-                           swp52 
-                           swp53
-                           swp54
-```
+To show link tracking information:
+- To show link tracking configuration, such as the link interfaces to monitor, the state (enabled or disabled), and the action to take when the number of available links goes below the minimum threshold, run the `nv show system link-tracking` command.
+- To show all the configured link tracking groups, run the `nv show system link-tracking group` command.
+- To show the links and minimum link threshold for a specific group, run the `nv show system link-tracking group <group-id>` command.
+- To show all interfaces in a group, run the `nv show system link-tracking group <group-id> watch-interface` command.
 
 ```
-cumulus@switch:~$ nv show system uplink-tracking group
-Uplink Tracking Group  Interface  Min Links 
----------------------  ---------  --------- 
-GROUP1                 swp51       3 
-                       swp52 
-                       swp53 
-                       swp54
+cumulus@switch:~$ nv show system link-tracking
+       operational  applied
+-----  -----------  -------
+state  enabled      enabled
+
+group
+========
+    Link Tracking Group  Watch Interface  Min Links  State Change Action 
+    -------------------  ---------------  ---------  --------------------
+    GROUP1               swp51            3          control-plane-action
+                         swp52                                           
+                         swp53                                           
+                         swp54
 ```
 
 ```
-cumulus@switch:~$ nv show system uplink-tracking group GROUP1
-             operational  applied 
------------  -----------  ------- 
-min-links    3            3 
-[interface]  swp51        swp51 
-[interface]  swp52        swp52 
-[interface]  swp53        swp53 
-[interface]  swp54        swp54
+cumulus@switch:~$ nv show system link-tracking group
+Link Tracking Group  Watch Interface  Min Links  State Change Action 
+-------------------  ---------------  ---------  --------------------
+GROUP1               swp51            3          control-plane-action
+                     swp52                                           
+                     swp53                                           
+                     swp54
 ```
 
 ```
-cumulus@switch:~$ nv show system uplink-tracking group GROUP1 interface 
-Interface 
---------- 
-swp51 
-swp52 
-swp53
+cumulus@switch:~$ nv show system link-tracking group GROUP1
+                     operational           applied             
+-------------------  --------------------  --------------------
+min-links            3                     3                   
+state-change-action  control-plane-action  control-plane-action
+[watch-interface]    swp51                 swp51               
+[watch-interface]    swp52                 swp52               
+[watch-interface]    swp53                 swp53               
+[watch-interface]    swp54                 swp54
+```
+
+```
+cumulus@switch:~$ nv show system link-tracking group GROUP1 watch-interface
+Interface
+---------
+swp51    
+swp52    
+swp53    
 swp54
 ```
 
-To show downlink configuration:
-- To show the downlinks in each configured group, run the `nv show interface uplink-tracking` command.
-- To show the groups where a downlink interface is configured, run the `nv show interface <interface-id> uplink-tracking` command.
-- To show the downlink interfaces for a specific group, run the `nv show interface uplink-tracking --filter "group=<group-name>"` command.
+To show target interface configuration:
+- To show the target interfaces in each configured group, run the `nv show interface link-tracking` command.
+- To show the groups with configured target interfaces, run the `nv show interface <interface-id> link-tracking` command.
+- To show the target interfaces in a specific group, run the `nv show interface link-tracking --filter "group=<group-name>"` command.
 
 ```
-cumulus@switch:~$ nv show interface uplink-tracking 
-Interface  Uplink Tracking Group 
----------  --------------------- 
-swp1       GROUP1 
-swp2       GROUP1 
-swp3       GROUP1
+cumulus@switch:~$ nv show interface link-tracking 
+Interface   Link Tracking Group  Admin Status  Oper Status  Protodown  Protodown Reason
+----------  -------------------  ------------  -----------  ---------  ----------------
+br_default                       up            down         disabled                   
+eth0                             up            up           disabled                   
+lo                               up            unknown      disabled                   
+mgmt                             up            up           disabled                   
+swp1        GROUP1               down          down         disabled                   
+swp2        GROUP1               down          down         disabled                   
+swp3        GROUP1               down          down         disabled                   
+swp49                            up            up           disabled                   
+swp50                            up            up           disabled                   
+swp51                            up            up           disabled                   
+swp52                            up            up           disabled                   
+swp53                            up            up           disabled                   
+swp54                            up            up           disabled
 ```
 
 ```
-cumulus@switch:~$ nv show interface swp1 uplink-tracking 
-        operational applied 
------  -----------  ------- 
-group  GROUP1       GROUP1
+cumulus@switch:~$ nv show interface swp1 link-tracking 
+       operational  applied
+-----  -----------  -------
+group  GROUP1       GROUP1 
 ```
 
 ```
-cumulus@switch:~$ nv show interface uplink-tracking --filter "group=GROUP1" 
-Interface  Uplink Tracking Group 
----------  --------------------- 
-swp1       GROUP1 
-swp2       GROUP1
-swp3       GROUP1
+cumulus@switch:~$ nv show interface link-tracking --filter "group=GROUP1" 
+Interface  Link Tracking Group  Admin Status  Oper Status  Protodown  Protodown Reason
+---------  -------------------  ------------  -----------  ---------  ----------------
+swp1       GROUP1               down          down         disabled                   
+swp2       GROUP1               down          down         disabled                   
+swp3       GROUP1               down          down         disabled
 ```
 
 ## Source Interface File Snippets

@@ -58,7 +58,6 @@ nv show system lldp tlv profile <lldp-profile-name-id> summary <tlv-id>
 nv show system lldp tlv summary
 nv show system lldp tlv summary <tlv-id>
 nv show system security alerts
-nv set system security password-hardening min-char-diff
 nv show system security secure-boot
 nv show system telemetry export ipfix
 nv show system telemetry hft counter <counter-id>
@@ -110,12 +109,14 @@ nv set bridge domain <bridge> arp-inspection vlan <vid> static-binding <name> ma
 nv set bridge domain <bridge> arp-inspection vlan <vid> static-binding <name> port
 nv set evpn l3vxi state
 nv set interface <interface-id> dot1x tx-identity-request max-retries
+nv set interface <interface-id> link apsu-mode
 nv set interface <interface-id> link debounce down
 nv set interface <interface-id> link debounce up
+nv set interface <interface-id> link module-precoding
 nv set interface <interface-id> lldp tlv profile <lldp-profile-name-id>
-nv set interface <interface-id> security ip-source-guard state
 nv set interface <interface-id> link-tracking group <group-id>
 nv set interface <interface-id> qos shared-headroom-pool
+nv set interface <interface-id> security ip-source-guard
 nv set maintenance unit system mode
 nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom-per-pg
 nv set qos advance-buffer-config <profile-id> shared-headroom oversubscription-ratio
@@ -140,8 +141,9 @@ nv set system lldp tlv profile <lldp-profile-name-id> description
 nv set system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-type> state
 nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-type> state
 nv set system lldp unreachable-prefix max-limit
-nv set system security alerts audit-failure
 nv set system aaa tacacs authorization <privilege-level> all-commands
+nv set system security password-hardening min-char-diff
+nv set system security alerts audit-failure
 nv set system telemetry export ipfix destination
 nv set system telemetry export ipfix max-ip-packet-size
 nv set system telemetry export ipfix port

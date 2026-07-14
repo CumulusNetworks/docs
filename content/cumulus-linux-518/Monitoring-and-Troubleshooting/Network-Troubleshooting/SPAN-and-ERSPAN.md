@@ -14,6 +14,10 @@ Cumulus Linux supports both <span class="a-tooltip">[SPAN](## "Switched Port Ana
    ----------------------------------------------------------
   ```
 
+{{%notice note%}}
+The Spectrum-6 switch does not support SPAN or ERSPAN egress port mirroring.
+{{%/notice%}}
+
 ## SPAN
 
 To configure SPAN to mirror ports on your switch, you create a port mirror session. The session ID is a number between 0 and 7.

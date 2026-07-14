@@ -425,7 +425,7 @@ LocalId     MHop   Local                      Peer                  Interface   
 ```
 
 The `Offloaded` field shows `offloaded` if the session is offloaded and `control-plane` if the session is not offloaded.
-
+<!-- NOW POC FOR 5.18
 ## BFD Offload to Hardware
 
 Under heavy CPU load (such as route churn, ACL updates, large-scale provisioning), software-based BFD timers can drift, leading to false session flaps, especially at aggressive intervals. To avoid such issues, you can configure the switch to handle receiving and transmitting BFD packets entirely in hardware with 10ms timer precision, independent of CPU load.
@@ -470,7 +470,7 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## Show BFD Information
 
 You can show BFD configuration and operational data with NVUE or vtysh show commands.

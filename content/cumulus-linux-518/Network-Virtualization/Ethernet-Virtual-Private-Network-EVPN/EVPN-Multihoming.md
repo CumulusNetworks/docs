@@ -1159,7 +1159,15 @@ Route Distinguisher: 10.10.10.3:2
 
 ## Considerations
 
-If you enable EVPN-MH and configure {{<link title="Access Control List Configuration/#match-on-vlan-ids-on-layer-2-interfaces" text="VLAN match rules in ebtables with a {{mark}} target">}}, the ebtables rule might overwrite the {{mark}} set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class {{mark}} might not get hit. To work around this issue, add ebtable rules to {{ACCEPT}} the packets already marked by EVPN-MH traffic class rules on ingress.
+### VLAN Match Rules in ebtables
+
+If you enable EVPN-MH and configure {{<link title="Access Control List Configuration/#match-on-vlan-ids-on-layer-2-interfaces" text="VLAN match rules in ebtables with a mark target">}}, the ebtables rule might overwrite the mark set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class mark might not get hit. To work around this issue, add ebtable rules to ACCEPT the packets already marked by EVPN-MH traffic class rules on ingress.
+
+### SVI IP Address Configuration
+
+You can configure EVPN-MH with:
+- An identical SVI IP address and MAC address on all EVPN MH VTEP devices. Hosts then use this shared IP and MAC address as their anycast (default) gateway. Because both peers own the same IP address and MAC address, either peer can forward traffic for the hosts. 
+- Different SVI IP address and MAC address on all EVPN MH VTEP peers.
 
 ## Configuration Example
 

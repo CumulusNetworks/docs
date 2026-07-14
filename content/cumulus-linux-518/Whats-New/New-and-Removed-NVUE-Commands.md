@@ -32,8 +32,8 @@ nv show interface <interface-id> lldp tlv
 nv show interface <interface-id> lldp tlv summary
 nv show interface <interface-id> lldp tlv summary <tlv-id>
 nv show interface <interface-id> qos buffer shared-headroom-pool
-nv show interface <interface-id> uplink-tracking 
-nv show interface uplink-tracking
+nv show interface <interface-id> link-tracking 
+nv show interface link-tracking
 nv show platform inventory
 nv show platform inventory BMC
 nv show platform firmware BMC
@@ -58,7 +58,6 @@ nv show system lldp tlv profile <lldp-profile-name-id> summary <tlv-id>
 nv show system lldp tlv summary
 nv show system lldp tlv summary <tlv-id>
 nv show system security alerts
-nv set system security password-hardening min-char-diff
 nv show system security secure-boot
 nv show system telemetry export ipfix
 nv show system telemetry hft counter <counter-id>
@@ -74,10 +73,10 @@ nv show system telemetry metric-list
 nv show system telemetry metric-list <metric-list-id>
 nv show system telemetry metric-list <metric-list-id> metric <metric-id>
 nv show system telemetry stats-group <stats-group-id> interface-stats class debounce
-nv show system uplink-tracking
-nv show system uplink-tracking group
-nv show system uplink-tracking group <group-id>
-nv show system uplink-tracking group <group-id> interface
+nv show system link-tracking
+nv show system link-tracking group
+nv show system link-tracking group <group-id>
+nv show system link-tracking group <group-id> watch-interface
 nv show system wjh channel buffer-threshold
 nv show system wjh channel drop-filter
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability export-lldp
@@ -110,12 +109,14 @@ nv set bridge domain <bridge> arp-inspection vlan <vid> static-binding <name> ma
 nv set bridge domain <bridge> arp-inspection vlan <vid> static-binding <name> port
 nv set evpn l3vxi state
 nv set interface <interface-id> dot1x tx-identity-request max-retries
+nv set interface <interface-id> link apsu-mode
 nv set interface <interface-id> link debounce down
 nv set interface <interface-id> link debounce up
+nv set interface <interface-id> link module-precoding
 nv set interface <interface-id> lldp tlv profile <lldp-profile-name-id>
-nv set interface <interface-id> security ip-source-guard state
-nv set interface <interface-id> uplink-tracking group <group-id>
+nv set interface <interface-id> link-tracking group <group-id>
 nv set interface <interface-id> qos shared-headroom-pool
+nv set interface <interface-id> security ip-source-guard
 nv set maintenance unit system mode
 nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom-per-pg
 nv set qos advance-buffer-config <profile-id> shared-headroom oversubscription-ratio
@@ -130,14 +131,19 @@ nv set system dot1x pre-auth allow-protocol lldp egress
 nv set system dot1x pre-auth allow-protocol lldp both
 nv set system dot1x pre-auth allow-protocol lldp none
 nv set system dot1x tx-identity-request max-retries
+nv set system link-tracking group <group-id> watch-interface <interface-id>
+nv set system link-tracking group <group-id> min-links
+nv set system link-tracking group <group-id> state-change-action control-plane-action
+nv set system link-tracking state
 nv set system lldp tlv egress-policy <tlv-type> state
 nv set system lldp tlv ingress-policy <tlv-type> state
 nv set system lldp tlv profile <lldp-profile-name-id> description
 nv set system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-type> state
 nv set system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-type> state
 nv set system lldp unreachable-prefix max-limit
-nv set system security alerts audit-failure
 nv set system aaa tacacs authorization <privilege-level> all-commands
+nv set system security password-hardening min-char-diff
+nv set system security alerts audit-failure
 nv set system telemetry export ipfix destination
 nv set system telemetry export ipfix max-ip-packet-size
 nv set system telemetry export ipfix port
@@ -158,10 +164,6 @@ nv set system telemetry stats-group <stats-group-id> exclude-list
 nv set system telemetry stats-group <stats-group-id> include-list
 nv set system telemetry stats-group <stats-group-id> interface-stats class debounce sample-interval
 nv set system telemetry stats-group <stats-group-id> interface-stats class debounce state
-nv set system uplink-tracking group <group-id> interface <interface-id>
-nv set system uplink-tracking group <group-id> min-links
-nv set system uplink-tracking state
-nv set system uplink-tracking state-change-action control-plane-action
 nv set system wjh channel buffer aggregate-cache-size
 nv set system wjh channel buffer polling-interval
 nv set system wjh channel buffer-threshold latency tc <tc> interface <interface> high <seconds>

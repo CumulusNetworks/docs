@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5145984 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.17.0 | |
 | 5102853 | In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands. | 5.16.4-5.17.0 | |
 | 5093941 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093940 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |

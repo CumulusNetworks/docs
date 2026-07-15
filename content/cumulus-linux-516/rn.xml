@@ -242,12 +242,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
-<td>4983561</td>
-<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
-<td>5.16.1, 5.16.5</td>
-<td></td>
-</tr>
-<tr>
 <td>4980055</td>
 <td>With very large configurations, {{nv config apply}} command performance might be slow.</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
@@ -1979,12 +1973,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4986329</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
-<td></td>
-</tr>
-<tr>
-<td>4983561</td>
-<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
-<td>5.16.1, 5.16.5</td>
 <td></td>
 </tr>
 <tr>

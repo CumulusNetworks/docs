@@ -1,7 +1,7 @@
 ---
 title: DHCP Relays
 author: NVIDIA
-weight: 340
+weight: 133
 toc: 3
 ---
 <span class="a-tooltip">[DHCP](## "Dynamic Host Configuration Protocol")</span> is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers that are not on the same physical subnet.

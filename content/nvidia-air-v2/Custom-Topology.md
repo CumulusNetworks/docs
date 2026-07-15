@@ -306,7 +306,7 @@ If `boot` includes `cdrom`, the node must also have a `cdrom` image attached. Se
 
 The following example makes `host1` try its disk first, then fall through to network boot:
 
-{{< expand "View Boot Order Example" >}}
+{{< expand "Boot Order Example" >}}
 
 ```
 {
@@ -330,7 +330,7 @@ The following example makes `host1` try its disk first, then fall through to net
 
 A node accepts an optional `cdrom` attribute that inserts an image into the node's CD-ROM drive. Set it to the name (or ID) of an image your organization can read. A CD-ROM must be attached whenever the node's `boot` order includes `cdrom`.
 
-{{< expand "View CD-ROM Boot Example" >}}
+{{< expand "CD-ROM Boot Example" >}}
 
 ```
 {
@@ -350,45 +350,6 @@ A node accepts an optional `cdrom` attribute that inserts an image into the node
 }
 ```
 {{< /expand >}}
-
-#### Custom NetQ Node
-You can create and customize a NetQ instance for your simulation.
-
-{{< expand "Custom NetQ Node Example" >}}
-
-```
-{
-    "format": "JSON",
-    "title": "Demo",
-    "ztp": null,
-    "content": {
-        "nodes": {
-           ...
-        },
-        "links": [
-            ...
-        ],
-        "oob": {
-            ...
-        },
-         "netq": {
-            "nodes": {
-                "netq-ts": {
-                    "cpu": 4,
-                    "memory": 6144,
-                    "storage": 64,
-                    "os": "netq-ts-cloud-4.15.0"
-                }
-            }
-        }
-    }
-}
-```
-{{< /expand >}}
-<br>
-When viewing the nodes within Air, notice that the resources are allocated based on the file. 
-
-{{<img src="/images/guides/nvidia-air-v2/JSONNetQExample.png" alt="">}}
 
 ### DOT Files
 

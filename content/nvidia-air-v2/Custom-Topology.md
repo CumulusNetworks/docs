@@ -388,8 +388,6 @@ You can create and customize a NetQ instance for your simulation.
 <br>
 When viewing the nodes within Air, notice that the resources are allocated based on the file. 
 
-{{<img src="/images/guides/nvidia-air-v2/JSONNetQExample.png" alt="">}}
-
 ### DOT Files
 
 You can also create custom topologies in Air using a DOT file, which is the file type used with the open-source graph visualization software, Graphviz. DOT files are simple, customizable, text-based files. DOT files use the `.dot` file extension.

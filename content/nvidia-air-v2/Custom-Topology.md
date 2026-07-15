@@ -351,43 +351,6 @@ A node accepts an optional `cdrom` attribute that inserts an image into the node
 ```
 {{< /expand >}}
 
-#### Custom NetQ Node
-You can create and customize a NetQ instance for your simulation.
-
-{{< expand "Custom NetQ Node Example" >}}
-
-```
-{
-    "format": "JSON",
-    "title": "Demo",
-    "ztp": null,
-    "content": {
-        "nodes": {
-           ...
-        },
-        "links": [
-            ...
-        ],
-        "oob": {
-            ...
-        },
-         "netq": {
-            "nodes": {
-                "netq-ts": {
-                    "cpu": 4,
-                    "memory": 6144,
-                    "storage": 64,
-                    "os": "netq-ts-cloud-4.15.0"
-                }
-            }
-        }
-    }
-}
-```
-{{< /expand >}}
-<br>
-When viewing the nodes within Air, notice that the resources are allocated based on the file. 
-
 ### DOT Files
 
 You can also create custom topologies in Air using a DOT file, which is the file type used with the open-source graph visualization software, Graphviz. DOT files are simple, customizable, text-based files. DOT files use the `.dot` file extension.

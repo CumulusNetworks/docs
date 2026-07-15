@@ -1,7 +1,7 @@
 ---
 title: DHCP Snooping
 author: NVIDIA
-weight: 355
+weight: 465
 toc: 3
 ---
 DHCP snooping is a network security feature that prevents unauthorized DHCP servers from assigning IP addresses, protects against DHCP spoofing and IP address conflicts, and enhances overall network security. By ensuring that only trusted DHCP servers can assign IP addresses and maintaining a binding table of IP address to MAC address mappings, DHCP snooping helps safeguard network integrity and reliability.

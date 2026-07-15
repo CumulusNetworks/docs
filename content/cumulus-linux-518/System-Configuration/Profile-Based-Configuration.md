@@ -34,103 +34,78 @@ To set profile‑based configuration on the switch:
 The following example sets profile-based configuration on the leaf and applies the profile:
 
 ```
-cumulus@switch:~$ nv set system do-spx profile leaf uplink swp1-swp32 breakout x4 
-cumulus@switch:~$ nv set system do-spx profile leaf downlink swp33-swp64 breakout x1
+cumulus@switch:~$ nv set system do-spx profile leaf uplink swp1-32 breakout 4x 
+cumulus@switch:~$ nv set system do-spx profile leaf downlink swp33-64 breakout 1x
 cumulus@switch:~$ nv config apply 
 cumulus@switch:~$ nv action activate system do-spx profile leaf
-Action executing ...
-Rendering do-spx profile: leaf
-Action executing ...
-patching rendered do-spx profile: leaf
-Action executing ...
-do-spx profile 'leaf' staged in revision 18. Review: nv config diff applied 18. Apply: nv config apply --rev 18.
 Action succeeded
 ```
 
 {{%notice note%}}
-The breakout is required if you specify an interface-range. With breakout x4, parent ports swp1-32 split into sub-interfaces swp1s0-swp32s3 (128 ports). Breakout x1 keeps ports as-is (swp33-64). All subsequent per-interface commands target the split ports.
+The breakout is required if you specify an interface-range. With breakout 4x, parent ports swp1 through swp32 split into sub-interfaces swp1s0 through swp32s3 (128 ports). Breakout 1x keeps ports as-is (swp33 through swp64). All subsequent per-interface commands target the split ports.
 {{%/notice%}}
 
 The following example sets profile-based configuration on a two-tier spine:
 
 ```
-cumulus@switch:~$ nv set system do-spx role spine-2 downlink swp1-swp64 breakout x1
+cumulus@switch:~$ nv set system do-spx role spine-2 downlink swp1-64 breakout 1x
 cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv action activate system do-spx profile spine-2
-Action executing ...
-Rendering do-spx profile: spine-2
-Action executing ...
-patching rendered do-spx profile: spine-2
-Action executing ...
-do-spx profile 'spine-2' staged in revision 18. Review: nv config diff applied 18. Apply: nv config apply --rev 18.
 Action succeeded
 ```
 
 The following example sets profile-based configuration on a three-tier spine:
 
 ```
-cumulus@switch:~$ nv set system do-spx role spine-3 uplink swp1-swp64 breakout x1
-cumulus@switch:~$ nv set system do-spx role spine-3 downlink swp33-swp64 breakout x1
+cumulus@switch:~$ nv set system do-spx role spine-3 uplink swp1-64 breakout 1x
+cumulus@switch:~$ nv set system do-spx role spine-3 downlink swp33-64 breakout 1x
 cumulus@switch:~$ nv config apply 
 cumulus@switch:~$ nv action activate system do-spx profile spine-3
-Action executing ...
-Rendering do-spx profile: spine-3
-Action executing ...
-patching rendered do-spx profile: spine-3
-Action executing ...
-do-spx profile 'spine-3' staged in revision 18. Review: nv config diff applied 18. Apply: nv config apply --rev 18.
 Action succeeded
 ```
 
 The following example sets profile-based configuration on a superspine:
 
 ```
-cumulus@switch:~$ nv set system do-spx role super-spine downlink swp33-swp64 breakout x1
+cumulus@switch:~$ nv set system do-spx role super-spine downlink swp33-64 breakout 1x
 cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv action activate system do-spx profile super-spine
-Action executing ...
-Rendering do-spx profile: super-spine
-Action executing ...
-patching rendered do-spx profile: super-spine
-Action executing ...
-do-spx profile 'super-spine' staged in revision 18. Review: nv config diff applied 18. Apply: nv config apply --rev 18.
 Action succeeded
 ```
 
 The following example sets profile-based configuration on the leaf, adds the dci-1 QoS configuration, and applies the profile:
 
 ```
-cumulus@switch:~$ nv set system do-spx profile leaf uplink swp1-swp32 breakout x4 
-cumulus@switch:~$ nv set system do-spx profile leaf downlink swp33-swp64 breakout x1
+cumulus@switch:~$ nv set system do-spx profile leaf uplink swp1-32 breakout 4x 
+cumulus@switch:~$ nv set system do-spx profile leaf downlink swp33-64 breakout 1x
 cumulus@switch:~$ nv set system do-spx qos profile dci-1 
 cumulus@switch:~$ nv config apply 
 cumulus@switch:~$ nv action activate system do-spx profile leaf
-Action executing ...
-Rendering do-spx profile: leaf
-Action executing ...
-patching rendered do-spx profile: leaf
-Action executing ...
-do-spx profile 'leaf' staged in revision 18. Review: nv config diff applied 18. Apply: nv config apply --rev 18.
 Action succeeded
 ```
 
 ## Unset Profile-based Configuration
 
-To unset profile based configuration, restore the configuration you backed up previously with the `nv config replace` command. Refer to {{<link url="NVUE-CLI/#back-up-and-restore-configuration-with-nvue" text="Back Up and Restore Configuration with NVUE">}}.
+To unset profile based configuration, restore the configuration you backed up previously with the `nv config replace` command. Refer to {{<link url="NVUE-CLI/#manual-back-up-and-restore" text="Back Up and Restore">}}.
 
 ## Show Profile‑based Configuration
 
-To show the profile‑based configuration on a switch (profile, directions, interface ranges, and breakout values), run the `nv show system do-spx` command:
+To show the configured profile on a switch, run the `nv show system do-spx` command:
 
 ```
 cumulus@switch:~$ nv show system do-spx
-                    operational  applied
-----------------  	-----------  ------------
-role                           		leaf
-[uplink]                       		swp1
-[downlink]			                  swp2
-[exception-list]               
+profile
+==========
+    UL Brk - Uplink Breakout, DL Brk - Downlink Breakout, OTLP IP - OTLP Dest IP
+    (Profile-wide), OTLP Port - OTLP Port (Profile-wide)
 
+    Profile Name  Uplink Interface  UL Brk  Downlink Interface  DL Brk  OTLP IP  OTLP Port
+    ------------  ----------------  ------  ------------------  ------  -------  ---------
+    leaf          swp1-32           4x      swp33-64            1x                        
+
+active-profile
+=================
+No Data
 ```
 
 The persistent configuration records only the profile name and the parameters you provide. Other operational NVUE show commands show the fully resolved state.

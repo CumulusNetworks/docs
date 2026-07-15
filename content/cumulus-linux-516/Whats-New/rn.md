@@ -48,7 +48,6 @@ pdfhidden: True
 | 4986343 | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1-5.17.0 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.17.0 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.17.0 | |
-| 4983561 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.16.6 | 5.17.0|
 | 4980055 | With very large configurations, <code>nv config apply</code> command performance might be slow. | 5.15.0-5.16.6 | 5.17.0|
 | 4968081 | During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause <code>/var/run/lldpd.socket</code> to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover. | 5.14.0-5.16.6 | 5.17.0|
 | 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.16.6 | 5.17.0|
@@ -261,6 +260,7 @@ pdfhidden: True
 ### Fixed Issues in 5.16.6
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| 5145984 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.16.5 | |
 | 5145981 | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.16.5 | |
 
 ## 5.16.5 Release Notes
@@ -304,7 +304,6 @@ pdfhidden: True
 | 4986343 | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1-5.17.0 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.17.0 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.17.0 | |
-| 4983561 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.16.5 | 5.17.0|
 | 4980055 | With very large configurations, <code>nv config apply</code> command performance might be slow. | 5.15.0-5.16.5 | 5.17.0|
 | 4968081 | During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause <code>/var/run/lldpd.socket</code> to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover. | 5.14.0-5.16.5 | 5.17.0|
 | 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.16.5 | 5.17.0|
@@ -580,7 +579,6 @@ pdfhidden: True
 | 4986343 | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1-5.17.0 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.17.0 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.17.0 | |
-| 4983561 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.16.5 | 5.17.0|
 | 4980055 | With very large configurations, <code>nv config apply</code> command performance might be slow. | 5.15.0-5.16.5 | 5.17.0|
 | 4968081 | During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause <code>/var/run/lldpd.socket</code> to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover. | 5.14.0-5.16.5 | 5.17.0|
 | 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.16.5 | 5.17.0|
@@ -849,7 +847,6 @@ pdfhidden: True
 | 4986343 | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1-5.17.0 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.17.0 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.17.0 | |
-| 4983561 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.16.5 | 5.17.0|
 | 4980055 | With very large configurations, <code>nv config apply</code> command performance might be slow. | 5.15.0-5.16.5 | 5.17.0|
 | 4968081 | During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause <code>/var/run/lldpd.socket</code> to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover. | 5.14.0-5.16.5 | 5.17.0|
 | 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.16.5 | 5.17.0|
@@ -1115,7 +1112,6 @@ pdfhidden: True
 | 4986343 | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1-5.17.0 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.17.0 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.17.0 | |
-| 4983561 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.16.5 | 5.17.0|
 | 4980055 | With very large configurations, <code>nv config apply</code> command performance might be slow. | 5.15.0-5.16.5 | 5.17.0|
 | 4968081 | During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause <code>/var/run/lldpd.socket</code> to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover. | 5.14.0-5.16.5 | 5.17.0|
 | 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.16.5 | 5.17.0|
@@ -1398,7 +1394,6 @@ pdfhidden: True
 | 4986343 | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1-5.17.0 | |
 | 4986333 | LLDP session flaps might result in a PTMD process crash due to a double free memory block. | 5.11.2-5.17.0 | |
 | 4986329 | When many BFD sessions are configured at scale, <code>ptmd</code> might crash when one of the BFD sessions flaps. | 5.3.1-5.17.0 | |
-| 4983561 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.16.5 | 5.17.0|
 | 4980055 | With very large configurations, <code>nv config apply</code> command performance might be slow. | 5.15.0-5.16.5 | 5.17.0|
 | 4968081 | During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause <code>/var/run/lldpd.socket</code> to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover. | 5.14.0-5.16.5 | 5.17.0|
 | 4964407 | PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP.  | 5.11.4-5.16.5 | 5.17.0|

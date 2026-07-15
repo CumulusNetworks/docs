@@ -230,12 +230,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
-<td>4983561</td>
-<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
-<td>5.16.1-5.16.6</td>
-<td>5.17.0</td>
-</tr>
-<tr>
 <td>4980055</td>
 <td>With very large configurations, {{nv config apply}} command performance might be slow.</td>
 <td>5.15.0-5.16.6</td>
@@ -1566,6 +1560,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5145984</td>
+<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
+<td>5.16.1-5.16.5</td>
+</tr>
+<tr>
 <td>5145981</td>
 <td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
 <td>5.16.0-5.16.5</td>
@@ -1812,12 +1811,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.17.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4983561</td>
-<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
-<td>5.16.1-5.16.5</td>
-<td>5.17.0</td>
 </tr>
 <tr>
 <td>4980055</td>
@@ -3507,12 +3500,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
-<td>4983561</td>
-<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
-<td>5.16.1-5.16.5</td>
-<td>5.17.0</td>
-</tr>
-<tr>
 <td>4980055</td>
 <td>With very large configurations, {{nv config apply}} command performance might be slow.</td>
 <td>5.15.0-5.16.5</td>
@@ -5167,12 +5154,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
-<td>4983561</td>
-<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
-<td>5.16.1-5.16.5</td>
-<td>5.17.0</td>
-</tr>
-<tr>
 <td>4980055</td>
 <td>With very large configurations, {{nv config apply}} command performance might be slow.</td>
 <td>5.15.0-5.16.5</td>
@@ -6809,12 +6790,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.17.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4983561</td>
-<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
-<td>5.16.1-5.16.5</td>
-<td>5.17.0</td>
 </tr>
 <tr>
 <td>4980055</td>
@@ -8554,12 +8529,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.17.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4983561</td>
-<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
-<td>5.16.1-5.16.5</td>
-<td>5.17.0</td>
 </tr>
 <tr>
 <td>4980055</td>

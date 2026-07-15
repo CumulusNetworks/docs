@@ -7,6 +7,10 @@ product: NVIDIA DSX Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://dsx-air.nvidia.com" text="NVIDIA DSX Air">}}.
 
+## July 2026
+### 82.2.1.21.1000
+- Removed NetQ SaaS support.
+
 ## May 2026
 <!-- Air:WhatsNew -->
 ### 82.2.1.15.2

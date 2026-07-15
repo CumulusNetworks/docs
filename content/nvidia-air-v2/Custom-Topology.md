@@ -161,7 +161,7 @@ If you do not have service connectivity to an outbound link, try fully initializ
 
 On the **System Palette**, there is an option to **Enable OOB**. This setting enables the out-of-band management network that connects all nodes to each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you enable SSH, you connect to the `oob-mgmt-server`, making this node an ideal starting point for configurations. Air handles the configuration automatically for you.
 
-{{<img src="/images/guides/nvidia-air-v2/EnableOOB.png" alt="System Palette showing OOB and NetQ toggles" width="400px">}}
+{{<img src="/images/guides/nvidia-air-v2/EnableOOB.png" alt="System Palette showing OOB toggle" width="400px">}}
 <br>
 <br>
 You can add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation manually even when **Enable OOB** is set to off. However, you must switch **Enable OOB** on to use the out-of-band network.
@@ -286,45 +286,6 @@ You can specify an `oob-mgmt-switch` and `oob-mgmt-server` to customize allocate
 When viewing the nodes within Air after starting the simulation, notice that the resources are allocated based on the file: 
 
 {{<img src="/images/guides/nvidia-air-v2/JSONOOBExample.png" alt="">}}
-
-#### Custom NetQ Node
-You can create and customize a NetQ instance for your simulation.
-
-{{< expand "Custom NetQ Node Example" >}}
-
-```
-{
-    "format": "JSON",
-    "title": "Demo",
-    "ztp": null,
-    "content": {
-        "nodes": {
-           ...
-        },
-        "links": [
-            ...
-        ],
-        "oob": {
-            ...
-        },
-         "netq": {
-            "nodes": {
-                "netq-ts": {
-                    "cpu": 4,
-                    "memory": 6144,
-                    "storage": 64,
-                    "os": "netq-ts-cloud-4.15.0"
-                }
-            }
-        }
-    }
-}
-```
-{{< /expand >}}
-<br>
-When viewing the nodes within Air, notice that the resources are allocated based on the file. 
-
-{{<img src="/images/guides/nvidia-air-v2/JSONNetQExample.png" alt="">}}
 
 ### DOT Files
 

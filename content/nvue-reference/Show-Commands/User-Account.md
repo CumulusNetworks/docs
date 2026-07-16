@@ -211,6 +211,8 @@ irc               ircd                                          Unknown  system
 
 Shows information about a specific user account, such as the role and full name.
 
+In Cumulus Linux 5.17 and later, you can view the hashed password for the user in the original form instead of with obfuscated values (asterisks) with the `--privileged` option; for example `nv show system aaa user cumulus --privileged`. You must have sudo privileges to view the hashed password.
+
 ### Command Syntax
 
 | Syntax |  Description   |

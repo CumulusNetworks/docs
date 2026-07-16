@@ -825,6 +825,60 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf route-map BLUEtoRED
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unreachability export-lldp state</h>
+
+Configures BGP to send IPv4 prefix information to LLDP for BGP-LLDP unreachability signaling for disjoined multi-plane topologies.
+
+{{%notice note%}}
+BGP-LLDP unreachability in disjoined planes is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0 (Beta)
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unreachability export-lldp state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf <vrf-id> router bgp advertisement-delay time</h>
+
+Configures the BGP advertisement delay. You can specify a value between 1 and 3600.
+
+BGP advertisement delay defers outbound BGP updates for a configured time after the first BGP neighbor reaches the established state. During this delay, BGP session establishment, capability negotiation, best-path selection, and FIB programming proceed as normal; only outbound update generation is held. When the timer expires, all queued advertisements are sent to all established neighbors.
+
+Use the BGP advertisement delay to allow downlink interfaces and access services to stabilize before attracting traffic to the switch. NVIDIA recommends a delay of at least 90 seconds when using 802.1X authentication, and at least 30 seconds in other deployments. When using BGP advertisement delay, deploy the RADIUS server (if used) in the management VRF for reliable reachability during boot and convergence.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp advertisement-delay time 90
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp autonomous-system</h>
 
 Configures the BGP <span class="a-tooltip">[ASN](## "Autonomous System Number ")</span> in the specified VRF to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
@@ -948,7 +1002,7 @@ Enables and disables BGP for the specified VRF.
 
 {{%notice note%}}
 - In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-<!-- - In Cumulus Linux 5.17 and later, NVUE prevents you from disabling BGP for a non-default VRF when a layer 3 VNI is configured.-->
+<!--FOR 5.18 - In Cumulus Linux 5.18 and later, NVUE prevents you from disabling EVPN and BGP for a non-default VRF when a layer 3 VNI is configured.-->
 {{%/notice%}}
 
 ### Command Syntax
@@ -3435,9 +3489,40 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unreachability prefix-limits inbound maximum</h>
+
+Configures the maximum number of unreachability prefixes that can be received from the peer group for BGP unreachability SAFI (failure signaling). This is CRITICAL for security to prevent state exhaustion.
+
+{{%notice note%}}
+In 5.16, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits maximum`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv4-unreachability prefix-limits inbound maximum 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unreachability prefix-limits maximum</h>
 
 Configures the maximum number of unreachability prefixes that can be received from the peer group for BGP unreachability SAFI (failure signaling). This is CRITICAL for security to prevent state exhaustion.
+
+{{%notice note%}}
+In 5.17 and later, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits inbound maximum`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -3458,9 +3543,40 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unreachability prefix-limits inbound reestablish-wait</h>
+
+Configures the time in minutes to wait before establishing the BGP session again with the peer group for BGP unreachability SAFI. The default value is `auto`, which uses standard BGP timers and processing. 
+
+{{%notice note%}}
+In 5.16, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits reestablish-wait`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv4-unreachability prefix-limits inbound reestablish-wait 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unreachability prefix-limits reestablish-wait</h>
 
 Configures the time in minutes to wait before establishing the BGP session again with the peer group for BGP unreachability SAFI. The default value is `auto`, which uses standard BGP timers and processing. 
+
+{{%notice note%}}
+In 5.17 and later, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits inbound reestablish-wait`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -3481,9 +3597,40 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unreachability prefix-limits inbound warning-only</h>
+
+Configures the switch for BGP unreachability SAFI (failure signaling) to only generate a warning syslog if the number of received unreachability IPv4 prefixes exceeds the limit, but does not bring down the BGP session. You can set this option to `enabled` or `disabled`.
+
+{{%notice note%}}
+In 5.16, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits warning-only`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv4-unreachability prefix-limits inbound warning-only enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unreachability prefix-limits warning-only</h>
 
 Configures the switch for BGP unreachability SAFI (failure signaling) to only generate a warning syslog if the number of received unreachability IPv4 prefixes exceeds the limit, but does not bring down the BGP session. You can set this option to `enabled` or `disabled`.
+
+{{%notice note%}}
+In 5.17 and later, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits inbound warning-only`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -3504,9 +3651,40 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unreachability prefix-limits inbound warning-threshold</h>
+
+Configures the IPv4 prefix limits for a peer group for BGP unreachability SAFI (failure signaling). Sets the percentage of the maximum at which a syslog warning is generated. You can set the value between 1 and 100. The default value is 75.
+
+{{%notice note%}}
+In 5.16, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits warning-only`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group UNDERLAY-LEAF address-family ipv4-unreachability prefix-limits inbound warning-threshold 50
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unreachability prefix-limits warning-threshold</h>
 
 Configures the IPv4 prefix limits for a peer group for BGP unreachability SAFI (failure signaling). Sets the percentage of the maximum at which a syslog warning is generated. You can set the value between 1 and 100. The default value is 75.
+
+{{%notice note%}}
+In 5.17 and later, this command is `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability prefix-limits inbound warning-threshold`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -4215,6 +4393,34 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp router-id 10.10.10.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf default router bgp soo-source</h>
+
+Configures BGP PIC anycast. 
+
+Fast route convergence in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer) requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in BGP Prefix Independent Convergence above. The switch uses the SOO source IP address instead of the router ID.
+
+- The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
+- Only configure the anycast SOO source IP address on leaf switches that have anycast prefixes advertised into BGP.
+- Only anycast IP addresses from these leaf switches are allowed.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp soo-source 10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

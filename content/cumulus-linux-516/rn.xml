@@ -7,6 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5145984</td>
+<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
+<td>5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5145981</td>
+<td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
+<td>5.16.0-5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5145976</td>
+<td>In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands.</td>
+<td>5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5145975</td>
+<td>Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore.</td>
+<td>5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5145963</td>
+<td>The {{Date-Time}} column in the {{nv show interface &lt;interface&gt; telemetry histogram ... snapshot}} output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time.</td>
+<td>5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
 <td>5093941</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
@@ -144,6 +174,18 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5056648</td>
+<td>During the very fist linkup process, the port enters a CLOSE state and remains there because the micro-controller takes more time to respond.</td>
+<td>5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5045504</td>
+<td>After you enable BFD offload, BFD control packet counters stop incrementing. Control plane BFD sessions are not affected by this issue and there is no BFD functionality impact in case of kernel offload.</td>
+<td>5.16.0-5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
 <td>5032841, 4913679</td>
 <td>On Spectrum-1 switch, creating a bridge interface (SVI) fails with the error message {{STATUS_NO_RESOURCES}}. </td>
 <td>5.16.1, 5.16.5</td>
@@ -209,12 +251,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4986329</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
-<td></td>
-</tr>
-<tr>
-<td>4983561</td>
-<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
-<td>5.16.1, 5.16.5</td>
 <td></td>
 </tr>
 <tr>
@@ -376,12 +412,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td></td>
 </tr>
 <tr>
-<td>4922188</td>
-<td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
-<td>5.16.0-5.16.1, 5.16.5</td>
-<td></td>
-</tr>
-<tr>
 <td>4918507</td>
 <td>When you upgrade Cumulus Linux from a prior release with package upgrade, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
@@ -487,7 +517,7 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 </tr>
 <tr>
 <td>4891440</td>
-<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU. nv otel service causes high cpu, competes with the BFD workers scheduled on same core.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
 <td></td>
 </tr>
@@ -1622,6 +1652,24 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5145984</td>
+<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
+<td>5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5145981</td>
+<td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
+<td>5.16.0-5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5145963</td>
+<td>The {{Date-Time}} column in the {{nv show interface &lt;interface&gt; telemetry histogram ... snapshot}} output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time.</td>
+<td>5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
 <td>5093941</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
@@ -1807,6 +1855,18 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>5.16.5</td>
 </tr>
 <tr>
+<td>5056648</td>
+<td>During the very fist linkup process, the port enters a CLOSE state and remains there because the micro-controller takes more time to respond.</td>
+<td>5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5045504</td>
+<td>After you enable BFD offload, BFD control packet counters stop incrementing. Control plane BFD sessions are not affected by this issue and there is no BFD functionality impact in case of kernel offload.</td>
+<td>5.16.0-5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
 <td>5032841, 4913679</td>
 <td>On Spectrum-1 switch, creating a bridge interface (SVI) fails with the error message {{STATUS_NO_RESOURCES}}. </td>
 <td>5.16.1, 5.16.5</td>
@@ -1931,12 +1991,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4986329</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
-<td></td>
-</tr>
-<tr>
-<td>4983561</td>
-<td>When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service.</td>
-<td>5.16.1, 5.16.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2098,12 +2152,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td></td>
 </tr>
 <tr>
-<td>4922188</td>
-<td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
-<td>5.16.0-5.16.1, 5.16.5</td>
-<td></td>
-</tr>
-<tr>
 <td>4918507</td>
 <td>When you upgrade Cumulus Linux from a prior release with package upgrade, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
@@ -2209,7 +2257,7 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 </tr>
 <tr>
 <td>4891440</td>
-<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU. nv otel service causes high cpu, competes with the BFD workers scheduled on same core.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
 <td></td>
 </tr>
@@ -3365,6 +3413,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5145981</td>
+<td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
+<td>5.16.0-5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
 <td>5093941</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
@@ -3498,6 +3552,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
           ifupdown2_eni:
             vlanXXX: |
               vlan-bridge-binding off}}</td>
+<td>5.16.0-5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5045504</td>
+<td>After you enable BFD offload, BFD control packet counters stop incrementing. Control plane BFD sessions are not affected by this issue and there is no BFD functionality impact in case of kernel offload.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
 <td></td>
 </tr>
@@ -3746,12 +3806,6 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>5.16.1, 5.16.5</td>
 </tr>
 <tr>
-<td>4922188</td>
-<td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
-<td>5.16.0-5.16.1, 5.16.5</td>
-<td></td>
-</tr>
-<tr>
 <td>4922108</td>
 <td>The vtysh {{show bgp ipv4 unreachability &lt;prefix&gt; json}} and {{show bgp ipv6 unreachability &lt;prefix&gt; json}} commands do not display BGP community attributes (including {{graceful-shutdown}}) in the JSON output even though they are shown correctly in the non-JSON text output.Network automation tools and scripts relying on JSON output might not detect the {{graceful-shutdown}} community on unreachability routes, making it difficult to identify routes that are withdrawn due to graceful shutdown procedures.</td>
 <td>5.16.0</td>
@@ -3917,7 +3971,7 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 </tr>
 <tr>
 <td>4891440</td>
-<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU. nv otel service causes high cpu, competes with the BFD workers scheduled on same core.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
 <td></td>
 </tr>

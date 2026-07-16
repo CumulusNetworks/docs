@@ -19,9 +19,21 @@
 <td></td>
 </tr>
 <tr>
-<td>5102853</td>
+<td>5145976</td>
 <td>In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands.</td>
 <td>5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5145975</td>
+<td>Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore.</td>
+<td>5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5145963</td>
+<td>The {{Date-Time}} column in the {{nv show interface &lt;interface&gt; telemetry histogram ... snapshot}} output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time.</td>
+<td>5.16.1, 5.16.5</td>
 <td></td>
 </tr>
 <tr>
@@ -1649,6 +1661,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5145981</td>
 <td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
+<td></td>
+</tr>
+<tr>
+<td>5145963</td>
+<td>The {{Date-Time}} column in the {{nv show interface &lt;interface&gt; telemetry histogram ... snapshot}} output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time.</td>
+<td>5.16.1, 5.16.5</td>
 <td></td>
 </tr>
 <tr>

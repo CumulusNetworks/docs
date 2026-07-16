@@ -814,13 +814,153 @@ cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 500
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry exclude-list</h>
+
+Configures the metrics to exclude from the metric group in the Open Telemetry collection.
+
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by excluding the list globally or in each statistics group.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry exclude-list PLATFORM_METRICS
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry include-list</h>
+
+Configures the metrics to include in the metric group in the Open Telemetry collection.
+
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by including the list globally or in each statistics group.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry include-list PLATFORM_METRICS
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export ipfix destination</h>
+
+Configures the IPFIX collector destination IP address or hostname for <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span>.
+
+{{%notice note%}}
+You can configure only one IPFIX destination; exporting IPFIX is too performance intensive to export to multiple destinations.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix destination 10.1.1.100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export ipfix max-ip-packet-size</h>
+
+Configures the maximum size for an exported IP packet containing <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span> over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The default setting is determined from the outgoing interface MTU.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix max-ip-packet-size 65535
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export ipfix port</h>
+
+Configures the port to use for communication with the IPFIX collector for <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span> if it is different from the default port 4739.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix port 4741
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export ipfix template-metadata-interval</h>
+
+Configures the interval in seconds for IPFIX template and metadata export for <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span>. You can specify a value between 1 and 86400. The default is 30 seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix template-metadata-interval 40
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export ipfix state</h>
+
+Enables and disables IPFIX export for <span class="a-tooltip">[HFT](## "High Frequency Telemetry")</span>.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export ipfix vrf</h>
+
+Configures the the VRF where the export destination is reachable. The default VRF is the value set by the `nv set system telemetry export vrf` command. If no value is set with `nv set system telemetry export vrf` command, the default value is `default`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export ipfix vrf RED
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry export otlp state</h>
 
 Enables and disables open telemetry export so that you can export interface counters and histogram collection data to an external collector. You can specify `enabled` or `disabled`.
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History
@@ -895,6 +1035,54 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv set system telemetry hft export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry hft export-type</h>
+
+Configures the data export type. You can specify `otlp` or `ipfix`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft export-type ipfix
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry hft ingress-buffer priority-group</h>
+
+Configures the priority group to monitor when collecting HFT priority group counters.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft ingress-buffer priority-group 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry hft switch-priority</h>
+
+Configures the switch priority to monitor when collecting HFT switch priority counters.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft switch-priority 5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1233,7 +1421,7 @@ Enables and disables `insecure` mode for <span class="a-tooltip">[gRPC ](## "Rem
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History
@@ -1254,7 +1442,7 @@ Configures an X.509 certificate to secure the <span class="a-tooltip">[gRPC ](##
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 - In Cumulus Linux 5.14 and earlier, this command is `nv set system telemetry export otlp grpc cert-id`.
 {{%/notice%}}
 
@@ -1335,7 +1523,7 @@ Configures open telemetry export to use <span class="a-tooltip">[gRPC ](## "Remo
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Command Syntax
@@ -1389,7 +1577,7 @@ Enables or disables open telemetry export for histogram collection. You can spec
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 - When you enable open telemetry export for histogram data, your histogram collection configuration defines the data that the switch exports.
 {{%/notice%}}
 
@@ -1465,6 +1653,38 @@ cumulus@switch:~$ nv set system telemetry histogram ingress-buffer sample-interv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry interface-stats class debounce sample-interval</h>
+
+Configures the sample interval for debounce statistics. You can set a value between 10 and 86400. The default is 10 seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats class debounce sample-interval 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry interface-stats class debounce state</h>
+
+Enables and disables link debounce statistics export. You can specify `enabled` or `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats class debounce state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry interface-stats class phy state</h>
 
 Configures collection and export of interface PHY metrics. You can specify `enabled` or `disabled`.
@@ -1487,7 +1707,7 @@ Configures the egress buffer traffic class for open telemetry export for interfa
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History
@@ -1508,7 +1728,7 @@ Configures the ingress buffer priority group for open telemetry export for inter
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 {{%/notice%}}
 
 ### Version History
@@ -1529,7 +1749,7 @@ Enables and disables open telemetry export for interface statistics. You can spe
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 - When you enable open telemetry export for interface statistics, the switch exports counters on all interfaces.
 {{%/notice%}}
 
@@ -1551,7 +1771,7 @@ Configures the interface statistics sample interval for open telemetry export. Y
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
-- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- Open telemetry export is a Beta feature in Cumulus Linux 5.10.0.
 - When you enable open telemetry export for interface statistics, the switch exports counters on all interfaces.
 {{%/notice%}}
 
@@ -1713,6 +1933,84 @@ Introduced in Cumulus Linux 5.13.0
 
 ```
 cumulus@switch:~$ nv set system telemetry lldp sample-interval 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry metric-list \<metric-list-id\></h>
+
+Configures the name of the telemetry metric list.
+
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<metric-list-id>`  |  The name of the metric list.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry metric-list \<metric-list-id\> description</h>
+
+Configures a description for the telemetry metric list.
+
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<metric-list-id>`  |  The name of the metric list.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS description "Platform metrics"
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry metric-list \<metric-list-id\> metric</h>
+
+Configures the specific telemetry metrics you want to collect in a metric group.
+
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+
+To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<metric-list-id>`  |  The name of the metric list.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_memory_MemTotal_bytes 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2177,6 +2475,93 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> exclude-list</h>
+
+Configures the Open Telemetry metrics to exclude in a statistics group to get granular control for a destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 exclude-list PLATFORM_METRICS
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> include-list</h>
+
+Configures the Open Telemetry metrics to include in a statistics group to get granular control for a destination:
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 include-list PLATFORM_METRICS
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> interface-stats class debounce sample-interval</h>
+
+Configures the sample interval of the Open Telemetry link debounce statistics. You can set a value between 10 and 86400. The default is 10 seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce sample-interval 120
+```
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> interface-stats class debounce state</h>
+
+Enables and disables link debounce statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce state enabled 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

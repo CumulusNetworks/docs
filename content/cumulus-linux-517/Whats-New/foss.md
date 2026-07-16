@@ -19,6 +19,6 @@ Cumulus Linux 5.17.0 contains the following core switch package versions:
 | NVUE (`python3-nvue`) | 1.13.0.80 | NVUE core package |
 | kernel (`linux-image`) | 6.1.123 | Linux kernel package |
 | FRR | 10.0.3 | FRRouting package|
-| Telemetry | release_91.1.13-91.1.13.12 | Telemetry package |
+| Telemetry | 91.1.13.12 | Telemetry package |
 
 To obtain a complete list of open source packages included in Cumulus Linux 5.17, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.

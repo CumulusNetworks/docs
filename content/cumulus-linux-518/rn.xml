@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5145975</td>
+<td>Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore.</td>
+<td>5.16.4-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5145963</td>
+<td>The {{Date-Time}} column in the {{nv show interface &lt;interface&gt; telemetry histogram ... snapshot}} output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time.</td>
+<td>5.16.1-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4992289</td>
 <td>After optimized image upgrade, the SSH service fails and NVUE shows an error {{Failed to translate the startup configuration, will continue with the original startup}}.</td>
 <td>5.17.0-5.18.0</td>

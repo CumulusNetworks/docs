@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5157264 | When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI. | 5.16.0-5.16.1, 5.16.5 | |
 | 5145984 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1, 5.16.5 | |
 | 5145981 | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.16.1, 5.16.5 | |
 | 5145976 | In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands. | 5.16.5 | |
@@ -282,6 +283,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5157264 | When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI. | 5.16.0-5.16.1, 5.16.5 | |
 | 5145984 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1, 5.16.5 | |
 | 5145981 | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.16.1, 5.16.5 | |
 | 5145963 | The <code>Date-Time</code> column in the <code>nv show interface <interface> telemetry histogram ... snapshot</code> output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time. | 5.16.1, 5.16.5 | |
@@ -569,6 +571,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5157264 | When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI. | 5.16.0-5.16.1, 5.16.5 | |
 | 5145981 | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.16.1, 5.16.5 | |
 | 5093941 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5 | |
 | 5093940 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5 | |

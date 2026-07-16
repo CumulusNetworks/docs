@@ -38,7 +38,8 @@ To share an image with another organization:
 6. Click **Share**.
 
 {{<img src="/images/guides/nvidia-air-v2/ShareImageMenu.png" alt="Actions menu showing Share Image option">}}
-
+<br>
+<br>
 After creating the share, you receive a **claim code**. Send this claim code to the target organization through a secure channel.
 
 ## Claiming a Shared Image
@@ -52,5 +53,6 @@ When another organization shares an image with you, they provide a claim code. T
 5. Click **Claim**.
 
 {{<img src="/images/guides/nvidia-air-v2/ClaimImageShare.png" alt="Image Shares dropdown with Claim Image Share option">}}
-
+<br>
+<br>
 The image is copied to your organization.

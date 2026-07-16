@@ -194,6 +194,8 @@ curl -X DELETE "https://<ip_address>/nmx/v1/switch-nodes/<switch-node-id>" \
 
 `DELETE /v1/domains/{id}` is an asynchronous operation. Unlike the other delete endpoints, it returns `202 Accepted` immediately and runs in the background. It deletes the domain and all related entities: chassis, switch nodes, compute nodes, switches, GPUs, ports, partitions, and associated NMX services.
 
+When a domain is being deleted, it enters a draining state that rejects all new operations until the deletion operation completes.
+
 ```
 curl -X DELETE "https://<ip_address>/nmx/v1/domains/<domain-id>" \
   -H "accept: application/json" \

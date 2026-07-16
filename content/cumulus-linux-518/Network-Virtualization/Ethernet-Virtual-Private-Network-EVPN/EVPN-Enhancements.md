@@ -232,10 +232,6 @@ address-family l2vpn evpn
 
 ## EVPN Unreachability in Disjoined Planes
 
-{{%notice note%}}
-EVPN unreachability in disjoined planes is a Beta feature.
-{{%/notice%}}
-
 In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. Leaf switches perform route aggregation per tenant VRF for scalability but this suppresses visibility of individual host link failures. EVPN unreachability signaling in a tenant VRF sends a route to advertise host unreachability after a link failure, enabling leaf switches to send LLDP TLVs informing connected NICs to avoid unreachable paths.
 
 {{%notice note%}}

@@ -13,6 +13,10 @@ Cumulus Linux 5.13 and later provides new NVUE `nv set maintenance unit` command
 
 ## Protocols
 
+{{%notice note%}}
+Currently, maintenance mode applies to BGP only.
+{{%/notice%}} 
+
 When you put all protocols in maintenance mode:
 - All the protocols that support graceful shutdown perform graceful shutdown with all their neighbors.
 - The switch goes through a warmboot when rebooted if the switch is in `warm` mode or when you do a warmboot to upgrade software to the next release.

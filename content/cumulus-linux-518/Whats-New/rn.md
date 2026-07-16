@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5145975 | Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore. | 5.16.4-5.18.0 | |
+| 5145963 | The <code>Date-Time</code> column in the <code>nv show interface <interface> telemetry histogram ... snapshot</code> output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time. | 5.16.1-5.18.0 | |
 | 4992289 | After optimized image upgrade, the SSH service fails and NVUE shows an error <code>Failed to translate the startup configuration, will continue with the original startup</code>. | 5.17.0-5.18.0 | 5.16.2|
 | 4891440 | The <code>nv show interface qos-roce-status</code> command causes HIGH CPU. nv otel service causes high cpu, competes with the BFD workers scheduled on same core. | 5.16.0-5.18.0 | |
 | 4875306 | Fixed traffic drops on SLAAC and 802.1x interfaces by deferring UNREACH withdrawal until the first host actually resolves through ARP or NDP, instead of withdrawing immediately on linkup. | 5.16.0-5.18.0 | |

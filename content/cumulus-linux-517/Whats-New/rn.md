@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5145975 | Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore. | 5.16.4-5.17.0 | |
+| 5145963 | The <code>Date-Time</code> column in the <code>nv show interface <interface> telemetry histogram ... snapshot</code> output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time. | 5.16.1-5.17.0 | |
 | 5102853 | In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands. | 5.16.4-5.17.0 | |
 | 5093941 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093940 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |

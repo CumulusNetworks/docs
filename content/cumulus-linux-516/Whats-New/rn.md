@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5102853 | In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands. | 5.16.4-5.17.0 | |
 | 5093933 | When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected. | 5.14.0-5.16.6 | 5.17.0|
 | 5093931 | When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected. | 5.14.0-5.16.6 | 5.17.0|
 | 5093926 | Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload.  | 5.15.0-5.16.6 | 5.17.0|
@@ -232,6 +231,9 @@ pdfhidden: True
 |---	        |---	        |---	    |
 | 5145984 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.16.5 | |
 | 5145981 | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.16.5 | |
+| 5145976 | In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands. | 5.16.4-5.16.5 | |
+| 5145975 | Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore. | 5.16.4-5.16.5 | |
+| 5145963 | The <code>Date-Time</code> column in the <code>nv show interface <interface> telemetry histogram ... snapshot</code> output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time. | 5.16.1-5.16.5 | |
 
 ## 5.16.5 Release Notes
 ### Open Issues in 5.16.5
@@ -240,7 +242,9 @@ pdfhidden: True
 |---	        |---	        |---	    |---	                |
 | 5145984 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.17.0 | |
 | 5145981 | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.17.0 | |
-| 5102853 | In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands. | 5.16.4-5.17.0 | |
+| 5145976 | In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands. | 5.16.4-5.17.0 | |
+| 5145975 | Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore. | 5.16.4-5.17.0 | |
+| 5145963 | The <code>Date-Time</code> column in the <code>nv show interface <interface> telemetry histogram ... snapshot</code> output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time. | 5.16.1-5.17.0 | |
 | 5093941 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093940 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093939 | When <code>nvued.log</code> triggers log rotation, it also forces rotation of all three logs (<code>nvued</code>, <code>nv-cli</code>, and <code>nv-api</code>). As a result, the <code>nv-cli</code> logs are rotated unnecessarily, which might eventually lead to missing <code>nv-cli.log</code> entries due to excessive rotations. | 5.15.0-5.17.0 | |
@@ -506,7 +510,9 @@ pdfhidden: True
 |---	        |---	        |---	    |---	                |
 | 5145984 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.17.0 | |
 | 5145981 | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.17.0 | |
-| 5102853 | In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands. | 5.16.4-5.17.0 | |
+| 5145976 | In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands. | 5.16.4-5.17.0 | |
+| 5145975 | Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore. | 5.16.4-5.17.0 | |
+| 5145963 | The <code>Date-Time</code> column in the <code>nv show interface <interface> telemetry histogram ... snapshot</code> output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time. | 5.16.1-5.17.0 | |
 | 5093941 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093940 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093939 | When <code>nvued.log</code> triggers log rotation, it also forces rotation of all three logs (<code>nvued</code>, <code>nv-cli</code>, and <code>nv-api</code>). As a result, the <code>nv-cli</code> logs are rotated unnecessarily, which might eventually lead to missing <code>nv-cli.log</code> entries due to excessive rotations. | 5.15.0-5.17.0 | |
@@ -772,6 +778,7 @@ pdfhidden: True
 |---	        |---	        |---	    |---	                |
 | 5145984 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.17.0 | |
 | 5145981 | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.17.0 | |
+| 5145963 | The <code>Date-Time</code> column in the <code>nv show interface <interface> telemetry histogram ... snapshot</code> output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time. | 5.16.1-5.17.0 | |
 | 5093941 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093940 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093939 | When <code>nvued.log</code> triggers log rotation, it also forces rotation of all three logs (<code>nvued</code>, <code>nv-cli</code>, and <code>nv-api</code>). As a result, the <code>nv-cli</code> logs are rotated unnecessarily, which might eventually lead to missing <code>nv-cli.log</code> entries due to excessive rotations. | 5.15.0-5.17.0 | |
@@ -1038,6 +1045,7 @@ pdfhidden: True
 |---	        |---	        |---	    |---	                |
 | 5145984 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.17.0 | |
 | 5145981 | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.17.0 | |
+| 5145963 | The <code>Date-Time</code> column in the <code>nv show interface <interface> telemetry histogram ... snapshot</code> output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time. | 5.16.1-5.17.0 | |
 | 5093941 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093940 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093939 | When <code>nvued.log</code> triggers log rotation, it also forces rotation of all three logs (<code>nvued</code>, <code>nv-cli</code>, and <code>nv-api</code>). As a result, the <code>nv-cli</code> logs are rotated unnecessarily, which might eventually lead to missing <code>nv-cli.log</code> entries due to excessive rotations. | 5.15.0-5.17.0 | |
@@ -1314,6 +1322,7 @@ pdfhidden: True
 |---	        |---	        |---	    |---	                |
 | 5145984 | When interfaces are constantly flapping and the same BGP neighbor comes up on a different interface, routes might not be reprogrammed in the kernel after the kernel deletes them during interface down events. To work around this issue, restart the FRR service. | 5.16.1-5.17.0 | |
 | 5145981 | If you add a static default route, then delete it, the switch removes the default route in the ASIC. | 5.16.0-5.17.0 | |
+| 5145963 | The <code>Date-Time</code> column in the <code>nv show interface <interface> telemetry histogram ... snapshot</code> output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time. | 5.16.1-5.17.0 | |
 | 5093941 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093940 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.17.0 | |
 | 5093939 | When <code>nvued.log</code> triggers log rotation, it also forces rotation of all three logs (<code>nvued</code>, <code>nv-cli</code>, and <code>nv-api</code>). As a result, the <code>nv-cli</code> logs are rotated unnecessarily, which might eventually lead to missing <code>nv-cli.log</code> entries due to excessive rotations. | 5.15.0-5.17.0 | |

@@ -14,6 +14,52 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system security alerts audit-failure</h>
+
+Enables or disables audit-failure alerts. Audit-failure alerts are enabled by default.
+
+{{%notice note%}}
+No audit failure alerts trigger if global security alerts are disabled with the `nv set system security alerts state disabled` command.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system security alerts audit-failure disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system security alerts state</h>
+
+Configures the switch to send proactive alerts as SNMPv3 traps to configured trap destinations and as syslog messages (facility LOG_DAEMON, severity CRIT) when audit processing failures occur, such as when the audit daemon crashes or disk space runs low on the audit partition.
+
+{{%notice note%}}
+- To send security alerts through SNMP traps, you must have at least one SNMPv3 trap destination configured with a valid engine ID (a minimum 5 bytes or 10 hex characters after the 0x prefix).
+- Cumulus Linux reuses trap destinations from the existing SNMP server configuration (`nv set system snmp-server trap-destination`). You do not need to configure a separate alert destination.
+- Only SNMPv3 (authPriv) destinations receive traps.
+- Disk full and disk I/O error events are logged to syslog only (no SNMP traps). The `space_left` and `admin_space_left` thresholds provide an early warning through SNMP traps before these critical conditions are reached.
+- A clean `auditd` restart (`sudo service auditd restart`) does not trigger an alert.
+- The security alerts manage only the alert-related action parameters in the `auditd` configuration (`space_left_action`, `admin_space_left_action`, `disk_full_action`, `disk_error_action`).
+- If the `auditd.conf` file contains invalid values (for example, if `admin_space_left` has a higher setting than `space_left`), enabling or disabling security alerts fails because the `auditd` service cannot restart. To recover, correct the values in the `/etc/audit/auditd.conf` file, then run the `sudo systemctl reset-failed auditd` and `sudo systemctl restart auditd` commands.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system security alerts state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system security encryption db state</h>
 
 Enables and disables password encryption in the NVUE `startup.yaml` file. By default, NVUE encrypts passwords, such as the RADIUS secret, TACACS secret, BGP peer password, OSPF MD5 key, and SNMP strings in the startup.yaml file.

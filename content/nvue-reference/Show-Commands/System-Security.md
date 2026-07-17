@@ -50,6 +50,26 @@ Cumulus Linux 5.16.0 introduce FIPS mode. If you are running Cumulus Linux 5.15 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system security alerts</h>
+
+Shows the current system alert configuration and status.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system security alerts
+               operational  applied
+-------------  -----------  --------
+state          disabled     enabled
+audit-failure  enabled      disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system security ca-certificate</h>
 
 Shows all the CA certificates on the switch.
@@ -278,4 +298,39 @@ expiration-warning       15           15
 expiration               180          180     
 history-cnt              20           20      
 len-min                  8            8
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system security secure-boot</h>
+
+Shows secure boot details, such as the Secure Boot Key Database (DB) and SBAT revocation values. NVUE presents a consolidated view so that you can review enrolled keys with certificate details, monitor validity status, and view SBAT revocation information.
+
+Certificate details include:
+- SHA1 fingerprint
+- Signature algorithm
+- Validity status (generated-on and expiring-on dates)
+- Issuer attributes (indexed and structured)
+
+SBAT revocation information includes:
+- Component name
+- Version number
+- Generation date (in YYYY-MM-DD format)
+- Revision ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system security secure-boot
+key-database
+===============
+No Data
+
+sbat-revocation
+==================
+No Data
 ```

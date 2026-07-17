@@ -60,6 +60,27 @@ swp6        up     1G     9216   swp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface debounce-counters</h>
+
+Shows the link debounce statistics for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface debounce-counters
+Interface ignored-up ignored-down received-up received-down timer-cancel timer-expire 
+--------- ---------- ------------ ----------- ------------- ------------ ------------ 
+swp1      10         8            23          22            18           45 
+swp2      5          3            15          14            8            22 
+swp3      0          0            2           2             0            4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\></h>
 
 Shows the configuration information for the specified interface.
@@ -381,6 +402,36 @@ Oversize Errors   0        n/a
 Symbol Errors     0        n/a     
 Total Errors      0        0       
 Undersize Errors  0        n/a
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> counters link debounce</h>
+
+Shows link debounce statistics for an interface.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 counters link debounce 
+                      operational
+--------------------  -----------
+ignored-down-events   0          
+ignored-up-events     0          
+received-up-events    2          
+received-down-events  1          
+timer-cancellations   0          
+timer-expirations     3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -741,6 +792,32 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 link breakout 2x
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> link debounce</h>
+
+Shows the link transitions for an interface.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link debounce 
+      operational  applied
+----  -----------  -------
+up    200          200    
+down  150          150
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

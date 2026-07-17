@@ -157,6 +157,32 @@ cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv disabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> lldp tlv profile</h>
+
+Applies an LLDP profile to an interface. For multiple interfaces, use a comma-separated list (swp1,swp2,swp3-4).
+
+- A profile fully replaces system defaults on the interface to which you apply it.
+- Inside a profile, every TLV defaults to disabled; you must enable each TLV you want.
+- The switch always sends the mandatory TLVs (Chassis ID, Port ID, TTL, End of LLDPDU) regardless of profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 lldp tlv profile FABRIC-FULL
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> lldp state</h>
 
 Enables and disables LLDP on an interface.
@@ -349,6 +375,1216 @@ cumulus@switch:~$ nv set system lldp state disabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## nv set system lldp tlv egress-policy dcbx-app-priority state</h>
+
+Configures a global egress policy across all ports to transmit the DCBX Application priority TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy dcbx-app-priority state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## nv set system lldp tlv egress-policy dcbx-ets-config state</h>
+
+Configures a global egress policy across all ports to transmit the DCBX ETS Configuration TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy dcbx-ets-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy dcbx-ets-recomm state</h>
+
+Configures a global egress policy across all ports to transmit the DCBX ETS Recommendation TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy dcbx-ets-recomm state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy dcbx-pfc state</h>
+
+Configures a global egress policy across all ports to transmit the DCBX PFC configuration TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy dcbx-pfc state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy link-aggregation state</h>
+
+Configures a global egress policy across all ports to transmit the link-aggregation TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy link-aggregation state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy mac-phy-config state</h>
+
+Configures a global egress policy across all ports to transmit the mac-phy-config TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy mac-phy-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy management-address state</h>
+
+Configures a global egress policy across all ports to transmit the management-address TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy management-address state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy max-frame-size state</h>
+
+Configures a global egress policy across all ports to transmit the max-frame-size TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy max-frame-size state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy media-capabilities state</h>
+
+Configures a global egress policy across all ports to transmit the media-capabilities TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy media-capabilities state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy port-description state</h>
+
+Configures a global egress policy across all ports to transmit the port description TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy port-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy port-vlan-id state</h>
+
+Configures a global egress policy across all ports to transmit the port VLAN ID TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy port-vlan-id state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy system-description state</h>
+
+Configures a global egress policy across all ports to transmit the system description TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy system-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy system-name state</h>
+
+Configures a global egress policy across all ports to transmit the system name TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy system-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy unreachable-prefix state</h>
+
+Configures a global egress policy across all ports to transmit the unreachable-prefix TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy unreachable-prefix state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv egress-policy vlan-name state</h>
+
+Configures a global egress policy across all ports to transmit the VLAN name TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv egress-policy vlan-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## nv set system lldp tlv ingress-policy dcbx-app-priority state</h>
+
+Configures a global ingress policy across all ports to transmit the DCBX Application priority TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy dcbx-app-priority state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## nv set system lldp tlv ingress-policy dcbx-ets-config state</h>
+
+Configures a global ingress policy across all ports to transmit the DCBX ETS Configuration TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy dcbx-ets-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy dcbx-ets-recomm state</h>
+
+Configures a global ingress policy across all ports to transmit the DCBX ETS Recommendation TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy dcbx-ets-recomm state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy dcbx-pfc state</h>
+
+Configures a global ingress policy across all ports to transmit the DCBX PFC configuration TLVs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy dcbx-pfc state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy link-aggregation state</h>
+
+Configures a global ingress policy across all ports to transmit the link-aggregation TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy link-aggregation state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy mac-phy-config state</h>
+
+Configures a global ingress policy across all ports to transmit the mac-phy-config TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy mac-phy-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy management-address state</h>
+
+Configures a global ingress policy across all ports to transmit the management-address TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy management-address state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy max-frame-size state</h>
+
+Configures a global ingress policy across all ports to transmit the max-frame-size TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy max-frame-size state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy media-capabilities state</h>
+
+Configures a global ingress policy across all ports to transmit the media-capabilities TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy media-capabilities state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy port-description state</h>
+
+Configures a global ingress policy across all ports to transmit the port description TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy port-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy port-vlan-id state</h>
+
+Configures a global ingress policy across all ports to transmit the port VLAN ID TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy port-vlan-id state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy system-description state</h>
+
+Configures a global ingress policy across all ports to transmit the system description TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy system-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy system-name state</h>
+
+Configures a global ingress policy across all ports to transmit the system name TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy system-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy unreachable-prefix state</h>
+
+Configures a global ingress policy across all ports to transmit the unreachable-prefix TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy unreachable-prefix state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv ingress-policy vlan-name state</h>
+
+Configures a global ingress policy across all ports to transmit the VLAN name TLV.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp tlv ingress-policy vlan-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> description</h>
+
+Configures a description for the TLV profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL description "full fabric profile"
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy dcbx-app-priority state</h>
+
+Configures an egress profile to transmit DCBX Application priority TLVs. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy dcbx-app-priority state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy dcbx-ets-config state</h>
+
+Configures an egress profile to transmit the DCBX ETS Configuration TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy dcbx-ets-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy dcbx-ets-recomm state</h>
+
+Configures an egress profile to transmit the DCBX ETS Recommendation TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy dcbx-ets-recomm state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy dcbx-pfc state</h>
+
+Configures an egress profile to transmit the DCBX PFC Configuration TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy dcbx-pfc state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy mac-phy-config state</h>
+
+Configures an egress profile to transmit the mac-phy-config TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy mac-phy-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy management-address state</h>
+
+Configures an egress profile to transmit the management-address TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy management-address state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy max-frame-size state</h>
+
+Configures an egress profile to transmit the max-frame-size TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy max-frame-size state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy link-aggregation state</h>
+
+Configures an egress profile to transmit the link-aggregation TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy link-aggregation state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy media-capabilities state</h>
+
+Configures an egress profile to transmit the media-capabilities TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy media-capabilities state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy port-description state</h>
+
+Configures an egress profile to transmit the port-description TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy port-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy port-vlan-id state</h>
+
+Configures an egress profile to transmit the port-vlan-id TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy port-vlan-id state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy system-capabilities state</h>
+
+Configures an egress profile to transmit the system-capabilities TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy system-capabilities state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy system-description state</h>
+
+Configures an egress profile to transmit the System Description TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy system-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy system-name state</h>
+
+Configures an egress profile to transmit the System Name TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy system-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy unreachable-prefix state</h>
+
+Configures an egress profile to transmit the unreachable prefix TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+{{%notice note%}}
+BGP Unreachable Prefix TLV is a Beta feature for Cumulus Linux 5.17.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0 (Beta)
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy unreachable-prefix state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> egress-policy vlan-name state</h>
+
+Configures an egress profile to transmit the VLAN name TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL egress-policy vlan-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy dcbx-app-priority state</h>
+
+Configures an ingress profile to transmit DCBX Application priority TLVs. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy dcbx-app-priority state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy dcbx-ets-config state</h>
+
+Configures an ingress profile to transmit the DCBX ETS Configuration TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy dcbx-ets-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy dcbx-ets-recomm state</h>
+
+Configures an ingress profile to transmit the DCBX ETS Recommendation TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy dcbx-ets-recomm state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy dcbx-pfc state</h>
+
+Configures an ingress profile to transmit the DCBX PFC Configuration TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy dcbx-pfc state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy mac-phy-config state</h>
+
+Configures an ingress profile to transmit the mac-phy-config TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy mac-phy-config state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy management-address state</h>
+
+Configures an ingress profile to transmit the management-address TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy management-address state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy max-frame-size state</h>
+
+Configures an ingress profile to transmit the max-frame-size TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy max-frame-size state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy link-aggregation state</h>
+
+Configures an ingress profile to transmit the link-aggregation TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy link-aggregation state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy media-capabilities state</h>
+
+Configures an ingress profile to transmit the media-capabilities TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy media-capabilities state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy port-description state</h>
+
+Configures an ingress profile to transmit the port-description TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy port-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy port-vlan-id state</h>
+
+Configures an ingress profile to transmit the port-vlan-id TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy port-vlan-id state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy system-capabilities state</h>
+
+Configures an ingress profile to transmit the system-capabilities TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy system-capabilities state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy system-description state</h>
+
+Configures an ingress profile to transmit the System Description TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy system-description state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy system-name state</h>
+
+Configures an ingress profile to transmit the System Name TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy system-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy unreachable-prefix state</h>
+
+Configures an ingress profile to transmit the unreachable prefix TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy unreachable-prefix state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp tlv profile \<lldp-profile-name-id\> ingress-policy vlan-name state</h>
+
+Configures an ingress profile to transmit the VLAN name TLV. You apply the profile to an interface, with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp tlv profile FABRIC-FULL ingress-policy vlan-name state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system lldp tx-hold-multiplier</h>
 
 Configures the amount of time to hold LLDP information before discarding it. The hold time interval is a multiple of the tx-interval.
@@ -385,4 +1621,20 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set system lldp tx-interval 100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system lldp unreachable-prefix max-limit</h>
+
+Configures the maximum number of unreachable prefixes tracked. You can specify a value between 1 and 100000. The default value is 25000.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system lldp unreachable-prefix max-limit 10000
 ```

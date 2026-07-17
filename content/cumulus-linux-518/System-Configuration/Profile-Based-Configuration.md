@@ -27,10 +27,10 @@ To set profile‑based configuration on the switch:
 
 | Role | Direction rules |
 | ---- | --------------- |
-| `leaf` | Both uplink and downlink required. Adaptive routing applied on uplinks (spine-facing ports) only.|
-| `spine-2`&nbsp;(2-tier) | Downlink only. Adaptive routing applied on spine downlink. |
-| `spine-3`&nbsp;(3-tier) | Both uplink (SSP-facing) and downlink (leaf-facing). Adaptive routing applied in both directions. |
-| `super-spine` | Downlink only (spine-facing ports). 3-tier topology only. |
+| `leaf` | Both uplink and downlink required. Adaptive routing applied on uplinks (spine-facing ports) only. ISSU in half-resource mode.|
+| `spine-2`&nbsp;(2-tier) | Downlink only. Adaptive routing applied on spine downlink. ISSU in full-resource mode.|
+| `spine-3`&nbsp;(3-tier) | Both uplink (SSP-facing) and downlink (leaf-facing). Adaptive routing applied in both directions. ISSU in full-resource mode|
+| `super-spine` | Downlink only (spine-facing ports). 3-tier topology only. ISSU in full-resource mode|
 
 The following example sets profile-based configuration on the leaf and applies the profile. The example also sets the OTLP export destination and port.
 
@@ -50,7 +50,7 @@ The breakout is required if you specify an interface-range. With breakout 4x, pa
 The following example sets profile-based configuration on a two-tier spine:
 
 ```
-cumulus@switch:~$ nv set system do-spx role spine-2 downlink swp1-64 breakout 1x
+cumulus@switch:~$ nv set system do-spx role spine-2 downlink swp1-64 breakout 4x
 cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv action activate system do-spx profile spine-2
 Action succeeded

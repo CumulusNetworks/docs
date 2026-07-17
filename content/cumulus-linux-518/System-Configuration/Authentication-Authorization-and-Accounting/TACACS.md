@@ -449,6 +449,10 @@ The first `adduser` command prompts for information and a password. You can skip
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+If you configure the switch domain name with the NVUE `nv set system dns domain` command, you must also configure the `hostname` command as an authorized command for users on the switch and on the TACACS+ server.  
+{{%/notice%}}
+
 <!-- vale off -->
 ## Local Per-command Authorization
 

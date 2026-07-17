@@ -193,7 +193,7 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 </tr>
 <tr>
 <td>5032841, 4913679</td>
-<td>On Spectrum-1 switch, creating a bridge interface (SVI) fails with the error message {{STATUS_NO_RESOURCES}}. </td>
+<td>On the Spectrum-1 switch, creating a bridge interface (SVI) fails with the error message {{STATUS_NO_RESOURCES}}. </td>
 <td>5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
@@ -229,13 +229,13 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 </tr>
 <tr>
 <td>4989932</td>
-<td>Cumulus Linux 5.16 released with updated {{kexec-tools}} without required patches.</td>
+<td>Cumulus Linux 5.16 includes updated {{kexec-tools}} without the required patches.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
 <tr>
 <td>4988339</td>
-<td>You see the following Sxd-kernel errors about late completion and new maximum time between iterations detected.
+<td>You might see the following Sxd-kernel errors about late completion and new maximum time between iterations detected.
 kernel: [875348.575113] sxd_kernel: dev_id=1: Receive late completion for dqn (0) idx (65)
 kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time between iterations detected: 7224 msecs (jiffies_now=4519869758, last_work_launch_jiffies=4519867952, HZ=250)</td>
 <td>5.16.1, 5.16.5</td>
@@ -352,7 +352,7 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 </tr>
 <tr>
 <td>4931956</td>
-<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade using NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks ,or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package upgrade with NVUE commands.</td>
+<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade with the NVUE {{nv action upgrade system packages}} command sometimes fails or might be interrupted after the packages are unpacked but not configured.  As a result, you might see issues such as missing files or symlinks, or TACACS+ restricted user shells not working as expected. If the {{dpkg -l}} command shows packages with a status of {{iU}} instead of {{ii}} (the first two characters of the line), run the {{sudo dpkg --configure -a}} command to complete package configuration. Rerun package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with the {{sudo systemctl stop sysmonitor}} command before running package upgrade with NVUE commands.</td>
 <td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
@@ -455,7 +455,7 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 </tr>
 <tr>
 <td>4908392</td>
-<td>In the multicast routing path (ip_mr_output) you might encounter a self-deadlock issue in one CPU that causes the kernel lock up (the switch reboots).</td>
+<td>In the multicast routing path (ip_mr_output) you might encounter a self-deadlock issue in one CPU that causes the kernel to lock up (the switch reboots).</td>
 <td>5.15.1, 5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
@@ -1880,7 +1880,7 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 </tr>
 <tr>
 <td>5032841, 4913679</td>
-<td>On Spectrum-1 switch, creating a bridge interface (SVI) fails with the error message {{STATUS_NO_RESOURCES}}. </td>
+<td>On the Spectrum-1 switch, creating a bridge interface (SVI) fails with the error message {{STATUS_NO_RESOURCES}}. </td>
 <td>5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
@@ -1929,7 +1929,7 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 </tr>
 <tr>
 <td>4989932</td>
-<td>Cumulus Linux 5.16 released with updated {{kexec-tools}} without required patches.</td>
+<td>Cumulus Linux 5.16 includes updated {{kexec-tools}} without the required patches.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
@@ -1981,7 +1981,7 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>4988339</td>
-<td>You see the following Sxd-kernel errors about late completion and new maximum time between iterations detected.
+<td>You might see the following Sxd-kernel errors about late completion and new maximum time between iterations detected.
 kernel: [875348.575113] sxd_kernel: dev_id=1: Receive late completion for dqn (0) idx (65)
 kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time between iterations detected: 7224 msecs (jiffies_now=4519869758, last_work_launch_jiffies=4519867952, HZ=250)</td>
 <td>5.16.1, 5.16.5</td>
@@ -2098,7 +2098,7 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 </tr>
 <tr>
 <td>4931956</td>
-<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade using NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks ,or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package upgrade with NVUE commands.</td>
+<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade with the NVUE {{nv action upgrade system packages}} command sometimes fails or might be interrupted after the packages are unpacked but not configured.  As a result, you might see issues such as missing files or symlinks, or TACACS+ restricted user shells not working as expected. If the {{dpkg -l}} command shows packages with a status of {{iU}} instead of {{ii}} (the first two characters of the line), run the {{sudo dpkg --configure -a}} command to complete package configuration. Rerun package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with the {{sudo systemctl stop sysmonitor}} command before running package upgrade with NVUE commands.</td>
 <td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
@@ -2201,7 +2201,7 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 </tr>
 <tr>
 <td>4908392</td>
-<td>In the multicast routing path (ip_mr_output) you might encounter a self-deadlock issue in one CPU that causes the kernel lock up (the switch reboots).</td>
+<td>In the multicast routing path (ip_mr_output) you might encounter a self-deadlock issue in one CPU that causes the kernel to lock up (the switch reboots).</td>
 <td>5.15.1, 5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
@@ -3606,7 +3606,7 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 </tr>
 <tr>
 <td>4989932</td>
-<td>Cumulus Linux 5.16 released with updated {{kexec-tools}} without required patches.</td>
+<td>Cumulus Linux 5.16 includes updated {{kexec-tools}} without the required patches.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
@@ -3739,7 +3739,7 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 </tr>
 <tr>
 <td>4931956</td>
-<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade using NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks ,or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package upgrade with NVUE commands.</td>
+<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade with the NVUE {{nv action upgrade system packages}} command sometimes fails or might be interrupted after the packages are unpacked but not configured.  As a result, you might see issues such as missing files or symlinks, or TACACS+ restricted user shells not working as expected. If the {{dpkg -l}} command shows packages with a status of {{iU}} instead of {{ii}} (the first two characters of the line), run the {{sudo dpkg --configure -a}} command to complete package configuration. Rerun package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with the {{sudo systemctl stop sysmonitor}} command before running package upgrade with NVUE commands.</td>
 <td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
@@ -3921,7 +3921,7 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 </tr>
 <tr>
 <td>4908392</td>
-<td>In the multicast routing path (ip_mr_output) you might encounter a self-deadlock issue in one CPU that causes the kernel lock up (the switch reboots).</td>
+<td>In the multicast routing path (ip_mr_output) you might encounter a self-deadlock issue in one CPU that causes the kernel to lock up (the switch reboots).</td>
 <td>5.15.1, 5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>

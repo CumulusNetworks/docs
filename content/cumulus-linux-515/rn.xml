@@ -209,7 +209,7 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 </tr>
 <tr>
 <td>4931956</td>
-<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade using NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks ,or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package upgrade with NVUE commands.</td>
+<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade with the NVUE {{nv action upgrade system packages}} command sometimes fails or might be interrupted after the packages are unpacked but not configured.  As a result, you might see issues such as missing files or symlinks, or TACACS+ restricted user shells not working as expected. If the {{dpkg -l}} command shows packages with a status of {{iU}} instead of {{ii}} (the first two characters of the line), run the {{sudo dpkg --configure -a}} command to complete package configuration. Rerun package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with the {{sudo systemctl stop sysmonitor}} command before running package upgrade with NVUE commands.</td>
 <td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
@@ -270,7 +270,7 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 </tr>
 <tr>
 <td>4908392</td>
-<td>In the multicast routing path (ip_mr_output) you might encounter a self-deadlock issue in one CPU that causes the kernel lock up (the switch reboots).</td>
+<td>In the multicast routing path (ip_mr_output) you might encounter a self-deadlock issue in one CPU that causes the kernel to lock up (the switch reboots).</td>
 <td>5.15.1, 5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>
@@ -1846,7 +1846,7 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 </tr>
 <tr>
 <td>4931956</td>
-<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade using NVUE commands {{nv action upgrade system packages}} sometimes fails or might be interrupted after the packages have been unpacked but not configured.  This might cause odd behaviors, such as missing files or symlinks ,or TACACS+ restricted user shells not behaving as expected.  If {{dpkg -l}} shows packages with a status such as {{iU}} instead of {{ii}} (first two characters of the line), use {{sudo dpkg --configure -a}} to finish configuration of the packages; then retry the package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with {{sudo systemctl stop sysmonitor}} before doing a package upgrade with NVUE commands.</td>
+<td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade with the NVUE {{nv action upgrade system packages}} command sometimes fails or might be interrupted after the packages are unpacked but not configured.  As a result, you might see issues such as missing files or symlinks, or TACACS+ restricted user shells not working as expected. If the {{dpkg -l}} command shows packages with a status of {{iU}} instead of {{ii}} (the first two characters of the line), run the {{sudo dpkg --configure -a}} command to complete package configuration. Rerun package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with the {{sudo systemctl stop sysmonitor}} command before running package upgrade with NVUE commands.</td>
 <td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5</td>
 <td>5.17.0</td>
 </tr>

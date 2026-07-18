@@ -15,7 +15,7 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 
 ## What’s New in Cumulus Linux 5.16.6
 
-Cumulus Linux 5.16.6 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and a new hardware management package that includes thermal algorithm updates to address capacitor failures caused by high temperatures.
+Cumulus Linux 5.16.6 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and includes a new hardware management package with thermal algorithm updates to increase cooling fan speed.
 
 ## What’s New in Cumulus Linux 5.16.5
 

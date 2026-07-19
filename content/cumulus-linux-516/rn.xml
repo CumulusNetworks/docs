@@ -1368,6 +1368,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5159352</td>
+<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
+<td>5.16.1-5.16.5</td>
+</tr>
+<tr>
 <td>5157264</td>
 <td>When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI.</td>
 <td>5.16.0-5.16.5</td>
@@ -1439,6 +1444,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5159352</td>
+<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5157264</td>
@@ -3031,6 +3042,12 @@ nv config apply -y</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5159352</td>
+<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5157264</td>
@@ -4809,6 +4826,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5159352</td>
+<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5157264</td>
 <td>When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI.</td>
 <td>5.16.0-5.17.0</td>
@@ -6567,6 +6590,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5159352</td>
+<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5157264</td>
 <td>When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI.</td>
 <td>5.16.0-5.17.0</td>
@@ -8299,6 +8328,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5159352</td>
+<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
+<td>5.16.1-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5157264</td>

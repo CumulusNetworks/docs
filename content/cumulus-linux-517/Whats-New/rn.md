@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5159352 | The <code>nv show platform firmware</code> command output shows an incorrect CPLD firmware version. | 5.16.1-5.17.0 | |
 | 5157264 | When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI. | 5.16.0-5.17.0 | |
 | 5154784 | On Spectrum-4 switches, generating an MST dump diagnostic file might trigger a CR space timeout that causes an SDK/FW fatal error and restarts <code>switchd</code> immediately after the <code>mstdump</code> completes. | 5.16.1-5.17.0 | |
 | 5154662 | When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under <code>/etc/apt/sources.list.d/*</code>, the <code>nv config apply</code> command fails because NVUE incorrectly blocks adding snippet files under <code>/etc/apt/sources.list.d/*</code>.  | 5.16.1-5.17.0 | |

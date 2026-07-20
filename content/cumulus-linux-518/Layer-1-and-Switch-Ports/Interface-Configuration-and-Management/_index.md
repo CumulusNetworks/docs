@@ -877,7 +877,7 @@ Link tracking enables you to monitor interfaces automatically and ensure traffic
 ### Configure and Enable Link Tracking
 
 To configure and enable link tracking:
-- Enable link tracking.
+- Set link tracking to `enabled`.
 - Create a link tracking group with the set of links (watch interfaces) that you want to monitor.
   - You can only configure switch port (swp) interfaces that already exist.
   - A group name must be between 1 and 16 characters long. You can use alphanumeric characters, hyphens (-), and underscores (_).

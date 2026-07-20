@@ -189,24 +189,30 @@ When you are using MLAG, the VNIs and VXLAN device must belong to the same bridg
 
 If you need to convert a layer 2 VNI to a layer 3 VNI, refer to {{<link url="Network-Virtualization/#change-a-layer-2-vni-to-layer-3" text="Change a Layer 2 VNI to Layer 3">}}.
 
-### Layer 3 VXLAN Interfaces
+### Layer 3 VXLAN Device Mode
 
-Instead of using a single VXLAN device for all layer 3 VNIs (as described above), you can configure the switch to use layer 3 VXLAN interfaces. The interface is within its own single VXLAN device enslaved over a VFR instead of a bridge domain. 
+Instead of using a single VXLAN device for all layer 3 VNIs (as described above), you can configure the switch to use a layer 3 VXLAN device for each VNI. Layer 3 VXLAN mode creates individual VXI devices that are not SVIs and are unrelated to any bridge.
 
-Using layer 3 VXLAN interfaces simplifies EVPN configuration and improves performance at scale.
+Layer 3 VXLAN device mode simplifies EVPN configuration and improves performance at scale.
  
-To enable layer 3 VXLAN Interfaces, run the `nv set evpn l3vxi state enabled` command.
+To enable layer 3 VXLAN device mode, first disable EVPN and VXLAN, then run the `nv set evpn l3vxi state enabled` command. Layer 3 VXLAN device mode is disabled by default.
 
+
+```
+cumulus@leaf01:~$ nv set evpn state disabled
+cumulus@leaf01:~$ nv set nve vxlan state disabled
+cumulus@leaf01:~$ nv config apply
+```
 ```
 cumulus@leaf01:~$ nv set evpn l3vxi state enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
-NVUE removes all single VXLAN devices and creates layer 3 single VXLAN devices for each layer 3 VNI using the naming format `vxi_<vni_id>`.
+NVUE removes all single VXLAN devices and creates a layer 3 single VXLAN device for each layer 3 VNI using the naming format `vxi_<vni_id>`.
 
 The following dropdowns show the different configurations as a comparison.
 
-{{< expand "Layer 3 Single VXLAN Device" >}}
+{{< expand "Layer 3 VXLAN Devices for each VNI" >}}
 
 ```
 auto vlan10 
@@ -235,7 +241,7 @@ iface vlan30
     vlan-id 30
 auto vxlan48 
 iface vxlan48 
-    bridge-vlan-vni-map 10=10 20=20 30=30 4024=4001 4036=4002 
+    bridge-vlan-vni-map 10=10 20=20 30=30
     bridge-vids 10 20 30 4024 4036 
     bridge-learning off 
 auto br_default 
@@ -314,6 +320,22 @@ iface br_default
     bridge-pvid 1
 ```
 {{< /expand >}}
+
+To disable layer 3 VXLAN devices, disable EVPN, VXLAN, and layer 3 VXLAN device mode at the same time:
+
+```
+cumulus@leaf01:~$ nv set evpn l3vxi state disabled 
+cumulus@leaf01:~$ nv set nve vxlan state disabled 
+cumulus@leaf01:~$ nv set evpn state disabled
+cumulus@leaf01:~$ nv config apply
+```
+
+To use EVPN, re-enable EVPN and VXLAN:
+
+```
+cumulus@leaf01:~$ nv set evpn state enabled
+cumulus@leaf01:~$ nv set nve vxlan state enabled
+```
 
 ### Configure RD and RTs for the Tenant VRF
 

@@ -32,7 +32,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}}
 - {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="BGP graceful fabric maintenance">}} 
 - {{<link url="Optional-BGP-Configuration/#inter-dc-routing" text="Inter-DC Routing">}}
-- {{<link url="Inter-subnet-Routing/#layer-3-vxlan-interfaces" text="Layer 3 VXLAN interfaces">}}
+- {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}}
 - {{<link url="EVPN-Multihoming/#svi-ip-address-configuration" text="EVPN Multihoming without a unique SVI IP address">}}
 - {{<link url="RADIUS-AAA/#nas-ip-address-and-identifier" text="RADIUS NAS IP address and identifier configuration">}}
 - NVUE
@@ -45,6 +45,8 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="NVUE-CLI/#show-specific-configuration" text="NVUE command to show specific configuration on the switch">}} and {{<link url="NVUE-API/#view-specific-configuration" text="NVUE API query parameter to show specific configuration on the switch">}}
   - {{<link url="BMC" text="BMC commands for Spectrum-6 switches">}}
   - {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="NVUE commands to show and clear RADIUS counters">}}
+  - {{<link url="Resource-Diagnostics/#clear-resource-metrics" text="NVUE action command to clear resource metrics for a specific ASIC">}}
+  - {{<link url="Resource-Diagnostics/#monitor-routes-in-cumulus-linux-hardware" text="Updated nv show platform asic <asic-id> resource command output">}}
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Security
   - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference">}}
@@ -53,8 +55,8 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
   - {{<link url="IP-Source-Guard" text="IP Source Guard">}}
 - Telemetry
-  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC, BGP, WJH,">}}
-  - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC, BGP, WJH">}}
+  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC resource, and WJH,">}}
+  - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC resource, and WJH">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
 <!-- - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}-->
 

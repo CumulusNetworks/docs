@@ -56,12 +56,12 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>] /state/used` | | 
-| `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>]/state/free` | |
-`/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>]/state/max-limit` | |
-| `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>] /state/high-watermark` | | 
-| `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>] /state/last-high-watermark` | | 
-
+| `/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>] /state/used` | The number of entries used for an ASIC resource. | 
+| `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>]/state/free` | The number of free entries available for an ASIC resource. |
+`/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>]/state/max-limit` | The maximum limit of possible entries for an ASIC resource. |
+| `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>] /state/high-watermark` | The highest number of entries used for an ASIC resource.| 
+| `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>] /state/last-high-watermark` | The timestamp when the high-watermark was last updated. | 
+<!-->
 {{< /tab >}}
 {{< tab "BGP">}}
 
@@ -69,14 +69,14 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 |------ | ----------- |
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/enabled`| The admin status of the BGP peer (up or down). |
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received-pre-policy`| Number of prefixes received from the peer before applying any policies.<br><br>The pre-policy count requires soft-reconfiguration inbound to be enabled for the peer (`nv set vrf default router bgp neighbor <neighbor-id> address-family <address-family> soft-reconfiguration enabled`).|
-
+-->
 {{< /tab >}}
 {{< tab "WJH">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/wjh/channels/channel[name]/aggregate-events` | |
-| `/wjh/channels/channel[name]/l1-events` | |
+| `/wjh/channels/channel[name]/aggregate-events` | Total number of aggregate events. |
+| `/wjh/channels/channel[name]/l1-events` | Total number of layer 1 channel events.|
 | `/wjh/channels/channel[name]/state` | |
 
 {{< /tab >}}
@@ -128,12 +128,12 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_platform_asic_resource_used` | | 
-| `nvswitch_platform_asic_resource_free` | | 
-| `nvswitch_platform_asic_resource_max_limit` | |
-| `nvswitch_platform_asic_resource_high_watermark` | | 
-| `nvswitch_platform_asic_resource_high_watermark_timestamp` | | 
-
+| `nvswitch_platform_asic_resource_used` | The number of entries used for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_free` | The number of free entries available for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_max_limit` | The maximum limit of possible entries for an ASIC resource.|
+| `nvswitch_platform_asic_resource_high_watermark` | The highest number of entries used for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_high_watermark_timestamp` | The timestamp when the high-watermark was last updated.| 
+<!--
 {{< /tab >}}
 {{< tab "BGP">}}
 
@@ -141,15 +141,15 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 |------ | ----------- |
 | `nvrouting_bgp_peer_enabled` | The admin status of the BGP peer (up or down). |
 | `nvrouting_bgp_peer_rib_adj_in_pre_policy` | Number of prefixes received from the peer before applying any policies.<br><br>The pre-policy count requires soft-reconfiguration inbound to be enabled for the peer (`nv set vrf default router bgp neighbor <neighbor-id> address-family <address-family> soft-reconfiguration enabled`).|
-
+-->
 {{< /tab >}}
 {{< tab "WJH">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_wjh_total_events_channel_forwarding` |  |
-| `nvswitch_wjh_total_events_channel_acl` | |
-| `nvswitch_wjh_total_events_channel_buffer` | |
+| `nvswitch_wjh_total_events_channel_forwarding` | Total number of forwarding channel events. |
+| `nvswitch_wjh_total_events_channel_acl` | Total number of ACL channel events.|
+| `nvswitch_wjh_total_events_channel_buffer` | Total number of buffer channel events. |
 
 {{< /tab >}}
 {{< /tabs >}}

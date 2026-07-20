@@ -189,6 +189,7 @@ nv action cancel system image onie
 nv action change system security sed-password
 nv action clear interface debounce-counters 
 nv action clear interface <interface-id> counters link debounce
+nv action clear platform asic <asic-id> resource
 nv action clear system aaa radius counters
 nv action delete system file-path <path>
 nv action export system wjh packet-buffer <file-name>

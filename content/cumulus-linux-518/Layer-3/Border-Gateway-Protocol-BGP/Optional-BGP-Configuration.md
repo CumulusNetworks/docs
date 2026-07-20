@@ -2303,7 +2303,7 @@ To use graceful fabric maintenance, you **must** first configure {{<link url="/#
 
 {{%notice note%}}
 - All leaf switches in the fabric must be running Cumulus Linux 5.18 or later.
-- Graceful fabric maintenance does not support {{<link url="/#inter-dc-bgp-lldp-unreachability-and-conditional-disaggregation" text="Inter-DC BGP-LLDP unreachability and conditional disaggregation">}}
+- Graceful fabric maintenance does not support {{<link url="/#inter-dc-routing" text="Inter-DC Routing">}}
 {{%/notice%}}
 
 To enable graceful fabric maintenance, run the `nv set maintenance unit system mode enabled` command:
@@ -2316,17 +2316,17 @@ cumulus@leaf01:mgmt:~$ nv config apply
 To disable graceful fabric maintenance and return traffic to the switch after it converges, run the `nv set maintenance unit system mode disabled` command. 
 
 
-## Inter-DC BGP-LLDP Unreachability and Conditional Disaggregation
+## Inter-DC Routing
 
 {{%notice note%}}
-Cumulus Linux supports inter-DC BGP-LLDP unreachability and conditional disaggregation on Spectrum‑X platforms only (Spectrum-4, Spectrum-5, and Spectrum-6).
+Cumulus Linux supports inter-DC routing on Spectrum‑X platforms only (Spectrum-4, Spectrum-5, and Spectrum-6).
 {{%/notice%}}
 
-Inter-DC BGP-LLDP unreachability and conditional disaggregation enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines: 
+Inter-DC routing enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines: 
 - Conditional disaggregation that triggers disaggregated routes at merged planes. 
 - In-plane LLDP exception signaling that informs GPUs of link or plane failures within a plane. 
 
-To configure inter-DC BGP-LLDP unreachability and conditional disaggregation, you must provide a plane ID on each leaf switch. The switch tags unreachable routes with the plane ID. When BGP exports unreachable routes to LLDP, the switch filters out routes that originate from a non-local plane as part of the conditional disaggregation functionality.
+To configure inter-DC routing, you must provide a plane ID on each leaf switch. The switch tags unreachable routes with the plane ID. When BGP exports unreachable routes to LLDP, the switch filters out routes that originate from a non-local plane as part of the conditional disaggregation functionality.
 
 Before you configure the plane ID, you must configure the following BGP features on each leaf switch:
 - {{<link url="/#bgp-pic-anycast" text="Anycast PIC">}} 

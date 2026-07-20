@@ -877,7 +877,7 @@ Link tracking enables you to monitor interfaces automatically and ensure traffic
 ### Configure and Enable Link Tracking
 
 To configure and enable link tracking:
-- Enable link tracking.
+- Set link tracking to `enabled`.
 - Create a link tracking group with the set of links (watch interfaces) that you want to monitor.
   - You can only configure switch port (swp) interfaces that already exist.
   - A group name must be between 1 and 16 characters long. You can use alphanumeric characters, hyphens (-), and underscores (_).
@@ -1014,7 +1014,7 @@ cumulus@switch:~$ sudo systemctl restart ifplugd.service
 
 ### Upgrade Notes
 
-If you installed and configured `ifplugd` manually in Cumulus Linux 5.17 or earlier, Cumulus Linux 5.18 or later preserves the existing `ifplugd` configuration and behavior after optimized image upgrade. The configuration includes manual configuration in `/etc/default/ifplugd` and custom action scripts under `/etc/ifplugd/action.d/`. If the `ifplugd` service is running before upgrade, the service continues to run and actively manage interfaces. No additional action is required while link tracking remains disabled. Link tracking in Cumulus Linux 5.18 or later is disabled by default.
+If you installed and configured {{<link url="ifplugd" text="ifplugd">}} manually in Cumulus Linux 5.17 or earlier, Cumulus Linux 5.18 or later preserves the existing `ifplugd` configuration and behavior after optimized image upgrade. The configuration includes manual configuration in `/etc/default/ifplugd` and custom action scripts under `/etc/ifplugd/action.d/`. If the `ifplugd` service is running before upgrade, the service continues to run and actively manage interfaces. No additional action is required while link tracking remains disabled. Link tracking in Cumulus Linux 5.18 or later is disabled by default.
 
 After you enable and apply link tracking in Cumulus Linux 5.18 or later, feature-managed configuration takes precedence and might overwrite existing *manual* configuration. 
 

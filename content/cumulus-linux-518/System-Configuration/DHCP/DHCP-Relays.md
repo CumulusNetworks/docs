@@ -510,11 +510,34 @@ cumulus@switch:~$ nv config apply
 
 ### Layer 3 VXLAN Device Mode Configuration
 
-For {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}}, use the layer 3 VXLAN interface name as the upstream interface; Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode. 
+When configuring DHCP relay in an EVPN symmetric environment with {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}} configured, use the layer 3 VXLAN interface name as the upstream interface; Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode. 
+
+
+{{< tabs "TabID319 ">}}
+{{< tab "NVUE Command ">}}
 
 ```
 cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF server-group uplink-servers upstream-interface vxi_4002
+cumulus@switch:~$ nv set service dhcp-relay6 UPLINK_VRF server-group uplink-servers upstream-interface vxi_4002
 ```
+
+{{< /tab >}}
+{{< tab "Linux Command ">}}
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-uplink-servers-UPLINK_VRF
+SERVERS="10.1.100.104"
+INTF_CMD=" -i vlan10 -i vlan20 -i vxi_4002" 
+OPTIONS=""
+```
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay6-UPLINK_VRF
+INTF_CMD="-l vlan10 -l vlan20"
+SERVERS="-u 2001:db8:199::2%UPLINK_VRF -u vxi_4002"
+```
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
 

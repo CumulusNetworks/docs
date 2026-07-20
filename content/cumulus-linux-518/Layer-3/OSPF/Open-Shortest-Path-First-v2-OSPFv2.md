@@ -1180,24 +1180,24 @@ cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 --operat
 }
 ```
 
+The following example shows configuration and statistics for OSPF neighbor 10.10.10.101 on interface swp51:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51
+local-ip
+===========
+    LocalIPAddress  AreaID   BDRRouterID  BFDLastUpdate  BFDProfile   BFDStatus  DRRouterID  NeighborIP  Priority  Role     State
+    --------------  -------  -----------  -------------  -----------  ---------  ----------  ----------  --------  -------  -----
+    10.0.1.0        0.0.0.0               0:01:28        bfd_default  up                     10.0.1.1    1         DROther  full
+```
+
 The following example shows configuration and statistics for OSPF neighbor 10.10.10.101 on interface swp51 with the local IP address 10.10.10.1:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 10.0.1.0
-                   operational   applied
------------------  ------------  -------
-bdr-router-id      10.10.10.101         
-dead-timer-expiry  30042                
-dr-router-id       10.10.10.1           
-neighbor-ip        10.0.1.1             
-priority           1                    
-role               BDR                  
-state              full                 
-statistics                              
-  db-summary-qlen  0                    
-  ls-request-qlen  0                    
-  ls-retrans-qlen  0                    
-  state-changes    5    
+LocalIPAddress  AreaID   BDRRouterID  BFDLastUpdate  BFDProfile   BFDStatus  DRRouterID  NeighborIP  Priority  Role     State
+--------------  -------  -----------  -------------  -----------  ---------  ----------  ----------  --------  -------  -----
+10.0.1.0        0.0.0.0               0:04:58        bfd_default  up                     10.0.1.1    1         DROther  full   
 ```
 
 FRR (vtysh) provides several OSPF troubleshooting commands:
@@ -1210,7 +1210,7 @@ FRR (vtysh) provides several OSPF troubleshooting commands:
 | `show ip ospf interface` | Shows OSPF interfaces. |
 | `show ip ospf` | Shows information about the OSPF process. |
 
-The following example shows OSPF neighbor information:
+The following examples show OSPF neighbor information:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -1218,6 +1218,44 @@ cumulus@leaf01:mgmt:~$ sudo vtysh
 leaf01# show ip ospf neighbor
 Neighbor ID     Pri State           Dead Time Address         Interface                        RXmtL RqstL DBsmL
 10.10.10.101      1 Full/Backup       30.307s 10.0.1.1        swp51:10.0.1.0                       0     0     0
+```
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# show ip ospf vrf default neighbor 10.10.10.101 detail json
+{
+  "10.10.10.101":[
+    {
+      "ifaceAddress":"10.0.1.0",
+      "areaId":"0.0.0.0",
+      "ifaceName":"swp51",
+      "localIfaceAddress":"10.0.1.2",
+      "nbrPriority":1,
+      "nbrState":"Full/-",
+      "role":"DROther",
+      "stateChangeCounter":5,
+      "lastPrgrsvChangeMsec":618833,
+      "optionsCounter":2,
+      "optionsList":"*|-|-|-|-|-|E|-",
+      "routerDeadIntervalTimerDueMsec":36597,
+      "databaseSummaryListCounter":0,
+      "linkStateRequestListCounter":0,
+      "linkStateRetransmissionListCounter":0,
+      "threadInactivityTimer":"on",
+      "threadLinkStateRequestRetransmission":"on",
+      "threadLinkStateUpdateRetransmission":"on",
+      "grHelperStatus":"None",
+      "peerBfdInfo":{
+        "type":"single hop",
+        "profile":"bfd_default",
+        "status":"Up",
+        "lastUpdate":"0:00:06:45",
+        "bfdLastUpdateEpoch":1782729620
+      }
+    }
+  ]
+}
 ```
 
 The following example shows if Cumulus Linux does not forward an OSPF route properly:

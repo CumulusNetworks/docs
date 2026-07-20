@@ -30,7 +30,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}}
 - {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="BGP graceful fabric maintenance">}} 
-- {{<link url="Optional-BGP-Configuration/#inter-dc-bgp-lldp-unreachability-and-conditional-disaggregation" text="Inter-DC BGP-LLDP unreachability and conditional disaggregation">}}
+- {{<link url="Optional-BGP-Configuration/#inter-dc-routing" text="Inter-DC Routing">}}
 - {{<link url="Inter-subnet-Routing/#layer-3-vxlan-interfaces" text="Layer 3 VXLAN interfaces">}}
 - {{<link url="EVPN-Multihoming/#svi-ip-address-configuration" text="EVPN Multihoming without a unique SVI IP address">}}
 - {{<link url="RADIUS-AAA/#nas-ip-address-and-identifier" text="RADIUS NAS IP address and identifier configuration">}}

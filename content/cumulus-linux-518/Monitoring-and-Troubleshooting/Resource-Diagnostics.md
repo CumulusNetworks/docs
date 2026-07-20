@@ -7,6 +7,8 @@ toc: 3
 
 Cumulus Linux synchronizes routes between the kernel and the switching silicon. If the required resource pools in hardware fill up, new kernel routes can cause existing routes to move from being fully allocated to being partially allocated. To avoid this issue, monitor the routes in the hardware to keep them below the ASIC limits.
 
+## Monitor Routes in Cumulus Linux Hardware 
+
 You can retrieve information about host entries, MAC entries, layer 2 and layer 3 routes, and {{<link url="Equal-Cost-Multipath-Load-Sharing" text="ECMP">}} routes that are in use.
 
 To monitor the routes in Cumulus Linux hardware, you can use NVUE commands or the Linux `cl-resource-query` command.
@@ -225,6 +227,8 @@ Dynamic Config DNAT entries:            0,   0% of maximum value     64
 {{< /tabs >}}
 
 Ingress ACL and Egress ACL entries show the counts in single wide (*not* double-wide). For information about ACL entries, see {{<link url="Access-Control-List-Configuration#estimate-the-number-of-rules" text="Estimate the Number of ACL Rules">}}.
+
+## Clear Resource Metrics
 
 To clear the high watermark related metrics for a specific ASIC, run the `nv action clear platform asic <asic-id> resource` command:
 

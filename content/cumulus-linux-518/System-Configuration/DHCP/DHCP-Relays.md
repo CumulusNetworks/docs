@@ -388,12 +388,6 @@ cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF server-group uplink-serve
 cumulus@switch:~$ nv config apply
 ```
 
-For {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}}, use the layer 3 VXLAN interface name as the upstream interface; Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode. 
-
-```
-cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF server-group uplink-servers upstream-interface vxi_4002
-```
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -442,12 +436,6 @@ cumulus@switch:~$ nv set service dhcp-relay6 UPLINK_VRF interface upstream UPLIN
 cumulus@switch:~$ nv set service dhcp-relay6 UPLINK_VRF interface upstream vlan4024_l3
 cumulus@switch:~$ nv set vrf UPLINK_VRF router bgp address-family ipv6-unicast route-export to-evpn state enabled
 cumulus@switch:~$ nv config apply
-```
-
-For {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}}, use the layer 3 VXLAN interface name as the upstream interface; Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode. 
-
-```
-cumulus@switch:~$ nv set service dhcp-relay6 UPLINK_VRF interface upstream vxi_4002
 ```
 
 {{< /tab >}}
@@ -519,6 +507,14 @@ cumulus@switch:~$ nv set service dhcp-relay6 UPLINK_VRF interface upstream vxi_4
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Layer 3 VXLAN Device Mode Configuration
+
+For {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}}, use the layer 3 VXLAN interface name as the upstream interface; Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode. 
+
+```
+cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF server-group uplink-servers upstream-interface vxi_4002
+```
 
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
 

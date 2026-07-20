@@ -208,7 +208,7 @@ cumulus@leaf01:~$ nv set evpn l3vxi state enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
-NVUE removes all single VXLAN devices and creates layer 3 single VXLAN device for each layer 3 VNI using the naming format `vxi_<vni_id>`.
+NVUE removes all single VXLAN devices and creates a layer 3 single VXLAN device for each layer 3 VNI using the naming format `vxi_<vni_id>`.
 
 The following dropdowns show the different configurations as a comparison.
 
@@ -321,7 +321,7 @@ iface br_default
 ```
 {{< /expand >}}
 
-To disable layer 3 VXLAN devices, disable EVPN, VXLAN, and layer 3 VXLAN devices at the same time:
+To disable layer 3 VXLAN devices, disable EVPN, VXLAN, and layer 3 VXLAN device mode at the same time:
 
 ```
 cumulus@leaf01:~$ nv set evpn l3vxi state disabled 

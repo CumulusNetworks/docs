@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5161741</td>
+<td>The gNMI {{/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state}} metric intermittently returns no data.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5159352</td>
 <td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>
@@ -1715,17 +1721,17 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5008545, 5108365</td>
 <td>After upgrading Cumulus Linux, NVUE becomes unresponsive and the collector stops receiving gNMI telemetry data.</td>
-<td></td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>5003807</td>
 <td>Sometimes, gNMI does not export SRv6 and Packet Trimming AI ethernet statistics metrics.</td>
-<td></td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4999234</td>
 <td>The AI Ethernet statistics metrics collection sometimes times out and does not return any data.</td>
-<td></td>
+<td>5.16.1</td>
 </tr>
 <tr>
 <td>4992435</td>
@@ -1736,7 +1742,7 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <tr>
 <td>4992289</td>
 <td>After optimized image upgrade, the SSH service fails and NVUE shows an error {{Failed to translate the startup configuration, will continue with the original startup}}.</td>
-<td>5.17.0</td>
+<td>5.16.1, 5.17.0</td>
 </tr>
 <tr>
 <td>4989440</td>
@@ -2078,11 +2084,35 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>5008545, 5108365</td>
+<td>After upgrading Cumulus Linux, NVUE becomes unresponsive and the collector stops receiving gNMI telemetry data.</td>
+<td>5.16.1</td>
+<td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>5003807</td>
+<td>Sometimes, gNMI does not export SRv6 and Packet Trimming AI ethernet statistics metrics.</td>
+<td>5.16.1</td>
+<td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>4999234</td>
+<td>The AI Ethernet statistics metrics collection sometimes times out and does not return any data.</td>
+<td>5.16.1</td>
+<td>5.16.5-5.17.0</td>
+</tr>
+<tr>
 <td>4992435</td>
 <td>A rare timing scenario results in the following error log in {{switchd}}:
 ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
 <td>5.16.0-5.16.1</td>
 <td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>4992289</td>
+<td>After optimized image upgrade, the SSH service fails and NVUE shows an error {{Failed to translate the startup configuration, will continue with the original startup}}.</td>
+<td>5.16.1, 5.17.0</td>
+<td>5.16.5</td>
 </tr>
 <tr>
 <td>4992204</td>

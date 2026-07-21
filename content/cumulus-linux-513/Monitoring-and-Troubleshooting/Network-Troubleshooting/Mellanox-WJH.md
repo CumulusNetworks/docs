@@ -193,14 +193,7 @@ Layer 1 drop metrics describe why a port is in the down state.
 
 | Reason | Description|
 | --- | --- |
-| Auto-negotiation failure | Port speed negotiation with the peer failed. |
-| Logical mismatch with peer link | Logical mismatch with the peer link. |
 | Link training failure | The link is not able to go operational up due to link training failure. |
-| Peer is sending remote faults | The peer node is not operating correctly. |
-| Bad signal integrity | The integrity of the signal on the port is not sufficient for good communication. |
-| Cable/transceiver is not supported | The port does not support the attached cable or transceiver.|
-| Cable/transceiver is unplugged | A cable or transceiver is missing or not fully inserted into the port. |
-| Calibration failure | Calibration failure. |
 | Port state changes counter | The cumulative number of state changes. |
 | Symbol error counter | The cumulative number of symbol errors. |
 | CRC error counter | The cumulative number of CRC errors. |
@@ -264,7 +257,6 @@ Router drop metrics describe why the server is unable to route a packet.
 | IPv6 destination in multicast scope FFx0:/16 | Notice | The packet was received with a multicast destination address in FFx0:/16 address range. |
 | IPv6 destination in multicast scope FFx1:/16 | Notice | The packet was received with a multicast destination address in FFx1:/16 address range. |
 | Non-IP packet | Notice | Cannot read the packet header because it is not an IP packet. |
-| Unicast destination IP but non-unicast destination MAC | Error | Cannot read the packet with the IP unicast address when the destination MAC address is not unicast (FF:FF:FF:FF:FF:FF). |
 | Destination IP is loopback address | Error | Cannot read the packet because the destination IP address is a loopback address (dip=>127.0.0.0/8). |
 | Source IP is multicast | Error | Cannot read the packet because the source IP address is a multicast address (ipv4 SIP => 224.0.0.0/4). |
 | Source IP is in class E | Error | Cannot read the packet because the source IP address is a Class E address. |

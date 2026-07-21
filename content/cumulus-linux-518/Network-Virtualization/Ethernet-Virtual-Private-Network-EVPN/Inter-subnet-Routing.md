@@ -321,7 +321,7 @@ iface br_default
 ```
 {{< /expand >}}
 
-To disable layer 3 VXLAN devices, disable EVPN, VXLAN, and layer 3 VXLAN device mode at the same time:
+To disable layer 3 VXLAN device mode, disable EVPN, VXLAN, and layer 3 VXLAN device mode at the same time:
 
 ```
 cumulus@leaf01:~$ nv set evpn l3vxi state disabled 

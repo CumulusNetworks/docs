@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5161741 | The gNMI <code>/network-instances/network-instance&#91;name&#93;/protocols/protocol&#91;identifier&#93;&#91;name&#93;/bgp/neighbors/neighbor&#91;neighbor-address&#93;/state/session-state</code> metric intermittently returns no data. | 5.16.5-5.17.0 | |
 | 5159352 | The <code>nv show platform firmware</code> command output shows an incorrect CPLD firmware version. | 5.16.1, 5.16.5-5.17.0 | |
 | 5157264 | When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI. | 5.16.0-5.16.1, 5.16.5-5.17.0 | |
 | 5154784 | On Spectrum-4 switches, generating an MST dump diagnostic file might trigger a CR space timeout that causes an SDK/FW fatal error and restarts <code>switchd</code> immediately after the <code>mstdump</code> completes. | 5.16.1, 5.16.5-5.17.0 | |
@@ -52,7 +53,7 @@ pdfhidden: True
 | 5024254 | When you apply an incorrect VLAN configuration to peer link bond member ports on the secondary MLAG switch, the MLAG peer link goes down and peer link member ports on both the primary and secondary MLAG switch go into a protodown state. The switch does not recover after NVUE rolls back the misconfiguration. To work around this issue (to restore the peer link and clear the protodown state</code>), run the <code>ifreload -a</code> command or reboot the switch. | 5.16.1, 5.16.5-5.17.0 | |
 | 4996657 | On the Spectrum-3 switch, you might see changes in the lossy headroom extra threshold as a negative value. | 5.17.0 | |
 | 4993970 |  Under certain conditions, AAA authentication restriction lockout attempts might not lock TACACS users out for failed REST API logins. | 5.17.0 | |
-| 4992289 | After optimized image upgrade, the SSH service fails and NVUE shows an error <code>Failed to translate the startup configuration, will continue with the original startup</code>. | 5.17.0 | 5.16.5|
+| 4992289 | After optimized image upgrade, the SSH service fails and NVUE shows an error <code>Failed to translate the startup configuration, will continue with the original startup</code>. | 5.16.1, 5.17.0 | 5.16.5|
 | 4990537 | After you run the <code>nv action clear system link flap-protection violation</code> command, the clear status does not show for each interface. This is a display issue and does not impact functionality. | 5.17.0 | |
 | 4988127 |  Under certain conditions, AAA authentication restriction lockout attempts might not lock TACACS users out for failed REST API logins. | 5.17.0 | |
 | 4986343 | PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered. | 5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0 | |

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5161741</td>
+<td>The gNMI {{/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state}} metric intermittently returns no data.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5159352</td>
 <td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>
@@ -254,7 +260,7 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <tr>
 <td>4992289</td>
 <td>After optimized image upgrade, the SSH service fails and NVUE shows an error {{Failed to translate the startup configuration, will continue with the original startup}}.</td>
-<td>5.17.0</td>
+<td>5.16.1, 5.17.0</td>
 <td>5.16.5</td>
 </tr>
 <tr>

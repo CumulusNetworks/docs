@@ -14,8 +14,6 @@ Cumulus Linux 5.18.0 supports new platforms, contains new features and improveme
 
 ## Platforms
 - NVIDIA SN6600_LD (800G Spectrum-6)
-- NVIDIA SN5800-LD (800G Spectrum-6 Multi-ASIC) Beta
-- NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC) Beta
 
 {{%notice note%}}
 Port speed 800Gx8 is not supported on the Spectrum-6 switch.

@@ -7,9 +7,45 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5161741</td>
+<td>The gNMI {{/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state}} metric intermittently returns no data.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5159352</td>
+<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5157264</td>
 <td>When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5154784</td>
+<td>On Spectrum-4 switches, generating an MST dump diagnostic file might trigger a CR space timeout that causes an SDK/FW fatal error and restarts {{switchd}} immediately after the {{mstdump}} completes.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5154662</td>
+<td>When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under {{/etc/apt/sources.list.d/*}}, the {{nv config apply}} command fails because NVUE incorrectly blocks adding snippet files under {{/etc/apt/sources.list.d/*}}. </td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5154576</td>
+<td>On systems with frequent ACL updates, {{switchd}} might fail to release internal SDK resources used for bulk counter notifications during ACL installation. After a long uptime, this issue might exhaust available resources and cause some gNMI metrics to stop updating. To work around this issue, restart {{switchd}}.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5145985</td>
+<td>The default route 0.0.0.0/0 learned as EVPN type-5 is not installed in zebra as it is getting created with the incorrect family.</td>
+<td>5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -37,9 +73,27 @@
 <td></td>
 </tr>
 <tr>
+<td>5145970</td>
+<td>After a power event, many links on the switch do not directly lose power but show bad EEPROM errors and you need to reset the links manually.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5145963</td>
 <td>The {{Date-Time}} column in the {{nv show interface &lt;interface&gt; telemetry histogram ... snapshot}} output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5145960</td>
+<td>After a switch reboot, the management VRF static route might be unprogrammed in the kernel despite being present in the configuration. This issue is due to a timing issue. To recover from this issue, remove, then re-add the route or restart FRR.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5145959</td>
+<td>During a switch reboot with SRv6 enabled, there is an ordering race that occasionally results in the {{nginx-authenticator.service}} only listening on the IPv6 loopback IP address. As result, the gNMI server Envoy instance, which uses the {{nginx-authenticator.service}} to validate the username and password in requests from the gNMI client fails to connect and you see the error {{rpc error: code = Unavailable desc = Authentication service unavailable}}.</td>
+<td>5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1649,6 +1703,91 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>During warm boot on adaptive routing enabled interfaces, you see momentary traffic disruption.</td>
 <td>5.16.1</td>
 </tr>
+<tr>
+<td>5032242</td>
+<td> On Spectrum-1 switches, where the allocated MAC range crosses the hardware MAC profile boundary, the range check incorrectly identifies out-of-range MAC addresses as compatible. This causes the switch to program a router interface with a MAC address that the hardware cannot accept, resulting in interface creation failures with a {{No More Resources}} error.</td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>5030199</td>
+<td>The {{/var/log/event_logger}} file does not rotate when the file size exceeds 1MB, which might unexpectedly fill the {{/var}} partition. To work around this issue, remove the rsyslog configuration file {{/etc/rsyslog.d/12-event-logger.conf}} for event-logger and restart the rsyslog daemon with the {{systemctl restart rsyslog}} command to restore the default configuration.</td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>5027908</td>
+<td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>5008545, 5108365</td>
+<td>After upgrading Cumulus Linux, NVUE becomes unresponsive and the collector stops receiving gNMI telemetry data.</td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>5003807</td>
+<td>Sometimes, gNMI does not export SRv6 and Packet Trimming AI ethernet statistics metrics.</td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>4999234</td>
+<td>The AI Ethernet statistics metrics collection sometimes times out and does not return any data.</td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>4992435</td>
+<td>A rare timing scenario results in the following error log in {{switchd}}:
+ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4992289</td>
+<td>After optimized image upgrade, the SSH service fails and NVUE shows an error {{Failed to translate the startup configuration, will continue with the original startup}}.</td>
+<td>5.16.1, 5.17.0</td>
+</tr>
+<tr>
+<td>4989440</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4989438</td>
+<td>With high port scale, you might encounter a cl-support timeout.</td>
+<td></td>
+</tr>
+<tr>
+<td>4989435</td>
+<td>During warm and fast reboots, NVUE intentionally skips a comprehensive Git cleanup to adhere to strict service start-up SLAs. When this cleanup is bypassed, existing Git maintenance debt, such as unreachable loose objects or blocked Garbage Collection (GC) states, remain in place and accumulate across successive reboots. The lightweight housekeeping performed during a standard {{nv config apply}} is not equivalent to a full cleanup. Consequently, stale objects and blocked GC states can persist until the repository becomes unreadable, eventually causing git commit operations to fail with the error {{fatal: could not parse HEAD}}.To work around this issue, run {{sudo systemctl restart nvued.service}} manually after a warm or fast reboot to trigger the full cleanup path.</td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>4989434, 5032819</td>
+<td>If the nginx {{nvue.conf}} file is updated (for example, with package update) and the NVUE git database is corrupt, the startup configuration might fail and the {{nvue.conf}} file might come from the debian package instead of the NVUE configuration that you create. To work around this issue, you can force the nginx {{nvue.conf}} file to update by making a basic change to system API, applying the change, then backing it out; for example:
+nv set system api compression gzip
+nv config apply -y
+nv unset system api compression gzip
+nv config apply -y</td>
+<td>5.16.1</td>
+</tr>
+<tr>
+<td>4989428</td>
+<td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage and potentially leading to a gNMI server restart.</td>
+<td>5.15.1, 5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4989427, 4989413</td>
+<td>GNMI subscriptions might not return interface counter metrics when there is an active, low-rate (1 second) subscription to transceiver data.</td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4989426</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU.</td>
+<td>5.16.0-5.16.1</td>
+</tr>
+<tr>
+<td>4989425</td>
+<td>Upgrading Cumulus Linux to 5.16.x causes a long boot delay and the {{nvued}} service remains in an activating state. To work around this issue, run {{nvue-git-manual-recovery.sh}} as a root user during maintenance on each node before upgrade, or on any node that has this issue. When successful, upgrade Cumulus Linux. If the script exits non-zero or reports time exceeded, follow the on-screen steps before continuing the upgrade. </td>
+<td>5.16.1</td>
+</tr>
 </table>
 <table name="Open Issues in 5.16.1">
 <tr>
@@ -1658,9 +1797,27 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5159352</td>
+<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5157264</td>
 <td>When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5154784</td>
+<td>On Spectrum-4 switches, generating an MST dump diagnostic file might trigger a CR space timeout that causes an SDK/FW fatal error and restarts {{switchd}} immediately after the {{mstdump}} completes.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5154662</td>
+<td>When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under {{/etc/apt/sources.list.d/*}}, the {{nv config apply}} command fails because NVUE incorrectly blocks adding snippet files under {{/etc/apt/sources.list.d/*}}. </td>
+<td>5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1676,8 +1833,20 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5145970</td>
+<td>After a power event, many links on the switch do not directly lose power but show bad EEPROM errors and you need to reset the links manually.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5145963</td>
 <td>The {{Date-Time}} column in the {{nv show interface &lt;interface&gt; telemetry histogram ... snapshot}} output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5145960</td>
+<td>After a switch reboot, the management VRF static route might be unprogrammed in the kernel despite being present in the configuration. This issue is due to a timing issue. To recover from this issue, remove, then re-add the route or restart FRR.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
@@ -1915,11 +2084,35 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>5008545, 5108365</td>
+<td>After upgrading Cumulus Linux, NVUE becomes unresponsive and the collector stops receiving gNMI telemetry data.</td>
+<td>5.16.1</td>
+<td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>5003807</td>
+<td>Sometimes, gNMI does not export SRv6 and Packet Trimming AI ethernet statistics metrics.</td>
+<td>5.16.1</td>
+<td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>4999234</td>
+<td>The AI Ethernet statistics metrics collection sometimes times out and does not return any data.</td>
+<td>5.16.1</td>
+<td>5.16.5-5.17.0</td>
+</tr>
+<tr>
 <td>4992435</td>
 <td>A rare timing scenario results in the following error log in {{switchd}}:
 ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Zero</td>
 <td>5.16.0-5.16.1</td>
 <td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>4992289</td>
+<td>After optimized image upgrade, the SSH service fails and NVUE shows an error {{Failed to translate the startup configuration, will continue with the original startup}}.</td>
+<td>5.16.1, 5.17.0</td>
+<td>5.16.5</td>
 </tr>
 <tr>
 <td>4992204</td>

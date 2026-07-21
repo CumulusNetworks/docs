@@ -77,34 +77,10 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 |------ | ----------- |
 | `/wjh/channels/channel[name]/aggregate-events` | Total number of aggregate events. |
 | `/wjh/channels/channel[name]/l1-events` | Total number of layer 1 channel events.|
-| `/wjh/channels/channel[name]/state` | |
-
-{{< /tab >}}
-{{< tab "">}}
-
-|  Name | Description |
-|------ | ----------- |
-
-
-{{< /tab >}}
-{{< tab "">}}
-
-|  Name | Description |
-|------ | ----------- |
-
+| `/wjh/channels/channel[name]/state` | If the channel is enabled.|
 
 {{< /tab >}}
 {{< /tabs >}}
-
-## Deprecated gNMI Metrics
-
-|  Name | Description |
-|------ | ----------- |
-| `interfaces/interface[name]/wjh/aggregate/l1` | |
-| `interfaces/interface[name]/wjh/aggregate/l2/` | |
-| `/interfaces/interface[name]/wjh/aggregate/router` | |
-| `/interfaces/interface[name]/wjh/aggregate/tunnel` | |
-| `/interfaces/interface[name]/wjh/aggregate/buffer` | |
 
 For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Streaming">}}.
 

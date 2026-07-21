@@ -293,7 +293,8 @@ Tunnel drop metrics describe why a tunnel is down.
 | Overlay switch - source MAC is multicast | Error | The source MAC address of the overlay packet is multicast. |
 | Overlay switch - source MAC equals destination MAC | Error | The source MAC address of the overlay packet is the same as the destination MAC address. Supported on Spectrum-4 and later.|
 | Decapsulation error | Error | Decapsulation produced an incorrect format for the packet. For example, encapsulation of a packet with many VLANs or IP options on the underlay can cause decapsulation to result in a short packet. |
-| Tunnel interface is disabled | Error | The packet cannot decapsulate because the tunnel interface is disabled. |
+| Source MAC equals Zero | Error |  The source MAC address equals 0.  |
+| Encapsulation port isolation | Error | Encapsulation port isolation. |
 
 ### Buffer Drops
 

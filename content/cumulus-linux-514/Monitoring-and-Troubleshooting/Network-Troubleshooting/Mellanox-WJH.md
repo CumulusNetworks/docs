@@ -281,9 +281,10 @@ Tunnel drop metrics describe why a tunnel is down.
 | Reason | Severity | Description |
 | --- | --- | --- |
 | Overlay switch - source MAC is multicast | Error | The source MAC address of the overlay packet is multicast. |
-| Overlay switch - source MAC equals destination MAC | Error | The source MAC address of the overlay packet is the same as the destination MAC address. |
+| Overlay switch - source MAC equals destination MAC | Error | The source MAC address of the overlay packet is the same as the destination MAC address. Supported on Spectrum-4 and later.|
 | Decapsulation error | Error | Decapsulation produced an incorrect format for the packet. For example, encapsulation of a packet with many VLANs or IP options on the underlay can cause decapsulation to result in a short packet. |
-| Tunnel interface is disabled | Error | The packet cannot decapsulate because the tunnel interface is disabled. |
+| Source MAC equals Zero | Error |  The source MAC address equals 0.  |
+| Encapsulation port isolation | Error | Encapsulation port isolation. |
 
 ### Buffer Drops
 
@@ -293,8 +294,6 @@ Buffer drop metrics describe why the server buffer has dropped packets.
 | --- | --- | --- |
 | Tail drop | Warning | Tail drop is enabled and the buffer queue is filled to maximum capacity. |
 | WRED | Warning | Weighted Random Early Detection is enabled and the buffer queue is filled to maximum capacity or the RED engine dropped the packet as a random congestion prevention. |
-| Port TC Congestion Threshold Crossed | Warning | The percentage of the occupancy buffer exceeded or dropped below the specified high or low threshold. |
-| Packet Latency Threshold Crossed | Warning | The time a packet spent within the switch exceeded or dropped below the specified high or low threshold. |
 
 ### ACL Drops
 

@@ -8,16 +8,18 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 - For a list of open and fixed issues in Cumulus Linux 5.18, see the {{<link title="Cumulus Linux 5.18 Release Notes" text="Cumulus Linux 5.18 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.18, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
-## What's New in Cumulus Linux 5.18
+## What's New in Cumulus Linux 5.18.0
 
-Cumulus Linux 5.18 supports new platforms, contains new features and improvements, and provides bug fixes.
+Cumulus Linux 5.18.0 supports new platforms, contains new features and improvements, and provides bug fixes.
 
 ## Platforms
 - NVIDIA SN6600_LD (800G Spectrum-6)
-- NVIDIA SN5800-LD (400G Spectrum-5 Multi-ASIC)
-- NVIDIA SN5810-LD (400G Spectrum-5 Single ASIC)
 - NVIDIA SN5800-LD (800G Spectrum-6 Multi-ASIC) Beta
 - NVIDIA SN5810-LD (800G Spectrum-6 Single ASIC) Beta
+
+{{%notice note%}}
+Port speed 800Gx8 is not supported on the Spectrum-6 switch.
+{{%/notice%}}
 
 ### New Features and Enhancements
 - Kernel update to Debian 6.1.174
@@ -41,7 +43,7 @@ Cumulus Linux 5.18 supports new platforms, contains new features and improvement
   - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}
   - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="nv show interface --ber command to show PHY health statistics for all interfaces ">}}
-  - {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show transceiver information for all interfaces">}}
+  - {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show transceiver information for all interfaces">}}(Beta)
   - {{<link url="NVUE-CLI/#show-specific-configuration" text="NVUE command to show specific configuration on the switch">}} and {{<link url="NVUE-API/#view-specific-configuration" text="NVUE API query parameter to show specific configuration on the switch">}}
   - {{<link url="BMC" text="BMC commands for Spectrum-6 switches">}}
   - {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="NVUE commands to show and clear RADIUS counters">}}

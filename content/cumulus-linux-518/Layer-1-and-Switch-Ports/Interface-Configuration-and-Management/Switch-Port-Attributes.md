@@ -2176,6 +2176,10 @@ Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 
 To show a tabular summary of transceiver temperature, voltage, and per-channel optical power and bias values for all switch port interfaces, run the `nv show interface --view dom` command: 
 
+{{%notice note%}}
+The `nv show interface --view dom` command is currently in Beta.
+{{%/notice%}}
+
 ```
 cumulus@switch:~$ nv show interface --view dom
 swp1s0  temperature 65.98 C       voltage 3.2097 V 

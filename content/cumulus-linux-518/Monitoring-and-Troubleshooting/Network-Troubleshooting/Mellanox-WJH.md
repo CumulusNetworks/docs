@@ -6,7 +6,7 @@ toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools such as {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq" text="NVIDIA NetQ" >}}.
-- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, tunnel, buffer and ACL related issues. Cumulus Linux enables and runs the WJH service by default.
+- The WJH service enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, tunnel, buffer and ACL related issues. Cumulus Linux enables and runs the WJH service by default.
 
 {{%notice note%}}
 WJH runs in Docker. If you exhaust the Docker ten percent global limit of overall resources, then start WJH, you might see issues when using WJH. Make sure to free up Docker resources, then launch WJH again.
@@ -19,9 +19,6 @@ You can choose which packet drops you want to monitor by creating channels and s
 {{%notice note%}}
 A channel name must be between 4 and 16 characters long.
 {{%/notice%}}
-
-{{< tabs "TabID24 ">}}
-{{< tab "NVUE Commands ">}}
 
 The following example configures two separate channels:
 - The `forwarding` channel monitors layer 2, layer 3, and tunnel packet drops.
@@ -57,9 +54,7 @@ cumulus@switch:~$ nv unset system wjh channel layer-1
 cumulus@switch:~$ nv config apply
 ```
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
+<!-- NO LONGER SUPPORTED IN 5.18
 Edit the `/etc/what-just-happened/what-just-happened.json` file:
 - For each drop category you want to monitor, include the drop category value inside the square brackets ([]). 
 - For each drop category you do **not** want to monitor, remove the drop category value from inside the square brackets.
@@ -115,9 +110,7 @@ cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
 ```
 cumulus@switch:~$ sudo systemctl restart what-just-happened
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 ### Filter Traffic Drops
 
@@ -280,9 +273,9 @@ You can run the following `nv-wjh-cli poll` commands from the command line:
 
 `nv-wjh-cli poll --data drops –output-type pcap --channels <channel-name>,<channel-name> --no-metadata` 
 
-- `--data` is either `drops` or `aggregates`. `drops` shows information about dropped packets aggregated by the reason for the drop. This command also shows the number of times the dropped packet occurs. `aggregates` shows information for the channels you specify.
+- `--data` is either `drops`, `aggregates`, or `l1`. `drops` shows individual drops for each packet. `aggregates` shows aggregated drops. `l1` shows layer 1 port-state aggregates (only valid for channels with layer 1 in their trigger list).
 - `--output-type` is either `table`, `json`, or `pcap` (for data drops). 
-- `--channels` is a comma-separated list of the channels to exclude. If you do not provide the `--channels` option, all configured channels are included. 
+- `--channels` is a comma-separated list of the channels to show. If you do not provide the `--channels` option, the command shows all configured channels. 
 - `--no-metadata` writes PCAP output without embedded metadata. This option is only valid with `--data drops` and `--output-type=pcap`. 
 
 The following example shows that packets drop five times because the source MAC address equals the destination MAC address:
@@ -299,7 +292,7 @@ cumulus@switch:~$ nv-wjh-cli poll --data drops --output-type pcap --channels --n
 
 ```
 
-The `nv-wjh-cli dump` command shows all diagnostic information on the command line.
+The `nv-wjh-cli dump` command shows diagnostic information. The output includes channel configuration, snapshots for each channel, and memory statistics. The command saves the output to the `/var/log/nv-wjh/diags-dump/<timestamp>` file.
 
 {{< /tab >}}
 {{< /tabs >}}

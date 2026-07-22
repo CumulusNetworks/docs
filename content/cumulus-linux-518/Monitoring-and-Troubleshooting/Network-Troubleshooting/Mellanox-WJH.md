@@ -136,10 +136,10 @@ To filter traffic drops with a specific IP address, run the `nv set system wjh c
 - The `<type>` is `acl`, `buffer`, `l2`, `l3`, or `tunnel`.
 - The `<reason>` can be any reason listed in the table above.
 
-The following example creates a filter called LAYER1 that prevents ACL traffic drops from being monitored due to an ingress port ACL:
+The following example creates a filter called ACL1 that prevents ACL traffic drops from being monitored due to an ingress port ACL:
 
 ```
-cumulus@switch:~$ nv set system wjh channel forwarding drop-filter LAYER1 drop-type acl drop-reason ingress-port-acl 
+cumulus@switch:~$ nv set system wjh channel ACL1 drop-filter ACL drop-type acl drop-reason ingress-port-acl 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -283,7 +283,7 @@ The following example shows aggregated drops:
 cumulus@switch:~$ nv-wjh-cli poll --data aggregates
 ```
 
-The following command saves dropped buffer and layer 1 packets to a file in PCAP format without metadata:
+The following command saves dropped packets in channels buffer and layer-1 to a file in PCAP format without metadata:
 
 ```
 cumulus@switch:~$ nv-wjh-cli poll --data drops --output-type pcap --channels buffer,layer-1 --no-metadata

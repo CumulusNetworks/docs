@@ -9,7 +9,7 @@
 <tr>
 <td>5161741</td>
 <td>The gNMI {{/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state}} metric intermittently returns no data.</td>
-<td>5.16.5-5.17.0</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -39,19 +39,19 @@
 <tr>
 <td>5154576</td>
 <td>On systems with frequent ACL updates, {{switchd}} might fail to release internal SDK resources used for bulk counter notifications during ACL installation. After a long uptime, this issue might exhaust available resources and cause some gNMI metrics to stop updating. To work around this issue, restart {{switchd}}.</td>
-<td>5.16.5-5.17.0</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
 <td>5145985</td>
 <td>The default route 0.0.0.0/0 learned as EVPN type-5 is not installed in zebra as it is getting created with the incorrect family.</td>
-<td>5.16.5-5.17.0</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
 <td>5145975</td>
 <td>Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore.</td>
-<td>5.16.5-5.17.0</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -75,7 +75,7 @@
 <tr>
 <td>5145959</td>
 <td>During a switch reboot with SRv6 enabled, there is an ordering race that occasionally results in the {{nginx-authenticator.service}} only listening on the IPv6 loopback IP address. As result, the gNMI server Envoy instance, which uses the {{nginx-authenticator.service}} to validate the username and password in requests from the gNMI client fails to connect and you see the error {{rpc error: code = Unavailable desc = Authentication service unavailable}}.</td>
-<td>5.16.5-5.17.0</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>

@@ -278,7 +278,7 @@ You can run the `nv-wjh-cli poll` command from the command line with the followi
  
 | Command Option | Description |
 | -------------- | ----------- |
-| `--data`  | You can specify `drops`,`aggregates`, or `l1`. `drops` shows individual drops for each packet. `aggregates` shows aggregated drops. `l1` shows layer 1 port-state aggregates (only valid for channels with layer 1 in their trigger list).|
+| `--data`  | You can specify `drops`, `aggregates`, or `l1`.<br>`drops` shows individual drops for each packet.<br>`aggregates` shows aggregated drops.<br>`l1` shows layer 1 port-state aggregates (only valid for channels with layer 1 in their trigger list).|
 | `--output-type` | You can specify `table`, `json`, or `pcap`. `pcap` is only for data drops (`--data drops`).|
 | `--no-metadata` | Writes PCAP output without embedded metadata. This option is only valid with `--data drops` and `--output-type pcap`. |
 | `--channels <channel-name>,<channel-name>` | A comma-separated list of the channels to show. If you do not provide the `--channels` option, the command shows all configured channels. |

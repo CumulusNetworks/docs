@@ -121,24 +121,55 @@ cumulus@switch:~$ sudo systemctl restart what-just-happened
 
 ### Filter Traffic Drops
 
-You can filter traffic drops to prevent them from being monitored based on the reason for the drop (such as an unplugged cable or transceiver, decapsulation error or multicast MAC mismatch), severity level (notice, warning, or error), or source and destination IP address.
+You can filter traffic drops to prevent them from being monitored based on the reason for the drop, the severity level (error, warning, or notice), or IP address.
 
-The following example filters drops to prevent WJH from monitoring layer 1 packet drops due to unplugged cables or transceivers, layer 2 packet drops with severity level notice, and dropped packets with the IP address 10.10.10.10.
+The following table shows the drop reasons on which you can filter:
+
+| Traffic Drop Type | Drop Reasons |
+| ----------------- | ------------ |
+| ACL |egress-cpu-port-acl<br> egress-tunnel-acl<br>ingress-router-acl<br>egress-port-acl<br>ingress-cpu-port-acl<br>ingress-tunnel-acl<br>egress-router-acl<br>ingress-port-acl<br>multi-points-acl |
+| Buffer | packet-latency-threshold-crossed<br>tail-drop<br>port-tc-congestion-threshold-crossed<br>wred |
+| l2 |dest-mac-is-reserved<br>source-mac-is-multicast<br>ingress-spanning-tree-filter<br>source-mac-is-zero<br>ingress-vlan-filtering<br>unicast-egress-port-list-is-empty<br>mlag-port-isolation<br>unicast-mac-table-action-discard<br>multicast-egress-port-list-is-empty<br>vlan-or-vni-lookup-failed<br>port-loopback-filter<br>vlan-tagging-mismatch<br>source-mac-equals-dest-mac |
+| l3 | blackhole-arp<br>blackhole-route<br>checksum-or-ipver-or-ipv4-ihl-too-short<br>dest-ip-is-loopback-addr<br>egress-router-intf-is-disabled<br>ingress-router-intf-is-disabled<br>ipv4-dest-ip-is-link-local<br>ipv4-dest-ip-is-local-network<br>ipv4-routing-table-unicast-miss<br>ipv4-src-ip-is-limited-broadcast<br>ipv6-dest-in-multicast-scope-ffx0<br>ipv6-dest-in-multicast-scope-ffx1<br>ipv6-routing-table-unicast-miss<br>multicast-mac-mismatch<br>non-ip-packet<br>non-routable-pck<br>packet-size-is-larger-than-router-intf-mtu<br>packet-source-ip-cant-be-verified<br>router-interface-loopback<br>src-ip-equals-dest-ip<br>src-ip-is-in-class-e<br>src-ip-is-loopback-addr<br>src-ip-is-multicast<br>src-ip-is-unspecified<br>ttl-value-is-too-small<br>unicast-dest-ip-but-multicast-dest-mac<br>unresolved-neighbor |
+| Tunnel |decapsulation-error<br>encapsulation-port-isolation<br>overlay-switch-src-mac-equals-dest-mac<br>overlay-switch-src-mac-equals-zero<br>overlay-switch-src-mac-is-multicast |
+
+To filter traffic drops due to a specific reason, run the `nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <type> drop-reason <reason>` command.
+
+To filter traffic drops due to a specific severity, run the `nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <type> severity <severity-level>` command.
+
+To filter traffic drops with a specific IP address, run the `nv set system wjh channel <channel-id> drop-filter <filter-id> ip <ip-address>` command.
+- The `<channel-id>` is the channel name.
+- The `<filter-id>` is name you want to provide for the filter.
+- The `<type>` is `acl`, `buffer`, `l2`, `l3`, or `tunnel`.
+- The `<reason>` can be any reason listed in the table above.
+
+The following example creates a filter called LAYER1 that prevents ACL traffic drops from being monitored due to an ingress port ACL:
 
 ```
-cumulus@switch:~$ nv set system wjh channel drop-filter drop-type l1 drop-reason cable/transceiver is unplugged
-cumulus@switch:~$ nv set system wjh channel drop-filter drop-type l2 severity notice 
-cumulus@switch:~$ nv set system wjh channel drop-filter ip 10.10.10.10
+cumulus@switch:~$ nv set system wjh channel forwarding drop-filter LAYER1 drop-type acl drop-reason ingress-port-acl 
 cumulus@switch:~$ nv config apply
 ```
 
-To unset a traffic drop filter, run the `nv unset system wjh channel drop-filter drop-type <drop-type> drop-reason`, `nv unset system wjh channel drop-filter drop-type <drop-type> severity`, or `nv unset system wjh channel drop-filter ip` command.
-
-To show traffic drop filter configuration, run the `nv show system wjh channel drop-filter` command.
+The following example creates a filter called SEVERITY that prevents buffer traffic drops from being monitored with the severity level notice:
 
 ```
-cumulus@switch:~$ nv show system wjh channel drop-filter
+cumulus@switch:~$ nv set system wjh channel forwarding drop-filter SEVERITY drop-type buffer severity notice
+cumulus@switch:~$ nv config apply
+```
 
+The following example creates a filter called IP-DROPS that prevents traffic drops with the IP address 10.10.10.10 from being monitored:
+
+```
+cumulus@switch:~$ nv set system wjh channel forwarding drop-filter IP-DROPS ip 10.10.10.10
+cumulus@switch:~$ nv config apply
+```
+
+To unset a traffic drop filter, run the `nv set system wjh channel <channel-id> drop-filter <filter-id>` command.
+
+To show traffic drop filter configuration, run the `nv show system wjh channel <channel-id> drop-filter` command.
+
+```
+cumulus@switch:~$ nv show system wjh channel forwarding drop-filter
 ```
 
 ### Aggregation Interval and Cache Size

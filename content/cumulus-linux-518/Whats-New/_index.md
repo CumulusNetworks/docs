@@ -16,7 +16,10 @@ Cumulus Linux 5.18.0 supports new platforms, contains new features and improveme
 - NVIDIA SN6600_LD (800G Spectrum-6)
 
 {{%notice note%}}
-Port speed 800Gx8 is not supported on the Spectrum-6 switch.
+The Spectrum-6 switch does not support:
+- Port speed 800Gx8
+- Warmboot
+- PTP
 {{%/notice%}}
 
 ### New Features and Enhancements
@@ -58,6 +61,7 @@ Port speed 800Gx8 is not supported on the Spectrum-6 switch.
   - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC resource, and WJH">}}
   - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC resource, and WJH">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
+  - You can now run both NVUE WJH commands and subscribe to YANG paths when using gNMI to receive aggregate information about WJH drops at the same time.
 <!-- - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}-->
 
 ## Release Considerations

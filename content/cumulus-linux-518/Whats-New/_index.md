@@ -61,8 +61,7 @@ The Spectrum-6 switch does not support:
   - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC resource, and WJH">}}
   - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC resource, and WJH">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
-  - You can now run both NVUE WJH commands and subscribe to YANG paths when using gNMI to receive aggregate information about WJH drops at the same time.
-<!-- - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}-->
+  - You can now run both {{<link url="Mellanox-WJH" text="NVUE WJH commands">}} and {{<link url="gNMI-Streaming" text="subscribe to gNMI YANG paths">}} at the same time.
 
 ## Release Considerations
 

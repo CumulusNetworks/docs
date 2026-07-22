@@ -608,18 +608,14 @@ cumulus@switch:~$ nv show router pbr map map1 -o json
 }
 ```
 
-To see information about all next hop groups, run the NVUE `nv show router nexthop-group` command or the vtysh `show pbr nexthop-group` command.
+To see information about all next hop groups, run the NVUE `nv show router pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
 
 ```
-cumulus@switch:~$ nv show router nexthop group
-Via ID - Via ID, Interface - via interface, Vrf - via vrf
-
-ID    Via ID     Interface  Vrf
-----  ---------  ---------  ----
-grp1  27.0.0.4
-      27.0.0.5   swp23
-grp2  28.0.0.4   swp3       red
-grp3  34:22::48             blue
+cumulus@switch:~$ nv show router pbr nexthop-group
+Nexthop-groups  installed  valid    Summary         
+--------------  ---------  -----    ----------------
+group1          yes         yes     Nexthop-index: 1
+                                    Nexthop-index: 2
 ```
 
 To show more detailed information about the next hop groups, run the `nv show router pbr nexthop-group -o json` command:
@@ -642,23 +638,12 @@ cumulus@switch:~$ nv show router pbr nexthop-group -o json
 ...
 ```
 
-To see information about a specific next hop group, run the NVUE `nv show router nexthop group <nexthop-group>` command or the vtysh `show pbr nexthop-group <nexthop-group>` command.
+To see information about a specific next hop group, run the NVUE `nv show router pbr nexthop-group <nexthop-group>` command or the vtysh `show pbr nexthop-group <nexthop-group>` command.
 
-```
-cumulus@switch:~$ nv show router nexthop group grp2
-via
-======
-              interface  vrf
-    --------  ---------  ---
-    28.0.0.4  swp3       red
-```
- 
-```
-cumulus@switch:~$ nv show router nexthop group grp2 via
-          interface  vrf
---------  ---------  ---
-28.0.0.4  swp3       red
-```
+
+{{%notice note%}}
+Each next hop and next hop group uses a new Linux routing table ID.
+{{%/notice%}}
 
 To show the reserved routing table range, run the NVUE `nv show system global reserved routing-table pbr` command.
 

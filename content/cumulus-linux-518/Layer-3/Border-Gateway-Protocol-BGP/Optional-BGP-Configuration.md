@@ -2297,6 +2297,10 @@ leaf01# show bgp ipv6 unreachability detail json
 
 ## Graceful Fabric Maintenance
 
+{{%notice note%}}
+Graceful fabric maintenance is a Beta feature.
+{{%/notice%}}
+
 Cumulus Linux enables you to remove traffic from a leaf switch gracefully by steering traffic onto other healthy planes before maintenance. This feature works with {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP unreachability signaling">}} and uses UPA (Unreachable Prefix Announcement) to mark advertised aggregate routes as unreachable during maintenance.
 
 To use graceful fabric maintenance, you **must** first configure {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} for each VRF and address family.
@@ -2319,7 +2323,7 @@ To disable graceful fabric maintenance and return traffic to the switch after it
 ## Inter-DC Routing
 
 {{%notice note%}}
-Cumulus Linux supports inter-DC routing on Spectrum‑X platforms only (Spectrum-4, Spectrum-5, and Spectrum-6).
+Cumulus Linux supports inter-DC routing is a Beta feature and is supported on Spectrum-4, Spectrum-5, and Spectrum-6.
 {{%/notice%}}
 
 Inter-DC routing enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines: 

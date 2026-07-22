@@ -16,7 +16,10 @@ Cumulus Linux 5.18.0 supports new platforms, contains new features and improveme
 - NVIDIA SN6600_LD (800G Spectrum-6)
 
 {{%notice note%}}
-Port speed 800Gx8 is not supported on the Spectrum-6 switch.
+The Spectrum-6 switch does not support:
+- Port speed 800Gx8
+- Warmboot
+- PTP
 {{%/notice%}}
 
 ### New Features and Enhancements
@@ -25,15 +28,15 @@ Port speed 800Gx8 is not supported on the Spectrum-6 switch.
 - {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} is generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
-- {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
 - {{<link url="Interface-Configuration-and-Management/#link-tracking" text="Link tracking ">}}
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE/#dci-1-profile" text="Data Center Interconnect (DCI-1) QoS profile">}}
-- {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}}
-- {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="BGP graceful fabric maintenance">}} 
-- {{<link url="Optional-BGP-Configuration/#inter-dc-routing" text="Inter-DC Routing">}}
 - {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}}
 - {{<link url="EVPN-Multihoming/#svi-ip-address-configuration" text="EVPN Multihoming without a unique SVI IP address">}}
 - {{<link url="RADIUS-AAA/#nas-ip-address-and-identifier" text="RADIUS NAS IP address and identifier configuration">}}
+- {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}} (Beta)
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE/#dci-1-profile" text="Data Center Interconnect (DCI-1) QoS profile">}} (Beta)
+- {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}} (Beta)
+- {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="BGP graceful fabric maintenance">}} (Beta)
+- {{<link url="Optional-BGP-Configuration/#inter-dc-routing" text="Inter-DC Routing">}} (Beta)
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - NVUE
   - {{<link url="NVUE-CLI/#automatic-configuration-backup-and-restore" text="Automatic configuration backup and restore">}}
@@ -41,7 +44,7 @@ Port speed 800Gx8 is not supported on the Spectrum-6 switch.
   - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}
   - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="nv show interface --ber command to show PHY health statistics for all interfaces ">}}
-  - {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show transceiver information for all interfaces">}}(Beta)
+  - {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show transceiver information for all interfaces">}} (Beta)
   - {{<link url="NVUE-CLI/#show-specific-configuration" text="NVUE command to show specific configuration on the switch">}} and {{<link url="NVUE-API/#view-specific-configuration" text="NVUE API query parameter to show specific configuration on the switch">}}
   - {{<link url="BMC" text="BMC commands for Spectrum-6 switches">}}
   - {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="NVUE commands to show and clear RADIUS counters">}}
@@ -58,7 +61,7 @@ Port speed 800Gx8 is not supported on the Spectrum-6 switch.
   - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC resource, and WJH">}}
   - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC resource, and WJH">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
-<!-- - {{<link url="Interface-Configuration-and-Management/#apsu-and-link-precoding-control" text="APSU and link precoding control">}}-->
+  - You can now run both {{<link title="What Just Happened (WJH)" text="NVUE WJH commands">}} and {{<link url="gNMI-Streaming" text="subscribe to gNMI YANG paths">}} at the same time.
 
 ## Release Considerations
 

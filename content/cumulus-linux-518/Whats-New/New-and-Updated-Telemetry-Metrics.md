@@ -61,15 +61,7 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>]/state/max-limit` | The maximum limit of possible entries for an ASIC resource. |
 | `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>] /state/high-watermark` | The highest number of entries used for an ASIC resource.| 
 | `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>] /state/last-high-watermark` | The timestamp when the high-watermark was last updated. | 
-<!-->
-{{< /tab >}}
-{{< tab "BGP">}}
 
-|  Name | Description |
-|------ | ----------- |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/enabled`| The admin status of the BGP peer (up or down). |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received-pre-policy`| Number of prefixes received from the peer before applying any policies.<br><br>The pre-policy count requires soft-reconfiguration inbound to be enabled for the peer (`nv set vrf default router bgp neighbor <neighbor-id> address-family <address-family> soft-reconfiguration enabled`).|
--->
 {{< /tab >}}
 {{< tab "WJH">}}
 
@@ -109,15 +101,7 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 | `nvswitch_platform_asic_resource_max_limit` | The maximum limit of possible entries for an ASIC resource.|
 | `nvswitch_platform_asic_resource_high_watermark` | The highest number of entries used for an ASIC resource. | 
 | `nvswitch_platform_asic_resource_high_watermark_timestamp` | The timestamp when the high-watermark was last updated.| 
-<!--
-{{< /tab >}}
-{{< tab "BGP">}}
 
-|  Name | Description |
-|------ | ----------- |
-| `nvrouting_bgp_peer_enabled` | The admin status of the BGP peer (up or down). |
-| `nvrouting_bgp_peer_rib_adj_in_pre_policy` | Number of prefixes received from the peer before applying any policies.<br><br>The pre-policy count requires soft-reconfiguration inbound to be enabled for the peer (`nv set vrf default router bgp neighbor <neighbor-id> address-family <address-family> soft-reconfiguration enabled`).|
--->
 {{< /tab >}}
 {{< tab "WJH">}}
 

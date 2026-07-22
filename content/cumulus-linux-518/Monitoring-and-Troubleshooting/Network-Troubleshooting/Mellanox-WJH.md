@@ -198,15 +198,15 @@ If you configure a channel to monitor buffer packet drops, you can specify laten
 The following example sets the latency threshold to 10 seconds for all traffic classes on ports swp1, swp2, and swp3 and the congestion threshold to 4 for traffic class 3 on all interfaces.
 
 ```
-cumulus@switch:~$ nv set system wjh channel buffer-threshold latency tc all interface swp1-3 high 10
-cumulus@switch:~$ nv set system wjh channel buffer-threshold congestion tc 3 interface all high 4
+cumulus@switch:~$ nv set system wjh channel forwarding buffer-threshold latency tc all interface swp1-3 high 100
+cumulus@switch:~$ nv set system wjh channel forwarding buffer-threshold congestion tc 3 interface all high 4
 cumulus@switch:~$ nv config apply
 ```
 
-- To unset the packet latency threshold, run the `nv unset system wjh channel buffer-threshold latency` command.
-- To unset the packet congestion threshold, run the `nv unset system wjh channel buffer-threshold congestion` command.
+- To unset the packet latency threshold, run the `nv unset system wjh channel <channel-id> buffer-threshold latency` command.
+- To unset the packet congestion threshold, run the `nv unset system wjh channel <channel-id> buffer-threshold congestion` command.
 
-To show the latency and congestion threshold configuration, run the `nv show system wjh channel buffer-threshold` command:
+To show the latency and congestion threshold configuration, run the `nv show system wjh channel <channel-id> buffer-threshold` command:
 
 ```
 cumulus@switch:~$ nv show system wjh channel buffer-threshold
@@ -214,16 +214,16 @@ cumulus@switch:~$ nv show system wjh channel buffer-threshold
 
 ## Save Dropped Packets to a PCAP File
 
-To save the most recent dropped packets to a PCAP file, run the `nv action export system wjh packet-buffer <filename>` command.  
+To save the most recent dropped packets to a PCAP file, run the `nv action export system wjh packet-buffer` command. The switch writes PCAP files to the `/var/run/nv-wjh/` directory with a timestamped filename that the system chooses.
 
 ```
-cumulus@switch:~$ nv action export system wjh packet-buffer FILE1
+cumulus@switch:~$ nv action export system wjh packet-buffer
 ```
 
 To exclude metadata in the file, add `no-metadata` to the command:
 
 ```
-cumulus@switch:~$ nv action export system wjh packet-buffer FILE1 no-metadata
+cumulus@switch:~$ nv action export system wjh packet-buffer no-metadata
 ```
 
 ## Show Information about Dropped Packets
@@ -239,41 +239,21 @@ You can also show the WJH configuration on the switch:
 - To show the configuration for a channel, run the `nv show system wjh channel <channel>` command.
 - To show the configuration for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command.
 
-The following example shows information about layer 1 packet drops:
-
-```
-cumulus@switch:~$ nv show system wjh packet-buffer
-#   dMAC  dPort  Dst IP:Port  EthType  Drop group  IP Proto  Drop reason - Recommended action                         Severity  sMAC  sPort    Src IP:Port  Timestamp              VLAN
---  ----  -----  -----------  -------  ----------  --------  -------------------------------------------------------  --------  ----  -------  -----------  ---------------------  ----
-1   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp17    N/A          22/11/03 01:00:35.458  N/A
-2   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp18    N/A          22/11/03 01:00:35.458  N/A
-3   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp19    N/A          22/11/03 01:00:35.458  N/A
-4   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp20    N/A          22/11/03 01:00:35.458  N/A
-```
-
 To show the most recent aggregate buffer drop events, up to the maximum aggregate cache size specified, run the `nv show system wjh aggregate-buffer` command. To show layer 1 buffer events, run the `nv show system wjh l1-buffer` command.
-
-```
-cumulus@switch:~$ nv show system wjh aggregate-buffer
-
-```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-You can run the following commands from the command line.
+You can run the following `nv-wjh-cli poll` commands from the command line:
+ 
+`nv-wjh-cli poll --data <drops|aggregates|l1> --output-type<table|json> --channels <channel-name>,<channel-name>`
 
-| <div style="width:450px">Command  | Description |
-| -------  | ----------- |
-| `what-just-happened poll` | Shows information about packet drops for all the channels you configure. The output includes the reason for the drop and the recommended action to take.<br><br>The `what-just-happened poll <channel>` command shows information for the channel you specify. |
-| `what-just-happened poll --aggregate` | Shows information about dropped packets aggregated by the reason for the drop. This command also shows the number of times the dropped packet occurs.<br><br>The `what-just-happened poll <channel> --aggregate` command shows information for the channel you specify. |
-| `what-just-happened poll --export` | Saves information about dropped packets to a file in PCAP format.<br><br>The `what-just-happened poll <channel> --export` command saves information for the channel you specify. |
-| `what-just-happened poll --export --no_metadata` | Saves information about dropped packets to a file in PCAP format without metadata.<br><br> The `what-just-happened poll <channel> --export --no_metadata` command saves information for the channel you specify.|
-| `what-just-happened dump` | Displays all diagnostic information on the command line. |
+`nv-wjh-cli poll --data drops –output-type pcap --channels <channel-name>,<channel-name> --no-metadata` 
 
-Run the `what-just-happened -h` command to see all the WJH command options.
-
-To show all dropped packets and the reason for the drop, run the NVUE `nv show system wjh packet-buffer` command or the `what-just-happened poll` command.
+- `--data` is either `drops` or `aggregates`. `drops` shows information about dropped packets aggregated by the reason for the drop. This command also shows the number of times the dropped packet occurs. `aggregates` shows information for the channels you specify.
+- `--output-type` is either `table`, `json`, or `pcap` (for data drops). 
+- `--channels` is a comma-separated list of the channels to exclude. If you do not provide the `--channels` option, all configured channels are included. 
+- `--no-metadata` writes PCAP output without embedded metadata. This option is only valid with `--data drops` and `--output-type=pcap`. 
 
 The following example shows that packets drop five times because the source MAC address equals the destination MAC address:
 

@@ -237,7 +237,17 @@ To show information about packet drops for all the channels you configure, run t
 
 ```
 cumulus@switch:~$ nv show system wjh packet-buffer
+Packet
+=========
+No Data
 
+Packet ACL
+=============
+No Data
+
+Packet Buffer Info
+=====================
+No Data
 ```
 
 You can also show the WJH configuration on the switch:
@@ -247,8 +257,18 @@ You can also show the WJH configuration on the switch:
 To show the most recent aggregate buffer drop events, up to the maximum aggregate cache size specified, run the `nv show system wjh aggregate-buffer` command. To show layer 1 buffer events, run the `nv show system wjh l1-buffer` command.
 
 ```
-cumulus@switch:~$ nv show system wjh l1-buffer
+cumulus@switch:~$ nv show system wjh aggregate-buffer
+Aggregate Event
+==================
+No Data
 
+Aggregate Event ACL
+======================
+No Data
+
+Aggregate Event Buffer
+=========================
+No Data
 ```
 
 {{< /tab >}}
@@ -278,6 +298,8 @@ The following command saves dropped packets to a file in PCAP format without met
 cumulus@switch:~$ nv-wjh-cli poll --data drops --output-type pcap --channels --no-metadata
 
 ```
+
+The `nv-wjh-cli dump` command shows all diagnostic information on the command line.
 
 {{< /tab >}}
 {{< /tabs >}}

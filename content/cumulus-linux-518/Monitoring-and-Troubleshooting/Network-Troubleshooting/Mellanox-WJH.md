@@ -136,17 +136,17 @@ To filter traffic drops with a specific IP address, run the `nv set system wjh c
 - The `<type>` is `acl`, `buffer`, `l2`, `l3`, or `tunnel`.
 - The `<reason>` can be any reason listed in the table above.
 
-The following example creates a filter called LAYER1 that prevents ACL traffic drops from being monitored due to an ingress port ACL:
+The following example creates a filter called TUNNEL1 that prevents traffic drops from being monitored because the overlay switch source MAC equals the destination MAC:
 
 ```
-cumulus@switch:~$ nv set system wjh channel forwarding drop-filter LAYER1 drop-type acl drop-reason ingress-port-acl 
+cumulus@switch:~$ nv set system wjh channel forwarding drop-filter TUNNEL1 drop-type tunnel drop-reason overlay-switch-src-mac-equals-dest-mac
 cumulus@switch:~$ nv config apply
 ```
 
-The following example creates a filter called SEVERITY that prevents buffer traffic drops from being monitored with the severity level notice:
+The following example creates a filter called SEVERITY that prevents layer 2 traffic drops from being monitored with the severity level notice:
 
 ```
-cumulus@switch:~$ nv set system wjh channel forwarding drop-filter SEVERITY drop-type buffer severity notice
+cumulus@switch:~$ nv set system wjh channel forwarding drop-filter SEVERITY drop-type l2 severity notice
 cumulus@switch:~$ nv config apply
 ```
 
@@ -171,11 +171,11 @@ You can control the rate at which metrics are sent for a channel (the polling in
 
 The polling interval for a channel can be between 5 and 300 seconds and the cache size between 500 and 5000.
 
-The following example sets the aggregation interval for the buffer channel to 100 seconds and the cache size to 1000:
+The following example sets the aggregation interval for the forwarding channel to 100 seconds and the cache size to 1000:
 
 ```
-cumulus@switch:~$ nv set system wjh channel buffer polling-interval 100
-cumulus@switch:~$ nv set system wjh channel buffer aggregate-cache-size 1000
+cumulus@switch:~$ nv set system wjh channel forwarding polling-interval 100
+cumulus@switch:~$ nv set system wjh channel forwarding aggregate-cache-size 1000
 cumulus@switch:~$ nv config apply
 ```
 
@@ -202,7 +202,14 @@ cumulus@switch:~$ nv config apply
 To show the latency and congestion threshold configuration, run the `nv show system wjh channel <channel-id> buffer-threshold` command:
 
 ```
-cumulus@switch:~$ nv show system wjh channel buffer-threshold
+cumulus@switch:~$ nv show system wjh channel forwarding buffer-threshold
+Latency buffer threshold
+===========================
+No Data
+
+Congestion buffer threshold
+==============================
+No Data
 ```
 
 ## Save Dropped Packets to a PCAP File
@@ -273,9 +280,9 @@ You can run the `nv-wjh-cli poll` command from the command line with the followi
 | -------------- | ----------- |
 | `--data`  | You can specify `drops`,`aggregates`, or `l1`. `drops` shows individual drops for each packet. `aggregates` shows aggregated drops. `l1` shows layer 1 port-state aggregates (only valid for channels with layer 1 in their trigger list).|
 | `--output-type` | You can specify `table`, `json`, or `pcap`. `pcap` is only for data drops (`--data drops`).|
-| `--no-metadata` | Writes PCAP output without embedded metadata. This option is only valid with `--data drops` and `--output-type=pcap`. |
+| `--no-metadata` | Writes PCAP output without embedded metadata. This option is only valid with `--data drops` and `--output-type pcap`. |
 | `--channels <channel-name>,<channel-name>` | A comma-separated list of the channels to show. If you do not provide the `--channels` option, the command shows all configured channels. |
-| `dump` | shows diagnostic information. The output includes channel configuration, snapshots for each channel, and memory statistics. The command saves the output to the `/var/log/nv-wjh/diags-dump/<timestamp>` file. |
+| `dump` | Shows diagnostic information. The output includes channel configuration, snapshots for each channel, and memory statistics. The command saves the output to the `/var/log/nv-wjh/diags-dump/<timestamp>` file. |
 
 The following example shows aggregated drops:
 
@@ -283,10 +290,10 @@ The following example shows aggregated drops:
 cumulus@switch:~$ nv-wjh-cli poll --data aggregates
 ```
 
-The following command saves dropped buffer and layer 1 packets to a file in PCAP format without metadata:
+The following command saves dropped packets in the forwarding channel to a file in PCAP format without metadata:
 
 ```
-cumulus@switch:~$ nv-wjh-cli poll --data drops --output-type pcap --channels buffer,layer-1 --no-metadata
+cumulus@switch:~$ nv-wjh-cli poll --data drops --output-type pcap --channels forwarding --no-metadata
 ```
 
 {{< /tab >}}
@@ -424,7 +431,7 @@ ACL drop metrics describe why an ACL has dropped packets.
 ### Buffer Packet Drop Monitoring
 
 - Buffer packet drop monitoring is available on a switch with Spectrum-2 and later.
-- Buffer packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN/#limitations" text="SPAN and ERSPAN">}}. If you need to remove the SPAN destination that buffer packet drop monitoring uses, delete the buffer monitoring drop category either with the NVUE `nv unset system wjh channel buffer trigger buffer` command or by editing the `/etc/what-just-happened/what-just-happened.json` file and reloading the `what-just-happened` service.
+- Buffer packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN/#limitations" text="SPAN and ERSPAN">}}. If you need to remove the SPAN destination that buffer packet drop monitoring uses, delete the buffer monitoring drop category with the NVUE `nv unset system wjh channel buffer trigger buffer` command.
 
 ### Cumulus Linux and Docker
 

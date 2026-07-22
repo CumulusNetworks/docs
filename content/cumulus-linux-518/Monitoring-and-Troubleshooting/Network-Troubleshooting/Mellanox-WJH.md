@@ -235,11 +235,21 @@ You can run the following commands to show information about dropped packets and
 
 To show information about packet drops for all the channels you configure, run the `nv show system wjh packet-buffer` command. The command output includes the reason for the drop and the recommended action to take.
 
+```
+cumulus@switch:~$ nv show system wjh packet-buffer
+
+```
+
 You can also show the WJH configuration on the switch:
 - To show the configuration for a channel, run the `nv show system wjh channel <channel>` command.
 - To show the configuration for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command.
 
 To show the most recent aggregate buffer drop events, up to the maximum aggregate cache size specified, run the `nv show system wjh aggregate-buffer` command. To show layer 1 buffer events, run the `nv show system wjh l1-buffer` command.
+
+```
+cumulus@switch:~$ nv show system wjh l1-buffer
+
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -258,28 +268,15 @@ You can run the following `nv-wjh-cli poll` commands from the command line:
 The following example shows that packets drop five times because the source MAC address equals the destination MAC address:
 
 ```
-cumulus@switch:~$ what-just-happened poll --aggregate
-Sample Window : 2021/06/16 12:57:23.046 - 2021/06/16 14:46:17.701
-
-#  sPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Count  Severity  Drop reason - Recommended action
--- ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
-1  swp4   N/A   44:38:39:00:a4:87  44:38:39:00:a4:87  IPv4     0.0.0.0:0    0.0.0.0:0    ip        100    Error     Source MAC equals destination MAC - Bad packet was received from peer
-2  swp1   N/A   44:38:39:00:a4:80  44:38:39:00:a4:80  IPv4     0.0.0.0:0    0.0.0.0:0    ip        100    Error     Source MAC equals destination MAC - Bad packet was received from peer
-```
-
-The following command saves dropped packets to a file in PCAP format
+cumulus@switch:~$ nv-wjh-cli poll --data aggregates
 
 ```
-cumulus@switch:~$ what-just-happened poll --export --no_metadata
-PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 
-#    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
-                                                                                                                                   Group
----- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
-1    21/06/16 12:03:12.728  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet as received from peer
-2    21/06/16 12:03:12.728  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
-3    21/06/16 12:03:12.745  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
-4    21/06/16 12:03:12.745  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
+The following command saves dropped packets to a file in PCAP format without metadata:
+
+```
+cumulus@switch:~$ nv-wjh-cli poll --data drops --output-type pcap --channels --no-metadata
+
 ```
 
 {{< /tab >}}

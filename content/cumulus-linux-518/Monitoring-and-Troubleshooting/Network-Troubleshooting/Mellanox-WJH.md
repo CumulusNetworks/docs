@@ -267,32 +267,27 @@ No Data
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-You can run the following `nv-wjh-cli poll` commands from the command line:
+You can run the `nv-wjh-cli poll` command from the command line with the following options:
  
-`nv-wjh-cli poll --data <drops|aggregates|l1> --output-type<table|json> --channels <channel-name>,<channel-name>`
+| Command Option | Description |
+| -------------- | ----------- |
+| `--data`  | You can specify `drops`,`aggregates`, or `l1`. `drops` shows individual drops for each packet. `aggregates` shows aggregated drops. `l1` shows layer 1 port-state aggregates (only valid for channels with layer 1 in their trigger list).|
+| `--output-type` | You can specify `table`, `json`, or `pcap`. `pcap` is only for data drops (`--data drops`).|
+| `--no-metadata` | Writes PCAP output without embedded metadata. This option is only valid with `--data drops` and `--output-type=pcap`. |
+| `--channels <channel-name>,<channel-name>` | A comma-separated list of the channels to show. If you do not provide the `--channels` option, the command shows all configured channels. |
+| `dump` | shows diagnostic information. The output includes channel configuration, snapshots for each channel, and memory statistics. The command saves the output to the `/var/log/nv-wjh/diags-dump/<timestamp>` file. |
 
-`nv-wjh-cli poll --data drops –output-type pcap --channels <channel-name>,<channel-name> --no-metadata` 
-
-- `--data` is either `drops`, `aggregates`, or `l1`. `drops` shows individual drops for each packet. `aggregates` shows aggregated drops. `l1` shows layer 1 port-state aggregates (only valid for channels with layer 1 in their trigger list).
-- `--output-type` is either `table`, `json`, or `pcap` (for data drops). 
-- `--channels` is a comma-separated list of the channels to show. If you do not provide the `--channels` option, the command shows all configured channels. 
-- `--no-metadata` writes PCAP output without embedded metadata. This option is only valid with `--data drops` and `--output-type=pcap`. 
-
-The following example shows that packets drop five times because the source MAC address equals the destination MAC address:
+The following example shows aggregated drops:
 
 ```
 cumulus@switch:~$ nv-wjh-cli poll --data aggregates
-
 ```
 
-The following command saves dropped packets to a file in PCAP format without metadata:
+The following command saves dropped buffer and layer 1 packets to a file in PCAP format without metadata:
 
 ```
-cumulus@switch:~$ nv-wjh-cli poll --data drops --output-type pcap --channels --no-metadata
-
+cumulus@switch:~$ nv-wjh-cli poll --data drops --output-type pcap --channels buffer,layer-1 --no-metadata
 ```
-
-The `nv-wjh-cli dump` command shows diagnostic information. The output includes channel configuration, snapshots for each channel, and memory statistics. The command saves the output to the `/var/log/nv-wjh/diags-dump/<timestamp>` file.
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -858,9 +858,9 @@ address-family ipv4 unicast
 By default, the switch denies an update received from an eBGP neighbor that does not list its ASN at the beginning of the AS_PATH in the incoming update. You can disable this setting with the `nv set vrf <vrf-id> router bgp neighbor <neighbor> enforce-first-as disabled` command.
 
 {{%notice note%}}
-In Cumulus Linux 5.13 and earlier the default setting for enforce first AS is OFF.
+In Cumulus Linux 5.13 and earlier, the default setting for enforce first AS is OFF.
 
-If you upgrade to Cumulus Linux 5.17 from Cumulus Linux 5.13 or earlier with Optimized image upgrade, the switch sets the enforce first AS option to `disabled` to preserve the previous behavior. NVIDIA recommends that you enable the enforce first AS option after upgrade to align with the default value in Cumulus Linux 5.17.
+If you upgrade to Cumulus Linux 5.14 or later from Cumulus Linux 5.13 or earlier with optimized image upgrade, the switch sets the enforce first AS option to disabled to preserve the previous behavior. NVIDIA recommends that you enable the enforce first AS option after upgrade to align with the default value in Cumulus Linux 5.14 and later.
 {{%/notice%}}
 
 {{< tabs "757 ">}}

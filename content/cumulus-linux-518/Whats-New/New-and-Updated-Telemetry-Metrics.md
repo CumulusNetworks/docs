@@ -87,12 +87,15 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 | `nvswitch_dot1x_radius_server_requests_total` | Number of access and accounting requests. |
 | `nvswitch_dot1x_radius_server_accounting_requests_total` | Number of accounting requests. |
 | `nvswitch_dot1x_radius_server_responses_total`  | Total number of responses. |
-| `nvswitch_dot1x_radius_server_retransmissions_total` | Number of timeout access requests  or  accounting timeouts. |
+| `nvswitch_dot1x_radius_server_retransmissions_total` | Number of timeout retried access requests and accounting retransmissions. |
+| `nvswitch_dot1x_radius_server_timeouts_total` | Number of timeout access requests and accounting timeouts. |
 | `nvswitch_dot1x_radius_server_pending_requests` | Number of RADIUS requests destined for the server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
 | `nvswitch_dot1x_radius_server_round_trip_time_ms`  | Most recent round-trip time, in milliseconds, between a RADIUS request and its matching response.  |
 
+For information on how to enable the new 802.1x RADIUS Server metrics, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export/#8021x-statistics">}}.
+
 {{< /tab >}}
-{{< tab "ASIC">}}
+{{< tab "ASIC Resource">}}
 
 |  Name | Description |
 |------ | ----------- |
@@ -101,6 +104,8 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 | `nvswitch_platform_asic_resource_max_limit` | The maximum limit of possible entries for an ASIC resource.|
 | `nvswitch_platform_asic_resource_high_watermark` | The highest number of entries used for an ASIC resource. | 
 | `nvswitch_platform_asic_resource_high_watermark_timestamp` | The timestamp when the high-watermark was last updated.| 
+
+For information on how to enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export/#platform-statistics">}}.
 
 {{< /tab >}}
 {{< tab "WJH">}}

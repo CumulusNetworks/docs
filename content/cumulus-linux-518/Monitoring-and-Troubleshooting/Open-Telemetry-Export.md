@@ -6410,6 +6410,7 @@ When you enable open telemetry with the `nv set system telemetry export otlp sta
 | `node_time_seconds` | System time in seconds since epoch (1970). |
 | `node_os_info` |  Operating system and image information, such as name and version. |
 
+<!--NOW IN 5.19
 ### WJH Format
 
 If you enable {{<link title="What Just Happened (WJH)" text="WJH">}}, you can export the following WJH metrics:
@@ -6419,7 +6420,7 @@ If you enable {{<link title="What Just Happened (WJH)" text="WJH">}}, you can ex
 | `nvswitch_wjh_total_events_channel_forwarding` | *Total number of forwarding channel events. |
 | `nvswitch_wjh_total_events_channel_acl` | *Total number of ACL channel events.|
 | `nvswitch_wjh_total_events_channel_buffer` | *Total number of buffer channel events. |
-
+-->
 ### Static Label Format
 
 Device static labels are exported in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:

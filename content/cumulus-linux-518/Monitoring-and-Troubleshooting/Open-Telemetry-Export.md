@@ -258,6 +258,15 @@ cumulus@switch:~$ nv set system telemetry dot1x-stats sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
 
+To enable open telemetry for RADIUS server 802.1X statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry dot1x-stats class server-metrics state enabled 
+cumulus@switch:~$ nv config apply
+```
+
+To export RADIUS server 802.1X statistics, you must also enable the parent 802.1X statistics (`nv set system telemetry dot1x-stats export state enabled`) and 802.1X operational counters (`nv set system telemetry dot1x-stats class dot1x-info state enabled`).
+
 ### Histogram Data
 
 When you enable open telemetry for histogram data, your buffer, counter, and latency {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports:
@@ -1031,7 +1040,8 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 | `nvswitch_dot1x_radius_server_requests_total` | *Number of access and accounting requests. |
 | `nvswitch_dot1x_radius_server_accounting_requests_total` | *Number of accounting requests. |
 | `nvswitch_dot1x_radius_server_responses_total`  | *Total number of responses. |
-| `nvswitch_dot1x_radius_server_retransmissions_total` | *Number of timeout access requests  or  accounting timeouts. |
+| `nvswitch_dot1x_radius_server_retransmissions_total` | *Number of timeout retried access requests and accounting retransmissions. |
+| `nvswitch_dot1x_radius_server_timeouts_total` | *Number of timeout access requests and accounting timeouts. |
 | `nvswitch_dot1x_radius_server_pending_requests` | *Number of RADIUS requests destined for the server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
 | `nvswitch_dot1x_radius_server_round_trip_time_ms`  | *Most recent round-trip time, in milliseconds, between a RADIUS request and its matching response.  |
 {{< expand "Example JSON data for 802.1X:" >}}
@@ -6400,6 +6410,17 @@ When you enable open telemetry with the `nv set system telemetry export otlp sta
 | `node_time_seconds` | System time in seconds since epoch (1970). |
 | `node_os_info` |  Operating system and image information, such as name and version. |
 
+<!--NOW IN 5.19
+### WJH Format
+
+If you enable {{<link title="What Just Happened (WJH)" text="WJH">}}, you can export the following WJH metrics:
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_wjh_total_events_channel_forwarding` | *Total number of forwarding channel events. |
+| `nvswitch_wjh_total_events_channel_acl` | *Total number of ACL channel events.|
+| `nvswitch_wjh_total_events_channel_buffer` | *Total number of buffer channel events. |
+-->
 ### Static Label Format
 
 Device static labels are exported in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:

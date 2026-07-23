@@ -428,6 +428,7 @@ timeout-access-requests  0
 retried-auth-requests    0
 auth-connection-errors   0
 auth-bad-responses       0
+...
 ```
 
 To clear all the counters for a RADIUS server, run the `nv action clear system aaa radius counters` command:

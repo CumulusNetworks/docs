@@ -77,8 +77,25 @@ nv show system link-tracking
 nv show system link-tracking group
 nv show system link-tracking group <group-id>
 nv show system link-tracking group <group-id> watch-interface
-nv show system wjh channel buffer-threshold
-nv show system wjh channel drop-filter
+nv show system wjh channel <channel-id> buffer-threshold
+nv show system wjh channel <channel-id> buffer-threshold latency
+nv show system wjh channel <channel-id> buffer-threshold latency tc
+nv show system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id>
+nv show system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface
+nv show system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface <wjh-interface-id>
+nv show system wjh channel <channel-id> buffer-threshold congestion
+nv show system wjh channel <channel-id> buffer-threshold congestion tc
+nv show system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id>
+nv show system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id> interface
+nv show system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id> interface <wjh-interface-id>
+nv show system wjh channel <channel-id> drop-filter
+nv show system wjh channel <channel-id> drop-filter <filter-id>
+nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type
+nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id>
+nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> drop-reason
+nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> drop-reason <drop-filter-drop-reason-id>
+nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> severity <drop-filter-severity-id>
+nv show system wjh channel <channel-id> drop-filter <filter-id> ip <ip-address-id>
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability export-lldp
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route <route-id> path <path-id> community
 nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route <route-id> path <path-id> large-community
@@ -167,10 +184,11 @@ nv set system telemetry stats-group <stats-group-id> interface-stats class debou
 nv set system wjh channel buffer aggregate-cache-size
 nv set system wjh channel buffer polling-interval
 nv set system wjh channel buffer-threshold latency tc <tc> interface <interface> high <seconds>
-nv set system wjh channel buffer-threshold congestion tc <tc> interface <interface> high <seconds>
-nv set system wjh channel drop-filter drop-type <type> drop-reason <reason>
-nv set system wjh channel drop-filter ip
-nv set system wjh channel drop-filter drop-type <type> severity notice
+nv set system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface <wjh-interface-id> high
+nv set system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id> interface <wjh-interface-id> high
+nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> drop-reason <drop-filter-drop-reason-id>
+nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> severity <drop-filter-severity-id>
+nv set system wjh channel <channel-id> drop-filter <filter-id> ip
 nv set vrf <vrf-id> router bgp address-family ipv4-unreachability export-lldp state
 nv set vrf <vrf-id> router bgp address-family ipv6-unreachability export-lldp state
 nv set vrf <vrf-id> router bgp address-family l2vpn-evpn advertise ipv4-unreachability state

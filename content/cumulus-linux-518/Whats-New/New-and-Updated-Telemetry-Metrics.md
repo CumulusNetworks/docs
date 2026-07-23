@@ -67,9 +67,12 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 
 |  Name | Description |
 |------ | ----------- |
-| `/wjh/channels/channel[name]/aggregate-events` | Total number of aggregate events. |
-| `/wjh/channels/channel[name]/l1-events` | Total number of layer 1 channel events.|
+| `/wjh/channels/channel[name]/aggregate-events` | Total number of aggregate events for the channel. |
+| `/wjh/channels/channel[name]/l1-events` | Total number of layer 1 channel events for the channel.|
 | `/wjh/channels/channel[name]/state` | If the channel is enabled.|
+| `/wjh/channels/channel[name]/state/categories` | Total number of categories for the channel. |
+| `/wjh/channels/channel[name]/state/total-events` | Total number of events for the channel. |
+| `/wjh/state/service-state` | The state of the WJH service. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -106,15 +109,6 @@ To enable the new 802.1x RADIUS Server metrics, refer to {{<link url="Open-Telem
 | `nvswitch_platform_asic_resource_high_watermark_timestamp` | The timestamp when the high-watermark was last updated.| 
 
 To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export/#platform-statistics">}}.
-
-{{< /tab >}}
-{{< tab "WJH">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `nvswitch_wjh_total_events_channel_forwarding` | Total number of forwarding channel events. |
-| `nvswitch_wjh_total_events_channel_acl` | Total number of ACL channel events.|
-| `nvswitch_wjh_total_events_channel_buffer` | Total number of buffer channel events. |
 
 {{< /tab >}}
 {{< /tabs >}}

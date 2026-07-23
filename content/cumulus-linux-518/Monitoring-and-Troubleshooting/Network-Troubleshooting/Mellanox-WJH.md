@@ -8,16 +8,13 @@ toc: 4
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools such as {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq" text="NVIDIA NetQ" >}}.
 - The WJH service enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, tunnel, buffer and ACL related issues. Cumulus Linux enables and runs the WJH service by default.
 
-{{%notice note%}}
-WJH runs in Docker. If you exhaust the Docker ten percent global limit of overall resources, then start WJH, you might see issues when using WJH. Make sure to free up Docker resources, then launch WJH again.
-{{%/notice%}}
-
 ## Configure WJH
 
 You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories (layer 1, layer 2, layer 3, tunnel, buffer and ACL) you want to monitor.
 
 {{%notice note%}}
-A channel name must be between 4 and 16 characters long.
+- A channel name must be between 4 and 16 characters long.
+- You can enable each trigger for a single channel only.
 {{%/notice%}}
 
 The following example configures two separate channels:
@@ -167,7 +164,7 @@ cumulus@switch:~$ nv show system wjh channel forwarding drop-filter
 
 ### Aggregation Interval and Cache Size
 
-You can control the rate at which metrics are sent for a channel (the polling interval) and the number of WJH drops and aggregates to maintain in the cache (the aggregate cache size).
+You can control the rate at which the switch sends events for a channel (the polling interval) and the number of WJH drops and aggregates to maintain in the cache (the aggregate cache size).
 
 The polling interval for a channel can be between 5 and 300 seconds and the cache size between 500 and 5000.
 
@@ -187,6 +184,10 @@ cumulus@switch:~$ nv config apply
 If you configure a channel to monitor buffer packet drops, you can specify latency and congestion thresholds to apply to buffer drops for all or specific traffic classes and interfaces. WJH collects and sends events when a metric crosses the thresholds.
 - Packet latency is the time spent in the switch.
 - Congestion is a percentage of the buffer occupancy on the switch.
+
+{{%notice note%}}
+The Spectrum-6 switch does not support latency thresholds.
+{{%/notice%}}
 
 The following example sets the latency threshold to 10 seconds for all traffic classes on ports swp1, swp2, and swp3 and the congestion threshold to 4 for traffic class 3 on all interfaces.
 
@@ -299,13 +300,13 @@ cumulus@switch:~$ nv-wjh-cli poll --data drops --output-type pcap --channels for
 {{< /tab >}}
 {{< /tabs >}}
 
-## WJH Metrics
+## WJH Events
 
-This section provides the supported WJH metrics with a brief description of each.
+This section provides the supported WJH events with a brief description of each.
 
 ### Layer 1 Drops
 
-Layer 1 drop metrics describe why a port is in the down state.
+Layer 1 drop events describe why a port is in the down state.
 
 | Reason | Description|
 | --- | --- |
@@ -329,7 +330,7 @@ In addition to the reason, the information provided for these drops includes:
 
 ### Layer 2 Drops
 
-Layer 2 drop metrics describe why a link is down.
+Layer 2 drop events describe why the switch drops packets at layer 2.
 
 | Reason | Severity | Description |
 | --- | --- | --- |
@@ -362,7 +363,7 @@ In addition to the reason, the information provided for these drops includes:
 
 ### Router Drops
 
-Router drop metrics describe why the server is unable to route a packet.
+Router drop events describe why the server is unable to route a packet.
 
 | Reason | Severity | Description |
 | --- | --- | --- |
@@ -394,7 +395,7 @@ Router drop metrics describe why the server is unable to route a packet.
 
 ### Tunnel Drops
 
-Tunnel drop metrics describe why a tunnel is down.
+Tunnel drop events describe why a tunnel is down.
 
 | Reason | Severity | Description |
 | --- | --- | --- |
@@ -406,7 +407,7 @@ Tunnel drop metrics describe why a tunnel is down.
 
 ### Buffer Drops
 
-Buffer drop metrics describe why the server buffer has dropped packets.
+Buffer drop events describe why the server buffer has dropped packets.
 
 | Reason | Severity | Description |
 | --- | --- | --- |
@@ -417,7 +418,7 @@ Buffer drop metrics describe why the server buffer has dropped packets.
 
 ### ACL Drops
 
-ACL drop metrics describe why an ACL has dropped packets.
+ACL drop events describe why an ACL has dropped packets.
 
 | Reason | Severity | Description|
 | --- | --- | --- |
@@ -453,8 +454,8 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ sudo systemctl enable what-just-happened
-cumulus@switch:~$ sudo systemctl start what-just-happened
+cumulus@switch:~$ sudo systemctl enable nv-wjh
+cumulus@switch:~$ sudo systemctl start nv-wjh
 ```
 
 {{< /tab >}}

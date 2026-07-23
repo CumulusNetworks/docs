@@ -77,6 +77,17 @@ nv show system link-tracking
 nv show system link-tracking group
 nv show system link-tracking group <group-id>
 nv show system link-tracking group <group-id> watch-interface
+nv show system wjh channel <channel-id> buffer-threshold
+nv show system wjh channel <channel-id> buffer-threshold latency
+nv show system wjh channel <channel-id> buffer-threshold latency tc
+nv show system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id>
+nv show system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface
+nv show system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface <wjh-interface-id>
+nv show system wjh channel <channel-id> buffer-threshold congestion
+nv show system wjh channel <channel-id> buffer-threshold congestion tc
+nv show system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id>
+nv show system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id> interface
+nv show system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id> interface <wjh-interface-id>
 nv show system wjh channel <channel-id> drop-filter
 nv show system wjh channel <channel-id> drop-filter <filter-id>
 nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type
@@ -173,9 +184,8 @@ nv set system telemetry stats-group <stats-group-id> interface-stats class debou
 nv set system wjh channel buffer aggregate-cache-size
 nv set system wjh channel buffer polling-interval
 nv set system wjh channel buffer-threshold latency tc <tc> interface <interface> high <seconds>
-nv set system wjh channel buffer-threshold congestion tc <tc> interface <interface> high <seconds>
-nv set system wjh channel <channel-id> drop-filter <filter-id>
-nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id>
+nv set system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface <wjh-interface-id> high
+nv set system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id> interface <wjh-interface-id> high
 nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> drop-reason <drop-filter-drop-reason-id>
 nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> severity <drop-filter-severity-id>
 nv set system wjh channel <channel-id> drop-filter <filter-id> ip

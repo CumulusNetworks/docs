@@ -813,6 +813,8 @@ By default, the switch denies an update received from an eBGP neighbor that does
 
 {{%notice note%}}
 In Cumulus Linux 5.13 and earlier the default setting for enforce first AS is OFF.
+
+If you upgrade to Cumulus Linux 5.14 from Cumulus Linux 5.13 or earlier with Optimized image upgrade, the switch sets the enforce first AS option to `disabled` to preserve the previous behavior. NVIDIA recommends that you enable the enforce first AS option after upgrade to align with the default value in Cumulus Linux 5.14.
 {{%/notice%}}
 
 {{< tabs "757 ">}}

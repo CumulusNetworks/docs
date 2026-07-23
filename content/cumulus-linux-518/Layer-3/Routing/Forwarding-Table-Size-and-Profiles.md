@@ -46,7 +46,7 @@ Forwarding resource profiles control unicast forwarding table entry allocations.
 The `ecmp-nh-heavy` profile does not support {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="warm reboot mode">}}.  
 {{%/notice%}}
 
-### Spectrum-2 and Later
+### Spectrum-2 and later
 
 On Spectrum-2 and later, forwarding resource profiles control both unicast and multicast forwarding table entry allocations.
 
@@ -70,6 +70,25 @@ The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number 
 {{%notice note%}}
 For the ipmc-max profile, the `cl-resource-query` command output displays 33K instead of 15K as the maximum number of IPv4 multicast routes in `switchd`. 15K is the supported and validated value. You can use the higher value of 33K to test higher multicast scale in non-production environments.
 {{%/notice%}}
+
+### Spectrum-6 
+
+On Spectrum-6, forwarding resource profiles control both unicast and multicast forwarding table entry allocations.
+
+| <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| LPM  |
+| --------------  | ------------- | ------------------------- | ------------------------------ |
+| default         | 88k           | 63k (IPv4) and 31k (IPv6) | 126k (IPv4) and 113k (IPv6) 1k (IPv4-Mcast)|
+| l2-heavy        | 176k          | 113k (IPv4) and 56k (IPv6)| 25k (IPv4) and 37k (IPv6-short) 1k (IPv4-Mcast)|
+| l2-heavy-1      | 366k          | 25k (IPv4) and 18k (IPv6) | 25k (IPv4) and 25k (IPv6-short) 1k (IPv4-Mcast)|
+| l2-heavy-2      | 189k          | 202k (IPv4) and 18k (IPv6)| 25k (IPv4) and 25k (IPv6-short) 1k (IPv4-Mcast)|
+| l2-heavy-3      | 164k          | 135k (IPv4) and 19k (IPv6)| 38k (IPv4) and 38k (IPv6-short) 1k (IPv4-Mcast)|
+| v4-lpm-heavy    | 25k           | 63k (IPv4) and 37k (IPv6) | 189k (IPv4) and 37k (IPv6-short) 1k (IPv4-Mcast)|
+| v4-lpm-heavy-1  | 25k           | 25k (IPv4) and 6k (IPv6)  | 391k (IPv4) and 12k (IPv6-short) 1k (IPv4-Mcast)|
+| v6-lpm-heavy    | 25k           | 25k (IPv4) and 94k (IPv6) | 25k (IPv4) and 151k (IPv6-short) 1k (IPv4-Mcast)|
+| v6-lpm-heavy-1  | 5k            | 4k (IPv4) and 4k (IPv6)   | 90k (IPv4) and 235k (IPv6-short) 1k (IPv4-Mcast)|
+| lpm-balanced    | 25k           | 25k (IPv4) and 18k (IPv6) | 189k (IPv4) and 189k (IPv6-short) 1k (IPv4-Mcast)|
+| ipmc-heavy      | 88k           | 63k (IPv4) and 31k (IPv6) | 126k (IPv4) and 101k (IPv6-short) 8k (IPv4-Mcast)|
+| ipmc-max        | 63k           | 63k (IPv4) and 31k (IPv6) | 113k (IPv4) and 101k (IPv6-short) 15k (IPv4-Mcast)|
 
 <!-- vale on -->
 ## Change Forwarding Resource Profiles

@@ -13,6 +13,14 @@ Cumulus Linux 5.16 is tested and validated as part of the Spectrum-X reference a
 For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
 
+## What’s New in Cumulus Linux 5.16.6
+
+Cumulus Linux 5.16.6 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and security updates, and includes a new hardware management package with thermal algorithm updates to increase the cooling fan speed.
+
+{{%notice note%}}
+Upgrade from Cumulus Linux 5.16.6 to Cumulus Linux 5.17.0 is not supported.
+{{%/notice%}}
+
 ## What’s New in Cumulus Linux 5.16.5
 
 Cumulus Linux 5.16.5 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and security updates.

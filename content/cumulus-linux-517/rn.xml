@@ -13,6 +13,18 @@
 <td></td>
 </tr>
 <tr>
+<td>5161727</td>
+<td>All the Docker dependent services such as UMF and gNMI have periodic checks around the Docker service. If the Docker service restarts for any reason, it triggers a restart of all the docker dependent services. If the Docker service is down for a long time, it exceeds the maximum number of restarts within the {{systemd}} rate-limit interval for the Docker dependent services. As a result, all the Docker dependent services (including gNMI) end up in a failed state.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5159907</td>
+<td>When a gNMI client uses a long sample interval, the gNMI server takes a long time to respond even after the gNMI client is reachable. The back-off time interval is now limited to one minute.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5159352</td>
 <td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>

@@ -67,8 +67,8 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
  
 Package upgrade supports ISSU (warm boot) for these upgrade paths.
 
-{{%notice note%}}
-You cannot upgrade Cumulus Linux 5.16.6 to Cumulus Linux 5.17.0.
+{{%notice warning%}}
+You cannot upgrade to Cumulus Linux 5.17.0 from Cumulus Linux 5.16.6.
 {{%/notice%}}
 
 To upgrade to Cumulus Linux 5.17 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.

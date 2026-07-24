@@ -75,11 +75,11 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 - 5.16.0
 - 5.16.1
 - 5.16.5
+- 5.16.6
 - 5.17.0
 
-{{%notice warning%}}
-- The Spectrum-6 switch does not support ISSU.
-- You cannot upgrade to Cumulus Linux 5.18.0 from Cumulus Linux 5.16.6.
+{{%notice note%}}
+The Spectrum-6 switch does not support ISSU.
 {{%/notice%}}
 
 To upgrade to Cumulus Linux 5.18 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.

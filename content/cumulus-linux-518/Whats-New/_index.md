@@ -13,14 +13,16 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 Cumulus Linux 5.18.0 supports new platforms, contains new features and improvements, and provides bug fixes.
 
 ## Platforms
-- NVIDIA SN6600_LD (800G Spectrum-6)
+- NVIDIA SN6600_LD (1.6T Spectrum-6)
 
 {{%notice note%}}
-The Spectrum-6 switch does not support:
-- Port speed 800Gx8
+The NVIDIA SN6600_LD switch does not support:
+- Port speed 800Gx8 and 100G
 - Warmboot
 - PTP
 {{%/notice%}}
+
+Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switch is generally available. You must upgrade any engineering sample to Cumulus Linux 5.18 with ONIE.
 
 ### New Features and Enhancements
 - Kernel update to Debian 6.1.174
@@ -58,7 +60,7 @@ The Spectrum-6 switch does not support:
   - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
   - {{<link url="IP-Source-Guard" text="IP Source Guard">}}
 - Telemetry
-  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC resource, and WJH">}}
+  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS and ASIC resource">}}
   - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC resource, and WJH">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
   - You can now run both {{<link title="What Just Happened (WJH)" text="NVUE WJH commands">}} and {{<link url="gNMI-Streaming" text="subscribe to gNMI YANG paths">}} at the same time.
@@ -69,13 +71,20 @@ Review the following considerations before you upgrade to Cumulus Linux 5.18.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18 from Cumulus Linux 5.16 and later. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+- 5.16.0
+- 5.16.1
+- 5.16.5
+- 5.17.0
 
-{{%notice note%}}
-The Spectrum-6 switch does not support ISSU.
+{{%notice warning%}}
+- The Spectrum-6 switch does not support ISSU.
+- You cannot upgrade to Cumulus Linux 5.18.0 from Cumulus Linux 5.16.6.
 {{%/notice%}}
 
 To upgrade to Cumulus Linux 5.18 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
+
+For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
 
 ### Maximum Number of NVUE Revisions
 

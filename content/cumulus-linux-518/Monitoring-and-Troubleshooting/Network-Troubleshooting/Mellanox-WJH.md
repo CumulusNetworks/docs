@@ -8,16 +8,13 @@ toc: 4
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools such as {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq" text="NVIDIA NetQ" >}}.
 - The WJH service enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, tunnel, buffer and ACL related issues. Cumulus Linux enables and runs the WJH service by default.
 
-{{%notice note%}}
-WJH runs in Docker. If you exhaust the Docker ten percent global limit of overall resources, then start WJH, you might see issues when using WJH. Make sure to free up Docker resources, then launch WJH again.
-{{%/notice%}}
-
 ## Configure WJH
 
 You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories (layer 1, layer 2, layer 3, tunnel, buffer and ACL) you want to monitor.
 
 {{%notice note%}}
-A channel name must be between 4 and 16 characters long.
+- A channel name must be between 4 and 16 characters long.
+- You can enable each trigger for a single channel only.
 {{%/notice%}}
 
 The following example configures two separate channels:
@@ -167,7 +164,7 @@ cumulus@switch:~$ nv show system wjh channel forwarding drop-filter
 
 ### Aggregation Interval and Cache Size
 
-You can control the rate at which metrics are sent for a channel (the polling interval) and the number of WJH drops and aggregates to maintain in the cache (the aggregate cache size).
+You can control the rate at which the switch sends events for a channel (the polling interval) and the number of WJH drops and aggregates to maintain in the cache (the aggregate cache size).
 
 The polling interval for a channel can be between 5 and 300 seconds and the cache size between 500 and 5000.
 
@@ -188,6 +185,10 @@ If you configure a channel to monitor buffer packet drops, you can specify laten
 - Packet latency is the time spent in the switch.
 - Congestion is a percentage of the buffer occupancy on the switch.
 
+{{%notice note%}}
+The Spectrum-6 switch does not support latency thresholds.
+{{%/notice%}}
+
 The following example sets the latency threshold to 10 seconds for all traffic classes on ports swp1, swp2, and swp3 and the congestion threshold to 4 for traffic class 3 on all interfaces.
 
 ```
@@ -202,14 +203,20 @@ cumulus@switch:~$ nv config apply
 To show the latency and congestion threshold configuration, run the `nv show system wjh channel <channel-id> buffer-threshold` command:
 
 ```
-cumulus@switch:~$ nv show system wjh channel forwarding buffer-threshold
+cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold
 Latency buffer threshold
 ===========================
-No Data
+    Traffic Class  Interface  High threshold
+    -------------  ---------  --------------
+    all            all        1000
 
 Congestion buffer threshold
 ==============================
-No Data
+    Traffic Class  Interface  High threshold
+    -------------  ---------  --------------
+    all            swp1       20
+                   swp2       20
+                   swp3       20
 ```
 
 ## Save Dropped Packets to a PCAP File
@@ -239,36 +246,100 @@ To show information about packet drops for all the channels you configure, run t
 cumulus@switch:~$ nv show system wjh packet-buffer
 Packet
 =========
-No Data
+    #     dMAC               dPort  Dst IP:Port    EthType  Drop group  IP Proto  Drop reason - Recommended action                                            Severity  sMAC               sPort   Src IP:Port     Timestamp              VLAN  sLAG  dLAG
+    ----  -----------------  -----  -------------  -------  ----------  --------  --------------------------------------------------------------------------  --------  -----------------  ------  --------------  ---------------------  ----  ----  ----
+    1     2c:5e:ab:a5:ae:f0  N/A    10.1.2.3:200   IPv4     ACL         N/A       Ingress port ACL - Validate ACL configuration                               Notice    00:02:00:00:00:01  swp1s0  192.0.2.10:100  26/07/03 12:46:29.238  N/A   N/A   N/A 
+    2     02:03:04:05:06:07  N/A    10.2.3.4:200   IPv4     L2          N/A       Port loopback filter - Validate MAC table for this destination MAC          Error     00:02:00:00:00:01  swp1s0  224.0.0.1:100   26/07/03 12:46:29.238  N/A   N/A   N/A 
+    3     2c:5e:ab:a5:ae:f0  N/A    10.1.2.3:200   IPv4     L2          N/A       Source MAC is Zero - Bad packet was received from peer                      Error     00:00:00:00:00:00  swp1s0  10.1.2.3:100    26/07/03 12:46:29.238  N/A   N/A   N/A 
+    4     02:03:04:05:06:07  N/A    127.0.0.1:200  IPv4     L2          N/A       Port loopback filter - Validate MAC table for this destination MAC          Error     00:02:00:00:00:01  swp1s0  224.0.0.1:100   26/07/03 12:46:29.238  N/A   N/A   N/A 
+    5     02:03:04:05:06:07  N/A    10.1.2.3:200   IPv4     L2          N/A       Port loopback filter - Validate MAC table for this destination MAC          Error     00:02:00:00:00:01  swp1s0  10.1.2.3:100    26/07/03 12:46:29.238  N/A   N/A   N/A 
+    6     2c:5e:ab:a5:ae:f0  N/A    10.1.2.3:200   IPv4     L3          N/A       Source IP equals destination IP - Bad packet was received from the peer     Error     00:02:00:00:00:01  swp1s0  10.1.2.3:100    26/07/03 12:46:29.238  N/A   N/A   N/A 
 
 Packet ACL
 =============
-No Data
+    #     Rule                                                                                                                                                                    
+    ----  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    1     Priority[0];KEY[L3_TYPE: IPV4];KEY[SIP: 192.0.2.10/255.255.255.255];KEY[SRC_PORT: 65777];ACTION[COUNTER: COUNTER_ID = 614400];ACTION[FORWARD: FORWARD_ACTION = DISCARD];
 
 Packet Buffer Info
 =====================
 No Data
 ```
 
-You can also show the WJH configuration on the switch:
-- To show the configuration for a channel, run the `nv show system wjh channel <channel>` command.
-- To show the configuration for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command.
-
-To show the most recent aggregate buffer drop events, up to the maximum aggregate cache size specified, run the `nv show system wjh aggregate-buffer` command. To show layer 1 buffer events, run the `nv show system wjh l1-buffer` command.
+To show the most recent aggregate buffer drop events, up to the maximum aggregate cache size specified, run the `nv show system wjh aggregate-buffer` command. 
 
 ```
 cumulus@switch:~$ nv show system wjh aggregate-buffer
 Aggregate Event
 ==================
-No Data
+    Event ID  Drop group  Count  Severity  Drop reason - Recommended action                                            Start timestamp        End timestamp          sPort   sLAG  dPort  dLAG  VLAN  sMAC               dMAC               EthType  Src IP:Port     Dst IP:Port    IP Proto
+    --------  ----------  -----  --------  --------------------------------------------------------------------------  ---------------------  ---------------------  ------  ----  -----  ----  ----  -----------------  -----------------  -------  --------------  -------------  --------
+    1         L3          30     Error     Destination IP is loopback address - Bad packet was received from the peer  26/07/03 10:29:38.281  26/07/03 10:30:07.287  swp1s0  N/A   N/A    N/A   N/A   00:02:00:00:00:01  2c:5e:ab:a5:ae:f0  IPv4     10.1.2.3:100    127.0.0.1:200  udp     
+    2         L2          30     Error     Source MAC is Zero - Bad packet was received from peer                      26/07/03 10:29:38.281  26/07/03 10:30:07.287  swp1s0  N/A   N/A    N/A   N/A   00:00:00:00:00:00  2c:5e:ab:a5:ae:f0  IPv4     10.1.2.3:100    10.1.2.3:200   udp     
+    3         L2          30     Error     Port loopback filter - Validate MAC table for this destination MAC          26/07/03 10:29:38.281  26/07/03 10:30:07.287  swp1s0  N/A   N/A    N/A   N/A   00:02:00:00:00:01  02:03:04:05:06:07  IPv4     10.1.2.3:100    10.1.2.3:200   udp     
+    4         L2          30     Error     Port loopback filter - Validate MAC table for this destination MAC          26/07/03 10:29:38.281  26/07/03 10:30:07.287  swp1s0  N/A   N/A    N/A   N/A   00:02:00:00:00:01  02:03:04:05:06:07  IPv4     224.0.0.1:100   10.2.3.4:200   udp     
+    5         ACL         33     Notice    Ingress port ACL - Validate ACL configuration                               26/07/03 10:29:35.280  26/07/03 10:30:07.287  swp1s0  N/A   N/A    N/A   N/A   00:02:00:00:00:01  2c:5e:ab:a5:ae:f0  IPv4     192.0.2.10:100  10.1.2.3:200   udp  
 
 Aggregate Event ACL
 ======================
-No Data
+    Event ID  Rule                                                                                                                                                                    
+    --------  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    5         Priority[0];KEY[L3_TYPE: IPV4];KEY[SIP: 192.0.2.10/255.255.255.255];KEY[SRC_PORT: 65777];ACTION[COUNTER: COUNTER_ID = 614400];ACTION[FORWARD: FORWARD_ACTION = DISCARD];
 
 Aggregate Event Buffer
 =========================
 No Data
+```
+
+To show layer 1 buffer events, run the `nv show system wjh l1-buffer` command.
+
+```
+cumulus@switch:~$ nv show system wjh l1-buffer
+Event ID  Port   State  Port down reason                Start timestamp        End timestamp          State change count  Symbol error count  CRC error count
+--------  -----  -----  ------------------------------  ---------------------  ---------------------  ------------------  ------------------  ---------------
+1         swp1   Up     N/A                             26/07/23 15:31:53.848  26/07/23 15:47:45.628  1                   0                   0
+2         swp10  Down   Cable/transceiver is unplugged  26/07/23 15:31:53.848  26/07/23 15:47:45.628  0                   0                   0
+3         swp11  Down   Cable/transceiver is unplugged  26/07/23 15:31:53.848  26/07/23 15:47:45.628  0                   0                   0
+4         swp12  Down   Cable/transceiver is unplugged  26/07/23 15:31:53.848  26/07/23 15:47:45.628  0                   0                   0
+```
+
+To show the configuration for all WJH channels and the total drops, run the `nv show system wjh channel` command.
+
+```
+cumulus@switch:~$ nv show system wjh channel
+Channel name  Trigger(s)      Polling interval  Type                                     Aggregate cache size  Total drops
+------------  --------------  ----------------  ---------------------------------------  --------------------  -----------
+acls          ACL             30                WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E  1024                  109        
+buffer        BUFFER          30                WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E  1024                  0          
+forwarding    L2, L3, TUNNEL  30                WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E  1024                  749        
+layer-1       L1              30                WJH_USER_CHANNEL_AGGREGATE_E             1024                  0
+```
+
+To show the configuration for a specific WJH channel and the total drops, run the `nv show system wjh channel <channel>` command.
+
+```
+cumulus@switch:~$ nv show system wjh channel buffer
+                      operational                              applied
+--------------------  ---------------------------------------  -------
+polling-interval      30                                       30
+aggregate-cache-size  1024                                     1024
+drop-category-list    BUFFER
+type                  WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E
+total-drops           0
+
+Latency buffer threshold
+===========================
+    Traffic Class  Interface  High threshold
+    -------------  ---------  --------------
+    all            all        1000
+
+Congestion buffer threshold
+==============================
+    Traffic Class  Interface  High threshold
+    -------------  ---------  --------------
+    all            swp1       20
+                   swp2       20
+                   swp3       20
 ```
 
 {{< /tab >}}
@@ -299,13 +370,13 @@ cumulus@switch:~$ nv-wjh-cli poll --data drops --output-type pcap --channels for
 {{< /tab >}}
 {{< /tabs >}}
 
-## WJH Metrics
+## WJH Events
 
-This section provides the supported WJH metrics with a brief description of each.
+This section provides the supported WJH events with a brief description of each.
 
 ### Layer 1 Drops
 
-Layer 1 drop metrics describe why a port is in the down state.
+Layer 1 drop events describe why a port is in the down state.
 
 | Reason | Description|
 | --- | --- |
@@ -329,7 +400,7 @@ In addition to the reason, the information provided for these drops includes:
 
 ### Layer 2 Drops
 
-Layer 2 drop metrics describe why a link is down.
+Layer 2 drop events describe why the switch drops packets at layer 2.
 
 | Reason | Severity | Description |
 | --- | --- | --- |
@@ -362,7 +433,7 @@ In addition to the reason, the information provided for these drops includes:
 
 ### Router Drops
 
-Router drop metrics describe why the server is unable to route a packet.
+Router drop events describe why the server is unable to route a packet.
 
 | Reason | Severity | Description |
 | --- | --- | --- |
@@ -394,7 +465,7 @@ Router drop metrics describe why the server is unable to route a packet.
 
 ### Tunnel Drops
 
-Tunnel drop metrics describe why a tunnel is down.
+Tunnel drop events describe why a tunnel is down.
 
 | Reason | Severity | Description |
 | --- | --- | --- |
@@ -406,7 +477,7 @@ Tunnel drop metrics describe why a tunnel is down.
 
 ### Buffer Drops
 
-Buffer drop metrics describe why the server buffer has dropped packets.
+Buffer drop events describe why the server buffer has dropped packets.
 
 | Reason | Severity | Description |
 | --- | --- | --- |
@@ -417,7 +488,7 @@ Buffer drop metrics describe why the server buffer has dropped packets.
 
 ### ACL Drops
 
-ACL drop metrics describe why an ACL has dropped packets.
+ACL drop events describe why an ACL has dropped packets.
 
 | Reason | Severity | Description|
 | --- | --- | --- |
@@ -453,8 +524,8 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ sudo systemctl enable what-just-happened
-cumulus@switch:~$ sudo systemctl start what-just-happened
+cumulus@switch:~$ sudo systemctl enable nv-wjh
+cumulus@switch:~$ sudo systemctl start nv-wjh
 ```
 
 {{< /tab >}}

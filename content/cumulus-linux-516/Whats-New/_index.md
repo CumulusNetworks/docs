@@ -13,6 +13,14 @@ Cumulus Linux 5.16 is tested and validated as part of the Spectrum-X reference a
 For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
 
+## What’s New in Cumulus Linux 5.16.6
+
+Cumulus Linux 5.16.6 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and security updates, and includes a new hardware management package with thermal algorithm updates to increase the cooling fan speed.
+
+{{%notice warning%}}
+The switch does not support upgrade from Cumulus Linux 5.16.6 to Cumulus Linux 5.17.0.
+{{%/notice%}}
+
 ## What’s New in Cumulus Linux 5.16.5
 
 Cumulus Linux 5.16.5 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and security updates.
@@ -74,9 +82,15 @@ Review the following considerations before you upgrade to Cumulus Linux 5.16.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.16 from Cumulus Linux 5.14 and later. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.16 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+- Cumulus Linux 5.14.0
+- Cumulus Linux 5.15.0
+- Cumulus Linux 5.15.1
 
 To upgrade to Cumulus Linux 5.16 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
+
+
+For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
 
 ### Significant NVUE Command and API Updates
 

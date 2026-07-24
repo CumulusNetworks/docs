@@ -13,7 +13,8 @@ To upgrade Cumulus Linux, choose one of the three upgrade methods:
 - Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you need to manually back up and restore your switch configuration).
 
 {{%notice warning%}}
-NVIDIA recommends that you do not upgrade to Cumulus Linux 5.16.1 on the NVIDIA SN2201 switch; upgrade to Cumulus Linux 5.16.5 instead.
+- NVIDIA recommends that you do not upgrade to Cumulus Linux 5.16.1 on the NVIDIA SN2201 switch; upgrade to Cumulus Linux 5.16.5 instead.
+- Upgrade from Cumulus Linux 5.16.6 to Cumulus Linux 5.17.0 is not supported.
 {{%/notice%}}
 
 ## Upgrades with ISSU

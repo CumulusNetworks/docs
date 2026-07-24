@@ -61,23 +61,18 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>]/state/max-limit` | The maximum limit of possible entries for an ASIC resource. |
 | `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>] /state/high-watermark` | The highest number of entries used for an ASIC resource.| 
 | `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>] /state/last-high-watermark` | The timestamp when the high-watermark was last updated. | 
-<!-->
-{{< /tab >}}
-{{< tab "BGP">}}
 
-|  Name | Description |
-|------ | ----------- |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/enabled`| The admin status of the BGP peer (up or down). |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received-pre-policy`| Number of prefixes received from the peer before applying any policies.<br><br>The pre-policy count requires soft-reconfiguration inbound to be enabled for the peer (`nv set vrf default router bgp neighbor <neighbor-id> address-family <address-family> soft-reconfiguration enabled`).|
--->
 {{< /tab >}}
 {{< tab "WJH">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/wjh/channels/channel[name]/aggregate-events` | Total number of aggregate events. |
-| `/wjh/channels/channel[name]/l1-events` | Total number of layer 1 channel events.|
+| `/wjh/channels/channel[name]/aggregate-events` | Total number of aggregate events for the channel. |
+| `/wjh/channels/channel[name]/l1-events` | Total number of layer 1 channel events for the channel.|
 | `/wjh/channels/channel[name]/state` | If the channel is enabled.|
+| `/wjh/channels/channel[name]/state/categories` | Total number of categories for the channel. |
+| `/wjh/channels/channel[name]/state/total-events` | Total number of events for the channel. |
+| `/wjh/state/service-state` | The state of the WJH service. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -95,12 +90,15 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 | `nvswitch_dot1x_radius_server_requests_total` | Number of access and accounting requests. |
 | `nvswitch_dot1x_radius_server_accounting_requests_total` | Number of accounting requests. |
 | `nvswitch_dot1x_radius_server_responses_total`  | Total number of responses. |
-| `nvswitch_dot1x_radius_server_retransmissions_total` | Number of timeout access requests  or  accounting timeouts. |
+| `nvswitch_dot1x_radius_server_retransmissions_total` | Number of timeout retried access requests and accounting retransmissions. |
+| `nvswitch_dot1x_radius_server_timeouts_total` | Number of timeout access requests and accounting timeouts. |
 | `nvswitch_dot1x_radius_server_pending_requests` | Number of RADIUS requests destined for the server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
 | `nvswitch_dot1x_radius_server_round_trip_time_ms`  | Most recent round-trip time, in milliseconds, between a RADIUS request and its matching response.  |
 
+To enable the new 802.1x RADIUS Server metrics, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export/#8021x-statistics">}}.
+
 {{< /tab >}}
-{{< tab "ASIC">}}
+{{< tab "ASIC Resource">}}
 
 |  Name | Description |
 |------ | ----------- |
@@ -109,23 +107,8 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 | `nvswitch_platform_asic_resource_max_limit` | The maximum limit of possible entries for an ASIC resource.|
 | `nvswitch_platform_asic_resource_high_watermark` | The highest number of entries used for an ASIC resource. | 
 | `nvswitch_platform_asic_resource_high_watermark_timestamp` | The timestamp when the high-watermark was last updated.| 
-<!--
-{{< /tab >}}
-{{< tab "BGP">}}
 
-|  Name | Description |
-|------ | ----------- |
-| `nvrouting_bgp_peer_enabled` | The admin status of the BGP peer (up or down). |
-| `nvrouting_bgp_peer_rib_adj_in_pre_policy` | Number of prefixes received from the peer before applying any policies.<br><br>The pre-policy count requires soft-reconfiguration inbound to be enabled for the peer (`nv set vrf default router bgp neighbor <neighbor-id> address-family <address-family> soft-reconfiguration enabled`).|
--->
-{{< /tab >}}
-{{< tab "WJH">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `nvswitch_wjh_total_events_channel_forwarding` | Total number of forwarding channel events. |
-| `nvswitch_wjh_total_events_channel_acl` | Total number of ACL channel events.|
-| `nvswitch_wjh_total_events_channel_buffer` | Total number of buffer channel events. |
+To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export/#platform-statistics">}}.
 
 {{< /tab >}}
 {{< /tabs >}}

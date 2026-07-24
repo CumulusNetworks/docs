@@ -409,7 +409,7 @@ offload    enabled
 ...
 ```
 
-To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view brief` command or the vtysh `show bfd peer` command.
+To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view brief` command or the vtysh `show bfd vrf default peers brief json` command.
 
 ```
 cumulus@switch:~$ nv show vrf default router bfd peers --view brief

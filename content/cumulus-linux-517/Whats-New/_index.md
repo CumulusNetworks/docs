@@ -59,7 +59,17 @@ Review the following considerations before you upgrade to Cumulus Linux 5.17.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.17 from Cumulus Linux 5.15 and later. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.17 from:
+- Cumulus Linux 5.15.0
+- Cumulus Linux 5.15.1
+- Cumulus Linux 5.16.1
+- Cumulus Linux 5.16.5 
+ 
+Package upgrade supports ISSU (warm boot) for these upgrade paths.
+
+{{%notice note%}}
+You cannot upgrade Cumulus Linux 5.16.6 to Cumulus Linux 5.17.0.
+{{%/notice%}}
 
 To upgrade to Cumulus Linux 5.17 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 

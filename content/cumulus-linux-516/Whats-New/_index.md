@@ -91,6 +91,9 @@ Package upgrade supports ISSU (warm boot) for these upgrade paths.
 
 To upgrade to Cumulus Linux 5.16 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
+
+For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
+
 ### Significant NVUE Command and API Updates
 
 {{%notice warning%}}

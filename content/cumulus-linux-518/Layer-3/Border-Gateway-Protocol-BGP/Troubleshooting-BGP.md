@@ -93,7 +93,7 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete
 ...
 ```
 
-To show a more detailed breakdown of a specific neighbor, run the NVUE `nv show vrf <vrf-id> router bgp neighbor <neighbor-id>` command or the vtysh `sudo vtysh -c "show bgp vrf default neighbors <neighbor-id> json` command.
+To show a more detailed breakdown of a specific neighbor, run the NVUE `nv show vrf <vrf-id> router bgp neighbor <neighbor-id>` command or the vtysh `show bgp vrf default neighbors <neighbor-id> json` command.
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51
@@ -615,7 +615,7 @@ ipv6-unreachability
 
 - To show IPv4 address family information for a specific neighbor, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast` command. 
 - To show IPv6 address family information for a specific neighbor, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast` command.
-- To show BGP EVPN address family information for a specific neighbor, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn` command.
+- To show EVPN address family information for a specific neighbor, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn` command.
 
 ```
 cumulus@switch:mgmt:~$ 

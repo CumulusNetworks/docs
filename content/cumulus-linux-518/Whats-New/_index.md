@@ -78,7 +78,7 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 - 5.16.6
 - 5.17.0
 
-{{%notice warning%}}
+{{%notice note%}}
 The Spectrum-6 switch does not support ISSU.
 {{%/notice%}}
 

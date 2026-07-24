@@ -71,7 +71,14 @@ Review the following considerations before you upgrade to Cumulus Linux 5.18.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18 from Cumulus Linux 5.16 and later. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18 from: 
+- 5.16.0
+- 5.16.1
+- 5.16.5
+- 5.16.6
+- 5.17
+
+Package upgrade supports ISSU (warm boot) for these upgrade paths.
 
 {{%notice note%}}
 The Spectrum-6 switch does not support ISSU.

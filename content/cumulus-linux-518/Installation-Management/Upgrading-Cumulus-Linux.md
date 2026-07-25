@@ -239,11 +239,11 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 {{%/notice%}}
 
 For a list of the releases from which you can upgrade, see {{<link url="Whats-New/#upgrade-requirements" text="Release Considerations">}}.
-
+<!--
 {{%notice note%}}
 You can package upgrade the switch with NVUE or Linux commands. The NVUE command performs a full package upgrade and installs new packages such as `nv-wjh`. The Linux command (`apt-get upgrade`) only upgrades existing packages and does not install newly introduced packages. To perform a full package upgrade, either run the NVUE command or the Linux `apt-get dist-upgrade` command.
 {{%/notice%}}
-
+-->
 {{< tabs "TabID253 ">}}
 {{< tab "NVUE Commands ">}}
 

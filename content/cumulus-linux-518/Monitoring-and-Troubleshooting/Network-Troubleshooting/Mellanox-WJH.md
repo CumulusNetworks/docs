@@ -444,13 +444,13 @@ ACL drop events describe why an ACL has dropped packets.
 | Egress router ACL | Notice | An ACL action is set to deny on the egress SVIs. |
 
 ## Considerations
-
+<!--
 ### WJH and Package Upgrade
 
 The Linux package upgrade command (`apt-get upgrade`) only upgrades existing packages and does not install newly introduced packages; therefore, `apt-get upgrade` does not install the new `nv-wjh` package, introduced in Cumulus 5.18.0.
 
 When using WJH, make sure to use the NVUE package upgrade command `nv action upgrade system packages to latest use-vrf mgmt` or the Linux `apt-get dist-upgrade` command to perform a full package upgrade. You can also manually install the `nv-wjh` package after upgrade.
-
+-->
 ### Buffer Packet Drop Monitoring
 
 - Buffer packet drop monitoring is available on a switch with Spectrum-2 and later.

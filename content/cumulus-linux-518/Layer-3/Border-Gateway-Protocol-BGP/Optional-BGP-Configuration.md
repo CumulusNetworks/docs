@@ -2336,13 +2336,15 @@ Inter-DC routing enables you to maintain communication across large-scale GPU cl
 - Conditional disaggregation that triggers disaggregated routes at merged planes. 
 - In-plane LLDP exception signaling that informs GPUs of link or plane failures within a plane. 
 
-To configure inter-DC routing, you must provide a plane ID on each leaf switch. The switch tags unreachable routes with the plane ID. When BGP exports unreachable routes to LLDP, the switch filters out routes that originate from a non-local plane as part of the conditional disaggregation functionality.
+To achieve inter-DC routing and intra-DC failure handling, where planarized DC fabrics merge at the DC Interconnect Switch (DCIS) layer, you must configure a plane ID on each leaf switch. This plane ID must be unique across planes in a DC; however, you must use the same plane ID for all leaf switches within a plane.
 
-Before you configure the plane ID, you must configure the following BGP features on each leaf switch:
+You must configure the plane ID together with the following BGP features on each leaf switch:
 - {{<link url="/#bgp-pic-anycast" text="Anycast PIC">}} 
 - {{<link url="/#bgp-unreachability-safi" text="BGP Unreachability SAFI">}}
 - {{<link url="/#bgp-conditional-disaggregation" text="Conditional disaggregation">}}
 - {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP LLDP Unreachability in Disjoined Planes">}} 
+
+In a failure scenario, when there is prefix unreachability, the switch carries the configured plane ID as part of the SOO Extended Community. Leaf switches that receive unreachability routes match on the SOO IP address to determine if they must advertise conditional disaggregate routes and match on the plane ID to determine if they must perform LLDP exception programming towards locally connected hosts.
 
 To configure the plane ID, run the following commands. You can specify a value between 1 and 16. The default value is 0 (disabled).  
 

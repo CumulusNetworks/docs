@@ -39,6 +39,7 @@ Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switc
 - {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}} (Beta)
 - {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="BGP graceful fabric maintenance">}} (Beta)
 - {{<link url="Optional-BGP-Configuration/#inter-dc-routing" text="Inter-DC Routing">}} (Beta)
+- {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-6" text="Spectrum-6 forwarding resource profiles">}} 
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - NVUE
   - {{<link url="NVUE-CLI/#automatic-configuration-backup-and-restore" text="Automatic configuration backup and restore">}}

@@ -191,6 +191,10 @@ If you need to convert a layer 2 VNI to a layer 3 VNI, refer to {{<link url="Net
 
 ### Layer 3 VXLAN Device Mode
 
+{{%notice note%}}
+Layer 3 VXLAN device mode is a Beta feature.
+{{%/notice%}}
+
 Instead of using a single VXLAN device for all layer 3 VNIs (as described above), you can configure the switch to use a layer 3 VXLAN device for each VNI. Layer 3 VXLAN mode creates individual VXI devices that are not SVIs and are unrelated to any bridge.
 
 Layer 3 VXLAN device mode simplifies EVPN configuration and improves performance at scale.

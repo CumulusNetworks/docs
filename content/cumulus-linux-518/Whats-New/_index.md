@@ -13,7 +13,7 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 Cumulus Linux 5.18.0 supports new platforms, contains new features and improvements, and provides bug fixes.
 
 ## Platforms
-- NVIDIA SN6600_LD (1.6T Spectrum-6)
+- {{<exlink url="https://docs.nvidia.com/nvidia-spectrum-6-sn6000-ethernet-switch-systems-hardware-user-manual.pdf" text="NVIDIA SN6600_LD">}} (128x800G Spectrum-6)
 
 {{%notice note%}}
 The NVIDIA SN6600_LD switch does not support:
@@ -31,7 +31,7 @@ Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switc
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} is generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
 - {{<link url="Interface-Configuration-and-Management/#link-tracking" text="Link tracking ">}}
-- {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}}
+- {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}} (Beta)
 - {{<link url="EVPN-Multihoming/#svi-ip-address-configuration" text="EVPN Multihoming without a unique SVI IP address">}}
 - {{<link url="RADIUS-AAA/#nas-ip-address-and-identifier" text="RADIUS NAS IP address and identifier configuration">}}
 - {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}} (Beta)

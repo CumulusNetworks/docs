@@ -4,13 +4,13 @@ author: NVIDIA
 weight: 61
 toc: 3
 ---
-The Cumulus Linux Micro-Update Framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
+The Cumulus Linux micro update framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
 
 You can schedule a critical fix on your own maintenance window and back it out without a full image upgrade.
 
-The micro update only contains changed packages and complements rather than replaces the standard release; every micro-update fix is also rolled into a subsequent release.
+Micro updates only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every micro update into a subsequent release.
 
-You can roll back to return to the base image, not a previously-running micro-update. If a package is running an earlier micro update version when a later micro update is installed, removing the later one restores the base-image version, not the earlier micro-update.
+You can roll back and return to the base image, not a previously-running micro update. If a package is running an earlier micro update version when a later micro update is installed, removing the later one restores the base-image version, not the earlier micro update.
 
 ## Install a Micro Update
 
@@ -35,7 +35,7 @@ You run the `nv action install system packages archive <id>` command with the fo
 
 ## Uninstall a Micro Update
 
-To uninstall the update and restore the pre-fix package version to inactive, run the `nv action uninstall system packages archive <id>` command.
+To uninstall the micro update and restore the pre-fix package version to inactive, run the `nv action uninstall system packages archive <id>` command.
 
 ```
 cumulus@switch:~$ nv action uninstall system packages archive rm0042
@@ -56,7 +56,7 @@ cumulus@switch:~$ nv show system packages archive
 No Data
 ```
 
-To show information about a specific micro update, such as a summary, description, impact, supported-with, installation time, failure reason, and its applied status, run the `nv show system packages archive <id>` command:
+To show information about a specific micro update, such as a summary, description, impact, supported with, installation time, failure reason, and its applied status, run the `nv show system packages archive <id>` command:
 
 ```
 cumulus@switch:~$ nv show system packages archive rm0042

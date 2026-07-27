@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5152149</td>
+<td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5093941</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -76,6 +82,68 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5076748</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076747</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5072600</td>
+<td>The {{nv show mlag -o json}} command returns a plain text error instead of a JSON object.
+
+</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5070048</td>
+<td>All multihomed downlinks are stuck in protodown state, if the lowest integer valued uplink is down before the mh-uplink knob is enabled on all uplink interfaces.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5067214</td>
+<td>Running the {{nv config apply}} command with no changes returns a warning but the pending revision is not detached.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5065211, 4916985, 5078194</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the system too early.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057971</td>
+<td>On an MLAG pair, after a bridge flap, the connected route for the {{macvlan}} interface comes up without the {{INSTALLED}} flag, while its SVI on the same prefix is {{C&gt;*}}.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057785</td>
+<td>With more than 10k EVPN type 2 prefixes, there is a delay in convergence.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5056914</td>
+<td>Optimized image upgrade to 5.15.x might consume space in the {{/var}} directory up to 2.2 times the image size and might not correctly check free space in {{/var}} before proceeding.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5040890</td>
+<td>IPv4 BGP aggregate routes are not advertised to peers.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4992204</td>
 <td>Cumulus Linux does not support the NVUE {{nv set nve vxlan port &lt;udp-port&gt;}} command; you do not see the configured UDP port in the outer VXLAN packet header.</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
@@ -104,6 +172,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
 <td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>4963562</td>
+<td>Uneven utilization of bond member links results in one member approaching congestion while the parallel member is largely idle. There is no traffic loss; the impact is bandwidth efficiency and potential micro-congestion on the overloaded member.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4963280</td>
@@ -340,6 +414,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>4743814</td>
 <td>The switch clears the QoS buffer max usage values in the {{nv show interface &lt;interface&gt; qos buffer egress-traffic-class}} command output when a gNMI client subscribes to any QoS buffer metrics.</td>
 <td>5.14.0-5.15.1</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>4742452, 4426737</td>
+<td>NVUE is unable to apply the original startup configuration or any changes that modify user accounts after the internal repository becomes invalid, leaving the applied revision in NVUE empty while the device continues to use the configuration stored directly under {{/etc/}}. This leads to a mismatch between what NVUE reports and the actual running state of the system.</td>
+<td>5.13.1-5.15.1</td>
 <td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
 </tr>
 <tr>
@@ -945,12 +1025,6 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>

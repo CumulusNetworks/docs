@@ -52,15 +52,49 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 | `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/accounting-round-trip-time` | Round-trip time, in milliseconds, between the most recent Accounting-Request sent to this server and the corresponding Accounting-Response received. |
 
 {{< /tab >}}
-{{< tab "ASIC">}}
+{{< tab "ASIC Resource">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>] /state/used` | The number of entries used for an ASIC resource. | 
-| `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>]/state/free` | The number of free entries available for an ASIC resource. |
-`/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>]/state/max-limit` | The maximum limit of possible entries for an ASIC resource. |
-| `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>] /state/high-watermark` | The highest number of entries used for an ASIC resource.| 
-| `/components/component/integrated-circuit/utilization/resources/resource[name=< resource_name>] /state/last-high-watermark` | The timestamp when the high-watermark was last updated. | 
+| `/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>]/state/used` | The number of entries used for an ASIC resource. | 
+| `/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>]/state/free` | The number of free entries available for an ASIC resource. |
+`/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>]/state/max-limit` | The maximum limit of possible entries for an ASIC resource. |
+| `/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>]/state/high-watermark` | The highest number of entries used for an ASIC resource.| 
+| `/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>]/state/last-high-watermark` | The timestamp when the high-watermark was last updated. |
+
+The ASIC resource is one of the following:
+
+| Name |
+|----- |
+| `MAC-entries` | 
+| `IPv4-Routes` |
+| `IPv6-Routes` |
+| `Total-Mcast-Routes` |
+| `IPv4-host-entries` |
+| `IPv6-host-entries` |
+| `ECMP-nexthops` |
+| `ACL-Regions` |
+| `ACL-18B-Rules-Key` |
+| `ACL-36B-Rules-Key` |
+| `ACL-54B-Rules-Key` |
+| `Flow-Counters` |
+| `RIF-Basic-Counters` |
+| `RIF-Enhanced-Counters` |
+
+For example, `/components/component/integrated-circuit/utilization/resources/resource[name=MAC-entries]/state/used`.
+
+{{%notice note%}}
+The maximum value for the `IPv6-Routes` ASIC resource represents the number of single-width IPv6 route entries. In hardware, IPv6 routes with prefix lengths from /0 to /64 consume one entry each, whereas routes with prefix lengths from /65 to /128 consume two entries each. As a result, the actual number of free hardware entries depends on the mix of IPv6 route prefix lengths programmed into the table.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Platform Leakage Sensor">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name=leakage*]/state/name /` | Leak sensor name. Liquid-cooled NVIDIA switch only.|
+| `/components/component[name=leakage*]/state/oper-status` | Leak sensor operational health (ACTIVE on valid reading) Liquid-cooled NVIDIA switch only. Liquid-cooled NVIDIA switch only.|
+| `/components/component[name=leakage*]/state/leakage/alarm-status` | Leak alarm status. Liquid-cooled NVIDIA switch only.|
 
 {{< /tab >}}
 {{< tab "WJH">}}
@@ -95,20 +129,49 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 | `nvswitch_dot1x_radius_server_pending_requests` | Number of RADIUS requests destined for the server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
 | `nvswitch_dot1x_radius_server_round_trip_time_ms`  | Most recent round-trip time, in milliseconds, between a RADIUS request and its matching response.  |
 
-To enable the new 802.1x RADIUS Server metrics, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export/#8021x-statistics">}}.
+To enable the new 802.1x RADIUS Server metrics, refer to {{<link url="Open-Telemetry-Export/#8021x-statistics" text="OTEL Telemetry Export">}}.
 
 {{< /tab >}}
 {{< tab "ASIC Resource">}}
 
+| Name | Description |
+|----- | ----------- |
+| `nvswitch_platform_asic_resource_used{resource_name="<name>"}` | The number of entries used for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_free{resource_name="<name>"}` | The number of free entries available for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_max_limit{resource_name="<name>"}` | The maximum limit of possible entries for an ASIC resource.|
+| `nvswitch_platform_asic_resource_high_watermark{resource_name="<name>"}` | The highest number of entries used for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_high_watermark_timestamp{resource_name="<name>"}` | The timestamp when the high-watermark was last updated.|
+
+The ASIC resource is one of the following:
+
+| Name |
+|----- |
+| `MAC-entries` | 
+| `IPv4-Routes` |
+| `IPv6-Routes` |
+| `Total-Mcast-Routes` |
+| `IPv4-host-entries` |
+| `IPv6-host-entries` |
+| `ECMP-nexthops` |
+| `ACL-Regions` |
+| `ACL-18B-Rules-Key` |
+| `ACL-36B-Rules-Key` |
+| `ACL-54B-Rules-Key` |
+| `Flow-Counters` |
+| `RIF-Basic-Counters` |
+| `RIF-Enhanced-Counters` |
+
+For example, `nvswitch_platform_asic_resource_free{resource_name="MAC-entries"}`.
+
+To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Telemetry Export">}}.
+
+{{< /tab >}}
+{{< tab "Platform Leakage Sensor">}}
+
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_platform_asic_resource_used` | The number of entries used for an ASIC resource. | 
-| `nvswitch_platform_asic_resource_free` | The number of free entries available for an ASIC resource. | 
-| `nvswitch_platform_asic_resource_max_limit` | The maximum limit of possible entries for an ASIC resource.|
-| `nvswitch_platform_asic_resource_high_watermark` | The highest number of entries used for an ASIC resource. | 
-| `nvswitch_platform_asic_resource_high_watermark_timestamp` | The timestamp when the high-watermark was last updated.| 
-
-To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export/#platform-statistics">}}.
+| `nvswitch_platform_environment_leak_sensor_status` | Leak sensor status. Liquid-cooled NVIDIA switch only.|
+| `nvswitch_platform_environment_leakage_status` | Leakage status. Liquid-cooled NVIDIA switch only. |
 
 {{< /tab >}}
 {{< /tabs >}}

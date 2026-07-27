@@ -400,16 +400,16 @@ cumulus@switch:~$ nv config apply
 If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 60 seconds.
 
 {{< tabs "TabID393 ">}}
-{{< tab "ASIC ">}}
+{{< tab "ASIC Resource">}}
 
-To enable ASIC statistics:
+To enable ASIC resource statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To adjust the sample interval for ASIC statistics:
+To adjust the sample interval for ASIC resource statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource sample-interval 100
@@ -3143,17 +3143,42 @@ When you enable {{<link url="Latency-Monitoring/" text="latency monitoring">}}, 
 When you enable platform statistic telemetry globally, or when you enable telemetry for the individual components, the switch exports the following statistics:
 
 {{< tabs "TabID723 ">}}
-{{< tab "ASIC ">}}
+{{< tab "ASIC Resource">}}
 
 ASIC statistics include the ASIC resource used percentage, the maximum number of entries, the number of free entries, the high watermark, and the high watermark timestamp.
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_platform_asic_resource_used` | | 
-| `nvswitch_platform_asic_resource_free` | | 
-| `nvswitch_platform_asic_resource_max_limit` | |
-| `nvswitch_platform_asic_resource_high_watermark` | | 
-| `nvswitch_platform_asic_resource_high_watermark_timestamp` | | 
+| `nvswitch_platform_asic_resource_used{resource_name="<name>"}` | *The number of entries used for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_free{resource_name="<name>"}` | *The number of free entries available for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_max_limit{resource_name="<name>"}` | *The maximum limit of possible entries for an ASIC resource.|
+| `nvswitch_platform_asic_resource_high_watermark{resource_name="<name>"}` | *The highest number of entries used for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_high_watermark_timestamp{resource_name="<name>"}` | *The timestamp when the high-watermark was last updated.|
+
+The ASIC resource is one of the following:
+
+| Name |
+|----- |
+| `MAC-entries` | 
+| `IPv4-Routes` |
+| `IPv6-Routes` |
+| `Total-Mcast-Routes` |
+| `IPv4-host-entries` |
+| `IPv6-host-entries` |
+| `ECMP-nexthops` |
+| `ACL-Regions` |
+| `ACL-18B-Rules-Key` |
+| `ACL-36B-Rules-Key` |
+| `ACL-54B-Rules-Key` |
+| `Flow-Counters` |
+| `RIF-Basic-Counters` |
+| `RIF-Enhanced-Counters` |
+
+For example, `nvswitch_platform_asic_resource_free{resource_name="MAC-entries"}`.
+
+{{%notice note%}}
+The maximum value for the `IPv6-Routes` ASIC resource represents the number of single-width IPv6 route entries. In hardware, IPv6 routes with prefix lengths from /0 to /64 consume one entry each, whereas routes with prefix lengths from /65 to /128 consume two entries each. As a result, the actual number of free hardware entries depends on the mix of IPv6 route prefix lengths programmed into the table.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Disk ">}}
@@ -3330,6 +3355,14 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_info_last_reboot_reason` | Information about the last reboot reason of a component.|
 | `nvswitch_platform_info_firmware_version` | Information about the firmware version of a component.|
 | `nvswitch_platform_info_hw_details` | Component hardware details such as the version, model name, part number, serial number, type, and name.|
+
+{{< /tab >}}
+{{< tab "Leakage Sensor">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_environment_leak_sensor_status` | *Leak sensor status. Liquid-cooled NVIDIA switch only.|
+| `nvswitch_platform_environment_leakage_status` | *Leakage status. Liquid-cooled NVIDIA switch only. |
 
 {{< /tab >}}
 {{< /tabs >}}

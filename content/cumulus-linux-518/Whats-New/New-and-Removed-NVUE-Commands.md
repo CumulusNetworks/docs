@@ -25,13 +25,6 @@ nv show bridge domain <domain-id> arp-inspection vlan <vid> static-binding
 nv show bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-inspection-static-binding-id>
 nv show interface --view ber
 nv show interface --view dom
-nv show interface <interface-id> counters link debounce
-nv show interface <interface-id> link debounce
-nv show interface debounce-counters
-nv show interface <interface-id> lldp tlv
-nv show interface <interface-id> lldp tlv summary
-nv show interface <interface-id> lldp tlv summary <tlv-id>
-nv show interface <interface-id> qos buffer shared-headroom-pool
 nv show interface link-tracking
 nv show interface <interface-id> link-tracking
 nv show platform inventory
@@ -72,6 +65,8 @@ nv show system lldp tlv profile <lldp-profile-name-id> summary
 nv show system lldp tlv profile <lldp-profile-name-id> summary <tlv-id>
 nv show system lldp tlv summary
 nv show system lldp tlv summary <tlv-id>
+nv show system packages archive
+nv show system packages archive <id>
 nv show system security alerts
 nv show system security secure-boot
 nv show system telemetry export ipfix
@@ -142,8 +137,6 @@ nv set bridge domain <domain-id> arp-inspection vlan <vid> state (enabled|disabl
 nv set evpn l3vxi state
 nv set interface <interface-id> dot1x tx-identity-request max-retries
 nv set interface <interface-id> link apsu-mode
-nv set interface <interface-id> link debounce down
-nv set interface <interface-id> link debounce up
 nv set interface <interface-id> link module-precoding
 nv set interface <interface-id> lldp tlv profile <lldp-profile-name-id>
 nv set interface <interface-id> link-tracking group
@@ -242,12 +235,15 @@ nv action clear interface <interface-id> link-tracking protodown
 nv action clear platform asic <asic-id> resource
 nv action clear system aaa radius counters
 nv action delete system file-path <path>
+nv action delete system packages archive <id>
 nv action export system wjh packet-buffer <file-name>
 nv action fetch system file-path <path> <uri> [file-permissions <value>] [vrf <vrf-name>]
+nv action fetch system packages archive <path>
 nv action install system image onie <path> [activate reboot] 
 nv action install system image onie <path> ztp <script> [activate reboot]
 nv action install system image onie <path> startup-config <file-name> [activate reboot]
 nv action install system image onie ftp:<path> activate reboot
+nv action install system packages archive <id>
 nv action restore system config backup <path>
 ```
 

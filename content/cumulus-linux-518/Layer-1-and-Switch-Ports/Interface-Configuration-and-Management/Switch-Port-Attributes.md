@@ -1691,8 +1691,53 @@ Maximum 800G ports: 64
 {{< /tab >}}
 {{< /tab >}}
 
+{{< /tabs >}}
+{{< tab "SN6600_LD">}}
+
+800G (800G_4x): 128 ports
+
+SN6600_LD 128xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 100G.
+
+For lower speeds, PAM4 is automatically converted to NRZ encoding.
+
+Bonus ports #65s0 and #65s1 support 100G.
+
+{{< tabs "SN6600_ports ">}}
+{{< tab "100G ">}}
+
+514x 100G - 514x OSFP break out into 1x - You must disable the adjacent OSFP port.
+
+Maximum 100G ports: 514 (512 ports + 2 bonus ports)
+
+{{< /tab >}}
+{{< tab "200G ">}}
+
+- 512x 200G - 512x OSFP break out into 1x
+- 256x 200G - 256x OSFP break out into 2x
+
+Maximum 200G ports: 512
+
+{{< /tab >}}
+{{< tab "400G ">}}
+
+- 128x 400G - 128x OSFP break out into 4x
+- 256x 400G - 256x OSFP break out into 2x
+
+Maximum 400G ports: 256
+
+{{< /tab >}}
+{{< tab "800G ">}}
+
+128x 800G - 128x OSFP break out into 4x
+
+Maximum 800G ports: 128
+
+{{< /tab >}}
+{{< /tab >}}
+
 {{< /tab >}}
 {{< /tabs >}}
+
 <!-- vale on -->
 {{%notice note%}}
 - You can use a single SFP (10/25/50G) transceiver in a QSFP (100/200/400G) port with *QSFP-to-SFP Adapter* (QSA). Set the port speed to the SFP speed with the `nv set interface <interface-id> link speed <speed>` command. Do not configure this port as a breakout port.

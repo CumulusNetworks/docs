@@ -150,6 +150,52 @@ swp3      0          0            2           2             0            4
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface link-tracking</h>
+
+Shows link tracking information for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface link-tracking
+Interface  Link Tracking Group  Admin Status  Oper Status  Protodown  Protodown Reason
+---------  -------------------  ------------  -----------  ---------  ----------------
+eth0                            up            up           disabled
+lo                              up            unknown      disabled
+mgmt                            up            up           disabled
+swp1                            up            down         disabled
+swp2                            up            down         disabled
+swp3                            up            down         disabled
+swp4                            up            down         disabled
+swp5                            up            down         disabled
+swp6                            up            down         disabled
+swp7       GROUP1               up            down         disabled
+swp8       GROUP2               up            down         enabled    link-tracking
+swp9                            up            down         disabled
+swp10                           up            down         disabled
+swp11                           up            down         disabled
+swp12                           up            down         disabled
+swp13                           up            down         disabled
+swp14                           up            down         disabled
+swp15      GROUP1               up            down         disabled
+swp16                           up            down         disabled
+swp17                           up            up           disabled
+swp18                           up            up           disabled
+swp19                           up            up           disabled
+swp20                           up            up           disabled
+swp21                           up            up           disabled
+swp22                           up            up           disabled
+swp23                           up            down         disabled
+swp24                           up            down         disabled
+swp25                           up            down         disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\></h>
 
 Shows the configuration information for the specified interface.
@@ -1294,6 +1340,32 @@ cumulus@switch:~$ nv show interface swp1 link traffic-engineering
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> link-tracking</h>
+
+Shows the link tracking group associated with a specific interface.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp8 link-tracking
+       operational  applied
+-----  -----------  -------
+group  GROUP2       GROUP2
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> pluggable</h>
 
 Shows the <span class="a-tooltip">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
@@ -1689,6 +1761,141 @@ cumulus@switch:~$ nv show system link flap-protection
 ---------  -------
 threshold  8      
 interval   30
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system link-tracking/h>
+
+Shows link tracking configuration, such as the feature state (enabled or disabled) and all configured link tracking groups with their watch interfaces, minimum threshold, and state-change action.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system link-tracking
+       operational  applied
+-----  -----------  -------
+state  enabled      enabled
+
+group
+========
+    Link Tracking Group  Watch Interface  Min Links  State Change Action
+    -------------------  ---------------  ---------  --------------------------
+    GROUP1               swp17            1          control-plane-action
+                         swp19
+                         swp21
+    GROUP2               swp17            2          protodown-target-interface
+                         swp24
+                         swp25
+                         swp3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system link-tracking group</h>
+
+Shows all the configured link tracking groups.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system link-tracking group
+Link Tracking Group  Watch Interface  Min Links  State Change Action
+-------------------  ---------------  ---------  --------------------------
+GROUP1               swp17            1          control-plane-action
+                     swp19
+                     swp21
+GROUP2               swp17            2          protodown-target-interface
+                     swp24
+                     swp25
+                     swp31
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system link-tracking group \<group-id\></h>
+
+Shows details of a specific link tracking group, including its watch interfaces, minimum threshold, and state-change action.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<group-id>`| The link tracking group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system link-tracking group GROUP2
+                     operational                 applied
+-------------------  --------------------------  --------------------------
+min-links            2                           2
+state-change-action  protodown-target-interface  protodown-target-interface
+[watch-interface]    swp17                       swp17
+[watch-interface]    swp24                       swp24
+[watch-interface]    swp25                       swp25
+[watch-interface]    swp31                       swp31
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system link-tracking group \<group-id\> watch-interface</h>
+
+Shows all configured watch interfaces in a specific group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<group-id>`| The link tracking group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system link-tracking group GROUP2 watch-interface
+swp17
+swp24
+swp25
+swp31
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system link-tracking group \<group-id\> watch-interface \<interface-id\></h>
+
+Shows information about a specific configured watch interface in a specific group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<group-id>`| The link tracking group ID. |
+| `<interface-id>` |  The NTP listen interface.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system link-tracking group GROUP2 watch-interface swp17
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

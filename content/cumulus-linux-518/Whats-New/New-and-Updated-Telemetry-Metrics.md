@@ -129,7 +129,7 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 | `nvswitch_dot1x_radius_server_pending_requests` | Number of RADIUS requests destined for the server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
 | `nvswitch_dot1x_radius_server_round_trip_time_ms`  | Most recent round-trip time, in milliseconds, between a RADIUS request and its matching response.  |
 
-To enable the new 802.1x RADIUS Server metrics, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export/#8021x-statistics">}}.
+To enable the new 802.1x RADIUS Server metrics, refer to {{<link url="Open-Telemetry-Export/#8021x-statistics" text="OTEL Telemetry Export">}}.
 
 {{< /tab >}}
 {{< tab "ASIC Resource">}}

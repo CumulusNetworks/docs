@@ -25,10 +25,6 @@ nv show bridge domain <domain-id> arp-inspection vlan <vid> static-binding
 nv show bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-inspection-static-binding-id>
 nv show interface --view ber
 nv show interface --view dom
-nv show interface <interface-id> lldp tlv
-nv show interface <interface-id> lldp tlv summary
-nv show interface <interface-id> lldp tlv summary <tlv-id>
-nv show interface <interface-id> qos buffer shared-headroom-pool
 nv show interface link-tracking
 nv show interface <interface-id> link-tracking
 nv show platform inventory

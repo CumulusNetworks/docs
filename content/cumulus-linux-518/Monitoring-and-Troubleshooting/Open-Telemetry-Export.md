@@ -3149,11 +3149,76 @@ ASIC statistics include the ASIC resource used percentage, the maximum number of
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_platform_asic_resource_used` | | 
-| `nvswitch_platform_asic_resource_free` | | 
-| `nvswitch_platform_asic_resource_max_limit` | |
-| `nvswitch_platform_asic_resource_high_watermark` | | 
-| `nvswitch_platform_asic_resource_high_watermark_timestamp` | | 
+| `nvswitch_platform_asic_MAC_entries_used` | *The number of MAC entries used. |
+| `nvswitch_platform_asic_IPv4_routes_used` | *The number of IPv4 routes used. |
+| `nvswitch_platform_asic_IPv6_routes_used` | *The number of IPv6 routes used. |
+| `nvswitch_platform_asic_Total_Mcast-Routes_used` | *The number of total multicast routes used. |
+| `nvswitch_platform_asic_IPv4_host_entries_used` | *The number of IPv4 host entries used. |
+| `nvswitch_platform_asic_IPv6_host_entries_used` | *The number of IPv4 host entries used. |
+| `nvswitch_platform_asic_ECMP_nexthops_used` | *The number of ECMP nexthops used. |
+| `nvswitch_platform_asic_ACL_Regions_used` | *The number of ACL regions used. |
+| `nvswitch_platform_asic_ACL_18B_Rules_Key_used` | *The number of ACL 18B Rules Key used. |
+| `nvswitch_platform_asic_ACL_36B_Rules_Key_used` | *The number of ACL 36B Rules Key used. |
+| `nvswitch_platform_asic_ACL_54B_Rules_Key_used` | *The number of ACL 54B Rules Key used. |
+| `nvswitch_platform_asic_Flow_Counters_used` | *The number of flow counters used. |
+| `nvswitch_platform_asic_RIF_Basic_Counters_used` | *The number of RIF basic counters used. |
+| `nvswitch_platform_asic_RIF_Enhanced_Counters_used` | *The number of RIF enhanced counters used. |
+| `nvswitch_platform_asic_MAC_entries_free` | *The number of free MAC entries available. |
+| `nvswitch_platform_asic_IPv4_routes_free` | *The number of free IPv4 routes available. | 
+| `nvswitch_platform_asic_IPv6_routes_free` | *The number of free IPv6 routes available. | 
+| `nvswitch_platform_asic_Total_Mcast-Routes_free` | *The number of multicast routes available. |
+| `nvswitch_platform_asic_IPv4_host_entries_free` | *The number of IPv4 host entries available. |
+| `nvswitch_platform_asic_IPv6_host_entries_free` | *The number of IPv6 host entries available. |
+| `nvswitch_platform_asic_ECMP_nexthops_free` | *The number of ECMP next hops available. |
+| `nvswitch_platform_asic_ACL_Regions_free` | *The number of ACL regions available. |
+| `nvswitch_platform_asic_ACL_18B_Rules_Key_free` | *The number of ACL 18B Rules Key available. |
+| `nvswitch_platform_asic_ACL_36B_Rules_Key_free` | *The number of ACL 36B Rules Key available. |
+| `nvswitch_platform_asic_ACL_54B_Rules_Key_free` | *The number of ACL 54B Rules Key available. |
+| `nvswitch_platform_asic_Flow_Counters_free` | *The number of flow counters available. |
+| `nvswitch_platform_asic_RIF_Basic_Counters_free` | *The number of RIF basic counters available. |
+| `nvswitch_platform_asic_RIF_Enhanced_Counters_free` | *The number of RIF basic enhanced counters available. |
+| `nvswitch_platform_asic_MAC_entries_max_limit` | *The maximum limit of possible MAC entries.|
+| `nvswitch_platform_asic_IPv4_routes_max_limit` | *The maximum limit of possible IPv4 routes.|
+| `nvswitch_platform_asic_IPv6_routes_max_limit` | *The maximum limit of possible IPv6 routes.|
+| `nvswitch_platform_asic_Total_Mcast_Routes_max_limit` | *The maximum limit of possible multicast routes.|
+| `nvswitch_platform_asic_IPv4_host_entries_max_limit` | *The maximum limit of possible IPv4 host entries.|
+| `nvswitch_platform_asic_IPv6_host_entries_max_limit` | *The maximum limit of possible IPv6 host entries.|
+| `nvswitch_platform_asic_ECMP_nexthops_max_limit` | *The maximum limit of possible ECMP next hops available.|
+| `nvswitch_platform_asic_ACL_Regions_max_limit` | *The maximum limit of possible ACL regions.|
+| `nvswitch_platform_asic_ACL_18B_Rules_Key_max_limit` | *The maximum limit of possible ACL 18B Rules Key.|
+| `nvswitch_platform_asic_ACL_36B_Rules_Key_max_limit` | *The maximum limit of possible ACL 36B Rules Key.|
+| `nvswitch_platform_asic_ACL_54B_Rules_max_limit` | *The maximum limit of possible ACL 54B Rules Key.|
+| `nvswitch_platform_asic_Flow_Counters_max_limit` | *The maximum limit of possible flow counters.|
+| `nvswitch_platform_asic_RIF_Basic_Counters_max_limit` | *The maximum limit of possible RIF basic counters.|
+| `nvswitch_platform_asic_RIF_Enhanced_Counters_max_limit` | *The maximum limit of possible RIF enhanced counters.|
+| `nvswitch_platform_asic_MAC_entries_high_watermark` | *The highest number of MAC entries used. |
+| `nvswitch_platform_asic_IPv4_routes_high_watermark` | *The highest number of IPv4 routes used. | 
+| `nvswitch_platform_asic_IPv6_routes_high_watermark` | *The highest number of IPv6 routes used. | 
+| `nvswitch_platform_asic_Total_Mcast_Routes_high_watermark` | *The highest number of multicast routes used. | 
+| `nvswitch_platform_asic_IPv4_host_entries_high_watermark` | *The highest number of IPv4 host entries used. | 
+| `nvswitch_platform_asic_IPv6_host_entries_high_watermark` | *The highest number of IPv6 host entries used. | 
+| `nvswitch_platform_asic_ECMP_nexthops_high_watermark` | *The highest number of ECMP next hops used. | 
+| `nvswitch_platform_asic_ACL_Regions_high_watermark` | *The highest number of ACL regions used. | 
+| `nvswitch_platform_asic_ACL_18B-Rules_high_watermark` | *The highest number of ACL 18B Rules Key used. | 
+| `nvswitch_platform_asic_ACL_36B_Rules_high_watermark` | *The highest number of ACL 36B Rules Key used. | 
+| `nvswitch_platform_asic_ACL_54B_Rules_high_watermark` | *The highest number of ACL 54B Rules Key used. | 
+| `nvswitch_platform_asic_Flow_Counters_high_watermark` | *The highest number of flow counters used. | 
+| `nvswitch_platform_asic_RIF_Basic_Counters_high_watermark` | *The highest number of RIF basic counters used. | 
+| `nvswitch_platform_asic_RIF_Enhanced_Counters_high_watermark` | *The highest number of RIF enhanced counters used. | 
+| `nvswitch_platform_asic_MAC_entries_high_watermark_timestamp` | *The timestamp when the MAC entries high-watermark was last updated.|
+| `nvswitch_platform_asic_IPv4_routes_high_watermark_timestamp` | *The timestamp when the IPv4 routes high-watermark was last updated.|
+| `nvswitch_platform_asic_IPv6_routes_high_watermark_timestamp` | *The timestamp when the IPv6 routeshigh-watermark was last updated.|
+| `nvswitch_platform_asic_Total_Mcast_Routes_high_watermark_timestamp` | *The timestamp when the multicast routes high-watermark was last updated.|
+| `nvswitch_platform_asic_IPv4_host_entries_high_watermark_timestamp` | *The timestamp when the IPv4 host entries high-watermark was last updated.|
+| `nvswitch_platform_asic_IPv6_host_entries_high_watermark_timestamp` | *The timestamp when the IPv6 host entrieshigh-watermark was last updated.|
+| `nvswitch_platform_asic_ECMP_nexthops_high_watermark_timestamp` | *The timestamp when the ECMP next hops high-watermark was last updated.|
+| `nvswitch_platform_asic_ACL_Regions_high_watermark_timestamp` | *The timestamp when the ACL regions high-watermark was last updated.|
+| `nvswitch_platform_asic_ACL_18B_Rules_high_watermark_timestamp` | *The timestamp when the ACL 18B Rules Key high-watermark was last updated.|
+| `nvswitch_platform_asic_ACL_36B_Rules_high_watermark_timestamp` | *The timestamp when the ACL 36B Rules Key high-watermark was last updated.|
+| `nvswitch_platform_asic_ACL_54B_Rules_high_watermark_timestamp` | *The timestamp when the ACL 54B Rules Key high-watermark was last updated.|
+| `nvswitch_platform_asic_Flow_Counters_high_watermark_timestamp` | *The timestamp when the flow counters high-watermark was last updated.|
+| `nvswitch_platform_asic_RIF_Basic_Counters_high_watermark_timestamp` | *The timestamp when the RIF basic counters high-watermark was last updated.|
+| `nvswitch_platform_asic_RIF_Enhanced_Counters_high_watermark_timestamp` | *The timestamp when the RIF enhanced counters high-watermark was last updated.|
 
 {{< /tab >}}
 {{< tab "Disk ">}}

@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5152149</td>
+<td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5118919</td>
+<td>Running {{nv config apply}} more than once without waiting for the first {{nv config apply}} to finish might cause a deadlock with the second {{nv config apply}} and trigger a condition where memory grows unbounded.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5099224</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and configured correctly, and that client credentials and certificates are valid. The slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5093941</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -112,10 +130,90 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5089768</td>
+<td>When subscribing to gNMI paths that have multiple external paths for a single internal path, you see previous warning logs when there is no issue. </td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5080543</td>
+<td>After a switch reboot, the NVUE EVPN operational view (nv show vrf --view=evpn) might report scaled layer 3 VNIs as down with a null router-mac, system-mac, or SVI while FRR correctly reports them as Up. This is an operational-data synchronization issue in the NVUE view with no impact to EVPN forwarding or routing.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5077002</td>
+<td>The {{pimd}} service crashes intermittently and infrequently when VRF transition is applied on an interface that also has PIM enabled. To work around this issue, remove the PIM configuration from the interface, do the VRF transition, then re-enable PIM on the interface.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076894</td>
+<td>The gNMI {{/interfaces/interface[name]/ethernet/state/port-speed}} path might show the wrong speed.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076748</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076747</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5072600</td>
+<td>The {{nv show mlag -o json}} command returns a plain text error instead of a JSON object.
+
+</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5070048</td>
+<td>All multihomed downlinks are stuck in protodown state, if the lowest integer valued uplink is down before the mh-uplink knob is enabled on all uplink interfaces.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5067214</td>
+<td>Running the {{nv config apply}} command with no changes returns a warning but the pending revision is not detached.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5065880</td>
+<td>The {{nv show interface dot1x-summary}} command is very slow at high scale.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5065211, 4916985, 5078194</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the system too early.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5058751</td>
 <td>The NVUE {{nv show interface &lt;interface-id qos pfc}} command does not support interface ranges.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>5057971</td>
+<td>On an MLAG pair, after a bridge flap, the connected route for the {{macvlan}} interface comes up without the {{INSTALLED}} flag, while its SVI on the same prefix is {{C&gt;*}}.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057785</td>
+<td>With more than 10k EVPN type 2 prefixes, there is a delay in convergence.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5057192</td>
@@ -144,6 +242,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5056914</td>
+<td>Optimized image upgrade to 5.15.x might consume space in the {{/var}} directory up to 2.2 times the image size and might not correctly check free space in {{/var}} before proceeding.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5056648</td>
 <td>During the very fist linkup process, the port enters a CLOSE state and remains there because the micro-controller takes more time to respond.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>
@@ -153,6 +257,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>5045504</td>
 <td>After you enable BFD offload, BFD control packet counters stop incrementing. Control plane BFD sessions are not affected by this issue and there is no BFD functionality impact in case of kernel offload.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5040890</td>
+<td>IPv4 BGP aggregate routes are not advertised to peers.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -184,6 +294,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>The AI Ethernet statistics metrics collection sometimes times out and does not return any data.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>4999022</td>
+<td>The SSH server inactive timeout does not close idle SSH sessions.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4992204</td>
@@ -245,6 +361,12 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4964154</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4963562</td>
+<td>Uneven utilization of bond member links results in one member approaching congestion while the parallel member is largely idle. There is no traffic loss; the impact is bandwidth efficiency and potential micro-congestion on the overloaded member.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -516,6 +638,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>4883652</td>
+<td>When you remove 802.1X configuration from an interface with the NVUE {{nv unset interface &lt;swp&gt; dot1x}} command followed by {{nv config apply}}, the interface remains permanently in an admin down state. This issue occurs for both layer 2 (bridge) and layer 3 (routed) interfaces, including interfaces you configure with dynamic VRF.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>4883569</td>
 <td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
@@ -615,6 +743,12 @@ where only the aggregate should be advertised.</td>
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>4850784</td>
+<td>The unsupported gNOI set-package RPC request does not fail. The supported RPCs are FILE Stat/Remove/Get/Put, Reboot, OS Install, OS Activate.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>4850780</td>
 <td>After you remove 802.1X IPv6 profile configuration for dynamic IPv6 multi-tenancy, IPv6 addresses and summary routes remain in FRR. To recover from this state, manually delete the residual files or reauthenticate through the IPV6 profile with {{hostapd}} on the affected interfaces.To avoid this issue, detach the IPv6 profile from the interfaces and apply the configuration, then remove the global 802.1X configuration. </td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
@@ -625,6 +759,12 @@ where only the aggregate should be advertised.</td>
 <td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>4841491</td>
+<td>When the Management-Privilege-Level or Cisco-Avpair is not found, a user is created with privilege level 0 instead of privilege level 1.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4840299</td>
@@ -669,6 +809,12 @@ where only the aggregate should be advertised.</td>
 interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
 interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4796280</td>
+<td>When you delete a snippet with a NAS IP address and, or, a NAS identifier, the NVUE configured NAS IP address and NAS identifier do not take into effect in the operational configuration.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -939,12 +1085,6 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1556,7 +1696,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5161741</td>
 <td>The gNMI {{/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state}} metric intermittently returns no data.</td>
-<td>5.16.1, 5.16.5</td>
+<td>5.16.5</td>
 </tr>
 <tr>
 <td>5161727</td>
@@ -1569,8 +1709,13 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.1, 5.16.5</td>
 </tr>
 <tr>
+<td>5159856</td>
+<td>On the Spectrum-4 and Spectrum-5 switch, you might encounter capacitor failures caused by high temperatures; as a result, ports remain down.  Thermal algorithm updates are provided to increase cooling fans speed.</td>
+<td>5.16.1, 5.16.5</td>
+</tr>
+<tr>
 <td>5159352</td>
-<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
+<td> The {{nv show platform firmware}} command shows an incorrect CPLD firmware version.</td>
 <td>5.16.1, 5.16.5</td>
 </tr>
 <tr>
@@ -1585,18 +1730,20 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5154662</td>
-<td>When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under {{/etc/apt/sources.list.d/*}}, the {{nv config apply}} command fails because NVUE incorrectly blocks adding snippet files under {{/etc/apt/sources.list.d/*}}. </td>
+<td>When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under {{/etc/apt/sources.list.d/*}}, the {{nv config apply}} command fails because NVUE incorrectly blocks adding snippeted files under {{/etc/apt/sources.list.d/*}}.</td>
 <td>5.16.1, 5.16.5</td>
 </tr>
 <tr>
 <td>5154576</td>
-<td>On systems with frequent ACL updates, {{switchd}} might fail to release internal SDK resources used for bulk counter notifications during ACL installation. After a long uptime, this issue might exhaust available resources and cause some gNMI metrics to stop updating. To work around this issue, restart {{switchd}}.</td>
-<td>5.16.1, 5.16.5</td>
+<td>On systems with frequent ACL updates, switchd could fail to release internal SDK resources used for bulk counter notifications during ACL installation. Over long uptime, this could exhaust available resources and cause few metrics to stop updating.
+
+Workaround: Restarting switchd temporarily restores metrics.</td>
+<td>5.16.5</td>
 </tr>
 <tr>
 <td>5145985</td>
-<td>The default route 0.0.0.0/0 learned as EVPN type-5 is not installed in zebra as it is getting created with the incorrect family.</td>
-<td>5.16.1, 5.16.5</td>
+<td>Some of the BGP EVPN routes are not installed in the FIB/ASIC. </td>
+<td>5.16.5</td>
 </tr>
 <tr>
 <td>5145984</td>
@@ -1616,7 +1763,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5145975</td>
 <td>Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore.</td>
-<td>5.16.1, 5.16.5</td>
+<td>5.16.5</td>
 </tr>
 <tr>
 <td>5145970</td>
@@ -1630,7 +1777,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5145960</td>
-<td>After a switch reboot, the management VRF static route might be unprogrammed in the kernel despite being present in the configuration. This issue is due to a timing issue. To recover from this issue, remove, then re-add the route or restart FRR.</td>
+<td>A switch reboot might drop the management VRF static route intermittently from the kernel, causing a loss of management-plane reachability. To work around this issue, remove and re-add the route or restart FRR. </td>
 <td>5.16.1, 5.16.5</td>
 </tr>
 <tr>
@@ -1649,7 +1796,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5161741</td>
 <td>The gNMI {{/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state}} metric intermittently returns no data.</td>
-<td>5.16.1, 5.16.5</td>
+<td>5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
@@ -1665,8 +1812,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
+<td>5159856</td>
+<td>On the Spectrum-4 and Spectrum-5 switch, you might encounter capacitor failures caused by high temperatures; as a result, ports remain down.  Thermal algorithm updates are provided to increase cooling fans speed.</td>
+<td>5.16.1, 5.16.5</td>
+<td>5.16.6-5.17.0</td>
+</tr>
+<tr>
 <td>5159352</td>
-<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
+<td> The {{nv show platform firmware}} command shows an incorrect CPLD firmware version.</td>
 <td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
@@ -1684,20 +1837,28 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5154662</td>
-<td>When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under {{/etc/apt/sources.list.d/*}}, the {{nv config apply}} command fails because NVUE incorrectly blocks adding snippet files under {{/etc/apt/sources.list.d/*}}. </td>
+<td>When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under {{/etc/apt/sources.list.d/*}}, the {{nv config apply}} command fails because NVUE incorrectly blocks adding snippeted files under {{/etc/apt/sources.list.d/*}}.</td>
 <td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
 <td>5154576</td>
-<td>On systems with frequent ACL updates, {{switchd}} might fail to release internal SDK resources used for bulk counter notifications during ACL installation. After a long uptime, this issue might exhaust available resources and cause some gNMI metrics to stop updating. To work around this issue, restart {{switchd}}.</td>
-<td>5.16.1, 5.16.5</td>
+<td>On systems with frequent ACL updates, switchd could fail to release internal SDK resources used for bulk counter notifications during ACL installation. Over long uptime, this could exhaust available resources and cause few metrics to stop updating.
+
+Workaround: Restarting switchd temporarily restores metrics.</td>
+<td>5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
+<td>5152149</td>
+<td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5145985</td>
-<td>The default route 0.0.0.0/0 learned as EVPN type-5 is not installed in zebra as it is getting created with the incorrect family.</td>
-<td>5.16.1, 5.16.5</td>
+<td>Some of the BGP EVPN routes are not installed in the FIB/ASIC. </td>
+<td>5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
@@ -1721,7 +1882,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5145975</td>
 <td>Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore.</td>
-<td>5.16.1, 5.16.5</td>
+<td>5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
@@ -1738,7 +1899,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5145960</td>
-<td>After a switch reboot, the management VRF static route might be unprogrammed in the kernel despite being present in the configuration. This issue is due to a timing issue. To recover from this issue, remove, then re-add the route or restart FRR.</td>
+<td>A switch reboot might drop the management VRF static route intermittently from the kernel, causing a loss of management-plane reachability. To work around this issue, remove and re-add the route or restart FRR. </td>
 <td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
@@ -1747,6 +1908,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>During a switch reboot with SRv6 enabled, there is an ordering race that occasionally results in the {{nginx-authenticator.service}} only listening on the IPv6 loopback IP address. As result, the gNMI server Envoy instance, which uses the {{nginx-authenticator.service}} to validate the username and password in requests from the gNMI client fails to connect and you see the error {{rpc error: code = Unavailable desc = Authentication service unavailable}}.</td>
 <td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.17.0</td>
+</tr>
+<tr>
+<td>5118919</td>
+<td>Running {{nv config apply}} more than once without waiting for the first {{nv config apply}} to finish might cause a deadlock with the second {{nv config apply}} and trigger a condition where memory grows unbounded.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5099224</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and configured correctly, and that client credentials and certificates are valid. The slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5093941</td>
@@ -1854,10 +2027,90 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5089768</td>
+<td>When subscribing to gNMI paths that have multiple external paths for a single internal path, you see previous warning logs when there is no issue. </td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5080543</td>
+<td>After a switch reboot, the NVUE EVPN operational view (nv show vrf --view=evpn) might report scaled layer 3 VNIs as down with a null router-mac, system-mac, or SVI while FRR correctly reports them as Up. This is an operational-data synchronization issue in the NVUE view with no impact to EVPN forwarding or routing.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5077002</td>
+<td>The {{pimd}} service crashes intermittently and infrequently when VRF transition is applied on an interface that also has PIM enabled. To work around this issue, remove the PIM configuration from the interface, do the VRF transition, then re-enable PIM on the interface.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076894</td>
+<td>The gNMI {{/interfaces/interface[name]/ethernet/state/port-speed}} path might show the wrong speed.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076748</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076747</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5072600</td>
+<td>The {{nv show mlag -o json}} command returns a plain text error instead of a JSON object.
+
+</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5070048</td>
+<td>All multihomed downlinks are stuck in protodown state, if the lowest integer valued uplink is down before the mh-uplink knob is enabled on all uplink interfaces.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5067214</td>
+<td>Running the {{nv config apply}} command with no changes returns a warning but the pending revision is not detached.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5065880</td>
+<td>The {{nv show interface dot1x-summary}} command is very slow at high scale.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5065211, 4916985, 5078194</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the system too early.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5058751</td>
 <td>The NVUE {{nv show interface &lt;interface-id qos pfc}} command does not support interface ranges.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>5057971</td>
+<td>On an MLAG pair, after a bridge flap, the connected route for the {{macvlan}} interface comes up without the {{INSTALLED}} flag, while its SVI on the same prefix is {{C&gt;*}}.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057785</td>
+<td>With more than 10k EVPN type 2 prefixes, there is a delay in convergence.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5057192</td>
@@ -1886,6 +2139,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5056914</td>
+<td>Optimized image upgrade to 5.15.x might consume space in the {{/var}} directory up to 2.2 times the image size and might not correctly check free space in {{/var}} before proceeding.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5056648</td>
 <td>During the very fist linkup process, the port enters a CLOSE state and remains there because the micro-controller takes more time to respond.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>
@@ -1895,6 +2154,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>5045504</td>
 <td>After you enable BFD offload, BFD control packet counters stop incrementing. Control plane BFD sessions are not affected by this issue and there is no BFD functionality impact in case of kernel offload.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5040890</td>
+<td>IPv4 BGP aggregate routes are not advertised to peers.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1926,6 +2191,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>The AI Ethernet statistics metrics collection sometimes times out and does not return any data.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>4999022</td>
+<td>The SSH server inactive timeout does not close idle SSH sessions.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4992204</td>
@@ -1987,6 +2258,12 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4964154</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4963562</td>
+<td>Uneven utilization of bond member links results in one member approaching congestion while the parallel member is largely idle. There is no traffic loss; the impact is bandwidth efficiency and potential micro-congestion on the overloaded member.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2258,6 +2535,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>4883652</td>
+<td>When you remove 802.1X configuration from an interface with the NVUE {{nv unset interface &lt;swp&gt; dot1x}} command followed by {{nv config apply}}, the interface remains permanently in an admin down state. This issue occurs for both layer 2 (bridge) and layer 3 (routed) interfaces, including interfaces you configure with dynamic VRF.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>4883569</td>
 <td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
@@ -2357,6 +2640,12 @@ where only the aggregate should be advertised.</td>
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>4850784</td>
+<td>The unsupported gNOI set-package RPC request does not fail. The supported RPCs are FILE Stat/Remove/Get/Put, Reboot, OS Install, OS Activate.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>4850780</td>
 <td>After you remove 802.1X IPv6 profile configuration for dynamic IPv6 multi-tenancy, IPv6 addresses and summary routes remain in FRR. To recover from this state, manually delete the residual files or reauthenticate through the IPV6 profile with {{hostapd}} on the affected interfaces.To avoid this issue, detach the IPv6 profile from the interfaces and apply the configuration, then remove the global 802.1X configuration. </td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
@@ -2367,6 +2656,12 @@ where only the aggregate should be advertised.</td>
 <td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>4841491</td>
+<td>When the Management-Privilege-Level or Cisco-Avpair is not found, a user is created with privilege level 0 instead of privilege level 1.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4840299</td>
@@ -2411,6 +2706,12 @@ where only the aggregate should be advertised.</td>
 interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
 interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4796280</td>
+<td>When you delete a snippet with a NAS IP address and, or, a NAS identifier, the NVUE configured NAS IP address and NAS identifier do not take into effect in the operational configuration.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2681,12 +2982,6 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3449,12 +3744,6 @@ nv config apply -y</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5161741</td>
-<td>The gNMI {{/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state}} metric intermittently returns no data.</td>
-<td>5.16.1, 5.16.5</td>
-<td>5.16.6-5.17.0</td>
-</tr>
-<tr>
 <td>5161727</td>
 <td>All the Docker dependent services such as UMF and gNMI have periodic checks around the Docker service. If the Docker service restarts for any reason, it triggers a restart of all the docker dependent services. If the Docker service is down for a long time, it exceeds the maximum number of restarts within the {{systemd}} rate-limit interval for the Docker dependent services. As a result, all the Docker dependent services (including gNMI) end up in a failed state.</td>
 <td>5.16.1, 5.16.5</td>
@@ -3467,8 +3756,14 @@ nv config apply -y</td>
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
+<td>5159856</td>
+<td>On the Spectrum-4 and Spectrum-5 switch, you might encounter capacitor failures caused by high temperatures; as a result, ports remain down.  Thermal algorithm updates are provided to increase cooling fans speed.</td>
+<td>5.16.1, 5.16.5</td>
+<td>5.16.6-5.17.0</td>
+</tr>
+<tr>
 <td>5159352</td>
-<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
+<td> The {{nv show platform firmware}} command shows an incorrect CPLD firmware version.</td>
 <td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
@@ -3486,21 +3781,15 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>5154662</td>
-<td>When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under {{/etc/apt/sources.list.d/*}}, the {{nv config apply}} command fails because NVUE incorrectly blocks adding snippet files under {{/etc/apt/sources.list.d/*}}. </td>
+<td>When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under {{/etc/apt/sources.list.d/*}}, the {{nv config apply}} command fails because NVUE incorrectly blocks adding snippeted files under {{/etc/apt/sources.list.d/*}}.</td>
 <td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
-<td>5154576</td>
-<td>On systems with frequent ACL updates, {{switchd}} might fail to release internal SDK resources used for bulk counter notifications during ACL installation. After a long uptime, this issue might exhaust available resources and cause some gNMI metrics to stop updating. To work around this issue, restart {{switchd}}.</td>
-<td>5.16.1, 5.16.5</td>
-<td>5.16.6-5.17.0</td>
-</tr>
-<tr>
-<td>5145985</td>
-<td>The default route 0.0.0.0/0 learned as EVPN type-5 is not installed in zebra as it is getting created with the incorrect family.</td>
-<td>5.16.1, 5.16.5</td>
-<td>5.16.6-5.17.0</td>
+<td>5152149</td>
+<td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5145984</td>
@@ -3512,12 +3801,6 @@ nv config apply -y</td>
 <td>5145981</td>
 <td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
-<td>5.16.6-5.17.0</td>
-</tr>
-<tr>
-<td>5145975</td>
-<td>Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore.</td>
-<td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
@@ -3534,7 +3817,7 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>5145960</td>
-<td>After a switch reboot, the management VRF static route might be unprogrammed in the kernel despite being present in the configuration. This issue is due to a timing issue. To recover from this issue, remove, then re-add the route or restart FRR.</td>
+<td>A switch reboot might drop the management VRF static route intermittently from the kernel, causing a loss of management-plane reachability. To work around this issue, remove and re-add the route or restart FRR. </td>
 <td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
@@ -3543,6 +3826,12 @@ nv config apply -y</td>
 <td>During a switch reboot with SRv6 enabled, there is an ordering race that occasionally results in the {{nginx-authenticator.service}} only listening on the IPv6 loopback IP address. As result, the gNMI server Envoy instance, which uses the {{nginx-authenticator.service}} to validate the username and password in requests from the gNMI client fails to connect and you see the error {{rpc error: code = Unavailable desc = Authentication service unavailable}}.</td>
 <td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.17.0</td>
+</tr>
+<tr>
+<td>5118919</td>
+<td>Running {{nv config apply}} more than once without waiting for the first {{nv config apply}} to finish might cause a deadlock with the second {{nv config apply}} and trigger a condition where memory grows unbounded.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5093941</td>
@@ -3650,10 +3939,36 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5076748</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076747</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5072600</td>
+<td>The {{nv show mlag -o json}} command returns a plain text error instead of a JSON object.
+
+</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5072100</td>
 <td>System wall-clock time modifications might cause a missed transceiver module temperature update resulting in reporting a 20C increase in temperature.</td>
 <td>5.16.1</td>
 <td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>5070048</td>
+<td>All multihomed downlinks are stuck in protodown state, if the lowest integer valued uplink is down before the mh-uplink knob is enabled on all uplink interfaces.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5067291</td>
@@ -3672,6 +3987,36 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>In rare cases, when an 802.1x enabled port is flapped, it can cause 802.1x to lock up. As a result, the show status commands on 802.1x do not work, no new sessions are authorized and there are no re-authorizations. To work around this issue and recover from the blocked state, restart the {{hostapd.service}}.</td>
 <td>5.16.1</td>
 <td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>5067214</td>
+<td>Running the {{nv config apply}} command with no changes returns a warning but the pending revision is not detached.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5065880</td>
+<td>The {{nv show interface dot1x-summary}} command is very slow at high scale.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5065211, 4916985, 5078194</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the system too early.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057971</td>
+<td>On an MLAG pair, after a bridge flap, the connected route for the {{macvlan}} interface comes up without the {{INSTALLED}} flag, while its SVI on the same prefix is {{C&gt;*}}.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057785</td>
+<td>With more than 10k EVPN type 2 prefixes, there is a delay in convergence.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5057365, 4983144</td>
@@ -3730,6 +4075,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>5.16.5-5.17.0</td>
 </tr>
 <tr>
+<td>5056914</td>
+<td>Optimized image upgrade to 5.15.x might consume space in the {{/var}} directory up to 2.2 times the image size and might not correctly check free space in {{/var}} before proceeding.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5056648</td>
 <td>During the very fist linkup process, the port enters a CLOSE state and remains there because the micro-controller takes more time to respond.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>
@@ -3739,6 +4090,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>5045504</td>
 <td>After you enable BFD offload, BFD control packet counters stop incrementing. Control plane BFD sessions are not affected by this issue and there is no BFD functionality impact in case of kernel offload.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5040890</td>
+<td>IPv4 BGP aggregate routes are not advertised to peers.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3794,6 +4151,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>The AI Ethernet statistics metrics collection sometimes times out and does not return any data.</td>
 <td>5.16.1</td>
 <td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>4999022</td>
+<td>The SSH server inactive timeout does not close idle SSH sessions.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4992435</td>
@@ -3914,6 +4277,12 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4964154</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4963562</td>
+<td>Uneven utilization of bond member links results in one member approaching congestion while the parallel member is largely idle. There is no traffic loss; the impact is bandwidth efficiency and potential micro-congestion on the overloaded member.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4185,6 +4554,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>4883652</td>
+<td>When you remove 802.1X configuration from an interface with the NVUE {{nv unset interface &lt;swp&gt; dot1x}} command followed by {{nv config apply}}, the interface remains permanently in an admin down state. This issue occurs for both layer 2 (bridge) and layer 3 (routed) interfaces, including interfaces you configure with dynamic VRF.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>4883569</td>
 <td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
@@ -4284,6 +4659,12 @@ where only the aggregate should be advertised.</td>
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>4850784</td>
+<td>The unsupported gNOI set-package RPC request does not fail. The supported RPCs are FILE Stat/Remove/Get/Put, Reboot, OS Install, OS Activate.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>4850780</td>
 <td>After you remove 802.1X IPv6 profile configuration for dynamic IPv6 multi-tenancy, IPv6 addresses and summary routes remain in FRR. To recover from this state, manually delete the residual files or reauthenticate through the IPV6 profile with {{hostapd}} on the affected interfaces.To avoid this issue, detach the IPv6 profile from the interfaces and apply the configuration, then remove the global 802.1X configuration. </td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
@@ -4294,6 +4675,12 @@ where only the aggregate should be advertised.</td>
 <td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>4841491</td>
+<td>When the Management-Privilege-Level or Cisco-Avpair is not found, a user is created with privilege level 0 instead of privilege level 1.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4840299</td>
@@ -4338,6 +4725,12 @@ where only the aggregate should be advertised.</td>
 interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
 interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4796280</td>
+<td>When you delete a snippet with a NAS IP address and, or, a NAS identifier, the NVUE configured NAS IP address and NAS identifier do not take into effect in the operational configuration.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4608,12 +5001,6 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -5318,6 +5705,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
+<td>5152149</td>
+<td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5145981</td>
 <td>If you add a static default route, then delete it, the switch removes the default route in the ASIC.</td>
 <td>5.16.0-5.16.1, 5.16.5</td>
@@ -5429,10 +5822,66 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5076748</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076747</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5072600</td>
+<td>The {{nv show mlag -o json}} command returns a plain text error instead of a JSON object.
+
+</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5070048</td>
+<td>All multihomed downlinks are stuck in protodown state, if the lowest integer valued uplink is down before the mh-uplink knob is enabled on all uplink interfaces.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5067291</td>
 <td>When a spine undergoes a cold reboot ({{reboot -f}}) while BGP Graceful Restart is configured, the leaf (acting as the GR helper) retains stale routes from the spine. When the links on the spine come back up before the restart timer expires but before BGP has converged, the leaf revalidates these stale routes and installs them in the FIB, forwarding traffic to a peer that has no routes programmed in hardware yet. To work around this issue, either disable BGP Graceful Restart helper mode on the leaf so that routes are immediately withdrawn when the spine goes down, or perform a warm reboot on the spine instead of a cold reboot so that forwarding state is preserved and links remain up throughout the restart.</td>
 <td>5.16.0-5.16.1</td>
 <td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>5067214</td>
+<td>Running the {{nv config apply}} command with no changes returns a warning but the pending revision is not detached.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5065880</td>
+<td>The {{nv show interface dot1x-summary}} command is very slow at high scale.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5065211, 4916985, 5078194</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the system too early.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057971</td>
+<td>On an MLAG pair, after a bridge flap, the connected route for the {{macvlan}} interface comes up without the {{INSTALLED}} flag, while its SVI on the same prefix is {{C&gt;*}}.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057785</td>
+<td>With more than 10k EVPN type 2 prefixes, there is a delay in convergence.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5057192</td>
@@ -5461,9 +5910,21 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5056914</td>
+<td>Optimized image upgrade to 5.15.x might consume space in the {{/var}} directory up to 2.2 times the image size and might not correctly check free space in {{/var}} before proceeding.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5045504</td>
 <td>After you enable BFD offload, BFD control packet counters stop incrementing. Control plane BFD sessions are not affected by this issue and there is no BFD functionality impact in case of kernel offload.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5040890</td>
+<td>IPv4 BGP aggregate routes are not advertised to peers.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -5561,6 +6022,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <td>4964154</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4963562</td>
+<td>Uneven utilization of bond member links results in one member approaching congestion while the parallel member is largely idle. There is no traffic loss; the impact is bandwidth efficiency and potential micro-congestion on the overloaded member.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -5905,6 +6372,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>4883652</td>
+<td>When you remove 802.1X configuration from an interface with the NVUE {{nv unset interface &lt;swp&gt; dot1x}} command followed by {{nv config apply}}, the interface remains permanently in an admin down state. This issue occurs for both layer 2 (bridge) and layer 3 (routed) interfaces, including interfaces you configure with dynamic VRF.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>4883569</td>
 <td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
@@ -6004,6 +6477,12 @@ where only the aggregate should be advertised.</td>
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>4850784</td>
+<td>The unsupported gNOI set-package RPC request does not fail. The supported RPCs are FILE Stat/Remove/Get/Put, Reboot, OS Install, OS Activate.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>4850780</td>
 <td>After you remove 802.1X IPv6 profile configuration for dynamic IPv6 multi-tenancy, IPv6 addresses and summary routes remain in FRR. To recover from this state, manually delete the residual files or reauthenticate through the IPV6 profile with {{hostapd}} on the affected interfaces.To avoid this issue, detach the IPv6 profile from the interfaces and apply the configuration, then remove the global 802.1X configuration. </td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
@@ -6014,6 +6493,12 @@ where only the aggregate should be advertised.</td>
 <td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>4841491</td>
+<td>When the Management-Privilege-Level or Cisco-Avpair is not found, a user is created with privilege level 0 instead of privilege level 1.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4840299</td>
@@ -6058,6 +6543,12 @@ where only the aggregate should be advertised.</td>
 interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
 interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4796280</td>
+<td>When you delete a snippet with a NAS IP address and, or, a NAS identifier, the NVUE configured NAS IP address and NAS identifier do not take into effect in the operational configuration.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6328,12 +6819,6 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -7161,6 +7646,11 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>4743814</td>
 <td>The switch clears the QoS buffer max usage values in the {{nv show interface &lt;interface&gt; qos buffer egress-traffic-class}} command output when a gNMI client subscribes to any QoS buffer metrics.</td>
 <td>5.14.0-5.15.1</td>
+</tr>
+<tr>
+<td>4742452, 4426737</td>
+<td>NVUE is unable to apply the original startup configuration or any changes that modify user accounts after the internal repository becomes invalid, leaving the applied revision in NVUE empty while the device continues to use the configuration stored directly under {{/etc/}}. This leads to a mismatch between what NVUE reports and the actual running state of the system.</td>
+<td>5.13.1-5.15.1</td>
 </tr>
 <tr>
 <td>4740671</td>

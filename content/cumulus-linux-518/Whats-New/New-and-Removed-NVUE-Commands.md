@@ -25,9 +25,6 @@ nv show bridge domain <domain-id> arp-inspection vlan <vid> static-binding
 nv show bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-inspection-static-binding-id>
 nv show interface --view ber
 nv show interface --view dom
-nv show interface <interface-id> counters link debounce
-nv show interface <interface-id> link debounce
-nv show interface debounce-counters
 nv show interface <interface-id> lldp tlv
 nv show interface <interface-id> lldp tlv summary
 nv show interface <interface-id> lldp tlv summary <tlv-id>
@@ -144,8 +141,6 @@ nv set bridge domain <domain-id> arp-inspection vlan <vid> state (enabled|disabl
 nv set evpn l3vxi state
 nv set interface <interface-id> dot1x tx-identity-request max-retries
 nv set interface <interface-id> link apsu-mode
-nv set interface <interface-id> link debounce down
-nv set interface <interface-id> link debounce up
 nv set interface <interface-id> link module-precoding
 nv set interface <interface-id> lldp tlv profile <lldp-profile-name-id>
 nv set interface <interface-id> link-tracking group

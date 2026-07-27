@@ -21,6 +21,6 @@ Cumulus Linux 5.18.0 contains the following core switch package versions:
 | FRR | 10.0.3 | FRRouting package|
 | Telemetry | 91.1.13.5 | Telemetry package |
 | BMC (Baseboard Management Controller)| 88.0060.2112 | BMC hardware management package for the Spectrum-6 switch |
-| EROT (External Root of Trust)| 02.00.0034.0000_n05 | EROT hardware management security package for the Spectrum-6 switch | 
+| BMC ERoT (External Root of Trust)| 02.00.0034.0000_n05 | ERoT hardware management security package for the Spectrum-6 switch | 
 
 To obtain a complete list of open source packages included in Cumulus Linux 5.18, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.

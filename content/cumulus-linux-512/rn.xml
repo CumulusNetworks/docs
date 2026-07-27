@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5152149</td>
+<td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5093941</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -46,6 +52,44 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5076748</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076747</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5072600</td>
+<td>The {{nv show mlag -o json}} command returns a plain text error instead of a JSON object.
+
+</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5067214</td>
+<td>Running the {{nv config apply}} command with no changes returns a warning but the pending revision is not detached.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5065211, 4916985, 5078194</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the system too early.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057971</td>
+<td>On an MLAG pair, after a bridge flap, the connected route for the {{macvlan}} interface comes up without the {{INSTALLED}} flag, while its SVI on the same prefix is {{C&gt;*}}.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4986333</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -62,6 +106,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
 <td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>4963562</td>
+<td>Uneven utilization of bond member links results in one member approaching congestion while the parallel member is largely idle. There is no traffic loss; the impact is bandwidth efficiency and potential micro-congestion on the overloaded member.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4963280</td>
@@ -472,12 +522,6 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1336,6 +1380,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5152149</td>
+<td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5093941</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -1375,6 +1425,44 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5076748</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076747</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5072600</td>
+<td>The {{nv show mlag -o json}} command returns a plain text error instead of a JSON object.
+
+</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5067214</td>
+<td>Running the {{nv config apply}} command with no changes returns a warning but the pending revision is not detached.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5065211, 4916985, 5078194</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the system too early.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057971</td>
+<td>On an MLAG pair, after a bridge flap, the connected route for the {{macvlan}} interface comes up without the {{INSTALLED}} flag, while its SVI on the same prefix is {{C&gt;*}}.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4986333</td>
 <td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
 <td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -1391,6 +1479,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
 <td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>4963562</td>
+<td>Uneven utilization of bond member links results in one member approaching congestion while the parallel member is largely idle. There is no traffic loss; the impact is bandwidth efficiency and potential micro-congestion on the overloaded member.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4963280</td>
@@ -1761,12 +1855,6 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <td></td>
 </tr>
 <tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -1980,16 +2068,16 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>5.11.2, 5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 </tr>
 <tr>
-<td>4288264</td>
-<td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
-<td>5.12.0</td>
-<td>5.11.1, 5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
-</tr>
-<tr>
 <td>4286833</td>
 <td>When you change the port breakout configuration, the switch deletes, then recreates the port and the sflow configuration on the port resets. However, {{switchd}} continues to retain sflow configuration for the same logical ID, which leads to divergence in sflow configuration in the SDK and switchd; switchd sees sflow enabled for the port but in the SDK the ports gets reset to disabled.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>4286489</td>
+<td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
+<td>5.12.0</td>
+<td>5.11.1, 5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 </tr>
 <tr>
 <td>4281438, 4257936</td>

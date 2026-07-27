@@ -54,16 +54,6 @@ nv show system link-tracking group
 nv show system link-tracking group <group-id>
 nv show system link-tracking group <group-id> watch-interface
 nv show system link-tracking group <group-id> watch-interface <interface-id>
-nv show system lldp tlv profile
-nv show system lldp tlv profile <lldp-profile-name-id>
-nv show system lldp tlv profile <lldp-profile-name-id> egress-policy
-nv show system lldp tlv profile <lldp-profile-name-id> egress-policy <tlv-id>
-nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy
-nv show system lldp tlv profile <lldp-profile-name-id> ingress-policy <tlv-id>
-nv show system lldp tlv profile <lldp-profile-name-id> summary
-nv show system lldp tlv profile <lldp-profile-name-id> summary <tlv-id>
-nv show system lldp tlv summary
-nv show system lldp tlv summary <tlv-id>
 nv show system packages archive
 nv show system packages archive <id>
 nv show system security alerts

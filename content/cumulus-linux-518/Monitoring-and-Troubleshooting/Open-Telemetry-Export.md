@@ -3143,7 +3143,7 @@ When you enable {{<link url="Latency-Monitoring/" text="latency monitoring">}}, 
 When you enable platform statistic telemetry globally, or when you enable telemetry for the individual components, the switch exports the following statistics:
 
 {{< tabs "TabID723 ">}}
-{{< tab "ASIC ">}}
+{{< tab "ASIC Resource">}}
 
 ASIC statistics include the ASIC resource used percentage, the maximum number of entries, the number of free entries, the high watermark, and the high watermark timestamp.
 

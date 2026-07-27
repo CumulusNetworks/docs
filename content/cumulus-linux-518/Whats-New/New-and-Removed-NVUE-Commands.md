@@ -58,11 +58,6 @@ nv show system packages archive
 nv show system packages archive <id>
 nv show system security alerts
 nv show system security secure-boot
-nv show system telemetry export ipfix
-nv show system telemetry metric-list
-nv show system telemetry metric-list <metric-list-id>
-nv show system telemetry metric-list <metric-list-id> metric <metric-id>
-nv show system telemetry stats-group <stats-group-id> interface-stats class debounce
 nv show system wjh channel <channel-id> buffer-threshold
 nv show system wjh channel <channel-id> buffer-threshold latency
 nv show system wjh channel <channel-id> buffer-threshold latency tc

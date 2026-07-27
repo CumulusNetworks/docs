@@ -5,8 +5,12 @@ weight: 1130
 toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
-- The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools such as {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq" text="NVIDIA NetQ" >}}.
+- The WJH agent (`nv-wjh.service`) enables you to stream detailed and contextual telemetry for off-switch analysis with tools such as {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq" text="NVIDIA NetQ" >}}.
 - The WJH service enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, tunnel, buffer and ACL related issues. Cumulus Linux enables and runs the WJH service by default.
+
+{{%notice note%}}
+In Cumulus Linux 5.18 and later, the WJH agent is `nv-wjh.service`. In Cumulus Linux 5.17 and earlier, the WJH agent is `what-just-happened.service`.
+{{%/notice%}}
 
 ## Configure WJH
 
@@ -50,64 +54,6 @@ To remove a channel, run the `nv unset system wjh channel <channel>` command. Th
 cumulus@switch:~$ nv unset system wjh channel layer-1 
 cumulus@switch:~$ nv config apply
 ```
-
-<!-- NO LONGER SUPPORTED IN 5.18
-Edit the `/etc/what-just-happened/what-just-happened.json` file:
-- For each drop category you want to monitor, include the drop category value inside the square brackets ([]). 
-- For each drop category you do **not** want to monitor, remove the drop category value from inside the square brackets.
-
-After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
-
-The following example configures a channel to monitor layer 2, layer 3, and tunnel packet drops and a channel to monitor layer 1 packet drops.
-
-```
-cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
-{
-    "what-just-happened": {
-        "channels": {
-            "forwarding": {
-                "drop_category_list": [
-                    "l2",
-                    "l3",
-                    "tunnel"
-                ]
-            },
-            "layer-1": {
-                "drop_category_list": [
-                    "l1"
-                ]
-            }
-        }
-    }
-}
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart what-just-happened
-```
-
-The following example configures a channel to monitor buffer packet drops and a channel to monitor ACL packet drops.
-
-```
-cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
-{
-    "what-just-happened": {
-        "channels": {
-            "buffer": {
-                "drop_category_list": ["buffer"]
-            },
-            "acl1": {
-                "drop_category_list": ["acl"]
-            }
-        }
-    }
-}
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart what-just-happened
-```
--->
 
 ### Filter Traffic Drops
 
@@ -498,15 +444,17 @@ ACL drop events describe why an ACL has dropped packets.
 | Egress router ACL | Notice | An ACL action is set to deny on the egress SVIs. |
 
 ## Considerations
+<!--
+### WJH and Package Upgrade
 
+The Linux package upgrade command (`apt-get upgrade`) only upgrades existing packages and does not install newly introduced packages; therefore, `apt-get upgrade` does not install the new `nv-wjh` package, introduced in Cumulus 5.18.0.
+
+When using WJH, make sure to use the NVUE package upgrade command `nv action upgrade system packages to latest use-vrf mgmt` or the Linux `apt-get dist-upgrade` command to perform a full package upgrade. You can also manually install the `nv-wjh` package after upgrade.
+-->
 ### Buffer Packet Drop Monitoring
 
 - Buffer packet drop monitoring is available on a switch with Spectrum-2 and later.
 - Buffer packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN/#limitations" text="SPAN and ERSPAN">}}. If you need to remove the SPAN destination that buffer packet drop monitoring uses, delete the buffer monitoring drop category with the NVUE `nv unset system wjh channel buffer trigger buffer` command.
-
-### Cumulus Linux and Docker
-
-WJH runs in a Docker container. By default, when Docker starts, it creates a bridge called `docker0`. However, for compatibility reasons Cumulus Linux disables the `docker0` bridge in the `/etc/docker/daemon.json` file with the attribute `"bridge: none"`.
 
 ### WJH and the NVIDIA NetQ Agent
 

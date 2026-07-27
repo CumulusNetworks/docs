@@ -13,11 +13,11 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 Cumulus Linux 5.18.0 supports new platforms, contains new features and improvements, and provides bug fixes.
 
 ## Platforms
-- NVIDIA SN6600_LD (1.6T Spectrum-6)
+- {{<exlink url="https://docs.nvidia.com/nvidia-spectrum-6-sn6000-ethernet-switch-systems-hardware-user-manual.pdf" text="NVIDIA SN6600_LD">}} (128x800G Spectrum-6)
 
 {{%notice note%}}
 The NVIDIA SN6600_LD switch does not support:
-- Port speed 800Gx8 and 100G
+- Port speed 800Gx8
 - Warmboot
 - PTP
 {{%/notice%}}
@@ -31,7 +31,7 @@ Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switc
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} is generally available
 - {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
 - {{<link url="Interface-Configuration-and-Management/#link-tracking" text="Link tracking ">}}
-- {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}}
+- {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}} (Beta)
 - {{<link url="EVPN-Multihoming/#svi-ip-address-configuration" text="EVPN Multihoming without a unique SVI IP address">}}
 - {{<link url="RADIUS-AAA/#nas-ip-address-and-identifier" text="RADIUS NAS IP address and identifier configuration">}}
 - {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}} (Beta)
@@ -39,6 +39,7 @@ Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switc
 - {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}} (Beta)
 - {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="BGP graceful fabric maintenance">}} (Beta)
 - {{<link url="Optional-BGP-Configuration/#inter-dc-routing" text="Inter-DC Routing">}} (Beta)
+- {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-6" text="Spectrum-6 forwarding resource profiles">}} 
 - Changes to the `/etc/frr/daemons` file no longer require an FRR service restart; you can use FRR reload
 - NVUE
   - {{<link url="NVUE-CLI/#automatic-configuration-backup-and-restore" text="Automatic configuration backup and restore">}}
@@ -75,11 +76,11 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 - 5.16.0
 - 5.16.1
 - 5.16.5
+- 5.16.6
 - 5.17.0
 
-{{%notice warning%}}
-- The Spectrum-6 switch does not support ISSU.
-- You cannot upgrade to Cumulus Linux 5.18.0 from Cumulus Linux 5.16.6.
+{{%notice note%}}
+The Spectrum-6 switch does not support ISSU.
 {{%/notice%}}
 
 To upgrade to Cumulus Linux 5.18 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.

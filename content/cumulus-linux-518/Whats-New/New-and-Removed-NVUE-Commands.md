@@ -59,15 +59,6 @@ nv show system packages archive <id>
 nv show system security alerts
 nv show system security secure-boot
 nv show system telemetry export ipfix
-nv show system telemetry hft counter <counter-id>
-nv show system telemetry hft egress-buffer traffic-class <traffic-class-id>
-nv show system telemetry hft ingress-buffer 
-nv show system telemetry hft ingress-buffer priority-group
-nv show system telemetry hft ingress-buffer priority-group <priority-group-id>
-nv show system telemetry hft profile <profile-id> traffic-class <traffic-class-id>
-nv show system telemetry hft switch-priority
-nv show system telemetry hft switch-priority <switch-priority-id>
-nv show system telemetry interface-stats class debounce
 nv show system telemetry metric-list
 nv show system telemetry metric-list <metric-list-id>
 nv show system telemetry metric-list <metric-list-id> metric <metric-id>

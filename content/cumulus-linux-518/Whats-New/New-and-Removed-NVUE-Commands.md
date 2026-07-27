@@ -32,7 +32,6 @@ nv show platform inventory BMC
 nv show platform firmware BMC
 nv show platform firmware BMC files
 nv show platform environment leakage
-nv show qos advance-buffer-config <profile-id> shared-headroom
 nv show system aaa radius server <server> counters
 nv show system aaa user cumulus --privileged
 nv show system config backup

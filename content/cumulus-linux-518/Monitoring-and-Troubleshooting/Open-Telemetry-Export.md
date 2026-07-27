@@ -400,16 +400,16 @@ cumulus@switch:~$ nv config apply
 If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 60 seconds.
 
 {{< tabs "TabID393 ">}}
-{{< tab "ASIC ">}}
+{{< tab "ASIC Resource">}}
 
-To enable ASIC statistics:
+To enable ASIC resource statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To adjust the sample interval for ASIC statistics:
+To adjust the sample interval for ASIC resource statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource sample-interval 100

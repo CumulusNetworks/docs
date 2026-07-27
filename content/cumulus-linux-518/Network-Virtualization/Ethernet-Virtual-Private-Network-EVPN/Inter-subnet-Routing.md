@@ -201,6 +201,9 @@ Layer 3 VXLAN device mode simplifies EVPN configuration and improves performance
  
 To enable layer 3 VXLAN device mode, first disable EVPN and VXLAN, then run the `nv set evpn l3vxi state enabled` command. Layer 3 VXLAN device mode is disabled by default.
 
+{{%notice note%}}
+Enabling or disabling layer 3 VXLAN device mode is disruptive as it changes the underlying Linux VXLAN interface model. Only enable or disable layer 3 VXLAN device mode during a planned maintenance window; do not apply configuration changes while traffic is active.
+{{%/notice%}}
 
 ```
 cumulus@leaf01:~$ nv set evpn state disabled
@@ -340,6 +343,8 @@ To use EVPN, re-enable EVPN and VXLAN:
 cumulus@leaf01:~$ nv set evpn state enabled
 cumulus@leaf01:~$ nv set nve vxlan state enabled
 ```
+
+To show the current layer 3 VXLAN device status, run the `nv show evpn l3vxi` command.
 
 ### Configure RD and RTs for the Tenant VRF
 

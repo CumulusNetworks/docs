@@ -31,7 +31,11 @@ cumulus@switch:~$ nv action install system packages archive rm0042
 You run the `nv action install system packages archive <id>` command with the following options:
 - `force` runs the command without the prompts to continue.
 - `dry-run` runs only the validate step and applies nothing.
-- `allow-incompatible` bypasses any validate-check failure.
+- `allow-incompatible` bypasses any validate-check failure. 
+
+{{%notice warning%}}
+Use the `allow-incompatible` option with caution as it overrides the compatibility checks and forces the installation; NVIDIA cannot guarantee that the system will work as expected after activation.
+{{%/notice%}}
 
 ## Uninstall a Micro Update
 

@@ -7,7 +7,41 @@ toc: 3
 
 The Spectrum-6 switch requires <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span>, which is a specialized microcontroller designed to deliver out-of-band remote monitoring and management for servers and switches. Operating independently from the main CPU and operating system, the BMC enables administrative control even when the switch is powered down or unresponsive. It streamlines server and switch management while enhancing network efficiency, reliability, and security through automation of critical tasks.
 
-Cumuls Linux includes the BMC package. 
+Cumuls Linux includes the BMC package. To update the BMC package files, run the following commands.
+
+To fetch the latest BMC package, run the `nv action fetch platform firmware BMC <remote-url-to-package>` command:
+
+```
+cumulus@switch:~$ nv action fetch platform firmware BMC http://path/cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg
+Action executing ...
+Fetching file ...
+Action executing ...
+Firmware downloaded successfully. File: /tmp/firmware_downloads/bmc/cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg. SHA256: 585231eb5da5221adfdb90a88892aa65a1bf9a89517e841c654db2e9dbff99aa
+Action succeeded
+```
+
+The following example shows the available BMC files.
+
+```
+cumulus@switch:~$ nv show platform firmware BMC files
+Available Firmware Files                            File Path
+--------------------------------------------------  ------------------------------------------------------------------------------
+cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg  /tmp/firmware_downloads/bmc/cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg
+sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg          /tmp/firmware_downloads/bmc/sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg 
+```
+
+To install available BMC package files, run the `nv action fetch platform firmware BMC files <package-name>` command.
+
+```
+cumulus@switch:~$ nv action install platform firmware BMC files sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg
+The operation will install the firmware.
+ Type [y] to install the firmware. 
+ Type [N] to abort. 
+Do you want to continue? [y/N] y 
+ Action executing ... 
+ Firmware installation completed for bmc. Version: unknown 
+ Action succeeded
+```
 
 ## Show Information About BMC
 
@@ -56,29 +90,6 @@ part-number      NVIDIA
 actual-firmware  88.0060.2112
 fw-source        default
 ```
-
-To show new firmware package files available to install, run the `nv action fetch platform firmware BMC <remote-url-to-package>` command:
-
-```
-cumulus@switch:~$ nv action fetch platform firmware BMC http://path/cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg
-Action executing ...
-Fetching file ...
-Action executing ...
-Firmware downloaded successfully. File: /tmp/firmware_downloads/bmc/cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg. SHA256: 585231eb5da5221adfdb90a88892aa65a1bf9a89517e841c654db2e9dbff99aa
-Action succeeded
-```
-
-The following example shows the available BMC files.
-
-```
-cumulus@switch:~$ nv show platform firmware BMC files
-Available Firmware Files                            File Path
---------------------------------------------------  ------------------------------------------------------------------------------
-cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg  /tmp/firmware_downloads/bmc/cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg
-sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg          /tmp/firmware_downloads/bmc/sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg 
-```
-
-You can install available BMC packages with the `nv action fetch platform firmware BMC files <package-name>` command.
 
 ## Liquid Cooling Leakage
 

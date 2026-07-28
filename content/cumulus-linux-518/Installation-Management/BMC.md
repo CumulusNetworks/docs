@@ -7,7 +7,7 @@ toc: 3
 
 The Spectrum-6 switch requires <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span>, which is a specialized microcontroller designed to deliver out-of-band remote monitoring and management for servers and switches. Operating independently from the main CPU and operating system, the BMC enables administrative control even when the switch is powered down or unresponsive. It streamlines server and switch management while enhancing network efficiency, reliability, and security through automation of critical tasks.
 
-Cumuls Linux includes the BMC package. To update the BMC package files, run the following commands.
+Cumuls Linux includes the BMC package. To update the BMC package files to the latest versions, run the following commands.
 
 To fetch the latest BMC package, run the `nv action fetch platform firmware BMC <remote-url-to-package>` command:
 
@@ -42,7 +42,17 @@ Do you want to continue? [y/N] y
  Firmware installation completed for bmc. Version: unknown 
  Action succeeded
 ```
+<!--
+## Access BMC Out-of-Band Management
 
+BMC provides out-of-band management for system health monitoring, firmware management, power control, and recovery.
+
+To access BMC, SSH into the BMC out-of-band management interface using its IP address and provide your username and password.
+
+## Powercycle the Switch through BMC
+
+To powercycle the switch through BMC, run the `nv action reboot system mode power-cycle` command.
+--->
 ## Show Information About BMC
 
 Use the following commands to show information about the installed BMC package on your Spectrum-6 switch.

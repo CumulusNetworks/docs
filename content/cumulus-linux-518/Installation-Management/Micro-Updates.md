@@ -13,14 +13,14 @@ Micro updates only contain changed packages and complement rather than replace t
 You can roll back and return to the base image, not a previously-running micro update. If a package is running an earlier micro update version when a later micro update is installed, removing the later one restores the base-image version, not the earlier micro update.
 
 {{%notice note%}}
-- The package upgrade `nv action upgrade system packages to latest` command can overwrite applied micro-update fixes; the switch does warns you before proceeding.
+- Installing a micro update might overwrite applied micro-update fixes; the switch does warn you before proceeding.
 - A failed micro update install rolls back all touched packages automatically to the base version so that the switch is not left in a half-applied state.
 {{%/notice%}}
 
 
 ## Install a Micro Update
 
-To download and stage the micro update, run the `nv action fetch system packages archive <url>` command. The update stays inactive until you run the `nv action install system packages archive <archive-id>` command. 
+To download and stage a micro update, run the `nv action fetch system packages archive <url>` command. The update stays inactive until you run the `nv action install system packages archive <archive-id>` command. 
 
 The micro update infrastructure supports HTTPS, SCP, FTP, and SFTP.
 
@@ -32,7 +32,7 @@ The `nv action fetch system packages archive <url>` command uses the management 
 
 To activate the update, run the `nv action install system packages archive <archive-id>` command. The activate command validates, then replaces the targeted packages with their fixed versions. The fixed package versions become the running package versions.
 
-{{%notice warning%}}
+{{%notice note%}}
 A micro update targets a specific base image version and platform; the validation process checks both and does not apply the micro update if there is a mismatch.
 {{%/notice%}}
 
@@ -51,7 +51,7 @@ Use the `allow-incompatible` option with caution as it overrides the compatibili
 
 ## Uninstall a Micro Update
 
-To uninstall the micro update and restore the pre-fix (base image) version as the running version, run the `nv action uninstall system packages archive <archive-id>` command.
+To uninstall a micro update and restore the pre-fix (base image) version as the running version, run the `nv action uninstall system packages archive <archive-id>` command.
 
 {{%notice note%}}
 Installing and uninstalling a micro update might restart any affected services. The `impact` field in the `nv show system packages archive <archive-id>` command output shows the affected services. 
@@ -61,7 +61,7 @@ Installing and uninstalling a micro update might restart any affected services. 
 cumulus@switch:~$ nv action uninstall system packages archive rm0042
 ```
 
-To delete the micro update from the switch, run the `nv action delete system packages archive <archive-id>` command. You must uninstall the applied micro update before you can delete it.
+To delete a micro update from the switch, run the `nv action delete system packages archive <archive-id>` command. You must uninstall the applied micro update before you can delete it.
 
 ```
 cumulus@switch:~$ nv action delete system packages archive rm0042

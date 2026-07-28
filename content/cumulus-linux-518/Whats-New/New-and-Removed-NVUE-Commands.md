@@ -32,7 +32,6 @@ nv show platform firmware BMC
 nv show platform firmware BMC files
 nv show platform environment leakage
 nv show system aaa radius server <server> counters
-nv show system aaa user cumulus --privileged
 nv show system config backup
 nv show system do-spx
 nv show system do-spx active-profile

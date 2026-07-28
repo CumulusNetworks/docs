@@ -88,6 +88,18 @@ The maximum value for the `IPv6-Routes` ASIC resource represents the number of s
 {{%/notice%}}
 
 {{< /tab >}}
+{{< tab "Micro Updates">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name=<archive-id>]/state/name` | The package archive name. |
+| `/components/component[name=<archive-id>]/state/type` | The type: OPERATING_SYSTEM_UPDATE.|
+| `/components/component[name=<archive-id>]/software-package-archive/state/failure-state` | The failure state:(0: none, 1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 2: PRE_INSTALL_FAILED_ROLLBACK_FAILED, 3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 4: APT_FAILED_ROLLBACK_SUCCESSFULL, 5: APT_FAILED_ROLLBACK_FAILED, 6: APT_FAILED_ROLLBACK_IN_PROGRESS, 7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 8: POST_INSTALL_FAILED_ROLLBACK_FAILED, 9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL, 11: UNKNOWN_FAILURE_ROLLBACK_FAILED, 12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS).|
+| `/components/component[name=<archive-id>]/software-package-archive/state/status` | The installation status: 0: not-installed, 1: installed, 2: partially-installed, 3: failed, 4: operation-in-progress.|
+| `/components/component[name=<archive-id>]/software-package-archive/state/installed-at` | The installation time.|
+| `/system/state/installed-software-package-archives` | The list of installed software packages.|
+
+{{< /tab >}}
 {{< tab "Platform Leakage Sensor">}}
 
 |  Name | Description |
@@ -175,6 +187,15 @@ To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Ex
 |------ | ----------- |
 | `nvswitch_platform_environment_leak_sensor_status` | Leak sensor status. Liquid-cooled NVIDIA switch only.|
 | `nvswitch_platform_environment_leakage_status` | Leakage status. Liquid-cooled NVIDIA switch only. |
+
+{{< /tab >}}
+{{< tab "Micro Updates">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_package_archive_failure_state` | The failure state if the micro update installation fails: (0: none, 1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 2: PRE_INSTALL_FAILED_ROLLBACK_FAILED, 3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 4: APT_FAILED_ROLLBACK_SUCCESSFULL, 5: APT_FAILED_ROLLBACK_FAILED, 6: APT_FAILED_ROLLBACK_IN_PROGRESS, 7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 8: POST_INSTALL_FAILED_ROLLBACK_FAILED, 9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL, 11: UNKNOWN_FAILURE_ROLLBACK_FAILED, 12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS)|
+| `nvswitch_platform_package_archive_status` | The package archive status (0: not-installed, 1: installed, 2: partially-installed, 3: failed, 4: operation-in-progress).|
+| `nvswitch_platform_package_archive_installed_time` | The micro update package installed time. |
 
 {{< /tab >}}
 {{< /tabs >}}

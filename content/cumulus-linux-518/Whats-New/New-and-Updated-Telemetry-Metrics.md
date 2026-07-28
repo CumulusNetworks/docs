@@ -193,7 +193,7 @@ To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Ex
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_platform_package_archive_failure_state` | The failure state if the micro update installation fails:<br>0: none<br>1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>2: PRE_INSTALL_FAILED_ROLLBACK_FAILED<br>3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>4: APT_FAILED_ROLLBACK_SUCCESSFULL<br>5: APT_FAILED_ROLLBACK_FAILED<br>6: APT_FAILED_ROLLBACK_IN_PROGRESS<br>7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>8: POST_INSTALL_FAILED_ROLLBACK_FAILED<br>9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL<br>11: UNKNOWN_FAILURE_ROLLBACK_FAILED<br>>12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS|
+| `nvswitch_platform_package_archive_failure_state` | The failure state if the micro update installation fails:<br>0: none<br>1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>2: PRE_INSTALL_FAILED_ROLLBACK_FAILED<br>3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>4: APT_FAILED_ROLLBACK_SUCCESSFULL<br>5: APT_FAILED_ROLLBACK_FAILED<br>6: APT_FAILED_ROLLBACK_IN_PROGRESS<br>7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>8: POST_INSTALL_FAILED_ROLLBACK_FAILED<br>9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL<br>11: UNKNOWN_FAILURE_ROLLBACK_FAILED<br>12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS|
 | `nvswitch_platform_package_archive_status` | The package archive status (0: not-installed, 1: installed, 2: partially-installed, 3: failed, 4: operation-in-progress).|
 | `nvswitch_platform_package_archive_installed_time` | The micro update package installed time. |
 

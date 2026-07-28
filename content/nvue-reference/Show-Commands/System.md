@@ -718,6 +718,50 @@ cumulus@switch:~$ nv show system health history files health_history
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system image</h>
+
+Shows information about the image installed on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system image
+               operational           pending
+-------------  --------------------  -------
+current        1                            
+next           N/A                          
+partition1                                  
+  build-id     5.18.0.0031                  
+  description  Cumulus Linux 5.18.0         
+  disk         /dev/vda4                    
+  release      5.18.0                       
+partition2                                  
+  disk         /dev/vda5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system image onie</h>
+
+Shows system image ONIE information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system image onie
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system maintenance</h>
 
 Show the current system maintenance mode.

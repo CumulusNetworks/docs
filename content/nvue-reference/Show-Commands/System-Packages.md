@@ -10,6 +10,66 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system packages archive</h>
+
+Shows the micro update staged archives, each with a summary and status, run the nv show system packages archive command. The status is `installed`, `not-installed`, `partially-installed`, `failed`, or `operation-in-progress`.
+
+The Cumulus Linux micro update framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
+
+You can apply a critical fix on your own maintenance window and back it out without a full image upgrade.
+
+Micro updates only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every micro update into a subsequent release.
+
+You can roll back and return to the base image, not a previously-running micro update. If a package is running an earlier micro update version when a later micro update is installed, removing the later one restores the base-image version, not the earlier micro update.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system packages archive
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system packages archive <archive-id></h>
+
+Shows information about a specific micro update, such as a summary, description, impact, installation time, failure reason, and its applied status.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<archive-id>`    | The micro update archive ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system packages archive rm0042
+                 operational
+---------------  ------------------------------------------------------------------------------
+summary          Add startup diagnostic log markers to switchd, ptmd, and ntpsec.
+description      Updates switchd, ptmd, and ntpsec to each emit an additional informational
+                 log line at daemon startup, used to confirm micro-update delivery on the
+                 switch. No forwarding, protocol, or configuration behaviour is changed.
+status           not-installed
+impact           Installing swaps switchd, ptmd, and ntpsec to the fixed versions and restarts
+                 all three services. The switchd restart causes a brief forwarding/data-plane
+                 disruption of a few seconds, ptmd re-establishes its LLDP/BFD adjacencies, and
+                 ntpsec briefly interrupts time synchronisation; no reboot is required.
+                 Uninstall restores the original versions with the same brief restarts.
+[replaces]   rm0002
+``` 
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system packages</h>
 
 Shows the list of repositories and keys on the switch.

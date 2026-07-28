@@ -32,7 +32,6 @@ nv show platform firmware BMC
 nv show platform firmware BMC files
 nv show platform environment leakage
 nv show system aaa radius server <server> counters
-nv show system aaa user cumulus --privileged
 nv show system config backup
 nv show system do-spx
 nv show system do-spx active-profile
@@ -44,8 +43,6 @@ nv show system do-spx profile <profile-id> downlink
 nv show system do-spx profile <profile-id> downlink <interface-id>
 nv show system do-spx profile <profile-id> otlp-destination
 nv show system do-spx profile <profile-id> otlp-destination <destination-id>
-nv show system dot1x pre-auth
-nv show system dot1x pre-auth allow-protocol
 nv show system image
 nv show system image onie
 nv show system link-tracking

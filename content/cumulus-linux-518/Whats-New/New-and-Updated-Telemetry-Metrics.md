@@ -92,9 +92,12 @@ The maximum value for the `IPv6-Routes` ASIC resource represents the number of s
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name=leakage*]/state/name /` | Leak sensor name. Liquid-cooled NVIDIA switch only.|
-| `/components/component[name=leakage*]/state/oper-status` | Leak sensor operational health (ACTIVE on valid reading) Liquid-cooled NVIDIA switch only. Liquid-cooled NVIDIA switch only.|
-| `/components/component[name=leakage*]/state/leakage/alarm-status` | Leak alarm status. Liquid-cooled NVIDIA switch only.|
+| `/components/component[name=leakage1]/state/name` | Leakage1 sensor name. Liquid-cooled NVIDIA switch only.|
+| `/components/component[name=leakage1]/state/oper-status` | Leakage1 sensor operational health (ACTIVE on valid reading) Liquid-cooled NVIDIA switch only.|
+| `/components/component[name=leakage1]/state/leakage/alarm-status` | Leakage1 alarm status. Liquid-cooled NVIDIA switch only.|
+| `/components/component[name=leakage2]/state/name` | Leakage2 sensor name. Liquid-cooled NVIDIA switch only.|
+| `/components/component[name=leakage2]/state/oper-status` | Leakage2 sensor operational health (ACTIVE on valid reading) Liquid-cooled NVIDIA switch only.|
+| `/components/component[name=leakage2]/state/leakage/alarm-status` | Leakage2 alarm status. Liquid-cooled NVIDIA switch only.|
 
 {{< /tab >}}
 {{< tab "WJH">}}

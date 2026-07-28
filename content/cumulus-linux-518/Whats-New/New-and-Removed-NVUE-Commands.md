@@ -43,8 +43,6 @@ nv show system do-spx profile <profile-id> downlink
 nv show system do-spx profile <profile-id> downlink <interface-id>
 nv show system do-spx profile <profile-id> otlp-destination
 nv show system do-spx profile <profile-id> otlp-destination <destination-id>
-nv show system dot1x pre-auth
-nv show system dot1x pre-auth allow-protocol
 nv show system image
 nv show system image onie
 nv show system link-tracking

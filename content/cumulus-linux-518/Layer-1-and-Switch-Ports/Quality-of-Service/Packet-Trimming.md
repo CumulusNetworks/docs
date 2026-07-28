@@ -12,10 +12,11 @@ You can apply DSCP remarking on trimmed packets:
 
 {{%notice note%}}
 - Cumulus Linux supports packet trimming on Spectrum-4 and later.
-- Do not enable packet trimming when the NetQ WJH agent is running or with WJH monitor buffer drops configured.
 - Cumulus Linux supports packet trimming for known unicast IPv4 and IPv6 traffic. Packet trimming does not support ISSU, VXLAN packets or flooding and multicast packets.
 {{%/notice%}}
-
+<!-- REMOVED FROM 5.18 - WJH NO LONGER IN DOCKER CONTAINER
+Do not enable packet trimming when the NetQ WJH agent is running or with WJH monitor buffer drops configured.
+-->
 ## Global Level Packet Trimming
 
 Global level packet trimming enables you to use the same DSCP value on all trimmed packets.

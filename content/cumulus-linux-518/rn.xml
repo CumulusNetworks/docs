@@ -7,75 +7,9 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5161741</td>
-<td>The gNMI {{/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state}} metric intermittently returns no data.</td>
-<td>5.16.2-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5159352</td>
-<td>The {{nv show platform firmware}} command output shows an incorrect CPLD firmware version.</td>
-<td>5.16.1-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5157264</td>
-<td>When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI.</td>
-<td>5.16.0-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5154784</td>
-<td>On Spectrum-4 switches, generating an MST dump diagnostic file might trigger a CR space timeout that causes an SDK/FW fatal error and restarts {{switchd}} immediately after the {{mstdump}} completes.</td>
-<td>5.16.1-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5154662</td>
-<td>When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under {{/etc/apt/sources.list.d/*}}, the {{nv config apply}} command fails because NVUE incorrectly blocks adding snippet files under {{/etc/apt/sources.list.d/*}}. </td>
-<td>5.16.1-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5154576</td>
-<td>On systems with frequent ACL updates, {{switchd}} might fail to release internal SDK resources used for bulk counter notifications during ACL installation. After a long uptime, this issue might exhaust available resources and cause some gNMI metrics to stop updating. To work around this issue, restart {{switchd}}.</td>
-<td>5.16.3-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5145985</td>
-<td>The default route 0.0.0.0/0 learned as EVPN type-5 is not installed in zebra as it is getting created with the incorrect family.</td>
-<td>5.16.4-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5145975</td>
-<td>Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore.</td>
-<td>5.16.4-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5145970</td>
-<td>After a power event, many links on the switch do not directly lose power but show bad EEPROM errors and you need to reset the links manually.</td>
-<td>5.16.1-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5145963</td>
-<td>The {{Date-Time}} column in the {{nv show interface &lt;interface&gt; telemetry histogram ... snapshot}} output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time.</td>
-<td>5.16.1-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5145960</td>
-<td>After a switch reboot, the management VRF static route might be unprogrammed in the kernel despite being present in the configuration. This issue is due to a timing issue. To recover from this issue, remove, then re-add the route or restart FRR.</td>
-<td>5.16.1-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5145959</td>
-<td>During a switch reboot with SRv6 enabled, there is an ordering race that occasionally results in the {{nginx-authenticator.service}} only listening on the IPv6 loopback IP address. As result, the gNMI server Envoy instance, which uses the {{nginx-authenticator.service}} to validate the username and password in requests from the gNMI client fails to connect and you see the error {{rpc error: code = Unavailable desc = Authentication service unavailable}}.</td>
-<td>5.16.3-5.18.0</td>
+<td>5089768</td>
+<td>When subscribing to gNMI paths that have multiple external paths for a single internal path, you see previous warning logs when there is no issue. </td>
+<td>5.16.5-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -83,6 +17,12 @@
 <td>After optimized image upgrade, the SSH service fails and NVUE shows an error {{Failed to translate the startup configuration, will continue with the original startup}}.</td>
 <td>5.16.1-5.16.4, 5.17.0-5.18.0</td>
 <td>5.16.5</td>
+</tr>
+<tr>
+<td>4982910</td>
+<td>The mellanox platform driver fails to register a {{pm_power_off}} handler for legacy platforms. As a result, it falls through to ACPI power off which doesn't work correctly on the BIOS and causes a reset.</td>
+<td>5.17.0-5.18.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4891440</td>
@@ -100,6 +40,12 @@
 <td>4871161</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
 <td>5.9.1-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4841491</td>
+<td>When the Management-Privilege-Level or Cisco-Avpair is not found, a user is created with privilege level 0 instead of privilege level 1.</td>
+<td>5.16.0-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -875,9 +821,158 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5162182, 5157267</td>
+<td>Restarting the SDK statistics collector deinitializes the telemetry module in the SDK. Any other processes using the SDK Telemetry module see failures.</td>
+<td></td>
+</tr>
+<tr>
+<td>5156722</td>
+<td> The {{nv show platform firmware}} command shows an incorrect CPLD firmware version.</td>
+<td>5.16.1-5.16.5</td>
+</tr>
+<tr>
+<td>5152149</td>
+<td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
+<td>5.11.3-5.17.0</td>
+</tr>
+<tr>
+<td>5152101</td>
+<td>When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under {{/etc/apt/sources.list.d/*}}, the {{nv config apply}} command fails because NVUE incorrectly blocks adding snippeted files under {{/etc/apt/sources.list.d/*}}.</td>
+<td>5.16.1-5.16.5</td>
+</tr>
+<tr>
+<td>5140761</td>
+<td>A switch reboot might drop the management VRF static route intermittently from the kernel, causing a loss of management-plane reachability. To work around this issue, remove and re-add the route or restart FRR. </td>
+<td>5.16.1-5.16.5</td>
+</tr>
+<tr>
+<td>5135953</td>
+<td>The {{Date-Time}} column in the {{nv show interface &lt;interface&gt; telemetry histogram ... snapshot}} output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time.</td>
+<td>5.16.1-5.16.5</td>
+</tr>
+<tr>
+<td>5124026</td>
+<td>The HFT counter metrics exported over OTLP use incorrect timestamp and metric-type semantics.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>5118919</td>
+<td>Running {{nv config apply}} more than once without waiting for the first {{nv config apply}} to finish might cause a deadlock with the second {{nv config apply}} and trigger a condition where memory grows unbounded.</td>
+<td>5.16.1-5.17.0</td>
+</tr>
+<tr>
+<td>5107859</td>
+<td>You see unexpected error logs from SDK Stats Collector.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>5103277</td>
+<td>Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore.</td>
+<td>5.16.4-5.16.5</td>
+</tr>
+<tr>
+<td>5103255</td>
+<td>On systems with frequent ACL updates, switchd could fail to release internal SDK resources used for bulk counter notifications during ACL installation. Over long uptime, this could exhaust available resources and cause few metrics to stop updating.
+
+Workaround: Restarting switchd temporarily restores metrics.</td>
+<td>5.16.3-5.16.5</td>
+</tr>
+<tr>
+<td>5102916</td>
+<td>If you disable HFT on the last interface while an HFT session is enabled, NVUE crashes instead of rejecting the configuration change gracefully.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>5102853</td>
 <td>In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands.</td>
-<td>5.16.4-5.17.0</td>
+<td>5.16.4-5.16.5</td>
+</tr>
+<tr>
+<td>5099224</td>
+<td>When interfaces experience authentication failures and retries due to Radius or host misconfiguration,  NVUE commands such as {{nv show interface dot1x-summary}} and {{nv show interface dot1x-ipv6-summary}} become slow and unresponsive. To work around this issue, ensure the RADIUS server is reachable and configured correctly, and that client credentials and certificates are valid. The slowdown is triggered by repeated authentication failures causing deauthentication and re-authentication cycles. Resolving the underlying authentication failures eliminates the blocking behavior.</td>
+<td>5.16.3-5.17.0</td>
+</tr>
+<tr>
+<td>5095504</td>
+<td>Statically configuring an IPv4 or IPv6 address for an 802.1x enabled port that is also configured for dynamic IPv6 is allowed. However, when you upgrade the switch with this configuration, upgrade fails. To work around this issue, remove the statically assigned IPv4 or IPv6 address configured on the 802.1x enabled port configured for Dynamic IPv6 and re-attempt the upgrade.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>5093840</td>
+<td>Some of the BGP EVPN routes are not installed in the FIB/ASIC. </td>
+<td>5.16.4-5.16.5</td>
+</tr>
+<tr>
+<td>5080564</td>
+<td>You can't stage both ZTP and a {{startup.yaml}} file at the same time.</td>
+<td></td>
+</tr>
+<tr>
+<td>5080543</td>
+<td>After a switch reboot, the NVUE EVPN operational view (nv show vrf --view=evpn) might report scaled layer 3 VNIs as down with a null router-mac, system-mac, or SVI while FRR correctly reports them as Up. This is an operational-data synchronization issue in the NVUE view with no impact to EVPN forwarding or routing.</td>
+<td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>5077002</td>
+<td>The {{pimd}} service crashes intermittently and infrequently when VRF transition is applied on an interface that also has PIM enabled. To work around this issue, remove the PIM configuration from the interface, do the VRF transition, then re-enable PIM on the interface.</td>
+<td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>5076894</td>
+<td>The gNMI {{/interfaces/interface[name]/ethernet/state/port-speed}} path might show the wrong speed.</td>
+<td>5.16.3-5.17.0</td>
+</tr>
+<tr>
+<td>5072600</td>
+<td>The {{nv show mlag -o json}} command returns a plain text error instead of a JSON object.
+
+</td>
+<td>5.11.3-5.17.0</td>
+</tr>
+<tr>
+<td>5072239</td>
+<td>On a leaf configured with static permanent IPv6 neighbors on host-facing interfaces, enabling then disabling all protocols in maintenance mode with the {{nv set maintenance unit all-protocols mode}} command, removes the static PERMANENT neighbor entries from the kernel. The entries come back as dynamic (REACHABLE), and certain entries never complete neighbor discovery and remain INCOMPLETE, dropping traffic to those host subnets.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>5070048</td>
+<td>All multihomed downlinks are stuck in protodown state, if the lowest integer valued uplink is down before the mh-uplink knob is enabled on all uplink interfaces.</td>
+<td>5.14.0-5.17.0</td>
+</tr>
+<tr>
+<td>5067214</td>
+<td>Running the {{nv config apply}} command with no changes returns a warning but the pending revision is not detached.</td>
+<td>5.11.5-5.17.0</td>
+</tr>
+<tr>
+<td>5065880</td>
+<td>The {{nv show interface dot1x-summary}} command is very slow at high scale.</td>
+<td>5.16.0-5.17.0</td>
+</tr>
+<tr>
+<td>5065211, 4916985, 5078194</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the system too early.</td>
+<td>5.11.5-5.17.0</td>
+</tr>
+<tr>
+<td>5057971</td>
+<td>On an MLAG pair, after a bridge flap, the connected route for the {{macvlan}} interface comes up without the {{INSTALLED}} flag, while its SVI on the same prefix is {{C&gt;*}}.</td>
+<td>5.11.3-5.17.0</td>
+</tr>
+<tr>
+<td>5057785</td>
+<td>With more than 10k EVPN type 2 prefixes, there is a delay in convergence.</td>
+<td>5.14.0-5.17.0</td>
+</tr>
+<tr>
+<td>5056914</td>
+<td>Optimized image upgrade to 5.15.x might consume space in the {{/var}} directory up to 2.2 times the image size and might not correctly check free space in {{/var}} before proceeding.</td>
+<td>5.14.0-5.17.0</td>
+</tr>
+<tr>
+<td>5056845</td>
+<td>When you enable VRF leaking by manually attaching export RTs to the layer 2 VNI, the remote side ends up importing an EVPN type-2 route with an IPv6 link local address in the tenant VRF. These routes do not have a valid router MAC address, which is essential for layer 3 traffic forwarding in the tenant VRF and layer 3 VNI.</td>
+<td>5.16.0-5.16.5</td>
 </tr>
 <tr>
 <td>5056648</td>
@@ -885,9 +980,25 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.1-5.17.0</td>
 </tr>
 <tr>
+<td>5056426</td>
+<td>The switch transmits router advertisements on host-facing interfaces before 802.1X RADIUS authentication completes.</td>
+<td>5.16.3-5.16.4</td>
+</tr>
+<tr>
+<td>5050916</td>
+<td>When LLDP proxy is enabled (EVPN unreachable-prefix in multiplane deployments), a host-facing interface that is administratively shut, or has carrier down and is then permanently removed from a tenant VRF might not send the LLDP proxy teardown flush to the host when the link later comes back up. Traffic might drop or reachability might be incorrect until the host is reset or the stale state is cleared. </td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>5045504</td>
 <td>After you enable BFD offload, BFD control packet counters stop incrementing. Control plane BFD sessions are not affected by this issue and there is no BFD functionality impact in case of kernel offload.</td>
 <td>5.16.0-5.17.0</td>
+</tr>
+<tr>
+<td>5041774</td>
+<td>ISSU upgrades with layer 3 VNIs can lead to a traffic drop because an incorrect RIF is programmed into hardware for all VRF based interfaces.
+</td>
+<td>5.17.0</td>
 </tr>
 <tr>
 <td>5041547</td>
@@ -895,9 +1006,39 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.1-5.16.4</td>
 </tr>
 <tr>
+<td>5040890</td>
+<td>IPv4 BGP aggregate routes are not advertised to peers.</td>
+<td>5.14.0-5.17.0</td>
+</tr>
+<tr>
+<td>5039449</td>
+<td>BFD offload for IPv6 is not supported.</td>
+<td></td>
+</tr>
+<tr>
+<td>5037464</td>
+<td>The gNMI {{/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state}} metric intermittently returns no data.</td>
+<td>5.16.2-5.16.5</td>
+</tr>
+<tr>
 <td>5032793</td>
 <td>A timing issue allows a route marked for removal to still appear selected during EVPN type-5 re-advertisement. Because the EVPN advertisement path does not exclude removed paths, the route might leak and later avoid withdrawal after it becomes suppressed again.</td>
 <td>5.16.1-5.16.4</td>
+</tr>
+<tr>
+<td>5028864</td>
+<td>High Frequency Telemetry with warm boot fails.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>5027938</td>
+<td>Applying a 1x breakout (unsplit) on a port with connected optical modules might trigger an SDK or FW fatal event, leading to a cumulus-core core dump and a switchd failure.</td>
+<td></td>
+</tr>
+<tr>
+<td>5027914</td>
+<td>A BMC password reset reports {{Error: Invalid JSON format}} even though the BMC password change succeeds.</td>
+<td></td>
 </tr>
 <tr>
 <td>5025704</td>
@@ -910,14 +1051,54 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.3-5.17.0</td>
 </tr>
 <tr>
+<td>5024549</td>
+<td>The {{nv show router segment-routing srv6 stats}} command sometimes returns the error {{Error: SID 1389:4075::/32 is not configured}}. </td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>5024254</td>
 <td>When you apply an incorrect VLAN configuration to peer link bond member ports on the secondary MLAG switch, the MLAG peer link goes down and peer link member ports on both the primary and secondary MLAG switch go into a protodown state. The switch does not recover after NVUE rolls back the misconfiguration. To work around this issue (to restore the peer link and clear the protodown state}}), run the {{ifreload -a}} command or reboot the switch.</td>
 <td>5.16.1-5.17.0</td>
 </tr>
 <tr>
+<td>5022203</td>
+<td>When you disable TLVs in LLDP ingress policies, the TLV information still shows in neigbor data when the neigbor is already learned and the TLV provides chassis-level information, such as the system description or LLDP-MED Inventory. There is no impact on traffic.To work around this issue, restart the LLDP service with the {{sudo systemctl restart lldpd}} command.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>5019647</td>
+<td>If you do not configure 802.1x unsolicited EAP Identity Requests on an interface {{nv set interface &lt;interface-id&gt; dot1x tx-identity-request enabled}}, the default value shows only in the {{operational}} column. After you enable or disable unsolicited EAP Identity Requests on an interface, the value shows in both the {{applied}} and {{operational}} columns.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>5018860</td>
+<td>For an MBA authenticated session, the {{auth-type}} shows as {{unknown}} instead of {{MBA}} (MAC Based Authentication) in the gNMI XPath and OTEL metric output.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>5017654, 5041804</td>
 <td>On the NVIDIA SN6600-LD switch, 100G per lane is not supported.</td>
 <td></td>
+</tr>
+<tr>
+<td>5014229</td>
+<td>When you configure high BGP timers such as 60/180 and do a bulk route update  (250k routes installed at the same time), the last updates stay stuck in BGP for an extended period of time and not installed in the FIB until BGP receives the next keep alive message. This impacts traffic for the prefixes that are not installed.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>5005534</td>
+<td>On the NVIDIA SN6600-LD switch with a high logical port count, generating a cl-support file takes approximately eight minutes with 64x8x breakouts.</td>
+<td></td>
+</tr>
+<tr>
+<td>5001357</td>
+<td>When you disable TLVs in LLDP ingress policies, the TLV information still shows in neigbor data when the neigbor is already learned and the TLV provides chassis-level information, such as the system description or LLDP-MED Inventory. There is no impact on traffic.To work around this issue, restart the LLDP service with the {{sudo systemctl restart lldpd}} command.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>4999022</td>
+<td>The SSH server inactive timeout does not close idle SSH sessions.</td>
+<td>5.16.1-5.17.0</td>
 </tr>
 <tr>
 <td>4996657</td>
@@ -940,6 +1121,21 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>4980039</td>
+<td>A narrow window condition occasionally occurs when the {{prometheus-sdk-stats}} service restarts while an HFT session is running.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>4968117</td>
+<td>When you configure an IPv6 link local address as the IPFIX destination, no IPFIX data is exported. </td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>4963562</td>
+<td>Uneven utilization of bond member links results in one member approaching congestion while the parallel member is largely idle. There is no traffic loss; the impact is bandwidth efficiency and potential micro-congestion on the overloaded member.</td>
+<td>5.11.5-5.17.0</td>
+</tr>
+<tr>
 <td>4957546</td>
 <td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
 {{- set:
@@ -959,6 +1155,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4881770</td>
 <td>On an 802.1x port with dynamic VRF enabled, the switch might not restore the port correctly to the configured VRF after the supplicant deauthenticates and the dynamic VRF is removed. To work around this issue and to restore the port VRF configuration correctly, run the {{sudo ifreload -a}} command after the supplicant is deauthenticated.</td>
+<td>5.16.0-5.17.0</td>
+</tr>
+<tr>
+<td>4796280</td>
+<td>When you delete a snippet with a NAS IP address and, or, a NAS identifier, the NVUE configured NAS IP address and NAS identifier do not take into effect in the operational configuration.</td>
 <td>5.16.0-5.17.0</td>
 </tr>
 <tr>

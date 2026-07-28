@@ -156,6 +156,8 @@ nv action cancel system image onie
 nv action clear interface <interface-id> link-tracking protodown
 nv action clear platform asic <asic-id> resource
 nv action clear system aaa radius counters
+nv action clear vrf <vrf-id> router rib ipv4 unreachable-prefixes <ipv4-prefix>
+nv action clear vrf <vrf-id> router rib ipv6 unreachable-prefixes <ipv6-prefix>
 nv action delete system packages archive <id>
 nv action export system wjh packet-buffer <file-name>
 nv action fetch system packages archive <path>

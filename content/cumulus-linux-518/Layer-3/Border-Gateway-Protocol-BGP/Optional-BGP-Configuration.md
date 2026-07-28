@@ -2217,7 +2217,7 @@ spine01# write memory
 - Multiple failures across leaf switches (such as an BGP service failure on one leaf, and BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
 - The maximum number of unreachable prefixes sent to LLDP is 25k by default. You can adjust this limit to a maximum of 100k with the `nv set system lldp unreachable-prefix max-limit 100000` command.
 - The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
-- If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling.
+- If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling. To remove the stale entry, refer to {{<link url="/#clear-stale-aggregate-route-exceptions" text="Clear Stale Aggregate Route Exceptions">}} below.
 - NVIDIA recommends configuring BGP {{<link url="Optional-BGP-Configuration/#advertisement-delay" text="advertisement delay">}} to avoid traffic disruption during a leaf switch reboot, service restart, and other events that might disrupt the control plane. 
 
 ### Show BGP Unreachability Information
@@ -2299,6 +2299,17 @@ leaf01# show bgp ipv6 unreachability detail json
     }
   ]
 }
+```
+
+### Clear Stale Aggregate Route Exceptions
+
+To remove stale older aggregate route exceptions, run the `nv action clear vrf <vrf-id> router rib ipv4 unreachable-prefixes <ipv4-prefix>` or the `nv action clear vrf <vrf-id> router rib ipv6 unreachable-prefixes <ipv6-prefix>` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv action clear vrf default router rib ipv4 unreachable-prefixes 10.1.0.0/16
+Action executing ...
+Removed local LLDP exception for 10.1.0.0/16 vrf default
+Action succeeded
 ```
 
 ## Graceful Fabric Maintenance

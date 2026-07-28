@@ -763,6 +763,87 @@ type              fan
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show platform inventory BMC</h>
+
+Shows the BMC firmware model, serial number, operational state, and type for the Spectrum-6 switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform inventory BMC
+                  operational
+----------------  ------------
+state             ok
+hardware-version  88.0060.2112
+model             OpenBMC
+serial            MT2617606EXZ
+type              bmc
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform firmware BMC</h>
+
+Shows the BMC firmware part number and name for the Spectrum-6 switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform firmware BMC
+                 operational
+---------------  ------------
+part-number      NVIDIA
+actual-firmware  88.0060.2112
+fw-source        default
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform firmware BMC files</h>
+
+Shows the available BMC firmware files for the Spectrum-6 switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform firmware BMC files
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform environment leakage</h>
+
+Shows the switch environment leakage (low-current signals) for the Spectrum-6 switch.
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform environment leakage
+Name      State  
+--------  ------ 
+leakage1  normal 
+leakage2  normal
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show platform software</h>
 
 Shows the software installed on the switch.

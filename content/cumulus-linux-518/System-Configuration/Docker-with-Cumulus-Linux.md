@@ -180,7 +180,6 @@ Docker Containers
     Container Name      Image                            Container ID  Status               Ports  Summary
     ------------------  -------------------------------  ------------  -------------------  -----  -------
     repo                cumulus-linux-apt-mirror:5.18.0  a941e1e51c3e  Up 6 days (healthy)                
-    what-just-happened  docker-wjh:latest                f834edf7fd3c  Up 7 days  
 ```
 
 To show Docker images present on the switch, run the `nv show system docker image` command. Add the `-o native` option to display additional data from Docker inspect.
@@ -189,7 +188,6 @@ To show Docker images present on the switch, run the `nv show system docker imag
 cumulus@switch:~$ nv show system docker image
 Image Id      Image Name                Tag     Size    Date                           Summary
 ------------  ------------------------  ------  ------  -----------------------------  -------
-283e2bf92e80  docker-wjh                latest  716MB   2025-10-29 21:47:09 -0400 EDT         
 d839322a5483  cumulus-linux-apt-mirror  5.18.0  3.47GB  2025-10-30 02:35:30 -0400 EDT      
 ```
 
@@ -200,7 +198,6 @@ cumulus@switch:~$ nv show system docker container
 Container Name      Image                            Container ID  Status               Ports  Summary
 ------------------  -------------------------------  ------------  -------------------  -----  -------
 repo                cumulus-linux-apt-mirror:5.18.0  a941e1e51c3e  Up 6 days (healthy)                
-what-just-happened  docker-wjh:latest                f834edf7fd3c  Up 7 days  
 ```
 
 To show details of container, run the `nv show system docker container <container-id>` command:
@@ -231,7 +228,6 @@ cumulus@switch:~$ $ nv show system docker container stats
 Container Name      CPU%   MEM USAGE  MEM LIMIT  MEM%   NET I/O  BLOCK I/O       PIDS
 ------------------  -----  ---------  ---------  -----  -------  --------------  ----
 repo                0.00%  8.102MiB   15.02GiB   0.05%  0B / 0B  160kB / 41kB    9   
-what-just-happened  0.05%  81.96MiB   15.02GiB   0.53%  0B / 0B  496kB / 16.4kB  9
 ```
 
 To show statistics for a specific container, run the `nv show system docker container <container-id-name> stats` command:

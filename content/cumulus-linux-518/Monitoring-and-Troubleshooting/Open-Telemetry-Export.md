@@ -8,7 +8,7 @@ Telemetry enables you to collect, send, and analyze large amounts of data, such 
 
 ## Configure Open Telemetry
 
-Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, buffer statistics, histogram collection, platform statistics, routing metrics, and `systemd` statistics to an external collector for analysis and visualization.
+Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, buffer statistics, ACL metrics, 802.1X statistics, LLDP statistics, AI Ethernet metrics, control plane metrics, histogram collection, platform statistics, micro update metrics, routing metrics, and `systemd` statistics to an external collector for analysis and visualization.
 
 {{%notice note%}}
 Cumulus Linux supports open telemetry export on switches with the Spectrum-2 ASIC and later.

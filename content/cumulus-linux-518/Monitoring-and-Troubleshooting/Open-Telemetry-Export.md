@@ -3127,6 +3127,14 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 ```
 {{< /expand >}}
 
+### Micro Updates
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_package_archive_failure_state` | *The failure state if the micro update installation fails: (0: none, 1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 2: PRE_INSTALL_FAILED_ROLLBACK_FAILED, 3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 4: APT_FAILED_ROLLBACK_SUCCESSFULL, 5: APT_FAILED_ROLLBACK_FAILED, 6: APT_FAILED_ROLLBACK_IN_PROGRESS, 7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 8: POST_INSTALL_FAILED_ROLLBACK_FAILED, 9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL, 11: UNKNOWN_FAILURE_ROLLBACK_FAILED, 12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS)|
+| `nvswitch_platform_package_archive_status` | *The micro update package archive status (0: not-installed, 1: installed, 2: partially-installed, 3: failed, 4: operation-in-progress).|
+| `nvswitch_platform_package_archive_installed_time` | *The micro update package installed time. |
+
 ### Performance Statistics
 
 When you enable {{<link url="Latency-Monitoring/" text="latency monitoring">}}, the switch exports the following statistics:

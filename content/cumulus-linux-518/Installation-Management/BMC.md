@@ -42,7 +42,17 @@ Do you want to continue? [y/N] y
  Firmware installation completed for bmc. Version: unknown 
  Action succeeded
 ```
+<!--
+## Access BMC Out-of-Band Management
 
+BMC provides out-of-band management for system health monitoring, firmware management, power control, and recovery.
+
+To access BMC, SSH into the BMC out-of-band management interface using its IP address and provide your username and password.
+
+## Powercycle the Switch through BMC
+
+To powercycle the switch through BMC, run the `nv action reboot system mode power-cycle` command.
+--->
 ## Show Information About BMC
 
 Use the following commands to show information about the installed BMC package on your Spectrum-6 switch.

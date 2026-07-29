@@ -239,6 +239,49 @@ cumulus@switch:~$ nv config history 5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv config lookup \<search-path\></h>
+
+Shows a specific piece of configuration on the switch.
+
+The `<search-path>` can be either:
+- Separated with spaces and enclosed in quotes (`"vrf default router bgp"`).
+- Separated with slashes (`vrf/default/router/bgp`).
+
+The `<search-path>` cannot contain partial completions (for example, `vrf/default/rout/bgp`). You must spell out every keyword in its entirety.
+
+For any path that does not resolve to an actual subtree of the configuration, NVUE shows the error message `Error: The provided search-path is invalid and could not be resolved to a configuration subtree`.
+
+### Command Syntax
+
+| <div style="width:250px">Syntax   |  Description  |
+| ----------   | ------------  |
+| `<search-path>` | The search path. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config lookup "vrf default router bgp address-family ipv4-unicast"
+- set:
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                network:
+                  10.10.10.1/32: {}
+                redistribute:
+                  connected:
+                    state: enabled
+                state: enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv config patch \<file\></h>
 
 Updates the pending configuration with an NVUE configuration file in YAML format.

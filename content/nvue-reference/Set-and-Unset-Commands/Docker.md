@@ -31,7 +31,7 @@ cumulus@switch:~$ nv set system docker state disabled
 ```
 
 {{%notice note%}}
-The What Just Happened (WJH) service relies on Docker. If you disable Docker, WJH must also be disabled.
+In Cumulus Linux 5.17 and earlier, the What Just Happened (WJH) service relies on Docker. If you disable Docker, you must also disable WJH. In Cumulus Linux 5.18 and later, the WJH service no longer relies on Docker.
 {{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

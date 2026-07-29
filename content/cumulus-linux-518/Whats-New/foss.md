@@ -13,13 +13,13 @@ Cumulus Linux 5.18.0 contains the following core switch package versions:
 
 | Package | Version | Description |
 | --- | ----| ----------- |
-| SDK (`sx-sdk-eth`) | 4.10.1056 | Switch SDK package. Legal Notices and 3rd Party Licenses: {{<exlink url="https://content.mellanox.com/Legal/3rdPartyUnifyNotice_SDK_sx_sdk_4_10_1000_4.10.1038.pdf" text="SDK 3rd Party Unify Notice">}}; {{<exlink url="https://content.mellanox.com/Legal/3rdPartyNotice_SDK_sx_sdk_4_10_1000_4.10.1038.pdf" text="SDK 3rd Party Notice">}}; {{<exlink url="https://content.mellanox.com/Legal/license_SDK_sx_sdk_4_10_1000_4.10.1038.pdf" text="SDK License">}} |
-| MFT (`kernel-mft-dkms`) | 4.36.0.1030 | Switch MFT package. Legal Notices and 3rd Party Licenses: {{<exlink url="https://content.mellanox.com/Legal/3rdPartyNotice_MFT_LINUX_mft-4.36.0.pdf" text="MFT 3rd Party Notice">}}; {{<exlink url="https://content.mellanox.com/Legal/license_MFT_LINUX_mft-4.36.0.pdf" text="MFT License">}} |
+| SDK (`sx-sdk-eth`) | 4.10.1072 | Switch SDK package. Legal Notices and 3rd Party Licenses: {{<exlink url="https://content.mellanox.com/Legal/3rdPartyUnifyNotice_SDK_sx_sdk_4_10_1000_4.10.1038.pdf" text="SDK 3rd Party Unify Notice">}}; {{<exlink url="https://content.mellanox.com/Legal/3rdPartyNotice_SDK_sx_sdk_4_10_1000_4.10.1038.pdf" text="SDK 3rd Party Notice">}}; {{<exlink url="https://content.mellanox.com/Legal/license_SDK_sx_sdk_4_10_1000_4.10.1038.pdf" text="SDK License">}} |
+| MFT (`kernel-mft-dkms`) | 44.36.0-1031 | Switch MFT package. Legal Notices and 3rd Party Licenses: {{<exlink url="https://content.mellanox.com/Legal/3rdPartyNotice_MFT_LINUX_mft-4.36.0.pdf" text="MFT 3rd Party Notice">}}; {{<exlink url="https://content.mellanox.com/Legal/license_MFT_LINUX_mft-4.36.0.pdf" text="MFT License">}} |
 | Hardware management (`hw-management`) | 7.0070.1004 | Hardware management package|
 | NVUE (`python3-nvue`) | 1.14.0.67 | NVUE core package |
 | kernel (`linux-image`) | 6.1.174 | Linux kernel package |
 | FRR | 10.0.3 | FRRouting package|
-| Telemetry | 91.1.13.5 | Telemetry package |
+| Telemetry | 91.1.14.11 | Telemetry package |
 | BMC (Baseboard Management Controller)| 88.0060.2112 | BMC hardware management package for the Spectrum-6 switch |
 | BMC ERoT (External Root of Trust)| 02.00.0034.0000_n05 | ERoT hardware management security package for the Spectrum-6 switch | 
 

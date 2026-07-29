@@ -88,7 +88,6 @@ nv set bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-i
 nv set bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-inspection-static-binding-id> port <interface-name>
 nv set bridge domain <domain-id> arp-inspection vlan <vid> state (enabled|disabled)
 nv set evpn l3vxi state
-nv set interface <interface-id> dot1x tx-identity-request max-retries
 nv set interface <interface-id> link-tracking group
 nv set interface <interface-id> qos shared-headroom-pool
 nv set interface <interface-id> security ip-source-guard

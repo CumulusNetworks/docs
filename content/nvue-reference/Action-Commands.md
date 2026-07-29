@@ -34,6 +34,44 @@ If you add the `force` option (`nv action abort system ztp force`), ZTP terminat
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action activate system do-spx profile \<profile-id\></h>
+
+Activates the profile-based configuration. 
+
+Cumulus Linux provides a simplified, profile‑based way to configure a switch that replaces many NVUE commands. You can select an NVIDIA‑predefined profile and provide interface ranges and breakout values. Cumulus Linux generates and applies all immutable configuration, such as link breakouts, ISSU, adaptive routing, telemetry, QoS, and PFC.
+
+Make sure to activate the profile after you set the upinks and and downlinks. Activating the profile applies the AR, resource, telemetry, and QoS configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>`| The profile ID: `leaf`, `spine-2` (two-tier spine), `spine-3` (three-tier spine), or `super-spine`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action activate system do-spx profile leaf
+cumulus@switch:~$ nv config apply 
+Action succeeded
+```
+
+{{%notice note%}}
+After running the `nv action activate system do-spx profile <profile-id>` command, you must run `nv config apply` to apply the configuration.
+{{%/notice%}}
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv nv action activate system image onie</h>
+
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action activate system tech-support auto-generation</h>
 
 Reactivates automatic cl-support file generation.

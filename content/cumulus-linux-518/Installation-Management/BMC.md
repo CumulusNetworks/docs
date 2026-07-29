@@ -42,20 +42,10 @@ Do you want to continue? [y/N] y
  Firmware installation completed for bmc. Version: unknown 
  Action succeeded
 ```
-<!--
-## Access BMC Out-of-Band Management
 
-BMC provides out-of-band management for system health monitoring, firmware management, power control, and recovery.
-
-To access BMC, SSH into the BMC out-of-band management interface using its IP address and provide your username and password.
-
-## Powercycle the Switch through BMC
-
-To powercycle the switch through BMC, run the `nv action reboot system mode power-cycle` command.
---->
 ## Show Information About BMC
 
-Use the following commands to show information about the installed BMC package on your Spectrum-6 switch.
+Use the following NVUE commands to show information about the installed BMC package on your Spectrum-6 switch.
 
 | Command | Description |
 |-------- | ----------- |
@@ -128,3 +118,5 @@ cumulus@switch:~$ nv show platform environment leakage -o json
 ```
 
 gNMI and OTEL telemetry lets you subscribe to real-time leakage status and trigger automated alerts. For OTEL metrics, refer to {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="OTEL Telemetry Leakage Sensor Metrics">}}. For gNMI metrics, refer to {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI Leakage Sensor Metrics">}}.
+
+For information about using out-of-band remote monitoring and management for the Cumulus Linux Spectrum-6 switch, refer to the {{<mib_link url="bmc-user-manual-88.0060.2110/Getting_Started.html" text="BMC user guide.">}}

@@ -68,7 +68,17 @@ After running the `nv action activate system do-spx profile <profile-id>` comman
 
 ## <h>nv nv action activate system image onie</h>
 
+Installs the Cumulus Linux image with ONIE.
 
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action activate system image onie
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -115,6 +125,74 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action boot-next system image partition2 rollback
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action boot-next system image onie install</h>
+
+Stages an ONIE installer from the network (where ONIE automatically locates the installer) to be installed at next switch reboot.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action boot-next system image onie install 
+WARNING:
+WARNING: Operating System install requested.
+WARNING: This will wipe out all system data.
+WARNING:
+Are you sure (y/N)? y
+Enabling install at next reboot...done.
+Reboot required to take effect.
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action boot-next system image onie rescue</h>
+
+Reboots the system into ONIE rescue mode. You must reboot the system to boot into rescue mode.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action boot-next system image onie rescue
+WARNING:
+WARNING: Rescue boot requested.
+WARNING:
+Are you sure (y/N)? y
+Enabling rescue at next reboot...done.
+Reboot required to take effect.
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action boot-next system image onie uninstall</h>
+
+Removes all installed images and configurations, and returns the switch to its factory defaults.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action boot-next system image onie uninstall
+WARNING:
+WARNING: Operating System uninstall requested.
+WARNING: This will wipe out all system data.
+WARNING:
+Are you sure (y/N)? y
+Enabling uninstall at next reboot...done.
+Reboot required to take effect.
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3671,6 +3749,138 @@ cumulus@switch:~$ nv action install system image files cumulus-linux-5.12.0-mlx-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action install system image onie \<path\></h>
+
+Stages the system image from ONIE from the location provided.
+
+You can add the following options:
+-  `force` suppresses the prompt and the action proceeds non-interactively. The force option  NVIDIA recommends using the force option for scripted, automated, or REST API invocations.
+- `activate` activates the install process.
+- `reboot` reboots the switch after installing the image.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The image location.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system image onie http://10.0.1.251/cumulus-linux-5.18.0-mlx-amd64.bin force activate reboot
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action install system image onie \<path\> ztp \<script\></h>
+
+Stages an image and a ZTP script on an HTTP server. 
+
+You can add the following options:
+-  `force` suppresses the prompt and the action proceeds non-interactively. The force option  NVIDIA recommends using the force option for scripted, automated, or REST API invocations.
+- `activate` activates the install process.
+- `reboot` reboots the switch after installing the image.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The image location.|
+| `<script>` | The ztp file you want to run. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system image onie http://203.0.113.10/image-installer ztp http://203.0.113.10/ztp-script
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action install system image onie \<path\> startup-config \<file-name\></h>
+
+Stages an image with ONIE and a local NVUE `startup.yaml` file.
+
+To activate (installs) the staged installation and reboot the switch, add the activate reboot commands; for example, `nv action install system image onie http://203.0.113.10/image-installer startup-config /etc/nvue.d/startup.yaml activate reboot`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The image location.|
+| `<file-name>` | The name of the startup configuration file. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system image onie http://203.0.113.10/image-installer startup-config /etc/nvue.d/startup.yaml
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action install system image onie ftp:\<path\> activate reboot</h>
+
+Installs a system image from ONIE and reboots the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The image location.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system image onie ftp://203.0.113.10/image-installer activate reboot
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action install system packages archive \<archive-id\></h>
+
+Installs a micro update.
+
+The Cumulus Linux micro update framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
+
+You can install a critical fix within your own maintenance window and back it out without a full image upgrade.
+
+Micro updates only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every micro update into a subsequent release.
+
+You can roll back and return to the base image, not a previously-running micro update. If a package is running an earlier micro update version when you install a later micro update, removing the later update restores the base-image version, not the earlier micro update.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<archive>` |  The image location.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system packages archive rm0042
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action list system file-path \<path-id\></h>
 
 Lists the contents of a directory, including files, subdirectories, and other file system objects. This NVUE command is equivalent to the Linux `ls -la --full-time <path-id>` command.
@@ -4422,6 +4632,28 @@ Type [y] to continue.
 Type [n] to abort. 
 Do you want to continue? [y/n] y 
 ...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action restore system config backup \<path\></h>
+
+Restores the switch to the configuration captured in the specified snapshot.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The location and name of the snapshot you want to restore.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action restore system config backup /var/lib/config-backup/auto-snapshots/weekly/20260320-121030
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

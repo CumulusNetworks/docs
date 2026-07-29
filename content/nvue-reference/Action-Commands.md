@@ -66,7 +66,7 @@ After running the `nv action activate system do-spx profile <profile-id>` comman
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv nv action activate system image onie</h>
+## <h>nv action activate system image onie</h>
 
 Installs the Cumulus Linux image with ONIE.
 
@@ -193,6 +193,23 @@ WARNING:
 Are you sure (y/N)? y
 Enabling uninstall at next reboot...done.
 Reboot required to take effect.
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action cancel system image onie</h>
+
+Cancels a pending install operation in ONIE.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action cancel system image onie
+Cancelling pending install at next reboot...done.
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -742,6 +759,124 @@ Introduced in Cumulus Linux 5.15.0
 cumulus@switch:~$ nv action clear interface swp1 link phy health
 Action executing ... 
 swp1 link phy-detail counters cleared. 
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear interface \<interface-id\> link-tracking protodown</h>
+
+Clears the link tracking protodown state for the target interfaces so that the switch does not forward traffic to downstream devices over those links.
+
+Link tracking enables you to monitor interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface swp8 link-tracking protodown
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear platform asic \<asic-id\> resource</h>
+
+Clears the high watermark related metrics for a specific ASIC.
+
+This command clears only `High-Watermark` and `Last-High-Watermark` resource metrics for the ASIC specified. All other metrics are unaffected.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<asic-id>` | The ASIC ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear platform asic ASIC1 resource
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system aaa radius counters</h>
+
+Clears all the RADIUS server counters, such as the number of authorization requests, accepted, rejected, timed out and retried access requests, and authorization connection errors and bad responses.
+
+## Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system aaa radius counters
+RADIUS counters cleared.
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router rib ipv4 unreachable-prefixes \<ipv4-prefix\></h>
+
+Removes stale older aggregate IPv4 route exceptions.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` | The VRF ID. |
+| `<ipv4-prefix>` | The IPv4 prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router rib ipv6 unreachable-prefixes 10.1.0.0/16
+Action executing ...
+Removed local LLDP exception for 10.1.0.0/16 vrf default
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router rib ipv6 unreachable-prefixes \<ipv6-prefix\></h>
+
+Removes stale older aggregate IPv6 route exceptions.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` | The VRF ID. |
+| `<ipv6-prefix>` | The IPv6 prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router rib ipv6 unreachable-prefixes 2001:db8::1/128
+Action executing ...
+Removed local LLDP exception for 2001:db8::1/128 vrf default
 Action succeeded
 ```
 
@@ -2894,6 +3029,32 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear vrf \<vrf-id\> router rib ipv6 unreachable-prefixes \<ipv6-prefix\></h>
+
+Removes stale older aggregate IPv6 route exceptions.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` | The VRF ID. |
+| `<ipv6-prefix>` | The IPv6 prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router rib ipv6 unreachable-prefixes 2001:db8::1/128
+Action executing ...
+Removed local LLDP exception for 2001:db8::1/128 vrf default
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action deauthenticate interface \<interface-id\> dot1x authorized-sessions \<mac-address\></h>
 
 Deauthenticates the 802.1X supplicant on the specified interface. If you do not want to notify the supplicant that they are being deauthenticated, you can add the `silent` option.
@@ -3005,6 +3166,28 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action delete system log component nvue file nvued.log
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action delete system packages archive \<archive-id\></h>
+
+Deletes a micro update from the switch. You must uninstall the applied micro update before you can delete it.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<archive-id>` | The archive identifier (for example, rm0002). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system packages archive rm0042
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3332,6 +3515,24 @@ Would you like to proceed? [y/N]
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action export system wjh packet-buffer</h>
+
+Saves the most recent WJH dropped packets to a PCAP file. The switch writes PCAP files to the `/var/run/nv-wjh/` directory with a timestamped filename that the system chooses.
+
+To exclude metadata in the file, add `no-metadata` to the command.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action export system wjh packet-buffer 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action fetch platform firmware \<platform-component-id\> \<remote-url\></h>
 
 Copies the remote firmware file to the local filesystem from the specified URL.
@@ -3352,7 +3553,6 @@ Introduced in Cumulus Linux 5.14.0
 ```
 cumulus@switch:~$ nv action fetch platform firmware SSD http://10.0.1.251/firmware-file
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

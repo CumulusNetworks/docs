@@ -3400,6 +3400,36 @@ cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action fetch system packages archive \<path\></h>
+
+Downloads a micro update. The micro update infrastructure supports HTTPS, SCP, FTP, and SFTP.
+
+The Cumulus Linux micro update framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
+
+You can install a critical fix within your own maintenance window and back it out without a full image upgrade.
+
+Micro updates only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every micro update into a subsequent release.
+
+You can roll back and return to the base image, not a previously-running micro update. If a package is running an earlier micro update version when you install a later micro update, removing the later update restores the base-image version, not the earlier micro update.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The archive file name and location.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action fetch system packages archive http://path/micro-update
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action fetch system packages key \<key-id\></h>
 
 Fetches a repository key and saves it globally in the `/etc/apt/trusted.gpg.d/` directory.
@@ -5023,6 +5053,28 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action traceroute system 10.10.10.10 wait 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action uninstall system packages archive \<archive-id\></h>
+
+Uninstalls a micro update.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<archive-id>` |  The archive identifier (for example, rm0002). To show the archive identifier, run the `nv show system packages archive`​ command after you download the micro update. The `Archive` column shows the archive identifier.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action uninstall system packages archive rm0042
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

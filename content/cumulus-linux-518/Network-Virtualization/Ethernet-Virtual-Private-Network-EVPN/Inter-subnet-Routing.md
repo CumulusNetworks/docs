@@ -215,61 +215,99 @@ cumulus@leaf01:~$ nv set evpn l3vxi state enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
-NVUE removes all single VXLAN devices and creates a layer 3 single VXLAN device for each layer 3 VNI using the naming format `vxi_<vni_id>`.
+NVUE removes all single VXLAN devices and creates a layer 3 VXLAN device for each layer 3 VNI using the naming format `vxi_<vni_id>`.
 
 The following dropdowns show the different configurations as a comparison.
 
 {{< expand "Layer 3 VXLAN Devices for each VNI" >}}
 
 ```
-auto vlan10 
-iface vlan10 
-    address 10.1.10.2/24 
-    address-virtual 00:00:00:00:00:10 10.1.10.1/24 
-    hwaddress 44:38:39:22:01:b1 
-    vrf RED 
-    vlan-raw-device br_default 
-    vlan-id 10 
-auto vlan20 
-iface vlan20 
-    address 10.1.20.2/24 
-    address-virtual 00:00:00:00:00:20 10.1.20.1/24 
-    hwaddress 44:38:39:22:01:b1 
-    vrf RED 
-    vlan-raw-device br_default 
-    vlan-id 20 
-auto vlan30 
-iface vlan30 
-    address 10.1.30.2/24 
-    address-virtual 00:00:00:00:00:30 10.1.30.1/24 
-    hwaddress 44:38:39:22:01:b1 
-    vrf BLUE 
-    vlan-raw-device br_default 
-    vlan-id 30
-auto vxlan48 
-iface vxlan48 
-    bridge-vlan-vni-map 10=10 20=20 30=30
-    bridge-vids 10 20 30 4024 4036 
-    bridge-learning off 
-auto br_default 
-iface br_default 
-    bridge-ports bond1 bond2 bond3 peerlink vxlan48 
-    hwaddress 44:38:39:22:01:b1 
-    bridge-vlan-aware yes 
-    bridge-vids 10 20 30 
-    bridge-pvid 1 
-auto vxi_4002 
-iface vxi_4002 
-    vxlan-vni 4002 
-    hwaddress 44:38:39:22:01:b1       ---- System mac 
-    address-virtual 44:38:39:BE:EF:AA ---Anycast MAC for CLAG setup  
-      vrf BLUE 
-auto vx_4001 
-iface vx_4001 
-    vxlan-vni 4001 
-    hwaddress 44:38:39:22:01:b1       --- System MAC 
-    address-virtual 44:38:39:Be:EF:AA ---Anycast mac for CLAG setup 
-    vrf RED
+auto vlan1000
+iface vlan1000
+    address 9.4.0.7/24
+    address 2001:fee1:d011::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.0.1/24 2001:fee1:d011::1/80
+    vrf vrf1
+    vlan-raw-device br_default
+    vlan-id 1000
+
+auto vlan1002
+iface vlan1002
+    address 9.4.2.7/24
+    address 2001:fee1:d011:0:2::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.2.1/24 2001:fee1:d011:0:2::1/80
+    vrf vrf1
+    vlan-raw-device br_default
+    vlan-id 1002
+
+auto vlan1004
+iface vlan1004
+    address 9.4.4.7/24
+    address 2001:fee1:d011:0:4::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.4.1/24 2001:fee1:d011:0:4::1/80
+    vrf vrf2
+    vlan-raw-device br_default
+    vlan-id 1004
+
+auto vlan1006
+iface vlan1006
+    address 9.4.6.7/24
+    address 2001:fee1:d011:0:6::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.6.1/24 2001:fee1:d011:0:6::1/80
+    vrf vrf2
+    vlan-raw-device br_default
+    vlan-id 1006
+
+auto vlan1008
+iface vlan1008
+    address 9.4.8.7/24
+    address 2001:fee1:d011:0:8::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.8.1/24 2001:fee1:d011:0:8::1/80
+    vrf vrf3
+    vlan-raw-device br_default
+    vlan-id 1008
+
+auto vxi_4001
+iface vxi_4001
+    hwaddress 44:38:39:ff:ff:11
+    address-virtual 44:38:39:42:42:01
+    vrf vrf1
+    vxlan-vni 4001
+
+auto vxi_4002
+iface vxi_4002
+    hwaddress 44:38:39:ff:ff:11
+    address-virtual 44:38:39:42:42:01
+    vrf vrf2
+    vxlan-vni 4002
+
+auto vxi_4003
+iface vxi_4003
+    hwaddress 44:38:39:ff:ff:11
+    address-virtual 44:38:39:42:42:01
+    vrf vrf3
+    vxlan-vni 4003
+
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 1000=1000 1002=1002 1004=1004 1006=1006 1008=1008
+    bridge-learning off
+
+auto br_default
+iface br_default
+    bridge-ports hostbond_3 hostbond_4 vxlan48
+    hwaddress 44:38:39:ff:ff:11
+    bridge-vlan-aware yes
+    bridge-vids 1000 1002 1004 1006 1008
+    bridge-pvid 1
+    bridge-stp yes
+    bridge-mcsnoop no
+    mstpctl-forcevers rstp
 ```
 {{< /expand >}}
 
@@ -277,54 +315,103 @@ iface vx_4001
 
 ```
 ...
-auto vlan10 
-iface vlan10 
-    address 10.1.10.2/24 
-    address-virtual 00:00:00:00:00:10 10.1.10.1/24 
-    hwaddress 44:38:39:22:01:b1 
-    vrf RED 
-    vlan-raw-device br_default 
-    vlan-id 10 
-auto vlan20 
-iface vlan20 
-    address 10.1.20.2/24 
-    address-virtual 00:00:00:00:00:20 10.1.20.1/24 
-    hwaddress 44:38:39:22:01:b1 
-    vrf RED 
-    vlan-raw-device br_default 
-    vlan-id 20 
-auto vlan30 
-iface vlan30 
-    address 10.1.30.2/24 
-    address-virtual 00:00:00:00:00:30 10.1.30.1/24 
-    hwaddress 44:38:39:22:01:b1 
-    vrf BLUE 
-    vlan-raw-device br_default 
-    vlan-id 30 
-auto vlan4024_l3 
-iface vlan4024_l3 
-    vrf RED 
-    vlan-raw-device br_default 
-    address-virtual 44:38:39:BE:EF:AA 
-    vlan-id 4024 
-auto vlan4036_l3 
-iface vlan4036_l3 
-    vrf BLUE 
-    vlan-raw-device br_default 
-    address-virtual 44:38:39:BE:EF:AA 
-    vlan-id 4036 
-auto vxlan48 
-iface vxlan48 
-    bridge-vlan-vni-map 10=10 20=20 30=30 4024=4001 4036=4002 
-    bridge-vids 10 20 30 4024 4036 
-    bridge-learning off 
-auto br_default 
-iface br_default 
-    bridge-ports bond1 bond2 bond3 peerlink vxlan48 
-    hwaddress 44:38:39:22:01:b1 
-    bridge-vlan-aware yes 
-    bridge-vids 10 20 30 
+auto vlan1000
+iface vlan1000
+    address 9.4.0.7/24
+    address 2001:fee1:d011::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.0.1/24 2001:fee1:d011::1/80
+    vrf vrf1
+    vlan-raw-device br_default
+    vlan-id 1000
+
+auto vlan1002
+iface vlan1002
+    address 9.4.2.7/24
+    address 2001:fee1:d011:0:2::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.2.1/24 2001:fee1:d011:0:2::1/80
+    vrf vrf1
+    vlan-raw-device br_default
+    vlan-id 1002
+
+auto vlan1004
+iface vlan1004
+    address 9.4.4.7/24
+    address 2001:fee1:d011:0:4::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.4.1/24 2001:fee1:d011:0:4::1/80
+    vrf vrf2
+    vlan-raw-device br_default
+    vlan-id 1004
+
+auto vlan1006
+iface vlan1006
+    address 9.4.6.7/24
+    address 2001:fee1:d011:0:6::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.6.1/24 2001:fee1:d011:0:6::1/80
+    vrf vrf2
+    vlan-raw-device br_default
+    vlan-id 1006
+
+auto vlan1008
+iface vlan1008
+    address 9.4.8.7/24
+    address 2001:fee1:d011:0:8::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.8.1/24 2001:fee1:d011:0:8::1/80
+    vrf vrf3
+    vlan-raw-device br_default
+    vlan-id 1008
+
+auto vlan1142_l3
+iface vlan1142_l3
+    vrf vrf3
+    vlan-raw-device br_l3vni
+    address-virtual 44:38:39:42:42:01
+    vlan-id 1142
+
+auto vlan1953_l3
+iface vlan1953_l3
+    vrf vrf2
+    vlan-raw-device br_l3vni
+    address-virtual 44:38:39:42:42:01
+    vlan-id 1953
+
+auto vlan2501_l3
+iface vlan2501_l3
+    vrf vrf1
+    vlan-raw-device br_l3vni
+    address-virtual 44:38:39:42:42:01
+    vlan-id 2501
+
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 1000=1000 1002=1002 1004=1004 1006=1006 1008=1008
+    bridge-learning off
+
+auto vxlan99
+iface vxlan99
+    bridge-vlan-vni-map 1142=4003 1953=4002 2501=4001
+    bridge-learning off
+
+auto br_default
+iface br_default
+    bridge-ports hostbond_3 hostbond_4 vxlan48
+    hwaddress 44:38:39:ff:ff:11
+    bridge-vlan-aware yes
+    bridge-vids 1000 1002 1004 1006 1008
     bridge-pvid 1
+    bridge-stp yes
+    bridge-mcsnoop no
+    mstpctl-forcevers rstp
+
+auto br_l3vni
+iface br_l3vni
+    bridge-ports vxlan99
+    hwaddress 44:38:39:ff:ff:11
+    bridge-vlan-aware yes
 ```
 {{< /expand >}}
 

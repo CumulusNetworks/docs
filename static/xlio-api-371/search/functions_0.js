@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['xlio_5fexit_0',['xlio_exit',['../group__xlio__init.html#ga036cf208f96e32c2fce415e8e7af1094',1,'xlio.h']]],
+  ['xlio_5finit_1',['xlio_init',['../group__xlio__init.html#gaa391fc15cc55d316609fa769aaad754b',1,'xlio.h']]],
+  ['xlio_5finit_5fex_2',['xlio_init_ex',['../group__xlio__init.html#gaaad01a42c1616e08122aedc82680eb00',1,'xlio.h']]],
+  ['xlio_5fpoll_5fgroup_5fbuf_5ffree_3',['xlio_poll_group_buf_free',['../group__xlio__rx.html#gaf323c63fd34349bb93583a3695cbc03a',1,'xlio.h']]],
+  ['xlio_5fpoll_5fgroup_5fcreate_4',['xlio_poll_group_create',['../group__xlio__poll__group.html#gaa3782bddb1e0fadf5bade05de3daf305',1,'xlio.h']]],
+  ['xlio_5fpoll_5fgroup_5fdestroy_5',['xlio_poll_group_destroy',['../group__xlio__poll__group.html#ga173cdc05fb5e6dc1b1f3ed2bf6cc41be',1,'xlio.h']]],
+  ['xlio_5fpoll_5fgroup_5fflush_6',['xlio_poll_group_flush',['../group__xlio__tx.html#ga1f6be5297f39da8071071b7ac1e0a773',1,'xlio.h']]],
+  ['xlio_5fpoll_5fgroup_5fpoll_7',['xlio_poll_group_poll',['../group__xlio__poll__group.html#gafc07446ac8afb352c6b425b2e5cb4efc',1,'xlio.h']]],
+  ['xlio_5fpoll_5fgroup_5fupdate_8',['xlio_poll_group_update',['../group__xlio__poll__group.html#gac9687736c8cff028b36c68ab32847ed3',1,'xlio.h']]],
+  ['xlio_5fsocket_5fattach_5fgroup_9',['xlio_socket_attach_group',['../group__xlio__socket.html#ga060b0b8c4dec58c7acb14877a3f6f97e',1,'xlio.h']]],
+  ['xlio_5fsocket_5fbind_10',['xlio_socket_bind',['../group__xlio__socket.html#gae9a628694e78594fa596ca3bbd9ed71b',1,'xlio.h']]],
+  ['xlio_5fsocket_5fbuf_5ffree_11',['xlio_socket_buf_free',['../group__xlio__rx.html#ga6a9b197dd9109326ed9d6a4d40aca350',1,'xlio.h']]],
+  ['xlio_5fsocket_5fconnect_12',['xlio_socket_connect',['../group__xlio__socket.html#gaf598f569dbda1c7c501a86a6bd86fe05',1,'xlio.h']]],
+  ['xlio_5fsocket_5fcreate_13',['xlio_socket_create',['../group__xlio__socket.html#ga150ccad0ae9c3c369d32f07e6a495a29',1,'xlio.h']]],
+  ['xlio_5fsocket_5fdestroy_14',['xlio_socket_destroy',['../group__xlio__socket.html#ga7254d9d8b5e17204750b91b95c3264ad',1,'xlio.h']]],
+  ['xlio_5fsocket_5fdetach_5fgroup_15',['xlio_socket_detach_group',['../group__xlio__socket.html#ga9f3838dacceea9f316b1cf2f466eba45',1,'xlio.h']]],
+  ['xlio_5fsocket_5fflush_16',['xlio_socket_flush',['../group__xlio__tx.html#gac300e5a65b6a40e915374a0260903a47',1,'xlio.h']]],
+  ['xlio_5fsocket_5fget_5fpd_17',['xlio_socket_get_pd',['../group__xlio__socket.html#gaa738905839770f53bdec004bff322fb3',1,'xlio.h']]],
+  ['xlio_5fsocket_5fgetpeername_18',['xlio_socket_getpeername',['../group__xlio__socket.html#ga878881f08a6946596aff947f5e23637a',1,'xlio.h']]],
+  ['xlio_5fsocket_5fgetsockname_19',['xlio_socket_getsockname',['../group__xlio__socket.html#ga6481eaa78bb5ffc76f5612608eebd9de',1,'xlio.h']]],
+  ['xlio_5fsocket_5flisten_20',['xlio_socket_listen',['../group__xlio__socket.html#ga51a705d503e888eb6103af8e32ea8e79',1,'xlio.h']]],
+  ['xlio_5fsocket_5fsend_21',['xlio_socket_send',['../group__xlio__tx.html#ga8a29d7bfbf64060ae099e4e0d0aa878f',1,'xlio.h']]],
+  ['xlio_5fsocket_5fsendv_22',['xlio_socket_sendv',['../group__xlio__tx.html#ga270d274c3b3f51616bda9b10d071ff90',1,'xlio.h']]],
+  ['xlio_5fsocket_5fsetsockopt_23',['xlio_socket_setsockopt',['../group__xlio__socket.html#gaa72a034bf58bd1090b0a2414a06a63c9',1,'xlio.h']]],
+  ['xlio_5fsocket_5fupdate_24',['xlio_socket_update',['../group__xlio__socket.html#ga32ad9cd12d473dfe3a34147847856859',1,'xlio.h']]]
+];

@@ -236,6 +236,22 @@ cumulus@switch:~$ nv set system security password-hardening lower-class disabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system security password-hardening min-char-diff</h>
+
+Configures the minimum password character difference between the current and new password when updating user passwords. You can specify a value between 0 and 10 characters. The minimum password length setting must be equal to or more than the minimum password character difference.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system security password-hardening min-char-diff 8
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system security password-hardening reject-user-passw-match</h>
 
 Configures the password policy so that usernames can be passwords. You can specify `enabled` or `disabled`. The default setting is `enabled` when password security is enabled.

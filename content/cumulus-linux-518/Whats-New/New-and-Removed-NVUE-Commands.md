@@ -164,6 +164,7 @@ nv action install system image onie <path> startup-config <file-name> [activate 
 nv action install system image onie ftp:<path> activate reboot
 nv action install system packages archive <id>
 nv action restore system config backup <path>
+nv action uninstall system packages archive <archive-id>
 ```
 
 {{< /tab >}}

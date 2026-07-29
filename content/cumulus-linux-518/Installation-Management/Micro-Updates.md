@@ -6,23 +6,21 @@ toc: 3
 ---
 The Cumulus Linux micro update framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
 
-You can apply a critical fix on your own maintenance window and back it out without a full image upgrade.
+You can install a critical fix within your own maintenance window and back it out without a full image upgrade.
 
 Micro updates only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every micro update into a subsequent release.
 
-You can roll back and return to the base image, not a previously-running micro update. If a package is running an earlier micro update version when a later micro update is installed, removing the later one restores the base-image version, not the earlier micro update.
+You can roll back and return to the base image, not a previously-running micro update. If a package is running an earlier micro update version when you install a later micro update, removing the later update restores the base-image version, not the earlier micro update.
 
 {{%notice note%}}
-- Installing a micro update might overwrite applied micro-update fixes; the switch does warn you before proceeding.
-- A failed micro update install rolls back all touched packages automatically to the base version so that the switch is not left in a half-applied state.
+- Upgrading system packages after you install a micro update might overwrite the micro update fixes; the switch warns you before proceeding.
+- A failed micro update install rolls back all touched packages automatically to the base version so that the switch is not left in a half-installed state.
 {{%/notice%}}
 
 
 ## Install a Micro Update
 
-To download and stage a micro update, run the `nv action fetch system packages archive <url>` command. The update stays inactive until you run the `nv action install system packages archive <archive-id>` command. 
-
-The micro update infrastructure supports HTTPS, SCP, FTP, and SFTP.
+To download a micro update, run the `nv action fetch system packages archive <url>` command. The micro update infrastructure supports HTTPS, SCP, FTP, and SFTP.
 
 ```
 cumulus@switch:~$ nv action fetch system packages archive http://path/micro-update
@@ -30,10 +28,13 @@ cumulus@switch:~$ nv action fetch system packages archive http://path/micro-upda
 
 The `nv action fetch system packages archive <url>` command uses the management VRF by default as the URL is often only reachable over the management VRF. To use a different VRF, use the optional VRF parameter (`nv action fetch system packages archive <url> vrf <vrf-id>`).
 
-To activate the update, run the `nv action install system packages archive <archive-id>` command. The activate command validates, then replaces the targeted packages with their fixed versions. The fixed package versions become the running package versions.
+To install the micro update, run the `nv action install system packages archive <archive-id>` command. The install command validates, then replaces the targeted packages with their fixed versions. The fixed package versions become the running package versions.
+
+The `<archive-id>` is the archive identifier (for example, rm0002). To show the archive identifier, run the `nv show system packages archive`​ command after you download the micro update. The `Archive` column shows the archive identifier.
 
 {{%notice note%}}
-A micro update targets a specific base image version and platform; the validation process checks both and does not apply the micro update if there is a mismatch.
+A micro update targets a specific base image version and platform; the validation process checks both and does not install the micro update if there is a mismatch.
+ 
 {{%/notice%}}
 
 ```
@@ -95,7 +96,7 @@ impact           Installing swaps switchd, ptmd, and ntpsec to the fixed version
 [replaces]   rm0002
 ```
 
-The `nv show system version` command shows if the switch has a micro update installed and activated.
+The `nv show system version` command shows if the switch has a micro update installed.
 
 ```
 cumulus@switch:~$ nv show system version
@@ -112,6 +113,6 @@ micro-updated         yes
 ```
 
 {{%notice note%}}
-- The `micro-updated`​ field in `nv show system version` command output shows only after you apply a micro update. If there is no applied micro update, the command output omits this field.
-- The `cat /etc/image-release` command output shows `MICRO_UPDATED=yes` when the switch includes an applied micro update. When there is no applied micro update, this field is absent.
+- The `micro-updated`​ field in `nv show system version` command output shows only after you install a micro update. If there is no installed micro update, the command output omits this field.
+- The `cat /etc/image-release` command output shows `MICRO_UPDATED=yes` when the switch includes an installed micro update. When there is no installed micro update, this field is absent.
 {{%/notice%}}

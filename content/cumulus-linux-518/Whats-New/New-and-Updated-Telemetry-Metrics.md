@@ -96,8 +96,8 @@ The maximum value for the `IPv6-Routes` ASIC resource represents the number of s
 | `/components/component[name=<archive-id>]/state/type` | The type: OPERATING_SYSTEM_UPDATE.|
 | `/components/component[name=<archive-id>]/software-package-archive/state/failure-state` | The failure state:<br>0: none<br>1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>2: PRE_INSTALL_FAILED_ROLLBACK_FAILED<br>3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>4: APT_FAILED_ROLLBACK_SUCCESSFULL<br>5: APT_FAILED_ROLLBACK_FAILED<br>6: APT_FAILED_ROLLBACK_IN_PROGRESS<br>7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>8: POST_INSTALL_FAILED_ROLLBACK_FAILED<br>9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL<br>11: UNKNOWN_FAILURE_ROLLBACK_FAILED<br>12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS.|
 | `/components/component[name=<archive-id>]/software-package-archive/state/status` | The installation status:<br>0: not-installed<br>1: installed<br>2: partially-installed<br>3: failed<br>4: operation-in-progress.|
-| `/components/component[name=<archive-id>]/software-package-archive/state/installed-at` | The installation time.|
-| `/system/state/installed-software-package-archives` | The list of installed software packages.|
+| `/components/component[name=<archive-id>]/software-package-archive/state/installed-at` | The installation time (Unix timestamp).|
+| `/system/state/installed-software-package-archives` | Installed micro update archives.|
 
 {{< /tab >}}
 {{< tab "Platform Leakage Sensor">}}
@@ -195,7 +195,7 @@ To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Ex
 |------ | ----------- |
 | `nvswitch_platform_package_archive_failure_state` | The failure state if the micro update installation fails:<br>0: none<br>1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>2: PRE_INSTALL_FAILED_ROLLBACK_FAILED<br>3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>4: APT_FAILED_ROLLBACK_SUCCESSFULL<br>5: APT_FAILED_ROLLBACK_FAILED<br>6: APT_FAILED_ROLLBACK_IN_PROGRESS<br>7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>8: POST_INSTALL_FAILED_ROLLBACK_FAILED<br>9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL<br>11: UNKNOWN_FAILURE_ROLLBACK_FAILED<br>12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS|
 | `nvswitch_platform_package_archive_status` | The package archive status:<br>0: not-installed<br>1: installed<br>2: partially-installed<br>3: failed<br>4: operation-in-progress.|
-| `nvswitch_platform_package_archive_installed_time` | The micro update package installed time. |
+| `nvswitch_platform_package_archive_installed_time` | The micro update package installed time (Unix timestamp). |
 
 {{< /tab >}}
 {{< /tabs >}}

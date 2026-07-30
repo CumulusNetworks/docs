@@ -16,6 +16,7 @@ NetQ NVLink was previously packaged as NMX-M.
 - {{<link title="Upload Custom Certificates">}}
 - {{<link title="NVLink Bringup">}}
 - {{<link title="Register Services">}}
+- {{<link title="Fault Tolerance">}}
 - {{<link title="NetQ NVLink API User Guide">}}
 - {{<link title="NetQ NVLink API Changelog">}}
 - {{<link title="Collect KPIs">}}

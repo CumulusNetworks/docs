@@ -70,7 +70,9 @@ Note that you cannot use the `force` parameter to replace a server certificate t
 
 ## Rotate Certificates
 
-Certificate rotation lets you replace the CA, server, or switch P12 certificates in-place, without reinstalling NetQ NVLink. Rotate certificates before they expire or when a certificate or key is compromised.
+Certificate rotation lets you replace CA, server, or switch P12 certificates in-place without reinstalling NetQ NVLink. Rotate certificates before they expire or when a certificate or key is compromised.
+
+NetQ automatically monitors your certificates and raises a warning 30 days before expiry, escalating to critical once expired. By default, NetQ checks every 6 hours; both the interval and threshold are configurable, and alerts are delivered to your configured webhook receiver. See {{<link title="Manage Alerts/#certificate-expiration" text="Manage Alerts">}}.
 ### Rotation Prerequisites
 
 The CA and server certificates must already be uploaded before you can rotate them. See {{<link title="#Upload the Certificates using the API" text="Upload the Certificates using the API">}}.

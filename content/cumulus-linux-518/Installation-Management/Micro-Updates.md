@@ -15,8 +15,8 @@ You can roll back and return to the base image, not a previously-running micro u
 {{%notice note%}}
 - Upgrading system packages after you install a micro update might overwrite the micro update fixes; the switch warns you before proceeding.
 - A failed micro update install rolls back all touched packages automatically to the base version so that the switch is not left in a half-installed state.
+- Installing and uninstalling a micro update might restart affected services. Before you install or uninstall a micro update, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
 {{%/notice%}}
-
 
 ## Install a Micro Update
 
@@ -39,8 +39,7 @@ To install the micro update, run the `nv action install system packages archive 
 The `<archive-id>` is the archive identifier (for example, rm0002). To show the archive identifier, run the `nv show system packages archive`​ command after you download the micro update. The `Archive` column shows the archive identifier.
 
 {{%notice note%}}
-- A micro update targets a specific base image version and platform; the validation process checks both and does not install the micro update if there is a mismatch.
-- Installing and uninstalling a micro update might restart affected services. Before you install or uninstall a micro update, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
+A micro update targets a specific base image version and platform; the validation process checks both and does not install the micro update if there is a mismatch.
 {{%/notice%}}
 
 ```

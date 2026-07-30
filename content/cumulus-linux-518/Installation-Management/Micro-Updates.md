@@ -39,8 +39,8 @@ To install the micro update, run the `nv action install system packages archive 
 The `<archive-id>` is the archive identifier (for example, rm0002). To show the archive identifier, run the `nv show system packages archive`​ command after you download the micro update. The `Archive` column shows the archive identifier.
 
 {{%notice note%}}
-A micro update targets a specific base image version and platform; the validation process checks both and does not install the micro update if there is a mismatch.
- 
+- A micro update targets a specific base image version and platform; the validation process checks both and does not install the micro update if there is a mismatch.
+- Installing and uninstalling a micro update might restart affected services. Before you install or uninstall a micro update, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
 {{%/notice%}}
 
 ```

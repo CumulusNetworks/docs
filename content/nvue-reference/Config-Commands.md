@@ -107,6 +107,28 @@ attached [rev_id: 27]
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system config backup state</h>
+
+Enables and disables automatic configuration backup. 
+
+NVUE provides an automatic configuration backup and restore feature that takes snapshots each time the `nv config apply` command runs successfully. NVUE also takes a snapshot weekly (even if no configuration change occurs) to ensure that at least one valid weekly snapshot is available. You can then restore a snapshot when needed.
+
+The switch stores snapshots as compressed archives in the `/var/lib/config-backup/auto-snapshots/applied` and `/var/lib/config-backup/auto-snapshots/weekly` directories in `config_backup-<YYYY-MM-DD-HH.MM.SS>_<hostname>` format; for example, `/var/lib/config-backup/auto-snapshots/applied/config_backup-2026-07-28-08.55.10_leaf01`. When you reach the maximum storage limit of 512 MB, the switch deletes the oldest snapshots and logs the deleted snapshots.
+
+Automatic configuration backup is disabled by default. 
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system config backup state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv config delete \<revision-id\></h>
 
 Deletes a revision.

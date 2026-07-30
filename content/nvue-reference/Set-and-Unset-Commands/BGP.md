@@ -14,6 +14,35 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set maintenance unit system mode</h>
+
+Enables and disables BGP graceful fabric maintenance.
+
+{{%notice note%}}
+Graceful fabric maintenance is a Beta feature for Cumulus Linux 5.18.
+{{%/notice%}}
+
+Cumulus Linux enables you to remove traffic from a leaf switch gracefully by steering traffic onto other healthy planes before maintenance. This feature works with BGP-LLDP unreachability signaling and uses UPA (Unreachable Prefix Announcement) to mark advertised aggregate routes as unreachable during maintenance.
+
+To use graceful fabric maintenance, you must first configure BGP-LLDP Unreachability in Disjoined Planes for each VRF and address family.
+
+{{%notice note%}}
+- All leaf switches in the fabric must be running Cumulus Linux 5.18 or later.
+- Graceful fabric maintenance does not support Inter-DC Routing
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set maintenance unit system mode enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set router bgp</h>
 
 Configures BGP globally on the switch.
@@ -4199,6 +4228,42 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES ttl-security hops 200 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf <vfr-id> router bgp plane-id</h>
+
+Configures the plane ID for Inter-DC routing. You can specify a value between 1 and 16. The default value is 0 (disabled).
+
+Inter-DC routing enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines:
+- Conditional disaggregation that triggers disaggregated routes at merged planes.
+- In-plane LLDP exception signaling that informs GPUs of link or plane failures within a plane.
+
+To achieve inter-DC routing and intra-DC failure handling, where planarized DC fabrics merge at the DC Interconnect Switch (DCIS) layer, you must configure a plane ID on each leaf switch. This plane ID must be unique across planes in a DC; however, you must use the same plane ID for all leaf switches within a plane.
+
+You must configure the plane ID together with the following BGP features on each leaf switch:
+- Anycast PIC
+- BGP Unreachability SAFI
+- Conditional disaggregation
+- BGP LLDP Unreachability in Disjoined Planes
+
+In a failure scenario, when there is prefix unreachability, the switch carries the configured plane ID as part of the SOO Extended Community. Leaf switches that receive unreachability routes match on the SOO IP address to determine if they must advertise conditional disaggregate routes and match on the plane ID to determine if they must perform LLDP exception programming towards locally connected hosts.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example 
+
+```
+cumulus@switch:~$ nv set vrf default router bgp plane-id 8
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

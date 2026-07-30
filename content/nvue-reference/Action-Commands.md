@@ -109,7 +109,7 @@ Action succeeded
 
 ## <h>nv action boot-next system image \<partition-id\> rollback</h>
 
-Rolls back the optimized image upgrade if the upgrade fails or you want to go back to the Cumulus Linux release from which you upgraded.  The switch boots back to the previous release image and restores the switch configuration.
+Rolls back the optimized image upgrade if the upgrade fails or if you want to go back to the Cumulus Linux release from which you upgraded. The switch boots back to the previous release image and restores the switch configuration.
 
 ### Command Syntax
 
@@ -131,7 +131,7 @@ cumulus@switch:~$ nv action boot-next system image partition2 rollback
 
 ## <h>nv action boot-next system image onie install</h>
 
-Stages an ONIE installer from the network (where ONIE automatically locates the installer) to be installed at next switch reboot.
+Installs the Cumulus Linux image with ONIE.
 
 ### Version History
 
@@ -199,7 +199,7 @@ Reboot required to take effect.
 
 ## <h>nv action cancel system image onie</h>
 
-Cancels a pending install operation in ONIE.
+Cancels a pending Cumulus Linux image installation in ONIE.
 
 ### Version History
 

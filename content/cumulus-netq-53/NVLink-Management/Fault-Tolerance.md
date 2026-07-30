@@ -5,7 +5,7 @@ weight: 330
 toc: 3
 ---
 
-NetQ provides fault tolerance for NVLink domain management services (NMX-T and NMX-C) on GB200 and GB300 switches. When a management service becomes unavailable, NetQ automatically detects the failure and attempts recovery in the following order:
+NetQ provides fault tolerance for NVLink domain management services (NMX-T and NMX-C) on GB200, GB300, and non-HA VR switches. When a management service becomes unavailable, NetQ automatically detects the failure and attempts recovery in the following order:
 
 1. Failover to an alternate IP address: NetQ connects to the next available management IP address on the same switch.
 2. Service restart: If no alternate IP address restores connectivity, NetQ stops and restarts the affected service, then verifies that it is healthy before resuming normal operation.
@@ -56,4 +56,4 @@ curl -X 'PATCH' \
 
 ## Disable Fault Tolerance
 
-Fault tolerance is enabled by default for GB200 and GB300 switches and should be disabled for VR switches. To disable the feature, set `service-failover-enabled` to `false` in `common.yaml`.
+Fault tolerance is enabled by default for GB200, GB300, and non-HA VR switches and should be disabled for VR switches that are configured with HA. To disable the feature, set `service-failover-enabled` to `false` in `common.yaml`.

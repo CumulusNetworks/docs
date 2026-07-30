@@ -15,8 +15,8 @@ You can roll back and return to the base image, not a previously-running micro u
 {{%notice note%}}
 - Upgrading system packages after you install a micro update might overwrite the micro update fixes; the switch warns you before proceeding.
 - A failed micro update install rolls back all touched packages automatically to the base version so that the switch is not left in a half-installed state.
+- Installing and uninstalling a micro update might restart affected services. Before you install or uninstall a micro update, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
 {{%/notice%}}
-
 
 ## Install a Micro Update
 
@@ -34,13 +34,12 @@ Action succeeded
 
 The `nv action fetch system packages archive <url>` command uses the management VRF by default as the URL is often only reachable over the management VRF. To use a different VRF, use the optional VRF parameter (`nv action fetch system packages archive <url> vrf <vrf-id>`).
 
-To install the micro update, run the `nv action install system packages archive <archive-id>` command. The install command validates, then replaces the targeted packages with their fixed versions. The fixed package versions become the running package versions.
+To install a micro update, run the `nv action install system packages archive <archive-id>` command. The install command validates, then replaces the targeted packages with their fixed versions. The fixed package versions become the running package versions.
 
 The `<archive-id>` is the archive identifier (for example, rm0002). To show the archive identifier, run the `nv show system packages archive`​ command after you download the micro update. The `Archive` column shows the archive identifier.
 
 {{%notice note%}}
 A micro update targets a specific base image version and platform; the validation process checks both and does not install the micro update if there is a mismatch.
- 
 {{%/notice%}}
 
 ```
@@ -58,7 +57,7 @@ The following packages will be upgraded:
 Action succeeded
 ```
 
-You run the `nv action install system packages archive <archive-id>` command with the following options:
+You can run the `nv action install system packages archive <archive-id>` command with the following options:
 - `force` runs the command without the prompts to continue.
 - `dry-run` runs only the validate step but does not install the micro update.
 - `allow-incompatible` bypasses any validate-check failure. 
@@ -70,10 +69,6 @@ Use the `allow-incompatible` option with caution as it overrides the compatibili
 ## Uninstall a Micro Update
 
 To uninstall a micro update and restore the pre-fix (base image) version as the running version, run the `nv action uninstall system packages archive <archive-id>` command.
-
-{{%notice note%}}
-Installing and uninstalling a micro update might restart any affected services. The `impact` field in the `nv show system packages archive <archive-id>` command output shows the affected services. 
-{{%/notice%}}
 
 ```
 cumulus@switch:~$ nv action uninstall system packages archive rm0002

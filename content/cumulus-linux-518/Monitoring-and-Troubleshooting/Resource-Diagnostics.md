@@ -7,11 +7,13 @@ toc: 3
 
 Cumulus Linux synchronizes routes between the kernel and the switching silicon. If the required resource pools in hardware fill up, new kernel routes can cause existing routes to move from being fully allocated to being partially allocated. To avoid this issue, monitor the routes in the hardware to keep them below the ASIC limits.
 
-## Monitor Routes in Cumulus Linux Hardware 
+## Monitor Resources in Cumulus Linux Hardware
 
-You can retrieve information about host entries, MAC entries, layer 2 and layer 3 routes, and {{<link url="Equal-Cost-Multipath-Load-Sharing" text="ECMP">}} routes that are in use.
+To monitor resources in Cumulus Linux, you can use either NVUE commands or the Linux `cl-resource-query` command.
+- NVUE commands report resource utilization from hardware when available; otherwise, they report software-maintained values.
+- `cl-resource-query` reports software-maintained resource utilization.
 
-To monitor the routes in Cumulus Linux hardware, you can use NVUE commands or the Linux `cl-resource-query` command.
+Because these commands retrieve information from different sources (hardware or software), the reported values might differ slightly under certain conditions. 
 
 {{< tabs "TabID14 ">}}
 {{< tab "NVUE Commands ">}}

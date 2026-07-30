@@ -43,7 +43,6 @@ Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switc
 - {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-6" text="Spectrum-6 forwarding resource profiles">}} 
 - NVUE
   - {{<link url="NVUE-CLI/#automatic-configuration-backup-and-restore" text="Automatic configuration backup and restore">}}
-  - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN Identifier">}}
   - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}
   - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="nv show interface --ber command to show PHY health statistics for all interfaces ">}}

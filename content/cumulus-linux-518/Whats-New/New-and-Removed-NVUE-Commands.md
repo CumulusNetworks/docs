@@ -89,17 +89,11 @@ nv set bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-i
 nv set bridge domain <domain-id> arp-inspection vlan <vid> state (enabled|disabled)
 nv set evpn l3vxi state
 nv set interface <interface-id> link-tracking group
-nv set interface <interface-id> qos shared-headroom-pool
 nv set interface <interface-id> security ip-source-guard
 nv set maintenance unit system mode
-nv set qos advance-buffer-config <profile-id> shared-headroom exclusive-headroom-per-pg
-nv set qos advance-buffer-config <profile-id> shared-headroom oversubscription-ratio
-nv set qos advance-buffer-config <profile-id> shared-headroom required-headroom-per-pg
-nv set qos pfc <profile-id> small-packet-probability
 nv set system aaa radius nas-ip-address <ipv4-address>
 nv set system aaa radius nas-ipv6-address <ipv6-address>
 nv set system aaa radius nas-identifier <identifier>
-nv set system aaa tacacs authorization <privilege-level> all-commands
 nv set system config backup state
 nv set system do-spx profile <profile-id>
 nv set system do-spx profile <profile-id> uplink <interface-id>
@@ -114,14 +108,6 @@ nv set system link-tracking group <group-id> min-links
 nv set system link-tracking group <group-id> state-change-action
 nv set system link-tracking state
 nv set system security password-hardening min-char-diff
-nv set system telemetry exclude-list
-nv set system telemetry include-list
-nv set system telemetry interface-stats class debounce sample-interval
-nv set system telemetry interface-stats class debounce state
-nv set system telemetry stats-group <stats-group-id> exclude-list
-nv set system telemetry stats-group <stats-group-id> include-list
-nv set system telemetry stats-group <stats-group-id> interface-stats class debounce sample-interval
-nv set system telemetry stats-group <stats-group-id> interface-stats class debounce state
 nv set system wjh channel buffer aggregate-cache-size
 nv set system wjh channel buffer polling-interval
 nv set system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id>

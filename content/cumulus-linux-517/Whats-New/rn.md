@@ -14,8 +14,12 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5172157 | The <code>nv config apply</code> command fails to apply configuration changes because NVUE fails to handle stale sessions and does not prompt you to clear them. To work around this issue, run the <code>nv config detach</code> command to clear the stale session, then run the <code>nv config replace</code> command if there is a stale pending revision. | 5.16.5-5.17.0 | |
+| 5172073 | The LLDP Chassis ID might be non-unique when front-panel ports share MAC addresses. | 5.16.5-5.17.0 | |
+| 5167708 | When an ACL policy is reinstalled while ACL rule counter statistics are being collected, a kernel panic can occur and the switch might reboot unexpectedly. The panic occurs because the ACL counter buffer is released while the hardware counter read for that buffer is still in progress. | 5.16.5-5.17.0 | |
 | 5152149 | Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash. | 5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0 | |
 | 5124026 | The HFT counter metrics exported over OTLP use incorrect timestamp and metric-type semantics. | 5.17.0 | |
+| 5123860 | HFT streaming telemetry exported over OTLP sets the timestamp (timeUnixNano) for each OTLP data point from the collection or export time instead of the hardware sample time, and exported monotonic counters as <code>OTLP Gauge</code> instead of <code>Sum</code>. This produces timestamps that do not represent when each sample is actually taken and metric types that prevent correct rate or delta computation by standard OTLP consumers. | 5.17.0 | |
 | 5118919 | Running <code>nv config apply</code> more than once without waiting for the first <code>nv config apply</code> to finish might cause a deadlock with the second <code>nv config apply</code> and trigger a condition where memory grows unbounded. | 5.16.1, 5.16.5-5.17.0 | |
 | 5107859 | You see unexpected error logs from SDK Stats Collector. | 5.17.0 | |
 | 5102916 | If you disable HFT on the last interface while an HFT session is enabled, NVUE crashes instead of rejecting the configuration change gracefully. | 5.17.0 | |

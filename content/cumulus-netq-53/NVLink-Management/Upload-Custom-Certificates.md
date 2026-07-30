@@ -15,7 +15,6 @@ NetQ NVLink supports two types of certificates: self-signed or custom. Self-sign
     - A server TLS certificate and its corresponding private key (both PEM-encoded), signed by the same CA.
     - A PKCS#12 (.p12) certificate bundle for your switches, signed by the same CA. The .p12 file must not be password-protected.
 
-
 ## Upload the Certificates using the API
 
 1. Upload your CA public certificate as a PEM-encoded file by making a POST request to the `/v1/certificates/ca` endpoint:
@@ -83,6 +82,8 @@ You also need the following valid, unexpired replacement certificates:
 - A PKCS#12 (`.p12`) bundle for your switches, signed by the same CA, without password protection
 
 Before rotating certificates, set NetQ NVLink to maintenance mode, as described in the next section.
+
+When you rotate the certificates, enter the same credentials (username) that you used during the {{<link title="NVLink Bringup" text="bringup process">}}.
 
 ### Maintenance Mode
 

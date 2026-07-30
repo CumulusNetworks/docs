@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5172157</td>
+<td>The {{nv config apply}} command fails to apply configuration changes because NVUE fails to handle stale sessions and does not prompt you to clear them. To work around this issue, run the {{nv config detach}} command to clear the stale session, then run the {{nv config replace}} command if there is a stale pending revision.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5172073</td>
+<td>The LLDP Chassis ID might be non-unique when front-panel ports share MAC addresses.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5167708</td>
+<td>When an ACL policy is reinstalled while ACL rule counter statistics are being collected, a kernel panic can occur and the switch might reboot unexpectedly. The panic occurs because the ACL counter buffer is released while the hardware counter read for that buffer is still in progress.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5152149</td>
 <td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
 <td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -1700,7 +1718,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5159907</td>
 <td>When a gNMI client uses a long sample interval, the gNMI server takes a long time to respond even after the gNMI client is reachable. The back-off time interval is now limited to one minute.</td>
-<td>5.16.1, 5.16.5</td>
+<td>5.16.5</td>
 </tr>
 <tr>
 <td>5159856</td>
@@ -1793,6 +1811,24 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5172157</td>
+<td>The {{nv config apply}} command fails to apply configuration changes because NVUE fails to handle stale sessions and does not prompt you to clear them. To work around this issue, run the {{nv config detach}} command to clear the stale session, then run the {{nv config replace}} command if there is a stale pending revision.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5172073</td>
+<td>The LLDP Chassis ID might be non-unique when front-panel ports share MAC addresses.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5167708</td>
+<td>When an ACL policy is reinstalled while ACL rule counter statistics are being collected, a kernel panic can occur and the switch might reboot unexpectedly. The panic occurs because the ACL counter buffer is released while the hardware counter read for that buffer is still in progress.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5161741</td>
 <td>The gNMI {{/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state}} metric intermittently returns no data.</td>
 <td>5.16.5</td>
@@ -1807,7 +1843,7 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <tr>
 <td>5159907</td>
 <td>When a gNMI client uses a long sample interval, the gNMI server takes a long time to respond even after the gNMI client is reachable. The back-off time interval is now limited to one minute.</td>
-<td>5.16.1, 5.16.5</td>
+<td>5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
@@ -3745,12 +3781,6 @@ nv config apply -y</td>
 <tr>
 <td>5161727</td>
 <td>All the Docker dependent services such as UMF and gNMI have periodic checks around the Docker service. If the Docker service restarts for any reason, it triggers a restart of all the docker dependent services. If the Docker service is down for a long time, it exceeds the maximum number of restarts within the {{systemd}} rate-limit interval for the Docker dependent services. As a result, all the Docker dependent services (including gNMI) end up in a failed state.</td>
-<td>5.16.1, 5.16.5</td>
-<td>5.16.6-5.17.0</td>
-</tr>
-<tr>
-<td>5159907</td>
-<td>When a gNMI client uses a long sample interval, the gNMI server takes a long time to respond even after the gNMI client is reachable. The back-off time interval is now limited to one minute.</td>
 <td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>

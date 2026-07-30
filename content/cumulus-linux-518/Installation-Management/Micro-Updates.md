@@ -34,7 +34,7 @@ Action succeeded
 
 The `nv action fetch system packages archive <url>` command uses the management VRF by default as the URL is often only reachable over the management VRF. To use a different VRF, use the optional VRF parameter (`nv action fetch system packages archive <url> vrf <vrf-id>`).
 
-To install the micro update, run the `nv action install system packages archive <archive-id>` command. The install command validates, then replaces the targeted packages with their fixed versions. The fixed package versions become the running package versions.
+To install a micro update, run the `nv action install system packages archive <archive-id>` command. The install command validates, then replaces the targeted packages with their fixed versions. The fixed package versions become the running package versions.
 
 The `<archive-id>` is the archive identifier (for example, rm0002). To show the archive identifier, run the `nv show system packages archive`​ command after you download the micro update. The `Archive` column shows the archive identifier.
 
@@ -57,7 +57,7 @@ The following packages will be upgraded:
 Action succeeded
 ```
 
-You run the `nv action install system packages archive <archive-id>` command with the following options:
+You can run the `nv action install system packages archive <archive-id>` command with the following options:
 - `force` runs the command without the prompts to continue.
 - `dry-run` runs only the validate step but does not install the micro update.
 - `allow-incompatible` bypasses any validate-check failure. 

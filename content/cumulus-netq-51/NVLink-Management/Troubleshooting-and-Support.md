@@ -76,3 +76,51 @@ Example response:
 ```
 
 Download the support files by making a GET request to the `/v1/support-packages/{id}` endpoint. It may take several minutes for the response to return the `tar.gz` support file.
+
+## Admin Endpoints for NMX-M Services
+
+Each NetQ NVLink (NMX-M) microservice listens on a second HTTP address, `admin-addr`, used for health checks, Prometheus metrics, runtime logging, and configuration inspection during troubleshooting. This interface is separate from the NetQ NVLink REST API.
+
+Use these endpoints when troubleshooting a specific NMX-M service on the NetQ cluster, typically under NVIDIA support guidance, or when you need evidence for a support case:
+
+- Raise log verbosity temporarily (`/log-level`) without restarting a pod
+- Confirm the process admin listener is up (`/live`)
+- Capture the service’s effective config for a support case (`/config_dump`)
+
+From a NetQ cluster node with Kubernetes access, port-forward to the service pod’s admin port. Ports differ by service (see the service ConfigMap `admin-addr`; commonly in the `90xx` range). Admin endpoints are not exposed through the NetQ VIP and are intended for cluster operators and NVIDIA support.
+
+{{%notice infonopad%}}
+- These endpoints require **no authentication**. Restrict access to trusted cluster operators.
+- <code>GET /config_dump</code> returns the service’s runtime configuration. The response may include credentials and other sensitive data. Handle the output as confidential and share it only with NVIDIA support when requested.
+{{%/notice%}}
+
+| Endpoint | Method | Description |
+|---|---|---|
+| `/live` | GET | Returns `200` and `OK` if the process HTTP admin server is up |
+| `/ready` | GET | Not implemented — returns `501` |
+| `/metrics` | GET | Prometheus metrics |
+| `/log-level` | GET | Current log level (JSON), e.g. `{"level":"info"}` |
+| `/log-level` | PUT | Change log level at runtime (no restart). JSON body: `{"level":"debug"}` (also `info`, `warn`, `error`) |
+| `/config_dump` | GET | Full service configuration as JSON |
+
+The following example shows this operation. Replace `<pod>`, `<admin-port>`, and namespace as appropriate; the namespace is typically `netq-nvl`:
+
+```
+kubectl port-forward -n netq-nvl pod/<pod> 19081:<admin-port>
+
+curl -sS http://127.0.0.1:19081/live
+curl -sS http://127.0.0.1:19081/ready          # expect HTTP 501
+curl -sS http://127.0.0.1:19081/log-level
+curl -sS -X PUT -H "Content-Type: application/json" \
+  -d '{"level":"debug"}' http://127.0.0.1:19081/log-level
+curl -sS -X PUT -H "Content-Type: application/json" \
+  -d '{"level":"info"}' http://127.0.0.1:19081/log-level   # restore
+curl -sS http://127.0.0.1:19081/config_dump
+curl -sS http://127.0.0.1:19081/metrics | head
+```
+
+To find the `<admin-port>` for a service:
+
+```
+kubectl get cm -n netq-nvl <service>-service-config -o yaml | grep admin-addr
+```

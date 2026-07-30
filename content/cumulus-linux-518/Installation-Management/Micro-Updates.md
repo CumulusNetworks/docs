@@ -71,10 +71,6 @@ Use the `allow-incompatible` option with caution as it overrides the compatibili
 
 To uninstall a micro update and restore the pre-fix (base image) version as the running version, run the `nv action uninstall system packages archive <archive-id>` command.
 
-{{%notice note%}}
-Installing and uninstalling a micro update might restart any affected services. The `impact` field in the `nv show system packages archive <archive-id>` command output shows the affected services. 
-{{%/notice%}}
-
 ```
 cumulus@switch:~$ nv action uninstall system packages archive rm0002
 The operation will uninstall the archive.

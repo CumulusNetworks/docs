@@ -23,6 +23,7 @@ nv show bridge domain <domain-id> arp-inspection vlan <vid> interface
 nv show bridge domain <domain-id> arp-inspection vlan <vid> interface <interface-id>
 nv show bridge domain <domain-id> arp-inspection vlan <vid> static-binding
 nv show bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-inspection-static-binding-id>
+nv show evpn l3vxi
 nv show interface --view ber
 nv show interface --view dom
 nv show interface link-tracking
@@ -108,6 +109,7 @@ nv set system link-tracking group <group-id> min-links
 nv set system link-tracking group <group-id> state-change-action
 nv set system link-tracking state
 nv set system security password-hardening min-char-diff
+nv set system telemetry dot1x-stats class server-metrics state
 nv set system wjh channel buffer aggregate-cache-size
 nv set system wjh channel buffer polling-interval
 nv set system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id>

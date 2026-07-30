@@ -3165,27 +3165,28 @@ ASIC statistics include the ASIC resource used percentage, the maximum number of
 
 The ASIC resource is one of the following:
 
-| Name |
-|----- |
-| `MAC-entries` | 
-| `IPv4-Routes` |
-| `IPv6-Routes` |
-| `Total-Mcast-Routes` |
-| `IPv4-host-entries` |
-| `IPv6-host-entries` |
-| `ECMP-nexthops` |
-| `ACL-Regions` |
-| `ACL-18B-Rules-Key` |
-| `ACL-36B-Rules-Key` |
-| `ACL-54B-Rules-Key` |
-| `Flow-Counters` |
-| `RIF-Basic-Counters` |
-| `RIF-Enhanced-Counters` |
+| Name | Description |
+|----- | ----------- |
+| `MAC-entries` | Layer 2 MAC address table entries.|
+| `IPv4-Routes` | IPv4 routing table entries.|
+| `IPv6-Routes` | IPv6 routing table entries.|
+| `Total-Mcast-Routes` | Multicast routing entries.|
+| `IPv4-host-entries` | IPv4 neighbor entries. |
+| `IPv6-host-entries` | IPv6 neighbor entries. |
+| `ECMP-nexthops` | Equal-Cost Multi-Path (ECMP) next-hop paths. |
+| `ACL-Regions` | Hardware regions allocated for Access Control Lists (ACLs). |
+| `ACL-18B-Rules-Key` | ACL rules using an 18-byte key. |
+| `ACL-36B-Rules-Key` | ACL rules using a 36-byte key. |
+| `ACL-54B-Rules-Key` | ACL rules using a 54-byte key. |
+| `Flow-Counters` | Hardware counters for tracking specific traffic flows.|
+| `RIF-Basic-Counters` | Basic statistics counters for router interfaces (RIFs). |
+| `RIF-Enhanced-Counters` | Detailed statistics counters for router interfaces (RIFs). |
 
 For example, `nvswitch_platform_asic_resource_free{resource_name="MAC-entries"}`.
 
 {{%notice note%}}
-The maximum value for the `IPv6-Routes` ASIC resource represents the number of single-width IPv6 route entries. In hardware, IPv6 routes with prefix lengths from /0 to /64 consume one entry each, whereas routes with prefix lengths from /65 to /128 consume two entries each. As a result, the actual number of free hardware entries depends on the mix of IPv6 route prefix lengths programmed into the table.
+- ACL maximum limits are dynamic and depend on the distribution of 18B, 36B, and 54B ACL rules.
+- The maximum value for the `IPv6-Routes` ASIC resource represents the number of single-width IPv6 route entries. In hardware, IPv6 routes with prefix lengths from /0 to /64 consume one entry each, whereas routes with prefix lengths from /65 to /128 consume two entries each. As a result, the actual number of free hardware entries depends on the mix of IPv6 route prefix lengths programmed into the table.
 {{%/notice%}}
 
 {{< /tab >}}

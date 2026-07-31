@@ -108,6 +108,8 @@ nv set system link-tracking group <group-id> state-change-action
 nv set system link-tracking state
 nv set system security password-hardening min-char-diff
 nv set system telemetry dot1x-stats class server-metrics state
+nv set system telemetry platform-stats class asic-resource state
+nv set system telemetry platform-stats class asic-resource sample-interval
 nv set system wjh channel buffer aggregate-cache-size
 nv set system wjh channel buffer polling-interval
 nv set system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface <wjh-interface-id> high 

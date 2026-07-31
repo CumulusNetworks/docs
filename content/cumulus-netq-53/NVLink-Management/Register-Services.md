@@ -98,3 +98,31 @@ curl --request GET \
 {{</tab>}}
 
 {{</tabs>}}
+
+## Delete a Registered Service
+
+To delete a service, make a DELETE request to `/nmx/v1/services/{id}`, where `{id}` is the entity ID of the service returned by the registration response or by a prior GET request.
+```
+curl --request DELETE \
+  --url https://<ip_address>/nmx/v1/services/<service_id> \
+  --header 'Authorization: Basic cnctdXNlcjpOdmlkaWExMg=='
+```
+To retrieve a service ID before deleting, query the services list and note the ID field of the target entry:
+```
+curl --request GET \
+  --url https://<ip_address>/nmx/v1/services \
+  --header 'Authorization: Basic cnctdXNlcjpOdmlkaWExMg=='
+```
+
+### Automatic Domain Cleanup
+
+When both services (NMX-T and NMX-C) associated with a domain are deleted, NetQ automatically removes all entities that belong to that domain. This includes:
+
+- Switch nodes
+- Compute nodes
+- GPUs
+- Ports
+- Partitions
+- Chassis
+
+The cleanup runs in the background after both service deletions are confirmed.

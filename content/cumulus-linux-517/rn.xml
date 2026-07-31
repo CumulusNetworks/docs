@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5172157</td>
+<td>The {{nv config apply}} command fails to apply configuration changes because NVUE fails to handle stale sessions and does not prompt you to clear them. To work around this issue, run the {{nv config detach}} command to clear the stale session, then run the {{nv config replace}} command if there is a stale pending revision.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5172073</td>
+<td>The LLDP Chassis ID might be non-unique when front-panel ports share MAC addresses.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5167708</td>
+<td>When an ACL policy is reinstalled while ACL rule counter statistics are being collected, a kernel panic can occur and the switch might reboot unexpectedly. The panic occurs because the ACL counter buffer is released while the hardware counter read for that buffer is still in progress.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5152149</td>
 <td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
 <td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -15,6 +33,12 @@
 <tr>
 <td>5124026</td>
 <td>The HFT counter metrics exported over OTLP use incorrect timestamp and metric-type semantics.</td>
+<td>5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5123860</td>
+<td>HFT streaming telemetry exported over OTLP sets the timestamp (timeUnixNano) for each OTLP data point from the collection or export time instead of the hardware sample time, and exported monotonic counters as {{OTLP Gauge}} instead of {{Sum}}. This produces timestamps that do not represent when each sample is actually taken and metric types that prevent correct rate or delta computation by standard OTLP consumers.</td>
 <td>5.17.0</td>
 <td></td>
 </tr>
@@ -1572,11 +1596,6 @@ nv config apply -y</td>
 <td>4937657</td>
 <td>During warm and fast reboots, NVUE intentionally skips a comprehensive Git cleanup to adhere to strict service start-up SLAs. When this cleanup is bypassed, existing Git maintenance debt, such as unreachable loose objects or blocked Garbage Collection (GC) states, remain in place and accumulate across successive reboots. The lightweight housekeeping performed during a standard {{nv config apply}} is not equivalent to a full cleanup. Consequently, stale objects and blocked GC states can persist until the repository becomes unreadable, eventually causing git commit operations to fail with the error {{fatal: could not parse HEAD}}.To work around this issue, run {{sudo systemctl restart nvued.service}} manually after a warm or fast reboot to trigger the full cleanup path.</td>
 <td>5.16.1</td>
-</tr>
-<tr>
-<td>4933966</td>
-<td>When moving from split 4 to split 2 on a port, FIFO corruption occurs, causing packets to become stuck in the egress queue.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
 </tr>
 <tr>
 <td>4931956</td>

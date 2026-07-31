@@ -15,7 +15,6 @@ NetQ NVLink supports two types of certificates: self-signed or custom. Self-sign
     - A server TLS certificate and its corresponding private key (both PEM-encoded), signed by the same CA.
     - A PKCS#12 (.p12) certificate bundle for your switches, signed by the same CA. The .p12 file must not be password-protected.
 
-
 ## Upload the Certificates using the API
 
 1. Upload your CA public certificate as a PEM-encoded file by making a POST request to the `/v1/certificates/ca` endpoint:
@@ -71,7 +70,9 @@ Note that you cannot use the `force` parameter to replace a server certificate t
 
 ## Rotate Certificates
 
-Certificate rotation lets you replace the CA, server, or switch P12 certificates in-place, without reinstalling NetQ NVLink. Rotate certificates before they expire or when a certificate or key is compromised.
+Certificate rotation lets you replace CA, server, or switch P12 certificates in-place without reinstalling NetQ NVLink. Rotate certificates before they expire or when a certificate or key is compromised.
+
+NetQ automatically monitors your certificates and raises a warning 30 days before expiry, escalating to critical once expired. By default, NetQ checks every 6 hours; both the interval and threshold are configurable, and alerts are delivered to your configured webhook receiver. See {{<link title="Manage Alerts/#certificate-expiration" text="Manage Alerts">}}.
 ### Rotation Prerequisites
 
 The CA and server certificates must already be uploaded before you can rotate them. See {{<link title="#Upload the Certificates using the API" text="Upload the Certificates using the API">}}.
@@ -83,6 +84,8 @@ You also need the following valid, unexpired replacement certificates:
 - A PKCS#12 (`.p12`) bundle for your switches, signed by the same CA, without password protection
 
 Before rotating certificates, set NetQ NVLink to maintenance mode, as described in the next section.
+
+When you rotate the certificates, enter the same credentials (username) that you used during the {{<link title="NVLink Bringup" text="bringup process">}}.
 
 ### Maintenance Mode
 

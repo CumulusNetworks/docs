@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5172157</td>
+<td>The {{nv config apply}} command fails to apply configuration changes because NVUE fails to handle stale sessions and does not prompt you to clear them. To work around this issue, run the {{nv config detach}} command to clear the stale session, then run the {{nv config replace}} command if there is a stale pending revision.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5172073</td>
+<td>The LLDP Chassis ID might be non-unique when front-panel ports share MAC addresses.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5167708</td>
+<td>When an ACL policy is reinstalled while ACL rule counter statistics are being collected, a kernel panic can occur and the switch might reboot unexpectedly. The panic occurs because the ACL counter buffer is released while the hardware counter read for that buffer is still in progress.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5152149</td>
 <td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
 <td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -428,12 +446,6 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>4937867</td>
 <td>If FSM cable info does not finish or does not start within three seconds (due to other, higher priority FSM handling), recovery flow is triggered. In some edge cases, this recovery flow does not clean all necessary parameters.</td>
 <td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
-<td>5.17.0</td>
-</tr>
-<tr>
-<td>4933966</td>
-<td>When moving from split 4 to split 2 on a port, FIFO corruption occurs, causing packets to become stuck in the egress queue.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
 <td>5.17.0</td>
 </tr>
 <tr>
@@ -1706,7 +1718,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5159907</td>
 <td>When a gNMI client uses a long sample interval, the gNMI server takes a long time to respond even after the gNMI client is reachable. The back-off time interval is now limited to one minute.</td>
-<td>5.16.1, 5.16.5</td>
+<td>5.16.5</td>
 </tr>
 <tr>
 <td>5159856</td>
@@ -1785,6 +1797,11 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td>During a switch reboot with SRv6 enabled, there is an ordering race that occasionally results in the {{nginx-authenticator.service}} only listening on the IPv6 loopback IP address. As result, the gNMI server Envoy instance, which uses the {{nginx-authenticator.service}} to validate the username and password in requests from the gNMI client fails to connect and you see the error {{rpc error: code = Unavailable desc = Authentication service unavailable}}.</td>
 <td>5.16.1, 5.16.5</td>
 </tr>
+<tr>
+<td>4933966</td>
+<td>When moving from split 4 to split 2 on a port, FIFO corruption occurs, causing packets to become stuck in the egress queue.</td>
+<td>5.16.0-5.16.1, 5.16.5</td>
+</tr>
 </table>
 <table name="Open Issues in 5.16.5">
 <tr>
@@ -1792,6 +1809,24 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5172157</td>
+<td>The {{nv config apply}} command fails to apply configuration changes because NVUE fails to handle stale sessions and does not prompt you to clear them. To work around this issue, run the {{nv config detach}} command to clear the stale session, then run the {{nv config replace}} command if there is a stale pending revision.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5172073</td>
+<td>The LLDP Chassis ID might be non-unique when front-panel ports share MAC addresses.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5167708</td>
+<td>When an ACL policy is reinstalled while ACL rule counter statistics are being collected, a kernel panic can occur and the switch might reboot unexpectedly. The panic occurs because the ACL counter buffer is released while the hardware counter read for that buffer is still in progress.</td>
+<td>5.16.5-5.17.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5161741</td>
@@ -1808,7 +1843,7 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <tr>
 <td>5159907</td>
 <td>When a gNMI client uses a long sample interval, the gNMI server takes a long time to respond even after the gNMI client is reachable. The back-off time interval is now limited to one minute.</td>
-<td>5.16.1, 5.16.5</td>
+<td>5.16.5</td>
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
@@ -2330,8 +2365,8 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <tr>
 <td>4933966</td>
 <td>When moving from split 4 to split 2 on a port, FIFO corruption occurs, causing packets to become stuck in the egress queue.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
-<td>5.17.0</td>
+<td>5.16.0-5.16.1, 5.16.5</td>
+<td>5.16.6-5.17.0</td>
 </tr>
 <tr>
 <td>4931956</td>
@@ -3750,12 +3785,6 @@ nv config apply -y</td>
 <td>5.16.6-5.17.0</td>
 </tr>
 <tr>
-<td>5159907</td>
-<td>When a gNMI client uses a long sample interval, the gNMI server takes a long time to respond even after the gNMI client is reachable. The back-off time interval is now limited to one minute.</td>
-<td>5.16.1, 5.16.5</td>
-<td>5.16.6-5.17.0</td>
-</tr>
-<tr>
 <td>5159856</td>
 <td>On the Spectrum-4 and Spectrum-5 switch, you might encounter capacitor failures caused by high temperatures; as a result, ports remain down.  Thermal algorithm updates are provided to increase cooling fans speed.</td>
 <td>5.16.1, 5.16.5</td>
@@ -4349,8 +4378,8 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <tr>
 <td>4933966</td>
 <td>When moving from split 4 to split 2 on a port, FIFO corruption occurs, causing packets to become stuck in the egress queue.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
-<td>5.17.0</td>
+<td>5.16.0-5.16.1, 5.16.5</td>
+<td>5.16.6-5.17.0</td>
 </tr>
 <tr>
 <td>4931956</td>
@@ -6088,8 +6117,8 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <tr>
 <td>4933966</td>
 <td>When moving from split 4 to split 2 on a port, FIFO corruption occurs, causing packets to become stuck in the egress queue.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
-<td>5.17.0</td>
+<td>5.16.0-5.16.1, 5.16.5</td>
+<td>5.16.6-5.17.0</td>
 </tr>
 <tr>
 <td>4931956</td>

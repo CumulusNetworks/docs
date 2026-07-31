@@ -956,6 +956,10 @@ router bgp 65101
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+When you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions can remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report `Cease/Connection Collision Resolution`. This timing-dependent issue might occur if you do not configure a BGP update source. To work around this issue, configure `update-source` separately for every numbered IPv6 BGP neighbor on both switches, using the local IPv6 address assigned to the link for that neighbor; do not configure a single shared source on the peer group when each parallel link has a different local address. After applying the configuration, clear the affected BGP sessions to remove any existing incorrectly associated connections.
+{{%/notice%}}
+
 ## ECMP
 
 BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sharing" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has the information necessary to program the routing table and forward traffic for that prefix through all these peers. BGP typically chooses one best path for each prefix and installs that route in the forwarding table.
@@ -1942,6 +1946,10 @@ Prefix            PathCount  MultipathCount  DestFlags
 ----------------  ---------  --------------  ---------
 2001:1:1:1::/127  4          0               *
 ```
+
+{{%notice note%}}
+Running the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route -o json` command is equivalent to running the vtysh `show bgp vrf <vrf-id> ipv6 unreachability json brief` command. Therefore, certain fields, such as path details and reporter AS, do not show. To show a more detailed view, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route <prefix> -o json` command.
+{{%/notice%}}
 
 To show the BGP unreachability prefix limits for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability prefix-limits` command.
 

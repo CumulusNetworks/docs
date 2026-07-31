@@ -97,9 +97,7 @@ nv set system aaa radius nas-ipv6-address <ipv6-address>
 nv set system aaa radius nas-identifier <identifier>
 nv set system config backup state
 nv set system do-spx profile <profile-id>
-nv set system do-spx profile <profile-id> uplink <interface-id>
 nv set system do-spx profile <profile-id> uplink <interface-id> breakout
-nv set system do-spx profile <profile-id> downlink <interface-id>
 nv set system do-spx profile <profile-id> downlink <interface-id> breakout
 nv set system do-spx profile <profile-id> otlp-destination <destination-id>
 nv set system do-spx profile <profile-id> otlp-destination <destination-id> otlp-port
@@ -110,17 +108,13 @@ nv set system link-tracking group <group-id> state-change-action
 nv set system link-tracking state
 nv set system security password-hardening min-char-diff
 nv set system telemetry dot1x-stats class server-metrics state
+nv set system telemetry platform-stats class asic-resource state
+nv set system telemetry platform-stats class asic-resource sample-interval
 nv set system wjh channel buffer aggregate-cache-size
 nv set system wjh channel buffer polling-interval
-nv set system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id>
-nv set system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface <wjh-interface-id>
 nv set system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface <wjh-interface-id> high 
-nv set system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id>
-nv set system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id> interface <wjh-interface-id>
 nv set system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id> interface <wjh-interface-id> high
 nv set interface <interface-id> telemetry congestion-event egress-buffer traffic-class <intf-tc-id> buffer-threshold
-nv set system wjh channel <channel-id> drop-filter <filter-id>
-nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id>
 nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> drop-reason <drop-filter-drop-reason-id>
 nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> severity <drop-filter-severity-id>
 nv set system wjh channel <channel-id> drop-filter <filter-id> ip

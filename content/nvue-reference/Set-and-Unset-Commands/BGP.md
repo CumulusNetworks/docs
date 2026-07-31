@@ -2360,6 +2360,12 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 type unnumbered
 
 Configures the BGP source of routing updates. You can specify an interface, or an IPv4 or IPv6 address.
 
+{{%notice note%}}
+When you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions can remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report `Cease/Connection Collision Resolution`. This timing-dependent issue might occur if you do not configure a BGP update source. I
+
+To work around this issue, configure the update-source separately for every numbered IPv6 BGP neighbor on both switches, using the local IPv6 address assigned to the link for that neighbor. Do not configure a single shared source on the peer group when each parallel link has a different local address. After applying the configuration, clear the affected BGP sessions to remove any existing incorrectly associated connections.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |

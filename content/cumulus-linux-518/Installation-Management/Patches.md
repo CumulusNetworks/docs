@@ -15,7 +15,7 @@ You can roll back and return to the base image, not a previously-running patch. 
 {{%notice note%}}
 - Upgrading system packages after you install a patch might overwrite the patch fixes; the switch warns you before proceeding.
 - A failed patch install rolls back all touched packages automatically to the base version so that the switch is not left in a half-installed state.
-- Installing and uninstalling a patch might restart affected services. Before you install or uninstall a patch, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
+- Installing and uninstalling a patch might restart affected services or reboot the system. Before you install or uninstall a patch, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
 {{%/notice%}}
 
 ## Install a Patch
@@ -99,11 +99,13 @@ Action executing ...
 
 ## Show Patch Information
 
-To show the patch staged archives, each with a summary and status, run the `nv show system packages archive` command. The status is `installed`, `not-installed`, `partially-installed`, `failed`, or `operation-in-progress`.
+To show the staged patch archives, each with a summary and status, run the `nv show system packages archive` command. The status is `installed`, `not-installed`, `partially-installed`, `failed`, or `operation-in-progress`.
 
 ```
 cumulus@switch:~$ nv show system packages archive
-No Data
+Archive    summary                                                  status
+---------  -------------------------------------------------------  ---------
+rm1234567  Add startup diagnostic log markers to switchd and ptmd.  installed
 ```
 
 To show information about a specific patch, such as a summary, description, impact, installation time, failure reason, and its installed status, run the `nv show system packages archive <archive-id>` command:

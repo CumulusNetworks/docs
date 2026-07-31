@@ -84,7 +84,7 @@ cumulus@switch:~$ nv config apply 5 --y
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv config attach \<revision-id>\</h>
+## <h>nv config attach \<revision-id\></h>
 
 Attaches the configuration to a revision.
 

@@ -2015,6 +2015,54 @@ cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric no
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry platform-stats class asic-resource state</h>
+
+Enables and disables the export of ASIC resource metrics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry platform-stats class asic-resource sample-interval </h>
+
+Sets the sample interval for ASIC resource metrics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource sample-interval 100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry dot1x-stats class server-metrics state</h>
+
+Enables and disables the export of 802.1x Radius server metrics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry dot1x-stats class server-metrics state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry platform-stats class transceiver-info sample-interval</h>
 
 Sets the sample interval for transceiver metrics. The default value is 60 seconds.

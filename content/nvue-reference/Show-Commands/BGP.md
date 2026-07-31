@@ -1763,6 +1763,10 @@ No Data
 
 Shows BGP unreachability routes.
 
+{{%notice note%}}
+In Cumulus Linux 5.18 and later, running the `nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route -o json` command is equivalent to running the vtysh `show bgp vrf <vrf-id> ipv4 unreachability json brief` command. Therefore, certain fields, such as path details and reporter AS, do not show. To show a more detailed view, run the `nv show vrf <vrf-id> router bgp address-family ipv4-unreachability route <prefix> -o json` command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |

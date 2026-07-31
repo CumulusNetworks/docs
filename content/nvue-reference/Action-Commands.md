@@ -3172,7 +3172,7 @@ cumulus@switch:~$ nv action delete system log component nvue file nvued.log
 
 ## <h>nv action delete system packages archive \<archive-id\></h>
 
-Deletes a micro update from the switch. You must uninstall the applied micro update before you can delete it.
+Deletes a patch from the switch. You must uninstall the patch before you can delete it.
 
 ### Command Syntax
 
@@ -3602,15 +3602,15 @@ cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5
 
 ## <h>nv action fetch system packages archive \<path\></h>
 
-Downloads a micro update. The micro update infrastructure supports HTTPS, SCP, FTP, and SFTP.
+Downloads a patch. The patch infrastructure supports HTTPS, SCP, FTP, and SFTP.
 
-The Cumulus Linux micro update framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
+The Cumulus Linux patch framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
 
 You can install a critical fix within your own maintenance window and back it out without a full image upgrade.
 
-Micro updates only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every micro update into a subsequent release.
+Patches only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every patch into a subsequent release.
 
-You can roll back and return to the base image, not a previously-running micro update. If a package is running an earlier micro update version when you install a later micro update, removing the later update restores the base-image version, not the earlier micro update.
+You can roll back and return to the base image, not a previously-running patch. If a package is running an earlier patch version when you install a later patch, removing the later patch restores the base-image version, not the earlier patch.
 
 ### Command Syntax
 
@@ -4083,15 +4083,15 @@ cumulus@switch:~$ nv action install system image onie ftp://203.0.113.10/image-i
 
 ## <h>nv action install system packages archive \<archive-id\></h>
 
-Installs a micro update.
+Installs a patch.
 
-The Cumulus Linux micro update framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
+The Cumulus Linux patch framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
 
 You can install a critical fix within your own maintenance window and back it out without a full image upgrade.
 
-Micro updates only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every micro update into a subsequent release.
+Patches only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every patch into a subsequent release.
 
-You can roll back and return to the base image, not a previously-running micro update. If a package is running an earlier micro update version when you install a later micro update, removing the later update restores the base-image version, not the earlier micro update.
+You can roll back and return to the base image, not a previously-running patch. If a package is running an earlier patch version when you install a later patch, removing the later update restores the base-image version, not the earlier patch.
 
 ### Command Syntax
 
@@ -5259,13 +5259,13 @@ cumulus@switch:~$ nv action traceroute system 10.10.10.10 wait 2
 
 ## <h>nv action uninstall system packages archive \<archive-id\></h>
 
-Uninstalls a micro update.
+Uninstalls a patch.
 
 ### Command Syntax
 
 | Syntax   |  Description  |
 | ----------    | ------------  |
-| `<archive-id>` |  The archive identifier (for example, rm0002). To show the archive identifier, run the `nv show system packages archive`​ command after you download the micro update. The `Archive` column shows the archive identifier.  |
+| `<archive-id>` |  The archive identifier (for example, rm0002). To show the archive identifier, run the `nv show system packages archive`​ command after you download the patch. The `Archive` column shows the archive identifier.  |
 
 ### Version History
 

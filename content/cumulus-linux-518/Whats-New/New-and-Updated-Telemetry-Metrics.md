@@ -89,16 +89,16 @@ For example, `/components/component/integrated-circuit/utilization/resources/res
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "Micro Updates">}}
+{{< tab "Patches">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name=<archive-id>]/state/name` | The package archive name. |
+| `/components/component[name=<archive-id>]/state/name` | The patch archive name. |
 | `/components/component[name=<archive-id>]/state/type` | The type: OPERATING_SYSTEM_UPDATE.|
 | `/components/component[name=<archive-id>]/software-package-archive/state/failure-state` | The failure state:<br>0: none<br>1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>2: PRE_INSTALL_FAILED_ROLLBACK_FAILED<br>3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>4: APT_FAILED_ROLLBACK_SUCCESSFULL<br>5: APT_FAILED_ROLLBACK_FAILED<br>6: APT_FAILED_ROLLBACK_IN_PROGRESS<br>7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>8: POST_INSTALL_FAILED_ROLLBACK_FAILED<br>9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL<br>11: UNKNOWN_FAILURE_ROLLBACK_FAILED<br>12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS.|
 | `/components/component[name=<archive-id>]/software-package-archive/state/status` | The installation status:<br>0: not-installed<br>1: installed<br>2: partially-installed<br>3: failed<br>4: operation-in-progress.|
-| `/components/component[name=<archive-id>]/software-package-archive/state/installed-at` | The installation time (Unix timestamp).|
-| `/system/state/installed-software-package-archives` | Installed micro update archives.|
+| `/components/component[name=<archive-id>]/software-package-archive/state/installed-at` | The time a patch archive was installed (Unix timestamp).|
+| `/system/state/installed-software-package-archives` | Installed patch archives.|
 
 {{< /tab >}}
 {{< tab "Platform Leakage Sensor">}}
@@ -195,13 +195,13 @@ To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Ex
 | `nvswitch_platform_environment_leakage_status` | Leakage status. Liquid-cooled NVIDIA switch only. |
 
 {{< /tab >}}
-{{< tab "Micro Updates">}}
+{{< tab "Patches">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_platform_package_archive_failure_state` | The failure state if the micro update installation fails:<br>0: none<br>1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>2: PRE_INSTALL_FAILED_ROLLBACK_FAILED<br>3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>4: APT_FAILED_ROLLBACK_SUCCESSFULL<br>5: APT_FAILED_ROLLBACK_FAILED<br>6: APT_FAILED_ROLLBACK_IN_PROGRESS<br>7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>8: POST_INSTALL_FAILED_ROLLBACK_FAILED<br>9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL<br>11: UNKNOWN_FAILURE_ROLLBACK_FAILED<br>12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS|
-| `nvswitch_platform_package_archive_status` | The package archive status:<br>0: not-installed<br>1: installed<br>2: partially-installed<br>3: failed<br>4: operation-in-progress.|
-| `nvswitch_platform_package_archive_installed_time` | The micro update package installed time (Unix timestamp). |
+| `nvswitch_platform_package_archive_failure_state` | The failure state if the patch archive installation fails:<br>0: none<br>1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>2: PRE_INSTALL_FAILED_ROLLBACK_FAILED<br>3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>4: APT_FAILED_ROLLBACK_SUCCESSFULL<br>5: APT_FAILED_ROLLBACK_FAILED<br>6: APT_FAILED_ROLLBACK_IN_PROGRESS<br>7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>8: POST_INSTALL_FAILED_ROLLBACK_FAILED<br>9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL<br>11: UNKNOWN_FAILURE_ROLLBACK_FAILED<br>12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS|
+| `nvswitch_platform_package_archive_status` | The patch archive status:<br>0: not-installed<br>1: installed<br>2: partially-installed<br>3: failed<br>4: operation-in-progress.|
+| `nvswitch_platform_package_archive_installed_time` | The time the patch archive was installed (Unix timestamp). |
 
 {{< /tab >}}
 {{< /tabs >}}

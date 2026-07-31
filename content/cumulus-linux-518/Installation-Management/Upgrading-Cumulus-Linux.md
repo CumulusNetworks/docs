@@ -12,6 +12,8 @@ To upgrade Cumulus Linux, choose one of the three upgrade methods:
 - Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}} (ISSU support and maintains the current switch configuration).
 - Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you need to manually back up and restore your switch configuration).
 
+To install a patch (such as a critical bug or CVE), refer to {{<link url="Patches" text="Patches">}}.
+
 ## Upgrades with ISSU
 
 {{%notice note%}}

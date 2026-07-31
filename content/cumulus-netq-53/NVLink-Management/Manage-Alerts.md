@@ -38,9 +38,27 @@ NetQ broadcasts alerts when your {{<link title="Manage Licenses" text="NetQ for 
 | Expires Soon | `licensing` | `LicenseValidation` | warning |
 | Expired | `licensing` | `LicenseValidation` | critical |
 
-<!--
+
+## Service Fault Tolerance
+
+NetQ raises an alert when an NVLink domain management service (NMX-T or NMX-C) becomes unhealthy and updates it as recovery proceeds. Because the alert is keyed to the switch management address, port, and service type (which don't change during the incident) all recovery stages appear as updates to a single alert. For details on the recovery sequence, see {{<link title="Fault Tolerance" text="Fault Tolerance">}}.
+
+The alert summary reflects the current stage of recovery:
+- Service unhealthy: NetQ detected that the service is not responding and started recovery.
+- Recovery attempt failed: recovery attempt did not restore the service; NetQ will retry.
+- Recovery retries exhausted: NetQ reached the configured retry limit and stopped attempting recovery.
+- HA terminal failure: recovery failed and no retries are configured.
+- Service recovery completed: the service was verified healthy after a restart.
+
 ## Certificate Expiration
--->
+
+NetQ monitors the CA, server, and switch certificates and alerts you before they expire so you can rotate them without losing switch connectivity. Certificates are checked on a recurring interval; NetQ raises a warning while a certificate is still valid but nearing expiry, and escalates to critical after it has expired. The alert includes the certificate subject, issuer, type, fingerprint, and the addresses the certificate covers. To rotate a certificate before it expires, refer to {{<link title="Upload Custom Certificates/#rotate-certificates" text="rotate certificates">}}.
+
+| Alert Type | Alert Group | Alert Name(s) | Severity |
+| :-- | :-- | :-- | :-- |
+| Expires Soon | `cert-mgr` | `CertificateExpiration` | warning |
+| Expired | `cert-mgr` | `CertificateExpiration` | critical |
+
 
 ## Leak Sensor Notifications
 

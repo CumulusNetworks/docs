@@ -35,7 +35,7 @@ Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switc
 - {{<link url="RADIUS-AAA/#nas-ip-address-and-identifier" text="RADIUS NAS IP address and identifier configuration">}}
 - {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}} (Beta)
 - {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}} (Beta)
-- {{<link url="Micro-Updates" text="Micro update infrastructure">}}
+- {{<link url="Patches" text="Patch infrastructure">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#dci-1-profile" text="Data Center Interconnect (DCI-1) QoS profile">}} (Beta)
 - {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}} (Beta)
 - {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="BGP graceful fabric maintenance">}} (Beta)
@@ -61,8 +61,8 @@ Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switc
   - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
   - {{<link url="IP-Source-Guard" text="IP Source Guard">}}
 - Telemetry
-  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC resource, Platform leakage sensor, and Micro udpdates">}}
-  - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC resource, WJH, Platform leakage sensor, and Micro updates">}}
+  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC resource, Platform leakage sensor, and patches">}}
+  - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC resource, WJH, Platform leakage sensor, and patches">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
   - You can now run both {{<link title="What Just Happened (WJH)" text="NVUE WJH commands">}} and {{<link url="gNMI-Streaming" text="subscribe to gNMI YANG paths">}} at the same time.
 

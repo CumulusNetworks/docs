@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5146099</td>
+<td>When operating at 100 percent line rate traffic runs from IXIA, the system experiences packet loss or latency in different traffic RFC tests. To work around this issue, configure the line rate at 99.9 percent and use ports from different IXIA Resource Groups.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5089768</td>
 <td>When subscribing to gNMI paths that have multiple external paths for a single internal path, you see previous warning logs when there is no issue. </td>
 <td>5.16.5-5.18.0</td>
@@ -821,9 +827,29 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5172157</td>
+<td>The {{nv config apply}} command fails to apply configuration changes because NVUE fails to handle stale sessions and does not prompt you to clear them. To work around this issue, run the {{nv config detach}} command to clear the stale session, then run the {{nv config replace}} command if there is a stale pending revision.</td>
+<td>5.16.4-5.17.0</td>
+</tr>
+<tr>
+<td>5172073</td>
+<td>The LLDP Chassis ID might be non-unique when front-panel ports share MAC addresses.</td>
+<td>5.16.5-5.17.0</td>
+</tr>
+<tr>
+<td>5167708</td>
+<td>When an ACL policy is reinstalled while ACL rule counter statistics are being collected, a kernel panic can occur and the switch might reboot unexpectedly. The panic occurs because the ACL counter buffer is released while the hardware counter read for that buffer is still in progress.</td>
+<td>5.16.3-5.17.0</td>
+</tr>
+<tr>
 <td>5162182, 5157267</td>
 <td>Restarting the SDK statistics collector deinitializes the telemetry module in the SDK. Any other processes using the SDK Telemetry module see failures.</td>
 <td></td>
+</tr>
+<tr>
+<td>5156936</td>
+<td>When a gNMI client uses a long sample interval, the gNMI server takes a long time to respond even after the gNMI client is reachable. The back-off time interval is now limited to one minute.</td>
+<td>5.16.3-5.16.5</td>
 </tr>
 <tr>
 <td>5156722</td>
@@ -853,6 +879,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5124026</td>
 <td>The HFT counter metrics exported over OTLP use incorrect timestamp and metric-type semantics.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>5123860</td>
+<td>HFT streaming telemetry exported over OTLP sets the timestamp (timeUnixNano) for each OTLP data point from the collection or export time instead of the hardware sample time, and exported monotonic counters as {{OTLP Gauge}} instead of {{Sum}}. This produces timestamps that do not represent when each sample is actually taken and metric types that prevent correct rate or delta computation by standard OTLP consumers.</td>
 <td>5.17.0</td>
 </tr>
 <tr>
@@ -953,6 +984,11 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td>5065211, 4916985, 5078194</td>
 <td>When data path enablement timing is marginal, traffic might be allowed through the system too early.</td>
 <td>5.11.5-5.17.0</td>
+</tr>
+<tr>
+<td>5060140</td>
+<td>The overall packet trimming performance is currently unoptimized, which can result in slower MRC convergence during traffic processing.</td>
+<td></td>
 </tr>
 <tr>
 <td>5057971</td>

@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5146099 | When operating at 100 percent line rate traffic runs from IXIA, the system experiences packet loss or latency in different traffic RFC tests. To work around this issue, configure the line rate at 99.9 percent and use ports from different IXIA Resource Groups. | 5.18.0 | |
 | 5089768 | When subscribing to gNMI paths that have multiple external paths for a single internal path, you see previous warning logs when there is no issue.  | 5.16.5-5.18.0 | |
 | 4992289 | After optimized image upgrade, the SSH service fails and NVUE shows an error <code>Failed to translate the startup configuration, will continue with the original startup</code>. | 5.16.1-5.16.4, 5.17.0-5.18.0 | 5.16.5|
 | 4982910 | The mellanox platform driver fails to register a <code>pm_power_off</code> handler for legacy platforms. As a result, it falls through to ACPI power off which doesn't work correctly on the BIOS and causes a reset. | 5.17.0-5.18.0 | |
@@ -143,13 +144,18 @@ pdfhidden: True
 ### Fixed Issues in 5.18.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| 5172157 | The <code>nv config apply</code> command fails to apply configuration changes because NVUE fails to handle stale sessions and does not prompt you to clear them. To work around this issue, run the <code>nv config detach</code> command to clear the stale session, then run the <code>nv config replace</code> command if there is a stale pending revision. | 5.16.4-5.17.0 | |
+| 5172073 | The LLDP Chassis ID might be non-unique when front-panel ports share MAC addresses. | 5.16.5-5.17.0 | |
+| 5167708 | When an ACL policy is reinstalled while ACL rule counter statistics are being collected, a kernel panic can occur and the switch might reboot unexpectedly. The panic occurs because the ACL counter buffer is released while the hardware counter read for that buffer is still in progress. | 5.16.3-5.17.0 | |
 | 5162182, 5157267 | Restarting the SDK statistics collector deinitializes the telemetry module in the SDK. Any other processes using the SDK Telemetry module see failures. |  | |
+| 5156936 | When a gNMI client uses a long sample interval, the gNMI server takes a long time to respond even after the gNMI client is reachable. The back-off time interval is now limited to one minute. | 5.16.3-5.16.5 | |
 | 5156722 |  The <code>nv show platform firmware</code> command shows an incorrect CPLD firmware version. | 5.16.1-5.16.5 | |
 | 5152149 | Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash. | 5.11.3-5.17.0 | |
 | 5152101 | When you use NVUE flexible snippets to add custom Debian APT mirrors or sources under <code>/etc/apt/sources.list.d/*</code>, the <code>nv config apply</code> command fails because NVUE incorrectly blocks adding snippeted files under <code>/etc/apt/sources.list.d/*</code>. | 5.16.1-5.16.5 | |
 | 5140761 | A switch reboot might drop the management VRF static route intermittently from the kernel, causing a loss of management-plane reachability. To work around this issue, remove and re-add the route or restart FRR.  | 5.16.1-5.16.5 | |
 | 5135953 | The <code>Date-Time</code> column in the <code>nv show interface <interface> telemetry histogram ... snapshot</code> output shows the same timestamp for every snapshot row when you set monitor temporality to cumulative. Each snapshot now displays the actual capture time. | 5.16.1-5.16.5 | |
 | 5124026 | The HFT counter metrics exported over OTLP use incorrect timestamp and metric-type semantics. | 5.17.0 | |
+| 5123860 | HFT streaming telemetry exported over OTLP sets the timestamp (timeUnixNano) for each OTLP data point from the collection or export time instead of the hardware sample time, and exported monotonic counters as <code>OTLP Gauge</code> instead of <code>Sum</code>. This produces timestamps that do not represent when each sample is actually taken and metric types that prevent correct rate or delta computation by standard OTLP consumers. | 5.17.0 | |
 | 5118919 | Running <code>nv config apply</code> more than once without waiting for the first <code>nv config apply</code> to finish might cause a deadlock with the second <code>nv config apply</code> and trigger a condition where memory grows unbounded. | 5.16.1-5.17.0 | |
 | 5107859 | You see unexpected error logs from SDK Stats Collector. | 5.17.0 | |
 | 5103277 | Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore. | 5.16.4-5.16.5 | |
@@ -169,6 +175,7 @@ pdfhidden: True
 | 5067214 | Running the <code>nv config apply</code> command with no changes returns a warning but the pending revision is not detached. | 5.11.5-5.17.0 | |
 | 5065880 | The <code>nv show interface dot1x-summary</code> command is very slow at high scale. | 5.16.0-5.17.0 | |
 | 5065211, 4916985, 5078194 | When data path enablement timing is marginal, traffic might be allowed through the system too early. | 5.11.5-5.17.0 | |
+| 5060140 | The overall packet trimming performance is currently unoptimized, which can result in slower MRC convergence during traffic processing. |  | |
 | 5057971 | On an MLAG pair, after a bridge flap, the connected route for the <code>macvlan</code> interface comes up without the <code>INSTALLED</code> flag, while its SVI on the same prefix is <code>C>*</code>. | 5.11.3-5.17.0 | |
 | 5057785 | With more than 10k EVPN type 2 prefixes, there is a delay in convergence. | 5.14.0-5.17.0 | |
 | 5056914 | Optimized image upgrade to 5.15.x might consume space in the <code>/var</code> directory up to 2.2 times the image size and might not correctly check free space in <code>/var</code> before proceeding. | 5.14.0-5.17.0 | |

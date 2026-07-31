@@ -38,7 +38,6 @@ NetQ broadcasts alerts when your {{<link title="Manage Licenses" text="license">
 | Expires Soon | `licensing` | `LicenseValidation` | warning |
 | Expired | `licensing` | `LicenseValidation` | critical |
 
-
 ## Update the Webhook Receiver URL
 
 You can update the webhook URL at any time after installation.

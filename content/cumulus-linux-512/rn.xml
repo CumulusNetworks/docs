@@ -177,12 +177,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td></td>
 </tr>
 <tr>
-<td>4840299</td>
-<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
-<td>5.9.1-5.17.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4789562</td>
 <td>A switch running Nvidia Cumulus Linux may improperly forward routed packets out of an access port or on the native vlan of a trunk with an 802.1Q tag imposed on the packet.</td>
 <td>5.12.1-5.15.1</td>
@@ -1543,12 +1537,6 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
-<td>4840299</td>
-<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
-<td>5.9.1-5.17.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4789097</td>
 <td>The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type.</td>
 <td>5.9.4-5.15.1</td>
@@ -2068,16 +2056,16 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>5.11.2, 5.13.0-5.17.0</td>
 </tr>
 <tr>
-<td>4288264</td>
-<td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
-<td>5.12.0</td>
-<td>5.11.1, 5.12.1-5.17.0</td>
-</tr>
-<tr>
 <td>4286833</td>
 <td>When you change the port breakout configuration, the switch deletes, then recreates the port and the sflow configuration on the port resets. However, {{switchd}} continues to retain sflow configuration for the same logical ID, which leads to divergence in sflow configuration in the SDK and switchd; switchd sees sflow enabled for the port but in the SDK the ports gets reset to disabled.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.17.0</td>
+</tr>
+<tr>
+<td>4286489</td>
+<td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
+<td>5.12.0</td>
+<td>5.11.1, 5.12.1-5.17.0</td>
 </tr>
 <tr>
 <td>4281438, 4257936</td>

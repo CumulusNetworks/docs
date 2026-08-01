@@ -23,6 +23,10 @@ Cumulus Linux provides a simplified, profile‑based way to configure a switch t
 - The switch stores profile‑based configuration in the standard NVUE configuration files with the same file permissions and access controls.
 - Profile‑based switch configuration uses the default RoCE lossless mode configuration.
 
+{{%notice note%}}
+In Cumulus Linux 5.18.0, profile‑based configuration is a Beta feature.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.18.0

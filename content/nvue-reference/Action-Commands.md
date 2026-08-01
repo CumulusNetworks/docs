@@ -3493,7 +3493,7 @@ When you erase all data on the switch, most services stop except for critical on
 NVUE prompts you to confirm that you want to proceed before destroying all data.
 
 {{%notice note%}}
-- This command is in Beta.
+- This command is in Beta in Cumulus Linux 5.13.0.
 - You can erase all data only on switches with the Spectrum-4 and later ASIC.
 - You can erase all data on a functioning SSD only.
 - You cannot recover erased data.

@@ -136,7 +136,7 @@ The NAS IP address is a global setting that overrides the source IP address set 
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<ipv4-addres>` |  The IPv4 address. |
+| `<ipv4-address>` |  The IPv4 address. |
 
 ### Version History
 
@@ -160,7 +160,7 @@ The NAS IP address is a global setting that overrides the source IP address set 
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<ipv6-addres>` |  The IPv6 address. |
+| `<ipv6-address>` |  The IPv6 address. |
 
 ### Version History
 

@@ -848,7 +848,7 @@ Introduced in Cumulus Linux 5.18.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action clear vrf default router rib ipv6 unreachable-prefixes 10.1.0.0/16
+cumulus@switch:~$ nv action clear vrf default router rib ipv4 unreachable-prefixes 10.1.0.0/16
 Action executing ...
 Removed local LLDP exception for 10.1.0.0/16 vrf default
 Action succeeded
@@ -3187,7 +3187,7 @@ Introduced in Cumulus Linux 5.18.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action delete system packages archive rm0042
+cumulus@switch:~$ nv action delete system packages archive rm1234567
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3493,7 +3493,7 @@ When you erase all data on the switch, most services stop except for critical on
 NVUE prompts you to confirm that you want to proceed before destroying all data.
 
 {{%notice note%}}
-- This command is in Beta.
+- This command is in Beta in Cumulus Linux 5.13.0.
 - You can erase all data only on switches with the Spectrum-4 and later ASIC.
 - You can erase all data on a functioning SSD only.
 - You cannot recover erased data.
@@ -4038,7 +4038,7 @@ cumulus@switch:~$ nv action install system image onie http://203.0.113.10/image-
 
 Stages an image with ONIE and a local NVUE `startup.yaml` file.
 
-To activate (installs) the staged installation and reboot the switch, add the activate reboot commands; for example, `nv action install system image onie http://203.0.113.10/image-installer startup-config /etc/nvue.d/startup.yaml activate reboot`.
+To activate (install) the staged installation and reboot the switch, add the activate reboot commands; for example, `nv action install system image onie http://203.0.113.10/image-installer startup-config /etc/nvue.d/startup.yaml activate reboot`.
 
 ### Command Syntax
 
@@ -4106,7 +4106,7 @@ Introduced in Cumulus Linux 5.18.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action install system packages archive rm0042
+cumulus@switch:~$ nv action install system packages archive rm1234567
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5274,7 +5274,7 @@ Introduced in Cumulus Linux 5.18.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action uninstall system packages archive rm0042
+cumulus@switch:~$ nv action uninstall system packages archive rm1234567
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

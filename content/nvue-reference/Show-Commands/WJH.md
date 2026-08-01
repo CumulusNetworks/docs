@@ -241,7 +241,7 @@ No Data
 
 ## <h>nv show system wjh channel \<channel-id\> buffer-threshold congestion</h>
 
-Shows WJH channel latency congestion information.
+Shows WJH channel congestion information.
 
 | Syntax |  Description   |
 | --------- | -------------- |
@@ -268,7 +268,7 @@ Congestion buffer threshold
 
 ## <h>nv show system wjh channel \<channel-id\> buffer-threshold congestion tc</h>
 
-Shows WJH channel latency buffer congestion for all traffic classes. 
+Shows WJH channel buffer congestion for all traffic classes. 
 
 | Syntax |  Description   |
 | --------- | -------------- |
@@ -289,7 +289,7 @@ No Data
 
 ## <h>nv show system wjh channel \<channel-id\> buffer-threshold congestion tc \<tc-id\></h>
 
-Shows WJH channel latency buffer latency for a specific traffic class.
+Shows WJH channel buffer congestion for a specific traffic class.
  
 
 | Syntax |  Description   |
@@ -314,7 +314,7 @@ No Data
 
 ## <h>nv show system wjh channel \<channel-id\> buffer-threshold congestion tc \<tc-id\> interface</h>
 
-Shows WJH channel latency buffer congestion for traffic class interfaces. 
+Shows WJH channel buffer congestion for traffic class interfaces. 
 
 | Syntax |  Description   |
 | --------- | -------------- |
@@ -336,7 +336,7 @@ No Data
 
 ## <h>nv show system wjh channel \<channel-id\> buffer-threshold congestion tc \<tc-id\> interface \<interface-id\></h>
 
-Shows WJH channel latency buffer congestion for a specific traffic class and interface.  
+Shows WJH channel buffer congestion for a specific traffic class and interface.  
 
 | Syntax |  Description   |
 | --------- | -------------- |
@@ -383,7 +383,7 @@ TUNNEL1      Drop category:   tunnel
 
 ## <h>nv show system wjh channel \<channel-id\> drop-filter \<filter-id\></h>
 
-Shows drop filter configuration for a specific channel.
+Shows drop filter configuration for a specific filter.
 
 | Syntax |  Description   |
 | --------- | -------------- |

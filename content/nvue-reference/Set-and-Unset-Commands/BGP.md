@@ -19,7 +19,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 Enables and disables BGP graceful fabric maintenance.
 
 {{%notice note%}}
-Graceful fabric maintenance is a Beta feature for Cumulus Linux 5.18.
+In Cumulus Linux 5.18.0, graceful fabric maintenance is a Beta feature.
 {{%/notice%}}
 
 Cumulus Linux enables you to remove traffic from a leaf switch gracefully by steering traffic onto other healthy planes before maintenance. This feature works with BGP-LLDP unreachability signaling and uses UPA (Unreachable Prefix Announcement) to mark advertised aggregate routes as unreachable during maintenance.
@@ -872,7 +872,7 @@ BGP-LLDP unreachability in disjoined planes is a Beta feature for Cumulus Linux 
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0 (Beta)
+Introduced in Cumulus Linux 5.17.0
 
 ### Example
 
@@ -4241,6 +4241,10 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES ttl-security h
 ## <h>nv set vrf <vfr-id> router bgp plane-id</h>
 
 Configures the plane ID for Inter-DC routing. You can specify a value between 1 and 16. The default value is 0 (disabled).
+
+{{%notice note%}}
+In Cumulus Linux 5.18.0, Inter-DC routing is a Beta feature.
+{{%/notice%}}
 
 Inter-DC routing enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines:
 - Conditional disaggregation that triggers disaggregated routes at merged planes.

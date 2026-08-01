@@ -109,7 +109,7 @@ Instead of using a single VXLAN device for all layer 3 VNIs, you can configure t
 Layer 3 VXLAN device mode simplifies EVPN configuration and improves performance at scale.
 
 {{%notice note%}}
-In Cumulus Linux 5.18, layer 3 VXLAN device mode is a Beta feature.
+In Cumulus Linux 5.18.0, layer 3 VXLAN device mode is a Beta feature.
 {{%/notice%}}
 
 ### Version History

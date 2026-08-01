@@ -20,6 +20,11 @@ Configures the profile role.
 
 Cumulus Linux provides a simplified, profile‑based way to configure a switch that replaces many NVUE commands. You can select an NVIDIA‑predefined profile and provide interface ranges and breakout values. Cumulus Linux generates and applies all immutable configuration, such as link breakouts, ISSU, adaptive routing, telemetry, QoS, and PFC.
 
+
+{{%notice note%}}
+In Cumulus Linux 5.18.0, profile‑based configuration is a Beta feature.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |

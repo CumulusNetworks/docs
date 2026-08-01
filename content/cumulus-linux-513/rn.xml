@@ -163,6 +163,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>4922104</td>
+<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
+<td>5.13.1-5.16.0</td>
+<td>5.16.1-5.17.0</td>
+</tr>
+<tr>
 <td>4918342, 4641291</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
 <td>5.13.0-5.16.6</td>
@@ -195,19 +201,7 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>5.17.0</td>
 </tr>
 <tr>
-<td>4881679</td>
-<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
-<td>5.13.1-5.16.0</td>
-<td>5.16.1-5.17.0, 5.17.0</td>
-</tr>
-<tr>
 <td>4871161</td>
-<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
-<td>5.9.1-5.17.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
 <td>5.9.1-5.17.0</td>
 <td></td>
@@ -1770,12 +1764,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 </tr>
 <tr>
 <td>4871161</td>
-<td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
-<td>5.9.1-5.17.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4840299</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
 <td>5.9.1-5.17.0</td>
 <td></td>

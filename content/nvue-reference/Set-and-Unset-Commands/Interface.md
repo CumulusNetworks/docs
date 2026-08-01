@@ -686,10 +686,34 @@ cumulus@switch:~$ nv set interface swp1 link state up
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> link-tracking group</h>
+
+Configures the target interfaces for the link tracking group.
+
+Link tracking enables you to monitor interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp8 link-tracking group GROUP2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> link tx-squelch</h>
 
 {{%notice note%}}
-Tx squelch control is a Beta feature.
+In Cumulus Linux 5.16, Tx squelch control is a Beta feature.
 {{%/notice%}}
 
 Configures Tx squelch control, which is a PHY‑level feature that controls if the local port continues transmitting when the remote side is logically down (for example, when the remote side is in a fault state or needs to restart auto-negotiation).
@@ -933,6 +957,39 @@ cumulus@switch:~$ nv set interface swp1 vlan 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set platform transceiver \<interface-id\> temperature setpoint</h>
+
+Configures the temperature thresholds for fan activation in the FAN algorithm, ensuring that they are below the module’s high warning threshold to optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures. Lowering the thresholds leads to earlier and more frequent fan operation, increasing power usage and noise but protecting hardware performance and lifespan.
+
+You can set a value between 30 and 80. The temperature threshold for an interface must be below the module advertised high warning threshold. If you configure the setpoint to be above the module advertised high temperature warning threshold, the FAN algorithm uses the module advertised threshold.
+
+Setting the temperature thresholds does not change the module EEPROM-based alarm thresholds. The optical module continues reporting temperature alarms based on alarms or warning thresholds preprogrammed in the transceiver EEPROM.
+
+{{%notice info%}}
+Setting the temperature thresholds without proper guidance can result in transceiver damage, and might void your warranty and support agreements. This is an advanced configuration task; NVIDIA recommends you use the default transceiver temperature settings. Only modify this setting with approval from NVIDIA Technical Support.
+{{%/notice%}}
+
+- You can set temperature thresholds on the SN5610 switch only.
+- Always use the parent transceiver name for configuration; for example, use swp1 not swp1s0.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system link flap-protection interval</h>
 
 Configures the duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers.
@@ -987,6 +1044,120 @@ cumulus@switch:~$ nv set interface swp1 link flap-protection threshold 8
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system link-tracking group \<group-id\></h>
+
+Configures the link tracking group ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<group-id>` |  The name of the link tracking group. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system link-tracking group GROUP1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system link-tracking group \<group-id\> watch-interface \<interface-id\></h>
+
+Configures the watch interfaces in the link tracking group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<group-id>` |  The name of the link tracking group. |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system link-tracking group GROUP1 watch-interface swp17,19,21
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system link-tracking group \<group-id\> min-links</h>
+
+Configures the minimum number of watch interfaces for each group that must be operationally up to keep the associated target interfaces active.
+
+- The minimum number of links must not exceed the number of interfaces configured in the group.
+- The default value is 1 when the group has at least one watch interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<group-id>` |  The name of the link tracking group. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system link-tracking group GROUP2 min-links 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system link-tracking group \<group-id\> state-change-action</h>
+
+Configures the action each group takes when the number of operationally up watch interfaces drops below the minimum threshold. 
+
+When the number of operationally up watch interfaces meets or exceeds the threshold again, the switch clears the action and restores the target interfaces. You can set the following actions:
+- `protodown-target-interface` marks the target interfaces as protodown so that the switch does not forward traffic to downstream devices over those links. This is the default action.
+- `control-plane-action` notifies the control plane to reroute traffic away from the affected plane.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<group-id>` |  The name of the link tracking group. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system link-tracking group GROUP2 state-change-action protodown-target-interface
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system link-tracking state</h>
+
+Enables and disables link tracking.
+
+Link tracking enables you to monitor interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system link-tracking state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> loopback ip address \<ip-prefix-id\></h>
 
 Configures the loopback IP address in the specified VRF.
@@ -1010,37 +1181,4 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set vrf RED loopback ip address 10.10.10.1/32
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set platform transceiver \<interface-id\> temperature setpoint</h>
-
-Configures the temperature thresholds for fan activation in the FAN algorithm, ensuring that they are below the module’s high warning threshold to optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures. Lowering the thresholds leads to earlier and more frequent fan operation, increasing power usage and noise but protecting hardware performance and lifespan.
-
-You can set a value between 30 and 80. The temperature threshold for an interface must be below the module advertised high warning threshold. If you configure the setpoint to be above the module advertised high temperature warning threshold, the FAN algorithm uses the module advertised threshold.
-
-Setting the temperature thresholds does not change the module EEPROM-based alarm thresholds. The optical module continues reporting temperature alarms based on alarms or warning thresholds preprogrammed in the transceiver EEPROM.
-
-{{%notice info%}}
-Setting the temperature thresholds without proper guidance can result in transceiver damage, and might void your warranty and support agreements. This is an advanced configuration task; NVIDIA recommends you use the default transceiver temperature settings. Only modify this setting with approval from NVIDIA Technical Support.
-{{%/notice%}}
-
-- You can set temperature thresholds on the SN5610 switch only.
-- Always use the parent transceiver name for configuration; for example, use swp1 not swp1s0.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.14.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60
 ```

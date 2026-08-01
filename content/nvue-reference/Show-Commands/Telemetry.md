@@ -58,7 +58,7 @@ cumulus@switch:~$ nv show interface swp1 latency-measurement traffic-class
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<traffic-class\></h>
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<tc-id\></h>
 
 Shows latency measurement information for a specific traffic class.
 
@@ -67,7 +67,7 @@ Shows latency measurement information for a specific traffic class.
 | Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>`  | The interface name.|
-| `<traffic-class>`  | The traffic class.|
+| `<tc-id>`  | The traffic class.|
 
 ### Version History
 
@@ -84,7 +84,7 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol</h>
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<tc-id\> protocol</h>
 
 Shows latency measurement information for a specific traffic class for both IPv4 and IPv6.
 
@@ -93,7 +93,7 @@ Shows latency measurement information for a specific traffic class for both IPv4
 | Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>`  | The interface name.|
-| `<traffic-class>`  | The traffic class.|
+| `<tc-id>`  | The traffic class.|
 
 ### Version History
 
@@ -108,7 +108,7 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol \<protocol-id\></h>
+## <h>nv show interface \<interface-id\> latency-measurement traffic-class \<tc-id\> protocol \<protocol-id\></h>
 
 Shows latency measurement information for a specific traffic class and protocol (IPv4 or IPv6).
 
@@ -117,7 +117,7 @@ Shows latency measurement information for a specific traffic class and protocol 
 | Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>`  | The interface name.|
-| `<traffic-class>`  | The traffic class.|
+| `<tc-id>`  | The traffic class.|
 | `<protocol-id>`  | IPv4 or IPv6.|
 
 ### Version History
@@ -1182,7 +1182,7 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry hft egress-buffer traffic-class \<traffic-class-id\></h>
+## <h>nv show system telemetry hft egress-buffer traffic-class \<tc-id\></h>
 
 Shows the HFT egress buffer configuration for a traffic class.
 
@@ -1190,7 +1190,7 @@ Shows the HFT egress buffer configuration for a traffic class.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<traffic-class-id>` |  The traffic class ID. |
+| `<tc-id>` |  The traffic class ID. |
 
 ### Version History
 
@@ -1371,7 +1371,7 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry hft profile \<profile-id\> traffic-class \<traffic-class-id\></h>
+## <h>nv show system telemetry hft profile \<profile-id\> traffic-class \<tc-id\></h>
 
 Shows configuration settings for all HFT traffic classes for a specific profile.
 
@@ -1380,7 +1380,7 @@ Shows configuration settings for all HFT traffic classes for a specific profile.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |  The name of the profile. High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).|
-| `<traffic-class-id>` |  The traffic class ID.|
+| `<tc-id>` |  The traffic class ID.|
 
 ### Version History
 

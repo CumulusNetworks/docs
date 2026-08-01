@@ -14,6 +14,35 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set bridge default-vlan \<vlan-id\></h>
+
+Configures the default VLAN so that VLAN 1 is not used on the trunk and access ports by default.
+
+Cumulus Linux uses VLAN 1 as the default VLAN identifier for both trunk and access ports. VLAN 1 is often used for in-band management and carries critical control plane protocols like Spanning Tree Protocol (STP). Because it is a globally known default, it is a primary target for VLAN hopping and double-tagging attacks, where an unauthorized user can bypass layer 2 isolation to gain access to other segments. To avoid using VLAN 1 in Cumulus Linux for user data and management traffic and to mitigate security risks, you can configure the default VLAN identifier (PVID) to override the default VLAN 1.
+
+Changing the default VLAN from VLAN 1 to a different identifier supports DoD security requirements.
+
+- The default VLAN applies to all bridge instances that do not have a specific PVID configured.
+- Any bridge PVID you configure on an individual bridge instance takes precedence over the default VLAN.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vlan-id>` |  The VLAN ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge default-vlan 101
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set bridge domain \<domain-id\></h>
 
 Configures the bridge.
@@ -48,6 +77,151 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default ageing 600
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\></h>
+
+Configures dynamic ARP inspection for a bridge VLAN.
+
+Dynamic ARP Inspection protects against ARP spoofing and ARP poisoning attacks by validating ARP packets on untrusted bridge ports against trusted IP-to-MAC bindings, and drops packets that do not match. Bindings come from the DHCP snooping table and from static bindings you configure. On an untrusted port, the switch permits an ARP packet only when its Ethernet source MAC, ARP sender MAC, ARP sender IP address, and ingress port all match a binding.
+
+The switch does not inspect ports you list as ARP Inspection trusted interfaces. This list is independent of the DHCP snooping trust configuration; a DHCP snooping trusted uplink is still ARP inspected unless it is also an ARP Inspection trusted interface.
+
+Dynamic ARP inspection inspects IPv4 ARP only, on untrusted ports, in single bridge mode.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> interface \<interface-id\></h>
+
+Sets a trusted port for dynamic ARP inspection. The listed ports have no DAI filters and the packets pass through the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<domain-id>` |  The bridge name. |
+| `<vlan-id>` |  The VLAN ID. |
+| `<interface-id>` |  The interface ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 interface swp2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<static-binding-id\> mac \<mac-address\></h>
+
+Configures the MAC address for static MAC to IP and port bindings for hosts not using DHCP.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<domain-id>` |  The bridge name. |
+| `<vlan-id>` |  The VLAN ID. |
+| `<static-binding-id>` |  The static binding. |
+| `<mac-address>` |  The MAC address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 mac 00:02:00:00:00:05
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<static-binding-id\> ip \<ipv4-address\></h>
+
+Configures the IP address for static MAC to IP and port bindings for hosts not using DHCP.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<domain-id>` |  The bridge name. |
+| `<vlan-id>` |  The VLAN ID. |
+| `static-binding-id>` |  The static binding. |
+| `<ipv4-address>` |  The IPv4 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 ip 192.0.2.42
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<static-binding-id\> port \<interface-id\></h>
+
+Configures the port for static MAC to IP and port bindings for hosts not using DHCP.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<domain-id>` |  The bridge name. |
+| `<vlan-id>` |  The VLAN ID. |
+| `<static-binding-id>` |  The static binding. |
+| `<interface-id>` |  The interface ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 port swp2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> state</h>
+
+Enables and disables dynamic ARP inspection for a bridge VLAN.
+
+Dynamic ARP Inspection protects against ARP spoofing and ARP poisoning attacks by validating ARP packets on untrusted bridge ports against trusted IP-to-MAC bindings, and drops packets that do not match. Bindings come from the DHCP snooping table and from static bindings you configure. On an untrusted port, the switch permits an ARP packet only when its Ethernet source MAC, ARP sender MAC, ARP sender IP address, and ingress port all match a binding.
+
+The switch does not inspect ports you list as ARP Inspection trusted interfaces. This list is independent of the DHCP snooping trust configuration; a DHCP snooping trusted uplink is still ARP inspected unless it is also an ARP Inspection trusted interface.
+
+- Before you enable dynamic ARP inspection on a bridge VLAN, you must configure DHCP snooping for the VLAN.
+- Dynamic ARP inspection inspects IPv4 ARP only, on untrusted ports, in single bridge mode.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<domain-id>` |  The bridge name. |
+| `<vlan-id>` |  The VLAN ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

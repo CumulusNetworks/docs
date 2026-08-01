@@ -1201,7 +1201,7 @@ BGP Unreachable Prefix TLV is a Beta feature for Cumulus Linux 5.17.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0 (Beta)
+Introduced in Cumulus Linux 5.17.0
 
 ### Example
 

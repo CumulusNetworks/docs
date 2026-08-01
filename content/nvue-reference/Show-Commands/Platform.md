@@ -354,6 +354,27 @@ In Cumulus Linux 5.6 and later, the command output also shows the limit variance
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show platform environment leakage</h>
+
+Shows the switch environment leakage (low-current signals) for the Spectrum-6 switch.
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform environment leakage
+Name      State  
+--------  ------ 
+leakage1  normal 
+leakage2  normal
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show platform environment led</h>
 
 Shows information about the LEDs on the switch.
@@ -819,27 +840,6 @@ Introduced in Cumulus Linux 5.18.0
 
 ```
 cumulus@switch:~$ nv show platform firmware BMC files
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show platform environment leakage</h>
-
-Shows the switch environment leakage (low-current signals) for the Spectrum-6 switch.
-
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show platform environment leakage
-Name      State  
---------  ------ 
-leakage1  normal 
-leakage2  normal
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

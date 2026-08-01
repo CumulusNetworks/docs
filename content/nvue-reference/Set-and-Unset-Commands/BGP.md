@@ -19,7 +19,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 Enables and disables BGP graceful fabric maintenance.
 
 {{%notice note%}}
-Graceful fabric maintenance is a Beta feature for Cumulus Linux 5.18.
+In Cumulus Linux 5.18.0, graceful fabric maintenance is a Beta feature.
 {{%/notice%}}
 
 Cumulus Linux enables you to remove traffic from a leaf switch gracefully by steering traffic onto other healthy planes before maintenance. This feature works with BGP-LLDP unreachability signaling and uses UPA (Unreachable Prefix Announcement) to mark advertised aggregate routes as unreachable during maintenance.

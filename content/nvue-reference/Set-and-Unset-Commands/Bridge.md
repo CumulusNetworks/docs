@@ -121,7 +121,7 @@ cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 interfa
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<arp-inspection-static-binding-id\> mac \<mac-address\></h>
+## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<static-binding-id\> mac \<mac-address\></h>
 
 Configures the MAC address for static MAC to IP and port bindings for hosts not using DHCP.
 
@@ -131,7 +131,7 @@ Configures the MAC address for static MAC to IP and port bindings for hosts not 
 | ---------  | -------------- |
 | `<domain-id>` |  The bridge name. |
 | `<vlan-id>` |  The VLAN ID. |
-| `<arp-inspection-static-binding-id>` |  The static binding. |
+| `<static-binding-id>` |  The static binding. |
 | `<mac-address>` |  The MAC address. |
 
 ### Version History
@@ -146,7 +146,7 @@ cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<arp-inspection-static-binding-id\> ip \<ipv4-address\></h>
+## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<static-binding-id\> ip \<ipv4-address\></h>
 
 Configures the IP address for static MAC to IP and port bindings for hosts not using DHCP.
 
@@ -156,7 +156,7 @@ Configures the IP address for static MAC to IP and port bindings for hosts not u
 | ---------  | -------------- |
 | `<domain-id>` |  The bridge name. |
 | `<vlan-id>` |  The VLAN ID. |
-| `<arp-inspection-static-binding-id>` |  The static binding. |
+| `static-binding-id>` |  The static binding. |
 | `<ipv4-address>` |  The IPv4 address. |
 
 ### Version History
@@ -171,7 +171,7 @@ cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<arp-inspection-static-binding-id\> port \<interface-id\></h>
+## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<static-binding-id\> port \<interface-id\></h>
 
 Configures the port for static MAC to IP and port bindings for hosts not using DHCP.
 
@@ -181,7 +181,7 @@ Configures the port for static MAC to IP and port bindings for hosts not using D
 | ---------  | -------------- |
 | `<domain-id>` |  The bridge name. |
 | `<vlan-id>` |  The VLAN ID. |
-| `<arp-inspection-static-binding-id>` |  The static binding. |
+| `<static-binding-id>` |  The static binding. |
 | `<interface-id>` |  The interface ID. |
 
 ### Version History

@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show system packages archive</h>
 
-Shows the patch staged archives, each with a summary and status, run the nv show system packages archive command. The status is `installed`, `not-installed`, `partially-installed`, `failed`, or `operation-in-progress`.
+Shows the staged patch archives, each with a summary and status, run the nv show system packages archive command. The status is `installed`, `not-installed`, `partially-installed`, `failed`, or `operation-in-progress`.
 
 The Cumulus Linux patch framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
 
@@ -35,7 +35,7 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system packages archive <archive-id></h>
+## <h>nv show system packages archive \<archive-id\></h>
 
 Shows information about a specific patch, such as a summary, description, impact, installation time, failure reason, and its applied status.
 

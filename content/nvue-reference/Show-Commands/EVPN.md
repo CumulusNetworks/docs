@@ -289,6 +289,29 @@ nexthop-group  268435460
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show evpn l3vxi</h>
+
+Shows layer 3 VXLAN device mode configuration.
+
+Instead of using a single VXLAN device for all layer 3 VNIs, you can configure the switch to use a layer 3 VXLAN device for each VNI. Layer 3 VXLAN mode creates individual VXI devices that are not SVIs and are unrelated to any bridge. Layer 3 VXLAN device mode simplifies EVPN configuration and improves performance at scale.
+
+{{%notice note%}}
+In Cumulus Linux 5.18.0, layer 3 VXLAN device mode is a Beta feature.
+{{%/notice%}}
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show evpn l3vxi
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show evpn multihoming</h>
 
 Shows global EVPM multihoming configuration.

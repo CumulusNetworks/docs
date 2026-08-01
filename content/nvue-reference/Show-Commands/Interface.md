@@ -91,6 +91,10 @@ swp54      15E-255  15E-255  15E-255  0         0         1
 
 Shows a tabular summary of transceiver temperature, voltage, and per-channel optical power and bias values for all switch port interfaces.
 
+{{%notice note%}}
+In Cumulus Linux 5.18.0, the `nv show interface --view dom` command is a Beta feature.
+{{%/notice%}}
+
 ## Version History
 
 Introduced in Cumulus Linux 5.18.0

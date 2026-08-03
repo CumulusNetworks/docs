@@ -13,6 +13,24 @@
 <td></td>
 </tr>
 <tr>
+<td>5174873</td>
+<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5174595</td>
+<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5165432, 5154620</td>
+<td>With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic. </td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5159852, 4667526</td>
 <td>When you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions can remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report {{Cease/Connection Collision Resolution}}.This timing-dependent issue might occur if you do not configure a BGP update source. If the intended link-local IPv6 address is not yet usable (for example, during Duplicate Address Detection) the kernel might select an IPv6 address belonging to another link as the TCP source. This can associate the TCP connection with different BGP neighbors at each endpoint and prevent the correctly sourced connection from establishing.To work around this issue, configure update-source separately for every numbered IPv6 BGP neighbor on both switches, using the local IPv6 address assigned to that neighbor’s link.Do not configure a single shared source on the peer group when each parallel link has a different local address. After applying the configuration, clear the affected BGP sessions to remove any existing incorrectly associated connections.</td>
 <td>5.18.0</td>
@@ -221,12 +239,6 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td>When you configure the RADIUS authentication order with {{local}} first and {{radius}} second, the RADIUS user is authenticated as a default user name. </td>
 <td>5.11.3-5.18.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4535696</td>
-<td>When you configure the RADIUS authentication order with {{local}} first and {{radius}} second, the RADIUS user is authenticated as a default user name. </td>
-<td>5.12.1-5.18.0</td>
-<td>5.9.4</td>
 </tr>
 <tr>
 <td>4534357</td>
@@ -909,11 +921,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.3-5.17.0</td>
 </tr>
 <tr>
-<td>5162182, 5157267</td>
-<td>Restarting the SDK statistics collector deinitializes the telemetry module in the SDK. Any other processes using the SDK Telemetry module see failures.</td>
-<td></td>
-</tr>
-<tr>
 <td>5157588</td>
 <td>When deleting a route map applied to BGP routes carrying multiple extended communities, the policy strips all extended communities instead of removing only the targeted extended community. This issue results in unintended loss of SoO, LB, RT, or other extended‑community attributes during outbound policy evaluation.</td>
 <td></td>
@@ -990,7 +997,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5103277</td>
-<td>Running simultaneous vtysh commands and FRR reload or restart commands might miss or corrupt the configuration datastore.</td>
+<td>In High scale scenario there is a possibility of config datastore miss or corruption in case simultaneous vtysh commands and frr reload or restart</td>
 <td>5.16.4-5.16.5</td>
 </tr>
 <tr>
@@ -1007,7 +1014,7 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 </tr>
 <tr>
 <td>5102853</td>
-<td>In high scale configurations, you might see a configuration datastore miss or corruption when you run simultaneous vtysh commands and FRR reload or restart commands.</td>
+<td>In High scale scenario there is a possibility of config datastore miss or corruption in case simultaneous vtysh commands and frr reload or restart</td>
 <td>5.16.4-5.16.5</td>
 </tr>
 <tr>
@@ -1147,11 +1154,6 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td>5040890</td>
 <td>IPv4 BGP aggregate routes are not advertised to peers.</td>
 <td>5.14.0-5.17.0</td>
-</tr>
-<tr>
-<td>5039449</td>
-<td>BFD offload for IPv6 is not supported.</td>
-<td></td>
 </tr>
 <tr>
 <td>5037464</td>
@@ -1307,7 +1309,7 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 </tr>
 <tr>
 <td>4771988, 4958439</td>
-<td>After you enable BFD offload, BFD control packet counters stops incrementing. Control plane BFD sessions are unaffected by this issue.</td>
+<td>After you enable BFD offload, BFD control packet counters stop incrementing. Control plane BFD sessions are not affected by this issue and there is no BFD functionality impact in case of kernel offload.</td>
 <td>5.16.0-5.17.0</td>
 </tr>
 </table>

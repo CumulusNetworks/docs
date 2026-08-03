@@ -1784,7 +1784,7 @@ Dynamic ECN is a congestion marking mechanism optimized for high-performance tra
 - ECN marking probability has a hardware granularity of one percent; effective probabilities below one percent do not produce any marking.
 
 {{%notice note%}}
-Dynamic ECN is a Beta feature for Cumulus Linux 5.17.
+In Cumulus Linux 5.17.0, dynamic ECN is a Beta feature.
 {{%/notice%}}
 
 ### Command Syntax
@@ -1796,7 +1796,7 @@ Dynamic ECN is a Beta feature for Cumulus Linux 5.17.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0 (Beta)
+Introduced in Cumulus Linux 5.17.0
 
 ### Example
 
@@ -1816,7 +1816,7 @@ Dynamic ECN is a congestion marking mechanism optimized for high-performance tra
 - ECN marking probability has a hardware granularity of one percent; effective probabilities below one percent do not produce any marking.
 
 {{%notice note%}}
-Dynamic ECN is a Beta feature for Cumulus Linux 5.17.
+In Cumulus Linux 5.17.0, dynamic ECN is a Beta feature.
 {{%/notice%}}
 
 ### Command Syntax
@@ -1828,7 +1828,7 @@ Dynamic ECN is a Beta feature for Cumulus Linux 5.17.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0 (Beta)
+Introduced in Cumulus Linux 5.17.0
 
 ### Example
 
@@ -1848,7 +1848,7 @@ Dynamic ECN is a congestion marking mechanism optimized for high-performance tra
 - ECN marking probability has a hardware granularity of one percent; effective probabilities below one percent do not produce any marking.
 
 {{%notice note%}}
-Dynamic ECN is a Beta feature for Cumulus Linux 5.17.
+In Cumulus Linux 5.17.0, dynamic ECN is a Beta feature.
 {{%/notice%}}
 
 ### Command Syntax
@@ -1860,7 +1860,7 @@ Dynamic ECN is a Beta feature for Cumulus Linux 5.17.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0 (Beta)
+Introduced in Cumulus Linux 5.17.0
 
 ### Example
 
@@ -2446,7 +2446,7 @@ cumulus@switch:~$ nv set qos pfc default-global port-buffer 20000
 ## <h>nv set qos pfc \<profile-id\> small-packet-probability</h>
 
 {{%notice note%}}
-Lossless headroom based on small packet probability is a Beta feature for Cumulus Linux 5.17.
+In Cumulus Linux 5.17.0, lossless headroom based on small packet probability is a Beta feature.
 {{%/notice%}}
 
 Configures the probability of small packets on ports applied with a priority flow control profile.
@@ -2463,7 +2463,7 @@ To enable more accurate headroom calculations, providing for better buffer alloc
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0 (Beta)
+Introduced in Cumulus Linux 5.17.0.
 
 ### Example
 
@@ -2709,6 +2709,8 @@ Configures the RoCE mode. You can specify the following modes:
 - `lossy` enables RoCE with ECN.
 - `lossless` enables RoCE with PFC and ECN.
 - `lossless-single-ipool` enables the single shared buffer pool for RoCE.
+- `dci-1` enablesthe  DCI‑1 profile that provides QoS settings for data center to data center connections. DCI‑1 configures the switch to run mixed classes: traffic class 3 with PFC (lossless intra‑data center) and traffic class 4 with ECN (lossy data center to data center, without PFC). (Supported in Cumulus Linux 5.18 and later).
+
 
 The default setting is `lossless`.
 

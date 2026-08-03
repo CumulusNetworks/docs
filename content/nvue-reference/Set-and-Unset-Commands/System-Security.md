@@ -14,6 +14,34 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> security ip-source-guard</h>
+
+Configures IP Source Guard. You can specify `enabled` or `disabled`.
+
+IP Source Guard is a layer 2 security feature that prevents IP address spoofing on untrusted interfaces. The `dhcpsnoop` daemon filters ingress frames based on a validated binding table; the switch forwards traffic that ingresses a port with IP Source Guard enabled only if its source MAC and source IP address match an authorized entry.
+
+{{%notice note%}}
+Before you enable IP Source Guard on an interface, you must configure DHCP snooping for the bridge VLAN.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp5-9 security ip-source-guard enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system security alerts audit-failure</h>
 
 Enables or disables audit-failure alerts. Audit-failure alerts are enabled by default.
@@ -232,6 +260,22 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv set system security password-hardening lower-class disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system security password-hardening min-char-diff</h>
+
+Configures the minimum password character difference between the current and new password when updating user passwords. You can specify a value between 0 and 10 characters. The minimum password length setting must be equal to or more than the minimum password character difference.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system security password-hardening min-char-diff 8
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

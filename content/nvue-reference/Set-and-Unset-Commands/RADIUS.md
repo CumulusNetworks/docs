@@ -126,6 +126,76 @@ cumulus@switch:~$ nv set system aaa radius enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system aaa radius nas-ip-address \<ipv4-address\></h>
+
+Configures the NAS (Network Access Server) IPv4 address that the switch sends in RADIUS requests.
+
+The NAS IP address is a global setting that overrides the source IP address set for each RADIUS server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<ipv4-address>` |  The IPv4 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius nas-ip-address 10.10.10.3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius nas-ipv6-address \<ipv6-address\></h>
+
+Configures the NAS (Network Access Server) IPv6 address that the switch sends in RADIUS requests.
+
+The NAS IP address is a global setting that overrides the source IP address set for each RADIUS server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<ipv6-address>` |  The IPv6 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius nas-ip-address 2001:DB8::1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius nas-identifier \<identifier\></h>
+
+Configures the NAS (Network Access Server) identifier that the switch sends in RADIUS requests. The NAS identifier is a global setting that overrides the source IP address set for each RADIUS server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<identifier>` |  The NAS identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius nas-identifier AB-123
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa radius port</h>
 
 Configures the port you want to use for all RADIUS communication. You can specify a value between 0 and 65535. The default value is 1812.

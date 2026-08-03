@@ -60,7 +60,7 @@ Hostname       Port  Priority  Password  source-ip     Timeout
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system aaa radius server \<hostname-id\></h>
+## <h>nv show system aaa radius server \<server-id\></h>
 
 Shows configuration settings for a specific RADIUS server.
 
@@ -68,7 +68,7 @@ Shows configuration settings for a specific RADIUS server.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+| `<server-id>` | The IP address or hostname of the RADIUS server. |
 
 ### Version History
 
@@ -85,4 +85,35 @@ timeout    10            10
 secret     *             *           
 priority   1             10          
 source-ip  192.168.1.10  192.168.1.10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system aaa radius server \<server-id\> counters</h>
+
+Shows statistics for a specific RADIUS server, such as the number of authorization requests, accepted, rejected, timed out and retried access requests, and authorization connection errors and bad responses.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<server-id>` | The IP address or hostname of the RADIUS server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system aaa radius server 192.168.0.254 counters
+                        operational  applied
+-----------------------  -----------  -------
+auth-requests            1
+access-accepts           1
+access-rejects           0
+timeout-access-requests  0
+retried-auth-requests    0
+auth-connection-errors   0
+auth-bad-responses       0
 ```

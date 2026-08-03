@@ -10,6 +10,58 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system packages archive</h>
+
+Shows the staged patch archives, each with a summary and status, run the nv show system packages archive command. The status is `installed`, `not-installed`, `partially-installed`, `failed`, or `operation-in-progress`.
+
+The Cumulus Linux patch framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
+
+You can apply a critical fix on your own maintenance window and back it out without a full image upgrade.
+
+Patches only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every patch into a subsequent release.
+
+You can roll back and return to the base image, not a previously-running patch. If a package is running an earlier patch version when a later patch is installed, removing the later one restores the base-image version, not the earlier patch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system packages archive
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system packages archive \<archive-id\></h>
+
+Shows information about a specific patch, such as a summary, description, impact, installation time, failure reason, and its applied status.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<archive-id>`    | The patch archive ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system packages archive rm1234567
+The operation will delete the archive.
+Type [y] to delete the archive.
+Type [N] to abort.
+Do you want to continue? [y/N] y
+Action executing ...
+``` 
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system packages</h>
 
 Shows the list of repositories and keys on the switch.

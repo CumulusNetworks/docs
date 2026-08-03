@@ -229,18 +229,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
-<td>4922104</td>
-<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
-<td>5.13.1-5.15.1, 5.16.0</td>
-<td>5.16.1, 5.16.6-5.18.0</td>
-</tr>
-<tr>
-<td>4922099</td>
-<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
-<td>5.14.0-5.15.1, 5.16.0</td>
-<td>5.16.1, 5.16.6-5.18.0</td>
-</tr>
-<tr>
 <td>4918342, 4641291</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.6</td>
@@ -251,6 +239,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>BGP sessions configured with an explicit IPv6 link local peer address might result in stale or invalid next hop tracking entries after a session disruption.</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6</td>
 <td>5.17.0-5.18.0</td>
+</tr>
+<tr>
+<td>4901549</td>
+<td>In a highly volatile network, frequent churn of SOO‑tagged routes can generate a large volume of SOO NHG sync messages to Zebra. When Zebra becomes backed up while processing these NHG updates, its memory usage can grow significantly.</td>
+<td>5.14.0-5.15.1, 5.16.0</td>
+<td>5.16.1, 5.16.6-5.18.0, 5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4895563</td>
@@ -289,6 +283,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
 <td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.6</td>
 <td>5.17.0-5.18.0</td>
+</tr>
+<tr>
+<td>4881679</td>
+<td>When the system is under load and the {{wd_keepalive}} process is running at the default rate of one time per minute, the switch might reboot due to starvation of the {{wd_keepalive}} process.</td>
+<td>5.13.1-5.15.1, 5.16.0</td>
+<td>5.16.1, 5.16.6-5.18.0, 5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4879269</td>
@@ -384,12 +384,6 @@ interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc00
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1</td>
 <td>5.16.0-5.16.1, 5.16.6-5.18.0</td>
-</tr>
-<tr>
-<td>4769255</td>
-<td>When using the CPU port as a SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
-<td>5.14.0-5.15.0</td>
-<td>5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
 </tr>
 <tr>
 <td>4751060, 4637733</td>
@@ -498,6 +492,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+</tr>
+<tr>
+<td>4717888</td>
+<td>When using the CPU port as a SPAN destination, the switch might become unresponsive and, or reboot. To work around this issue, use SPAN to a local port instead of the CPU port.</td>
+<td>5.14.0-5.15.0</td>
+<td>5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
 </tr>
 <tr>
 <td>4714618</td>
@@ -871,7 +871,7 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 </tr>
 <tr>
 <td>4547463, 4705370</td>
-<td>When you try to run {{nv action boot-next}} commands during optimized image upgrade, the commands time out. This does not necessarily mean an issue occurred; the system might still be executing the action.To check that the action command completed before going to the next step to reboot the system:
+<td>When you run {{nv action boot-next}} commands during optimized image upgrade, the commands time out. This does not indicate that an issue occurred; the system might still be executing the action.To check that the action command completed before going to the next step to reboot the system:
 &lt;ol&gt;&lt;li&gt;Find the Request ID for the REST API invocation corresponding to the {{nv action boot-next}} command by doing a grep for {{ActionKey.*boot-next}} in the /var/log/nvued.log}} file. For example, the value 3 in the {{Ran Job running ActionKey('@boot-next', '/system/image', (), 3, (('partition', 'partition1'),))}} line indicates the Request ID.&lt;/li&gt;
 &lt;li&gt;Run the {{curl -u '&lt;username&gt;:&lt;password&gt;'  -X GET https://127.0.0.1:8765/nvue_v1/action/&lt;Request ID&gt; -k}} command from the shell to show the status of the action command. If the value of {{state}} is {{action_success}}, the action command completed successfully. If the value of {{state}} is {{running}}, the system is still processing. If the value of {{state}} is {{action_error}}, the system encountered an error.&lt;/li&gt;&lt;/ol&gt;</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
@@ -939,7 +939,7 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 </tr>
 <tr>
 <td>4501632, 4530257</td>
-<td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that NVUE database has time to sync to the filesystem. </td>
+<td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that the NVUE database has time to sync to the filesystem. </td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>

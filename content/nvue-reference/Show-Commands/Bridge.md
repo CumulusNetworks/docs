@@ -98,6 +98,193 @@ stp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show bridge domain \<domain-id\> arp-inspection</h>
+
+Shows dynamic ARP inspection information such as the state, interfaces, and bindings.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default arp-inspection
+ARP Inspection Table
+=======================
+    Vlan  State     Trusted-Port  Binding  MAC                IP          Port
+    ----  --------  ------------  -------  -----------------  ----------  ----
+    10    disabled  swp2          server1  00:02:00:00:00:05  192.0.2.42  swp2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> arp-inspection vlan</h>
+
+Shows dynamic ARP inspection information for all VLANs.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\></h>
+
+Shows dynamic ARP inspection information for a specific VLAN.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10
+       operational  applied 
+-----  -----------  --------
+state  disabled     disabled
+
+ARP Inspection Trusted Interfaces
+====================================
+    Port
+    ----
+    swp2
+
+ARP Inspection Static Bindings
+=================================
+    Name     MAC                IP          Port
+    -------  -----------------  ----------  ----
+    server1  00:02:00:00:00:05  192.0.2.42  swp2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> interface</h>
+
+Shows dynamic ARP inspection information for all VLAN interfaces.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 interface
+Port
+----
+swp2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> interface \<interface-id\></h>
+
+Shows dynamic ARP inspection information for a specific VLAN interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN ID. |
+| `<interface-id>` | The interface ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 interface swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding</h>
+
+Shows dynamic ARP inspection information for all static bindings.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 static-binding
+Name     MAC                IP          Port
+-------  -----------------  ----------  ----
+server1  00:02:00:00:00:05  192.0.2.42  swp2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<name\></h>
+
+Shows dynamic ARP inspection information for a specific static binding.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN ID. |
+| `<name>` | The static binding name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 static-binding server1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show bridge domain \<domain-id\> mac-table</h>
 
 Shows the layer 2 forwarding database for a specific bridge.

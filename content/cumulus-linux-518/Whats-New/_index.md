@@ -24,6 +24,10 @@ The NVIDIA SN6600_LD switch does not support:
 
 Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switch is generally available. You must upgrade any engineering sample to Cumulus Linux 5.18 with ONIE.
 
+{{%notice infonopad%}}
+Cumulus Linux 5.18 supports Spectrum1 through Spectrum-6 for **non-Spectrum-X**.
+{{%/notice%}}
+
 ### New Features and Enhancements
 - Kernel update to Debian 6.1.174
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available

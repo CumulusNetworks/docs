@@ -13,25 +13,25 @@ To show a summary of the BGP configuration on the switch, run the NVUE `nv show 
 
 ```
 cumulus@switch:~$ nv show router bgp
-                                operational  applied      pending    
-------------------------------  -----------  -----------  -----------
-state                           enabled      enabled      enabled    
-autonomous-system               65101        65101        65101      
-router-id                       10.10.10.1   10.10.10.1   10.10.10.1 
-policy-update-timer             5            5            5          
-graceful-shutdown               disabled     disabled     disabled   
-wait-for-install                disabled     disabled     disabled   
-graceful-restart                                                     
-  mode                          helper-only  helper-only  helper-only
-  restart-time                  120          120          120        
-  path-selection-deferral-time  120          120          120        
-  stale-routes-time             360          360          360        
-convergence-wait                                                     
-  time                          0            0            0          
-  establish-wait-time           0            0            0          
-queue-limit                                                          
-  input                         10000        10000        10000      
-  output                        10000        10000        10000        
+                                operational  applied     
+------------------------------  -----------  ----------- 
+state                           enabled      enabled     
+autonomous-system               65101        65101       
+router-id                       10.10.10.1   10.10.10.1  
+policy-update-timer             5            5           
+graceful-shutdown               disabled     disabled    
+wait-for-install                disabled     disabled    
+graceful-restart                                         
+  mode                          helper-only  helper-only 
+  restart-time                  120          120         
+  path-selection-deferral-time  120          120         
+  stale-routes-time             360          360         
+convergence-wait                                         
+  time                          0            0           
+  establish-wait-time           0            0           
+queue-limit                                              
+  input                         10000        10000       
+  output                        10000        10000       
 ```
 
 ```
@@ -97,8 +97,6 @@ To show a more detailed breakdown of a specific neighbor, run the NVUE `nv show 
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51
-                               operational                applied                                  pending                                
------------------------------  -------------------------  ---------------------------------------  ---------------------------------------
                                operational               applied
 -----------------------------  ------------------------  ------------------
 password                                                 *
@@ -678,115 +676,115 @@ To show a summary of the BGP configuration on the switch for a specific VRF, run
 
 ```
 cumulus@switch:mgmt:~$ nv show vrf BLUE router bgp 
-                                   operational  applied     pending   
----------------------------------  -----------  ----------  ----------
-state                                           enabled     enabled   
-autonomous-system                  65101        65101       65101     
-router-id                          10.10.10.1   10.10.10.1  10.10.10.1
-rd                                              none        none      
-address-family                                                        
-  ipv4-unicast                                                        
-    rib-filter                                  none        none      
-    route-export                                                      
-      to-evpn                                                         
-        state                                   enabled     enabled   
-        route-map                               none        none      
-        default-route-origination  disabled     disabled    disabled  
-      to-vrf                                                          
-        [list]                     none                               
-      [route-target]               none                               
-      rd                           none                               
-    route-import                                                      
-      from-vrf                                                        
-        state                                   disabled    disabled  
-        [list]                     none                               
-      [route-target]               none                               
-    admin-distance                                                    
-      external                     20           20          20        
-      internal                     200          200         200       
-    multipaths                                                        
-      ebgp                         64           64          64        
-      ibgp                         64           64          64        
-      compare-cluster-length       disabled     disabled    disabled  
-    state                                       enabled     enabled   
-    redistribute                                                      
-      static                                                          
-        state                      disabled     disabled    disabled  
-      connected                                                       
-        state                      enabled      enabled     enabled   
-        metric                     auto         auto        auto      
-        route-map                  none         none        none      
-      kernel                                                          
-        state                      disabled     disabled    disabled  
-      ospf                                                            
-        state                      disabled     disabled    disabled  
-    [network]                                                         
-    [aggregate-route]                                                 
-  ipv6-unicast                                                        
-    route-export                                                      
-      to-evpn                                                         
-        default-route-origination  disabled                           
-      to-vrf                                                          
-        [list]                     none                               
-      [route-target]               none                               
-      rd                           none                               
-    route-import                                                      
-      from-vrf                                                        
-        [list]                     none                               
-      [route-target]               none                               
-    multipaths                                                        
-      compare-cluster-length       disabled                           
-    state                                       disabled    disabled  
-    redistribute                                                      
-      static                                                          
-        state                      disabled                           
-      connected                                                       
-        state                      disabled                           
-      kernel                                                          
-        state                      disabled                           
-      ospf6                                                           
-        state                      disabled                           
-  l2vpn-evpn                                                          
-    state                                       disabled    disabled  
-[neighbor]                                                            
-[peer-group]                                                          
-path-selection                                                        
-  routerid-compare                 disabled     disabled    disabled  
-  aspath                                                              
-    compare-lengths                enabled      enabled     enabled   
-    compare-confed                 disabled     disabled    disabled  
-  med                                                                 
-    compare-always                 disabled     disabled    disabled  
-    compare-deterministic          enabled      enabled     enabled   
-    compare-confed                 disabled     disabled    disabled  
-    missing-as-max                 disabled     disabled    disabled  
-  multipath                                                           
-    aspath-ignore                  disabled     disabled    disabled  
-    generate-asset                 disabled     disabled    disabled  
-    bandwidth                      all-paths    all-paths   all-paths 
-route-reflection                                                      
-  state                                         disabled    disabled  
-  reflect-between-clients          enabled                            
-  outbound-policy                  disabled                           
-route-export                                                          
-  to-evpn                                                             
-    [route-target]                              auto        auto      
-route-import                                                          
-  from-evpn                                                           
-    [route-target]                              auto        auto      
-timers                                                                
-  keepalive                                     3           3         
-  hold                                          9           9         
-  connection-retry                              10          10        
-  route-advertisement                           none        none      
-  conditional-advertise                         60          60        
-confederation                                                         
-  id                                            none        none      
-  [member-as]                                                         
-dynamic-neighbor                                                      
-  [listen-range]                                                      
-  limit                                         100         100       
-configured-neighbors               0                                  
+                                   operational  applied    
+---------------------------------  -----------  ---------- 
+state                                           enabled    
+autonomous-system                  65101        65101      
+router-id                          10.10.10.1   10.10.10.1 
+rd                                              none       
+address-family                                             
+  ipv4-unicast                                             
+    rib-filter                                  none       
+    route-export                                           
+      to-evpn                                              
+        state                                   enabled    
+        route-map                               none       
+        default-route-origination  disabled     disabled   
+      to-vrf                                               
+        [list]                     none                    
+      [route-target]               none                    
+      rd                           none                    
+    route-import                                           
+      from-vrf                                             
+        state                                   disabled   
+        [list]                     none                    
+      [route-target]               none                    
+    admin-distance                                         
+      external                     20           20         
+      internal                     200          200        
+    multipaths                                             
+      ebgp                         64           64         
+      ibgp                         64           64         
+      compare-cluster-length       disabled     disabled   
+    state                                       enabled    
+    redistribute                                           
+      static                                               
+        state                      disabled     disabled   
+      connected                                            
+        state                      enabled      enabled    
+        metric                     auto         auto       
+        route-map                  none         none       
+      kernel                                               
+        state                      disabled     disabled   
+      ospf                                                 
+        state                      disabled     disabled   
+    [network]                                              
+    [aggregate-route]                                      
+  ipv6-unicast                                             
+    route-export                                           
+      to-evpn                                              
+        default-route-origination  disabled                
+      to-vrf                                               
+        [list]                     none                    
+      [route-target]               none                    
+      rd                           none                    
+    route-import                                           
+      from-vrf                                             
+        [list]                     none                    
+      [route-target]               none                    
+    multipaths                                             
+      compare-cluster-length       disabled                
+    state                                       disabled   
+    redistribute                                           
+      static                                               
+        state                      disabled                
+      connected                                            
+        state                      disabled                
+      kernel                                               
+        state                      disabled                
+      ospf6                                                
+        state                      disabled                
+  l2vpn-evpn                                               
+    state                                       disabled   
+[neighbor]                                                 
+[peer-group]                                               
+path-selection                                             
+  routerid-compare                 disabled     disabled   
+  aspath                                                   
+    compare-lengths                enabled      enabled    
+    compare-confed                 disabled     disabled   
+  med                                                      
+    compare-always                 disabled     disabled   
+    compare-deterministic          enabled      enabled    
+    compare-confed                 disabled     disabled   
+    missing-as-max                 disabled     disabled   
+  multipath                                                
+    aspath-ignore                  disabled     disabled   
+    generate-asset                 disabled     disabled   
+    bandwidth                      all-paths    all-paths  
+route-reflection                                           
+  state                                         disabled   
+  reflect-between-clients          enabled                 
+  outbound-policy                  disabled                
+route-export                                               
+  to-evpn                                                  
+    [route-target]                              auto       
+route-import                                               
+  from-evpn                                                
+    [route-target]                              auto       
+timers                                                     
+  keepalive                                     3          
+  hold                                          9          
+  connection-retry                              10         
+  route-advertisement                           none       
+  conditional-advertise                         60         
+confederation                                              
+  id                                            none       
+  [member-as]                                              
+dynamic-neighbor                                           
+  [listen-range]                                           
+  limit                                         100        
+configured-neighbors               0                       
 established-neighbors              0             
 ```
 
@@ -1338,21 +1336,21 @@ To check BGP path selection for a specific VRF, such as the aspath, med and mult
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp path-selection
-                         operational  applied    pending  
------------------------  -----------  ---------  ---------
-routerid-compare         disabled     disabled   disabled 
-aspath                                                    
-  compare-lengths        enabled      enabled    enabled  
-  compare-confed         disabled     disabled   disabled 
-med                                                       
-  compare-always         disabled     disabled   disabled 
-  compare-deterministic  enabled      enabled    enabled  
-  compare-confed         disabled     disabled   disabled 
-  missing-as-max         disabled     disabled   disabled 
-multipath                                                 
-  aspath-ignore          disabled     disabled   disabled 
-  generate-asset         disabled     disabled   disabled 
-  bandwidth              all-paths    all-paths  all-paths
+                         operational  applied   
+-----------------------  -----------  --------- 
+routerid-compare         disabled     disabled  
+aspath                                          
+  compare-lengths        enabled      enabled   
+  compare-confed         disabled     disabled  
+med                                             
+  compare-always         disabled     disabled  
+  compare-deterministic  enabled      enabled   
+  compare-confed         disabled     disabled  
+  missing-as-max         disabled     disabled  
+multipath                                       
+  aspath-ignore          disabled     disabled  
+  generate-asset         disabled     disabled  
+  bandwidth              all-paths    all-paths 
 ```
 
 ```
@@ -1394,12 +1392,12 @@ replace  disabled
 ```
 ``
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath
-                 operational  applied   pending 
----------------  -----------  --------  --------
-replace-peer-as  disabled     disabled  disabled
-private-as       none         none      none    
-allow-my-asn                                    
-  state          disabled     disabled  disabled
+                 operational  applied  
+---------------  -----------  -------- 
+replace-peer-as  disabled     disabled 
+private-as       none         none     
+allow-my-asn                           
+  state          disabled     disabled 
 ```
 
 ```

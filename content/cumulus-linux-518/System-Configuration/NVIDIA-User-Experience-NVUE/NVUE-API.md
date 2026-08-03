@@ -4794,6 +4794,7 @@ For more information about using the NVUE REST API, reference the {{<exlink url=
 
 - Unlike the NVUE CLI, the NVUE API does not support configuring a plain text password for a user account; you must configure a hashed password for a user account with the NVUE API.
 - If you need to make multiple updates on the switch, NVIDIA recommends you use a root patch, which can make configuration changes with fewer round trips to the switch. Running many specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
+- Cumulus Linux 5.18 introduces a new generic API path (`/nvue`) to support API versioning, available in later releases.
 
 ## Related Information
 

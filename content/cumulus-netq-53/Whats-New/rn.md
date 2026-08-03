@@ -21,12 +21,16 @@ pdfhidden: True
 | 4894672, 4896363 | NVOS upgrades on switches might fail if the image filename contains spaces or special characters. | 5.1.0-5.3.0 | |
 | 4890084 | The NetQ CLI might not delete threshold-crossing alerts configured for ACL resources. To work around this issue, use the UI to delete the alerts. | 5.1.0-5.3.0 | |
 | 4876932 | The NMX controller service might intermittently fail to switch to an alternate out-of-band (OOB) port when the primary registration port becomes unavailable. As a result, partition management operations might not function correctly on the secondary OOB port if the registered management port goes down. | 5.1.0-5.3.0 | |
+| 4867933 | Threshold-crossing events created before version 5.1.0 may not display event values correctly after you upgrade NetQ. | 5.1.0-5.3.0 | |
 | 4839716, 4844441 | You cannot perform lifecycle management operations immediately after backing up an HA scale cluster deployment. To work around this issue, wait several hours before initiating LCM operations. | 5.1.0-5.3.0 | |
 | 4838526 | NMX controller and telemetry services might display a DOWN status if the primary out-of-band (OOB) management port is unavailable. | 5.1.0-5.3.0 | |
 | 4830357 | When you try to filter images in the NetQ UI based on image type, NetQ might ignore the filter. | 5.1.0-5.3.0 | |
 | 4794266 | Power sensor (PSU) events might show inconsistent sensor names. Additionally, NetQ might not generate PSU events reliably. | 5.1.0-5.3.0 | |
 | 4784336 | The NetQ for NVLink deployment option is not supported in air-gapped environments. | 5.0.0-5.3.0 | |
 | 4780773 | The NetQ for NVLink Swagger UI might incorrectly display 500 status placeholder text in example responses. | 5.0.0-5.3.0 | |
+| 4687477 | When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters. | 5.0.0-5.3.0 | |
+| 4681581 | The <code>netq bootstrap reset purge-db</code> command might take up to 60 minutes to complete on Base Command Manager scale deployments. | 5.0.0-5.3.0 | |
+| 4399074 | When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected. | 5.0.0-5.3.0 | |
 | 4100882, 4119697 | When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export. | 4.12.0-4.15.1, 5.0.0-5.3.0 | |
 
 ### Fixed Issues in 5.3.0

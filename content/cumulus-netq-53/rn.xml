@@ -81,6 +81,12 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td></td>
 </tr>
 <tr>
+<td>4867933</td>
+<td>Threshold-crossing events created before version 5.1.0 may not display event values correctly after you upgrade NetQ.</td>
+<td>5.1.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4839716, 4844441</td>
 <td>You cannot perform lifecycle management operations immediately after backing up an HA scale cluster deployment. To work around this issue, wait several hours before initiating LCM operations.</td>
 <td>5.1.0-5.3.0</td>
@@ -113,6 +119,24 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <tr>
 <td>4780773</td>
 <td>The NetQ for NVLink Swagger UI might incorrectly display 500 status placeholder text in example responses.</td>
+<td>5.0.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4687477</td>
+<td>When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters.</td>
+<td>5.0.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4681581</td>
+<td>The {{netq bootstrap reset purge-db}} command might take up to 60 minutes to complete on Base Command Manager scale deployments.</td>
+<td>5.0.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4399074</td>
+<td>When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected.</td>
 <td>5.0.0-5.3.0</td>
 <td></td>
 </tr>

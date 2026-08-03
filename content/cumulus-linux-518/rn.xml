@@ -32,7 +32,7 @@
 </tr>
 <tr>
 <td>5159852, 4667526</td>
-<td>When you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions can remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report {{Cease/Connection Collision Resolution}}.This timing-dependent issue might occur if you do not configure a BGP update source. If the intended link-local IPv6 address is not yet usable (for example, during Duplicate Address Detection) the kernel might select an IPv6 address belonging to another link as the TCP source. This can associate the TCP connection with different BGP neighbors at each endpoint and prevent the correctly sourced connection from establishing.To work around this issue, configure update-source separately for every numbered IPv6 BGP neighbor on both switches, using the local IPv6 address assigned to that neighbor’s link.Do not configure a single shared source on the peer group when each parallel link has a different local address. After applying the configuration, clear the affected BGP sessions to remove any existing incorrectly associated connections.</td>
+<td>When you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions can remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report {{Cease/Connection Collision Resolution}}. To work around this issue, configure update-source separately for every numbered IPv6 BGP neighbor on both switches, using the local IPv6 address assigned to that neighbor’s link.Do not configure a single shared source on the peer group when each parallel link has a different local address. After applying the configuration, clear the affected BGP sessions to remove any existing incorrectly associated connections.</td>
 <td>5.18.0</td>
 <td></td>
 </tr>
@@ -50,7 +50,7 @@
 </tr>
 <tr>
 <td>5107338</td>
-<td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of any of them to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
 <td>5.18.0</td>
 <td></td>
 </tr>
@@ -112,13 +112,13 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 </tr>
 <tr>
 <td>4891440</td>
-<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU. nv otel service causes high cpu, competes with the BFD workers scheduled on same core.</td>
+<td>The {{nv show interface qos-roce-status}} command causes HIGH CPU. </td>
 <td>5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4875306</td>
-<td>Fixed traffic drops on SLAAC and 802.1x interfaces by deferring UNREACH withdrawal until the first host actually resolves through ARP or NDP, instead of withdrawing immediately on linkup.</td>
+<td>You might see traffic drops on SLAAC and 802.1x interfaces.</td>
 <td>5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>
@@ -216,7 +216,7 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 </tr>
 <tr>
 <td>4547463, 4705370</td>
-<td>When you try to run {{nv action boot-next}} commands during optimized image upgrade, the commands time out. This does not necessarily mean an issue occurred; the system might still be executing the action.To check that the action command completed before going to the next step to reboot the system:
+<td>When you run {{nv action boot-next}} commands during optimized image upgrade, the commands time out. This does not indicate that an issue occurred; the system might still be executing the action.To check that the action command completed before going to the next step to reboot the system:
 &lt;ol&gt;&lt;li&gt;Find the Request ID for the REST API invocation corresponding to the {{nv action boot-next}} command by doing a grep for {{ActionKey.*boot-next}} in the /var/log/nvued.log}} file. For example, the value 3 in the {{Ran Job running ActionKey('@boot-next', '/system/image', (), 3, (('partition', 'partition1'),))}} line indicates the Request ID.&lt;/li&gt;
 &lt;li&gt;Run the {{curl -u '&lt;username&gt;:&lt;password&gt;'  -X GET https://127.0.0.1:8765/nvue_v1/action/&lt;Request ID&gt; -k}} command from the shell to show the status of the action command. If the value of {{state}} is {{action_success}}, the action command completed successfully. If the value of {{state}} is {{running}}, the system is still processing. If the value of {{state}} is {{action_error}}, the system encountered an error.&lt;/li&gt;&lt;/ol&gt;</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
@@ -266,7 +266,7 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 </tr>
 <tr>
 <td>4501632, 4530257</td>
-<td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that NVUE database has time to sync to the filesystem. </td>
+<td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that the NVUE database has time to sync to the filesystem. </td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>

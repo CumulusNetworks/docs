@@ -12,6 +12,10 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 
 Cumulus Linux 5.18.0 supports new platforms, contains new features and improvements, and provides bug fixes.
 
+{{%notice infonopad%}}
+Cumulus Linux 5.18.0 is currently only qualified for **non-Spectrum-X**.
+{{%/notice%}}
+
 ## Platforms
 - {{<exlink url="https://docs.nvidia.com/nvidia-spectrum-6-sn6000-ethernet-switch-systems-hardware-user-manual.pdf" text="NVIDIA SN6600_LD">}} (128x800G Spectrum-6)
 
@@ -23,11 +27,7 @@ The NVIDIA SN6600_LD switch does not support:
 {{%/notice%}}
 
 Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switch is generally available. You must upgrade any engineering sample to Cumulus Linux 5.18 with ONIE.
-<!--
-{{%notice infonopad%}}
-Cumulus Linux 5.18 supports Spectrum1 through Spectrum-6 for **non-Spectrum-X**.
-{{%/notice%}}
--->
+
 ### New Features and Enhancements
 - Kernel update to Debian 6.1.174
 - {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available

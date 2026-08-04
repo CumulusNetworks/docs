@@ -7,7 +7,9 @@ toc: 3
 
 The Spectrum-6 switch requires <span class="a-tooltip">[BMC](## "Baseboard Management Controller")</span>, which is a specialized microcontroller designed to deliver out-of-band remote monitoring and management for servers and switches. Operating independently from the main CPU and operating system, the BMC enables administrative control even when the switch is powered down or unresponsive. It streamlines server and switch management while enhancing network efficiency, reliability, and security through automation of critical tasks.
 
-Cumuls Linux includes the BMC package. To update the BMC package files to the latest versions, run the following commands.
+You can access BMC either through Cumulus Linux or directly through the BMC RJ45 Ethernet port.
+
+Cumulus Linux includes the BMC package. To update the BMC package files to the latest versions, run the following commands.
 
 To fetch the latest BMC package, run the `nv action fetch platform firmware BMC <remote-url-to-package>` command:
 

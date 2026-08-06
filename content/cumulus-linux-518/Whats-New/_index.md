@@ -65,8 +65,8 @@ Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switc
   - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
   - {{<link url="IP-Source-Guard" text="IP Source Guard">}}
 - Telemetry
-  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC resource, Platform leakage sensor, and patches">}}
-  - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC resource, WJH, Platform leakage sensor, and patches">}}
+  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC resource, platform leakage sensor, platform power supply (to support Spectrum-6), and patch updates">}}
+  - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC resource, WJH, Platform leakage sensor, platform power supply (to support Spectrum-6), and patch updates">}}
   - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
   - You can now run both {{<link title="What Just Happened (WJH)" text="NVUE WJH commands">}} and {{<link url="gNMI-Streaming" text="subscribe to gNMI YANG paths">}} at the same time.
 

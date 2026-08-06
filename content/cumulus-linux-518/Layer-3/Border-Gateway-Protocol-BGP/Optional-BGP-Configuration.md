@@ -1565,29 +1565,29 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-## BGP Prefix Independent Convergence
+## BGP DC Prefix Independent Convergence
 
-BGP prefix independent convergence (PIC) reduces convergence times and improves unicast traffic convergence for remote link and node failures (when the BGP next hop fails), regardless of route scale. A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
+BGP DC prefix independent convergence (BGP DC PIC) reduces convergence times and improves unicast traffic convergence for remote link and node failures (when the BGP next hop fails), regardless of route scale. A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
 
-When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises a route with a prefix derived from the router ID. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
+When you configure BGP DC PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises a route with a prefix derived from the router ID. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
 
 {{%notice note%}}
-- Cumulus Linux supports BGP PIC on Spectrum-4 switches.
-- NVIDIA recommends that you do not configure BGP PIC independently in a multi-plane topology. For multi-plane environments that require BGP PIC, refer to {{<link url="/#bgp-pic-anycast" text="BGP PIC Anycast">}}.
-- Cumulus Linux does not support BGP PIC with EVPN, MLAG, or VRF route leaking.
-- Do not configure PIC if you have configured EVPN.
-- You can configure PIC on the default VRF only.
-- NVIDIA recommends that you do not redistribute interface addresses into BGP when you enable PIC.
+- Cumulus Linux supports BGP DC PIC on Spectrum-4 switches.
+- NVIDIA recommends that you do not configure BGP DC PIC independently in a multi-plane topology. For multi-plane environments that require BGP DC PIC, refer to {{<link url="/#bgp-dc-pic-anycast" text="BGP DC PIC Anycast">}}.
+- Cumulus Linux does not support BGP DC PIC with EVPN, MLAG, or VRF route leaking.
+- Do not configure BGP DC PIC if you have configured EVPN.
+- You can configure BGP DC PIC on the default VRF only.
+- NVIDIA recommends that you do not redistribute interface addresses into BGP when you enable BGP DC PIC.
 - Do not configure the router ID and network address with the same value.
 - The BGP router ID and the aggregate address must not be in the same subnet.
-- Do not use martian addresses as the BGP router ID when you enable PIC.
-- You need additional ECMP hardware resources for PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
+- Do not use martian addresses as the BGP router ID when you enable BGP DC PIC.
+- You need additional ECMP hardware resources for BGP DC PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
 {{%/notice%}}
 
-To configure PIC:
+To configure BGP DC PIC:
 - **On a leaf only**, enable the BGP advertise origin option so that BGP can attach the SOO extended community to all routes advertised to its peers from the source where the routes originate.
 - **On all switches**, enable the BGP next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
-- **On a spine and super spine**, set the {{<link url="#enable-read-only-mode" text="read-only mode">}} BGP convergence wait time to 30 and the convergence wait establish wait time to 15. These are the minimum recommended timer settings to ensure optimal convergence when using PIC.
+- **On a spine and super spine**, set the {{<link url="#enable-read-only-mode" text="read-only mode">}} BGP convergence wait time to 30 and the convergence wait establish wait time to 15. These are the minimum recommended timer settings to ensure optimal convergence when using BGP DC PIC.
 
 {{%notice note%}}
 Changing the BGP advertise origin option or the BGP next hop group per source option can cause traffic disruption.
@@ -1622,7 +1622,7 @@ Changing the BGP advertise origin option or the BGP next hop group per source op
    cumulus@leaf01:~$ nv config apply
    ```
 
-To disable BGP PIC, run the `nv unset vrf <vrf-id> router bgp address-family <address-family> advertise-origin` command on the leaf switch and the `nv unset vrf <vrf-id> router bgp address-family <address-family> nhg-per-origin` command on all switches.
+To disable BGP DC PIC, run the `nv unset vrf <vrf-id> router bgp address-family <address-family> advertise-origin` command on the leaf switch and the `nv unset vrf <vrf-id> router bgp address-family <address-family> nhg-per-origin` command on all switches.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1682,7 +1682,7 @@ router bgp 65101
 ...
 ```
 
-To disable BGP PIC, use the `no bgp advertise-origin` command on the leaf switch and the `no bgp nhg-per-origin` on all switches. For example:
+To disable BGP DC PIC, use the `no bgp advertise-origin` command on the leaf switch and the `no bgp nhg-per-origin` on all switches. For example:
 
 ```
 cumulus@spine02:~$ sudo vtysh
@@ -1699,9 +1699,9 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-### BGP PIC Anycast
+### BGP DC PIC Anycast
 
-Fast route convergence in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer) requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in {{<link url="#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
+Fast route convergence in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer) requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring BGP DC PIC as described in {{<link url="#bgp-dc-prefix-independent-convergence" text="BGP DC Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
 
 {{%notice note%}}
 - The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
@@ -1710,7 +1710,7 @@ Fast route convergence in multi-plane CLOS topologies with connected planes (pla
 
 {{%/notice%}}
 
-To configure BGP PIC anycast, set the SOO source IP address on a leaf. Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
+To configure BGP DC PIC anycast, set the SOO source IP address on a leaf. Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
 
 {{< tabs "1654 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1747,9 +1747,9 @@ If you set the SOO source IP address on a leaf switch after enable the BGP adver
 - All prefix routes are readvertised with the new SOO tag.  
 - All network switches detect this change, remove references to the old SOO route, and install the new SOO route in their routing tables.
 
-### Show BGP PIC Information
+### Show BGP DC PIC Information
 
-Cumulus Linux provides several show commands to help you troubleshoot BGP PIC. Refer to {{<link url="Troubleshooting-BGP/#show-prefix-independent-convergence-information" text="Show Prefix Independent Convergence Information">}}.
+Cumulus Linux provides several show commands to help you troubleshoot BGP DC PIC. Refer to {{<link url="Troubleshooting-BGP/#show-dc-prefix-independent-convergence-information" text="Show DC PIC Information">}}.
 
 ## BGP Unreachability SAFI
 
@@ -1993,7 +1993,7 @@ BGP conditional disaggregation advertises specific prefixes when a failure is de
 {{%/notice%}}
 
 To configure BGP conditional disaggregation:
-- **Required on the leaf only**: Enable both {{<link url="/#bgp-prefix-independent-convergence" text="BGP PIC">}} and {{<link url="/#bgp-pic-anycast" text="BGP PIC Anycast">}}.
+- **Required on the leaf only**: Enable both {{<link url="/#bgp-dc-prefix-independent-convergence" text="BGP DC PIC">}} and {{<link url="/#bgp-dc-pic-anycast" text="BGP DC PIC Anycast">}}.
 - **Required for 802.1X on the leaf only**: If you are using 802.1X, you must enable the `preserve-on-link-down` option with the `nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down enabled` command to preserve IPv6 addresses when the switch reboots or a link flaps. For more information, refer to {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="Preserve Dynamically Assigned IPv6 Addresses">}}.
 - **Required on both leaf and spine**: Configure BGP unreachability SAFI (failure signaling) globally and on relevant peers or peer groups. Refer to {{<link url="/#bgp-unreachability-safi" text="BGP Unreachability SAFI">}}.
 - **Required on the leaf only**: Enable BGP conditional disaggregation.
@@ -2076,7 +2076,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-f
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-4. Enable {{<link url="/#bgp-prefix-independent-convergence" text="BGP PIC">}} for fast convergence using per-source next-hop groups:
+4. Enable {{<link url="/#bgp-dc-prefix-independent-convergence" text="BGP DC PIC">}} for fast convergence using per-source next-hop groups:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin 
@@ -2118,7 +2118,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unreach
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-2. Enable {{<link url="/#bgp-prefix-independent-convergence" text="BGP PIC">}} for fast convergence using per-source next-hop groups:
+2. Enable {{<link url="/#bgp-dc-prefix-independent-convergence" text="BGP DC PIC">}} for fast convergence using per-source next-hop groups:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin 
@@ -2151,7 +2151,7 @@ The following commands configure:
 - Aggregate route of 10.1.0.0./16.
 - The BGP IPv4 unreachability SAFI, activated for peer-group SPINES.
 - Unreachability advertisements for interfaces matching 10.1.0.0./16.
-- BGP PIC with `advertise-origin` and `nhg-per-origin`.
+- BGP DC PIC with `advertise-origin` and `nhg-per-origin`.
 - BGP unerachable prefix export to LLDP.
 
 ```
@@ -2190,7 +2190,7 @@ The following commands configure:
 
 - BGP Graceful Restart
 - The BGP IPv4 unreachability SAFI, activated on peer-group LEAFS
-- BGP PIC with `nhg-per-origin`
+- BGP DC PIC with `nhg-per-origin`
 
 ```
 cumulus@spine01:mgmt:~$ sudo vtysh
@@ -2358,7 +2358,7 @@ Inter-DC routing enables you to maintain communication across large-scale GPU cl
 To achieve inter-DC routing and intra-DC failure handling, where planarized DC fabrics merge at the DC Interconnect Switch (DCIS) layer, you must configure a plane ID on each leaf switch. This plane ID must be unique across planes in a DC; however, you must use the same plane ID for all leaf switches within a plane.
 
 You must configure the plane ID together with the following BGP features on each leaf switch:
-- {{<link url="/#bgp-pic-anycast" text="Anycast PIC">}} 
+- {{<link url="/#bgp-dc-pic-anycast" text="Anycast DC PIC">}} 
 - {{<link url="/#bgp-unreachability-safi" text="BGP Unreachability SAFI">}}
 - {{<link url="/#bgp-conditional-disaggregation" text="Conditional disaggregation">}}
 - {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP LLDP Unreachability in Disjoined Planes">}} 

@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5184005</td>
+<td>In certain SRv6 configuration rollback scenarios, Zebra might fail to restore all explicit SRv6 SIDs. This can occur when multiple SRv6 locators share the same parent SID block and one of the locators is replayed during rollback. To work around this issue, restart FRR to clear the stale in-memory SRv6 SID allocation state, then reapply the intended configuration if needed.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5183654</td>
+<td>When you upgrade gNMI with package upgrade, the {{nv-gnmi.service}} fails and the switch collects a tech support bundle after the first step of the process ({{nv action upgrade system packages to latest}}. The package upgrade process triggers a switch reboot straight afterwards as a second and final step. There is no functional impact after switch reboot completes.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5175518</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
 <td>5.16.1, 5.16.6-5.18.0</td>
@@ -49,9 +61,164 @@
 <td></td>
 </tr>
 <tr>
+<td>5140100</td>
+<td>When you configure a Spectrum-6 switch in half-resource mode, a MAC address configured with NVUE for an interface on a switch port might not get programmed in hardware as intended for the layer 3 port. In Spectrum-X deployments, this issue might affect HWPLB functionality.</td>
+<td>5.17.0-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
 <td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093941</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093940</td>
+<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093939</td>
+<td>When {{nvued.log}} triggers log rotation, it also forces rotation of all three logs ({{nvued}}, {{nv-cli}}, and {{nv-api}}). As a result, the {{nv-cli}} logs are rotated unnecessarily, which might eventually lead to missing {{nv-cli.log}} entries due to excessive rotations.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093938</td>
+<td>When {{nvued.log}} triggers log rotation, it also forces rotation of all three logs ({{nvued}}, {{nv-cli}}, and {{nv-api}}). As a result, the {{nv-cli}} logs are rotated unnecessarily, which might eventually lead to missing {{nv-cli.log}} entries due to excessive rotations.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093933</td>
+<td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093931</td>
+<td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093926</td>
+<td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093924</td>
+<td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093923</td>
+<td>Certain platforms with a SATA disk for NCQ might cause IO errors sending the SSD into read-only mode. You might see ports going down until the switch reboots. There is no observable performance impact due to this issue.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093919</td>
+<td>In an MLAG configuration with PVRST spanning tree mode configured on both switches, when the primary switch comes back up after a reboot, PVRST mode briefly changes to RSTP, then back to PVRST.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093917</td>
+<td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the filesystem and the SDK might fail with a fatal error similar to:
+sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK thread issue'], irisc=255, desc='Health check: SDK thread [sxSniffer] TID [0x7f81cffff6c0] bit [4] does not respond [5] seconds')</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093874</td>
+<td>When you configure PTP on a trunk interface, where the selected PTP VLAN is the PVID (untagged native VLAN), the PTP packets might be tagged incorrectly with the VLAN ID.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093873</td>
+<td>When you configure BGP dynamic neighbors and 
+{{default-originate}} with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the {{default-originate}} with the route map command or toggle 
+{{default-route-origination}} off, then on.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093865</td>
+<td>Known registered multicast traffic is duplicated to receivers behind an EVPN-MH dual-homed access switch.</td>
+<td>5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093864</td>
+<td>Known registered multicast traffic is duplicated to receivers behind an EVPN-MH dual-homed access switch.</td>
+<td>5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093853</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5093852</td>
+<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
+<td>5.8.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5081381</td>
+<td>When you run the {{config apply}} command with no configuration changes, the command leaves a stale pending revision.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076748</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5076747</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057192</td>
+<td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
+{{- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlanXXX: |
+              vlan-bridge-binding off}}</td>
+<td>5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5057191</td>
+<td>With {{svi-force-up}} enabled, the SVI link state is unexpectedly {{NO-CARRIER}} and {{LOWERLAYERDOWN}} when all VLAN member ports are down. This results in loss of reachability to IP addresses configured on SVIs.  To work around this issue, add and apply {{vlan-bridge-binding off}} to each SVI with a snippet; for example:
+{{- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlanXXX: |
+              vlan-bridge-binding off}}</td>
+<td>5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -105,9 +272,51 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
+<td>4986343</td>
+<td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
+<td>5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4986333</td>
+<td>LLDP session flaps might result in a PTMD process crash due to a double free memory block.</td>
+<td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4986329</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4982910</td>
 <td>The mellanox platform driver fails to register a {{pm_power_off}} handler for legacy platforms. As a result, it falls through to ACPI power off which doesn't work correctly on the BIOS and causes a reset.</td>
 <td>5.17.0-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4964154</td>
+<td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4963280</td>
+<td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
+<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4963277</td>
+<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
+<td>5.3.1-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4963271</td>
+<td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
+<td>5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -135,6 +344,21 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
+<td>4804084</td>
+<td>On switches at scale with OTEL enabled, an {{interface_stats_collector}} crash might occur with the following logs:
+{{interface_stats_collector[3429270]: ERROR buffer_stats_collector.go:1875 SDK bulk counter read failed
+interface_stats_collector[3429270]: fatal error: concurrent map iteration and map write
+interface_stats_collector[3429270]: goroutine 5610 gp=0xc007814c40 m=16 mp=0xc000552808 [running]:}}</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4776471</td>
+<td>In Cumulus Linux 5.15.0, NTP and DNS configuration commands changed from {{nv set service}} to {{nv set system}}. However, after upgrading the switch to Cumulus Linux 5.15.1, the {{nv set service}} command might still appear in the configuration output because a stale {{nv set service}} command remains after the configuration is translated during the upgrade. If you save the configuration with the {{nv config show -o commands}}, then reapply the configuration with {{nv config replace}}, the command fails if the stale {{nv set service}} command is present.To workaround this issue, before applying the configuration with {{nv config replace}}, remove any stale {{nv set service}} commands from the saved configuration file, then reapply the configuration with the {{nv config replace &lt;config-file&gt;}} command.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4774686, 4764590</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
 <td>5.16.0-5.16.1, 5.16.6-5.18.0</td>
@@ -148,6 +372,26 @@ sudo chown -R ntpsec /var/lib/ntpsec
 sudo chown -R Debian-snmp /var/lib/snmp
 sudo reboot</td>
 <td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4717501</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4717494</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an {{ItemDoesNotExist }} error. To work around this issue, run the following commands to retrieve IPv6 routing information:
+nv show vrf default router rib ipv6
+nv show vrf default router rib ipv6 route</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4717493</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -172,6 +416,18 @@ sudo reboot</td>
 <td>4648833, 4662556, 4687350</td>
 <td>Interfaces using PAM4 DAC cables on switches with Spectrum-4 and later might not come up after a link flap or reboot if auto-negotiation is disabled. Auto-negotiation is required for PAM4 DAC cables on these switches.</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4641344</td>
+<td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4641343</td>
+<td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -223,9 +479,21 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td></td>
 </tr>
 <tr>
+<td>4535856</td>
+<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4535806</td>
 <td>After a factory reset, the switch does not clear the {{/var/tmp}} directory, which the switch uses for temporary files.</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4535804</td>
+<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
+<td>5.10.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -250,6 +518,12 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td>4531960</td>
 <td>The GNMI Subscription to xpath {{interfaces/interface[name=swp61s0]/state/counters/out-pkts}} with a high sample interval results in an initial response of zero but in subsequent updates, the value is correct. You do not see this issue when the sample interval is 1 second.</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4513849</td>
+<td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -292,7 +566,7 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td>4475111</td>
 <td>When you try to convert a layer 3 port that is part of ECMP to a bond member,  you might see a failure in the {{switchd}} logs. This issue does not have any functional impact.</td>
 <td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
-<td>5.9.4</td>
+<td></td>
 </tr>
 <tr>
 <td>4475074</td>
@@ -304,6 +578,30 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td>4440766</td>
 <td>When you try to delete a trusted ca key, Cumulus Linux shows an incorrect error message. To remove a trusted ca key, you must unset the key ID, not the key literal.</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423368</td>
+<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423360</td>
+<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423352</td>
+<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
+<td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423335</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
+<td>5.9.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -319,6 +617,12 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td></td>
 </tr>
 <tr>
+<td>4423235</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
+<td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4423175</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
@@ -328,6 +632,12 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4370954</td>
+<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.6-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1031,6 +1341,11 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td>5095504</td>
 <td>Statically configuring an IPv4 or IPv6 address for an 802.1x enabled port that is also configured for dynamic IPv6 is allowed. However, when you upgrade the switch with this configuration, upgrade fails. To work around this issue, remove the statically assigned IPv4 or IPv6 address configured on the 802.1x enabled port configured for Dynamic IPv6 and re-attempt the upgrade.</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>5095340</td>
+<td>Repeated networking or Docker lifecycle events can rapidly restart Docker-backed services such as UMF and gNMI.</td>
+<td></td>
 </tr>
 <tr>
 <td>5093840</td>

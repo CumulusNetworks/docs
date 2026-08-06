@@ -486,16 +486,16 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Environment sensor">}}
+{{< tab "Environment sensor and Power Supply">}}
 
-To enable environment sensor statistics:
+To enable environment sensor and power supply statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensor state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To adjust the sample interval for environment sensor statistics:
+To adjust the sample interval for environment sensor and power supply statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensor sample-interval 100
@@ -3363,7 +3363,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_info_last_reboot_time` | Time of last reboot in ns since epoch.|
 | `nvswitch_platform_info_last_reboot_reason` | Information about the last reboot reason of a component.|
 | `nvswitch_platform_info_firmware_version` | Information about the firmware version of a component.|
-| `nvswitch_platform_info_hw_details` | Component hardware details such as the version, model name, part number, serial number, type, and name.|
+| `nvswitch_platform_info_hw_details` | Component hardware details such as the version, model name, part number, serial number, type, and name. (Not emitted for PDBn-HSCm on the Spectrum-6 switch because a hotswap controller has no EEPROM/VPD.) |
 
 {{< /tab >}}
 {{< tab "Leakage Sensor">}}
@@ -3372,6 +3372,19 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 |------ | ----------- |
 | `nvswitch_platform_environment_leak_sensor_status` | *Leak sensor status. Liquid-cooled NVIDIA switch only.|
 | `nvswitch_platform_environment_leakage_status` | *Leakage status. Liquid-cooled NVIDIA switch only. |
+
+{{< /tab >}}
+{{< tab "Power Supply">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_environment_power_supply_state` | Operational state of the power component (1 = OK or present, 0 = absent). |
+| `nvswitch_platform_environment_power_supply_capacity` | Power supply capacity in Watts. For input-only PDBs this is the hotswap-controller power1_max (max INPUT power the HSC can handle, not a PSU rated OUTPUT capacity).
+| `nvswitch_platform_environment_power_supply_input_voltage` | Input-side voltage measured at the hotswap controller. |
+| `nvswitch_platform_environment_power_supply_input_current` | Input-side current measured at the hotswap controller. |
+| `nvswitch_platform_environment_power_supply_power` | Power-supply power in Watts (normative power metric). For input-only PDBs, this is the input-side power surfaced as the input-power leaf. |
+| `nvswitch_platform_environment_power_supply_current` | Output current (PSU output side). Emitted on PSU platforms only; not applicable to input-only PDB/HSC. |
+| `nvswitch_platform_environment_power_supply_voltage`| Output voltage (PSU output side). Emitted on PSU platforms only; not applicable to input-only PDB/HSC.|
 
 {{< /tab >}}
 {{< /tabs >}}

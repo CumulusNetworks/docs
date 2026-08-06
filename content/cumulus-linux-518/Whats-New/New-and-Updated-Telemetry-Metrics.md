@@ -113,6 +113,33 @@ For example, `/components/component/integrated-circuit/utilization/resources/res
 | `/components/component[name=leakage2]/state/leakage/alarm-status` | Leakage2 alarm status. Liquid-cooled NVIDIA switch only.|
 
 {{< /tab >}}
+{{< tab "Platform Power Supply">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name=PDBn-HSCm]/state/name` |	Component name Power Distribution Board (PDB) hotswap controllers (HSC).|
+| `/components/component[name=PDBn-HSCm]/state/description` | Human-readable description. |
+| `/components/component[name=PDBn-HSCm]/state/type` | Component type; POWER_SUPPLY (derived). |
+| `/components/component[name=PDBn-HSCm]/state/oper-status`	| Operational status (e.g. ACTIVE).|
+| `/components/component[name=PDBn-HSCm]/power-supply/state/capacity` |	HSC capacity in Watts (per-HSC) — max INPUT power the HSC can handle, not PSU rated OUTPUT.|
+| `/components/component[name=PDBn-HSCm]/power-supply/state/input-voltage` | Input-side voltage at the hotswap controller.|
+| `/components/component[name=PDBn-HSCm]/power-supply/state/input-current` | Input-side current at the hotswap controller. |
+| `/components/component[name=PDBn-HSCm]/power-supply/state/input-power` | Input-side power (normative). NEW augment leaf.|
+
+A hotswap controller has no EEPROM or VPD and a PDB is input-only. The following metrics are not populated for Power Distribution Board (PDB) hotswap controllers (HSC) (Spectrum-6 switches).
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name=PDBn-HSCm]/state/serial-no` |	No EEPROM on hotswap controller — not populated|
+| `/components/component[name=PDBn-HSCm]/state/part-no` |	No EEPROM on hotswap controller — not populated|
+| `/components/component[name=PDBn-HSCm]/state/mfg-name` |	No EEPROM on hotswap controller — not populated|
+| `/components/component[name=PDBn-HSCm]/state/model-name` |	No EEPROM on hotswap controller — not populated|
+| `/components/component[name=PDBn-HSCm]/state/hardware-version` |	No EEPROM on hotswap controller — not populated|
+| `/components/component[name=PDBn-HSCm]/power-supply/state/output-power`| Input-only device (no output metering) — not exposed|
+| `/components/component[name=PDBn-HSCm]/power-supply/state/output-current` |Input-only device (no output metering) — not exposed|
+|`/components/component[name=PDBn-HSCm]/power-supply/state/output-voltage` |Input-only device (no output metering) — not exposed |
+
+{{< /tab >}}
 {{< tab "WJH">}}
 
 |  Name | Description |
@@ -195,6 +222,21 @@ To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Ex
 | `nvswitch_platform_environment_leakage_status` | Leakage status. Liquid-cooled NVIDIA switch only. |
 
 {{< /tab >}}
+{{< tab "Platform Power Supply">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_environment_power_supply_state` | Operational state of the power component (1 = OK or present, 0 = absent). |
+| `nvswitch_platform_environment_power_supply_capacity` | Power supply capacity in Watts. For input-only Power Distribution Boards (PDBs) this is the hotswap-controller power1_max (max INPUT power the hotswap controller (HSC) can handle, not a PSU rated OUTPUT capacity).
+| `nvswitch_platform_environment_power_supply_input_voltage` | Input-side voltage measured at the hotswap controller. |
+| `nvswitch_platform_environment_power_supply_input_current` | Input-side current measured at the hotswap controller. |
+| `nvswitch_platform_environment_power_supply_power` | Power-supply power in Watts (normative power metric). For input-only PDBs, this is the input-side power surfaced as the gNMI input-power leaf. |
+| `nvswitch_platform_environment_power_supply_current` | Output current (PSU output side). Emitted on PSU platforms only; not applicable to input-only PDB/HSC. |
+| `nvswitch_platform_environment_power_supply_voltage`| Output voltage (PSU output side). Emitted on PSU platforms only; not applicable to input-only PDB/HSC.|
+
+To enable the new the platform power supply metrics, refer to {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Telemetry Export">}}.
+
+{{< /tab >}}
 {{< tab "Patches">}}
 
 |  Name | Description |
@@ -208,3 +250,20 @@ To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Ex
 
 
 For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export">}}.
+
+## Updated OTEL Metrics
+
+|  Old Name | New Name |
+|------ | ----------- |
+| `nvswitch_platform_environment_psu_state` | `nvswitch_platform_environment_power_supply_state` |
+| `nvswitch_platform_environment_psu_capacity` | `nvswitch_platform_environment_power_supply_capacity` |
+| `nvswitch_platform_environment_psu_input_voltage` | `nvswitch_platform_environment_power_supply_input_voltage` |
+| `nvswitch_platform_environment_psu_input_current` | `nvswitch_platform_environment_power_supply_input_current` |
+| `nvswitch_platform_environment_psu_power` | `nvswitch_platform_environment_power_supply_power` |
+| `nvswitch_platform_environment_psu_current` |	`nvswitch_platform_environment_power_supply_current` |
+| `nvswitch_platform_environment_psu_voltage` |	`nvswitch_platform_environment_power_supply_voltage` |
+
+
+{{%notice note%}}
+On PSU-based platforms, the legacy `psu_*` metric family and the common `power_supply_*` family are emitted together for a three-release migration window. The legacy `psu_*` family is deprecated and will be removed after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
+{{%/notice%}}

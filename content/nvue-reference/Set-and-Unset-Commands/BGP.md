@@ -358,14 +358,14 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast admi
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast advertise-origin</h>
 
-BGP prefix independent convergence (PIC) reduces convergence times and improves unicast traffic convergence for remote link and node failures (when the BGP next hop fails) regardless of route scale. A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
+BGP DC prefix independent convergence (BGP DC PIC) reduces convergence times and improves unicast traffic convergence for remote link and node failures (when the BGP next hop fails) regardless of route scale. A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
 
-When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises a route with a prefix derived from the router ID. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
+When you configure BGP DC PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises a route with a prefix derived from the router ID. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
 
 You enable the BGP advertise origin option on a leaf switch, so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate. On all switches (leaf, spine and super spine), you enable the next hop group per source option (`nv set vrf <vrf-id> router bgp address-family ipv4-unicast nhg-per-origin`) so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
 
 {{%notice note%}}
-On a spine and super spine, you must set the read-only mode BGP convergence wait time to 30 (`nv set router bgp convergence-wait time 30`)and the convergence wait establish wait time to 15 (`nv set router bgp convergence-wait establish-wait-time 15`). These are the minimum recommended timer settings to ensure optimal convergence when using PIC.
+On a spine and super spine, you must set the read-only mode BGP convergence wait time to 30 (`nv set router bgp convergence-wait time 30`)and the convergence wait establish wait time to 15 (`nv set router bgp convergence-wait establish-wait-time 15`). These are the minimum recommended timer settings to ensure optimal convergence when using BGP DC PIC.
 {{%/notice%}}
 
 ### Command Syntax
@@ -388,14 +388,14 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast adve
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast nhg-per-origin</h>
 
-BGP prefix independent convergence (PIC) reduces convergence times and improves unicast traffic convergence for remote link and node failures (when the BGP next hop fails) regardless of route scale. A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
+BGP DC prefix independent convergence (BGP DC PIC) reduces convergence times and improves unicast traffic convergence for remote link and node failures (when the BGP next hop fails) regardless of route scale. A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
 
-When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises a route with a prefix derived from the router ID. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
+When you configure BGP DC PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises a route with a prefix derived from the router ID. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
 
 You enable the next hop group per source option on all switches (leaf, spine and super spine), so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source. On a leaf switch, you enable the BGP advertise origin option (`nv set vrf <vrf-id> router bgp address-family ipv4-unicast advertise-origin`) so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
 
 {{%notice note%}}
-On a spine and super spine, you must set the read-only mode BGP convergence wait time to 30 (`nv set router bgp convergence-wait time 30`)and the convergence wait establish wait time to 15 (`nv set router bgp convergence-wait establish-wait-time 15`). These are the minimum recommended timer settings to ensure optimal convergence when using PIC.
+On a spine and super spine, you must set the read-only mode BGP convergence wait time to 30 (`nv set router bgp convergence-wait time 30`)and the convergence wait establish wait time to 15 (`nv set router bgp convergence-wait establish-wait-time 15`). These are the minimum recommended timer settings to ensure optimal convergence when using BGP DC PIC.
 {{%/notice%}}
 
 ### Command Syntax
@@ -548,8 +548,8 @@ Enables and disables BGP conditional disaggregation for IPv4 on a leaf switch.
 BGP conditional disaggregation advertises specific prefixes when a failure is detected, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
 
 To use BGP conditional disaggregation, you must also:
-- Configure BGP PIC (`nv set vrf <vrf-id> router bgp address-family ipv4-unicast advertise-origin` and `nv set vrf <vrf-id> router bgp address-family ipv4-unicast nhg-per-origin`).
-- Configure BGP PIC anycast (`nv set vrf <vrf-id> router bgp soo-source`).
+- Configure BGP DC PIC (`nv set vrf <vrf-id> router bgp address-family ipv4-unicast advertise-origin` and `nv set vrf <vrf-id> router bgp address-family ipv4-unicast nhg-per-origin`).
+- Configure BGP DC PIC anycast (`nv set vrf <vrf-id> router bgp soo-source`).
 - For 802.1X: Enable the `preserve-on-link-down` option with the `nv set system dot1x ipv4-profile <profile-id> preserve-on-link-down enabled` command to preserve IPv6 addresses when the switch reboots or a link flaps.
 - Enable BGP unreachability (failure signaling) globally and on relevant peers or peer groups.
 - Define the aggregate prefix and the included interfaces for which to conditionally advertise unreachability (`nv set vrf <vrf-id> router bgp address-family ipv4-unreachability advertise-unreach interfaces-match`).
@@ -4510,9 +4510,9 @@ cumulus@switch:~$ nv set vrf default router bgp router-id 10.10.10.1
 
 ## <h>nv set vrf default router bgp soo-source</h>
 
-Configures BGP PIC anycast. 
+Configures BGP DC PIC anycast. 
 
-Fast route convergence in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer) requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring PIC as described in BGP Prefix Independent Convergence above. The switch uses the SOO source IP address instead of the router ID.
+Fast route convergence in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer) requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring BGP DC PIC. The switch uses the SOO source IP address instead of the router ID.
 
 - The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
 - Only configure the anycast SOO source IP address on leaf switches that have anycast prefixes advertised into BGP.

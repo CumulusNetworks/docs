@@ -574,9 +574,9 @@ fe80::4ab0:2dff:fe20:ac25  swp51
 fe80::4ab0:2dff:fe93:d92d  swp52
 ```
 
-## Show Prefix Independent Convergence Information
+## Show DC Prefix Independent Convergence Information
 
-When you enable {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence (PIC)">}}, you can use the following commands to show information about route-origin extended community (SOO) routes and SOO peer bit index mapping for the routes.
+When you enable {{<link url="Optional-BGP-Configuration/#bgp-dc-prefix-independent-convergence" text="BGP DC Prefix Independent Convergence (BGP DC PIC)">}}, you can use the following commands to show information about route-origin extended community (SOO) routes and SOO peer bit index mapping for the routes.
 
 {{< tabs "1585 ">}}
 {{< tab "NVUE Commands ">}}
@@ -630,7 +630,7 @@ IPAddress                  SooPeerBitIndex
 fe80::4ab0:2dff:fe3a:a928  1
 ```
 
-To show if a specific route uses PIC, run the `nv show <vrf> default router bgp address-family <address-family> soo-route <prefix> route-with-soo` command:
+To show if a specific route uses BGP DC PIC, run the `nv show <vrf> default router bgp address-family <address-family> soo-route <prefix> route-with-soo` command:
 
 ```
 cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 10.10.10.1 route-with-soo 

@@ -55,33 +55,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast admin-distance internal 110
 ```
-<!--
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast advertise-origin</h>
-
-Configures BGP prefix independent convergence (PIC) for IPv6 to reduce data plane convergence times and improve unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
-
-When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
-
-You enable the BGP advertise origin option on a leaf switch, so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate. On all switches (leaf, spine and super spine), you enable the next hop group per source option (`nv set vrf <vrf-id> router bgp address-family ipv6-unicast nhg-per-origin`) so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast advertise-origin
-```
--->
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -169,8 +142,8 @@ Enables and disables BGP conditional disaggregation for IPv6 on a leaf switch.
 BGP conditional disaggregation advertises specific prefixes when a failure is detected, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
 
 To use BGP conditional disaggregation, you must also:
-- Configure BGP PIC (`nv set vrf <vrf-id> router bgp address-family ipv6-unicast advertise-origin` and `nv set vrf <vrf-id> router bgp address-family ipv6-unicast nhg-per-origin`).
-- Configure BGP PIC anycast (`nv set vrf <vrf-id> router bgp soo-source`).
+- Configure BGP DC PIC (`nv set vrf <vrf-id> router bgp address-family ipv6-unicast advertise-origin` and `nv set vrf <vrf-id> router bgp address-family ipv6-unicast nhg-per-origin`).
+- Configure BGP DC PIC anycast (`nv set vrf <vrf-id> router bgp soo-source`).
 - For 802.1X: Enable the `preserve-on-link-down` option with the `nv set system dot1x ipv6-profile <profile-id> preserve-on-link-down enabled` command to preserve IPv6 addresses when the switch reboots or a link flaps.
 - Enable BGP unreachability (failure signaling) globally and on relevant peers or peer groups.
 - Define the aggregate prefix and the included interfaces for which to conditionally advertise unreachability (`nv set vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-unreach interfaces-match`).
@@ -286,33 +259,6 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast multipaths ibgp 120
 ```
 
-<!--
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast nhg-per-origin</h>
-
-Configures BGP prefix independent convergence (PIC) for IPv6 to reduce data plane convergence times and improve unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
-
-When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
-
-You enable the next hop group per source option on all switches (leaf, spine and super spine), so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source. On a leaf switch, you enable the BGP advertise origin option (`nv set vrf <vrf-id> router bgp address-family ipv6-unicast advertise-origin`) so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast nhg-per-origin
-```
--->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected state</h>

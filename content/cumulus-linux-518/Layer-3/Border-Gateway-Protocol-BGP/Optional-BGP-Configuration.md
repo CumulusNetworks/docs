@@ -2348,7 +2348,7 @@ To disable graceful fabric maintenance and return traffic to the switch after it
 ## Inter-DC Routing
 
 {{%notice note%}}
-Cumulus Linux supports inter-DC routing is a Beta feature and is supported on Spectrum-4, Spectrum-5, and Spectrum-6.
+Cumulus Linux supports inter-DC routing is a Beta feature and is supported on Spectrum-4 through Spectrum-6.
 {{%/notice%}}
 
 Inter-DC routing enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines: 

@@ -260,7 +260,7 @@ For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="O
 
 ## Updated OTEL Metrics
 
-|  Old Name | New Name |
+|  Old Metric | New Metric |
 |------ | ----------- |
 | `nvswitch_platform_environment_psu_state` | `nvswitch_platform_environment_power_supply_state` |
 | `nvswitch_platform_environment_psu_capacity` | `nvswitch_platform_environment_power_supply_capacity` |
@@ -274,9 +274,6 @@ For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="O
 On PSU-based platforms, the legacy `psu_*` metric family and the common `power_supply_*` family are emitted together for a three-release migration window. The legacy `psu_*` family is deprecated and will be removed after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
 {{%/notice%}}
 
-|  Name | Description |
+|  Old Metric | New Metric|
 |------ | ----------- |
-| `nvswitch_platform_info_hw_details{serial_no}` | Serial number. Emitted for PSU components; not emitted for PDBn-HSCm (no EEPROM/VPD on a hotswap controller).|
-| `nvswitch_platform_info_hw_details{part_no}` | Part number. |
-| `nvswitch_platform_info_hw_details{model_name}` | Model name.|
-| `nvswitch_platform_info_hw_details{hardware_version}` | Hardware revision.|
+| `nvswitch_platform_info_hw_details`|`nvswitch_platform_info_hw_details{serial_no}`: Serial number. Emitted for PSU components; not emitted for PDBn-HSCm (no EEPROM/VPD on a hotswap controller).<br>`nvswitch_platform_info_hw_details{part_no}`: Part number.<br>`nvswitch_platform_info_hw_details{model_name}`: Model name.<br>`nvswitch_platform_info_hw_details{hardware_version}`: Hardware revision.|

@@ -176,8 +176,8 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <tr>
 <td>5027908</td>
 <td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
-<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td>5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>5012295</td>
@@ -194,8 +194,8 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <tr>
 <td>4989428</td>
 <td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage and potentially leading to a gNMI server restart.</td>
-<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
+<td>5.15.1, 5.16.0-5.16.1</td>
+<td>5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>4986343</td>
@@ -1941,8 +1941,8 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <tr>
 <td>5027908</td>
 <td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
-<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1</td>
+<td>5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>5012295</td>

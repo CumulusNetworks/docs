@@ -89,6 +89,7 @@ cumulus@switch:~$ sudo systemctl restart dhcrelay-type1-server-group-default.ser
 {{%notice note%}}
 - To configure a VLAN interface, specify the VLAN ID, not the parent bridge. In the example above, you specify *vlan10*, not the bridge *bridge1*.
 - When you configure DHCP relay with VRR, the DHCP relay client must run on the SVI; not on the -v0 interface.
+- Inter-VRF route leaking is not supported with DHCP relay.
 {{%/notice%}}
 
 ## Optional Configuration

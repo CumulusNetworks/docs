@@ -138,7 +138,6 @@ A hotswap controller has no EEPROM or VPD and a PDB is input-only. The following
 | `/components/component[name=PDBn-HSCm]/power-supply/state/output-power`| Input-only device (no output metering) — not exposed|
 | `/components/component[name=PDBn-HSCm]/power-supply/state/output-current` |Input-only device (no output metering) — not exposed|
 |`/components/component[name=PDBn-HSCm]/power-supply/state/output-voltage` |Input-only device (no output metering) — not exposed |
-<!--
 | `/components/component[name=PSUn]/state/serial-no` | From PSU VPD/EEPROM. Not populated for PDB/HSC.|
 | `/components/component[name=PSUn]/state/part-no` | From PSU VPD/EEPROM. Not populated for PDB/HSC.|
 | `/components/component[name=PSUn]/state/model-name` | From PSU VPD/EEPROM. Not populated for PDB/HSC.|
@@ -146,7 +145,7 @@ A hotswap controller has no EEPROM or VPD and a PDB is input-only. The following
 | `/components/component[name=PSUn]/power-supply/state/output-power` | PSU output side. Not populated for PDB/HSC.|
 | `/components/component[name=PSUn]/power-supply/state/output-current` | PSU output side. Not populated for PDB/HSC.|
 | `/components/component[name=PSUn]/power-supply/state/output-voltage` | PSU output side. Not populated for PDB/HSC.|
--->
+
 {{< /tab >}}
 {{< tab "WJH">}}
 
@@ -271,7 +270,13 @@ For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="O
 | `nvswitch_platform_environment_psu_current` |	`nvswitch_platform_environment_power_supply_current` |
 | `nvswitch_platform_environment_psu_voltage` |	`nvswitch_platform_environment_power_supply_voltage` |
 
-
 {{%notice note%}}
 On PSU-based platforms, the legacy `psu_*` metric family and the common `power_supply_*` family are emitted together for a three-release migration window. The legacy `psu_*` family is deprecated and will be removed after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
 {{%/notice%}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_info_hw_details{serial_no}` | Serial number. Emitted for PSU components; not emitted for PDBn-HSCm (no EEPROM/VPD on a hotswap controller).|
+| `nvswitch_platform_info_hw_details{part_no}` | Part number. |
+| `nvswitch_platform_info_hw_details{model_name}` | Model name.|
+| `nvswitch_platform_info_hw_details{hardware_version}` | Hardware revision.|

@@ -116,7 +116,7 @@ To disable the lossy multi TC profile, run the `nv unset qos roce mode lossy-mul
 ## DCI-1 Profile
 
 {{%notice note%}}
-The Data Center Interconnect profile (DCI-1) is a Beta feature and is supported on Spectrum-4, Spectrum-5, and Spectrum-6.
+The Data Center Interconnect profile (DCI-1) is a Beta feature and is supported on Spectrum-4 through Spectrum-6.
 {{%/notice%}}
 
 The DCI‑1 profile provides QoS settings for data center to data center connections. DCI‑1 configures the switch to run mixed classes: traffic class 3 with PFC (lossless intra‑data center) and traffic class 4 with ECN (lossy data center to data center, without PFC).

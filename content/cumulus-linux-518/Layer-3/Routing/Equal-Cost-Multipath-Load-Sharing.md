@@ -608,7 +608,7 @@ When you enable adaptive routing, Cumulus Linux enables the LAG hash randomizer,
 
 The LAG hash randomizer is used for leaf switches if there is more than one link connected between the switch and the NIC, and there is a bond configured between the switch and the NIC.
 
-LAG hash randomizer is supported on a Spectrum-4 or Spectrum-5 switch and only for static layer 3 bonds.
+LAG hash randomizer is supported on a Spectrum-4 or later and only for static layer 3 bonds.
 
 ### Link Utilization
 

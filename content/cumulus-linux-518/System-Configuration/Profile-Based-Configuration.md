@@ -12,7 +12,7 @@ Profile based configuration is a Beta feature.
 Cumulus Linux provides a simplified, profile‑based way to configure a switch that replaces many NVUE commands. You can select an NVIDIA‑predefined profile and provide interface ranges and breakout values. Cumulus Linux generates and applies all immutable configuration, such as link breakouts, ISSU, adaptive routing, telemetry, QoS, and PFC.
 
 {{%notice note%}}
-- Profile‑based switch configuration is supported on Spectrum-4, Spectrum-5, and Spectrum-6.
+- Profile‑based switch configuration is supported on Spectrum-4 through Spectrum-6.
 - Layer 3 addressing, routing protocols, and EVPN are not supported.
 - Before you use the profile‑based configuration on the switch, you must set up physical connectivity.
 - Profile‑based switch configuration does not introduce new authentication or authorization mechanisms. It relies on existing NVUE role-based access control.

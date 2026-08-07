@@ -120,25 +120,33 @@ For example, `/components/component/integrated-circuit/utilization/resources/res
 | `/components/component[name=PDBn-HSCm]/state/name` |	Component name Power Distribution Board (PDB) hotswap controllers (HSC).|
 | `/components/component[name=PDBn-HSCm]/state/description` | Human-readable description. |
 | `/components/component[name=PDBn-HSCm]/state/type` | Component type; POWER_SUPPLY (derived). |
-| `/components/component[name=PDBn-HSCm]/state/oper-status`	| Operational status (e.g. ACTIVE).|
+| `/components/component[name=PDBn-HSCm]/state/oper-status`	| Operational status (such as ACTIVE).|
 | `/components/component[name=PDBn-HSCm]/power-supply/state/capacity` |	HSC capacity in Watts (per-HSC) — max INPUT power the HSC can handle, not PSU rated OUTPUT.|
 | `/components/component[name=PDBn-HSCm]/power-supply/state/input-voltage` | Input-side voltage at the hotswap controller.|
 | `/components/component[name=PDBn-HSCm]/power-supply/state/input-current` | Input-side current at the hotswap controller. |
-| `/components/component[name=PDBn-HSCm]/power-supply/state/input-power` | Input-side power (normative). NEW augment leaf.|
+| `/components/component[name=PDBn-HSCm]/power-supply/state/input-power` | Input-side power (normative).|
 
-A hotswap controller has no EEPROM or VPD and a PDB is input-only. The following metrics are not populated for Power Distribution Board (PDB) hotswap controllers (HSC) (Spectrum-6 switches).
+A hotswap controller has no EEPROM or VPD and a PDB is input-only. The following metrics are not populated for Power Distribution Board (PDB) hotswap controllers (HSC) (PDB-based switches, such as the SN6600_LD - Spectrum-6).
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name=PDBn-HSCm]/state/serial-no` |	No EEPROM on hotswap controller — not populated|
-| `/components/component[name=PDBn-HSCm]/state/part-no` |	No EEPROM on hotswap controller — not populated|
-| `/components/component[name=PDBn-HSCm]/state/mfg-name` |	No EEPROM on hotswap controller — not populated|
-| `/components/component[name=PDBn-HSCm]/state/model-name` |	No EEPROM on hotswap controller — not populated|
-| `/components/component[name=PDBn-HSCm]/state/hardware-version` |	No EEPROM on hotswap controller — not populated|
+| `/components/component[name=PDBn-HSCm]/state/serial-no` |	No EEPROM on hotswap controller — PSU platforms only; not applicable to input-only PDB/HSC.|
+| `/components/component[name=PDBn-HSCm]/state/part-no` |	No EEPROM on hotswap controller — PSU platforms only; not applicable to input-only PDB/HSC.|
+| `/components/component[name=PDBn-HSCm]/state/mfg-name` |	No source in the platform inventory metric - not populated for PSU components either.|
+| `/components/component[name=PDBn-HSCm]/state/model-name` |	No EEPROM on hotswap controller — PSU platforms only; not applicable to input-only PDB/HSC.|
+| `/components/component[name=PDBn-HSCm]/state/hardware-version` |	No EEPROM on hotswap controller — PSU platforms only; not applicable to input-only PDB/HSC.|
 | `/components/component[name=PDBn-HSCm]/power-supply/state/output-power`| Input-only device (no output metering) — not exposed|
 | `/components/component[name=PDBn-HSCm]/power-supply/state/output-current` |Input-only device (no output metering) — not exposed|
 |`/components/component[name=PDBn-HSCm]/power-supply/state/output-voltage` |Input-only device (no output metering) — not exposed |
-
+<!--
+| `/components/component[name=PSUn]/state/serial-no` | From PSU VPD/EEPROM. Not populated for PDB/HSC.|
+| `/components/component[name=PSUn]/state/part-no` | From PSU VPD/EEPROM. Not populated for PDB/HSC.|
+| `/components/component[name=PSUn]/state/model-name` | From PSU VPD/EEPROM. Not populated for PDB/HSC.|
+| `/components/component[name=PSUn]/state/hardware-version` | From PSU VPD/EEPROM. Not populated for PDB/HSC.|
+| `/components/component[name=PSUn]/power-supply/state/output-power` | PSU output side. Not populated for PDB/HSC.|
+| `/components/component[name=PSUn]/power-supply/state/output-current` | PSU output side. Not populated for PDB/HSC.|
+| `/components/component[name=PSUn]/power-supply/state/output-voltage` | PSU output side. Not populated for PDB/HSC.|
+-->
 {{< /tab >}}
 {{< tab "WJH">}}
 
@@ -226,7 +234,7 @@ To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Ex
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_platform_environment_power_supply_state` | Operational state of the power component (1 = OK or present, 0 = absent). |
+| `nvswitch_platform_environment_power_supply_state` | Operational state of the power component. Enum: 0 ABSENT, 1 OK, 2 FAILED, 3 BAD, 4 HIGH, 5 LOW, 6 CRITICAL, 7 LCRITICAL, 8 UNKNOWN.|
 | `nvswitch_platform_environment_power_supply_capacity` | Power supply capacity in Watts. For input-only Power Distribution Boards (PDBs) this is the hotswap-controller power1_max (max INPUT power the hotswap controller (HSC) can handle, not a PSU rated OUTPUT capacity).
 | `nvswitch_platform_environment_power_supply_input_voltage` | Input-side voltage measured at the hotswap controller. |
 | `nvswitch_platform_environment_power_supply_input_current` | Input-side current measured at the hotswap controller. |

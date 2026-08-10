@@ -61,12 +61,6 @@
 <td></td>
 </tr>
 <tr>
-<td>5140100</td>
-<td>When you configure a Spectrum-6 switch in half-resource mode, a MAC address configured with NVUE for an interface on a switch port might not get programmed in hardware as intended for the layer 3 port. In Spectrum-X deployments, this issue might affect HWPLB functionality.</td>
-<td>5.17.0-5.18.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
 <td>5.18.0</td>

@@ -138,13 +138,18 @@ A hotswap controller has no EEPROM or VPD and a PDB is input-only. The following
 | `/components/component[name=PDBn-HSCm]/power-supply/state/output-power`| Input-only device (no output metering) — not exposed|
 | `/components/component[name=PDBn-HSCm]/power-supply/state/output-current` |Input-only device (no output metering) — not exposed|
 |`/components/component[name=PDBn-HSCm]/power-supply/state/output-voltage` |Input-only device (no output metering) — not exposed |
-| `/components/component[name=PSUn]/state/serial-no` | From PSU VPD/EEPROM. Not populated for PDB/HSC.|
-| `/components/component[name=PSUn]/state/part-no` | From PSU VPD/EEPROM. Not populated for PDB/HSC.|
-| `/components/component[name=PSUn]/state/model-name` | From PSU VPD/EEPROM. Not populated for PDB/HSC.|
-| `/components/component[name=PSUn]/state/hardware-version` | From PSU VPD/EEPROM. Not populated for PDB/HSC.|
-| `/components/component[name=PSUn]/power-supply/state/output-power` | PSU output side. Not populated for PDB/HSC.|
-| `/components/component[name=PSUn]/power-supply/state/output-current` | PSU output side. Not populated for PDB/HSC.|
-| `/components/component[name=PSUn]/power-supply/state/output-voltage` | PSU output side. Not populated for PDB/HSC.|
+
+On PSU-based switches, the same entities are populated for PSU components:
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name=PSUn]/state/serial-no` | From PSU VPD/EEPROM. |
+| `/components/component[name=PSUn]/state/part-no` | From PSU VPD/EEPROM. |
+| `/components/component[name=PSUn]/state/model-name` | From PSU VPD/EEPROM.|
+| `/components/component[name=PSUn]/state/hardware-version` | From PSU VPD/EEPROM. |
+| `/components/component[name=PSUn]/power-supply/state/output-power` | PSU output side.|
+| `/components/component[name=PSUn]/power-supply/state/output-current` | PSU output side. |
+| `/components/component[name=PSUn]/power-supply/state/output-voltage` | PSU output side. |
 
 {{< /tab >}}
 {{< tab "WJH">}}

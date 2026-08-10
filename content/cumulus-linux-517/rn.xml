@@ -55,12 +55,6 @@
 <td>5.18.0</td>
 </tr>
 <tr>
-<td>5140100</td>
-<td>When you configure a Spectrum-6 switch in half-resource mode, a MAC address configured with NVUE for an interface on a switch port might not get programmed in hardware as intended for the layer 3 port. In Spectrum-X deployments, this issue might affect HWPLB functionality.</td>
-<td>5.17.0-5.18.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5135125</td>
 <td>On switches with the Spectrum-4 ASIC, a port configured with a breakout might encounter a firmware (SDK or FW) fatal event when traffic first begins forwarding on the broken-out port. The switch resets the ASIC automatically and restarts {{switchd}} to recover. </td>
 <td>5.16.1, 5.16.5-5.17.0</td>

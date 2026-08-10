@@ -22,7 +22,6 @@ pdfhidden: True
 | 5152149 | Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash. | 5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0 | 5.18.0|
 | 5146168 | OTEL export fails if you configure the gRPC endpoint with an IPv6 address. | 5.17.0 | 5.18.0|
 | 5146058 | On the Spectrum-6 switch, the <code>l1-show</code> command output does not show eyes and grades for bonus or service port swp65s0 and swp65s1. | 5.17.0 | 5.18.0|
-| 5140100 | When you configure a Spectrum-6 switch in half-resource mode, a MAC address configured with NVUE for an interface on a switch port might not get programmed in hardware as intended for the layer 3 port. In Spectrum-X deployments, this issue might affect HWPLB functionality. | 5.17.0-5.18.0 | |
 | 5135125 | On switches with the Spectrum-4 ASIC, a port configured with a breakout might encounter a firmware (SDK or FW) fatal event when traffic first begins forwarding on the broken-out port. The switch resets the ASIC automatically and restarts <code>switchd</code> to recover.  | 5.16.1, 5.16.5-5.17.0 | 5.18.0|
 | 5130675 | The MFT tool crashes. | 5.17.0 | 5.18.0|
 | 5124026 | The HFT counter metrics exported over OTLP use incorrect timestamp and metric-type semantics. | 5.17.0 | 5.18.0|

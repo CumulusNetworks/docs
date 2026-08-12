@@ -7,48 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5093941</td>
-<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5093940</td>
-<td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5093853</td>
-<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
-<td>5.8.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5093852</td>
-<td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
-<td>5.8.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4986329</td>
-<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
-<td>5.3.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4963280</td>
-<td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
-<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4963277</td>
-<td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
-<td>5.3.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4957394</td>
 <td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
 <td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
@@ -73,7 +31,7 @@
 <td>5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4771521</td>
+<td>4771521, 5093940, 5093941</td>
 <td>Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port.</td>
 <td>5.9.2-5.15.1</td>
 <td>5.16.0-5.16.1, 5.16.5-5.18.0</td>
@@ -81,11 +39,11 @@
 <tr>
 <td>4717501</td>
 <td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
-<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
+<td>5.9.5-5.15.1</td>
+<td>5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4647646</td>
+<td>4647646, 4652641, 4652642</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
@@ -97,13 +55,13 @@
 <td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4633514</td>
+<td>4633514, 5093852, 5093853</td>
 <td>When the switch processes large numbers of mroute updates in an MLAG configuration, FRR might crash.</td>
 <td>5.8.0-5.14.0</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4621759</td>
+<td>4621759, 4963277, 4986329</td>
 <td>When many BFD sessions are configured at scale, {{ptmd}} might crash when one of the BFD sessions flaps.</td>
 <td>5.3.1-5.14.0</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
@@ -112,12 +70,6 @@
 <td>4582679</td>
 <td>If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
 <td>5.9.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4535804</td>
-<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -143,18 +95,6 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>4423336, 3875789, 3933038</td>
-<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.11.1</td>
-<td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-</tr>
-<tr>
-<td>4423335</td>
-<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
@@ -167,16 +107,10 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>4422898, 4497128</td>
+<td>4413450, 4422898, 4422899, 4497128</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
-<td>5.0.0-5.11.1, 5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td>5.11.2</td>
-</tr>
-<tr>
-<td>4341608</td>
-<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
-<td>5.10.1-5.11.1</td>
-<td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
+<td>5.0.0-5.11.1, 5.13.0-5.13.1</td>
+<td>5.11.2, 5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>4328729, 4261676</td>
@@ -185,52 +119,21 @@ To work around this issue, power cycle the switch.</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4298583</td>
+<td>4318313, 4341608</td>
+<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
+<td>5.10.1-5.11.1</td>
+<td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
+</tr>
+<tr>
+<td>4298572, 4298583, 4298584</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
-<td>5.10.1-5.11.0, 5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td>5.9.4, 5.11.1</td>
+<td>5.10.1-5.11.0, 5.12.0</td>
+<td>5.9.4, 5.11.1, 5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4281099</td>
+<td>4220147, 4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.0, 5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td>5.11.1</td>
-</tr>
-<tr>
-<td>4271207</td>
-<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
-<td>5.10.1-5.11.0</td>
-<td>5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-</tr>
-<tr>
-<td>4260012</td>
-<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.0</td>
-<td>5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-</tr>
-<tr>
-<td>4259980</td>
-<td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.9.3, 5.10.0-5.11.0</td>
-<td>5.9.4, 5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-</tr>
-<tr>
-<td>4223451</td>
-<td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
-This happens in async mode, where the end notification expected after an end of operation is missing.</td>
-<td>5.9.2-5.11.0</td>
-<td>5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-</tr>
-<tr>
-<td>4218485</td>
-<td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.11.0</td>
-<td>5.11.1-5.15.1, 5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-</tr>
-<tr>
-<td>4200961</td>
-<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.11.0</td>
+<td>5.8.0-5.11.0</td>
 <td>5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
@@ -240,17 +143,29 @@ This happens in async mode, where the end notification expected after an end of 
 <td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
+<td>4185962, 4223451</td>
+<td>When you change the VRR MAC address, {{switchd}} crashes. This occurs because deleting an old VRR MAC address triggers a neighbor update that changes the ECMP container resolution, which results in route entry updates.
+This happens in async mode, where the end notification expected after an end of operation is missing.</td>
+<td>5.9.2-5.11.0</td>
+<td>5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
+</tr>
+<tr>
+<td>4184845, 4271207</td>
+<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
+<td>5.10.1-5.11.0</td>
+<td>5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
+</tr>
+<tr>
 <td>4178578</td>
 <td>An unexpected thermal reboot occurs due to an incorrect firmware status in the i2c driver.</td>
 <td>5.10.0-5.11.0</td>
 <td>5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4175217</td>
-<td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
-netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.11.0</td>
-<td>5.9.4, 5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
+<td>4175695, 4260012</td>
+<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
+<td>5.10.0-5.11.0</td>
+<td>5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>4174646, 4042294</td>
@@ -259,11 +174,36 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4173602</td>
+<td>4170628, 4200961, 4535804</td>
+<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
+<td>5.10.0-5.11.0</td>
+<td>5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
+</tr>
+<tr>
+<td>4159554, 4170604, 4264726</td>
+<td>When you configure EVPN multihoming with more than one ESI bond member, you might see intermediate traffic loss.</td>
+<td>5.9.1-5.9.3, 5.10.0-5.11.0</td>
+<td>5.9.4, 5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
+</tr>
+<tr>
+<td>4156332, 4173602</td>
 <td>On the Spectrum-4 switch, {{switchd}} might crash with the following log message:
 CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.10.1-5.11.0</td>
 <td>5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
+</tr>
+<tr>
+<td>4151336, 4259979, 4259980</td>
+<td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
+<td>5.8.0-5.9.3, 5.10.0-5.11.0</td>
+<td>5.9.4, 5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
+</tr>
+<tr>
+<td>4150508, 4170602, 4175217</td>
+<td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
+netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
+<td>5.10.1-5.11.0</td>
+<td>5.9.4, 5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>4144021</td>
@@ -290,7 +230,7 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4127636</td>
+<td>4127636, 4134446</td>
 <td>Multicast traffic continues to egress an interface that leaves the group. Logs and multicast data show that the IGMP group is deleted but the OIF is still listed.</td>
 <td>5.10.0-5.10.1</td>
 <td>5.9.4, 5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
@@ -314,19 +254,13 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4119696</td>
-<td>If you run {{nv set}} commands after you perform an upgrade but before a reboot, NVUE creates a revision based off the pre-upgrade version. After reboot, the revision contains pre-upgrade data that might cause it to fail during {{config apply}}.  To work around this issue, detach the stale revision after upgrade with the {{nv config detach}} command.</td>
-<td>5.10.0-5.10.1</td>
-<td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-</tr>
-<tr>
-<td>4119621</td>
+<td>4119621, 4134451</td>
 <td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands, SNMP requests over IPv6 addresses do not work.</td>
 <td>5.8.0-5.9.3, 5.10.0-5.10.1</td>
 <td>5.9.4, 5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4102992</td>
+<td>4102992, 4122543</td>
 <td>When you use the NVUE {{nv set bridge domain &lt;bridge-id&gt; stp priority}} command to  configure the STP priority on two bridges, the STP priority on the second bridge does not apply.To work around this issue, configure an NVUE snippet for the second bridge and apply it to the switch; for example:
 Create the {{vlan-aware_bridge_snippet.yaml}} file and add the following:
 - set:
@@ -359,7 +293,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4081784</td>
+<td>4081784, 4091146</td>
 <td>If you configure an inbound route policy that drops prefixes, then run the vtysh {{show bgp vrf neighbours received-routes brief json}} command, the BGP service might crash. Avoid running a vtysh received routes brief json show command if you configure an inbound route policy that drops prefixes. Another option to avoid the issue is to run just {{show ip bgp neighbors received-routes}} without json.</td>
 <td>5.9.1-5.9.3, 5.10.0-5.10.1</td>
 <td>5.9.4, 5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
@@ -377,7 +311,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4066219</td>
+<td>4066219, 4086714</td>
 <td>Some STP interfaces might remain in a blocking state when there are large numbers of discontiguous VLANs enabled on a port.</td>
 <td>5.8.0-5.9.3, 5.10.0-5.10.1</td>
 <td>5.9.4, 5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
@@ -401,7 +335,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4050835</td>
+<td>4050835, 4100170</td>
 <td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
 <td>5.10.0-5.10.1</td>
 <td>5.9.4, 5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
@@ -463,7 +397,7 @@ To work around this issue, power-cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>4023318</td>
+<td>4023318, 4119696</td>
 <td>If you run {{nv set}} commands after you perform an upgrade but before a reboot, NVUE creates a revision based off the pre-upgrade version. After reboot, the revision contains pre-upgrade data that might cause it to fail during {{config apply}}.  To work around this issue, detach the stale revision after upgrade with the {{nv config detach}} command.</td>
 <td>5.10.0-5.10.1</td>
 <td>5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
@@ -487,13 +421,13 @@ To work around this issue, power-cycle the switch.</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
-<td>4005422, 4015452</td>
+<td>4005422, 4007590, 4015452</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 or later with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
 <tr>
-<td>4004898</td>
+<td>4004898, 4163399</td>
 <td>When you configure the SNMP server listening address to a VRF that has no interfaces, {{snmp.service}} fails.To recover from the failure, set the SNMP server listening address back to the VRF that has interfaces. If you really want to move the SNMP server to the VRF with no interfaces, assign an interface to the VRF and move the SNMP server to the VRF.</td>
 <td>5.10.0-5.10.1</td>
 <td>5.9.4, 5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
@@ -523,7 +457,7 @@ To work around this issue, power-cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>3928905</td>
+<td>3928905, 4035681</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
 <td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
 <td>5.9.2, 5.11.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
@@ -599,6 +533,12 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>In rare cases on the Spectrum 1 switch, where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair, and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
 <td>5.9.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3844670, 4423336, 3875789, 3933038, 4423335</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
+<td>5.9.0-5.11.1</td>
+<td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3819945</td>
@@ -883,9 +823,9 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2972540</td>
+<td>2972538, 2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
+<td>3.7.15-3.7.16, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -971,17 +911,17 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.10.0</td>
 </tr>
 <tr>
-<td>4062271, 4048679</td>
+<td>4062271, 4037224, 4048679</td>
 <td>ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see the &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations"&gt;Release Considerations section of the What’s New&lt;/a&gt;.</td>
 <td>5.10.0</td>
 </tr>
 <tr>
-<td>4047828</td>
+<td>4047828, 4034329, 4173498, 4040024</td>
 <td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
 <td>5.9.1-5.9.3</td>
 </tr>
 <tr>
-<td>4043575</td>
+<td>4043575, 4016216, 4043576</td>
 <td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
 <td>5.10.0</td>
 </tr>
@@ -995,11 +935,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4042262</td>
 <td>The {{switchd}} service goes down and there is a FW Long Command Timeout.</td>
 <td>5.10.0</td>
-</tr>
-<tr>
-<td>4040024</td>
-<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
-<td>5.9.1-5.10.0</td>
 </tr>
 <tr>
 <td>4037462</td>

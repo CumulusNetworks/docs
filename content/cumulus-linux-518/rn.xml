@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5217109</td>
+<td>Core processing services such as {{cumulus-core.service}} and {{cumulus-core.path}} might enter a failed state due to {{systemd}} start rate limiting caused by rapid start and stop cycles. This issue can prevent core files from being included in subsequent automatically generated cl-support collections even after you reactivate automatic cl-support generation after deactivation due to a chain of faults. Newly generated core files might accumulate, potentially leading to {{/var}} partition exhaustion. To recover from this condition, run the {{sudo systemctl reset-failed cumulus-core.service cumulus-core.path}} command.</td>
+<td>5.16.1, 5.16.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5217094</td>
+<td>When an ACL policy is reinstalled while ACL rule counter statistics are being collected, a kernel panic can occur and the switch might reboot unexpectedly. The panic occurs because the ACL counter buffer is released while the hardware counter read for that buffer is still in progress.</td>
+<td>5.16.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5217093</td>
+<td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
+<td>5.16.1, 5.16.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5184005</td>
 <td>In certain SRv6 configuration rollback scenarios, Zebra might fail to restore all explicit SRv6 SIDs. This can occur when multiple SRv6 locators share the same parent SID block and one of the locators is replayed during rollback. To work around this issue, restart FRR to clear the stale in-memory SRv6 SID allocation state, then reapply the intended configuration if needed.</td>
 <td>5.18.0</td>
@@ -58,12 +76,6 @@
 <td>5146099</td>
 <td>When operating at 100 percent line rate traffic runs from IXIA, the system experiences packet loss or latency in different traffic RFC tests. To work around this issue, configure the line rate at 99.9 percent and use ports from different IXIA Resource Groups.</td>
 <td>5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5140100</td>
-<td>When you configure a Spectrum-6 switch in half-resource mode, a MAC address configured with NVUE for an interface on a switch port might not get programmed in hardware as intended for the layer 3 port. In Spectrum-X deployments, this issue might affect HWPLB functionality.</td>
-<td>5.17.0-5.18.0</td>
 <td></td>
 </tr>
 <tr>

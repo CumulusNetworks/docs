@@ -14,6 +14,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5217109 | Core processing services such as <code>cumulus-core.service</code> and <code>cumulus-core.path</code> might enter a failed state due to <code>systemd</code> start rate limiting caused by rapid start and stop cycles. This issue can prevent core files from being included in subsequent automatically generated cl-support collections even after you reactivate automatic cl-support generation after deactivation due to a chain of faults. Newly generated core files might accumulate, potentially leading to <code>/var</code> partition exhaustion. To recover from this condition, run the <code>sudo systemctl reset-failed cumulus-core.service cumulus-core.path</code> command. | 5.16.1, 5.16.5-5.18.0 | |
+| 5217094 | When an ACL policy is reinstalled while ACL rule counter statistics are being collected, a kernel panic can occur and the switch might reboot unexpectedly. The panic occurs because the ACL counter buffer is released while the hardware counter read for that buffer is still in progress. | 5.16.5-5.18.0 | |
+| 5217093 | The <code>switchd</code> watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn. | 5.16.1, 5.16.5-5.18.0 | |
 | 5175518 | The <code>switchd</code> watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn. | 5.16.1, 5.16.5-5.18.0 | |
 | 5172157 | The <code>nv config apply</code> command fails to apply configuration changes because NVUE fails to handle stale sessions and does not prompt you to clear them. To work around this issue, run the <code>nv config detach</code> command to clear the stale session, then run the <code>nv config replace</code> command if there is a stale pending revision. | 5.16.5-5.17.0 | 5.18.0|
 | 5172073 | The LLDP Chassis ID might be non-unique when front-panel ports share MAC addresses. | 5.16.5-5.17.0 | 5.18.0|
@@ -22,7 +25,6 @@ pdfhidden: True
 | 5152149 | Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash. | 5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0 | 5.18.0|
 | 5146168 | OTEL export fails if you configure the gRPC endpoint with an IPv6 address. | 5.17.0 | 5.18.0|
 | 5146058 | On the Spectrum-6 switch, the <code>l1-show</code> command output does not show eyes and grades for bonus or service port swp65s0 and swp65s1. | 5.17.0 | 5.18.0|
-| 5140100 | When you configure a Spectrum-6 switch in half-resource mode, a MAC address configured with NVUE for an interface on a switch port might not get programmed in hardware as intended for the layer 3 port. In Spectrum-X deployments, this issue might affect HWPLB functionality. | 5.17.0-5.18.0 | |
 | 5135125 | On switches with the Spectrum-4 ASIC, a port configured with a breakout might encounter a firmware (SDK or FW) fatal event when traffic first begins forwarding on the broken-out port. The switch resets the ASIC automatically and restarts <code>switchd</code> to recover.  | 5.16.1, 5.16.5-5.17.0 | 5.18.0|
 | 5130675 | The MFT tool crashes. | 5.17.0 | 5.18.0|
 | 5124026 | The HFT counter metrics exported over OTLP use incorrect timestamp and metric-type semantics. | 5.17.0 | 5.18.0|

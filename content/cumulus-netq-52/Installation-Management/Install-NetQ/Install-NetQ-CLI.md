@@ -174,7 +174,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     ```
     nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
-You should see version 5.2.0 in the results: netq-apps_<strong>5.2.0</strong>-cld12u4_amd64.deb
+You should see version 5.2.1 in the results: netq-apps_<strong>5.2.1</strong>-cld12u4_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 

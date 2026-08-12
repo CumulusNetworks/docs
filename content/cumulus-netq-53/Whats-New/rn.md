@@ -32,8 +32,3 @@ pdfhidden: True
 | 4681581 | The <code>netq bootstrap reset purge-db</code> command might take up to 60 minutes to complete on Base Command Manager scale deployments. | 5.0.0-5.3.0 | |
 | 4399074 | When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected. | 5.0.0-5.3.0 | |
 | 4100882, 4119697 | When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export. | 4.12.0-4.15.1, 5.0.0-5.3.0 | |
-
-### Fixed Issues in 5.3.0
-|  Issue ID 	|   Description	|   Affects	|
-|---	        |---	        |---	    |
-

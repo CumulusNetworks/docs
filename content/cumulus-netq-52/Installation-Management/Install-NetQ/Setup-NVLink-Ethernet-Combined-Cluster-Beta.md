@@ -74,8 +74,7 @@ Additionally, for internal cluster communication, you must open these ports:
     a. Log in to your {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}} account.<br>
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
-    d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.2.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.2.0 VMware Scale** image<br>
+    d. In the search field above the table, enter **NetQ**.<br1 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.2.1 VMware Scale** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -292,7 +291,7 @@ nvidia@netq-server:~$ vim /tmp/combined-cluster-config.json
 {{< tab "New Install">}}
 
 ```
-nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
+nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-5.2.1.tgz /tmp/combined-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -308,8 +307,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 5.2.0
-    Installer Version: 5.2.0
+    Version: 5.2.1
+    Installer Version: 5.2.1
     Installation Type: Cluster
     Installation Mode: Combined
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==

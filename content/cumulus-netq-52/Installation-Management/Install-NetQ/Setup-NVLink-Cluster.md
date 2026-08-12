@@ -57,7 +57,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.2.0 KVM** image. For deployments using VMware, download the **NetQ SW 5.2.0 VMware** image<br>
+    e. For deployments using KVM, download the **NetQ SW 1 KVM** image. For deployments using VMware, download the **NetQ SW 5.2.1 VMware** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -247,7 +247,7 @@ nvidia@netq-server:~$ vim /tmp/nvl-cluster-config.json
 12.  Run the installation command on your master node using the JSON configuration file that you created in the previous step. Specify the passwords for the read-write user and the read-only user in the `rw-password` and `ro-password` fields, respectively. The passwords must each include a minimum of eight characters.
 
 ```
-nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.2.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
+nvidia@<hostname>:~$ netq install nvl bundle /mnt/installables/NetQ-5.2.1.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /tmp/nvl-cluster-config.json
 ```
 <div class=“notices tip”><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -259,8 +259,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 5.2.0
-    Installer Version: 5.2.0
+    Version: 5.2.1
+    Installer Version: 5.2.1
     Installation Type: Cluster
     Installation Mode: NVLink
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==

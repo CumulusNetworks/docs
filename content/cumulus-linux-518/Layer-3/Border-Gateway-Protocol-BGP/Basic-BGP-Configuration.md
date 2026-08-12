@@ -654,6 +654,10 @@ C>* 10.10.10.101/32 is directly connected, lo, 00:37:31
 {{< /tab >}}
 {{< /tabs >}}
 
+## Considerations
+
+When you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions can remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report `Cease/Connection Collision Resolution`. This timing-dependent issue might occur if you do not configure a BGP update source. To work around this issue, configure `update-source` separately for every numbered IPv6 BGP neighbor on both switches, using the local IPv6 address assigned to the link for that neighbor; do not configure a single shared source on the peer group when each parallel link has a different local address. After applying the configuration, clear the affected BGP sessions to remove any existing incorrectly associated connections.
+
 ## Related Information
 
 - To configure optional BGP settings, see {{<link url="Optional-BGP-Configuration" >}}.

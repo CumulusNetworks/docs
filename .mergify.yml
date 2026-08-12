@@ -5,13 +5,10 @@ pull_request_rules:
     actions:
       merge:
         method: merge
-      delete_head_branch: {}
-      
   - name: Automatic release note bot
     conditions:
       - "author=github-actions[bot]"
-      - "files~=\/rn.[md|xml]"
+      - "files~=/rn.[md|xml]"
     actions:
       merge:
         method: merge
-      delete_head_branch: {}

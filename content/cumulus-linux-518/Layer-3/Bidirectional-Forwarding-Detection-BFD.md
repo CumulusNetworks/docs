@@ -338,8 +338,7 @@ You configure the echo function by setting the following parameters in the topol
 
 ## BFD Offload to Kernel
 
-
-BFD offload improves BFD session scale by offloading sessions to the kernel driver `sx_bfd`, which is responsible for maintaining those sessions. BFD offload supports numbered sessions and IPv6 unnumbered sessions. BFD offload is disabled by default.
+BFD offload improves BFD session scale by offloading sessions to the kernel driver (`sx_bfd`), which is responsible for maintaining those sessions. BFD offload supports numbered sessions and IPv6 unnumbered sessions. BFD offload is disabled by default.
 
 {{%notice note%}}
 - When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
@@ -378,7 +377,7 @@ cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
 switch(config)# bfd
-switch(config-bfd)# offload-mode
+switch(config-bfd)# offload-mode kernel
 switch(config-bfd)# end
 switch# write memory
 switch# exit
@@ -410,35 +409,134 @@ offload    enabled
 ...
 ```
 
-To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view brief` command or the vtysh `show bfd peer` command.
+To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view brief` command or the vtysh `show bfd vrf default peers brief json` command.
 
 ```
 cumulus@switch:~$ nv show vrf default router bfd peers --view brief
 MHop - Multihop, Local - Local, Peer - Peer, Interface - Interface, State -
 State, Passive - Passive Mode, Time - Up/Down Time, Type - Config Type,
 Offloaded - Offloaded
-LocalId     MHop   Local                      Peer                  Interface      State  Passive  Time     Type     Offloaded
-----------  -----  ---------                  ---------             -----------    -----  -------  -------  -------  ---------
-4481308     False  10.10.10.1                 10.10.10.2            swp2           up     False    3:58:44  dynamic  offloaded
-87960564    False  fe80::1e34:daff:fea2:bb11  fe80::202:ff:fe00:e   swp21s1.631    up     False    0:00:55  dynamic  offloaded
-88363335    False  fe80::1e34:daff:fea2:bb10  fe80::202:ff:fe00:d   swp21s0.510    up     False    0:00:57  dynamic  offloaded
-90679959    False  fe80::1e34:daff:fea2:bb10  fe80::202:ff:fe00:d   swp21s0.507    up     False    0:00:57  dynamic  offloaded
+LocalId     MHop      Local                      Peer                  Interface      State  Passive     Time     Type     Offloaded  Profile
+----------  -----     ---------                  ---------             -----------    -----  -------     -------  -------  ---------  -------
+4481308     disabled  10.10.10.1                 10.10.10.2            swp2           up     disabled    3:58:44  dynamic  offloaded  fabric-bfd-profile
+87960564    disabled  fe80::1e34:daff:fea2:bb11  fe80::202:ff:fe00:e   swp21s1.631    up     disabled    0:00:55  dynamic  offloaded  fabric-bfd-profile
+88363335    disabled  fe80::1e34:daff:fea2:bb10  fe80::202:ff:fe00:d   swp21s0.510    up     disabled    0:00:57  dynamic  offloaded  fabric-bfd-profile
+90679959    disabled  fe80::1e34:daff:fea2:bb10  fe80::202:ff:fe00:d   swp21s0.507    up     disabled    0:00:57  dynamic  offloaded  fabric-bfd-profile
+```
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# show bfd vrf default peers brief json
+[
+  {
+    "multihop":false,
+    "peer":"9.9.9.14",
+    "local":"9.9.9.13",
+    "vrf":"default",
+    "interface":"swp2",
+    "id":1463777133,
+    "remote-id":1884059003,
+    "passive-mode":false,
+    "status":"up",
+    "uptime":788,
+    "diagnostic":"ok",
+    "remote-diagnostic":"ok",
+    "type":"dynamic",
+    "profile":"fabric-bfd-profile",
+    "offload-status":"control-plane",
+    "receive-interval":300,
+    "transmit-interval":300,
+    "echo-receive-interval":50,
+    "echo-transmit-interval":0,
+    "detect-multiplier":3,
+    "remote-receive-interval":300,
+    "remote-transmit-interval":300,
+    "remote-echo-receive-interval":50,
+    "remote-detect-multiplier":3,
+    "rtt-min":0,
+    "rtt-avg":0,
+    "rtt-max":0
+  },
+  {
+    "multihop":false,
+    "peer":"9.9.9.18",
+    "local":"9.9.9.17",
+    "vrf":"default",
+    "interface":"swp3",
+    "id":3542416298,
+    "remote-id":233894229,
+    "passive-mode":false,
+    "status":"up",
+    "uptime":799,
+    "diagnostic":"ok",
+    "remote-diagnostic":"ok",
+    "type":"dynamic",
+    "profile":"fabric-bfd-profile",
+    "offload-status":"control-plane",
+    "receive-interval":300,
+    "transmit-interval":300,
+    "echo-receive-interval":50,
+    "echo-transmit-interval":0,
+    "detect-multiplier":3,
+    "remote-receive-interval":300,
+    "remote-transmit-interval":300,
+    "remote-echo-receive-interval":50,
+    "remote-detect-multiplier":3,
+    "rtt-min":0,
+    "rtt-avg":0,
+    "rtt-max":0
+  },
+  {
+    "multihop":false,
+    "peer":"9.9.9.1",
+    "local":"9.9.9.2",
+    "vrf":"default",
+    "interface":"swp1",
+    "id":1326855126,
+    "remote-id":1157259650,
+    "passive-mode":false,
+    "status":"up",
+    "uptime":750,
+    "diagnostic":"ok",
+    "remote-diagnostic":"ok",
+    "type":"dynamic",
+    "profile":"fabric-bfd-profile",
+    "offload-status":"control-plane",
+    "receive-interval":300,
+    "transmit-interval":300,
+    "echo-receive-interval":50,
+    "echo-transmit-interval":0,
+    "detect-multiplier":3,
+    "remote-receive-interval":300,
+    "remote-transmit-interval":300,
+    "remote-echo-receive-interval":50,
+    "remote-detect-multiplier":3,
+    "rtt-min":0,
+    "rtt-avg":0,
+    "rtt-max":0
+  }
+]
 ```
 
 The `Offloaded` field shows `offloaded` if the session is offloaded and `control-plane` if the session is not offloaded.
-
+<!-- NOW POC FOR 5.18
 ## BFD Offload to Hardware
 
 Under heavy CPU load (such as route churn, ACL updates, large-scale provisioning), software-based BFD timers can drift, leading to false session flaps, especially at aggressive intervals. To avoid such issues, you can configure the switch to handle receiving and transmitting BFD packets entirely in hardware with 10ms timer precision, independent of CPU load.
 
 {{%notice note%}}
-You can set BFD to hardware:
-- On Spectrum-6 switches only.
-- On all single-hop interface types (physical, subinterface, bond, SVI, BGP unnumbered).
-- Before you change the BFD offlooad mode to firmware, configure BFD sessions to enter the admin-down state to notify peers gracefully. This prevents peers from interpreting the mode transition as a link or path failure, avoiding unnecessary routing reconvergence.
+- You can set BFD to hardware on Spectrum-6 switches only.
+- You can set BFD to hardware on all single-hop interface types (physical, subinterface, bond, SVI, BGP unnumbered). The switch does not support multi-hop BFD offload.
+- Before you change the BFD offlooad mode to hardware, configure BFD sessions to enter the admin down state to notify peers gracefully. This prevents peers from interpreting the mode transition as a link or path failure, avoiding unnecessary routing reconvergence.
 {{%/notice%}}
 
-To configure BFD to hardware, run the `nv set router bfd offload mode hardware` command:
+To configure BFD to hardware:
+
+{{< tabs "TabID442 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set router bfd offload mode hardware` command:
 
 ```
 cumulus@switch:~$ nv set router bfd offload mode hardware   
@@ -446,8 +544,28 @@ cumulus@switch:~$ nv config apply
 ```
 
 - To set BFD offload back to the defaut value of no offload, run the `nv set router bfd offload mode none` command.
-- To set BFD offload to kernel offload (`sx_bfd`), run the `nv set router bfd offload mode kernel` command.
+- To set BFD offload to the kernel, run the `nv set router bfd offload mode kernel` command.
 
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# bfd
+switch(config-bfd)# offload-mode hardware
+switch(config-bfd)# end
+switch# write memory
+switch# exit
+```
+
+- To set BFD offload back to the defaut value of no offload, set `offload-mode` to `none` (`offload-mode none`).
+- To set BFD offload to the kernel, set `offload-mode` to `kernel` (`offload-mode kernel`).
+
+{{< /tab >}}
+{{< /tabs >}}
+-->
 ## Show BFD Information
 
 You can show BFD configuration and operational data with NVUE or vtysh show commands.
@@ -508,6 +626,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 bfd
 -------  -----------  -------
 
 profile               BFD1
+status   up
 ```
 
 To see neighbor information in BGP, including BFD status, run the vtysh `show ip bgp neighbor <interface-id>` command:
@@ -516,9 +635,91 @@ To see neighbor information in BGP, including BFD status, run the vtysh `show ip
 cumulus@switch:~$ sudo vtysh 
 switch# show ip bgp neighbor swp51
 ...
-BFD: Type: single hop
-  Detect Mul: 4, Min Rx interval: 400, Min Tx interval: 400
-  Status: Down, Last update: 0:00:00:08
+BGP neighbor is swp51, remote AS 65199, local AS 65101, external link
+  Local Role: undefined
+  Remote Role: undefined
+Hostname: top0
+  BGP version 4, remote router ID 10.10.10.101, local router ID 10.10.10.1
+  BGP state = Established, up for 00:01:18
+  Last read 00:00:03, Last write 00:00:03
+  Hold time is 10 seconds, keepalive interval is 3 seconds
+  Configured hold time is 10 seconds, keepalive interval is 3 seconds
+  Configured tcp-mss is 0, synced tcp-mss is 9164
+  Configured conditional advertisements interval is 60 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    Extended Message: advertised and received
+    AddPath:
+      IPv4 Unicast: RX advertised and received
+    Long-lived Graceful Restart: advertised and received
+      Address families by peer:
+    Route refresh: advertised and received
+    Enhanced Route Refresh: advertised and received
+    Address Family IPv4 Unicast: advertised and received
+    Hostname Capability: advertised (name: top1,domain name: n/a) received (name: top0,domain name: n/a)
+    Version Capability: advertised software version (FRRouting/10.0.3) received software version (FRRouting/10.0.3)
+    Graceful Restart Capability: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+            Graceful Restart Capability: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+        none
+  Graceful restart information:
+    End-of-RIB send: IPv4 Unicast
+    End-of-RIB received: IPv4 Unicast
+    Local GR Mode: Helper*
+    Remote GR Mode: Helper
+ 
+    R bit: False
+    N bit: False
+    Timers:
+      Configured Restart Time(sec): 120
+      Received Restart Time(sec): 120
+      Configured LLGR Stale Path Time(sec): 0
+    IPv4 Unicast:
+      F bit: False
+      End-of-RIB sent: Yes
+      End-of-RIB sent after update: Yes
+      End-of-RIB received: Yes
+      Timers:
+        Configured Stale Path Time(sec): 360
+        LLGR Stale Path Time(sec): 0
+  Message statistics:
+    Inq depth is 0
+    Outq depth is 0
+                         Sent       Rcvd
+    Opens:                  2          2
+    Notifications:          0          0
+    Updates:                4          4
+    Keepalives:            44         44
+    Route Refresh:          0          0
+    Capability:             0          0
+    Total:                 50         50
+  Minimum time between advertisement runs is 5 seconds
+ 
+ For address family: IPv4 Unicast
+  Update group 1, subgroup 1
+  Packet Queue length 0
+  Community attribute sent to this neighbor(all)
+  0 accepted prefixes
+ 
+  Connections established 2; dropped 1
+  Last reset 00:01:29,  Waiting for peer OPEN (FRRouting/10.0.3)
+  External BGP neighbor may be up to 1 hops away.
+Local host: 9.9.9.2, Local port: 51442
+Foreign host: 9.9.9.1, Foreign port: 179
+Nexthop: 9.9.9.2
+Nexthop global: fe80::202:ff:fe00:a
+Nexthop local: fe80::202:ff:fe00:a
+BGP connection: shared network
+BGP Connect Retry Timer in Seconds: 10
+Estimated round trip time: 9 ms
+Read thread: on  Write thread: on  FD used: 83
+ 
+  BFD: Type: single hop
+  Profile: fabric-bfd-profile
+  Status: Up, Last update: 0:00:01:17
 ...
 ```
 

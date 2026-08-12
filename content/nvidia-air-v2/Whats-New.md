@@ -7,13 +7,19 @@ product: NVIDIA DSX Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://dsx-air.nvidia.com" text="NVIDIA DSX Air">}}.
 
-## May 2026
+## July 2026
 <!-- Air:WhatsNew -->
+### 82.2.1.20.27
+- Node boot order (beta): You can now specify an ordered list of boot devices for a node using the `boot` advanced attribute in your topology. List devices such as `network`, `hd`, and `cdrom` in the order you want them tried, so a node can attempt PXE (network) boot first and fall back to local disk. Specifying a single boot device continues to work as before.
+- Removed NetQ SaaS support.
+<!-- Air:WhatsNew -->
+
+## May 2026
 ### 82.2.1.15.2
 - Updated and added Jupiter Notebook examples in the SDK
 - Fixed a UI issue where not all valid interfaces were displayed during service creation 
 - Fixed an issue causing the console to remain stuck in a loading state when opened during a simulation rebuild
-<!-- Air:WhatsNew -->
+
 
 ## April 2026
 ### 82.2.1.8.11

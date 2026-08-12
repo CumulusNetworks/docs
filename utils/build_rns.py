@@ -257,7 +257,349 @@ def format_ticket_for_display(ticket):
         return ""
     return ", ".join(parts)
 
-def build_rn_markdown(json_file, version, file_type):
+# Product versions to skip entirely in the release notes build (see main()).
+# No JSON download, no markdown/XLS tables, no per-version headers for these releases.
+# Key: product short name ("cl" or "netq"). Value: full version strings to skip.
+EXCLUDED_VERSIONS = {
+    "cl": ["5.15.2", "5.16.2", "5.16.3", "5.16.4"],
+    "netq": ["2.4.0", "2.4.1", "3.0.0", "3.1.0", "3.2.0", "3.2.1", "3.3.0", "3.3.1", "4.0.0", "4.0.1", "4.1.0", "4.1.1", "4.2.0", "4.3.0", "4.4.0", "4.4.1", "4.5.0", "4.6.0", "4.7.0", "4.8.0", "5.0.0", "5.0.1", "5.2.0", "5.2.1"],
+}
+
+# Product versions still built, but omitted from Affects / Fixed columns (see
+# filter_version_list_for_display): singles removed, ranges split around them.
+# Key: product short name ("cl" or "netq"). Value: full version strings to hide.
+HIDDEN_VERSIONS = {
+    "cl": ["5.15.2", "5.16.2", "5.16.3", "5.16.4"],
+    "netq": [],
+}
+
+# Matches a single range token "lo-hi" (one hyphen between two version strings).
+_VERSION_RANGE_RE = re.compile(r"^(.+?)-(.+)$")
+
+
+def _loose_le(a, b):
+    return LooseVersion(a) <= LooseVersion(b)
+
+
+def _loose_lt(a, b):
+    return LooseVersion(a) < LooseVersion(b)
+
+
+def _sort_versions_ascending(versions):
+    return sorted(versions, key=LooseVersion)
+
+
+def _next_canonical_strictly_after(v, canonical_releases):
+    '''
+    Smallest shipping release strictly greater than v, from the JSON
+    release_notes list (sorted ascending). Used to advance past a hidden version
+    without inventing patch numbers that never shipped.
+    '''
+    if not canonical_releases:
+        return None
+    for c in canonical_releases:
+        if _loose_lt(v, c):
+            return c
+    return None
+
+
+def _numeric_tuple_from_version(v):
+    '''
+    Parse dot-separated numeric version into ints, or None if any segment is non-numeric.
+    Used only for boundary arithmetic when splitting ranges at hidden versions.
+    '''
+    parts = v.split(".")
+    out = []
+    for p in parts:
+        if not p.isdigit():
+            return None
+        out.append(int(p))
+    return out
+
+
+def _format_numeric_tuple(nums):
+    return ".".join(str(n) for n in nums)
+
+
+def _pred_numeric_dot_version(v):
+    '''
+    Strictly smaller neighbor for dot-numeric versions by "decrement" rules:
+    5.16.2 -> 5.16.1; 5.16.0 -> 5.15.0; 5.0.0 -> 4.0.0.
+    No synthetic high patch suffixes (e.g. never 5.15.999).
+    Returns None if no predecessor (e.g. 0.0.0) or non-numeric token.
+    '''
+    nums = _numeric_tuple_from_version(v)
+    if not nums:
+        return None
+    i = len(nums) - 1
+    while i >= 0:
+        if nums[i] > 0:
+            nums[i] -= 1
+            for j in range(i + 1, len(nums)):
+                nums[j] = 0
+            return _format_numeric_tuple(nums)
+        i -= 1
+    return None
+
+
+def _succ_version_exclusive_lower_bound(v):
+    '''
+    Smallest numeric version strictly greater than v (increment last segment).
+    '''
+    nums = _numeric_tuple_from_version(v)
+    if not nums:
+        return None
+    nums[-1] += 1
+    return _format_numeric_tuple(nums)
+
+
+def _succ_numeric_release(v):
+    '''
+    Next version in x.y.z space for walking a span: bump patch; when patch would
+    exceed 99 roll to the next minor (5.15.99 -> 5.16.0). Used when no explicit
+    literal caps the segment.
+    '''
+    nums = _numeric_tuple_from_version(v)
+    if not nums or len(nums) < 2:
+        return _succ_version_exclusive_lower_bound(v)
+    if len(nums) >= 3:
+        a, b, c = nums[0], nums[1], nums[2]
+        if c < 99:
+            return "{}.{}.{}".format(a, b, c + 1)
+        if b < 99:
+            return "{}.{}.0".format(a, b + 1)
+        return "{}.0.0".format(a + 1)
+    a, b = nums[0], nums[1]
+    if b < 99:
+        return "{}.{}".format(a, b + 1)
+    return "{}.0".format(a + 1)
+
+
+def _literal_strings_from_version_arrays(*arrays):
+    '''
+    Version endpoints explicitly present in affects/fixed arrays (singles and
+    range endpoints, including comma-separated clauses). Used to cap segment
+    highs when splitting so we prefer literals already in the source row.
+    '''
+    found = set()
+    for arr in arrays:
+        if not arr:
+            continue
+        for cell in arr:
+            for clause in re.split(r",\s*", str(cell)):
+                clause = clause.strip()
+                if not clause:
+                    continue
+                m = _VERSION_RANGE_RE.match(clause)
+                if m:
+                    found.add(m.group(1).strip())
+                    found.add(m.group(2).strip())
+                else:
+                    found.add(clause)
+    return found
+
+
+def _greatest_version_strictly_below_e(cursor, e, hi, literals, canonical_releases):
+    '''
+    Upper end of [cursor, end] with end < e (LooseVersion), end <= hi.
+    Prefer actual shipping releases from release_notes_and_license_list.json
+    (canonical_releases, sorted ascending); then literals from the ticket row; then numeric
+    predecessor of e; finally synthetic patch walk if canonical_releases is None or empty.
+    '''
+    if not (_loose_lt(cursor, e) and _loose_le(cursor, hi)):
+        return None
+
+    if canonical_releases:
+        pool = [
+            v for v in canonical_releases
+            if _loose_le(cursor, v) and _loose_lt(v, e) and _loose_le(v, hi)
+        ]
+        if pool:
+            return max(pool, key=LooseVersion)
+
+    pool = [
+        v for v in literals
+        if _loose_le(cursor, v) and _loose_lt(v, e) and _loose_le(v, hi)
+    ]
+    if pool:
+        return max(pool, key=LooseVersion)
+
+    pe = _pred_numeric_dot_version(e)
+    if pe is not None and _loose_le(cursor, pe) and _loose_lt(pe, e):
+        end = pe
+        if _loose_lt(hi, end):
+            end = hi
+        return end if _loose_le(cursor, end) else None
+
+    t = cursor
+    for _ in range(5000):
+        if not _loose_lt(t, e):
+            break
+        st = _succ_numeric_release(t)
+        if st is None:
+            return t if _loose_le(t, hi) and _loose_lt(t, e) else None
+        if not _loose_lt(st, e):
+            return t if _loose_le(t, hi) else None
+        if _loose_lt(hi, st):
+            return t if _loose_le(t, hi) else None
+        t = st
+    return t if _loose_le(t, hi) and _loose_lt(t, e) else None
+
+
+def _format_span(lo, hi):
+    if lo == hi:
+        return lo
+    return "{}-{}".format(lo, hi)
+
+
+def _split_range_removing_hidden(lo, hi, hidden_set, literals, canonical_releases):
+    '''
+    Return a list of display tokens (single version or "lo-hi") covering
+    [lo, hi] minus any version in hidden_set that lies in [lo, hi], inclusive.
+    Segment upper bounds prefer shipping releases (canonical_releases from
+    release_notes in release_notes_and_license_list.json); advancing past a
+    hidden release uses the next shipping version, not invented patch numbers.
+    '''
+    if _loose_lt(hi, lo):
+        return []
+
+    bad = sorted(
+        [e for e in hidden_set if _loose_le(lo, e) and _loose_le(e, hi)],
+        key=LooseVersion,
+    )
+    if not bad:
+        return [_format_span(lo, hi)]
+
+    out = []
+    cursor = lo
+    for e in bad:
+        if _loose_lt(e, cursor):
+            continue
+        if _loose_lt(cursor, e):
+            end = _greatest_version_strictly_below_e(
+                cursor, e, hi, literals, canonical_releases
+            )
+            if end is not None and _loose_le(cursor, end):
+                out.append(_format_span(cursor, end))
+        nxt = None
+        if canonical_releases:
+            nxt = _next_canonical_strictly_after(e, canonical_releases)
+        if nxt is None:
+            nxt = _succ_version_exclusive_lower_bound(e)
+        if nxt is None:
+            return out
+        cursor = nxt
+        if _loose_lt(hi, cursor):
+            return out
+
+    if _loose_le(cursor, hi):
+        out.append(_format_span(cursor, hi))
+    return out
+
+
+def _filter_one_version_token(token, hidden_set, literals, canonical_releases):
+    '''
+    token is one entry from affects_versions / fixed_versions (possibly after splitting on commas).
+    '''
+    token = token.strip()
+    if not token:
+        return []
+    if token in hidden_set:
+        return []
+
+    m = _VERSION_RANGE_RE.match(token)
+    if not m:
+        return [token]
+
+    lo, hi = m.group(1).strip(), m.group(2).strip()
+    if not lo or not hi:
+        return [token]
+    return _split_range_removing_hidden(
+        lo, hi, hidden_set, literals, canonical_releases
+    )
+
+
+def _dedupe_version_tokens_preserve_order(tokens):
+    '''
+    Multiple JSON array entries (often overlapping affects/fixed ranges) can filter
+    to identical display fragments; keep first occurrence, drop repeats.
+    '''
+    seen = set()
+    out = []
+    for t in tokens:
+        if t in seen:
+            continue
+        seen.add(t)
+        out.append(t)
+    return out
+
+
+def _version_display_sort_key(token):
+    '''
+    Sort key for ascending display: by span start (lo), then span end (hi),
+    using LooseVersion. Singles use the same version for lo and hi.
+    '''
+    tok = (token or "").strip()
+    if not tok:
+        return (LooseVersion("0"), LooseVersion("0"))
+    m = _VERSION_RANGE_RE.match(tok)
+    if m:
+        lo, hi = m.group(1).strip(), m.group(2).strip()
+        return (LooseVersion(lo), LooseVersion(hi))
+    return (LooseVersion(tok), LooseVersion(tok))
+
+
+def filter_version_list_for_display(
+        product, version_list, literal_pool=None, canonical_releases=None):
+    '''
+    Drop hidden product versions from display strings. Splits inclusive ranges
+    around hidden versions; also splits comma-separated clauses inside one string.
+
+    literal_pool - optional set of version strings from the same ticket row
+    (typically affects + fixed) used to choose upper bounds when splitting; if
+    omitted, only endpoints parsed from version_list are used.
+
+    canonical_releases - optional sorted ascending list of all shipping versions for this
+    product from release_notes in release_notes_and_license_list.json; when set,
+    segment bounds and "next after hidden" use only that catalog first.
+
+    Output clauses are deduplicated then sorted ascending by range start (then end),
+    so order does not depend on JSON array/clause ordering or how ranges were split.
+    '''
+    if not version_list:
+        return version_list
+    hidden = frozenset(HIDDEN_VERSIONS.get(product, []))
+    if not hidden:
+        return version_list
+
+    literals = (
+        _literal_strings_from_version_arrays(version_list)
+        if literal_pool is None
+        else set(literal_pool)
+    )
+
+    out = []
+    for cell in version_list:
+        if cell is None:
+            continue
+        s = str(cell).strip()
+        if not s:
+            continue
+        # Same delimiter style as rendered output: comma + space between clauses
+        for clause in re.split(r",\s*", s):
+            clause = clause.strip()
+            if not clause:
+                continue
+            out.extend(
+                _filter_one_version_token(
+                    clause, hidden, literals, canonical_releases
+                )
+            )
+    deduped = _dedupe_version_tokens_preserve_order(out)
+    return sorted(deduped, key=_version_display_sort_key)
+
+
+def build_rn_markdown(json_file, version, file_type, product, canonical_releases=None):
     '''
     Builds a list of lines that contain the entire formatted release notes in markdown table format.
 

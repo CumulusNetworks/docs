@@ -373,16 +373,16 @@ A user password is the key credential that verifies the user accessing the switc
 
 You can change these password security policies; see {{<link url="User-Accounts/#configure-password-policies" text="Configure Password Policies">}} below.
 
-### Disable Password Security
+### Enable Password Security
 
-The password security option is on by default. To disable password security, run the `nv set system security password-hardening state disabled` command:
+The password security option is off by default. To enable password security, run the `nv set system security password-hardening state enabled` command:
 
 ```
-cumulus@switch:~$ nv set system security password-hardening state disabled
+cumulus@switch:~$ nv set system security password-hardening state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To reenable password security, run the `nv set system security password-hardening state enabled` command.
+To disable password security, run the `nv set system security password-hardening state disabled` command.
 
 ### Configure Password Policies
 

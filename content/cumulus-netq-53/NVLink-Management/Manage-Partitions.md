@@ -1,0 +1,126 @@
+---
+title: Manage Partitions
+author: NVIDIA
+weight: 850
+toc: 4
+---
+
+Network partitions represent logical groupings of GPUs that reside within the same network domain. Use the `/v1/partitions` API endpoints to create, view, update, and delete partitions.
+
+## Partition Member Types
+
+When you create a partition, you define its members using one of the following types:
+
+- ID-based: A list of unique GPU identifiers. You can use either `db-id` (the system's internal database identifier) or `device-uuid` (a globally unique identifier assigned by the network).
+- Location-based: A set of objects describing each GPU’s physical placement, including attributes such as domain, chassis, slot, and host.
+
+A partition's member type is fixed at creation and cannot be changed or updated. All subsequent operations---such as updates or read requests---must use the same member type. For example, attempting to update a location-based partition using GPU IDs will result in a `409 Conflict` error.
+
+GPUs can only belong to one partition; all GPUs within a partition must belong to the same network domain.
+
+## Partition API Endpoints
+
+Use the `/v1/partitions` endpoint to create, update, view, or delete a partition. Most API responses return an operation ID, which you can use to query the status of the request:
+
+| Endpoint | Description |
+| :-- | :-- |
+| GET `/v1/partitions` | Retrieve a list of partitions. The `gpu-id-type` parameter allows you to specify devices by either their database ID (`db-id`) or unique identifier (`device-uuid`). |
+| POST `/v1/partitions` | Create a partition. The request body must include a partition name and a `members` object, which is either GPU-ID-based (`db-id` or `device-uuid`) or location-based |
+| GET `/v1/partitions/{id}` | Retrieve partition information, including health and metadata |
+| PUT `/v1/partitions/{id}` | Update a partition. Note that the partition name cannot be modified. However, you can update its member list. When performing a PUT operation, the `members` parameter must include all GPUs that belong to the partition. The system compares the provided list with the current configuration and adds or removes members automatically. |
+| DELETE `/v1/partitions/{id}` | Delete a partition |
+
+The `gpu-id-type` parameter controls the identifier format returned in the `Members` array for ID-based partitions. When set to `device-uuid` (the default), the response contains an array of `uint64` device UIDs as known by the network. When set to `db-id`, the response contains an array of string-based database identifiers. This parameter has no effect on location-based partitions, which always return member objects with physical placement attributes.
+
+## Monitor Partition Health
+
+<!--is this required?-->
+
+Depending on the resiliency mode for the partition, the partition can enter one of the following health states:
+
+| Resiliency Mode | State | Description |
+| :-- | :-- | :-- |
+| Full-Bandwidth Mode | HEALTHY | Operates at full bandwidth and full compute capacity. This is the optimal state. |
+|  | DEGRADED | Some GPUs may be *parked* with a NO_NVLINK health status. Remaining GPUs operate at full bandwidth; the partition remains operational. |
+|  | UNHEALTHY | Internal failures render the partition non-operational.  |
+| Adaptive-Bandwidth Mode | HEALTHY | Runs at full bandwidth and full compute capacity. This is the optimal state. |
+|  | BANDWIDTH | Some trunk links are unavailable, reducing bandwidth. All GPUs can still communicate; considered operational. |
+|  | UNHEALTHY | Internal failures render the partition non-operational.  |
+| User-Action-Required Mode | HEALTHY | Operates at full bandwidth and full compute capacity. This is the optimal state. |
+|  | DEGRADED_BANDWIDTH | Missing trunk links reduce communication bandwidth. All GPUs can still communicate; considered operational. |
+|  | UNHEALTHY | Internal failures render the partition non-operational. |
+
+## Partition API Examples
+
+Retrieve all partitions using the default GPU identifier type (`device-uuid`):
+```
+curl -X 'GET' \
+  'https://<ip-address>/nmx/v1/partitions' \
+  -H 'accept: application/json'
+```
+
+Example response:
+
+```
+[
+  {
+    "ID": "682880baaf653727786b618f",
+    "PartitionID": 1,
+    "Name": "partition-1",
+    "Type": "ID_BASED",
+    "Health": "HEALTHY",
+    "Members": [
+      12345678901234567000,
+      12345678901234568000
+    ],
+    "ResiliencyMode": "FULL_BANDWIDTH",
+    "CreatedAt": "2026-03-18T12:00:00Z",
+    "UpdatedAt": "2026-03-18T12:00:00Z"
+  }
+]
+```
+
+Retrieve all partitions with members displayed as database IDs:
+```
+curl -X 'GET' \
+  'https://<ip-address>/nmx/v1/partitions?gpu-id-type=db-id' \
+  -H 'accept: application/json'
+```
+Example response:
+```
+[
+  {
+    "ID": "682880baaf653727786b618f",
+    "PartitionID": 1,
+    "Name": "partition-1",
+    "Type": "ID_BASED",
+    "Health": "HEALTHY",
+    "Members": [
+      "551137c2f9e1fac808a5f572",
+      "551137c2f9e1fac808a5f573"
+    ],
+    "ResiliencyMode": "FULL_BANDWIDTH",
+    "CreatedAt": "2026-03-18T12:00:00Z",
+    "UpdatedAt": "2026-03-18T12:00:00Z"
+  }
+]
+```
+Retrieve a single partition by its ID:
+```
+curl -X 'GET' \
+  'https://<ip-address>/nmx/v1/partitions/<partition-id>' \
+  -H 'accept: application/json'
+```
+
+Retrieve a single partition with members displayed as database IDs:
+```
+curl -X 'GET' \
+  'https://<ip-address>/nmx/v1/partitions/<partition-id>?gpu-id-type=db-id' \
+  -H 'accept: application/json'
+```
+The response format is the same as a single element from the list endpoint.
+
+
+## Related Information
+
+- {{<exlink url="https://docs.nvidia.com/multi-node-nvlink-systems/partition-guide-v1-2.pdf" text="NVIDIA GB200 NVL Partition User Guide">}}

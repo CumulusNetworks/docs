@@ -79,9 +79,9 @@ When you enable FIPS mode, NVUE blocks the following configurations that use non
 | Feature | Restriction | Blocked Configuration |
 | ------- | ----------- | --------------------- |
 | SNMP    | MD5 authentication | `nv set system snmp-server username <username> auth-md5` |
-| SNMP    | SHA authentication | `nv set system snmp-server username <username> auth-sha` |
+| SNMP    | SHA authentication with DES privacy | `nv set system snmp-server username <username> auth-sha <auth-password> encrypt-des <privacy-password>` |
 | SNMP traps |MD5 authentication | `nv set system snmp-server trap-destination <dest-id> username <username> auth-md5` |
-| SNMP traps | SHA authentication | `nv set system snmp-server trap-destination <dest-id> username <username> auth-sha` |
+| SNMP traps | SHA authentication with DES privacy | `nv set system snmp-server trap-destination <dest-id> username <username> auth-sha <auth-password> encrypt-des <privacy-password>` |
 | OSPF | MD5 authentication | `nv set interface <interface> router ospf authentication` |
 | BGP&nbsp;neighbor | MD5 password | `nv set vrf <vrf> router bgp neighbor <neighbor-id> password` |
 | BGP&nbsp;peer&nbsp;group | MD5 password | `nv set vrf <vrf> router bgp peer-group <peer-group-id> password` |

@@ -32,7 +32,7 @@ Cumulus Linux supports:
 - Hardware timestamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
 {{%notice note%}}
-- You cannot run *both* PTP and NTP on the switch.
+- You cannot use *both* PTP and NTP to set the system clock on the switch at the same time.
 - PTP supports the default VRF only.
 - PTP on the NVIDIA SN5400 switch is in BETA
 - 1G links might have a lower accuracy for PTP due to hardware limitations. If your application needs high accuracy from PTP, use higher link speeds.

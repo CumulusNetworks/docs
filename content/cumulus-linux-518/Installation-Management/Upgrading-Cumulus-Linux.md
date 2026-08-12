@@ -12,6 +12,8 @@ To upgrade Cumulus Linux, choose one of the three upgrade methods:
 - Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}} (ISSU support and maintains the current switch configuration).
 - Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you need to manually back up and restore your switch configuration).
 
+To install a patch (such as a critical bug or CVE), refer to {{<link url="Patches" text="Patches">}}.
+
 ## Upgrades with ISSU
 
 {{%notice note%}}
@@ -239,9 +241,11 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 {{%/notice%}}
 
 For a list of the releases from which you can upgrade, see {{<link url="Whats-New/#upgrade-requirements" text="Release Considerations">}}.
-
-To upgrade the switch with package upgrade:
-
+<!--
+{{%notice note%}}
+You can package upgrade the switch with NVUE or Linux commands. The NVUE command performs a full package upgrade and installs new packages such as `nv-wjh`. The Linux command (`apt-get upgrade`) only upgrades existing packages and does not install newly introduced packages. To perform a full package upgrade, either run the NVUE command or the Linux `apt-get dist-upgrade` command.
+{{%/notice%}}
+-->
 {{< tabs "TabID253 ">}}
 {{< tab "NVUE Commands ">}}
 

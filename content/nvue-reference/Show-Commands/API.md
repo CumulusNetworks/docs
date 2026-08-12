@@ -102,3 +102,23 @@ requests  5
 waiting   0                   
 writing   1
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system api versions</h>
+
+Shows the currently supported NVUE REST API endpoint versions.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system api versions
+         operational
+-------  -----------
+nvue     current    
+nvue_v1  current
+```

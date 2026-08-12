@@ -404,3 +404,57 @@ netq-dc1-default-sts-2   2/2     Running   0          21h
 ```
 
 If the problem persists, check whether the power outage caused node disk pressure, a condition where a node's available disk space becomes critically low. To recover from this state, perform a manual cleanup of the container images by checking which pods are taking up the most space. Then run `docker system prune -a` or `crictl rmi --prune` (depending on container runtime) to remove all unused images, containers, and networks.
+
+## Recover from a Kafka Broker Failure
+
+If a Kafka broker's log directory becomes corrupted, the broker pod will fail repeatedly. Identify and resolve the issue with the following steps:
+
+1. Check whether Kafka broker pods are in a `CrashLoopBackOff` or `Terminating` state:
+
+```
+kubectl get pods -n netq-infra -o wide | grep kafka-cluster-broker
+```
+
+Example output showing a pod in a `Terminating` state:
+
+```
+kafka-cluster-broker-0   0/2   Terminating        0               82m   10.244.189.73    worker2   <none>   <none>
+kafka-cluster-broker-1   2/2   Running       2 (62m ago)   82m   10.244.235.227   worker1   <none>   <none>
+kafka-cluster-broker-2   2/2   Running       1 (77m ago)   82m   10.244.219.156   master    <none>   <none>
+```
+
+Example output showing a pod in a `CrashLoopBackOff` state:
+
+```
+kafka-cluster-broker-0   0/2   CrashLoopBackOff   36 (50s ago)   82m   10.244.189.73    worker2   <none>   <none>
+kafka-cluster-broker-1   2/2   Running       2 (62m ago)   82m   10.244.235.227   worker1   <none>   <none>
+kafka-cluster-broker-2   2/2   Running       1 (77m ago)   82m   10.244.219.156   master    <none>   <none>
+```
+
+2. Check the logs of the failing pod to confirm a log directory failure:
+
+```
+kubectl logs -n netq-infra kafka-cluster-broker-0
+```
+
+The number in the pod name (for example, `0` in `kafka-cluster-broker-0`) identifies the corrupted broker.
+
+```
+2026-07-11 00:05:03,184 WARN [ReplicaManager broker=0] Stopping serving replicas in dir /var/lib/kafka/data/kafka-log0 with uuid Some(ZWeC2n1SOy9dl9XZquqDuw) because the log directory has failed. (kafka.server.ReplicaManager) [LogDirFailureHandler]
+2026-07-11 00:05:03,185 INFO [GroupCoordinator 0]: Startup complete. (kafka.coordinator.group.GroupCoordinator) [kafka-0-metadata-loader-event-handler]
+2026-07-11 00:05:03,185 INFO [TransactionCoordinator id=0] Starting up. (kafka.coordinator.transaction.TransactionCoordinator) [kafka-0-metadata-loader-event-handler]
+2026-07-11 00:05:03,186 WARN [ReplicaManager broker=0] Broker 0 stopped fetcher for partitions and stopped moving logs for partitions because they are in the failed log directory /var/lib/kafka/data/kafka-log0. (kafka.server.ReplicaManager) [LogDirFailureHandler]
+2026-07-11 00:05:03,186 INFO [TxnMarkerSenderThread-0]: Starting (kafka.coordinator.transaction.TransactionMarkerChannelManager) [TxnMarkerSenderThread-0]
+2026-07-11 00:05:03,186 INFO [TransactionCoordinator id=0] Startup complete. (kafka.coordinator.transaction.TransactionCoordinator) [kafka-0-metadata-loader-event-handler]
+2026-07-11 00:05:03,186 WARN Stopping serving logs in dir /var/lib/kafka/data/kafka-log0 (kafka.log.LogManager) [LogDirFailureHandler]
+2026-07-11 00:05:03,188 ERROR Shutdown broker because all log dirs in /var/lib/kafka/data/kafka-log0 have failed (kafka.log.LogManager) [LogDirFailureHandler]
+```
+
+3. Delete the broker's persistent volume claim and pod to allow Kafka to recreate them. Replace `0` in the following commands with the index of the corrupted broker:
+
+```
+kubectl -n netq-infra delete pvc data-kafka-cluster-broker-0 --wait=false
+kubectl -n netq-infra delete pod kafka-cluster-broker-0
+sleep 180
+kubectl -n netq-infra wait --for=condition=Ready pod/kafka-cluster-broker-0 --timeout=1800s
+```

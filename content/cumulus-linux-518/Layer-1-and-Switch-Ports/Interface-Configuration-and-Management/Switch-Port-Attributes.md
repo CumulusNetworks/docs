@@ -1691,8 +1691,53 @@ Maximum 800G ports: 64
 {{< /tab >}}
 {{< /tab >}}
 
+{{< /tabs >}}
+{{< tab "SN6600_LD">}}
+
+800G (800G_4x): 128 ports
+
+SN6600_LD 128xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 100G.
+
+For lower speeds, PAM4 is automatically converted to NRZ encoding.
+
+Bonus ports #65s0 and #65s1 support 100G.
+
+{{< tabs "SN6600_ports ">}}
+{{< tab "100G ">}}
+
+514x 100G - 514x OSFP break out into 1x - You must disable the adjacent OSFP port.
+
+Maximum 100G ports: 514 (512 ports + 2 bonus ports)
+
+{{< /tab >}}
+{{< tab "200G ">}}
+
+- 512x 200G - 512x OSFP break out into 1x
+- 256x 200G - 256x OSFP break out into 2x
+
+Maximum 200G ports: 512
+
+{{< /tab >}}
+{{< tab "400G ">}}
+
+- 128x 400G - 128x OSFP break out into 4x
+- 256x 400G - 256x OSFP break out into 2x
+
+Maximum 400G ports: 256
+
+{{< /tab >}}
+{{< tab "800G ">}}
+
+128x 800G - 128x OSFP break out into 4x
+
+Maximum 800G ports: 128
+
+{{< /tab >}}
+{{< /tab >}}
+
 {{< /tab >}}
 {{< /tabs >}}
+
 <!-- vale on -->
 {{%notice note%}}
 - You can use a single SFP (10/25/50G) transceiver in a QSFP (100/200/400G) port with *QSFP-to-SFP Adapter* (QSA). Set the port speed to the SFP speed with the `nv set interface <interface-id> link speed <speed>` command. Do not configure this port as a breakout port.
@@ -2176,6 +2221,10 @@ Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 
 To show a tabular summary of transceiver temperature, voltage, and per-channel optical power and bias values for all switch port interfaces, run the `nv show interface --view dom` command: 
 
+{{%notice note%}}
+The `nv show interface --view dom` command is currently in Beta.
+{{%/notice%}}
+
 ```
 cumulus@switch:~$ nv show interface --view dom
 swp1s0  temperature 65.98 C       voltage 3.2097 V 
@@ -2206,8 +2255,8 @@ swp2s0  temperature 68.79 C       voltage 3.2225 V
 ...
 ```
 
-- Use the `--filter` option to filter the view for a range of interfaces; for example the `nv show interface --view dom --filter "*>=swp20&*<=swp22"` command shows transceiver information for swp20, swp21, and swp22.
-- Use the -o json option to show the information in json format; for example the `nv show interface --view dom --filter "*>=swp20&*<=swp22" -o json` command shows transceiver information for swp20, swp21, and swp22 in json format.
+- To filter the view for a range of interfaces, use the `--filter` option; for example, the `nv show interface --view dom --filter "*>=swp1s0&*<=swp1s3"` command shows transceiver information for swp1s0, swp1s1, swp1s2, and swp1s3.
+- To show the information in json format, use the `-o json` option; for example, the `nv show interface --view dom --filter "*>=swp1s0&*<=swp1s3" -o json` command shows transceiver information for swp1s0, swp1s1, swp1s2, and swp1s3 in json format.
 
 ## Considerations
 <!-- vale off -->

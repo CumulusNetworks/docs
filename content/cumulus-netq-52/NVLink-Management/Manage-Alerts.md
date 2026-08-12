@@ -38,9 +38,14 @@ NetQ broadcasts alerts when your {{<link title="Manage Licenses" text="NetQ for 
 | Expires Soon | `licensing` | `LicenseValidation` | warning |
 | Expired | `licensing` | `LicenseValidation` | critical |
 
-<!--
 ## Certificate Expiration
--->
+
+NetQ monitors the CA, server, and switch certificates and alerts you before they expire so you can rotate them without losing switch connectivity. Certificates are checked on a recurring interval; NetQ raises a warning while a certificate is still valid but nearing expiry, and escalates to critical after it has expired. The alert includes the certificate subject, issuer, type, fingerprint, and the addresses the certificate covers.
+
+| Alert Type | Alert Group | Alert Name(s) | Severity |
+| :-- | :-- | :-- | :-- |
+| Expires Soon | `cert-mgr` | `CertificateExpiration` | warning |
+| Expired | `cert-mgr` | `CertificateExpiration` | critical |
 
 ## Leak Sensor Notifications
 

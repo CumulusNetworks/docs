@@ -123,6 +123,8 @@ This behavior is different in an MLAG environment. If you configure MLAG and you
 - Adds the mapping `vlan4055 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan48` in bridge `br_default`.
 
 The {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="global reserved layer 3 VNI VLAN range">}} is different than the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="switch internal reserved VLAN range.">}} You can configure the range with the {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="`nv set system global reserved vlan l3-vni-vlan` command">}}.
+
+You can configure only one VNI for each VRF. Before you configure a new VNI, make sure to unset the existing VNI.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -186,6 +188,250 @@ When you are using MLAG, the VNIs and VXLAN device must belong to the same bridg
 {{%/notice%}}
 
 If you need to convert a layer 2 VNI to a layer 3 VNI, refer to {{<link url="Network-Virtualization/#change-a-layer-2-vni-to-layer-3" text="Change a Layer 2 VNI to Layer 3">}}.
+
+### Layer 3 VXLAN Device Mode
+
+{{%notice note%}}
+Layer 3 VXLAN device mode is a Beta feature.
+{{%/notice%}}
+
+Instead of using a single VXLAN device for all layer 3 VNIs (as described above), you can configure the switch to use a layer 3 VXLAN device for each VNI. Layer 3 VXLAN mode creates individual VXI devices that are not SVIs and are unrelated to any bridge.
+
+Layer 3 VXLAN device mode simplifies EVPN configuration and improves performance at scale.
+ 
+To enable layer 3 VXLAN device mode, first disable EVPN and VXLAN, then run the `nv set evpn l3vxi state enabled` command. Layer 3 VXLAN device mode is disabled by default.
+
+{{%notice note%}}
+Enabling or disabling layer 3 VXLAN device mode is disruptive as it changes the underlying Linux VXLAN interface model. Only enable or disable layer 3 VXLAN device mode during a planned maintenance window; do not apply configuration changes while traffic is active.
+{{%/notice%}}
+
+```
+cumulus@leaf01:~$ nv set evpn state disabled
+cumulus@leaf01:~$ nv set nve vxlan state disabled
+cumulus@leaf01:~$ nv config apply
+```
+```
+cumulus@leaf01:~$ nv set evpn l3vxi state enabled
+cumulus@leaf01:~$ nv config apply
+```
+
+NVUE removes all single VXLAN devices and creates a layer 3 VXLAN device for each layer 3 VNI using the naming format `vxi_<vni_id>`.
+
+The following dropdowns show the different configurations as a comparison.
+
+{{< expand "Layer 3 VXLAN Devices for each VNI" >}}
+
+```
+auto vlan1000
+iface vlan1000
+    address 9.4.0.7/24
+    address 2001:fee1:d011::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.0.1/24 2001:fee1:d011::1/80
+    vrf vrf1
+    vlan-raw-device br_default
+    vlan-id 1000
+
+auto vlan1002
+iface vlan1002
+    address 9.4.2.7/24
+    address 2001:fee1:d011:0:2::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.2.1/24 2001:fee1:d011:0:2::1/80
+    vrf vrf1
+    vlan-raw-device br_default
+    vlan-id 1002
+
+auto vlan1004
+iface vlan1004
+    address 9.4.4.7/24
+    address 2001:fee1:d011:0:4::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.4.1/24 2001:fee1:d011:0:4::1/80
+    vrf vrf2
+    vlan-raw-device br_default
+    vlan-id 1004
+
+auto vlan1006
+iface vlan1006
+    address 9.4.6.7/24
+    address 2001:fee1:d011:0:6::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.6.1/24 2001:fee1:d011:0:6::1/80
+    vrf vrf2
+    vlan-raw-device br_default
+    vlan-id 1006
+
+auto vlan1008
+iface vlan1008
+    address 9.4.8.7/24
+    address 2001:fee1:d011:0:8::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.8.1/24 2001:fee1:d011:0:8::1/80
+    vrf vrf3
+    vlan-raw-device br_default
+    vlan-id 1008
+
+auto vxi_4001
+iface vxi_4001
+    hwaddress 44:38:39:ff:ff:11
+    address-virtual 44:38:39:42:42:01
+    vrf vrf1
+    vxlan-vni 4001
+
+auto vxi_4002
+iface vxi_4002
+    hwaddress 44:38:39:ff:ff:11
+    address-virtual 44:38:39:42:42:01
+    vrf vrf2
+    vxlan-vni 4002
+
+auto vxi_4003
+iface vxi_4003
+    hwaddress 44:38:39:ff:ff:11
+    address-virtual 44:38:39:42:42:01
+    vrf vrf3
+    vxlan-vni 4003
+
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 1000=1000 1002=1002 1004=1004 1006=1006 1008=1008
+    bridge-learning off
+
+auto br_default
+iface br_default
+    bridge-ports hostbond_3 hostbond_4 vxlan48
+    hwaddress 44:38:39:ff:ff:11
+    bridge-vlan-aware yes
+    bridge-vids 1000 1002 1004 1006 1008
+    bridge-pvid 1
+    bridge-stp yes
+    bridge-mcsnoop no
+    mstpctl-forcevers rstp
+```
+{{< /expand >}}
+
+{{< expand "Single VXLAN Device for All Layer 3 VNIs" >}}
+
+```
+...
+auto vlan1000
+iface vlan1000
+    address 9.4.0.7/24
+    address 2001:fee1:d011::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.0.1/24 2001:fee1:d011::1/80
+    vrf vrf1
+    vlan-raw-device br_default
+    vlan-id 1000
+
+auto vlan1002
+iface vlan1002
+    address 9.4.2.7/24
+    address 2001:fee1:d011:0:2::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.2.1/24 2001:fee1:d011:0:2::1/80
+    vrf vrf1
+    vlan-raw-device br_default
+    vlan-id 1002
+
+auto vlan1004
+iface vlan1004
+    address 9.4.4.7/24
+    address 2001:fee1:d011:0:4::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.4.1/24 2001:fee1:d011:0:4::1/80
+    vrf vrf2
+    vlan-raw-device br_default
+    vlan-id 1004
+
+auto vlan1006
+iface vlan1006
+    address 9.4.6.7/24
+    address 2001:fee1:d011:0:6::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.6.1/24 2001:fee1:d011:0:6::1/80
+    vrf vrf2
+    vlan-raw-device br_default
+    vlan-id 1006
+
+auto vlan1008
+iface vlan1008
+    address 9.4.8.7/24
+    address 2001:fee1:d011:0:8::7/80
+    mtu 9100
+    address-virtual 00:05:0e:0b:e1:1e 9.4.8.1/24 2001:fee1:d011:0:8::1/80
+    vrf vrf3
+    vlan-raw-device br_default
+    vlan-id 1008
+
+auto vlan1142_l3
+iface vlan1142_l3
+    vrf vrf3
+    vlan-raw-device br_l3vni
+    address-virtual 44:38:39:42:42:01
+    vlan-id 1142
+
+auto vlan1953_l3
+iface vlan1953_l3
+    vrf vrf2
+    vlan-raw-device br_l3vni
+    address-virtual 44:38:39:42:42:01
+    vlan-id 1953
+
+auto vlan2501_l3
+iface vlan2501_l3
+    vrf vrf1
+    vlan-raw-device br_l3vni
+    address-virtual 44:38:39:42:42:01
+    vlan-id 2501
+
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 1000=1000 1002=1002 1004=1004 1006=1006 1008=1008
+    bridge-learning off
+
+auto vxlan99
+iface vxlan99
+    bridge-vlan-vni-map 1142=4003 1953=4002 2501=4001
+    bridge-learning off
+
+auto br_default
+iface br_default
+    bridge-ports hostbond_3 hostbond_4 vxlan48
+    hwaddress 44:38:39:ff:ff:11
+    bridge-vlan-aware yes
+    bridge-vids 1000 1002 1004 1006 1008
+    bridge-pvid 1
+    bridge-stp yes
+    bridge-mcsnoop no
+    mstpctl-forcevers rstp
+
+auto br_l3vni
+iface br_l3vni
+    bridge-ports vxlan99
+    hwaddress 44:38:39:ff:ff:11
+    bridge-vlan-aware yes
+```
+{{< /expand >}}
+
+To disable layer 3 VXLAN device mode, disable EVPN, VXLAN, and layer 3 VXLAN device mode at the same time:
+
+```
+cumulus@leaf01:~$ nv set evpn l3vxi state disabled 
+cumulus@leaf01:~$ nv set nve vxlan state disabled 
+cumulus@leaf01:~$ nv set evpn state disabled
+cumulus@leaf01:~$ nv config apply
+```
+
+To use EVPN, re-enable EVPN and VXLAN:
+
+```
+cumulus@leaf01:~$ nv set evpn state enabled
+cumulus@leaf01:~$ nv set nve vxlan state enabled
+```
+
+To show the current layer 3 VXLAN device status, run the `nv show evpn l3vxi` command.
 
 ### Configure RD and RTs for the Tenant VRF
 

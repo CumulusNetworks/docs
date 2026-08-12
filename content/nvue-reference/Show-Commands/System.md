@@ -718,6 +718,50 @@ cumulus@switch:~$ nv show system health history files health_history
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system image</h>
+
+Shows information about the image installed on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system image
+               operational           pending
+-------------  --------------------  -------
+current        1                            
+next           N/A                          
+partition1                                  
+  build-id     5.18.0.0031                  
+  description  Cumulus Linux 5.18.0         
+  disk         /dev/vda4                    
+  release      5.18.0                       
+partition2                                  
+  disk         /dev/vda5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system image onie</h>
+
+Shows system image ONIE information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system image onie
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system maintenance</h>
 
 Show the current system maintenance mode.
@@ -913,4 +957,21 @@ kernel      6.1.0-cl-1-amd64
 build-date  Mon Jul 29 04:57:52 UTC 2024
 image       5.10.0.0021                 
 onie        N/A 
+```
+
+
+In Cumulus Linux 5.18 and later, the `nv show system version` command shows is a patch is installed.
+
+```
+cumulus@switch:~$ nv show system version
+                 operational
+---------------  ----------------------------
+onie             2021.05-5.3.0008-115200
+kernel           6.1.0-cl-1-amd64
+base-os          Debian GNU/Linux 12.14
+product-release  5.18.0
+image
+  build-id       5.18.0.0025
+  build-date     Tue Jul 21 11:06:05 UTC 2026
+patched          yes
 ```

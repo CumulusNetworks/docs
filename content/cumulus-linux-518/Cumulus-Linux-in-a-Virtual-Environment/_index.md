@@ -36,8 +36,25 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 |{{<link url="Open-Telemetry-Export" text="Open Telemetry ">}}|<font color="red">No</font>|
 |{{<link url="ASIC-Monitoring" text="ASIC Monitoring ">}}|<font color="red">No</font>|
 
-<!--
-| Feature | In a Virtual Environment | In a Virtual Environment with Emulated ASIC |
+<!-- SIMIX Now in 5.19
+## NVIDIA DSX Air
+
+NVIDIA DSX Air is a cloud hosted platform that works exactly like a real world production deployment. You can access NVIDIA DSX Air {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="here">}} and reference the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA DSX Air User Guide">}} for help. To get a jumpstart on your network configuration, you can go to the {{<exlink url="https://air.nvidia.com/marketplace" text="Demo Marketplace">}} and run one of the pre-built feature demos, such as EVPN symmetric routing, EVPN centralized routing, EVPN multihoming, and more.
+
+Cumulus Linux in a virtual environment contains the same Cumulus Linux operating system as NVIDIA Ethernet switches and contains the same software features. You have the full data plane functionality through the Linux kernel, as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities.
+
+Due to hardware specific implementations, virtual environments do **not** support certain Cumulus Linux features. See the table below.
+
+## SimX on DSX Air
+
+SimX is a specialized simulation platform developed by NVIDIA to emulate network hardware. NVIDIA DSX AIR provides SIMIX images so that you can:
+- Create virtualized versions of the switch and firmware within a virtual machine (VM). These devices appear and function like real hardware but they are actually soft simulations running within the VM.
+- Use advanced features like layer 2 and layer 3 forwarding tables, ACL tunnels, and more.
+- Simulate and test network device behavior in a controlled, virtualized environment without requiring physical hardware.
+
+## Supported Features
+
+| Feature | DSX AIR VM | SIMIX in DSX AIR|
 | -----------------------------------------------------| ------------| --------------|
 |{{<link url="Access-Control-Lists" text="Access Control Lists ">}}|<font color="red">No</font> | <font color="green">yes</font>|
 |{{<link url="Upgrading-Cumulus-Linux/#issu" text="In-Service-System-Upgrade-ISSU">}} | <font color="red">No</font> | <font color="red">No</font> |
@@ -50,5 +67,5 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 |{{<link url="Quality-of-Service/#policing-and-shaping" text="QoS shaping ">}}| <font color="red">No</font> | <font color="red">No</font> |
 |{{<link title="What Just Happened (WJH)" >}}| <font color="red">No</font> | <font color="green">yes</font> |
 |{{<link url="Network-Address-Translation-NAT" >}}| <font color="red">No</font> | <font color="green">yes</font>|
-|{{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" >}}| <font color="red">No</font> |
+|{{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" >}}| <font color="red">No</font> | <font color="green">yes</font> |
 -->

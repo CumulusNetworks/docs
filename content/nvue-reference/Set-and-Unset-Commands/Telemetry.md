@@ -41,7 +41,7 @@ cumulus@switch:~$ nv set interface swp1 telemetry bw-gauge state enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> telemetry congestion-event egress-buffer traffic-class \<traffic-class\> buffer-threshold</h>
+## <h>nv set interface \<interface-id\> telemetry congestion-event egress-buffer traffic-class \<tc-id\> buffer-threshold</h>
 
 Configures the buffer threshold that must be crossed before the switch monitors the interfaces and traffic classes for buffer utilization.
 
@@ -50,7 +50,7 @@ Configures the buffer threshold that must be crossed before the switch monitors 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<traffic-class>` |  The traffic class you want to configure. |
+| `<tc-id>` |  The traffic class you want to configure. |
 
 ### Version History
 
@@ -646,7 +646,7 @@ cumulus@switch:~$ nv set interface swp1-51 latency-measurement traffic-class
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<traffic-class\></h>
+## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<tc-id\></h>
 
 Configures latency monitoring for a specific traffic class on an interface for IPv4 and IPv6 traffic.
 
@@ -655,7 +655,7 @@ Configures latency monitoring for a specific traffic class on an interface for I
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-|`<traffic-class>` |  The traffic class to configure. |
+|`<tc-id>` |  The traffic class to configure. |
 
 ### Version History
 
@@ -669,7 +669,7 @@ cumulus@switch:~$ nv set interface swp1-51 latency-measurement traffic-class 0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol \<protocol-id\></h>
+## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<tc-id\> protocol \<protocol-id\></h>
 
 Configures latency monitoring for a specific traffic class on an interface for IPv4 or IPv6 traffic.
 
@@ -678,7 +678,7 @@ Configures latency monitoring for a specific traffic class on an interface for I
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-|`<traffic-class>` |  The traffic class to configure. |
+|`<tc-id>` |  The traffic class to configure. |
 |`<protocol-id>` |  IPv4 or IPv6 traffic. |
 
 ### Version History
@@ -693,7 +693,7 @@ cumulus@switch:~$ nv set interface swp1-51 latency-measurement traffic-class 0 p
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<traffic-class\> protocol \<protocol-id\> dscp <dscp></h>
+## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<tc-id\> protocol \<protocol-id\> dscp <dscp></h>
 
 Configures latency monitoring for a specific traffic class DSCP on an interface for IPv4 or IPv6 traffic.
 
@@ -702,7 +702,7 @@ Configures latency monitoring for a specific traffic class DSCP on an interface 
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-|`<traffic-class>` |  The traffic class to configure. |
+|`<tc-id>` |  The traffic class to configure. |
 |`<protocol-id>` |  IPv4 or IPv6 traffic. |
 |`<dscp>` |  The DSCP you want to configure. |
 
@@ -2011,6 +2011,54 @@ Introduced in Cumulus Linux 5.17.0
 
 ```
 cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric node_memory_MemTotal_bytes 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry platform-stats class asic-resource state</h>
+
+Enables and disables the export of ASIC resource metrics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry platform-stats class asic-resource sample-interval </h>
+
+Sets the sample interval for ASIC resource metrics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource sample-interval 100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry dot1x-stats class server-metrics state</h>
+
+Enables and disables the export of 802.1x Radius server metrics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry dot1x-stats class server-metrics state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -43,8 +43,8 @@ After you install the required RADIUS packages, configure the following required
   - If you include special characters in the key (such as $), you must enclose the key in single quotes ('). NVUE restricts the secret key to a maximum of 32 characters.
   - Cumulus Linux 5.16 and later supports yubikey <span class="a-tooltip">[OTP](## "One-Time Password")</span> authentication with RADIUS. You can log into the switch then touch the YubiKey to generate the OTP. Depending on the configuration, you either need to provide the password and touch the YubiKey or the touch the YubiKey without the password.
 - If you use NVUE commands to configure RADIUS, you must also:
-  - Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
-  - Set the priority for the authentication order for local and RADIUS users. You can set a value between 1 and 100. The lower value is the higher priority.
+  - Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 8. The default value is 1. The lower value is the higher priority.
+  - Set the priority for the authentication order for local and RADIUS users. You can set the value to `local`, `radius`, `ldap` and `tacacs`. The default value is `local`.
 
 {{%notice note%}}
 After you configure any RADIUS settings with NVUE and you run `nv config apply`, you must restart the NVUE service with the `sudo systemctl restart nvued.service` command.
@@ -56,13 +56,13 @@ After you configure any RADIUS settings with NVUE and you run `nv config apply`,
 The following example commands set:
 - The IP address of the RADIUS server to 192.168.0.254 and the port to 42.
 - The secret to `'myradius$key'`.
-- The priority at which Cumulus Linux contacts the RADIUS server to 10.
+- The priority at which Cumulus Linux contacts the RADIUS server to 8.
 - The authentication order so that RADIUS authentication has priority over local.
 
 ```
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 port 42
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 secret 'myradius$key'
-cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 10
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 8
 cumulus@switch:~$ nv set system aaa authentication order radius local
 cumulus@switch:~$ nv config apply
 ```
@@ -102,7 +102,7 @@ You can configure the following global RADIUS settings and server specific setti
 | `vrf` | The global VRF you want to use to communicate with a RADIUS server. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. If you use multiple RADIUS servers, you can specify a different VRF for each server. |
 | `privilege-level` | The minimum privilege level that determines if users can configure the switch with NVUE commands and sudo, or have read-only rights. The default privilege level is 15, which provides full administrator access. This is a global option only; you cannot set the minimum privilege level for specific RADIUS servers.|
 | `retransmit` | The maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out. This is a global option only; you cannot set the number of retransmission attempts for specific RADIUS servers.|
-| `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
+| `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 5 seconds (the NVUE default value of 5 seconds is different from the Linux default of 3 seconds). If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
 | `source-ipv4`</br>`source-ipv6`| A specific interface to reach all RADIUS servers. To configure the source IP address for a specific RADIUS server, use the `source-ip` option.|
 | `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. You enable the debug option globally for all the servers.|
 | `require-message-authenticator` | Requires authentication packets to have the Message-Authenticator attribute; the switch discards as Access-Reject all packets that do not have the Message-Authenticator attribute.|
@@ -321,8 +321,55 @@ In this example, the `admin` user is a privileged RADIUS user (with privilege le
 
 ```
 admin@leaf01:~$ nv set interface swp1
-admin@leaf01:~$ nv apply
+admin@leaf01:~$ nv config apply
 ```
+
+## NAS IP Address and Identifier
+
+You can set the NAS (Network Access Server) IP address or the NAS identifier that the switch sends in RADIUS requests. The NAS IP address and NAS identifier are global settings that override the source IP address set for each RADIUS server.
+
+The NAS IP address can be either IPv4 or IPv6. The NAS identifier must be between 1 and 253 characters with no whitespace.
+
+{{< tabs "TabID333 ">}}
+{{< tab "NVUE Commands">}}
+
+To set the NAS IPv4 address, run the `nv set system aaa radius nas-ip-address <ip-address>` command. To set the NAS IPv6 address, run the `nv set system aaa radius nas-ipv6-address <ip-address>` command. The following example sets the NAS IPv4 address to 10.10.10.3 and the NAS IPv6 address to 2001:DB8::1
+
+```
+cumulus@switch:~$ nv set system aaa radius nas-ip-address 10.10.10.3
+cumulus@switch:~$ nv set system aaa radius nas-ipv6-address 2001:DB8::1
+cumulus@switch:~$ nv config apply
+```
+
+To unset the NAS IP address, run the `nv unset system aaa radius nas-ip-address` command or `nv unset system aaa radius nas-ipv6-address` command.
+
+To set the NAS identifier, run the `nv set system aaa radius nas-identifier <identifier>` command. The following example sets the NAS identifier to AB-123:
+
+```
+cumulus@switch:~$ nv set system aaa radius nas-identifier AB-123
+cumulus@switch:~$ nv config apply
+```
+
+To unset the NAS identifier, run the `nv unset system aaa radius nas-identifier` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/pam_radius_auth.conf` file to add the `nas-ip-address`, `nas-ipv6-address`, and, or `client_id` parameters:
+
+```
+cumulus@switch:~$ sudo nano /etc/pam_radius_auth.conf
+...
+nas-ip-address 10.10.10.3
+nas-ipv6-address 2001:DB8::1
+client_id AB-123
+192.168.0.254:42   myradius$key  10  mgmt   192.168.1.10
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the configured NAS IP address and identifier, run the `nv show system aaa radius` command.
 
 ## Show RADIUS Configuration
 
@@ -338,7 +385,7 @@ privilege-level                 15
 retransmit       0              0             
 port                            1812
 auth-type                       mschapv2
-timeout                         3             
+timeout                         5             
 accounting       enabled        enabled       
 [server]         192.168.0.254  192.168.0.254 
 ```
@@ -365,22 +412,23 @@ secret                  $nvsec$e46935725a803cc4864d1c43e84011ef  $nvsec$e4693572
 priority                1                                        1                                      
 source-ip               192.168.1.10                             192.168.1.10  
 ```
-<!-- NOT IN 5.14 - TO ADD FOR 5.15 MAYBE
+
 ## Show and Clear RADIUS Counters
 
 To show statistics for a specific RADIUS server, such as the number of authorization requests, accepted, rejected, timed out and retried access requests, and authorization connection errors and bad responses, run the `nv show system aaa radius server <server> counters` command:
 
 ```
 cumulus@switch:~$ nv show system aaa radius server 192.168.0.254 counters
-                         operational  applied
+                        operational  applied
 -----------------------  -----------  -------
-auth-requests            28                  
-access-accepts           0                   
-access-rejects           0                   
-timeout-access-requests  28                  
-retried-auth-requests    0                   
-auth-connection-errors   28                  
-auth-bad-responses       0            90
+auth-requests            1
+access-accepts           1
+access-rejects           0
+timeout-access-requests  0
+retried-auth-requests    0
+auth-connection-errors   0
+auth-bad-responses       0
+...
 ```
 
 To clear all the counters for a RADIUS server, run the `nv action clear system aaa radius counters` command:
@@ -390,7 +438,7 @@ cumulus@switch:~$ nv action clear system aaa radius counters
 RADIUS counters cleared.
 Action succeeded
 ```
--->
+
 ## Remove RADIUS Client Packages
 
 Remove the RADIUS packages with the following command:

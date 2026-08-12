@@ -478,7 +478,8 @@ Privilege Level  role          command
 ```
 
 {{%notice info%}}
-When you configure per-command authorization on the switch, only define the initial word of the command tree to permit use of any commands starting with that word. For example, permitting the command `nv` allows the use of all NVUE commands beginning with `nv`. For more granular control of specific commands in the tree after the initial word, configure your TACACS+ server to permit or deny specific commands for a user or privilege level. Refer to your TACACS+ server's vendor documentation or vendor support for assistance configuring your server.
+- If you configure the switch domain name with the NVUE `nv set system dns domain` command, you must also configure the hostname command as an authorized command for users on the switch and on the TACACS+ server.
+- When you configure per-command authorization on the switch, only define the initial word of the command tree to permit use of any commands starting with that word. For example, permitting the command `nv` allows the use of all NVUE commands beginning with `nv`. For more granular control of specific commands in the tree after the initial word, configure your TACACS+ server to permit or deny specific commands for a user or privilege level. Refer to your TACACS+ server's vendor documentation or vendor support for assistance configuring your server.
 {{%/notice%}}
 
 {{< /tab >}}

@@ -767,7 +767,7 @@ To clear link debounce statistics for all interfaces, run the `nv action clear i
 ```
 cumulus@switch:~$ nv action clear interface debounce-counters 
 ```
-
+<!-- NOT YET SUPPORTED IN 5.18
 ## APSU and Link Precoding Control
 
 Cumulus Linux supports Autonomous Path Start-Up (APSU) for link initialization and precoding control for negotiation between connected devices on a Spectrum-6 switch while preserving the default firmware-managed behavior for standard deployments.
@@ -802,7 +802,7 @@ To show APSU and link precoding information, run the `nv show interface <interfa
 ```
 cumulus@switch:~$ nv show interface swp1
 ```
-
+-->
 ## Tx Squelch Control
 
 {{%notice note%}}
@@ -870,122 +870,412 @@ To disable Tx squelch control, set the `interface.<interface-id>.tx_squelch` par
 {{< /tab >}}
 {{< /tabs >}}
 
-## Uplink Tracking
+## Link Tracking
 
-Uplink tracking enables you to monitor uplink interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of the uplinks, ensuring predictable network operations, and improving overall resiliency.
+Link tracking enables you to monitor interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
 
-To configure and enable uplink tracking:
-- Create an uplink tracking group with a set of uplinks that you want to monitor.
-  - Only switch port interfaces that already exist are supported for uplink tracking.
-  - The group name can be a minimum of 1 character and a maximum of 16 characters. You can use alphanumeric characters, hyphens (-), and underscores (_).
-- Specify the minimum number of uplinks that must be operationally up to keep the associated downlinks active. The minimum number of uplinks must not exceed the number of uplink interfaces configured in the group.
-- Associate a set of downlinks to the uplink tracking group. These are the downlinks that have a relationship with the uplinks that are part of the group. You cannot configure an interface as both an uplink and a downlink.
-- Specify the action you want to take when the number of available uplinks goes below the minimum threshold.
-  - Mark the downlinks protodown so that the switch does not send traffic to these links from their downstream devices.
-  - In a multi-plane scenario, notify the control plane to reroute traffic away from this plane.
-- Enable uplink tracking.
+### Configure and Enable Link Tracking
 
-When you configure uplink interfaces and enable uplink tracking, the `ifplugd` service becomes active and starts running. When you disable uplink tracking, the `ifplugd` service stops.
+To configure and enable link tracking:
+- Set link tracking to `enabled`.
+- Create a link tracking group with the set of links (watch interfaces) that you want to monitor.
+  - You can only configure switch port (swp) interfaces that already exist.
+  - A group name must be between 1 and 16 characters long. You can use alphanumeric characters, hyphens (-), and underscores (_).
+- Set the minimum number of watch interfaces for each group that must be operationally up to keep the associated target interfaces active. 
+  - The minimum number of links must not exceed the number of interfaces configured in the group.
+  - The default value is 1 when the group has at least one watch interface.
+- Associate target interfaces with the link tracking group. These are the interfaces that depend on the health of the watch interfaces in the group. 
+  - The interface must be a switch port (swp).
+  - You cannot configure an interface as both a watch interface and a target interface.
+- Specify the action each group takes when the number of operationally up watch interfaces drops below the minimum threshold. When the number of operationally up watch interfaces meets or exceeds the threshold again, the switch clears the action and restores the target interfaces. You can set the following actions:
+  -  `protodown-target-interface` marks the target interfaces as protodown so that the switch does not forward traffic to downstream devices over those links. This is the default action.
+  - `control-plane-action` notifies the control plane to reroute traffic away from the affected plane.
 
-The following example creates an uplink tracking group called GROUP1 that configures swp51 through swp54 as the uplinks to monitor. The minimum number of uplinks that must be operationally up is 3 and the associated downlinks are swp1 through swp3. When the number of available uplinks goes below the minimum threshold of 3, the control plane reroutes traffic away from this plane.
+When you configure and enable link tracking, the `ifplugd` service starts. The `ifplugd-resync-config-change` service restarts and synchronizes the protodown state of the target interfaces based on their link tracking group configuration. When you disable link tracking, the `ifplugd` service stops.
+
+The following example configures two groups: 
+- GROUP1 sets the watch interfaces to swp17, swp19, and swp21, and the minimum number of watch interfaces that must be operationally up to 1. The target interfaces are swp7 and swp15, and the action is `control-plane-action`.
+- GROUP2 sets the watch interfaces to swp17, swp24, swp25, and swp31 and the minimum number of watch interfaces that must be operationally up to 2. The target interface is swp8 and the action is `protodown-target-interface`.
+
+{{< tabs "TabID895 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system uplink-tracking group GROUP1 interface swp51-54
-cumulus@switch:~$ nv set system uplink-tracking group GROUP1 min-links 3
-cumulus@switch:~$ nv set interface swp1-3 uplink-tracking group GROUP1
-cumulus@switch:~$ nv set system uplink-tracking state-change-action control-plane-action
-cumulus@switch:~$ nv set system uplink-tracking state enabled
+cumulus@switch:~$ nv set system link-tracking state enabled
+cumulus@switch:~$ nv set system link-tracking group GROUP1 watch-interface swp17,19,21
+cumulus@switch:~$ nv set system link-tracking group GROUP1 min-links 1
+cumulus@switch:~$ nv set interface swp7,15 link-tracking group GROUP1
+cumulus@switch:~$ nv set system link-tracking group GROUP1 state-change-action control-plane-action
+cumulus@switch:~$ nv set system link-tracking group GROUP2 watch-interface swp17,24-25,31
+cumulus@switch:~$ nv set system link-tracking group GROUP2 min-links 2
+cumulus@switch:~$ nv set interface swp8 link-tracking group GROUP2
+cumulus@switch:~$ nv set system link-tracking group GROUP2 state-change-action protodown-target-interface
 cumulus@switch:~$ nv config apply
 ```
 
-- To disable uplink tracking, run the `nv set system uplink-tracking state disabled` command.
-- To remove a downlink interface from a group, run the `nv unset interface <interface-id> uplink-tracking group` command.
-- To unset the action to take when the number of available uplinks goes below the minimum threshold, run the `nv unset system uplink-tracking state-change-action` command.
-- To set the minimum number of uplinks that must be operationally back to the default value, run the `nv unset system uplink-tracking group <group-name> min-links` command.
-- To remove an uplink-tracking group, run the `nv unset system uplink-tracking group <group-name>` command.
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
-To show uplink configuration:
-- To show uplink tracking configuration, such as the uplink interfaces to monitor, the state (enabled or disabled), and the action to take when the number of available uplinks goes below the minimum threshold, run the `nv show system uplink-tracking` command.
-- To show all the configured uplink tracking groups, run the `nv show system uplink-tracking group` command.
-- To show the uplinks and minimum uplink threshold for a specific group, run the `nv show system uplink-tracking group <group-name>` command.
-- To show all uplink interfaces in a group, run the `nv show system uplink-tracking group <group-name> interface` command.
+Edit the following configuration files:
 
-```
-cumulus@switch:~$ nv show system uplink-tracking
-                     operational           applied 
--------------------  --------------------  -------------------- 
-state                enabled               enabled 
-state-change-action  control-plane-action  control-plane-action 
+- `/etc/default/ifplugd` sets the watch interfaces to monitor for link state changes.
+- `/etc/ifplugd/link-tracking.conf` configures link tracking groups and actions.
 
-group 
-======== 
-    Uplink Tracking Group  Interface  Min Links 
-    ---------------------  ---------  --------- 
-    GROUP1                 swp51      3
-                           swp52 
-                           swp53
-                           swp54
-```
+The example configuration below configures `ifplugd` to bring down all uplinks when the peer bond goes down in an MLAG environment.
 
+1. Edit `/etc/default/ifplugd` in a text editor to configure the watch interfaces to monitor for link state changes. The example below configures interface swp17, swp19, swp21, swp24, swp25, and swp31.
+    
 ```
-cumulus@switch:~$ nv show system uplink-tracking group
-Uplink Tracking Group  Interface  Min Links 
----------------------  ---------  --------- 
-GROUP1                 swp51       3 
-                       swp52 
-                       swp53 
-                       swp54
-```
+    # ifplugd Configuration for Link Tracking
+#
+# Usage:
+#   Sourced by /etc/init.d/ifplugd and /lib/udev/ifplugd.agent
+#   to set default values.
+#
+# Interface Lists:
+#   - INTERFACES: Interfaces to be monitored by ifplugd
+#   - HOTPLUG_INTERFACES: Interfaces monitored on hotplug (typically empty)
 
-```
-cumulus@switch:~$ nv show system uplink-tracking group GROUP1
-             operational  applied 
------------  -----------  ------- 
-min-links    3            3 
-[interface]  swp51        swp51 
-[interface]  swp52        swp52 
-[interface]  swp53        swp53 
-[interface]  swp54        swp54
+# Watch interfaces to monitor for link state changes
+INTERFACES="swp17 swp19 swp21 swp24 swp25 swp31"
+
+HOTPLUG_INTERFACES=""
+
+# ifplugd Arguments:
+# -p: Don't run action script on daemon startup (we run sync once after config
+#     apply. ifplugd then only runs the script on link state changes)
+# -q: Don't run script on daemon shutdown
+# -f: Ignore detection failures (continue running if detection fails)
+# -u0: Delay after link up = 0 seconds (immediate action)
+# -d1: Delay after link down = 1 second (brief delay to avoid flaps)
+# -w: Wait until daemon forks (synchronous startup)
+# -I: Don't exit on nonzero return values from action script
+#
+# Note: These values balance responsiveness with flap protection.
+#       Adjust delays if needed for your environment.
+ARGS="-p -q -f -u0 -d1 -w -I"
+
+SUSPEND_ACTION="stop"
 ```
 
-```
-cumulus@switch:~$ nv show system uplink-tracking group GROUP1 interface 
-Interface 
---------- 
-swp51 
-swp52 
-swp53
-swp54
-```
-
-To show downlink configuration:
-- To show the downlinks in each configured group, run the `nv show interface uplink-tracking` command.
-- To show the groups where a downlink interface is configured, run the `nv show interface <interface-id> uplink-tracking` command.
-- To show the downlink interfaces for a specific group, run the `nv show interface uplink-tracking --filter "group=<group-name>"` command.
+2. Edit the `/etc/ifplugd/link-tracking.conf` file in a text editor to configure link tracking groups. The following example configures GROUP1 and GROUP2.
 
 ```
-cumulus@switch:~$ nv show interface uplink-tracking 
-Interface  Uplink Tracking Group 
----------  --------------------- 
-swp1       GROUP1 
-swp2       GROUP1 
-swp3       GROUP1
+# Link Tracking Group Configuration
+#
+# Purpose:
+#   Map watch interfaces to target interfaces for tracking.
+#   Read by /etc/ifplugd/ifplugd.action to manage target interfaces when
+#   watch interfaces fail.
+#
+# Format:
+#   GROUP_ID|WATCH_INTERFACES|TARGET_INTERFACES|MIN_LINKS|state-change-action
+#   GROUP_ID:            Unique identifier for the tracking group
+#   WATCH_INTERFACES:    comma-separated interfaces to monitor
+#   TARGET_INTERFACES:   comma-separated interfaces to manage
+#   MIN_LINKS:           minimum watch interfaces that must be up (default 1)
+#   state-change-action: protodown-target-interface or control-plane-action
+#
+# Example:
+#   group-1|swp1,swp2|swp10,swp11|1|protodown-target-interface
+#
+GROUP1|swp17,swp19,swp21|swp15,swp7|1|control-plane-action
+GROUP2|swp17,swp24,swp25,swp31|swp8|2|protodown-target-interface
+
+$ cat /etc/ifplugd/ifplugd-link-tracking.conf
+# Auto-generated by NVUE!
+# Any local modifications will prevent NVUE from re-generating this file.
+# md5sum: 79d87d9a2553351580a38b16e1878267
+# ifplugd Link Tracking Maintenance
+#
+# Sourced by ifplugd-resync-config-change.service on restart (triggered by NVUE).
+#
+# CLEAR_TARGET_INTERFACES:
+#   Space-separated list of target interfaces from which to clear the
+#   link-tracking protodown reason. Other protodown reasons are unchanged.
+#
+# SYNC_GROUPS:
+#   When "yes", sync protodown state for all link tracking groups by
+#   invoking /etc/ifplugd/action.d/99_link_tracking --all-groups after clear.
+#   When "no", skip group sync.
+
+CLEAR_TARGET_INTERFACES=""
+SYNC_GROUPS="yes"
+```
+
+3. Restart the `ifplugd` daemon to implement the changes:
+
+```
+cumulus@switch:~$ sudo systemctl restart ifplugd.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Upgrade Notes
+
+If you installed and configured {{<link url="ifplugd" text="ifplugd">}} manually in Cumulus Linux 5.17 or earlier, Cumulus Linux 5.18 or later preserves the existing `ifplugd` configuration and behavior after optimized image upgrade. The configuration includes manual configuration in `/etc/default/ifplugd` and custom action scripts under `/etc/ifplugd/action.d/`. If the `ifplugd` service is running before upgrade, the service continues to run and actively manage interfaces. No additional action is required while link tracking remains disabled. Link tracking in Cumulus Linux 5.18 or later is disabled by default.
+
+After you enable and apply link tracking in Cumulus Linux 5.18 or later, feature-managed configuration takes precedence and might overwrite existing *manual* configuration. 
+
+To retain custom interface lists or action logic not supported by link tracking, you can configure traditional snippets.
+
+{{< expand "link tracking snippet" >}}
+
+Configure watch interfaces with a traditional `ifplugd` snippet. The snippet adds the configured interfaces to the `INTERFACES` list in the `/etc/default/ifplugd` file and the switch monitors `ifplugd` for link state changes.
+
+```
+cumulus@switch:~$ sudo nano link-track-snippet.yaml
+- set:
+    system:
+      config:
+        snippet:
+          ifplugd:
+            watch-interface:
+              swp14: {}
+              swp20: {}
+              swp5: {}
 ```
 
 ```
-cumulus@switch:~$ nv show interface swp1 uplink-tracking 
-        operational applied 
------  -----------  ------- 
-group  GROUP1       GROUP1
+cumulus@switch:~$ nv config patch link-track-snippet.yaml
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+- Custom modifications to `/etc/ifplugd/action.d/ifupdown` do not migrate or update automatically. You must implement the `/etc/ifplugd/action.d/ifupdown` script to manage the interface state as required.
+- Cumulus Linux does not add the watch interfaces you configure through the snippet to the `/etc/ifplugd/link-tracking.conf` file unless you also configure them as watch interfaces for a link tracking group.
+{{%/notice%}}
+
+{{< /expand >}}
+
+{{%notice note%}}
+When you enable link tracking after upgrade, any existing `ifplugd` instances manually configured and started before enabling link tracking continue to run. Cumulus Linux does not stop or clean up the instances automatically. You must identify and terminate any manually configured `ifplugd` instances that are no longer required. Failure to do so might result in conflicts with link tracking managed interfaces.
+{{%/notice%}}
+
+### Manage Link Tracking
+
+- To disable link tracking, run the `nv set system link-tracking state disabled` command.
+- To remove a target interface from a group, run the `nv unset interface <interface-id> link-tracking group` command.
+- To reset the action back to the default value, run the `nv unset system link-tracking group <group-id> state-change-action` command.
+- To reset the minimum number of watch interfaces to the default value of 1, run the `nv unset system link-tracking group <group-id> min-links` command.
+- To remove a link tracking group, run the `nv unset system link-tracking group <group-id>` command. If the group is associated with a target interface, remove the association with the `nv unset interface <interface-id> link-tracking group` command.
+
+### Show Link Tracking Information
+
+To show link tracking configuration, such as the feature state (enabled or disabled) and all configured link tracking groups with their watch interfaces, minimum threshold, and state-change action, run the `nv show system link-tracking` command.
+
+```
+cumulus@switch:~$ nv show system link-tracking
+       operational  applied
+-----  -----------  -------
+state  enabled      enabled
+
+group
+========
+    Link Tracking Group  Watch Interface  Min Links  State Change Action
+    -------------------  ---------------  ---------  --------------------------
+    GROUP1               swp17            1          control-plane-action
+                         swp19
+                         swp21
+    GROUP2               swp17            2          protodown-target-interface
+                         swp24
+                         swp25
+                         swp3
+```
+
+To show all the configured link tracking groups, run the `nv show system link-tracking group` command:
+
+```
+cumulus@switch:~$ nv show system link-tracking group
+Link Tracking Group  Watch Interface  Min Links  State Change Action
+-------------------  ---------------  ---------  --------------------------
+GROUP1               swp17            1          control-plane-action
+                     swp19
+                     swp21
+GROUP2               swp17            2          protodown-target-interface
+                     swp24
+                     swp25
+                     swp31
+```
+
+To show details of a specific link tracking group, including its watch interfaces, minimum threshold, and state-change action, run the `nv show system link-tracking group <group-id>` command: 
+
+```
+cumulus@switch:~$ nv show system link-tracking group GROUP2
+                     operational                 applied
+-------------------  --------------------------  --------------------------
+min-links            2                           2
+state-change-action  protodown-target-interface  protodown-target-interface
+[watch-interface]    swp17                       swp17
+[watch-interface]    swp24                       swp24
+[watch-interface]    swp25                       swp25
+[watch-interface]    swp31                       swp31
+```
+
+To show all configured watch interfaces in a specific group, run the `nv show system link-tracking group <group-id> watch-interface` command:
+
+```
+cumulus@switch:~$ nv show system link-tracking group GROUP2 watch-interface
+swp17
+swp24
+swp25
+swp31
+```
+
+To show the link tracking group associated with each interface, run the `nv show interface link-tracking` command.
+
+```
+cumulus@switch:~$ nv show interface link-tracking
+Interface  Link Tracking Group  Admin Status  Oper Status  Protodown  Protodown Reason
+---------  -------------------  ------------  -----------  ---------  ----------------
+eth0                            up            up           disabled
+lo                              up            unknown      disabled
+mgmt                            up            up           disabled
+swp1                            up            down         disabled
+swp2                            up            down         disabled
+swp3                            up            down         disabled
+swp4                            up            down         disabled
+swp5                            up            down         disabled
+swp6                            up            down         disabled
+swp7       GROUP1               up            down         disabled
+swp8       GROUP2               up            down         enabled    link-tracking
+swp9                            up            down         disabled
+swp10                           up            down         disabled
+swp11                           up            down         disabled
+swp12                           up            down         disabled
+swp13                           up            down         disabled
+swp14                           up            down         disabled
+swp15      GROUP1               up            down         disabled
+swp16                           up            down         disabled
+swp17                           up            up           disabled
+swp18                           up            up           disabled
+swp19                           up            up           disabled
+swp20                           up            up           disabled
+swp21                           up            up           disabled
+swp22                           up            up           disabled
+swp23                           up            down         disabled
+swp24                           up            down         disabled
+swp25                           up            down         disabled
+```
+
+To show the link tracking group associated with a specific interface, run the `nv show interface <interface-id> link-tracking` command:
+
+```
+cumulus@switch:~$ nv show interface swp8 link-tracking
+       operational  applied
+-----  -----------  -------
+group  GROUP2       GROUP2
+```
+
+To show only the interfaces associated with a specific group, run the `nv show interface link-tracking --filter "group=<group-name>"` command:
+
+```
+cumulus@switch:~$ nv show interface link-tracking --filter "group=GROUP1"
+Interface  Link Tracking Group  Admin Status  Oper Status  Protodown  Protodown Reason
+---------  -------------------  ------------  -----------  ---------  ----------------
+swp7       GROUP1              up            down         disabled
+swp15      GROUP1              up            down         disabled
+```
+
+### Troubleshooting
+
+To verify the protodown state on a target interface, run the `sudo ip -d link show <interface-id>` command:
+
+```
+cumulus@switch:~$ sudo ip -d link show swp8
+10: swp8: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 9216 qdisc pfifo_fast state DOWN mode DEFAULT group default qlen 1000
+    link/ether 1c:34:da:1b:cc:74 brd ff:ff:ff:ff:ff:ff protodown on protodown_reason <link-tracking> promiscuity 0  allmulti 0 minmtu 68 maxmtu 0
+    sx_netdev addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 switchid ffffffffff01 last_change 1784260523674 carrier_up_count 7 carrier_down_count 8 carrier_changes 15
+```
+
+The following example shows the interface state of a target interface after the action is cleared:
+
+```
+cumulus@switch:~$ sudo ip -d link show swp8
+10: swp8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+    link/ether 1c:34:da:1b:cc:74 brd ff:ff:ff:ff:ff:ff promiscuity 0  allmulti 0 minmtu 68 maxmtu 0
+    sx_netdev addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 switchid ffffffffff01 last_change 1784260564714 carrier_up_count 9 carrier_down_count 9 carrier_changes 18
+```
+
+To view link tracking logs in journalctl, run the `sudo journalctl -t ifplugd-link-tracking -f` command:
+
+```
+cumulus@switch:~$ sudo journalctl -t ifplugd-link-tracking -f
+Jul 17 03:34:21 cumulus ifplugd-link-tracking[859902]: Interface swp24 link state changed, checking link tracking groups
+Jul 17 03:34:21 cumulus ifplugd-link-tracking[859907]: Group group-2: Watch interface swp24 is part of this group (min_links=2)
+Jul 17 03:34:21 cumulus ifplugd-link-tracking[859917]: Group group-2: 1 watch interface(s) up (min_links=2), applying action to target interfaces: swp8
+Jul 17 03:34:21 cumulus ifplugd-link-tracking[859926]: Group group-2: Protodown set ON for target interface swp8 (reason: link-tracking)
+Jul 17 03:45:26 cumulus ifplugd-link-tracking[868112]: Interface swp24 link state changed, checking link tracking groups
+Jul 17 03:45:26 cumulus ifplugd-link-tracking[868117]: Group group-2: Watch interface swp24 is part of this group (min_links=2)
+Jul 17 03:45:26 cumulus ifplugd-link-tracking[868127]: Group group-2: 2 watch interface(s) up (min_links=2), clearing action on target interfaces: swp8
+Jul 17 03:45:26 cumulus ifplugd-link-tracking[868131]: Group group-2: Watch interface restored, clearing link-tracking protodown reason for target interface swp8
+Jul 17 03:45:26 cumulus ifplugd-link-tracking[868135]: Group group-2: link-tracking reason cleared for swp8
+Jul 17 03:45:26 cumulus ifplugd-link-tracking[868140]: Group group-2: Protodown turned off for target interface swp8 (link-tracking cleared, no other reasons)
+```
+
+To view link tracking logs in syslog, run the `sudo grep "link-tracking" /var/log/syslog` command:
+
+```
+cumulus@switch:~$ sudo grep "link-tracking" /var/log/syslog
+2026-07-17T03:20:03.549597+00:00 cumulus ifplugd-link-tracking: Interface swp24 link state changed, checking link tracking groups
+2026-07-17T03:20:03.556205+00:00 cumulus ifplugd-link-tracking: Group group-2: Watch interface swp24 is part of this group (min_links=2)
+2026-07-17T03:20:03.565774+00:00 cumulus ifplugd-link-tracking: Group group-2: 1 watch interface(s) up (min_links=2), applying action to target interfaces: swp8
+2026-07-17T03:20:03.577761+00:00 cumulus ifplugd-link-tracking: Group group-2: Protodown set ON for target interface swp8 (reason: link-tracking)
+2026-07-17T03:45:26.527768+00:00 cumulus ifplugd-link-tracking: Interface swp24 link state changed, checking link tracking groups
+2026-07-17T03:45:26.534124+00:00 cumulus ifplugd-link-tracking: Group group-2: Watch interface swp24 is part of this group (min_links=2)
+2026-07-17T03:45:26.543704+00:00 cumulus ifplugd-link-tracking: Group group-2: 2 watch interface(s) up (min_links=2), clearing action on target interfaces: swp8
+2026-07-17T03:45:26.548576+00:00 cumulus ifplugd-link-tracking: Group group-2: Watch interface restored, clearing link-tracking protodown reason for target interface swp8
+2026-07-17T03:45:26.555627+00:00 cumulus ifplugd-link-tracking: Group group-2: link-tracking reason cleared for swp8
+2026-07-17T03:45:26.563410+00:00 cumulus ifplugd-link-tracking: Group group-2: Protodown turned off for target interface swp8 (link-tracking cleared, no other reasons)
+```
+
+To verify the ifplugd service:
+
+```
+cumulus@switch:~$ sudo systemctl status ifplugd.service
+● ifplugd.service - LSB: Brings up/down network automatically
+     Loaded: loaded (/etc/init.d/ifplugd; generated)
+    Drop-In: /etc/systemd/system/ifplugd.service.d
+             └─override.conf
+     Active: active (running) since Fri 2026-07-17 01:56:33 UTC; 1h 54min ago
+       Docs: man:systemd-sysv-generator(8)
+      Tasks: 6 (limit: 18430)
+     Memory: 1.2M
+        CPU: 2.032s
+     CGroup: /system.slice/ifplugd.service
+             ├─788534 /usr/sbin/ifplugd -i swp17 -p -q -f -u0 -d1 -w -I
+             ├─788542 /usr/sbin/ifplugd -i swp19 -p -q -f -u0 -d1 -w -I
+             ├─788550 /usr/sbin/ifplugd -i swp21 -p -q -f -u0 -d1 -w -I
+             ├─788559 /usr/sbin/ifplugd -i swp24 -p -q -f -u0 -d1 -w -I
+             ├─788567 /usr/sbin/ifplugd -i swp25 -p -q -f -u0 -d1 -w -I
+             └─788575 /usr/sbin/ifplugd -i swp31 -p -q -f -u0 -d1 -w -I
+
+Jul 17 03:20:03 cumulus ifplugd(swp24)[788559]: Program executed successfully.
+Jul 17 03:33:57 cumulus ifplugd(swp24)[788559]: Link beat detected.
+Jul 17 03:33:57 cumulus ifplugd(swp24)[788559]: Executing '/etc/ifplugd/ifplugd.action swp24 up'.
+Jul 17 03:33:57 cumulus ifplugd(swp24)[788559]: Program executed successfully.
+Jul 17 03:34:20 cumulus ifplugd(swp24)[788559]: Link beat lost.
+Jul 17 03:34:21 cumulus ifplugd(swp24)[788559]: Executing '/etc/ifplugd/ifplugd.action swp24 down'.
+Jul 17 03:34:21 cumulus ifplugd(swp24)[788559]: Program executed successfully.
+Jul 17 03:45:26 cumulus ifplugd(swp24)[788559]: Link beat detected.
+Jul 17 03:45:26 cumulus ifplugd(swp24)[788559]: Executing '/etc/ifplugd/ifplugd.action swp24 up'.
+Jul 17 03:45:26 cumulus ifplugd(swp24)[788559]: Program executed successfully.
 ```
 
 ```
-cumulus@switch:~$ nv show interface uplink-tracking --filter "group=GROUP1" 
-Interface  Uplink Tracking Group 
----------  --------------------- 
-swp1       GROUP1 
-swp2       GROUP1
-swp3       GROUP1
+cumulus@switch:~$ sudo systemctl status ifplugd-resync-config-change.service
+○ ifplugd-resync-config-change.service - ifplugd Resync on Config Change
+     Loaded: loaded (/lib/systemd/system/ifplugd-resync-config-change.service; enabled; preset: enabled)
+     Active: inactive (dead) since Fri 2026-07-17 03:05:21 UTC; 45min ago
+       Docs: man:ifplugd(8)
+    Process: 838723 ExecStart=/etc/ifplugd/ifplugd-resync-config-change.sh (code=exited, status=0/SUCCESS)
+   Main PID: 838723 (code=exited, status=0/SUCCESS)
+        CPU: 37ms
+
+Jul 17 03:05:21 cumulus systemd[1]: Starting ifplugd-resync-config-change.service - ifplugd Resync on Config Change...
+Jul 17 03:05:21 cumulus systemd[1]: ifplugd-resync-config-change.service: Deactivated successfully.
+Jul 17 03:05:21 cumulus systemd[1]: Finished ifplugd-resync-config-change.service - ifplugd Resync on Config Change.
 ```
 
 ## Source Interface File Snippets

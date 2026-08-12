@@ -6,6 +6,10 @@ toc: 4
 ---
 `ifplugd` is an Ethernet link-state monitoring daemon that executes scripts to configure an Ethernet device when you plug in or remove a cable. Follow the steps below to install and configure the `ifplugd` daemon.
 
+{{%notice note%}}
+NVIDIA recommends that you use the {{<link url="Interface-Configuration-and-Management/#link-tracking" text="Link tracking">}} feature introduced in Cumulus Linux 5.18 instead of `ifplugd`.
+{{%/notice%}}
+
 ## Install ifplugd
 
 You can install this package even if the switch does not connect to the internet. The package is in the `cumulus-local-apt-archive` repository on the {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="Cumulus Linux image">}}.

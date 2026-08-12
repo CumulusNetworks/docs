@@ -8,7 +8,7 @@ Telemetry enables you to collect, send, and analyze large amounts of data, such 
 
 ## Configure Open Telemetry
 
-Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, buffer statistics, histogram collection, platform statistics, routing metrics, and `systemd` statistics to an external collector for analysis and visualization.
+Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, buffer statistics, ACL metrics, 802.1X statistics, LLDP statistics, AI Ethernet metrics, control plane metrics, histogram collection, platform statistics, patch metrics, routing metrics, and `systemd` statistics to an external collector for analysis and visualization.
 
 {{%notice note%}}
 Cumulus Linux supports open telemetry export on switches with the Spectrum-2 ASIC and later.
@@ -258,6 +258,15 @@ cumulus@switch:~$ nv set system telemetry dot1x-stats sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
 
+To enable open telemetry for RADIUS server 802.1X statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry dot1x-stats class server-metrics state enabled 
+cumulus@switch:~$ nv config apply
+```
+
+To export RADIUS server 802.1X statistics, you must also enable the parent 802.1X statistics (`nv set system telemetry dot1x-stats export state enabled`) and 802.1X operational counters (`nv set system telemetry dot1x-stats class dot1x-info state enabled`).
+
 ### Histogram Data
 
 When you enable open telemetry for histogram data, your buffer, counter, and latency {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports:
@@ -391,16 +400,16 @@ cumulus@switch:~$ nv config apply
 If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 60 seconds.
 
 {{< tabs "TabID393 ">}}
-{{< tab "ASIC ">}}
+{{< tab "ASIC Resource">}}
 
-To enable ASIC statistics:
+To enable ASIC resource statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To adjust the sample interval for ASIC statistics:
+To adjust the sample interval for ASIC resource statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource sample-interval 100
@@ -477,16 +486,16 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Environment sensor">}}
+{{< tab "Environment sensor and Power Supply">}}
 
-To enable environment sensor statistics:
+To enable environment sensor and power supply statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensor state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To adjust the sample interval for environment sensor statistics:
+To adjust the sample interval for environment sensor and power supply statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensor sample-interval 100
@@ -844,11 +853,7 @@ cumulus@switch:~$ nv config apply
 
 ### Granular Metric Selection
 
-{{%notice note%}}
-Granular metric selection is a Beta feature.
-{{%/notice%}}
-
-To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group at varied collection frequencies.
+To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group and at varied collection frequencies.
 
 To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
 
@@ -910,6 +915,12 @@ To show the configured metric lists, run the `nv show system telemetry metric-li
 
 ```
 cumulus@switch:~$ nv show system telemetry metric-list
+                  description       Summary                           
+----------------  ----------------  ----------------------------------
+PLATFORM_METRICS  Platform metrics  metric: node_memory_MemTotal_bytes
+                                    metric:  node_memory_MemFree_bytes
+                                    metric:             nvswitch_env_*
+                                    metric:                 node_cpu_*
 ```
 
 ### Static Labels
@@ -1029,7 +1040,8 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 | `nvswitch_dot1x_radius_server_requests_total` | *Number of access and accounting requests. |
 | `nvswitch_dot1x_radius_server_accounting_requests_total` | *Number of accounting requests. |
 | `nvswitch_dot1x_radius_server_responses_total`  | *Total number of responses. |
-| `nvswitch_dot1x_radius_server_retransmissions_total` | *Number of timeout access requests  or  accounting timeouts. |
+| `nvswitch_dot1x_radius_server_retransmissions_total` | *Number of timeout retried access requests and accounting retransmissions. |
+| `nvswitch_dot1x_radius_server_timeouts_total` | *Number of timeout access requests and accounting timeouts. |
 | `nvswitch_dot1x_radius_server_pending_requests` | *Number of RADIUS requests destined for the server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
 | `nvswitch_dot1x_radius_server_round_trip_time_ms`  | *Most recent round-trip time, in milliseconds, between a RADIUS request and its matching response.  |
 {{< expand "Example JSON data for 802.1X:" >}}
@@ -3115,6 +3127,14 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 ```
 {{< /expand >}}
 
+### Patches
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_package_archive_failure_state` | *The failure state if the patch archive installation fails: (0: none, 1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 2: PRE_INSTALL_FAILED_ROLLBACK_FAILED, 3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 4: APT_FAILED_ROLLBACK_SUCCESSFULL, 5: APT_FAILED_ROLLBACK_FAILED, 6: APT_FAILED_ROLLBACK_IN_PROGRESS, 7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 8: POST_INSTALL_FAILED_ROLLBACK_FAILED, 9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL, 11: UNKNOWN_FAILURE_ROLLBACK_FAILED, 12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS)|
+| `nvswitch_platform_package_archive_status` | *The patch status (0: not-installed, 1: installed, 2: partially-installed, 3: failed, 4: operation-in-progress).|
+| `nvswitch_platform_package_archive_installed_time` | *The time the patch archive was installed (Unix timestamp). |
+
 ### Performance Statistics
 
 When you enable {{<link url="Latency-Monitoring/" text="latency monitoring">}}, the switch exports the following statistics:
@@ -3131,17 +3151,43 @@ When you enable {{<link url="Latency-Monitoring/" text="latency monitoring">}}, 
 When you enable platform statistic telemetry globally, or when you enable telemetry for the individual components, the switch exports the following statistics:
 
 {{< tabs "TabID723 ">}}
-{{< tab "ASIC ">}}
+{{< tab "ASIC Resource">}}
 
 ASIC statistics include the ASIC resource used percentage, the maximum number of entries, the number of free entries, the high watermark, and the high watermark timestamp.
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_platform_asic_resource_used` | | 
-| `nvswitch_platform_asic_resource_free` | | 
-| `nvswitch_platform_asic_resource_max_limit` | |
-| `nvswitch_platform_asic_resource_high_watermark` | | 
-| `nvswitch_platform_asic_resource_high_watermark_timestamp` | | 
+| `nvswitch_platform_asic_resource_used{resource_name="<name>"}` | *The number of entries used for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_free{resource_name="<name>"}` | *The number of free entries available for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_max_limit{resource_name="<name>"}` | *The maximum limit of possible entries for an ASIC resource.|
+| `nvswitch_platform_asic_resource_high_watermark{resource_name="<name>"}` | *The highest number of entries used for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_high_watermark_timestamp{resource_name="<name>"}` | *The timestamp when the high-watermark was last updated.|
+
+The ASIC resource is one of the following:
+
+| Name | Description |
+|----- | ----------- |
+| `MAC-entries` | Layer 2 MAC address table entries.|
+| `IPv4-Routes` | IPv4 routing table entries.|
+| `IPv6-Routes` | IPv6 routing table entries.|
+| `Total-Mcast-Routes` | Multicast routing entries.|
+| `IPv4-host-entries` | IPv4 neighbor entries. |
+| `IPv6-host-entries` | IPv6 neighbor entries. |
+| `ECMP-nexthops` | Equal-Cost Multi-Path (ECMP) next-hop paths. |
+| `ACL-Regions` | Hardware regions allocated for Access Control Lists (ACLs). |
+| `ACL-18B-Rules-Key` | ACL rules using an 18-byte key. |
+| `ACL-36B-Rules-Key` | ACL rules using a 36-byte key. |
+| `ACL-54B-Rules-Key` | ACL rules using a 54-byte key. |
+| `Flow-Counters` | Hardware counters for tracking specific traffic flows.|
+| `RIF-Basic-Counters` | Basic statistics counters for router interfaces (RIFs). |
+| `RIF-Enhanced-Counters` | Detailed statistics counters for router interfaces (RIFs). |
+
+For example, `nvswitch_platform_asic_resource_free{resource_name="MAC-entries"}`.
+
+{{%notice note%}}
+- ACL maximum limits are dynamic and depend on the distribution of 18B, 36B, and 54B ACL rules.
+- The maximum value for the `IPv6-Routes` ASIC resource represents the number of single-width IPv6 route entries. In hardware, IPv6 routes with prefix lengths from /0 to /64 consume one entry each, whereas routes with prefix lengths from /65 to /128 consume two entries each. As a result, the actual number of free hardware entries depends on the mix of IPv6 route prefix lengths programmed into the table.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Disk ">}}
@@ -3317,7 +3363,32 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_info_last_reboot_time` | Time of last reboot in ns since epoch.|
 | `nvswitch_platform_info_last_reboot_reason` | Information about the last reboot reason of a component.|
 | `nvswitch_platform_info_firmware_version` | Information about the firmware version of a component.|
-| `nvswitch_platform_info_hw_details` | Component hardware details such as the version, model name, part number, serial number, type, and name.|
+| `nvswitch_platform_info_hw_details` | Component hardware details such as the version, model name, part number, serial number, type, and name. (Not emitted for PDBn-HSCm on the Spectrum-6 switch because a hotswap controller has no EEPROM/VPD.) |
+
+{{< /tab >}}
+{{< tab "Leakage Sensor">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_environment_leak_sensor_status` | *Leak sensor status. Liquid-cooled NVIDIA switch only.|
+| `nvswitch_platform_environment_leakage_status` | *Leakage status. Liquid-cooled NVIDIA switch only. |
+
+{{< /tab >}}
+{{< tab "Power Supply">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_environment_power_supply_state` | Operational state of the power component (1 = OK or present, 0 = absent). |
+| `nvswitch_platform_environment_power_supply_capacity` | Power supply capacity in Watts. For input-only PDBs this is the hotswap-controller power1_max (max INPUT power the HSC can handle, not a PSU rated OUTPUT capacity).
+| `nvswitch_platform_environment_power_supply_input_voltage` | Input-side voltage measured at the hotswap controller. |
+| `nvswitch_platform_environment_power_supply_input_current` | Input-side current measured at the hotswap controller. |
+| `nvswitch_platform_environment_power_supply_power` | Power-supply power in Watts (normative power metric). For input-only PDBs, this is the input-side power surfaced as the input-power leaf. |
+| `nvswitch_platform_environment_power_supply_current` | Output current (PSU output side). Emitted on PSU platforms only; not applicable to input-only PDB/HSC. |
+| `nvswitch_platform_environment_power_supply_voltage`| Output voltage (PSU output side). Emitted on PSU platforms only; not applicable to input-only PDB/HSC.|
+
+{{%notice note%}}
+On PSU-based platforms, the legacy `psu_*` metric family and the common `power_supply_*` family are emitted together for a three-release migration window. The legacy `psu_*` family is deprecated and will be removed after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -4427,8 +4498,6 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 
 | Name | Description |
 |----- | ----------- |
-| `nvrouting_bgp_peer_enabled` | *The admin status of the BGP peer (up or down). |
-| `nvrouting_bgp_peer_rib_adj_in_pre_policy` | *The number of prefixes received from the peer before applying any policies.<br><br>The pre-policy count requires soft-reconfiguration inbound to be enabled for the peer (`nv set vrf default router bgp neighbor <neighbor-id> address-family <address-family> soft-reconfiguration enabled`).|
 | `nvrouting_bgp_peer_state` |  BGP peer state: `Established`, `Idle`, `Connect`, `Active`, `OpenSent`.  |
 | `nvrouting_bgp_peer_fsm_established_transitions` | Number of BGP peer state transitions to the `Established` state for the peer session.|
 | `nvrouting_bgp_peer_rib_adj_in_installed` | Tracks the number of prefixes received from the neighbor, installed in the RIB and actively used for forwarding.  |
@@ -6400,6 +6469,17 @@ When you enable open telemetry with the `nv set system telemetry export otlp sta
 | `node_time_seconds` | System time in seconds since epoch (1970). |
 | `node_os_info` |  Operating system and image information, such as name and version. |
 
+<!--NOW IN 5.19
+### WJH Format
+
+If you enable {{<link title="What Just Happened (WJH)" text="WJH">}}, you can export the following WJH metrics:
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_wjh_total_events_channel_forwarding` | *Total number of forwarding channel events. |
+| `nvswitch_wjh_total_events_channel_acl` | *Total number of ACL channel events.|
+| `nvswitch_wjh_total_events_channel_buffer` | *Total number of buffer channel events. |
+-->
 ### Static Label Format
 
 Device static labels are exported in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:

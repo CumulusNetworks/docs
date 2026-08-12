@@ -34,6 +34,54 @@ If you add the `force` option (`nv action abort system ztp force`), ZTP terminat
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action activate system do-spx profile \<profile-id\></h>
+
+Activates the profile-based configuration. 
+
+Cumulus Linux provides a simplified, profile‑based way to configure a switch that replaces many NVUE commands. You can select an NVIDIA‑predefined profile and provide interface ranges and breakout values. Cumulus Linux generates and applies all immutable configuration, such as link breakouts, ISSU, adaptive routing, telemetry, QoS, and PFC.
+
+Make sure to activate the profile after you set the upinks and and downlinks. Activating the profile applies the AR, resource, telemetry, and QoS configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>`| The profile ID: `leaf`, `spine-2` (two-tier spine), `spine-3` (three-tier spine), or `super-spine`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action activate system do-spx profile leaf
+cumulus@switch:~$ nv config apply 
+Action succeeded
+```
+
+{{%notice note%}}
+After running the `nv action activate system do-spx profile <profile-id>` command, you must run `nv config apply` to apply the configuration.
+{{%/notice%}}
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action activate system image onie</h>
+
+Installs the Cumulus Linux image with ONIE.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action activate system image onie
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action activate system tech-support auto-generation</h>
 
 Reactivates automatic cl-support file generation.
@@ -61,7 +109,7 @@ Action succeeded
 
 ## <h>nv action boot-next system image \<partition-id\> rollback</h>
 
-Rolls back the optimized image upgrade if the upgrade fails or you want to go back to the Cumulus Linux release from which you upgraded.  The switch boots back to the previous release image and restores the switch configuration.
+Rolls back the optimized image upgrade if the upgrade fails or if you want to go back to the Cumulus Linux release from which you upgraded. The switch boots back to the previous release image and restores the switch configuration.
 
 ### Command Syntax
 
@@ -77,6 +125,91 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action boot-next system image partition2 rollback
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action boot-next system image onie install</h>
+
+Installs the Cumulus Linux image with ONIE.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action boot-next system image onie install 
+WARNING:
+WARNING: Operating System install requested.
+WARNING: This will wipe out all system data.
+WARNING:
+Are you sure (y/N)? y
+Enabling install at next reboot...done.
+Reboot required to take effect.
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action boot-next system image onie rescue</h>
+
+Reboots the system into ONIE rescue mode. You must reboot the system to boot into rescue mode.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action boot-next system image onie rescue
+WARNING:
+WARNING: Rescue boot requested.
+WARNING:
+Are you sure (y/N)? y
+Enabling rescue at next reboot...done.
+Reboot required to take effect.
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action boot-next system image onie uninstall</h>
+
+Removes all installed images and configurations, and returns the switch to its factory defaults.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action boot-next system image onie uninstall
+WARNING:
+WARNING: Operating System uninstall requested.
+WARNING: This will wipe out all system data.
+WARNING:
+Are you sure (y/N)? y
+Enabling uninstall at next reboot...done.
+Reboot required to take effect.
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action cancel system image onie</h>
+
+Cancels a pending Cumulus Linux image installation in ONIE.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action cancel system image onie
+Cancelling pending install at next reboot...done.
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -129,25 +262,6 @@ cumulus@switch:~$ nv action change system date-time 2023-12-04 02:33:30
 System Date-time changed successfully
 Local Time is now Mon 2023-12-04 02:33:30 UTC
 Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action change system security sed-password</h>
-
-Changes the SED factory-set password with a custom password to strengthen data protection and reduce the risk of offline attacks.
-You can change the SED password only on switches with SED enabled.
-
-The Trusted Platform Module (TPM) on the disk maintains two distinct persistent storage locations, referred to as TPM Banks, which serve as primary and secondary storage for the SED management password. During the boot process, the Pre-Boot Authentication (PBA) mechanism attempts to unlock the SED using the password stored in the primary bank. If the decryption attempt fails, the PBA automatically retries using the secondary bank.
-
-### Version History
-
-Introduced in Cumulus Linux 5.17.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action change system security sed-password NewPassword
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -471,22 +585,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear interface debounce-counters</h>
-
-Clears link debounce statistics for all interfaces.
-
-### Version History
-
-Introduced in Cumulus Linux 5.17.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear interface debounce-counters
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action clear interface \<interface-id\> bond mlag lacp-conflict</h>
 
 Clears the MLAG LACP conflict on the specified interface bond. A conflict can be an LACP partner MAC address mismatch or a duplicate LACP partner MAC address.
@@ -555,29 +653,6 @@ Introduced in Cumulus Linux 5.5.0
 ```
 cumulus@switch:~$ nv action clear interface swp1 counters
 swp1 counters cleared.
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear interface \<interface-id\> counters link debounce</h>
-
-Clears link debounce statistics for an interface.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ---------- | ------------ |
-| `<interface-id>` | The interface on which you want to clear link debounce counters. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.17.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear interface swp1 counters link debounce
 Action succeeded
 ```
 
@@ -684,6 +759,124 @@ Introduced in Cumulus Linux 5.15.0
 cumulus@switch:~$ nv action clear interface swp1 link phy health
 Action executing ... 
 swp1 link phy-detail counters cleared. 
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear interface \<interface-id\> link-tracking protodown</h>
+
+Clears the link tracking protodown state for the target interfaces so that the switch does not forward traffic to downstream devices over those links.
+
+Link tracking enables you to monitor interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface swp8 link-tracking protodown
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear platform asic \<asic-id\> resource</h>
+
+Clears the high watermark related metrics for a specific ASIC.
+
+This command clears only `High-Watermark` and `Last-High-Watermark` resource metrics for the ASIC specified. All other metrics are unaffected.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<asic-id>` | The ASIC ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear platform asic ASIC1 resource
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system aaa radius counters</h>
+
+Clears all the RADIUS server counters, such as the number of authorization requests, accepted, rejected, timed out and retried access requests, and authorization connection errors and bad responses.
+
+## Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system aaa radius counters
+RADIUS counters cleared.
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router rib ipv4 unreachable-prefixes \<ipv4-prefix\></h>
+
+Removes stale older aggregate IPv4 route exceptions.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` | The VRF ID. |
+| `<ipv4-prefix>` | The IPv4 prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router rib ipv4 unreachable-prefixes 10.1.0.0/16
+Action executing ...
+Removed local LLDP exception for 10.1.0.0/16 vrf default
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router rib ipv6 unreachable-prefixes \<ipv6-prefix\></h>
+
+Removes stale older aggregate IPv6 route exceptions.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` | The VRF ID. |
+| `<ipv6-prefix>` | The IPv6 prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router rib ipv6 unreachable-prefixes 2001:db8::1/128
+Action executing ...
+Removed local LLDP exception for 2001:db8::1/128 vrf default
 Action succeeded
 ```
 
@@ -2836,6 +3029,32 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear vrf \<vrf-id\> router rib ipv6 unreachable-prefixes \<ipv6-prefix\></h>
+
+Removes stale older aggregate IPv6 route exceptions.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` | The VRF ID. |
+| `<ipv6-prefix>` | The IPv6 prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router rib ipv6 unreachable-prefixes 2001:db8::1/128
+Action executing ...
+Removed local LLDP exception for 2001:db8::1/128 vrf default
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action deauthenticate interface \<interface-id\> dot1x authorized-sessions \<mac-address\></h>
 
 Deauthenticates the 802.1X supplicant on the specified interface. If you do not want to notify the supplicant that they are being deauthenticated, you can add the `silent` option.
@@ -2860,26 +3079,25 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system file-path \<file-path\></h>
+## <h>nv action delete system file-path \<path-id\></h>
 
-Deletes the specified file from local system.
+Deletes the specified file from the switch.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<file-path>` | The local file path on the system. |
+| `<path-id>` | The path to the file you want to delete from the switch. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.13.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action delete system system file-path /path/file
+cumulus@switch:~$ nv action delete system file-path /path/to/file
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2948,6 +3166,28 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action delete system log component nvue file nvued.log
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action delete system packages archive \<archive-id\></h>
+
+Deletes a patch from the switch. You must uninstall the patch before you can delete it.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<archive-id>` | The archive identifier (for example, rm0002). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system packages archive rm1234567
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3253,6 +3493,7 @@ When you erase all data on the switch, most services stop except for critical on
 NVUE prompts you to confirm that you want to proceed before destroying all data.
 
 {{%notice note%}}
+- This command is in Beta in Cumulus Linux 5.13.0.
 - You can erase all data only on switches with the Spectrum-4 and later ASIC.
 - You can erase all data on a functioning SSD only.
 - You cannot recover erased data.
@@ -3270,6 +3511,24 @@ WARNING! This will destroy all
 data and will NOT be recoverable. 
 Execution may take up to X minutes. 
 Would you like to proceed? [y/N] 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action export system wjh packet-buffer</h>
+
+Saves the most recent WJH dropped packets to a PCAP file. The switch writes PCAP files to the `/var/run/nv-wjh/` directory with a timestamped filename that the system chooses.
+
+To exclude metadata in the file, add `no-metadata` to the command.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action export system wjh packet-buffer 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3297,18 +3556,24 @@ cumulus@switch:~$ nv action fetch platform firmware SSD http://10.0.1.251/firmwa
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action fetch system file-path</h>
+## <h>nv action fetch system file-path \<path-id\></h>
 
 Fetches a file from a remote location and saves it locally.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path-id>` |  The file path.|
+
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.13.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action fetch system file-path REMOTEPATH
+cumulus@switch:~$ nv action fetch system file-path /path/to/file
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3331,6 +3596,36 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.12.0-mlx-amd64.bin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action fetch system packages archive \<path\></h>
+
+Downloads a patch. The patch infrastructure supports HTTPS, SCP, FTP, and SFTP.
+
+The Cumulus Linux patch framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
+
+You can install a critical fix within your own maintenance window and back it out without a full image upgrade.
+
+Patches only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every patch into a subsequent release.
+
+You can roll back and return to the base image, not a previously-running patch. If a package is running an earlier patch version when you install a later patch, removing the later patch restores the base-image version, not the earlier patch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The archive file name and location.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action fetch system packages archive http://path/micro-update
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3684,15 +3979,147 @@ cumulus@switch:~$ nv action install system image files cumulus-linux-5.12.0-mlx-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action list system file-path \<path\></h>
+## <h>nv action install system image onie \<path\></h>
 
-Lists the contents of a directory, including files, subdirectories, and other file system objects. This NVUE command is equivalent to the Linux `ls -la --full-time <path>` command.
+Stages the system image from ONIE from the location provided.
+
+You can add the following options:
+-  `force` suppresses the prompt and the action proceeds non-interactively. The force option  NVIDIA recommends using the force option for scripted, automated, or REST API invocations.
+- `activate` activates the install process.
+- `reboot` reboots the switch after installing the image.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<path>` |  The path to the directory you want to list.|
+| `<path>` |  The image location.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system image onie http://10.0.1.251/cumulus-linux-5.18.0-mlx-amd64.bin force activate reboot
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action install system image onie \<path\> ztp \<script\></h>
+
+Stages an image and a ZTP script on an HTTP server. 
+
+You can add the following options:
+-  `force` suppresses the prompt and the action proceeds non-interactively. The force option  NVIDIA recommends using the force option for scripted, automated, or REST API invocations.
+- `activate` activates the install process.
+- `reboot` reboots the switch after installing the image.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The image location.|
+| `<script>` | The ztp file you want to run. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system image onie http://203.0.113.10/image-installer ztp http://203.0.113.10/ztp-script
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action install system image onie \<path\> startup-config \<file-name\></h>
+
+Stages an image with ONIE and a local NVUE `startup.yaml` file.
+
+To activate (install) the staged installation and reboot the switch, add the activate reboot commands; for example, `nv action install system image onie http://203.0.113.10/image-installer startup-config /etc/nvue.d/startup.yaml activate reboot`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The image location.|
+| `<file-name>` | The name of the startup configuration file. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system image onie http://203.0.113.10/image-installer startup-config /etc/nvue.d/startup.yaml
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action install system image onie ftp:\<path\> activate reboot</h>
+
+Installs a system image from ONIE and reboots the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The image location.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system image onie ftp://203.0.113.10/image-installer activate reboot
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action install system packages archive \<archive-id\></h>
+
+Installs a patch.
+
+The Cumulus Linux patch framework delivers small, targeted, reversible package fixes, such as a critical bug or CVE, to a running switch without requiring a full image upgrade.
+
+You can install a critical fix within your own maintenance window and back it out without a full image upgrade.
+
+Patches only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every patch into a subsequent release.
+
+You can roll back and return to the base image, not a previously-running patch. If a package is running an earlier patch version when you install a later patch, removing the later update restores the base-image version, not the earlier patch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<archive>` |  The image location.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system packages archive rm1234567
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action list system file-path \<path-id\></h>
+
+Lists the contents of a directory, including files, subdirectories, and other file system objects. This NVUE command is equivalent to the Linux `ls -la --full-time <path-id>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path-id>` |  The path to the directory you want to list.|
 
 ### Version History
 
@@ -4439,6 +4866,28 @@ Do you want to continue? [y/n] y
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action restore system config backup \<path\></h>
+
+Restores the switch to the configuration captured in the specified snapshot.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The location and name of the snapshot you want to restore.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action restore system config backup /var/lib/config-backup/auto-snapshots/weekly/20260320-121030
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action rotate system log</h>
 
 Rotates the system log files. Cumulus Linux automatically manages log file size, preventing the logs from filling the storage space and slowing down the system.
@@ -4808,6 +5257,28 @@ cumulus@switch:~$ nv action traceroute system 10.10.10.10 wait 2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action uninstall system packages archive \<archive-id\></h>
+
+Uninstalls a patch.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<archive-id>` |  The archive identifier (for example, rm0002). To show the archive identifier, run the `nv show system packages archive`​ command after you download the patch. The `Archive` column shows the archive identifier.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action uninstall system packages archive rm1234567
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action upgrade system packages to latest use-vrf \<vrf-id\></h>
 
 Upgrades all the packages to the latest distribution.
@@ -4856,18 +5327,24 @@ cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action upload system file-path</h>
+## <h>nv action upload system file-path \<path-id\></h>
 
 Uploads a file to remote location.
 
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<path-id>` |  The path to the file you want to upload.  |
+
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.13.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action upload file-path 
+cumulus@switch:~$ nv action upload system file-path /path/to/file
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -165,10 +165,9 @@ On NVIDIA Spectrum-2 switches and later, if you enable multiple VLAN-aware bridg
 
 ## Configure the Default VLAN Identifier
 
-VLAN 1 is often used for in-band management and carries critical control plane protocols like Spanning Tree Protocol (STP) and Cisco Discovery Protocol (CDP). Because it is a globally known default, it is a primary target for VLAN hopping and double-tagging attacks, where an unauthorized user can bypass layer 2 isolation to gain access to other segments. To avoid using VLAN 1 in Cumulus Linux for user data and management traffic and to mitigate security risks, you can configure the default VLAN identifier (PVID) to override the default VLAN 1.
+Cumulus Linux uses VLAN 1 as the default VLAN identifier for both trunk and access ports. VLAN 1 is often used for in-band management and carries critical control plane protocols like Spanning Tree Protocol (STP). Because it is a globally known default, it is a primary target for VLAN hopping and double-tagging attacks, where an unauthorized user can bypass layer 2 isolation to gain access to other segments. To avoid using VLAN 1 in Cumulus Linux for user data and management traffic and to mitigate security risks, you can configure the default VLAN identifier (PVID) to override the default VLAN 1.
 
 Changing the default VLAN from VLAN 1 to a different identifier supports DoD security requirements.
-
 - The default VLAN applies to all bridge instances that do not have a specific PVID configured.
 - Any bridge PVID you configure on an individual bridge instance takes precedence over the default VLAN.
 
@@ -178,13 +177,11 @@ To configure the default VLAN so that VLAN 1 is not used on the trunk and access
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set bridge default-vlan 10
+cumulus@switch:~$ nv set bridge default-vlan 101
 cumulus@switch:~$ nv config apply
 ```
 
 To unset the default VLAN and use VLAN 1, run the `nv unset bridge default-vlan` command.
-
-To show the default VLAN, run the `nv show bridge` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -194,12 +191,14 @@ Edit the `/etc/network/interfaces` file and update the bridge stanza:
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto br_default
-iface br_default
-    bridge-ports swp1 swp2
-    bridge-vids 10 20
-    bridge-pvid 10
+bridge-ports swp1 swp2
+    hwaddress 48:b0:2d:00:0e:10
     bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 101
+    bridge-stp yes
+    bridge-mcsnoop no
+    mstpctl-forcevers rstp
 ...
 ```
 
@@ -211,6 +210,16 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show the default VLAN, run the `nv show bridge` command.
+
+```
+cumulus@switch:~$ nv show bridge
+                operational  applied
+------------    -----------  -------
+default-vlan    101          101
+... 
+```
 
 ## Reserved VLAN Range
 
@@ -941,11 +950,13 @@ cumulus@switch:~$ sudo bridge fdb show
 
 ## Dynamic ARP Inspection
 
-Dynamic ARP Inspection validates ARP packets on a bridged network by intercepting all ARP frames entering untrusted ports. Dynamic ARP inspection verifies the MAC and IP address in the ARP payload against the DHCP snooping binding table and drops any frames with MAC to IP bindings that do not match. This process helps prevent ARP spoofing and ARP poisoning attacks.
+Dynamic ARP Inspection protects against ARP spoofing and ARP poisoning attacks by validating ARP packets on untrusted bridge ports against trusted IP-to-MAC bindings, and drops packets that do not match. Bindings come from the DHCP snooping table and from static bindings you configure. On an untrusted port, the switch permits an ARP packet only when its Ethernet source MAC, ARP sender MAC, ARP sender IP address, and ingress port all match a binding.
+
+The switch does not inspect ports you list as ARP Inspection trusted interfaces. This list is independent of the DHCP snooping trust configuration; a DHCP snooping trusted uplink is still ARP inspected unless it is also an ARP Inspection trusted interface.
 
 {{%notice note%}}
-- Before you enable dynamic ARP inspection on a bridge VLAN, you must configure {{<link url="DHCP-Snooping" text="DHCP snooping">}} for the bridge VLAN.
-- Dynamic ARP inspection supports ingress ports only and does not perform egress checking.
+- Before you enable dynamic ARP inspection on a bridge VLAN, you must configure {{<link url="DHCP-Snooping" text="DHCP snooping">}} for the VLAN.
+- Dynamic ARP inspection inspects IPv4 ARP only, on untrusted ports, in single bridge mode.
 {{%/notice%}}
 
 To enable Dynamic ARP inspection for a bridge VLAN, run the `nv set bridge domain <bridge-id> arp-inspection vlan <vlan-id> state enabled` command.
@@ -955,10 +966,10 @@ cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 state e
 cumulus@switch:~$ nv config apply
 ```
 
-To set a trusted (opt-out) port,  run the `nv set bridge domain <bridge> arp-inspection vlan <vid> interface <port>` command. The listed ports have no DAI filters and the packets pass through the switch.
+To set a trusted port, run the `nv set bridge domain <bridge> arp-inspection vlan <vid> interface <port>` command. The listed ports have no DAI filters and the packets pass through the switch.
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 interface swp1
+cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 interface swp2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -967,7 +978,7 @@ To configure dynamic ARP inspection for static MAC to IP and port bindings for h
 ```
 cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 mac 00:02:00:00:00:05
 cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 ip 192.0.2.42 
-cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 port swp1
+cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 port swp2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -977,45 +988,50 @@ To show dynamic ARP inspection information such as the state, interfaces, and bi
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default arp-inspection
-
+ARP Inspection Table
+=======================
+    Vlan  State     Trusted-Port  Binding  MAC                IP          Port
+    ----  --------  ------------  -------  -----------------  ----------  ----
+    10    disabled  swp2          server1  00:02:00:00:00:05  192.0.2.42  swp2
 ```
 
-To show dynamic ARP inspection information for all VLANs, run the `nv show bridge domain <bridge> arp-inspection vlan` command:
-
-```
-cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan
-
-```
-
-To show dynamic ARP inspection information for a specific VLAN, run the `nv show bridge domain <bridge> arp-inspection vlan <vid>` command:
+To show dynamic ARP inspection information for all VLANs, run the `nv show bridge domain <bridge> arp-inspection vlan` command. To show dynamic ARP inspection information for a specific VLAN, run the `nv show bridge domain <bridge> arp-inspection vlan <vid>` command:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10
+       operational  applied 
+-----  -----------  --------
+state  disabled     disabled
+
+ARP Inspection Trusted Interfaces
+====================================
+    Port
+    ----
+    swp2
+
+ARP Inspection Static Bindings
+=================================
+    Name     MAC                IP          Port
+    -------  -----------------  ----------  ----
+    server1  00:02:00:00:00:05  192.0.2.42  swp2
 ```
 
-To show dynamic ARP inspection information for all VLAN interfaces, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> interface` command:
-
+To show dynamic ARP inspection information for all VLAN interfaces, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> interface` command. To show dynamic ARP inspection information for a specific VLAN interface, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> interface <interface-id>` command.
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 interface
+Port
+----
+swp2
 ```
 
-To show dynamic ARP inspection information for a specific VLAN interface, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> interface <interface-id>` command:
-
-```
-cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 interface swp1
-```
-
-To show dynamic ARP inspection information for all static bindings, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> static-binding` command:
+To show dynamic ARP inspection information for all static bindings, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> static-binding` command. To show dynamic ARP inspection information for a specific static binding, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> static-binding <name>` command.
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 static-binding
-```
-
-To show dynamic ARP inspection information for a specific static binding, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> static-binding <name>` command:
-
-```
-cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 static-binding server1
+Name     MAC                IP          Port
+-------  -----------------  ----------  ----
+server1  00:02:00:00:00:05  192.0.2.42  swp2
 ```
 
 ## Troubleshooting

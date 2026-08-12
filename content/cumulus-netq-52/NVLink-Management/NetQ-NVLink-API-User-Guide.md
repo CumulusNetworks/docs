@@ -27,6 +27,8 @@ Some REST API calls involve asynchronous, long-running tasks. When one of these 
 
 If the operation eventually creates a new resource (for example, a service), querying the operation once its status is completed returns a response containing a location header pointing to the new resource endpoint (for example, `/nmx/v1/services/<created-service-id>`).
 
+If an operation stalls for more than 10 minutes, it is marked as failed.
+
 ## API Responses
 
 The NetQ NVLink API uses conventional HTTP response codes to indicate the success or failure of an API request:

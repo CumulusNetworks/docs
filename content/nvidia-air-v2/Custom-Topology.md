@@ -161,7 +161,7 @@ If you do not have service connectivity to an outbound link, try fully initializ
 
 On the **System Palette**, there is an option to **Enable OOB**. This setting enables the out-of-band management network that connects all nodes to each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you enable SSH, you connect to the `oob-mgmt-server`, making this node an ideal starting point for configurations. Air handles the configuration automatically for you.
 
-{{<img src="/images/guides/nvidia-air-v2/EnableOOB.png" alt="System Palette showing OOB and NetQ toggles" width="400px">}}
+{{<img src="/images/guides/nvidia-air-v2/EnableOOB.png" alt="System Palette showing OOB toggle" width="400px">}}
 <br>
 <br>
 You can add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation manually even when **Enable OOB** is set to off. However, you must switch **Enable OOB** on to use the out-of-band network.
@@ -287,44 +287,69 @@ When viewing the nodes within Air after starting the simulation, notice that the
 
 {{<img src="/images/guides/nvidia-air-v2/JSONOOBExample.png" alt="">}}
 
-#### Custom NetQ Node
-You can create and customize a NetQ instance for your simulation.
+#### Boot Order
 
-{{< expand "Custom NetQ Node Example" >}}
+A node accepts an optional `boot` attribute that controls which device the node attempts to boot from. It accepts either of two forms:
+
+- **Single device (string)** — a single boot device, for example `"hd"`, `"network"`, or `"cdrom"`. The default is `"hd"`.
+- **Boot order (list)** — a list of up to 3 unique boot devices tried in order. Firmware attempts each device in the order listed and falls through to the next if the previous device does not boot. Accepted device literals are `hd` (the boot disk), `cdrom` (the first user-supplied CD-ROM), and `network` (every network interface, tried in sequence).
+
+When you supply a list, only the devices you name receive a boot preference; any device not named is left to firmware-level fall-through. The `network` literal expands to every NIC on the node, each assigned a consecutive boot position. Listing a device that the node does not have (for example `network` on a node with no NIC) is ignored — the node still boots from the remaining devices.
+
+{{%notice note%}}
+The `boot` field is mutually exclusive with `pxehost: true`. Setting `pxehost: true` is a legacy alias for `boot: "network"`; do not set both unless `boot` is `"network"`.
+{{%/notice%}}
+
+{{%notice note%}}
+If `boot` includes `cdrom`, the node must also have a `cdrom` image attached. See [CD-ROM](#cd-rom).
+{{%/notice%}}
+
+The following example makes `host1` try its disk first, then fall through to network boot:
+
+{{< expand "Boot Order Example" >}}
 
 ```
 {
     "format": "JSON",
-    "title": "Demo",
+    "name": "Boot Order",
     "ztp": null,
     "content": {
         "nodes": {
-           ...
-        },
-        "links": [
-            ...
-        ],
-        "oob": {
-            ...
-        },
-         "netq": {
-            "nodes": {
-                "netq-ts": {
-                    "cpu": 4,
-                    "memory": 6144,
-                    "storage": 64,
-                    "os": "netq-ts-cloud-4.15.0"
-                }
+            "host1": {
+                "os": "generic/ubuntu2204",
+                "boot": ["hd", "network"]
             }
-        }
+        },
+        "links": []
     }
 }
 ```
 {{< /expand >}}
-<br>
-When viewing the nodes within Air, notice that the resources are allocated based on the file. 
 
-{{<img src="/images/guides/nvidia-air-v2/JSONNetQExample.png" alt="">}}
+#### CD-ROM
+
+A node accepts an optional `cdrom` attribute that inserts an image into the node's CD-ROM drive. Set it to the name (or ID) of an image your organization can read. A CD-ROM must be attached whenever the node's `boot` order includes `cdrom`.
+
+{{< expand "CD-ROM Boot Example" >}}
+
+```
+{
+    "format": "JSON",
+    "name": "CD-ROM Boot",
+    "ztp": null,
+    "content": {
+        "nodes": {
+            "host1": {
+                "os": "generic/ubuntu2204",
+                "cdrom": "cdrom-nonbootable",
+                "boot": ["cdrom", "hd"]
+            }
+        },
+        "links": []
+    }
+}
+```
+{{< /expand >}}
 
 ### DOT Files
 
@@ -374,6 +399,14 @@ You can customize the number of allocated CPUs with the `cpu` option:
 
 ```
 "server" [os="generic/ubuntu2404" cpu="4"]
+```
+
+#### Boot Order
+
+You can set the boot device(s) with the `boot` option. Provide a single device (`hd`, `network`, or `cdrom`), or a comma-separated list of up to 3 unique devices for ordered fall-through:
+
+```
+"server" [os="generic/ubuntu2404" boot="network,hd"]
 ```
 
 #### Create Connections

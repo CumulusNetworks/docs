@@ -13,25 +13,25 @@ To show a summary of the BGP configuration on the switch, run the NVUE `nv show 
 
 ```
 cumulus@switch:~$ nv show router bgp
-                                operational  applied      pending    
-------------------------------  -----------  -----------  -----------
-state                           enabled      enabled      enabled    
-autonomous-system               65101        65101        65101      
-router-id                       10.10.10.1   10.10.10.1   10.10.10.1 
-policy-update-timer             5            5            5          
-graceful-shutdown               disabled     disabled     disabled   
-wait-for-install                disabled     disabled     disabled   
-graceful-restart                                                     
-  mode                          helper-only  helper-only  helper-only
-  restart-time                  120          120          120        
-  path-selection-deferral-time  120          120          120        
-  stale-routes-time             360          360          360        
-convergence-wait                                                     
-  time                          0            0            0          
-  establish-wait-time           0            0            0          
-queue-limit                                                          
-  input                         10000        10000        10000      
-  output                        10000        10000        10000        
+                                operational  applied     
+------------------------------  -----------  ----------- 
+state                           enabled      enabled     
+autonomous-system               65101        65101       
+router-id                       10.10.10.1   10.10.10.1  
+policy-update-timer             5            5           
+graceful-shutdown               disabled     disabled    
+wait-for-install                disabled     disabled    
+graceful-restart                                         
+  mode                          helper-only  helper-only 
+  restart-time                  120          120         
+  path-selection-deferral-time  120          120         
+  stale-routes-time             360          360         
+convergence-wait                                         
+  time                          0            0           
+  establish-wait-time           0            0           
+queue-limit                                              
+  input                         10000        10000       
+  output                        10000        10000       
 ```
 
 ```
@@ -97,111 +97,111 @@ To show a more detailed breakdown of a specific neighbor, run the vtysh `show ip
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51
-                               operational                applied                                  pending                                
------------------------------  -------------------------  ---------------------------------------  ---------------------------------------
-password                                                  $nvsec$d1a028e8c7f97db92876c2a30fcc403f  $nvsec$d1a028e8c7f97db92876c2a30fcc403f
-enforce-first-as                                          enabled                                  enabled                                
-passive-mode                                              disabled                                 disabled                               
-nexthop-connected-check                                   enabled                                  enabled                                
-description                                               none                                     none                                   
-graceful-shutdown                                         disabled                                 disabled                               
-ttl-security                                                                                                                              
-  state                        enabled                    disabled                                 disabled                               
-  hops                         1                                                                                                          
-local-as                                                                                                                                  
-  state                                                   disabled                                 disabled                               
-  asn                          65101                                                                                                      
-  prepend                      enabled                                                                                                    
-  replace                      disabled                                                                                                   
-timers                                                                                                                                    
-  keepalive                    3                          auto                                     auto                                   
-  hold                         9                          auto                                     auto                                   
-  connection-retry             10                         auto                                     auto                                   
-  route-advertisement          none                       auto                                     auto                                   
-address-family                                                                                                                            
-  ipv4-unicast                                                                                                                            
-    state                                                 enabled                                  enabled                                
-    route-reflector-client                                disabled                                 disabled                               
-    soft-reconfiguration                                  disabled                                 disabled                               
-    nexthop-setting                                       auto                                     auto                                   
-    add-path-tx                                           off                                      off                                    
-    attribute-mod                                                                                                                         
-      aspath                   disabled                   disabled                                 disabled                               
-      med                      disabled                   disabled                                 disabled                               
-      nexthop                  disabled                   disabled                                 disabled                               
-    aspath                                                                                                                                
-      replace-peer-as          disabled                   disabled                                 disabled                               
-      private-as               none                       none                                     none                                   
-      allow-my-asn                                                                                                                        
-        state                  disabled                   disabled                                 disabled                               
-    tx-prefix                  0                                                                                                          
-    rx-prefix                  0                                                                                                          
-    graceful-restart                                                                                                                      
-      rx-eof-rib               off                                                                                                        
-      tx-eof-rib               off                                                                                                        
-    weight                                                0                                        0                                      
-    community-advertise                                                                                                                   
-      regular                  enabled                    enabled                                  enabled                                
-      extended                 enabled                    enabled                                  enabled                                
-      large                    enabled                    enabled                                  enabled                                
-    conditional-advertise                                                                                                                 
-      state                                               disabled                                 disabled                               
-    policy                                                                                                                                
-      inbound                                                                                                                             
-        route-map                                         none                                     none                                   
-        prefix-list                                       none                                     none                                   
-        aspath-list                                       none                                     none                                   
-      outbound                                                                                                                            
-        route-map                                         none                                     none                                   
-        unsuppress-map                                    none                                     none                                   
-        prefix-list                                       none                                     none                                   
-        aspath-list                                       none                                     none                                   
-    default-route-origination                                                                                                             
-      state                                               disabled                                 disabled                               
-    prefix-limits                                                                                                                         
-      inbound                                                                                                                             
-        maximum                                           none                                     none                                   
-        warning-threshold                                 75                                       75                                     
-        warning-only           disabled                                                                                                   
-  ipv6-unicast                                                                                                                            
-    state                                                 disabled                                 disabled                               
-  l2vpn-evpn                                                                                                                              
-    state                                                 disabled                                 disabled                               
-state                                                     enabled                                  enabled                                
-type                                                      unnumbered                               unnumbered                             
-peer-group                                                none                                     none                                   
-remote-as                                                 external                                 external                               
-capabilities                                                                                                                              
-  extended-nexthop                                        auto                                     auto                                   
-graceful-restart                                                                                                                          
-  remote-mode                  NotApplicable                                                                                              
-  mode                                                    auto                                     auto                                   
-bgp-version                    4                                                                                                          
-remote-router-id               0.0.0.0                                                                                                    
-session-state                  idle                                                                                                       
-connections-established        0                                                                                                          
-connections-dropped            0                                                                                                          
-last-reset-time                0:01:10                                                                                                    
-last-reset-reason              Waiting for Peer IPv6 LLA                                                                                  
-last-reset-code                28                                                                                                         
-local-ip                       Unknown                                                                                                    
-remote-ip                      Unknown                                                                                                    
-local-port                     -1                                                                                                         
-remote-port                    -1                                                                                                         
-nexthop                                                                                                                                   
-  ipv4                         Unknown                                                                                                    
-  ipv6-global                  Unknown                                                                                                    
-  ipv6-local                   Unknown                                                                                                    
-message-stats                                                                                                                             
-  input-queue                  0                                                                                                          
-  output-queue                 0                                                                                                          
-  rx-opens                     0                                                                                                          
-  tx-opens                     0                                                                                                          
-  rx-keepalives                0                                                                                                          
-  tx-keepalives                0                                                                                                          
-  rx-route-refreshes           0                                                                                                          
-  tx-route-refreshes           0                                                                                                          
-  tx-total                     0                                                                                                          
+                               operational                applied                                    
+-----------------------------  -------------------------  ---------------------------------------
+password                                                  $nvsec$d1a028e8c7f97db92876c2a30fcc403f 
+enforce-first-as                                          enabled                                    
+passive-mode                                              disabled                                   
+nexthop-connected-check                                   enabled                                    
+description                                               none                                       
+graceful-shutdown                                         disabled                                   
+ttl-security                                                                                         
+  state                        enabled                    disabled                                   
+  hops                         1                                                                     
+local-as                                                                                             
+  state                                                   disabled                                   
+  asn                          65101                                                                 
+  prepend                      enabled                                                               
+  replace                      disabled                                                              
+timers                                                                                               
+  keepalive                    3                          auto                                       
+  hold                         9                          auto                                       
+  connection-retry             10                         auto                                       
+  route-advertisement          none                       auto                                       
+address-family                                                                                       
+  ipv4-unicast                                                                                       
+    state                                                 enabled                                    
+    route-reflector-client                                disabled                                   
+    soft-reconfiguration                                  disabled                                   
+    nexthop-setting                                       auto                                       
+    add-path-tx                                           off                                        
+    attribute-mod                                                                                    
+      aspath                   disabled                   disabled                                   
+      med                      disabled                   disabled                                   
+      nexthop                  disabled                   disabled                                   
+    aspath                                                                                           
+      replace-peer-as          disabled                   disabled                                   
+      private-as               none                       none                                       
+      allow-my-asn                                                                                   
+        state                  disabled                   disabled                                   
+    tx-prefix                  0                                                                     
+    rx-prefix                  0                                                                     
+    graceful-restart                                                                                 
+      rx-eof-rib               off                                                                   
+      tx-eof-rib               off                                                                   
+    weight                                                0                                          
+    community-advertise                                                                              
+      regular                  enabled                    enabled                                    
+      extended                 enabled                    enabled                                    
+      large                    enabled                    enabled                                    
+    conditional-advertise                                                                            
+      state                                               disabled                                   
+    policy                                                                                           
+      inbound                                                                                        
+        route-map                                         none                                       
+        prefix-list                                       none                                       
+        aspath-list                                       none                                       
+      outbound                                                                                       
+        route-map                                         none                                       
+        unsuppress-map                                    none                                       
+        prefix-list                                       none                                       
+        aspath-list                                       none                                       
+    default-route-origination                                                                        
+      state                                               disabled                                   
+    prefix-limits                                                                                    
+      inbound                                                                                        
+        maximum                                           none                                       
+        warning-threshold                                 75                                         
+        warning-only           disabled                                                              
+  ipv6-unicast                                                                                       
+    state                                                 disabled                                   
+  l2vpn-evpn                                                                                         
+    state                                                 disabled                                   
+state                                                     enabled                                    
+type                                                      unnumbered                                 
+peer-group                                                none                                       
+remote-as                                                 external                                   
+capabilities                                                                                         
+  extended-nexthop                                        auto                                       
+graceful-restart                                                                                     
+  remote-mode                  NotApplicable                                                         
+  mode                                                    auto                                       
+bgp-version                    4                                                                     
+remote-router-id               0.0.0.0                                                               
+session-state                  idle                                                                  
+connections-established        0                                                                     
+connections-dropped            0                                                                     
+last-reset-time                0:01:10                                                               
+last-reset-reason              Waiting for Peer IPv6 LLA                                             
+last-reset-code                28                                                                    
+local-ip                       Unknown                                                               
+remote-ip                      Unknown                                                               
+local-port                     -1                                                                    
+remote-port                    -1                                                                    
+nexthop                                                                                              
+  ipv4                         Unknown                                                               
+  ipv6-global                  Unknown                                                               
+  ipv6-local                   Unknown                                                               
+message-stats                                                                                        
+  input-queue                  0                                                                     
+  output-queue                 0                                                                     
+  rx-opens                     0                                                                     
+  tx-opens                     0                                                                     
+  rx-keepalives                0                                                                     
+  tx-keepalives                0                                                                     
+  rx-route-refreshes           0                                                                     
+  tx-route-refreshes           0                                                                     
+  tx-total                     0                                                                     
   rx-total                     0
 ```
 
@@ -209,49 +209,49 @@ To show a summary of the BGP configuration on the switch for a specific VRF, run
 
 ```
 cumulus@switch:mgmt:~$ nv show vrf BLUE router bgp 
-                                   operational  applied     pending   
----------------------------------  -----------  ----------  ----------
-state                                           enabled     enabled   
-autonomous-system                  65101        65101       65101     
-router-id                          10.10.10.1   10.10.10.1  10.10.10.1
-rd                                              none        none      
-address-family                                                        
-  ipv4-unicast                                                        
-    rib-filter                                  none        none      
-    route-export                                                      
-      to-evpn                                                         
-        state                                   enabled     enabled   
-        route-map                               none        none      
-        default-route-origination  disabled     disabled    disabled  
-      to-vrf                                                          
-        [list]                     none                               
-      [route-target]               none                               
-      rd                           none                               
-    route-import                                                      
-      from-vrf                                                        
-        state                                   disabled    disabled  
-        [list]                     none                               
-      [route-target]               none                               
-    admin-distance                                                    
-      external                     20           20          20        
-      internal                     200          200         200       
-    multipaths                                                        
-      ebgp                         64           64          64        
-      ibgp                         64           64          64        
-      compare-cluster-length       disabled     disabled    disabled  
-    state                                       enabled     enabled   
-    redistribute                                                      
-      static                                                          
-        state                      disabled     disabled    disabled  
-      connected                                                       
-        state                      enabled      enabled     enabled   
-        metric                     auto         auto        auto      
-        route-map                  none         none        none      
-      kernel                                                          
-        state                      disabled     disabled    disabled  
-      ospf                                                            
-        state                      disabled     disabled    disabled  
-    [network]                                                         
+                                   operational  applied    
+---------------------------------  -----------  ---------- 
+state                                           enabled    
+autonomous-system                  65101        65101      
+router-id                          10.10.10.1   10.10.10.1 
+rd                                              none       
+address-family                                             
+  ipv4-unicast                                             
+    rib-filter                                  none       
+    route-export                                           
+      to-evpn                                              
+        state                                   enabled    
+        route-map                               none       
+        default-route-origination  disabled     disabled   
+      to-vrf                                               
+        [list]                     none                    
+      [route-target]               none                    
+      rd                           none                    
+    route-import                                           
+      from-vrf                                             
+        state                                   disabled   
+        [list]                     none                    
+      [route-target]               none                    
+    admin-distance                                         
+      external                     20           20         
+      internal                     200          200        
+    multipaths                                             
+      ebgp                         64           64         
+      ibgp                         64           64         
+      compare-cluster-length       disabled     disabled   
+    state                                       enabled    
+    redistribute                                           
+      static                                               
+        state                      disabled     disabled   
+      connected                                            
+        state                      enabled      enabled    
+        metric                     auto         auto       
+        route-map                  none         none       
+      kernel                                               
+        state                      disabled     disabled   
+      ospf                                                 
+        state                      disabled     disabled   
+    [network]                                              
     [aggregate-route]                                                 
   ipv6-unicast                                                        
     route-export                                                      
@@ -267,57 +267,57 @@ address-family
       [route-target]               none                               
     multipaths                                                        
       compare-cluster-length       disabled                           
-    state                                       disabled    disabled  
-    redistribute                                                      
-      static                                                          
-        state                      disabled                           
-      connected                                                       
-        state                      disabled                           
-      kernel                                                          
-        state                      disabled                           
-      ospf6                                                           
-        state                      disabled                           
-  l2vpn-evpn                                                          
-    state                                       disabled    disabled  
-[neighbor]                                                            
-[peer-group]                                                          
-path-selection                                                        
-  routerid-compare                 disabled     disabled    disabled  
-  aspath                                                              
-    compare-lengths                enabled      enabled     enabled   
-    compare-confed                 disabled     disabled    disabled  
-  med                                                                 
-    compare-always                 disabled     disabled    disabled  
-    compare-deterministic          enabled      enabled     enabled   
-    compare-confed                 disabled     disabled    disabled  
-    missing-as-max                 disabled     disabled    disabled  
-  multipath                                                           
-    aspath-ignore                  disabled     disabled    disabled  
-    generate-asset                 disabled     disabled    disabled  
-    bandwidth                      all-paths    all-paths   all-paths 
-route-reflection                                                      
-  state                                         disabled    disabled  
-  reflect-between-clients          enabled                            
-  outbound-policy                  disabled                           
-route-export                                                          
-  to-evpn                                                             
-    [route-target]                              auto        auto      
-route-import                                                          
-  from-evpn                                                           
-    [route-target]                              auto        auto      
-timers                                                                
-  keepalive                                     3           3         
-  hold                                          9           9         
-  connection-retry                              10          10        
-  route-advertisement                           none        none      
-  conditional-advertise                         60          60        
-confederation                                                         
-  id                                            none        none      
-  [member-as]                                                         
-dynamic-neighbor                                                      
-  [listen-range]                                                      
-  limit                                         100         100       
-configured-neighbors               0                                  
+    state                                       disabled   
+    redistribute                                           
+      static                                               
+        state                      disabled                
+      connected                                            
+        state                      disabled                
+      kernel                                               
+        state                      disabled                
+      ospf6                                                
+        state                      disabled                
+  l2vpn-evpn                                               
+    state                                       disabled   
+[neighbor]                                                 
+[peer-group]                                               
+path-selection                                             
+  routerid-compare                 disabled     disabled   
+  aspath                                                   
+    compare-lengths                enabled      enabled    
+    compare-confed                 disabled     disabled   
+  med                                                      
+    compare-always                 disabled     disabled   
+    compare-deterministic          enabled      enabled    
+    compare-confed                 disabled     disabled   
+    missing-as-max                 disabled     disabled   
+  multipath                                                
+    aspath-ignore                  disabled     disabled   
+    generate-asset                 disabled     disabled   
+    bandwidth                      all-paths    all-paths  
+route-reflection                                           
+  state                                         disabled   
+  reflect-between-clients          enabled                 
+  outbound-policy                  disabled                
+route-export                                               
+  to-evpn                                                  
+    [route-target]                              auto       
+route-import                                               
+  from-evpn                                                
+    [route-target]                              auto       
+timers                                                     
+  keepalive                                     3          
+  hold                                          9          
+  connection-retry                              10         
+  route-advertisement                           none       
+  conditional-advertise                         60         
+confederation                                              
+  id                                            none       
+  [member-as]                                              
+dynamic-neighbor                                           
+  [listen-range]                                           
+  limit                                         100        
+configured-neighbors               0                       
 established-neighbors              0             
 ```
 
@@ -512,18 +512,18 @@ To check BGP address family redistribute settings, such as the BGP redistribute 
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute
-             operational  applied   pending 
------------  -----------  --------  --------
-static                                      
-  state      disabled     disabled  disabled
-connected                                   
-  state      enabled      enabled   enabled 
-  metric     auto         auto      auto    
-  route-map  none         none      none    
-kernel                                      
-  state      disabled     disabled  disabled
-ospf                                        
-  state      disabled     disabled  disabled
+             operational  applied  
+-----------  -----------  -------- 
+static                             
+  state      disabled     disabled 
+connected                          
+  state      enabled      enabled  
+  metric     auto         auto     
+  route-map  none         none     
+kernel                             
+  state      disabled     disabled 
+ospf                               
+  state      disabled     disabled 
 ```
 
 ```
@@ -914,23 +914,23 @@ To check BGP local-as and aspath for a specific neighbour, run the NVUE `nv show
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 local-as
-         operational  applied   pending
--------  -----------  -------   -------
-state                 disabled  disabled    
-asn      65101                        
-prepend  enabled                           
+         operational  applied 
+-------  -----------  ------- 
+state                 disabled
+asn      65101                
+prepend  enabled              
 replace  disabled 
 ```
 
 ```
 ``
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath
-                 operational  applied   pending 
----------------  -----------  --------  --------
-replace-peer-as  disabled     disabled  disabled
-private-as       none         none      none    
-allow-my-asn                                    
-  state          disabled     disabled  disabled
+                 operational  applied 
+---------------  -----------  --------
+replace-peer-as  disabled     disabled
+private-as       none         none    
+allow-my-asn                          
+  state          disabled     disabled
 ```
 
 ```
@@ -996,9 +996,9 @@ leaf01# show bgp vrf default neighbors swp51 json
 ...
 ```
 
-## Show Prefix Independent Convergence Information
+## Show DC Prefix Independent Convergence Information
 
-When you enable {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence (PIC)">}}, you can use the following commands to show information about route-origin extended community (SOO) routes and SOO peer bit index mapping for the routes.
+When you enable {{<link url="Optional-BGP-Configuration/#bgp-dc-prefix-independent-convergence" text="BGP DC Prefix Independent Convergence (BGP DC PIC)">}}, you can use the following commands to show information about route-origin extended community (SOO) routes and SOO peer bit index mapping for the routes.
 
 {{< tabs "1585 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1052,7 +1052,7 @@ IPAddress                  SooPeerBitIndex
 fe80::4ab0:2dff:fe3a:a928  1
 ```
 
-To show if a specific route uses PIC, run the `nv show <vrf-id> default router bgp address-family <address-family> soo-route <prefix> route-with-soo` command:
+To show if a specific route uses BGP DC PIC, run the `nv show <vrf-id> default router bgp address-family <address-family> soo-route <prefix> route-with-soo` command:
 
 ```
 cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 10.10.10.1 route-with-soo 

@@ -852,10 +852,6 @@ cumulus@switch:~$ nv action clear interface debounce-counters
 
 ## Tx Squelch Control
 
-{{%notice note%}}
-Tx squelch control is a Beta feature.
-{{%/notice%}}
-
 Tx squelch control is a PHY‑level feature that controls if the local port continues transmitting when the remote side is logically down (for example, when the remote side is in a fault state or needs to restart auto-negotiation).
 
 {{%notice note%}}

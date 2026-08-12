@@ -714,10 +714,6 @@ small-packet-probability 60
 
 ### Lossless Headroom Based on Small Packet Probability
 
-{{%notice note%}}
-Lossless headroom based on small packet probability is a Beta feature.
-{{%/notice%}}
-
 Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). The switch assumes a 100 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
 <!--On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate.-->
 
@@ -1007,10 +1003,6 @@ default_ecn_red_conf.ecn_enable = false
 To apply a custom ECN profile to specific interfaces, see [Port Groups](#ecn).
 
 ### Dynamic ECN
-
-{{%notice note%}}
-Dynamic ECN is a Beta feature.
-{{%/notice%}}
 
 Dynamic ECN is a congestion marking mechanism optimized for high-performance traffic, where bursty traffic requires immediate congestion signals to prevent buffer exhaustion. This feature provides extremely fast and aggressive feedback to mitigate microbursts and sudden congestion by triggering ECN marking based on the percentage of available shared buffer instead of static byte thresholds.
 

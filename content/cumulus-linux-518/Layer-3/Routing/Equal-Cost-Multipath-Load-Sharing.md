@@ -18,100 +18,105 @@ Cumulus Linux enables the BGP `maximum-paths` setting by default and installs mu
 
 ## Next Hop Groups
 
-ECMP routes resolve to next hop groups, which identify one or more next hops. To view next hop information, run the NVUE `nv show router nexthop rib` or `nv show router nexthop rib <id>` commands, or the `ip nexthop show` or `ip nexthop show <id>` kernel commands.
+ECMP routes resolve to next hop groups, which identify one or more next hops. To show next hop group information, run the `nv show router nexthop group` command or the vtysh `show nexthop-group global` command.
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router nexthop rib
-Installed - Install state 
-ID   Installed  Uptime                Vrf      Valid  Via                        ViaIntf        ViaVrf   Depends
----  ---------  --------------------  -------  -----  -------------------------  -------------  -------  -------
-12              23:19:32              default  on     swp53                                     default         
-13              23:19:32              default  on     swp51                                     default         
-14   on         23:19:32              default  on     swp54                                     default         
-15   on         23:19:32              default  on     lo                                        default         
-16   on         23:19:32              default  on     eth0                                      mgmt            
-17   on         0:36:06               default  on     eth0                                      mgmt            
-18              0:36:06               default  on                                                               
-19   on         0:36:06               default  on     192.168.200.1              eth0           mgmt            
-20   on         0:36:06               default  on                                                               
-21   on         0:36:06               default  on                                                               
-22   on         0:36:06               default  on                                                               
-24              21:08:25              default  on     swp52                                     default         
-52              0:36:0                default  on     peerlink.4094                             default         
-62   on         0:36:0                default  on     fe80::4ab0:2dff:feb5:3daa  peerlink.4094  default         
-74              0:36:0                default  on     br_default                                default         
-75              0:36:0                default  on     vlan10v0                                  RED             
-76   on         0:36:0                default  on     vlan10                                    RED             
-77              0:36:0                default  on     vlan10v0                                  RED             
-78              0:36:0                default  on     vlan4063_l3                               RED             
-79              0:36:0                default  on     vlan20                                    RED             
-80   on         0:36:0                default  on     vlan10                                    RED             
-81   on         0:36:0                default  on     vlan20                                    RED             
-82   on         0:36:0                default  on     vlan30                                    BLUE            
-83              0:36:0                default  on     vlan4006_l3                               BLUE            
-84   on         0:36:0                default  on     vlan30                                    BLUE            
-91              0:36:0                default  on     vlan20v0                                  RED             
-92              0:36:0                default  on     vlan4063_l3v0                             RED             
-93              0:36:0                default  on     vlan20v0                                  RED             
-94              0:36:0                default  on     vlan30v0                                  BLUE            
-95              0:36:0                default  on     vlan4006_l3v0                             BLUE            
-96              0:36:0                default  on     vlan30v0                                  BLUE            
-100             0:36:0                default  on     vxlan48                                   default         
-107  on         0:36:0                default  on     fe80::4ab0:2dff:fe32:2a3f  swp52          default         
-110  on         0:36:0                default  on     10.10.10.63                vlan4063_l3    RED             
-111  on         0:36:0                default  on     10.10.10.63                vlan4006_l3    BLUE            
-115  on         0:36:0                default  on     fe80::4ab0:2dff:fe41:6b79  swp51          default         
-125  on         0:36:0                default  on                                                        107    
-                                                                                                         115    
-126  on         21:08:25              default  on                                                        111    
-                                                                                                         127    
-127  on         21:08:25              default  on     10.10.10.64                vlan4006_l3    BLUE            
-128  on         21:08:25              default  on                                                        110    
-                                                                                                         129    
-129  on         21:08:25              default  on     10.10.10.64                vlan4063_l3    RED             
-140  on         21:08:25              default  on     10.0.1.34                  vlan4006_l3    BLUE            
-142  on         21:08:25              default  on     10.0.1.34                  vlan4063_l3    RED
-...           
+cumulus@leaf01:mgmt:~$ nv show router nexthop group
+Via ID - Via ID, Interface - via interface, Vrf - via vrf
+ 
+ID    Via ID     Interface  Vrf
+----  ---------  ---------  ----
+grp1  27.0.0.4
+      27.0.0.5   swp23
+grp2  28.0.0.4   swp3       red
+grp3  34:22::48             blue
 ```
 
-The following example shows information for next hop group 108:
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# show nexthop-group global json
+{
+  "nexthopGroups":{
+    "grp1":{
+      "name":"grp1",
+      "nexthops":[
+        {
+          "ip":"27.0.0.4"
+        },
+        {
+          "ip":"27.0.0.5",
+          "interfaceName":"swp23"
+        }
+      ]
+    },
+    "grp2":{
+      "name":"grp2",
+      "nexthops":[
+        {
+          "ip":"28.0.0.4",
+          "interfaceName":"swp3",
+          "targetVrf":"red"
+        }
+      ]
+    },
+    "grp3":{
+      "name":"grp3",
+      "nexthops":[
+        {
+          "ip":"34:22::48",
+          "targetVrf":"blue"
+        }
+      ]
+    }
+  }
+}
+```
+
+To show details of a specific next hop group, run the NVUE `nv show router nexthop group <group-id>` command or the vtysh `show nexthop-group global <group-id>` command.
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router nexthop rib 129
-                 operational         
----------------  --------------------
-type             zebra               
-ref-count        2                   
-vrf              default             
-valid            on                  
-installed        on                  
-interface-index  74                  
-uptime           21:08:25
-
-Via
+cumulus@leaf01:mgmt:~$ nv show router nexthop group grp2
+via
 ======
-                                                                          
-    Flags - u - unreachable, r - recursive, o - onlink, i - installed, d -          
-    duplicate, c - connected, A - active, Type - Type of nexthop, Weight - Weight to
-    be used by the nexthop for purposes of ECMP, VRF - VRF to use for egress.       
-                                                                                
-    Nexthop      Flags  Type        Weight  VRF  Interface  
-    -----------  -----  ----------  ------  ---  -----------
-    10.10.10.64  oA     ip-address  1       RED  vlan4063_l3
+              interface  vrf
+    --------  ---------  ---
+    28.0.0.4  swp3       red
+```
 
-Via BackupNexthops
-=====================
-No Data
+```
+cumulus@leaf01:mgmt:~$ nv show router nexthop group grp2 via
+          interface  vrf
+--------  ---------  ---
+28.0.0.4  swp3       red
+```
 
-Depends
-==========
-No Data
+```
+cumulus@leaf01:mgmt:~$ nv show router nexthop group grp2 via 28.0.0.4
+           operational  applied
+---------  -----------  -------
+interface  swp3         swp3
+vrf        red          red
+```
 
-Dependents
-=============
-    Nexthop-group
-    -------------
-    128
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+switch# show nexthop-group global grp2 json
+{
+  "nexthopGroups":{
+    "grp2":{
+      "name":"grp2",
+      "nexthops":[
+        {
+          "ip":"28.0.0.4",
+          "interfaceName":"swp3",
+          "targetVrf":"red"
+        }
+      ]
+    }
+  }
+}
 ```
 
 ## ECMP Hashing
@@ -488,9 +493,9 @@ To enable the IPv6 route replacement option:
     ospfd_options=" -M snmp -A 127.0.0.1"
     ...
     ```
-<!-- vale off -->
-2. {{<cl/restart-frr>}}
-<!-- vale on -->
+
+2. Reload FRR with the `sudo systemctl reload frr.service` command.
+
 To verify that IPv6 route replacement, run the `systemctl status frr` command:
 
 ```
@@ -603,7 +608,7 @@ When you enable adaptive routing, Cumulus Linux enables the LAG hash randomizer,
 
 The LAG hash randomizer is used for leaf switches if there is more than one link connected between the switch and the NIC, and there is a bond configured between the switch and the NIC.
 
-LAG hash randomizer is supported on a Spectrum-4 or Spectrum-5 switch and only for static layer 3 bonds.
+LAG hash randomizer is supported on a Spectrum-4 or later and only for static layer 3 bonds.
 
 ### Link Utilization
 

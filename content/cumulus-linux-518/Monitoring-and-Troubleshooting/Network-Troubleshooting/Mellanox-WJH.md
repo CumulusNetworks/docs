@@ -458,13 +458,13 @@ When using WJH, make sure to use the NVUE package upgrade command `nv action upg
 
 ### WJH and the NVIDIA NetQ Agent
 
-When you enable the NVIDIA NetQ agent on the switch, the WJH service stops and does not run. If you disable the NVIDIA NetQ service and want to use WJH, run the following commands to enable and start the WJH service:
+When you are using the NVIDIA NetQ agent on the switch, you must disable the WJH service. The NetQ agent directly retrieves and exports WJH data to your NetQ server:
 
 {{< tabs "TabID14 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set system wjh state enabled
+cumulus@switch:~$ nv set system wjh state disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -472,7 +472,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ sudo systemctl enable nv-wjh
+cumulus@switch:~$ sudo systemctl disable nv-wjh
 cumulus@switch:~$ sudo systemctl start nv-wjh
 ```
 

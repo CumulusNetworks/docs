@@ -17,7 +17,7 @@ To use a gNMI client to export WJH data to a collector, refer to {{<link title="
 
 {{<notice note>}}
 <li>WJH is only supported on NVIDIA Spectrum switches running Cumulus Linux 4.4.0 or later. WJH latency and congestion monitoring is supported on NVIDIA Spectrum-2 switches or later.
-<li>Before you configure the NetQ Agent to run the NetQ WJH client, first make sure that the <em>what-just-happened.service</em>  is disabled in environments running Cumulus Linux. Alternately, if your deployment requires the Cumulus Linux <em>what-just-hapenned.service</em>, stop and disable the <em>netq-agent.service</em>.
+<li>Before you configure the NetQ Agent to run the NetQ WJH client, first make sure that the WJH service is disabled in environments running Cumulus Linux. Alternately, if your deployment requires the Cumulus Linux WJH service stop and disable the NetQ agent.
 {{</notice>}}
 
 {{%notice info%}}

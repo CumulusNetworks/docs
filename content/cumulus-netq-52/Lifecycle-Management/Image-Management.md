@@ -7,10 +7,10 @@ toc: 4
 
 NetQ and network operating system images are managed with LCM. This section explains how to check for missing images, upgrade images, and specify default images.
 
-The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agent` packages from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/pool/netq-latest/" text="NetQ repository">}}:
+The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agent` packages from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian-local/pool/netq-5.2/" text="NetQ repository">}}:
 
-- netq-agent_5.2.1-cld12u4_amd64.deb
-- netq-apps_5.2.1-cld12u4_amd64.deb
+- netq-agent_5.2.1-cld12u3_amd64.deb
+- netq-apps_5.2.1-cld12u3_amd64.deb
 
 ## View and Upload Missing Images
 
@@ -123,13 +123,13 @@ If you have already specified a default image, you must click <strong>Manage</st
 netq lcm show netq-images
 ```
 
-2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/pool/netq-latest/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
+2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian-local/pool/netq-5.2/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
 3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 5.2.1 for a NetQ VM running Ubuntu 24.04 with an AMD64 architecture.
 
     ```
-    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_5.2.1-ub24.04u4_amd64.deb	
-    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_5.2.1-ub24.04u4_amd64.deb
+    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_5.2.1-ub24.04u3_amd64.deb	
+    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_5.2.1-ub24.04u3_amd64.deb
     ```
 
 {{</tab>}}
@@ -138,7 +138,7 @@ netq lcm show netq-images
 
 ## Upload Upgrade Images
 
-To upload the network OS or NetQ images that you want to use for upgrade, first download the Cumulus Linux disk images (*.bin* files) and NetQ Debian packages from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support Portal">}} and {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/pool/netq-latest/" text="NetQ repository">}}, respectively. Place them in an accessible part of your local network.
+To upload the network OS or NetQ images that you want to use for upgrade, first download the Cumulus Linux disk images (*.bin* files) and NetQ Debian packages from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support Portal">}} and {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian-local/pool/netq-5.2/" text="NetQ repository">}}, respectively. Place them in an accessible part of your local network.
 
 If you are upgrading the network OS on switches with different ASIC vendors or CPU architectures, you need more than one image. For NetQ, you need both the `netq-apps` and `netq-agent` packages for each variant.
 

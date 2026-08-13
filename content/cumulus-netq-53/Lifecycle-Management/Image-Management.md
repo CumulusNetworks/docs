@@ -9,8 +9,8 @@ NetQ and network operating system images are managed with LCM. This section expl
 
 The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agent` packages from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/pool/netq-latest/" text="NetQ repository">}}:
 
-- netq-agent_5.3.0-cld12u8_amd64.deb
-- netq-apps_5.3.0-cld12u8_amd64.deb
+- netq-agent_5.3.0-cld12u3_amd64.deb
+- netq-apps_5.3.0-cld12u3_amd64.deb
 
 ## View and Upload Missing Images
 
@@ -128,8 +128,8 @@ netq lcm show netq-images
 3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 5.3.0 for a NetQ VM running Ubuntu 24.04 with an AMD64 architecture.
 
     ```
-    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_5.3.0-ub24.04u8_amd64.deb	
-    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_5.3.0-ub24.04u8_amd64.deb
+    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_5.3.0-ub24.04u3_amd64.deb	
+    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_5.3.0-ub24.04u3_amd64.deb
     ```
 
 {{</tab>}}
@@ -175,8 +175,8 @@ nvidia@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.15.1-mlx-a
 NetQ images:
 
 ```
-nvidia@switch:~$ netq lcm add image /path/to/download/netq-agent_5.3.0-cld12u8_amd64.deb
-nvidia@switch:~$ netq lcm add image /path/to/download/netq-apps_5.3.0-cld12u8_amd64.deb
+nvidia@switch:~$ netq lcm add image /path/to/download/netq-agent_5.3.0-cld12u3_amd64.deb
+nvidia@switch:~$ netq lcm add image /path/to/download/netq-apps_5.3.0-cld12u3_amd64.deb
 ```
 
 {{</tab>}}

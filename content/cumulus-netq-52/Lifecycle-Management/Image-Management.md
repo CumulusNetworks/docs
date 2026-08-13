@@ -93,7 +93,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 3. Select one or all of the missing images and make note of the OS version, CPU architecture, and image type. Remember that you need both `netq-apps` and `netq-agent` for NetQ to perform the installation or upgrade.
 
-4. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/pool/netq-latest/" text="NetQ repository">}}, selecting the appropriate OS version and architecture. Place the files in an accessible part of your local network.
+4. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian-local/pool/netq-5.2/" text="NetQ repository">}}, selecting the appropriate OS version and architecture. Place the files in an accessible part of your local network.
 
 5. In the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Add image** above the table.
 
@@ -175,8 +175,8 @@ nvidia@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.15.1-mlx-a
 NetQ images:
 
 ```
-nvidia@switch:~$ netq lcm add image /path/to/download/netq-agent_5.2.1-cld12u4_amd64.deb
-nvidia@switch:~$ netq lcm add image /path/to/download/netq-apps_5.2.1-cld12u4_amd64.deb
+nvidia@switch:~$ netq lcm add image /path/to/download/netq-agent_5.2.1-cld12u3_amd64.deb
+nvidia@switch:~$ netq lcm add image /path/to/download/netq-apps_5.2.1-cld12u3_amd64.deb
 ```
 
 {{</tab>}}

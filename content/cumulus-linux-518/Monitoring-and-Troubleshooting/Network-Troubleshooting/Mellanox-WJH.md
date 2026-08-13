@@ -473,7 +473,7 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ sudo systemctl disable nv-wjh
-cumulus@switch:~$ sudo systemctl start nv-wjh
+cumulus@switch:~$ sudo systemctl stop nv-wjh
 ```
 
 {{< /tab >}}

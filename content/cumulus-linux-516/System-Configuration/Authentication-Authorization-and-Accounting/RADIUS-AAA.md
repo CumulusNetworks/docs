@@ -8,10 +8,32 @@ Cumulus Linux provides add-on packages to enable <span class="a-tooltip">[RADIUS
 
 ## Install the RADIUS Packages
 
-{{%notice note%}}
-NVUE automatically installs the RADIUS AAA packages; you do **not** have to install the packages if you use NVUE commands to configure RADIUS AAA.
-{{%/notice%}}
+  {{%notice warningnopad%}}
+  If your switch is not running the latest release of Cumulus Linux, you must configure `apt` preferences to avoid installing RADIUS packages from a release that does not match the current version:
 
+  ```
+  cumulus@switch:~$ sudo nano /etc/apt/preferences.d/10_prefer_cumulus_local_apt_archive
+  ```
+
+  Place the following content into the file and save it:
+
+  ```
+  Package: *
+  Pin: release a=cumulus-local-apt-archive
+  Pin-Priority: 992
+  ```
+
+  Then run `sudo apt-get update` before proceeding with the following steps.
+  {{%/notice%}}
+
+
+{{< tabs "TabID30 ">}}
+{{< tab "NVUE Commands ">}}
+
+NVUE automatically installs the RADIUS AAA packages; you do **not** have to install the packages manually with `apt-get` if you use NVUE commands to configure RADIUS AAA.
+{{< /tab >}}
+
+{{< tab "Linux Commands ">}}
 If you use Linux commands to configure RADIUS AAA, you must install the RADIUS `libnss-mapuser` and `libpam-radius-auth` packages before you start configuration. The packages are in the `cumulus-local-apt-archive` repository, which is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux image. You can install the packages even when the switch is not connected to the internet.
 
 To install the RADIUS packages:
@@ -34,6 +56,9 @@ If you install the `libpam-radius-auth` package without overwriting the local fi
 After installation completes, either reboot the switch or run the `sudo systemctl restart nvued` command.
 
 The `nvshow` group includes the `radius_user` account, and the `nvset` and `nvapply` groups. The `sudo` groups include the `radius_priv_user` account. This enables all RADIUS logins to run NVUE `nv show` commands and all privileged RADIUS users to also run `nv set`, `nv unset`, and `nv apply` commands, and to use `sudo`.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Required RADIUS Client Configuration
 

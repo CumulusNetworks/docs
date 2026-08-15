@@ -57,6 +57,34 @@ div.notices.warning > *:first-child:after{
   left: 2rem;
   content: "Warning"
 }
+
+div.notices.warningnopad {
+    margin : 1rem;
+    position: relative;
+    display: block;
+    font-size: 1rem;
+    background-color: #FAE2E2;
+    color: #666;
+    border: 3px solid rgba(217, 83, 79, 0.8);
+    border-radius: 5px;
+}
+
+div.notices.warningnopad > *:first-child:before{
+  display: block;
+  position: absolute;
+  content: url($remove-circle-20x20);
+  top: 5px;
+  left: 5px;
+  right: 10px;
+  height: 20px;
+  width: 20px;
+}
+div.notices.warningnopad > *:first-child:after{
+  position: absolute;
+  top: 2px;
+  left: 2rem;
+  content: "Warning"
+}
 //Tip Notice Block
 div.notices.tip {
     margin : 1rem;

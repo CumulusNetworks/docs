@@ -17,6 +17,17 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 
 Cumulus Linux 5.16.7 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}}.
 
+### Upgrade Requirements
+
+You can upgrade to 5.16.7 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the `-t` option to migrate your configuration:
+- 5.14.0
+- 5.15.1
+- 5.16.0
+- 5.16.1
+- 5.16.3
+- 5.16.5
+- 5.16.6
+
 {{%notice warning%}}
 The switch does not support upgrade from Cumulus Linux 5.16.7 to Cumulus Linux 5.17.0 or 5.18.0.
 {{%/notice%}}

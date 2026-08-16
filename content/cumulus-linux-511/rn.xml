@@ -45,6 +45,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5081381</td>
+<td>When you run the {{config apply}} command with no configuration changes, the command leaves a stale pending revision.</td>
+<td>5.11.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5076748</td>
 <td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
 <td>5.11.4-5.18.0</td>
@@ -199,6 +205,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.18.0</td>
+</tr>
+<tr>
+<td>4717501</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.9.5-5.18.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -1297,6 +1309,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.9.5, 5.16.0-5.18.0</td>
 </tr>
 <tr>
+<td>4717501</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.9.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4647646</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
@@ -2340,6 +2358,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.9.5, 5.16.0-5.18.0</td>
 </tr>
 <tr>
+<td>4717501</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.9.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4647646</td>
 <td>If you configure policy-based routing (PBR) rules for more than 32 interfaces, only the rules assigned to the first 32 interfaces are installed in the kernel. </td>
 <td>4.4.2-5.14.0</td>
@@ -3344,6 +3368,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.18.0</td>
+</tr>
+<tr>
+<td>4717501</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.9.5-5.18.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -4540,6 +4570,12 @@ nv config apply -y</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.18.0</td>
+</tr>
+<tr>
+<td>4717501</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.9.5-5.18.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4647646</td>
@@ -5798,6 +5834,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.18.0</td>
+</tr>
+<tr>
+<td>4717501</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.9.5-5.18.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4647646</td>

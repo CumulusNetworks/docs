@@ -7,6 +7,73 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5221130</td>
+<td>When multiple gNMI bulk counter sessions are requested frequently, gNMI metric export might fail.</td>
+<td>5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217108</td>
+<td>BGP sessions might repeatedly flap and reestablish with FRR logs indicating {{nexthop_set failed}} and {{Transport endpoint is not connected}}. This might occur during bgpd/FRR service restart or bring-up events, or after repeated session connection attempts. </td>
+<td>5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217107</td>
+<td>NVUE set commands return a traceback if the user's repo_incarnation file ({{/home/$USER/.local/share/nvue/repo_incarnation}}) does not have write permissions.</td>
+<td>5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217106</td>
+<td>The core generator service cumulus-core.service is responsible for auto-generating techsupport when a core is generated.
+This service can enter a busy loop if the techsupport auto-generation service techsupport-auto-generation.service does not return its exit status.
+</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217101</td>
+<td>AR ECMP updates during route deletion might result in ECMP database corruption and ECMP operation failures resulting in the following log messages:
+
+switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:789 ERR ECMP: AR cmd CREATE failed: Entry Already Exists, nexthops 18
+switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:934 ERR ECMP: failed to CREATE adaptive ecmp in hw
+switchd[23072]: hal_mlx_ecmp.c:2426 ERR ECMP: error allocating AR ecmp
+switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive container attributes for ecmp
+</td>
+<td>5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217097</td>
+<td>After you perform an optimized image upgrade, previously configured gNMI settings and certificates are not present after booting to the new image. To work around this issue, run the {{nv config apply}} command. </td>
+<td>5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5215402</td>
+<td>After you upgrade a switch with optimized image upgrade, optical transceivers run 10 to 15°C warmer than the prior release and fan speeds are ~25% lower at the same ambient temperature. Transceiver temperature setpoints previously configured with the {{nv set platform transceiver &lt;port&gt; temperature setpoint}} command do not take effect. To work around this issue on the SN5610, run the following commands:
+
+   sudo cp -p /etc/hw-management-thermal/tc_config_sn5610.json \ 
+              /etc/hw-management-thermal/tc_config_sn5610.json.bak 
+  
+   grep -q '"tc_version"' /etc/hw-management-thermal/tc_config_sn5610.json || sudo sed -i 's|"name": "sn5610",|&amp;\n\t"tc_version": "2.5",|' /etc/hw-management-thermal/tc_config_sn5610.json
+  
+   grep -q '"val_max_clamp"' /etc/hw-management-thermal/tc_config_sn5610.json || sudo sed -i 's|"val_max_offset": 0, "poll_time"|"val_max_offset": 0, "val_max_clamp": 65000, "poll_time"|' /etc/hw-management-thermal/tc_config_sn5610.json
+  
+  python3 -c 'import json; json.load(open("/etc/hw-management-thermal/tc_config_sn5610.json"))' &amp;&amp; echo "JSON OK"
+
+  sudo systemctl restart hw-management
+  sudo systemctl daemon-reload
+  sudo systemctl restart hw-management-tc
+
+
+On the SN5640, substitute {{tc_config_sn5640.json}} and {{"name": "sn5640",}}. Do not apply these steps on other platforms. To verify the workaround, use the {{sudo systemctl status hw-management-tc}} command, which should report version 2.5.
+</td>
+<td>5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
 <td>5175518, 5217093</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
 <td>5.16.1, 5.16.5-5.18.0</td>
@@ -1478,6 +1545,50 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5221130</td>
+<td>When multiple gNMI bulk counter sessions are requested frequently, gNMI metric export might fail.</td>
+<td>5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217108</td>
+<td>BGP sessions might repeatedly flap and reestablish with FRR logs indicating {{nexthop_set failed}} and {{Transport endpoint is not connected}}. This might occur during bgpd/FRR service restart or bring-up events, or after repeated session connection attempts. </td>
+<td>5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217107</td>
+<td>NVUE set commands return a traceback if the user's repo_incarnation file ({{/home/$USER/.local/share/nvue/repo_incarnation}}) does not have write permissions.</td>
+<td>5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217106</td>
+<td>The core generator service cumulus-core.service is responsible for auto-generating techsupport when a core is generated.
+This service can enter a busy loop if the techsupport auto-generation service techsupport-auto-generation.service does not return its exit status.
+</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217101</td>
+<td>AR ECMP updates during route deletion might result in ECMP database corruption and ECMP operation failures resulting in the following log messages:
+
+switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:789 ERR ECMP: AR cmd CREATE failed: Entry Already Exists, nexthops 18
+switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:934 ERR ECMP: failed to CREATE adaptive ecmp in hw
+switchd[23072]: hal_mlx_ecmp.c:2426 ERR ECMP: error allocating AR ecmp
+switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive container attributes for ecmp
+</td>
+<td>5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217097</td>
+<td>After you perform an optimized image upgrade, previously configured gNMI settings and certificates are not present after booting to the new image. To work around this issue, run the {{nv config apply}} command. </td>
+<td>5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
 </tr>
 <tr>
 <td>5175518, 5217093</td>
@@ -3116,6 +3227,26 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5217108</td>
+<td>BGP sessions might repeatedly flap and reestablish with FRR logs indicating {{nexthop_set failed}} and {{Transport endpoint is not connected}}. This might occur during bgpd/FRR service restart or bring-up events, or after repeated session connection attempts. </td>
+<td>5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217107</td>
+<td>NVUE set commands return a traceback if the user's repo_incarnation file ({{/home/$USER/.local/share/nvue/repo_incarnation}}) does not have write permissions.</td>
+<td>5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5217106</td>
+<td>The core generator service cumulus-core.service is responsible for auto-generating techsupport when a core is generated.
+This service can enter a busy loop if the techsupport auto-generation service techsupport-auto-generation.service does not return its exit status.
+</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
 </tr>
 <tr>
 <td>5175518, 5217093</td>
@@ -4762,6 +4893,14 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5217106</td>
+<td>The core generator service cumulus-core.service is responsible for auto-generating techsupport when a core is generated.
+This service can enter a busy loop if the techsupport auto-generation service techsupport-auto-generation.service does not return its exit status.
+</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
 </tr>
 <tr>
 <td>5152149, 5154742</td>

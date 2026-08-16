@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5217091</td>
+<td>In some scenarios after configuration bring-up or an interface carrier transition, traffic might not be forwarded on some interfaces in an ECMP group. To work around this issue, flap the affected interface.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5184005</td>
 <td>In certain SRv6 configuration rollback scenarios, Zebra might fail to restore all explicit SRv6 SIDs. This can occur when multiple SRv6 locators share the same parent SID block and one of the locators is replayed during rollback. To work around this issue, restart FRR to clear the stale in-memory SRv6 SID allocation state, then reapply the intended configuration if needed.</td>
 <td>5.18.0</td>

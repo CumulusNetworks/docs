@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5217091 | In some scenarios after configuration bring-up or an interface carrier transition, traffic might not be forwarded on some interfaces in an ECMP group. To work around this issue, flap the affected interface. | 5.18.0 | |
 | 5184005 | In certain SRv6 configuration rollback scenarios, Zebra might fail to restore all explicit SRv6 SIDs. This can occur when multiple SRv6 locators share the same parent SID block and one of the locators is replayed during rollback. To work around this issue, restart FRR to clear the stale in-memory SRv6 SID allocation state, then reapply the intended configuration if needed. | 5.18.0 | 5.19.0|
 | 5183654 | When you upgrade gNMI with package upgrade, the <code>nv-gnmi.service</code> fails and the switch collects a tech support bundle after the first step of the process (<code>nv action upgrade system packages to latest</code>. The package upgrade process triggers a switch reboot straight afterwards as a second and final step. There is no functional impact after switch reboot completes. | 5.18.0 | 5.19.0|
 | 5175518, 5217093 | The <code>switchd</code> watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn. | 5.16.1, 5.16.5-5.18.0 | 5.19.0|

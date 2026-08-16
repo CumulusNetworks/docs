@@ -106,6 +106,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5081381</td>
+<td>When you run the {{config apply}} command with no configuration changes, the command leaves a stale pending revision.</td>
+<td>5.11.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5076748</td>
 <td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
 <td>5.11.4-5.18.0</td>
@@ -170,8 +176,8 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <tr>
 <td>5027908</td>
 <td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
-<td>5.15.0-5.18.0</td>
-<td></td>
+<td>5.15.0-5.16.4</td>
+<td>5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>5012295</td>
@@ -188,8 +194,8 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <tr>
 <td>4989428</td>
 <td>In rare cases, where a gNMI client terminates without cleaning up its gNMI gRPCs, the gNMI server might continue to buffer notifications for the client, resulting in an increase in gNMI server memory usage and potentially leading to a gNMI server restart.</td>
-<td>5.15.1-5.18.0</td>
-<td></td>
+<td>5.15.1-5.16.4</td>
+<td>5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>4986343</td>
@@ -776,6 +782,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>5.9.5, 5.16.0-5.18.0</td>
 </tr>
 <tr>
+<td>4717501</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.9.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4717494</td>
 <td>When you run the {{nv show vrf default router rib}} command, NVUE returns an {{ItemDoesNotExist }} error. To work around this issue, run the following commands to retrieve IPv6 routing information:
 nv show vrf default router rib ipv6
@@ -861,7 +873,7 @@ User name {} is already in use as OS group name 'and could not be used as userna
 </tr>
 <tr>
 <td>4687371</td>
-<td>On the spectrum-5 switch when a single traffic class is given 100% dwrr, the default global scheduler profile shows traffic class 5,6,7 as dwrr even though the scheduling mode is strict priority. There is no functional impact with this issue.</td>
+<td>When a single traffic class is given 100% dwrr, the default global scheduler profile shows traffic class 5,6,7 as dwrr even though the scheduling mode is strict priority. There is no functional impact with this issue.</td>
 <td>5.15.0-5.15.1</td>
 <td>5.16.0-5.18.0</td>
 </tr>
@@ -988,7 +1000,7 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 </tr>
 <tr>
 <td>4547463, 4705370</td>
-<td>When you try to run {{nv action boot-next}} commands during optimized image upgrade, the commands time out. This does not necessarily mean an issue occurred; the system might still be executing the action.To check that the action command completed before going to the next step to reboot the system:
+<td>When you run {{nv action boot-next}} commands during optimized image upgrade, the commands time out. This does not indicate that an issue occurred; the system might still be executing the action.To check that the action command completed before going to the next step to reboot the system:
 &lt;ol&gt;&lt;li&gt;Find the Request ID for the REST API invocation corresponding to the {{nv action boot-next}} command by doing a grep for {{ActionKey.*boot-next}} in the /var/log/nvued.log}} file. For example, the value 3 in the {{Ran Job running ActionKey('@boot-next', '/system/image', (), 3, (('partition', 'partition1'),))}} line indicates the Request ID.&lt;/li&gt;
 &lt;li&gt;Run the {{curl -u '&lt;username&gt;:&lt;password&gt;'  -X GET https://127.0.0.1:8765/nvue_v1/action/&lt;Request ID&gt; -k}} command from the shell to show the status of the action command. If the value of {{state}} is {{action_success}}, the action command completed successfully. If the value of {{state}} is {{running}}, the system is still processing. If the value of {{state}} is {{action_error}}, the system encountered an error.&lt;/li&gt;&lt;/ol&gt;</td>
 <td>5.14.0-5.18.0</td>
@@ -1056,7 +1068,7 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 </tr>
 <tr>
 <td>4501632, 4530257</td>
-<td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that NVUE database has time to sync to the filesystem. </td>
+<td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that the NVUE database has time to sync to the filesystem. </td>
 <td>5.14.0-5.18.0</td>
 <td></td>
 </tr>
@@ -1748,7 +1760,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>4738956</td>
-<td>When a Spectrum-4 or Spectrum-5 switch interface is connected to a ConnectX-7 NIC that performs a soft reset, adaptive routing and Spectrum-X features fail to start on the interface. To work around this issue, flap the interface.</td>
+<td>When a Spectrum-4 switch interface is connected to a ConnectX-7 NIC that performs a soft reset, adaptive routing and Spectrum-X features fail to start on the interface. To work around this issue, flap the interface.</td>
 <td>5.15.0</td>
 </tr>
 </table>
@@ -1859,6 +1871,12 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <td></td>
 </tr>
 <tr>
+<td>5081381</td>
+<td>When you run the {{config apply}} command with no configuration changes, the command leaves a stale pending revision.</td>
+<td>5.11.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5076748</td>
 <td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
 <td>5.11.4-5.18.0</td>
@@ -1923,8 +1941,8 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <tr>
 <td>5027908</td>
 <td>RADIUS Access-Request and Accounting-Request packets carry the loopback address 127.0.1.1 in the NAS-IP-Address attribute instead of the management interface address. RADIUS servers that authorize or log requests based on the NAS-IP-Address reject or fail the authentication requests.</td>
-<td>5.15.0-5.18.0</td>
-<td></td>
+<td>5.15.0-5.16.4</td>
+<td>5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>5012295</td>
@@ -2396,7 +2414,7 @@ tc qdisc del dev &lt;swp port&gt; egress 2&gt;/dev/null</td>
 </tr>
 <tr>
 <td>4738956</td>
-<td>When a Spectrum-4 or Spectrum-5 switch interface is connected to a ConnectX-7 NIC that performs a soft reset, adaptive routing and Spectrum-X features fail to start on the interface. To work around this issue, flap the interface.</td>
+<td>When a Spectrum-4 switch interface is connected to a ConnectX-7 NIC that performs a soft reset, adaptive routing and Spectrum-X features fail to start on the interface. To work around this issue, flap the interface.</td>
 <td>5.15.0</td>
 <td>5.15.1-5.18.0</td>
 </tr>
@@ -2479,6 +2497,12 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>When node or VM migration occurs between the MLAG pair and the EVPN-MH pair, the MLAG MAC database becomes out of sync with kernel FDB. The migrated MAC addresses remain as local in MLAG MAC database whereas in the kernel, all MAC addresses are updated correctly as remote with the layer 2 next hop ID. To work around this issue, flap the MLAG bond interface to clear the MLAG local database.</td>
 <td>5.11.0-5.15.1</td>
 <td>5.9.5, 5.16.0-5.18.0</td>
+</tr>
+<tr>
+<td>4717501</td>
+<td>In the Spanning Tree PVRST environment, when one bridge interface goes down, it causes all the other bridge interfaces to enter a blocking state for approximately ten seconds. Even though the down port is not the root port, all the other bridge ports are flushed and not in service for about ten seconds.</td>
+<td>5.9.5-5.18.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4717494</td>
@@ -2566,7 +2590,7 @@ User name {} is already in use as OS group name 'and could not be used as userna
 </tr>
 <tr>
 <td>4687371</td>
-<td>On the spectrum-5 switch when a single traffic class is given 100% dwrr, the default global scheduler profile shows traffic class 5,6,7 as dwrr even though the scheduling mode is strict priority. There is no functional impact with this issue.</td>
+<td>When a single traffic class is given 100% dwrr, the default global scheduler profile shows traffic class 5,6,7 as dwrr even though the scheduling mode is strict priority. There is no functional impact with this issue.</td>
 <td>5.15.0-5.15.1</td>
 <td>5.16.0-5.18.0</td>
 </tr>
@@ -2693,7 +2717,7 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 </tr>
 <tr>
 <td>4547463, 4705370</td>
-<td>When you try to run {{nv action boot-next}} commands during optimized image upgrade, the commands time out. This does not necessarily mean an issue occurred; the system might still be executing the action.To check that the action command completed before going to the next step to reboot the system:
+<td>When you run {{nv action boot-next}} commands during optimized image upgrade, the commands time out. This does not indicate that an issue occurred; the system might still be executing the action.To check that the action command completed before going to the next step to reboot the system:
 &lt;ol&gt;&lt;li&gt;Find the Request ID for the REST API invocation corresponding to the {{nv action boot-next}} command by doing a grep for {{ActionKey.*boot-next}} in the /var/log/nvued.log}} file. For example, the value 3 in the {{Ran Job running ActionKey('@boot-next', '/system/image', (), 3, (('partition', 'partition1'),))}} line indicates the Request ID.&lt;/li&gt;
 &lt;li&gt;Run the {{curl -u '&lt;username&gt;:&lt;password&gt;'  -X GET https://127.0.0.1:8765/nvue_v1/action/&lt;Request ID&gt; -k}} command from the shell to show the status of the action command. If the value of {{state}} is {{action_success}}, the action command completed successfully. If the value of {{state}} is {{running}}, the system is still processing. If the value of {{state}} is {{action_error}}, the system encountered an error.&lt;/li&gt;&lt;/ol&gt;</td>
 <td>5.14.0-5.18.0</td>
@@ -2761,7 +2785,7 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 </tr>
 <tr>
 <td>4501632, 4530257</td>
-<td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that NVUE database has time to sync to the filesystem. </td>
+<td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that the NVUE database has time to sync to the filesystem. </td>
 <td>5.14.0-5.18.0</td>
 <td></td>
 </tr>

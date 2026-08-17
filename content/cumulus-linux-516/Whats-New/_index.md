@@ -28,6 +28,12 @@ You can upgrade to 5.16.7 from the following versions using optimized image upgr
 - 5.16.5
 - 5.16.6
 
+To perform a package upgrade to 5.16.7 with `apt`, add the repository before performing the upgrade:
+
+```
+sudo echo "deb https://apt.cumulusnetworks.com/repo CumulusLinux-5.16.7 cumulus upstream netq" > /etc/apt/sources.list
+```
+
 {{%notice warning%}}
 The switch does not support upgrade from Cumulus Linux 5.16.7 to Cumulus Linux 5.17.0 or 5.18.0.
 {{%/notice%}}

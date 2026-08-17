@@ -17,6 +17,27 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 
 Cumulus Linux 5.16.7 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}}.
 
+### Upgrade Requirements
+
+You can upgrade to 5.16.7 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the `-t` option to migrate your configuration:
+- 5.14.0
+- 5.15.1
+- 5.16.0
+- 5.16.1
+- 5.16.3
+- 5.16.5
+- 5.16.6
+
+To perform a package upgrade to 5.16.7 with `apt`, add the repository before performing the upgrade:
+
+```
+sudo echo "deb https://apt.cumulusnetworks.com/repo CumulusLinux-5.16.7 cumulus upstream netq" > /etc/apt/sources.list
+```
+
+{{%notice warning%}}
+The switch does not support upgrade from Cumulus Linux 5.16.7 to Cumulus Linux 5.17.0 or 5.18.0.
+{{%/notice%}}
+
 ## What’s New in Cumulus Linux 5.16.6
 
 Cumulus Linux 5.16.6 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and security updates, and includes a new hardware management package with thermal algorithm updates to increase the cooling fan speed.

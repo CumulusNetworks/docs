@@ -144,7 +144,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Obtain NetQ Agent Software Package
 
-To install the NetQ Agent you need to install `netq-agent` on each server. This is available from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian/pool/netq-latest/" text="NetQ repository">}}.
+To install the NetQ Agent you need to install `netq-agent` on each server. This is available from the {{<exlink url="https://edge.urm.nvidia.com/artifactory/sw-nbu-netq-debian-local/pool/netq-5.2/" text="NetQ repository">}}.
 
 To obtain the NetQ Agent package:
 
@@ -286,7 +286,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="5.2.0" opsys="cl">}}
+    {{<netq-install/agent-version version="5.2.1" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -315,7 +315,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="5.2.0" opsys="ub">}}
+    {{<netq-install/agent-version version="5.2.1" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 

@@ -84,7 +84,7 @@ If the output of this command displays errors or returns an empty response, you 
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. In the search field above the table, enter **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 5.2.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.2.0 VMware Scale** image<br>
+    e. For deployments using KVM, download the **NetQ SW 5.2.1 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.2.1 VMware Scale** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 2. Copy the tarball to the `/mnt/installables/` directory on your NetQ VM.
@@ -127,7 +127,7 @@ Run the appropriate commands for your deployment type:
 Run the upgrade command on your master node, specifying the tarball path in the command: 
 
 ```
-nvidia@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-5.2.0.tgz
+nvidia@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-5.2.1.tgz
 ```
 {{%notice info%}}
 If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-standalone-full" text="netq install standalone full">}} command.
@@ -138,7 +138,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 Run the upgrade command on your master node, specifying the tarball path and your cluster's virtual IP address in the command:
  
 ```
-nvidia@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-5.2.0.tgz <cluster-vip>
+nvidia@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-5.2.1.tgz <cluster-vip>
 ```
 {{</tab>}}
 
@@ -151,7 +151,7 @@ Run the upgrade command on your master node and specify the following within the
 - The `/home/nvidia/nvl-cluster-config.json` file
 
 ```
-nvidia@<hostname>:~$ netq upgrade nvl bundle /mnt/installables/NetQ-5.2.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /home/nvidia/nvl-cluster-config.json
+nvidia@<hostname>:~$ netq upgrade nvl bundle /mnt/installables/NetQ-5.2.1.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /home/nvidia/nvl-cluster-config.json
 ```
 {{</tab>}}
 
@@ -166,7 +166,7 @@ Two upgrade options are available for this deployment model. One option upgrades
 2. Run the upgrade command on your master node, specifying the current version's tarball and the full path to your cluster's JSON configuration file:
 
 ```
-nvidia@<hostname>:~$ netq upgrade cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
+nvidia@<hostname>:~$ netq upgrade cluster bundle /mnt/installables/NetQ-5.2.1.tgz /tmp/combined-cluster-config.json
 ```
 ## Upgrade and Add Additional Nodes (Beta)
 
@@ -175,7 +175,7 @@ nvidia@<hostname>:~$ netq upgrade cluster bundle /mnt/installables/NetQ-5.2.0.tg
 2. Run the installation command on your master node, specifying the current version's tarball and the full path to your cluster's JSON configuration file:
 
 ```
-nvidia@<hostname>:~$ netq install cluster extend-cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
+nvidia@<hostname>:~$ netq install cluster extend-cluster bundle /mnt/installables/NetQ-5.2.1.tgz /tmp/combined-cluster-config.json
 ```
 
 {{</tab>}}

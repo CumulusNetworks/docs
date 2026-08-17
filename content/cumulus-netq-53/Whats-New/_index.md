@@ -28,5 +28,6 @@ NetQ 5.3 is available exclusively for on-premises deployments. You can upgrade t
 
 The NetQ 5.3 server is compatible with NetQ agents 5.3 and 5.2. You can install NetQ agents on switches and servers running:
 
-- Cumulus Linux <!--5.17, 5.16, 5.15, 5.11-->
+- Cumulus Linux 5.18, 5.17, 5.16, 5.15, 5.11
+    - If you are using Cumulus Linux 5.18, you must {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-518/Monitoring-and-Troubleshooting/Network-Troubleshooting/Mellanox-WJH/#wjh-and-the-nvidia-netq-agent" text="disable the WJH service">}}.
 - Ubuntu 24.04, 22.04

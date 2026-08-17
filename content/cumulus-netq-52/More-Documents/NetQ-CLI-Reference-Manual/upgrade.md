@@ -37,7 +37,7 @@ netq upgrade bundle <text-bundle-url>
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-5.2.0.tgz
+nvidia@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-5.2.1.tgz
 ```
 
 ### Related Commands
@@ -76,7 +76,7 @@ netq upgrade cluster bundle <text-bundle-url>
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq upgrade cluster bundle /mnt/installables/NetQ-5.2.0.tgz /tmp/combined-cluster-config.json
+nvidia@<hostname>:~$ netq upgrade cluster bundle /mnt/installables/NetQ-5.2.1.tgz /tmp/combined-cluster-config.json
 ```
 
 ### Related Commands
@@ -117,7 +117,7 @@ netq upgrade nvl bundle <text-bundle-url>
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq upgrade nvl bundle /mnt/installables/NetQ-5.2.0.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /home/nvidia/nvl-cluster-config.json
+nvidia@<hostname>:~$ netq upgrade nvl bundle /mnt/installables/NetQ-5.2.1.tgz kong-rw-password <rw-password> kong-ro-password <ro-password> /home/nvidia/nvl-cluster-config.json
 ```
 
 ### Related Commands

@@ -32,7 +32,7 @@ To access DSX Air, you need an NGC account and organization. Refer to the {{<exl
   "cpu": 16,
   "memory": 65536,
   "storage": 500,
-  "os": "netq-5.2.0",
+  "os": "netq-5.2.1",
   "cpu_mode": "host-passthrough"
 }
 ```

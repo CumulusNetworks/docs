@@ -110,13 +110,19 @@ The following example shows this operation. Replace `<pod>`, `<admin-port>`, and
 kubectl port-forward -n netq-nvl pod/<pod> 19081:<admin-port>
 
 curl -sS http://127.0.0.1:19081/live
+
 curl -sS http://127.0.0.1:19081/ready          # expect HTTP 501
+
 curl -sS http://127.0.0.1:19081/log-level
+
 curl -sS -X PUT -H "Content-Type: application/json" \
   -d '{"level":"debug"}' http://127.0.0.1:19081/log-level
+
 curl -sS -X PUT -H "Content-Type: application/json" \
   -d '{"level":"info"}' http://127.0.0.1:19081/log-level   # restore
+
 curl -sS http://127.0.0.1:19081/config_dump
+
 curl -sS http://127.0.0.1:19081/metrics | head
 ```
 

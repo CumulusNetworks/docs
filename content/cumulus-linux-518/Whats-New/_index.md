@@ -8,6 +8,19 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 - For a list of open and fixed issues in Cumulus Linux 5.18, see the {{<link title="Cumulus Linux 5.18 Release Notes" text="Cumulus Linux 5.18 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.18, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+## What's New in Cumulus Linux 5.18.1
+
+Cumulus Linux 5.18.1 provides bug fixes.
+
+You can upgrade to Cumulus 5.18.1 from the following releases:
+- 5.16.0
+- 5.16.1
+- 5.16.5
+- 5.16.6
+- 5.16.7
+- 5.17.0
+- 5.18.1
+
 ## What's New in Cumulus Linux 5.18.0
 
 Cumulus Linux 5.18.0 supports new platforms, contains new features and improvements, and provides bug fixes.
@@ -76,7 +89,7 @@ Review the following considerations before you upgrade to Cumulus Linux 5.18.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18.0 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 - 5.16.0
 - 5.16.1
 - 5.16.5
@@ -87,7 +100,7 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 The Spectrum-6 switch does not support ISSU.
 {{%/notice%}}
 
-To upgrade to Cumulus Linux 5.18 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
+To upgrade to Cumulus Linux 5.18.0 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
 

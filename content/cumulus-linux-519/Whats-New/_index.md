@@ -20,6 +20,49 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 
 ### New Features and Enhancements
 
+- Multi ASIC fast boot support (Beta)
+- ISSUv2 support - Full KVD (Beta)
+- Power off command
+- Port init profiles
+- Packet trimming BTS
+- Command to set IPv6 only on a bgp neighbor configured for bgp unnumbered
+- Adaptive Routing Hybrid scheduling mode
+- FRR upgrade phase 5
+- BMC Host Interface Common Layer
+- SN6600 generic part number GA
+- Enable support for using IPV4 240.0.0.0/4 space
+- VRF per destination support GA
+- Support in CPO switches
+- Support security configurations visibility for manufacturing and field inspection (Phase 1)
+- Disconnected multiplane support for EVPN deployment with 802.1x based dynamic VRF assignment GA
+- SRv6 Back to sender(BTS) upon link down
+- Adaptive Routing - Enable extended grading configuration of AR thresholds through CL profile
+- Loopback IP/Interface as Source for NVUE DNS in Cumulus Linux 5.x
+- AR-ECMP group segregation for Round Robin per ECMP
+- Change the USB0 IP address to 169.254.100.2 / 169.254.100.1
+- CPO Debug Params | nv show comands & Telemetry (OTEL and GNMI) GA
+- FW based BFD acceleration with Cumulus GA
+- Add step time estimator
+- Config Knob to clear old IP address on switch side
+- Repurposing Reset Push-button to Support "Power On" 
+- Support L3 VxLAN interface GA
+- ISSU support for Spectrum-6 - Support More Than 2 RIF MAC Profiles in ISSU Mode
+- NVUE
+  - Map port to connector
+  - Command to set IPv6 only on a BGP neighbor configured for BGP unnumbered
+  - Disable syslog print on console
+  - FRR config Apply Latency and Timeout
+  - Control readvertisement of EVPN Type-5 Stale Route Bug with Inter-VRF Leaking
+  - Support for Resilient hashing
+  - knob to configure MAX_FDS for FRR
+- Telemetry
+  - gNMI component type
+  - gNMI for unreachability AFI SAFI
+  - uBurst Detection via Per-Port Histograms
+  - What Just Happened with native Cumulus OpenTelemetry GA
+  - Support PDB component Telemetry
+  - Support for AAA radius gnmi metrics
+
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.19.

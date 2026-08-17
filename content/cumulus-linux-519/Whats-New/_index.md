@@ -18,11 +18,14 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 
 ## Platforms
 
+- NVIDIA SN6600 (128x800G Spectrum-6)
+- NVIDIA SN4700 (Spectrum-3)
+
 ### New Features and Enhancements
 
+- Layer 3 VXLAN device mode is generally available
 - Multi ASIC fast boot support (Beta)
 - ISSUv2 support - Full KVD (Beta)
-- Power off command
 - Port init profiles
 - Packet trimming BTS
 - Command to set IPv6 only on a bgp neighbor configured for bgp unnumbered
@@ -45,9 +48,9 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - Add step time estimator
 - Config Knob to clear old IP address on switch side
 - Repurposing Reset Push-button to Support "Power On" 
-- Support L3 VxLAN interface GA
 - ISSU support for Spectrum-6 - Support More Than 2 RIF MAC Profiles in ISSU Mode
 - NVUE
+  - Power off command
   - Map port to connector
   - Command to set IPv6 only on a BGP neighbor configured for BGP unnumbered
   - Disable syslog print on console

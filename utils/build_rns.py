@@ -269,7 +269,7 @@ EXCLUDED_VERSIONS = {
 # filter_version_list_for_display): singles removed, ranges split around them.
 # Key: product short name ("cl" or "netq"). Value: full version strings to hide.
 HIDDEN_VERSIONS = {
-    "cl": ["5.15.2", "5.16.2", "5.16.3", "5.16.4"],
+    "cl": ["5.15.2", "5.16.2", "5.16.3", "5.16.4", "5.16.7", "5.19.0"],
     "netq": [],
 }
 

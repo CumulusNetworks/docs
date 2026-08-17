@@ -17,58 +17,8 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 {{%/notice%}}
 
 ## Platforms
-- {{<exlink url="https://docs.nvidia.com/nvidia-spectrum-6-sn6000-ethernet-switch-systems-hardware-user-manual.pdf" text="NVIDIA SN6600_LD">}} (128x800G Spectrum-6)
-
-{{%notice note%}}
-The NVIDIA SN6600_LD switch does not support:
-- Port speed 800Gx8
-- Warmboot
-- PTP
-{{%/notice%}}
-
-Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switch is generally available. You must upgrade any engineering sample to Cumulus Linux 5.18 with ONIE.
 
 ### New Features and Enhancements
-- Kernel update to Debian 6.1.174
-- {{<link url="Quality-of-Service/#lossless-headroom-based-on-small-packet-probability" text="Lossless headroom size based on small packet probability">}} is generally available
-- {{<link url="Quality-of-Service/#dynamic-ecn" text="Dynamic ECN">}} is generally available
-- {{<link url="EVPN-Enhancements/#evpn-unreachability-in-disjoined-planes" text="EVPN Unreachability in Disjoined Planes">}} is generally available
-- {{<link url="Link-Layer-Discovery-Protocol/#bgp-unreachable-prefix-tlv" text="BGP unreachable prefix TLV">}} is generally available
-- {{<link url="Interface-Configuration-and-Management/#link-tracking" text="Link tracking ">}}
-- {{<link url="EVPN-Multihoming/#svi-ip-address-configuration" text="EVPN Multihoming without a unique SVI IP address">}}
-- {{<link url="RADIUS-AAA/#nas-ip-address-and-identifier" text="RADIUS NAS IP address and identifier configuration">}}
-- {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}} (Beta)
-- {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}} (Beta)
-- {{<link url="Patches" text="Patch infrastructure">}}
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE/#dci-1-profile" text="Data Center Interconnect (DCI-1) QoS profile">}} (Beta)
-- {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}} (Beta)
-- {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="BGP graceful fabric maintenance">}} (Beta)
-- {{<link url="Optional-BGP-Configuration/#inter-dc-routing" text="Inter-DC Routing">}} (Beta)
-- {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-6" text="Spectrum-6 forwarding resource profiles">}} 
-- NVUE
-  - {{<link url="NVUE-CLI/#automatic-configuration-backup-and-restore" text="Automatic configuration backup and restore">}}
-  - {{<link title="What Just Happened (WJH)" text="WJH commands to filter packets, set latency and congestion thresholds, control aggregation interval and cache size, and export to a PCAP file ">}}
-  - {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="NVUE commands for binary image installation (onie-install)">}}
-  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="nv show interface --ber command to show PHY health statistics for all interfaces ">}}
-  - {{<link url="Switch-Port-Attributes/#show-module-information" text="nv show interface --dom command to show transceiver information for all interfaces">}} (Beta)
-  - {{<link url="NVUE-CLI/#show-specific-configuration" text="NVUE command to show specific configuration on the switch">}} and {{<link url="NVUE-API/#view-specific-configuration" text="NVUE API query parameter to show specific configuration on the switch">}}
-  - {{<link url="BMC" text="BMC commands for Spectrum-6 switches">}}
-  - {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="NVUE commands to show and clear RADIUS counters">}}
-  - {{<link url="Resource-Diagnostics/#clear-resource-metrics" text="NVUE action command to clear resource metrics for a specific ASIC">}}
-  - {{<link url="Resource-Diagnostics/#monitor-routes-in-cumulus-linux-hardware" text="Updated nv show platform asic <asic-id> resource command output">}}
-  - Applying FRR configuration changes to the `/etc/frr/daemons` file with NVUE now results in an FRR reload instead of an FRR restart, minimizing service disruption.
-  - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
-- Security
-  - {{<link url="User-Accounts/#password-security" text="Password policy setting for minimum password character difference">}}
-  - {{<link url="User-Accounts/#password-security" text="Password hardening is now disabled by default">}}
-  - {{<link url="VLAN-aware-Bridge-Mode/#configure-the-default-vlan-identifier" text="Configure the default VLAN identifier">}}
-  - {{<link url="VLAN-aware-Bridge-Mode/#dynamic-arp-inspection" text="Dynamic ARP inspection">}}
-  - {{<link url="IP-Source-Guard" text="IP Source Guard">}}
-- Telemetry
-  - New OTEL metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="802.1X RADIUS, ASIC resource, platform leakage sensor, platform power supply (to support Spectrum-6), and patch updates">}}
-  - New gNMI metrics: {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="802.1X RADIUS, ASIC resource, WJH, Platform leakage sensor, platform power supply (to support Spectrum-6), and patch updates">}}
-  - {{<link url="Open-Telemetry-Export/#granular-metric-selection" text="OTEL granular metric selection">}} is generally available
-  - You can now run both {{<link title="What Just Happened (WJH)" text="NVUE WJH commands">}} and {{<link url="gNMI-Streaming" text="subscribe to gNMI YANG paths">}} at the same time.
 
 ## Release Considerations
 
@@ -77,15 +27,9 @@ Review the following considerations before you upgrade to Cumulus Linux 5.19.
 ### Upgrade Requirements
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.19 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
-- 5.16.0
-- 5.16.1
-- 5.16.5
-- 5.16.6
+- 5.16.1 through 5.16.7
 - 5.17.0
-
-{{%notice note%}}
-The Spectrum-6 switch does not support ISSU.
-{{%/notice%}}
+- 5.18.0
 
 To upgrade to Cumulus Linux 5.19 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 

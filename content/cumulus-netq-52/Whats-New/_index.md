@@ -10,10 +10,6 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 5.2.1
 
-- NetQ 5.2.1 includes bug fixes and provides updated instructions to {{<link title="Install a Custom Signed Certificate" text="install a custom-signed certificate">}}
-
-## What's New in NetQ 5.2.0
-
 - Re-designed the {{<link title="Network Topology" text="network topology dashboard">}} so that you can visualize your network's topology according to the system labels assigned to a device (beta)
 - You can now {{<link title="Disaster Recovery Using NFS" text="back up your NetQ data using an NFS server">}} for disaster recovery scenarios (beta)
 - NetQ now supports {{<link title="System Events Reference/#correlation-events" text="fault correlation system events">}} which group events linked to the same underlying issue and displays the association between host-based errors and devices within a network’s fabric (beta)
@@ -21,7 +17,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - You can now add nodes to your existing NetQ NVLink + Ethernet combined mode deployments (beta)
 - Introduced {{<link title="Validation Tests Reference/#roce-validation-tests" text="RoCE validations">}} that verify configuration consistencies across the entire network fabric, including switches, host NICs, and DPUs (beta)
 - Added support for Arm-based systems
-- You can now {{<link title="Create a NetQ Simulation in DSX Air" text="create NetQ simulations">}} using the NVIDIA DSX Air platform
+- You can now {{<link title="Create a NetQ Simulation in DSX Air" text="create NetQ simulations">}} with NVIDIA DSX Air
 - Updated the {{<link title="Cable Validations" text="Cable Validation Tool">}} to version 1.9
 - Added IPv6 support for {{<link title="Switch Management/#switch-discovery" text="switch discovery">}} operations
 
@@ -43,6 +39,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 ## Release Considerations
 
 - When your NetQ deployment operates in combined Ethernet and NVLink mode, certain NVLink data is not preserved during the backup and restore process. Information related to network entities such as switches, GPUs, and partitions is not saved. However, data for services, switch profiles, and domains is saved during the backup and restore process.
+- NetQ 5.2 provides updated instructions to {{<link title="Install a Custom Signed Certificate" text="install a custom-signed certificate">}} <!--part of 5.2.1-->
 - The following features have been removed or deprecated:
     - Flow analysis (deprecated)
     - Validations: duplicate IP addresses, agents, VXLAN, MLAG bond VLAN consistency test (deprecated)

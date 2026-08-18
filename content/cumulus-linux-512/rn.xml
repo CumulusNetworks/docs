@@ -1404,7 +1404,7 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 <td>4579237, 4579234</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.3-5.11.5, 5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td>5.11.6</td>
+<td></td>
 </tr>
 <tr>
 <td>4562806, 4641355, 4641356</td>
@@ -1475,7 +1475,7 @@ To work around this issue, power cycle the switch.</td>
 <td>4508830</td>
 <td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
 <td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
-<td>5.19.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4499025, 4486668, 4498974</td>

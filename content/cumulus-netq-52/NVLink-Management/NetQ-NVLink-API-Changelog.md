@@ -8,7 +8,7 @@ toc: 3
 
 ## 5.2 NetQ NVLink REST API Changelog
 
-<p><strong>Version 5.2.0</strong> (compared to 5.1.0). Breaking changes are indicated with ⚠️. For more information, see the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-520/" text="REST API in Swagger">}}.<br>
+<p><strong>Version 5.2</strong> (compared to 5.1). Breaking changes are indicated with ⚠️. For more information, see the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-520/" text="REST API in Swagger">}}.<br>
 
 <table id="api-changelog" class="sortable">
 <thead>
@@ -89,7 +89,7 @@ toc: 3
 
 <tr><td><code>GET /v1/validations/fw-versions</code></td><td><strong>Introduced</strong>: New endpoint</td><td>Returns firmware version validation results per domain </td></tr>
 
-<tr><td><code>GET /v1/version</code></td><td><strong>Changed</strong>: API version</td><td>API version updated from 5.1.0 to 5.2.0</td></tr>
+<tr><td><code>GET /v1/version</code></td><td><strong>Changed</strong>: API version</td><td>API version updated</td></tr>
 
 <tr><td><code>ALL nmx/v1/* (NVL endpoints)</code></td><td><strong>Added</strong>: Error schema metadata</td><td>Error schema extended with <code>x-go-type: liberr.Error</code> and <code>x-go-type-import</code> for Go code generation; no wire-format changes</td></tr>
 </tbody>

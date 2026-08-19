@@ -23,7 +23,7 @@ The following NVUE commands are new in Cumulus Linux 5.19.
 {{< tab "nv set ">}}
 
 ```
-
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection v6-lla
 ```
 
 {{< /tab >}}

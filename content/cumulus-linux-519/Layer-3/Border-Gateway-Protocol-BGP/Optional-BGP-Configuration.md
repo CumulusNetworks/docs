@@ -51,7 +51,7 @@ cumulus@leaf01:~$
 
 For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a peer group.
 
-{{< tabs "52 ">}}
+{{< tabs "54 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -75,56 +75,38 @@ If you unset a peer group, make sure that it is not applied to any neighbors. If
 
 ## IPv6-only Unnumbered Peering
 
-To configure a BGP unnumbered peer for IPv6-only peering over a link-local address, you must configure an NVUE snippet. When you configure an NVUE snippet for a `v6only` peering, the `remote-as` and any `peer-group` configuration must be applied with the snippet instead of NVUE CLI commands. If a peer group is configured for the neighbor, the remote-as can be defined in the peer group configuration through NVUE commands.
+You can configure a BGP unnumbered peer for IPv6-only peering over a link-local address and force the BGP session to use IPv6 link-local transport even when the interface also has an IPv4 address configured. Without this configuration, unnumbered BGP on dual-stack interfaces might initiate peering over IPv4 and reject inbound IPv6 peering attempts with a TCP reset, preventing IPv6 BGP sessions from establishing. 
 
-The following example configures the BGP peer group CLIENT1 with soft reconfiguration and community advertisement enabled, and the remote AS set to external. The snippet configuration configures the `v6only` option and applies the peer group to the neighbor: 
+{{< tabs "54 ">}}
+{{< tab "NVUE Commands ">}}
 
+Run the `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection v6-lla` command:
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 address-family ipv4-unicast community-advertise
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 address-family ipv4-unicast soft-reconfiguration enabled
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 connection v6-lla
 cumulus@leaf01:~$ nv config apply
 ```
 
-Create a .yaml file with the following content:
+To unset a BGP unnumbered peer for IPv6-only peering over a link-local address, run the `nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> connection` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
-- set:
-    system:
-      config:
-        snippet:
-          frr.conf: |
-            router bgp 65101
-            neighbor swp1 interface v6only peer-group CLIENT1
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 interface v6only
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
 ```
 
-Patch and apply the snippet:
+{{< /tab >}}
+{{< /tabs >}}
 
-```
-cumulus@leaf01:~$ nv config patch bgp_snippet.yaml
-cumulus@leaf01:~$ nv config apply
-```
+To show the configuration, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor>` command.
 
-The following example configures a `v6only` peering with no peer group applied:
-
-Create a .yaml file with the following content:
-
-```
-- set:
-    system:
-      config:
-        snippet:
-          frr.conf: |
-            router bgp 65101
-            neighbor swp1 interface v6only remote-as external
-```
-
-Patch and apply the snippet:
-
-```
-cumulus@leaf01:~$ nv config patch bgp_snippet.yaml
-cumulus@leaf01:~$ nv config apply
-```
 ## BGP Dynamic Neighbors
 
 *BGP dynamic neighbors* provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.

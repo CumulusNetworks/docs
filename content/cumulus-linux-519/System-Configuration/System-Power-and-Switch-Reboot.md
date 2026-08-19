@@ -4,13 +4,8 @@ author: NVIDIA
 weight: 295
 toc: 3
 ---
-Cumulus Linux provides commands to:
-- {{<link url="#switch-reboot" text="Reboot the switch">}}
-- {{<link url="#power-off" text="Power off the switch">}}
 
-## Switch Reboot
-
-Cumulus Linux provides these reboot modes:
+Cumulus Linux provides these reboot and power modes:
 - **immediate** reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
 - **halt** shuts down the operating system and halts the CPU. The switch is no longer reachable over the network but switch hardware might remain powered. Use this mode for a graceful complete shutdown during planned maintenance when you must shut down the operating system fully but an operating system level halt is sufficient. You cannot connect to the switch until power cycled through a remote PDU connection.
 - **power-off** powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you require the switch to be powered off fully. You cannot connect to the switch until power cycled through a remote PDU connection.
@@ -21,42 +16,9 @@ Cumulus Linux provides these reboot modes:
 
   Review {{<link url="#warm-reboot-and-issu-considerations" text="Warm Reboot and ISSU Considerations">}} to understand support limitations and requirements for warm reboot and ISSU. 
 
-### Resource Allocation
+## Reboot Commands
 
-To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is set to `full`. Warm reboot and hitless ISSU-based software upgrade requires the resource mode to be `half`.
-
-The following example sets the switch resource mode to `half`:
-
-{{< tabs "TabID40 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set system forwarding resource-mode half
-```
-
-To set the resource-mode back to the default value (full) run the `nv unset system forwarding resource-mode` command.
-
-{{%notice infonopad%}}
-Changing the resource mode on the switch requires a `switchd` restart, which impacts traffic forwarding. 
-{{%/notice%}}
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/resource-mode.conf
-...
-resource_mode = half
-```
-
-Restart the switchd service with the `sudo systemctl restart switchd.service` command.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Reboot Commands
-
-The following table shows the NVUE reboot commands and their Linux command equivalents:
+The following table shows the NVUE reboot and power commands, and their Linux command equivalents:
 
 | NVUE Command  | Linux Command| Description |
 |-------------- | ------------- | ----------- |
@@ -77,7 +39,7 @@ The following table shows the NVUE reboot commands and their Linux command equiv
 | `nv action reboot system mode warm` | `sudo csmgrctl -w` | Reboots the switch in warm mode. |
 | `nv action reboot system mode warm force` | `sudo csmgrctl -wf` | Reboots the switch in warm mode without prompting for confirmation.|
 
-### Command Examples
+## Command Examples
 
 The following command reboots the switch immediately without notifying any running processes and without prompting for confirmation.
 
@@ -255,7 +217,7 @@ System will restart
 {{< /tab >}}
 {{< /tabs >}}
 
-### Show Reboot Information
+## Show Reboot Information
 
 To show reboot information, such as the date and time, and reason, the reboot mode, and the reboot status, run the `nv show system reboot` command:
 
@@ -291,6 +253,39 @@ Cumulus Linux supports warm reboot mode with 802.1X, layer 2 forwarding, layer 3
 The following features are not supported during warm reboot:
 - EVPN MLAG or EVPN multihoming.
 - LACP bonds. LACP control plane sessions might time out before warm reboot completes. Use static LAG to keep bonds up with sub-second convergence during a warm reboot.
+
+### Resource Allocation
+
+To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is set to `full`. Warm reboot and hitless ISSU-based software upgrade requires the resource mode to be `half`.
+
+The following example sets the switch resource mode to `half`:
+
+{{< tabs "TabID40 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system forwarding resource-mode half
+```
+
+To set the resource-mode back to the default value (full) run the `nv unset system forwarding resource-mode` command.
+
+{{%notice infonopad%}}
+Changing the resource mode on the switch requires a `switchd` restart, which impacts traffic forwarding. 
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/resource-mode.conf
+...
+resource_mode = half
+```
+
+Restart the switchd service with the `sudo systemctl restart switchd.service` command.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### BGP Graceful Restart
 

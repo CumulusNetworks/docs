@@ -81,6 +81,7 @@ You can configure a BGP unnumbered peer for IPv6-only peering over a link-local 
 {{< tab "NVUE Commands ">}}
 
 Run the `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection v6-lla` command:
+
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 connection v6-lla
 cumulus@leaf01:~$ nv config apply

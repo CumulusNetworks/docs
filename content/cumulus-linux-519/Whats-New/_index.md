@@ -26,7 +26,6 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - Layer 3 VXLAN device mode is generally available
 - Multi ASIC fast boot support (Beta)
 - ISSUv2 support - Full KVD (Beta)
-- Port init profiles
 - Packet trimming BTS
 - Command to set IPv6 only on a bgp neighbor configured for bgp unnumbered
 - Adaptive Routing Hybrid scheduling mode
@@ -51,8 +50,8 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - ISSU support for Spectrum-6 - Support More Than 2 RIF MAC Profiles in ISSU Mode
 - NVUE
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
+  - {{<link url="Optional-BGP-Configuration/#ipv6-only-unnumbered-peering" text="IPv6-only unnumbered peering command">}}
   - Map port to connector
-  - Command to set IPv6 only on a BGP neighbor configured for BGP unnumbered
   - Disable syslog print on console
   - FRR config Apply Latency and Timeout
   - Control readvertisement of EVPN Type-5 Stale Route Bug with Inter-VRF Leaking

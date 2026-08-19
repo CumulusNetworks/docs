@@ -1561,6 +1561,7 @@ Configures the maximum number of occurrences of the local system's AS number in 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1583,6 +1584,7 @@ Configures BGP to allow a received AS_PATH containing the ASN of the local syste
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1605,6 +1607,7 @@ Applies the route map to filter IPv6 routes with my AS in the AS_PATH. Allows se
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1627,6 +1630,7 @@ Enables and disables the local system's AS number in the received AS_PATH. You c
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1652,6 +1656,7 @@ Configures how to handle private ASNs in the update to the peer. You can specify
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1674,6 +1679,7 @@ Configures BGP to replace the ASN of the peer in the AS_PATH of an outgoing upda
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1696,6 +1702,7 @@ Configures the maximum number of unreachability prefixes that can be received fr
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1718,6 +1725,7 @@ Configures the time in minutes to wait before establishing the BGP session again
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1740,6 +1748,7 @@ Configures the switch to only generate a warning syslog if the number of receive
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1762,6 +1771,7 @@ Configures the prefix limits for a neighbor for BGP unreachability SAFI (failure
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1784,6 +1794,7 @@ Enables and disables BGP unreachability (failure signaling) on the neighbor. The
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1793,6 +1804,29 @@ Introduced in Cumulus Linux 5.16.0
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> connection v6-lla</h>
+
+Configures a BGP **unnumbered** peer for IPv6-only peering over a link-local address. This command forces the BGP session to use IPv6 link-local transport even when the interface also has an IPv4 address configured. Without this configuration, unnumbered BGP on dual-stack interfaces might initiate peering over IPv4 and reject inbound IPv6 peering attempts with a TCP reset, preventing IPv6 BGP sessions from establishing.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The BGP neighbor interface for unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 connection v6-lla
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

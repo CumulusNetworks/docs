@@ -77,7 +77,7 @@ If you unset a peer group, make sure that it is not applied to any neighbors. If
 
 You can configure a BGP unnumbered peer for IPv6-only peering over a link-local address and force the BGP session to use IPv6 link-local transport even when the interface also has an IPv4 address configured. Without this configuration, unnumbered BGP on dual-stack interfaces might initiate peering over IPv4 and reject inbound IPv6 peering attempts with a TCP reset, preventing IPv6 BGP sessions from establishing. 
 
-{{< tabs "54 ">}}
+{{< tabs "80 ">}}
 {{< tab "NVUE Commands ">}}
 
 Run the `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection v6-lla` command:

@@ -50,7 +50,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - Repurposing Reset Push-button to Support "Power On" 
 - ISSU support for Spectrum-6 - Support More Than 2 RIF MAC Profiles in ISSU Mode
 - NVUE
-  - {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch power off command">}}
+  - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
   - Map port to connector
   - Command to set IPv6 only on a BGP neighbor configured for BGP unnumbered
   - Disable syslog print on console

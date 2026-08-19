@@ -12,7 +12,8 @@ Cumulus Linux provides commands to:
 
 Cumulus Linux provides these reboot modes:
 - **immediate** reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
-- **halt** shuts down the operating system and halts the CPU. The switch hardware may remain powered.
+- **halt** shuts down the operating system and halts the CPU. The switch is no longer reachable over the network but switch hardware might remain powered. Use this mode for a graceful complete shutdown during planned maintenance when you must shut down the operating system fully but an operating system level halt is sufficient. You cannot connect to the switch until power cycled through a remote PDU connection.
+- **power-off** powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you require the switch to be powered off fully. You cannot connect to the switch until power cycled through a remote PDU connection.
 - **power-cycle** lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
@@ -65,6 +66,7 @@ The following table shows the NVUE reboot commands and their Linux command equiv
 | `nv action reboot system mode immediate force` | `sudo reboot --force` | Reboots the switch immediately without notifying any running processes and without prompting for confirmation. |
 | `nv action reboot system mode halt` | No native command available. | Shuts down the operating system and halts the CPU. The switch hardware may remain powered.  |
 | `nv action reboot system mode halt force` | `sudo reboot --halt` | Shuts down the system without prompting for confirmation.|
+| `nv action reboot system mode power-off`| No native command available. | Powers off the switch completely (complete electrical power-off).|
 | `nv action reboot system mode power-cycle` | `sudo cl-powercycle` | Power cycles the switch. |
 | `nv action reboot system mode power-cycle force` | `sudo cl-powercycle -noprompt` | Power cycles the switch without prompting for confirmation.|
 | `nv action reboot system mode cold` | `sudo csmgrctl -c` | Reboots the switch in cold mode. |
@@ -78,7 +80,7 @@ The following table shows the NVUE reboot commands and their Linux command equiv
 
 The following command reboots the switch immediately without notifying any running processes and without prompting for confirmation.
 
-{{< tabs "TabID78">}}
+{{< tabs "TabID83">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -97,7 +99,7 @@ cumulus@switch:~$ sudo reboot --force
 
 The following command shuts down the operating system and halts the CPU.
 
-{{< tabs "TabID101">}}
+{{< tabs "TabID102">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -118,12 +120,37 @@ Broadcast message from root@leaf01 on pts/1 (Wed 2026-03-25 15:31:36 UTC):
 The system will halt now!
 ```
 
+The following command powers off the switch.
+
+{{< tabs "TabID125">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv action reboot system mode power-off
+WARNING: This operation will shut down the system completely. 
+The switch will remain powered off until power cycled through 
+a remote PDU connection. 
+
+Do you want to continue? [y/N] y 
+Action executing ... 
+Powering off the switch 
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo cl-poweroff
+This script will now power off the switch.
+Do you want to proceed with power-off? (yes/no):
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
 The following command power cycles the switch.
 
-{{< tabs "TabID125">}}
+{{< tabs "TabID153">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -151,7 +178,7 @@ Do you want to proceed with power-cycle? (yes/no):
 
 The following command reboots the switch in cold mode.
 
-{{< tabs "TabID151">}}
+{{< tabs "TabID181">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -177,7 +204,7 @@ System will restart
 
 The following command reboots the switch in fast mode.
 
-{{< tabs "TabID168">}}
+{{< tabs "TabID1207">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -202,7 +229,7 @@ System will restart
 
 The following command reboots the switch in warm mode.
 
-{{< tabs "TabID189">}}
+{{< tabs "TabID232">}}
 {{< tab "NVUE Commands ">}}
 
 ```

@@ -66,7 +66,8 @@ The following table shows the NVUE reboot commands and their Linux command equiv
 | `nv action reboot system mode immediate force` | `sudo reboot --force` | Reboots the switch immediately without notifying any running processes and without prompting for confirmation. |
 | `nv action reboot system mode halt` | No native command available. | Shuts down the operating system and halts the CPU. The switch hardware may remain powered.  |
 | `nv action reboot system mode halt force` | `sudo reboot --halt` | Shuts down the system without prompting for confirmation.|
-| `nv action reboot system mode power-off`| No native command available. | Powers off the switch completely (complete electrical power-off).|
+| `nv action reboot system mode power-off`| `sudo cl-poweroff` | Powers off the switch completely (complete electrical power-off).|
+| `nv action reboot system mode power-off force`| `sudo cl-poweroff -noprompt` | Powers off the switch completely (complete electrical power-off) without prompting for confirmation.|
 | `nv action reboot system mode power-cycle` | `sudo cl-powercycle` | Power cycles the switch. |
 | `nv action reboot system mode power-cycle force` | `sudo cl-powercycle -noprompt` | Power cycles the switch without prompting for confirmation.|
 | `nv action reboot system mode cold` | `sudo csmgrctl -c` | Reboots the switch in cold mode. |
@@ -99,7 +100,7 @@ cumulus@switch:~$ sudo reboot --force
 
 The following command shuts down the operating system and halts the CPU.
 
-{{< tabs "TabID102">}}
+{{< tabs "TabID103">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -119,6 +120,9 @@ Broadcast message from root@leaf01 on pts/1 (Wed 2026-03-25 15:31:36 UTC):
 
 The system will halt now!
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The following command powers off the switch.
 
@@ -318,7 +322,7 @@ iface eth0
  address 10.100.156.254/24
  post-up ip route add 10.100.200.0/24 via 10.100.156.1 vrf mgmt
 ```
-
+<!--
 ## Power Off
 
 In certain situations, you might need to power off the switch instead of rebooting. To power off the switch, run the `cl-poweroff` command, which shuts down the switch.
@@ -332,3 +336,4 @@ You can also run the Linux `poweroff` command, which gracefully shuts down the s
 ```
 cumulus@switch:~$ sudo poweroff
 ```
+-->

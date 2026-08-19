@@ -26,7 +26,6 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - Layer 3 VXLAN device mode is generally available
 - Multi ASIC fast boot support (Beta)
 - ISSUv2 support - Full KVD (Beta)
-- Port init profiles
 - Packet trimming BTS
 - Command to set IPv6 only on a bgp neighbor configured for bgp unnumbered
 - Adaptive Routing Hybrid scheduling mode

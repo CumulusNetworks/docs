@@ -9,13 +9,13 @@
 <tr>
 <td>4957394</td>
 <td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
-<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
-<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -723,7 +723,7 @@ You can safely ignore this warning.</td>
 <tr>
 <td>4958319, 4926427, 4926426</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
-<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4937854, 4721298, 4937855</td>
@@ -776,13 +776,13 @@ You can safely ignore this warning.</td>
 <tr>
 <td>4926427, 4958319, 4926426</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
-<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.9.5, 5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
-<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -1799,13 +1799,13 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4926427, 4958319, 4926426</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
-<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.9.5, 5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
-<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -2734,13 +2734,13 @@ You can safely ignore this warning.</td>
 <tr>
 <td>4926427, 4958319, 4926426</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
-<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.9.5, 5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
-<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -3908,13 +3908,13 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>4926427, 4958319, 4926426</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
-<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.9.5, 5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
-<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -5038,7 +5038,7 @@ You can safely ignore this warning.</td>
 <tr>
 <td>4926427, 4958319, 4926426</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
-<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.9.5, 5.17.0-5.18.0</td>
 </tr>
 <tr>

@@ -303,45 +303,6 @@ NVUE does not support configuring RSTP timers on VLAN-aware bridges. The followi
    ```
 
 <!-- vale off -->
-### /etc/cumulus/datapath/traffic.conf Snippets
-<!-- vale on -->
-To add data path configuration for the Cumulus Linux `switchd` module that NVUE does not yet support, create a `traffic.conf` snippet.
-
-The following example creates a file called `traffic_conf_snippet.yaml` and enables the resilient hash setting.
-
-1. Create a `.yaml` file and add the following traditional snippet:
-
-   ```
-   cumulus@switch:~$ sudo nano traffic_conf_snippet.yaml
-   - set:
-       system:
-         config:
-           snippet:
-             traffic.conf: |
-               resilient_hash_enable = TRUE
-   ```
-
-2. Run the following command to patch the configuration:
-
-   ```
-   cumulus@switch:~$ nv config patch traffic_conf_snippet.yaml
-   ```
-
-3. Run the `nv config apply` command to apply the configuration:
-
-   ```
-   cumulus@switch:~$ nv config apply
-   ```
-
-4. Verify that the configuration exists at the end of the `/etc/cumulus/datapath/traffic.conf` file:
-
-   ```
-   cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
-   ...
-   !---- NVUE snippets ----
-   resilient_hash_enable = TRUE
-   ```
-<!-- vale off -->
 ### /etc/snmp/snmpd.conf Snippets
 <!-- vale on -->
 To add Cumulus Linux SNMP agent configuration not yet available with NVUE commands, create an `snmpd.conf` snippet.

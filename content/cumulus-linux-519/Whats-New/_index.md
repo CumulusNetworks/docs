@@ -52,10 +52,10 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - NVUE
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
   - {{<link url="Optional-BGP-Configuration/#ipv6-only-unnumbered-peering" text="IPv6-only unnumbered peering command">}}
+  - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resilient-hashing" text="Resilient hashing commands">}}
   - Map port to connector
   - Disable syslog print on console
   - FRR config Apply Latency and Timeout
-  - Support for Resilient hashing
   - knob to configure MAX_FDS for FRR
 - Telemetry
   - gNMI component type

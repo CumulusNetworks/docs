@@ -63,5 +63,5 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | 2556006 | NetQ Infra: Customers with cloud deployments who wish to use the lifecycle management (LCM) feature in NetQ 3.3.0 must upgrade their NetQ Cloud Appliance or Virtual Machine as well as the NetQ Agent. | 3.2.1 | |
-| 2549246, 2549315, 2549518, 2549315 | NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s). | 2.4.0-3.2.1 | |
+| 2549246, 2549315, 2549518 | NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s). | 2.4.0-3.2.1 | |
 

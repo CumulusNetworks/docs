@@ -13,7 +13,7 @@
 <td>3.2.0-3.3.1</td>
 </tr>
 <tr>
-<td>2549246, 2549315, 2549518, 2549315</td>
+<td>2549246, 2549315, 2549518</td>
 <td>NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s).</td>
 <td>2.4.0-3.2.1</td>
 <td>3.3.0-3.3.1</td>
@@ -67,7 +67,7 @@
 <td>3.2.0-3.3.1</td>
 </tr>
 <tr>
-<td>2549246, 2549315, 2549518, 2549315</td>
+<td>2549246, 2549315, 2549518</td>
 <td>NetQ UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s).</td>
 <td>2.4.0-3.2.1</td>
 <td>3.3.0-3.3.1</td>
@@ -104,7 +104,7 @@
 <th> Affects </th>
 </tr>
 <tr>
-<td>2545622</td>
+<td>2545622, 2545621</td>
 <td>NetQ UI: This only applies to the NetQ 2.3.1 UI installed on the NetQ Server or NetQ Appliance in on-premises deployments. Cloud deployments are not impacted by this bug. Trace results are not shown after running an on-demand or scheduled trace request in the NetQ UI. The medium Trace Result cards are blank whether the trace was successful or not. The full-screen Trace Result card and the NetQ CLI show the results correctly.
 To work around this issue, apply the update to your existing 2.3.1 build as follows:
 

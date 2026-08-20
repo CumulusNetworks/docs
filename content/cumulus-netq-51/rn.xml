@@ -45,7 +45,7 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td></td>
 </tr>
 <tr>
-<td>4977342</td>
+<td>4977342, 4889408</td>
 <td>The NetQ UI might not display a complete list of interfaces. To work around this issue, restart the NetQ agent or upgrade to the latest NetQ version.</td>
 <td>5.1.0</td>
 <td></td>
@@ -63,7 +63,7 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td></td>
 </tr>
 <tr>
-<td>4894672</td>
+<td>4894672, 4896363</td>
 <td>NVOS upgrades on switches might fail if the image filename contains spaces or special characters.</td>
 <td>5.1.0</td>
 <td></td>
@@ -83,17 +83,11 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <tr>
 <td>4867933</td>
 <td>Threshold-crossing events created before version 5.1.0 may not display event values correctly after you upgrade NetQ.</td>
-<td>5.1.0</td>
+<td>5.1.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
-<td>4854041</td>
-<td>When you upgrade a NetQ for NVLink and Ethernet deployment using the data backup and restoration workflow, NetQ does not preserve NVLink data.</td>
-<td>5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4839716</td>
+<td>4839716, 4844441</td>
 <td>You cannot perform lifecycle management operations immediately after backing up an HA scale cluster deployment. To work around this issue, wait several hours before initiating LCM operations.</td>
 <td>5.1.0</td>
 <td></td>
@@ -117,12 +111,6 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td></td>
 </tr>
 <tr>
-<td>4784336</td>
-<td>The NetQ for NVLink deployment option is not supported in air-gapped environments.</td>
-<td>5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4780773</td>
 <td>The NetQ for NVLink Swagger UI might incorrectly display 500 status placeholder text in example responses.</td>
 <td>5.0.0-5.1.0</td>
@@ -131,25 +119,25 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <tr>
 <td>4687477</td>
 <td>When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters.</td>
-<td>5.0.0-5.1.0</td>
+<td>5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4681581</td>
 <td>The {{netq bootstrap reset purge-db}} command might take up to 60 minutes to complete on Base Command Manager scale deployments.</td>
-<td>5.0.0-5.1.0</td>
+<td>5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4399074</td>
 <td>When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected.</td>
-<td>5.0.0-5.1.0</td>
+<td>5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
-<td>4100882</td>
+<td>4100882, 4119697</td>
 <td>When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export.</td>
-<td>4.12.0-4.15.1, 5.0.0-5.1.0</td>
+<td>4.12.0-4.15.1, 5.0.0-5.16.5</td>
 <td></td>
 </tr>
 </table>
@@ -170,7 +158,7 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td>5.0.0</td>
 </tr>
 <tr>
-<td>4689932</td>
+<td>4689932, 4702436</td>
 <td>Node reservation for NetQ is not supported in shared multi-node clusters. To work around this issue, deploy NetQ in a dedicated single-node or three-node cluster first, and then scale the deployment by adding nodes for other applications.</td>
 <td>5.0.0</td>
 </tr>

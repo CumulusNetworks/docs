@@ -13,11 +13,7 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 Cumulus Linux 5.18.1 provides bug fixes.
 
 You can upgrade to Cumulus 5.18.1 from the following releases:
-- 5.16.0
-- 5.16.1
-- 5.16.5
-- 5.16.6
-- 5.16.7
+- 5.16.0, 5.16.1, 5.16.5, 5.16.6, 5.16.7
 - 5.17.0
 - 5.18.1
 

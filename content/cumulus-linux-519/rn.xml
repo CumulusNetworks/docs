@@ -783,9 +783,9 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
-<td>5175518, 5217093</td>
+<td>5175518, 5217093, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
-<td>5.16.1-5.16.6</td>
+<td>5.16.1-5.16.6, 5.18.0</td>
 </tr>
 <tr>
 <td>5165432, 5154620</td>

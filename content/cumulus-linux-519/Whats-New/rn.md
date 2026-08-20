@@ -138,7 +138,7 @@ pdfhidden: True
 ### Fixed Issues in 5.19.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| 5175518, 5217093 | The <code>switchd</code> watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn. | 5.16.1-5.16.6 | |
+| 5175518, 5217093, 5221594 | The <code>switchd</code> watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn. | 5.16.1-5.16.6, 5.18.0 | |
 | 5165432, 5154620 | With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic.  | 5.18.0 | |
 | 5158643 | The <code>nv show evpn l3vxi --output json</code> command returns an empty dictionary ({}). To work around this issue, run the <code>nv show evpn l3vxi --rev=applied --output json</code> command instead. | 5.18.0 | |
 | 5107338 | onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time. | 5.18.0 | |

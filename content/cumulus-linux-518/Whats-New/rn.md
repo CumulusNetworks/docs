@@ -150,16 +150,17 @@ pdfhidden: True
 ### Fixed Issues in 5.18.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| 5221594, 5217093, 5175518 | The <code>switchd</code> watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn. | 5.16.1-5.16.6, 5.18.0 | |
 
 ## 5.18.0 Release Notes
 ### Open Issues in 5.18.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 5221594 | The <code>switchd</code> watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn. | 5.18.0 | 5.16.7|
 | 5217091 | In some scenarios after configuration bring-up or an interface carrier transition, traffic might not be forwarded on some interfaces in an ECMP group. To work around this issue, flap the affected interface. | 5.18.0 | 5.16.7|
 | 5184005 | In certain SRv6 configuration rollback scenarios, Zebra might fail to restore all explicit SRv6 SIDs. This can occur when multiple SRv6 locators share the same parent SID block and one of the locators is replayed during rollback. To work around this issue, restart FRR to clear the stale in-memory SRv6 SID allocation state, then reapply the intended configuration if needed. | 5.18.0 | |
 | 5183654 | When you upgrade gNMI with package upgrade, the <code>nv-gnmi.service</code> fails and the switch collects a tech support bundle after the first step of the process (<code>nv action upgrade system packages to latest</code>. The package upgrade process triggers a switch reboot straight afterwards as a second and final step. There is no functional impact after switch reboot completes. | 5.18.0 | |
+| 5175518, 5217093, 5221594 | The <code>switchd</code> watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn. | 5.16.1-5.16.6, 5.18.0 | 5.16.7|
 | 5174873 | On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT. | 5.18.0 | |
 | 5174595 | On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted. | 5.18.0 | |
 | 5165432, 5154620 | With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic.  | 5.18.0 | |

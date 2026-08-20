@@ -421,6 +421,8 @@ A larger number of ECMP buckets reduces the impact on adding new next hops to an
 You can configure route and MAC address hardware resources depending on ECMP bucket size changes. See {{%link title="Routing#NVIDIA Spectrum Switches" text="NVIDIA Spectrum routing resources" %}}.
 {{%/notice%}}
 
+### Configure Resilient Hashing
+
 To configure resilient hashing:
 - Set resilient hashing to enabled.
 - Set the number of hash buckets to use for all ECMP routes. On Spectrum switches, you can set the number of buckets to 64, 512, 1024, 2048, or 4096. On NVIDIA Spectrum-2 and later, you can set the number of buckets to 64, 128, 256, 512, 1024, 2048, or 4096. The default value is 64.

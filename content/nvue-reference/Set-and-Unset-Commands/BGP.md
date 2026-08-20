@@ -735,6 +735,33 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast rout
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp address-family \<address-family\> route-export to-evpn skip-evpn-imported</h>
+
+Enables and disables the skip EVPN imported setting that prevents VRFs from re-exporting EVPN-originated leaked routes as type-5 routes when you configure IPv4 prefix-based routing using EVPN type-5 routes for the VRF (`nv set vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn state`). The default setting is disabled.
+- The skip EVPN imported setting affects only EVPN type-5 re-export and suppresses re-export when the VRF leak ancestry for the selected unicast path originates in the EVPN table.  
+- Locally originated routes, including locally originated routes leaked from another VRF, remain eligible for type-5 re-export.  
+- You set the skip EVPN imported setting for a specific BGP VRF instance and for either IPv4 or IPv6.
+- The emitted EVPN routes remain standards-compliant type-5 routes. This setting only decides which local paths FRR originates; it does not alter received EVPN route encoding, route-target processing, or peer interoperability. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<address-family>` | `ipv4-unicast` or `ipv6-unicast`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn skip-evpn-imported enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn state</h>
 
 Enables and disables IPv4 prefix-based routing using EVPN type-5 routes for the specified VRF. When `enabled`, the switch can announce IP prefixes in the BGP RIB as EVPN type-5 routes. The default setting is `disabled`.

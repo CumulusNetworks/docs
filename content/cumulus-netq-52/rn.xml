@@ -164,43 +164,37 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <tr>
 <td>4965251</td>
 <td>When BlueField DPUs are in the default, embedded mode, the output of the {{netq check roce}} command might produce duplicate entries for the same device (one for the host and one for the DPU). This issue can also affect the calculations for the RoCE Mode Consistency and DSCP Classification tests. Additionally, the {{netq show roce-config host}} command might display DPU interfaces alongside host interfaces. This issue does not affect DPUs that are configured in separated mode.</td>
-<td>5.2.0</td>
+<td>5.2.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4867933</td>
 <td>Threshold-crossing events created before version 5.1.0 may not display event values correctly after you upgrade NetQ.</td>
-<td>5.1.0-5.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4784336</td>
-<td>The NetQ for NVLink deployment option is not supported in air-gapped environments.</td>
-<td>5.0.0-5.2.0</td>
+<td>5.1.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4687477</td>
 <td>When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters.</td>
-<td>5.0.0-5.2.0</td>
+<td>5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4681581</td>
 <td>The {{netq bootstrap reset purge-db}} command might take up to 60 minutes to complete on Base Command Manager scale deployments.</td>
-<td>5.0.0-5.2.0</td>
+<td>5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4399074</td>
 <td>When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected.</td>
-<td>5.0.0-5.2.0</td>
+<td>5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4100882, 4119697</td>
 <td>When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export.</td>
-<td>4.12.0-4.15.1, 5.0.0-5.2.0</td>
+<td>4.12.0-4.15.1, 5.0.0-5.16.5</td>
 <td></td>
 </tr>
 </table>

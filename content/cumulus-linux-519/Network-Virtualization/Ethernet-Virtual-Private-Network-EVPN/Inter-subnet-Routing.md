@@ -561,6 +561,71 @@ end
 {{< /tab >}}
 {{< /tabs >}}
 
+### Prevent Re-export of VRF Leaked EVPN Routes
+
+To prevent VRFs from re-exporting EVPN-originated leaked routes as type-5 routes when you configure advertise IPv4 unicast, you can enable the skip EVPN imported setting.  
+- The skip EVPN imported setting affects only EVPN type-5 re-export and suppresses re-export when the VRF leak ancestry for the selected unicast path originates in the EVPN table.  
+- Locally originated routes, including locally originated routes leaked from another VRF, remain eligible for type-5 re-export.  
+- You set he skip EVPN imported setting is for a specific BGP VRF instance and for either IPv4 or IPv6.
+- The emitted EVPN routes remain standards-compliant type-5 routes. This setting only decides which local paths FRR originates; it does not alter received EVPN route encoding, route-target processing, or peer interoperability. 
+
+{{< tabs "TabID576 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable the skip EVPN imported setting, run the `nv set vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn skip-evpn-imported enabled` command, where `<address-family>` is either `ipv4-unicast` or `ipv6-unicast`.
+
+```
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn skip-evpn-imported enabled
+cumulus@leaf01:~$ nv config apply
+```
+
+To disable the skip EVPN imported setting, run the `nv set vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn skip-evpn-imported disabled` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To enable the skip EVPN imported setting, run the vtysh `advertise <address-family> skip-evpn-imported` command.
+
+cumulus@leaf01:~$ sudo vtysh
+
+leaf01# configure terminal
+leaf01(config)# router bgp 65101 vrf RED
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)#  advertise ipv4 unicast skip-evpn-imported 
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+
+The vtysh commands create the following snippet in the `/etc/frr/frr.conf` file:
+
+```
+...
+router bgp 65101 vrf RED
+  address-family l2vpn evpn
+    advertise ipv4 unicast skip-evpn-imported
+  exit-address-family
+end
+...
+```
+
+To disable the skip EVPN imported setting, run the vtysh `no advertise <address-family> unicast skip-evpn-imported` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the skip EVPN imported configuration, run the `nv show vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn` command or the vtysh `show running-config bgpd` command.
+
+```
+cumulus@leaf01:~$ nv show vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+                           operational  applied  
+-------------------------  -----------  -------- 
+state                                   enabled  
+route-map                               none     
+default-route-origination  disabled     disabled 
+skip-evpn-imported                      enabled
+```
+
 ### Control RIB Routes
 
 By default, when announcing IP prefixes in the BGP RIB as EVPN type-5 routes, the switch selects all routes in the BGP RIB to advertise as EVPN type-5 routes. You can use a route map to allow selective route advertisement from the BGP RIB.

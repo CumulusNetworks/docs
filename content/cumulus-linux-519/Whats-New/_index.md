@@ -23,6 +23,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 
 ### New Features and Enhancements
 
+- {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-evpn-routes" text="Prevent re-export of VRF-leaked EVPN routes">}}
 - Layer 3 VXLAN device mode is generally available
 - Multi ASIC fast boot support (Beta)
 - ISSUv2 support - Full KVD (Beta)
@@ -54,7 +55,6 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - Map port to connector
   - Disable syslog print on console
   - FRR config Apply Latency and Timeout
-  - Control readvertisement of EVPN Type-5 Stale Route Bug with Inter-VRF Leaking
   - Support for Resilient hashing
   - knob to configure MAX_FDS for FRR
 - Telemetry

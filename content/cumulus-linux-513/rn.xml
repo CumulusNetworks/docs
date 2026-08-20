@@ -41,7 +41,7 @@
 <tr>
 <td>4964407, 5076748, 5076747</td>
 <td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
-<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -53,44 +53,44 @@
 <tr>
 <td>4957394</td>
 <td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
-<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4937867</td>
 <td>If FSM cable info does not finish or does not start within three seconds (due to other, higher priority FSM handling), recovery flow is triggered. In some edge cases, this recovery flow does not clean all necessary parameters.</td>
-<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4931956</td>
 <td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade with the NVUE {{nv action upgrade system packages}} command sometimes fails or might be interrupted after the packages are unpacked but not configured.  As a result, you might see issues such as missing files or symlinks, or TACACS+ restricted user shells not working as expected. If the {{dpkg -l}} command shows packages with a status of {{iU}} instead of {{ii}} (the first two characters of the line), run the {{sudo dpkg --configure -a}} command to complete package configuration. Rerun package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with the {{sudo systemctl stop sysmonitor}} command before running package upgrade with NVUE commands.</td>
-<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4930152, 4964153</td>
 <td>When you configure layer 3 SVI interfaces with an anycast gateway (VRR) IP address only and no unique IP address, the connected route for the subnet is not programmed in the ASIC, causing packets destined for locally connected hosts to drop after decapsulation.</td>
-<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4924486, 5001905, 4924487</td>
 <td>A fatal SDK event might occur during i2c or cable read events, observed with the following {{switchd}} log message:
 hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</td>
-<td>5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4918342, 4641291</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
-<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4895501, 4945652, 4945654</td>
 <td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
-<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -98,19 +98,19 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>When you configure BGP dynamic neighbors and 
 {{default-originate}} with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the {{default-originate}} with the route map command or toggle 
 {{default-route-origination}} off, then on.</td>
-<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4885553</td>
 <td>If ZTP uses a proxy server for image download using {{onie-install}}, the image install fails with signing issues.</td>
-<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
-<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -183,7 +183,7 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <tr>
 <td>4731091, 4857885</td>
 <td>During optimized image upgrade, the switch logs an error because a new file is added. There is no functional impact.</td>
-<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -1427,7 +1427,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4964407, 5076748, 5076747</td>
 <td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
-<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -1439,38 +1439,38 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4957394</td>
 <td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
-<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4937867</td>
 <td>If FSM cable info does not finish or does not start within three seconds (due to other, higher priority FSM handling), recovery flow is triggered. In some edge cases, this recovery flow does not clean all necessary parameters.</td>
-<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4930152, 4964153</td>
 <td>When you configure layer 3 SVI interfaces with an anycast gateway (VRR) IP address only and no unique IP address, the connected route for the subnet is not programmed in the ASIC, causing packets destined for locally connected hosts to drop after decapsulation.</td>
-<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4924486, 5001905, 4924487</td>
 <td>A fatal SDK event might occur during i2c or cable read events, observed with the following {{switchd}} log message:
 hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</td>
-<td>5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4918342, 4641291</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
-<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4895501, 4945652, 4945654</td>
 <td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
-<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -1478,19 +1478,19 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>When you configure BGP dynamic neighbors and 
 {{default-originate}} with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the {{default-originate}} with the route map command or toggle 
 {{default-route-origination}} off, then on.</td>
-<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4885553</td>
 <td>If ZTP uses a proxy server for image download using {{onie-install}}, the image install fails with signing issues.</td>
-<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
-<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
@@ -1533,7 +1533,7 @@ sxd_kernel: Health-Check: new failure (dev=1, severity='Fatal', cause=10 ['SDK t
 <tr>
 <td>4731091, 4857885</td>
 <td>During optimized image upgrade, the switch logs an error because a new file is added. There is no functional impact.</td>
-<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>

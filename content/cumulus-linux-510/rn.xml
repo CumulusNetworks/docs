@@ -952,13 +952,13 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>4957394</td>
 <td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
-<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
-<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
 <tr>

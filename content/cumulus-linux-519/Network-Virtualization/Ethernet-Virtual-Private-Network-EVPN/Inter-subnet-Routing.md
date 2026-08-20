@@ -586,8 +586,8 @@ To disable the skip EVPN imported setting, run the `nv set vrf <vrf-id> router b
 
 To enable the skip EVPN imported setting, run the vtysh `advertise <address-family> skip-evpn-imported` command.
 
+```
 cumulus@leaf01:~$ sudo vtysh
-
 leaf01# configure terminal
 leaf01(config)# router bgp 65101 vrf RED
 leaf01(config-router)# address-family l2vpn evpn
@@ -596,6 +596,7 @@ leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
+```
 
 The vtysh commands create the following snippet in the `/etc/frr/frr.conf` file:
 

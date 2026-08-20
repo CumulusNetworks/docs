@@ -1414,9 +1414,9 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>5.16.3-5.16.6</td>
 </tr>
 <tr>
-<td>5217093, 5175518</td>
+<td>5217093, 5175518, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
-<td>5.16.1-5.16.6</td>
+<td>5.16.1-5.16.6, 5.18.0</td>
 </tr>
 <tr>
 <td>5217091</td>
@@ -1525,10 +1525,10 @@ On the SN5640, substitute {{tc_config_sn5640.json}} and {{"name": "sn5640",}}. D
 <td>5.16.7-5.18.0</td>
 </tr>
 <tr>
-<td>5175518, 5217093</td>
+<td>5175518, 5217093, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
-<td>5.16.1-5.16.6</td>
-<td>5.16.7-5.18.0</td>
+<td>5.16.1-5.16.6, 5.18.0</td>
+<td>5.16.7</td>
 </tr>
 <tr>
 <td>5172157</td>
@@ -3048,10 +3048,10 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>5.16.7-5.18.0</td>
 </tr>
 <tr>
-<td>5175518, 5217093</td>
+<td>5175518, 5217093, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
-<td>5.16.1-5.16.6</td>
-<td>5.16.7-5.18.0</td>
+<td>5.16.1-5.16.6, 5.18.0</td>
+<td>5.16.7</td>
 </tr>
 <tr>
 <td>5172157</td>
@@ -4712,10 +4712,10 @@ This service can enter a busy loop if the techsupport auto-generation service te
 <td>5.16.7-5.18.0</td>
 </tr>
 <tr>
-<td>5175518, 5217093</td>
+<td>5175518, 5217093, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
-<td>5.16.1-5.16.6</td>
-<td>5.16.7-5.18.0</td>
+<td>5.16.1-5.16.6, 5.18.0</td>
+<td>5.16.7</td>
 </tr>
 <tr>
 <td>5172157</td>
@@ -6344,10 +6344,10 @@ This service can enter a busy loop if the techsupport auto-generation service te
 <td>5.16.7-5.18.0</td>
 </tr>
 <tr>
-<td>5175518, 5217093</td>
+<td>5175518, 5217093, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
-<td>5.16.1-5.16.6</td>
-<td>5.16.7-5.18.0</td>
+<td>5.16.1-5.16.6, 5.18.0</td>
+<td>5.16.7</td>
 </tr>
 <tr>
 <td>5167708, 5217094</td>
@@ -7964,10 +7964,10 @@ This service can enter a busy loop if the techsupport auto-generation service te
 <td>5.16.7-5.18.0</td>
 </tr>
 <tr>
-<td>5175518, 5217093</td>
+<td>5175518, 5217093, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
-<td>5.16.1-5.16.6</td>
-<td>5.16.7-5.18.0</td>
+<td>5.16.1-5.16.6, 5.18.0</td>
+<td>5.16.7</td>
 </tr>
 <tr>
 <td>5159856</td>
@@ -9554,10 +9554,10 @@ This service can enter a busy loop if the techsupport auto-generation service te
 <td>5.16.7-5.18.0</td>
 </tr>
 <tr>
-<td>5175518, 5217093</td>
+<td>5175518, 5217093, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
-<td>5.16.1-5.16.6</td>
-<td>5.16.7-5.18.0</td>
+<td>5.16.1-5.16.6, 5.18.0</td>
+<td>5.16.7</td>
 </tr>
 <tr>
 <td>5159856</td>

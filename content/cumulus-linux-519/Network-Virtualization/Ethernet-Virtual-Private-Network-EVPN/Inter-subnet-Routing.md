@@ -563,10 +563,10 @@ end
 
 ### Prevent Re-export of VRF Leaked EVPN Routes
 
-To prevent VRFs from re-exporting EVPN-originated leaked routes as type-5 routes when you configure advertise IPv4 unicast, you can enable the skip EVPN imported setting.  
+To prevent VRFs from re-exporting EVPN-originated leaked routes as type-5 routes when you configure the switch to announce IP prefixes in the BGP RIB as EVPN type-5 routes, enable the skip EVPN imported setting.  
 - The skip EVPN imported setting affects only EVPN type-5 re-export and suppresses re-export when the VRF leak ancestry for the selected unicast path originates in the EVPN table.  
 - Locally originated routes, including locally originated routes leaked from another VRF, remain eligible for type-5 re-export.  
-- You set he skip EVPN imported setting is for a specific BGP VRF instance and for either IPv4 or IPv6.
+- You set the skip EVPN imported setting for a specific BGP VRF instance and for either IPv4 or IPv6.
 - The emitted EVPN routes remain standards-compliant type-5 routes. This setting only decides which local paths FRR originates; it does not alter received EVPN route encoding, route-target processing, or peer interoperability. 
 
 {{< tabs "TabID576 ">}}

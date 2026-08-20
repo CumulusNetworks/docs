@@ -387,7 +387,7 @@ The NVIDIA Spectrum ASIC assigns packets to hash buckets and assigns hash bucket
 
 Any flow can migrate to any next hop, depending on flow activity and load balance conditions. Over time, the flow can get pinned, which is the default setting and behavior.
 
-When you enable resilient hashing, Cumulus Linux assigns next hops in round robin fashion to a fixed number of buckets. In this example, there are 12 buckets and four next hops.
+When you enable resilient hashing, Cumulus Linux assigns next hops in roundrobin fashion to a fixed number of buckets. In this example, there are 12 buckets and four next hops.
 
 {{< img src = "/images/cumulus-linux/ecmp-reshash-bucket-assignment.png" >}}
 
@@ -421,58 +421,85 @@ A larger number of ECMP buckets reduces the impact on adding new next hops to an
 You can configure route and MAC address hardware resources depending on ECMP bucket size changes. See {{%link title="Routing#NVIDIA Spectrum Switches" text="NVIDIA Spectrum routing resources" %}}.
 {{%/notice%}}
 
-To enable resilient hashing:
+To configure resilient hashing:
+- Set resilient hashing to enabled.
+- Set the number of hash buckets to use for all ECMP routes. On Spectrum switches, you can set the number of buckets to 64, 512, 1024, 2048, or 4096. On NVIDIA Spectrum-2 and later, you can set the number of buckets to 64, 128, 256, 512, 1024, 2048, or 4096. The default value is 64.
+- Set the number of seconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event. You can specify a value between 1 and 65535. The default value is 120.
+
+The following example enables resilient hashing, sets the number of hash buckets to use for all ECMP routes to 512, and sets the number of seconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event to 30.
 
 {{< tabs "TabID384 ">}}
 {{< tab "NVUE Commands ">}}
 
-Cumulus Linux does not provide NVUE commands for this setting.
+```
+cumulus@switch:~$ nv set system forwarding resilient-hash state enabled
+cumulus@switch:~$ nv set system forwarding resilient-hash bucket-size 512
+cumulus@switch:~$ nv set system forwarding resilient-hash active-timer 30
+cumulus@switch:~$ nv config apply
+```
+
+To disable resilient hashing, run the `nv set system forwarding resilient-hash state disabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/datapath/traffic.conf` file to uncomment and set the `resilient_hash_enable` parameter to `TRUE`.
+Edit the `/etc/cumulus/datapath/traffic.conf` file, then restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-   You can also set the `resilient_hash_entries_ecmp` parameter to the number of hash buckets to use for all ECMP routes. On Spectrum switches, you can set the number of buckets to 64, 512, 1024, 2048, or 4096. On NVIDIA Spectrum-2 and later, you can set the number of buckets to 64, 128, 256, 512, 1024, 2048, or 4096. The default value is 64.
-
-   ```
-   # Enable resilient hashing
-   resilient_hash_enable = TRUE
-
-   # Resilient hashing flowset entries per ECMP group
-   # 
-   # Mellanox Spectrum platforms:
-   # Valid values - 64, 512, 1024, 2048, 4096
-   #
-   # Mellanox Spectrum2/3 platforms
-   # Valid values -  64, 128, 256, 512, 1024, 2048, 4096
-   #
-   # resilient_hash_entries_ecmp = 64
-   ```
-
-2. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
-<!-- vale off -->
-{{<cl/restart-switchd>}}
-<!-- vale on -->
-
-3. Resilient hashing in hardware does not work with next hop groups; the switch remaps flows to new next hops when the set of nexthops changes. To work around this issue, configure zebra not to install next hop IDs in the kernel with the following vtysh command:
-
-  ```
-  cumulus@switch:~$ sudo vtysh
-  switch# configure terminal
-  switch(config)# zebra nexthop proto only
-  switch(config)# exit
-  switch# write memory
-  switch# exit
-  cumulus@switch:~$
-  ```
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+# Enable resilient hashing
+resilient_hash_enable = TRUE
+# Resilient hashing flowset entries per ECMP group
+# 
+# Mellanox Spectrum platforms:
+# Valid values - 64, 512, 1024, 2048, 4096
+#
+# Mellanox Spectrum2/3 platforms
+# Valid values -  64, 128, 256, 512, 1024, 2048, 4096
+#
+resilient_hash_entries_ecmp = 512
+#
+resilient_hash_active_timer = 30
+```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-**Considerations**
+To show resilient hashing information, such as its state (enabled or disabled), the total number of router adjacency ECMP group buckets available on the switch, the maximum number of ECMP groups that can use resilient hashing simultaneously, and the number of ECMP groups currently using resilient containers in hardware, run the `nv show system forwarding resilient-hash` command. 
 
-When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. <span class="a-tooltip">[FRR](## "FRRouting")</span> deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
+```
+cumulus@switch:~$ nv show system forwarding resilient-hash 
+                            operational  applied 
+--------------------------  -----------  ------- 
+state                       enabled      enabled 
+bucket-size                 512          512 
+active-timer                30           30 
+total-buckets               65536 
+max-ecmp-groups             128 
+active-ecmp-groups          47
+```
+
+### Considerations
+
+Be aware of the following considerations when configuring resilient hashing. 
+
+#### Resilient Hashing and Next Hop Groups
+
+Resilient hashing in hardware does not work with next hop groups; the switch remaps flows to new next hops when the set of next hops changes. To work around this issue, configure zebra not to install next hop IDs in the kernel with the following vtysh command:
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# zebra nexthop proto only
+switch(config)# exit
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+#### IPv6 Route Replacement
+
+When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. FRR deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
 
 To work around this issue, you can enable IPv6 route replacement.
 
@@ -480,21 +507,17 @@ To work around this issue, you can enable IPv6 route replacement.
 For certain configurations, IPv6 route replacement can lead to incorrect forwarding decisions and lost traffic. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop.
 {{%/notice%}}
 
-To enable the IPv6 route replacement option:
+To enable the IPv6 route replacement option, in the `/etc/frr/daemons` file, add the `--v6-rr-semantics` configuration option to the zebra daemon definition, then reload FRR with the `sudo systemctl reload frr.service` command.
 
-1. In the `/etc/frr/daemons` file, add the configuration option `--v6-rr-semantics` to the zebra daemon definition. For example:
-
-    ```
-    cumulus@switch:~$ sudo nano /etc/frr/daemons
-    ...
-    vtysh_enable=yes
-    zebra_options=" -M cumulus_mlag -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
-    bgpd_options=" -M snmp  -A 127.0.0.1"
-    ospfd_options=" -M snmp -A 127.0.0.1"
-    ...
-    ```
-
-2. Reload FRR with the `sudo systemctl reload frr.service` command.
+```
+cumulus@switch:~$ sudo nano /etc/frr/daemons
+...
+vtysh_enable=yes
+zebra_options=" -M cumulus_mlag -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
+bgpd_options=" -M snmp  -A 127.0.0.1"
+ospfd_options=" -M snmp -A 127.0.0.1"
+...
+```
 
 To verify that IPv6 route replacement, run the `systemctl status frr` command:
 

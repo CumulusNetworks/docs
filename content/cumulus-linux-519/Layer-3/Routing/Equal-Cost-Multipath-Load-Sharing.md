@@ -421,12 +421,49 @@ A larger number of ECMP buckets reduces the impact on adding new next hops to an
 You can configure route and MAC address hardware resources depending on ECMP bucket size changes. See {{%link title="Routing#NVIDIA Spectrum Switches" text="NVIDIA Spectrum routing resources" %}}.
 {{%/notice%}}
 
+{{%notice warning%}}
+Enabling resilient hashing, changing the bucket size, or unsetting the configuration reloads `switchd` and flaps every layer 3 interface on the switch. Traffic is disrupted while the interfaces are down. Plan these changes for a maintenance window. Changing the active flow timer applies immediately and does not reload `switchd`.
+{{%/notice%}}
+
+<!-- REVIEW: the command path below is resolved from the spec's object-model tree, its configuration
+     command table, and its show output, which all agree on "nv set system forwarding resilient-hash".
+     The spec's Use Cases table and Documentation section instead show "system forwarding ecmp
+     resilient-hash", and the Documentation section uses "enable on" rather than "state enabled".
+     Resolved by section role. Sibling leaves in the reference (ecmp-hash, lag-hash, hash-seed) support
+     the flat form. Confirm on a build. Delete this comment before publishing. -->
+
 To enable resilient hashing:
 
 {{< tabs "TabID384 ">}}
 {{< tab "NVUE Commands ">}}
 
-Cumulus Linux does not provide NVUE commands for this setting.
+To enable resilient hashing, run the `nv set system forwarding resilient-hash state enabled` command. NVIDIA Cumulus Linux disables resilient hashing by default.
+
+```
+cumulus@switch:~$ nv set system forwarding resilient-hash state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To set the number of hash buckets each ECMP group uses, run the `nv set system forwarding resilient-hash bucket-size <number>` command. The default is 64. On Spectrum switches, you can set 64, 512, 1024, 2048, or 4096. On NVIDIA Spectrum-2 and later, you can also set 128 or 256.
+
+To set the number of seconds an idle bucket waits before the switch reassigns it to a new next hop, run the `nv set system forwarding resilient-hash active-timer <seconds>` command. You can set a value between 1 and 65535. The default is 120.
+
+The following example enables resilient hashing with 512 buckets and a 30 second active flow timer:
+
+```
+cumulus@switch:~$ nv set system forwarding resilient-hash state enabled
+cumulus@switch:~$ nv set system forwarding resilient-hash bucket-size 512
+cumulus@switch:~$ nv set system forwarding resilient-hash active-timer 30
+cumulus@switch:~$ nv config apply
+```
+
+NVUE configures `zebra nexthop proto only` for you, so you do not need the vtysh step shown in the Linux commands tab.
+
+To return every resilient hashing setting to its default and disable the feature, run the `nv unset system forwarding resilient-hash` command.
+
+{{%notice note%}}
+You cannot enable resilient hashing while {{<link url="#adaptive-routing" text="adaptive routing">}} is active. The switch accepts the `nv set` command but rejects the configuration when you run `nv config apply`.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -469,6 +506,37 @@ Cumulus Linux does not provide NVUE commands for this setting.
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show the resilient hashing configuration and the bucket resources in use, run the `nv show system forwarding resilient-hash` command.
+
+<!-- REVIEW: sample output adapted from the spec's mock, not captured on hardware. The spec states
+     the active timer in seconds in its object model, its command table, and its requirements, but one
+     use case shows 30000 and the internal flow describes the value in milliseconds. Seconds emitted
+     per section role. Confirm both the units and the column layout on a switch. Delete this comment
+     before publishing. -->
+
+```
+cumulus@switch:~$ nv show system forwarding resilient-hash
+                    operational  applied
+------------------  -----------  -------
+state               enabled      enabled
+bucket-size         512          512
+active-timer        120          120
+total-buckets       65536
+max-ecmp-groups     128
+active-ecmp-groups  47
+```
+
+The command shows these fields:
+
+| Field | Description |
+|-------| ----------- |
+| `state` | Whether resilient hashing is enabled. |
+| `bucket-size` | The number of hash buckets each ECMP group uses. |
+| `active-timer` | The number of seconds an idle bucket waits before the switch reassigns it to a new next hop. |
+| `total-buckets` | The total buckets available on the platform. This is always 65536 on Spectrum switches. |
+| `max-ecmp-groups` | The maximum number of ECMP groups that can use resilient hashing at the same time, which is the total buckets divided by the bucket size. |
+| `active-ecmp-groups` | The number of ECMP groups currently using resilient hashing in hardware. |
 
 **Considerations**
 

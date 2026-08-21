@@ -55,7 +55,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - Disable syslog print on console
   - FRR config Apply Latency and Timeout
   - {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-routes" text="Prevent re-export of VRF leaked EVPN type-5 routes">}}
-  - Support for Resilient hashing
+  - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resilient-hashing" text="NVUE commands for ECMP resilient hashing">}}
   - knob to configure MAX_FDS for FRR
 - Telemetry
   - gNMI component type

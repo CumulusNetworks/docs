@@ -1863,11 +1863,18 @@ To see the views available for a show command, run the command with `--view` and
 
 ```
 cumulus@switch:~$ nv show interface --view <<TAB>>
-acl-statistics  description     lldp            physical        status          
-bond-members    detail          lldp-detail     pluggables      svi             
-bonds           dot1x-counters  mac             port-security   synce-counters  
-brief           dot1x-summary   mlag-cc         qos-profile     up              
-counters        down            neighbor        small           vrf
+acl-statistics            dot1x-ipv6-summary        qos-congestion-control
+ber                       dot1x-summary             qos-profile
+bond-members              down                      qos-roce-counters
+bonds                     link-tracking             qos-roce-status
+brief                     lldp                      qos-roce-status-pool-map
+carrier-stats             lldp-detail               rates
+counters                  mac                       small
+debounce-counters         mlag-cc                   status
+description               neighbor                  svi
+detail                    neighbor-detail           synce-counters
+dom                       physical                  up
+dot1x-counters            port-security             vrf
 ```
 
 ```

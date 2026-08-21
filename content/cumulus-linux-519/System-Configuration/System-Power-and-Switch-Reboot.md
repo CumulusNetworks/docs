@@ -13,6 +13,7 @@ Cumulus Linux provides commands to:
 Cumulus Linux provides these reboot modes:
 - **immediate** reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
 - **halt** shuts down the operating system and halts the CPU. The switch hardware may remain powered.
+- **power-off** shuts down the operating system and powers off the switch completely. Unlike halt, power-off does not leave the switch hardware powered. The switch stays powered off until you power cycle it externally. See {{<link url="#power-off" text="Power Off">}}.
 - **power-cycle** lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
@@ -57,6 +58,12 @@ Restart the switchd service with the `sudo systemctl restart switchd.service` co
 
 The following table shows the NVUE reboot commands and their Linux command equivalents:
 
+<!-- REVIEW: the two power-off rows below. The spec defines only the interactive form and names no
+     force variant; all six other modes have one, so the force row is drafted from page convention.
+     Its Linux cell reads "No native command available" because no no-prompt flag for cl-poweroff is
+     documented (compare cl-powercycle -noprompt). Confirm both against a candidate build. Delete
+     this comment before publishing. -->
+
 | NVUE Command  | Linux Command| Description |
 |-------------- | ------------- | ----------- |
 | `nv action reboot system` | `sudo csmgrctl -c` | Reboots the switch in cold mode. This command is equivalent to the `nv action reboot system mode cold` command. |
@@ -65,6 +72,8 @@ The following table shows the NVUE reboot commands and their Linux command equiv
 | `nv action reboot system mode immediate force` | `sudo reboot --force` | Reboots the switch immediately without notifying any running processes and without prompting for confirmation. |
 | `nv action reboot system mode halt` | No native command available. | Shuts down the operating system and halts the CPU. The switch hardware may remain powered.  |
 | `nv action reboot system mode halt force` | `sudo reboot --halt` | Shuts down the system without prompting for confirmation.|
+| `nv action reboot system mode power-off` | `sudo cl-poweroff` | Powers off the switch completely. The switch stays powered off until you power cycle it externally. |
+| `nv action reboot system mode power-off force` | No native command available. | Powers off the switch completely without prompting for confirmation. |
 | `nv action reboot system mode power-cycle` | `sudo cl-powercycle` | Power cycles the switch. |
 | `nv action reboot system mode power-cycle force` | `sudo cl-powercycle -noprompt` | Power cycles the switch without prompting for confirmation.|
 | `nv action reboot system mode cold` | `sudo csmgrctl -c` | Reboots the switch in cold mode. |
@@ -294,14 +303,54 @@ iface eth0
 
 ## Power Off
 
-In certain situations, you might need to power off the switch instead of rebooting. To power off the switch, run the `cl-poweroff` command, which shuts down the switch.
+In certain situations, you might need to power off the switch instead of rebooting it. When you power off the switch, it stays powered off until you power cycle it externally, such as through a remote power distribution unit (PDU).
+
+<!-- REVIEW: typed as note, following house practice at ~85% of the corpus. A reviewer may prefer
+     warning here, since recovery needs physical or PDU intervention and there is no software undo.
+     Delete this comment before publishing. -->
+
+{{%notice note%}}
+Powering off the switch ends all connectivity to it, including your own management session. You cannot bring the switch back up with a software command; powering it back on requires external intervention.
+{{%/notice%}}
+
+To power off the switch, run the `nv action reboot system mode power-off` command. To power off the switch without a confirmation prompt, run the `nv action reboot system mode power-off force` command.
+
+{{< tabs "TabID300 ">}}
+{{< tab "NVUE Commands ">}}
+
+<!-- REVIEW: sample output adapted from the spec's mock, not captured on hardware. The hostname is
+     rewritten to the page's cumulus@switch:~$ form. Confirm the exact warning wording and whether
+     the CLI emits a blank line before the prompt. Delete this comment before publishing. -->
+
+```
+cumulus@switch:~$ nv action reboot system mode power-off
+WARNING: This operation will shut down the system completely.
+The switch will remain powered off until power cycled through a remote PDU connection.
+
+Do you want to continue? [y/N] y
+Action executing ...
+Powering off the switch
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To power off the switch, run the `cl-poweroff` command, which shuts down the switch.
 
 ```
 cumulus@switch:~$ sudo cl-poweroff
 ```
+
+<!-- REVIEW: this platform caveat is left scoped to the Linux tab on the reading that the NVUE mode
+     calls cl-poweroff rather than poweroff and so is unaffected. The spec says only "all
+     Spectrum-based systems". If the NVUE command is affected on these platforms too, move this out
+     of the tab and make it a section-level notice. Delete this comment before publishing. -->
 
 You can also run the Linux `poweroff` command, which gracefully shuts down the switch (the switch LEDs stay on). On certain switches, such as the NVIDIA SN2201, SN2010, SN2100, SN2100B, SN3420, SN3700, SN3700C, SN4410, SN4600C, SN4600, SN4700, SN5400, or SN5600, the switch reboots instead of powering off.
 
 ```
 cumulus@switch:~$ sudo poweroff
 ```
+
+{{< /tab >}}
+{{< /tabs >}}

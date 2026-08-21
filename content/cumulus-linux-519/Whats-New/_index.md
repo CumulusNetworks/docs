@@ -35,7 +35,6 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - SN6600 generic part number GA
 - Enable support for using IPV4 240.0.0.0/4 space
 - VRF per destination support GA
-- Support in CPO switches
 - Support security configurations visibility for manufacturing and field inspection (Phase 1)
 - Disconnected multiplane support for EVPN deployment with 802.1x based dynamic VRF assignment GA
 - SRv6 Back to sender(BTS) upon link down

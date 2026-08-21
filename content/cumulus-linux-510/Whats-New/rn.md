@@ -170,8 +170,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| 4957394 | During <code>snmpwalk</code>, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes <code>GET</code> or <code>GETNEXT</code> for the requests. | 5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6 | 5.17.0-5.18.0|
-| 4882392 | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6 | 5.17.0-5.18.0|
+| 4957394 | During <code>snmpwalk</code>, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes <code>GET</code> or <code>GETNEXT</code> for the requests. | 5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7 | 5.17.0-5.18.0|
+| 4882392 | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7 | 5.17.0-5.18.0|
 | 4871161 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0 | |
 | 4789097 | The switch deletes a static blackhole route even when the blackhole type specified in the delete command does not match the configured type. | 5.9.4-5.15.1 | 5.16.0-5.16.1, 5.16.5-5.18.0|
 | 4771521, 5093940, 5093941 | Layer 3 multicast traffic does not forward when OMF (Optimized Multicast Flooding) and PIM is enabled. To work around this issue, flap the router port. | 5.9.2-5.15.1 | 5.16.0-5.16.1, 5.16.5-5.18.0|

@@ -61,6 +61,12 @@
 <td>4.14.0-4.15.1</td>
 </tr>
 <tr>
+<td>3755207</td>
+<td>When you export digital optics table data from NetQ, some fields might be visible in the UI that are not exported to CSV or JSON files.</td>
+<td>4.9.0-4.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3721754, 3721794</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0-4.10.1</td>
@@ -145,6 +151,12 @@
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
 <td>4.9.0-4.13.0</td>
 <td>4.14.0-4.15.1</td>
+</tr>
+<tr>
+<td>3755207</td>
+<td>When you export digital optics table data from NetQ, some fields might be visible in the UI that are not exported to CSV or JSON files.</td>
+<td>4.9.0-4.15.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3721754, 3721794</td>

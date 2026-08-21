@@ -7,18 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5215201</td>
-<td>In rare scenarios, a link fault recovery sequence might trigger a switchd watchdog timeout on Spectrum-4 switches.</td>
-<td>5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5175518, 5217093</td>
-<td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
-<td>5.16.1, 5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5172157</td>
 <td>The {{nv config apply}} command fails to apply configuration changes because NVUE fails to handle stale sessions and does not prompt you to clear them. To work around this issue, run the {{nv config detach}} command to clear the stale session, then run the {{nv config replace}} command if there is a stale pending revision.</td>
 <td>5.16.5-5.17.0</td>
@@ -27,18 +15,12 @@
 <tr>
 <td>5172073, 5217095</td>
 <td>The LLDP Chassis ID might be non-unique when front-panel ports share MAC addresses.</td>
-<td>5.16.5-5.17.0</td>
-<td>5.18.0</td>
+<td>5.16.5-5.16.6, 5.17.0</td>
+<td>5.16.7, 5.18.0</td>
 </tr>
 <tr>
 <td>5172071</td>
 <td>When you apply a BGP configuration change that renumbers the IP addresses of peers in a peer group and at removes another peer group at the same time, FRR reload fails. As a result, the FRR service does not reload or restart cleanly and the configuration apply rolls back.</td>
-<td>5.16.5-5.17.0</td>
-<td>5.18.0</td>
-</tr>
-<tr>
-<td>5167708, 5217094</td>
-<td>When an ACL policy is reinstalled while ACL rule counter statistics are being collected, a kernel panic can occur and the switch might reboot unexpectedly. The panic occurs because the ACL counter buffer is released while the hardware counter read for that buffer is still in progress.</td>
 <td>5.16.5-5.17.0</td>
 <td>5.18.0</td>
 </tr>
@@ -250,7 +232,7 @@
 <td>5.18.0</td>
 </tr>
 <tr>
-<td>5025459</td>
+<td>5025459, 5223426</td>
 <td>During FRR shutdown (reboot or upgrade), zebra might crash. There is no impact on normal switch operation or the data plane. The switch comes up cleanly after reboot. </td>
 <td>5.16.5-5.17.0</td>
 <td>5.18.0</td>
@@ -1159,7 +1141,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5058751</td>
 <td>The NVUE {{nv show interface &lt;interface-id qos pfc}} command does not support interface ranges.</td>
-<td>5.16.5-5.16.6</td>
+<td>5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>5056596, 5057188</td>
@@ -1169,7 +1151,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5032841, 4913679</td>
 <td>On the Spectrum-1 switch, creating a bridge interface (SVI) fails with the error message {{STATUS_NO_RESOURCES}}. </td>
-<td>5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>5032819, 5057365, 4983144</td>
@@ -1199,22 +1181,22 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5012295</td>
 <td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
-<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>5005096</td>
 <td>The AI Ethernet statistics metrics collection sometimes times out and does not return any data.</td>
-<td>5.16.5-5.16.6</td>
+<td>5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4992204, 4999344, 4999345</td>
 <td>Cumulus Linux does not support the NVUE {{nv set nve vxlan port &lt;udp-port&gt;}} command; you do not see the configured UDP port in the outer VXLAN packet header.</td>
-<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4989932</td>
 <td>Cumulus Linux 5.16 includes updated {{kexec-tools}} without the required patches.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4989386, 4989428</td>
@@ -1248,7 +1230,7 @@ nv config apply -y</td>
 <tr>
 <td>4980055</td>
 <td>With very large configurations, {{nv config apply}} command performance might be slow.</td>
-<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4977145, 5067278</td>
@@ -1258,7 +1240,7 @@ nv config apply -y</td>
 <tr>
 <td>4968081</td>
 <td>During switch boot, a race condition between Docker container restoration and LLDP daemon startup might cause {{/var/run/lldpd.socket}} to be created as a directory instead of a socket file. When this occurs, the LLDP daemon is unable to clean up the path and fails to start permanently, requiring a reboot to recover.</td>
-<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4966799</td>
@@ -1268,7 +1250,7 @@ nv config apply -y</td>
 <tr>
 <td>4964407</td>
 <td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
-<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4958266, 4989438</td>
@@ -1278,17 +1260,17 @@ nv config apply -y</td>
 <tr>
 <td>4957677</td>
 <td>If FSM cable information does not finish or does not start within three seconds (due to other, higher priority FSM handling), recovery flow is triggered. In some edge cases, this recovery flow does not clean all necessary parameters.</td>
-<td>5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4957394</td>
 <td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
-<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4951125</td>
 <td>API calls to NVUE generate a TACACS author request for a local user bypassing the authentication order. </td>
-<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4949347, 5067286, 4949346, 5221492</td>
@@ -1303,7 +1285,7 @@ nv config apply -y</td>
 <tr>
 <td>4940786, 4705183</td>
 <td>Transceiver firmware upgrade fails due to PMAOS register access failures.</td>
-<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4938139</td>
@@ -1313,7 +1295,7 @@ nv config apply -y</td>
 <tr>
 <td>4937867</td>
 <td>If FSM cable info does not finish or does not start within three seconds (due to other, higher priority FSM handling), recovery flow is triggered. In some edge cases, this recovery flow does not clean all necessary parameters.</td>
-<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4937657, 4989435</td>
@@ -1323,32 +1305,32 @@ nv config apply -y</td>
 <tr>
 <td>4931956</td>
 <td>Upgrading Cumulus Linux from 5.13.1 or earlier with package upgrade with the NVUE {{nv action upgrade system packages}} command sometimes fails or might be interrupted after the packages are unpacked but not configured.  As a result, you might see issues such as missing files or symlinks, or TACACS+ restricted user shells not working as expected. If the {{dpkg -l}} command shows packages with a status of {{iU}} instead of {{ii}} (the first two characters of the line), run the {{sudo dpkg --configure -a}} command to complete package configuration. Rerun package upgrade in case any packages are not downloaded or unpacked.To avoid this issue, turn off sysmonitor with the {{sudo systemctl stop sysmonitor}} command before running package upgrade with NVUE commands.</td>
-<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4931702</td>
 <td>When you launch a Cumulus VX 5.16.1 image in Air with switch emulation, you see the {{systemd-remount-fs.service}} systemd service in a failed state. This issue has no functional impact.</td>
-<td>5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4930970</td>
 <td>Unreachability routes originated locally (for example, due to a link-down event) display incorrect BGP origin attribute values in show commands and JSON output. The origin shows as {{IGP}} instead of {{incomplete}} and JSON fields include redundant origin symbols in the AS path string.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4930152, 4964153</td>
 <td>When you configure layer 3 SVI interfaces with an anycast gateway (VRR) IP address only and no unique IP address, the connected route for the subnet is not programmed in the ASIC, causing packets destined for locally connected hosts to drop after decapsulation.</td>
-<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4930019</td>
 <td>The OTEL {{nvswitch_buffer_cell_size_bytes}} metric is missing.</td>
-<td>5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4926427, 4958319, 4926426</td>
 <td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
-<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4925514, 5217109, 4919006</td>
@@ -1363,18 +1345,18 @@ nv config apply -y</td>
 <tr>
 <td>4925316</td>
 <td>Known registered multicast traffic is duplicated to receivers behind an EVPN-MH dual-homed access switch.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4924838</td>
 <td>When the a BGP neighbor is up for more than a day (24 hours), the uptime depicts correctly but the reset time which indicates the last connection reset time, does not account for the time elapsed past a day after the BGP neighbor resets. This is a display issue in NVUE; there is no direct traffic or functional impact.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4924486, 5001905, 4924487</td>
 <td>A fatal SDK event might occur during i2c or cable read events, observed with the following {{switchd}} log message:
 hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</td>
-<td>5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4922188, 5145981</td>
@@ -1389,17 +1371,17 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <tr>
 <td>4918507</td>
 <td>When you upgrade Cumulus Linux from a prior release with package upgrade, TACACS users with a restricted bash shell might not be able to recall shell commands from history with the up and down arrow keys.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4918342, 4641291</td>
 <td>In rare circumstances, the switch stops streaming telemetry data for interface counters, buffers, or PHY.</td>
-<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4917759</td>
 <td>BGP sessions configured with an explicit IPv6 link local peer address might result in stale or invalid next hop tracking entries after a session disruption.</td>
-<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4916952, 4922093</td>
@@ -1414,22 +1396,22 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <tr>
 <td>4911812</td>
 <td>Running {{snmpwalk}} of entity-mib displays empty values for the {{entPhysicalName}} and {{entPhysicalAlias}} parameters.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4909312</td>
 <td>Cumulus Linux 5.14  removed the OTEL metric {{nvswitch_interface_if_in_octets}} because it duplicated {{nvswitch_interface_ether_stats_octets}}. </td>
-<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4908392</td>
 <td>In the multicast routing path (ip_mr_output) you might encounter a self-deadlock issue in one CPU that causes the kernel to lock up (the switch reboots).</td>
-<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4907468</td>
 <td>When you configure more than 256 SRv6 static SIDs, NVUE accepts the configuration without error. However, Cumulus Linux only programs the first 256 entries in hardware and drops traffic matching the remaining entries. Counters for the remaining entries are not available with the {{nv show router segment-routing srv6 stats sid}} command.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4905123, 5067291</td>
@@ -1449,12 +1431,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <tr>
 <td>4900970</td>
 <td>In an ECMP scenario, the zebra IP routing manager sends recursive next hop messages to BGP even if the resolution status and valid next hops do not change. As a result, zebra might eventually run out memory and terminate.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4899807</td>
 <td>For BGP unnumbered, SOO routes in the NVUE BGP SOO table have incomplete peer bitindex mappings.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4895597, 4922100, 4923092, 4923776</td>
@@ -1464,22 +1446,22 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <tr>
 <td>4895589</td>
 <td>When you run the {{nv set vrf default router bgp address-family ipv4-unicast state disabled}} command, you still see IPv4 exchanged between BGP peers. This is because FRR enables IPv4 by default even when there is no explicit configuration.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4895582</td>
 <td>Setting the AS path {{allow-my-asn occurrences}} when the AS path {{allow-my-asn origin}} is already configured on the same BGP neighbor or peer group causes an FRR reload failure. This issue affects all AFI and SAFIs, including IPv4, IPv6, EVPN, IPv4 unreachability, and IPv6 unreachability.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4895525</td>
 <td> During a long-run repeated execution of {{ethtool -m &lt;interface&gt;}}, the command occasionally returns RAW hexadecimal EEPROM data instead of decoded transceiver fields.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4895501, 4945652, 4945654</td>
 <td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
-<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4895490</td>
@@ -1491,12 +1473,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>When you configure BGP dynamic neighbors and 
 {{default-originate}} with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the {{default-originate}} with the route map command or toggle 
 {{default-route-origination}} off, then on.</td>
-<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4895247</td>
 <td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
-<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4894676</td>
@@ -1506,7 +1488,7 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <tr>
 <td>4893569</td>
 <td>NVUE allows invalid interfaces with leading zeroes; for example, swp000001.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4891771, 4989440</td>
@@ -1516,32 +1498,32 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <tr>
 <td>4889939</td>
 <td>In an MLAG configuration, when the MLAG node receives MLAG peer keepalives from an IP address that is not configured as the peer IP address, a peer IP address mismatch conflict occurs. Even after the conflict is resolved,  you sometimes see that the MLAG session still retains the peer IP mismatch conflict.</td>
-<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4885553</td>
 <td>If ZTP uses a proxy server for image download using {{onie-install}}, the image install fails with signing issues.</td>
-<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4885474, 4891596</td>
 <td>During warm boot, a transient error {{ERR Failed to enable ipv4-mc for VRF tbl-id:0 vr-id:1}} appears in the {{switchd}} log. You can ignore this error; VRF configuration is not affected.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4883652</td>
 <td>When you remove 802.1X configuration from an interface with the NVUE {{nv unset interface &lt;swp&gt; dot1x}} command followed by {{nv config apply}}, the interface remains permanently in an admin down state. This issue occurs for both layer 2 (bridge) and layer 3 (routed) interfaces, including interfaces you configure with dynamic VRF.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4882392</td>
 <td>If you run the {{nv show evpn access-vlan-info vlan}}  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error. </td>
-<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.9.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4881914, 4883569, 4883698</td>
 <td>Removing or replacing private ASNs or replacing private ASNs with public ASNs under the {{ipv4-unreachability}} or {{ipv6-unreachability}} address family on a BGP neighbor or peer group causes FRR reload to fail. FRR does not support these options for the unreachability address families. </td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4881679, 4922104</td>
@@ -1551,12 +1533,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <tr>
 <td>4879165</td>
 <td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
-<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4875842</td>
 <td>Noisy logs can appear on the console when there is a pending FRR telemetry configuration and you collect a cl-support file manually.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4875640, 4992435</td>
@@ -1567,7 +1549,7 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <tr>
 <td>4875599</td>
 <td>When you configure authentication for a BGP dynamic neighbor, removing the configuration does not bring back the sessions.</td>
-<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4875122, 4922105</td>
@@ -1577,12 +1559,12 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 <tr>
 <td>4873853, 4910990</td>
 <td>TACACS authentication is not working with flat files. The Cumulus Linux user guide is missing the {{sudo pam-auth-update --enable tacplus}} command.</td>
-<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4872684</td>
 <td>Cumulus Linux does not provide protection or a warning when you configure a destructive resource limit for a critical service. A low value resource limit for {{nvued}} might terminate the {{nvued}} service and block users from using NVUE commands.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4870212</td>
@@ -1590,17 +1572,17 @@ ERR bulk_counter_transaction_set DISABLE failed: Driver's Return Status is Non-Z
 configuration with the {{nv unset vrf default router bgp address-family ipv6-unreachability advertise-origin}} command, the receiving router continues to 
 advertise disaggregated routes even though the UNREACH updates no longer contain a matching SoO. This issue results in unnecessary route advertisements 
 where only the aggregate should be advertised.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4870105</td>
 <td>When you provide a JSON string with double quotes in an NVUE {{nv set}} command, the command fails.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4869499</td>
 <td>When you configure PTP on a trunk interface, where the selected PTP VLAN is the PVID (untagged native VLAN), the PTP packets might be tagged incorrectly with the VLAN ID.</td>
-<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4867633, 4923804</td>
@@ -1620,7 +1602,7 @@ where only the aggregate should be advertised.</td>
 <tr>
 <td>4861733</td>
 <td>The NVUE {{nv set switch host interface}} command shows forwarding configuration for eth0 and the loopback interface.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4856402, 4923647, 4925207</td>
@@ -1630,57 +1612,57 @@ where only the aggregate should be advertised.</td>
 <tr>
 <td>4855164</td>
 <td>When you run {{mlxcmd}} with non root privileges, you see a python traceback instead of an error message.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4850784</td>
 <td>The unsupported gNOI set-package RPC request does not fail. The supported RPCs are FILE Stat/Remove/Get/Put, Reboot, OS Install, OS Activate.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4850780</td>
 <td>After you remove 802.1X IPv6 profile configuration for dynamic IPv6 multi-tenancy, IPv6 addresses and summary routes remain in FRR. To recover from this state, manually delete the residual files or reauthenticate through the IPV6 profile with {{hostapd}} on the affected interfaces.To avoid this issue, detach the IPv6 profile from the interfaces and apply the configuration, then remove the global 802.1X configuration. </td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4850539</td>
 <td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4840271</td>
 <td>When you configure a static SRv6 Static SID, NVUE does not enable SRv6 automatically and requires you to run the {{nv set router segment-routing srv6 state enabled}} command manually.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4830228, 4799012</td>
 <td>When you configure RoCE lossless priority groups and you use ISSU to perform a hitless upgrade, {{switchd}} restarts and ISSU fails.</td>
-<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4824902, 4944347</td>
 <td>NVUE no longer supports the {{nv set system docker state}} and {{nv show system docker state}} commands. Docker remains enabled because core services such as UMF, gNMI and WJH run in containers.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4824056</td>
 <td>Adding a bond member fails when the member port has subinterfaces and you unset the subinterface and add the bond member under same commit.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4820187, 4895566</td>
 <td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are categorized incorrectly as fatal. The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
-<td>5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4731091, 4857885</td>
 <td>During optimized image upgrade, the switch logs an error because a new file is added. There is no functional impact.</td>
-<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>4722589, 4866475</td>
 <td>In a large scale configuration, a full MIB walk times out.</td>
-<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.6</td>
+<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.7</td>
 </tr>
 </table>
 </tables>

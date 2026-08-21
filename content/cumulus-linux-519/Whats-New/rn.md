@@ -138,6 +138,7 @@ pdfhidden: True
 ### Fixed Issues in 5.19.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| 5184005 | In certain SRv6 configuration rollback scenarios, Zebra might fail to restore all explicit SRv6 SIDs. This can occur when multiple SRv6 locators share the same parent SID block and one of the locators is replayed during rollback. To work around this issue, restart FRR to clear the stale in-memory SRv6 SID allocation state, then reapply the intended configuration if needed. | 5.18.0 | |
 | 5175518, 5217093, 5221594 | The <code>switchd</code> watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn. | 5.16.1-5.16.6, 5.18.0 | |
 | 5165432, 5154620 | With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic.  | 5.18.0 | |
 | 5158643 | The <code>nv show evpn l3vxi --output json</code> command returns an empty dictionary ({}). To work around this issue, run the <code>nv show evpn l3vxi --rev=applied --output json</code> command instead. | 5.18.0 | |

@@ -16,13 +16,16 @@ The following NVUE commands are new in Cumulus Linux 5.19.
 {{< tab "nv show ">}}
 
 ```
-
+nv show system forwarding resilient-hash
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
+nv set system forwarding resilient-hash active-timer
+nv set system forwarding resilient-hash bucket-size
+nv set system forwarding resilient-hash state
 nv set vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn skip-evpn-imported
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection v6-lla
 ```

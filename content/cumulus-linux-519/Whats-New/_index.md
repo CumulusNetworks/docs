@@ -28,7 +28,6 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - ISSUv2 support - Full KVD (Beta)
 - Port init profiles
 - Packet trimming BTS
-- Command to set IPv6 only on a bgp neighbor configured for bgp unnumbered
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5
 - BMC Host Interface Common Layer
@@ -52,7 +51,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - NVUE
   - {{<link url="System-Power-and-Switch-Reboot/#power-off" text="NVUE command to power off the switch">}}
   - Map port to connector
-  - Command to set IPv6 only on a BGP neighbor configured for BGP unnumbered
+  - {{<link url="Optional-BGP-Configuration/#ipv6-only-unnumbered-peering" text="NVUE command to set IPv6-only transport on an unnumbered BGP neighbor">}}
   - Disable syslog print on console
   - FRR config Apply Latency and Timeout
   - Control readvertisement of EVPN Type-5 Stale Route Bug with Inter-VRF Leaking

@@ -75,56 +75,76 @@ If you unset a peer group, make sure that it is not applied to any neighbors. If
 
 ## IPv6-only Unnumbered Peering
 
-To configure a BGP unnumbered peer for IPv6-only peering over a link-local address, you must configure an NVUE snippet. When you configure an NVUE snippet for a `v6only` peering, the `remote-as` and any `peer-group` configuration must be applied with the snippet instead of NVUE CLI commands. If a peer group is configured for the neighbor, the remote-as can be defined in the peer group configuration through NVUE commands.
+On a dual-stack interface, an unnumbered BGP neighbor can initiate peering over IPv4 and reject inbound IPv6 peering attempts with a TCP reset, which prevents the IPv6 session from establishing. To force the session to use the IPv6 link-local address as its transport, set the neighbor connection to `v6-lla`.
 
-The following example configures the BGP peer group CLIENT1 with soft reconfiguration and community advertisement enabled, and the remote AS set to external. The snippet configuration configures the `v6only` option and applies the peer group to the neighbor: 
+The `connection` setting takes one of two values:
+- `system-defined` preserves automatic transport selection. This is the default setting.
+- `v6-lla` forces IPv6 link-local transport.
+
+{{%notice note%}}
+You can set `v6-lla` only on an unnumbered (interface) neighbor. On a numbered neighbor, the switch accepts the `nv set` command but `nv config apply` rejects the configuration with the error `connection 'v6-lla' is only supported for an unnumbered interface neighbor.`
+{{%/notice%}}
+
+<!-- REVIEW: earlier releases required an NVUE snippet for v6only peering, and that procedure
+     restricted remote-as and peer-group configuration to the snippet. The spec's rendered frr.conf
+     shows a peer group applied alongside connection v6-lla, so the restriction appears lifted, but
+     the spec never says so. Confirm before publishing, and confirm whether an existing snippet and
+     this command can coexist on an upgraded switch. Delete this comment before publishing. -->
+
+To configure IPv6-only peering on an unnumbered neighbor, run the `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection v6-lla` command. This command replaces the NVUE snippet procedure that earlier releases require. If you configured a snippet for this purpose, remove it after you set the connection.
+
+{{< tabs "76 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 address-family ipv4-unicast community-advertise
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 address-family ipv4-unicast soft-reconfiguration enabled
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 connection v6-lla
 cumulus@leaf01:~$ nv config apply
 ```
 
-Create a .yaml file with the following content:
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+<!-- REVIEW: the vtysh procedure is derived from the frr.conf line the spec shows NVUE rendering
+     (neighbor swp51 interface v6only). The spec gives no vtysh configuration steps. Confirm the
+     command mode and syntax on a switch. Delete this comment before publishing. -->
 
 ```
-- set:
-    system:
-      config:
-        snippet:
-          frr.conf: |
-            router bgp 65101
-            neighbor swp1 interface v6only peer-group CLIENT1
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 interface v6only
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
 ```
 
-Patch and apply the snippet:
+{{< /tab >}}
+{{< /tabs >}}
+
+To return the neighbor to automatic transport selection, run the `nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> connection` command or set the connection to `system-defined`.
 
 ```
-cumulus@leaf01:~$ nv config patch bgp_snippet.yaml
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 connection
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example configures a `v6only` peering with no peer group applied:
+To show the transport a neighbor uses, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id>` command and check the `connection` field.
 
-Create a .yaml file with the following content:
-
-```
-- set:
-    system:
-      config:
-        snippet:
-          frr.conf: |
-            router bgp 65101
-            neighbor swp1 interface v6only remote-as external
-```
-
-Patch and apply the snippet:
+<!-- REVIEW: sample output adapted from the spec's mock, not captured on hardware. Rows unrelated to
+     this feature are elided. Confirm the field order and the exact column alignment on a switch.
+     Delete this comment before publishing. -->
 
 ```
-cumulus@leaf01:~$ nv config patch bgp_snippet.yaml
-cumulus@leaf01:~$ nv config apply
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51
+                          operational  applied
+------------------------  -----------  -----------
+...
+state                     enabled
+connection                v6-lla       v6-lla
+type                      unnumbered   unnumbered
+...
 ```
+
 ## BGP Dynamic Neighbors
 
 *BGP dynamic neighbors* provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.

@@ -2951,7 +2951,7 @@ You can configure the following graceful BGP restart timers.
 | `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. You can set a value between 1 and 4095. The default is 360 seconds.|
 
 {{%notice note%}}
-To avoid traffic loss during warm boot in an EVPN multihoming configuration with multihop BGP sessions, increase the `restart-time` timer to more than 180 seconds on all multihoming configured switches.
+To avoid traffic loss during warm boot, increase the `restart-time` timer to more than 180 seconds on all BGP configured peer switches.
 {{%/notice%}}
 
 The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:

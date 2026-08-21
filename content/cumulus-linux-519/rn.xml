@@ -783,6 +783,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5184005</td>
+<td>In certain SRv6 configuration rollback scenarios, Zebra might fail to restore all explicit SRv6 SIDs. This can occur when multiple SRv6 locators share the same parent SID block and one of the locators is replayed during rollback. To work around this issue, restart FRR to clear the stale in-memory SRv6 SID allocation state, then reapply the intended configuration if needed.</td>
+<td>5.18.0</td>
+</tr>
+<tr>
 <td>5175518, 5217093, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
 <td>5.16.1-5.16.6, 5.18.0</td>

@@ -105,7 +105,7 @@ cumulus@switch:~$ nv action reboot system mode halt
 
 Do you want to continue? [y/N]  
 Action executing ... 
-Action succeded
+Action succeeded
 ```
 
 {{< /tab >}}

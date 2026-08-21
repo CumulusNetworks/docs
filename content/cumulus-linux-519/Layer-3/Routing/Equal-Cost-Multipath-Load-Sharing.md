@@ -432,6 +432,12 @@ Enabling resilient hashing, changing the bucket size, or unsetting the configura
      Resolved by section role. Sibling leaves in the reference (ecmp-hash, lag-hash, hash-seed) support
      the flat form. Confirm on a build. Delete this comment before publishing. -->
 
+<!-- REVIEW: the NVUE tab below says NVUE configures zebra nexthop proto only for you. The Linux
+     tab still tells users to configure it by hand. The spec does not say what happens if a user
+     applied the vtysh configuration previously and then enables resilient hashing through NVUE —
+     whether the two conflict or the manual one is simply redundant. Confirm and add a sentence.
+     Delete this comment before publishing. -->
+
 To enable resilient hashing:
 
 {{< tabs "TabID384 ">}}

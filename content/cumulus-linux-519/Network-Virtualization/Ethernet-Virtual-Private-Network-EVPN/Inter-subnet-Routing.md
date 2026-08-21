@@ -600,6 +600,11 @@ When you enable EVPN type-5 route export in a VRF, the switch can re-export rout
 
 To suppress this, enable the `skip-evpn-imported` option on the VRF and address family.
 
+<!-- REVIEW: the last bullet of the notice below states that enabling the option withdraws
+     type-5 routes. On a production fabric that is a forwarding-affecting change at apply time.
+     Neither the spec nor this draft says whether it warrants a maintenance window — confirm with
+     the feature owner and add a sentence if it does. Delete this comment before publishing. -->
+
 {{%notice note%}}
 - `skip-evpn-imported` suppresses only paths whose VRF-leak ancestry begins in the EVPN table. It does not suppress every inter-VRF leaked route. Routes that originate locally remain eligible for type-5 export, including local routes leaked from another VRF.
 - Configure the option for each VRF and each address family. IPv4 and IPv6 are independent and there is no global setting.

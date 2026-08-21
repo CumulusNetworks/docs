@@ -54,7 +54,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="Optional-BGP-Configuration/#ipv6-only-unnumbered-peering" text="NVUE command to set IPv6-only transport on an unnumbered BGP neighbor">}}
   - Disable syslog print on console
   - FRR config Apply Latency and Timeout
-  - Control readvertisement of EVPN Type-5 Stale Route Bug with Inter-VRF Leaking
+  - {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-routes" text="Prevent re-export of VRF leaked EVPN type-5 routes">}}
   - Support for Resilient hashing
   - knob to configure MAX_FDS for FRR
 - Telemetry

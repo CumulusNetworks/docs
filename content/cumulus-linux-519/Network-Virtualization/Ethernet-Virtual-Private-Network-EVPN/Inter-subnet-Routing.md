@@ -594,6 +594,75 @@ cumulus@leaf01:~$
 {{< /tabs >}}
 
 <!-- vale off -->
+### Prevent Re-export of VRF Leaked Routes
+<!-- vale on -->
+When you enable EVPN type-5 route export in a VRF, the switch can re-export routes that it learned as EVPN type-5 routes in another VRF, then leaked into this one. In a fabric with inter-VRF leaking across several VTEPs, this creates additional type-5 copies of the same prefix, and those copies can remain after the originating route withdraws.
+
+To suppress this, enable the `skip-evpn-imported` option on the VRF and address family.
+
+{{%notice note%}}
+- `skip-evpn-imported` suppresses only paths whose VRF-leak ancestry begins in the EVPN table. It does not suppress every inter-VRF leaked route. Routes that originate locally remain eligible for type-5 export, including local routes leaked from another VRF.
+- Configure the option for each VRF and each address family. IPv4 and IPv6 are independent and there is no global setting.
+- The default setting is disabled, which preserves the behavior of earlier releases.
+- When you enable the option, the switch withdraws the type-5 routes that are no longer eligible, then re-advertises the ones that remain. When you disable it, EVPN-imported routes become eligible again.
+{{%/notice%}}
+
+The following commands enable EVPN type-5 route export in the RED VRF and prevent re-export of routes leaked from EVPN:
+
+{{< tabs "TabID596 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn state enabled
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn skip-evpn-imported enabled
+cumulus@leaf01:~$ nv config apply
+```
+
+<!-- REVIEW: the IPv6 form below is derived. The spec's NVUE section shows only ipv4-unicast, but its
+     scope covers both address families and its vtysh section gives both advertise ipv4 unicast and
+     advertise ipv6 unicast. Confirm the ipv6-unicast NVUE path on a build. Delete this comment
+     before publishing. -->
+
+To prevent re-export of IPv6 routes, run the same commands with the `ipv6-unicast` address family.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+leaf01# configure terminal
+leaf01(config)# router bgp 65101 vrf RED
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# advertise ipv4 unicast skip-evpn-imported
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To allow re-export again, run the `nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn skip-evpn-imported disabled` command.
+
+To show the setting, run the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn` command.
+
+<!-- REVIEW: sample output adapted from the spec's mock, not captured on hardware. The spec's mock
+     shows a value in only one column for three of the four fields and its alignment is ambiguous.
+     Capture this on a switch and correct the columns. Delete this comment before publishing. -->
+
+```
+cumulus@leaf01:~$ nv show vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+                           operational  applied
+-------------------------  -----------  --------
+state                                   enabled
+route-map                  none
+default-route-origination  disabled     disabled
+skip-evpn-imported                      enabled
+```
+
+<!-- vale off -->
 ### Originate Default EVPN Type-5 Routes
 <!-- vale on -->
 Cumulus Linux supports originating EVPN default type-5 routes. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).

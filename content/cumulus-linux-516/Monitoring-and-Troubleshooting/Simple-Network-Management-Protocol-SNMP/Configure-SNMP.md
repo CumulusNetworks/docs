@@ -336,6 +336,71 @@ The `snmpd` daemon reads the information from the `/var/lib/snmp/snpmd.conf` fil
 {{< /tab >}}
 {{< /tabs >}}
 
+### SNMPv3 and FIPS Mode
+
+When you enable {{<link url="FIPS" text="FIPS mode">}}, NVUE blocks both MD5 and SHA authentication for SNMPv3 usernames and trap destinations. `auth-none` is the only authentication setting NVUE accepts. To use authenticated SNMPv3 (`authNoPriv` or `authPriv`) on a FIPS-enabled switch, configure the user directly with `net-snmp` as described below.
+
+{{%notice note%}}
+- Cumulus Linux 5.18 and later relaxes this restriction; NVUE accepts `auth-sha` with `encrypt-aes` when FIPS mode is enabled and `snmpd` derives SNMPv3 keys without the additional configuration below. If you require authenticated SNMPv3 on a FIPS-enabled switch, NVIDIA recommends you upgrade to Cumulus Linux 5.18 or later. The procedure below lets you run authenticated SNMPv3 in Cumulus Linux 5.16 as a temporary measure.
+- NVUE does not create, show, or remove users when you configure the user directly with `net-snmp`.
+{{%/notice%}}
+
+1. Install the `net-snmp-config` script from the `libsnmp-dev` package:
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get update
+   cumulus@switch:~$ sudo -E apt-get install libsnmp-dev
+   ```
+
+2. Stop the `snmpd` daemon. The script does not run when `snmpd` is active.
+
+   ```
+   cumulus@switch:~$ sudo systemctl stop snmpd.service
+   ```
+
+3. Create the user. The following command uses SHA-256 authentication and AES privacy:
+
+   ```
+   cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a mysha256password -x myaespassword -A SHA-256 -X AES userSHA256withAES
+   ```
+
+   Specify `-X AES` explicitly. If you omit the privacy algorithm, `net-snmp` defaults to `DES`, which FIPS mode does not permit. The minimum pass phrase length is eight characters. Valid authentication algorithms are MD5, SHA, SHA-224, SHA-256, SHA-384, and SHA-512.
+
+4. Allow `snmpd` to derive SNMPv3 keys under FIPS mode. Create a file called /`etc/systemd/system/snmpd.service.d/fips.conf` and add the following lines:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/systemd/system/snmpd.service.d/fips.conf
+   [Service]
+   MemoryDenyWriteExecute=false
+   ```
+
+   Setting `MemoryDenyWriteExecute=false` does not affect the FIPS compliance of the switch. Apply it only where authenticated SNMPv3 is required.
+
+5. Reload `systemd` and start the `snmpd` daemon:
+
+   ```
+   cumulus@switch:~$ sudo systemctl daemon-reload
+   cumulus@switch:~$ sudo systemctl start snmpd.service
+   ```
+
+6. Verify that the user works:
+
+   ```
+   cumulus@switch:~$ snmpwalk -v3 -u userSHA256withAES -l authPriv -a SHA-256 -A mysha256password -x AES -X myaespassword localhost 1.3.6.1.2.1.1
+   ```
+
+   `snmpd` reads the `createUser` line from `/var/lib/snmp/snmpd.conf`, removes it, and replaces it with the localized key it derives from the `EngineID`. To remove the user, stop `snmpd`, delete the lines containing the username from `/var/lib/snmp/snmpd.conf`, then start `snmpd` again.
+
+After you upgrade, the `fips.conf` drop-in is in `/etc/systemd/system/` and persists across package and image upgrades; `snmpd` continues to run without this hardening setting after you upgrade. After you upgrade to Cumulus Linux 5.18 or later, remove the file and restore the default:
+
+```
+cumulus@switch:~$ sudo rm /etc/systemd/system/snmpd.service.d/fips.conf
+cumulus@switch:~$ sudo systemctl daemon-reload
+cumulus@switch:~$ sudo systemctl restart snmpd.service
+```
+
+On Cumulus Linux 5.18 and later you can configure SNMPv3 authentication with NVUE using auth-sha with encrypt-aes, or continue to configure SHA-2 authentication with `net-snmp`.
+
 ### Configure an SNMP View Definition
 
 To restrict MIB tree exposure, you can define a view for an SNMPv3 username or community password, and a host from a restricted subnet. In doing so, any SNMP request with that username and password must have a source IP address within the configured subnet.

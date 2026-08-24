@@ -79,10 +79,6 @@ To upgrade to Cumulus Linux 5.19 from a release that does not support package up
 
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
 
-### Maximum Number of NVUE Revisions
-
-Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.19 from 5.12 or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
-
 ### Linux Configuration Files Overwritten
 
 If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.19.

@@ -7,10 +7,83 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5225576</td>
+<td>After an optimized image upgrade from Cumulus Linux 5.13.1 or earlier to a later release, the install step fails with a permission error if the image being installed is already present in the {{/var/images}} directory before the upgrade. In this state, the {{nv show system image files}} command might not list any images. To work around this issue, fetch the image with the {{nv action fetch system image &lt;remote-url&gt;}} command before installing it. Alternatively, correct the directory permissions with {{sudo chmod 0755 /var/images}}.</td>
+<td>5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5224270</td>
+<td> On switches with TACACS+ servers configured by hostname (FQDN) instead of IP address, the switch might generate an excessive rate of DNS queries for the configured TACACS+ server names, including for local user or UID lookups that never actually need to contact a TACACS+ server.</td>
+<td>5.16.1, 5.16.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5221595</td>
+<td>In certain cases, the switch does not forward traffic on some interfaces in an ECMP group. To work around this issue, flap the affected interface.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5221592</td>
+<td>Adaptive routing ECMP updates during route deletion sometimes result in ECMP database corruption followed by ECMP operation failures.</td>
+<td>5.16.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5221589</td>
+<td>In rare cases, you cannot cancel bulk counter session(MOCS). This issue results in missing GNMI metrics during export.</td>
+<td>5.16.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5220910</td>
+<td>NVUE accepts invalid telemetry snapshot file paths; however, the corresponding show commands fail with an error in the NVUE logs. </td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5217147, 5225676</td>
+<td>After a two-partition (A/B) optimized upgrade, performing a factory reset can cause the switch to lose the record of what model it is.
+
+The A/B upgrade takes its reference configuration backup before the boot configuration has been written to the newly staged partition, so that backup does not contain /etc/default/grub. A factory reset restores /etc from that backup and deletes anything not present in it, which removes the live /etc/default/grub. That file carries the cl_platform= kernel argument — the only record of the switch model — and no package ships it, so nothing on the switch can recreate it.
+
+The switch continues to operate normally after the reset, because it is still running from a boot configuration generated while the file existed. The failure appears later, the first time anything regenerates that boot configuration — an update-grub, a kernel or package upgrade, or a subsequent image upgrade. From then on the switch boots without cl_platform, platform detection fails, update-ports.service fails, switchd does not start, and no ASIC interfaces are present. Management access over eth0 is unaffected.
+
+Because the switch appears healthy in the interval between the factory reset and that regeneration, an affected switch can run for an extended period before the fault becomes visible. Once it does, reboots do not clear it — nothing regenerates the boot configuration at boot time — and recovery requires reinstalling via ONIE.
+</td>
+<td>5.16.6-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5217091</td>
 <td>In some scenarios after configuration bring-up or an interface carrier transition, traffic might not be forwarded on some interfaces in an ECMP group. To work around this issue, flap the affected interface.</td>
 <td>5.18.0</td>
 <td>5.16.7</td>
+</tr>
+<tr>
+<td>5215333</td>
+<td>If you provide a value that contains a non-ASCII character in NVUE, you see an unhandled Python exception instead of a normal CLI validation error.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5199525</td>
+<td>When EVPN prefixes learned from a BGP neighbor are withdrawn, the gNMI EVPN installed-prefix count does not decrease.</td>
+<td>5.16.1, 5.16.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5197214</td>
+<td>If the {{cumulus-platform-common}} package is updated, login notification might fail on each login and show errors.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5190122</td>
+<td>On a Spectrum-6 switch (such as the SN6600-LD), gNMI reports an incorrect shared-buffer cell size of 192 bytes at {{/qos/shared-buffer/state/cell-size}} instead of the correct 256 bytes for Spectrum-6. Because this cell size is used to convert internal buffer cell counts into byte values, several shared-buffer telemetry values derived from it (such as per-queue or traffic-class buffer usage and maximum occupancy) report incorrectly over gNMI. The values are inconsistent with the values that NVUE reports and the hardware buffer counters.</td>
+<td>5.18.0</td>
+<td></td>
 </tr>
 <tr>
 <td>5184005</td>
@@ -21,6 +94,21 @@
 <tr>
 <td>5183654</td>
 <td>When you upgrade gNMI with package upgrade, the {{nv-gnmi.service}} fails and the switch collects a tech support bundle after the first step of the process ({{nv action upgrade system packages to latest}}. The package upgrade process triggers a switch reboot straight afterwards as a second and final step. There is no functional impact after switch reboot completes.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5183442</td>
+<td>If the running version of Cumulus Linux is not the newest, installing packages in {{cumulus-local-apt-archive}} (RADIUS or TACACS+ packages) might bring in a newer version from remote locations that does not match the running version of Cumulus Linux.  To avoid this problem add an {{/etc/apt/preferences.d/10_prefer_cumulus_local_apt_archive}} file with the following content (if not already present) before doing a package update:
+Package: *
+Pin: release a=cumulus-local-apt-archive
+Pin-Priority: 992</td>
+<td>5.16.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5180032, 5180016</td>
+<td>Running a transceiver query with the {{ethtool -m}} or {{nv show interface &lt;interface&gt; transceiver}} command might intermittently discard the reply, causing the command to hang for approximately 30 seconds and fail with {{netlink error: Connection timed out}} before recovering.</td>
 <td>5.18.0</td>
 <td></td>
 </tr>
@@ -43,6 +131,18 @@
 <td></td>
 </tr>
 <tr>
+<td>5170159</td>
+<td>NAS IP addresses are missing from RADIUS accounting packets.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5167882</td>
+<td>In rare cases {{switchd}} crashes and the cl-support file triggers twice, which interrupts legacy {{mlxlink}} collection and causes multiple per port {{mlxlink}} support files to generate.</td>
+<td>5.16.1, 5.16.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5165432, 5154620</td>
 <td>With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic. </td>
 <td>5.18.0</td>
@@ -55,8 +155,20 @@
 <td></td>
 </tr>
 <tr>
+<td>5159368, 5170404</td>
+<td>When the Spectrum 1 switch with scaled configuration collects a cl-support file, the collection might timeout for certain modules and lose system and networking data.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5158643</td>
 <td>The {{nv show evpn l3vxi --output json}} command returns an empty dictionary ({}). To work around this issue, run the {{nv show evpn l3vxi --rev=applied --output json}} command instead.</td>
+<td>5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5146376</td>
+<td>If the remote server is unreachable, {{rsyslog}} generates internal error messages that flood syslog.</td>
 <td>5.18.0</td>
 <td></td>
 </tr>
@@ -82,6 +194,18 @@
 <td>5080682</td>
 <td>The {{switchd}} port-security violation log prints {{RESTRICTed}} instead of {{Restricted}}.</td>
 <td>5.16.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5079383</td>
+<td>The BGP service might crash with an assertion failure in EVPN symmetric-IRB deployments that use VRF route leaking across multiple VRFs. The issue is caused by a missing reference count release on a BGP route destination node. Prolonged MAC mobility churn can trigger this condition. Large-scale deployments with many VRFs and EVPN multihoming are more susceptible.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5072739</td>
+<td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
+<td>5.17.0-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -896,6 +1020,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.1, 5.16.5</td>
 </tr>
 <tr>
+<td>5155206</td>
+<td>In half resource mode, routes are not installed in the ASIC on higher end VRFs.</td>
+<td></td>
+</tr>
+<tr>
 <td>5152149, 5154742</td>
 <td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
 <td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -936,6 +1065,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>5130609</td>
+<td>NVUE allows layer 3 Dot1Q sub-interfaces and parent ports as part of a bridge domain for the same VLAN but this is not supported.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>5124026</td>
 <td>The HFT counter metrics exported over OTLP use incorrect timestamp and metric-type semantics.</td>
 <td>5.17.0</td>
@@ -956,6 +1090,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>5106955</td>
+<td>After an uplink flap and EVPN reconvergence, the underlay host route of the remote VTEP is left with no usable hardware next hop; its ECMP group loses its live member even though the FRR routing table, kernel next hop group, and neighbor entries all remain correct. With no hardware adjacency for the route, the switch drops all traffic to that VTEP. Restarting FRR rebuilds the ECMP group and restores forwarding.</td>
+<td></td>
+</tr>
+<tr>
 <td>5103255, 5154576</td>
 <td>On systems with frequent ACL updates, switchd could fail to release internal SDK resources used for bulk counter notifications during ACL installation. Over long uptime, this could exhaust available resources and cause few metrics to stop updating.
 
@@ -971,6 +1110,12 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td>5102853, 5145976, 5103277, 5145975</td>
 <td>In High scale scenario there is a possibility of config datastore miss or corruption in case simultaneous vtysh commands and frr reload or restart</td>
 <td>5.16.1, 5.16.5</td>
+</tr>
+<tr>
+<td>5099921</td>
+<td>After the BGP service crashes or restarts, EVPN multihoming leaf switches might stop generating type-1/EAD routes for their locally attached Ethernet segments and you see the error {{Failed to associate VNI XXX with ESI YY:YY:YY; VNI not present}}.
+As a result of this issue, both peers in the multihoming pair claim DF (neither sees the other as a remote ES peer), remote leafs receive no type-1 from these VTEPs, and MAC entries for attached hosts are not installed correctly in the hardware FDB on remote leafs.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 </tr>
 <tr>
 <td>5099633</td>
@@ -1189,6 +1334,11 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td>5001357, 5022203</td>
 <td>When you disable TLVs in LLDP ingress policies, the TLV information still shows in neigbor data when the neigbor is already learned and the TLV provides chassis-level information, such as the system description or LLDP-MED Inventory. There is no impact on traffic.To work around this issue, restart the LLDP service with the {{sudo systemctl restart lldpd}} command.</td>
 <td>5.17.0</td>
+</tr>
+<tr>
+<td>5000933</td>
+<td>Running {{nv config patch}} with a file that contains bare VRF creation commands ({{nv set vrf &lt;name&gt;}} with no sub-attributes) causes an internal server error and returns HTTP 500 to the client. This prevents the patch from being applied and blocks automated upgrade workflows that rely on {{nv config patch}} to restore configuration after installation.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 </tr>
 <tr>
 <td>4999022</td>

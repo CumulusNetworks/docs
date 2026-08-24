@@ -99,11 +99,11 @@ The Spectrum-6 switch does not support ISSU.
 To upgrade to Cumulus Linux 5.18.0 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
+<!--
+### TACACS and RADIUS Upgrade
 
-### Maximum Number of NVUE Revisions
-
-Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.18 from 5.12 or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
-
+When you upgrade the switch to Cumulus Linux 5.18 from Cumulus Linux 5.16.7, package upgrade does not upgrade the TACACS and RADIUS packages. You must run package upgrade a second time with the `apt-get update && apt-get upgrade` command or run the NVUE `nv action upgrade system packages` command.
+-->
 ### Linux Configuration Files Overwritten
 
 If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.18.

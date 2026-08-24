@@ -261,16 +261,16 @@ def format_ticket_for_display(ticket):
 # No JSON download, no markdown/XLS tables, no per-version headers for these releases.
 # Key: product short name ("cl" or "netq"). Value: full version strings to skip.
 EXCLUDED_VERSIONS = {
-    "cl": ["5.15.2", "5.16.2", "5.16.3", "5.16.4"],
-    "netq": ["2.4.0", "2.4.1", "3.0.0", "3.1.0", "3.2.0", "3.2.1", "3.3.0", "3.3.1", "4.0.0", "4.0.1", "4.1.0", "4.1.1", "4.2.0", "4.3.0", "4.4.0", "4.4.1", "4.5.0", "4.6.0", "4.7.0", "4.8.0"],
+    "cl": ["3.7.0", "3.7.1", "3.7.2", "3.7.3", "3.7.4", "3.7.5", "3.7.6", "3.7.7", "3.7.8", "3.7.9", "3.7.10", "3.7.11", "3.7.12", "3.7.13", "3.7.14", "3.7.14.2", "3.7.15", "3.7.16", "4.0.0", "4.0.1", "4.1.0", "4.1.1", "4.2.0", "4.2.1", "4.3.0", "4.3.1", "4.3.1.1", "4.3.2", "4.3.3", "4.3.4", "5.15.2", "5.16.2", "5.16.3", "5.16.4"],
+    "netq": ["2.4.0", "2.4.1", "3.0.0", "3.1.0", "3.2.0", "3.2.1", "3.3.0", "3.3.1", "4.0.0", "4.0.1", "4.1.0", "4.1.1", "4.2.0", "4.3.0", "4.4.0", "4.4.1", "4.5.0", "4.6.0", "4.7.0", "4.8.0", "5.0.0", "5.1.0", "5.2.0", "5.2.1", "5.3.0",]
 }
 
 # Product versions still built, but omitted from Affects / Fixed columns (see
 # filter_version_list_for_display): singles removed, ranges split around them.
 # Key: product short name ("cl" or "netq"). Value: full version strings to hide.
 HIDDEN_VERSIONS = {
-    "cl": ["5.15.2", "5.16.2", "5.16.3", "5.16.4"],
-    "netq": [],
+    "cl": [],
+    "netq": ["5.2.0"],
 }
 
 # Matches a single range token "lo-hi" (one hyphen between two version strings).

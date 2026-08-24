@@ -13,6 +13,19 @@
 <td>5.18.0</td>
 </tr>
 <tr>
+<td>5099921</td>
+<td>After the BGP service crashes or restarts, EVPN multihoming leaf switches might stop generating type-1/EAD routes for their locally attached Ethernet segments and you see the error {{Failed to associate VNI XXX with ESI YY:YY:YY; VNI not present}}.
+As a result of this issue, both peers in the multihoming pair claim DF (neither sees the other as a remote ES peer), remote leafs receive no type-1 from these VTEPs, and MAC entries for attached hosts are not installed correctly in the hardware FDB on remote leafs.</td>
+<td>5.14.0-5.17.0</td>
+<td>5.18.0</td>
+</tr>
+<tr>
+<td>5079383</td>
+<td>The BGP service might crash with an assertion failure in EVPN symmetric-IRB deployments that use VRF route leaking across multiple VRFs. The issue is caused by a missing reference count release on a BGP route destination node. Prolonged MAC mobility churn can trigger this condition. Large-scale deployments with many VRFs and EVPN multihoming are more susceptible.</td>
+<td>5.14.0-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5072600</td>
 <td>The {{nv show mlag -o json}} command returns a plain text error instead of a JSON object.
 
@@ -73,6 +86,12 @@
 <td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
 <td>5.15.0-5.16.7</td>
 <td>5.17.0-5.18.0</td>
+</tr>
+<tr>
+<td>5000933</td>
+<td>Running {{nv config patch}} with a file that contains bare VRF creation commands ({{nv set vrf &lt;name&gt;}} with no sub-attributes) causes an internal server error and returns HTTP 500 to the client. This prevents the patch from being applied and blocks automated upgrade workflows that rely on {{nv config patch}} to restore configuration after installation.</td>
+<td>5.15.0-5.17.0</td>
+<td>5.18.0</td>
 </tr>
 <tr>
 <td>4992204, 4999344, 4999345</td>
@@ -1486,6 +1505,19 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.18.0</td>
 </tr>
 <tr>
+<td>5099921</td>
+<td>After the BGP service crashes or restarts, EVPN multihoming leaf switches might stop generating type-1/EAD routes for their locally attached Ethernet segments and you see the error {{Failed to associate VNI XXX with ESI YY:YY:YY; VNI not present}}.
+As a result of this issue, both peers in the multihoming pair claim DF (neither sees the other as a remote ES peer), remote leafs receive no type-1 from these VTEPs, and MAC entries for attached hosts are not installed correctly in the hardware FDB on remote leafs.</td>
+<td>5.14.0-5.17.0</td>
+<td>5.18.0</td>
+</tr>
+<tr>
+<td>5079383</td>
+<td>The BGP service might crash with an assertion failure in EVPN symmetric-IRB deployments that use VRF route leaking across multiple VRFs. The issue is caused by a missing reference count release on a BGP route destination node. Prolonged MAC mobility churn can trigger this condition. Large-scale deployments with many VRFs and EVPN multihoming are more susceptible.</td>
+<td>5.14.0-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5072600</td>
 <td>The {{nv show mlag -o json}} command returns a plain text error instead of a JSON object.
 
@@ -1546,6 +1578,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
 <td>5.15.0-5.16.7</td>
 <td>5.17.0-5.18.0</td>
+</tr>
+<tr>
+<td>5000933</td>
+<td>Running {{nv config patch}} with a file that contains bare VRF creation commands ({{nv set vrf &lt;name&gt;}} with no sub-attributes) causes an internal server error and returns HTTP 500 to the client. This prevents the patch from being applied and blocks automated upgrade workflows that rely on {{nv config patch}} to restore configuration after installation.</td>
+<td>5.15.0-5.17.0</td>
+<td>5.18.0</td>
 </tr>
 <tr>
 <td>4992204, 4999344, 4999345</td>

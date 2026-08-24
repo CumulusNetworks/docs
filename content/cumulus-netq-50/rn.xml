@@ -120,13 +120,13 @@
 <td>4784336</td>
 <td>The NetQ for NVLink deployment option is not supported in air-gapped environments.</td>
 <td>5.0.0</td>
-<td></td>
+<td>5.0.1-5.16.5</td>
 </tr>
 <tr>
 <td>4780773</td>
 <td>The NetQ for NVLink Swagger UI might incorrectly display 500 status placeholder text in example responses.</td>
 <td>5.0.0-5.1.0</td>
-<td></td>
+<td>5.2.0-5.16.5</td>
 </tr>
 <tr>
 <td>4693161</td>
@@ -144,7 +144,7 @@
 <td>4687477</td>
 <td>When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters.</td>
 <td>5.0.0-5.3.0</td>
-<td></td>
+<td>5.4.0-5.16.5</td>
 </tr>
 <tr>
 <td>4687241</td>
@@ -162,7 +162,7 @@
 <td>4681581</td>
 <td>The {{netq bootstrap reset purge-db}} command might take up to 60 minutes to complete on Base Command Manager scale deployments.</td>
 <td>5.0.0-5.3.0</td>
-<td></td>
+<td>5.4.0-5.16.5</td>
 </tr>
 <tr>
 <td>4668341</td>
@@ -198,7 +198,7 @@
 <td>4399074</td>
 <td>When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected.</td>
 <td>5.0.0-5.3.0</td>
-<td></td>
+<td>5.4.0-5.16.5</td>
 </tr>
 <tr>
 <td>4100882, 4119697</td>

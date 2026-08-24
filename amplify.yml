@@ -19,7 +19,7 @@ frontend:
         # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL>
         # If PDF/XLS generation is failing, comment out the following line to build the site.
         # COMMENTED OUT BELOW after CL 5.19 rn.xml download failure
-       # - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://stage.d1l3582pfvms7p.amplifyapp.com/networking-ethernet-software/ x x ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://stage.d1l3582pfvms7p.amplifyapp.com/networking-ethernet-software/ x x ; fi
         #
         # If branch is defined below, manually update the Netguru copilot js
         - if [ "${AWS_BRANCH}" = "master" ]; then wget --no-check-certificate -O themes/netDocs/assets/js/netguru.js https://copilot-netguru.nvidia.com/chainlit/copilot/index.js ; fi

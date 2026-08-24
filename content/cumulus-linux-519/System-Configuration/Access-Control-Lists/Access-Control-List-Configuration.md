@@ -619,6 +619,9 @@ tricolorpolice option:
 Supported chains for the filter table:
 INPUT FORWARD OUTPUT
 ```
+### Connection Tracking and Connection State Matching
+
+Cumulus Linux does not offload `conntrack` or `--ctstate` ACL matches to switch hardware for forwarded traffic. ACL rules that rely on connection state do not provide hardware-enforced filtering for transit traffic on switch ports. Use connection state matching only for control plane firewall IPv4 ACLs. For data-plane ACLs, configure stateless matches such as IP addresses, protocol, ports, TCP flags, DSCP, and other documented hardware-supported rule elements.
 
 ### iptables and ip6tables Rule Support
 

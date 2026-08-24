@@ -83,13 +83,13 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <tr>
 <td>4867933</td>
 <td>Threshold-crossing events created before version 5.1.0 may not display event values correctly after you upgrade NetQ.</td>
-<td>5.1.0</td>
+<td>5.1.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4854663</td>
 <td>When specifying a cluster VIP on an invalid or incorrect subnet, the installer displays an error indicating that {{master_ip}} should be different than {{cluster_ip}} without indicating which IP address is invalid.</td>
-<td>5.1.0</td>
+<td>5.1.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -117,12 +117,6 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td></td>
 </tr>
 <tr>
-<td>4784336</td>
-<td>The NetQ for NVLink deployment option is not supported in air-gapped environments.</td>
-<td>5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4780773</td>
 <td>The NetQ for NVLink Swagger UI might incorrectly display 500 status placeholder text in example responses.</td>
 <td>5.0.0-5.1.0</td>
@@ -131,43 +125,43 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <tr>
 <td>4687477</td>
 <td>When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters.</td>
-<td>5.0.0-5.1.0</td>
+<td>5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4682275</td>
 <td>NVLink cluster installations do not validate that each node has a unique hostname. If two nodes share a common hostname, NetQ does not flag the issue after the installation completes.</td>
-<td>5.0.0-5.1.0</td>
+<td>5.0.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4681581</td>
 <td>The {{netq bootstrap reset purge-db}} command might take up to 60 minutes to complete on Base Command Manager scale deployments.</td>
-<td>5.0.0-5.1.0</td>
+<td>5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4399074</td>
 <td>When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected.</td>
-<td>5.0.0-5.1.0</td>
+<td>5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4389662</td>
 <td>When a cluster installation fails a cluster VIP validation check, the installer generates an opta-support archive and prompts you to send it to NVIDIA support instead of prompting you to fix the initial error.</td>
-<td>4.15.0-4.15.1, 5.0.0-5.1.0</td>
+<td>4.15.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4122430</td>
 <td>When the master node is unreachable, a worker node might report the output of {{netq show status}} as {{Not Installed}} instead of indicating that the cluster was degraded.</td>
-<td>4.12.0-4.15.1, 5.0.0-5.1.0</td>
+<td>4.12.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4100882, 4119697</td>
 <td>When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export.</td>
-<td>4.12.0-4.15.1, 5.0.0-5.1.0</td>
+<td>4.12.0-4.15.1, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 </table>

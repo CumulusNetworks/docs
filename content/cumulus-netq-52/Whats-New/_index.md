@@ -1,62 +1,46 @@
 ---
-title: What's New
-author: NVIDIA
-weight: 10
-subsection: true
+title: NVIDIA NetQ 5.2 Release Notes
+author: Cumulus Networks
+weight: 30
+product: Cumulus NetQ
+version: "5.2"
 toc: 1
+type: rn
+pdfhidden: True
 ---
+{{<rn_xls_link dir="cumulus-netq-52" >}}
+## 5.2.1 Release Notes
+### Open Issues in 5.2.1
 
-This page summarizes new features and improvements for the NetQ {{<version>}} release. For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 5.2 Release Notes" text="release notes">}}.
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
+|---	        |---	        |---	    |---	                |
+| 5073537 | After uninstalling a NetQ cluster, the cluster VIP address is not released from the network interface. On a subsequent reinstall, the installer detects the VIP as still reachable and exits with the error <code>cluster-vip address <ip> is reachable. Please provide non reachable IP address</code>, even though the cluster is no longer running<br />This issue affects deployments that use a VLAN interface (for example, <code>bond0.100</code>) rather than the management IP for the cluster VIP. It does not affect first-time installs, but blocks every uninstall-reinstall cycle until the VIP is manually removed<br />To work around this issue, manually remove the VIP from the interface before reinstalling with <code>sudo ip addr del <cluster-vip>/<prefix-length> dev <interface></code> | 5.2.1 | |
+| 4986372 | After installing NetQ for Ethernet and NVLink, the UI might fail to load and display the message <code>No route matched with those values.</code>. To work around this issue, restart the Kong-CP and Kong-DP deployments with <code>kubectl rollout restart deployment -n netq-infra kong-cp-kongsleep 300</code>, followed by <code>kubectl rollout restart deployment -n netq-infra kong-dp-kong</code><br /><br>If the issue persists, run <code>cd /tmp/netq-infra/kube-config/build/data-infra</code>, followed by <code>kubectl apply -f deck-sync-job.yaml</code>. | 5.2.1 | |
+| 4965251 | When BlueField DPUs are in the default, embedded mode, the output of the <code>netq check roce</code> command might produce duplicate entries for the same device (one for the host and one for the DPU). This issue can also affect the calculations for the RoCE Mode Consistency and DSCP Classification tests. Additionally, the <code>netq show roce-config host</code> command might display DPU interfaces alongside host interfaces. This issue does not affect DPUs that are configured in separated mode. | 5.2.1-5.3.0 | |
+| 4943571 | After you register NVLink services, it might take up to an hour for the scheduler service to run and return data. | 5.2.1 | |
+| 4867933 | Threshold-crossing events created before version 5.1.0 may not display event values correctly after you upgrade NetQ. | 5.1.0-5.2.1 | |
+| 4854663 | When specifying a cluster VIP on an invalid or incorrect subnet, the installer displays an error indicating that <code>master_ip</code> should be different than <code>cluster_ip</code> without indicating which IP address is invalid. | 5.1.0-5.2.1 | |
+| 4784336 | The NetQ for NVLink deployment option is not supported in air-gapped environments. | 5.0.0-5.2.1 | |
+| 4687477 | When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters. | 5.0.0-5.2.1 | |
+| 4682275 | NVLink cluster installations do not validate that each node has a unique hostname. If two nodes share a common hostname, NetQ does not flag the issue after the installation completes. | 5.0.0-5.2.1 | |
+| 4681581 | The <code>netq bootstrap reset purge-db</code> command might take up to 60 minutes to complete on Base Command Manager scale deployments. | 5.0.0-5.2.1 | |
+| 4399074 | When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected. | 5.0.0-5.2.1 | |
+| 4389662 | When a cluster installation fails a cluster VIP validation check, the installer generates an opta-support archive and prompts you to send it to NVIDIA support instead of prompting you to fix the initial error. | 4.15.0-5.2.1 | |
+| 4122430 | When the master node is unreachable, a worker node might report the output of <code>netq show status</code> as <code>Not Installed</code> instead of indicating that the cluster was degraded. | 4.12.0-5.2.1 | |
+| 4100882, 4119697 | When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export. | 4.12.0-4.15.1, 5.0.0-5.2.1 | |
 
-## What's New in NetQ 5.2.1
-
-- Re-designed the {{<link title="Network Topology" text="network topology dashboard">}} so that you can visualize your network's topology according to the system labels assigned to a device (beta)
-- You can now {{<link title="Disaster Recovery Using NFS" text="back up your NetQ data using an NFS server">}} for disaster recovery scenarios (beta)
-- NetQ now supports {{<link title="System Events Reference/#correlation-events" text="fault correlation system events">}} which group events linked to the same underlying issue and displays the association between host-based errors and devices within a network’s fabric (beta)
-- Introduced {{<link title="Validation Tests Reference/#adaptive-routing-validation-tests" text="adaptive routing validations">}} that verify configuration consistencies across switches in your network's fabric (beta)
-- You can now add nodes to your existing NetQ NVLink + Ethernet combined mode deployments (beta)
-- Introduced {{<link title="Validation Tests Reference/#roce-validation-tests" text="RoCE validations">}} that verify configuration consistencies across the entire network fabric, including switches, host NICs, and DPUs (beta)
-- Added support for Arm-based systems
-- You can now {{<link title="Create a NetQ Simulation in DSX Air" text="create NetQ simulations">}} with NVIDIA DSX Air
-- Updated the {{<link title="Cable Validations" text="Cable Validation Tool">}} to version 1.9
-- Added IPv6 support for {{<link title="Switch Management/#switch-discovery" text="switch discovery">}} operations
-
-
-### NetQ for NVLink API Changes
-- Added a `/v1/redfish` endpoint to {{<link title="Sensor Events and Notifications" text="detect and report leak events">}} in liquid-cooling equipment
-- Added `/v1/certificates` endpoints that let you use your own certificates instead of the ones that NetQ NVLink automatically generates. To use your own certificates, {{<link title="Install NetQ NVLink" text="install NetQ NVLink">}}, then {{<link title="Upload Custom Certificates" text="upload the certificates">}} using the API.
-- Added `/v1/validations/fw-versions` endpoint to validate that all switches within a domain have the same firmware version
-- Added ability {{<link title="Upgrade NVOS or Firmware" text="to upgrade firmware">}} using the `/v1/upgrade-switch` endpoint
-- Added several `/v1/kpis` endpoints that allow you to {{<link title="Collect KPIs" text="apply KPI filters">}} to view heath metrics for GPUs, switch nodes, compute nodes, partitions, and domains over a range of time
-- Added several parameters to the `/v1/gpus` endpoint that allow for filtering based on a device's UUID, chassis serial number, slot ID, tray index, or host ID
-- Added parameter that allows you to {{<link title="Manage Partitions" text="manage partitions">}} using a device's unique identifier (UUID) with the `/v1/partitions` endpoints
-- Added ability to adjust NMX-T polling frequency using the `/v1/settings` endpoint
-- Added recommendation to {{<link title="NVLink Bringup/#switch-profile-endpoints" text="change switch credentials">}} from their default values to dedicated usernames and passwords for each switch
-- Added support for NetQ NVLink on the NVIDIA Vera Rubin platform (beta)
-- Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
-- View the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-520/" text="REST API in Swagger">}}
-
-## Release Considerations
-
-- When your NetQ deployment operates in combined Ethernet and NVLink mode, certain NVLink data is not preserved during the backup and restore process. Information related to network entities such as switches, GPUs, and partitions is not saved. However, data for services, switch profiles, and domains is saved during the backup and restore process.
-- NetQ 5.2 provides updated instructions to {{<link title="Install a Custom Signed Certificate" text="install a custom-signed certificate">}} <!--part of 5.2.1-->
-- The following features have been removed or deprecated:
-    - Flow analysis (deprecated)
-    - Validations: duplicate IP addresses, agents, VXLAN, MLAG bond VLAN consistency test (deprecated)
-    - ECMP without adaptive routing (removed)
-    - High-availability scale cluster deployment for Ethernet only (removed). You can upgrade this deployment type using the upgrade instructions for the NVLink + Ethernet combined mode deployment.
-
-## Upgrade Paths
-
-NetQ 5.2 is available exclusively for on-premises deployments. You can upgrade to 5.2 if your deployment is running version 5.1 or 5.0. 
-
-- To upgrade from 5.1 to 5.2, perform an {{<link title="Upgrade NetQ Virtual Machines" text="in-place upgrade">}}. 
-- To upgrade from 5.0 to 5.2, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 5.2 installation">}}.
-
-
-## Compatible Agent Versions
-
-The NetQ 5.2 server is compatible with NetQ agents 5.2 and 5.1. You can install NetQ agents on switches and servers running:
-
-- Cumulus Linux 5.17, 5.16, 5.15, 5.11
-- Ubuntu 24.04, 22.04
+### Fixed Issues in 5.2.1
+|  Issue ID 	|   Description	|   Affects	|
+|---	        |---	        |---	    |
+| 4977619 | NetQ might fail to load in high-availability (HA) scale deployments when ECMP is enabled. To work around this issue, disable ECMP ingestion by updating the Kafka connector configuration:<ol><li>Create a backup of the current configuration:<br><code>kubectl get kafkaconnector cassandra-sink-group-1 -n netq-infra -o yaml > /tmp/cassandra-sink-group-1.backup.yaml</code></li><li>Capture the current Kafka connector values:<pre>OLD_KCQL=$(kubectl get kafkaconnector cassandra-sink-group-1 -n netq-infra -o jsonpath='{.spec.config.connect.cassandra.kcql}')<br>OLD_TOPICS=$(kubectl get kafkaconnector cassandra-sink-group-1 -n netq-infra -o jsonpath='{.spec.config.topics}')</pre></li><li>Remove ECMP-related entries from KCQL and topics:<pre>NEW_KCQL=$(echo "$OLD_KCQL" \| tr ';' '\n' \| grep -v -E 'INTO ecmp_info SELECT\|INTO ecmp_info_aggregate SELECT\|INTO ecmp_info_group_aggregate SELECT' \| paste -sd ';' -)<br>NEW_TOPICS=$(echo "$OLD_TOPICS" \| tr ',' '\n' \| grep -v -E '^netq_obj_ecmp_info$\|^netq_obj_ecmp_info_aggregate$\|^netq_obj_ecmp_info_group_aggregate$' \| paste -sd ',' -)</pre></li><li>Verify the changes before applying them:<pre>echo "=== KCQL ECMP entries remaining (should only show ecmp_hash + arEcmpInfo) ==="<br>echo "$NEW_KCQL" \| tr ';' '\n' \| grep -i ecmpecho "=== TOPICS ECMP entries remaining (should only show netq_obj_ecmp_hash) ==="<br>echo "$NEW_TOPICS" \| tr ',' '\n' \| grep -i ecmp<br>echo "Old KCQL: $(echo "$OLD_KCQL" \| tr ';' '\n' \| wc -l) / New: $(echo "$NEW_KCQL" \| tr ';' '\n' \| wc -l) (-3)"<br>echo "Old TOPICS: $(echo "$OLD_TOPICS" \| tr ',' '\n' \| wc -l) / New: $(echo "$NEW_TOPICS" \| tr ',' '\n' \| wc -l) (-3)"<br></pre></li><li>Apply the updated configuration:<br><code>kubectl patch kafkaconnector cassandra-sink-group-1 -n netq-infra --type=merge -p "$(jq -n --arg k "$NEW_KCQL" --arg t "$NEW_TOPICS" '{spec:{config:{"connect.cassandra.kcql":$k,"topics":$t&#125;&#125;&#125;')"</code></li></ol>To revert the changes, restore the backup with <code>kubectl apply -f /tmp/cassandra-sink-group-1.backup.yaml</code><br /> | 5.1.0 | |
+| 4977342, 4889408 | The NetQ UI might not display a complete list of interfaces. To work around this issue, restart the NetQ agent or upgrade to the latest NetQ version. | 5.1.0 | |
+| 4964170 | When you create a partition, the operation might fail with a BAD_PARAM error. To work around this issue, retry the operation until it is successful.  | 5.1.0 | |
+| 4897897 | The NetQ NVLink API might fail to return a 400 error response when unsupported parameters are included in the API request. | 5.1.0 | |
+| 4894672, 4896363 | NVOS upgrades on switches might fail if the image filename contains spaces or special characters. | 5.1.0 | |
+| 4890084 | The NetQ CLI might not delete threshold-crossing alerts configured for ACL resources. To work around this issue, use the UI to delete the alerts. | 5.1.0 | |
+| 4876932 | The NMX controller service might intermittently fail to switch to an alternate out-of-band (OOB) port when the primary registration port becomes unavailable. As a result, partition management operations might not function correctly on the secondary OOB port if the registered management port goes down. | 5.1.0 | |
+| 4839716, 4844441 | You cannot perform lifecycle management operations immediately after backing up an HA scale cluster deployment. To work around this issue, wait several hours before initiating LCM operations. | 5.1.0 | |
+| 4838526 | NMX controller and telemetry services might display a DOWN status if the primary out-of-band (OOB) management port is unavailable. | 5.1.0 | |
+| 4830357 | When you try to filter images in the NetQ UI based on image type, NetQ might ignore the filter. | 5.1.0 | |
+| 4794266 | Power sensor (PSU) events might show inconsistent sensor names. Additionally, NetQ might not generate PSU events reliably. | 5.1.0 | |
+| 4780773 | The NetQ for NVLink Swagger UI might incorrectly display 500 status placeholder text in example responses. | 5.0.0-5.1.0 | |

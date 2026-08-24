@@ -1694,43 +1694,44 @@ Maximum 800G ports: 64
 {{< /tabs >}}
 {{< tab "SN6600_LD">}}
 
-800G (800G_4x): 128 ports
-
-SN6600_LD 128xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 100G.
-
-For lower speeds, PAM4 is automatically converted to NRZ encoding.
+SN6600_LD 128xOSFP (800GbE) interfaces support PAM4 with all speeds down to 100G.
 
 Bonus ports #65s0 and #65s1 support 100G.
 
 {{< tabs "SN6600_ports ">}}
 {{< tab "100G ">}}
 
-514x 100G - 514x OSFP break out into 1x - You must disable the adjacent OSFP port.
+- 512x 100G - 512x OSFP break out into 8x
+- 2x 100G - 2x bonus ports break out into 2x
 
 Maximum 100G ports: 514 (512 ports + 2 bonus ports)
 
 {{< /tab >}}
 {{< tab "200G ">}}
 
-- 512x 200G - 512x OSFP break out into 1x
-- 256x 200G - 256x OSFP break out into 2x
+- 512x 200G - 512x OSFP break out into 8x
+- 256x 200G - 256x OSFP break out into 4x
 
 Maximum 200G ports: 512
 
 {{< /tab >}}
 {{< tab "400G ">}}
 
-- 128x 400G - 128x OSFP break out into 4x
-- 256x 400G - 256x OSFP break out into 2x
+- 128x 400G - 128x OSFP break out into 2x
+- 256x 400G - 256x OSFP break out into 4x
 
 Maximum 400G ports: 256
 
 {{< /tab >}}
 {{< tab "800G ">}}
 
-128x 800G - 128x OSFP break out into 4x
+- 128x 800G - 128x OSFP break out into 2x
 
 Maximum 800G ports: 128
+
+{{%notice note%}}
+Cumulus Linux 5.18 does not support 800G.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tab >}}

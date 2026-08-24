@@ -87,6 +87,12 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td>5.4.0-5.16.5</td>
 </tr>
 <tr>
+<td>4854663</td>
+<td>When specifying a cluster VIP on an invalid or incorrect subnet, the installer displays an error indicating that {{master_ip}} should be different than {{cluster_ip}} without indicating which IP address is invalid.</td>
+<td>5.1.0-5.2.0</td>
+<td>5.3.0-5.16.5</td>
+</tr>
+<tr>
 <td>4839716, 4844441</td>
 <td>You cannot perform lifecycle management operations immediately after backing up an HA scale cluster deployment. To work around this issue, wait several hours before initiating LCM operations.</td>
 <td>5.1.0</td>
@@ -123,6 +129,12 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td>5.4.0-5.16.5</td>
 </tr>
 <tr>
+<td>4682275</td>
+<td>NVLink cluster installations do not validate that each node has a unique hostname. If two nodes share a common hostname, NetQ does not flag the issue after the installation completes.</td>
+<td>5.0.0-5.2.0</td>
+<td>5.3.0-5.16.5</td>
+</tr>
+<tr>
 <td>4681581</td>
 <td>The {{netq bootstrap reset purge-db}} command might take up to 60 minutes to complete on Base Command Manager scale deployments.</td>
 <td>5.0.0-5.3.0</td>
@@ -133,6 +145,18 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td>When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected.</td>
 <td>5.0.0-5.3.0</td>
 <td>5.4.0-5.16.5</td>
+</tr>
+<tr>
+<td>4389662</td>
+<td>When a cluster installation fails a cluster VIP validation check, the installer generates an opta-support archive and prompts you to send it to NVIDIA support instead of prompting you to fix the initial error.</td>
+<td>4.15.0-5.2.0</td>
+<td>5.3.0-5.16.5</td>
+</tr>
+<tr>
+<td>4122430</td>
+<td>When the master node is unreachable, a worker node might report the output of {{netq show status}} as {{Not Installed}} instead of indicating that the cluster was degraded.</td>
+<td>4.12.0-5.2.0</td>
+<td>5.3.0-5.16.5</td>
 </tr>
 <tr>
 <td>4100882, 4119697</td>

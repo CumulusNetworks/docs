@@ -162,10 +162,35 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5073537</td>
+<td>After uninstalling a NetQ cluster, the cluster VIP address is not released from the network interface. On a subsequent reinstall, the installer detects the VIP as still reachable and exits with the error {{cluster-vip address &lt;ip&gt; is reachable. Please provide non reachable IP address}}, even though the cluster is no longer running.
+
+This issue affects deployments that use a VLAN interface (for example, {{bond0.100}}) rather than the management IP for the cluster VIP. It does not affect first-time installs, but blocks every uninstall-reinstall cycle until the VIP is manually removed.
+
+To work around this issue, manually remove the VIP from the interface before reinstalling with {{sudo ip addr del &lt;cluster-vip&gt;/&lt;prefix-length&gt; dev &lt;interface&gt;}}</td>
+<td>5.2.0</td>
+<td>5.3.0-5.16.5</td>
+</tr>
+<tr>
+<td>4986372</td>
+<td>After installing NetQ for Ethernet and NVLink, the UI might fail to load and display the message {{No route matched with those values.}}. To work around this issue, restart the Kong-CP and Kong-DP deployments with {{kubectl rollout restart deployment -n netq-infra kong-cp-kong
+sleep 300}}, followed by {{kubectl rollout restart deployment -n netq-infra kong-dp-kong}}.
+
+If the issue persists, run {{cd /tmp/netq-infra/kube-config/build/data-infra}}, followed by {{kubectl apply -f deck-sync-job.yaml}}.</td>
+<td>5.2.0</td>
+<td>5.3.0-5.16.5</td>
+</tr>
+<tr>
 <td>4965251</td>
 <td>When BlueField DPUs are in the default, embedded mode, the output of the {{netq check roce}} command might produce duplicate entries for the same device (one for the host and one for the DPU). This issue can also affect the calculations for the RoCE Mode Consistency and DSCP Classification tests. Additionally, the {{netq show roce-config host}} command might display DPU interfaces alongside host interfaces. This issue does not affect DPUs that are configured in separated mode.</td>
 <td>5.2.0-5.3.0</td>
 <td>5.4.0-5.16.5</td>
+</tr>
+<tr>
+<td>4943571</td>
+<td>After you register NVLink services, it might take up to an hour for the scheduler service to run and return data.</td>
+<td>5.2.0</td>
+<td>5.3.0-5.16.5</td>
 </tr>
 <tr>
 <td>4867933</td>
@@ -174,10 +199,22 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td>5.4.0-5.16.5</td>
 </tr>
 <tr>
+<td>4854663</td>
+<td>When specifying a cluster VIP on an invalid or incorrect subnet, the installer displays an error indicating that {{master_ip}} should be different than {{cluster_ip}} without indicating which IP address is invalid.</td>
+<td>5.1.0-5.2.0</td>
+<td>5.3.0-5.16.5</td>
+</tr>
+<tr>
 <td>4687477</td>
 <td>When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters.</td>
 <td>5.0.0-5.3.0</td>
 <td>5.4.0-5.16.5</td>
+</tr>
+<tr>
+<td>4682275</td>
+<td>NVLink cluster installations do not validate that each node has a unique hostname. If two nodes share a common hostname, NetQ does not flag the issue after the installation completes.</td>
+<td>5.0.0-5.2.0</td>
+<td>5.3.0-5.16.5</td>
 </tr>
 <tr>
 <td>4681581</td>
@@ -190,6 +227,18 @@ To revert the changes, restore the backup with {{kubectl apply -f /tmp/cassandra
 <td>When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected.</td>
 <td>5.0.0-5.3.0</td>
 <td>5.4.0-5.16.5</td>
+</tr>
+<tr>
+<td>4389662</td>
+<td>When a cluster installation fails a cluster VIP validation check, the installer generates an opta-support archive and prompts you to send it to NVIDIA support instead of prompting you to fix the initial error.</td>
+<td>4.15.0-5.2.0</td>
+<td>5.3.0-5.16.5</td>
+</tr>
+<tr>
+<td>4122430</td>
+<td>When the master node is unreachable, a worker node might report the output of {{netq show status}} as {{Not Installed}} instead of indicating that the cluster was degraded.</td>
+<td>4.12.0-5.2.0</td>
+<td>5.3.0-5.16.5</td>
 </tr>
 <tr>
 <td>4100882, 4119697</td>

@@ -15,14 +15,14 @@ cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 </td>
-<td>4.0.0-4.4.5, 5.0.0-5.18.0</td>
+<td>4.0.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3410952, 3413860, 3418045, 3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1, 4.4.0-5.4.0</td>
-<td>4.3.2, 5.5.0-5.18.0</td>
+<td>4.3.2, 5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -38,12 +38,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.18.0</td>
+<td>5.4.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.18.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -67,7 +67,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.18.0</td>
+<td>4.3.1, 5.3.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3128328, 3136940</td>
@@ -79,7 +79,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3120423, 3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
-<td>4.3.1, 5.2.0-5.18.0</td>
+<td>4.3.1, 5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3084007, 3089148, 3089442, 3089474, 3334028</td>
@@ -87,19 +87,19 @@ ValueError: invalid literal for int() with base 10: ‘0t
 
 This issue impacts customers with these conditions: CL 5.1.0, CLAG, NTP, and a switch that has been powered off for some time (i.e. the clock may have drifted) prior to initial boot.</td>
 <td>3.7.16-4.3.0, 4.4.3, 5.1.0</td>
-<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.18.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3083265, 3085285, 3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4-4.4.5, 5.2.0-5.18.0</td>
+<td>4.4.4-4.4.5, 5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3072674, 3119615</td>
 <td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
 <td>3.7.15-5.1.0</td>
-<td>5.2.0-5.18.0</td>
+<td>5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3066704</td>
@@ -118,14 +118,14 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td>3020254, 3021692, 3021693</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
 <td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.18.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2993719, 3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed. This is issue is impacting all Cumulus Linux releases. 
 The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issue (this attribute has been available since CL2). It was decided to change ifupdown2's default behavior to automatically purge BUM entries added by ifup/ifreload.   </td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.18.0</td>
+<td>5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2991514</td>
@@ -143,7 +143,7 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 <td>2910017, 2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
-<td>4.4.3-4.4.5, 5.1.0-5.18.0</td>
+<td>4.4.3-4.4.5, 5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2899413, 2899422, 3036049, 3069904</td>
@@ -176,7 +176,7 @@ Reboot the affected switches.</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.0.1</td>
-<td>4.3.1, 5.1.0-5.18.0</td>
+<td>4.3.1, 5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2811196, 2867058</td>
@@ -194,13 +194,13 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>2754723, 2755614, 2755615</td>
 <td> When you set {{route_preferred_over_neigh}} to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.3.0, 4.4.0-4.4.1</td>
-<td>4.3.1, 4.4.2-4.4.5, 5.0.0-5.18.0</td>
+<td>4.3.1, 4.4.2-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2743186, 2734100, 2731464, 3438708</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>3.7.15-5.1.0</td>
-<td>5.2.0-5.18.0</td>
+<td>5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2730225, 2734107</td>
@@ -222,7 +222,7 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.18.0</td>
+<td>5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2702131, 2705160, 2754791, 3135801</td>
@@ -283,7 +283,7 @@ To work around this issue, configure the loopback interface in the desired OSPF 
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
 <td>4.0.0-5.0.1</td>
-<td>5.1.0-5.18.0</td>
+<td>5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2648658</td>
@@ -1802,7 +1802,7 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 
 You can safely ignore this warning.</td>
 <td>4.0.0-5.9.5</td>
-<td>5.10.0-5.18.0</td>
+<td>5.10.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2543900</td>
@@ -2440,14 +2440,14 @@ cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 </td>
-<td>4.0.0-4.4.5, 5.0.0-5.18.0</td>
+<td>4.0.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3410952, 3413860, 3418045, 3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1, 4.4.0-5.4.0</td>
-<td>4.3.2, 5.5.0-5.18.0</td>
+<td>4.3.2, 5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -2463,12 +2463,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0-5.18.0</td>
+<td>5.4.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.18.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2492,7 +2492,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 
 </td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.18.0</td>
+<td>4.3.1, 5.3.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3128328, 3136940</td>
@@ -2504,7 +2504,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3120423, 3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
-<td>4.3.1, 5.2.0-5.18.0</td>
+<td>4.3.1, 5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3084007, 3089148, 3089442, 3089474, 3334028</td>
@@ -2512,19 +2512,19 @@ ValueError: invalid literal for int() with base 10: ‘0t
 
 This issue impacts customers with these conditions: CL 5.1.0, CLAG, NTP, and a switch that has been powered off for some time (i.e. the clock may have drifted) prior to initial boot.</td>
 <td>3.7.16-4.3.0, 4.4.3, 5.1.0</td>
-<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.18.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3083265, 3085285, 3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4-4.4.5, 5.2.0-5.18.0</td>
+<td>4.4.4-4.4.5, 5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3072674, 3119615</td>
 <td>In an MLAG configuration, if you put a single connected interface into an {{admin down}} state, any dynamic MAC addresses on the peer link are flushed, then added back, which causes momentary traffic disruption. </td>
 <td>3.7.15-5.1.0</td>
-<td>5.2.0-5.18.0</td>
+<td>5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>3066704</td>
@@ -2543,14 +2543,14 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td>3020254, 3021692, 3021693</td>
 <td>When ARP suppression is off, GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN.</td>
 <td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.18.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2993719, 3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed. This is issue is impacting all Cumulus Linux releases. 
 The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issue (this attribute has been available since CL2). It was decided to change ifupdown2's default behavior to automatically purge BUM entries added by ifup/ifreload.   </td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.18.0</td>
+<td>5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2991514</td>
@@ -2568,7 +2568,7 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 <td>2910017, 2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
-<td>4.4.3-4.4.5, 5.1.0-5.18.0</td>
+<td>4.4.3-4.4.5, 5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2899413, 2899422, 3036049, 3069904</td>
@@ -2601,7 +2601,7 @@ Reboot the affected switches.</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.0.1</td>
-<td>4.3.1, 5.1.0-5.18.0</td>
+<td>4.3.1, 5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2811196, 2867058</td>
@@ -2619,13 +2619,13 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>2754723, 2755614, 2755615</td>
 <td> When you set {{route_preferred_over_neigh}} to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.3.0, 4.4.0-4.4.1</td>
-<td>4.3.1, 4.4.2-4.4.5, 5.0.0-5.18.0</td>
+<td>4.3.1, 4.4.2-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2743186, 2734100, 2731464, 3438708</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>3.7.15-5.1.0</td>
-<td>5.2.0-5.18.0</td>
+<td>5.2.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2730225, 2734107</td>
@@ -2647,7 +2647,7 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.18.0</td>
+<td>5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2702131, 2705160, 2754791, 3135801</td>
@@ -2708,7 +2708,7 @@ To work around this issue, configure the loopback interface in the desired OSPF 
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
 <td>4.0.0-5.0.1</td>
-<td>5.1.0-5.18.0</td>
+<td>5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2648658</td>
@@ -4227,7 +4227,7 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 
 You can safely ignore this warning.</td>
 <td>4.0.0-5.9.5</td>
-<td>5.10.0-5.18.0</td>
+<td>5.10.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 </tr>
 <tr>
 <td>2543900</td>

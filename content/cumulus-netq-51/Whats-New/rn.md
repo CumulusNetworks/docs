@@ -22,14 +22,18 @@ pdfhidden: True
 | 4890084 | The NetQ CLI might not delete threshold-crossing alerts configured for ACL resources. To work around this issue, use the UI to delete the alerts. | 5.1.0 | 5.2.0-5.16.5|
 | 4876932 | The NMX controller service might intermittently fail to switch to an alternate out-of-band (OOB) port when the primary registration port becomes unavailable. As a result, partition management operations might not function correctly on the secondary OOB port if the registered management port goes down. | 5.1.0 | 5.2.0-5.16.5|
 | 4867933 | Threshold-crossing events created before version 5.1.0 may not display event values correctly after you upgrade NetQ. | 5.1.0-5.3.0 | 5.4.0-5.16.5|
+| 4854663 | When specifying a cluster VIP on an invalid or incorrect subnet, the installer displays an error indicating that <code>master_ip</code> should be different than <code>cluster_ip</code> without indicating which IP address is invalid. | 5.1.0-5.2.0 | 5.3.0-5.16.5|
 | 4839716, 4844441 | You cannot perform lifecycle management operations immediately after backing up an HA scale cluster deployment. To work around this issue, wait several hours before initiating LCM operations. | 5.1.0 | 5.2.0-5.16.5|
 | 4838526 | NMX controller and telemetry services might display a DOWN status if the primary out-of-band (OOB) management port is unavailable. | 5.1.0 | 5.2.0-5.16.5|
 | 4830357 | When you try to filter images in the NetQ UI based on image type, NetQ might ignore the filter. | 5.1.0 | 5.2.0-5.16.5|
 | 4794266 | Power sensor (PSU) events might show inconsistent sensor names. Additionally, NetQ might not generate PSU events reliably. | 5.1.0 | 5.2.0-5.16.5|
 | 4780773 | The NetQ for NVLink Swagger UI might incorrectly display 500 status placeholder text in example responses. | 5.0.0-5.1.0 | 5.2.0-5.16.5|
 | 4687477 | When you run a validation against a group of devices with specific labels, NetQ ignores any pre-configured filters. | 5.0.0-5.3.0 | 5.4.0-5.16.5|
+| 4682275 | NVLink cluster installations do not validate that each node has a unique hostname. If two nodes share a common hostname, NetQ does not flag the issue after the installation completes. | 5.0.0-5.2.0 | 5.3.0-5.16.5|
 | 4681581 | The <code>netq bootstrap reset purge-db</code> command might take up to 60 minutes to complete on Base Command Manager scale deployments. | 5.0.0-5.3.0 | 5.4.0-5.16.5|
 | 4399074 | When connecting a switch to NMX-T or NMX-C through the service registration workflow, use either the IP address or the hostname. Using both creates duplicate registrations, and the operation does not fail as expected. | 5.0.0-5.3.0 | 5.4.0-5.16.5|
+| 4389662 | When a cluster installation fails a cluster VIP validation check, the installer generates an opta-support archive and prompts you to send it to NVIDIA support instead of prompting you to fix the initial error. | 4.15.0-5.2.0 | 5.3.0-5.16.5|
+| 4122430 | When the master node is unreachable, a worker node might report the output of <code>netq show status</code> as <code>Not Installed</code> instead of indicating that the cluster was degraded. | 4.12.0-5.2.0 | 5.3.0-5.16.5|
 | 4100882, 4119697 | When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export. | 4.12.0-4.15.1, 5.0.0-5.16.5 | |
 
 ### Fixed Issues in 5.1.0

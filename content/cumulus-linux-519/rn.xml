@@ -7,77 +7,10 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5221130</td>
-<td>When multiple gNMI bulk counter sessions are requested frequently, gNMI metric export might fail.</td>
-<td>5.16.5-5.19.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5217108</td>
-<td>BGP sessions might repeatedly flap and reestablish with FRR logs indicating {{nexthop_set failed}} and {{Transport endpoint is not connected}}. This might occur during bgpd/FRR service restart or bring-up events, or after repeated session connection attempts. </td>
-<td>5.16.1-5.19.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5217107</td>
-<td>NVUE set commands return a traceback if the user's repo_incarnation file ({{/home/$USER/.local/share/nvue/repo_incarnation}}) does not have write permissions.</td>
-<td>5.16.1-5.19.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5217106</td>
-<td>The core generator service cumulus-core.service is responsible for auto-generating techsupport when a core is generated.
-This service can enter a busy loop if the techsupport auto-generation service techsupport-auto-generation.service does not return its exit status.
-</td>
-<td>5.16.0-5.19.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5217101</td>
-<td>AR ECMP updates during route deletion might result in ECMP database corruption and ECMP operation failures resulting in the following log messages:
-
-switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:789 ERR ECMP: AR cmd CREATE failed: Entry Already Exists, nexthops 18
-switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:934 ERR ECMP: failed to CREATE adaptive ecmp in hw
-switchd[23072]: hal_mlx_ecmp.c:2426 ERR ECMP: error allocating AR ecmp
-switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive container attributes for ecmp
-</td>
-<td>5.16.5-5.19.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5217097</td>
-<td>After you perform an optimized image upgrade, previously configured gNMI settings and certificates are not present after booting to the new image. To work around this issue, run the {{nv config apply}} command. </td>
-<td>5.16.5-5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5217091</td>
 <td>In some scenarios after configuration bring-up or an interface carrier transition, traffic might not be forwarded on some interfaces in an ECMP group. To work around this issue, flap the affected interface.</td>
 <td>5.18.0-5.19.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5215402</td>
-<td>After you upgrade a switch with optimized image upgrade, optical transceivers run 10 to 15°C warmer than the prior release and fan speeds are ~25% lower at the same ambient temperature. Transceiver temperature setpoints previously configured with the {{nv set platform transceiver &lt;port&gt; temperature setpoint}} command do not take effect. To work around this issue on the SN5610, run the following commands:
-
-   sudo cp -p /etc/hw-management-thermal/tc_config_sn5610.json \ 
-              /etc/hw-management-thermal/tc_config_sn5610.json.bak 
-  
-   grep -q '"tc_version"' /etc/hw-management-thermal/tc_config_sn5610.json || sudo sed -i 's|"name": "sn5610",|&amp;\n\t"tc_version": "2.5",|' /etc/hw-management-thermal/tc_config_sn5610.json
-  
-   grep -q '"val_max_clamp"' /etc/hw-management-thermal/tc_config_sn5610.json || sudo sed -i 's|"val_max_offset": 0, "poll_time"|"val_max_offset": 0, "val_max_clamp": 65000, "poll_time"|' /etc/hw-management-thermal/tc_config_sn5610.json
-  
-  python3 -c 'import json; json.load(open("/etc/hw-management-thermal/tc_config_sn5610.json"))' &amp;&amp; echo "JSON OK"
-
-  sudo systemctl restart hw-management
-  sudo systemctl daemon-reload
-  sudo systemctl restart hw-management-tc
-
-
-On the SN5640, substitute {{tc_config_sn5640.json}} and {{"name": "sn5640",}}. Do not apply these steps on other platforms. To verify the workaround, use the {{sudo systemctl status hw-management-tc}} command, which should report version 2.5.
-</td>
-<td>5.16.6-5.19.0</td>
-<td></td>
+<td>5.16.7</td>
 </tr>
 <tr>
 <td>5159852, 4667526</td>
@@ -134,16 +67,6 @@ On the SN5640, substitute {{tc_config_sn5640.json}} and {{"name": "sn5640",}}. D
 <td></td>
 </tr>
 <tr>
-<td>4722680</td>
-<td>If you install RADIUS client packages when rolling back a two partition upgrade, the {{/var/lib/nvue}}, {{/var/lib/ntpsec}}, and {{/var/lib/snmp}} directories might have incorrect ownership after rollback and the {{nvued}} service might fail to start up. To work around this issue, run the following commands:
-sudo chown -R nvue /var/lib/nvue
-sudo chown -R ntpsec /var/lib/ntpsec
-sudo chown -R Debian-snmp /var/lib/snmp
-sudo reboot</td>
-<td>5.11.4-5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4667792</td>
 <td>Usernames longer than 32 characters do not authenticate against the switch. Avoid using long usernames.</td>
 <td>5.14.0-5.19.0</td>
@@ -168,12 +91,6 @@ sudo reboot</td>
 <td></td>
 </tr>
 <tr>
-<td>4608614</td>
-<td>When setting up SSH keys, you have to run {{nv config apply}} twice for the configuration to take effect.</td>
-<td>5.11.3-5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4582679</td>
 <td>If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
 <td>5.9.4-5.19.0</td>
@@ -182,7 +99,7 @@ sudo reboot</td>
 <tr>
 <td>4579237, 4579234</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
-<td>5.11.3-5.19.0</td>
+<td>5.11.3-5.11.5, 5.12.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -195,16 +112,6 @@ sudo reboot</td>
 <td>4549896</td>
 <td>When you try to set a VXLAN with a bridge, you see the error {{sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge}}. You can safely ignore this error.</td>
 <td>5.14.0-5.19.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4548512</td>
-<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
-This issue can occur under the following conditions:
-&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change, such as a link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command. </td>
-<td>5.11.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -222,15 +129,9 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td></td>
 </tr>
 <tr>
-<td>4535749</td>
-<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
-<td>5.11.0-5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4535699</td>
 <td>When you configure the RADIUS authentication order with {{local}} first and {{radius}} second, the RADIUS user is authenticated as a default user name. </td>
-<td>5.11.3-5.19.0</td>
+<td>5.11.3-5.11.5, 5.12.1-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -276,12 +177,6 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td></td>
 </tr>
 <tr>
-<td>4475111</td>
-<td>When you try to convert a layer 3 port that is part of ECMP to a bond member,  you might see a failure in the {{switchd}} logs. This issue does not have any functional impact.</td>
-<td>5.11.2-5.19.0</td>
-<td>5.9.4</td>
-</tr>
-<tr>
 <td>4475074</td>
 <td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
 <td>5.13.0-5.19.0</td>
@@ -309,7 +204,7 @@ To work around this issue, restart the FRR service with the {{sudo systemctl res
 <td>4423175</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
 <td>5.13.0-5.19.0</td>
-<td></td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4413589</td>
@@ -471,7 +366,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
-<td>4005422, 4015452</td>
+<td>4005422, 4007590, 4015452</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 or later with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0-5.19.0</td>
 <td></td>
@@ -825,9 +720,9 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2972540</td>
+<td>2972538, 2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>5.0.0-5.19.0</td>
+<td>3.7.15-3.7.16, 5.0.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -888,9 +783,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
-<td>5175518</td>
+<td>5184005</td>
+<td>In certain SRv6 configuration rollback scenarios, Zebra might fail to restore all explicit SRv6 SIDs. This can occur when multiple SRv6 locators share the same parent SID block and one of the locators is replayed during rollback. To work around this issue, restart FRR to clear the stale in-memory SRv6 SID allocation state, then reapply the intended configuration if needed.</td>
+<td>5.18.0</td>
+</tr>
+<tr>
+<td>5175518, 5217093, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
-<td>5.16.1-5.18.0</td>
+<td>5.16.1-5.16.6, 5.18.0</td>
 </tr>
 <tr>
 <td>5165432, 5154620</td>

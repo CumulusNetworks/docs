@@ -30,9 +30,9 @@ Cumulus Linux 5.18.0 is currently only qualified for **non-Spectrum-X**.
 
 {{%notice note%}}
 The NVIDIA SN6600_LD switch does not support:
-- Port speed 800Gx8
-- Warmboot
-- PTP
+- 1x break out at 800G. Interfaces are 2x split by default.
+- Warmboot.
+- PTP.
 {{%/notice%}}
 
 Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switch is generally available. You must upgrade any engineering sample to Cumulus Linux 5.18 with ONIE.

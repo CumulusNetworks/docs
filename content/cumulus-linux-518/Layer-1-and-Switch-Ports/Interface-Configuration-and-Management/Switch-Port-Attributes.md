@@ -1725,12 +1725,12 @@ Maximum 400G ports: 256
 {{< /tab >}}
 {{< tab "800G ">}}
 
-- 128x 800G - 128x OSFP break out into 2x
+- 128x 800G - 64x OSFP break out into 2x
 
 Maximum 800G ports: 128
 
 {{%notice note%}}
-Cumulus Linux 5.18 does not support 800G.
+Cumulus 5.18 does not support 1x break out at 800G. Interfaces are 2x split by default.
 {{%/notice%}}
 
 {{< /tab >}}

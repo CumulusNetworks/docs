@@ -338,7 +338,7 @@ The `snmpd` daemon reads the information from the `/var/lib/snmp/snpmd.conf` fil
 
 ### SNMPv3 and FIPS Mode
 
-In Cumulus 5.18 and later, NVUE accepts `auth-sha` with `encrypt-aes` when FIPS mode is enabled and `snmpd` derives SNMPv3 keys without additional configuration. If you required authenticated SNMPv3 on a FIPS-enabled switch with Cumulus Linux 5.17 or earlier, and you configured `MemoryDenyWriteExecute=false` for `snmpd` to work around a FIPS key-derivation failure, you must remove the `/etc/systemd/system/snmpd.service.d/fips.conf` file and run the `sudo systemctl daemon-reload` command after upgrading to Cumulus Linux 5.19.
+In Cumulus 5.18 and later, NVUE accepts `auth-sha` with `encrypt-aes` when {{<link url="FIPS" text="FIPS mode">}} is enabled and `snmpd` derives SNMPv3 keys without additional configuration. If you required authenticated SNMPv3 on a FIPS-enabled switch with Cumulus Linux 5.17 or earlier, and you configured `MemoryDenyWriteExecute=false` for `snmpd` to work around a FIPS key-derivation failure, you must remove the `/etc/systemd/system/snmpd.service.d/fips.conf` file and run the `sudo systemctl daemon-reload` command after upgrading to Cumulus Linux 5.19.
 
 ### Configure an SNMP View Definition
 

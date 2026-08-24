@@ -341,7 +341,7 @@ The `snmpd` daemon reads the information from the `/var/lib/snmp/snpmd.conf` fil
 When you enable {{<link url="FIPS" text="FIPS mode">}}, NVUE blocks both MD5 and SHA authentication for SNMPv3 usernames and trap destinations. `auth-none` is the only authentication setting NVUE accepts. To use authenticated SNMPv3 (`authNoPriv` or `authPriv`) on a FIPS-enabled switch, configure the user directly with `net-snmp` as described below.
 
 {{%notice note%}}
-- Cumulus Linux 5.18 and later relaxes this restriction; NVUE accepts `auth-sha` with `encrypt-aes` when FIPS mode is enabled and `snmpd` derives SNMPv3 keys without the additional configuration below. If you require authenticated SNMPv3 on a FIPS-enabled switch, NVIDIA recommends you upgrade to Cumulus Linux 5.18 or later. The procedure below lets you run authenticated SNMPv3 in Cumulus Linux 5.16 as a temporary measure.
+- Cumulus Linux 5.18 and later relaxes this restriction. If you require authenticated SNMPv3 on a FIPS-enabled switch, NVIDIA recommends you upgrade to Cumulus Linux 5.18 or later. The procedure below lets you run authenticated SNMPv3 in Cumulus Linux 5.16 as a temporary measure.
 - NVUE does not create, show, or remove users when you configure the user directly with `net-snmp`.
 {{%/notice%}}
 
@@ -391,15 +391,13 @@ When you enable {{<link url="FIPS" text="FIPS mode">}}, NVUE blocks both MD5 and
 
    `snmpd` reads the `createUser` line from `/var/lib/snmp/snmpd.conf`, removes it, and replaces it with the localized key it derives from the `EngineID`. To remove the user, stop `snmpd`, delete the lines containing the username from `/var/lib/snmp/snmpd.conf`, then start `snmpd` again.
 
-After you upgrade, the `fips.conf` drop-in is in `/etc/systemd/system/` and persists across package and image upgrades; `snmpd` continues to run without this hardening setting after you upgrade. After you upgrade to Cumulus Linux 5.18 or later, remove the file and restore the default:
+After you upgrade, the `fips.conf` file remains in the `/etc/systemd/system/` directory and persists across package and image upgrades. After you upgrade to Cumulus Linux 5.18 or later, remove the file and restore the default:
 
 ```
 cumulus@switch:~$ sudo rm /etc/systemd/system/snmpd.service.d/fips.conf
 cumulus@switch:~$ sudo systemctl daemon-reload
 cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
-
-On Cumulus Linux 5.18 and later you can configure SNMPv3 authentication with NVUE using auth-sha with encrypt-aes, or continue to configure SHA-2 authentication with `net-snmp`.
 
 ### Configure an SNMP View Definition
 

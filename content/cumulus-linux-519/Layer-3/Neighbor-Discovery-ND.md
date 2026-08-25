@@ -246,6 +246,36 @@ interface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
+### Clear a Stale Prefix
+
+A host can continue holding an address derived from a prefix that its port no longer advertises, for example after you move the host to a different port during servicing. Because a host keeps a SLAAC address across a link flap, and Cumulus Linux advertises prefixes with the RFC 4861 default lifetimes (valid for 2592000 seconds, preferred for 604800 seconds), the stale address otherwise stays usable for up to thirty days.
+
+To make hosts on the link deprecate an address derived from a specific prefix immediately, run the `nv action clear` command. The command re-announces the prefix with a zero lifetime for a short burst of router advertisements; it does not change configuration, so there is nothing to revert afterward. You do not have to specify a prefix that the interface currently advertises — this also includes a host that moved to a port that never advertised the prefix it is holding.
+
+```
+cumulus@leaf01:mgmt:~$ nv action clear interface swp6 ipv6 neighbor-discovery prefix 2001:db8:dead:beef::/64
+```
+
+To deprecate the address immediately but leave it valid for a longer drain window so existing connections have time to move off the address, set explicit lifetimes. The following example deprecates the prefix now, but keeps it valid for one day:
+
+```
+cumulus@leaf01:mgmt:~$ nv action clear interface swp6 ipv6 neighbor-discovery prefix 2001:db8:dead:beef::/64 valid-lifetime 86400 preferred-lifetime 0
+```
+
+{{%notice note%}}
+- A host does not remove the address immediately. RFC 4862 requires a host to keep an address usable for at least two hours after it receives a shorter lifetime, so the address becomes deprecated at once but is not removed from the host until about two hours later.
+- Lifetime values of 7200 seconds (two hours) or less are equivalent, because of the RFC 4862 rule above. Specify a `valid-lifetime` greater than 7200 to give existing connections a longer drain window before the address is removed.
+- The action signals hosts; it does not remove the prefix from the configuration. If the prefix is still configured on the port, or its address is still installed on the interface, the switch advertises it again on the next periodic router advertisement and the host *un-deprecates* it. To retire a prefix for good, also remove it from the interface with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command.
+{{%/notice%}}
+
+Cumulus Linux rejects the command when the interface does not exist, is not operationally up, or is not advertising router advertisements; when the preferred lifetime exceeds the valid lifetime; and when you specify a non-zero valid lifetime for a prefix the interface does not currently advertise, because that tells hosts to create the address rather than retire it.
+
+{{%notice note%}}
+Removing a prefix from configuration with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command also sends a short burst of router advertisements with a zero lifetime for that prefix, so hosts reliably deprecate it instead of relying on a single advertisement.
+{{%/notice%}}
+
+The `nv show interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` continues to report the configured lifetimes throughout a burst because a clear does not modify configuration. To confirm a clear reached a host, check the address state on the host with the `ip -6 addr show dev <interface>` command. A deprecated address shows a `preferred_lft` of `0`.
+
 ## Recursive DNS Servers
 
 To configure recursive DNS servers (RDNSS), you must specify the IPv6 address of each RDNSS you want to advertise.

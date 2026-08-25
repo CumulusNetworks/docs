@@ -2,6 +2,7 @@
 title: NetQ 4.12 Open Source Packages
 author: Cumulus Networks
 weight: -30
+type: foss
 product: Cumulus NetQ
 version: "4.12"
 toc: 1

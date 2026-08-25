@@ -33,7 +33,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - FRR upgrade phase 5
 - BMC Host Interface Common Layer
 - SN6600 generic part number GA
-- Enable support for using IPV4 240.0.0.0/4 space
+- {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - VRF per destination support GA
 - Support security configurations visibility for manufacturing and field inspection (Phase 1)
 - Disconnected multiplane support for EVPN deployment with 802.1x based dynamic VRF assignment GA
@@ -50,6 +50,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - ISSU support for Spectrum-6 - Support More Than 2 RIF MAC Profiles in ISSU Mode
 - NVUE
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
+  - {{<link url="Neighbor-Discovery-ND/#clear-a-stale-prefix" text="Clear a stale IPv6 ND prefix on demand">}}
   - {{<link url="Optional-BGP-Configuration/#ipv6-only-unnumbered-peering" text="IPv6-only unnumbered peering command">}}
   - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resilient-hashing" text="Resilient hashing commands">}}
   - Map port to connector
@@ -78,10 +79,6 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 To upgrade to Cumulus Linux 5.19 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
-
-### Maximum Number of NVUE Revisions
-
-Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.19 from 5.12 or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
 
 ### Linux Configuration Files Overwritten
 

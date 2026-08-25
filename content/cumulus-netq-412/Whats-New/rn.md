@@ -24,6 +24,7 @@ pdfhidden: True
 | 4155900 | When a fan’s sensor state is “high”, NetQ correctly displays the count information on the sensor health card. When the card is expanded to the detailed view, fans with a “high” sensor state will not be included among the fans with problematic states. | 4.12.0 | 4.13.0-4.15.1|
 | 4131550 | When you run a topology validation, the full-screen topology validation view might not display the latest results. To work around this issue, refresh the page. | 4.12.0-4.15.1 | |
 | 4124724 | External notifications for DPU RoCE threshold-crossing events are not supported. To work around this issue, use the UI or CLI to view DPU RoCE threshold-crossing events. | 4.12.0 | 4.13.0-4.15.1|
+| 4122430 | When the master node is unreachable, a worker node might report the output of <code>netq show status</code> as <code>Not Installed</code> instead of indicating that the cluster was degraded. | 4.12.0-5.1.0 | |
 | 4100882, 4119697 | When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export. | 4.12.0-4.15.1, 5.0.0-5.1.0, 5.2.1-5.16.5 | |
 | 4023716, 4022819, 4282514 | NetQ might display duplicate validations results. | 4.11.0-4.15.1 | 5.0.0-5.1.0, 5.2.1-5.16.5|
 | 3993538, 4379389 | When you re-position a card on your workbench and then manually refresh the workbench, NetQ might reposition the cards. | 4.11.0-4.15.1 | 5.0.0-5.1.0, 5.2.1-5.16.5|

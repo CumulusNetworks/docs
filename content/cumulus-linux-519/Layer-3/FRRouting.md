@@ -560,6 +560,58 @@ ip-address
 
 You can also run the vtysh `show ip nht vrf <vrf-id> <ip-address>` command.
 
+## Class E Address Space Support
+
+Cumulus Linux treats certain IPv4 ranges such as 240.0.0.0/4 (Class E) as *martian* addresses and does not use them as the source or destination of ordinary traffic. By default the switch does not accept a Class E address on an interface, build a BGP session over one, or accept a route whose next hop is in that range.
+
+You can allow Class E as an ordinary routable address space, for example to address a fabric that has run out of RFC 1918 private space. After you allow Class E, you can configure Class E addresses on interfaces and BGP neighbors the same way you configure any other IPv4 address.
+
+{{%notice note%}}
+- In Cumulus Linux 5.19 and later, the FRR `allow-reserved-ranges` command no longer includes Class E; it now covers only 0.0.0.0/8 and 127.0.0.0/8.
+- FRR treats 240.0.0.0/4 as a valid unicast address space regardless of this setting. A Class E interface address and its connected route can appear in `nv show interface` output and the routing table even when you have not allowed Class E. This setting controls only the control-plane packet filter that determines whether Class E traffic reaches the switch. Leave Class E as a routable address space unset to keep Class E traffic blocked.
+{{%/notice%}}
+
+The two other reserved ranges with real spoofing and loopback-exposure risk, 0.0.0.0/8 and 127.0.0.0/8, always remain blocked. Allowing Class E does not affect these reserved ranges, and there is no NVUE command to unblock them.
+
+To allow Class E as routable address space, run the `nv set router allow-reserved-range` command:
+
+```
+cumulus@switch:~$ nv set router allow-reserved-range class-e
+cumulus@switch:~$ nv config apply
+```
+
+<!-- REVIEW: the spec states NVUE rejects any allow-reserved-range entry other than class-e, but does not show the full command syntax or confirm whether the argument is a single value or a list. Drafted as a single accepted value. Confirm against a candidate build. -->
+
+To stop allowing Class E as routable address space, run the `nv unset router allow-reserved-range class-e` command.
+
+{{%notice note%}}
+- The `nv set router allow-reserved-range class-e` command applies to IPv4 only. Cumulus Linux has no equivalent range for IPv6.
+- Behavior is identical in the default VRF and in every other VRF.
+- Both ends of a BGP session that runs over a Class E address must run Cumulus Linux 5.19 or later.
+- While Class E is not allowed, the control-plane packet filter (instead of the ASIC) drops packets that arrive on a front-panel port with a Class E source address; therefore, so hardware drop counters for Class E traffic no longer increment.
+{{%/notice%}}
+
+### Show Class E Address Space Setting
+
+<!-- REVIEW: the spec does not name a `nv show` command for this setting. Drafted `nv show router allow-reserved-range` from the `nv show router <container>` pattern this page and the NVUE reference use for other router-level settings (for example `nv show router bgp`, `nv show router adaptive-routing`). Confirm the exact path against a candidate build. -->
+
+To show Class E address space setting, run the `nv show router allow-reserved-range` command:
+
+```
+cumulus@switch:~$ nv show router allow-reserved-range
+```
+
+You can verify that Class E is working end to end with the same commands you use for any other address range. Confirm that the address and its connected route appear for the interface, and confirm the BGP session establishes and routes install, as described in {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol (BGP)">}} and {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}}.
+
+### Troubleshoot Class E Address Space
+
+|  Issue | Description |
+|------ | ----------- |
+| BGP does not come up over a Class E address. | Confirm the connected route for the address exists. Without an accepted interface address, BGP has no local address from which to source the session. |
+| The BGP session comes up, then resets. | Check the FRR log for a martian next hop entry, which indicates that the switch on the other end of the session does not have this feature.|
+| BGP is up, but Class E routes are missing.| The routes might be filtered for having a martian next hop. Check the per-neighbor invalid next hop counter.|
+| Ping does not work, but BGP does.| Check the control-plane packet filter and confirm you allow Class E.|
+
 ## Reload the FRR Configuration
 
 {{%notice warning%}}

@@ -16,6 +16,7 @@ The following NVUE commands are new in Cumulus Linux 5.19.
 {{< tab "nv show ">}}
 
 ```
+nv show router allow-reserved-range
 nv show system forwarding resilient-hash
 ```
 
@@ -23,6 +24,7 @@ nv show system forwarding resilient-hash
 {{< tab "nv set ">}}
 
 ```
+nv set router allow-reserved-range class-e
 nv set system forwarding resilient-hash active-timer
 nv set system forwarding resilient-hash bucket-size
 nv set system forwarding resilient-hash state
@@ -34,6 +36,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection v6-lla
 {{< tab "nv action ">}}
 
 ```
+nv action clear interface <interface> ipv6 neighbor-discovery prefix <prefix>
 nv action reboot system mode power-off
 ```
 

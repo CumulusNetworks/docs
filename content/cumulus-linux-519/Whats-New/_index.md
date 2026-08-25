@@ -33,7 +33,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - FRR upgrade phase 5
 - BMC Host Interface Common Layer
 - SN6600 generic part number GA
-- Enable support for using IPV4 240.0.0.0/4 space
+- {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - VRF per destination support GA
 - Support security configurations visibility for manufacturing and field inspection (Phase 1)
 - Disconnected multiplane support for EVPN deployment with 802.1x based dynamic VRF assignment GA

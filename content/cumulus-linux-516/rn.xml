@@ -1433,6 +1433,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5221604, 5179671</td>
+<td>After an optimized image upgrade, the {{startup.yaml}} file is empty on the new partition. </td>
+<td></td>
+</tr>
+<tr>
 <td>5221379, 5221588</td>
 <td>In rare scenarios, a link fault recovery sequence might trigger a switchd watchdog timeout on Spectrum-4 switches.</td>
 <td>5.16.5-5.16.6</td>

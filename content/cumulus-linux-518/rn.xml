@@ -943,14 +943,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5225676, 5217147</td>
-<td>After a two-partition (A/B) optimized upgrade, performing a factory reset can cause the switch to lose the record of what model it is.
-
-The A/B upgrade takes its reference configuration backup before the boot configuration has been written to the newly staged partition, so that backup does not contain /etc/default/grub. A factory reset restores /etc from that backup and deletes anything not present in it, which removes the live /etc/default/grub. That file carries the cl_platform= kernel argument — the only record of the switch model — and no package ships it, so nothing on the switch can recreate it.
-
-The switch continues to operate normally after the reset, because it is still running from a boot configuration generated while the file existed. The failure appears later, the first time anything regenerates that boot configuration — an update-grub, a kernel or package upgrade, or a subsequent image upgrade. From then on the switch boots without cl_platform, platform detection fails, update-ports.service fails, switchd does not start, and no ASIC interfaces are present. Management access over eth0 is unaffected.
-
-Because the switch appears healthy in the interval between the factory reset and that regeneration, an affected switch can run for an extended period before the fault becomes visible. Once it does, reboots do not clear it — nothing regenerates the boot configuration at boot time — and recovery requires reinstalling via ONIE.
-</td>
+<td>When you perform a factory reset after an optimized image upgrade, the switch loses record of its model information.</td>
 <td>5.16.6-5.18.0</td>
 </tr>
 <tr>
@@ -975,7 +968,7 @@ Because the switch appears healthy in the interval between the factory reset and
 </tr>
 <tr>
 <td>5221593, 5217097, 5179671, 5221604</td>
-<td>After optimized image upgrade, the {{/run/tmpfs}} which holds the upgraded partition runs out of space. As a result, the switch does not migrate all the certificates to the new partition. This issue prevents NVUE from installing the user defined certificates defaulting to a self signed certificate.</td>
+<td>After optimized image upgrade, {{/run/tmpfs}}, which holds the upgraded partition, runs out of space. As a result, the switch does not migrate all the certificates to the new partition. This issue prevents NVUE from installing the user defined certificates defaulting to a self signed certificate.</td>
 <td>5.16.5-5.16.6</td>
 </tr>
 <tr>

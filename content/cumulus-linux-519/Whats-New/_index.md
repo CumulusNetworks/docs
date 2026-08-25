@@ -50,6 +50,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - ISSU support for Spectrum-6 - Support More Than 2 RIF MAC Profiles in ISSU Mode
 - NVUE
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
+  - {{<link url="Neighbor-Discovery-ND/#clear-a-stale-prefix" text="Clear a stale IPv6 ND prefix on demand">}}
   - {{<link url="Optional-BGP-Configuration/#ipv6-only-unnumbered-peering" text="IPv6-only unnumbered peering command">}}
   - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resilient-hashing" text="Resilient hashing commands">}}
   - Map port to connector

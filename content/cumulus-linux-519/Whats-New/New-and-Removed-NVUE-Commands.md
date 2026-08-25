@@ -36,6 +36,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection v6-lla
 {{< tab "nv action ">}}
 
 ```
+nv action clear interface <interface> ipv6 neighbor-discovery prefix <prefix>
 nv action reboot system mode power-off
 ```
 

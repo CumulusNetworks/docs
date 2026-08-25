@@ -2,6 +2,7 @@
 title: Cumulus Linux 5.1 Packages
 author: NVIDIA
 weight: -30
+type: foss
 product: Cumulus Linux
 version: "5.1"
 toc: 1

@@ -2,6 +2,7 @@
 title: Cumulus Linux 4.4 Open Source Packages
 author: NVIDIA
 weight: -30
+type: foss
 product: Cumulus Linux
 version: "4.4"
 toc: 1

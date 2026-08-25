@@ -2,6 +2,7 @@
 title: Cumulus Linux 5.5 Packages
 author: Cumulus Networks
 weight: -30
+type: foss
 product: Cumulus Linux
 version: "5.5"
 toc: 1

@@ -242,6 +242,7 @@ pdfhidden: True
 ### Fixed Issues in 5.16.7
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| 5221604, 5179671 | After an optimized image upgrade, the <code>startup.yaml</code> file is empty on the new partition.  |  | |
 | 5221379, 5221588 | In rare scenarios, a link fault recovery sequence might trigger a switchd watchdog timeout on Spectrum-4 switches. | 5.16.3-5.16.6 | |
 | 5221130 | When multiple gNMI bulk counter sessions are requested frequently, gNMI metric export might fail. | 5.16.5-5.16.6 | |
 | 5217109, 4925514, 4919006 | Core processing services such as <code>cumulus-core.service</code> and <code>cumulus-core.path</code> might enter a failed state due to <code>systemd</code> start rate limiting caused by rapid start and stop cycles. This issue can prevent core files from being included in subsequent automatically generated cl-support collections even after you reactivate automatic cl-support generation after deactivation due to a chain of faults. Newly generated core files might accumulate, potentially leading to <code>/var</code> partition exhaustion. To recover from this condition, run the <code>sudo systemctl reset-failed cumulus-core.service cumulus-core.path</code> command. | 5.16.1-5.16.6 | |

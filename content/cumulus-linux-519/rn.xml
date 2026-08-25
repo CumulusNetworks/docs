@@ -914,7 +914,7 @@ Because the switch appears healthy in the interval between the factory reset and
 <td>5.14.0-5.18.0</td>
 </tr>
 <tr>
-<td>5072739</td>
+<td>5072739, 5089352</td>
 <td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
 <td>5.17.0-5.18.0</td>
 </tr>

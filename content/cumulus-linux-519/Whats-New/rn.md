@@ -162,7 +162,7 @@ pdfhidden: True
 | 5107338 | onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time. | 5.18.0 | |
 | 5080682 | The <code>switchd</code> port-security violation log prints <code>RESTRICTed</code> instead of <code>Restricted</code>. | 5.16.5-5.18.0 | |
 | 5079383 | The BGP service might crash with an assertion failure in EVPN symmetric-IRB deployments that use VRF route leaking across multiple VRFs. The issue is caused by a missing reference count release on a BGP route destination node. Prolonged MAC mobility churn can trigger this condition. Large-scale deployments with many VRFs and EVPN multihoming are more susceptible. | 5.14.0-5.18.0 | |
-| 5072739 | Deleting more than 500 VRFs causes the <code>nv config apply</code> command to fail with the error <code>Unable to reload-or-restart services (frr) / FRR configuration reload failed</code>.  | 5.17.0-5.18.0 | |
+| 5072739, 5089352 | Deleting more than 500 VRFs causes the <code>nv config apply</code> command to fail with the error <code>Unable to reload-or-restart services (frr) / FRR configuration reload failed</code>.  | 5.17.0-5.18.0 | |
 | 5002002 | When using an IPv6 VXLAN tunnel IP address,  FRR treats the received type-3 EVPN route as a withdraw. | 5.16.1-5.18.0 | |
 | 4982910 | The mellanox platform driver fails to register a <code>pm_power_off</code> handler for legacy platforms. As a result, it falls through to ACPI power off which doesn't work correctly on the BIOS and causes a reset. | 5.17.0-5.18.0 | |
 

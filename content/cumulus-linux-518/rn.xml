@@ -82,7 +82,7 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5174595</td>
+<td>5174595, 5233487</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
@@ -160,7 +160,7 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5072739</td>
+<td>5072739, 5089352</td>
 <td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
 <td>5.17.0-5.18.1</td>
 <td></td>
@@ -1130,7 +1130,7 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5174595</td>
+<td>5174595, 5233487</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
 <td>5.18.0</td>
 <td></td>
@@ -1208,7 +1208,7 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5072739</td>
+<td>5072739, 5089352</td>
 <td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
 <td>5.17.0-5.18.0</td>
 <td></td>

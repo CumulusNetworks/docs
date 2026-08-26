@@ -36,7 +36,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - VRF per destination support GA
 - Support security configurations visibility for manufacturing and field inspection (Phase 1)
-- Disconnected multiplane support for EVPN deployment with 802.1x based dynamic VRF assignment GA
+- {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
 - SRv6 Back to sender(BTS) upon link down
 - Adaptive Routing - Enable extended grading configuration of AR thresholds through CL profile
 - Loopback IP/Interface as Source for NVUE DNS in Cumulus Linux 5.x

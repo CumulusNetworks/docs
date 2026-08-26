@@ -1185,6 +1185,60 @@ ch-4-tx-bias-current   : 6.750 mA
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show platform transceiver /<interface-id/> firmware</h>
+
+Shows the current firmware version for a transceiver, the upgrade status, and the firmware files available.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface with the SFP or QSFP module. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 firmware
+                     operational
+-------------------  ---------------------
+actual-firmware      38.100.121
+fw-upgrade-status    ok
+[files]              fw-rel-38_100_121.bin
+[files]              fw-rel-38_100_122.bin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform transceiver /<interface-id/> firmware files</h>
+
+Shows the available firmware files and their paths.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface with the SFP or QSFP module. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 firmware files
+Available Firmware Files  File Path
+-------------------------  --------------------------------------------------------------
+fw-rel-38_100_121.bin      /etc/fae_platform_firmware/transceiver/fw-rel-38_100_121.bin
+fw-rel-38_100_122.bin      /tmp/firmware_downloads/transceiver/fw-rel-38_100_122.bin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show platform transceiver \<interface-id\> temperature</h>
 
 Shows the temperature threshold configuration for a port.

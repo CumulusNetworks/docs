@@ -3079,6 +3079,34 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action delete platform firmware /<platform-component-id/> files /<file-id/></h>
+
+Deletes a staged firmware file. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<platform-component-id>` |  The platform component. |
+| `<file-id>` |  The name of the file you want to delete. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete platform firmware SSD files ssd-fw-2.1.bin
+Action executing ...
+Deleting file: ssd-fw-2.1.bin
+Action executing ...
+File delete successfully
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action delete system file-path \<path-id\></h>
 
 Deletes the specified file from the switch.
@@ -3957,6 +3985,33 @@ cumulus@switch:~$ nv action import system security certificate tls-cert-1 passph
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action install platform transceiver /<transceiver-id/> firmware files /<file-id/></h>
+
+Installs a firmware file on a transceiver module.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface with the SFP or QSFP module. |
+| `<file-id>` |  The file name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install platform transceiver swp1 firmware files fw-rel-38_100_121.bin
+Action executing ...
+Burning fw-rel-38_100_121.bin on swp1 ...
+Firmware burned on swp1 (mt4129_pciconf0_cable_0). Reset the module or power cycle the system to activate it
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action install system image file \<filename\></h>
 
 Installs the specified binary image on the second partition (optimized upgrade).
@@ -4609,6 +4664,32 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv action release interface swp1 ipv6 dhcp-client
+```
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action rename platform firmware /<platform-component-id/> files /<file-id/> /<new-name/></h>
+
+Renames a staged firmware file.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<platform-component-id>` |  The platform component. |
+| `<file-id>` |  The name of the file you want to rename. |
+| `<new-name>` |  The new name for the file. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action rename platform firmware SSD files ssd-fw-2.1.bin ssd-fw-2.1-verified.bin
+Action executing ...
+File renamed successfully
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5328,6 +5409,35 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dry-run
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action upload platform firmware /<platform-component-id/> files /<file-id/> /<url/></h>
+
+Uploads a staged firmware file to a remote server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<platform-component-id>` |  The platform component. |
+| `<file-id>` |  The name of the file you want to rename. |
+| `<url>` |  The url to where you want to upload the staged firmware file. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action upload platform firmware SSD files ssd-fw-2.1.bin scp://admin@fw-archive.example.com/incoming/
+Action executing ...
+Uploading file ssd-fw-2.1.bin
+Action executing ...
+Successfully uploaded the file: ssd-fw-2.1.bin
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

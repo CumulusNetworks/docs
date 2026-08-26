@@ -714,8 +714,7 @@ small-packet-probability 60
 
 ### Lossless Headroom Based on Small Packet Probability
 
-Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). The switch assumes a 100 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
-<!--On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate.-->
+Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). The switch assumes a 100 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes. On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate.
 
 To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with a {{<link url="#priority-flow-control-(pfc)" text="priority flow control profile">}}. Based on the configured small packet probability, `switchd` calculates the headroom reservation required for the lossless priority group.
 

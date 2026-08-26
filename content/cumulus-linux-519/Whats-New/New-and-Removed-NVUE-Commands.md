@@ -16,6 +16,9 @@ The following NVUE commands are new in Cumulus Linux 5.19.
 {{< tab "nv show ">}}
 
 ```
+nv show platform transceiver <transceiver-id> firmware
+nv show platform transceiver <transceiver-id> firmware files
+nv show platform transceiver <transceiver-id> firmware files <file>
 nv show router allow-reserved-range
 nv show system forwarding resilient-hash
 ```
@@ -24,6 +27,9 @@ nv show system forwarding resilient-hash
 {{< tab "nv set ">}}
 
 ```
+nv set platform firmware <platform-component-id> auto-update 
+nv set platform firmware <platform-component-id> fw-source
+
 nv set router allow-reserved-range class-e
 nv set system forwarding resilient-hash active-timer
 nv set system forwarding resilient-hash bucket-size
@@ -37,7 +43,12 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection v6-lla
 
 ```
 nv action clear interface <interface> ipv6 neighbor-discovery prefix <prefix>
+nv action delete platform firmware <platform-component-id> files <file> 
+nv action install platform firmware <platform-component-id> files <file> [force] [skip-reboot] [skip-version-check]
+nv action install platform transceiver <id> firmware files <file>
 nv action reboot system mode power-off
+nv action rename platform firmware <platform-component-id> files <file> <str>
+nv action upload platform firmware <platform-component-id> files <file> <url> 
 ```
 
 {{< /tab >}}

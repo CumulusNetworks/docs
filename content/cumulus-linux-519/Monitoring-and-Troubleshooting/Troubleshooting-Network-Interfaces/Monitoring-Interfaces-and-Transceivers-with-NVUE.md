@@ -533,6 +533,55 @@ When the reset completes successfully, you see syslog messages similar to the fo
 - If a cable is faulty, the `nv action reset platform transceiver <transceiver-id` command completes successfully, but the details of the transceiver do not show until you resolve the issue or reboot the system if necessary,
 {{%/notice%}}
 
+## Manage Transceiver Firmware
+
+You can show and install firmware for a transceiver module directly through NVUE.
+
+To show the current firmware version for a transceiver, upgrade status, and the firmware files available, run the `nv show platform transceiver <transceiver-id> firmware` command:
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 firmware
+                     operational
+-------------------  ---------------------
+actual-firmware      38.100.121
+fw-upgrade-status    ok
+[files]              fw-rel-38_100_121.bin
+[files]              fw-rel-38_100_122.bin
+```
+
+To show only the available firmware files and their paths, run the `nv show platform transceiver <transceiver-id> firmware files` command. Add a file name to show a single file:
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 firmware files
+Available Firmware Files  File Path
+-------------------------  --------------------------------------------------------------
+fw-rel-38_100_121.bin      /etc/fae_platform_firmware/transceiver/fw-rel-38_100_121.bin
+fw-rel-38_100_122.bin      /tmp/firmware_downloads/transceiver/fw-rel-38_100_122.bin
+```
+
+To install a firmware file on a transceiver module, run the `nv action install platform transceiver <transceiver-id> firmware files <file>` command:
+
+```
+cumulus@switch:~$ nv action install platform transceiver swp1 firmware files fw-rel-38_100_121.bin
+Action executing ...
+Burning fw-rel-38_100_121.bin on swp1 ...
+Firmware burned on swp1 (mt4129_pciconf0_cable_0). Reset the module or power cycle the system to activate it
+Action succeeded
+```
+
+{{%notice note%}}
+Installing firmware on a transceiver does not activate it immediately. {{<link url="#reset-a-transceiver" text="Reset the transceiver">}}, or power cycle the switch, to bring the new firmware into use.
+{{%/notice%}}
+
+If the specified file is not staged for that transceiver, the action fails:
+
+```
+cumulus@switch:~$ nv action install platform transceiver swp1 firmware files fw-rel-38_100_121.bin
+Action executing ...
+Action failed
+Firmware file not found: fw-rel-38_100_121.bin
+```
+
 ## Transceiver Thermal Control
 
 To optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures, you can set temperature thresholds for fan activation in the FAN algorithm,

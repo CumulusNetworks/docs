@@ -68,7 +68,7 @@ Action succeeded
 
 After you fetch a firmware file to the switch, you can delete, rename, or upload a staged firmware file for any platform firmware component, not only BMC. The following examples use the SSD component; substitute the platform component ID you are working with.
 
-To delete a staged firmware file, run the `nv action delete platform firmware <platform-component-id> files <file>` command:
+To delete a staged firmware file, run the `nv action delete platform firmware <platform-component-id> files <file-id>` command:
 
 ```
 cumulus@switch:~$ nv action delete platform firmware SSD files ssd-fw-2.1.bin
@@ -87,7 +87,7 @@ Error: Action failed with the following issue:
 File not found: missing-fw.rom
 ```
 
-To rename a staged firmware file, run the `nv action rename platform firmware <platform-component-id> files <file> <new-name>` command:
+To rename a staged firmware file, run the `nv action rename platform firmware <platform-component-id> files <file-id> <new-name>` command:
 
 ```
 cumulus@switch:~$ nv action rename platform firmware SSD files ssd-fw-2.1.bin ssd-fw-2.1-verified.bin
@@ -96,7 +96,7 @@ File renamed successfully
 Action succeeded
 ```
 
-To upload a staged firmware file to a remote server, run the `nv action upload platform firmware <platform-component-id> files <file> <url>` command. This is the reverse direction of `nv action fetch`, which downloads a file from a remote server onto the switch; `upload` sends a file already staged on the switch out to a remote destination, for example to archive it before you delete it locally.
+To upload a staged firmware file to a remote server, run the `nv action upload platform firmware <platform-component-id> files <file-id> <url>` command. This is the reverse direction of `nv action fetch`, which downloads a file from a remote server onto the switch; `upload` sends a file already staged on the switch out to a remote destination, for example to archive it before you delete it locally.
 
 ```
 cumulus@switch:~$ nv action upload platform firmware SSD files ssd-fw-2.1.bin scp://admin@fw-archive.example.com/incoming/

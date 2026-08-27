@@ -10,6 +10,11 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 
 ## What's New in Cumulus Linux 5.18.1
 
+{{%notice note%}}
+Cumulus Linux 5.18.1 is tested and validated as part of the Spectrum-X reference architecture release 2.3.
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+
 Cumulus Linux 5.18.1 provides bug fixes.
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18.1 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.

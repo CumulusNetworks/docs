@@ -10,11 +10,11 @@ Check out the latest updates to {{<exlink url="https://dsx-air.nvidia.com" text=
 ## August 2026:
 <!-- Air:WhatsNew --> 
 ### 82.2.1.24.1000
-- Added support to Clone a simulation from the UI
-- Added UI display of the required rate to run the simulation
-- Added the ability for Demos to be published only to a subset of organizations
+- Added ability to clone a simulation directly from the UI
+- The UI now shows the rate required to run a simulation
+- Demos can now be published to a specific subset of organizations
 ### 82.2.1.23.1000
-- Added option for users to create their own Demos and request to publish them to the Demo Marketplace
+- You can now create your own demo and submit it for publication to the Demo Marketplace
 <!-- Air:WhatsNew -->
 
 ## July 2026

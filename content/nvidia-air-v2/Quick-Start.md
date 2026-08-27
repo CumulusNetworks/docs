@@ -79,9 +79,9 @@ To enable SSH in the `oob-mgmt-server`, click **Enable SSH**. This option is onl
 
 Rebuilding a node restores the node to its original or default configuration. If you create the node from a demo or other snapshot, rebuilding it reverts the node to its original configuration. Resetting a node performs a hard reboot to the node.
 
-From a loaded simulation, click the hamburger menu on a node to view rebuild and reset options.
+From a loaded simulation, click the three-dot menu on a node to view rebuild and reset options.
 
-{{<img src="/images/guides/nvidia-air-v2/RebuildReset.png" alt=""  width="450px" >}}
+{{<img src="/images/guides/nvidia-air-v2/RebuildReset.png" alt=""  width="750px" >}}
 <br>
 <br>
 You can also rebuild all nodes in a simulation simultaneously by clicking the {{<img src="/images/guides/nvidia-air-v2/RebuildAllNodes.png" alt="" width="22px" >}} **Rebuild All Nodes** button in the **Topology** tab.
@@ -92,7 +92,7 @@ You can edit important attributes of a simulation with the {{<img src="/images/g
 - **Simulation Name** is the simulation name. Simulations can share the same name. Air assigns a unique identifier to each simulation to differentiate between each one.
 - **Sleep date** is when the simulation goes into sleep mode automatically; Air saves the state of the simulation and stores it to free up account resources. For details, see {{<link title="Simulation Management">}}.
 
-{{<img src="/images/guides/nvidia-air-v2/EditSim.png" alt="" width="400px">}}
+{{<img src="/images/guides/nvidia-air-v2/edit-sim-air.png" alt="" width="500">}}
 
 ## API Authentication
 

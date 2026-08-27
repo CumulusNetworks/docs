@@ -28,7 +28,8 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
 - Layer 3 VXLAN device mode is generally available
 - Multi ASIC fast boot support (Beta)
-- ISSUv2 support - Full KVD (Beta)
+- {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="Full resource mode ISSU on Spectrum-4 and later switches">}} (Beta)
+- {{<link url="Bidirectional-Forwarding-Detection-BFD/#offload-to-hardware" text="BFD offload to switch firmware">}}
 - Packet trimming BTS
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5
@@ -42,9 +43,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - AR-ECMP group segregation for Round Robin per ECMP
 - Change the USB0 IP address to 169.254.100.2 / 169.254.100.1
 - CPO Debug Params | nv show comands & Telemetry (OTEL and GNMI) GA
-- {{<link url="Bidirectional-Forwarding-Detection-BFD/#offload-to-hardware" text="BFD offload to switch firmware">}}
 - Add step time estimator
-- Repurposing Reset Push-button to Support "Power On" 
 - ISSU support for Spectrum-6 - Support More Than 2 RIF MAC Profiles in ISSU Mode
 - NVUE
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}

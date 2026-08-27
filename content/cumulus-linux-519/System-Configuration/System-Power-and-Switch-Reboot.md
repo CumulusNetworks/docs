@@ -12,7 +12,7 @@ Cumulus Linux provides these reboot and power modes:
 - **power-cycle** lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
-- **warm** restarts the switch with no interruption to traffic for existing route entries and without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. Warm reboot requires configuring the switch {{<link url="#resource-allocation" text="resource mode">}} to `half` to reduce the available {{<link title="Forwarding Table Size and Profiles" text="forwarding table entries">}} on the switch by half to accommodate traffic forwarding during a reboot.
+- **warm** restarts the switch with no interruption to traffic for existing route entries and without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. On Spectrum-3 and earlier switches, warm reboot requires configuring the switch {{<link url="#resource-allocation" text="resource mode">}} to `half` to reduce the available {{<link title="Forwarding Table Size and Profiles" text="forwarding table entries">}} on the switch by half to accommodate traffic forwarding during a reboot. Spectrum-4 and later switches perform a warm reboot with the resource mode set to `full` and keep all forwarding table entries available.
 
   Review {{<link url="#warm-reboot-and-issu-considerations" text="Warm Reboot and ISSU Considerations">}} to understand support limitations and requirements for warm reboot and ISSU. 
 
@@ -256,7 +256,17 @@ The following features are not supported during warm reboot:
 
 ### Resource Allocation
 
-To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is set to `full`. Warm reboot and hitless ISSU-based software upgrade requires the resource mode to be `half`.
+To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is set to `full`.
+
+On Spectrum-3 and earlier switches, warm reboot and hitless ISSU-based software upgrade require the resource mode to be `half`.
+
+<!-- REVIEW: the two paragraphs below reverse a day 0 prerequisite documented across this
+     page and Upgrading-Cumulus-Linux.md. Full resource mode ISSU is Beta in 5.19 per the
+     Whats-New list. The spec does not state what happens if you run a warm reboot on a
+     Spectrum-3 or earlier switch left in the default full resource mode. Confirm against a
+     candidate build. Delete this comment before publishing. -->
+
+On Spectrum-4 and later switches, warm reboot runs in full resource mode and preserves the complete hardware forwarding state across the reboot, so you do not need to change the resource mode. Refer to {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="Full Resource Mode ISSU">}}.
 
 The following example sets the switch resource mode to `half`:
 

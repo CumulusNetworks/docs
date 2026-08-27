@@ -1696,36 +1696,36 @@ Maximum 800G ports: 64
 
 SN6600_LD 128xOSFP (800GbE) interfaces support PAM4 with all speeds down to 100G.
 
-Bonus ports #65s0 and #65s1 support 100G.
+Bonus port supports 100G.
 
 {{< tabs "SN6600_ports ">}}
 {{< tab "100G ">}}
 
-- 512x 100G - 512x OSFP break out into 8x
-- 2x 100G - 2x bonus ports break out into 2x
+514x 100G:
 
-Maximum 100G ports: 514 (512 ports + 2 bonus ports)
+- 64 OSFP data ports break out into 8x 
+- 1 QSFP112 bonus port break out 2x (default mode)
+
+Maximum 100G ports: 514
 
 {{< /tab >}}
 {{< tab "200G ">}}
 
-- 512x 200G - 512x OSFP break out into 8x
-- 256x 200G - 256x OSFP break out into 4x
+512 x 200G: 64 OSFP data ports break out into 8x
 
 Maximum 200G ports: 512
 
 {{< /tab >}}
 {{< tab "400G ">}}
 
-- 128x 400G - 128x OSFP break out into 2x
-- 256x 400G - 256x OSFP break out into 4x
+256 x 400G: 64 x OSFP data ports break out into 4x
 
 Maximum 400G ports: 256
 
 {{< /tab >}}
 {{< tab "800G ">}}
 
-- 128x 800G - 64x OSFP break out into 2x
+128 x 800G: 64 OSFP data ports break out into 2x (default mode - out of the box)
 
 Maximum 800G ports: 128
 

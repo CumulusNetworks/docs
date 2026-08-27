@@ -85,7 +85,7 @@
 <td></td>
 </tr>
 <tr>
-<td>5183654</td>
+<td>5183654, 5234851</td>
 <td>When you upgrade gNMI with package upgrade, the {{nv-gnmi.service}} fails and the switch collects a tech support bundle after the first step of the process ({{nv action upgrade system packages to latest}}. The package upgrade process triggers a switch reboot straight afterwards as a second and final step. There is no functional impact after switch reboot completes.</td>
 <td>5.18.0</td>
 <td></td>

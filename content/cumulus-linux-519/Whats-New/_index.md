@@ -24,28 +24,26 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 ### New Features and Enhancements
 
 - {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-evpn-routes" text="Prevent re-export of VRF-leaked EVPN routes">}}
+- {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
+- {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
 - Layer 3 VXLAN device mode is generally available
 - Multi ASIC fast boot support (Beta)
 - ISSUv2 support - Full KVD (Beta)
 - Packet trimming BTS
-- Command to set IPv6 only on a bgp neighbor configured for bgp unnumbered
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5
 - BMC Host Interface Common Layer
 - SN6600 generic part number GA
-- {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - VRF per destination support GA
 - Support security configurations visibility for manufacturing and field inspection (Phase 1)
-- {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
 - SRv6 Back to sender(BTS) upon link down
 - Adaptive Routing - Enable extended grading configuration of AR thresholds through CL profile
 - Loopback IP/Interface as Source for NVUE DNS in Cumulus Linux 5.x
 - AR-ECMP group segregation for Round Robin per ECMP
 - Change the USB0 IP address to 169.254.100.2 / 169.254.100.1
 - CPO Debug Params | nv show comands & Telemetry (OTEL and GNMI) GA
-- FW based BFD acceleration with Cumulus GA
+- {{<link url="Bidirectional-Forwarding-Detection-BFD/#offload-to-hardware" text="BFD offload to switch firmware">}}
 - Add step time estimator
-- Config Knob to clear old IP address on switch side
 - Repurposing Reset Push-button to Support "Power On" 
 - ISSU support for Spectrum-6 - Support More Than 2 RIF MAC Profiles in ISSU Mode
 - NVUE
@@ -128,6 +126,13 @@ After you upgrade to Cumulus Linux, running NVUE configuration commands might ov
 ### nv show vrf \<vrf-id\> router bgp address-family \<address-family\>-unreachability route -o json Command
 
 In Cumulus Linux 5.18 and later, running the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route -o json` command is now equivalent to running the vtysh `show bgp vrf <vrf-id> ipv6 unreachability json brief` command. Therefore, certain fields, such as path details and reporter AS, no longer show. To show a more detailed view, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route <prefix> -o json` command.
+
+### BFD Offload Configuration and Show Output
+
+Cumulus Linux 5.19 replaces the BFD offload boolean with an offload mode that selects where BFD packet processing runs; see {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD Offload">}}.
+
+- The `nv set router bfd offload <enabled|disabled>` command is replaced by `nv set router bfd offload-mode <control-plane|kernel|hardware>`. When you upgrade, Cumulus Linux translates `offload enabled` to `offload-mode kernel` and removes `offload disabled`, which leaves the `control-plane` default in effect.
+- The per-peer offload field now reports the engine carrying the session. In `nv show vrf <vrf-id> router bfd peers` output, the `Offloaded` column shows `kernel`, `hardware`, or `control-plane`; in vtysh and JSON output, `offload-status` shows the same three values. In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. Update any automation or monitoring that matches on the string `offloaded`.
 
 ### Cumulus VX
 

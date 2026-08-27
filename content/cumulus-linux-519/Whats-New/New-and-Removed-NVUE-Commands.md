@@ -29,8 +29,8 @@ nv show system forwarding resilient-hash
 ```
 nv set platform firmware <platform-component-id> auto-update 
 nv set platform firmware <platform-component-id> fw-source
-
 nv set router allow-reserved-range class-e
+nv set router bfd offload-mode kernel
 nv set system forwarding resilient-hash active-timer
 nv set system forwarding resilient-hash bucket-size
 nv set system forwarding resilient-hash state
@@ -52,17 +52,11 @@ nv action upload platform firmware <platform-component-id> files <file> <url>
 ```
 
 {{< /tab >}}
-{{< tab "nv config ">}}
-
-```
-
-```
-
-{{< /tab >}}
 {{< /tabs >}}
 
-## Removed NVUE Commands
+## Changed NVUE Commands
 
-```
+| Cumulus Linux 5.19               | Cumulus Linux 5.18 |
+| -------------------------------- | --------------------------- |
+| `nv set router bfd offload-mode` | `nv set router bfd offload` |
 
-```

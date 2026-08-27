@@ -342,17 +342,21 @@ BFD offload moves BFD packet transmission and reception off the control plane, w
 
 | Mode | Where BFD runs |
 | ---- | -------------- |
-| `control-plane` | Software BFD in the `bfdd` daemon. This is the default on all platforms. |
+| `control-plane` | Software BFD in the `bfdd` daemon. This is the default on all platforms. When you run multiple BFD sessions in `control-plane` mode, the minimum recommended timer values are 3 for the detect multiplier, 300 milliseconds for the transmit interval, and 900 milliseconds for the receive interval.|
 | `kernel` | Offloaded to the kernel driver (`sx_bfd`), which maintains the sessions. Supports numbered sessions and IPv6 unnumbered sessions, single-hop and multi-hop. |
 | `hardware` | Offloaded to switch firmware, which transmits and receives BFD packets with 10 millisecond timer precision independently of CPU load. Spectrum-6 switches and single-hop sessions only. |
 
 {{%notice note%}}
 - BFD offload is opt-in. When you do not set `offload-mode`, BFD runs in the control plane on every platform.
-- The offload mode is system wide. All BFD sessions use the same engine; you cannot select an engine for an individual session.
+- The offload mode is system wide. All BFD sessions use the same mode; you cannot select a mode for an individual session.
 - BFD must be enabled for any of these modes to take effect. Run the `nv set router bfd state enabled` command.
+- You can change the offload mode at runtime. FRR does not restart and sessions do not flap.
 {{%/notice%}}
 
-To set the BFD offload mode:
+### Offload to the Kernel
+
+In `kernel` mode, the kernel driver (`sx_bfd`) maintains the BFD sessions. This mode supports numbered and IPv6 unnumbered sessions, and carries both single-hop and multi-hop sessions.
+
 
 {{< tabs "TabID349 ">}}
 {{< tab "NVUE Commands ">}}
@@ -389,20 +393,6 @@ switch# write memory
 switch# exit
 ```
 
-To offload to hardware, run both commands:
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# configure terminal
-switch(config)# bfd
-switch(config-bfd)# offload-mode
-switch(config-bfd)# offload-backend hardware
-switch(config-bfd)# end
-switch# write memory
-switch# exit
-```
-
 To return to software BFD, run the `no offload-mode` command.
 
 For single hop static route BFD sessions in offload mode, you need to configure the source address:
@@ -419,6 +409,73 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+- When you change timer or profile settings with BFD sessions at scale, there is a transient spike in CPU usage because of the increased volume of messages from the BFD daemon to the kernel driver.
+- When a BFD peer goes down because of a path failure rather than an admin-down, the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might increase CPU usage.
+- If you use frequent BFD timers, such as 50 milliseconds with a multiplier of 3, for BFD sessions at scale, NVIDIA recommends that you increase the BFD control plane policer values with the `nv set system control-plane policer bfd burst` and `nv set system control-plane policer bfd rate` commands.
+{{%/notice%}}
+
+### Offload to Hardware
+
+Under heavy CPU load, such as route churn, ACL updates, or large-scale provisioning, software BFD timers can drift and cause false session flaps, especially at aggressive intervals. In `hardware` mode, the switch firmware transmits and receives BFD packets with 10 millisecond timer precision independently of CPU load, which lets you run intervals as low as 10 milliseconds without false flaps.
+
+{{%notice note%}}
+- Hardware offload requires a Spectrum-6 switch. On any other platform, `nv config apply` rejects the configuration and tells you which mode to use instead.
+- Hardware offload carries single-hop sessions only. Multi-hop sessions continue to run in the control plane and stay up; the switch reports `control-plane` for them.
+- The firmware works in units of 10 milliseconds and rounds transmit intervals up to a multiple of 10 milliseconds.
+{{%/notice%}}
+
+Hardware offload supports these single-hop interface types:
+
+- Layer 3 physical ports; for example, `swp1`.
+- Layer 3 802.1Q subinterfaces on a physical parent port; for example, `swp1.100`.
+- Layer 3 bonds; for example, `bond0`.
+- IPv6 link-local interfaces, including BGP unnumbered peering.
+
+Loopback interfaces have no physical egress port, so sessions sourced from a loopback stay in the control plane.
+
+<!-- REVIEW: the spec's In Scope list names SVI as a validated interface type, but Open Item 8 records SVI and bridge offload as "Deferred - out of scope for 5.19" and the functional test table marks SVI "Not validated". Bond subinterfaces are likewise listed as supported in the interface matrix but recorded as "Open - partial, FW issue" in Open Item 7. Both are omitted from the list above on the strength of the Open Items and test results. Confirm against a candidate build before publishing. -->
+
+To offload BFD to hardware:
+
+{{< tabs "TabID442 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set router bfd offload-mode hardware` command:
+
+```
+cumulus@switch:~$ nv set router bfd offload-mode hardware   
+cumulus@switch:~$ nv config apply
+```
+
+If the switch is not a Spectrum-6 switch, `nv config apply` rejects the configuration:
+
+```
+cumulus@switch:~$ nv config apply
+Error: BFD `offload-mode hardware` requires Spectrum-6 silicon (SPC6). This switch reports chip `Spectrum4`. Use `offload-mode kernel` (sx_bfd kernel module) or `offload-mode control-plane` (software BFD) instead.
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+Run both the `offload-mode` command and the `offload-backend hardware` command:
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# bfd
+switch(config-bfd)# offload-mode
+switch(config-bfd)# offload-backend hardware
+switch(config-bfd)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Show BFD Configuration
 
 To show the BFD offload mode, run the `nv show router bfd` command. To show only the mode, run the `nv show router bfd offload-mode` command.
 
@@ -547,105 +604,17 @@ The `Offloaded` field shows the engine carrying the session: `kernel`, `hardware
 In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. If you have automation or monitoring that matches on the string `offloaded`, update it to match the specific engine name.
 {{%/notice%}}
 
-### Offload to the Kernel
-
-In `kernel` mode, the kernel driver (`sx_bfd`) maintains the BFD sessions. This mode supports numbered and IPv6 unnumbered sessions, and carries both single-hop and multi-hop sessions.
-
-{{%notice note%}}
-- When you change timer or profile settings with BFD sessions at scale, there is a transient spike in CPU usage because of the increased volume of messages from the BFD daemon to the kernel driver.
-- When a BFD peer goes down because of a path failure rather than an admin-down, the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might increase CPU usage.
-- If you use frequent BFD timers, such as 50 milliseconds with a multiplier of 3, for BFD sessions at scale, NVIDIA recommends that you increase the BFD control plane policer values with the `nv set system control-plane policer bfd burst` and `nv set system control-plane policer bfd rate` commands.
-{{%/notice%}}
-
-When you run multiple BFD sessions in `control-plane` mode, the minimum recommended timer values are 3 for the detect multiplier, 300 milliseconds for the transmit interval, and 900 milliseconds for the receive interval.
-
-### Offload to Hardware
-
-Under heavy CPU load, such as route churn, ACL updates, or large-scale provisioning, software BFD timers can drift and cause false session flaps, especially at aggressive intervals. In `hardware` mode, the switch firmware transmits and receives BFD packets with 10 millisecond timer precision independently of CPU load, which lets you run intervals as low as 10 milliseconds without false flaps.
-
-{{%notice note%}}
-- Hardware offload requires a Spectrum-6 switch. On any other platform, `nv config apply` rejects the configuration and tells you which mode to use instead.
-- Hardware offload carries single-hop sessions only. Multi-hop sessions continue to run in the control plane and stay up; the switch reports `control-plane` for them.
-- The firmware works in units of 10 milliseconds and rounds transmit intervals up to a multiple of 10 milliseconds.
-{{%/notice%}}
-
-Hardware offload supports these single-hop interface types:
-
-- Layer 3 physical ports; for example, `swp1`.
-- Layer 3 802.1Q subinterfaces on a physical parent port; for example, `swp1.100`.
-- Layer 3 bonds; for example, `bond0`.
-- IPv6 link-local interfaces, including BGP unnumbered peering.
-
-Loopback interfaces have no physical egress port, so sessions sourced from a loopback stay in the control plane.
-
-<!-- REVIEW: the spec's In Scope list names SVI as a validated interface type, but Open Item 8 records SVI and bridge offload as "Deferred - out of scope for 5.19" and the functional test table marks SVI "Not validated". Bond subinterfaces are likewise listed as supported in the interface matrix but recorded as "Open - partial, FW issue" in Open Item 7. Both are omitted from the list above on the strength of the Open Items and test results. Confirm against a candidate build before publishing. -->
-
-To offload BFD to hardware:
-
-{{< tabs "TabID442 ">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv set router bfd offload-mode hardware` command:
-
-```
-cumulus@switch:~$ nv set router bfd offload-mode hardware   
-cumulus@switch:~$ nv config apply
-```
-
-If the switch is not a Spectrum-6 switch, `nv config apply` rejects the configuration:
-
-```
-cumulus@switch:~$ nv config apply
-Error: BFD `offload-mode hardware` requires Spectrum-6 silicon (SPC6). This switch reports chip `Spectrum4`. Use `offload-mode kernel` (sx_bfd kernel module) or `offload-mode control-plane` (software BFD) instead.
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# configure terminal
-switch(config)# bfd
-switch(config-bfd)# offload-mode
-switch(config-bfd)# offload-backend hardware
-switch(config-bfd)# end
-switch# write memory
-switch# exit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Change the Offload Mode
-
-You can change the offload mode at runtime. Cumulus Linux moves each session into the new engine in place; FRR does not restart and sessions do not flap.
-
-To confirm that a change takes effect, read back the applied mode with the `nv show router bfd` command, then check where each session runs with the `nv show vrf <vrf-id> router bfd peers` command.
-
-```
-cumulus@switch:~$ nv show router bfd
-              applied
-------------  -------
-state         enabled
-offload-mode  hardware
-```
-
-{{%notice note%}}
-Setting BFD sessions to admin down before you change the offload mode remains available if your peers are sensitive to transient state, but it is no longer necessary to avoid a session flap.
-{{%/notice%}}
 
 ### Upgrade Notes
 
-In Cumulus Linux 5.18 and earlier, BFD offload is a boolean that you set with the `nv set router bfd offload` command. Cumulus Linux 5.19 replaces it with the `offload-mode` setting and translates existing configuration when you upgrade:
+In Cumulus Linux 5.18 and earlier, you set BFD offload with the `nv set router bfd offload` command. In Cumulus Linux 5.19 and later, you set BFD offload with the `nv set router bfd offload-mode` command.` Cumulus Linux translates existing configuration when you upgrade:
 
 | Cumulus Linux 5.18 and earlier | Cumulus Linux 5.19 |
 | ------------------------------ | ------------------ |
 | `nv set router bfd offload enabled` | `nv set router bfd offload-mode kernel` |
-| `nv set router bfd offload disabled` | Removed; the `control-plane` default applies |
-| Not set | Not set |
+| `nv set router bfd offload disabled` | Removed; the `control-plane` default applies. |
 
-The upgrade never produces `offload-mode hardware`, because hardware offload requires a Spectrum-6 switch. To use hardware offload after you upgrade, set it explicitly.
+Cumulus Linux upgrade never sets the `offload-mode` to `hardware` because hardware offload requires a Spectrum-6 switch. To use hardware offload after you upgrade, set it explicitly.
 
 ## Show BFD Information
 

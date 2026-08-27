@@ -7,12 +7,20 @@ product: NVIDIA DSX Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://dsx-air.nvidia.com" text="NVIDIA DSX Air">}}.
 
-## July 2026
+## August 2026:
+<!-- Air:WhatsNew --> 
+### 82.2.1.24.1000
+- Added support to Clone a simulation from the UI
+- Added UI display of the required rate to run the simulation
+- Added the ability for Demos to be published only to a subset of organizations
+### 82.2.1.23.1000
+- Added option for users to create their own Demos and request to publish them to the Demo Marketplace
 <!-- Air:WhatsNew -->
+
+## July 2026
 ### 82.2.1.20.27
 - Node boot order: You can now specify an ordered list of boot devices for a node using the `boot` advanced attribute in your topology. List devices such as `network`, `hd`, and `cdrom` in the order you want them tried, so a node can attempt PXE (network) boot first and fall back to local disk. Specifying a single boot device continues to work as before.
 - Removed NetQ SaaS support.
-<!-- Air:WhatsNew -->
 
 ## May 2026
 ### 82.2.1.15.2

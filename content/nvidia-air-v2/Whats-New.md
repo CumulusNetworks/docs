@@ -7,7 +7,7 @@ product: NVIDIA DSX Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://dsx-air.nvidia.com" text="NVIDIA DSX Air">}}.
 
-## August 2026:
+## August 2026
 <!-- Air:WhatsNew --> 
 ### 82.2.1.24.1000
 - Added ability to clone a simulation directly from the UI

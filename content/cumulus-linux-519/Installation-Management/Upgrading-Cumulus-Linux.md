@@ -15,11 +15,11 @@ To upgrade Cumulus Linux, choose one of the three upgrade methods:
 To install a patch (such as a critical bug or CVE), refer to {{<link url="Patches" text="Patches">}}.
 
 ## Upgrades with ISSU
-
+<!-- SUPPORTED IN 5.19?
 {{%notice note%}}
 The Spectrum-6 switch does not support ISSU.
 {{%/notice%}}
-
+-->
 <span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to perform a hitless upgrade of the switch software while the network continues to forward packets. ISSU hitless upgrade minimizes data plane traffic disruption to sub-second levels and automatically translates the switch NVUE configuration to the schema of the new version. During ISSU, the routing control plane is temporarily unavailable; however, the {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} capability maintains traffic flow through the switch.
 
 Cumulus Linux supports two methods that can use ISSU:
@@ -28,10 +28,10 @@ Cumulus Linux supports two methods that can use ISSU:
 
 Before you perform an upgrade with ISSU, you must:
 - Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch. This change is disruptive due to BGP neighbor reset and must be a day 0 configuration.
-- Configure the switch in half-resource mode to perform a warm reboot. This change is disruptive due to `switchd` restart and must be a day 0 configuration.
+- On Spectrum-3 and earlier switches, configure the switch in half-resource mode to perform a warm reboot. This change is disruptive due to `switchd` restart and must be a day 0 configuration. Spectrum-4 and later switches do not require this step; refer to {{<link url="#full-resource-mode-issu" text="Full Resource Mode ISSU">}}.
 - Review support limitations and additional {{<link url="System-Power-and-Switch-Reboot/#warm-reboot-and-issu-considerations" text="warm reboot and ISSU considerations">}}.
 
-After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}}.
+After you set BGP graceful restart, and half-resource mode if your switch requires it, run a warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}}.
 
 {{%notice note%}}
 Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode these are reduced by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
@@ -73,6 +73,33 @@ Cumulus Linux does *not* support the following features during warm reboot:
 - EVPN MLAG or EVPN multihoming.
 - LACP bonds. LACP control plane sessions might time out before warm reboot completes. Use static LAG to keep bonds up with sub-second convergence during a warm reboot.
 {{%/notice%}}
+
+<!-- REVIEW: 5.19 is the first release with full resource mode ISSU, so a switch running an
+     earlier release cannot save the hardware state this mechanism restores. Confirm whether
+     full resource mode applies to the upgrade *into* 5.19, or only to warm reboots and
+     upgrades starting from 5.19. The Whats-New Upgrade Requirements list states ISSU is
+     supported from 5.16.1-5.16.7, 5.17.0, and 5.18.0; if full resource mode does not cover
+     those paths, that list needs qualifying. Delete this comment before publishing. -->
+
+### Full Resource Mode ISSU
+
+{{%notice note%}}
+Full resource mode ISSU is a Beta feature and requires a Spectrum-4 or later switch.
+{{%/notice%}}
+
+<!-- REVIEW: this paragraph reverses a day 0 prerequisite documented on this page and on
+     System-Power-and-Switch-Reboot.md. The spec says the reboot manager reads the configured
+     resource mode and dispatches either the legacy or the full resource warm reboot, and that
+     Spectrum-3 and earlier are blocked from full resource mode at the NVUE level. The spec
+     does not state what happens if you run a warm reboot on a Spectrum-3 switch left in the
+     default full resource mode. Confirm against a candidate build.
+     Delete this comment before publishing. -->
+
+On Spectrum-4 and later, the switch performs the warm reboot in full resource mode and preserves its complete layer 2, layer 3, ACL, and QoS hardware state across the reboot. MAC address, layer 3 neighbor, and LPM capacity stay at the configured maximum for the duration of the upgrade.
+
+On Spectrum-3 and earlier switches, you must set the resource mode to `half` before you run a warm reboot.
+
+Cumulus Linux selects the mechanism from the configured resource mode. There is no command to enable full resource mode ISSU. If the switch cannot restore its hardware state after the reboot, it falls back to a cold boot, which interrupts traffic. To see the outcome of the last reboot, run the `nv show system reboot` command; refer to {{<link url="System-Power-and-Switch-Reboot/#show-reboot-information" text="Show Reboot Information">}}.
 
 ## Before You Upgrade
 

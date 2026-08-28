@@ -7,7 +7,7 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5225576</td>
+<td>5225576, 5236486</td>
 <td>After an optimized image upgrade from Cumulus Linux 5.13.1 or earlier to a later release, the install step fails with a permission error if the image being installed is already present in the {{/var/images}} directory before the upgrade. In this state, the {{nv show system image files}} command might not list any images. To work around this issue, fetch the image with the {{nv action fetch system image &lt;remote-url&gt;}} command before installing it. Alternatively, correct the directory permissions with {{sudo chmod 0755 /var/images}}.</td>
 <td>5.16.6-5.18.0</td>
 <td></td>
@@ -32,14 +32,7 @@
 </tr>
 <tr>
 <td>5217147, 5225676</td>
-<td>After a two-partition (A/B) optimized upgrade, performing a factory reset can cause the switch to lose the record of what model it is.
-
-The A/B upgrade takes its reference configuration backup before the boot configuration has been written to the newly staged partition, so that backup does not contain /etc/default/grub. A factory reset restores /etc from that backup and deletes anything not present in it, which removes the live /etc/default/grub. That file carries the cl_platform= kernel argument — the only record of the switch model — and no package ships it, so nothing on the switch can recreate it.
-
-The switch continues to operate normally after the reset, because it is still running from a boot configuration generated while the file existed. The failure appears later, the first time anything regenerates that boot configuration — an update-grub, a kernel or package upgrade, or a subsequent image upgrade. From then on the switch boots without cl_platform, platform detection fails, update-ports.service fails, switchd does not start, and no ASIC interfaces are present. Management access over eth0 is unaffected.
-
-Because the switch appears healthy in the interval between the factory reset and that regeneration, an affected switch can run for an extended period before the fault becomes visible. Once it does, reboots do not clear it — nothing regenerates the boot configuration at boot time — and recovery requires reinstalling via ONIE.
-</td>
+<td>When you perform a factory reset after an optimized image upgrade, the switch loses record of its model information.</td>
 <td>5.16.6-5.18.0</td>
 <td></td>
 </tr>
@@ -1480,7 +1473,7 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 </tr>
 <tr>
 <td>5217097, 5179671, 5221593, 5221604</td>
-<td>After optimized image upgrade, the {{/run/tmpfs}} which holds the upgraded partition runs out of space. As a result, the switch does not migrate all the certificates to the new partition. This issue prevents NVUE from installing the user defined certificates defaulting to a self signed certificate.</td>
+<td>After optimized image upgrade, {{/run/tmpfs}}, which holds the upgraded partition, runs out of space. As a result, the switch does not migrate all the certificates to the new partition. This issue prevents NVUE from installing the user defined certificates defaulting to a self signed certificate.</td>
 <td>5.16.5-5.16.6</td>
 </tr>
 <tr>
@@ -1517,7 +1510,7 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5225576</td>
+<td>5225576, 5236486</td>
 <td>After an optimized image upgrade from Cumulus Linux 5.13.1 or earlier to a later release, the install step fails with a permission error if the image being installed is already present in the {{/var/images}} directory before the upgrade. In this state, the {{nv show system image files}} command might not list any images. To work around this issue, fetch the image with the {{nv action fetch system image &lt;remote-url&gt;}} command before installing it. Alternatively, correct the directory permissions with {{sudo chmod 0755 /var/images}}.</td>
 <td>5.16.6-5.18.0</td>
 <td></td>
@@ -1548,14 +1541,7 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 </tr>
 <tr>
 <td>5217147, 5225676</td>
-<td>After a two-partition (A/B) optimized upgrade, performing a factory reset can cause the switch to lose the record of what model it is.
-
-The A/B upgrade takes its reference configuration backup before the boot configuration has been written to the newly staged partition, so that backup does not contain /etc/default/grub. A factory reset restores /etc from that backup and deletes anything not present in it, which removes the live /etc/default/grub. That file carries the cl_platform= kernel argument — the only record of the switch model — and no package ships it, so nothing on the switch can recreate it.
-
-The switch continues to operate normally after the reset, because it is still running from a boot configuration generated while the file existed. The failure appears later, the first time anything regenerates that boot configuration — an update-grub, a kernel or package upgrade, or a subsequent image upgrade. From then on the switch boots without cl_platform, platform detection fails, update-ports.service fails, switchd does not start, and no ASIC interfaces are present. Management access over eth0 is unaffected.
-
-Because the switch appears healthy in the interval between the factory reset and that regeneration, an affected switch can run for an extended period before the fault becomes visible. Once it does, reboots do not clear it — nothing regenerates the boot configuration at boot time — and recovery requires reinstalling via ONIE.
-</td>
+<td>When you perform a factory reset after an optimized image upgrade, the switch loses record of its model information.</td>
 <td>5.16.6-5.18.0</td>
 <td></td>
 </tr>
@@ -1612,7 +1598,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5179671, 5217097, 5221593, 5221604</td>
-<td>After optimized image upgrade, the {{/run/tmpfs}} which holds the upgraded partition runs out of space. As a result, the switch does not migrate all the certificates to the new partition. This issue prevents NVUE from installing the user defined certificates defaulting to a self signed certificate.</td>
+<td>After optimized image upgrade, {{/run/tmpfs}}, which holds the upgraded partition, runs out of space. As a result, the switch does not migrate all the certificates to the new partition. This issue prevents NVUE from installing the user defined certificates defaulting to a self signed certificate.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.16.7-5.18.0</td>
 </tr>
@@ -3191,7 +3177,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5179671, 5217097, 5221593, 5221604</td>
-<td>After optimized image upgrade, the {{/run/tmpfs}} which holds the upgraded partition runs out of space. As a result, the switch does not migrate all the certificates to the new partition. This issue prevents NVUE from installing the user defined certificates defaulting to a self signed certificate.</td>
+<td>After optimized image upgrade, {{/run/tmpfs}}, which holds the upgraded partition, runs out of space. As a result, the switch does not migrate all the certificates to the new partition. This issue prevents NVUE from installing the user defined certificates defaulting to a self signed certificate.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.16.7-5.18.0</td>
 </tr>

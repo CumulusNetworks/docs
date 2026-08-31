@@ -9,7 +9,7 @@ The Spectrum-6 switch requires <span class="a-tooltip">[BMC](## "Baseboard Manag
 
 You can access BMC either through Cumulus Linux or directly through the BMC RJ45 Ethernet port.
 
-Cumulus Linux includes the BMC package. To update the BMC package files to the latest versions, run the following commands.
+## Install BMC 
 
 To fetch the latest BMC package, run the `nv action fetch platform firmware BMC <remote-url-to-package>` command:
 

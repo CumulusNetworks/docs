@@ -720,6 +720,33 @@ cumulus@switch:~$ nv show system telemetry software-stats systemd export
 state  enabled
 ```
 
+### WJH Metrics
+
+When you enable WJH metrics, the switch exports information about WJH channels, such as the total number of dropped packets reported for a channel and which triggers are enabled for each channel. 
+
+To enable the WJH metrics export:
+
+```
+cumulus@switch:~$ nv set system telemetry wjh export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To enable export of a specific WJH channel, run the `nv set system telemetry wjh channel <channel-name>` command:
+
+```
+cumulus@switch:~$ nv set system telemetry wjh channel acl
+cumulus@switch:~$ nv config apply
+```
+
+You can adjust the WJH metrics sample interval (in seconds). You can specify a value in multiples of 10 up to 60. The default value is 30.
+
+```
+cumulus@switch:~$ nv set system telemetry wjh sample-interval 10
+cumulus@switch:~$ nv config apply
+```
+
+To show WJH metrics configuration, run the `nv show system telemetry wjh` command.
+
 ### gRPC OTLP Export
 
 To configure the open telemetry export destination:
@@ -848,6 +875,18 @@ The following example:
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce state enabled 
 cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group STAT-GROUP9
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stats class debounce sample-interval 120
+cumulus@switch:~$ nv config apply
+```
+
+The following example:
+- Configures STAT-GROUP10 to export WJH metrics.
+- Applies the STAT-GROUP10 configuration to the OTLP destination 10.1.1.100.
+- Sets the sample interval of the WJH metrics to 10 seconds. The default is 30 seconds.
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP10 wjh export state enabled 
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group STAT-GROUP10
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP10 wjh sample-interval 10
 cumulus@switch:~$ nv config apply
 ```
 
@@ -6469,17 +6508,15 @@ When you enable open telemetry with the `nv set system telemetry export otlp sta
 | `node_time_seconds` | System time in seconds since epoch (1970). |
 | `node_os_info` |  Operating system and image information, such as name and version. |
 
-<!--NOW IN 5.19
 ### WJH Format
 
-If you enable {{<link title="What Just Happened (WJH)" text="WJH">}}, you can export the following WJH metrics:
+When you enable {{<link url="/#wjh-metrics" text="WJH metrics">}}, the switch exports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_wjh_total_events_channel_forwarding` | *Total number of forwarding channel events. |
-| `nvswitch_wjh_total_events_channel_acl` | *Total number of ACL channel events.|
-| `nvswitch_wjh_total_events_channel_buffer` | *Total number of buffer channel events. |
--->
+| `nvswitch_wjh_total_events` | The total number of WJH drop-trap events received on the channel, before aggregation. |
+| `nvswitch_wjh_channel_trigger` | Which triggers are enabled for each channel.|
+
 ### Static Label Format
 
 Device static labels are exported in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:

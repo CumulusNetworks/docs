@@ -31,6 +31,9 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="Full resource mode ISSU on Spectrum-4 and later switches">}} (Beta)
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#offload-to-hardware" text="BFD offload to switch firmware">}}
 - {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control plane punt classifier drop counters">}}
+- {{<link url="Understanding-the-cl-support-Output-File" text="The cl-support file">}}captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
+- Layer 3 VXLAN device mode is generally available
+- Multi ASIC fast boot support (Beta)
 - Packet trimming BTS
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5
@@ -53,15 +56,15 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#manage-transceiver-firmware" text="Show and install transceiver firmware">}}
   - {{<link url="Optional-BGP-Configuration/#ipv6-only-unnumbered-peering" text="IPv6-only unnumbered peering command">}}
   - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resilient-hashing" text="Resilient hashing commands">}}
+  - {{<link url="NVUE-CLI/#configuration-management-commands" text="nv config apply command improvements">}} to prevent latency and timeout
   - Map port to connector
   - Disable syslog print on console
-  - FRR config Apply Latency and Timeout
   - knob to configure MAX_FDS for FRR
 - Telemetry
+  - {{<link url="Open-Telemetry-Export/#wjh-metrics" text="WJH metrics for OTEL">}}
   - gNMI component type
   - gNMI for unreachability AFI SAFI
   - uBurst Detection via Per-Port Histograms
-  - What Just Happened with native Cumulus OpenTelemetry GA
   - Support PDB component Telemetry
   - Support for AAA radius gnmi metrics
 

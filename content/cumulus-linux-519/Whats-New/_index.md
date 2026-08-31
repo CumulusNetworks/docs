@@ -32,6 +32,8 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#offload-to-hardware" text="BFD offload to switch firmware">}}
 - {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control plane punt classifier drop counters">}}
 - {{<link url="Understanding-the-cl-support-Output-File" text="The cl-support file">}}captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
+- Layer 3 VXLAN device mode is generally available
+- Multi ASIC fast boot support (Beta)
 - Packet trimming BTS
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5

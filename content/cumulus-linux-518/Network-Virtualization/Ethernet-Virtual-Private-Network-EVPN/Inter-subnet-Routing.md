@@ -2130,7 +2130,6 @@ cumulus@border01:mgmt:~$ ip route show vrf VRF10
 ### Centralized Routing with ARP Suppression Enabled on the Gateway
 
 In an EVPN centralized routing configuration, where the layer 2 network extends beyond VTEPs, (for example, a host with bridges), the gateway MAC address does not refresh in the network when ARP suppression exists on the gateway. To work around this issue, disable ARP suppression on the centralized gateway.
-<!-- vale off -->
 
 ### Symmetric Routing and the Same SVI IP Address Across Racks
 

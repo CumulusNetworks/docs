@@ -491,7 +491,7 @@ router bgp 65101 vrf RED
 Symmetric routing presents a problem in the presence of silent hosts. If the ingress VTEP does not have the destination subnet and the host route does not advertise for the destination host, the ingress VTEP cannot route the packet to its destination. You can overcome this problem by having VTEPs announce the subnet prefixes corresponding to their connected subnets in addition to announcing host routes. Cumulus Linux announces these routes as EVPN prefix (type-5) routes.
 
 To advertise locally attached subnets:
-<!-- vale off -->
+
 1. Enable advertisement of EVPN prefix (type-5) routes. Refer to {{<link url="#announce-evpn-type-5-routes" text="Prefix-based Routing - EVPN Type-5 Routes">}}, below.<!-- vale on -->
 2. Ensure that the routes corresponding to the connected subnets are in the BGP VRF routing table by injecting them using the `network` command or redistributing them using the `redistribute connected` command.
 
@@ -509,7 +509,7 @@ EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the s
 - When connecting to a WAN edge router to reach destinations outside the data center, deploy specific border or exit leaf switches to originate the type-5 routes.
 - On switches with Spectrum ASICs, centralized routing, symmetric routing, and prefix-based routing only work with Spectrum-A1 and later.
 {{%/notice%}}
-<!-- vale off -->
+
 ### Install EVPN Type-5 Routes
 <!-- vale on -->
 For a switch to install EVPN type-5 routes into the routing table, you must configure layer 3 VNI related information. This configuration is the same as for symmetric routing. You need to:

@@ -972,7 +972,7 @@ unknown-ipmc        1000         1024         0            0             0
 
 #### Clear Control Plane Policer Counters
 
-To aid in troubleshoooting control plane traffic issues, you can clear all control plane policer counters and counters for a specific policer ID.
+To aid in troubleshooting control plane traffic issues, you can clear all control plane policer counters and counters for a specific policer ID.
 
 {{%notice note%}}
 The switch clears software (NVUE counters); hardware counters remain intact.

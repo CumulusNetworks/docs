@@ -26,11 +26,11 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-evpn-routes" text="Prevent re-export of VRF-leaked EVPN routes">}}
 - {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
-- Layer 3 VXLAN device mode is generally available
-- Multi ASIC fast boot support (Beta)
 - {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="Full resource mode ISSU on Spectrum-4 and later switches">}} (Beta)
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#offload-to-hardware" text="BFD offload to switch firmware">}}
-- {{<link url="Understanding-the-cl-support-Output-File" text="The cl-support file">}}captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
+- {{<link url="Understanding-the-cl-support-Output-File" text="The cl-support file">}} captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
+- Layer 3 VXLAN device mode is generally available
+- Multi ASIC fast boot support (Beta)
 - Packet trimming BTS
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5

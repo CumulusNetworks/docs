@@ -16,6 +16,9 @@ The following NVUE commands are new in Cumulus Linux 5.19.
 {{< tab "nv show ">}}
 
 ```
+nv show system control-plane punt-classifier
+nv show system control-plane punt-classifier <rule-id>
+nv show system control-plane punt-classifier <rule-id> counters
 nv show platform transceiver <transceiver-id> firmware
 nv show platform transceiver <transceiver-id> firmware files
 nv show platform transceiver <transceiver-id> firmware files <file>
@@ -27,6 +30,8 @@ nv show system forwarding resilient-hash
 {{< tab "nv set ">}}
 
 ```
+nv set system control-plane punt-classifier <rule-id> match
+nv set system control-plane punt-classifier <rule-id> action
 nv set platform firmware <platform-component-id> auto-update 
 nv set platform firmware <platform-component-id> fw-source
 nv set router allow-reserved-range class-e
@@ -43,6 +48,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection v6-lla
 
 ```
 nv action clear interface <interface> ipv6 neighbor-discovery prefix <prefix>
+nv action clear system control-plane punt-classifier <rule-id> counters
 nv action delete platform firmware <platform-component-id> files <file> 
 nv action install platform firmware <platform-component-id> files <file> [force] [skip-reboot] [skip-version-check]
 nv action install platform transceiver <id> firmware files <file>

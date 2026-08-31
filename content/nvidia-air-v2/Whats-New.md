@@ -13,7 +13,6 @@ Check out the latest updates to {{<exlink url="https://dsx-air.nvidia.com" text=
 - Added ability to clone a simulation directly from the UI
 - The UI now shows the rate required to run a simulation
 - Demos can now be published to a specific subset of organizations
-### 82.2.1.23.1000
 - You can now create your own demo and submit it for publication to the Demo Marketplace
 <!-- Air:WhatsNew -->
 

@@ -45,6 +45,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - CPO Debug Params | nv show comands & Telemetry (OTEL and GNMI) GA
 - Add step time estimator
 - ISSU support for Spectrum-6 - Support More Than 2 RIF MAC Profiles in ISSU Mode
+- {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control plane punt classifier drop counters">}}
 - NVUE
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
   - {{<link url="Neighbor-Discovery-ND/#clear-a-stale-prefix" text="Clear a stale IPv6 ND prefix on demand">}}

@@ -18,7 +18,7 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 Cumulus Linux 5.18.1 provides bug fixes.
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18.1 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
-- 5.16.0, 5.16.1, 5.16.5, 5.16.6, 5.16.7
+- 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7
 - 5.17.0
 - 5.18.0
 

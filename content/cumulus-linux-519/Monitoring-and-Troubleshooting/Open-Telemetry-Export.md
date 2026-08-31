@@ -6514,8 +6514,8 @@ When you enable {{<link url="/#wjh-metrics" text="WJH metrics">}}, the switch ex
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_wjh_channel_[name]` | *Total number of events for the channel. |
-| `nvswitch_wjh_channel_trigger` | *Which triggers are enabled for each channel.|
+| `nvswitch_wjh_total_events` | The total number of WJH drop-trap events received on the channel, before aggregation. |
+| `nvswitch_wjh_channel_trigger` | Which triggers are enabled for each channel.|
 
 ### Static Label Format
 

@@ -258,6 +258,14 @@ To enable the new the platform power supply metrics, refer to {{<link url="Open-
 | `nvswitch_platform_package_archive_installed_time` | The time the patch archive was installed (Unix timestamp). |
 
 {{< /tab >}}
+{{< tab "WJH">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_wjh_channel_[name]` | Total number of events for the channel. |
+| `nvswitch_wjh_channel_trigger` | Which triggers are enabled for each channel.|
+
+{{< /tab >}}
 {{< /tabs >}}
 
 

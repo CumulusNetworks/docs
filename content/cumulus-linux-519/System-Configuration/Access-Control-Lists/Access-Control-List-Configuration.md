@@ -968,7 +968,7 @@ unknown-ipmc        1000         1024         0            0             0
 ```
 
 - To show configuration and native hardware data counters for a specific control plane policer from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> native` command.
--To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command.
+- To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command.
 
 #### Clear Control Plane Policer Counters
 

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5240456</td>
+<td>BGP peer sessions might repeatedly flap and re-establish. During outbound TCP connect, the BGP service might clear the local nexthop information for the peer and fail nexthop setup when the remote endpoint is not yet available, which resets the session. Logs might show {{nexthop_set failed with remote: (null) and Transport endpoint is not...}}.</td>
+<td>5.16.1-5.18.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5225576, 5236486</td>
 <td>After an optimized image upgrade from Cumulus Linux 5.13.1 or earlier to a later release, the install step fails with a permission error if the image being installed is already present in the {{/var/images}} directory before the upgrade. In this state, the {{nv show system image files}} command might not list any images. To work around this issue, fetch the image with the {{nv action fetch system image &lt;remote-url&gt;}} command before installing it. Alternatively, correct the directory permissions with {{sudo chmod 0755 /var/images}}.</td>
 <td>5.16.6-5.18.0</td>
@@ -16,18 +22,6 @@
 <td>5224270</td>
 <td> On switches with TACACS+ servers configured by hostname (FQDN) instead of IP address, the switch might generate an excessive rate of DNS queries for the configured TACACS+ server names, including for local user or UID lookups that never actually need to contact a TACACS+ server.</td>
 <td>5.16.1-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5221592</td>
-<td>Adaptive routing ECMP updates during route deletion sometimes result in ECMP database corruption followed by ECMP operation failures.</td>
-<td>5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5221589</td>
-<td>In rare cases, you cannot cancel bulk counter session(MOCS). This issue results in missing GNMI metrics during export.</td>
-<td>5.16.5-5.18.0</td>
 <td></td>
 </tr>
 <tr>
@@ -634,6 +628,12 @@ where only the aggregate should be advertised.</td>
 <tr>
 <td>4850539</td>
 <td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
+<td>5.16.0-5.16.7</td>
+<td>5.17.0-5.18.0</td>
+</tr>
+<tr>
+<td>4850225</td>
+<td>The NVUE {{nv show even vin &lt;vni-id&gt;}} command and the vtysh {{show evpn vni &lt;vni-id&gt;}} command do not display VLAN information for newly added VNIs.</td>
 <td>5.16.0-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
@@ -1436,7 +1436,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.3-5.16.6</td>
 </tr>
 <tr>
-<td>5221130</td>
+<td>5221130, 5221589</td>
 <td>When multiple gNMI bulk counter sessions are requested frequently, gNMI metric export might fail.</td>
 <td>5.16.5-5.16.6</td>
 </tr>
@@ -1461,7 +1461,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.0-5.16.6</td>
 </tr>
 <tr>
-<td>5217101</td>
+<td>5217101, 5221592</td>
 <td>AR ECMP updates during route deletion might result in ECMP database corruption and ECMP operation failures resulting in the following log messages:
 
 switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:789 ERR ECMP: AR cmd CREATE failed: Entry Already Exists, nexthops 18
@@ -1522,19 +1522,7 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
-<td>5221592</td>
-<td>Adaptive routing ECMP updates during route deletion sometimes result in ECMP database corruption followed by ECMP operation failures.</td>
-<td>5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5221589</td>
-<td>In rare cases, you cannot cancel bulk counter session(MOCS). This issue results in missing GNMI metrics during export.</td>
-<td>5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5221130</td>
+<td>5221130, 5221589</td>
 <td>When multiple gNMI bulk counter sessions are requested frequently, gNMI metric export might fail.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.16.7-5.18.0</td>
@@ -1546,7 +1534,7 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
-<td>5217101</td>
+<td>5217101, 5221592</td>
 <td>AR ECMP updates during route deletion might result in ECMP database corruption and ECMP operation failures resulting in the following log messages:
 
 switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:789 ERR ECMP: AR cmd CREATE failed: Entry Already Exists, nexthops 18
@@ -1576,6 +1564,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5197572, 5183241</td>
+<td>In rare cases, you cannot cancel bulk counter session(MOCS), which results in missing GNMI metrics during export. To work around this issue, reboot the switch.</td>
+<td>5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
 <td>5183514, 5217107, 5221591</td>
 <td>The NVUE set command returns a traceback in the output when the per user repo_incarnation file ({{/home/$USER/.local/share/nvue/repo_incarnation}}) is non-writable.</td>
 <td>5.16.1-5.16.6</td>
@@ -1591,7 +1585,7 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5182789, 5217108, 5221590, 5216045, 5215790</td>
+<td>5182789, 5217108, 5221590, 5216045, 5215790, 5240456</td>
 <td>BGP peer sessions might repeatedly flap and re-establish. During outbound TCP connect, the BGP service might clear the local nexthop information for the peer and fail nexthop setup when the remote endpoint is not yet available, which resets the session. Logs might show {{nexthop_set failed with remote: (null) and Transport endpoint is not...}}.</td>
 <td>5.16.1-5.16.6</td>
 <td>5.16.7-5.18.0</td>
@@ -1599,6 +1593,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>5179671, 5217097, 5221593, 5221604</td>
 <td>After optimized image upgrade, {{/run/tmpfs}}, which holds the upgraded partition, runs out of space. As a result, the switch does not migrate all the certificates to the new partition. This issue prevents NVUE from installing the user defined certificates defaulting to a self signed certificate.</td>
+<td>5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5179104</td>
+<td>Adaptive routing ECMP updates during route deletion might sometimes result in ECMP database corruption followed by ECMP operation failures.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.16.7-5.18.0</td>
 </tr>
@@ -2215,6 +2215,12 @@ where only the aggregate should be advertised.</td>
 <tr>
 <td>4850539</td>
 <td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
+<td>5.16.0-5.16.7</td>
+<td>5.17.0-5.18.0</td>
+</tr>
+<tr>
+<td>4850225</td>
+<td>The NVUE {{nv show even vin &lt;vni-id&gt;}} command and the vtysh {{show evpn vni &lt;vni-id&gt;}} command do not display VLAN information for newly added VNIs.</td>
 <td>5.16.0-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
@@ -3089,8 +3095,8 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td>5.16.1-5.16.5</td>
 </tr>
 <tr>
-<td>5145959</td>
-<td>During a switch reboot with SRv6 enabled, there is an ordering race that occasionally results in the {{nginx-authenticator.service}} only listening on the IPv6 loopback IP address. As result, the gNMI server Envoy instance, which uses the {{nginx-authenticator.service}} to validate the username and password in requests from the gNMI client fails to connect and you see the error {{rpc error: code = Unavailable desc = Authentication service unavailable}}.</td>
+<td>5145959, 5142608</td>
+<td>A race condition causes gNMI subscriptions to fail on bootup because the gNMI Envoy gRPC proxy is unable to reach the {{nginx-authenticator}} service to authenticate users if SRv6 is enabled.  This occurs if the {{nginx-authenticator}} service is only listening on the IPv6 loopback address, while Envoy is trying to reach it on the IPv4 loopback address.</td>
 <td>5.16.1-5.16.5</td>
 </tr>
 <tr>
@@ -3113,25 +3119,13 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td></td>
 </tr>
 <tr>
-<td>5221592</td>
-<td>Adaptive routing ECMP updates during route deletion sometimes result in ECMP database corruption followed by ECMP operation failures.</td>
-<td>5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5221589</td>
-<td>In rare cases, you cannot cancel bulk counter session(MOCS). This issue results in missing GNMI metrics during export.</td>
-<td>5.16.5-5.18.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5221130</td>
+<td>5221130, 5221589</td>
 <td>When multiple gNMI bulk counter sessions are requested frequently, gNMI metric export might fail.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.16.7-5.18.0</td>
 </tr>
 <tr>
-<td>5217101</td>
+<td>5217101, 5221592</td>
 <td>AR ECMP updates during route deletion might result in ECMP database corruption and ECMP operation failures resulting in the following log messages:
 
 switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:789 ERR ECMP: AR cmd CREATE failed: Entry Already Exists, nexthops 18
@@ -3155,6 +3149,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5197572, 5183241</td>
+<td>In rare cases, you cannot cancel bulk counter session(MOCS), which results in missing GNMI metrics during export. To work around this issue, reboot the switch.</td>
+<td>5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
 <td>5183514, 5217107, 5221591</td>
 <td>The NVUE set command returns a traceback in the output when the per user repo_incarnation file ({{/home/$USER/.local/share/nvue/repo_incarnation}}) is non-writable.</td>
 <td>5.16.1-5.16.6</td>
@@ -3170,7 +3170,7 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5182789, 5217108, 5221590, 5216045, 5215790</td>
+<td>5182789, 5217108, 5221590, 5216045, 5215790, 5240456</td>
 <td>BGP peer sessions might repeatedly flap and re-establish. During outbound TCP connect, the BGP service might clear the local nexthop information for the peer and fail nexthop setup when the remote endpoint is not yet available, which resets the session. Logs might show {{nexthop_set failed with remote: (null) and Transport endpoint is not...}}.</td>
 <td>5.16.1-5.16.6</td>
 <td>5.16.7-5.18.0</td>
@@ -3178,6 +3178,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>5179671, 5217097, 5221593, 5221604</td>
 <td>After optimized image upgrade, {{/run/tmpfs}}, which holds the upgraded partition, runs out of space. As a result, the switch does not migrate all the certificates to the new partition. This issue prevents NVUE from installing the user defined certificates defaulting to a self signed certificate.</td>
+<td>5.16.5-5.16.6</td>
+<td>5.16.7-5.18.0</td>
+</tr>
+<tr>
+<td>5179104</td>
+<td>Adaptive routing ECMP updates during route deletion might sometimes result in ECMP database corruption followed by ECMP operation failures.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.16.7-5.18.0</td>
 </tr>
@@ -3260,8 +3266,8 @@ Pin-Priority: 992</td>
 <td>5.16.6-5.18.0</td>
 </tr>
 <tr>
-<td>5145959</td>
-<td>During a switch reboot with SRv6 enabled, there is an ordering race that occasionally results in the {{nginx-authenticator.service}} only listening on the IPv6 loopback IP address. As result, the gNMI server Envoy instance, which uses the {{nginx-authenticator.service}} to validate the username and password in requests from the gNMI client fails to connect and you see the error {{rpc error: code = Unavailable desc = Authentication service unavailable}}.</td>
+<td>5142608, 5145959</td>
+<td>A race condition causes gNMI subscriptions to fail on bootup because the gNMI Envoy gRPC proxy is unable to reach the {{nginx-authenticator}} service to authenticate users if SRv6 is enabled.  This occurs if the {{nginx-authenticator}} service is only listening on the IPv6 loopback address, while Envoy is trying to reach it on the IPv4 loopback address.</td>
 <td>5.16.1-5.16.5</td>
 <td>5.16.6-5.18.0</td>
 </tr>
@@ -3904,6 +3910,12 @@ where only the aggregate should be advertised.</td>
 <tr>
 <td>4850539</td>
 <td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
+<td>5.16.0-5.16.7</td>
+<td>5.17.0-5.18.0</td>
+</tr>
+<tr>
+<td>4850225</td>
+<td>The NVUE {{nv show even vin &lt;vni-id&gt;}} command and the vtysh {{show evpn vni &lt;vni-id&gt;}} command do not display VLAN information for newly added VNIs.</td>
 <td>5.16.0-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
@@ -4869,7 +4881,7 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>5.16.7-5.18.0</td>
 </tr>
 <tr>
-<td>5182789, 5217108, 5221590, 5216045, 5215790</td>
+<td>5182789, 5217108, 5221590, 5216045, 5215790, 5240456</td>
 <td>BGP peer sessions might repeatedly flap and re-establish. During outbound TCP connect, the BGP service might clear the local nexthop information for the peer and fail nexthop setup when the remote endpoint is not yet available, which resets the session. Logs might show {{nexthop_set failed with remote: (null) and Transport endpoint is not...}}.</td>
 <td>5.16.1-5.16.6</td>
 <td>5.16.7-5.18.0</td>
@@ -4929,8 +4941,8 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>5.16.6-5.18.0</td>
 </tr>
 <tr>
-<td>5145959</td>
-<td>During a switch reboot with SRv6 enabled, there is an ordering race that occasionally results in the {{nginx-authenticator.service}} only listening on the IPv6 loopback IP address. As result, the gNMI server Envoy instance, which uses the {{nginx-authenticator.service}} to validate the username and password in requests from the gNMI client fails to connect and you see the error {{rpc error: code = Unavailable desc = Authentication service unavailable}}.</td>
+<td>5142608, 5145959</td>
+<td>A race condition causes gNMI subscriptions to fail on bootup because the gNMI Envoy gRPC proxy is unable to reach the {{nginx-authenticator}} service to authenticate users if SRv6 is enabled.  This occurs if the {{nginx-authenticator}} service is only listening on the IPv6 loopback address, while Envoy is trying to reach it on the IPv4 loopback address.</td>
 <td>5.16.1-5.16.5</td>
 <td>5.16.6-5.18.0</td>
 </tr>
@@ -5676,6 +5688,12 @@ where only the aggregate should be advertised.</td>
 <tr>
 <td>4850539</td>
 <td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
+<td>5.16.0-5.16.7</td>
+<td>5.17.0-5.18.0</td>
+</tr>
+<tr>
+<td>4850225</td>
+<td>The NVUE {{nv show even vin &lt;vni-id&gt;}} command and the vtysh {{show evpn vni &lt;vni-id&gt;}} command do not display VLAN information for newly added VNIs.</td>
 <td>5.16.0-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>
@@ -7142,6 +7160,12 @@ where only the aggregate should be advertised.</td>
 <tr>
 <td>4850539</td>
 <td>When you update the SOO NHG, FRR sends redundant route updates to the kernel for every route that uses SOO.</td>
+<td>5.16.0-5.16.7</td>
+<td>5.17.0-5.18.0</td>
+</tr>
+<tr>
+<td>4850225</td>
+<td>The NVUE {{nv show even vin &lt;vni-id&gt;}} command and the vtysh {{show evpn vni &lt;vni-id&gt;}} command do not display VLAN information for newly added VNIs.</td>
 <td>5.16.0-5.16.7</td>
 <td>5.17.0-5.18.0</td>
 </tr>

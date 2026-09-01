@@ -838,6 +838,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.18.0</td>
 </tr>
 <tr>
+<td>5185670</td>
+<td>NVUE incorrectly formats the usb0 operational link attributes as speed 0G and {{oper-status}} unknown.</td>
+<td>5.18.0</td>
+</tr>
+<tr>
+<td>5185505</td>
+<td>On the Spectrum-6 switch, NVUE fails to display per-interface counters for usb0 although the interface and its counters are shown in the global counters view.</td>
+<td>5.18.0</td>
+</tr>
+<tr>
 <td>5184005</td>
 <td>In certain SRv6 configuration rollback scenarios, Zebra might fail to restore all explicit SRv6 SIDs. This can occur when multiple SRv6 locators share the same parent SID block and one of the locators is replayed during rollback. To work around this issue, restart FRR to clear the stale in-memory SRv6 SID allocation state, then reapply the intended configuration if needed.</td>
 <td>5.18.0</td>
@@ -863,9 +873,19 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.5-5.16.6</td>
 </tr>
 <tr>
+<td>5177678</td>
+<td>In an EVPN deployment using downstream VNIs (D-VNIs), when all EVPN route-target imports are withdrawn from a VRF, {{switchd}} fails to free exactly one of the D-VNI entries.</td>
+<td>5.18.0</td>
+</tr>
+<tr>
 <td>5175518, 5217093, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
 <td>5.16.1-5.16.6, 5.18.0</td>
+</tr>
+<tr>
+<td>5174873</td>
+<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
+<td>5.18.0</td>
 </tr>
 <tr>
 <td>5174595, 5233487</td>
@@ -896,6 +916,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5158643</td>
 <td>The {{nv show evpn l3vxi --output json}} command returns an empty dictionary ({}). To work around this issue, run the {{nv show evpn l3vxi --rev=applied --output json}} command instead.</td>
 <td>5.18.0</td>
+</tr>
+<tr>
+<td>5146439</td>
+<td>When the BMC power restore policy is set to {{AlwaysOff}}, a BMC-only reboot causes the running switch host to be powered off even though no AC power loss occurs. To work around this issue, set the power restore policy to {{AlwaysOn}} or {{LastState}}.</td>
+<td>5.17.0-5.18.0</td>
 </tr>
 <tr>
 <td>5146376</td>

@@ -2292,6 +2292,13 @@ leaf01# show bgp ipv6 unreachability detail json
 }
 ```
 
+<!-- REVIEW: the specification never asks for a cross-reference from this page. Added because a
+     reader troubleshooting unreachability here has no other way to learn the counters exist.
+     A reviewer might prefer it in Considerations above, or not at all. Delete this comment before
+     publishing. -->
+
+To monitor unreachability and LLDP exception state continuously, the switch exports counters for the BGP unreachability table and the LLDP export channel as {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="routing metrics">}}. Enable the routing telemetry service to collect them; the counters require no additional configuration.
+
 ### Clear Stale Aggregate Route Exceptions
 
 To remove stale older aggregate route exceptions, run the `nv action clear vrf <vrf-id> router rib ipv4 unreachable-prefixes <ipv4-prefix>` or the `nv action clear vrf <vrf-id> router rib ipv6 unreachable-prefixes <ipv6-prefix>` command.
@@ -2512,7 +2519,7 @@ router bgp 65101
 {{< /tab >}}
 {{< /tabs >}}
 
-## BGP Input and Ouput Message Queue Limit
+## BGP Input and Output Message Queue Limit
 
 You can configure the input and the output message queue limit for all peers. For both the input and output queue limit, you can set a value between 1 and 4294967295 messages. The default setting is 10000.
 

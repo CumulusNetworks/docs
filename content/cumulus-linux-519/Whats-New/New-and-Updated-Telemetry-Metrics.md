@@ -37,6 +37,14 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 | `/frr-zebra:lib/debug/lldp-export-channel/errors-total` | Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
 
 {{< /tab >}}
+{{< tab "Platform">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name]/state/name` | Component instance name. Cumulus Linux 5.19 adds the name for the ASIC and for transceivers. |
+| `/components/component[name]/state/type` | OpenConfig component type. Cumulus Linux 5.19 adds the type for the ASIC, transceivers, fans, storage disks, and temperature and leakage sensors. |
+
+{{< /tab >}}
 {{< /tabs >}}
 
 For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Streaming">}}.

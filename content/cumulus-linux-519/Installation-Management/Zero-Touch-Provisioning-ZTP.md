@@ -326,6 +326,59 @@ URL            None
 {{< /tab >}}
 {{< /tabs >}}
 
+## Suppress ZTP Console Messages
+
+While ZTP runs, the provisioning framework broadcasts informational, warning, and error messages to the switch console with the Linux `wall` command. Repeated broadcasts can make it difficult to use the console to troubleshoot a provisioning failure or to run other commands. You can stop the switch from printing these messages on the console; the switch continues to write them to syslog, where they remain available for troubleshooting.
+
+The switch prints ZTP messages on the console by default.
+
+{{%notice note%}}
+- The setting affects only the messages that ZTP broadcasts. Messages that other services generate, such as automatic tech support and core file generation, continue to appear on the console.
+- When you run ZTP in verbose mode, the messages that ZTP writes directly to standard output continue to appear on the console.
+- The setting is part of the switch configuration, so it does not carry across an image installation. When ZTP installs a different image and reboots the switch, console printing follows the configuration in the newly installed image.
+{{%/notice%}}
+
+<!-- REVIEW: the specification names this leaf `wall-messages` in its object-model tree, CLI syntax,
+     CLI options table, examples, usage steps, test cases, configuration file key, and JSON payloads,
+     but its Backward Compatibility paragraph calls it `system ztp console-print`. Resolved by
+     section role in favour of the CLI section, so every command in this section uses
+     `wall-messages`. Confirm against a candidate build. Delete this comment before publishing. -->
+
+To stop the switch from printing ZTP messages on the console, run the `nv set system ztp wall-messages disabled` command:
+
+```
+cumulus@switch:~$ nv set system ztp wall-messages disabled
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+The switch restarts the ZTP service to apply the new value.
+{{%/notice%}}
+
+Set this option before you rerun ZTP so that the broadcasts from the new provisioning run stay off the console. To rerun ZTP, refer to {{<link url="/#manually-run-ztp" text="Manually Run ZTP">}}.
+
+To print ZTP messages on the console again, run the `nv set system ztp wall-messages enabled` command:
+
+```
+cumulus@switch:~$ nv set system ztp wall-messages enabled
+cumulus@switch:~$ nv config apply
+```
+
+To return the setting to its default, run the `nv unset system ztp wall-messages` command:
+
+```
+cumulus@switch:~$ nv unset system ztp wall-messages
+cumulus@switch:~$ nv config apply
+```
+
+Remove this configuration before you downgrade the switch to a Cumulus Linux release that does not support the `wall-messages` option.
+
+<!-- REVIEW: the `nv show system ztp` sample output under Manually Run ZTP earlier on this page does
+     not include a wall-messages row. Confirm on a candidate build whether the setting appears there,
+     and refresh that sample output if it does. Delete this comment before publishing. -->
+
+To show the current setting, run the `nv show system ztp wall-messages` command.
+
 ## Write ZTP Scripts
 
 {{%notice note%}}

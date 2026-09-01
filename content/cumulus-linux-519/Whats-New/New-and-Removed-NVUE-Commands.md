@@ -19,6 +19,7 @@ The following NVUE commands are new in Cumulus Linux 5.19.
 nv show system control-plane punt-classifier
 nv show system control-plane punt-classifier <rule-id>
 nv show system control-plane punt-classifier <rule-id> counters
+nv show system ztp wall-messages
 nv show platform transceiver <transceiver-id> firmware
 nv show platform transceiver <transceiver-id> firmware files
 nv show platform transceiver <transceiver-id> firmware files <file>
@@ -32,6 +33,7 @@ nv show system forwarding resilient-hash
 ```
 nv set system control-plane punt-classifier <rule-id> match
 nv set system control-plane punt-classifier <rule-id> action
+nv set system ztp wall-messages
 nv set platform firmware <platform-component-id> auto-update 
 nv set platform firmware <platform-component-id> fw-source
 nv set router allow-reserved-range class-e

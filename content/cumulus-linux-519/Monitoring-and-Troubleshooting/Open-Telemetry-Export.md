@@ -3388,11 +3388,9 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_transceiver_channel_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
 | `nvswitch_platform_transceiver_channel_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in Amps units and represented by a 32bit decimal value. |
 | `nvswitch_platform_transceiver_firmware_version`| Firmware version information for the transceiver.|
-| `nvswitch_platform_transceiver_info` | General information for the transceiver.|
 | `nvswitch_platform_transceiver_ethernet_pmd` | Ethernet PMD information for the transceiver.|
 | `nvswitch_platform_transceiver_physical_channel_state` | Per physical channel LOS and CDR LOL state.|
 | `nvswitch_platform_transceiver_host_lane_state` | Per host lane LOS and CDR LOL state.|
-| `nvswitch_platform_transceiver_voltage` | Input voltage as measured by the transceiver |
 
 {{< /tab >}}
 {{< tab "Platform Information ">}}
@@ -4567,6 +4565,22 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_rib_count_pbr_ipv6` | Number of IPv6 PBR routes in the IP routing table. |
 | `nvrouting_rib_count_ospf_ipv6` | Number of IPv6 OSPF routes in the IP routing table. |
 | `nvrouting_rib_nhg_count` | Number of next hop groups in the routing table. |
+| `nvrouting_bgp_unreach_prefix_count*` | *Number of prefixes in the BGP unreachability table. |
+| `nvrouting_lldp_exception_count` | *Number of unreachable prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `nvrouting_lldp_default_exception_active_count` | *Whether the default route exception is active. |
+| `nvrouting_lldp_exception_add_total` | *Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
+| `nvrouting_lldp_exception_remove_total` | *Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_default_exception_add_total` | *Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
+| `nvrouting_lldp_default_exception_remove_total` | *Number of default route exception withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_export_channel_connected` | *Whether the LLDP export channel is up. |
+| `nvrouting_lldp_export_channel_errors_total` | *Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
+
+{{%notice note%}}
+- The unreachability and LLDP exception metrics carry a `vrf` label. The metrics that report a value for each address family also carry an `afi` label that identifies whether the value is for IPv4 or IPv6.
+- The LLDP exception metrics only report a value in disjoined plane deployments, where the switch signals link failures to NICs with LLDP. In a merged plane deployment, BGP conditional disaggregation handles a link failure instead, the switch generates no LLDP exception, and these metrics stay at zero.
+{{%/notice%}}
+
+For information about the unreachability and LLDP exception metrics, refer to {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}}.
 
 <!-- vale off -->
 {{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}

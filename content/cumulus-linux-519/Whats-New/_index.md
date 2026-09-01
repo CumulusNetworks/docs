@@ -56,7 +56,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resilient-hashing" text="Resilient hashing commands">}}
   - {{<link url="NVUE-CLI/#configuration-management-commands" text="nv config apply command improvements">}} to prevent latency and timeout
   - Map port to connector
-  - Disable syslog print on console
+  - {{<link url="Zero-Touch-Provisioning-ZTP/#suppress-ztp-console-messages" text="Suppress ZTP console messages">}}
   - knob to configure MAX_FDS for FRR
 - Telemetry
   - {{<link url="Open-Telemetry-Export/#wjh-metrics" text="WJH metrics for OTEL">}}

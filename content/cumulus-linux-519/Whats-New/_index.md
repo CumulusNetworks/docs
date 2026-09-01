@@ -46,7 +46,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - Loopback IP/Interface as Source for NVUE DNS in Cumulus Linux 5.x
 - AR-ECMP group segregation for Round Robin per ECMP
 - Change the USB0 IP address to 169.254.100.2 / 169.254.100.1
-- CPO Debug Params | nv show comands & Telemetry (OTEL and GNMI) GA
+- CPO Debug Params | nv show commands & Telemetry (OTEL and GNMI) GA
 - Add step time estimator
 - ISSU support for Spectrum-6 - Support More Than 2 RIF MAC Profiles in ISSU Mode
 - NVUE
@@ -63,7 +63,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - Telemetry
   - {{<link url="Open-Telemetry-Export/#wjh-metrics" text="WJH metrics for OTEL">}}
   - gNMI component type
-  - gNMI for unreachability AFI SAFI
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for unreachability AFI SAFI">}}
   - uBurst Detection via Per-Port Histograms
   - Support PDB component Telemetry
   - Support for AAA radius gnmi metrics

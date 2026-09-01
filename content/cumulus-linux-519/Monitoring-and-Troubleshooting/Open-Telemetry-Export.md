@@ -4567,6 +4567,22 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_rib_count_pbr_ipv6` | Number of IPv6 PBR routes in the IP routing table. |
 | `nvrouting_rib_count_ospf_ipv6` | Number of IPv6 OSPF routes in the IP routing table. |
 | `nvrouting_rib_nhg_count` | Number of next hop groups in the routing table. |
+| `nvrouting_bgp_unreach_prefix_count*` | *Number of prefixes in the BGP unreachability table. |
+| `nvrouting_lldp_exception_count` | *Number of unreachable prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `nvrouting_lldp_default_exception_active_count` | *Whether the default route exception is active. |
+| `nvrouting_lldp_exception_add_total` | *Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
+| `nvrouting_lldp_exception_remove_total` | *Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_default_exception_add_total` | *Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
+| `nvrouting_lldp_default_exception_remove_total` | *Number of default route exception withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_export_channel_connected` | *Whether the LLDP export channel is up. |
+| `nvrouting_lldp_export_channel_errors_total` | *Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
+
+{{%notice note%}}
+- The unreachability and LLDP exception metrics carry a `vrf` label. The metrics that report a value for each address family also carry an `afi` label that identifies whether the value is for IPv4 or IPv6.
+- The LLDP exception metrics only report a value in disjoined plane deployments, where the switch signals link failures to NICs with LLDP. In a merged plane deployment, BGP conditional disaggregation handles a link failure instead, the switch generates no LLDP exception, and these metrics stay at zero.
+{{%/notice%}}
+
+For information about the unreachability and LLDP exception metrics, refer to {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}}.
 
 <!-- vale off -->
 {{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}

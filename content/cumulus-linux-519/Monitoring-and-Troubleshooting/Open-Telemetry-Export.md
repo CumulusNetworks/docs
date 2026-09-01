@@ -3388,11 +3388,9 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_transceiver_channel_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
 | `nvswitch_platform_transceiver_channel_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in Amps units and represented by a 32bit decimal value. |
 | `nvswitch_platform_transceiver_firmware_version`| Firmware version information for the transceiver.|
-| `nvswitch_platform_transceiver_info` | General information for the transceiver.|
 | `nvswitch_platform_transceiver_ethernet_pmd` | Ethernet PMD information for the transceiver.|
 | `nvswitch_platform_transceiver_physical_channel_state` | Per physical channel LOS and CDR LOL state.|
 | `nvswitch_platform_transceiver_host_lane_state` | Per host lane LOS and CDR LOL state.|
-| `nvswitch_platform_transceiver_voltage` | Input voltage as measured by the transceiver |
 
 {{< /tab >}}
 {{< tab "Platform Information ">}}

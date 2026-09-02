@@ -31,7 +31,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="Full resource mode ISSU on Spectrum-4 and later switches">}} (Beta)
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#offload-to-hardware" text="BFD offload to switch firmware">}}
 - {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control plane punt classifier drop counters">}}
-- {{<link url="Understanding-the-cl-support-Output-File" text="The cl-support file">}}captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
+- {{<link url="Understanding-the-cl-support-Output-File" text="The cl-support file">}} captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
 - Packet trimming BTS
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5
@@ -54,7 +54,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="NVUE-CLI/#configuration-management-commands" text="nv config apply command improvements">}} to prevent latency and timeout
   - {{<link url="Zero-Touch-Provisioning-ZTP/#suppress-ztp-console-messages" text="Suppress ZTP console messages">}}
   - Map port to connector
-  - knob to configure MAX_FDS for FRR
+  - {{<link url="FRRouting/#tcp-sockets-and-bgp-peering-sessions" text="Configure the file descriptor limit for the FRR routing daemons">}}
 - Telemetry
   - {{<link url="Open-Telemetry-Export/#wjh-metrics" text="WJH metrics for OTEL">}}
   - {{<link url="gNMI-Streaming/#supported-models" text="gNMI component type and name for platform components">}}

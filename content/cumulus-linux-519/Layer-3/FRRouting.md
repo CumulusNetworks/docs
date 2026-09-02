@@ -681,6 +681,57 @@ The default setting of 1024 open files supports up to 512 BGP peering sessions. 
 NVIDIA recommends you set the value to at least twice the maximum number of BGP peering sessions you expect.
 {{%/notice%}}
 
+<!-- REVIEW: the specification gives two incompatible forms of this command, with different meanings.
+     Its Introduction, Purpose, Scope, Overview, Solution, System design and Observability sections
+     all give a single global knob, `nv set router resource-limit max-file-descriptors <value>`; its
+     Configuration and NVUE config tree sections give a per-protocol knob,
+     `nv set router <protocol> max-fds <value>`, with worked examples for bgp and ospf. Drafted the
+     global form because the mechanism the specification describes can only be global: NVUE renders
+     one MAX_FDS line into /etc/frr/daemons and the FRR startup wrapper applies it with ulimit -n to
+     the shell that launches every daemon, and the specification states "there is no protocol to
+     daemon mapping" and "no FRR change is required". Confirm against a candidate build before
+     publishing. Delete this comment before publishing. -->
+
+<!-- REVIEW: the specification does not say whether the NVUE limit works on its own or whether the
+     systemd LimitNOFILE value in the Linux tab must be raised to at least the same number. Both tabs
+     are therefore presented as they are, with no claim that one replaces the other. Confirm the
+     interaction, and if NVUE alone is sufficient, say so and demote the Linux tab. Delete this
+     comment before publishing. -->
+
+{{< tabs "TabID674 ">}}
+{{< tab "NVUE Commands ">}}
+
+To set the maximum number of open file descriptors for the FRR routing daemons, run the `nv set router resource-limit max-file-descriptors <value>` command. You can specify a value between 1024 and 65536. The setting applies to every daemon that FRR starts, such as `bgpd`, `ospfd`, and `pimd`.
+
+```
+cumulus@switch:~$ nv set router resource-limit max-file-descriptors 8192
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice warning%}}
+Applying this setting restarts the FRR service, which disrupts traffic for every routing protocol running on the switch. Plan the change for a maintenance window.
+{{%/notice%}}
+
+When you apply the configuration, the switch warns you about the restart:
+
+```
+Warning: The frr service will need to be restarted because the list of router services has changed. This will disrupt traffic for any existing routing protocols.
+```
+
+To show the configured limit, run the `nv show router resource-limit` command:
+
+```
+cumulus@switch:~$ nv show router resource-limit
+                      operational  applied
+--------------------  -----------  -------
+max-file-descriptors               8192
+```
+
+To return the daemons to the default limit, run the `nv unset router resource-limit max-file-descriptors` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 To update the open files setting:
 
 1. Edit the `/lib/systemd/system/frr.service` file and change the `LimitNOFILE` parameter. The following example sets the `LimitNOFILE` parameter to 4096.
@@ -711,6 +762,9 @@ To update the open files setting:
    ```
    cumulus@switch:~$ sudo systemctl restart frr.service
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Related Information
 

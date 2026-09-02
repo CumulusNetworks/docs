@@ -24,6 +24,7 @@ nv show platform transceiver <transceiver-id> firmware
 nv show platform transceiver <transceiver-id> firmware files
 nv show platform transceiver <transceiver-id> firmware files <file>
 nv show router allow-reserved-range
+nv show router resource-limit
 nv show system forwarding resilient-hash
 nv show system security spdm
 nv show system security spdm <component-id>
@@ -42,6 +43,7 @@ nv set platform firmware <platform-component-id> auto-update
 nv set platform firmware <platform-component-id> fw-source
 nv set router allow-reserved-range class-e
 nv set router bfd offload-mode kernel
+nv set router resource-limit max-file-descriptors
 nv set system forwarding resilient-hash active-timer
 nv set system forwarding resilient-hash bucket-size
 nv set system forwarding resilient-hash state

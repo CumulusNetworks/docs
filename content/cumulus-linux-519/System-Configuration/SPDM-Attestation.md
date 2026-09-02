@@ -3,8 +3,9 @@ title: SPDM Attestation
 author: NVIDIA
 weight: 285
 toc: 3
+draft: true
 ---
-
+<!-- Alpha in 5.19-->
 SPDM (Security Protocol and Data Model) attestation lets an external verifier confirm that the hardware components in a switch are genuine and are running the firmware they are meant to run. Each component that has a root of trust signs a set of measurements, such as hashes of its running firmware and configuration, with a private identity key fused into the component during manufacturing. The switch BMC collects this evidence from the components, and Cumulus Linux exposes it through NVUE.
 
 Cumulus Linux does not decide whether a component passes or fails. It gathers the evidence and returns it to the verifier, which validates the certificate chain against the NVIDIA root certificate authorities, checks the signature on the measurements, and compares the measurements against the reference values that NVIDIA publishes. Read the output of these commands as raw evidence, not as a verdict.

@@ -58,6 +58,12 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
      while nvrouting_lldp_export_channel_connected reports a boolean with no suffix; both names are
      drafted exactly as the specification gives them. Delete this comment before publishing. -->
 
+<!-- REVIEW: the RADIUS tab below. As of the specification's revision 1.1 the OpenTelemetry
+     RADIUS_STATS category and the collector label change were both on a branch with the merge
+     request not yet opened, so confirm these metrics ship in 5.19 before publishing. The metric
+     names and the single `server` label are settled, so only the delivery is in question. Delete
+     this comment before publishing. -->
+
 {{< tabs "TabID113 ">}}
 {{< tab "WJH">}}
 
@@ -80,6 +86,21 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 | `nvrouting_lldp_default_exception_remove_total` | Number of default route exception withdrawals sent to LLDP since the routing service started. |
 | `nvrouting_lldp_export_channel_connected` | Whether the LLDP export channel is up. |
 | `nvrouting_lldp_export_channel_errors_total` | Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
+
+{{< /tab >}}
+{{< tab "RADIUS">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `node_radius_auth_request_total` | Access-Request packets sent to the RADIUS server to authenticate an interactive user login, including retransmissions. |
+| `node_radius_auth_accept_total` | Access-Accept messages received from the RADIUS server. |
+| `node_radius_auth_reject_total` | Access-Reject messages received from the RADIUS server. |
+| `node_radius_auth_timeout_total` | Access-Request messages that timed out and required retransmission. |
+| `node_radius_auth_retransmit_total` | Retransmitted Access-Request messages. |
+| `node_radius_auth_connection_error_total` | Login authentication attempts for which the switch could not reach the RADIUS server. |
+| `node_radius_auth_bad_response_total` | Malformed or otherwise invalid RADIUS responses received during an interactive login. |
+
+Each metric carries a single `server` label holding the RADIUS server address. For information about the counters behind these metrics, refer to {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="Show and Clear RADIUS Counters">}}.
 
 {{< /tab >}}
 {{< /tabs >}}

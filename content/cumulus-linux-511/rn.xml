@@ -194,7 +194,7 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 </tr>
 <tr>
 <td>4582679</td>
-<td>If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
+<td>If a node has Wait-for-Install (fib suppress pending) enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
 <td>5.9.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
@@ -1212,7 +1212,7 @@ To work around this issue, verify system boot mode with the {{nv show system reb
 </tr>
 <tr>
 <td>4582679</td>
-<td>If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
+<td>If a node has Wait-for-Install (fib suppress pending) enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
 <td>5.9.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
@@ -2183,7 +2183,7 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4582679</td>
-<td>If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
+<td>If a node has Wait-for-Install (fib suppress pending) enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
 <td>5.9.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
@@ -3111,7 +3111,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>4582679</td>
-<td>If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
+<td>If a node has Wait-for-Install (fib suppress pending) enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
 <td>5.9.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
@@ -4244,7 +4244,7 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>4582679</td>
-<td>If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
+<td>If a node has Wait-for-Install (fib suppress pending) enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
 <td>5.9.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>
@@ -5451,7 +5451,7 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 </tr>
 <tr>
 <td>4582679</td>
-<td>If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
+<td>If a node has Wait-for-Install (fib suppress pending) enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
 <td>5.9.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.0</td>
 <td></td>
 </tr>

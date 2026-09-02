@@ -14,6 +14,7 @@ This section describes how to configure the following system settings:
 - {{<link url="Configuring-switchd" text="switchd">}}
 - {{<link url="Configuring-a-Global-Proxy" text="Configuring a Global Proxy">}}
 - {{<link url="Secure-Mount-Directory-Encryption" text="Secure Mount Directory Encryption">}}
+- {{<link url="SPDM-Attestation" text="SPDM Attestation">}}
 - {{<link url="Maintenance-Mode" text="Maintenance Mode">}}
 - {{<link url="CLI-Configuration" text="CLI configuration">}}
 - {{<link url="System-Power-and-Switch-Reboot" text="System Power and Switch Reboot">}}

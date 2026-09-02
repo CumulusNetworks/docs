@@ -62,9 +62,9 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="Open-Telemetry-Export/#wjh-metrics" text="WJH metrics for OTEL">}}
   - {{<link url="gNMI-Streaming/#supported-models" text="gNMI component type and name for platform components">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for unreachability AFI SAFI">}}
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI metrics for AAA RADIUS">}}
   - uBurst Detection via Per-Port Histograms
   - Support PDB component Telemetry
-  - Support for AAA radius gnmi metrics
 
 ## Release Considerations
 

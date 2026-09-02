@@ -438,7 +438,9 @@ source-ip               192.168.1.10                             192.168.1.10
 
 ## Show and Clear RADIUS Counters
 
-To show statistics for a specific RADIUS server, such as the number of authorization requests, accepted, rejected, timed out and retried access requests, and authorization connection errors and bad responses, run the `nv show system aaa radius server <server> counters` command:
+The switch counts the authentication activity for each configured RADIUS server. Cumulus Linux collects these counters whenever you configure RADIUS login authentication; no additional configuration is required.
+
+To show the counters for a specific RADIUS server, run the `nv show system aaa radius server <server> counters` command:
 
 ```
 cumulus@switch:~$ nv show system aaa radius server 192.168.0.254 counters
@@ -454,7 +456,31 @@ auth-bad-responses       0
 ...
 ```
 
-To clear all the counters for a RADIUS server, run the `nv action clear system aaa radius counters` command:
+The following table describes the counters.
+
+| Counter | Description |
+| ------- | ----------- |
+| `auth-requests` | Access-Request packets that the switch sends to the server to authenticate an interactive user login. This count includes retransmissions. |
+| `access-accepts` | Access-Accept messages that the switch receives from the server. |
+| `access-rejects` | Access-Reject messages that the switch receives from the server. |
+| `timeout-access-requests` | Access-Request messages that timed out and required retransmission. |
+| `retried-auth-requests` | Retransmitted Access-Request messages. The switch also counts these messages in `auth-requests`. |
+| `auth-connection-errors` | Login authentication attempts for which the switch could not reach the server, either because no usable response arrived after all configured retries or because the connection to the server failed. |
+| `auth-bad-responses` | Malformed or otherwise invalid RADIUS responses that the switch receives from the server during an interactive login. |
+
+<!-- REVIEW: the specification's Known Limitations state that auth-bad-responses does not yet count
+     malformed packets and reads 0 in practice, and its priority list has that fix as not started.
+     The fourth bullet below says so. If the fix lands for 5.19, delete that bullet. Delete this
+     comment before publishing. -->
+
+{{%notice note%}}
+- The counters appear only after the first RADIUS authentication attempt. Until then, the `nv show system aaa radius server <server> counters` command returns no counters. This is not an error.
+- Authenticating as a local user does not change the counters.
+- The switch reports the counters under the bare server address. If you configure a server with a port, the counters still appear under the address alone.
+- `auth-bad-responses` does not currently increment when the switch receives a malformed response, so the counter stays at zero.
+{{%/notice%}}
+
+To clear the counters, run the `nv action clear system aaa radius counters` command. The command clears the counters for every configured RADIUS server; you cannot clear the counters for a single server.
 
 ```
 cumulus@switch:~$ nv action clear system aaa radius counters

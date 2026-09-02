@@ -25,10 +25,6 @@ nv show platform transceiver <transceiver-id> firmware files
 nv show platform transceiver <transceiver-id> firmware files <file>
 nv show router allow-reserved-range
 nv show system forwarding resilient-hash
-nv show system security spdm
-nv show system security spdm <component-id>
-nv show system security spdm <component-id> certificate
-nv show system security spdm <component-id> measurements
 ```
 
 {{< /tab >}}
@@ -58,7 +54,6 @@ nv action clear system control-plane punt-classifier <rule-id> counters
 nv action delete platform firmware <platform-component-id> files <file> 
 nv action install platform firmware <platform-component-id> files <file> [force] [skip-reboot] [skip-version-check]
 nv action install platform transceiver <id> firmware files <file>
-nv action generate system security spdm <component-id> nonce <nonce>
 nv action reboot system mode power-off
 nv action rename platform firmware <platform-component-id> files <file> <str>
 nv action upload platform firmware <platform-component-id> files <file> <url> 

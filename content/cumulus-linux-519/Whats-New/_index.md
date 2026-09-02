@@ -37,7 +37,6 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - FRR upgrade phase 5
 - VRF per destination support GA
 - Support security configurations visibility for manufacturing and field inspection (Phase 1)
-- {{<link url="SPDM-Attestation" text="SPDM attestation of hardware components through the BMC">}}
 - SRv6 Back to sender(BTS) upon link down
 - Adaptive Routing - Enable extended grading configuration of AR thresholds through CL profile
 - Loopback IP/Interface as Source for NVUE DNS in Cumulus Linux 5.x

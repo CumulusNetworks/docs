@@ -56,6 +56,7 @@ nv action clear system control-plane punt-classifier <rule-id> counters
 nv action delete platform firmware <platform-component-id> files <file> 
 nv action install platform firmware <platform-component-id> files <file> [force] [skip-reboot] [skip-version-check]
 nv action install platform transceiver <id> firmware files <file>
+nv action prune system packages archive
 nv action reboot system mode power-off
 nv action rename platform firmware <platform-component-id> files <file> <str>
 nv action upload platform firmware <platform-component-id> files <file> <url> 

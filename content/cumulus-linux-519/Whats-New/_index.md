@@ -23,6 +23,12 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 
 ### New Features and Enhancements
 
+<!-- REVIEW: concerns the patch framework entry below, the one linking to Patches. Its spec
+     states no quality level and no entry for the feature existed before, so omitting a
+     (Beta) suffix claims GA by default. Confirm against the 5.19 Redmine execution query
+     and append " (Beta)" if needed. That spec is revision 1.0 dated 2026-09-02, one day
+     before this draft. Delete this comment before publishing. -->
+
 - {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-evpn-routes" text="Prevent re-export of VRF-leaked EVPN routes">}}
 - {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
@@ -32,6 +38,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#offload-to-hardware" text="BFD offload to switch firmware">}}
 - {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control plane punt classifier drop counters">}}
 - {{<link url="Understanding-the-cl-support-Output-File" text="The cl-support file">}} captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
+- {{<link url="Patches" text="Patch uninstall returns the switch to the patch installed underneath, and a new command reclaims the space held by superseded patches">}}
 - Packet trimming BTS
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5
@@ -61,7 +68,6 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for unreachability AFI SAFI">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI metrics for AAA RADIUS">}}
   - uBurst Detection via Per-Port Histograms
-  - Support PDB component Telemetry
 
 ## Release Considerations
 

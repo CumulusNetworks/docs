@@ -8,6 +8,20 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 - For a list of open and fixed issues in Cumulus Linux 5.18, see the {{<link title="Cumulus Linux 5.18 Release Notes" text="Cumulus Linux 5.18 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.18, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+## What's New in Cumulus Linux 5.18.1
+
+{{%notice note%}}
+Cumulus Linux 5.18.1 is tested and validated as part of the Spectrum-X reference architecture release 2.3.
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+
+Cumulus Linux 5.18.1 provides bug fixes.
+
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18.1 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+- 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7
+- 5.17.0
+- 5.18.0
+
 ## What's New in Cumulus Linux 5.18.0
 
 Cumulus Linux 5.18.0 supports new platforms, contains new features and improvements, and provides bug fixes.
@@ -76,7 +90,7 @@ Review the following considerations before you upgrade to Cumulus Linux 5.18.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18.0 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 - 5.16.0
 - 5.16.1
 - 5.16.5
@@ -87,13 +101,13 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 The Spectrum-6 switch does not support ISSU.
 {{%/notice%}}
 
-To upgrade to Cumulus Linux 5.18 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
+To upgrade to Cumulus Linux 5.18.0 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
 
-### Maximum Number of NVUE Revisions
+### TACACS and RADIUS Upgrade
 
-Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. If you upgrade to Cumulus Linux 5.18 from 5.12 or earlier, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
+When you upgrade the switch to Cumulus Linux 5.18 from Cumulus Linux 5.16.7, package upgrade does not upgrade the TACACS and RADIUS packages. You must run package upgrade a second time with the `apt-get update && apt-get upgrade` command or run the NVUE `nv action upgrade system packages` command.
 
 ### Linux Configuration Files Overwritten
 

@@ -13,6 +13,17 @@ Cumulus Linux 5.16 is tested and validated as part of the Spectrum-X reference a
 For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
 
+## What’s New in Cumulus Linux 5.16.8
+
+Cumulus Linux 5.16.8 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and the following new feature:
+
+- Improvements to PFC watchdog deadlock detection
+
+You can upgrade to 5.16.8 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the `-t` option to migrate your configuration:
+- 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7
+- 5.15.1
+- 5.14.0
+
 ## What’s New in Cumulus Linux 5.16.7
 
 Cumulus Linux 5.16.7 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}}.
@@ -20,13 +31,9 @@ Cumulus Linux 5.16.7 provides {{<link title="Cumulus Linux 5.16 Release Notes" t
 ### Upgrade Requirements
 
 You can upgrade to 5.16.7 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the `-t` option to migrate your configuration:
-- 5.14.0
+- 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6
 - 5.15.1
-- 5.16.0
-- 5.16.1
-- 5.16.3
-- 5.16.5
-- 5.16.6
+- 5.14.0
 
 To perform a package upgrade to 5.16.7 with `apt`, add the repository before performing the upgrade:
 

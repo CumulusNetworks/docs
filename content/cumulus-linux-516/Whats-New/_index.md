@@ -17,7 +17,7 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 
 Cumulus Linux 5.16.8 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and the following new feature:
 
-- Improvements to PFC watchdog deadlock detection
+- Improvements to {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog">}} deadlock detection
 
 You can upgrade to 5.16.8 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the `-t` option to migrate your configuration:
 - 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7

@@ -799,7 +799,7 @@ cumulus@switch:~$ echo 200 > /cumulus/switchd/config/pfc_wd/poll_interval
      publishing, and mirror this block into cumulus-linux-516 and cumulus-linux-519 if the
      feature ships there too. Delete this comment before publishing. -->
 
-In Cumulus Linux 5.16.8, PFC watchdog distinguishes a real deadlock from steady-state congestion. Instead of declaring a deadlock from a received pause alone, the watchdog evaluates up to three conditions in each polling interval, and requires every enabled condition to be true before it counts a detection hit:
+**In Cumulus Linux 5.16.8**, PFC watchdog distinguishes a real deadlock from steady-state congestion. Instead of declaring a deadlock from a received pause alone, the watchdog evaluates up to three conditions in each polling interval, and requires every enabled condition to be true before it counts a detection hit:
 
 - The egress queue occupancy is above `transmit-queue-threshold`.
 - The number of frames the queue transmits in the interval is at or below `tx-frames-threshold`.

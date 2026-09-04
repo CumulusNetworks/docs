@@ -793,6 +793,119 @@ cumulus@switch:~$ echo 200 > /cumulus/switchd/config/pfc_wd/poll_interval
 {{< /tab >}}
 {{< /tabs >}}
 
+<!-- REVIEW: release is unconfirmed. The NVUE handoff that specifies these commands is
+     subject-lined for a 5.16 maintenance release, and the 5.19 weekly status reports say the
+     same feature was added to 5.19. Neither names 5.18. Confirm the release set before
+     publishing, and mirror this block into cumulus-linux-516 and cumulus-linux-519 if the
+     feature ships there too. Delete this comment before publishing. -->
+
+In Cumulus Linux 5.16.8, PFC watchdog distinguishes a real deadlock from steady-state congestion. Instead of declaring a deadlock from a received pause alone, the watchdog evaluates up to three conditions in each polling interval, and requires every enabled condition to be true before it counts a detection hit:
+
+- The egress queue occupancy is above `transmit-queue-threshold`.
+- The number of frames the queue transmits in the interval is at or below `tx-frames-threshold`.
+- The received pause duration in the interval is above the threshold derived from `rx-pause-duration multiplier`.
+
+Each condition has its own state parameter. When you disable a condition, the watchdog ignores it. A queue that is both occupied and unable to transmit while it receives sustained pause is deadlocked; a queue that continues to transmit is congested but still making progress.
+
+Recovery works the same way. The watchdog requires `recovery-interval` consecutive polling intervals in which received pause frames stay at or below `rx-pause-threshold` before it restores the port.
+
+The following table shows the detection and recovery parameters:
+
+| Parameter | Default | Range | Description |
+|---|---|---|---|
+| `recovery-interval` | 2 | 1-1000 | Consecutive recovery hits the watchdog requires before it restores the port. |
+| `rx-pause-threshold` | 0 | 0-100000 | Maximum received pause frames in a polling interval for that interval to count as a recovery hit. |
+| `rx-pause-duration state` | enabled | enabled, disabled | Whether the watchdog evaluates the pause duration condition. |
+| `rx-pause-duration multiplier` | 9900 | 1-9999 | Pause duration threshold, as a fraction (multiplier divided by 10000) of the polling interval. |
+| `tx-frames-threshold state` | enabled | enabled, disabled | Whether the watchdog evaluates the transmitted frames condition. |
+| `tx-frames-threshold value` | 0 | 0-100000 | Maximum frames transmitted in a polling interval for that interval to count as a detection hit. |
+| `transmit-queue-threshold state` | disabled | enabled, disabled | Whether the watchdog evaluates the queue occupancy condition. |
+| `transmit-queue-threshold value` | 0 | 0-100 | Minimum egress queue occupancy, as a percentage, for that interval to count as a detection hit. |
+
+{{%notice note%}}
+- You can only enable `transmit-queue-threshold` when the polling interval is greater than 300 milliseconds.
+- The default multiplier of 9900 sets the pause duration threshold to 99 percent of the polling interval. With the default polling interval of 100 milliseconds, the watchdog counts a detection hit when it receives more than 99 milliseconds of pause in that interval.
+{{%/notice%}}
+
+The following example enables all three detection conditions, sets the queue occupancy threshold to 10 percent, sets the transmitted frames threshold to 10, and requires five consecutive clean intervals before recovery:
+
+<!-- REVIEW: two fuse leaf names in the Linux tab below need checking against a candidate
+     build. The source lists the transmit-queue-threshold value leaf as "tx_frames_threshold",
+     which duplicates the tx-frames-threshold row and is almost certainly a copy/paste error;
+     tx_queue_occupancy_threshold is drafted here from its own _enabled sibling. The
+     recovery-interval leaf is given as "restoration_time", which does not match the NVUE name
+     - plausible as a legacy name, but confirm. Delete this comment before publishing. -->
+
+{{< tabs "TabID2001 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog polling-interval 400
+cumulus@switch:~$ nv set qos pfc-watchdog transmit-queue-threshold state enabled
+cumulus@switch:~$ nv set qos pfc-watchdog transmit-queue-threshold value 10
+cumulus@switch:~$ nv set qos pfc-watchdog tx-frames-threshold state enabled
+cumulus@switch:~$ nv set qos pfc-watchdog tx-frames-threshold value 10
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-duration state enabled
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-duration multiplier 9900
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-threshold 0
+cumulus@switch:~$ nv set qos pfc-watchdog recovery-interval 5
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ echo 400 > /cumulus/switchd/config/pfc_wd/poll_interval
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/pfc_wd/tx_queue_occupancy_threshold_enabled
+cumulus@switch:~$ echo 10 > /cumulus/switchd/config/pfc_wd/tx_queue_occupancy_threshold
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/pfc_wd/tx_frames_threshold_enabled
+cumulus@switch:~$ echo 10 > /cumulus/switchd/config/pfc_wd/tx_frames_threshold
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/pfc_wd/rx_pause_duration_enabled
+cumulus@switch:~$ echo 9900 > /cumulus/switchd/config/pfc_wd/rx_pause_duration_multiplier
+cumulus@switch:~$ echo 0 > /cumulus/switchd/config/pfc_wd/rx_pause_threshold
+cumulus@switch:~$ echo 5 > /cumulus/switchd/config/pfc_wd/restoration_time
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the PFC watchdog parameters and their applied values, run the `nv show qos pfc-watchdog` command. The following example command shows output for Cumulus Linux 5.16.8 that includes the threshold, duration, and recovery interval settings. Cumulus Linux 5.16.7 and earlier does not support these settings.
+
+<!-- REVIEW: sample output adapted from the source email's mock, with the house prompt
+     substituted. The values are a configured switch rather than the defaults in the table
+     above. Capture on a switch and replace before publishing. Delete this comment before
+     publishing. -->
+
+```
+cumulus@switch:~$ nv show qos pfc-watchdog
+                          operational  applied
+------------------------  -----------  --------------
+polling-interval                       0:00:00.100000
+robustness                             10
+recovery-interval                      111
+rx-pause-threshold                     100
+transmit-queue-threshold
+  state                                enabled
+  value                                10
+tx-frames-threshold
+  state                                enabled
+  value                                100
+rx-pause-duration
+  state                                enabled
+  multiplier                           99
+```
+
+To show an individual parameter, run the `nv show qos pfc-watchdog <parameter>` command. For example, run the `nv show qos pfc-watchdog rx-pause-duration` command:
+
+```
+cumulus@switch:~$ nv show qos pfc-watchdog rx-pause-duration
+            operational  applied
+----------  -----------  -------
+state                    enabled
+multiplier               99
+```
+
 To show if PFC watchdog is on and to show the status for each traffic class, run the `nv show interface <interface-id> qos pfc-watchdog` command:
 
 ```

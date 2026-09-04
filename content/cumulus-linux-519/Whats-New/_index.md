@@ -39,6 +39,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control plane punt classifier drop counters">}}
 - {{<link url="Understanding-the-cl-support-Output-File" text="The cl-support file">}} captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
 - {{<link url="Patches" text="Patch uninstall returns the switch to the patch installed underneath, and a new command reclaims the space held by superseded patches">}}
+- {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog detection parameters that distinguish a real deadlock from steady-state congestion">}}
 - Packet trimming BTS
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5

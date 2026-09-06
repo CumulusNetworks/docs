@@ -332,7 +332,7 @@ You configure the echo function by setting the following parameters in the topol
 
 ### Considerations
 
-- A BFP profile applied to an interface can be changed, but you can not unset a profile while BFD is still enabled on the interface. To remove BFD completely from an interface, use the `nv unset interface <if-name> router <protocol> bfd` command. To change the profile, set a new profile with the `nv set interface <if-name> router <protocol> bfd profile <profile>` command.
+- A BFD profile applied to an interface can be changed, but you can not unset a profile while BFD is still enabled on the interface. To remove BFD completely from an interface, use the `nv unset interface <if-name> router <protocol> bfd` command. To change the profile, set a new profile with the `nv set interface <if-name> router <protocol> bfd profile <profile>` command.
 - BFD is supported in the `default` VRF and non-default VRFs.
 - A single BFD session is established per interface, regardless of how many protocols use BFD on that interface. If you configure different BFD profiles for multiple protocols on the same interface, the most recently applied profile takes precedence for the BFD session on that interface.
 

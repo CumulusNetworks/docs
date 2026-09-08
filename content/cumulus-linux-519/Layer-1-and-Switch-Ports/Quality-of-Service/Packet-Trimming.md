@@ -243,7 +243,7 @@ swp4        5000                  N/A
 To show the number of trimmed packets for a specific interface by traffic class, run the `nv show interface <interface-id> packet-trim counters` command. You must specify a specific interface. The NVUE command does not support interface ranges.
 
 ```
-cumulus@switch:~$ nv show interface swp1 counters packet-trim
+cumulus@switch:~$ nv show interface swp1 packet-trim counters
 Traffic Class  Trim Eligible Packets 
 -------------  --------------- 
 1                 1000                
@@ -270,6 +270,104 @@ To clear the packet trimming counters for a specific interface, run the `nv acti
 ```
 cumulus@switch:~$ nv action clear interface swp1 packet-trim counters
 ```
+
+## Back-to-sender Notification on Link Down
+
+<!-- REVIEW: the specification states GA for this feature in its object model section (FR 5013705
+     (GA)) but states no quality level anywhere else. Confirm against the 5.19 Redmine execution
+     query and append " (Beta)" to the notice below and to the What's New entry if it ships as Beta.
+     Delete this comment before publishing. -->
+
+{{%notice note%}}
+- Cumulus Linux supports back-to-sender notification on link down on Spectrum-6 switches only, for layer 3 unicast RoCEv2 and MRC (Multipath Reliable Connection) traffic.
+- Back-to-sender notification is disabled by default.
+{{%/notice%}}
+
+MRC uses a static SRv6 route. When the egress link fails, the sender keeps transmitting until FRR withdraws that route, and the switch drops those packets silently. Back-to-sender notification trims each affected packet and returns it to the sender, so the sender fails over without waiting for the control plane to converge. The switch sends notifications both while the withdrawn route is still in hardware and after FRR withdraws it.
+
+Back-to-sender notification on link down runs alongside packet trimming. It uses its own recirculation session and its own service port.
+
+<!-- REVIEW: the specification's own CLI section states that this command tree, its leaf names, and
+     its show syntax are the specification's proposal and await architecture sign-off (open issue
+     OI-3, numbered OI-5 in the CLI section). Every command below is therefore provisional. The
+     specification also reproduces an earlier architecture command block that differs in four
+     places: it offers `remark dscp port-level`, brackets ingress eligibility as optional, and adds
+     `policer rate` and `policer burst` nodes. The CLI section overrides all four, so the draft
+     follows the CLI section. Validate the whole tree against a candidate build.
+     Delete this comment before publishing. -->
+
+### Configure Back-to-sender Notification
+
+To enable and configure back-to-sender notification on link down:
+- Set the state to enabled.
+- Set the DSCP value the switch writes onto the notification. You can specify a value between 0 and 63. This setting is required and applies to the whole switch. Port level remarking is not supported for notifications.
+- Set the ingress eligibility DSCP match list on the interfaces you want to cover, or on all interfaces. This setting is required. The switch sends a notification only for a packet that arrives with one of these DSCP values.
+- Set the maximum size of the notification in bytes. You can specify a value between 256 and 1024; the value must be a multiple of 4. The default is 256.
+- Set the switch priority of the notification. You can specify a value between 0 and 7. The default is 1.
+- Set the service port. The service port must be a bonus port, and must not be the packet trimming service port. If you do not set one, the switch uses the platform bonus port.
+
+<!-- REVIEW: the ingress eligibility DSCP value in the examples is a placeholder. The specification
+     does not agree a default (open issue OI-2, numbered OI-4 in its tables), states that the node is
+     mandatory while the feature is enabled, and says explicitly that the lab values 10 and 20 are
+     not the product contract. Replace the example value if a default is agreed.
+     Delete this comment before publishing. -->
+
+```
+cumulus@switch:~$ nv set system forwarding packet-trim notify-sender link-down state enabled
+cumulus@switch:~$ nv set system forwarding packet-trim notify-sender link-down remark dscp 46
+cumulus@switch:~$ nv set system forwarding packet-trim notify-sender link-down size 256
+cumulus@switch:~$ nv set system forwarding packet-trim notify-sender link-down switch-priority 1
+cumulus@switch:~$ nv set system forwarding packet-trim notify-sender link-down service-port swp66
+cumulus@switch:~$ nv set interface all packet-trim notify-sender link-down ingress-eligibility dscp 10
+cumulus@switch:~$ nv config apply
+```
+
+To cover only certain ingress interfaces, specify an interface range instead of `all`:
+
+```
+cumulus@switch:~$ nv set interface swp1-4 packet-trim notify-sender link-down ingress-eligibility dscp 10
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+- The remark DSCP must not be one of the ingress eligibility DSCP values.
+- Ingress eligibility is by ingress interface. You cannot scope notifications by egress interface.
+- The switch returns notifications in the default VRF only.
+- The switch does not configure buffer or scheduler QoS on the service port. Configure the service port QoS yourself.
+- If a default route or super-net route with a valid next hop covers the traffic, the switch reroutes the traffic and sends no notification. If that route is a blackhole or reject route, the switch drops the traffic and sends no notification.
+- After FRR withdraws the route, notifications require {{<link url="Segment-Routing" text="segment routing">}} to be enabled. With SRv6 disabled, the switch sends notifications only while the route is still installed.
+{{%/notice%}}
+
+If the configuration is not valid, `nv config apply` fails and the switch logs the reason to the system log.
+
+To disable back-to-sender notification on link down, run the `nv unset system forwarding packet-trim notify-sender link-down` command.
+
+### Show Back-to-sender Notification Configuration
+
+To show the requested and applied back-to-sender configuration, the resolved service port, and the apply verdict, run the `nv show system forwarding packet-trim notify-sender` command:
+
+<!-- TODO: capture this output on a Spectrum-6 switch and paste it here. The block below is adapted
+     from the specification's own draft output. -->
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim notify-sender
+                      operational  applied
+--------------------  -----------  -------
+link-down
+  state               enabled      enabled
+  remark
+    dscp              46           46
+  size                256          256
+  switch-priority     1            1
+  service-port        swp66        swp66
+  ingress-eligibility
+    ports             all          all
+    dscp              10           10
+  apply-verdict       ok           --
+```
+
+- To show only the link down configuration, run the `nv show system forwarding packet-trim notify-sender link-down` command.
+- To show the link down configuration for an interface, run the `nv show interface <interface-id> packet-trim notify-sender link-down` command.
 
 ## Troubleshooting
 

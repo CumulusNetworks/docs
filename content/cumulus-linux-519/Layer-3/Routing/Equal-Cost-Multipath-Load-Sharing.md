@@ -558,14 +558,14 @@ Cumulus Linux supports adaptive routing with:
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
-- The NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectum-X networking platform" >}}.
+- The NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectrum-X networking platform" >}}.
 - For additional implementation requirements for adaptive routing consult the Spectrum-X Deployment Guide.
 
 {{%notice note%}}
 - Adaptive routing does not make use of resilient hashing.
 - Cumulus Linux does not support adaptive routing on layer 3 subinterfaces, SVIs, bonds or bond members.
 - The Spectrum-4 switch does not support adaptive routing on 800G links.
-- Adaptive routing is only suppported on the NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectum-X networking platform" >}}.
+- Adaptive routing is only supported on the NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectrum-X networking platform" >}}.
 {{%/notice%}}
 
 Cumulus Linux also supports BGP W-ECMP with adaptive routing; see {{<link title="BGP Weighted Equal Cost Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP Weighted Equal Cost Multipath ">}}.
@@ -637,12 +637,12 @@ LAG hash randomizer is supported on a Spectrum-4 or later and only for static la
 
 ### Link Utilization
 
-Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `custom-profile`, you can change the percentage to a value between 1 and 100.
+Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `profile-custom`, you can change the percentage to a value between 1 and 100.
 
 Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
 {{%notice note%}}
-- You can enable link utilization only when you enable the adaptive routing `custom-profile`.
+- You can enable link utilization only when you enable the adaptive routing `profile-custom`.
 {{%/notice%}}
 
 {{< tabs "TabID624 ">}}
@@ -695,7 +695,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{< tabs "TabID693 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example enables adaptive routing on swp1 and swp2. Global link utilization is off (the default setting).
+The following example enables adaptive routing on swp51 and swp52. Global link utilization is off (the default setting).
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing state enabled
@@ -720,7 +720,7 @@ cumulus@switch:~$ nv config apply
 The following example enables adaptive routing on swp51 and swp52. Global link utilization is off (the default setting).
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ad.aptive_routing.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
 ## Global adaptive-routing enable/disable setting
 adaptive_routing.enable = TRUE
 
@@ -759,6 +759,180 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
+
+<!-- REVIEW: this section sits between Example Configuration and Show Adaptive Routing Settings so
+     that it clusters with Link Utilization, the only other section gated on the custom profile, and
+     stays above the show section. Moving it directly after Link Utilization would split that section
+     from the Example Configuration block that continues its examples. Delete this comment before
+     publishing. -->
+
+### Extended Grading
+
+{{%notice note%}}
+Extended grading is only supported on switches with the Spectrum-6 ASIC. On a Spectrum-4 or Spectrum-5 switch, `switchd` logs an error and applies three-threshold grading.
+{{%/notice%}}
+
+Adaptive routing grades the congestion it observes on each candidate egress port, then forwards the packet to the least congested port. By default, three congestion thresholds divide congestion into four grades. Extended grading adds four more thresholds so that a Spectrum-6 switch divides congestion into eight grades and distinguishes finer differences in queue occupancy when it selects a port.
+
+Extended grading is part of the custom adaptive routing profile, which Cumulus Linux reads from the `/etc/cumulus/switchd.d/ar_profile_custom.conf` file. The thresholds apply to the whole switch; you cannot set them per interface. Extended grading has no NVUE object model, so you configure it either by editing the file directly or by writing the file with an {{<link url="NVUE-Snippets/#flexible-snippets" text="NVUE flexible snippet">}}.
+
+<!-- REVIEW: the spec calls `nv set router adaptive-routing profile profile-custom` an existing
+     command, but no `profile` leaf appears under `nv set router adaptive-routing` anywhere in
+     content/nvue-reference/, and both this page and the reference call the feature the
+     `custom-profile`. Drafted from the spec CLI section per the section-role rule. Confirm the
+     command name and the profile name against a candidate build. Delete this comment before
+     publishing. -->
+
+To select the custom profile, run the `nv set router adaptive-routing profile profile-custom` command:
+
+```
+cumulus@switch:~$ nv set router adaptive-routing profile profile-custom
+cumulus@switch:~$ nv config apply
+```
+
+#### Congestion Thresholds
+
+The custom profile carries the three legacy congestion thresholds `ar.ctl`, `ar.ctm`, and `ar.cth`. On a Spectrum-6 switch, it also carries four extended thresholds. The following table shows the extended threshold keys and the value each one takes when you omit it from the file.
+
+| Key | Value when omitted |
+| --- | ------------------ |
+| `ar.ct4` | The value of `ar.cth`. |
+| `ar.ct5` | The resolved value of `ar.ct4`. |
+| `ar.ct6` | The resolved value of `ar.ct5`. |
+| `ar.ct7` | The resolved value of `ar.ct6`. |
+
+{{%notice note%}}
+- Thresholds are in cells. Cumulus Linux does not convert the values to bytes.
+- Each threshold must be between 0 and 16777215.
+- After Cumulus Linux fills in the omitted values, the seven thresholds must be in non-decreasing order: `ar.ctl` <= `ar.ctm` <= `ar.cth` <= `ar.ct4` <= `ar.ct5` <= `ar.ct6` <= `ar.ct7`. Equal values are valid.
+- Setting any one of `ar.ct4` through `ar.ct7` turns on extended grading and brings all four extended thresholds into effect. The fill is sequential, so a threshold you omit takes the resolved value of the threshold before it, which might itself be a filled value.
+- If you set the same key twice in the file, `switchd` uses the last value and logs a warning.
+- If any threshold is out of range or out of order, `switchd` rejects the entire profile. No value from the file reaches the hardware, including the free and busy grade thresholds, the shaper rates, and the ECMP group size, and the switch keeps the adaptive routing configuration it is already running.
+{{%/notice%}}
+
+#### Configure Extended Grading
+
+<!-- REVIEW: NVIDIA has not published recommended extended threshold values; the spec records them as
+     pending end-to-end characterization. The values below are illustrative only. Replace them with
+     recommended values when they are available, or add a sentence telling the reader to obtain them
+     from NVIDIA. Delete this comment before publishing. -->
+
+The following example configures the four extended thresholds and raises the free grade threshold so that the four additional grades take part in port selection.
+
+<!-- REVIEW: the numbered steps in the NVUE tab below use the flexible snippet mechanism the NVUE
+     Snippets page documents. The spec instead shows a single-line
+     `nv set system config snippet <name> file <path> content "..."` form, which appears nowhere in
+     the docs. Confirm which form the release ships. Delete this comment before publishing. -->
+
+{{< tabs "TabID762 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Create a flexible snippet in `yaml` format:
+
+   ```
+   cumulus@switch:~$ sudo nano /home/cumulus/ar-extended-grading.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             ar-extended-grading:
+               file: "/etc/cumulus/switchd.d/ar_profile_custom.conf"
+               content: |
+                 ar.ctl = 500
+                 ar.ctm = 1000
+                 ar.cth = 2500
+                 ar.ct4 = 5000
+                 ar.ct5 = 10000
+                 ar.ct6 = 20000
+                 ar.ct7 = 40000
+                 ar.p.frt = 7
+                 ar.p.but = 0
+   ```
+
+2. Patch the configuration with the fully qualified path to the file:
+
+   ```
+   cumulus@switch:~$ nv config patch /home/cumulus/ar-extended-grading.yaml
+   ```
+
+3. Apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.d/ar_profile_custom.conf` file:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ar_profile_custom.conf
+ar.ctl = 500
+ar.ctm = 1000
+ar.cth = 2500
+ar.ct4 = 5000
+ar.ct5 = 10000
+ar.ct6 = 20000
+ar.ct7 = 40000
+ar.p.frt = 7
+ar.p.but = 0
+```
+
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+<!-- REVIEW: the spec states the accepted range and the consequence of leaving `ar.p.frt` at 4, but
+     never defines what the free and busy grade thresholds do. Add a one-sentence definition from the
+     adaptive routing owner. Delete this comment before publishing. -->
+
+#### Free and Busy Grade Thresholds
+
+The free and busy grade thresholds, `ar.p.frt` and `ar.p.but`, select which grades adaptive routing considers when it picks an egress port. Cumulus Linux accepts a value between 0 and 7 only when you configure extended grading on hardware that supports it, and between 0 and 4 otherwise.
+
+Tune the free and busy grade thresholds together with the extended congestion thresholds. If you configure `ar.ct4` through `ar.ct7` but leave `ar.p.frt` at the default of 4, the switch computes eight grades but adaptive routing only considers grades 0 through 4, so the four additional grades never take part in port selection. Cumulus Linux accepts this configuration and does not warn you.
+
+#### Return to Legacy Grading
+
+To return the switch to three-threshold grading, apply the profile again without the `ar.ct4` through `ar.ct7` lines and with `ar.p.frt` back at 4. Cumulus Linux forgets the extended thresholds and keeps the `ar.ctl`, `ar.ctm`, and `ar.cth` values you tuned. Removing the profile file, and selecting a profile other than the custom profile, also returns the switch to three-threshold grading.
+
+If you remove the extended thresholds but leave `ar.p.frt` above 4, `switchd` logs the mismatch and skips the profile, because 4 is again the highest valid grade.
+
+#### Upgrade Notes
+
+Cumulus Linux 5.19 validates the range and the order of `ar.ctl`, `ar.ctm`, and `ar.cth` in the custom profile, whether or not you configure extended grading. Earlier releases accept these three thresholds without either check. A custom profile that carries an out of range or out of order value is rejected in full after you upgrade. Check the profile file against the rules above before you upgrade the switch.
+
+A value of 5 through 7 already set for `ar.p.frt` or `ar.p.but` stays rejected after you upgrade until you configure extended grading.
+
+#### Verify the Configuration
+
+<!-- REVIEW: sample output below is drafted, not captured. Confirm the readout format on a Spectrum-6
+     switch. Delete this comment before publishing. -->
+
+NVUE does not validate the contents of the profile file, so `nv config apply` succeeds whether or not `switchd` accepts the profile. `switchd` reports every validation failure to `/var/log/switchd.log` only. After you apply a profile, check the log to confirm that the switch accepts it:
+
+```
+cumulus@switch:~$ sudo grep -iE "adaptive|extended grading|congestion threshold" /var/log/switchd.log
+```
+
+To see the threshold values in effect, read the `switchd` configuration nodes:
+
+```
+cumulus@switch:~$ cat /cumulus/switchd/config/ar/ct4
+5000
+```
+
+The `nv show router adaptive-routing` command does not show the extended thresholds.
+
+<!-- REVIEW: the spec records the reload transient as an open issue awaiting confirmation from the SDK
+     and firmware teams. Confirm before publishing, or remove the note. Delete this comment before
+     publishing. -->
+
+{{%notice note%}}
+Reprogramming the congestion thresholds on a switch that is carrying traffic causes a brief transient while the new grades take effect.
+{{%/notice%}}
 
 ### Show Adaptive Routing Settings
 

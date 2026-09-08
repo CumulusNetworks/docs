@@ -811,6 +811,17 @@ Recovery works the same way. The watchdog requires `recovery-interval` consecuti
 
 The following table shows the detection and recovery parameters:
 
+| Parameter | Default | Range | Description |
+|---|---|---|---|
+| `recovery-interval` | 2 | 1-1000 | Consecutive recovery hits the watchdog requires before restoring the port. |
+| `rx-pause-threshold` | 0 | 0–65535 | The maximum received pause frames in a polling interval for that interval to count as a recovery hit. |
+| `rx-pause-duration state` | `enabled` | `enabled`, `disabled` | Whether the watchdog evaluates the pause duration condition. |
+| `rx-pause-duration multiplier` | 9900 | 1–9999  | Pause duration threshold, as a fraction (multiplier divided by 10000) of the polling interval. |
+| `tx-frames-threshold state` | `enabled` | `enabled`, `disabled` | Whether the watchdog evaluates the transmitted frames condition. |
+| `tx-frames-threshold value` | 0 | 0-65535 | The maximum frames transmitted in a polling interval for that interval to count as a detection hit. |
+| `transmit-queue-threshold state` | `disabled` | `enabled`, `disabled` | Whether the watchdog evaluates the queue occupancy condition. |
+| `transmit-queue-threshold value` | 0 | 0-100 | The minimum egress queue occupancy, as a percentage, for that interval to count as a detection hit. |
+
 {{%notice note%}}
 - You can only enable `transmit-queue-threshold` when the polling interval is greater than 300 milliseconds.
 - The default multiplier of 9900 sets the pause duration threshold to 99 percent of the polling interval. With the default polling interval of 100 milliseconds, the watchdog counts a detection hit when it receives more than 99 milliseconds of pause in that interval.

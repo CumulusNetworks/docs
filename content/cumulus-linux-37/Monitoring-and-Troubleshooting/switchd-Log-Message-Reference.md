@@ -4806,13 +4806,13 @@ Please contact &lt;licensing@cumulusnetworks.com&gt; at your convenience so we c
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
-<td><p>onlink host route not suppported on non-Spectrum backend</p></td>
+<td><p>onlink host route not supported on non-Spectrum backend</p></td>
 <td><p>Onlink host route not supported on non-spectrum backend</p></td>
 <td><p>File a ticket and contact Cumulus Support.</p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
-<td><p>onlink host route not suppported on non-Spectrum backend</p></td>
+<td><p>onlink host route not supported on non-Spectrum backend</p></td>
 <td><p>Onlink host route not supported on non-spectrum backend</p></td>
 <td><p>File a ticket and contact Cumulus Support.</p></td>
 </tr>

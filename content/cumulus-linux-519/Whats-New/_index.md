@@ -40,11 +40,11 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Understanding-the-cl-support-Output-File" text="The cl-support file">}} captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
 - {{<link url="Patches" text="Patch uninstall returns the switch to the patch installed underneath, and a new command reclaims the space held by superseded patches">}}
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog detection parameters that distinguish a real deadlock from steady-state congestion">}}
+- {{<link url="Security-Configuration-Visibility" text="Security configuration visibility for manufacturing and field inspection">}}
 - Packet trimming BTS
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5
 - VRF per destination support GA
-- Support security configurations visibility for manufacturing and field inspection (Phase 1)
 - SRv6 Back to sender(BTS) upon link down
 - Adaptive Routing - Enable extended grading configuration of AR thresholds through CL profile
 - Loopback IP/Interface as Source for NVUE DNS in Cumulus Linux 5.x

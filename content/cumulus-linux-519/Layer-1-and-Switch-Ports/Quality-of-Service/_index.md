@@ -894,13 +894,10 @@ The following table shows the detection and recovery parameters:
 |---|---|---|---|
 | `recovery-interval` | 2 | 1-1000 | Consecutive recovery hits the watchdog requires before it restores the port. |
 | `rx-pause-threshold` | 0 | 0-100000 | Maximum received pause frames in a polling interval for that interval to count as a recovery hit. |
-| `rx-pause-threshold` | 0 | 0–65535 | Maximum received pause frames in a polling interval for that interval to count as a recovery hit. |
 | `rx-pause-duration state` | enabled | enabled, disabled | Whether the watchdog evaluates the pause duration condition. |
 | `rx-pause-duration multiplier` | 9900 | 1-9999 | Pause duration threshold, as a fraction (multiplier divided by 10000) of the polling interval. |
-| `rx-pause-duration multiplier` | 9900 | 1–9999  | Pause duration threshold, as a fraction (multiplier divided by 10000) of the polling interval. |
 | `tx-frames-threshold state` | enabled | enabled, disabled | Whether the watchdog evaluates the transmitted frames condition. |
 | `tx-frames-threshold value` | 0 | 0-100000 | Maximum frames transmitted in a polling interval for that interval to count as a detection hit. |
-| `tx-frames-threshold value` | 0 | 0-65535 | Maximum frames transmitted in a polling interval for that interval to count as a detection hit. |
 | `transmit-queue-threshold state` | disabled | enabled, disabled | Whether the watchdog evaluates the queue occupancy condition. |
 | `transmit-queue-threshold value` | 0 | 0-100 | Minimum egress queue occupancy, as a percentage, for that interval to count as a detection hit. |
 

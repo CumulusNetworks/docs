@@ -45,6 +45,13 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 | `/components/component[name]/state/type` | OpenConfig component type. Cumulus Linux 5.19 adds the type for the ASIC, transceivers, fans, storage disks, and temperature and leakage sensors. |
 
 {{< /tab >}}
+{{< tab "Interfaces">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/interfaces/interface[name=<interface-id>]/step-time-estimation/state/step-time-estimate` | Estimated step time, in seconds, of the AI training workload running on the interface. Requires {{<link url="High-Frequency-Telemetry/#step-time-estimation" text="step time estimation">}}. |
+
+{{< /tab >}}
 {{< /tabs >}}
 
 For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Streaming">}}.
@@ -101,6 +108,15 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 | `node_radius_auth_bad_response_total` | Malformed or otherwise invalid RADIUS responses received during an interactive login. |
 
 Each metric carries a single `server` label holding the RADIUS server address. For information about the counters behind these metrics, refer to {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="Show and Clear RADIUS Counters">}}.
+
+{{< /tab >}}
+{{< tab "Step Time Estimation">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_interface_step_time_estimate` | Estimated step time, in seconds, of the AI training workload running on an interface. |
+
+This metric is a gauge carrying a single `interface` label holding the interface name. The switch exports a data point only for an interface for which the algorithm produces an estimate, and exports no metric at all when it produces no estimate for any interface. For information about the feature behind this metric, refer to {{<link url="High-Frequency-Telemetry/#step-time-estimation" text="Step Time Estimation">}}.
 
 {{< /tab >}}
 {{< /tabs >}}

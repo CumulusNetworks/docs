@@ -769,7 +769,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 ### Extended Grading
 
 {{%notice note%}}
-Extended grading is only supported on switches with the Spectrum-6 ASIC. On a Spectrum-4 or Spectrum-5 switch, `switchd` logs an error and applies three-threshold grading.
+Extended grading is supported only on switches with the Spectrum-6 ASIC.
 {{%/notice%}}
 
 Adaptive routing grades the congestion it observes on each candidate egress port, then forwards the packet to the least congested port. By default, three congestion thresholds divide congestion into four grades. Extended grading adds four more thresholds so that a Spectrum-6 switch divides congestion into eight grades and distinguishes finer differences in queue occupancy when it selects a port.

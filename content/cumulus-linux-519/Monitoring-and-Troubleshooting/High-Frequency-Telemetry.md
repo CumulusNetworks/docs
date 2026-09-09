@@ -13,6 +13,8 @@ Cumulus Linux provides two different methods to collect and analyze high frequen
 - {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}} or through {{<link url="Open-Telemetry-Export/#ipfix-export" text="IP Flow Information Export (IPFIX)">}}.
 - {{<link url="#collect-hft-in-json-file" text="Collect HFT data in a JSON format file">}} on the switch filesystem and upload the file to an external location for analysis.
 
+Cumulus Linux can also analyze high frequency telemetry data on the switch and export only the result. {{<link url="#step-time-estimation" text="Step time estimation">}} uses this approach to report the step time of an AI training workload without exporting the underlying counters.
+
 {{%notice note%}}
 - Cumulus Linux supports high frequency telemetry on Spectrum-4 and later switches. 
 - Cumulus Linux does not support high frequency telemetry on ports using 8 lanes. On the Spectrum-4 switch, swp1 through swp64 use all 8 lanes; to run high frequency telemetry, you must break out these ports.
@@ -290,6 +292,81 @@ No Data
 ### Considerations and Scale
 
 High-frequency telemetry generates a significant volume of data records. For example, enabling a single counter for HFT on one port with a sample interval of 100 microseconds can produce approximately 90 MB of data during a 10-second collection period. At higher interface or counter scales, the required storage capacity on your collector increases substantially. To optimize storage utilization, enable data compression on the collector when handling large telemetry datasets.
+
+<!-- REVIEW: this whole section. Drafted as a new H2 on this page (Case A) because step time
+     estimation consumes streaming HFT counters and every constraint below describes an
+     interaction with an HFT session. The specification deliberately moved the commands out from
+     under `nv set system telemetry hft` so that users do not have to reason about the input
+     source, which argues for a separate page instead. Confirm the placement. Delete this comment
+     before publishing. -->
+
+## Step Time Estimation
+
+Step time estimation reports the step time of an AI training workload running across the fabric, so that you can track workload progress and spot infrastructure problems without access to the servers running the workload. The switch samples the transmitted bytes (`tx-byte`) counter with high frequency telemetry, looks for periodicity in the traffic pattern, and derives one estimate for each monitored interface. Only the estimates leave the switch; the switch does not export the high frequency telemetry samples behind them.
+
+Cumulus Linux exports the estimate as the `nvswitch_interface_step_time_estimate` OTLP gauge, in seconds, carrying an `interface` label, and as the gNMI leaf `/interfaces/interface[name=<interface-id>]/step-time-estimation/state/step-time-estimate`. A gNMI subscription to this leaf does not enable step time estimation and the subscription interval does not change how often the switch produces an estimate; the interval controls only how often gNMI exports the current value.
+
+<!-- REVIEW: the constraints note below. The specification requires the algorithm to handle 128
+     active interfaces at a 15 second window every 60 seconds, but never states a supported
+     interface scale, so the draft omits one. Confirm whether the page must state a maximum
+     number of monitored interfaces. Delete this comment before publishing. -->
+
+{{%notice note%}}
+- You cannot run step time estimation and continuous streaming HFT export at the same time. Continuous export holds an HFT session open, and the switch runs only one HFT session at a time.
+- You can configure step time estimation and a fixed duration streaming HFT export session at the same time, but the HFT session takes priority. The switch exports no step time estimates while that session runs.
+- You must enable step time estimation on at least one interface before you enable step time estimation export.
+- You cannot change `batch-interval` while step time estimation is enabled. Disable step time estimation export, change the value, then reenable export.
+- The switch skips a collection batch that overlaps a scheduled {{<link url="ASIC-Monitoring" text="ASIC monitoring">}} job and exports no estimates for that batch.
+- When the algorithm produces no estimate for an interface, the switch exports no data point for that interface. When it produces no estimate for any interface, the switch exports no metric at all.
+{{%/notice%}}
+
+To configure step time estimation:
+
+1. Add your collector as a gRPC OTEL export destination, as described in {{<link url="#streaming-hft-export" text="Streaming HFT Export">}}.
+
+2. Enable step time estimation on the interfaces you want to monitor. In a fabric, these interfaces are typically the leaf downlinks facing the servers running the workload:
+
+   ```
+   cumulus@switch:~$ nv set interface swp1s0-3,swp2s0-3 telemetry step-time-estimation state enabled
+   cumulus@switch:~$ nv config apply
+   ```
+
+3. Configure the batch interval, in seconds. This is the interval between successive runs of the algorithm, and therefore the interval between successive exports of the metric. You can set a value between 30 and 3600. The default value is 60:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry step-time-estimation batch-interval 120
+   cumulus@switch:~$ nv config apply
+   ```
+
+   The switch collects 15 seconds of high frequency telemetry data for each batch. This amount is fixed and you cannot configure it.
+
+4. Enable step time estimation export:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry step-time-estimation export state enabled
+   cumulus@switch:~$ nv config apply
+   ```
+
+   To export step time estimates to a single destination when you export OTEL data to more than one collector, enable export in a statistics group instead of globally:
+
+   ```
+   cumulus@switch:~$ nv set system telemetry stats-group ONLY-STEP-TIME step-time-estimation export state enabled
+   cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group ONLY-STEP-TIME
+   cumulus@switch:~$ nv config apply
+   ```
+
+To correlate an estimate with the server behind the interface, configure {{<link url="Open-Telemetry-Export/#static-labels" text="static labels">}} for the switch and its interfaces. The collector then receives the label descriptions alongside the estimate.
+
+<!-- REVIEW: the two teardown commands below. The specification does not give a teardown form.
+     Drafted as `nv unset` per page convention. Confirm against a candidate build, and confirm
+     whether unsetting the last enabled interface while export is enabled is rejected or accepted.
+     Delete this comment before publishing. -->
+
+To stop exporting step time estimates, run the `nv unset system telemetry step-time-estimation export state` command. To stop monitoring an interface, run the `nv unset interface <interface-id> telemetry step-time-estimation state` command.
+
+To show step time estimation status and configured parameters, run the `nv show system telemetry step-time-estimation` command.
+
+<!-- TODO: capture `nv show system telemetry step-time-estimation` output on a switch and paste here -->
 
 ## Collect HFT in JSON File
 

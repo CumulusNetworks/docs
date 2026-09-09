@@ -833,7 +833,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.18.0-5.18.1</td>
 </tr>
 <tr>
-<td>5217147, 5225676</td>
+<td>5217147, 5225676, 5257913</td>
 <td>When you perform a factory reset after an optimized image upgrade, the switch loses record of its model information.</td>
 <td>5.16.6-5.18.0</td>
 </tr>
@@ -841,6 +841,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5215333</td>
 <td>If you provide a value that contains a non-ASCII character in NVUE, you see an unhandled Python exception instead of a normal CLI validation error.</td>
 <td>5.18.0-5.18.1</td>
+</tr>
+<tr>
+<td>5215201, 5221379, 5221588</td>
+<td> In rare scenarios, a link fault recovery sequence can trigger a switchd watchdog timeout on Spectrum-4 switches.</td>
+<td>5.16.3-5.16.6</td>
 </tr>
 <tr>
 <td>5200392, 5200391</td>

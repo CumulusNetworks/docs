@@ -380,6 +380,10 @@ cumulus@switch:~$ nv config verify revision startup --verbose
 
 ## NVUE Configuration File
 
+{{%notice note%}}
+NVUE stores and looks up every IPv6 address in its normalized (canonical) form, so the address that `nv show` returns is not always the address you typed. Refer to {{<link url="Upgrading-Cumulus-Linux/#ipv6-address-normalization" text="IPv6 Address Normalization">}}.
+{{%/notice%}}
+
 When you save network configuration, NVUE writes the configuration to the `/etc/nvue.d/startup.yaml` file.
 
 You can edit or replace the contents of the `/etc/nvue.d/startup.yaml` file. NVUE applies the configuration in the `/etc/nvue.d/startup.yaml` file during system boot only if the `nvue-startup.service` is running. If this service is not running, the switch reboots with the same configuration that is running before the reboot.

@@ -96,12 +96,12 @@ cumulus@switch:~$ nv set router adaptive-routing state enabled
 
 ## <h>nv set router adaptive-routing link-utilization-threshold</h>
 
-Turns on link utilization. The default setting is `disabled`. When link utilization is on, the default link utilization threshold percentage for an adaptive routing interface is 70. If you enable the adaptive routing `custom-profile`, you can change the percentage to a value between 1 and 100.
+Turns on link utilization. The default setting is `disabled`. When link utilization is on, the default link utilization threshold percentage for an adaptive routing interface is 70. If you enable the adaptive routing `profile-custom`, you can change the percentage to a value between 1 and 100.
 
 Link utilization is disabled by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
 {{%notice note%}}
-- You can enable link utilization only when you enable the adaptive routing `custom-profile`.
+- You can enable link utilization only when you enable the adaptive routing `profile-custom`.
 - When you enable or disable link utilization, NVUE reloads `switchd`.
 - In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
 {{%/notice%}}

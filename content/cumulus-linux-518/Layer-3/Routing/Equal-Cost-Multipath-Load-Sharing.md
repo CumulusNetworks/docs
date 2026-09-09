@@ -533,14 +533,14 @@ Cumulus Linux supports adaptive routing with:
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
-- The NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectum-X networking platform" >}}.
+- The NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectrum-X networking platform" >}}.
 - For additional implementation requirements for adaptive routing consult the Spectrum-X Deployment Guide.
 
 {{%notice note%}}
 - Adaptive routing does not make use of resilient hashing.
 - Cumulus Linux does not support adaptive routing on layer 3 subinterfaces, SVIs, bonds or bond members.
 - The Spectrum-4 switch does not support adaptive routing on 800G links.
-- Adaptive routing is only suppported on the NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectum-X networking platform" >}}.
+- Adaptive routing is only supported on the NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectrum-X networking platform" >}}.
 {{%/notice%}}
 
 Cumulus Linux also supports BGP W-ECMP with adaptive routing; see {{<link title="BGP Weighted Equal Cost Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP Weighted Equal Cost Multipath ">}}.
@@ -612,12 +612,12 @@ LAG hash randomizer is supported on a Spectrum-4 or later and only for static la
 
 ### Link Utilization
 
-Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `custom-profile`, you can change the percentage to a value between 1 and 100.
+Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `profile-custom`, you can change the percentage to a value between 1 and 100.
 
 Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
 {{%notice note%}}
-- You can enable link utilization only when you enable the adaptive routing `custom-profile`.
+- You can enable link utilization only when you enable the adaptive routing `profile-custom`.
 {{%/notice%}}
 
 {{< tabs "TabID624 ">}}

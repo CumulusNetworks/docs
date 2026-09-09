@@ -43,15 +43,15 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Security-Configuration-Visibility" text="Security configuration visibility for manufacturing and field inspection">}}
 - {{<link url="Packet-Trimming/#back-to-sender-notification-on-link-down" text="Back-to-sender notification when an MRC egress link fails">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#extended-grading" text="Adaptive routing extended grading on Spectrum-6 switches">}}
+- {{<link url="High-Frequency-Telemetry/#step-time-estimation" text="Step time estimation for AI training workloads">}}
 - Packet trimming BTS
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5
-- VRF per destination support GA
+- VRF per destination support GA - at risk
 - Loopback IP/Interface as Source for NVUE DNS in Cumulus Linux 5.x
 - AR-ECMP group segregation for Round Robin per ECMP
 - Change the USB0 IP address to 169.254.100.2 / 169.254.100.1
 - CPO Debug Params | nv show commands & Telemetry (OTEL and GNMI) GA
-- Add step time estimator
 - NVUE
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
   - {{<link url="Neighbor-Discovery-ND/#clear-a-stale-prefix" text="Clear a stale IPv6 ND prefix on demand">}}

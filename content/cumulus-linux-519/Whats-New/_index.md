@@ -49,7 +49,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - FRR upgrade phase 5
 - VRF per destination support GA - at risk
 - Loopback IP/Interface as Source for NVUE DNS in Cumulus Linux 5.x
-- AR-ECMP group segregation for Round Robin per ECMP
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-group-segregation" text="Adaptive routing ECMP group segregation for round-robin port selection on Spectrum-6 switches">}}
 - Change the USB0 IP address to 169.254.100.2 / 169.254.100.1
 - CPO Debug Params | nv show commands & Telemetry (OTEL and GNMI) GA
 - NVUE

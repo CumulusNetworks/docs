@@ -620,58 +620,11 @@ cumulus@switch:~$ nv config apply startup
 
 NVUE normalizes IPv6 addresses to their canonical form. However, for IPv4-mapped IPv6 addresses, NVUE normalizes only the IPv6 portion of the address. The IPv4 portion of the address is retained in the IETF-recommended mixed-notation format and remains unchanged. For example, NVUE normalizes the IPv4-mapped IPv6 address 0::ffff:10.0.0.1 to ::ffff:10.0.0.1.
 
-For the full set of normalization rules and an example of configuring an unnormalized address, refer to {{<link url="#ipv6-address-normalization" text="IPv6 Address Normalization">}}.
+For the full set of normalization rules and an example of configuring an unnormalized address, refer to {{<link url="NVUE-CLI/#ipv6-address-normalization" text="IPv6 Address Normalization">}}.
 {{%/notice%}}
 
 5. Verify correct operation with the old configurations on the new release.
 6. Reinstall third party applications and associated configurations.
-
-## IPv6 Address Normalization
-
-In Cumulus Linux 5.16 and later, NVUE stores and looks up every IPv6 address in its normalized (canonical) form. NVUE normalizes an address when you configure it, so the address that `nv show` returns is not always the address you typed.
-
-<!-- REVIEW: the four rules in the table below. The page previously gave only two examples,
-     `2001:0db8::0001` to `2001:db8::1` and `0::ffff:10.0.0.1` to `::ffff:10.0.0.1`. The lowercase
-     and zero-run rules are drafted from the canonical form those two examples imply, not from a
-     source that states them. Confirm all four against a switch before publishing. Delete this
-     comment before publishing. -->
-
-The following table shows how NVUE normalizes an IPv6 address.
-
-| Rule | Address you configure | Address NVUE stores and shows |
-| ---- | --------------------- | ----------------------------- |
-| NVUE removes the leading zeros from each group. | `2001:0db8::0001` | `2001:db8::1` |
-| NVUE writes hexadecimal digits in lowercase. | `2001:DB8::1` | `2001:db8::1` |
-| NVUE replaces the longest run of zero groups with `::`. | `2001:db8:0:0:0:0:0:1` | `2001:db8::1` |
-| For an IPv4-mapped address, NVUE normalizes only the IPv6 portion and keeps the IPv4 portion in the IETF-recommended mixed notation. | `0::ffff:10.0.0.1` | `::ffff:10.0.0.1` |
-
-<!-- REVIEW: the worked example below is drafted, not captured. Run these commands on a switch and
-     replace the `nv show` output with the real readout. Delete this comment before publishing. -->
-
-The following example configures an interface address in an unnormalized form:
-
-```
-cumulus@switch:~$ nv set interface swp1 ip address 2001:0DB8:0000:0000:0000:0000:0000:0001/64
-cumulus@switch:~$ nv config apply
-```
-
-The `nv show` command returns the normalized form:
-
-```
-cumulus@switch:~$ nv show interface swp1 ip address
-                    operational          applied
-------------------  -------------------  -------------------
-2001:db8::1/64
-```
-
-<!-- TODO: capture the real `nv show interface swp1 ip address` readout on a switch and replace the block above -->
-
-<!-- REVIEW: this section covers interface addresses only. The feature owner has said that
-     normalization also applies in several other configuration areas and offered to send the list of
-     commands, which has not arrived. Add those areas here when the list is available. Delete this
-     comment before publishing. -->
-
-For information about normalizing the IPv6 addresses in a configuration file that you copy manually during an upgrade, refer to {{<link url="#onie-image-upgrade" text="ONIE Image Upgrade">}}.
 
 ## Upgrade Switches in an MLAG Pair
 

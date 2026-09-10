@@ -11,5 +11,5 @@ Cumulus Linux supports both {{<link url="Static-Routing">}}, where you enter rou
 For the number of route table entries supported per platform, see {{<link title="Forwarding Table Size and Profiles">}}.
 
 {{%notice note%}}
-In Cumulus Linux 5.16 and later, NVUE stores and looks up every IPv6 address in its normalized (canonical) form, so an IPv6 next hop, prefix, or neighbor address that you configure might appear in a different form in `nv show` output. Refer to {{<link url="Upgrading-Cumulus-Linux/#ipv6-address-normalization" text="IPv6 Address Normalization">}}.
+In Cumulus Linux 5.16 and later, NVUE stores and looks up every IPv6 address in its normalized (canonical) form, so an IPv6 next hop, prefix, or neighbor address that you configure might appear in a different form in `nv show` output. Refer to {{<link url="NVUE-CLI/#ipv6-address-normalization" text="IPv6 Address Normalization">}}.
 {{%/notice%}}

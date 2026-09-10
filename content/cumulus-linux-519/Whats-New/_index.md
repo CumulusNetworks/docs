@@ -45,6 +45,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#extended-grading" text="Adaptive routing extended grading on Spectrum-6 switches">}}
 - {{<link url="High-Frequency-Telemetry/#step-time-estimation" text="Step time estimation for AI training workloads">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-group-segregation" text="Adaptive routing ECMP group segregation for round-robin port selection on Spectrum-6 switches">}}
+- {{<link url="Quality-of-Service/#service-port-buffers" text="Dedicated service port ingress buffers on Spectrum-6 switches">}}
 - Adaptive Routing Hybrid scheduling mode
 - FRR upgrade phase 5
 - VRF per destination support GA - at risk

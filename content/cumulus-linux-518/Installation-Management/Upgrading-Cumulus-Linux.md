@@ -618,7 +618,9 @@ cumulus@switch:~$ sudo cp /home/cumulus/ipv6_normalized_startup.yaml /etc/nvue.d
 cumulus@switch:~$ nv config apply startup
 ```
 
-NVUE normalizes IPv6 addresses to their canonical form. However, for IPv4-mapped IPv6 addresses, NUE normalizes only the IPv6 portion of the address. The IPv4 portion of the address is retained in the IETF-recommended mixed-notation format and remains unchanged. For example, NVUE normalizes the IPv4-mapped IPv6 address 0::ffff:10.0.0.1 to ::ffff:10.0.0.1.
+NVUE normalizes IPv6 addresses to their canonical form. However, for IPv4-mapped IPv6 addresses, NVUE normalizes only the IPv6 portion of the address. The IPv4 portion of the address is retained in the IETF-recommended mixed-notation format and remains unchanged. For example, NVUE normalizes the IPv4-mapped IPv6 address 0::ffff:10.0.0.1 to ::ffff:10.0.0.1.
+
+For the full set of normalization rules and an example of configuring an unnormalized address, refer to {{<link url="NVUE-CLI/#ipv6-address-normalization" text="IPv6 Address Normalization">}}.
 {{%/notice%}}
 
 5. Verify correct operation with the old configurations on the new release.

@@ -393,6 +393,10 @@ cumulus@switch:~$ sudo systemctl start nvue-startup.service
 
 When you apply a configuration with `nv config apply`, NVUE also writes to underlying Linux files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`. You can view these configuration files; however, do *not* manually edit them while using NVUE. If you need to configure certain network settings manually or use automation such as Ansible to configure the switch, see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}} below.
 
+{{%notice note%}}
+NVUE stores and looks up every IPv6 address in its normalized (canonical) form, so the address that `nv show` returns is not always the address you typed. Refer to {{<link url="/#ipv6-address-normalization" text="IPv6 Address Normalization">}}.
+{{%/notice%}}
+
 ### Default Startup File
 
 NVUE provides a default `/etc/nvue.d/startup.yaml` file that includes configuration such as the switch hostname, default firewall rules, and `cumulus` user account credentials. The file also enables the NVUE API. This file is the factory configuration file that you can restore at any time.
@@ -793,6 +797,53 @@ cumulus@switch:~$ sudo nano /etc/default/nvued
 NVUE_MAX_REVISIONS=60
 ...
 ```
+
+## IPv6 Address Normalization
+
+NVUE stores and looks up every IPv6 address in its normalized (canonical) form. NVUE normalizes an address when you configure it, so the address that `nv show` returns is not always the address you typed.
+
+<!-- REVIEW: the four rules in the table below. The page previously gave only two examples,
+     `2001:0db8::0001` to `2001:db8::1` and `0::ffff:10.0.0.1` to `::ffff:10.0.0.1`. The lowercase
+     and zero-run rules are drafted from the canonical form those two examples imply, not from a
+     source that states them. Confirm all four against a switch before publishing. Delete this
+     comment before publishing. -->
+
+The following table shows how NVUE normalizes an IPv6 address.
+
+| Rule | Address you configure | Address NVUE stores and shows |
+| ---- | --------------------- | ----------------------------- |
+| NVUE removes the leading zeros from each group. | `2001:0db8::0001` | `2001:db8::1` |
+| NVUE writes hexadecimal digits in lowercase. | `2001:DB8::1` | `2001:db8::1` |
+| NVUE replaces the longest run of zero groups with `::`. | `2001:db8:0:0:0:0:0:1` | `2001:db8::1` |
+| For an IPv4-mapped address, NVUE normalizes only the IPv6 portion and keeps the IPv4 portion in the IETF-recommended mixed notation. | `0::ffff:10.0.0.1` | `::ffff:10.0.0.1` |
+
+<!-- REVIEW: the worked example below is drafted, not captured. Run these commands on a switch and
+     replace the `nv show` output with the real readout. Delete this comment before publishing. -->
+
+The following example configures an interface address in an unnormalized form:
+
+```
+cumulus@switch:~$ nv set interface swp1 ip address 2001:0DB8:0000:0000:0000:0000:0000:0001/64
+cumulus@switch:~$ nv config apply
+```
+
+The `nv show` command returns the normalized form:
+
+```
+cumulus@switch:~$ nv show interface swp1 ip address
+                    operational          applied
+------------------  -------------------  -------------------
+2001:db8::1/64
+```
+
+<!-- TODO: capture the real `nv show interface swp1 ip address` readout on a switch and replace the block above -->
+
+<!-- REVIEW: this section covers interface addresses only. The feature owner has said that
+     normalization also applies in several other configuration areas and offered to send the list of
+     commands, which has not arrived. Add those areas here when the list is available. Delete this
+     comment before publishing. -->
+
+For information about normalizing the IPv6 addresses in a configuration file that you copy manually during an upgrade, refer to step 4 in {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE Image Upgrade">}}.
 
 ## Session-Based Authentication
 

@@ -2490,7 +2490,7 @@ To show the pool, mode, and buffer sizes for a service port, run the `nv show in
 
 ## Syntax Checker
 
-Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/qos/qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.
+Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/qos/qos_features.conf` and `qos_infra.conf` files to check for errors, such as missing parameters or invalid parameter labels and values.
 
 The syntax checker runs automatically with every `switchd reload`.
 

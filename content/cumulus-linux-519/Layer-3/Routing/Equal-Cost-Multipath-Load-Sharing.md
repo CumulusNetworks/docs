@@ -553,7 +553,7 @@ With adaptive routing, the switch forwards adaptive routing eligible packets to 
 Cumulus Linux supports ECMP resource optimization for adaptive routing, which addresses the requirement of large numbers of ECMP groups during routing protocol convergence in transient scenarios.
 
 Cumulus Linux supports adaptive routing with:
-- Switches with the Spectrum-4 ASIC at 400G and 200G speeds.
+- Switches with the Spectrum-4 and later ASIC.
 - Adaptive routing eligible {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE2" >}} unicast traffic.
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
@@ -1041,6 +1041,177 @@ cumulus@switch:~$ sudo grep -iE "port select mode|grouping mode" /var/log/switch
 
 <!-- TODO: capture the switchd log messages for round-robin port selection and segregated grouping on a Spectrum-6 switch and paste them here -->
 
+### Resource Mode and Hybrid Scheduling
+
+{{%notice note%}}
+Hybrid scheduling is supported on switches with the Spectrum-4 and later ASIC. The switch rejects a maximum random ECMP weight percentage above 0 on any other ASIC.
+{{%/notice%}}
+
+The switch holds one hardware entry for each adaptive routing ECMP group. In a large network the table cannot hold an entry for every group, so the switch can merge groups together, which reduces the throughput adaptive routing delivers. Hybrid scheduling reduces merging by moving the ECMP groups that carry the least weight to random forwarding, which leaves room in the table for the groups that carry the most weight to stay adaptive.
+
+<!-- REVIEW: the Adaptive Routing introduction already says that Cumulus Linux "supports ECMP resource
+     optimization for adaptive routing", with no commands and no section behind it. The optimized
+     resource mode documented here might be the NVUE surface for exactly that sentence. Ask the
+     adaptive routing owner, and either link the two or rewrite the introduction sentence.
+     Delete this comment before publishing. -->
+
+Two settings under `nv set router adaptive-routing resource` control this behavior. The resource mode selects which resource allocation algorithm the switch uses, and the maximum random ECMP weight percentage caps the share of ECMP weight the switch can move to random forwarding. Hybrid scheduling is not a third adaptive routing mode; it is the behavior you get when you select the optimized resource mode and set a percentage above 0.
+
+| Resource mode | Percentage | Behavior |
+| ------------- | ---------- | -------- |
+| `legacy` | 0 | The default settings. The switch uses the legacy resource allocation and hybrid scheduling is off. |
+| `optimized` | 0 | The switch uses the optimized resource allocation and hybrid scheduling is off. |
+| `optimized` | 1 through 100 | Hybrid scheduling is on. The switch selects which groups move to random forwarding and rebalances them. |
+| `legacy` | 1 through 100 | Invalid. `nv config apply` rejects the configuration. |
+
+{{%notice note%}}
+- The percentage caps the share of total ECMP **weight** the switch can assign to random forwarding. It is not a guaranteed share of traffic and not a percentage of ECMP groups.
+- The word `optimized` appears twice in the command path for two different reasons. `resource mode optimized` selects the optimized resource mode. `resource optimized max-random-ecmp-weight-percent` sets a parameter that applies to that mode. Setting the percentage does not select the mode.
+- Under `legacy` mode, the switch keeps a percentage of 0 that you set explicitly, but the value has no effect until you also select `optimized` mode.
+- The switch continues to forward traffic that is not adaptive routing eligible by hash. Hybrid scheduling does not turn off hash based forwarding.
+{{%/notice%}}
+
+#### Configure Resource Mode and Hybrid Scheduling
+
+<!-- REVIEW: this section has no Linux tab. Every other adaptive routing section on this page pairs
+     its NVUE tab with a Linux tab that edits /etc/cumulus/switchd.d/adaptive_routing.conf, and NVUE
+     does render these two settings into that file as adaptive_routing.resource_mode and
+     adaptive_routing.max_random_ecmp_weight_percent. The spec puts direct manual edits to those two
+     keys out of scope and states that switchd does not validate them, so the draft documents the
+     NVUE path only. Confirm this is the right call for the page. Delete this comment before
+     publishing. -->
+
+To select the resource mode, run the `nv set router adaptive-routing resource mode` command. To cap the share of ECMP weight the switch can move to random forwarding, run the `nv set router adaptive-routing resource optimized max-random-ecmp-weight-percent <0-100>` command.
+
+The following example selects the optimized resource mode and allows the switch to move up to 70 percent of the ECMP weight to random forwarding, which turns on hybrid scheduling:
+
+```
+cumulus@switch:~$ nv set router adaptive-routing resource mode optimized
+cumulus@switch:~$ nv set router adaptive-routing resource optimized max-random-ecmp-weight-percent 70
+cumulus@switch:~$ nv config apply
+```
+
+To turn off hybrid scheduling but keep the optimized resource mode, set the percentage to 0:
+
+```
+cumulus@switch:~$ nv set router adaptive-routing resource optimized max-random-ecmp-weight-percent 0
+cumulus@switch:~$ nv config apply
+```
+
+To return the switch to the default settings, run the `nv unset router adaptive-routing resource optimized max-random-ecmp-weight-percent` and `nv unset router adaptive-routing resource mode` commands:
+
+```
+cumulus@switch:~$ nv unset router adaptive-routing resource optimized max-random-ecmp-weight-percent
+cumulus@switch:~$ nv unset router adaptive-routing resource mode
+cumulus@switch:~$ nv config apply
+```
+
+<!-- REVIEW: the restart lifecycle below is the largest open item in the spec. Product approval for a
+     disruptive apply is still open: one stakeholder recorded that a switchd restart must not be
+     reintroduced, and the spec says to hold or rescope the feature if the approval does not land.
+     Confirm the approved apply behavior on a candidate build before publishing; if the feature moves
+     to a live apply, this warning and the sentence after it must be rewritten. Delete this comment
+     before publishing. -->
+
+{{%notice warning%}}
+Changing the resource mode or the maximum random ECMP weight percentage restarts the `switchd` service, which disrupts forwarding across the whole switch until `switchd` reinitializes the hardware and replays its forwarding state. A full switch reboot is not required. Plan the change for a maintenance window.
+{{%/notice%}}
+
+<!-- REVIEW: the downgrade sentence below is drafted from a single spec line that states a downgrade to
+     a software version without this feature is not supported. Confirm the release boundary with the
+     adaptive routing owner and name the earliest supported release if there is one. Delete this
+     comment before publishing. -->
+
+{{%notice note%}}
+Cumulus Linux does not support downgrading a switch that is running hybrid scheduling to a release that does not support hybrid scheduling.
+{{%/notice%}}
+
+#### ECMP Support with Hybrid Scheduling
+
+<!-- REVIEW: the table below applies when the percentage is greater than 0, which is how the spec's
+     compatibility summary and matrix both scope it. The spec carries an open item asking whether the
+     same restrictions apply to the optimized resource mode with a percentage of 0. Confirm the scope
+     before publishing and widen the lead-in sentence if the answer is yes. Delete this comment before
+     publishing. -->
+
+While hybrid scheduling is on, the switch restricts which ECMP groups it can program. The following table shows which combinations of ECMP type and next hop type the switch supports when the maximum random ECMP weight percentage is greater than 0.
+
+| ECMP type | Layer 3 router port | Non-layer 3 port | Tunnel next hop | LAG next hop |
+| --------- | ------------------- | ---------------- | --------------- | ------------ |
+| Adaptive, single next hop | Yes | No | No | No |
+| Adaptive, multiple next hops | Yes | No | No | No |
+| Hash based static, single next hop | Yes | Yes | Yes | Yes |
+| Hash based static, multiple next hops | No | No | No | No |
+| Hash based resilient, single next hop | Yes | Yes | Yes | Yes |
+| Hash based resilient, multiple next hops | No | No | No | No |
+| Hash based consistent, single next hop | Yes | Yes | Yes | Yes |
+| Hash based consistent, multiple next hops | No | No | No | No |
+
+<!-- REVIEW: the two paragraphs below describe what a user sees when an existing ECMP group is not
+     compatible. The spec confirms that enabling a positive percentage can make existing groups
+     incompatible during switchd replay, but leaves the preflight check, the resulting switch state,
+     and the recovery procedure open, so the draft tells the reader to check first and stops there.
+     Add the recovery steps when the spec closes that item. The exact log message is also unwritten;
+     capture it on a supported switch and replace the grep pattern. Delete this comment before
+     publishing. -->
+
+Check the ECMP groups the switch already carries before you turn on hybrid scheduling. The switch applies these restrictions when `switchd` restarts, so a group that the table marks unsupported can become incompatible when `switchd` replays its forwarding state, even though the group worked before the change.
+
+When the switch cannot program an ECMP group because hybrid scheduling is on, it logs an error that names the group, the failure, and the corrective action. Do not assume that the switch programmed the routes that depend on that group. Check `/var/log/switchd.log` after you apply the change:
+
+```
+cumulus@switch:~$ sudo grep -iE "hybrid|ecmp" /var/log/switchd.log
+```
+
+<!-- TODO: capture the switchd error message for an ECMP group rejected under hybrid scheduling on a supported switch and paste it here -->
+
+#### Adaptive Routing Profile
+
+Hybrid scheduling runs with the free profile mode, which the custom adaptive routing profile selects with `ar.p.m = 0`. If the profile sets `ar.p.m` to another value while the maximum random ECMP weight percentage is greater than 0, the switch keeps the value in the file, programs the free mode instead, and logs a critical message. After you set the percentage back to 0 and `switchd` restarts, the profile mode in the file takes effect again.
+
+The random profile mode is not the same thing as hybrid scheduling. The random profile mode selects an eligible path at random for adaptive routing eligible traffic; hybrid scheduling moves whole ECMP groups off adaptive routing and onto random ECMP forwarding.
+
+For information about the custom adaptive routing profile and how to write it, refer to {{<link url="#extended-grading" text="Extended Grading">}}.
+
+#### Show the Resource Configuration
+
+<!-- REVIEW: the three readouts below are adapted from the spec rather than captured on hardware.
+     Capture them on a supported switch before publishing. One detail in particular: when you select
+     the optimized resource mode and leave the percentage unset, the spec does not settle whether
+     NVUE renders the implicit 0 or omits the field, so the draft shows only the two cases the spec
+     states. Delete this comment before publishing. -->
+
+To show the adaptive routing resource configuration, run the `nv show router adaptive-routing resource` command:
+
+```
+cumulus@switch:~$ nv show router adaptive-routing resource
+                                operational  applied
+------------------------------  -----------  ---------
+mode                                         optimized
+optimized
+  max-random-ecmp-weight-percent             70
+```
+
+To show the optimized resource mode parameters on their own, run the `nv show router adaptive-routing resource optimized` command:
+
+```
+cumulus@switch:~$ nv show router adaptive-routing resource optimized
+                                operational  applied
+------------------------------  -----------  -------
+max-random-ecmp-weight-percent               70
+```
+
+The indented `optimized` entry holds the parameters that apply to the optimized resource mode; it is not the `mode` setting. The `operational` column is blank because these commands show the configured values only.
+
+When the percentage is at its default, the command omits the `optimized` entry:
+
+```
+cumulus@switch:~$ nv show router adaptive-routing resource
+          operational  applied
+--------  -----------  -------
+mode                   legacy
+```
+
 ### Show Adaptive Routing Settings
 
 To show adaptive routing settings, run the `nv show router adaptive-routing` command:
@@ -1053,6 +1224,8 @@ state                       enabled       enabled
 ```
 
 To show adaptive routing configuration for an interface, run the `nv show interface <interface-id> router adaptive-routing`.
+
+To show the resource mode and the maximum random ECMP weight percentage, run the `nv show router adaptive-routing resource` command; refer to {{<link url="#show-the-resource-configuration" text="Show the Resource Configuration">}}.
 
 ## Considerations
 

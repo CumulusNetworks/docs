@@ -14,7 +14,7 @@ Cumulus Linux 5.18.2 provides bug fixes and the following new feature:
 
 - Improvements to {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog">}} deadlock detection
 
-You can upgrade to 5.18.8 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the -t option to migrate your configuration:
+You can upgrade to 5.18.2 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the -t option to migrate your configuration:
 - 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7, 5.16.8
 - 5.17.0
 - 5.18.0, 5.18.1

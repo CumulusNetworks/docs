@@ -8,13 +8,21 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - For a list of open and fixed issues in Cumulus Linux 5.11, see the {{<link title="Cumulus Linux 5.11 Release Notes" text="Cumulus Linux 5.11 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.11, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+## What's New in Cumulus Linux 5.11.6
+
+Cumulus Linux 5.11.6 provides bug fixes and security updates.
+- You can use optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.11.6 from Cumulus Linux 5.11.4, 5.11.4 and 5.11.3 without ISSU support.
+- You can use package upgrade to upgrade the switch to Cumulus Linux 5.11.6 from:
+  - 5.11.5, 5.11.4, and 5.11.3 with ISSU support
+  - 5.9.4 without ISSU support
+
 ## What's New in Cumulus Linux 5.11.5
 
 Cumulus Linux 5.11.5 provides bug fixes and security updates.
-- You can use optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.11.5 from Cumulus Linux 5.11.3 and 5.11.4 (without ISSU support).
+- You can use optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.11.5 from Cumulus Linux 5.11.3 and 5.11.4 without ISSU support.
 - You can use package upgrade to upgrade the switch to Cumulus Linux 5.11.5 from:
-  - 5.11.4 and 5.11.3 (ISSU support)
-  - 5.9.4 (without ISSU support)
+  - 5.11.4 and 5.11.3 with ISSU support
+  - 5.9.4 and 5.9.5 without ISSU support
 
 To upgrade to Cumulus Linux 5.11.5 from a release that does not support package upgrade or optimized image upgrade, you can {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="install an image with ONIE">}}.
 

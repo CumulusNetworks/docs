@@ -52,6 +52,22 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 | `/interfaces/interface[name=<interface-id>]/step-time-estimation/state/step-time-estimate` | Estimated step time, in seconds, of the AI training workload running on the interface. Requires {{<link url="High-Frequency-Telemetry/#step-time-estimation" text="step time estimation">}}. |
 
 {{< /tab >}}
+{{< tab "Microburst Histogram">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]`| Per-interface microburst telemetry container. `dir` is `rx` or `tx`; quantity is `packets` or `bytes`.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/bin[upper-boundary]/count` | Histogram bin count for the most recent collection window.  The value covers a single collection window and resets on read.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/score` | Burstiness score computed as σ² × μ in bin-index space.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/mean-bin-index` | Mean bin index μ over the current window.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/distribution-variance` | Bin-index variance σ² over the current window.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/peak-value` | Raw `max_watermark` value for the current window. Interpretation depends on quantity.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/threshold-state` | Operational threshold state for the configured score threshold.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/last-triggered` | Last time the threshold entered triggered state. Absent or unset if never triggered.|
+
+The telemetry model names the packets or bytes selector `quantity`, where the NVUE command that configures it is `unit`. The two names refer to the same setting; `quantity` avoids a collision with the standard OTEL instrument descriptor field.
+
+{{< /tab >}}
 {{< /tabs >}}
 
 For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Streaming">}}.
@@ -70,6 +86,14 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
      request not yet opened, so confirm these metrics ship in 5.19 before publishing. The metric
      names and the single `server` label are settled, so only the delivery is in question. Delete
      this comment before publishing. -->
+
+<!-- REVIEW: the Microburst Histogram tab below states that the temporality of
+     nvswitch_histogram_interface_microburst is delta. The telemetry change proposal says the
+     bins reset on read and that consumers receive per-window state rather than cumulative
+     totals, but it does not say whether `nv set system telemetry histogram temporality
+     cumulative` has any effect on the microburst metric. Confirm, and if the microburst
+     histogram ignores that setting, say so here and in the Temporality Mode section of
+     Open-Telemetry-Export.md. Delete this comment before publishing. -->
 
 {{< tabs "TabID113 ">}}
 {{< tab "WJH">}}
@@ -119,6 +143,21 @@ Each metric carries a single `server` label holding the RADIUS server address. F
 This metric is a gauge carrying a single `interface` label holding the interface name. The switch exports a data point only for an interface for which the algorithm produces an estimate, and exports no metric at all when it produces no estimate for any interface. For information about the feature behind this metric, refer to {{<link url="High-Frequency-Telemetry/#step-time-estimation" text="Step Time Estimation">}}.
 
 {{< /tab >}}
+{{< tab "Microburst Histogram">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_histogram_interface_microburst` | Per-window microburst histogram distribution. Bucket counts are exported after each poll cycle; temporality is delta. The values are the packet-delta or byte-delta per sampling window, depending on the value of quantity.|
+| `nvswitch_histogram_interface_microburst_score` | Burstiness score σ² × μ for the current window.|
+| `nvswitch_histogram_interface_microburst_mean_bin_index` | Mean bin index μ for the current window.|
+| `nvswitch_histogram_interface_microburst_distribution_variance` | Bin-index variance σ² for the current window.|
+| `nvswitch_histogram_interface_microburst_peak_value` | Peak raw watermark for the current window (packets or bytes, depending on quantity). Omitted when no valid watermark is available for the window.|
+| `nvswitch_histogram_interface_microburst_threshold_state` | Threshold state for the configured score threshold. Omitted when no threshold is configured.|
+| `nvswitch_histogram_interface_microburst_last_triggered` | (Unix epoch) timestamp of the last transition into triggered state. Omitted when the threshold has never triggered.|
+
+Each microburst metric carries an `interface` label, a `direction` label (`rx` or `tx`), and a `quantity` label (`packets` or `bytes`). The telemetry model names this selector `quantity`, where the NVUE command that configures it is `unit`; the two names refer to the same setting. `nvswitch_histogram_interface_microburst` is a histogram and the rest are gauges, with `threshold_state` reporting 0 for clear and 1 for triggered. For information about the feature behind these metrics, refer to {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst Histogram">}}.
+
+{{< /tab >}}
 {{< /tabs >}}
 
 
@@ -128,4 +167,3 @@ For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="O
 
 |  Old Metric | New Metric |
 |------ | ----------- |
-|

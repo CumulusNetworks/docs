@@ -10,7 +10,7 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 
 ## What's New in Cumulus Linux 5.18.2
 
-Cumulus Linux 5.18.2 provides bug fixes and the following new feature:
+Cumulus Linux 5.18.2 provides {{<link title="Cumulus Linux 5.18 Release Notes" text="bug fixes">}} and the following new feature:
 
 - Improvements to {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog">}} deadlock detection
 

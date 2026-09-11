@@ -380,9 +380,6 @@ Read thread: on  Write thread: on  FD used: 27
 
 {{< /expand >}}
 
-{{%notice note%}}
-Cumulus Linux does not enforce the MD5 password configured against a BGP listen-range peer group (used to accept and create dynamic BGP neighbors) and accepts connections from peers that do not specify a password.
-{{%/notice%}}
 <!-- asked not to document in 5.6
 ### Password Obfuscation
 

@@ -175,11 +175,11 @@ Peers 5, using 100 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
 Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
-leaf02(peerlink.4094) 4      65102     28196     28210      126    0    0 12:27:35           12       13 FRRouting/10.0.3
-spine01(swp51)        4      65199     28187     28195      126    0    0 23:19:30            9       13 FRRouting/10.0.3
-spine02(swp52)        4      65199     28216     28222      126    0    0 12:27:36            9       13 FRRouting/10.0.3
-spine03(swp53)        4      65199     28185     28195      126    0    0 23:19:30            9       13 FRRouting/10.0.3
-spine04(swp54)        4      65199     28217     28222      126    0    0 12:27:34            9       13 FRRouting/10.0.3
+leaf02(peerlink.4094) 4      65102     28196     28210      126    0    0 12:27:35           12       13 FRRouting/10.6.0
+spine01(swp51)        4      65199     28187     28195      126    0    0 23:19:30            9       13 FRRouting/10.6.0
+spine02(swp52)        4      65199     28216     28222      126    0    0 12:27:36            9       13 FRRouting/10.6.0
+spine03(swp53)        4      65199     28185     28195      126    0    0 23:19:30            9       13 FRRouting/10.6.0
+spine04(swp54)        4      65199     28217     28222      126    0    0 12:27:34            9       13 FRRouting/10.6.0
 
 Total number of neighbors 5
 
@@ -191,11 +191,11 @@ Peers 5, using 100 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
 Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
-leaf02(peerlink.4094) 4      65102     28196     28210       46    0    0 12:27:35           57       81 FRRouting/10.0.3
-spine01(swp51)        4      65199     28187     28195       46    0    0 23:19:30           57       81 FRRouting/10.0.3
-spine02(swp52)        4      65199     28216     28222       46    0    0 12:27:36           57       81 FRRouting/10.0.3
-spine03(swp53)        4      65199     28185     28195       46    0    0 23:19:30           57       81 FRRouting/10.0.3
-spine04(swp54)        4      65199     28217     28222       46    0    0 12:27:34           57       81 FRRouting/10.0.3
+leaf02(peerlink.4094) 4      65102     28196     28210       46    0    0 12:27:35           57       81 FRRouting/10.6.0
+spine01(swp51)        4      65199     28187     28195       46    0    0 23:19:30           57       81 FRRouting/10.6.0
+spine02(swp52)        4      65199     28216     28222       46    0    0 12:27:36           57       81 FRRouting/10.6.0
+spine03(swp53)        4      65199     28185     28195       46    0    0 23:19:30           57       81 FRRouting/10.6.0
+spine04(swp54)        4      65199     28217     28222       46    0    0 12:27:34           57       81 FRRouting/10.6.0
 
 Total number of neighbors 5
 ```
@@ -261,11 +261,11 @@ Peers 5, using 100 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
 Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
-leaf02(peerlink.4094) 4      65102     28280     28294       46    0    0 12:31:48           57       81 FRRouting/10.0.3
-spine01(swp51)        4      65199     28271     28279       46    0    0 23:23:43           57       81 FRRouting/10.0.3
-spine02(swp52)        4      65199     28301     28307       46    0    0 12:31:49           57       81 FRRouting/10.0.3
-spine03(swp53)        4      65199     28270     28279       46    0    0 23:23:43           57       81 FRRouting/10.0.3
-spine04(swp54)        4      65199     28301     28306       46    0    0 12:31:47           57       81 FRRouting/10.0.3
+leaf02(peerlink.4094) 4      65102     28280     28294       46    0    0 12:31:48           57       81 FRRouting/10.6.0
+spine01(swp51)        4      65199     28271     28279       46    0    0 23:23:43           57       81 FRRouting/10.6.0
+spine02(swp52)        4      65199     28301     28307       46    0    0 12:31:49           57       81 FRRouting/10.6.0
+spine03(swp53)        4      65199     28270     28279       46    0    0 23:23:43           57       81 FRRouting/10.6.0
+spine04(swp54)        4      65199     28301     28306       46    0    0 12:31:47           57       81 FRRouting/10.6.0
 
 Total number of neighbors 5
 ```

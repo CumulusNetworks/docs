@@ -7,9 +7,9 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5240456</td>
-<td>BGP peer sessions might repeatedly flap and re-establish. During outbound TCP connect, the BGP service might clear the local nexthop information for the peer and fail nexthop setup when the remote endpoint is not yet available, which resets the session. Logs might show {{nexthop_set failed with remote: (null) and Transport endpoint is not...}}.</td>
-<td>5.16.1-5.18.1</td>
+<td>5231075</td>
+<td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
+<td>5.16.7-5.18.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1268,6 +1268,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.15.0-5.16.4</td>
 </tr>
 <tr>
+<td>5013959</td>
+<td>A BGP service crash might occur, which generates the core file {{bgpd.50328.1778691671.core}} and triggers cl-support data collection. The BGP service crash might disrupt BGP routing functionality on the affected switch.</td>
+<td>5.16.1-5.16.7</td>
+</tr>
+<tr>
 <td>5012335</td>
 <td>gNMI data for the {{/interfaces/interface/state/transceiver}} metric might not return values.</td>
 <td></td>
@@ -1766,7 +1771,7 @@ where only the aggregate should be advertised.</td>
 <tr>
 <td>4820187, 4895566</td>
 <td>The firmware includes two asserts assert id = [0xc2e], [0x627] that are categorized incorrectly as fatal. The firmware has reduced the severity of these asserts and they no longer result in health event and switchd crashes.</td>
-<td>5.16.0-5.16.7</td>
+<td></td>
 </tr>
 <tr>
 <td>4731091, 4857885</td>

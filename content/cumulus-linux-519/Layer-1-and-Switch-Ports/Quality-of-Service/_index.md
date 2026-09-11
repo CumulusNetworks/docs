@@ -2414,9 +2414,83 @@ reserved       1200 Bytes       1200 Bytes
 shared-bytes   13.53 KB         13.53 KB 
 ```
 
+### Service Port Buffers
+
+{{%notice note%}}
+Service port buffers apply only to switches with the Spectrum-6 ASIC. On earlier ASICs, service ports use the same buffer model as regular switch ports.
+{{%/notice%}}
+
+On a Spectrum-6 switch, the service ports share a single dedicated ingress buffer pool instead of drawing on the shared buffer that regular switch ports use. A service port is a bonus port; refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}} for the bonus ports on your switch. Cumulus Linux allocates every ingress region on a service port from this pool, including the port reserved buffer, lossy and lossless priority group headroom, and the management priority group.
+
+Because a service port cannot borrow from the shared buffer that the regular ports use, its ingress memory is fixed. Under congestion, a service port drops lossy traffic and asserts pause on lossless traffic sooner than a regular port does. Excluding the service port memory also makes the shared buffer available to regular ports slightly smaller.
+
+<!-- REVIEW: this whole section, and the three commands below. The specification contradicts itself
+     on whether the feature has an NVUE surface at all. Its CLI / UI / UX section reads, in full,
+     "No New CLI is introduced in NVUE", while its Architecture Specification defines three new
+     leaves under `nv set qos advance buffer-config default-global` with a value range. The CLI
+     section of this specification is otherwise unedited boilerplate, so the draft follows the
+     architecture section and documents the three leaves. If the CLI section is correct, delete this
+     entire section. Delete this comment before publishing. -->
+
+{{%notice note%}}
+- Cumulus Linux does not expose the service port pool as a service pool object. You cannot create, bind, resize, or delete it. The `nv show` commands read it.
+- All service ports on the switch use the same pool. You cannot bind an individual service port to a different pool.
+- Cumulus Linux does not support the shared headroom pool or the port shared buffer on a service port. NVUE rejects `nv set interface <interface-id> qos shared-headroom-pool enabled` before it applies the configuration, with an error such as `shared-headroom-pool config is not supported on service port <port-id>`.
+- Cumulus Linux supports priority flow control on a service port. You can set the switch priority, enable `tx` and `rx`, and bind a PFC profile. The lossless buffer sizes are fixed rather than derived from the cable length: 198 KB of headroom, 29 KB of xon, 29 KB of xoff, and a 169 KB port buffer.
+- Cumulus Linux does not support `cable-length`, `port-buffer`, `xon-threshold`, `xoff-threshold`, or `small-packet-probability` on a service port. NVUE rejects these settings when you apply the configuration.
+- Egress pools on service ports are unchanged.
+{{%/notice%}}
+
+<!-- REVIEW: the unit and the argument form below. The specification gives the range as "0 to 1592
+     KB" but never names a property keyword, while every sibling region on this page takes a
+     property keyword and a value in bytes, such as `ingress-mgmt-buffer headroom 20000`. The draft
+     emits a bare size in KB as the specification states it. Confirm both the unit and whether these
+     leaves take a property keyword against a candidate build. Delete this comment before
+     publishing. -->
+
+To change the buffer sizes that Cumulus Linux allocates to the service ports, run the following commands. You can set a value between 0 and 1592 KB for each. The cumulative allocation across all service ports must stay within the size of the service port pool.
+
+| Command | Description |
+| ------- | ----------- |
+| `nv set qos advance-buffer-config default-global ingress-sp-lossy-buffer <size>` | The lossy buffer allocation for the service ports. |
+| `nv set qos advance-buffer-config default-global ingress-sp-lossless-buffer <size>` | The lossless buffer allocation for the service ports. |
+| `nv set qos advance-buffer-config default-global ingress-sp-mgmt-buffer <size>` | The management buffer allocation for the service ports. |
+
+The following example sets the service port lossy buffer to 100 KB:
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-sp-lossy-buffer 100
+cumulus@switch:~$ nv config apply
+```
+
+To return a setting to its default, run the `nv unset qos advance-buffer-config default-global <buffer>` command:
+
+```
+cumulus@switch:~$ nv unset qos advance-buffer-config default-global ingress-sp-lossy-buffer
+cumulus@switch:~$ nv config apply
+```
+
+<!-- REVIEW: the capacity table below is derived from the specification's own worked example, which
+     assumes 100G ports with a 9216 byte MTU and a 3 metre cable. Confirm that these defaults hold
+     across the supported service port speeds before publishing, or add the assumptions to the
+     lead-in sentence. Delete this comment before publishing. -->
+
+The default allocations consume part of the pool before you tune anything. The following table shows what the defaults use and what remains, on a switch with two service ports and on a switch with four.
+
+| Allocation | Two service ports | Four service ports |
+| ---------- | ----------------- | ------------------ |
+| Default lossy allocation, including the port reserved buffer and the management priority group | 98 KB | 196 KB |
+| Additional lossless headroom when you enable priority flow control | 396 KB | 792 KB |
+| Remaining pool with lossy traffic only | 1848 KB | 1750 KB |
+| Remaining pool with priority flow control enabled | 1452 KB | 958 KB |
+
+To show the pool, mode, and buffer sizes for a service port, run the `nv show interface <interface-id> qos buffer` command.
+
+<!-- TODO: capture `nv show interface <service-port> qos buffer` output on a Spectrum-6 switch and paste here -->
+
 ## Syntax Checker
 
-Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/qos/qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.
+Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/qos/qos_features.conf` and `qos_infra.conf` files to check for errors, such as missing parameters or invalid parameter labels and values.
 
 The syntax checker runs automatically with every `switchd reload`.
 

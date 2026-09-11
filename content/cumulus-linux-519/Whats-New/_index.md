@@ -46,7 +46,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="High-Frequency-Telemetry/#step-time-estimation" text="Step time estimation for AI training workloads">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-group-segregation" text="Adaptive routing ECMP group segregation for round-robin port selection on Spectrum-6 switches">}}
 - {{<link url="Quality-of-Service/#service-port-buffers" text="Dedicated service port ingress buffers on Spectrum-6 switches">}}
-- Adaptive Routing Hybrid scheduling mode
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#resource-mode-and-hybrid-scheduling" text="Adaptive routing hybrid scheduling mode, which moves low weight ECMP groups to random forwarding to reduce adaptive routing group merging">}}
 - FRR upgrade phase 5
 - VRF per destination support GA - at risk
 - Loopback IP/Interface as Source for NVUE DNS in Cumulus Linux 5.x
@@ -68,7 +68,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="gNMI-Streaming/#supported-models" text="gNMI component type and name for platform components">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for unreachability AFI SAFI">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI metrics for AAA RADIUS">}}
-  - uBurst Detection via Per-Port Histograms
+  - {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst histogram with per-port burst scoring">}}
 
 ## Release Considerations
 

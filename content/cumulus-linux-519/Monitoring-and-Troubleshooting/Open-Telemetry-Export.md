@@ -269,7 +269,7 @@ To export RADIUS server 802.1X statistics, you must also enable the parent 802.1
 
 ### Histogram Data
 
-When you enable open telemetry for histogram data, your buffer, counter, and latency {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports:
+When you enable open telemetry for histogram data, your buffer, counter, latency, and microburst {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports:
 
 ```
 cumulus@switch:~$ nv set system telemetry histogram export state enabled
@@ -1606,13 +1606,13 @@ When you enable control plane statistic telemetry, the switch exports the follow
 
 ### Histogram Data Format
 <!-- vale on -->
-The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured.
+The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency, counter, and microburst histogram data are also exported, if configured.
 
 {{% notice note %}}
 Latency histogram bucket counts do not increment in exported telemetry data if there are no packets transmitted in the traffic class during the sample interval.
 {{% /notice %}}
 
-The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, and counter histogram collection:
+The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, counter, and microburst histogram collection:
 
 | Name | Description |
 |----- | ----------- |
@@ -1622,6 +1622,15 @@ The switch sends a sample with the following names for each interface enabled fo
 | `nvswitch_histogram_interface_counter_bucket` | Histogram interface counter bucket. |
 | `nvswitch_histogram_interface_counter_count` | Histogram interface counter count. |
 | `nvswitch_histogram_interface_latency` | Histogram interface latency data. |
+| `nvswitch_histogram_interface_microburst` | *Histogram interface microburst distribution for one direction and quantity. The bucket counts are the packet or byte delta for each sampling window. |
+| `nvswitch_histogram_interface_microburst_score` | *Burstiness score for the current window. |
+| `nvswitch_histogram_interface_microburst_mean_bin_index` | *Mean bin index for the current window. |
+| `nvswitch_histogram_interface_microburst_distribution_variance` | *Bin index variance for the current window. |
+| `nvswitch_histogram_interface_microburst_peak_value` | *Peak raw watermark for the current window, in packets or bytes. Omitted when no valid watermark is available for the window. |
+| `nvswitch_histogram_interface_microburst_threshold_state` | *Threshold state for the configured score threshold, where 0 is clear and 1 is triggered. Omitted when no threshold is configured. |
+| `nvswitch_histogram_interface_microburst_last_triggered` | *Timestamp, in Unix epoch nanoseconds, of the last transition into the triggered state. Omitted when the threshold has never triggered. |
+
+The microburst metrics carry an `interface` label, a `direction` label (`rx` or `tx`), and a `quantity` label (`packets` or `bytes`). The `nvswitch_histogram_interface_microburst` metric is a histogram; the other microburst metrics are gauges. For information about configuring the microburst histogram, refer to {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst Histogram">}}.
 
 <!-- vale off -->
 {{< expand "Example JSON data for interface_ingress_buffer:" >}}

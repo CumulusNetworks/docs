@@ -7,15 +7,27 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5240456</td>
-<td>BGP peer sessions might repeatedly flap and re-establish. During outbound TCP connect, the BGP service might clear the local nexthop information for the peer and fail nexthop setup when the remote endpoint is not yet available, which resets the session. Logs might show {{nexthop_set failed with remote: (null) and Transport endpoint is not...}}.</td>
-<td>5.16.1, 5.16.5-5.18.1</td>
+<td>5257559</td>
+<td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
+<td>5.18.0-5.18.1</td>
+<td>5.16.8</td>
+</tr>
+<tr>
+<td>5251092</td>
+<td>In an 802.1x IPv6 profile configuration, a prefix with more than 32 bits produces the wrong assigned address and authentication fails when the assigned address is in the multicast range.</td>
+<td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
 <tr>
 <td>5235587</td>
 <td>When streaming HFT, the timestamps exported with the HFT data are 37 seconds ahead of UTC.</td>
 <td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5231075</td>
+<td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
+<td>5.16.7-5.18.1</td>
 <td></td>
 </tr>
 <tr>
@@ -91,6 +103,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5194451</td>
+<td>The {{auth-fail-vlan}} row in the {{nv show system dot1x}} command output does not show the operational value of {{auth-fail-vlan}} even when it is configured.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5190122</td>
 <td>On a Spectrum-6 switch (such as the SN6600-LD), gNMI reports an incorrect shared-buffer cell size of 192 bytes at {{/qos/shared-buffer/state/cell-size}} instead of the correct 256 bytes for Spectrum-6. Because this cell size is used to convert internal buffer cell counts into byte values, several shared-buffer telemetry values derived from it (such as per-queue or traffic-class buffer usage and maximum occupancy) report incorrectly over gNMI. The values are inconsistent with the values that NVUE reports and the hardware buffer counters.</td>
 <td>5.18.0-5.18.1</td>
@@ -142,6 +160,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5175676</td>
+<td>The {{nv action clear router segment-routing srv6 stats}} command completes without resetting SRv6 packet counters. A following {{nv show router segment-routing srv6 stats}} command still shows the values from before the clear.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5174873</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.1</td>
@@ -152,6 +176,12 @@ Pin-Priority: 992</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
+</tr>
+<tr>
+<td>5170499</td>
+<td>After an optimized image upgrade, the first time you try to enable the new 802.1X server telemetry metrics setting, you get an error. The issue occurs because an old Docker setting from the earlier release is still present in the saved configuration, which the upgraded release no longer accepts. As a result, the switch rejects the first {{config apply}} with a validation error tied to {{system.docker}} instead of the 802.1X setting you are trying to enable. To work around this issue, run the {{nv config detach}} command before the first {{nv set}} and {{nv config apply}} after the upgrade, or discard any pending revision before starting the upgrade.</td>
+<td>5.18.0-5.18.1</td>
+<td>5.16.8</td>
 </tr>
 <tr>
 <td>5170159</td>
@@ -190,6 +220,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5154524</td>
+<td>The switch system health included the {{ledmgrd}} service in health evaluation incorrectly, causing false {{ServicesStatus: BAD}} results for virtual platforms. </td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5146439</td>
 <td>When the BMC power restore policy is set to {{AlwaysOff}}, a BMC-only reboot causes the running switch host to be powered off even though no AC power loss occurs. To work around this issue, set the power restore policy to {{AlwaysOn}} or {{LastState}}.</td>
 <td>5.17.0-5.18.1</td>
@@ -208,8 +244,21 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5120660</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the switch before the hardware reaches a steady state where it is safe to receive packets. This issue generates a {{switchd}} health event.</td>
+<td>5.11.5, 5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5091418</td>
+<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
+</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
@@ -1024,14 +1073,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.18.0</td>
 </tr>
 <tr>
-<td>5225676, 5217147</td>
+<td>5225676, 5217147, 5257913</td>
 <td>When you perform a factory reset after an optimized image upgrade, the switch loses record of its model information.</td>
-<td>5.16.6-5.18.0</td>
+<td>5.16.6-5.16.7</td>
 </tr>
 <tr>
 <td>5225576, 5236486</td>
 <td>After an optimized image upgrade from Cumulus Linux 5.13.1 or earlier to a later release, the install step fails with a permission error if the image being installed is already present in the {{/var/images}} directory before the upgrade. In this state, the {{nv show system image files}} command might not list any images. To work around this issue, fetch the image with the {{nv action fetch system image &lt;remote-url&gt;}} command before installing it. Alternatively, correct the directory permissions with {{sudo chmod 0755 /var/images}}.</td>
-<td>5.16.6-5.18.0</td>
+<td>5.16.6-5.16.7</td>
 </tr>
 <tr>
 <td>5221596, 5215402, 5200160</td>
@@ -1080,8 +1129,8 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>5.16.5-5.16.6</td>
 </tr>
 <tr>
-<td>5221588, 5221379</td>
-<td>In rare scenarios, a link fault recovery sequence might trigger a switchd watchdog timeout on Spectrum-4 switches.</td>
+<td>5221588, 5221379, 5215201</td>
+<td> In rare scenarios, a link fault recovery sequence can trigger a switchd watchdog timeout on Spectrum-4 switches.</td>
 <td>5.16.5-5.16.6</td>
 </tr>
 </table>
@@ -1093,9 +1142,15 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5240456</td>
-<td>BGP peer sessions might repeatedly flap and re-establish. During outbound TCP connect, the BGP service might clear the local nexthop information for the peer and fail nexthop setup when the remote endpoint is not yet available, which resets the session. Logs might show {{nexthop_set failed with remote: (null) and Transport endpoint is not...}}.</td>
-<td>5.16.1, 5.16.5-5.18.1</td>
+<td>5257559</td>
+<td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
+<td>5.18.0-5.18.1</td>
+<td>5.16.8</td>
+</tr>
+<tr>
+<td>5251092</td>
+<td>In an 802.1x IPv6 profile configuration, a prefix with more than 32 bits produces the wrong assigned address and authentication fails when the assigned address is in the multicast range.</td>
+<td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1111,10 +1166,10 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>5.18.1</td>
 </tr>
 <tr>
-<td>5225576, 5236486</td>
-<td>After an optimized image upgrade from Cumulus Linux 5.13.1 or earlier to a later release, the install step fails with a permission error if the image being installed is already present in the {{/var/images}} directory before the upgrade. In this state, the {{nv show system image files}} command might not list any images. To work around this issue, fetch the image with the {{nv action fetch system image &lt;remote-url&gt;}} command before installing it. Alternatively, correct the directory permissions with {{sudo chmod 0755 /var/images}}.</td>
-<td>5.16.6-5.18.0</td>
-<td>5.18.1</td>
+<td>5231075</td>
+<td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
+<td>5.16.7-5.18.1</td>
+<td></td>
 </tr>
 <tr>
 <td>5225461</td>
@@ -1159,12 +1214,6 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
-<td>5217147, 5225676</td>
-<td>When you perform a factory reset after an optimized image upgrade, the switch loses record of its model information.</td>
-<td>5.16.6-5.18.0</td>
-<td>5.18.1</td>
-</tr>
-<tr>
 <td>5217091</td>
 <td>In some scenarios after configuration bring-up or an interface carrier transition, traffic might not be forwarded on some interfaces in an ECMP group. To work around this issue, flap the affected interface.</td>
 <td>5.18.0-5.18.1</td>
@@ -1197,6 +1246,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <tr>
 <td>5195287, 5221633</td>
 <td>After applying BGP configuration with BFD, FRR reload fails.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5194451</td>
+<td>The {{auth-fail-vlan}} row in the {{nv show system dot1x}} command output does not show the operational value of {{auth-fail-vlan}} even when it is configured.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
@@ -1252,6 +1307,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5175676</td>
+<td>The {{nv action clear router segment-routing srv6 stats}} command completes without resetting SRv6 packet counters. A following {{nv show router segment-routing srv6 stats}} command still shows the values from before the clear.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5175518, 5217093, 5221594</td>
 <td>The {{switchd}} watchdog crashes due to a netlink buffer overflow triggered by continuous next hop group churn.</td>
 <td>5.16.1, 5.16.5-5.16.6, 5.18.0</td>
@@ -1268,6 +1329,12 @@ Pin-Priority: 992</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
+</tr>
+<tr>
+<td>5170499</td>
+<td>After an optimized image upgrade, the first time you try to enable the new 802.1X server telemetry metrics setting, you get an error. The issue occurs because an old Docker setting from the earlier release is still present in the saved configuration, which the upgraded release no longer accepts. As a result, the switch rejects the first {{config apply}} with a validation error tied to {{system.docker}} instead of the 802.1X setting you are trying to enable. To work around this issue, run the {{nv config detach}} command before the first {{nv set}} and {{nv config apply}} after the upgrade, or discard any pending revision before starting the upgrade.</td>
+<td>5.18.0-5.18.1</td>
+<td>5.16.8</td>
 </tr>
 <tr>
 <td>5170159</td>
@@ -1306,6 +1373,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5154524</td>
+<td>The switch system health included the {{ledmgrd}} service in health evaluation incorrectly, causing false {{ServicesStatus: BAD}} results for virtual platforms. </td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5146439</td>
 <td>When the BMC power restore policy is set to {{AlwaysOff}}, a BMC-only reboot causes the running switch host to be powered off even though no AC power loss occurs. To work around this issue, set the power restore policy to {{AlwaysOn}} or {{LastState}}.</td>
 <td>5.17.0-5.18.1</td>
@@ -1324,8 +1397,21 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5120660</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the switch before the hardware reaches a steady state where it is safe to receive packets. This issue generates a {{switchd}} health event.</td>
+<td>5.11.5, 5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5091418</td>
+<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
+</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>

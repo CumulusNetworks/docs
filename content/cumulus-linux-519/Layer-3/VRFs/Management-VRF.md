@@ -290,40 +290,7 @@ You can still bring the management interface up and down using `ifup eth0` and `
 
 Cumulus Linux supports both DHCP and static DNS entries over management VRF through IP FIB rules, which it adds to direct lookups to the DNS addresses out of the management VRF.
 
-For DNS to use the management VRF, the static DNS entries must reference the management VRF in the `/etc/resolv.conf` file. You cannot specify the same DNS server address twice to associate it with different VRFs.
-
-For example, to specify DNS servers and associate some of them with the management VRF, run the following commands:
-
-{{< tabs "TabID388 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set system dns server 192.0.2.1 vrf default
-cumulus@switch:~$ nv set system dns server 198.51.100.31 vrf mgmt
-cumulus@switch:~$ nv set system dns server 203.0.113.13 vrf mgmt
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/resolv.conf` file to add the DNS servers and associate some of them with the management VRF. For example:
-
-```
-cumulus@switch:~$ sudo nano /etc/resolv.conf
-nameserver 192.0.2.1
-nameserver 198.51.100.31 # vrf mgmt
-nameserver 203.0.113.13 # vrf mgmt
-```
-
-Run the `ifreload -a` command to load the new configuration:
-
-```
-cumulus@switch:~$ ifreload -a
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+To configure a nameserver in the management VRF, run the `nv set system dns server <dns-server-id> vrf mgmt` command. For the full set of DNS client commands, including the `/etc/resolv.conf` entries that associate a nameserver with the management VRF and how to configure the source address of DNS queries, see {{<link url="Domain-Name-System-DNS" text="Domain Name System DNS">}}.
 
 {{%notice note%}}
 - Because FIB rules force DNS lookups out of the management interface, this can affect data plane ports if you use overlapping addresses. For example, when the switch learns the DNS server IP address over the management VRF, it creates a FIB rule for that IP address. When DHCP relay has the same IP address, the switch forwards any DHCP discover packet arriving on the front panel port out of the management interface (eth0) even though a route is present out the front-panel port.

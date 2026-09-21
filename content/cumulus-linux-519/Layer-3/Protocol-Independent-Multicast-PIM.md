@@ -505,6 +505,10 @@ cumulus@switch:~$ nv set interface swp1 router pim address-family ipv4-unicast m
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice note%}}
+NVUE validates the prefix list that the IP multicast boundary OIL references​​​​​​. If the prefix list does not exist, the `nv config apply` command reports an error.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 

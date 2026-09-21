@@ -8,7 +8,7 @@ toc: 3
 Cumulus Linux provides these reboot and power modes:
 - **immediate** reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
 - **halt** shuts down the operating system and halts the CPU. The switch is no longer reachable over the network but switch hardware might remain powered. Use this mode for a graceful complete shutdown during planned maintenance when you must shut down the operating system fully but an operating system level halt is sufficient. You cannot connect to the switch until power cycled through a remote PDU connection.
-- **power-off** powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you require the switch to be powered off fully. You cannot connect to the switch until power cycled through a remote PDU connection.
+- **power-off** powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you require the switch to be powered off fully. You cannot connect to the switch until power cycled through a remote PDU connection. The SN2700 switch does not support `power-off`. 
 - **power-cycle** lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
@@ -28,8 +28,8 @@ The following table shows the NVUE reboot and power commands, and their Linux co
 | `nv action reboot system mode immediate force` | `sudo reboot --force` | Reboots the switch immediately without notifying any running processes and without prompting for confirmation. |
 | `nv action reboot system mode halt` | No native command available. | Shuts down the operating system and halts the CPU. The switch hardware may remain powered.  |
 | `nv action reboot system mode halt force` | `sudo reboot --halt` | Shuts down the system without prompting for confirmation.|
-| `nv action reboot system mode power-off`| `sudo cl-poweroff` | Powers off the switch completely (complete electrical power-off).|
-| `nv action reboot system mode power-off force`| `sudo cl-poweroff -noprompt` | Powers off the switch completely (complete electrical power-off) without prompting for confirmation.|
+| `nv action reboot system mode power-off`| `sudo cl-poweroff` | Powers off the switch completely (complete electrical power-off). The SN2700 switch does not support `power-off`.|
+| `nv action reboot system mode power-off force`| `sudo cl-poweroff -noprompt` | Powers off the switch completely (complete electrical power-off) without prompting for confirmation. The SN2700 switch does not support `power-off`.|
 | `nv action reboot system mode power-cycle` | `sudo cl-powercycle` | Power cycles the switch. |
 | `nv action reboot system mode power-cycle force` | `sudo cl-powercycle -noprompt` | Power cycles the switch without prompting for confirmation.|
 | `nv action reboot system mode cold` | `sudo csmgrctl -c` | Reboots the switch in cold mode. |

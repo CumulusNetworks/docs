@@ -795,15 +795,30 @@ The switch collects and exports statistics for IPv4, IPv6, layer 2, and layer 4 
 
 The switch collects and exports the adaptive routing, SRv6, and packet trimming statistics when you configure the `nv set system telemetry ai-ethernet-stats export state enabled` command.
 
+<!-- REVIEW: backported from the 5.19 correction (Redmine 5299181). Two open questions, resolved the
+     same way in every tree: the source measures ~1.1 increments per RoCEv2 packet but the drafted
+     text states no ratio, and the source tests only RoCEv2 so "eligible" traffic is drafted
+     broadly. Resolve on 5.19 first, then match here. Concerns the nvswitch_ar_congestion_changes
+     row below and the note after this table. Delete this comment before publishing. -->
+
 | Metric | Description |
 | ---------- | ------- |
-| `nvswitch_ar_congestion_changes`  | Number of adaptive routing change events triggered due to congestion or link-down.|
+| `nvswitch_ar_congestion_changes`  | Number of adaptive routing egress port selections. The counter increments for each eligible packet that leaves an ECMP port with adaptive routing enabled. Despite the metric name, the counter does not count congestion events or link-down events.|
 | `nvswitch_srv6_no_sid_drops`| Number of packets dropped due to no matching SID. |
 | `nvswitch_srv6_in_pkts` | Number of packets received for this SID. |
 | `nvswitch_qos_trimmed_unicast_pkts`| Number of packets that were trimmed. To see this metric you must enable packet trimming. Spectrum-3 switches do not support this metric.|
 | `nvswitch_interface_trimmed_unicast_pkts [interface]`| Number of packets that were trimmed on the interface.|
 | `nvswitch_interface_trimmed_tx_unicast_pkts [interface]`| Number of packets that were trimmed and sent successfully on the interface.|
 | `nvswitch_interface_tc_trimmed_unicast_pkts [interface][tc]`| Number of packets that were trimmed on the interface and traffic class.|
+
+{{%notice note%}}
+`nvswitch_ar_congestion_changes` is a cumulative counter that only increases. Adaptive routing selects an egress port for each packet, so the counter tracks packet forwarding rather than congestion:
+
+- The counter increments at least once for every eligible packet that leaves an ECMP port with adaptive routing enabled. Traffic that is eligible for adaptive routing, such as RoCEv2, increments the counter. The counter stays flat when the ports are idle or carry only TCP traffic.
+- Congestion events and link-down events do not increment the counter. The counter shows no distinct jump when either occurs, and it does not stop increasing during sustained congestion.
+- When congestion occurs, or when an ECMP member goes down, fewer packets leave the port, so the rate at which the counter increases drops.
+
+{{%/notice%}}
 
 {{< expand "Example JSON data for nvswitch_ar_congestion_changes:" >}}
 ```

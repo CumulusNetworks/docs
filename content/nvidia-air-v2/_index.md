@@ -4,6 +4,7 @@ author: NVIDIA
 weight: 10
 cascade:
     product: NVIDIA DSX Air
+    draft: true
 ---
 
 NVIDIA DSX Air is a cloud-hosted, data center simulation platform that behaves like a real-world production environment. Use DSX Air to create a digital twin of your IT infrastructure so that you can:

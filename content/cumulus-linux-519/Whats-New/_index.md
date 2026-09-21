@@ -47,11 +47,10 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-group-segregation" text="Adaptive routing ECMP group segregation for round-robin port selection on Spectrum-6 switches">}}
 - {{<link url="Quality-of-Service/#service-port-buffers" text="Dedicated service port ingress buffers on Spectrum-6 switches">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resource-mode-and-hybrid-scheduling" text="Adaptive routing hybrid scheduling mode, which moves low weight ECMP groups to random forwarding to reduce adaptive routing group merging">}}
-- FRR upgrade phase 5
-- VRF per destination support GA - at risk
 - {{<link url="Domain-Name-System-DNS/#dns-query-source-address" text="Configurable source address for DNS queries, so that queries leave the switch from a stable loopback identity">}}
 - Change the USB0 IP address to 169.254.100.2 / 169.254.100.1
 - CPO Debug Params | nv show commands & Telemetry (OTEL and GNMI) GA
+- VRF per destination support GA - at risk
 - NVUE
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
   - {{<link url="Neighbor-Discovery-ND/#clear-a-stale-prefix" text="Clear a stale IPv6 ND prefix on demand">}}
@@ -61,8 +60,8 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resilient-hashing" text="Resilient hashing commands">}}
   - {{<link url="NVUE-CLI/#configuration-management-commands" text="nv config apply command improvements">}} to prevent latency and timeout
   - {{<link url="Zero-Touch-Provisioning-ZTP/#suppress-ztp-console-messages" text="Suppress ZTP console messages">}}
-  - Map port to connector
   - {{<link url="FRRouting/#tcp-sockets-and-bgp-peering-sessions" text="Configure the file descriptor limit for the FRR routing daemons">}}
+  - Map port to connector
 - Telemetry
   - {{<link url="Open-Telemetry-Export/#wjh-metrics" text="WJH metrics for OTEL">}}
   - {{<link url="gNMI-Streaming/#supported-models" text="gNMI component type and name for platform components">}}

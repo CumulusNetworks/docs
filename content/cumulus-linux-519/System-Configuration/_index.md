@@ -8,6 +8,7 @@ This section describes how to configure the following system settings:
 - {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience">}} (NVUE)
 - {{<link url="Date-and-Time" text="Date and time">}}
 - {{<link url="DHCP" text="DHCP">}}
+- {{<link url="Domain-Name-System-DNS" text="Domain Name System">}} (DNS)
 - {{<link url="Authentication-Authorization-and-Accounting" text="Authentication, authorization, and accounting">}}
 - {{<link title="Access Control Lists" text="Access Control Lists">}} (ACLs)
 - {{<link url="Services-and-Daemons-in-Cumulus-Linux" text="Services and daemons">}}

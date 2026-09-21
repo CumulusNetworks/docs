@@ -39,7 +39,7 @@ To configure optional settings for gNMI dial-in mode:
   - If you need to use mTLS on the gNMI RPC, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. Specify either `uri` (a local or remote URI from where to retrieve the crl bundle file) or `data` (for a PEM encoded CRL).
 
 {{%notice note%}}
-When you configure a CA certificate, entity certificate, or CRL, the configuration will apply to any new gNMI sessions that establish. Existing dial-in connections will continue to use the prior configuration until they reestablish.
+When you configure a CA certificate, entity certificate, or CRL, the configuration applies to any new gNMI sessions that establish. Existing dial-in connections continue to use the prior configuration until they reestablish.
 {{%/notice%}}
 
 The following example sets the gNMI server listening address to 10.10.10.1 and the port to 1024, and enables the gNMI server:
@@ -50,6 +50,25 @@ cumulus@switch:~$ nv set system gnmi-server port 1024
 cumulus@switch:~$ nv set system gnmi-server state enabled
 cumulus@switch:~$ nv config apply
 ```
+
+<!-- REVIEW: the bullet below beginning "Cumulus Linux does not check the listening address" says that
+     Cumulus Linux does not validate the listening address. The
+     source document contradicts itself here: its requirements section states that an invalid
+     listening address "shall be rejected at apply", while its limitations section states that the
+     address "is not validated against the addresses actually configured on the switch" and its test
+     plan says an unconfigured address "should be rejected once validation exists". Drafted the
+     limitation, because two of the three sections agree validation does not exist in this release.
+     Confirm against a candidate build before publishing, and delete this comment. -->
+
+{{%notice note%}}
+- The listening address can be any address configured on the switch, including a loopback address, a front panel port address, or the management address. The VRF that owns the address does not affect whether the gNMI server binds it.
+- The listening address selects a destination address. It does not restrict the interface on which the switch accepts gNMI traffic. To restrict gNMI to one reachability domain, apply control plane ACLs.
+- The gNMI server answers on every VRF in which its listening address is local. The `nv set system gnmi-server` commands have no VRF option, so you cannot restrict the server to a single VRF. If you configure the same address in two VRFs, connections from both reach the same listener with the same certificate and the same client authentication, and the gNMI server cannot tell which VRF a client came from.
+- Changing the listening address does not restart the gNMI server. The new address applies to connections the collector makes afterwards.
+- Cumulus Linux always adds `localhost` to the set of listening addresses. If you do not configure a listening address, `localhost` is the only entry and the gNMI server accepts connections on the switch itself and nowhere else. Configuring an address is what makes the gNMI server reachable remotely.
+- Cumulus Linux does not check the listening address against the addresses configured on the switch. If you configure an address that the switch does not have, the apply succeeds but the gNMI server is unreachable at that address.
+- The listening address must be an IPv4 or IPv6 address. Cumulus Linux rejects `localhost`, which it adds for you, and IPv6 link-local addresses. You cannot specify an interface name, `all`, or `any`.
+{{%/notice%}}
 
 The following example imports and sets the CA certificate `CERT1` and the CRL `crl.crt` for mTLS:
 
@@ -66,19 +85,20 @@ cumulus@switch:~$ nv config apply
 In dial-out telemetry mode, the Cumulus Linux switch initiates the gRPC connection to the collector through a gRPC tunnel server and assumes the role of the gRPC client.
 
 To configure gNMI dial-out mode, you must:
-- Specify the listening address for each tunnel server to which you want to connect. Cumulus Linux supports a maximum of 10 tunnel servers.
+- Specify the address of each tunnel server to which you want to connect. Cumulus Linux supports a maximum of 10 tunnel servers.
 - Enable the tunnel server.
 
 To configure optional settings for each tunnel server:
 - Specify the target name and target application you want to access. The default target application is GNMI-GNOI.
 - Specify the retry interval. The default retry interval is 30 seconds.
+- Specify the source address of the connections the switch opens to the tunnel server. See {{<link url="#dial-out-source-address" text="Dial-out Source Address">}}.
 - Import and enable a TLS or mTLS certificate for validation. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. For information about importing certificates and CRLs, refer to {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Security with Certificates and CRLs">}}.
 
 {{%notice note%}}
 When you configure a CA certificate, entity certificate, or CRL, existing dial-out gNMI sessions are disconnected to apply the new certificate configuration.
 {{%/notice%}}
 
-The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10, and enables the tunnel server:
+The following example sets the address of tunnel server SERVER1 to 10.1.1.10, and enables the tunnel server:
 
 ```
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
@@ -86,7 +106,7 @@ cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10 and the port to 443, the target name to TARGET1, the retry interval to 40, the CA certificate to CACERT1, and enables the tunnel server:
+The following example sets the address of tunnel server SERVER1 to 10.1.1.10 and the port to 443, the target name to TARGET1, the retry interval to 40, the CA certificate to CACERT1, and enables the tunnel server:
 
 ```
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
@@ -98,6 +118,46 @@ cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CACERT
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
 cumulus@switch:~$ nv config apply
 ```
+
+### Dial-out Source Address
+
+When you do not configure a source address, the kernel selects the source of the connections the switch opens to the tunnel server and uses the address of the interface through which the route exits. Dial-out leaves through the management VRF, so that address is the management address of eth0. A new DHCP lease can change it, which drops the connections established from it and breaks any ACL on the collector that names the switch by that address.
+
+The source address is optional and applies to one tunnel server, so tunnel servers with and without a source address coexist on the same switch.
+
+<!-- REVIEW: two items in the note below. First, the first two bullets say Cumulus Linux rejects an
+     address in another VRF and an address not configured on the switch. The spec's requirements
+     section supports both as a "shall", but its validation table lists only three rejections
+     (malformed, IPv6 link-local, family mismatch) and its test plan says a default-VRF address
+     "must be rejected once validation exists". This is the same requirement-versus-reality question
+     already flagged for the listening address further up the page. Confirm on a candidate build,
+     and soften both bullets to "does not work" if the validation did not ship. Second, an earlier
+     revision of this note also listed reserved loopback addresses such as 127.0.0.1 and ::1 as
+     rejected, which the spec states in its requirements and its test plan; that clause is no longer
+     here. Confirm the removal was deliberate. Delete this comment before publishing. -->
+
+{{%notice note%}}
+- Dial-out leaves through the management VRF, so the source address must be reachable there. A loopback address you configure with the `nv set vrf mgmt loopback ip address <ip-address>` command qualifies, and so does the management address itself. Cumulus Linux rejects an address configured in another VRF, such as a loopback address in the default VRF, and you cannot point a tunnel server at another VRF.
+- The source address must already be configured on the switch, or you must add it in the same `nv config apply` that references it. Cumulus Linux validates the address against the pending configuration rather than the running system.
+- Cumulus Linux rejects the configuration when you run `nv config apply` if the source address is malformed, is an IPv6 link-local address, or belongs to a different address family than the tunnel server address.
+- Cumulus Linux also rejects an apply that deletes an address while a tunnel server still references it as a source address. To remove the address, remove or repoint the source address in the same apply.
+- The source address selects the address the switch presents to the tunnel server. It does not filter what the switch accepts.
+{{%/notice%}}
+
+{{%notice note%}}
+Changing the source address restarts the tunnel and drops the subscriptions running on it. The source address of a connection cannot change while the connection is open, so the new address takes effect only on a connection the switch opens afterwards. Changing the tunnel server address, the port, or a certificate disconnects the tunnel for the same reason.
+{{%/notice%}}
+
+To choose the source address, run the `nv set system grpc-tunnel server <server> source-address <ip-address>` command. The following example configures tunnel server SERVER1 to open connections from 10.10.10.1, a loopback address in the management VRF:
+
+```
+cumulus@switch:~$ nv set vrf mgmt loopback ip address 10.10.10.1/32
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 source-address 10.10.10.1
+cumulus@switch:~$ nv config apply
+```
+
+To remove the source address and return to kernel selection, run the `nv unset system grpc-tunnel server <server> source-address` command.
 
 ### Show gNMI Configuration and Status Information
 
@@ -128,6 +188,15 @@ cumulus@switch:~$ nv show system gnmi-server listening-address
 10.1.1.100
 ```
 
+<!-- REVIEW: this release has no way to confirm a dial-in bind from nv show. The spec requires that
+     "a bind failure shall be visible in nv show, for both directions", but its CLI section says
+     "for dial-in, show commands remain unchanged", and its limitations section says an address the
+     switch does not have is accepted and "bind succeeds" anyway. So an operational column that shows
+     the address proves nothing about reachability, and no rule for reading it can be written yet.
+     Add one here when the requirement lands. Delete this comment before publishing. -->
+
+`localhost` appears under `operational` even when you configure no listening address, because Cumulus Linux adds it for you.
+
 To show gNMI server mTLS information, run the `nv show system gnmi-server mtls` command:
 
 ```
@@ -150,21 +219,25 @@ rejected-subscriptions          0
 received-capabilities-requests  0
 ```
 
-To show gRPC tunnel server configuration and connection information, run the `nv show system grpc-tunnel server <server>` command:
+To show gRPC tunnel server configuration and connection information, run the `nv show system grpc-tunnel server <server>` command. The command shows the source address when you configure one and omits it otherwise:
+
+<!-- TODO: capture this output on a switch with a source address configured and a tunnel established, and replace the sample below. The shipped sample showed a torn-down tunnel, so the local-address row the text tells the reader to check is empty in it. -->
 
 ```
 cumulus@switch:~$ nv show system grpc-tunnel server SERVER1
-nv show system grpc-tunnel server SERVER1
                  operational           applied  
 ---------------  --------------------  ---------
 state            disabled              enabled  
 target-name      TARGET1               TARGET1  
 address          10.1.1.10             10.1.1.10
 port             443                   443      
+source-address   10.10.10.1            10.10.10.1
 target-type      gnmi-gnoi             gnmi-gnoi
 retry-interval   40                    40       
 status                                          
+  local-address                                 
   local-port     0                              
+  remote-address                                
   remote-port    0                              
   connection                                    
     established  1970-01-01T00:00:00Z           
@@ -172,18 +245,33 @@ status
     tunnel       no
 ```
 
-To show the local and remote port, and connection information, run the `nv show system grpc-tunnel server SERVER1 status` command:
+The `source-address` row in the configuration block is the value you configured, echoed back. It confirms that Cumulus Linux accepted the value, not that the switch bound it.
+
+To confirm that the source address took effect, read `local-address` in the `status` block after the tunnel establishes. It reports the source address the connection carries. A `local-address` that differs from the configured source address, or that stays empty while `register` reads `no`, means the switch could not open the connection from the address you configured.
+
+<!-- REVIEW: the paragraph below describes the failure the spec calls the hardest to diagnose, where a
+     bound source address is simply unreachable from the collector. It shares its symptoms with a bind
+     failure, which is why the paragraph leads with the packet capture that tells the two apart. The
+     spec states that the switch logs nothing in this case, and notes that closing the gap would mean
+     logging repeated connect timeouts. Remove the paragraph if that logging lands. Delete this
+     comment before publishing. -->
+
+An unreachable collector produces the same symptoms as a failed bind, so take a packet capture to tell the two apart. If the connection attempts leave carrying the source address you configured, the switch bound the address and the problem is on the return path: confirm that the collector has a route back to that address and that any ACL on the collector accepts it. If they leave carrying a different address, the switch did not bind the one you configured. The switch records nothing in either case, because from its point of view the connection is still in progress.
+
+To show the local and remote address and port, and connection information, run the `nv show system grpc-tunnel server SERVER1 status` command:
 
 ```
 cumulus@switch:~$ nv show system grpc-tunnel server SERVER1 status
-               operational         
--------------  --------------------
-local-port     0                   
-remote-port    0                   
-connection                         
-  established  1970-01-01T00:00:00Z
-  register     no                  
-  tunnel       no
+                operational         
+--------------  --------------------
+local-address                       
+local-port      0                   
+remote-address                      
+remote-port     0                   
+connection                          
+  established   1970-01-01T00:00:00Z
+  register      no                  
+  tunnel        no
 ```
 
 To show only connection information, run the `nv show system grpc-tunnel server SERVER1 status connection` command:

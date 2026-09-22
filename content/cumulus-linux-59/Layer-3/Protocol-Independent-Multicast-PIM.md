@@ -139,7 +139,7 @@ The <span class="a-tooltip">[FRR](## "FRRouting")</span> package includes PIM. F
    leaf01(config)# ip pim rp 10.10.10.101
    leaf01(config)# exit
    leaf01# write memory
-   leaf01#  exit
+   leaf01# exit
    ```
 
 {{< /tab >}}
@@ -219,7 +219,7 @@ The <span class="a-tooltip">[FRR](## "FRRouting")</span> package includes PIM. F
 
    ```
    spine01(config)# ip pim rp 10.10.10.101
-   spine01(config-if)# end
+   spine01(config)# exit
    spine01# write memory
    spine01# exit
    ```
@@ -244,11 +244,11 @@ cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@leaf01:~$ sudo vtysh
+cumulus@spine01:~$ sudo vtysh
 ...
 spine01# configure terminal
 spine01(config)# ip pim rp 10.10.10.101 224.10.0.0/16
-spine01(config)# ip pim rp 10.10.10.102 224.10.2.0/16
+spine01(config)# ip pim rp 10.10.10.102 224.10.2.0/24
 spine01(config)# end
 spine01# exit
 ```
@@ -276,11 +276,11 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@leaf01:~$ sudo vtysh
+cumulus@spine01:~$ sudo vtysh
 ...
 spine01# configure terminal
-switch(config)# ip prefix-list MCAST1 seq 1 permit 224.10.0.0/16
-switch(config)# ip prefix-list MCAST2 seq 1 permit 224.10.2.0/24
+spine01(config)# ip prefix-list MCAST1 seq 1 permit 224.10.0.0/16
+spine01(config)# ip prefix-list MCAST2 seq 1 permit 224.10.2.0/24
 spine01(config)# ip pim rp 10.10.10.101 prefix-list MCAST1
 spine01(config)# ip pim rp 10.10.10.102 prefix-list MCAST2
 spine01(config)# end
@@ -310,7 +310,7 @@ You can configure SPT switchover per group (SPT infinity), which allows for some
 When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
 {{%/notice%}}
   
-To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list. This example uses the `default` VRF.If your configuration uses a different VRF for PIM, replace `vrf default` with the appropriate VRF name (for example, `vrf RED`):
+To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list. This example uses the `default` VRF. If your configuration uses a different VRF for PIM, replace `vrf default` with the appropriate VRF name (for example, `vrf RED`):
 
 {{< tabs "TabID307 ">}}
 {{< tab "NVUE Commands ">}}
@@ -374,7 +374,7 @@ cumulus@switch:~$ nv set router policy prefix-list MyCustomSSMrange rule 10 matc
 cumulus@switch:~$ nv set router policy prefix-list MyCustomSSMrange rule 10 action permit
 ```
 
-Apply the custom prefix list. This example uses the `default` VRF.If your configuration uses a different VRF for PIM, replace `vrf default` with the appropriate VRF name (for example, `vrf RED`):
+Apply the custom prefix list. This example uses the `default` VRF. If your configuration uses a different VRF for PIM, replace `vrf default` with the appropriate VRF name (for example, `vrf RED`):
 
 ```
 cumulus@switch:~$ nv set vrf default router pim address-family ipv4 ssm-prefix-list MyCustomSSMrange
@@ -641,7 +641,7 @@ If you are using a non-default VRF and want to use the VRF interface IP address 
 6. Inject the anycast IP address into the IGP of the domain. If the network uses unnumbered BGP as the IGP, avoid using the anycast IP address to establish unicast or multicast peerings. For PIM-SM, ensure that you use the unique address as the PIM hello source by setting the source:
 
    ```
-   rp01# interface lo
+   rp01(config)# interface lo
    rp01(config-if)# ip pim use-source 100.100.100.100
    rp01(config-if)# end
    rp01# write memory
@@ -925,7 +925,7 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# vrf RED
 switch(config-vrf)# ip pim keep-alive-timer 10000
-switch(config-if)# end
+switch(config-vrf)# end
 switch# write memory
 switch# exit
 ```
@@ -2386,7 +2386,7 @@ exit-address-family
 ```
 cumulus@spine01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
-rf default
+vrf default
 ip pim rp 10.10.10.101 224.0.0.0/4
 exit-vrf
 vrf mgmt

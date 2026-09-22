@@ -135,7 +135,7 @@ The <span class="a-tooltip">[FRR](## "FRRouting")</span> package includes PIM. F
    leaf01(config)# ip pim rp 10.10.10.101
    leaf01(config)# exit
    leaf01# write memory
-   leaf01#  exit
+   leaf01# exit
    ```
 
 {{< /tab >}}
@@ -215,7 +215,7 @@ The <span class="a-tooltip">[FRR](## "FRRouting")</span> package includes PIM. F
 
    ```
    spine01(config)# ip pim rp 10.10.10.101
-   spine01(config-if)# end
+   spine01(config)# exit
    spine01# write memory
    spine01# exit
    ```
@@ -240,11 +240,11 @@ cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 1
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@leaf01:~$ sudo vtysh
+cumulus@spine01:~$ sudo vtysh
 ...
 spine01# configure terminal
 spine01(config)# ip pim rp 10.10.10.101 224.10.0.0/16
-spine01(config)# ip pim rp 10.10.10.102 224.10.2.0/16
+spine01(config)# ip pim rp 10.10.10.102 224.10.2.0/24
 spine01(config)# end
 spine01# exit
 ```
@@ -272,11 +272,11 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@leaf01:~$ sudo vtysh
+cumulus@spine01:~$ sudo vtysh
 ...
 spine01# configure terminal
-switch(config)# ip prefix-list MCAST1 seq 1 permit 224.10.0.0/16
-switch(config)# ip prefix-list MCAST2 seq 1 permit 224.10.2.0/24
+spine01(config)# ip prefix-list MCAST1 seq 1 permit 224.10.0.0/16
+spine01(config)# ip prefix-list MCAST2 seq 1 permit 224.10.2.0/24
 spine01(config)# ip pim rp 10.10.10.101 prefix-list MCAST1
 spine01(config)# ip pim rp 10.10.10.102 prefix-list MCAST2
 spine01(config)# end
@@ -635,7 +635,7 @@ The following steps configure a Cumulus switch to use MSDP:
 6. Inject the anycast IP address into the IGP of the domain. If the network uses unnumbered BGP as the IGP, avoid using the anycast IP address to establish unicast or multicast peerings. For PIM-SM, ensure that you use the unique address as the PIM hello source by setting the source:
 
    ```
-   rp01# interface lo
+   rp01(config)# interface lo
    rp01(config-if)# ip pim use-source 100.100.100.100
    rp01(config-if)# end
    rp01# write memory
@@ -931,7 +931,7 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# vrf RED
 switch(config-vrf)# ip pim keep-alive-timer 10000
-switch(config-if)# end
+switch(config-vrf)# end
 switch# write memory
 switch# exit
 ```

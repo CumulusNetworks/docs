@@ -10,7 +10,7 @@
 <td>5257559</td>
 <td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
 <td>5.18.0-5.19.0</td>
-<td></td>
+<td>5.16.8</td>
 </tr>
 <tr>
 <td>5240151</td>
@@ -37,6 +37,12 @@ Pin-Priority: 992</td>
 <td>5159852, 4667526</td>
 <td>When you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions can remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report {{Cease/Connection Collision Resolution}}. To work around this issue, configure update-source separately for every numbered IPv6 BGP neighbor on both switches, using the local IPv6 address assigned to that neighbor’s link.Do not configure a single shared source on the peer group when each parallel link has a different local address. After applying the configuration, clear the affected BGP sessions to remove any existing incorrectly associated connections.</td>
 <td>5.18.0-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5120660</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the switch before the hardware reaches a steady state where it is safe to receive packets. This issue generates a {{switchd}} health event.</td>
+<td>5.11.5, 5.18.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -85,6 +91,12 @@ Pin-Priority: 992</td>
 <td>4774686, 4764590</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
 <td>5.16.0-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4717493, 4717494</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
+<td>5.15.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -804,6 +816,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5251092</td>
+<td>In an 802.1x IPv6 profile configuration, a prefix with more than 32 bits produces the wrong assigned address and authentication fails when the assigned address is in the multicast range.</td>
+<td>5.18.0-5.18.1</td>
+</tr>
+<tr>
+<td>5236683</td>
+<td>https://gitlab-master.nvidia.com/nbu-sws/CL/FRR/frr/-/merge_requests/2119</td>
+<td></td>
+</tr>
+<tr>
 <td>5235587</td>
 <td>When streaming HFT, the timestamps exported with the HFT data are 37 seconds ahead of UTC.</td>
 <td>5.18.0-5.18.1</td>
@@ -846,7 +868,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5217147, 5225676, 5257913</td>
 <td>When you perform a factory reset after an optimized image upgrade, the switch loses record of its model information.</td>
-<td>5.16.6-5.18.0</td>
+<td>5.16.6-5.16.7</td>
 </tr>
 <tr>
 <td>5215333</td>
@@ -996,6 +1018,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>5.18.0-5.18.1</td>
+</tr>
+<tr>
+<td>5091418, 5269525</td>
+<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
+</td>
 <td>5.18.0-5.18.1</td>
 </tr>
 <tr>

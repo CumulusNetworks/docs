@@ -10,6 +10,12 @@
 <td>5257559</td>
 <td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
 <td>5.18.0-5.18.2</td>
+<td>5.16.8</td>
+</tr>
+<tr>
+<td>5251092</td>
+<td>In an 802.1x IPv6 profile configuration, a prefix with more than 32 bits produces the wrong assigned address and authentication fails when the assigned address is in the multicast range.</td>
+<td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -172,6 +178,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5170499</td>
+<td>After an optimized image upgrade, the first time you try to enable the new 802.1X server telemetry metrics setting, you get an error. The issue occurs because an old Docker setting from the earlier release is still present in the saved configuration, which the upgraded release no longer accepts. As a result, the switch rejects the first {{config apply}} with a validation error tied to {{system.docker}} instead of the 802.1X setting you are trying to enable. To work around this issue, run the {{nv config detach}} command before the first {{nv set}} and {{nv config apply}} after the upgrade, or discard any pending revision before starting the upgrade.</td>
+<td>5.18.0-5.18.2</td>
+<td>5.16.8</td>
+</tr>
+<tr>
 <td>5170159</td>
 <td>NAS IP addresses are missing from RADIUS accounting packets.</td>
 <td>5.18.0-5.18.2</td>
@@ -232,8 +244,21 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5120660</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the switch before the hardware reaches a steady state where it is safe to receive packets. This issue generates a {{switchd}} health event.</td>
+<td>5.11.5, 5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5091418, 5269525</td>
+<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
+</td>
 <td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
@@ -313,6 +338,12 @@ Pin-Priority: 992</td>
 <td>4774686, 4764590</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
 <td>5.16.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>4717493, 4717494</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
+<td>5.15.0-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1049,6 +1080,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5257559</td>
 <td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
 <td>5.18.0-5.18.1</td>
+<td>5.16.8</td>
+</tr>
+<tr>
+<td>5251092</td>
+<td>In an 802.1x IPv6 profile configuration, a prefix with more than 32 bits produces the wrong assigned address and authentication fails when the assigned address is in the multicast range.</td>
+<td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1211,6 +1248,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5170499</td>
+<td>After an optimized image upgrade, the first time you try to enable the new 802.1X server telemetry metrics setting, you get an error. The issue occurs because an old Docker setting from the earlier release is still present in the saved configuration, which the upgraded release no longer accepts. As a result, the switch rejects the first {{config apply}} with a validation error tied to {{system.docker}} instead of the 802.1X setting you are trying to enable. To work around this issue, run the {{nv config detach}} command before the first {{nv set}} and {{nv config apply}} after the upgrade, or discard any pending revision before starting the upgrade.</td>
+<td>5.18.0-5.18.1</td>
+<td>5.16.8</td>
+</tr>
+<tr>
 <td>5170159</td>
 <td>NAS IP addresses are missing from RADIUS accounting packets.</td>
 <td>5.18.0-5.18.1</td>
@@ -1271,8 +1314,21 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5120660</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the switch before the hardware reaches a steady state where it is safe to receive packets. This issue generates a {{switchd}} health event.</td>
+<td>5.11.5, 5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5091418, 5269525</td>
+<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
+</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
@@ -1352,6 +1408,12 @@ Pin-Priority: 992</td>
 <td>4774686, 4764590</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
 <td>5.16.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717493, 4717494</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
+<td>5.15.0-5.18.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2089,12 +2151,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5225676, 5217147, 5257913</td>
 <td>When you perform a factory reset after an optimized image upgrade, the switch loses record of its model information.</td>
-<td>5.16.6-5.18.0</td>
+<td>5.16.6-5.16.7</td>
 </tr>
 <tr>
 <td>5225576, 5236486</td>
 <td>After an optimized image upgrade from Cumulus Linux 5.13.1 or earlier to a later release, the install step fails with a permission error if the image being installed is already present in the {{/var/images}} directory before the upgrade. In this state, the {{nv show system image files}} command might not list any images. To work around this issue, fetch the image with the {{nv action fetch system image &lt;remote-url&gt;}} command before installing it. Alternatively, correct the directory permissions with {{sudo chmod 0755 /var/images}}.</td>
-<td>5.16.6-5.18.0</td>
+<td>5.16.6-5.16.7</td>
 </tr>
 <tr>
 <td>5221596, 5215402, 5200160</td>
@@ -2159,6 +2221,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>5257559</td>
 <td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
 <td>5.18.0-5.18.1</td>
+<td>5.16.8</td>
+</tr>
+<tr>
+<td>5251092</td>
+<td>In an 802.1x IPv6 profile configuration, a prefix with more than 32 bits produces the wrong assigned address and authentication fails when the assigned address is in the multicast range.</td>
+<td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2178,12 +2246,6 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
 <td>5.16.7-5.18.1</td>
 <td></td>
-</tr>
-<tr>
-<td>5225576, 5236486</td>
-<td>After an optimized image upgrade from Cumulus Linux 5.13.1 or earlier to a later release, the install step fails with a permission error if the image being installed is already present in the {{/var/images}} directory before the upgrade. In this state, the {{nv show system image files}} command might not list any images. To work around this issue, fetch the image with the {{nv action fetch system image &lt;remote-url&gt;}} command before installing it. Alternatively, correct the directory permissions with {{sudo chmod 0755 /var/images}}.</td>
-<td>5.16.6-5.18.0</td>
-<td>5.18.1</td>
 </tr>
 <tr>
 <td>5225461</td>
@@ -2226,12 +2288,6 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>NVUE accepts invalid telemetry snapshot file paths; however, the corresponding show commands fail with an error in the NVUE logs. </td>
 <td>5.18.0-5.18.1</td>
 <td></td>
-</tr>
-<tr>
-<td>5217147, 5225676, 5257913</td>
-<td>When you perform a factory reset after an optimized image upgrade, the switch loses record of its model information.</td>
-<td>5.16.6-5.18.0</td>
-<td>5.18.1</td>
 </tr>
 <tr>
 <td>5217091</td>
@@ -2351,6 +2407,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5170499</td>
+<td>After an optimized image upgrade, the first time you try to enable the new 802.1X server telemetry metrics setting, you get an error. The issue occurs because an old Docker setting from the earlier release is still present in the saved configuration, which the upgraded release no longer accepts. As a result, the switch rejects the first {{config apply}} with a validation error tied to {{system.docker}} instead of the 802.1X setting you are trying to enable. To work around this issue, run the {{nv config detach}} command before the first {{nv set}} and {{nv config apply}} after the upgrade, or discard any pending revision before starting the upgrade.</td>
+<td>5.18.0-5.18.1</td>
+<td>5.16.8</td>
+</tr>
+<tr>
 <td>5170159</td>
 <td>NAS IP addresses are missing from RADIUS accounting packets.</td>
 <td>5.18.0-5.18.1</td>
@@ -2411,8 +2473,21 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5120660</td>
+<td>When data path enablement timing is marginal, traffic might be allowed through the switch before the hardware reaches a steady state where it is safe to receive packets. This issue generates a {{switchd}} health event.</td>
+<td>5.11.5, 5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5091418, 5269525</td>
+<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
+</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
@@ -2492,6 +2567,12 @@ Pin-Priority: 992</td>
 <td>4774686, 4764590</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
 <td>5.16.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717493, 4717494</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
+<td>5.15.0-5.18.1</td>
 <td></td>
 </tr>
 <tr>

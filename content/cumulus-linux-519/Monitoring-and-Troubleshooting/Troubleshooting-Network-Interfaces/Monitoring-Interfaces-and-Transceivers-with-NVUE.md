@@ -831,3 +831,285 @@ tx-bias-current      1     6.750 mA        8.500 mA        8.000 mA        6.000
                      3     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
                      4     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
 ```
+
+<!-- REVIEW: this whole section, on quality level. The functional specification targets 5.18 and its
+     title states BETA. The later 5.19 demo material states GA, and the What's New entry this draft
+     replaced also said GA, so the section carries no Beta notice. Confirm against the 5.19 Redmine
+     execution query. Delete this comment before publishing. -->
+
+<!-- REVIEW: the section below on scope. The specification names no platform or ASIC by model, only
+     "CPO platforms" and "ETH CPO platforms", so the notice repeats that wording rather than naming
+     Spectrum-6 or a switch model. If the supported platform list is known, name it here. Delete this
+     comment before publishing. -->
+
+## Show CPO Module and Laser Source Information
+
+On a switch with co-packaged optics (CPO), the optics sit inside the switch ASIC package instead of in pluggable modules in the front panel ports, so optical data no longer maps to a single port. Cumulus Linux exposes this hardware through two new trees: `cpo`, which holds the CPO modules, and `laser-source`, which holds the external laser sources (ELS). Use these commands to inspect module state, per-channel optical power, and per-laser health when you suspect an optical fault.
+
+A CPO module contains two optical engines (OE) and 32 lanes, which the CLI shows as channels. Each laser source is one ELS driving eight lasers. Cumulus Linux reads the mapping between ports, channels, and lasers from the switch firmware instead of assuming a fixed ratio, so the mapping can differ between platforms.
+
+<!-- REVIEW: the multi-ASIC bullet in the note below. The specification requires that the modules and
+     telemetry for every ASIC are visible from the top-level host, and that inside a per-ASIC
+     container only that ASIC's modules appear. No page in this release describes ASIC containers, so
+     the container half of that rule is left out here rather than introducing the concept on this
+     page. Restore it, or cross-reference wherever containers end up documented, if readers run these
+     commands inside one. Delete this comment before publishing. -->
+
+{{%notice note%}}
+- These commands are available on CPO platforms only. On other platforms, use the `nv show platform transceiver` commands described earlier.
+- CPO and laser source data is read-only. There is nothing to configure.
+- On a switch with more than one ASIC, these commands show the CPO modules for every ASIC.
+- When a module is absent, the entry can still appear with whatever subcomponent state is available. Cumulus Linux does not report a missing value as valid data.
+- When part of a module fails, the operational channels and lasers continue to report and the failed components show an error status.
+- When Cumulus Linux cannot read or parse a value, it shows `N/A` or `0` for that field and logs the error instead of returning a stale or synthetic value. Run the command again to retry the read.
+- Interface state does not affect these readings. Bringing an interface down, or changing its IP or VLAN configuration, does not change the underlying optical measurements.
+{{%/notice%}}
+
+### Show CPO Modules
+
+To show a summary of every CPO module on the switch, including its status, firmware version, the ports it carries, and the laser source and optical engines it uses, run the `nv show platform cpo` command:
+
+<!-- REVIEW: every sample output in this section is adapted from the specification's mock output, not
+     captured on hardware, and the column alignment in the two summary tables is reconstructed because
+     the source lost its spacing. Capture all the CPO and laser source output on a CPO switch before
+     publishing. Note also that the source writes the same condition two ways, "fiber contaminated"
+     in the CPO outputs and "laser_fiber_contaminated" in the laser source outputs; both are kept as
+     given, so confirm the real error-status strings when you capture. Delete this comment before
+     publishing. -->
+
+```
+cumulus@switch:~$ nv show platform cpo
+CPO   Status    Error-status         FW Version  Ports      Laser Source  Optical Engines
+----  --------  -------------------  ----------  ---------  ------------  ---------------
+cpo1  inserted  fiber contaminated   42.40.15    swp1-swp4  els1          oe1, oe2
+cpo2  inserted  N/A                  42.40.15    swp5-swp8  els2          oe3, oe4
+```
+
+To show all the data for one module, run the `nv show platform cpo <cpo-id>` command. The output covers all 32 channels of both optical engines, so it runs to between 100 and 200 lines:
+
+<!-- REVIEW: the identifier value below. The latest specification revision retired an earlier internal
+     name for this component throughout the document, but its sample output still shows "CPO Virtual
+     Module" as the identifier string. Confirm what the identifier field returns on hardware; if it
+     still carries the retired name, that is a firmware or NVUE string to raise with the feature owner
+     rather than a documentation change. Delete this comment before publishing. -->
+
+```
+cumulus@switch:~$ nv show platform cpo cpo1
+status         : inserted
+error-status   : fiber contaminated
+identifier     : CPO Virtual Module
+fw-version     : 42.40.15
+ports          : swp1,swp2,swp3,swp4
+laser-source   : els1
+optical-engine:
+  oe1:
+    identifier   : OE 16x
+    serial-number: MT2219FT03171
+    temperature  : 36.8
+  oe2:
+    identifier   : OE 16x
+    serial-number: MT2219FT031712
+    temperature  : 36.8
+threshold:
+  laser-source-input-power:
+    high-alarm  : 2.0
+    low-alarm   : -6.0
+    high-warning: 1.0
+    low-warning : -5.0
+  rx-power:
+    high-alarm  : 2.0
+    low-alarm   : -8.0
+    high-warning: 1.0
+    low-warning : -7.0
+  tx-power:
+    high-alarm  : 2.0
+    low-alarm   : -6.0
+    high-warning: 1.0
+    low-warning : -5.0
+channel:
+  channel-1:
+    laser-source-input-power:
+      power         : -1.0
+      alarm-status  : off
+      alarm-severity: none
+    rx-power:
+      power         : -1.0
+      alarm-status  : off
+      alarm-severity: none
+    tx-power:
+      power         : -0.6
+      alarm-status  : off
+      alarm-severity: none
+    rx-los              : false
+    tx-los              : false
+    tx-fault            : false
+    advanced-fault-opcode: none
+    dp-state            : initialized
+  channel-2:
+...
+  channel-32:
+...
+```
+
+<!-- REVIEW: the paragraph below, on tx-los and dp-state. The specification's object model tree places
+     rx-los, tx-los, tx-fault, advanced-fault-opcode, and dp-state under channel-N, which is what this
+     section describes. The gNMI model for the same data splits them: rx-los and the fault opcode sit
+     under the physical channel, while tx-los and dp-state sit under a separate host-lanes container
+     keyed by lane number. The two surfaces disagree about what tx-los and dp-state belong to. Confirm
+     which the CLI actually shows, and if the CLI really flattens host-lane data into the channel
+     view, say so here so a reader comparing the CLI against a gNMI subscription is not confused.
+     Delete this comment before publishing. -->
+
+For each channel, `laser-source-input-power` is the power the laser source delivers into the optical engine, `rx-power` and `tx-power` are the received and transmitted optical power, and each of the three carries an `alarm-status` and an `alarm-severity` derived from the module thresholds. The `rx-los` and `tx-los` fields report loss of signal in each direction, `tx-fault` reports a transmit failure, and `dp-state` reports the state of the data path.
+
+Because the full view is long, three child commands limit the output to one part of it:
+
+- `nv show platform cpo <cpo-id> channel` shows the `channel` block only.
+- `nv show platform cpo <cpo-id> optical-engine` shows the `optical-engine` block only.
+- `nv show platform cpo <cpo-id> threshold` shows the `threshold` block only.
+
+```
+cumulus@switch:~$ nv show platform cpo cpo1 optical-engine
+optical-engine:
+  oe1:
+    identifier   : OE 16x
+    serial-number: MT2219FT03171
+    temperature  : 36.8
+  oe2:
+    identifier   : OE 16x
+    serial-number: MT2219FT031712
+    temperature  : 36.8
+```
+
+### Show CPO Information for an Interface
+
+To show only the part of a CPO module that carries a particular interface, run the `nv show interface <interface-id> cpo` command. The output has the same shape as the module view, adds a `parent` field naming the module, and restricts the channels and the optical engine to those the switch firmware assigns to that interface:
+
+```
+cumulus@switch:~$ nv show interface swp1 cpo
+status         : inserted
+error-status   : fiber contaminated
+identifier     : CPO Virtual Module
+fw-version     : 42.40.15
+ports          : swp1,swp2,swp3,swp4
+laser-source   : els1
+parent         : cpo1
+optical-engine:
+  oe1:
+    identifier   : OE 16x
+    serial-number: MT2219FT03171
+    temperature  : 36.8
+threshold:
+...
+channel:
+  channel-1:
+...
+  channel-8:
+...
+```
+
+### Show Laser Sources
+
+A laser source is not a transceiver, so it has its own tree. To list the laser sources on the switch with their vendor information and firmware version, run the `nv show platform laser-source` command:
+
+```
+cumulus@switch:~$ nv show platform laser-source
+Laser-source  Identifier  Vendor name  Vendor PN      Vendor SN      Vendor revision  FW Version
+------------  ----------  -----------  -------------  -------------  ---------------  ----------
+els1          ELS         NVIDIA       MCP7Y60-H01A   MT2233VS02221  A4               42.40.15
+els2          ELS         NVIDIA       MCP7Y60-H01B   MT2233VS02222  A4               42.40.15
+```
+
+To show the detail for one laser source, including its temperature, power consumption, thresholds, and the state of all eight lasers, run the `nv show platform laser-source <laser-source-id>` command:
+
+<!-- REVIEW: the vendor-pn value below. The specification's summary table shows MCP7Y60-H01A for the
+     same laser source that its detail view shows as CPO-800G-2x400G. This draft uses the summary
+     table's value in both places for consistency. Confirm the real part number format on hardware.
+     Delete this comment before publishing. -->
+
+```
+cumulus@switch:~$ nv show platform laser-source els1
+status           : inserted
+error-status     : laser_fiber_contaminated
+vendor-date-code : 220505
+identifier       : ELS
+vendor-name      : NVIDIA
+vendor-rev       : A4
+vendor-pn        : MCP7Y60-H01A
+vendor-sn        : MT2443FT01035
+fw-version       : 42.40.15
+parent           : cpo1
+temperature      : 28.00
+power-consumption: 3.52
+icc-current      : 122
+threshold:
+  optical-power:
+    high-alarm  : 1.0
+    low-alarm   : -5.0
+    high-warning: 0.0
+    low-warning : -3.0
+  bias-current:
+    high-alarm  : 14.0
+    low-alarm   : 8.0
+    high-warning: 13.0
+    low-warning : 9.0
+laser:
+  laser-1:
+    enabled          : enabled
+    oper-status      : off
+    error-status     : laser_fiber_contaminated
+    power-restriction: off
+    health:
+      laser-age   : 50
+      laser-health: 25
+      tec-health  : 15
+    laser-optical-power:
+      target        : 1.50
+      power         : 32
+      alarm-status  : off
+      alarm-severity: none
+    laser-bias-current:
+      current       : 12.2
+      alarm-status  : off
+      alarm-severity: none
+    frequency-error  : 2.3
+    laser-mpd-current: 0.12
+    tec:
+      current    : 55
+      voltage    : 2.9
+      temperature: 23.5
+  laser-2:
+...
+  laser-8:
+...
+```
+
+The `parent` field names the CPO module the laser source feeds. For each laser, `enabled` is the administrative state and `oper-status` is the state the hardware reports, so a laser you enabled that has not yet finished ramping shows `enabled` with an `oper-status` other than `on`. The `health` block reports the age of the laser and health values for the laser and its thermoelectric cooler (TEC), and the `tec` block reports the current, voltage, and temperature of that cooler.
+
+As with the CPO tree, two child commands limit the output:
+
+- `nv show platform laser-source <laser-source-id> laser` shows the `laser` block only.
+- `nv show platform laser-source <laser-source-id> threshold` shows the `threshold` block only.
+
+```
+cumulus@switch:~$ nv show platform laser-source els1 threshold
+threshold:
+  optical-power:
+    high-alarm  : 1.0
+    low-alarm   : -5.0
+    high-warning: 0.0
+    low-warning : -3.0
+  bias-current:
+    high-alarm  : 14.0
+    low-alarm   : 8.0
+    high-warning: 13.0
+    low-warning : 9.0
+```
+
+### Upgrade Notes
+
+When you upgrade a switch that has CPO hardware, Cumulus Linux detects the hardware and uses the CPO display automatically. You do not need to enable anything.
+
+The scope of the data the transceiver commands return changes on CPO hardware: the switch reports CPO modules instead of front panel transceivers. Adjust any configuration file or script that parses `nv show platform transceiver` output on a CPO switch to use the `nv show platform cpo` and `nv show platform laser-source` commands instead. The output format does not change; it remains key-value pairs.
+
+To export the same data to a monitoring system, see {{<link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics">}}.

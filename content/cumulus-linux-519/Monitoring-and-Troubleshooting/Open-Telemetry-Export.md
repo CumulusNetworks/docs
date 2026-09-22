@@ -390,7 +390,7 @@ cumulus@switch:~$ nv config apply
 
 ### Platform Statistics
 
-When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, and transceiver information. To enable all [platform statistics](#platform-statistic-format) globally:
+When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, transceiver information, and, on a switch with co-packaged optics (CPO), CPO module and laser source information. To enable all [platform statistics](#platform-statistic-format) globally:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats export state enabled
@@ -398,6 +398,29 @@ cumulus@switch:~$ nv config apply
 ```
 
 If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 60 seconds.
+
+<!-- REVIEW: the Laser Source tab below, on the class name. The specification is self-contradictory.
+     Its ELS section names the class laser-source-info in its prose, its property table, and its show
+     commands. Its Transceiver section states that the transceiver CLI "remains unchanged"
+     (transceiver-info) but then lists a User commands block using a third name, cpo-info, which
+     appears nowhere else in the document. Resolved by section role: the ELS section is the one that
+     describes the component consuming the string, and it is internally consistent, so this draft
+     emits laser-source-info. Neither laser-source-info nor cpo-info appears in
+     content/nvue-reference/, which is expected for a new class. Confirm the class name against a
+     candidate build before publishing.
+
+     The same contradiction leaves it open which class exports the CPO module and optical engine
+     metrics. The specification files those under its Transceiver section, so the Transceivers tab
+     below now says the class covers CPO modules and optical engines on CPO hardware. If cpo-info
+     turns out to be a real third class rather than an editing artifact, that sentence moves into a
+     tab of its own and the metric tables in New-and-Updated-Telemetry-Metrics.md need the same
+     change. Delete this comment before publishing. -->
+
+<!-- REVIEW: the Laser Source tab below, on availability. The 5.19 demo material records partial metric
+     delivery for this release (22 of 30 CPO metrics, 6 of 16 optical engine metrics, 24 of 51 ELS
+     metrics) with four open hardware and firmware bugs, and it lists the 27 per-laser ELS metrics as
+     blocked. The CLI knob documented here is not in question, but the set of metrics the class
+     actually exports is. Confirm before publishing. Delete this comment before publishing. -->
 
 {{< tabs "TabID393 ">}}
 {{< tab "ASIC Resource">}}
@@ -505,6 +528,8 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Transceivers">}}
 
+On a switch with co-packaged optics (CPO), this class covers the CPO modules and optical engines in place of pluggable transceivers.
+
 To enable transceiver statistics:
 
 ```
@@ -518,6 +543,29 @@ To adjust the sample interval for transceiver statistics:
 cumulus@switch:~$ nv set system telemetry platform-stats class transceiver-info sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Laser Source">}}
+
+Laser source statistics cover the external laser sources (ELS) on a switch with co-packaged optics (CPO). The switch exports ELS inventory, operational and error status, temperature, power consumption, and ICC current. On a switch without CPO hardware, enabling the class has no effect.
+
+To enable laser source statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class laser-source-info state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To adjust the sample interval for laser source statistics, run the `nv set system telemetry platform-stats class laser-source-info sample-interval` command. You can set a value between 60 and 86400 seconds. The default value is 60 seconds.
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class laser-source-info sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+To return the class to its default settings, run the `nv unset system telemetry platform-stats class laser-source-info` command.
+
+To show the laser source data on the switch itself, see {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-laser-sources" text="Show Laser Sources">}}.
 
 {{< /tab >}}
 {{< tab "Platform Information">}}

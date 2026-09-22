@@ -29,6 +29,15 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
      and append " (Beta)" if needed. That spec is revision 1.0 dated 2026-09-02, one day
      before this draft. Delete this comment before publishing. -->
 
+<!-- REVIEW: the CPO entry in the list below, the one linking to Monitoring Interfaces and
+     Transceivers with NVUE. It replaces the plain-text entry "CPO Debug Params | nv show commands &
+     Telemetry (OTEL and GNMI) GA", which used the internal feature-request title. The feature spans
+     two surfaces, so it now has this entry for the show commands and a second entry under Telemetry
+     for the exported metrics; collapse them into one if the release prefers a single line. The
+     functional specification states BETA for 5.18 while the demo deck and the replaced entry both
+     state GA for 5.19, so no "(Beta)" suffix is appended here. Confirm against the 5.19 Redmine
+     execution query. Delete this comment before publishing. -->
+
 - {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-evpn-routes" text="Prevent re-export of VRF-leaked EVPN routes">}}
 - {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
@@ -48,7 +57,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Quality-of-Service/#service-port-buffers" text="Dedicated service port ingress buffers on Spectrum-6 switches">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resource-mode-and-hybrid-scheduling" text="Adaptive routing hybrid scheduling mode, which moves low weight ECMP groups to random forwarding to reduce adaptive routing group merging">}}
 - {{<link url="Domain-Name-System-DNS/#dns-query-source-address" text="Configurable source address for DNS queries, so that queries leave the switch from a stable loopback identity">}}
-- CPO Debug Params | nv show commands & Telemetry (OTEL and GNMI) GA
+- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-cpo-module-and-laser-source-information" text="CPO module and laser source visibility on switches with co-packaged optics">}}
 - NVUE
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
   - {{<link url="Neighbor-Discovery-ND/#clear-a-stale-prefix" text="Clear a stale IPv6 ND prefix on demand">}}
@@ -67,6 +76,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI metrics for AAA RADIUS">}}
   - {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst histogram with per-port burst scoring">}}
   - {{<link url="gNMI-Streaming/#dial-out-source-address" text="Configurable source address for gNMI dial-out connections">}}
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for CPO modules and laser sources">}}
 
 ## Release Considerations
 

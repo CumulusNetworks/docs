@@ -390,7 +390,7 @@ cumulus@switch:~$ nv config apply
 
 ### Platform Statistics
 
-When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, and transceiver information. To enable all [platform statistics](#platform-statistic-format) globally:
+When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, transceiver information, and, on a switch with co-packaged optics (CPO), CPO module and laser source information. To enable all [platform statistics](#platform-statistic-format) globally:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats export state enabled
@@ -398,6 +398,29 @@ cumulus@switch:~$ nv config apply
 ```
 
 If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 60 seconds.
+
+<!-- REVIEW: the Laser Source tab below, on the class name. The specification is self-contradictory.
+     Its ELS section names the class laser-source-info in its prose, its property table, and its show
+     commands. Its Transceiver section states that the transceiver CLI "remains unchanged"
+     (transceiver-info) but then lists a User commands block using a third name, cpo-info, which
+     appears nowhere else in the document. Resolved by section role: the ELS section is the one that
+     describes the component consuming the string, and it is internally consistent, so this draft
+     emits laser-source-info. Neither laser-source-info nor cpo-info appears in
+     content/nvue-reference/, which is expected for a new class. Confirm the class name against a
+     candidate build before publishing.
+
+     The same contradiction leaves it open which class exports the CPO module and optical engine
+     metrics. The specification files those under its Transceiver section, so the Transceivers tab
+     below now says the class covers CPO modules and optical engines on CPO hardware. If cpo-info
+     turns out to be a real third class rather than an editing artifact, that sentence moves into a
+     tab of its own and the metric tables in New-and-Updated-Telemetry-Metrics.md need the same
+     change. Delete this comment before publishing. -->
+
+<!-- REVIEW: the Laser Source tab below, on availability. The 5.19 demo material records partial metric
+     delivery for this release (22 of 30 CPO metrics, 6 of 16 optical engine metrics, 24 of 51 ELS
+     metrics) with four open hardware and firmware bugs, and it lists the 27 per-laser ELS metrics as
+     blocked. The CLI knob documented here is not in question, but the set of metrics the class
+     actually exports is. Confirm before publishing. Delete this comment before publishing. -->
 
 {{< tabs "TabID393 ">}}
 {{< tab "ASIC Resource">}}
@@ -505,6 +528,8 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Transceivers">}}
 
+On a switch with co-packaged optics (CPO), this class covers the CPO modules and optical engines in place of pluggable transceivers.
+
 To enable transceiver statistics:
 
 ```
@@ -518,6 +543,29 @@ To adjust the sample interval for transceiver statistics:
 cumulus@switch:~$ nv set system telemetry platform-stats class transceiver-info sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Laser Source">}}
+
+Laser source statistics cover the external laser sources (ELS) on a switch with co-packaged optics (CPO). The switch exports ELS inventory, operational and error status, temperature, power consumption, and ICC current. On a switch without CPO hardware, enabling the class has no effect.
+
+To enable laser source statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class laser-source-info state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To adjust the sample interval for laser source statistics, run the `nv set system telemetry platform-stats class laser-source-info sample-interval` command. You can set a value between 60 and 86400 seconds. The default value is 60 seconds.
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class laser-source-info sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+To return the class to its default settings, run the `nv unset system telemetry platform-stats class laser-source-info` command.
+
+To show the laser source data on the switch itself, see {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-laser-sources" text="Show Laser Sources">}}.
 
 {{< /tab >}}
 {{< tab "Platform Information">}}
@@ -3421,6 +3469,34 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_transceiver_ethernet_pmd` | Ethernet PMD information for the transceiver.|
 | `nvswitch_platform_transceiver_physical_channel_state` | Per physical channel LOS and CDR LOL state.|
 | `nvswitch_platform_transceiver_host_lane_state` | Per host lane LOS and CDR LOL state.|
+
+{{< /tab >}}
+{{< tab "CPO and Laser Source">}}
+
+The switch exports these metrics on a switch with CPO only. Enable them with the `transceiver-info` and `laser-source-info` platform statistic classes, where `transceiver-info` covers the CPO modules and optical engines and `laser-source-info` covers the laser sources; refer to {{<link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics">}}.
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_cpo_info` | *CPO module inventory. Carries `name`, `type`, `description`, and `fw_version` labels. |
+| `nvswitch_platform_cpo_status` | *Operational status of the CPO module. Carries a `name` label. |
+| `nvswitch_platform_cpo_subcomponent_info` | *The laser source and optical engines that belong to the CPO module. Carries `name`, `subcomponent_type`, and `subcomponent_name` labels. |
+| `nvswitch_platform_cpo_channel_laser_source_input_power` | *Power the laser source delivers into the optical engine for a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_channel_laser_source_input_power_alarm` | *Alarm status and severity for the laser source input power on a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_channel_power` | *Received and transmitted optical power on a channel. Carries `name`, `channel`, and `direction` labels. |
+| `nvswitch_platform_cpo_channel_power_alarm` | *Alarm status and severity for the optical power on a channel. Carries `name`, `channel`, and `direction` labels. |
+| `nvswitch_platform_cpo_channel_state` | *Loss of received signal and transmit failure state for a channel. Carries `name`, `channel`, and `state` labels. |
+| `nvswitch_platform_cpo_channel_fault_opcode` | *Advanced troubleshooting fault opcode for a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_host_lane_state` | *Loss of transmitted signal state for a host lane. Carries `name`, `lane`, and `state` labels. |
+| `nvswitch_platform_cpo_host_lane_dp_state` | *Data path state of a host lane. Carries `name` and `lane` labels. |
+| `nvswitch_platform_oe_info` | *Optical engine inventory. Carries `name`, `type`, `description`, `serial_no`, `firmware_version`, and `cpo_module` labels. |
+| `nvswitch_platform_els_info` | *Laser source inventory. Carries `name`, `type`, `description`, `vendor`, `vendor_rev`, `part_no`, `serial_no`, `date_code`, `firmware_version`, `present`, and `cpo_module` labels. |
+| `nvswitch_platform_els_status` | *Operational status of the laser source. Carries a `name` label. |
+| `nvswitch_platform_els_error_status` | *Error status of the laser source. Carries `name` and `error_status` labels. |
+| `nvswitch_platform_els_power_consumption` | *Power the laser source consumes. Carries a `name` label. |
+| `nvswitch_platform_els_temperature` | *Laser source temperature, with the average, minimum, and maximum over the interval. Carries a `name` label. |
+| `nvswitch_platform_els_temperature_alarm` | *Alarm status and severity for the laser source temperature. Carries a `name` label. |
+| `nvswitch_platform_els_temperature_threshold_info` | *Threshold at which the laser source temperature alarm triggers. Carries a `name` label. |
+| `nvswitch_platform_els_icc_current` | *ICC current the laser source draws. Carries a `name` label. |
 
 {{< /tab >}}
 {{< tab "Platform Information ">}}

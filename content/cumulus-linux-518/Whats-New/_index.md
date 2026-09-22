@@ -8,6 +8,13 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 - For a list of open and fixed issues in Cumulus Linux 5.18, see the {{<link title="Cumulus Linux 5.18 Release Notes" text="Cumulus Linux 5.18 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.18, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+{{%notice note%}}
+- Cumulus Linux 5.18.1 is tested and validated as part of the Spectrum-X reference architecture release 2.3.1.
+- Cumulus Linux 5.18.2 is tested and validated as part of the Spectrum-X reference architecture release 2.3.2.
+
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+
 ## What's New in Cumulus Linux 5.18.2
 
 Cumulus Linux 5.18.2 provides {{<link title="Cumulus Linux 5.18 Release Notes" text="bug fixes">}} and the following new feature:
@@ -20,11 +27,6 @@ You can upgrade to 5.18.2 from the following versions using optimized image upgr
 - 5.18.0, 5.18.1
 
 ## What's New in Cumulus Linux 5.18.1
-
-{{%notice note%}}
-Cumulus Linux 5.18.1 is tested and validated as part of the Spectrum-X reference architecture release 2.3.
-For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
-{{%/notice%}}
 
 Cumulus Linux 5.18.1 provides bug fixes.
 

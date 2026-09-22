@@ -844,7 +844,7 @@ tx-bias-current      1     6.750 mA        8.500 mA        8.000 mA        6.000
 
 ## Show CPO Module and Laser Source Information
 
-On a switch with co-packaged optics (CPO), the optics sit inside the switch ASIC package instead of in pluggable modules in the front panel ports, so optical data no longer maps to a single port. Cumulus Linux exposes this hardware through two new trees: `cpo`, which holds the CPO modules, and `laser-source`, which holds the external laser sources (ELS). Use these commands to inspect module state, per-channel optical power, and per-laser health when you suspect an optical fault.
+On a switch with co-packaged optics (CPO), the optics sit inside the switch ASIC package instead of in pluggable modules in the front panel ports, so optical data no longer maps to a single port. Cumulus Linux exposes this hardware through two new commands: `nv show platform cpo`, which holds the CPO modules, and `nv show platform laser-source`, which holds the external laser sources (ELS). Use these commands to inspect module state, per-channel optical power, and per-laser health when you suspect an optical fault.
 
 A CPO module contains two optical engines (OE) and 32 lanes, which the CLI shows as channels. Each laser source is one ELS driving eight lasers. Cumulus Linux reads the mapping between ports, channels, and lasers from the switch firmware instead of assuming a fixed ratio, so the mapping can differ between platforms.
 
@@ -856,11 +856,11 @@ A CPO module contains two optical engines (OE) and 32 lanes, which the CLI shows
      commands inside one. Delete this comment before publishing. -->
 
 {{%notice note%}}
-- These commands are available on CPO platforms only. On other platforms, use the `nv show platform transceiver` commands described earlier.
+- The `nv show platform cpo` and `nv show platform laser-source` commands are available on CPO platforms only. On other platforms, use the `nv show platform transceiver` commands described earlier.
 - CPO and laser source data is read-only. There is nothing to configure.
 - On a switch with more than one ASIC, these commands show the CPO modules for every ASIC.
 - When a module is absent, the entry can still appear with whatever subcomponent state is available. Cumulus Linux does not report a missing value as valid data.
-- When part of a module fails, the operational channels and lasers continue to report and the failed components show an error status.
+- When part of a module fails, the operational channels and lasers continue to report, and the failed components show an error status.
 - When Cumulus Linux cannot read or parse a value, it shows `N/A` or `0` for that field and logs the error instead of returning a stale or synthetic value. Run the command again to retry the read.
 - Interface state does not affect these readings. Bringing an interface down, or changing its IP or VLAN configuration, does not change the underlying optical measurements.
 {{%/notice%}}
@@ -962,7 +962,7 @@ channel:
 
 For each channel, `laser-source-input-power` is the power the laser source delivers into the optical engine, `rx-power` and `tx-power` are the received and transmitted optical power, and each of the three carries an `alarm-status` and an `alarm-severity` derived from the module thresholds. The `rx-los` and `tx-los` fields report loss of signal in each direction, `tx-fault` reports a transmit failure, and `dp-state` reports the state of the data path.
 
-Because the full view is long, three child commands limit the output to one part of it:
+Because the full view is long, three child commands limit the output:
 
 - `nv show platform cpo <cpo-id> channel` shows the `channel` block only.
 - `nv show platform cpo <cpo-id> optical-engine` shows the `optical-engine` block only.
@@ -1010,7 +1010,7 @@ channel:
 
 ### Show Laser Sources
 
-A laser source is not a transceiver, so it has its own tree. To list the laser sources on the switch with their vendor information and firmware version, run the `nv show platform laser-source` command:
+A laser source is not a transceiver, so it has its own commands. To list the laser sources on the switch with their vendor information and firmware version, run the `nv show platform laser-source` command:
 
 ```
 cumulus@switch:~$ nv show platform laser-source
@@ -1084,9 +1084,9 @@ laser:
 ...
 ```
 
-The `parent` field names the CPO module the laser source feeds. For each laser, `enabled` is the administrative state and `oper-status` is the state the hardware reports, so a laser you enabled that has not yet finished ramping shows `enabled` with an `oper-status` other than `on`. The `health` block reports the age of the laser and health values for the laser and its thermoelectric cooler (TEC), and the `tec` block reports the current, voltage, and temperature of that cooler.
+The `parent` field names the CPO module the laser source feeds. For each laser, `enabled` is the administrative state and `oper-status` is the state the hardware reports, so a laser you enable that has not yet finished ramping shows `enabled` with an `oper-status` other than `on`. The `health` block reports the age of the laser and health values for the laser and its thermoelectric cooler (TEC), and the `tec` block reports the current, voltage, and temperature of that cooler.
 
-As with the CPO tree, two child commands limit the output:
+As with the CPO commands, two child commands limit the output:
 
 - `nv show platform laser-source <laser-source-id> laser` shows the `laser` block only.
 - `nv show platform laser-source <laser-source-id> threshold` shows the `threshold` block only.

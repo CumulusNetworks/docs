@@ -268,8 +268,3 @@ The switch exports these metrics on a switch with CPO only. Enable them with the
 {{< /tabs >}}
 
 For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export">}}.
-
-## Updated OTEL Metrics
-
-|  Old Metric | New Metric |
-|------ | ----------- |

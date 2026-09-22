@@ -150,9 +150,11 @@ The following example shows an EVPN-PIM configuration on the VTEP, where:
 ```
 cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
 ...
-ip pim rp 10.10.100.100
-ip pim keep-alive-timer 3600
-ip pim ecmp
+router pim
+ rp 10.10.100.100
+ keep-alive-timer 3600
+ ecmp
+exit
 service integrated-vtysh-config
 vrf BLUE
  vni 4002

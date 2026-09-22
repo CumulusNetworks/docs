@@ -3471,6 +3471,34 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_transceiver_host_lane_state` | Per host lane LOS and CDR LOL state.|
 
 {{< /tab >}}
+{{< tab "CPO and Laser Source">}}
+
+The switch exports these metrics on a switch with CPO only. Enable them with the `transceiver-info` and `laser-source-info` platform statistic classes, where `transceiver-info` covers the CPO modules and optical engines and `laser-source-info` covers the laser sources; refer to {{<link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics">}}.
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_cpo_info` | *CPO module inventory. Carries `name`, `type`, `description`, and `fw_version` labels. |
+| `nvswitch_platform_cpo_status` | *Operational status of the CPO module. Carries a `name` label. |
+| `nvswitch_platform_cpo_subcomponent_info` | *The laser source and optical engines that belong to the CPO module. Carries `name`, `subcomponent_type`, and `subcomponent_name` labels. |
+| `nvswitch_platform_cpo_channel_laser_source_input_power` | *Power the laser source delivers into the optical engine for a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_channel_laser_source_input_power_alarm` | *Alarm status and severity for the laser source input power on a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_channel_power` | *Received and transmitted optical power on a channel. Carries `name`, `channel`, and `direction` labels. |
+| `nvswitch_platform_cpo_channel_power_alarm` | *Alarm status and severity for the optical power on a channel. Carries `name`, `channel`, and `direction` labels. |
+| `nvswitch_platform_cpo_channel_state` | *Loss of received signal and transmit failure state for a channel. Carries `name`, `channel`, and `state` labels. |
+| `nvswitch_platform_cpo_channel_fault_opcode` | *Advanced troubleshooting fault opcode for a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_host_lane_state` | *Loss of transmitted signal state for a host lane. Carries `name`, `lane`, and `state` labels. |
+| `nvswitch_platform_cpo_host_lane_dp_state` | *Data path state of a host lane. Carries `name` and `lane` labels. |
+| `nvswitch_platform_oe_info` | *Optical engine inventory. Carries `name`, `type`, `description`, `serial_no`, `firmware_version`, and `cpo_module` labels. |
+| `nvswitch_platform_els_info` | *Laser source inventory. Carries `name`, `type`, `description`, `vendor`, `vendor_rev`, `part_no`, `serial_no`, `date_code`, `firmware_version`, `present`, and `cpo_module` labels. |
+| `nvswitch_platform_els_status` | *Operational status of the laser source. Carries a `name` label. |
+| `nvswitch_platform_els_error_status` | *Error status of the laser source. Carries `name` and `error_status` labels. |
+| `nvswitch_platform_els_power_consumption` | *Power the laser source consumes. Carries a `name` label. |
+| `nvswitch_platform_els_temperature` | *Laser source temperature, with the average, minimum, and maximum over the interval. Carries a `name` label. |
+| `nvswitch_platform_els_temperature_alarm` | *Alarm status and severity for the laser source temperature. Carries a `name` label. |
+| `nvswitch_platform_els_temperature_threshold_info` | *Threshold at which the laser source temperature alarm triggers. Carries a `name` label. |
+| `nvswitch_platform_els_icc_current` | *ICC current the laser source draws. Carries a `name` label. |
+
+{{< /tab >}}
 {{< tab "Platform Information ">}}
 
 | Metric | Description |

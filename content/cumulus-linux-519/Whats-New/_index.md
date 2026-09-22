@@ -139,6 +139,16 @@ Cumulus Linux 5.19 replaces the BFD offload boolean with an offload mode that se
 - The `nv set router bfd offload <enabled|disabled>` command is replaced by `nv set router bfd offload-mode <control-plane|kernel|hardware>`. When you upgrade, Cumulus Linux translates `offload enabled` to `offload-mode kernel` and removes `offload disabled`, which leaves the `control-plane` default in effect.
 - The per-peer offload field now reports the engine carrying the session. In `nv show vrf <vrf-id> router bfd peers` output, the `Offloaded` column shows `kernel`, `hardware`, or `control-plane`; in vtysh and JSON output, `offload-status` shows the same three values. In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. Update any automation or monitoring that matches on the string `offloaded`.
 
+### PIM and MSDP vtysh Commands
+
+Cumulus Linux 5.19 upgrades FRR, which moves the vtysh commands that configure PIM and MSDP for a routing instance into a `router pim [vrf <vrf-name>]` block and drops the `ip` prefix; see {{<link url="Protocol-Independent-Multicast-PIM/#basic-pim-configuration" text="Protocol Independent Multicast - PIM">}}.
+
+- `ip pim rp`, `ip pim ssm prefix-list`, `ip pim ecmp`, `ip pim spt-switchover`, the `ip pim` timer commands, and the `ip msdp mesh-group` commands move under `router pim` and lose the `ip` prefix. For example, `switch(config)# ip pim rp 10.10.10.101` becomes `switch(config)# router pim` followed by `switch(config-pim)# rp 10.10.10.101`.
+- `ip pim spt-switchover infinity` becomes `spt-switchover infinity-and-beyond`.
+- Per-VRF PIM settings move out of the `vrf <vrf-name>` block into a separate top-level `router pim vrf <vrf-name>` block.
+- Interface-level commands, such as `ip pim`, `ip pim hello`, `ip pim bfd`, `ip pim use-source`, `ip pim allow-rp`, `ip pim active-active`, `ip multicast boundary oil`, and all `ip igmp` commands, are unchanged. All NVUE commands are unchanged.
+- Check the `/etc/frr/frr.conf` file and any automation that configures PIM or MSDP through vtysh before you upgrade.
+
 ### Cumulus VX
 
 NVIDIA no longer releases Cumulus VX as a standalone image. To simulate a Cumulus Linux switch, use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA DSX Air">}}.

@@ -49,6 +49,20 @@ To configure PIM:
 When you enable or disable PIM, the FRR service restarts, which might impact traffic.
 {{%/notice%}}
 
+<!-- REVIEW: the note below is drafted from the documentation update request (RM 5254773), which
+     describes the syntax change but does not say whether FRR rewrites an existing frr.conf into the
+     new form on upgrade. The note therefore tells the reader to check the file without promising
+     either outcome. Confirm the upgrade behavior with the FRR owner and say plainly whether the
+     conversion is automatic. Delete this comment before publishing. -->
+
+{{%notice note%}}
+In Cumulus Linux 5.19, the vtysh commands that configure PIM and MSDP for a routing instance move into a `router pim [vrf <vrf-name>]` block and drop the `ip` prefix. For example, `ip pim rp 10.10.10.101` at the `switch(config)#` prompt becomes `rp 10.10.10.101` at the `switch(config-pim)#` prompt. Per-VRF PIM settings are no longer inside the `vrf <vrf-name>` block; they belong to a separate top-level `router pim vrf <vrf-name>` block.
+
+Interface-level commands, such as `ip pim`, `ip pim hello`, `ip pim bfd`, `ip pim use-source`, `ip pim allow-rp`, `ip pim active-active`, `ip multicast boundary oil`, and all `ip igmp` commands, are unchanged. All NVUE commands are unchanged.
+
+Check the `/etc/frr/frr.conf` file and any automation that configures PIM or MSDP through vtysh before you upgrade to Cumulus Linux 5.19.
+{{%/notice%}}
+
 These example commands configure leaf01, leaf02 and spine01 as shown in the topology example above.
 
 {{< tabs "TabID44 ">}}
@@ -136,10 +150,12 @@ The <span class="a-tooltip">[FRR](## "FRRouting")</span> package includes PIM. F
 5. **For ASM**, configure a group mapping for a static RP:
 
    ```
-   leaf01(config)# ip pim rp 10.10.10.101
+   leaf01(config)# router pim
+   leaf01(config-pim)# rp 10.10.10.101
+   leaf01(config-pim)# exit
    leaf01(config)# exit
    leaf01# write memory
-   leaf01#  exit
+   leaf01# exit
    ```
 
 {{< /tab >}}
@@ -181,7 +197,9 @@ The <span class="a-tooltip">[FRR](## "FRRouting")</span> package includes PIM. F
 5. **For ASM**, configure a group mapping for a static RP:
 
    ```
-   leaf02(config)# ip pim rp 10.10.10.101
+   leaf02(config)# router pim
+   leaf02(config-pim)# rp 10.10.10.101
+   leaf02(config-pim)# exit
    leaf02(config)# exit
    leaf02# write memory
    leaf02# exit
@@ -218,8 +236,10 @@ The <span class="a-tooltip">[FRR](## "FRRouting")</span> package includes PIM. F
 4. **For ASM**, configure a group mapping for a static RP:
 
    ```
-   spine01(config)# ip pim rp 10.10.10.101
-   spine01(config-if)# end
+   spine01(config)# router pim
+   spine01(config-pim)# rp 10.10.10.101
+   spine01(config-pim)# exit
+   spine01(config)# end
    spine01# write memory
    spine01# exit
    ```
@@ -247,8 +267,10 @@ cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.
 cumulus@leaf01:~$ sudo vtysh
 ...
 spine01# configure terminal
-spine01(config)# ip pim rp 10.10.10.101 224.10.0.0/16
-spine01(config)# ip pim rp 10.10.10.102 224.10.2.0/16
+spine01(config)# router pim
+spine01(config-pim)# rp 10.10.10.101 224.10.0.0/16
+spine01(config-pim)# rp 10.10.10.102 224.10.2.0/24
+spine01(config-pim)# exit
 spine01(config)# end
 spine01# exit
 ```
@@ -281,8 +303,10 @@ cumulus@leaf01:~$ sudo vtysh
 spine01# configure terminal
 switch(config)# ip prefix-list MCAST1 seq 1 permit 224.10.0.0/16
 switch(config)# ip prefix-list MCAST2 seq 1 permit 224.10.2.0/24
-spine01(config)# ip pim rp 10.10.10.101 prefix-list MCAST1
-spine01(config)# ip pim rp 10.10.10.102 prefix-list MCAST2
+spine01(config)# router pim
+spine01(config-pim)# rp 10.10.10.101 prefix-list MCAST1
+spine01(config-pim)# rp 10.10.10.102 prefix-list MCAST2
+spine01(config-pim)# exit
 spine01(config)# end
 spine01# exit
 ```
@@ -310,7 +334,7 @@ You can configure SPT switchover per group (SPT infinity), which allows for some
 When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
 {{%/notice%}}
   
-To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list. This example uses the `default` VRF.If your configuration uses a different VRF for PIM, replace `vrf default` with the appropriate VRF name (for example, `vrf RED`):
+To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list. This example uses the `default` VRF. If your configuration uses a different VRF for PIM, replace `vrf default` with the appropriate VRF name in the NVUE commands (for example, `vrf RED`), and run `router pim vrf RED` instead of `router pim` in the vtysh commands:
 
 {{< tabs "TabID307 ">}}
 {{< tab "NVUE Commands ">}}
@@ -334,7 +358,9 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# ip prefix-list spt-range permit 235.0.0.0/8 ge 32
 switch(config)# ip prefix-list spt-range permit 238.0.0.0/8 ge 32
-switch(config)# ip pim spt-switchover infinity prefix-list spt-range
+switch(config)# router pim
+switch(config-pim)# spt-switchover infinity-and-beyond prefix-list spt-range
+switch(config-pim)# exit
 switch(config)# end
 switch# exit
 ```
@@ -374,7 +400,7 @@ cumulus@switch:~$ nv set router policy prefix-list MyCustomSSMrange rule 10 matc
 cumulus@switch:~$ nv set router policy prefix-list MyCustomSSMrange rule 10 action permit
 ```
 
-Apply the custom prefix list. This example uses the `default` VRF. If your configuration uses a different VRF for PIM, replace `vrf default` with the appropriate VRF name (for example, `vrf RED`):
+Apply the custom prefix list. This example uses the `default` VRF. If your configuration uses a different VRF for PIM, replace `vrf default` with the appropriate VRF name in the NVUE commands (for example, `vrf RED`), and run `router pim vrf RED` instead of `router pim` in the vtysh commands:
 
 ```
 cumulus@switch:~$ nv set vrf default router pim address-family ipv4 ssm-prefix-list MyCustomSSMrange
@@ -397,7 +423,9 @@ switch(config)# ip prefix-list ssm-range seq 10 permit 238.0.0.0/8 ge 32
 Apply the custom prefix list as an `ssm-range`:
 
 ```
-switch(config)# ip pim ssm prefix-list ssm-range
+switch(config)# router pim
+switch(config-pim)# ssm prefix-list ssm-range
+switch(config-pim)# exit
 switch(config)# exit
 switch# write memory
 switch# exit
@@ -454,7 +482,9 @@ To configure PIM to use all the available next hops when installing mroutes:
 cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
-switch(config)# ip pim ecmp
+switch(config)# router pim
+switch(config-pim)# ecmp
+switch(config-pim)# exit
 switch(config)# exit
 switch# write memory
 switch# exit
@@ -466,7 +496,9 @@ To recalculate all stream paths over one of the ECMP paths if the switch loses a
 cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
-switch(config)# ip pim ecmp rebalance
+switch(config)# router pim
+switch(config-pim)# ecmp rebalance
+switch(config-pim)# exit
 switch(config)# exit
 switch# write memory
 switch# exit
@@ -617,31 +649,34 @@ If you are using a non-default VRF and want to use the VRF interface IP address 
    cumulus@rp01:~$ sudo vtysh
    ...
    rp01# configure terminal
-   rp01(config)# ip pim rp 10.100.100.100 224.0.0.0/4
+   rp01(config)# router pim
+   rp01(config-pim)# rp 10.100.100.100 224.0.0.0/4
    ```
 
 4. Configure the MSDP mesh group for all active RPs (the following example uses three RPs):
 
-   The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs.
+   The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs. Run the `router pim` command on rp02 and rp03 as well, so that each RP is at the `(config-pim)#` prompt:
 
    ```
-   rp01(config)# ip msdp mesh-group cumulus member 100.1.1.2
-   rp01(config)# ip msdp mesh-group cumulus member 100.1.1.3
+   rp01(config-pim)# msdp mesh-group cumulus member 100.1.1.2
+   rp01(config-pim)# msdp mesh-group cumulus member 100.1.1.3
 
-   rp02(config)# ip msdp mesh-group cumulus member 100.1.1.1
-   rp02(config)# ip msdp mesh-group cumulus member 100.1.1.3
+   rp02(config-pim)# msdp mesh-group cumulus member 100.1.1.1
+   rp02(config-pim)# msdp mesh-group cumulus member 100.1.1.3
 
-   rp03(config)# ip msdp mesh-group cumulus member 100.1.1.1
-   rp03(config)# ip msdp mesh-group cumulus member 100.1.1.2
+   rp03(config-pim)# msdp mesh-group cumulus member 100.1.1.1
+   rp03(config-pim)# msdp mesh-group cumulus member 100.1.1.2
    ```
 
 5. Pick the local loopback address as the source of the MSDP control packets
 
    ```
-   rp01(config)# ip msdp mesh-group cumulus source 10.10.10.101
-   rp02(config)# ip msdp mesh-group cumulus source 10.10.10.102
-   rp03(config)# ip msdp mesh-group cumulus source 10.10.10.103
+   rp01(config-pim)# msdp mesh-group cumulus source 10.10.10.101
+   rp02(config-pim)# msdp mesh-group cumulus source 10.10.10.102
+   rp03(config-pim)# msdp mesh-group cumulus source 10.10.10.103
    ```
+
+   Run the `exit` command on each RP to leave the `router pim` block.
 
 6. Inject the anycast IP address into the IGP of the domain. If the network uses unnumbered BGP as the IGP, avoid using the anycast IP address to establish unicast or multicast peerings. For PIM-SM, ensure that you use the unique address as the PIM hello source by setting the source:
 
@@ -901,9 +936,11 @@ The following example commands set the `join-prune-interval` to 100 seconds, the
 cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
-switch(config)# ip pim join-prune-interval 100
-switch(config)# ip pim keep-alive-timer 10000
-switch(config)# ip pim register-suppress-time 20000
+switch(config)# router pim
+switch(config-pim)# join-prune-interval 100
+switch(config-pim)# keep-alive-timer 10000
+switch(config-pim)# register-suppress-time 20000
+switch(config-pim)# exit
 switch(config)# end
 switch# write memory
 switch# exit
@@ -928,9 +965,10 @@ The following example command sets the `keep-alive-timer` to 10000 seconds for V
 cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
-switch(config)# vrf RED
-switch(config-vrf)# ip pim keep-alive-timer 10000
-switch(config-if)# end
+switch(config)# router pim vrf RED
+switch(config-pim)# keep-alive-timer 10000
+switch(config-pim)# exit
+switch(config)# end
 switch# write memory
 switch# exit
 ```
@@ -2302,10 +2340,12 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
 
 vrf default
-ip pim rp 10.10.10.101 224.0.0.0/4
 exit-vrf
 vrf mgmt
 exit-vrf
+router pim
+rp 10.10.10.101 224.0.0.0/4
+exit
 interface lo
 ip pim
 interface swp51
@@ -2347,10 +2387,12 @@ exit-address-family
 cumulus@leaf02:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
 vrf default
-ip pim rp 10.10.10.101 224.0.0.0/4
 exit-vrf
 vrf mgmt
 exit-vrf
+router pim
+rp 10.10.10.101 224.0.0.0/4
+exit
 interface lo
 ip pim
 interface swp51
@@ -2391,11 +2433,13 @@ exit-address-family
 ```
 cumulus@spine01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
-rf default
-ip pim rp 10.10.10.101 224.0.0.0/4
+vrf default
 exit-vrf
 vrf mgmt
 exit-vrf
+router pim
+rp 10.10.10.101 224.0.0.0/4
+exit
 interface lo
 ip pim
 interface swp1

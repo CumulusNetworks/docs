@@ -48,9 +48,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Quality-of-Service/#service-port-buffers" text="Dedicated service port ingress buffers on Spectrum-6 switches">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resource-mode-and-hybrid-scheduling" text="Adaptive routing hybrid scheduling mode, which moves low weight ECMP groups to random forwarding to reduce adaptive routing group merging">}}
 - {{<link url="Domain-Name-System-DNS/#dns-query-source-address" text="Configurable source address for DNS queries, so that queries leave the switch from a stable loopback identity">}}
-- Change the USB0 IP address to 169.254.100.2 / 169.254.100.1
 - CPO Debug Params | nv show commands & Telemetry (OTEL and GNMI) GA
-- VRF per destination support GA - at risk
 - NVUE
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
   - {{<link url="Neighbor-Discovery-ND/#clear-a-stale-prefix" text="Clear a stale IPv6 ND prefix on demand">}}

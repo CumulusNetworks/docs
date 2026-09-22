@@ -256,7 +256,7 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5091418</td>
+<td>5091418, 5269525</td>
 <td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
 </td>
 <td>5.18.0-5.18.1</td>
@@ -338,6 +338,12 @@ Pin-Priority: 992</td>
 <td>4774686, 4764590</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717493, 4717494</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1409,7 +1415,7 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5091418</td>
+<td>5091418, 5269525</td>
 <td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
 </td>
 <td>5.18.0-5.18.1</td>
@@ -1491,6 +1497,12 @@ Pin-Priority: 992</td>
 <td>4774686, 4764590</td>
 <td>The final hop does not respond to traceroute with the layer 4 protocol set to TCP or UDP.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4717493, 4717494</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.1</td>
 <td></td>
 </tr>
 <tr>

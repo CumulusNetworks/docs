@@ -495,6 +495,12 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td>5.18.0-5.18.1</td>
 </tr>
 <tr>
+<td>4717493, 4717494</td>
+<td>When you run the {{nv show vrf default router rib}} command, NVUE returns an ItemDoesNotExist error. This error occurs because the vtysh {{show ip route vrf default brief json}} command does not return any output, which propagates through NVUE. To work around this issue, run the {{nv show vrf default router rib ipv6}} and {{nv show vrf default router rib ipv6 route}} commands instead.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4667792</td>
 <td>Usernames longer than 32 characters do not authenticate against the switch. Avoid using long usernames.</td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.1</td>

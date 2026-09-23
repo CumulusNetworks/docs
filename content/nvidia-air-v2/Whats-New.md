@@ -7,14 +7,18 @@ product: NVIDIA DSX Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://dsx-air.nvidia.com" text="NVIDIA DSX Air">}}.
 
-## August 2026
+## September 2026
 <!-- Air:WhatsNew --> 
+### 82.2.1.26.1000
+- Customers can create alert emails that notify them when their organization reaches a specified threshold for remaining compute hours
+<!-- Air:WhatsNew -->
+
+## August 2026
 ### 82.2.1.24.1000
 - Added ability to clone a simulation directly from the UI
 - The UI now shows the rate required to run a simulation
 - Demos can now be published to a specific subset of organizations
 - You can now create your own demo and submit it for publication to the Demo Marketplace
-<!-- Air:WhatsNew -->
 
 ## July 2026
 ### 82.2.1.20.27

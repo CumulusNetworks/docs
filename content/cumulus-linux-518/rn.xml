@@ -214,6 +214,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5177905</td>
+<td>During a package upgrade from Cumulus Linux 5.16.0 to 5.18.0, the {{nv-umf }} service might fail to start temporarily while system services are being updated, triggering automatic generation of a cl-support archive with the reason {{nv-umf first failure}}. The service retries startup automatically and can recover without manual intervention. If {{nv-umf}} resumes normal operation without further failures, no manual recovery is required, and the generated archive alone does not indicate an ongoing problem.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5177678</td>
 <td>In an EVPN deployment using downstream VNIs (D-VNIs), when all EVPN route-target imports are withdrawn from a VRF, {{switchd}} fails to free exactly one of the D-VNI entries.</td>
 <td>5.18.0-5.18.2</td>
@@ -1364,6 +1370,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>5180032, 5180016</td>
 <td>Running a transceiver query with the {{ethtool -m}} or {{nv show interface &lt;interface&gt; transceiver}} command might intermittently discard the reply, causing the command to hang for approximately 30 seconds and fail with {{netlink error: Connection timed out}} before recovering.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5177905</td>
+<td>During a package upgrade from Cumulus Linux 5.16.0 to 5.18.0, the {{nv-umf }} service might fail to start temporarily while system services are being updated, triggering automatic generation of a cl-support archive with the reason {{nv-umf first failure}}. The service retries startup automatically and can recover without manual intervention. If {{nv-umf}} resumes normal operation without further failures, no manual recovery is required, and the generated archive alone does not indicate an ongoing problem.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
@@ -2595,6 +2607,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>5180032, 5180016</td>
 <td>Running a transceiver query with the {{ethtool -m}} or {{nv show interface &lt;interface&gt; transceiver}} command might intermittently discard the reply, causing the command to hang for approximately 30 seconds and fail with {{netlink error: Connection timed out}} before recovering.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5177905</td>
+<td>During a package upgrade from Cumulus Linux 5.16.0 to 5.18.0, the {{nv-umf }} service might fail to start temporarily while system services are being updated, triggering automatic generation of a cl-support archive with the reason {{nv-umf first failure}}. The service retries startup automatically and can recover without manual intervention. If {{nv-umf}} resumes normal operation without further failures, no manual recovery is required, and the generated archive alone does not indicate an ongoing problem.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>

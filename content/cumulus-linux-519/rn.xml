@@ -830,27 +830,27 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5274511</td>
 <td>In scaled configurations, {{switchd}} might crash during EVPN multihoming layer 2 next hop group cleanup causing a daemon restart and brief traffic interruption.</td>
-<td>5.16.1-5.18.1</td>
+<td>5.16.1-5.18.2</td>
 </tr>
 <tr>
 <td>5272623</td>
 <td>The switch writes the {{all_packet_stats}} snapshot to the {{/var/lib/cumulus}} directory instead of the {{/var/run/cumulus}} directory, which might cause unnecessary SSD usage.</td>
-<td>5.18.1</td>
+<td>5.18.1-5.18.2</td>
 </tr>
 <tr>
 <td>5252674</td>
 <td>The {{l1-show -m}} command does not return the Type value. Use the {{l1-show}} command instead.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5251092</td>
 <td>In an 802.1x IPv6 profile configuration, a prefix with more than 32 bits produces the wrong assigned address and authentication fails when the assigned address is in the multicast range.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5240513</td>
 <td>Packet trimming appears to be enabled successfully in NVUE, but never becomes operational. The issue occurs because WJH buffer monitoring uses the internal SPAN session that packet trimming also needs.</td>
-<td>5.16.3-5.18.1</td>
+<td>5.16.3-5.18.2</td>
 </tr>
 <tr>
 <td>5236683</td>
@@ -860,12 +860,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5235587</td>
 <td>When streaming HFT, the timestamps exported with the HFT data are 37 seconds ahead of UTC.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5231075</td>
 <td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
-<td>5.16.7-5.18.1</td>
+<td>5.16.7-5.18.2</td>
 </tr>
 <tr>
 <td>5230968</td>
@@ -875,42 +875,42 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5225461</td>
 <td>For layer 3 VNI routes in single VXLAN device mode, zebra installs remote nexthop neighbors on the single VXLAN device. If the kernel ages or deletes one of the neighbors, the neighbor notification is ignored because the interface is not an SVI or bridge. As a result, routes that use the single VXLAN device nexthop have unresolved  VXLAN device neighbors even though the corresponding SVI neighbor is still present, and the switch does not forward the route. To work around this issue, restart FRR.</td>
-<td>5.16.4-5.18.1</td>
+<td>5.16.4-5.18.2</td>
 </tr>
 <tr>
 <td>5224270</td>
 <td> On switches with TACACS+ servers configured by hostname (FQDN) instead of IP address, the switch might generate an excessive rate of DNS queries for the configured TACACS+ server names, including for local user or UID lookups that never actually need to contact a TACACS+ server.</td>
-<td>5.16.1-5.18.1</td>
+<td>5.16.1-5.18.2</td>
 </tr>
 <tr>
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
-<td>5.11.1-5.18.1</td>
+<td>5.11.1-5.18.2</td>
 </tr>
 <tr>
 <td>5221340</td>
 <td>When you put a switch in maintenance mode, then warm reboot the switch, it incorrectly starts a new advertisement delay after graceful restart completes. As a result, remote devices see host exceptions change state unnecessarily after the warm reboot.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5221132, 5220825, 5226315</td>
 <td>After you put the switch in maintenance mode, then perform a warm boot, turning maintenance mode off does not fully clear the maintenance state. As a result, the system keeps behaving as if maintenance is still active; the local default route exceptions remain installed and remote devices continue to see shutdown or unreachable indicators indefinitely.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5221083</td>
 <td>The {{nv config apply}} command fails due to a {{switchd}} reload failure.</td>
-<td>5.16.1-5.18.1</td>
+<td>5.16.1-5.18.2</td>
 </tr>
 <tr>
 <td>5220910</td>
 <td>NVUE accepts invalid telemetry snapshot file paths; however, the corresponding show commands fail with an error in the NVUE logs. </td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5219619</td>
 <td>A long LDAP secret causes a service crash.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5217147, 5225676, 5257913</td>
@@ -920,7 +920,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5215333</td>
 <td>If you provide a value that contains a non-ASCII character in NVUE, you see an unhandled Python exception instead of a normal CLI validation error.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5215201, 5221379, 5221588</td>
@@ -930,7 +930,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5200392, 5200391</td>
 <td>Enabling, then disabling SRv6 on the leaf switch repeatedly while keeping the static SIDs configured causes ASIC flow-counter resources to slowly get consumed and not released. This issue reduces available hardware resources and creates the risk of resource exhaustion over time.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5200160, 5215402, 5221596</td>
@@ -940,47 +940,47 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5199525</td>
 <td>When EVPN prefixes learned from a BGP neighbor are withdrawn, the gNMI EVPN installed-prefix count does not decrease.</td>
-<td>5.16.1-5.18.1</td>
+<td>5.16.1-5.18.2</td>
 </tr>
 <tr>
 <td>5197214</td>
 <td>If the {{cumulus-platform-common}} package is updated, login notification might fail on each login and show errors.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5195287, 5221633</td>
 <td>After applying BGP configuration with BFD, FRR reload fails.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5194451</td>
 <td>The {{auth-fail-vlan}} row in the {{nv show system dot1x}} command output does not show the operational value of {{auth-fail-vlan}} even when it is configured.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5190241</td>
 <td>When you configure TACACS+ authentication with a server hostname resolving to more than one IP address and enable STP on a bridge (the default setting), the switch stops responding.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5190122</td>
 <td>On a Spectrum-6 switch (such as the SN6600-LD), gNMI reports an incorrect shared-buffer cell size of 192 bytes at {{/qos/shared-buffer/state/cell-size}} instead of the correct 256 bytes for Spectrum-6. Because this cell size is used to convert internal buffer cell counts into byte values, several shared-buffer telemetry values derived from it (such as per-queue or traffic-class buffer usage and maximum occupancy) report incorrectly over gNMI. The values are inconsistent with the values that NVUE reports and the hardware buffer counters.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5185670</td>
 <td>NVUE incorrectly formats the usb0 operational link attributes as speed 0G and {{oper-status}} unknown.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5185505</td>
 <td>On the Spectrum-6 switch, NVUE fails to display per-interface counters for usb0 although the interface and its counters are shown in the global counters view.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5184005</td>
 <td>In certain SRv6 configuration rollback scenarios, Zebra might fail to restore all explicit SRv6 SIDs. This can occur when multiple SRv6 locators share the same parent SID block and one of the locators is replayed during rollback. To work around this issue, restart FRR to clear the stale in-memory SRv6 SID allocation state, then reapply the intended configuration if needed.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5183514, 5217107, 5221591</td>
@@ -995,7 +995,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5180032, 5180016</td>
 <td>Running a transceiver query with the {{ethtool -m}} or {{nv show interface &lt;interface&gt; transceiver}} command might intermittently discard the reply, causing the command to hang for approximately 30 seconds and fail with {{netlink error: Connection timed out}} before recovering.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5179671, 5217097, 5221593, 5221604</td>
@@ -1005,12 +1005,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5177678</td>
 <td>In an EVPN deployment using downstream VNIs (D-VNIs), when all EVPN route-target imports are withdrawn from a VRF, {{switchd}} fails to free exactly one of the D-VNI entries.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5175676</td>
 <td>The {{nv action clear router segment-routing srv6 stats}} command completes without resetting SRv6 packet counters. A following {{nv show router segment-routing srv6 stats}} command still shows the values from before the clear.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5175518, 5217093, 5221594</td>
@@ -1020,103 +1020,103 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5175384</td>
 <td>After a restart, NVUE sometimes tries to read ASIC platform resource information too early, before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5174873</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5174595, 5233487</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5170159</td>
 <td>NAS IP addresses are missing from RADIUS accounting packets.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5167890</td>
 <td>The telemetry configuration for 802.1X works correctly, but the {{nv show system telemetry stats-group &lt;stats-group-name&gt; dot1x-stats}} command shows the 802.1x class states as disabled even though they are enabled globally and the metrics are still being exported properly. This issue creates misleading output, which appears as if the stats-group configuration is incorrect.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5167882</td>
 <td>In rare cases {{switchd}} crashes and the cl-support file triggers twice, which interrupts legacy {{mlxlink}} collection and causes multiple per port {{mlxlink}} support files to generate.</td>
-<td>5.16.1-5.18.1</td>
+<td>5.16.1-5.18.2</td>
 </tr>
 <tr>
 <td>5165432, 5154620</td>
 <td>With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic. </td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5159368, 5170404</td>
 <td>When the Spectrum 1 switch with scaled configuration collects a cl-support file, the collection might timeout for certain modules and lose system and networking data.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5159364</td>
 <td>When you change an 802.1x-enabled port from layer 2 to layer 3 by removing the bridge configuration, the old layer 2 ACL rules file remains. As a result, the system keeps both layer 2 and layer 3 802.1x ACL rule files; only the layer 3 rules file should remain.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5158643</td>
 <td>The {{nv show evpn l3vxi --output json}} command returns an empty dictionary ({}). To work around this issue, run the {{nv show evpn l3vxi --rev=applied --output json}} command instead.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5154524</td>
 <td>The switch system health included the {{ledmgrd}} service in health evaluation incorrectly, causing false {{ServicesStatus: BAD}} results for virtual platforms. </td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5146439</td>
 <td>When the BMC power restore policy is set to {{AlwaysOff}}, a BMC-only reboot causes the running switch host to be powered off even though no AC power loss occurs. To work around this issue, set the power restore policy to {{AlwaysOn}} or {{LastState}}.</td>
-<td>5.17.0-5.18.1</td>
+<td>5.17.0-5.18.2</td>
 </tr>
 <tr>
 <td>5146376</td>
 <td>If the remote server is unreachable, {{rsyslog}} generates internal error messages that flood syslog.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5091418, 5269525</td>
 <td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
 </td>
-<td>5.18.0-5.18.1</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5080682</td>
 <td>The {{switchd}} port-security violation log prints {{RESTRICTed}} instead of {{Restricted}}.</td>
-<td>5.16.5-5.18.1</td>
+<td>5.16.5-5.18.2</td>
 </tr>
 <tr>
 <td>5079383</td>
 <td>The BGP service might crash with an assertion failure in EVPN symmetric-IRB deployments that use VRF route leaking across multiple VRFs. The issue is caused by a missing reference count release on a BGP route destination node. Prolonged MAC mobility churn can trigger this condition. Large-scale deployments with many VRFs and EVPN multihoming are more susceptible.</td>
-<td>5.14.0-5.18.1</td>
+<td>5.14.0-5.18.2</td>
 </tr>
 <tr>
 <td>5072739, 5089352</td>
 <td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
-<td>5.17.0-5.18.1</td>
+<td>5.17.0-5.18.2</td>
 </tr>
 <tr>
 <td>5002002</td>
 <td>When using an IPv6 VXLAN tunnel IP address,  FRR treats the received type-3 EVPN route as a withdraw.</td>
-<td>5.16.1-5.18.1</td>
+<td>5.16.1-5.18.2</td>
 </tr>
 <tr>
 <td>4982910</td>
 <td>The mellanox platform driver fails to register a {{pm_power_off}} handler for legacy platforms. As a result, it falls through to ACPI power off which doesn't work correctly on the BIOS and causes a reset.</td>
-<td>5.17.0-5.18.1</td>
+<td>5.17.0-5.18.2</td>
 </tr>
 </table>
 </tables>

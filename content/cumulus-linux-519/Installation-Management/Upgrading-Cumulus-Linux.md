@@ -14,6 +14,10 @@ To upgrade Cumulus Linux, choose one of the three upgrade methods:
 
 To install a patch (such as a critical bug or CVE), refer to {{<link url="Patches" text="Patches">}}.
 
+{{%notice infonopad%}}
+For a Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
+{{%/notice%}}
+
 ## Upgrades with ISSU
 <!-- SUPPORTED IN 5.19?
 {{%notice note%}}

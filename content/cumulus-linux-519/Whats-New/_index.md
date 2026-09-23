@@ -68,7 +68,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="NVUE-CLI/#configuration-management-commands" text="nv config apply command improvements">}} to prevent latency and timeout
   - {{<link url="Zero-Touch-Provisioning-ZTP/#suppress-ztp-console-messages" text="Suppress ZTP console messages">}}
   - {{<link url="FRRouting/#tcp-sockets-and-bgp-peering-sessions" text="Configure the file descriptor limit for the FRR routing daemons">}}
-  - Map port to connector
+  - {{<link url="Switch-Port-Attributes/#show-the-physical-connector-for-a-port" text="Show the physical connector for a port">}}
 - Telemetry
   - {{<link url="Open-Telemetry-Export/#wjh-metrics" text="WJH metrics for OTEL">}}
   - {{<link url="gNMI-Streaming/#supported-models" text="gNMI component type and name for platform components">}}
@@ -87,11 +87,21 @@ Review the following considerations before you upgrade to Cumulus Linux 5.19.
 You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.19 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 - 5.16.1 through 5.16.7
 - 5.17.0
-- 5.18.0
+- 5.18.2
+
+{{%notice infonopad%}}
+If your switch is running Cumulus Linux 5.18.0 or 5.18.1, you must first upgrade to 5.18.2 before you can upgrade to 5.19.
+{{%/notice%}}
 
 To upgrade to Cumulus Linux 5.19 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
+
+### Spectrum-6 BMC Requirements
+
+{{%notice infonopad%}}
+For a Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
+{{%/notice%}}
 
 ### Linux Configuration Files Overwritten
 

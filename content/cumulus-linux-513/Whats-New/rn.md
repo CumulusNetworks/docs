@@ -34,6 +34,7 @@ pdfhidden: True
 | 4885553 | If ZTP uses a proxy server for image download using <code>onie-install</code>, the image install fails with signing issues. | 5.12.0-5.16.8 | 5.17.0-5.18.1|
 | 4882392 | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.16.8 | 5.17.0-5.18.1|
 | 4881679, 4922104 | When the system is under load and the <code>wd_keepalive</code> process is running at the default rate of one time per minute, the switch might reboot due to starvation of the <code>wd_keepalive</code> process. | 5.13.1-5.16.0 | 5.16.1-5.18.1|
+| 4878687 | If you add aggressive subscriptions, the interface_stats_collector data producer can become overwhelmed and run out of memory. | 5.13.1-5.16.8 | 5.17.0-5.18.1|
 | 4871161 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.18.1 | |
 | 4835058 | When you add or remove bond members, the sflow state and rate are incorrect.  | 5.13.1-5.15.1 | 5.16.0-5.18.1|
 | 4789562 | A switch running Nvidia Cumulus Linux may improperly forward routed packets out of an access port or on the native vlan of a trunk with an 802.1Q tag imposed on the packet. | 5.12.1-5.15.1 | 5.16.0-5.18.1|

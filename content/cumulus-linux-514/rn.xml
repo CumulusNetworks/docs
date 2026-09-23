@@ -223,6 +223,12 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 <td>5.17.0-5.18.1</td>
 </tr>
 <tr>
+<td>4878687</td>
+<td>If you add aggressive subscriptions, the interface_stats_collector data producer can become overwhelmed and run out of memory.</td>
+<td>5.13.1-5.16.8</td>
+<td>5.17.0-5.18.1</td>
+</tr>
+<tr>
 <td>4871161</td>
 <td>If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during {{nv config apply}}. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change. </td>
 <td>5.9.1-5.18.1</td>

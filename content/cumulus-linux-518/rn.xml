@@ -7,15 +7,51 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5297900</td>
+<td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
+<td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5288214</td>
+<td>When you boot a switch with TACACS+ or RADIUS configured to reference a server by hostname, the networking service might take a long time (2 or more minutes) to start. </td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5274511</td>
+<td>In scaled configurations, {{switchd}} might crash during EVPN multihoming layer 2 next hop group cleanup causing a daemon restart and brief traffic interruption.</td>
+<td>5.16.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5272623</td>
+<td>The switch writes the {{all_packet_stats}} snapshot to the {{/var/lib/cumulus}} directory instead of the {{/var/run/cumulus}} directory, which might cause unnecessary SSD usage.</td>
+<td>5.18.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5257559</td>
 <td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
 <td>5.18.0-5.18.2</td>
 <td>5.16.8</td>
 </tr>
 <tr>
+<td>5252674</td>
+<td>The {{l1-show -m}} command does not return the Type value. Use the {{l1-show}} command instead.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5251092</td>
 <td>In an 802.1x IPv6 profile configuration, a prefix with more than 32 bits produces the wrong assigned address and authentication fails when the assigned address is in the multicast range.</td>
 <td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5240513</td>
+<td>Packet trimming appears to be enabled successfully in NVUE, but never becomes operational. The issue occurs because WJH buffer monitoring uses the internal SPAN session that packet trimming also needs.</td>
+<td>5.16.3-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -43,6 +79,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5223707</td>
+<td>Restarting the networking service in an EVPN multihoming configuration leaves the host bonds enabled in configuration but not actually working. After the restart, the bond loses carrier, stops forwarding traffic, and a MAC address that is supposed to stay local gets removed from the local bond and is instead learned through VXLAN/ECMP. In some later observations, Linux shows the MAC address correctly back on the local hostbond, but the hardware still points it to ECMP, showing a software or hardware forwarding mismatch.</td>
+<td>5.16.7-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
@@ -61,8 +103,20 @@
 <td></td>
 </tr>
 <tr>
+<td>5221083</td>
+<td>The {{nv config apply}} command fails due to a {{switchd}} reload failure.</td>
+<td>5.16.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5220910</td>
 <td>NVUE accepts invalid telemetry snapshot file paths; however, the corresponding show commands fail with an error in the NVUE logs. </td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5219619</td>
+<td>A long LDAP secret causes a service crash.</td>
 <td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
@@ -105,6 +159,12 @@
 <tr>
 <td>5194451</td>
 <td>The {{auth-fail-vlan}} row in the {{nv show system dot1x}} command output does not show the operational value of {{auth-fail-vlan}} even when it is configured.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5190241</td>
+<td>When you configure TACACS+ authentication with a server hostname resolving to more than one IP address and enable STP on a bridge (the default setting), the switch stops responding.</td>
 <td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
@@ -166,6 +226,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5175384</td>
+<td>After a restart, NVUE sometimes tries to read ASIC platform resource information too early, before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5174873</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.2</td>
@@ -190,6 +256,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5167890</td>
+<td>The telemetry configuration for 802.1X works correctly, but the {{nv show system telemetry stats-group &lt;stats-group-name&gt; dot1x-stats}} command shows the 802.1x class states as disabled even though they are enabled globally and the metrics are still being exported properly. This issue creates misleading output, which appears as if the stats-group configuration is incorrect.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5167882</td>
 <td>In rare cases {{switchd}} crashes and the cl-support file triggers twice, which interrupts legacy {{mlxlink}} collection and causes multiple per port {{mlxlink}} support files to generate.</td>
 <td>5.16.1-5.18.2</td>
@@ -210,6 +282,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>5159368, 5170404</td>
 <td>When the Spectrum 1 switch with scaled configuration collects a cl-support file, the collection might timeout for certain modules and lose system and networking data.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5159364</td>
+<td>When you change an 802.1x-enabled port from layer 2 to layer 3 by removing the bridge configuration, the old layer 2 ACL rules file remains. As a result, the system keeps both layer 2 and layer 3 802.1x ACL rule files; only the layer 3 rules file should remain.</td>
 <td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
@@ -284,6 +362,12 @@ Pin-Priority: 992</td>
 <td>5072739, 5089352</td>
 <td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
 <td>5.17.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5057424</td>
+<td>After a chain of faults disables automatic cl-support file generation, using NVUE to turn the feature off, then back on causes the switch to forget important fault history. The original support file from the first fault and the reason why auto-generation was disabled disappear, and the status incorrectly looks healthy and enabled even though the earlier fault chain had already triggered deactivation. </td>
+<td>5.16.0-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1077,15 +1161,51 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5297900</td>
+<td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
+<td>5.16.3-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5288214</td>
+<td>When you boot a switch with TACACS+ or RADIUS configured to reference a server by hostname, the networking service might take a long time (2 or more minutes) to start. </td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5274511</td>
+<td>In scaled configurations, {{switchd}} might crash during EVPN multihoming layer 2 next hop group cleanup causing a daemon restart and brief traffic interruption.</td>
+<td>5.16.1-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5272623</td>
+<td>The switch writes the {{all_packet_stats}} snapshot to the {{/var/lib/cumulus}} directory instead of the {{/var/run/cumulus}} directory, which might cause unnecessary SSD usage.</td>
+<td>5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5257559</td>
 <td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
 <td>5.18.0-5.18.1</td>
 <td>5.16.8</td>
 </tr>
 <tr>
+<td>5252674</td>
+<td>The {{l1-show -m}} command does not return the Type value. Use the {{l1-show}} command instead.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5251092</td>
 <td>In an 802.1x IPv6 profile configuration, a prefix with more than 32 bits produces the wrong assigned address and authentication fails when the assigned address is in the multicast range.</td>
 <td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5240513</td>
+<td>Packet trimming appears to be enabled successfully in NVUE, but never becomes operational. The issue occurs because WJH buffer monitoring uses the internal SPAN session that packet trimming also needs.</td>
+<td>5.16.3-5.18.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1113,6 +1233,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5223707</td>
+<td>Restarting the networking service in an EVPN multihoming configuration leaves the host bonds enabled in configuration but not actually working. After the restart, the bond loses carrier, stops forwarding traffic, and a MAC address that is supposed to stay local gets removed from the local bond and is instead learned through VXLAN/ECMP. In some later observations, Linux shows the MAC address correctly back on the local hostbond, but the hardware still points it to ECMP, showing a software or hardware forwarding mismatch.</td>
+<td>5.16.7-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.1</td>
@@ -1131,8 +1257,20 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5221083</td>
+<td>The {{nv config apply}} command fails due to a {{switchd}} reload failure.</td>
+<td>5.16.1-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5220910</td>
 <td>NVUE accepts invalid telemetry snapshot file paths; however, the corresponding show commands fail with an error in the NVUE logs. </td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5219619</td>
+<td>A long LDAP secret causes a service crash.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
@@ -1175,6 +1313,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5194451</td>
 <td>The {{auth-fail-vlan}} row in the {{nv show system dot1x}} command output does not show the operational value of {{auth-fail-vlan}} even when it is configured.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5190241</td>
+<td>When you configure TACACS+ authentication with a server hostname resolving to more than one IP address and enable STP on a bridge (the default setting), the switch stops responding.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
@@ -1236,6 +1380,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5175384</td>
+<td>After a restart, NVUE sometimes tries to read ASIC platform resource information too early, before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5174873</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.1</td>
@@ -1260,6 +1410,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5167890</td>
+<td>The telemetry configuration for 802.1X works correctly, but the {{nv show system telemetry stats-group &lt;stats-group-name&gt; dot1x-stats}} command shows the 802.1x class states as disabled even though they are enabled globally and the metrics are still being exported properly. This issue creates misleading output, which appears as if the stats-group configuration is incorrect.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5167882</td>
 <td>In rare cases {{switchd}} crashes and the cl-support file triggers twice, which interrupts legacy {{mlxlink}} collection and causes multiple per port {{mlxlink}} support files to generate.</td>
 <td>5.16.1-5.18.1</td>
@@ -1280,6 +1436,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>5159368, 5170404</td>
 <td>When the Spectrum 1 switch with scaled configuration collects a cl-support file, the collection might timeout for certain modules and lose system and networking data.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5159364</td>
+<td>When you change an 802.1x-enabled port from layer 2 to layer 3 by removing the bridge configuration, the old layer 2 ACL rules file remains. As a result, the system keeps both layer 2 and layer 3 802.1x ACL rule files; only the layer 3 rules file should remain.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
@@ -1354,6 +1516,12 @@ Pin-Priority: 992</td>
 <td>5072739, 5089352</td>
 <td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
 <td>5.17.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5057424</td>
+<td>After a chain of faults disables automatic cl-support file generation, using NVUE to turn the feature off, then back on causes the switch to forget important fault history. The original support file from the first fault and the reason why auto-generation was disabled disappear, and the status incorrectly looks healthy and enabled even though the earlier fault chain had already triggered deactivation. </td>
+<td>5.16.0-5.18.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2218,15 +2386,45 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5297900</td>
+<td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
+<td>5.16.3-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5288214</td>
+<td>When you boot a switch with TACACS+ or RADIUS configured to reference a server by hostname, the networking service might take a long time (2 or more minutes) to start. </td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5274511</td>
+<td>In scaled configurations, {{switchd}} might crash during EVPN multihoming layer 2 next hop group cleanup causing a daemon restart and brief traffic interruption.</td>
+<td>5.16.1-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5257559</td>
 <td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
 <td>5.18.0-5.18.1</td>
 <td>5.16.8</td>
 </tr>
 <tr>
+<td>5252674</td>
+<td>The {{l1-show -m}} command does not return the Type value. Use the {{l1-show}} command instead.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5251092</td>
 <td>In an 802.1x IPv6 profile configuration, a prefix with more than 32 bits produces the wrong assigned address and authentication fails when the assigned address is in the multicast range.</td>
 <td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5240513</td>
+<td>Packet trimming appears to be enabled successfully in NVUE, but never becomes operational. The issue occurs because WJH buffer monitoring uses the internal SPAN session that packet trimming also needs.</td>
+<td>5.16.3-5.18.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2260,6 +2458,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5223707</td>
+<td>Restarting the networking service in an EVPN multihoming configuration leaves the host bonds enabled in configuration but not actually working. After the restart, the bond loses carrier, stops forwarding traffic, and a MAC address that is supposed to stay local gets removed from the local bond and is instead learned through VXLAN/ECMP. In some later observations, Linux shows the MAC address correctly back on the local hostbond, but the hardware still points it to ECMP, showing a software or hardware forwarding mismatch.</td>
+<td>5.16.7-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5221595</td>
 <td>In certain cases, the switch does not forward traffic on some interfaces in an ECMP group. To work around this issue, flap the affected interface.</td>
 <td>5.18.0</td>
@@ -2284,8 +2488,20 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5221083</td>
+<td>The {{nv config apply}} command fails due to a {{switchd}} reload failure.</td>
+<td>5.16.1-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5220910</td>
 <td>NVUE accepts invalid telemetry snapshot file paths; however, the corresponding show commands fail with an error in the NVUE logs. </td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5219619</td>
+<td>A long LDAP secret causes a service crash.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
@@ -2328,6 +2544,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <tr>
 <td>5194451</td>
 <td>The {{auth-fail-vlan}} row in the {{nv show system dot1x}} command output does not show the operational value of {{auth-fail-vlan}} even when it is configured.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5190241</td>
+<td>When you configure TACACS+ authentication with a server hostname resolving to more than one IP address and enable STP on a bridge (the default setting), the switch stops responding.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
@@ -2395,6 +2617,12 @@ Pin-Priority: 992</td>
 <td>5.16.7, 5.18.1</td>
 </tr>
 <tr>
+<td>5175384</td>
+<td>After a restart, NVUE sometimes tries to read ASIC platform resource information too early, before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5174873</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.1</td>
@@ -2419,6 +2647,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5167890</td>
+<td>The telemetry configuration for 802.1X works correctly, but the {{nv show system telemetry stats-group &lt;stats-group-name&gt; dot1x-stats}} command shows the 802.1x class states as disabled even though they are enabled globally and the metrics are still being exported properly. This issue creates misleading output, which appears as if the stats-group configuration is incorrect.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
 <td>5167882</td>
 <td>In rare cases {{switchd}} crashes and the cl-support file triggers twice, which interrupts legacy {{mlxlink}} collection and causes multiple per port {{mlxlink}} support files to generate.</td>
 <td>5.16.1-5.18.1</td>
@@ -2439,6 +2673,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>5159368, 5170404</td>
 <td>When the Spectrum 1 switch with scaled configuration collects a cl-support file, the collection might timeout for certain modules and lose system and networking data.</td>
+<td>5.18.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5159364</td>
+<td>When you change an 802.1x-enabled port from layer 2 to layer 3 by removing the bridge configuration, the old layer 2 ACL rules file remains. As a result, the system keeps both layer 2 and layer 3 802.1x ACL rule files; only the layer 3 rules file should remain.</td>
 <td>5.18.0-5.18.1</td>
 <td></td>
 </tr>
@@ -2513,6 +2753,12 @@ Pin-Priority: 992</td>
 <td>5072739, 5089352</td>
 <td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
 <td>5.17.0-5.18.1</td>
+<td></td>
+</tr>
+<tr>
+<td>5057424</td>
+<td>After a chain of faults disables automatic cl-support file generation, using NVUE to turn the feature off, then back on causes the switch to forget important fault history. The original support file from the first fault and the reason why auto-generation was disabled disappear, and the status incorrectly looks healthy and enabled even though the earlier fault chain had already triggered deactivation. </td>
+<td>5.16.0-5.18.1</td>
 <td></td>
 </tr>
 <tr>

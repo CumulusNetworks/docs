@@ -17,9 +17,7 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 
 ## What's New in Cumulus Linux 5.18.2
 
-Cumulus Linux 5.18.2 provides {{<link title="Cumulus Linux 5.18 Release Notes" text="bug fixes">}} and the following new feature:
-
-- Improvements to {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog">}} deadlock detection
+Cumulus Linux 5.18.2 provides a new SDK and improvements to {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog">}} deadlock detection.
 
 You can upgrade to 5.18.2 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the -t option to migrate your configuration:
 - 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7, 5.16.8
@@ -27,7 +25,7 @@ You can upgrade to 5.18.2 from the following versions using optimized image upgr
 - 5.18.0, 5.18.1
 
 {{%notice warning%}}
-NVIDIA is introducing new capabilities to Spectrum-6 based switch hardware that requires a special firmware version. The new firmware is included in Cumulus Linux 5.18.2. NVIDIA strongly recommends you upgrade the SN6600-LD switch to Cumulus Linux 5.18.2. Failure to perform this upgrade will prevent the switch from being upgraded to future software releases.
+NVIDIA is introducing new capabilities to Spectrum-6 based switch hardware that requires a special firmware version. The new firmware is included in Cumulus Linux 5.18.2. NVIDIA requires you to upgrade the SN6600-LD switch to Cumulus Linux 5.18.2. Failure to perform this upgrade will prevent the switch from being upgraded to future software releases.
 {{%/notice%}}
 
 ## What's New in Cumulus Linux 5.18.1

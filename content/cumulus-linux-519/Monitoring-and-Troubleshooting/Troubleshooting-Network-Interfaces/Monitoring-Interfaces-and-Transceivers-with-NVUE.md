@@ -87,6 +87,7 @@ link
   fec                                         auto     
   mtu                      9216               9216     
   [breakout]                                           
+  physical-name            swp1c1c2                    
   state                    up                 up       
   stats                                                
     carrier-transitions    4                           

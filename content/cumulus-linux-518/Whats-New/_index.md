@@ -27,7 +27,7 @@ You can upgrade to 5.18.2 from the following versions using optimized image upgr
 - 5.18.0, 5.18.1
 
 {{%notice note%}}
-NVIDIA strongly recommends you upgrade the SN6600-LD switch to Cumulus Linux 5.18.2. Failure to perform this upgrade will prevent the switch from being upgraded to future software releases.
+NVIDIA is introducing new capabilities to Spectrum-6 based switch hardware that requires a special firmware version to be flashed on the switch. The new firmware is included in Cumulus Linux 5.18.2. NVIDIA strongly recommends you upgrade the SN6600-LD switch to Cumulus Linux 5.18.2. Failure to perform this upgrade will prevent the switch from being upgraded to future software releases.
 {{%/notice%}}
 
 ## What's New in Cumulus Linux 5.18.1

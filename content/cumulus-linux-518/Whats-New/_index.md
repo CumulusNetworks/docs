@@ -8,12 +8,27 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 - For a list of open and fixed issues in Cumulus Linux 5.18, see the {{<link title="Cumulus Linux 5.18 Release Notes" text="Cumulus Linux 5.18 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.18, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
-## What's New in Cumulus Linux 5.18.1
-
 {{%notice note%}}
-Cumulus Linux 5.18.1 is tested and validated as part of the Spectrum-X reference architecture release 2.3.
+- Cumulus Linux 5.18.1 is tested and validated as part of the Spectrum-X reference architecture release 2.3.1.
+- Cumulus Linux 5.18.2 is tested and validated as part of the Spectrum-X reference architecture release 2.3.2.
+
 For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
+
+## What's New in Cumulus Linux 5.18.2
+
+Cumulus Linux 5.18.2 provides a new SDK and improvements to {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog">}} deadlock detection.
+
+You can upgrade to 5.18.2 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the -t option to migrate your configuration:
+- 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7, 5.16.8
+- 5.17.0
+- 5.18.0, 5.18.1
+
+{{%notice warning%}}
+NVIDIA is introducing new capabilities to Spectrum-6 based switch hardware that requires a special firmware version. The new firmware is included in Cumulus Linux 5.18.2. NVIDIA requires you to upgrade the SN6600-LD switch to Cumulus Linux 5.18.2. Failure to perform this upgrade will prevent the switch from being upgraded to future software releases.
+{{%/notice%}}
+
+## What's New in Cumulus Linux 5.18.1
 
 Cumulus Linux 5.18.1 provides bug fixes.
 

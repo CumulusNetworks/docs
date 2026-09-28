@@ -353,6 +353,29 @@ BFD offload moves BFD packet transmission and reception off the control plane, w
 - You can change the offload mode at runtime. FRR does not restart and sessions do not flap.
 {{%/notice%}}
 
+### Change the Offload Mode at Scale
+
+<!-- REVIEW: drafted from a spec passage that gives no exact session count as a threshold, only the
+     scale at which its own validation ran (304 single-hop sessions with subinterfaces) and general
+     "at scale" language. Confirmed the underlying command (`nv set router bfd profile <profile-id>
+     shutdown enabled`) already ships and is documented elsewhere on this page; the recommendation
+     to use it before a mode change is new in this spec revision. Confirm the guidance applies at the
+     scale you expect to run before publishing, and delete this comment. -->
+
+If you run a large number of BFD sessions, administratively shut down BFD before you change the offload mode or switch the offload backend between `kernel` and `hardware`, then re-enable BFD after the change. Changing the mode while a large number of sessions are running at their configured timers might prevent the sessions from converging reliably. Administratively shutting down BFD does not affect the underlying link or an established BGP TCP session; BGP remains established throughout.
+
+```
+cumulus@switch:~$ nv set router bfd profile BFD1 shutdown enabled
+cumulus@switch:~$ nv config apply
+```
+
+Change the offload mode, then re-enable BFD:
+
+```
+cumulus@switch:~$ nv set router bfd profile BFD1 shutdown disabled
+cumulus@switch:~$ nv config apply
+```
+
 ### Offload to the Kernel
 
 In `kernel` mode, the kernel driver (`sx_bfd`) maintains the BFD sessions. This mode supports numbered and IPv6 unnumbered sessions, and carries both single-hop and multi-hop sessions.

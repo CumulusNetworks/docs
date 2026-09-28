@@ -3378,7 +3378,7 @@ The following example configures BGP advertisement delay:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default bgp advertisement-delay time 90
+cumulus@leaf01:~$ nv set vrf default router bgp advertisement-delay time 90
 cumulus@leaf01:~$ nv config apply
 ```
 

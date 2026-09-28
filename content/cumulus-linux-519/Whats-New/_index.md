@@ -50,6 +50,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Patches" text="Patch uninstall returns the switch to the patch installed underneath, and a new command reclaims the space held by superseded patches">}}
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog detection parameters that distinguish a real deadlock from steady-state congestion">}}
 - {{<link url="Security-Configuration-Visibility" text="Security configuration visibility for manufacturing and field inspection">}}
+- {{<link url="Packet-Trimming/#back-to-sender-notification-on-congestion-tail-drop" text="Back-to-sender notification on congestion tail drop">}} on Spectrum-6 switches
 - {{<link url="Packet-Trimming/#back-to-sender-notification-on-link-down" text="Back-to-sender notification when an MRC egress link fails">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#extended-grading" text="Adaptive routing extended grading on Spectrum-6 switches">}}
 - {{<link url="High-Frequency-Telemetry/#step-time-estimation" text="Step time estimation for AI training workloads">}}

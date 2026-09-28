@@ -51,14 +51,12 @@ cumulus@switch:~$ nv set system gnmi-server state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-<!-- REVIEW: the bullet below beginning "Cumulus Linux does not check the listening address" says that
-     Cumulus Linux does not validate the listening address. The
-     source document contradicts itself here: its requirements section states that an invalid
-     listening address "shall be rejected at apply", while its limitations section states that the
-     address "is not validated against the addresses actually configured on the switch" and its test
-     plan says an unconfigured address "should be rejected once validation exists". Drafted the
-     limitation, because two of the three sections agree validation does not exist in this release.
-     Confirm against a candidate build before publishing, and delete this comment. -->
+<!-- REVIEW: the bullet below beginning "Cumulus Linux does not check the listening address" documents
+     the limitation rather than the requirement. The spec's System Requirements now annotate the
+     rejection requirement itself as "not met today, see Known Limitations", which resolves the
+     three-way contradiction an earlier version of this spec had between its requirements, its
+     limitations, and its test plan. Confirm against a candidate build before publishing, and delete
+     this comment. -->
 
 {{%notice note%}}
 - The listening address can be any address configured on the switch, including a loopback address, a front panel port address, or the management address. The VRF that owns the address does not affect whether the gNMI server binds it.
@@ -125,22 +123,26 @@ When you do not configure a source address, the kernel selects the source of the
 
 The source address is optional and applies to one tunnel server, so tunnel servers with and without a source address coexist on the same switch.
 
-<!-- REVIEW: two items in the note below. First, the first two bullets say Cumulus Linux rejects an
-     address in another VRF and an address not configured on the switch. The spec's requirements
-     section supports both as a "shall", but its validation table lists only three rejections
-     (malformed, IPv6 link-local, family mismatch) and its test plan says a default-VRF address
-     "must be rejected once validation exists". This is the same requirement-versus-reality question
-     already flagged for the listening address further up the page. Confirm on a candidate build,
-     and soften both bullets to "does not work" if the validation did not ship. Second, an earlier
-     revision of this note also listed reserved loopback addresses such as 127.0.0.1 and ::1 as
-     rejected, which the spec states in its requirements and its test plan; that clause is no longer
-     here. Confirm the removal was deliberate. Delete this comment before publishing. -->
+<!-- REVIEW: this note previously softened two bullets to "does not work" because the spec's validation
+     table listed only three rejections (malformed, IPv6 link-local, family mismatch) and its test
+     plan said an out-of-VRF address "must be rejected once validation exists". The spec has since
+     added a full Validation subsection with literal CLI reject messages for an address outside the
+     mgmt VRF, an address nowhere on the switch, and an address being deleted while still referenced,
+     plus a Security-section line stating plainly that "validation now rejects it at apply" -- concrete
+     enough that this draft states the rejections as fact and quotes the messages. The test plan's
+     "once validation exists" line was not updated to match, which is the one piece of evidence still
+     pointing the other way. Confirm the three literal messages against a candidate build before
+     publishing, and delete this comment. Separately, an earlier revision of this note also listed
+     reserved loopback addresses such as 127.0.0.1 and ::1 as rejected, which the spec's requirements
+     and test plan still state but the new Validation subsection's own three-row table omits; that
+     clause remains deliberately absent below. Confirm the omission is intentional. -->
 
 {{%notice note%}}
-- Dial-out leaves through the management VRF, so the source address must be reachable there. A loopback address you configure with the `nv set vrf mgmt loopback ip address <ip-address>` command qualifies, and so does the management address itself. Cumulus Linux rejects an address configured in another VRF, such as a loopback address in the default VRF, and you cannot point a tunnel server at another VRF.
-- The source address must already be configured on the switch, or you must add it in the same `nv config apply` that references it. Cumulus Linux validates the address against the pending configuration rather than the running system.
+- Dial-out leaves through the management VRF, so the source address must be reachable there. A loopback address you configure with the `nv set vrf mgmt loopback ip address <ip-address>` command qualifies, and so does the management address itself. Cumulus Linux rejects an address configured in another VRF, such as a loopback address in the default VRF, with `source-address <ip-address> is configured on <interface>, which is not in the mgmt VRF`.
+- The source address must already be configured on the switch, or you must add it in the same `nv config apply` that references it. Cumulus Linux validates the address against the pending configuration rather than the running system, so adding a loopback address and setting it as the source address in the same apply works. If the source address matches nothing on the switch, Cumulus Linux rejects the apply with `source-address <ip-address> is not configured on this switch`.
 - Cumulus Linux rejects the configuration when you run `nv config apply` if the source address is malformed, is an IPv6 link-local address, or belongs to a different address family than the tunnel server address.
-- Cumulus Linux also rejects an apply that deletes an address while a tunnel server still references it as a source address. To remove the address, remove or repoint the source address in the same apply.
+- Cumulus Linux also rejects an apply that deletes an address while a tunnel server still references it as a source address, with `source-address <ip-address> is being removed from the mgmt VRF while it is still configured as a source address`. To remove the address, remove or repoint the source address in the same apply.
+- If both the source address and a certificate are invalid, Cumulus Linux reports both errors from the same `nv config apply` rather than stopping at the first one.
 - The source address selects the address the switch presents to the tunnel server. It does not filter what the switch accepts.
 {{%/notice%}}
 
@@ -188,12 +190,12 @@ cumulus@switch:~$ nv show system gnmi-server listening-address
 10.1.1.100
 ```
 
-<!-- REVIEW: this release has no way to confirm a dial-in bind from nv show. The spec requires that
-     "a bind failure shall be visible in nv show, for both directions", but its CLI section says
-     "for dial-in, show commands remain unchanged", and its limitations section says an address the
-     switch does not have is accepted and "bind succeeds" anyway. So an operational column that shows
-     the address proves nothing about reachability, and no rule for reading it can be written yet.
-     Add one here when the requirement lands. Delete this comment before publishing. -->
+<!-- REVIEW: this release has no way to confirm a dial-in bind from nv show. The spec's System
+     Requirements now annotate this requirement directly as "not met today, see Known Limitations",
+     confirming what previously had to be inferred by cross-referencing three sections. An operational
+     column that shows the address still proves nothing about reachability, and no rule for reading it
+     can be written yet. Add one here when the requirement lands. Delete this comment before
+     publishing. -->
 
 `localhost` appears under `operational` even when you configure no listening address, because Cumulus Linux adds it for you.
 

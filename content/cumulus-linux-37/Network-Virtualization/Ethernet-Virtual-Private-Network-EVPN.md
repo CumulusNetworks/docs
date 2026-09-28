@@ -246,7 +246,6 @@ These commands create the following configuration snippet in the
 {{%notice note%}}
 - These commands are per VNI and must be specified under `address-family l2vpn evpn` in BGP.
 - If you delete the RD or RT later, it reverts back to its corresponding default value.
-- Route target auto derivation does not support 4-byte AS numbers; If the router has a 4-byte AS, you must define the RTs manually.
 {{%/notice%}}
 
 You can configure multiple RT values for import or export for a VNI. In

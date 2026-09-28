@@ -588,8 +588,16 @@ To stop allowing Class E as routable address space, run the `nv unset router all
 - The `nv set router allow-reserved-range class-e` command applies to IPv4 only. Cumulus Linux has no equivalent range for IPv6.
 - Behavior is identical in the default VRF and in every other VRF.
 - Both ends of a BGP session that runs over a Class E address must run Cumulus Linux 5.19 or later.
-- While Class E is not allowed, the control-plane packet filter (instead of the ASIC) drops packets that arrive on a front-panel port with a Class E source address; therefore, so hardware drop counters for Class E traffic no longer increment.
+- While Class E is not allowed, the control-plane packet filter (instead of the ASIC) drops packets that arrive on a front-panel port with a Class E source address; therefore hardware drop counters for Class E traffic no longer increment.
 {{%/notice%}}
+
+If you configure a Class E address before you allow Class E, Cumulus Linux still applies the configuration but prints a warning:
+
+```
+cumulus@switch:~$ nv set interface swp1 ip address 241.1.1.1/32
+cumulus@switch:~$ nv config apply
+swp1: 241.1.1.1/32 is in the reserved class-e range - set router allow-reserved-range class-e to use it
+```
 
 ### Show Class E Address Space Setting
 

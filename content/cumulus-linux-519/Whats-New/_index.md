@@ -167,6 +167,15 @@ Cumulus Linux 5.19 upgrades FRR, which moves the vtysh commands that configure P
 - Interface-level commands, such as `ip pim`, `ip pim hello`, `ip pim bfd`, `ip pim use-source`, `ip pim allow-rp`, `ip pim active-active`, `ip multicast boundary oil`, and all `ip igmp` commands, are unchanged. All NVUE commands are unchanged.
 - Check the `/etc/frr/frr.conf` file and any automation that configures PIM or MSDP through vtysh before you upgrade.
 
+### Class E Address Space Support
+
+FRR now treats the IPv4 240.0.0.0/4 (Class E) range as valid unicast address space on every switch running Cumulus Linux 5.19, whether or not you allow Class E as routable address space. A Class E interface address and its connected route can appear in `nv show interface` output and the routing table even if you never run the `nv set router allow-reserved-range class-e` command.
+
+- The FRR `allow-reserved-ranges` command no longer includes Class E; it now covers only 0.0.0.0/8 and 127.0.0.0/8. If you previously set this command only to use Class E, you no longer need to.
+- Until you allow Class E, Cumulus Linux still blocks Class E traffic, but the control-plane packet filter drops it instead of the ASIC. If you monitor hardware drop counters for Class E source addresses, you see this difference after you upgrade.
+
+For more information, see {{<link url="FRRouting/#class-e-address-space-support" text="Class E Address Space Support">}}.
+
 ### Cumulus VX
 
 NVIDIA no longer releases Cumulus VX as a standalone image. To simulate a Cumulus Linux switch, use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA DSX Air">}}.

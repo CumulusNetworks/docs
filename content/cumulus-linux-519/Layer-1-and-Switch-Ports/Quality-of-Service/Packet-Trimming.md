@@ -38,9 +38,19 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- When you enable packet trimming, one service port is used. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
+- On Spectrum-4 and Spectrum-5 switches, when you enable packet trimming, one service port is used. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
 - On a switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`.
 - When you enable packet trimming, do not configure packet trimming port eligibility, port security, adaptive routing, QoS, ACLs, PTP, VRR, PBR, telemetry, or histograms on the service port.
+
+<!-- REVIEW: this notice used to describe the service port unconditionally, for every ASIC. Spectrum-6
+     switches trim packets with an on-chip trim agent instead of port recirculation and do not use a
+     service port for packet trimming or back-to-sender on congestion tail drop; the functional
+     specification for BTS on congestion tail drop (FR 4373590, approved 22-09-2026) records this as a
+     release-note withdrawal: "On Spectrum-6, nv set system forwarding packet-trim service-port is no
+     longer offered. The leaf was exposed by accident, did nothing there, and a configuration that set
+     it was never supported." Back-to-sender notification on link down is the exception -- it uses a
+     recirculation session and its own service port on Spectrum-6 too; see that section below.
+     Delete this comment before publishing. -->
 
 {{%/notice%}}
 
@@ -271,12 +281,130 @@ To clear the packet trimming counters for a specific interface, run the `nv acti
 cumulus@switch:~$ nv action clear interface swp1 packet-trim counters
 ```
 
-## Back-to-sender Notification on Link Down
+## Back-to-sender Notification on Congestion Tail Drop
 
-<!-- REVIEW: the specification states GA for this feature in its object model section (FR 5013705
-     (GA)) but states no quality level anywhere else. Confirm against the 5.19 Redmine execution
-     query and append " (Beta)" to the notice below and to the What's New entry if it ships as Beta.
+<!-- REVIEW: before this section publishes, confirm on a candidate build that a Spectrum-6 switch
+     actually returns a back-to-sender notification. The functional specification (FR 4373590,
+     approved 22-09-2026) is explicit, in its own Testing section, that this has not yet been
+     demonstrated anywhere: "Returning a notification to the sender has not yet been demonstrated on
+     Spectrum-6 in any environment. On real hardware and on the simulator alike, the trim agent emits
+     the trimmed copy out the congested egress port with the forward marking, instead of returning
+     it." The traffic-level tests that would prove the behavior are explicitly contingent on that
+     being fixed first. Every command, parameter and constraint below is otherwise fully specified
+     and approved (all open issues closed) -- this flag is about whether the feature does what the
+     specification says, not about whether the specification itself is settled. Do not publish this
+     section until this is confirmed working. Delete this comment before publishing. -->
+
+<!-- REVIEW: no quality level (GA or Beta) is stated anywhere in this specification, unlike the
+     sibling back-to-sender-on-link-down specification, which labels itself "(GA)" in its object
+     model section. Confirm against the 5.19 Redmine execution query and add a "(Beta)" notice below
+     and to the What's New entry if it ships as Beta. Delete this comment before publishing. -->
+
+{{%notice note%}}
+- Cumulus Linux supports back-to-sender notification on congestion tail drop on Spectrum-6 switches only, for layer 3 unicast RoCEv2 traffic with IPv4 or IPv6 outer headers, in the default VRF. The outer header can be an SRv6 encapsulation, which is how MRC carries RoCEv2 traffic.
+- Back-to-sender notification is disabled by default.
+{{%/notice%}}
+
+A congested Spectrum-6 switch can discard a RoCEv2 packet at an egress shared buffer; this is a congestion tail drop. Normally the switch discards the packet silently and the sender learns of the loss only from the receiver or from a timeout. With back-to-sender notification enabled, the switch instead keeps the discarded packet's headers, marks them, and returns them to the sender, so the sender learns of the loss and can retransmit within a fraction of a round trip. This feature brings congestion tail drop back-to-sender notification to Spectrum-6, matching the behavior Spectrum-4 XGS switches already provide.
+
+Back-to-sender notification on congestion tail drop is a property of packet trimming: you select it, instead of the existing trim-and-forward behavior, for a specific combination of egress port and traffic class. A combination you do not select for back-to-sender continues to trim-and-forward as it does today, and no combination does both. Unlike Spectrum-4, where the whole switch chooses one behavior, a Spectrum-6 switch can run both at once, on different port and traffic class combinations.
+
+This feature is designed for XGS `dci-custom` deployments, where long-haul, inter-datacenter traffic runs on its own lossy traffic class. Enable back-to-sender only on the traffic class and ports that carry that long-haul traffic; the commands below do not require the `dci-custom` profile, but nothing checks that you scoped back-to-sender correctly.
+
+{{%notice note%}}
+Back-to-sender notification on congestion tail drop has no counters or telemetry of its own. Notifications count as trimmed packets on the same {{<link url="#packet-trimming-counters" text="packet trimming counters">}} that already report trim-and-forward, using the same metric and gNMI path names.
+{{%/notice%}}
+
+### Configure Back-to-sender Notification on Congestion Tail Drop
+
+Back-to-sender notification on congestion tail drop shares its enable state, truncation size, and switch priority with trim-and-forward, because both run on the same underlying trim session; a change to any of these affects both. Only the DSCP value the switch marks on the notification is independent between the two.
+
+To enable and configure back-to-sender notification on congestion tail drop:
+- Enable packet trimming and set its shared truncation size and switch priority, if you have not already. Refer to {{<link url="#global-level-packet-trimming" text="Global Level Packet Trimming">}}.
+- Select the egress ports and traffic class you want back-to-sender notification on, instead of trim-and-forward. This setting is required; until you set it, every trim-eligible combination stays trim-and-forward.
+- Optionally, set the DSCP value the switch marks on the notification. You can specify a value between 0 and 63, or `port-level` to use the port-level remark profile. If you do not set this, the switch uses the value from the XGS parameter template.
+- Optionally, set a device-wide DSCP eligibility filter, and the ingress interfaces it applies to. This filter is shared between back-to-sender and trim-and-forward. If you do not set a filter, every DSCP is eligible.
+
+<!-- REVIEW: the marking DSCP example (11) and the DSCP eligibility values (24, 26, 46) below are the
+     specification's own CLI examples, not confirmed defaults or recommended values for a production
+     deployment. Replace with values appropriate to your DSCP plan.
      Delete this comment before publishing. -->
+
+```
+cumulus@switch:~$ nv set system forwarding packet-trim state enabled
+cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 24
+cumulus@switch:~$ nv set system forwarding packet-trim size 256
+cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 4
+cumulus@switch:~$ nv set system forwarding packet-trim notify-sender tail-drop remark dscp 11
+cumulus@switch:~$ nv set interface swp1-48 packet-trim notify-sender tail-drop egress-eligibility traffic-class 4
+cumulus@switch:~$ nv set system forwarding packet-trim ingress-eligibility dscp 26,46
+cumulus@switch:~$ nv set system forwarding packet-trim ingress-eligibility interface swp1-10
+cumulus@switch:~$ nv config apply
+```
+
+To select a second, distinct traffic class for back-to-sender on a different set of ports:
+
+```
+cumulus@switch:~$ nv set interface swp33-48 packet-trim notify-sender tail-drop egress-eligibility traffic-class 5
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+- Back-to-sender-enabled ports support at most three distinct sets of eligible traffic classes across the switch; ports with the same set of classes share one hardware resource. A fourth distinct set is refused, naming the ports and the sets involved.
+- If a DSCP eligible for trimming resolves, through your QoS configuration, onto the traffic class the switch trims to, the switch accepts the configuration but reports a warning in the `nv show system forwarding packet-trim notify-sender` command output.
+- Enable back-to-sender only on traffic classes carrying traffic that leaves the datacenter, and do not enable it on a lossless traffic class. The switch does not check either of these; get them wrong and the feature still applies, just not usefully.
+- If you change QoS or class-of-service configuration after you configure back-to-sender, recheck that your eligible DSCP values still resolve to the traffic class you intend. The switch does not revalidate this automatically.
+- Changing any back-to-sender or trim-and-forward parameter briefly interrupts trimming while the switch rebuilds the trim session. Forwarding is not affected.
+- Cumulus Linux does not rate-limit back-to-sender notifications.
+{{%/notice%}}
+
+If the configuration is not valid, `nv config apply` fails and the switch logs the reason to the system log.
+
+To turn off packet trimming, including back-to-sender notification, without discarding your eligibility configuration, run the `nv unset system forwarding packet-trim state` command:
+
+```
+cumulus@switch:~$ nv unset system forwarding packet-trim state
+cumulus@switch:~$ nv config apply
+```
+
+### Show Back-to-sender Notification on Congestion Tail Drop Configuration
+
+To show the requested and applied back-to-sender configuration for congestion tail drop, and the resolved eligible traffic classes with their interfaces, run the `nv show system forwarding packet-trim notify-sender` command. If you also configure back-to-sender notification on link down, the same command shows that configuration too; refer to {{<link url="#show-back-to-sender-notification-configuration" text="Show Back-to-sender Notification Configuration">}}.
+
+<!-- TODO: capture this output on a Spectrum-6 switch and paste it here. The block below is adapted
+     from the specification's own draft output. -->
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim notify-sender
+                  operational  applied  pending
+----------------  -----------  -------  -------
+tail-drop
+  state           enabled      enabled  enabled
+  remark
+    dscp          11           11       11
+
+BTS Egress Eligibility TC-to-Interface Information
+====================================================
+TC  Interfaces
+--  ----------
+4   swp1-swp48
+5   swp33-swp48
+```
+
+If the configuration is refused, the command shows the same view with the columns disagreeing, and the reason in `session-down-reason`:
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim notify-sender
+                       operational  applied  pending
+---------------------  -----------  -------  -------
+tail-drop
+  state                disabled     enabled  enabled
+  session-down-reason  packet-trim: swp5 TC4 is in both the trim-and-forward
+                        and the BTS eligibility list; a port and traffic class
+                        selects one direction
+```
+
+## Back-to-sender Notification on Link Down
 
 {{%notice note%}}
 - Cumulus Linux supports back-to-sender notification on link down on Spectrum-6 switches only, for layer 3 unicast RoCEv2 and MRC (Multipath Reliable Connection) traffic.
@@ -287,52 +415,48 @@ MRC uses a static SRv6 route. When the egress link fails, the sender keeps trans
 
 Back-to-sender notification on link down runs alongside packet trimming. It uses its own recirculation session and its own service port.
 
-<!-- REVIEW: the specification's own CLI section states that this command tree, its leaf names, and
-     its show syntax are the specification's proposal and await architecture sign-off (open issue
-     OI-3, numbered OI-5 in the CLI section). Every command below is therefore provisional. The
-     specification also reproduces an earlier architecture command block that differs in four
-     places: it offers `remark dscp port-level`, brackets ingress eligibility as optional, and adds
-     `policer rate` and `policer burst` nodes. The CLI section overrides all four, so the draft
-     follows the CLI section. Validate the whole tree against a candidate build.
-     Delete this comment before publishing. -->
-
 ### Configure Back-to-sender Notification
 
 To enable and configure back-to-sender notification on link down:
 - Set the state to enabled.
-- Set the DSCP value the switch writes onto the notification. You can specify a value between 0 and 63. This setting is required and applies to the whole switch. Port level remarking is not supported for notifications.
-- Set the ingress eligibility DSCP match list on the interfaces you want to cover, or on all interfaces. This setting is required. The switch sends a notification only for a packet that arrives with one of these DSCP values.
-- Set the maximum size of the notification in bytes. You can specify a value between 256 and 1024; the value must be a multiple of 4. The default is 256.
-- Set the switch priority of the notification. You can specify a value between 0 and 7. The default is 1.
-- Set the service port. The service port must be a bonus port. If you do not set one, the switch uses the platform bonus port.
+- Optionally, set the DSCP value the switch writes onto the notification. You can specify a value between 0 and 63; the default is 11. Port level remarking is not supported for notifications. The value cannot be one of the ingress eligibility DSCP values below.
+- Optionally, set the ingress eligibility DSCP match list on the interfaces you want to cover, or on all interfaces. The switch sends a notification only for a packet that arrives with one of these DSCP values. If you do not set this while the feature is enabled, the switch programs a default list of 1, 2, 3, 4.
+- Optionally, set the maximum size of the notification in bytes. You can specify a value between 256 and 1024; the value must be a multiple of 4. The default is 256.
+- Optionally, set the switch priority of the notification. You can specify a value between 0 and 7. The default is 1.
+- Optionally, set the service port. The service port must be a bonus port, and cannot be the same port trim-and-forward or back-to-sender on congestion tail drop uses. If you do not set one, the switch uses the platform bonus port.
 
-<!-- REVIEW: this bullet used to add "and must not be the packet trimming service port", which the
-     link-down specification requires. That constraint is now doubtful on Spectrum-6. The tail-drop
-     specification (FR 4373590, approved 22-09-2026) records a withdrawal in its release notes: "On
-     Spectrum-6, nv set system forwarding packet-trim service-port is no longer offered. The leaf was
-     exposed by accident, did nothing there, and a configuration that set it was never supported."
-     If there is no operator-set packet trimming service port on Spectrum-6, there is nothing for the
-     link-down service port to collide with, so the clause was removed rather than left asserting a
-     constraint against a leaf that no longer exists. Confirm, and see the report for the separate
-     question this raises about the service port notice earlier on this page.
-     Delete this comment before publishing. -->
+<!-- REVIEW: two internal contradictions in the specification (revision 1.4, 23-09-2026), found on
+     this pass and not yet resolved:
 
-<!-- REVIEW: the ingress eligibility DSCP value in the examples is a placeholder. The specification
-     does not agree a default (open issue OI-2, numbered OI-4 in its tables), states that the node is
-     mandatory while the feature is enabled, and says explicitly that the lab values 10 and 20 are
-     not the product contract. Replace the example value if a default is agreed.
-     Delete this comment before publishing. -->
+     1. Switch priority default. The object model section gives "switch-priority uint8 # 0-7
+        (default 1)", matching the configuration-knobs example elsewhere in the same document
+        (packet_trim.notify-sender.link-down.switch_prio = 1). But the CLI Options Description table
+        in the same section (Table 16) gives the default as 4. Documented here as 1, the majority
+        reading and the value already shown in the specification's own worked CLI example
+        (switch-priority 1). Confirm which is correct before publishing.
 
-<!-- REVIEW: the per-interface command below carries an `spxm` node that the functional
-     specification does not have. The specification (revision 1.2, 07-09-2026) gives
-     `nv set interface <port-range|all> packet-trim notify-sender link-down ingress-eligibility dscp`.
-     The object model review circulated on 18-09-2026 for FR 5013705 and FR 4373590 gives, under
-     `nv tree interface swp1 packet-trim`, `+--rw spxm / +--rw notify-sender / +--rw link-down /
-     +--rw ingress-eligibility / +--rw dscp* [integer]`. The draft follows the object model review
-     because it is the later document, it is the artifact the command path is generated from, and
-     the `spxm-link-down-pkts` counter name in the same tree corroborates an `spxm` node. Note the
-     asymmetry: the review puts `spxm` in the interface tree only, not in the system tree, so the
-     system commands above are unaffected. Confirm which form ships before publishing.
+     2. Ingress eligibility DSCP: required, or optional with a default? The object model comment
+        reads "required when enabled", and REQ-SW-009 states "Empty eligibility DSCP while enabled =
+        hard error." But the Validation section (5.4) states the opposite: "Empty DSCP list while
+        enabled | Intent | Allow. Program default 1, 2, 3, 4" -- and the CLI Options Description
+        table agrees, giving a default of 1,2,3,4 and marking it optional. Documented here as
+        optional with a default, per the validation-specific section and the CLI options table,
+        which is the same section-role reasoning used elsewhere in this repo to prefer a CLI/
+        validation section over a terser requirements-table comment. Confirm before publishing --
+        if it is in fact required, delete the "if you do not set this" sentence above.
+
+     3. Service port collision. The specification's Validation section (5.4) and its negative test
+        case (Testing, case 7) both state the link-down service port must not be the same port as
+        "the T&F recirc port" -- Trim-and-Forward's recirculation port -- and that nv config apply
+        fails if it is. This appears to be shared validation logic carried over from Spectrum-4/5,
+        where Trim-and-Forward genuinely does use a service port. The separate BTS tail-drop
+        specification (FR 4373590, approved 22-09-2026) states Trim-and-Forward on Spectrum-6 does
+        not use a service port at all (it uses the on-chip trim agent), and that the NVUE leaf for
+        setting one is withdrawn there. It isn't clear from either document what "the T&F recirc
+        port" means on Spectrum-6 in practice, or how an operator would know which port to avoid.
+        Documented here as a stated constraint, since it is validated and tested, but confirm what
+        it actually means on Spectrum-6 before publishing.
+
      Delete this comment before publishing. -->
 
 ```
@@ -392,19 +516,36 @@ link-down
 - To show only the link down configuration, run the `nv show system forwarding packet-trim notify-sender link-down` command.
 - To show the link down configuration for an interface, run the `nv show interface <interface-id> packet-trim notify-sender link-down` command.
 
-<!-- REVIEW: counters are an unresolved fork and are deliberately not documented here. The functional
-     specification (revision 1.2) puts counters, their show and clear commands, and all telemetry out
-     of scope for this release (REQ-SYS-008), and says the hardware counters are bound but not
-     exposed. The object model review circulated eleven days later, on 18-09-2026, adds them under
-     link-down as newly added changes: a `+--ro counters` container holding `trim-link-down-pkts`,
-     `spxm-link-down-pkts`, and `last-clear-time`, a `@clear` action, and the two commands
-     `nv show system forwarding packet-trim notify-sender link-down counters` and
-     `nv action clear system forwarding packet-trim notify-sender link-down counters`.
-     Nothing is drafted because documenting a capability the specification defers is the worse of the
-     two errors. If the object model review is confirmed, add a counters subsection using those two
-     commands and those three leaf names - note they differ from the specification's predicted names
-     (`default-trim-pkts`, and `-bytes` leaves that the review does not have).
-     Delete this comment before publishing. -->
+### Show and Clear Back-to-sender Notification on Link Down Counters
+
+To show the counters for back-to-sender notification on link down, run the `nv show system forwarding packet-trim notify-sender link-down counters` command:
+
+<!-- TODO: capture this output on a Spectrum-6 switch and paste it here. The specification does not
+     give a worked example of this output; the layout below follows the format of the other show
+     commands on this page. Delete this comment before publishing. -->
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim notify-sender link-down counters
+                      operational
+--------------------  -----------
+spxm-link-down-pkts   0
+trim-link-down-pkts   0
+last-clear-time       never
+```
+
+- `spxm-link-down-pkts` shows the number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. This counts notifications the switch attempted, not notifications the switch confirmed the sender received.
+- `trim-link-down-pkts` shows the number of those packets the switch actually trimmed and sent from the service port.
+- `last-clear-time` shows when you last cleared these counters.
+
+To clear the counters, run the `nv action clear system forwarding packet-trim notify-sender link-down counters` command:
+
+```
+cumulus@switch:~$ nv action clear system forwarding packet-trim notify-sender link-down counters
+```
+
+{{%notice note%}}
+Clearing the counters resets only the values this command shows. The underlying hardware counters are not cleared, and continue counting from where they were; gNMI and OpenTelemetry report the uncleared hardware values.
+{{%/notice%}}
 
 ## Troubleshooting
 

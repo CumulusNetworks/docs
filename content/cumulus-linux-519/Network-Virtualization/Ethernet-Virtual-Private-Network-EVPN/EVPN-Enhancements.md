@@ -519,6 +519,19 @@ Restarting `switchd` results in network churn. FRR sees interfaces going down, w
 
 If an interface address redistributed by BGP falls within the IP address range configured in the `bgp advertise-unreach interfaces-match` command and the interface goes down operationally, BGP withdraws the type-5 route and advertise the EVPN unreachable route type for the interface IP address.
 
+<!-- REVIEW: new in this spec revision (the previous pass's spec stated "Known Limitations: None"; the
+     current revision adds this limitation with an explicit note to the spec author to put it in the
+     user guide, referencing RM 5264815). The reproduction steps in the spec are garbled by document
+     extraction -- it names both `nv set system dot1x dynamic-vrf disabled` and `nv set system dot1x
+     dynamic-vrf required` in one run-on sentence, without making clear whether the trigger is
+     disabling the feature, changing between modes, or cycling it. Drafted as "change the mode",
+     which covers all three readings, rather than asserting one specific sequence. Confirm the exact
+     reproduction against a candidate build before publishing, and delete this comment. -->
+
+#### Changing the Dynamic VRF Mode Loses Retained State
+
+If you change the `nv set system dot1x dynamic-vrf` mode while an interface has a retained EVPN unreachable route (its link is down and Cumulus Linux still shows the interface as authorized with reason `link-down`), Cumulus Linux stops tracking the retained state of that interface. The link for the interface remains down, but Cumulus Linux no longer advertises or maintains an EVPN unreachable route or an exception for it on the local or remote leaf switch, so traffic can black-hole until the interface comes back up and reauthenticates.
+
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 
 You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or static route underlay. This is a more complex configuration than using <span class="a-tooltip">[eBGP](## "external BGP")</span>. In this case, <span class="a-tooltip">[iBGP](## "internal BGP")</span> advertises EVPN routes directly between <span class="a-tooltip">[VTEPs](## "Virtual Tunnel End Points")</span> and the spines are unaware of EVPN or BGP.

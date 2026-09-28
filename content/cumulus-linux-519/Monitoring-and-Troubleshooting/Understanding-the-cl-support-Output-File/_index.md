@@ -188,6 +188,38 @@ Please send /var/support/cl_support_leaf01_20240214_184806.txz to Cumulus suppor
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Collect the NVMe NAND Debug Log
+
+On an NVIDIA platform with a Virtium NVMe SSD, every `cl-support` run (automatic or manual) also collects the SSD's internal NAND debug log, which Virtium uses to root-cause SSD failures. Collection requires no user action or configuration.
+
+`cl-support` runs NAND log collection read-only and only after the existing SSD health collection finishes, so the two never access the NVMe controller at the same time. Collection does not change the SSD firmware, configuration, or data, and it leaves nothing on the switch afterward. `cl-support` bounds collection with a timeout and an output size limit, so a malfunctioning collection utility cannot exhaust system resources or fail the rest of the `cl-support` run.
+
+The log appears in the archive as `Support/nandlog_<ssd-serial>.bin`, named after the SSD serial number. A summary of the collection, including the SSD model, serial number, resulting file name, and any error, appears in `Support/nandlog.show`.
+
+{{%notice note%}}
+Cumulus Linux only collects the NAND debug log from a Virtium NVMe SSD. On a switch without an NVMe SSD, or with a non-Virtium NVMe SSD, `cl-support` skips NAND log collection and records the reason; the rest of the `cl-support` run is unaffected. The utility that collects the log ships as part of the Cumulus Linux image, so a switch that reaches Cumulus Linux 5.19 only through an APT upgrade might not have it yet; if so, collection is skipped cleanly and the reason is recorded.
+{{%/notice%}}
+
+<!-- REVIEW: this section documents Virtium NVMe SSDs only. The spec's Scope section also lists
+     Phison (ESLS080GTUE-A329IJ1-TYJN) and SMI (MD681GEEBC82) NVMe SSDs as in scope for NAND log
+     collection, each with its own collection utility. Every other section that actually specifies
+     behavior -- Software Requirements (the Gate rule checks only for "Virtium" in the SSD model),
+     Architecture, Performance, and Testing (whose primary negative gating fixture is a non-Virtium,
+     Silicon Motion SSD, confirming collection is *not* triggered for it) -- describes Virtium only.
+     Confirm whether Phison/SMI support actually ships in Cumulus Linux 5.19 or is only planned, and
+     update this section if so. Delete this comment before publishing. -->
+
+<!-- REVIEW: the spec also describes a new FAE CLI command, `nv action generate fae system nvme
+     dump`, to collect the NVMe NAND debug log on demand without a full cl-support run. The spec's
+     only example of it is a truncated CLI capture ("nv action generate fae system nvme dump
+     device") with no output shown, and elsewhere the CLI/UX section says cl-support collects an
+     "ssd-dump.tar.gz" file, which doesn't match the nandlog_<ssd-serial>.bin naming specified for
+     the automatic collection above -- it's unclear whether this is a second, separate output
+     artifact. Confirm the full command syntax (including whether `device` takes a value, such as
+     the NVMe controller device path) and the resulting output file name/location before
+     documenting this command, then delete this comment. -->
+
 <!-- vale off -->
 ## Delete cl-support Files
 <!-- vale on -->

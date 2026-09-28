@@ -400,6 +400,10 @@ The hash calculation uses packet header data to choose to which slave to transmi
 - For IP traffic, the switch uses IP header source and destination fields in the calculation.
 - For IP and TCP or UDP traffic, the switch includes source and destination ports in the hash calculation.
 
+{{%notice note%}}
+The slave interface selection and hash calculation described here apply to standard bond operation. When a host-facing bond in 802.3ad mode operates in {{<link url="LACP-Bypass" text="LACP bypass">}} for PXE or other pre-boot traffic, the switch handles the reply path differently until LACP negotiation completes. See {{<link url="LACP-Bypass/#pxe-reply-path-behavior-during-lacp-bypass" text="PXE Reply-path Behavior during LACP Bypass">}}.
+{{%/notice%}}
+
 For load balancing between multiple interfaces that are members of the same bond, you can hash on these fields:
 
 | <div style="width:200px">Field  | Default Setting | NVUE Command | `traffic.conf`|

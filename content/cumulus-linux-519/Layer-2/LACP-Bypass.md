@@ -17,6 +17,21 @@ In *all-active* mode, when a bond has multiple slave interfaces, each bond slave
 - LACP bypass works with {{<link url="EVPN-Multihoming/#supported-features" text="EVPN multihoming">}}.
 {{%/notice%}}
 
+<!-- vale off -->
+## PXE Reply-path Behavior during LACP Bypass
+<!-- vale on -->
+When a host-facing bond in 802.3ad mode is in LACP bypass and the server pre-boot environment does not run LACP, the switch forwards pre-boot traffic according to bypass behavior until LACP negotiation begins. In all-active mode, each bond slave interface remains active during the pre-boot phase.
+
+For unicast PXE traffic, the switch learns the PXE client MAC address on the bond slave interface that receives the traffic. The switch forwards return traffic for that learned destination back through the same slave interface instead of distributing it across the bond with the normal hash calculation.
+
+<span class="a-tooltip">[DHCP](## "Dynamic Host Configuration Protocol")</span> is an exception. During the pre-boot phase, the switch control plane processes DHCP traffic and transmits the DHCP reply through all the host-facing bond slave interfaces instead of forwarding it according to the learned unicast entry.
+
+After the operating system starts and LACP negotiation completes, the bond returns to normal 802.3ad operation and the switch distributes traffic across the active slave interfaces according to the configured hash calculation.
+
+{{%notice note%}}
+For PXE boot over a bond with more than one slave interface, NVIDIA recommends that you define which physical NIC or interface runs the PXE boot inside the PXE boot configuration file. This recommendation applies even though the switch returns unicast reply traffic on the learned slave interface while the bond is in bypass mode.
+{{%/notice%}}
+
 ## Configure LACP Bypass
 
 To enable LACP bypass on the host-facing bond:

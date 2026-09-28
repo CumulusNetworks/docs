@@ -1060,9 +1060,11 @@ The control plane punt classifier matches for packets, counts them, and drops th
 
 {{%notice note%}}
 - A rule matches only packets that the switch forwards because they match the implicit IPv6 default route. IPv6 neighbor discovery and adjacency miss forwards on a link that is up do not match, and the switch resolves them normally.
+- A rule matches only the *implicit* IPv6 default route. If you explicitly configure a default or super-net route, including a blackhole or reject route, that route takes precedence and the punt classifier does not count the traffic it handles.
 - Forwarded traffic that does not match a rule continues to use the existing control plane policer handling.
 - The punt classifier does not affect traffic that the switch forwards in hardware.
 - After you delete the last rule, forwarded traffic returns to the default control plane policer handling.
+- If you also enable {{<link url="Packet-Trimming/#back-to-sender-notification-on-link-down" text="back-to-sender notification">}} on link down, back-to-sender matches MRC traffic first. The two features share a counter for this traffic, so the punt classifier still reports accurate packet and byte counts.
 {{%/notice%}}
 
 An `spxm` rule matches an outer IPv6 header with next header 41, one of the configured DSCP values, and an inner UDP destination port of 4791. This packet signature is fixed and you cannot change it. An `ipv6` rule matches a plain IPv6 packet with the UDP destination port that you specify.
@@ -1157,8 +1159,13 @@ last-clear-time  2026-07-10 06:15:02
 
 #### Clear Control Plane Punt Classifier Counters
 
+<!-- REVIEW: the --view=hardware option below is drafted from one terse spec sentence ("raw values
+     also available via --view=hardware") with no example output or confirmation of which show
+     command it attaches to. Drafted on the rule-counters show command, the one this section
+     otherwise describes. Confirm the exact syntax against a candidate build before publishing. -->
+
 {{%notice note%}}
-The switch clears the software (NVUE) counters; hardware counters remain intact.
+The switch clears the software (NVUE) counters; hardware counters remain intact. To show the raw, uncleared hardware counters for a rule, run the `nv show system control-plane punt-classifier <rule-id> counters --view=hardware` command.
 {{%/notice%}}
 
 To clear the drop counters for a rule, run the `nv action clear system control-plane punt-classifier <rule-id> counters` command:

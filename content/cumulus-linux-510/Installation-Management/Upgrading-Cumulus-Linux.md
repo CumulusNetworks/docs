@@ -4,6 +4,11 @@ author: NVIDIA
 weight: 50
 toc: 3
 ---
+
+{{%notice infonopad%}}
+Before upgrading Cumulus Linux, review the {{<link url="Whats-New/#release-considerations" text="Release Considerations">}} for the version you intend to upgrade to.
+{{%/notice%}}
+
 {{%notice warning%}}
 The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you **must** change this default password. Be sure to update any automation scripts before you upgrade. You can use ONIE command line options to change the default password automatically during the Cumulus Linux image installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options">}}.
 {{%/notice%}}

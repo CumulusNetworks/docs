@@ -890,6 +890,19 @@ Recovery works the same way. The watchdog requires `recovery-interval` consecuti
 
 The following table shows the detection and recovery parameters:
 
+<!-- REVIEW: the range for rx-pause-threshold and tx-frames-threshold value below is drafted as
+     0-100000, from the NVUE handoff email (validated against the ARCH spec, per the email) that
+     also settled the recovery-interval and multiplier defaults below. A later revision of the FS
+     itself (re-checked 2026-09-28; the FS was edited 2026-09-08, after the email), now
+     consistently gives both ranges as 0-65535 in its leaf table and its per-command configuration
+     tables -- the same sections that, for recovery-interval and multiplier, now agree with the
+     values already drafted here. Only a stale, internally-inconsistent block elsewhere in that
+     same FS section (which also wrongly gives recovery-interval a default of 1 and
+     transmit-queue-threshold a default of Enabled) still shows 100000. Confirm which range is
+     correct -- 100000 (email) or 65535 (current FS) -- against a candidate build before
+     publishing, since the two sources now disagree in a way they did not when this was first
+     drafted. Delete this comment before publishing. -->
+
 | Parameter | Default | Range | Description |
 |---|---|---|---|
 | `recovery-interval` | 2 | 1-1000 | Consecutive recovery hits the watchdog requires before it restores the port. |
@@ -913,7 +926,16 @@ The following example enables all three detection conditions, sets the queue occ
      which duplicates the tx-frames-threshold row and is almost certainly a copy/paste error;
      tx_queue_occupancy_threshold is drafted here from its own _enabled sibling. The
      recovery-interval leaf is given as "restoration_time", which does not match the NVUE name
-     - plausible as a legacy name, but confirm. Delete this comment before publishing. -->
+     - plausible as a legacy name, but confirm.
+
+     2026-09-28 recheck: the FS (edited 2026-09-08, after the email this was drafted from) now
+     gives a third spelling for both: transmit-queue-threshold's leaves as
+     "transmit_queue_threshold_enabled, transmit_queue_threshold" (not tx_queue_occupancy_threshold),
+     and recovery-interval's leaf as "recovery_intervals" (not restoration_time). The FS's own
+     §13.2/§13.4 still mark leaf names and the persistent file path as "TBD (Open Item)", so this
+     is a third data point on an still-open question rather than a resolution -- do not treat
+     either the FS's or the email's naming as final without a candidate-build check.
+     Delete this comment before publishing. -->
 
 {{< tabs "TabID2001 ">}}
 {{< tab "NVUE Commands ">}}

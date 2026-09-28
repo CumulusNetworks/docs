@@ -692,6 +692,31 @@ interface swp1
 To remove existing MD5 authentication hashes, run the vtysh `no ip ospf` command (`no ip ospf message-digest-key 1 md5 thisisthekey`).
 {{%/notice%}}
 
+<!-- REVIEW: this whole note, on the password-obfuscation reference. Optional-BGP-Configuration.md
+     carries a whole "Password Obfuscation" section wrapped in an HTML comment reading "asked not to
+     document in 5.6", and that decision is still in effect in 5.18 — nv set router
+     password-obfuscation is not documented anywhere else on the site. This note names it because the
+     behavior below occurs regardless of that setting, and saying so needs the setting's name. Confirm
+     this is still the right call, and consider whether the BGP page's hidden section should come back
+     given the setting is now named here. Delete this comment before publishing. -->
+
+{{%notice warning%}}
+The *key* must contain only printable ASCII characters (33 through 126). If you configure a key that contains any other character, such as a space, `nv config apply` warns you and asks you to confirm. If you confirm, Cumulus Linux applies the configuration anyway, but writes the literal value `None` as the MD5 key in the `/etc/frr/frr.conf` file and in the vtysh `show running-config` command output, instead of the key you configure. This happens whether `password-obfuscation` is enabled or disabled, and the OSPF session then authenticates with the literal password `None`.
+
+For example:
+
+```
+cumulus@switch:~$ nv set interface swp1 router ospf authentication md5-key "ab c"
+cumulus@switch:~$ nv config apply
+The OSPF md5-key on interface 'swp1' contains characters outside the printable ASCII range (33-126) and cannot be applied as configured. Reconfigure it using printable ASCII characters only.
+
+Are you sure? [y/N] y
+applied_and_saved [rev_id: 9]
+```
+
+The `nv show` command still displays the key you configured; the substitution is not visible. The `/etc/frr/frr.conf` file and the vtysh `show running-config` command output show `ip ospf message-digest-key 1 md5 None` instead.
+{{%/notice%}}
+
 ### Summarization and Prefix Range
 
 By default, an <span class="a-tooltip">[ABR](## "Area Border Router")</span> creates a summary (type-3) <span class="a-tooltip">[LSA](## "Link-State Advertisement")</span> for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes. OSPF only allows for route summarization between areas on a ABR.

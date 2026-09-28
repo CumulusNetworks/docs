@@ -376,6 +376,14 @@ The following sections describe how to show the current FEC mode, and how to ena
 
 To show the FEC mode on a switch port, run the NVUE `nv show interface <interface-id> link` command.
 
+<!-- REVIEW: the physical-name row inserted below. The specification's own sample output for this
+     exact command lists physical-name between oper-status-last-change and auto-negotiate; this page's
+     existing (truncated) example has no oper-status-last-change row to anchor against, so
+     physical-name is placed directly after protodown, matching the specification's relative order as
+     closely as the existing excerpt allows. Confirm the exact row position against a candidate build.
+     On a switch without a two-connector port, or on a platform this feature does not cover, expect
+     this row to be absent rather than empty. Delete this comment before publishing. -->
+
 ```
 cumulus@switch:~$ nv show interface swp1 link
                        operational        applied
@@ -383,6 +391,7 @@ cumulus@switch:~$ nv show interface swp1 link
 admin-status           up                        
 oper-status            up                        
 protodown              disabled                  
+physical-name          swp1c1c2                  
 auto-negotiate         disabled           enabled     
 duplex                 full               full   
 speed                  1G                 auto   
@@ -1957,6 +1966,56 @@ To remove a breakout port:
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Show the Physical Connector for a Port
+
+On Spectrum-4 and later switches whose ports have two physical connectors per transceiver cage, Cumulus Linux exposes a *physical-name* value for each interface. Physical-name encodes the transceiver cage, connector, and, for a breakout port, the sub-interface, so you can correlate a software interface name directly with the physical connector it uses. Cumulus Linux derives physical-name from the Linux altname mechanism.
+
+{{%notice note%}}
+- Physical-name is display-only. You cannot use it to configure or reference an interface in place of the canonical interface name, such as `swp1` or `swp1s0`.
+- Physical-name reflects the current breakout configuration. If you change the breakout mode on a port, Cumulus Linux updates the physical-name values for that port.
+{{%/notice%}}
+
+Physical-name uses the format `swp<cage>c<connector>s<subinterface>`, where:
+
+- `<cage>` is the transceiver cage number, starting from one.
+- `<connector>` is the connector number, starting from one.
+- `<subinterface>` is the sub-interface number, starting from one.
+
+A port that is not broken out spans both connectors, so its physical-name lists both connector numbers instead of a sub-interface number: `swp<cage>c<connector1>c<connector2>`.
+
+The following table shows the physical-name value for each breakout mode on a two-connector port, for hardware where the connectors split the breakout lanes evenly:
+
+| Breakout Mode | Interface | Physical-name |
+|------ | ----------- | ----------- |
+| No breakout (1x) | `swp1` | `swp1c1c2` |
+| 2x | `swp1s0`, `swp1s1` | `swp1c1s1`, `swp1c2s1` |
+| 4x | `swp1s0`—`swp1s3` | `swp1c1s1`, `swp1c1s2`, `swp1c2s1`, `swp1c2s2` |
+| 8x | `swp1s0`—`swp1s7` | `swp1c1s1`, `swp1c1s2`, `swp1c1s3`, `swp1c1s4`, `swp1c2s1`, `swp1c2s2`, `swp1c2s3`, `swp1c2s4` |
+
+{{%notice note%}}
+On some hardware, the lanes of a breakout port do not split evenly between its two connectors — for example, all four sub-interfaces of a 4x breakout might map to a single connector instead of two per connector. The connector distribution depends on how the platform wires that port. Treat the table above as the typical case and the `physical-name` value in `nv show interface <interface-id>` as authoritative for a specific port.
+{{%/notice%}}
+
+To show the physical-name for every port on the switch, run the `nv show interface physical` command:
+
+```
+cumulus@switch:~$ nv show interface physical
+Interface  Physical Interface  Admin Status  Oper Status  Speed  MTU   Duplex  FEC
+---------  -------------------  ------------  -----------  -----  ----  ------  ----
+swp1s0     swp1c1s1             down          down                9216
+swp1s1     swp1c2s1             down          down                9216
+swp3s0     swp3c1s1             down          down                9216
+swp3s1     swp3c1s2             down          down                9216
+swp3s2     swp3c1s3             down          down                9216
+swp3s3     swp3c1s4             down          down                9216
+swp10      swp10c1c2            down          down                9216
+swp61s0    swp61c1s1            up            up           50G    9216  full    rs
+swp61s1    swp61c1s2            up            up           50G    9216  full    rs
+...
+```
+
+The `nv show interface <interface-id>` and `nv show interface <interface-id> link` commands also show physical-name for a single interface, alongside the other operational link attributes for the interface. See {{<link url="#show-the-current-fec-mode" text="Show the Current FEC Mode">}} for an example.
 
 ## Configure Port Lanes
 

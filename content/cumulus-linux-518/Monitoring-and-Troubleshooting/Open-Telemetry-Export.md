@@ -6500,7 +6500,7 @@ If you enable {{<link title="What Just Happened (WJH)" text="WJH">}}, you can ex
 Device static labels are exported in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:
 
 {{< expand "Example JSON data for static device label:" >}}
-
+```
 { 
   "resourceMetrics": [ 
     { 
@@ -6523,7 +6523,7 @@ Device static labels are exported in the {{<exlink url="https://opentelemetry.io
     }
   ]
 }
-
+```
 {{< /expand >}}
 <br>
 Interface static labels are exported as attributes in the gauge metrics for each interface.

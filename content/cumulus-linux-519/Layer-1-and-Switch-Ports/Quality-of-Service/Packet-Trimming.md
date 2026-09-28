@@ -304,12 +304,35 @@ To enable and configure back-to-sender notification on link down:
 - Set the ingress eligibility DSCP match list on the interfaces you want to cover, or on all interfaces. This setting is required. The switch sends a notification only for a packet that arrives with one of these DSCP values.
 - Set the maximum size of the notification in bytes. You can specify a value between 256 and 1024; the value must be a multiple of 4. The default is 256.
 - Set the switch priority of the notification. You can specify a value between 0 and 7. The default is 1.
-- Set the service port. The service port must be a bonus port, and must not be the packet trimming service port. If you do not set one, the switch uses the platform bonus port.
+- Set the service port. The service port must be a bonus port. If you do not set one, the switch uses the platform bonus port.
+
+<!-- REVIEW: this bullet used to add "and must not be the packet trimming service port", which the
+     link-down specification requires. That constraint is now doubtful on Spectrum-6. The tail-drop
+     specification (FR 4373590, approved 22-09-2026) records a withdrawal in its release notes: "On
+     Spectrum-6, nv set system forwarding packet-trim service-port is no longer offered. The leaf was
+     exposed by accident, did nothing there, and a configuration that set it was never supported."
+     If there is no operator-set packet trimming service port on Spectrum-6, there is nothing for the
+     link-down service port to collide with, so the clause was removed rather than left asserting a
+     constraint against a leaf that no longer exists. Confirm, and see the report for the separate
+     question this raises about the service port notice earlier on this page.
+     Delete this comment before publishing. -->
 
 <!-- REVIEW: the ingress eligibility DSCP value in the examples is a placeholder. The specification
      does not agree a default (open issue OI-2, numbered OI-4 in its tables), states that the node is
      mandatory while the feature is enabled, and says explicitly that the lab values 10 and 20 are
      not the product contract. Replace the example value if a default is agreed.
+     Delete this comment before publishing. -->
+
+<!-- REVIEW: the per-interface command below carries an `spxm` node that the functional
+     specification does not have. The specification (revision 1.2, 07-09-2026) gives
+     `nv set interface <port-range|all> packet-trim notify-sender link-down ingress-eligibility dscp`.
+     The object model review circulated on 18-09-2026 for FR 5013705 and FR 4373590 gives, under
+     `nv tree interface swp1 packet-trim`, `+--rw spxm / +--rw notify-sender / +--rw link-down /
+     +--rw ingress-eligibility / +--rw dscp* [integer]`. The draft follows the object model review
+     because it is the later document, it is the artifact the command path is generated from, and
+     the `spxm-link-down-pkts` counter name in the same tree corroborates an `spxm` node. Note the
+     asymmetry: the review puts `spxm` in the interface tree only, not in the system tree, so the
+     system commands above are unaffected. Confirm which form ships before publishing.
      Delete this comment before publishing. -->
 
 ```
@@ -318,14 +341,14 @@ cumulus@switch:~$ nv set system forwarding packet-trim notify-sender link-down r
 cumulus@switch:~$ nv set system forwarding packet-trim notify-sender link-down size 256
 cumulus@switch:~$ nv set system forwarding packet-trim notify-sender link-down switch-priority 1
 cumulus@switch:~$ nv set system forwarding packet-trim notify-sender link-down service-port swp66
-cumulus@switch:~$ nv set interface all packet-trim notify-sender link-down ingress-eligibility dscp 10
+cumulus@switch:~$ nv set interface all packet-trim spxm notify-sender link-down ingress-eligibility dscp 10
 cumulus@switch:~$ nv config apply
 ```
 
 To cover only certain ingress interfaces, specify an interface range instead of `all`:
 
 ```
-cumulus@switch:~$ nv set interface swp1-4 packet-trim notify-sender link-down ingress-eligibility dscp 10
+cumulus@switch:~$ nv set interface swp1-4 packet-trim spxm notify-sender link-down ingress-eligibility dscp 10
 cumulus@switch:~$ nv config apply
 ```
 
@@ -368,6 +391,20 @@ link-down
 
 - To show only the link down configuration, run the `nv show system forwarding packet-trim notify-sender link-down` command.
 - To show the link down configuration for an interface, run the `nv show interface <interface-id> packet-trim notify-sender link-down` command.
+
+<!-- REVIEW: counters are an unresolved fork and are deliberately not documented here. The functional
+     specification (revision 1.2) puts counters, their show and clear commands, and all telemetry out
+     of scope for this release (REQ-SYS-008), and says the hardware counters are bound but not
+     exposed. The object model review circulated eleven days later, on 18-09-2026, adds them under
+     link-down as newly added changes: a `+--ro counters` container holding `trim-link-down-pkts`,
+     `spxm-link-down-pkts`, and `last-clear-time`, a `@clear` action, and the two commands
+     `nv show system forwarding packet-trim notify-sender link-down counters` and
+     `nv action clear system forwarding packet-trim notify-sender link-down counters`.
+     Nothing is drafted because documenting a capability the specification defers is the worse of the
+     two errors. If the object model review is confirmed, add a counters subsection using those two
+     commands and those three leaf names - note they differ from the specification's predicted names
+     (`default-trim-pkts`, and `-bytes` leaves that the review does not have).
+     Delete this comment before publishing. -->
 
 ## Troubleshooting
 

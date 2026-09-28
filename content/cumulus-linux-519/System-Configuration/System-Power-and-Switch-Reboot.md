@@ -16,6 +16,10 @@ Cumulus Linux provides these reboot and power modes:
 
   Review {{<link url="#warm-reboot-and-issu-considerations" text="Warm Reboot and ISSU Considerations">}} to understand support limitations and requirements for warm reboot and ISSU. 
 
+{{%notice note%}}
+In Cumulus Linux 5.19.0, fast boot support for a switch with more than one ASIC is in Beta. 
+{{%/notice%}}
+
 ## Reboot Commands
 
 The following table shows the NVUE reboot and power commands, and their Linux command equivalents:

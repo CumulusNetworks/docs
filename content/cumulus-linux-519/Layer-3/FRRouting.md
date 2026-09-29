@@ -601,12 +601,10 @@ swp1: 241.1.1.1/32 is in the reserved class-e range - set router allow-reserved-
 
 ### Show Class E Address Space Setting
 
-<!-- REVIEW: the spec does not name a `nv show` command for this setting. Drafted `nv show router allow-reserved-range` from the `nv show router <container>` pattern this page and the NVUE reference use for other router-level settings (for example `nv show router bgp`, `nv show router adaptive-routing`). Confirm the exact path against a candidate build. -->
-
-To show Class E address space setting, run the `nv show router allow-reserved-range` command:
+To show Class E address space setting, run the `nv show router allow-reserved-range class-e` command:
 
 ```
-cumulus@switch:~$ nv show router allow-reserved-range
+cumulus@switch:~$ nv show router allow-reserved-range class-e
 ```
 
 You can verify that Class E is working end to end with the same commands you use for any other address range. Confirm that the address and its connected route appear for the interface, and confirm the BGP session establishes and routes install, as described in {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol (BGP)">}} and {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}}.

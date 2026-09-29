@@ -802,12 +802,26 @@ The custom profile carries the three legacy congestion thresholds `ar.ctl`, `ar.
 | `ar.ct7` | The resolved value of `ar.ct6`. |
 
 {{%notice note%}}
+- A key needs the `ar.` prefix. Cumulus Linux ignores a key without it.
 - Thresholds are in cells. Cumulus Linux does not convert the values to bytes.
 - Each threshold must be between 0 and 16777215.
 - After Cumulus Linux fills in the omitted values, the seven thresholds must be in non-decreasing order: `ar.ctl` <= `ar.ctm` <= `ar.cth` <= `ar.ct4` <= `ar.ct5` <= `ar.ct6` <= `ar.ct7`. Equal values are valid.
 - Setting any one of `ar.ct4` through `ar.ct7` turns on extended grading and brings all four extended thresholds into effect. The fill is sequential, so a threshold you omit takes the resolved value of the threshold before it, which might itself be a filled value.
 - If you set the same key twice in the file, `switchd` uses the last value and logs a warning.
 - If any threshold is out of range or out of order, `switchd` rejects the entire profile. No value from the file reaches the hardware, including the free and busy grade thresholds, the shaper rates, and the ECMP group size, and the switch keeps the adaptive routing configuration it is already running.
+{{%/notice%}}
+
+Unlike the four extended thresholds, `ar.ctl`, `ar.ctm`, and `ar.cth` have no *value-when-omitted* rule of their own. If you leave one out of the file, Cumulus Linux keeps the value it already has for that key instead of resetting it (200, 1000, and 10000 on a freshly booted switch or the values the switch loaded last). The switch can accept or reject a file that sets only the extended thresholds depending on the configuration set before you apply it.
+
+<!-- REVIEW: whether a profile that sets extended thresholds without all three legacy keys should
+     instead be rejected outright, naming the missing keys, is an open question with MLX-Arch as of
+     this spec revision. If that lands before release, the recommendation below may need to become a
+     hard requirement instead. Delete this comment before publishing. -->
+
+To avoid depending on what the switch previously loads, set `ar.ctl`, `ar.ctm`, and `ar.cth` explicitly in every profile that also sets extended thresholds.
+
+{{%notice warning%}}
+Cumulus Linux does not validate that a threshold value is a number and reads an unparseable value, such as `ar.ct4 = abc`, as 0. In most cases, the resulting 0 breaks the non-decreasing order and `switchd` rejects the whole profile; however, if the unparseable value is `ar.ctl` or if every one of the seven thresholds is unparseable, 0 satisfies the ordering rule and Cumulus Linux accepts the profile with a value you do not intend, with no error and no warning. Check the file for typos before you apply it.
 {{%/notice%}}
 
 #### Configure Extended Grading
@@ -818,11 +832,6 @@ The custom profile carries the three legacy congestion thresholds `ar.ctl`, `ar.
      from NVIDIA. Delete this comment before publishing. -->
 
 The following example configures the four extended thresholds and raises the free grade threshold so that the four additional grades take part in port selection.
-
-<!-- REVIEW: the numbered steps in the NVUE tab below use the flexible snippet mechanism the NVUE
-     Snippets page documents. The spec instead shows a single-line
-     `nv set system config snippet <name> file <path> content "..."` form, which appears nowhere in
-     the docs. Confirm which form the release ships. Delete this comment before publishing. -->
 
 {{< tabs "TabID762 ">}}
 {{< tab "NVUE Commands ">}}
@@ -908,10 +917,20 @@ A value of 5 through 7 already set for `ar.p.frt` or `ar.p.but` stays rejected a
 
 #### Verify the Configuration
 
-<!-- REVIEW: sample output below is drafted, not captured. Confirm the readout format on a Spectrum-6
-     switch. Delete this comment before publishing. -->
+<!-- REVIEW: sample output below, for both the log line and the switchd configuration node readout,
+     is drafted, not captured. Confirm the readout format on a Spectrum-6 switch. Delete this comment
+     before publishing. -->
 
-NVUE does not validate the contents of the profile file, so `nv config apply` succeeds whether or not `switchd` accepts the profile. `switchd` reports every validation failure to `/var/log/switchd.log` only. After you apply a profile, check the log to confirm that the switch accepts it:
+NVUE does not validate the contents of the profile file, so `nv config apply` succeeds whether or not `switchd` accepts the profile. `switchd` reports every validation failure to `/var/log/switchd.log` only. After you apply a profile, check the log to confirm that the switch accepts it.
+
+`switchd` logs one summary line, `AR: applied`, on every profile evaluation. It names the full resolved seven-threshold vector and whether extended grading took effect, so check it first:
+
+```
+cumulus@switch:~$ sudo grep "AR: applied" /var/log/switchd.log | tail -1
+AR: applied (ctl=500 ctm=1000 cth=2500 ct4=5000 ct5=10000 ct6=20000 ct7=40000) extended=yes
+```
+
+For a validation failure or other detail, search the wider log:
 
 ```
 cumulus@switch:~$ sudo grep -iE "adaptive|extended grading|congestion threshold" /var/log/switchd.log

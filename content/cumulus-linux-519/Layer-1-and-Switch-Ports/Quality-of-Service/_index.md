@@ -912,7 +912,7 @@ The following table shows the detection and recovery parameters:
 | `tx-frames-threshold state` | enabled | enabled, disabled | Whether the watchdog evaluates the transmitted frames condition. |
 | `tx-frames-threshold value` | 0 | 0-100000 | Maximum frames transmitted in a polling interval for that interval to count as a detection hit. |
 | `transmit-queue-threshold state` | disabled | enabled, disabled | Whether the watchdog evaluates the queue occupancy condition. |
-| `transmit-queue-threshold value` | 0 | 0-100 | Minimum egress queue occupancy, as a percentage, for that interval to count as a detection hit. |
+| `transmit-queue-threshold percent` | 0 | 0-100 | Minimum egress queue occupancy, as a percentage, for that interval to count as a detection hit. |
 
 {{%notice note%}}
 - You can only enable `transmit-queue-threshold` when the polling interval is greater than 300 milliseconds.
@@ -943,7 +943,7 @@ The following example enables all three detection conditions, sets the queue occ
 ```
 cumulus@switch:~$ nv set qos pfc-watchdog polling-interval 400
 cumulus@switch:~$ nv set qos pfc-watchdog transmit-queue-threshold state enabled
-cumulus@switch:~$ nv set qos pfc-watchdog transmit-queue-threshold value 10
+cumulus@switch:~$ nv set qos pfc-watchdog transmit-queue-threshold percent 10
 cumulus@switch:~$ nv set qos pfc-watchdog tx-frames-threshold state enabled
 cumulus@switch:~$ nv set qos pfc-watchdog tx-frames-threshold value 10
 cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-duration state enabled
@@ -987,7 +987,7 @@ recovery-interval                      111
 rx-pause-threshold                     100
 transmit-queue-threshold
   state                                enabled
-  value                                10
+  percent                                10
 tx-frames-threshold
   state                                enabled
   value                                100

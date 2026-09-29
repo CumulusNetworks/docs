@@ -490,6 +490,10 @@ router bgp 65101 vrf RED
 
 Symmetric routing presents a problem in the presence of silent hosts. If the ingress VTEP does not have the destination subnet and the host route does not advertise for the destination host, the ingress VTEP cannot route the packet to its destination. You can overcome this problem by having VTEPs announce the subnet prefixes corresponding to their connected subnets in addition to announcing host routes. Cumulus Linux announces these routes as EVPN prefix (type-5) routes.
 
+A host can become effectively silent if its initial announcement is lost. For example, a host might emit a gratuitous ARP as soon as its interface is administratively up, before an LACP bond negotiates a carrier. Cumulus Linux discards the frame and does not retry it, so the attached VTEP has no neighbor entry and originates no type-2 route for that host.
+
+With the subnet prefix advertised, the switch does not drop traffic to such a host. The ingress VTEP forwards on the advertised prefix, the egress VTEP floods an ARP in the layer 2 VNI to resolve the host, and the type-2 route and its /32 host route appear within a few hundred milliseconds. The cost is added latency on the first packet.
+
 To advertise locally attached subnets:
 
 1. Enable advertisement of EVPN prefix (type-5) routes. Refer to {{<link url="#announce-evpn-type-5-routes" text="Prefix-based Routing - EVPN Type-5 Routes">}}, below.<!-- vale on -->

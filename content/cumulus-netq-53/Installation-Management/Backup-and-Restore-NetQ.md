@@ -8,10 +8,10 @@ toc: 3
 The following sections describe how to back up and restore your NetQ data and VMs for on-premises deployments.
 
 {{%notice note%}}
-- Follow the backup and restore instructions as outlined on this page to upgrade your deployment from 5.0 to 5.2. If your deployment is currently running version 5.1, {{<link title="Upgrade NetQ Virtual Machines" text="perform an in-place upgrade">}} to upgrade to version 5.2.
 - You must run backup and restore scripts with sudo privileges.
 - NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
 - The backup and restore process does not retain several configurations necessary for the Grafana integration, including switch TLS certificates, authentication tokens (vm-tokens), OpenTelemetry configurations, and external time-series database configurations. After reinstalling NetQ, you must {{<link title="Integrate NetQ with Grafana" text="reconfigure these components">}}. Grafana will not display data from previous NetQ versions.
+- Custom configurations might be lost during the back up and restore process. Contact your NVIDIA representative for more information.
 {{%/notice%}}
 
 ## Back Up Your NetQ Data

@@ -426,9 +426,26 @@ You can configure route and MAC address hardware resources depending on ECMP buc
 To configure resilient hashing:
 - Set resilient hashing to enabled.
 - Set the number of hash buckets to use for all ECMP routes. On Spectrum switches, you can set the number of buckets to 64, 512, 1024, 2048, or 4096. On NVIDIA Spectrum-2 and later, you can set the number of buckets to 64, 128, 256, 512, 1024, 2048, or 4096. The default value is 64.
-- Set the number of seconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event. You can specify a value between 1 and 65535. The default value is 120.
 
-The following example enables resilient hashing, sets the number of hash buckets to use for all ECMP routes to 512, and sets the number of seconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event to 30.
+<!-- REVIEW: the specification gives conflicting units for active-timer and max-unbalanced-timer. The
+     object-model tree labels both "sec", but System and Software Requirements state milliseconds
+     explicitly and repeatedly (active-timer: "1-65,535 milliseconds, default 120 milliseconds";
+     max-unbalanced-timer: "0 to 4,294,967,294 milliseconds"), and the Show Commands field-description
+     table labels both columns "(ms)". Per the rule that value ranges and units come from spec prose,
+     never the object-model type column, drafted both as milliseconds. One worked example in the spec
+     itself sets active-timer to a bare "30" and annotates the result as "fast 30s rebalance", which
+     only makes sense under the seconds reading — not reproduced here, since example values are
+     generated, not copied from the spec, but worth knowing this tension exists. Confirm the unit
+     against a candidate build before publishing. Delete this comment before publishing. -->
+
+- Set the number of milliseconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event. You can specify a value between 1 and 65535. The default value is 120.
+- Set the maximum number of milliseconds Cumulus Linux waits before forcing a rebalance across next hops, regardless of bucket activity. You can specify a value between 0 and 4294967294. A value of 0 means Cumulus Linux never forces a rebalance and instead waits indefinitely for an idle bucket. The default value is 0.
+
+{{%notice warning%}}
+Enabling or disabling resilient hashing reloads `switchd` and restarts the FRR service. FRR withdraws and reinstalls every route during the restart. NVUE also configures FRR to stop installing next hop group IDs in the kernel as part of enabling resilient hashing — see {{<link url="#resilient-hashing-and-next-hop-groups" text="Resilient Hashing and Next Hop Groups">}} below. Plan for a brief, fabric-wide disruption when you change the resilient hashing state, and schedule the change for a maintenance window.
+{{%/notice%}}
+
+The following example enables resilient hashing, sets the number of hash buckets to use for all ECMP routes to 512, and sets the number of milliseconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event to 500.
 
 {{< tabs "TabID384 ">}}
 {{< tab "NVUE Commands ">}}
@@ -436,9 +453,13 @@ The following example enables resilient hashing, sets the number of hash buckets
 ```
 cumulus@switch:~$ nv set system forwarding resilient-hash state enabled
 cumulus@switch:~$ nv set system forwarding resilient-hash bucket-size 512
-cumulus@switch:~$ nv set system forwarding resilient-hash active-timer 30
+cumulus@switch:~$ nv set system forwarding resilient-hash active-timer 500
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+Changing the bucket size rebuilds every existing resilient ECMP container. Cumulus Linux does not preserve flow-to-bucket pinning for flows on those containers, so this can disrupt existing flows even though it does not reload `switchd` or restart FRR. Changing the active timer or the maximum unbalanced timer applies the new value to existing resilient containers immediately and does not disrupt existing flows.
+{{%/notice%}}
 
 To disable resilient hashing, run the `nv set system forwarding resilient-hash state disabled` command.
 
@@ -461,7 +482,7 @@ resilient_hash_enable = TRUE
 #
 resilient_hash_entries_ecmp = 512
 #
-resilient_hash_active_timer = 30
+resilient_hash_active_timer = 500
 ```
 
 {{< /tab >}}
@@ -469,16 +490,24 @@ resilient_hash_active_timer = 30
 
 To show resilient hashing information, such as its state (enabled or disabled), the total number of router adjacency ECMP group buckets available on the switch, the maximum number of ECMP groups that can use resilient hashing simultaneously, and the number of ECMP groups currently using resilient containers in hardware, run the `nv show system forwarding resilient-hash` command. 
 
+<!-- REVIEW: the specification names the last row "resillient-ecmp-groups", which is very likely a
+     typo for "resilient-ecmp-groups" given its description matches this page's pre-existing
+     "active-ecmp-groups" field almost verbatim ("Number of ECMP groups currently using resilient
+     containers in hardware"). Drafted as a rename from "active-ecmp-groups" to "resilient-ecmp-groups"
+     on that basis. Confirm the field name against a candidate build. Delete this comment before
+     publishing. -->
+
 ```
 cumulus@switch:~$ nv show system forwarding resilient-hash 
                             operational  applied 
 --------------------------  -----------  ------- 
 state                       enabled      enabled 
 bucket-size                 512          512 
-active-timer                30           30 
+active-timer                500          500 
+max-unbalanced-timer        0            0 
 total-buckets               65536 
 max-ecmp-groups             128 
-active-ecmp-groups          47
+resilient-ecmp-groups       47
 ```
 
 ### Considerations
@@ -487,7 +516,9 @@ Be aware of the following considerations when configuring resilient hashing.
 
 #### Resilient Hashing and Next Hop Groups
 
-Resilient hashing in hardware does not work with next hop groups; the switch remaps flows to new next hops when the set of next hops changes. To work around this issue, configure zebra not to install next hop IDs in the kernel with the following vtysh command:
+Resilient hashing in hardware does not work with next hop groups; the switch remaps flows to new next hops when the set of next hops changes. When you enable resilient hashing through NVUE, NVUE configures zebra not to install next hop IDs in the kernel for you, and restarts FRR to apply the change.
+
+If you configure resilient hashing by editing `/etc/cumulus/datapath/traffic.conf` directly, configure zebra not to install next hop IDs in the kernel yourself with the following vtysh command:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -498,6 +529,15 @@ switch# write memory
 switch# exit
 cumulus@switch:~$
 ```
+
+#### Adaptive Routing
+
+<!-- REVIEW: the two rejection messages below are quoted verbatim from the specification's use case
+     table (UC4, UC5), which gives no NVUE command syntax around them beyond "at apply". Confirm the
+     exact wording and trigger point (nv set versus nv config apply) against a candidate build. Delete
+     this comment before publishing. -->
+
+Resilient hashing and {{<link url="#adaptive-routing" text="adaptive routing">}} are mutually exclusive. If you try to enable resilient hashing while adaptive routing is active, Cumulus Linux rejects the change with `Cannot enable resilient hashing while adaptive routing is active`. If you try to enable adaptive routing while resilient hashing is active, Cumulus Linux rejects the change with `Cannot enable Adaptive Routing while resilient hashing is active`.
 
 #### IPv6 Route Replacement
 
@@ -537,6 +577,25 @@ cumulus@switch:~$ systemctl status frr
             ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
             ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
             └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
+```
+
+#### Troubleshoot Resilient Hashing
+
+To confirm whether an ECMP group is actually using a resilient container in hardware, generate a {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file-generation" text="cl-support file">}} and search the `ROUTER_0.json` file it contains.
+
+| To find | Search for |
+| --- | --- |
+| Whether resilient hashing is programmed at all | `"ECMP type": "Resilient"` |
+| The hash buckets for one resilient container | `"ECMP HW Entry"` blocks under that container |
+| Which route uses which container | `"ECMP ID"` under the IPv4 or IPv6 unicast routes |
+| The timer values as currently programmed | `"Active timer (ms)"` and `"Max unbalanced time (ms)"` |
+
+To see the live hardware state on the console instead of waiting for a cl-support file, run:
+
+```
+cumulus@switch:~$ echo true | sudo tee /cumulus/switchd/ctrl/hw/enable
+cumulus@switch:~$ echo true | sudo tee /cumulus/switchd/ctrl/hw/nexthop
+cumulus@switch:~$ sudo cat /cumulus/switchd/run/hw/nexthop/all
 ```
 
 ## Adaptive Routing

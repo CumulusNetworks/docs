@@ -1306,6 +1306,23 @@ NVUE restarts the FRR service when you:
 
 Restarting FRR restarts all the routing protocol daemons that you enable and that are running, which might impact traffic.
 
+## NVUE Config Apply and FRR
+
+When a pending configuration change does not affect any FRR-managed setting, such as a change to an interface description, `nv config apply` does not read or reload FRR. When a pending change does affect an FRR-managed setting, NVUE reads the FRR running configuration, compares it against the pending change, and reloads FRR only when the two differ.
+
+{{%notice note%}}
+- If the switch takes longer than 15 seconds to read the FRR running configuration and longer than 5 seconds to check if the FRR service is active, `nv config apply` does not reload or restart FRR for that apply.
+- Deleting a large number of static routes in a single revision no longer causes `nv config apply` to time out.
+{{%/notice%}}
+
+If FRR is restarting, busy, or stopped when you apply a configuration change, and a routing configuration change in that apply does not take effect, confirm that the FRR service is active:
+
+```
+cumulus@switch:~$ systemctl status frr
+```
+
+Run `nv config apply` again after FRR is active. Check `/var/log/nvued.log` for messages about a timed-out or failed FRR read.
+
 ## File System Commands
 
 NVUE provides file system commands to list directory contents and get the hash for a file.

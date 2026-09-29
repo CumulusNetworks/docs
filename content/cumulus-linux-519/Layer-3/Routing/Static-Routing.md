@@ -295,6 +295,10 @@ ip route 10.10.10.61/32 blackhole
 
 ## Considerations
 
+### Deleting a Large Number of Static Routes
+
+If you delete a large number of static routes in a single revision, see {{<link url="NVUE-CLI/#nvue-config-apply-and-frr" text="NVUE Config Apply and FRR">}} for information on how `nv config apply` handles FRR for a bulk deletion.
+
 ### Deleting Routes through the Linux Shell
 
 To avoid incorrect routing, **do not** use the Linux shell to delete static routes that you added with vtysh commands. Delete the routes with the vtysh commands.

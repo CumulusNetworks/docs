@@ -66,7 +66,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#manage-transceiver-firmware" text="Show and install transceiver firmware">}}
   - {{<link url="Optional-BGP-Configuration/#ipv6-only-unnumbered-peering" text="IPv6-only unnumbered peering command">}}
   - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resilient-hashing" text="Resilient hashing commands">}}
-  - {{<link url="NVUE-CLI/#configuration-management-commands" text="nv config apply command improvements">}} to prevent latency and timeout
+  - {{<link url="NVUE-CLI/#nvue-config-apply-and-frr" text="nv config apply command improvements">}} to prevent latency and timeout during FRR configuration changes
   - {{<link url="Zero-Touch-Provisioning-ZTP/#suppress-ztp-console-messages" text="Suppress ZTP console messages">}}
   - {{<link url="FRRouting/#tcp-sockets-and-bgp-peering-sessions" text="Configure the file descriptor limit for the FRR routing daemons">}}
   - {{<link url="Switch-Port-Attributes/#show-the-physical-connector-for-a-port" text="Show the physical connector for a port">}}

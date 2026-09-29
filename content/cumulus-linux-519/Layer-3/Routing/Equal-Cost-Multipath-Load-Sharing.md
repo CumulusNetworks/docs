@@ -426,9 +426,26 @@ You can configure route and MAC address hardware resources depending on ECMP buc
 To configure resilient hashing:
 - Set resilient hashing to enabled.
 - Set the number of hash buckets to use for all ECMP routes. On Spectrum switches, you can set the number of buckets to 64, 512, 1024, 2048, or 4096. On NVIDIA Spectrum-2 and later, you can set the number of buckets to 64, 128, 256, 512, 1024, 2048, or 4096. The default value is 64.
-- Set the number of seconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event. You can specify a value between 1 and 65535. The default value is 120.
 
-The following example enables resilient hashing, sets the number of hash buckets to use for all ECMP routes to 512, and sets the number of seconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event to 30.
+<!-- REVIEW: the specification gives conflicting units for active-timer and max-unbalanced-timer. The
+     object-model tree labels both "sec", but System and Software Requirements state milliseconds
+     explicitly and repeatedly (active-timer: "1-65,535 milliseconds, default 120 milliseconds";
+     max-unbalanced-timer: "0 to 4,294,967,294 milliseconds"), and the Show Commands field-description
+     table labels both columns "(ms)". Per the rule that value ranges and units come from spec prose,
+     never the object-model type column, drafted both as milliseconds. One worked example in the spec
+     itself sets active-timer to a bare "30" and annotates the result as "fast 30s rebalance", which
+     only makes sense under the seconds reading — not reproduced here, since example values are
+     generated, not copied from the spec, but worth knowing this tension exists. Confirm the unit
+     against a candidate build before publishing. Delete this comment before publishing. -->
+
+- Set the number of milliseconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event. You can specify a value between 1 and 65535. The default value is 120.
+- Set the maximum number of milliseconds Cumulus Linux waits before forcing a rebalance across next hops, regardless of bucket activity. You can specify a value between 0 and 4294967294. A value of 0 means Cumulus Linux never forces a rebalance and instead waits indefinitely for an idle bucket. The default value is 0.
+
+{{%notice warning%}}
+Enabling or disabling resilient hashing reloads `switchd` and restarts the FRR service. FRR withdraws and reinstalls every route during the restart. NVUE also configures FRR to stop installing next hop group IDs in the kernel as part of enabling resilient hashing — see {{<link url="#resilient-hashing-and-next-hop-groups" text="Resilient Hashing and Next Hop Groups">}} below. Plan for a brief, fabric-wide disruption when you change the resilient hashing state, and schedule the change for a maintenance window.
+{{%/notice%}}
+
+The following example enables resilient hashing, sets the number of hash buckets to use for all ECMP routes to 512, and sets the number of milliseconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event to 500.
 
 {{< tabs "TabID384 ">}}
 {{< tab "NVUE Commands ">}}
@@ -436,9 +453,13 @@ The following example enables resilient hashing, sets the number of hash buckets
 ```
 cumulus@switch:~$ nv set system forwarding resilient-hash state enabled
 cumulus@switch:~$ nv set system forwarding resilient-hash bucket-size 512
-cumulus@switch:~$ nv set system forwarding resilient-hash active-timer 30
+cumulus@switch:~$ nv set system forwarding resilient-hash active-timer 500
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+Changing the bucket size rebuilds every existing resilient ECMP container. Cumulus Linux does not preserve flow-to-bucket pinning for flows on those containers, so this can disrupt existing flows even though it does not reload `switchd` or restart FRR. Changing the active timer or the maximum unbalanced timer applies the new value to existing resilient containers immediately and does not disrupt existing flows.
+{{%/notice%}}
 
 To disable resilient hashing, run the `nv set system forwarding resilient-hash state disabled` command.
 
@@ -461,7 +482,7 @@ resilient_hash_enable = TRUE
 #
 resilient_hash_entries_ecmp = 512
 #
-resilient_hash_active_timer = 30
+resilient_hash_active_timer = 500
 ```
 
 {{< /tab >}}
@@ -469,16 +490,24 @@ resilient_hash_active_timer = 30
 
 To show resilient hashing information, such as its state (enabled or disabled), the total number of router adjacency ECMP group buckets available on the switch, the maximum number of ECMP groups that can use resilient hashing simultaneously, and the number of ECMP groups currently using resilient containers in hardware, run the `nv show system forwarding resilient-hash` command. 
 
+<!-- REVIEW: the specification names the last row "resillient-ecmp-groups", which is very likely a
+     typo for "resilient-ecmp-groups" given its description matches this page's pre-existing
+     "active-ecmp-groups" field almost verbatim ("Number of ECMP groups currently using resilient
+     containers in hardware"). Drafted as a rename from "active-ecmp-groups" to "resilient-ecmp-groups"
+     on that basis. Confirm the field name against a candidate build. Delete this comment before
+     publishing. -->
+
 ```
 cumulus@switch:~$ nv show system forwarding resilient-hash 
                             operational  applied 
 --------------------------  -----------  ------- 
 state                       enabled      enabled 
 bucket-size                 512          512 
-active-timer                30           30 
+active-timer                500          500 
+max-unbalanced-timer        0            0 
 total-buckets               65536 
 max-ecmp-groups             128 
-active-ecmp-groups          47
+resilient-ecmp-groups       47
 ```
 
 ### Considerations
@@ -487,7 +516,9 @@ Be aware of the following considerations when configuring resilient hashing.
 
 #### Resilient Hashing and Next Hop Groups
 
-Resilient hashing in hardware does not work with next hop groups; the switch remaps flows to new next hops when the set of next hops changes. To work around this issue, configure zebra not to install next hop IDs in the kernel with the following vtysh command:
+Resilient hashing in hardware does not work with next hop groups; the switch remaps flows to new next hops when the set of next hops changes. When you enable resilient hashing through NVUE, NVUE configures zebra not to install next hop IDs in the kernel for you, and restarts FRR to apply the change.
+
+If you configure resilient hashing by editing `/etc/cumulus/datapath/traffic.conf` directly, configure zebra not to install next hop IDs in the kernel yourself with the following vtysh command:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -498,6 +529,15 @@ switch# write memory
 switch# exit
 cumulus@switch:~$
 ```
+
+#### Adaptive Routing
+
+<!-- REVIEW: the two rejection messages below are quoted verbatim from the specification's use case
+     table (UC4, UC5), which gives no NVUE command syntax around them beyond "at apply". Confirm the
+     exact wording and trigger point (nv set versus nv config apply) against a candidate build. Delete
+     this comment before publishing. -->
+
+Resilient hashing and {{<link url="#adaptive-routing" text="adaptive routing">}} are mutually exclusive. If you try to enable resilient hashing while adaptive routing is active, Cumulus Linux rejects the change with `Cannot enable resilient hashing while adaptive routing is active`. If you try to enable adaptive routing while resilient hashing is active, Cumulus Linux rejects the change with `Cannot enable Adaptive Routing while resilient hashing is active`.
 
 #### IPv6 Route Replacement
 
@@ -537,6 +577,25 @@ cumulus@switch:~$ systemctl status frr
             ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
             ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
             └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
+```
+
+#### Troubleshoot Resilient Hashing
+
+To confirm whether an ECMP group is actually using a resilient container in hardware, generate a {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file-generation" text="cl-support file">}} and search the `ROUTER_0.json` file it contains.
+
+| To find | Search for |
+| --- | --- |
+| Whether resilient hashing is programmed at all | `"ECMP type": "Resilient"` |
+| The hash buckets for one resilient container | `"ECMP HW Entry"` blocks under that container |
+| Which route uses which container | `"ECMP ID"` under the IPv4 or IPv6 unicast routes |
+| The timer values as currently programmed | `"Active timer (ms)"` and `"Max unbalanced time (ms)"` |
+
+To see the live hardware state on the console instead of waiting for a cl-support file, run:
+
+```
+cumulus@switch:~$ echo true | sudo tee /cumulus/switchd/ctrl/hw/enable
+cumulus@switch:~$ echo true | sudo tee /cumulus/switchd/ctrl/hw/nexthop
+cumulus@switch:~$ sudo cat /cumulus/switchd/run/hw/nexthop/all
 ```
 
 ## Adaptive Routing
@@ -802,12 +861,26 @@ The custom profile carries the three legacy congestion thresholds `ar.ctl`, `ar.
 | `ar.ct7` | The resolved value of `ar.ct6`. |
 
 {{%notice note%}}
+- A key needs the `ar.` prefix. Cumulus Linux ignores a key without it.
 - Thresholds are in cells. Cumulus Linux does not convert the values to bytes.
 - Each threshold must be between 0 and 16777215.
 - After Cumulus Linux fills in the omitted values, the seven thresholds must be in non-decreasing order: `ar.ctl` <= `ar.ctm` <= `ar.cth` <= `ar.ct4` <= `ar.ct5` <= `ar.ct6` <= `ar.ct7`. Equal values are valid.
 - Setting any one of `ar.ct4` through `ar.ct7` turns on extended grading and brings all four extended thresholds into effect. The fill is sequential, so a threshold you omit takes the resolved value of the threshold before it, which might itself be a filled value.
 - If you set the same key twice in the file, `switchd` uses the last value and logs a warning.
 - If any threshold is out of range or out of order, `switchd` rejects the entire profile. No value from the file reaches the hardware, including the free and busy grade thresholds, the shaper rates, and the ECMP group size, and the switch keeps the adaptive routing configuration it is already running.
+{{%/notice%}}
+
+Unlike the four extended thresholds, `ar.ctl`, `ar.ctm`, and `ar.cth` have no *value-when-omitted* rule of their own. If you leave one out of the file, Cumulus Linux keeps the value it already has for that key instead of resetting it (200, 1000, and 10000 on a freshly booted switch or the values the switch loaded last). The switch can accept or reject a file that sets only the extended thresholds depending on the configuration set before you apply it.
+
+<!-- REVIEW: whether a profile that sets extended thresholds without all three legacy keys should
+     instead be rejected outright, naming the missing keys, is an open question with MLX-Arch as of
+     this spec revision. If that lands before release, the recommendation below may need to become a
+     hard requirement instead. Delete this comment before publishing. -->
+
+To avoid depending on what the switch previously loads, set `ar.ctl`, `ar.ctm`, and `ar.cth` explicitly in every profile that also sets extended thresholds.
+
+{{%notice warning%}}
+Cumulus Linux does not validate that a threshold value is a number and reads an unparseable value, such as `ar.ct4 = abc`, as 0. In most cases, the resulting 0 breaks the non-decreasing order and `switchd` rejects the whole profile; however, if the unparseable value is `ar.ctl` or if every one of the seven thresholds is unparseable, 0 satisfies the ordering rule and Cumulus Linux accepts the profile with a value you do not intend, with no error and no warning. Check the file for typos before you apply it.
 {{%/notice%}}
 
 #### Configure Extended Grading
@@ -818,11 +891,6 @@ The custom profile carries the three legacy congestion thresholds `ar.ctl`, `ar.
      from NVIDIA. Delete this comment before publishing. -->
 
 The following example configures the four extended thresholds and raises the free grade threshold so that the four additional grades take part in port selection.
-
-<!-- REVIEW: the numbered steps in the NVUE tab below use the flexible snippet mechanism the NVUE
-     Snippets page documents. The spec instead shows a single-line
-     `nv set system config snippet <name> file <path> content "..."` form, which appears nowhere in
-     the docs. Confirm which form the release ships. Delete this comment before publishing. -->
 
 {{< tabs "TabID762 ">}}
 {{< tab "NVUE Commands ">}}
@@ -908,10 +976,20 @@ A value of 5 through 7 already set for `ar.p.frt` or `ar.p.but` stays rejected a
 
 #### Verify the Configuration
 
-<!-- REVIEW: sample output below is drafted, not captured. Confirm the readout format on a Spectrum-6
-     switch. Delete this comment before publishing. -->
+<!-- REVIEW: sample output below, for both the log line and the switchd configuration node readout,
+     is drafted, not captured. Confirm the readout format on a Spectrum-6 switch. Delete this comment
+     before publishing. -->
 
-NVUE does not validate the contents of the profile file, so `nv config apply` succeeds whether or not `switchd` accepts the profile. `switchd` reports every validation failure to `/var/log/switchd.log` only. After you apply a profile, check the log to confirm that the switch accepts it:
+NVUE does not validate the contents of the profile file, so `nv config apply` succeeds whether or not `switchd` accepts the profile. `switchd` reports every validation failure to `/var/log/switchd.log` only. After you apply a profile, check the log to confirm that the switch accepts it.
+
+`switchd` logs one summary line, `AR: applied`, on every profile evaluation. It names the full resolved seven-threshold vector and whether extended grading took effect, so check it first:
+
+```
+cumulus@switch:~$ sudo grep "AR: applied" /var/log/switchd.log | tail -1
+AR: applied (ctl=500 ctm=1000 cth=2500 ct4=5000 ct5=10000 ct6=20000 ct7=40000) extended=yes
+```
+
+For a validation failure or other detail, search the wider log:
 
 ```
 cumulus@switch:~$ sudo grep -iE "adaptive|extended grading|congestion threshold" /var/log/switchd.log

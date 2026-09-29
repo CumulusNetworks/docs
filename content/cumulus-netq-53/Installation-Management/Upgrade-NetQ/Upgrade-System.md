@@ -8,7 +8,8 @@ toc: 4
 This page describes how to upgrade your NetQ virtual machines while preserving your existing NetQ data. During the upgrade, NetQ will be temporarily unavailable. After the upgrade is complete, it may take some time for topology and search data to fully repopulate.
 
 {{%notice note%}}
-NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
+- NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
+- Custom configurations might be lost during the upgrade process. Contact your NVIDIA representative for more information.
 {{%/notice%}}
 
 <!--

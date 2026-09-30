@@ -38,6 +38,21 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
      state GA for 5.19, so no "(Beta)" suffix is appended here. Confirm against the 5.19 Redmine
      execution query. Delete this comment before publishing. -->
 
+<!-- REVIEW: the RADIUS entry in the Telemetry list below, the one reading "OTEL metrics for AAA
+     RADIUS login authentication." It previously read plain text, "Support for AAA radius gnmi
+     metrics," and was left unconverted (see radius-gnmi-counters-report.md) pending confirmation
+     that the umf-cl gNMI mapping had shipped. Re-checking against spec revision 1.1 -- still the
+     only revision, dated 13-08-2026 -- on 2026-09-30 found the mapping still "Not written"; gNMI
+     still returns no data. In the interim someone converted the entry to a link, but pointed it at
+     #new-gnmi-metrics and kept the word "gNMI" -- both wrong: the RADIUS tab that actually shipped
+     lives under ## New OTEL Metrics, not ## New gNMI Metrics, and documents Prometheus/OTEL
+     counters, not gNMI paths. Corrected the text and the anchor to match what's actually
+     documented. Two sibling entries in the same list -- "gNMI and OTEL metrics for unreachability
+     AFI SAFI" and "gNMI and OTEL metrics for CPO modules and laser sources" -- point at the same
+     #new-gnmi-metrics anchor and may have the identical bug; out of scope for this FR, logged in
+     known-defects.md. If the umf-cl mapping lands before release, this entry needs a second line
+     for the gNMI paths themselves. Delete this comment before publishing. -->
+
 - {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-evpn-routes" text="Prevent re-export of VRF-leaked EVPN routes">}}
 - {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
@@ -74,7 +89,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="Open-Telemetry-Export/#wjh-metrics" text="WJH metrics for OTEL">}}
   - {{<link url="gNMI-Streaming/#supported-models" text="gNMI component type and name for platform components">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for unreachability AFI SAFI">}}
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI metrics for AAA RADIUS">}}
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="OTEL metrics for AAA RADIUS login authentication">}}
   - {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst histogram with per-port burst scoring">}}
   - {{<link url="gNMI-Streaming/#dial-out-source-address" text="Configurable source address for gNMI dial-out connections">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for CPO modules and laser sources">}}

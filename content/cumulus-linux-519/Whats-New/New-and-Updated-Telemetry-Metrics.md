@@ -204,7 +204,7 @@ The following metrics are added for unreachability AFI SAFI.
 | `nvrouting_lldp_export_channel_errors_total` | Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
 
 {{< /tab >}}
-{{< tab "RADIUS">}}
+{{< tab "RADIUS Authentication">}}
 
 |  Name | Description |
 |------ | ----------- |

@@ -216,6 +216,68 @@ Cisco-AVPair += "shell:priv-lvl=15"
 The VSA vendor name (Cisco-AVPair in the example above) can have any content. The RADIUS client only checks for the string `shell:priv-lvl`.
 {{%/notice%}}
 
+<!-- REVIEW: this whole section drafts FR 4933274, "Passwordless sudo access for local and Radius-
+     authenticated users." Two things about the source document are unusual enough to flag before
+     anything else:
+     1. It carries no quality-level statement anywhere -- no Beta, GA, or Tech Preview -- which
+        publishes it as GA by default. Given the feature changes the switch's default sudo behavior
+        (see Using-sudo-to-Delegate-Privileges.md), confirm the quality level against the 5.19 Redmine
+        execution query before publishing.
+     2. The spec's revision table gives its own two most recent entries as "09-22-2026" (rev 1.6) and
+        then "09-23-2025" (rev 1.7) -- a year earlier than the revision before it. Treated as a typo for
+        2026 (rev 1.7 is clearly the most current, and the document lives at CL-Eng-Docs/Shared
+        Documents/NVUE Core/FS Docs/, not under a CL5.19/ folder like every other spec drafted this
+        session) -- but confirm this feature actually targets the 5.19 release and not a different NVUE
+        release train; "NVUE Core and AAA for release NVUE 1.15" does not by itself confirm a Cumulus
+        Linux release number.
+     Delete this comment before publishing. -->
+
+## RADIUS Privilege-Level-to-Role Mapping
+
+In addition to the {{<link url="#optional-radius-configuration" text="privilege-level threshold">}}, you can map a specific RADIUS privilege level to a {{<link url="Role-Based-Access-Control" text="custom role">}}. An exact mapping replaces the threshold-based group assignment for that privilege level; it does not add to it.
+
+Without an exact mapping, group assignment for the `shell:priv-lvl` a RADIUS server returns follows the privilege threshold:
+
+| `shell:priv-lvl` value | Groups assigned |
+| ----------------------- | ---------------- |
+| Below the configured threshold | `nvshow` |
+| At or above the threshold, with no exact mapping for that level | `sudo`, `nvapply`, `nvshow` |
+| At or above the threshold, with an exact mapping for that level | Only the groups the mapped role explicitly references |
+
+A mapped role can reference the built-in `sudo`, `nvapply`, and `nvshow` classes and any custom {{<link url="Role-Based-Access-Control/#os-command-classes" text="os-command classes">}}, but cannot reference a custom `command-path` class. If a mapped role does not reference `sudo`, `nvapply`, or `nvshow`, the RADIUS user does not receive that access, even if the unmapped threshold behavior would have granted it. A mapping below the configured threshold is invalid.
+
+{{%notice note%}}
+Except for the role mapping described here, existing RADIUS privilege-level behavior is unchanged: a returned `shell:priv-lvl` with no exact mapping still follows the threshold table above, and a RADIUS user for whom no privilege level is returned still receives `nvshow`.
+{{%/notice%}}
+
+The following example maps privilege level 13 to a custom role that grants only the `log-monitor` class, so a user who authenticates at that level does not receive `sudo`, `nvapply`, or `nvshow` unless the role also references those classes:
+
+```
+cumulus@switch:~$ nv set system aaa radius privilege-level 12
+cumulus@switch:~$ nv set system aaa radius authorization 13 role log-monitor-role
+cumulus@switch:~$ nv config apply
+```
+
+To show the configured RADIUS role mappings, run the `nv show system aaa radius authorization` command:
+
+```
+cumulus@switch:~$ nv show system aaa radius authorization
+RADIUS Privilege Level   Role
+----------------------   ----------------
+13                       log-monitor-role
+```
+
+<!-- REVIEW: changes to a mapping, a mapped role's classes, or the privilege threshold take effect for
+     the next RADIUS authentication; a session already logged in keeps its previously established
+     groups until it ends or the user reauthenticates. The spec states this plainly, but I could not
+     find an existing convention on this page for documenting session-transition behavior, so this is
+     the first time it appears here. Confirm the wording matches how other session-transition notes on
+     this page are phrased, if any exist outside this diff. Delete this comment before publishing. -->
+
+{{%notice note%}}
+A change to the mapping, to the classes a mapped role references, or to the privilege threshold applies starting with the next RADIUS authentication. A session that is already logged in keeps its previously assigned groups until it ends or the user reauthenticates.
+{{%/notice%}}
+
 ## Enable Login without Local Accounts
 
 {{%notice note%}}

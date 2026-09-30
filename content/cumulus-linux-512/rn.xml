@@ -28,6 +28,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5152149, 5154742</td>
 <td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
 <td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>

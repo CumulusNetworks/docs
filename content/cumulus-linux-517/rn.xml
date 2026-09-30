@@ -9,6 +9,12 @@
 <tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
+<td>5.16.5-5.18.0</td>
+<td>5.18.1-5.18.2</td>
+</tr>
+<tr>
+<td>5281522</td>
+<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
 <td>5.16.5-5.18.2</td>
 <td></td>
 </tr>
@@ -55,6 +61,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5221359</td>
+<td>NVUE accumulates a large number of internal applied checkpoint revision branches or tags, which slows {{nv config apply}} operations over time and increases disk usage.</td>
+<td>5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5221083</td>
 <td>The {{nv config apply}} command fails due to a {{switchd}} reload failure.</td>
 <td>5.16.1, 5.16.5-5.18.2</td>
@@ -72,6 +84,18 @@
 Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
+<td>5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5175820</td>
+<td>Multiple switch ports do not come up. The affected ports are enabled and administratively up, but operationally remain down with a {{Not connected}} state. Some ports are shown as plugged while others as unplugged, and all are in {{LOOPBACK_DISABLED}} mode with {{Post-FEC}} status.</td>
 <td>5.16.5-5.18.2</td>
 <td></td>
 </tr>

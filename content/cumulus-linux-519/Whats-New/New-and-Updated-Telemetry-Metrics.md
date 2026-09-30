@@ -39,20 +39,24 @@ The following tables list the new, updated, and deprecated gNMI and OTEL metrics
 {{< tabs "TabID114 ">}}
 {{< tab "Routing">}}
 
+The following metrics are added for unreachability AFI SAFI.
+
 |  Name | Description |
 |------ | ----------- |
-| `/frr-bgp-peer:lib/vrf[id=<vrf-id>]/ipv4-unreach-prefix-count` | Number of IPv4 prefixes in the BGP unreachability table. |
-| `/frr-bgp-peer:lib/vrf[id=<vrf-id>]/ipv6-unreach-prefix-count` | Number of IPv6 prefixes in the BGP unreachability table. |
-| `/frr-zebra:lib/vrf[id=<vrf-id>]/ipv4-lldp-exception/exception-count` | Number of unreachable IPv4 prefixes the switch holds to export to LLDP, excluding the default route exception. |
-| `/frr-zebra:lib/vrf[id=<vrf-id>]/ipv4-lldp-exception/default-exception-active` | Whether the IPv4 default route exception is active. |
-| `/frr-zebra:lib/vrf[id=<vrf-id>]/ipv6-lldp-exception/exception-count` | Number of unreachable IPv6 prefixes the switch holds to export to LLDP, excluding the default route exception. |
-| `/frr-zebra:lib/vrf[id=<vrf-id>]/ipv6-lldp-exception/default-exception-active` | Whether the IPv6 default route exception is active. |
-| `/frr-zebra:lib/lldp-export-stats/exception-add-total` | Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
-| `/frr-zebra:lib/lldp-export-stats/exception-remove-total` | Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
-| `/frr-zebra:lib/lldp-export-stats/default-exception-add-total` | Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
-| `/frr-zebra:lib/lldp-export-stats/default-exception-remove-total` | Number of default route exception withdrawals sent to LLDP since the routing service started. |
-| `/frr-zebra:lib/debug/lldp-export-channel/connected` | Whether the LLDP export channel is up. |
-| `/frr-zebra:lib/debug/lldp-export-channel/errors-total` | Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV4]/state/exception-count ` | Number of unreachable IPv4 prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV4]/state/default-exception-active` | Whether the IPv4 default route exception is active. |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV6]/state/exception-count ` | Number of unreachable IPv6 prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV6]/state/default-exception-active` | Whether the IPv6 default route exception is active. |
+| `/lldp/state/counters/exception-add-total ` | Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
+| `/lldp/state/counters/exception-remove-total` | Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
+| `/lldp/state/counters/default-exception-add-total` | Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
+| `/lldp/state/counters/default-exception-remove-total` | Number of default route exception withdrawals sent to LLDP since the routing service started. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes` | Total number of unreachable IPv4 prefixes. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes` | Total number of unreachable IPv6 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes-all` | Total number of all unreachable IPv4 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes-all ` |  Total number of all unreachable IPv6 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes-local ` | Total number of unreachable local IPv4 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes-local ` | Total number of unreachable local IPv6 prefixes.|
 
 {{< /tab >}}
 {{< tab "Platform">}}
@@ -185,6 +189,8 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 {{< /tab >}}
 {{< tab "Routing">}}
 
+The following metrics are added for unreachability AFI SAFI.
+
 |  Name | Description |
 |------ | ----------- |
 | `nvrouting_bgp_unreach_prefix_count` | Number of prefixes in the BGP unreachability table. |
@@ -198,7 +204,7 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 | `nvrouting_lldp_export_channel_errors_total` | Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
 
 {{< /tab >}}
-{{< tab "RADIUS">}}
+{{< tab "RADIUS Authentication">}}
 
 |  Name | Description |
 |------ | ----------- |

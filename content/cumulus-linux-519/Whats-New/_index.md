@@ -53,6 +53,13 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
      known-defects.md. If the umf-cl mapping lands before release, this entry needs a second line
      for the gNMI paths themselves. Delete this comment before publishing. -->
 
+<!-- REVIEW: the passwordless sudo entry in the NVUE list below drafts FR 4933274. It states no quality
+     level anywhere (no Beta, GA, or Tech Preview), which publishes it as GA by default; confirm against
+     the 5.19 Redmine execution query before publishing, especially since the change affects the switch's
+     default sudo behavior for every sudo-group member. See the longer REVIEW comment on RADIUS-AAA.md
+     for the source document's other open question (a revision-date inconsistency and a spec location
+     outside CL-Eng-Docs/Shared Documents/CL5.19/). Delete this comment before publishing. -->
+
 - {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-evpn-routes" text="Prevent re-export of VRF-leaked EVPN routes">}}
 - {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
@@ -75,6 +82,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Domain-Name-System-DNS/#dns-query-source-address" text="Configurable source address for DNS queries, so that queries leave the switch from a stable loopback identity">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-cpo-module-and-laser-source-information" text="CPO module and laser source visibility on switches with co-packaged optics">}}
 - NVUE
+  - {{<link url="Using-sudo-to-Delegate-Privileges" text="Passwordless sudo access by default">}} for members of the sudo group, and {{<link url="Role-Based-Access-Control/#os-command-classes" text="RBAC os-command allow-lists">}} for granular passwordless access to specific commands
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
   - {{<link url="Neighbor-Discovery-ND/#clear-a-stale-prefix" text="Clear a stale IPv6 ND prefix on demand">}}
   - {{<link url="BMC/#manage-staged-firmware-files" text="Manage staged platform firmware files, automatic updates, and firmware source per component">}}

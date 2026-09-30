@@ -22,6 +22,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>4957394</td>
 <td>During {{snmpwalk}}, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes {{GET}} or {{GETNEXT}} for the requests.</td>
 <td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.8</td>

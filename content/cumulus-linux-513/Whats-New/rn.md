@@ -15,6 +15,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | 5221394 | Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), <code>neighmgrd</code> does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state. | 5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2 | |
+| 5177109 | The switch does not forward multicast traffic when a bond is part of the prune flood vector.  | 5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2 | |
 | 5152149, 5154742 | Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash. | 5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0 | 5.18.0-5.18.2|
 | 5072600 | The <code>nv show mlag -o json</code> command returns a plain text error instead of a JSON object<br /> | 5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0 | 5.18.0-5.18.2|
 | 5067214 | Running the <code>nv config apply</code> command with no changes returns a warning but the pending revision is not detached. | 5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0 | 5.18.0-5.18.2|
@@ -242,6 +243,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | 5221394 | Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), <code>neighmgrd</code> does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state. | 5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2 | |
+| 5177109 | The switch does not forward multicast traffic when a bond is part of the prune flood vector.  | 5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2 | |
 | 5152149, 5154742 | Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash. | 5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0 | 5.18.0-5.18.2|
 | 5072600 | The <code>nv show mlag -o json</code> command returns a plain text error instead of a JSON object<br /> | 5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0 | 5.18.0-5.18.2|
 | 5067214 | Running the <code>nv config apply</code> command with no changes returns a warning but the pending revision is not detached. | 5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0 | 5.18.0-5.18.2|

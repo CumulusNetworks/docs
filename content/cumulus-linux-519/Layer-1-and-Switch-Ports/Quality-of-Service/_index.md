@@ -2446,14 +2446,6 @@ On a Spectrum-6 switch, the service ports share a single dedicated ingress buffe
 
 Because a service port cannot borrow from the shared buffer that the regular ports use, its ingress memory is fixed. Under congestion, a service port drops lossy traffic and asserts pause on lossless traffic sooner than a regular port does. Excluding the service port memory also makes the shared buffer available to regular ports slightly smaller.
 
-<!-- REVIEW: this whole section, and the three commands below. The specification contradicts itself
-     on whether the feature has an NVUE surface at all. Its CLI / UI / UX section reads, in full,
-     "No New CLI is introduced in NVUE", while its Architecture Specification defines three new
-     leaves under `nv set qos advance buffer-config default-global` with a value range. The CLI
-     section of this specification is otherwise unedited boilerplate, so the draft follows the
-     architecture section and documents the three leaves. If the CLI section is correct, delete this
-     entire section. Delete this comment before publishing. -->
-
 {{%notice note%}}
 - Cumulus Linux does not expose the service port pool as a service pool object. You cannot create, bind, resize, or delete it. The `nv show` commands read it.
 - All service ports on the switch use the same pool. You cannot bind an individual service port to a different pool.
@@ -2463,34 +2455,73 @@ Because a service port cannot borrow from the shared buffer that the regular por
 - Egress pools on service ports are unchanged.
 {{%/notice%}}
 
-<!-- REVIEW: the unit and the argument form below. The specification gives the range as "0 to 1592
-     KB" but never names a property keyword, while every sibling region on this page takes a
-     property keyword and a value in bytes, such as `ingress-mgmt-buffer headroom 20000`. The draft
-     emits a bare size in KB as the specification states it. Confirm both the unit and whether these
-     leaves take a property keyword against a candidate build. Delete this comment before
-     publishing. -->
+{{< tabs "TabID2440 ">}}
+{{< tab "NVUE Commands ">}}
 
-To change the buffer sizes that Cumulus Linux allocates to the service ports, run the following commands. You can set a value between 0 and 1592 KB for each. The cumulative allocation across all service ports must stay within the size of the service port pool.
+To change the buffer allocations for the service ports, run the `nv set qos advance-buffer-config default-global <buffer> <option> <value>` command. You can adjust the following buffers and options:
 
-| Command | Description |
-| ------- | ----------- |
-| `nv set qos advance-buffer-config default-global ingress-sp-lossy-buffer <size>` | The lossy buffer allocation for the service ports. |
-| `nv set qos advance-buffer-config default-global ingress-sp-lossless-buffer <size>` | The lossless buffer allocation for the service ports. |
-| `nv set qos advance-buffer-config default-global ingress-sp-mgmt-buffer <size>` | The management buffer allocation for the service ports. |
+| Buffer | Options | Description |
+| ------ | ------- | ----------- |
+| `ingress-sp-service-pool` | `reserved`, `shared-bytes` | The service port pool's port-level reserved and shared buffer allocation, in bytes. |
+| `ingress-sp-lossy-buffer` | `headroom`, `reserved`, `shared-bytes` | The lossy priority group buffer allocation for the service ports, in bytes. |
+| `ingress-sp-mgmt-buffer` | `headroom`, `reserved`, `shared-bytes` | The management priority group buffer allocation for the service ports, in bytes. |
+| `ingress-sp-lossless-buffer` | `shared-bytes` | The lossless priority group shared buffer allocation for the service ports, in bytes. |
 
-The following example sets the service port lossy buffer to 100 KB:
+{{%notice note%}}
+`shared-alpha` is not available on any service port buffer; Cumulus Linux creates the service port pool as a static pool, so a service port buffer cannot take a dynamic alpha allocation. Set `shared-bytes` directly instead. The cumulative allocation across the service port pool and its priority groups must stay within the service port pool size, shown in the capacity table below. If a configuration would exceed it, NVUE rejects the apply.
+{{%/notice%}}
+
+The following example sets the service port lossy priority group headroom to 50000 bytes:
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-sp-lossy-buffer 100
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-sp-lossy-buffer headroom 50000
 cumulus@switch:~$ nv config apply
 ```
 
-To return a setting to its default, run the `nv unset qos advance-buffer-config default-global <buffer>` command:
+To return a setting to its default, run the `nv unset qos advance-buffer-config default-global <buffer> <option>` command:
 
 ```
-cumulus@switch:~$ nv unset qos advance-buffer-config default-global ingress-sp-lossy-buffer
+cumulus@switch:~$ nv unset qos advance-buffer-config default-global ingress-sp-lossy-buffer headroom
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to add the following parameters.
+
+<!-- REVIEW: the `flow_control.srvcp.*` row below is an inference, not a direct statement. The
+     specification's `qos_infra.conf` excerpt gives explicit `srvcp` keys for the service pool, the
+     lossy priority group, and the management priority group, but gives no explicit key for the
+     lossless priority group. Elsewhere on this page, in the existing Shared Headroom Pool section,
+     `flow_control.*` is the key family already used for lossless/PFC-related buffer settings, and
+     the specification's `qos_infra.conf` excerpt does include a `flow_control.srvcp.ingress_buffer`
+     family with no other documented purpose. Confirm this mapping against a candidate build before
+     publishing. Delete this comment before publishing. -->
+
+| Parameter | Description |
+| --------- | ----------- |
+| `port.srvcp_service_pool.0.ingress_buffer.reserved` | The service port pool's port-level reserved buffer allocation, in bytes. |
+| `port.srvcp_service_pool.0.ingress_buffer.shared_size` | The service port pool's port-level static shared buffer allocation, in bytes. |
+| `priority_group.srvcp_lossy.ingress_buffer.reserved` | The lossy priority group reserved buffer allocation for the service ports, in bytes. |
+| `priority_group.srvcp_lossy.ingress_buffer.shared_size` | The lossy priority group static shared buffer allocation for the service ports, in bytes. |
+| `priority_group.srvcp_lossy.ingress_buffer.lossy_headroom` | The lossy priority group headroom allocation for the service ports, in bytes. |
+| `priority_group.srvcp_mgmt.ingress_buffer.reserved` | The management priority group reserved buffer allocation for the service ports, in bytes. |
+| `priority_group.srvcp_mgmt.ingress_buffer.shared_size` | The management priority group static shared buffer allocation for the service ports, in bytes. |
+| `priority_group.srvcp_mgmt.ingress_buffer.lossy_headroom` | The management priority group headroom allocation for the service ports, in bytes. |
+| `flow_control.srvcp.ingress_buffer.shared_size` | The lossless priority group static shared buffer allocation for the service ports, in bytes. |
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
+...
+priority_group.srvcp_lossy.ingress_buffer.lossy_headroom = 50000
+...
+```
+
+To return a parameter to its default, delete or comment out the line.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 <!-- REVIEW: the capacity table below is derived from the specification's own worked example, which
      assumes 100G ports with a 9216 byte MTU and a 3 metre cable. Confirm that these defaults hold
@@ -2506,9 +2537,23 @@ The default allocations consume part of the pool before you tune anything. The f
 | Remaining pool with lossy traffic only | 1848 KB | 1750 KB |
 | Remaining pool with priority flow control enabled | 1452 KB | 958 KB |
 
-To show the pool, mode, and buffer sizes for a service port, run the `nv show interface <interface-id> qos buffer` command.
+To show the pool, mode, and buffer sizes for a service port, run the `nv show interface <interface-id> qos buffer` command. A service port reports hardware pool `12` (`SERVICE_PORT_IPOOL`) instead of the pool a regular port reports:
 
-<!-- TODO: capture `nv show interface <service-port> qos buffer` output on a Spectrum-6 switch and paste here -->
+```
+cumulus@switch:~$ nv show interface swp65s0 qos buffer
+Buffer Statistics - Ingress Port
+===================================
+Hw Pool ID         Mode    Reserved Size  Current Usage  Max Usage  Shared Max
+-----------------  ------  -------------  -------------  ---------  ----------
+12 (new pool id)   STATIC  10.00 KB       0 Bytes        0 Bytes    5.00 MB
+
+Buffer Statistics - Ingress Priority Group
+=============================================
+priority-group  Pool ID  Mode    Reserved Size  Current Usage  Max Usage  Shared Max  Lossy/Lossless  XON Th   XOFF Th  HR        HR/PL Usage  HR/PL Max
+--------------  -------  ------  -------------  -------------  ---------  ----------  --------------  -------  -------  --------  -----------  ---------
+0               12       STATIC  0 Bytes        0 Bytes        0 Bytes    1023.75 KB  Lossy           0 Bytes  0 Bytes  19.00 KB  0 Bytes      0 Bytes
+9               12       STATIC  10.00 KB       0 Bytes        0 Bytes    5.00 MB     Lossy           0 Bytes  0 Bytes  10.00 KB  0 Bytes      0 Bytes
+```
 
 ## Syntax Checker
 

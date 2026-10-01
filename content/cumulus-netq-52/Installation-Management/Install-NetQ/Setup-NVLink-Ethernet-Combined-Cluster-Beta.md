@@ -74,8 +74,8 @@ Additionally, for internal cluster communication, you must open these ports:
     a. Log in to your {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}} account.<br>
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
-    d. In the search field above the table, enter **NetQ**.<br1 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.2.1 VMware Scale** image<br>
-    f. If prompted, read the license agreement and proceed with the download.<br>
+    d. For deployments using KVM, download the **NetQ SW 5.2.1 KVM Scale** image. For deployments using VMware, download the **NetQ SW 5.2.1 VMware Scale** image<br>
+    e. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
 NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.licensing.nvidia.com/" text="NVIDIA Licensing Portal">}}.

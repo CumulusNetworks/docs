@@ -90,7 +90,7 @@ To uninstall a patch, run the `nv action uninstall system packages archive <arch
 - Uninstalling a patch does not remove it from the switch; you can install it again or step back to it later. Refer to {{<link url="#reclaim-patch-space" text="Reclaim Patch Space">}}.
 - If the patch underneath is no longer on the switch, the affected packages return to their base-image versions and the fix that patch carries does not restore.
 - If the patch takes effect by rebooting the switch, the switch reboots once for the whole operation, not once for each patch.
-- If the switch removes the patch on top but cannot restore the patch underneath it, the command reports a failure even though the top patch is already gone, and names the archive ID of the patch it cannot restore. To recover, install that patch manually; running the uninstall command again is not the recovery step, because the patch you try to uninstall is already gone.
+- If the switch removes the patch on top but cannot restore the patch underneath it, the command reports a failure even though the top patch is already removed, and names the archive ID of the patch it cannot restore. First, fix the issue that stopped the restore (fetch the missing patch again if its archive is no longer on the switch or clear whatever blocked its install), then run the uninstall command again for the same patch you originally tried to uninstall. Installing the patch underneath directly is not the recovery: it only restarts the services that patch includes, not the full set included in the patch you removed, so a service that only the removed patch touched keeps running the fix for the removed patch.
 {{%/notice%}}
 
 ```

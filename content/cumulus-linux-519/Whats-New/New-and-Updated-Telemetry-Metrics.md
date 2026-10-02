@@ -157,19 +157,6 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 
 ## New OTEL Metrics
 
-<!-- REVIEW: the specification's title page states GA for 5.19, but its feature-request table gives
-     the release scope as "CL 5.18.0 (GA)" for the same FR. Confirm the release and quality level
-     against the 5.19 Redmine execution query. Note also that
-     nvrouting_lldp_default_exception_active_count reports a boolean but carries a _count suffix,
-     while nvrouting_lldp_export_channel_connected reports a boolean with no suffix; both names are
-     drafted exactly as the specification gives them. Delete this comment before publishing. -->
-
-<!-- REVIEW: the RADIUS tab below. As of the specification's revision 1.1 the OpenTelemetry
-     RADIUS_STATS category and the collector label change were both on a branch with the merge
-     request not yet opened, so confirm these metrics ship in 5.19 before publishing. The metric
-     names and the single `server` label are settled, so only the delivery is in question. Delete
-     this comment before publishing. -->
-
 <!-- REVIEW: the Microburst Histogram tab below states that the temporality of
      nvswitch_histogram_interface_microburst is delta. The telemetry change proposal says the
      bins reset on read and that consumers receive per-window state rather than cumulative
@@ -269,6 +256,19 @@ The switch exports these metrics on a switch with CPO only. Enable them with the
 | `nvswitch_platform_els_temperature_alarm` | Alarm status and severity for the laser source temperature. Carries a `name` label. |
 | `nvswitch_platform_els_temperature_threshold_info` | Threshold at which the laser source temperature alarm triggers. Carries a `name` label. |
 | `nvswitch_platform_els_icc_current` | ICC current the laser source draws. Carries a `name` label. |
+
+{{< /tab >}}
+{{< tab "Packet Trimming">}}
+
+The switch exports these metrics on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming Counters">}}.
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_qos_trimmed_tx_unicast_pkts` | Number of packets that were trimmed and sent successfully. |
+| `nvswitch_qos_trimmed_drop_unicast_pkts` | Number of packets that were trimmed and dropped. |
+| `nvswitch_interface_trimmed_drop_unicast_pkts [interface]` | Number of packets that were trimmed and dropped on the interface. |
+| `nvswitch_interface_tc_trimmed_tx_unicast_pkts [interface][tc]` | Number of packets that were trimmed and sent successfully on the interface and traffic class. |
+| `nvswitch_interface_tc_trimmed_drop_unicast_pkts [interface][tc]` | Number of packets that were trimmed and dropped on the interface and traffic class. |
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -226,11 +226,12 @@ Use NVUE commands to show and clear packet trimming counters.
 
 ### Show Packet Trimming Counters
 
-You can show the number of trimmed packets at the global level and the number of trimmed packets for each interface.  
+You can show the number of trimmed packets at the global level and the number of trimmed packets for each interface. On Spectrum-6 switches, you can also show the number of trimmed packets the switch sent successfully and the number it dropped, at the global, port, and traffic class level.
 
 {{%notice note%}}
 - You can show packet trimming counters on switches with Spectrum-4 and later ASICs.
-- Spectrum-4 switches display only the total number of trimmed packets per port and do not provide counters for the number of trimmed packets that were sent successfully on a port.
+- Spectrum-4 switches show only the total number of trimmed packets at the global, port, and traffic class level; they do not provide separate sent or dropped counters.
+- Spectrum-6 switches show the number of trimmed packets sent successfully and the number dropped, at the global, port, and traffic class level.
 {{%/notice%}}
 
 To display the number of trimmed packets at both the global and interface levels, run the `nv show system forwarding packet-trim counters` command:
@@ -250,6 +251,21 @@ swp3        4000                  N/A
 swp4        5000                  N/A 
 ```
 
+On Spectrum-6 switches, the same command also shows the number of trimmed packets sent successfully and the number dropped, at the global and port level:
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim counters
+Global
+ trimmed-packets           322
+ trimmed-tx-packets        322
+ trimmed-drop-packets      0
+Port-Level
+-------------
+Interface  Trim Eligible Packets  Trimmed TxPackets  Trimmed Dropped Packets
+---------  ---------------------  -----------------  -----------------------
+swp7s0     322                    322                 0
+```
+
 To show the number of trimmed packets for a specific interface by traffic class, run the `nv show interface <interface-id> packet-trim counters` command. You must specify a specific interface. The NVUE command does not support interface ranges.
 
 ```
@@ -259,6 +275,17 @@ Traffic Class  Trim Eligible Packets
 1                 1000                
 2                 2000              
 3                 3000 
+```
+
+On Spectrum-6 switches, the same command also shows the number of trimmed packets sent successfully and the number dropped, for each traffic class:
+
+```
+cumulus@switch:~$ nv show interface swp7s0 packet-trim counters
+Traffic Class  Trim Eligible Packets  Trimmed TxPackets  Trimmed Dropped Packets
+-------------  ---------------------  ------------------  -----------------------
+1               109                    109                 0
+2               106                    106                 0
+3               107                    107                 0
 ```
 
 ### Clear Packet Trimming Counters
@@ -282,23 +309,6 @@ cumulus@switch:~$ nv action clear interface swp1 packet-trim counters
 ```
 
 ## Back-to-sender Notification on Congestion Tail Drop
-
-<!-- REVIEW: before this section publishes, confirm on a candidate build that a Spectrum-6 switch
-     actually returns a back-to-sender notification. The functional specification (FR 4373590,
-     approved 22-09-2026) is explicit, in its own Testing section, that this has not yet been
-     demonstrated anywhere: "Returning a notification to the sender has not yet been demonstrated on
-     Spectrum-6 in any environment. On real hardware and on the simulator alike, the trim agent emits
-     the trimmed copy out the congested egress port with the forward marking, instead of returning
-     it." The traffic-level tests that would prove the behavior are explicitly contingent on that
-     being fixed first. Every command, parameter and constraint below is otherwise fully specified
-     and approved (all open issues closed) -- this flag is about whether the feature does what the
-     specification says, not about whether the specification itself is settled. Do not publish this
-     section until this is confirmed working. Delete this comment before publishing. -->
-
-<!-- REVIEW: no quality level (GA or Beta) is stated anywhere in this specification, unlike the
-     sibling back-to-sender-on-link-down specification, which labels itself "(GA)" in its object
-     model section. Confirm against the 5.19 Redmine execution query and add a "(Beta)" notice below
-     and to the What's New entry if it ships as Beta. Delete this comment before publishing. -->
 
 {{%notice note%}}
 - Cumulus Linux supports back-to-sender notification on congestion tail drop on Spectrum-6 switches only, for layer 3 unicast RoCEv2 traffic with IPv4 or IPv6 outer headers, in the default VRF. The outer header can be an SRv6 encapsulation, which is how MRC carries RoCEv2 traffic.
@@ -324,11 +334,6 @@ To enable and configure back-to-sender notification on congestion tail drop:
 - Select the egress ports and traffic class you want back-to-sender notification on, instead of trim-and-forward. This setting is required; until you set it, every trim-eligible combination stays trim-and-forward.
 - Optionally, set the DSCP value the switch marks on the notification. You can specify a value between 0 and 63, or `port-level` to use the port-level remark profile. If you do not set this, the switch uses the value from the XGS parameter template.
 - Optionally, set a device-wide DSCP eligibility filter, and the ingress interfaces it applies to. This filter is shared between back-to-sender and trim-and-forward. If you do not set a filter, every DSCP is eligible.
-
-<!-- REVIEW: the marking DSCP example (11) and the DSCP eligibility values (24, 26, 46) below are the
-     specification's own CLI examples, not confirmed defaults or recommended values for a production
-     deployment. Replace with values appropriate to your DSCP plan.
-     Delete this comment before publishing. -->
 
 ```
 cumulus@switch:~$ nv set system forwarding packet-trim state enabled

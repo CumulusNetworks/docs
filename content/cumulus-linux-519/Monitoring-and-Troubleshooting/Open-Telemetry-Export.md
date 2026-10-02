@@ -1202,8 +1202,13 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 | `nvswitch_srv6_in_pkts` | Number of packets received for this SID. |
 | `nvswitch_qos_trimmed_unicast_pkts`| Number of packets that were trimmed. To see this metric you must enable packet trimming. Spectrum-3 switches do not support this metric.|
 | `nvswitch_interface_trimmed_unicast_pkts [interface]`| Number of packets that were trimmed on the interface.|
-| `nvswitch_interface_trimmed_tx_unicast_pkts [interface]`| Number of packets that were trimmed and sent successfully on the interface.|
+| `nvswitch_interface_trimmed_tx_unicast_pkts [interface]`| Number of packets that were trimmed and sent successfully on the interface. Spectrum-4 switches do not support this metric.|
 | `nvswitch_interface_tc_trimmed_unicast_pkts [interface][tc]`| Number of packets that were trimmed on the interface and traffic class.|
+| `nvswitch_qos_trimmed_tx_unicast_pkts` | *Number of packets that were trimmed and sent successfully. Spectrum-6 only. |
+| `nvswitch_qos_trimmed_drop_unicast_pkts` | *Number of packets that were trimmed and dropped. Spectrum-6 only. |
+| `nvswitch_interface_trimmed_drop_unicast_pkts [interface]` | *Number of packets that were trimmed and dropped on the interface. Spectrum-6 only. |
+| `nvswitch_interface_tc_trimmed_tx_unicast_pkts [interface][tc]` | *Number of packets that were trimmed and sent successfully on the interface and traffic class. Spectrum-6 only. |
+| `nvswitch_interface_tc_trimmed_drop_unicast_pkts [interface][tc]` | *Number of packets that were trimmed and dropped on the interface and traffic class. Spectrum-6 only. |
 
 <!-- REVIEW: Redmine 5299181 establishes only that RoCEv2 traffic increments the counter and TCP
      traffic does not. Drafted as "traffic that is eligible for adaptive routing, such as RoCEv2"

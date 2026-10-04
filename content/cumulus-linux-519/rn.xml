@@ -7,16 +7,10 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5297900</td>
-<td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
-<td>5.16.3-5.19.0</td>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.19.0</td>
 <td></td>
-</tr>
-<tr>
-<td>5257559</td>
-<td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
-<td>5.18.0-5.19.0</td>
-<td>5.16.8</td>
 </tr>
 <tr>
 <td>5240151</td>
@@ -28,6 +22,12 @@
 <td>5223707</td>
 <td>Restarting the networking service in an EVPN multihoming configuration leaves the host bonds enabled in configuration but not actually working. After the restart, the bond loses carrier, stops forwarding traffic, and a MAC address that is supposed to stay local gets removed from the local bond and is instead learned through VXLAN/ECMP. In some later observations, Linux shows the MAC address correctly back on the local hostbond, but the hardware still points it to ECMP, showing a software or hardware forwarding mismatch.</td>
 <td>5.16.7-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5221359</td>
+<td>NVUE accumulates a large number of internal applied checkpoint revision branches or tags, which slows {{nv config apply}} operations over time and increases disk usage.</td>
+<td>5.16.3-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -828,6 +828,62 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1-5.18.2</td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+</tr>
+<tr>
+<td>5288214</td>
+<td>When you boot a switch with TACACS+ or RADIUS configured to reference a server by hostname, the networking service might take a long time (2 or more minutes) to start. </td>
+<td>5.18.0-5.18.2</td>
+</tr>
+<tr>
+<td>5281522</td>
+<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
+<td>5.16.3-5.18.2</td>
+</tr>
+<tr>
+<td>5281416</td>
+<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
+
+Due to flow:
+
+REST API Client
+10.87.221.34
+      |
+      v
++---------------------+
+| Public NVUE NGINX   |
+| knows original IP   |
++---------------------+
+      |
+      | auth subrequest
+      | via 127.0.0.1 / ::1
+      v
++----------------------+
+| Internal NGINX Auth  |
++----------------------+
+      |
+      v
+   PAM nvueapi
+      |
+      v
+ pam_radius_auth
+      |
+      v
++----------------------+
+|    RADIUS Server     |
+| Calling-Station-Id = |
+| 127.0.0.1 / ::1  X   |
++----------------------+</td>
+<td>5.16.6-5.18.2</td>
+</tr>
+<tr>
 <td>5274511</td>
 <td>In scaled configurations, {{switchd}} might crash during EVPN multihoming layer 2 next hop group cleanup causing a daemon restart and brief traffic interruption.</td>
 <td>5.16.1-5.18.2</td>
@@ -836,6 +892,21 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5272623</td>
 <td>The switch writes the {{all_packet_stats}} snapshot to the {{/var/lib/cumulus}} directory instead of the {{/var/run/cumulus}} directory, which might cause unnecessary SSD usage.</td>
 <td>5.18.1-5.18.2</td>
+</tr>
+<tr>
+<td>5269505</td>
+<td>The asic-monitor exceeds its 1 GB memory limit and restarts repeatedly when histogram snapshots are enabled on a large number of ports on a Spectrum-6 switch. </td>
+<td></td>
+</tr>
+<tr>
+<td>5268378</td>
+<td>UMF and telemetry services might remain in a failed state after an offline package upgrade interrupting management and telemetry functions.</td>
+<td>5.16.8-5.18.2</td>
+</tr>
+<tr>
+<td>5268313</td>
+<td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
+<td>5.16.8-5.18.2</td>
 </tr>
 <tr>
 <td>5252674</td>
@@ -871,6 +942,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5230968</td>
 <td>You might experience a high convergence time on a switch configured with BGP {{nhg-per-origin}} when several BGP sessions toward the same neighboring tier go down as part of one event (for example, all uplinks from a leaf to one spine fail together).</td>
 <td></td>
+</tr>
+<tr>
+<td>5227516</td>
+<td>The {{nv config replace}} workflow fails causing {{hostapd}} to crash and generate core dumps. This issue leaves the service unable to restart cleanly and can disrupt network-related functionality.</td>
+<td>5.16.6-5.18.2</td>
 </tr>
 <tr>
 <td>5225461</td>
@@ -958,6 +1034,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.18.0-5.18.2</td>
 </tr>
 <tr>
+<td>5190318</td>
+<td>A package upgrade might start the default telemetry service together with the configured management VRF instance, causing a port conflict and leaving a telemetry service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
+</tr>
+<tr>
 <td>5190241</td>
 <td>When you configure TACACS+ authentication with a server hostname resolving to more than one IP address and enable STP on a bridge (the default setting), the switch stops responding.</td>
 <td>5.18.0-5.18.2</td>
@@ -983,9 +1064,29 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.18.0-5.18.2</td>
 </tr>
 <tr>
+<td>5183727</td>
+<td>During a package upgrade, {{containerd image-ingest}} errors might prevent the UMF container image from loading and leave the {{nv-umf}} service unable to start.</td>
+<td>5.18.0-5.18.2</td>
+</tr>
+<tr>
+<td>5183654, 5234851</td>
+<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
+<td>5.18.0-5.18.2</td>
+</tr>
+<tr>
 <td>5183514, 5217107, 5221591</td>
 <td>The NVUE set command returns a traceback in the output when the per user repo_incarnation file ({{/home/$USER/.local/share/nvue/repo_incarnation}}) is non-writable.</td>
 <td>5.16.1-5.16.6</td>
+</tr>
+<tr>
+<td>5182854</td>
+<td>Stopping and starting Docker in the management VRF might cause configured gRPC tunnel services to fail and generate an automatic cl-support file.</td>
+<td>5.18.0-5.18.2</td>
+</tr>
+<tr>
+<td>5182805</td>
+<td>If Docker becomes unavailable after the initial readiness check, subsequent gNMI container start operations might fail and leave the {{nv-gnmi}} service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
 </tr>
 <tr>
 <td>5182789, 5217108, 5221590, 5216045, 5215790</td>
@@ -1003,6 +1104,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.5-5.16.6</td>
 </tr>
 <tr>
+<td>5177905</td>
+<td>During a package upgrade from Cumulus Linux 5.16.0 to 5.18.0, the {{nv-umf }} service might fail to start temporarily while system services are being updated, triggering automatic generation of a cl-support archive with the reason {{nv-umf first failure}}. The service retries startup automatically and can recover without manual intervention. If {{nv-umf}} resumes normal operation without further failures, no manual recovery is required, and the generated archive alone does not indicate an ongoing problem.</td>
+<td>5.18.0-5.18.2</td>
+</tr>
+<tr>
+<td>5177822</td>
+<td>During 802.1X authentication telemetry streaming, the switch incorrectly sends delete notifications for session details even though the client session is still active and authenticated. </td>
+<td>5.18.0-5.18.2</td>
+</tr>
+<tr>
 <td>5177678</td>
 <td>In an EVPN deployment using downstream VNIs (D-VNIs), when all EVPN route-target imports are withdrawn from a VRF, {{switchd}} fails to free exactly one of the D-VNI entries.</td>
 <td>5.18.0-5.18.2</td>
@@ -1018,11 +1129,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.1-5.16.6, 5.18.0</td>
 </tr>
 <tr>
-<td>5175384</td>
-<td>After a restart, NVUE sometimes tries to read ASIC platform resource information too early, before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
-<td>5.18.0-5.18.2</td>
-</tr>
-<tr>
 <td>5174873</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.2</td>
@@ -1030,6 +1136,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5174595, 5233487</td>
 <td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
+<td>5.18.0-5.18.2</td>
+</tr>
+<tr>
+<td>5170499, 5257559</td>
+<td>After an optimized image upgrade, the first time you try to enable the new 802.1X server telemetry metrics setting, you get an error. The issue occurs because an old Docker setting from the earlier release is still present in the saved configuration, which the upgraded release no longer accepts. As a result, the switch rejects the first {{config apply}} with a validation error tied to {{system.docker}} instead of the 802.1X setting you are trying to enable. To work around this issue, run the {{nv config detach}} command before the first {{nv set}} and {{nv config apply}} after the upgrade, or discard any pending revision before starting the upgrade.</td>
 <td>5.18.0-5.18.2</td>
 </tr>
 <tr>
@@ -1107,6 +1218,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5072739, 5089352</td>
 <td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
 <td>5.17.0-5.18.2</td>
+</tr>
+<tr>
+<td>5057424</td>
+<td>After a chain of faults disables automatic cl-support file generation, using NVUE to turn the feature off, then back on causes the switch to forget important fault history. The original support file from the first fault and the reason why auto-generation was disabled disappear, and the status incorrectly looks healthy and enabled even though the earlier fault chain had already triggered deactivation. </td>
+<td>5.16.0-5.18.2</td>
 </tr>
 <tr>
 <td>5002002</td>

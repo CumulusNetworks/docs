@@ -14,7 +14,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5299253 | LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking <code>snmpbulkwalk</code> and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days. | 5.11.3-5.18.2 | |
 | 5221394 | Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), <code>neighmgrd</code> does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state. | 5.11.1-5.18.2 | |
+| 5177109 | The switch does not forward multicast traffic when a bond is part of the prune flood vector.  | 5.9.2-5.18.2 | |
 | 5072600 | The <code>nv show mlag -o json</code> command returns a plain text error instead of a JSON object<br /> | 5.11.3-5.17.0 | 5.18.0-5.18.2|
 | 5067214 | Running the <code>nv config apply</code> command with no changes returns a warning but the pending revision is not detached. | 5.11.5-5.17.0 | 5.18.0-5.18.2|
 | 5065211, 4916985, 5078194 | When data path enablement timing is marginal, traffic might be allowed through the system too early. | 5.11.5-5.17.0 | 5.18.0-5.18.2|
@@ -191,7 +193,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5299253 | LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking <code>snmpbulkwalk</code> and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days. | 5.11.3-5.18.2 | |
 | 5221394 | Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), <code>neighmgrd</code> does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state. | 5.11.1-5.18.2 | |
+| 5177109 | The switch does not forward multicast traffic when a bond is part of the prune flood vector.  | 5.9.2-5.18.2 | |
 | 5152149, 5154742 | Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash. | 5.11.3-5.17.0 | 5.18.0-5.18.2|
 | 5120660 | When data path enablement timing is marginal, traffic might be allowed through the switch before the hardware reaches a steady state where it is safe to receive packets. This issue generates a <code>switchd</code> health event. | 5.11.5, 5.18.0-5.18.2 | |
 | 5093847 | The <code>nv show mlag -o json</code> command returns a plaintext error instead of a JSON object. | 5.11.3-5.11.5, 5.16.0-5.17.0 | 5.18.0-5.18.2|
@@ -362,7 +366,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5299253 | LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking <code>snmpbulkwalk</code> and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days. | 5.11.3-5.18.2 | |
 | 5221394 | Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), <code>neighmgrd</code> does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state. | 5.11.1-5.18.2 | |
+| 5177109 | The switch does not forward multicast traffic when a bond is part of the prune flood vector.  | 5.9.2-5.18.2 | |
 | 5152149, 5154742 | Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash. | 5.11.3-5.17.0 | 5.18.0-5.18.2|
 | 5093847 | The <code>nv show mlag -o json</code> command returns a plaintext error instead of a JSON object. | 5.11.3-5.11.5, 5.16.0-5.17.0 | 5.18.0-5.18.2|
 | 5072600 | The <code>nv show mlag -o json</code> command returns a plain text error instead of a JSON object<br /> | 5.11.3-5.17.0 | 5.18.0-5.18.2|
@@ -527,7 +533,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5299253 | LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking <code>snmpbulkwalk</code> and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days. | 5.11.3-5.18.2 | |
 | 5221394 | Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), <code>neighmgrd</code> does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state. | 5.11.1-5.18.2 | |
+| 5177109 | The switch does not forward multicast traffic when a bond is part of the prune flood vector.  | 5.9.2-5.18.2 | |
 | 5152149, 5154742 | Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash. | 5.11.3-5.17.0 | 5.18.0-5.18.2|
 | 5093847 | The <code>nv show mlag -o json</code> command returns a plaintext error instead of a JSON object. | 5.11.3-5.11.5, 5.16.0-5.17.0 | 5.18.0-5.18.2|
 | 5072600 | The <code>nv show mlag -o json</code> command returns a plain text error instead of a JSON object<br /> | 5.11.3-5.17.0 | 5.18.0-5.18.2|
@@ -689,6 +697,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | 5221394 | Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), <code>neighmgrd</code> does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state. | 5.11.1-5.18.2 | |
+| 5177109 | The switch does not forward multicast traffic when a bond is part of the prune flood vector.  | 5.9.2-5.18.2 | |
 | 4963273 | A <code>ptmd</code> defect can cause a segmentation fault (crash) when a new LLDP neighbor is discovered with an empty or missing Port Description TLV; for example, when introducing a new third-party switch into the fabric. | 5.11.2-5.11.5 | |
 | 4957394 | During <code>snmpwalk</code>, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes <code>GET</code> or <code>GETNEXT</code> for the requests. | 5.9.5-5.16.8 | 5.17.0-5.18.2|
 | 4882392 | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.16.8 | 5.17.0-5.18.2|
@@ -882,6 +891,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | 5221394 | Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), <code>neighmgrd</code> does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state. | 5.11.1-5.18.2 | |
+| 5177109 | The switch does not forward multicast traffic when a bond is part of the prune flood vector.  | 5.9.2-5.18.2 | |
 | 4957394 | During <code>snmpwalk</code>, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes <code>GET</code> or <code>GETNEXT</code> for the requests. | 5.9.5-5.16.8 | 5.17.0-5.18.2|
 | 4882392 | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.16.8 | 5.17.0-5.18.2|
 | 4871161 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.18.2 | |
@@ -1084,6 +1094,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5177109 | The switch does not forward multicast traffic when a bond is part of the prune flood vector.  | 5.9.2-5.18.2 | |
 | 4957394 | During <code>snmpwalk</code>, memory is leaked for an object that is served by pass persist. The leaked memory is allocated while the SNMP daemon processes <code>GET</code> or <code>GETNEXT</code> for the requests. | 5.9.5-5.16.8 | 5.17.0-5.18.2|
 | 4882392 | If you run the <code>nv show evpn access-vlan-info vlan</code>  command after deleting a bond interface, which is part of a bridge, the server encounters an internal error.  | 5.9.1-5.16.8 | 5.17.0-5.18.2|
 | 4871161 | If you use NVUE commands to change the BGP autonomous system number (ASN) for existing VRFs without deleting the associated EVPN VNI, FRR reload fails and shows an error during <code>nv config apply</code>. Be sure to delete the layer 3 VNI before changing the BGP ASN or restart FRR after the AS change.  | 5.9.1-5.18.2 | |

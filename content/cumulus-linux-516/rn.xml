@@ -7,15 +7,88 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
+<td>5.16.3-5.18.0</td>
+<td>5.18.1-5.18.2</td>
+</tr>
+<tr>
+<td>5281522</td>
+<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
 <td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5281416</td>
+<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
+
+Due to flow:
+
+REST API Client
+10.87.221.34
+      |
+      v
++---------------------+
+| Public NVUE NGINX   |
+| knows original IP   |
++---------------------+
+      |
+      | auth subrequest
+      | via 127.0.0.1 / ::1
+      v
++----------------------+
+| Internal NGINX Auth  |
++----------------------+
+      |
+      v
+   PAM nvueapi
+      |
+      v
+ pam_radius_auth
+      |
+      v
++----------------------+
+|    RADIUS Server     |
+| Calling-Station-Id = |
+| 127.0.0.1 / ::1  X   |
++----------------------+</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
 <td>5274511</td>
 <td>In scaled configurations, {{switchd}} might crash during EVPN multihoming layer 2 next hop group cleanup causing a daemon restart and brief traffic interruption.</td>
 <td>5.16.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5268378</td>
+<td>UMF and telemetry services might remain in a failed state after an offline package upgrade interrupting management and telemetry functions.</td>
+<td>5.16.8-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5268313</td>
+<td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
+<td>5.16.8-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -28,6 +101,12 @@
 <td>5231075</td>
 <td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
 <td>5.16.7-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5227516</td>
+<td>The {{nv config replace}} workflow fails causing {{hostapd}} to crash and generate core dumps. This issue leaves the service unable to restart cleanly and can disrupt network-related functionality.</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -55,6 +134,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5221359</td>
+<td>NVUE accumulates a large number of internal applied checkpoint revision branches or tags, which slows {{nv config apply}} operations over time and increases disk usage.</td>
+<td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5221083</td>
 <td>The {{nv config apply}} command fails due to a {{switchd}} reload failure.</td>
 <td>5.16.1-5.18.2</td>
@@ -73,6 +158,18 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5175820</td>
+<td>Multiple switch ports do not come up. The affected ports are enabled and administratively up, but operationally remain down with a {{Not connected}} state. Some ports are shown as plugged while others as unplugged, and all are in {{LOOPBACK_DISABLED}} mode with {{Post-FEC}} status.</td>
+<td>5.16.5-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1491,8 +1588,8 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.6-5.16.7</td>
 </tr>
 <tr>
-<td>5257559</td>
-<td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
+<td>5257559, 5170499</td>
+<td>After an optimized image upgrade, the first time you try to enable the new 802.1X server telemetry metrics setting, you get an error. The issue occurs because an old Docker setting from the earlier release is still present in the saved configuration, which the upgraded release no longer accepts. As a result, the switch rejects the first {{config apply}} with a validation error tied to {{system.docker}} instead of the 802.1X setting you are trying to enable. To work around this issue, run the {{nv config detach}} command before the first {{nv set}} and {{nv config apply}} after the upgrade, or discard any pending revision before starting the upgrade.</td>
 <td>5.18.0-5.18.2</td>
 </tr>
 <tr>
@@ -1509,9 +1606,70 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
+<td>5.16.3-5.18.0</td>
+<td>5.18.1-5.18.2</td>
+</tr>
+<tr>
+<td>5281522</td>
+<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
 <td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5281416</td>
+<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
+
+Due to flow:
+
+REST API Client
+10.87.221.34
+      |
+      v
++---------------------+
+| Public NVUE NGINX   |
+| knows original IP   |
++---------------------+
+      |
+      | auth subrequest
+      | via 127.0.0.1 / ::1
+      v
++----------------------+
+| Internal NGINX Auth  |
++----------------------+
+      |
+      v
+   PAM nvueapi
+      |
+      v
+ pam_radius_auth
+      |
+      v
++----------------------+
+|    RADIUS Server     |
+| Calling-Station-Id = |
+| 127.0.0.1 / ::1  X   |
++----------------------+</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1530,6 +1688,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5231075</td>
 <td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
 <td>5.16.7-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5227516</td>
+<td>The {{nv config replace}} workflow fails causing {{hostapd}} to crash and generate core dumps. This issue leaves the service unable to restart cleanly and can disrupt network-related functionality.</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1563,6 +1727,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5221359</td>
+<td>NVUE accumulates a large number of internal applied checkpoint revision branches or tags, which slows {{nv config apply}} operations over time and increases disk usage.</td>
+<td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5221083</td>
 <td>The {{nv config apply}} command fails due to a {{switchd}} reload failure.</td>
 <td>5.16.1-5.18.2</td>
@@ -1587,6 +1757,18 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5175820</td>
+<td>Multiple switch ports do not come up. The affected ports are enabled and administratively up, but operationally remain down with a {{Not connected}} state. Some ports are shown as plugged while others as unplugged, and all are in {{LOOPBACK_DISABLED}} mode with {{Post-FEC}} status.</td>
+<td>5.16.5-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -3084,9 +3266,70 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
+<td>5.16.3-5.18.0</td>
+<td>5.18.1-5.18.2</td>
+</tr>
+<tr>
+<td>5281522</td>
+<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
 <td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5281416</td>
+<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
+
+Due to flow:
+
+REST API Client
+10.87.221.34
+      |
+      v
++---------------------+
+| Public NVUE NGINX   |
+| knows original IP   |
++---------------------+
+      |
+      | auth subrequest
+      | via 127.0.0.1 / ::1
+      v
++----------------------+
+| Internal NGINX Auth  |
++----------------------+
+      |
+      v
+   PAM nvueapi
+      |
+      v
+ pam_radius_auth
+      |
+      v
++----------------------+
+|    RADIUS Server     |
+| Calling-Station-Id = |
+| 127.0.0.1 / ::1  X   |
++----------------------+</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -3099,6 +3342,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>5240513</td>
 <td>Packet trimming appears to be enabled successfully in NVUE, but never becomes operational. The issue occurs because WJH buffer monitoring uses the internal SPAN session that packet trimming also needs.</td>
 <td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5227516</td>
+<td>The {{nv config replace}} workflow fails causing {{hostapd}} to crash and generate core dumps. This issue leaves the service unable to restart cleanly and can disrupt network-related functionality.</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -3123,6 +3372,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5221359</td>
+<td>NVUE accumulates a large number of internal applied checkpoint revision branches or tags, which slows {{nv config apply}} operations over time and increases disk usage.</td>
+<td>5.16.3-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -3205,6 +3460,18 @@ Pin-Priority: 992</td>
 <td>Adaptive routing ECMP updates during route deletion might sometimes result in ECMP database corruption followed by ECMP operation failures.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.16.7-5.18.2</td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5175820</td>
+<td>Multiple switch ports do not come up. The affected ports are enabled and administratively up, but operationally remain down with a {{Not connected}} state. Some ports are shown as plugged while others as unplugged, and all are in {{LOOPBACK_DISABLED}} mode with {{Post-FEC}} status.</td>
+<td>5.16.5-5.18.2</td>
+<td></td>
 </tr>
 <tr>
 <td>5175518, 5217093, 5221594</td>
@@ -4747,8 +5014,32 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
+<td>5.16.3-5.18.0</td>
+<td>5.18.1-5.18.2</td>
+</tr>
+<tr>
+<td>5281522</td>
+<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
 <td>5.16.3-5.18.2</td>
 <td></td>
 </tr>
@@ -4780,6 +5071,12 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5221359</td>
+<td>NVUE accumulates a large number of internal applied checkpoint revision branches or tags, which slows {{nv config apply}} operations over time and increases disk usage.</td>
+<td>5.16.3-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -4850,6 +5147,18 @@ Pin-Priority: 992</td>
 <td>Adaptive routing ECMP updates during route deletion might sometimes result in ECMP database corruption followed by ECMP operation failures.</td>
 <td>5.16.5-5.16.6</td>
 <td>5.16.7-5.18.2</td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5175820</td>
+<td>Multiple switch ports do not come up. The affected ports are enabled and administratively up, but operationally remain down with a {{Not connected}} state. Some ports are shown as plugged while others as unplugged, and all are in {{LOOPBACK_DISABLED}} mode with {{Post-FEC}} status.</td>
+<td>5.16.5-5.18.2</td>
+<td></td>
 </tr>
 <tr>
 <td>5175518, 5217093, 5221594</td>
@@ -6557,6 +6866,24 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5274511</td>
 <td>In scaled configurations, {{switchd}} might crash during EVPN multihoming layer 2 next hop group cleanup causing a daemon restart and brief traffic interruption.</td>
 <td>5.16.1-5.18.2</td>
@@ -6597,6 +6924,12 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>BGP peer sessions might repeatedly flap and re-establish. During outbound TCP connect, the BGP service might clear the local nexthop information for the peer and fail nexthop setup when the remote endpoint is not yet available, which resets the session. Logs might show {{nexthop_set failed with remote: (null) and Transport endpoint is not...}}.</td>
 <td>5.16.1-5.16.6</td>
 <td>5.16.7-5.18.2</td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
+<td></td>
 </tr>
 <tr>
 <td>5175518, 5217093, 5221594</td>
@@ -8312,9 +8645,27 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
 <td></td>
 </tr>
 <tr>

@@ -7,9 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1074,9 +1086,21 @@ To work around this issue, configure consistent protocol match statements in eac
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2130,9 +2154,21 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -3151,9 +3187,21 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -4144,6 +4192,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -5307,6 +5361,12 @@ nv config apply -y</td>
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -6531,6 +6591,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
+<td></td>
 </tr>
 <tr>
 <td>4957394</td>

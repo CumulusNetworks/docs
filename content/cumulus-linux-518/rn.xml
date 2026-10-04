@@ -7,15 +7,70 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5297900</td>
-<td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
-<td>5.16.3-5.18.2</td>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.18.2</td>
 <td></td>
 </tr>
 <tr>
 <td>5288214</td>
 <td>When you boot a switch with TACACS+ or RADIUS configured to reference a server by hostname, the networking service might take a long time (2 or more minutes) to start. </td>
 <td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5281522</td>
+<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
+<td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5281416</td>
+<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
+
+Due to flow:
+
+REST API Client
+10.87.221.34
+      |
+      v
++---------------------+
+| Public NVUE NGINX   |
+| knows original IP   |
++---------------------+
+      |
+      | auth subrequest
+      | via 127.0.0.1 / ::1
+      v
++----------------------+
+| Internal NGINX Auth  |
++----------------------+
+      |
+      v
+   PAM nvueapi
+      |
+      v
+ pam_radius_auth
+      |
+      v
++----------------------+
+|    RADIUS Server     |
+| Calling-Station-Id = |
+| 127.0.0.1 / ::1  X   |
++----------------------+</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -31,10 +86,16 @@
 <td></td>
 </tr>
 <tr>
-<td>5257559</td>
-<td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
-<td>5.18.0-5.18.2</td>
-<td>5.16.8</td>
+<td>5268378</td>
+<td>UMF and telemetry services might remain in a failed state after an offline package upgrade interrupting management and telemetry functions.</td>
+<td>5.16.8-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5268313</td>
+<td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
+<td>5.16.8-5.18.2</td>
+<td></td>
 </tr>
 <tr>
 <td>5252674</td>
@@ -67,6 +128,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5227516</td>
+<td>The {{nv config replace}} workflow fails causing {{hostapd}} to crash and generate core dumps. This issue leaves the service unable to restart cleanly and can disrupt network-related functionality.</td>
+<td>5.16.6-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5225461</td>
 <td>For layer 3 VNI routes in single VXLAN device mode, zebra installs remote nexthop neighbors on the single VXLAN device. If the kernel ages or deletes one of the neighbors, the neighbor notification is ignored because the interface is not an SVI or bridge. As a result, routes that use the single VXLAN device nexthop have unresolved  VXLAN device neighbors even though the corresponding SVI neighbor is still present, and the switch does not forward the route. To work around this issue, restart FRR.</td>
 <td>5.16.4-5.18.2</td>
@@ -88,6 +155,12 @@
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5221359</td>
+<td>NVUE accumulates a large number of internal applied checkpoint revision branches or tags, which slows {{nv config apply}} operations over time and increases disk usage.</td>
+<td>5.16.3-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -163,6 +236,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5190318</td>
+<td>A package upgrade might start the default telemetry service together with the configured management VRF instance, causing a port conflict and leaving a telemetry service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5190241</td>
 <td>When you configure TACACS+ authentication with a server hostname resolving to more than one IP address and enable STP on a bridge (the default setting), the switch stops responding.</td>
 <td>5.18.0-5.18.2</td>
@@ -193,8 +272,14 @@
 <td></td>
 </tr>
 <tr>
+<td>5183727</td>
+<td>During a package upgrade, {{containerd image-ingest}} errors might prevent the UMF container image from loading and leave the {{nv-umf}} service unable to start.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5183654, 5234851</td>
-<td>When you upgrade gNMI with package upgrade, the {{nv-gnmi.service}} fails and the switch collects a tech support bundle after the first step of the process ({{nv action upgrade system packages to latest}}. The package upgrade process triggers a switch reboot straight afterwards as a second and final step. There is no functional impact after switch reboot completes.</td>
+<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
 <td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
@@ -205,6 +290,18 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182854</td>
+<td>Stopping and starting Docker in the management VRF might cause configured gRPC tunnel services to fail and generate an automatic cl-support file.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182805</td>
+<td>If Docker becomes unavailable after the initial readiness check, subsequent gNMI container start operations might fail and leave the {{nv-gnmi}} service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -220,9 +317,27 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5177822</td>
+<td>During 802.1X authentication telemetry streaming, the switch incorrectly sends delete notifications for session details even though the client session is still active and authenticated. </td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5177678</td>
 <td>In an EVPN deployment using downstream VNIs (D-VNIs), when all EVPN route-target imports are withdrawn from a VRF, {{switchd}} fails to free exactly one of the D-VNI entries.</td>
 <td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5175820</td>
+<td>Multiple switch ports do not come up. The affected ports are enabled and administratively up, but operationally remain down with a {{Not connected}} state. Some ports are shown as plugged while others as unplugged, and all are in {{LOOPBACK_DISABLED}} mode with {{Post-FEC}} status.</td>
+<td>5.16.5-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -250,7 +365,7 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5170499</td>
+<td>5170499, 5257559</td>
 <td>After an optimized image upgrade, the first time you try to enable the new 802.1X server telemetry metrics setting, you get an error. The issue occurs because an old Docker setting from the earlier release is still present in the saved configuration, which the upgraded release no longer accepts. As a result, the switch rejects the first {{config apply}} with a validation error tied to {{system.docker}} instead of the 802.1X setting you are trying to enable. To work around this issue, run the {{nv config detach}} command before the first {{nv set}} and {{nv config apply}} after the upgrade, or discard any pending revision before starting the upgrade.</td>
 <td>5.18.0-5.18.2</td>
 <td>5.16.8</td>
@@ -1178,15 +1293,70 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.18.2</td>
 </tr>
 <tr>
-<td>5297900</td>
-<td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
-<td>5.16.3-5.18.2</td>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.18.2</td>
 <td></td>
 </tr>
 <tr>
 <td>5288214</td>
 <td>When you boot a switch with TACACS+ or RADIUS configured to reference a server by hostname, the networking service might take a long time (2 or more minutes) to start. </td>
 <td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5281522</td>
+<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
+<td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5281416</td>
+<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
+
+Due to flow:
+
+REST API Client
+10.87.221.34
+      |
+      v
++---------------------+
+| Public NVUE NGINX   |
+| knows original IP   |
++---------------------+
+      |
+      | auth subrequest
+      | via 127.0.0.1 / ::1
+      v
++----------------------+
+| Internal NGINX Auth  |
++----------------------+
+      |
+      v
+   PAM nvueapi
+      |
+      v
+ pam_radius_auth
+      |
+      v
++----------------------+
+|    RADIUS Server     |
+| Calling-Station-Id = |
+| 127.0.0.1 / ::1  X   |
++----------------------+</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1202,10 +1372,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5257559</td>
-<td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
-<td>5.18.0-5.18.2</td>
-<td>5.16.8</td>
+<td>5268378</td>
+<td>UMF and telemetry services might remain in a failed state after an offline package upgrade interrupting management and telemetry functions.</td>
+<td>5.16.8-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5268313</td>
+<td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
+<td>5.16.8-5.18.2</td>
+<td></td>
 </tr>
 <tr>
 <td>5252674</td>
@@ -1238,6 +1414,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5227516</td>
+<td>The {{nv config replace}} workflow fails causing {{hostapd}} to crash and generate core dumps. This issue leaves the service unable to restart cleanly and can disrupt network-related functionality.</td>
+<td>5.16.6-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5225461</td>
 <td>For layer 3 VNI routes in single VXLAN device mode, zebra installs remote nexthop neighbors on the single VXLAN device. If the kernel ages or deletes one of the neighbors, the neighbor notification is ignored because the interface is not an SVI or bridge. As a result, routes that use the single VXLAN device nexthop have unresolved  VXLAN device neighbors even though the corresponding SVI neighbor is still present, and the switch does not forward the route. To work around this issue, restart FRR.</td>
 <td>5.16.4-5.18.2</td>
@@ -1259,6 +1441,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5221359</td>
+<td>NVUE accumulates a large number of internal applied checkpoint revision branches or tags, which slows {{nv config apply}} operations over time and increases disk usage.</td>
+<td>5.16.3-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1334,6 +1522,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5190318</td>
+<td>A package upgrade might start the default telemetry service together with the configured management VRF instance, causing a port conflict and leaving a telemetry service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5190241</td>
 <td>When you configure TACACS+ authentication with a server hostname resolving to more than one IP address and enable STP on a bridge (the default setting), the switch stops responding.</td>
 <td>5.18.0-5.18.2</td>
@@ -1364,8 +1558,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5183727</td>
+<td>During a package upgrade, {{containerd image-ingest}} errors might prevent the UMF container image from loading and leave the {{nv-umf}} service unable to start.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5183654, 5234851</td>
-<td>When you upgrade gNMI with package upgrade, the {{nv-gnmi.service}} fails and the switch collects a tech support bundle after the first step of the process ({{nv action upgrade system packages to latest}}. The package upgrade process triggers a switch reboot straight afterwards as a second and final step. There is no functional impact after switch reboot completes.</td>
+<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
 <td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
@@ -1376,6 +1576,18 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182854</td>
+<td>Stopping and starting Docker in the management VRF might cause configured gRPC tunnel services to fail and generate an automatic cl-support file.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182805</td>
+<td>If Docker becomes unavailable after the initial readiness check, subsequent gNMI container start operations might fail and leave the {{nv-gnmi}} service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1391,9 +1603,27 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5177822</td>
+<td>During 802.1X authentication telemetry streaming, the switch incorrectly sends delete notifications for session details even though the client session is still active and authenticated. </td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5177678</td>
 <td>In an EVPN deployment using downstream VNIs (D-VNIs), when all EVPN route-target imports are withdrawn from a VRF, {{switchd}} fails to free exactly one of the D-VNI entries.</td>
 <td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5175820</td>
+<td>Multiple switch ports do not come up. The affected ports are enabled and administratively up, but operationally remain down with a {{Not connected}} state. Some ports are shown as plugged while others as unplugged, and all are in {{LOOPBACK_DISABLED}} mode with {{Post-FEC}} status.</td>
+<td>5.16.5-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1421,7 +1651,7 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5170499</td>
+<td>5170499, 5257559</td>
 <td>After an optimized image upgrade, the first time you try to enable the new 802.1X server telemetry metrics setting, you get an error. The issue occurs because an old Docker setting from the earlier release is still present in the saved configuration, which the upgraded release no longer accepts. As a result, the switch rejects the first {{config apply}} with a validation error tied to {{system.docker}} instead of the 802.1X setting you are trying to enable. To work around this issue, run the {{nv config detach}} command before the first {{nv set}} and {{nv config apply}} after the upgrade, or discard any pending revision before starting the upgrade.</td>
 <td>5.18.0-5.18.2</td>
 <td>5.16.8</td>
@@ -2330,6 +2560,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5297900</td>
+<td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
+<td>5.16.3-5.18.0</td>
+</tr>
+<tr>
 <td>5240151</td>
 <td>On the Spectrum-6 switch, running {{bmc-cli collect-all}}  does not successfully collect all available BMC data. The command completes, but only 27 out of 41 collection tasks are successful.</td>
 <td></td>
@@ -2415,15 +2650,76 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>5.18.2</td>
 </tr>
 <tr>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
-<td>5.16.3-5.18.2</td>
-<td></td>
+<td>5.16.3-5.18.0</td>
+<td>5.18.1-5.18.2</td>
 </tr>
 <tr>
 <td>5288214</td>
 <td>When you boot a switch with TACACS+ or RADIUS configured to reference a server by hostname, the networking service might take a long time (2 or more minutes) to start. </td>
 <td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5281522</td>
+<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
+<td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5281416</td>
+<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
+
+Due to flow:
+
+REST API Client
+10.87.221.34
+      |
+      v
++---------------------+
+| Public NVUE NGINX   |
+| knows original IP   |
++---------------------+
+      |
+      | auth subrequest
+      | via 127.0.0.1 / ::1
+      v
++----------------------+
+| Internal NGINX Auth  |
++----------------------+
+      |
+      v
+   PAM nvueapi
+      |
+      v
+ pam_radius_auth
+      |
+      v
++----------------------+
+|    RADIUS Server     |
+| Calling-Station-Id = |
+| 127.0.0.1 / ::1  X   |
++----------------------+</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2433,10 +2729,16 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
-<td>5257559</td>
-<td>After you upgrade Cumulus Linux with optimized image upgrade, enabling the new 802.1X telemetry server metrics fails because an old leftover docker setting from the earlier version is still present in the saved configuration. The switch rejects the configuration apply due to that outdated field. Making another configuration change causes the old field to be removed.</td>
-<td>5.18.0-5.18.2</td>
-<td>5.16.8</td>
+<td>5268378</td>
+<td>UMF and telemetry services might remain in a failed state after an offline package upgrade interrupting management and telemetry functions.</td>
+<td>5.16.8-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5268313</td>
+<td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
+<td>5.16.8-5.18.2</td>
+<td></td>
 </tr>
 <tr>
 <td>5252674</td>
@@ -2475,6 +2777,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5227516</td>
+<td>The {{nv config replace}} workflow fails causing {{hostapd}} to crash and generate core dumps. This issue leaves the service unable to restart cleanly and can disrupt network-related functionality.</td>
+<td>5.16.6-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5225461</td>
 <td>For layer 3 VNI routes in single VXLAN device mode, zebra installs remote nexthop neighbors on the single VXLAN device. If the kernel ages or deletes one of the neighbors, the neighbor notification is ignored because the interface is not an SVI or bridge. As a result, routes that use the single VXLAN device nexthop have unresolved  VXLAN device neighbors even though the corresponding SVI neighbor is still present, and the switch does not forward the route. To work around this issue, restart FRR.</td>
 <td>5.16.4-5.18.2</td>
@@ -2502,6 +2810,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5221359</td>
+<td>NVUE accumulates a large number of internal applied checkpoint revision branches or tags, which slows {{nv config apply}} operations over time and increases disk usage.</td>
+<td>5.16.3-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2577,6 +2891,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5190318</td>
+<td>A package upgrade might start the default telemetry service together with the configured management VRF instance, causing a port conflict and leaving a telemetry service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5190241</td>
 <td>When you configure TACACS+ authentication with a server hostname resolving to more than one IP address and enable STP on a bridge (the default setting), the switch stops responding.</td>
 <td>5.18.0-5.18.2</td>
@@ -2607,8 +2927,14 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5183727</td>
+<td>During a package upgrade, {{containerd image-ingest}} errors might prevent the UMF container image from loading and leave the {{nv-umf}} service unable to start.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5183654, 5234851</td>
-<td>When you upgrade gNMI with package upgrade, the {{nv-gnmi.service}} fails and the switch collects a tech support bundle after the first step of the process ({{nv action upgrade system packages to latest}}. The package upgrade process triggers a switch reboot straight afterwards as a second and final step. There is no functional impact after switch reboot completes.</td>
+<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
 <td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
@@ -2619,6 +2945,18 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.3-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182854</td>
+<td>Stopping and starting Docker in the management VRF might cause configured gRPC tunnel services to fail and generate an automatic cl-support file.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182805</td>
+<td>If Docker becomes unavailable after the initial readiness check, subsequent gNMI container start operations might fail and leave the {{nv-gnmi}} service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2634,9 +2972,27 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5177822</td>
+<td>During 802.1X authentication telemetry streaming, the switch incorrectly sends delete notifications for session details even though the client session is still active and authenticated. </td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5177678</td>
 <td>In an EVPN deployment using downstream VNIs (D-VNIs), when all EVPN route-target imports are withdrawn from a VRF, {{switchd}} fails to free exactly one of the D-VNI entries.</td>
 <td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5175820</td>
+<td>Multiple switch ports do not come up. The affected ports are enabled and administratively up, but operationally remain down with a {{Not connected}} state. Some ports are shown as plugged while others as unplugged, and all are in {{LOOPBACK_DISABLED}} mode with {{Post-FEC}} status.</td>
+<td>5.16.5-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2670,7 +3026,7 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5170499</td>
+<td>5170499, 5257559</td>
 <td>After an optimized image upgrade, the first time you try to enable the new 802.1X server telemetry metrics setting, you get an error. The issue occurs because an old Docker setting from the earlier release is still present in the saved configuration, which the upgraded release no longer accepts. As a result, the switch rejects the first {{config apply}} with a validation error tied to {{system.docker}} instead of the 802.1X setting you are trying to enable. To work around this issue, run the {{nv config detach}} command before the first {{nv set}} and {{nv config apply}} after the upgrade, or discard any pending revision before starting the upgrade.</td>
 <td>5.18.0-5.18.2</td>
 <td>5.16.8</td>
@@ -3845,6 +4201,11 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>5041582</td>
+<td>The switch is not set up to rotate the {{cl-system-services.log}} file because the required {{logrotate}} configuration file is never installed on the device. Because of that missing file, the log file keeps growing instead of being rotated.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>5041547, 5057189</td>
 <td>When the {{/var}} directory runs out of disk space, the NVUE service goes down and you see the message {{NVUE Service temporarily unavailable. Please try again later}}. To work around this issue, restart the NVUE service after {{/var}} frees up.</td>
 <td>5.16.1-5.16.4</td>
@@ -3962,6 +4323,11 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <tr>
 <td>4980039</td>
 <td>A narrow window condition occasionally occurs when the {{prometheus-sdk-stats}} service restarts while an HFT session is running.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>4975260</td>
+<td>The {{pimd}} process crashes and generates a core file.</td>
 <td>5.17.0</td>
 </tr>
 <tr>

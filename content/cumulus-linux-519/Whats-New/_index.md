@@ -19,46 +19,9 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 ## Platforms
 
 - NVIDIA SN6600 (128x800G Spectrum-6)
-- NVIDIA SN4700 (Spectrum-3)
+- NVIDIA SN4700-A1, Air-cooled (Spectrum-3)
 
 ### New Features and Enhancements
-
-<!-- REVIEW: concerns the patch framework entry below, the one linking to Patches. Its spec
-     states no quality level and no entry for the feature existed before, so omitting a
-     (Beta) suffix claims GA by default. Confirm against the 5.19 Redmine execution query
-     and append " (Beta)" if needed. That spec is revision 1.0 dated 2026-09-02, one day
-     before this draft. Delete this comment before publishing. -->
-
-<!-- REVIEW: the CPO entry in the list below, the one linking to Monitoring Interfaces and
-     Transceivers with NVUE. It replaces the plain-text entry "CPO Debug Params | nv show commands &
-     Telemetry (OTEL and GNMI) GA", which used the internal feature-request title. The feature spans
-     two surfaces, so it now has this entry for the show commands and a second entry under Telemetry
-     for the exported metrics; collapse them into one if the release prefers a single line. The
-     functional specification states BETA for 5.18 while the demo deck and the replaced entry both
-     state GA for 5.19, so no "(Beta)" suffix is appended here. Confirm against the 5.19 Redmine
-     execution query. Delete this comment before publishing. -->
-
-<!-- REVIEW: the RADIUS entry in the Telemetry list below, the one reading "OTEL metrics for AAA
-     RADIUS login authentication." It previously read plain text, "Support for AAA radius gnmi
-     metrics," and was left unconverted (see radius-gnmi-counters-report.md) pending confirmation
-     that the umf-cl gNMI mapping had shipped. Re-checking against spec revision 1.1 -- still the
-     only revision, dated 13-08-2026 -- on 2026-09-30 found the mapping still "Not written"; gNMI
-     still returns no data. In the interim someone converted the entry to a link, but pointed it at
-     #new-gnmi-metrics and kept the word "gNMI" -- both wrong: the RADIUS tab that actually shipped
-     lives under ## New OTEL Metrics, not ## New gNMI Metrics, and documents Prometheus/OTEL
-     counters, not gNMI paths. Corrected the text and the anchor to match what's actually
-     documented. Two sibling entries in the same list -- "gNMI and OTEL metrics for unreachability
-     AFI SAFI" and "gNMI and OTEL metrics for CPO modules and laser sources" -- point at the same
-     #new-gnmi-metrics anchor and may have the identical bug; out of scope for this FR, logged in
-     known-defects.md. If the umf-cl mapping lands before release, this entry needs a second line
-     for the gNMI paths themselves. Delete this comment before publishing. -->
-
-<!-- REVIEW: the passwordless sudo entry in the NVUE list below drafts FR 4933274. It states no quality
-     level anywhere (no Beta, GA, or Tech Preview), which publishes it as GA by default; confirm against
-     the 5.19 Redmine execution query before publishing, especially since the change affects the switch's
-     default sudo behavior for every sudo-group member. See the longer REVIEW comment on RADIUS-AAA.md
-     for the source document's other open question (a revision-date inconsistency and a spec location
-     outside CL-Eng-Docs/Shared Documents/CL5.19/). Delete this comment before publishing. -->
 
 - {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-evpn-routes" text="Prevent re-export of VRF-leaked EVPN routes">}}
 - {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
@@ -81,6 +44,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resource-mode-and-hybrid-scheduling" text="Adaptive routing hybrid scheduling mode, which moves low weight ECMP groups to random forwarding to reduce adaptive routing group merging">}}
 - {{<link url="Domain-Name-System-DNS/#dns-query-source-address" text="Configurable source address for DNS queries, so that queries leave the switch from a stable loopback identity">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-cpo-module-and-laser-source-information" text="CPO module and laser source visibility on switches with co-packaged optics">}}
+- {{<link url="Packet-Trimming/#packet-trimming-counters" text="Trimmed packet sent and dropped counters at the global, port, and traffic class level">}} on Spectrum-6 switches
 - NVUE
   - {{<link url="Using-sudo-to-Delegate-Privileges" text="Passwordless sudo access by default">}} for members of the sudo group, and {{<link url="Role-Based-Access-Control/#os-command-classes" text="RBAC os-command allow-lists">}} for granular passwordless access to specific commands
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
@@ -101,6 +65,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst histogram with per-port burst scoring">}}
   - {{<link url="gNMI-Streaming/#dial-out-source-address" text="Configurable source address for gNMI dial-out connections">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for CPO modules and laser sources">}}
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="OTEL metrics for trimmed packet sent and dropped counters">}} on Spectrum-6 switches
 
 ## Release Considerations
 

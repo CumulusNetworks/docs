@@ -3,6 +3,7 @@ title: Back Up and Restore NetQ
 author: NVIDIA
 weight: 520
 toc: 3
+bookhidden: true
 ---
 
 The following sections describe how to back up and restore your NetQ data and VMs for on-premises deployments.

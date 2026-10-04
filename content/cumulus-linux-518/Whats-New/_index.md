@@ -10,11 +10,10 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 
 {{%notice note%}}
 - Cumulus Linux 5.18.1 is tested and validated as part of the Spectrum-X reference architecture release 2.3.1.
-- Cumulus Linux 5.18.2 is tested and validated as part of the Spectrum-X reference architecture release 2.3.2.
+- Cumulus Linux 5.18.2 and 5.18.3 are tested and validated as part of the Spectrum-X reference architecture release 2.3.2.
 
 For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
-
 
 ## What's New in Cumulus Linux 5.18.3
 

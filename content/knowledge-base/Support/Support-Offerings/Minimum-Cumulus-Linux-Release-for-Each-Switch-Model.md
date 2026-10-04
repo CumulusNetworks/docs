@@ -13,8 +13,8 @@ The following table the shows minimum Cumulus Linux release supported for each s
 | SN2100       | Spectrum   | 3.3.0 | End of Life |
 | SN2410       | Spectrum   | 3.5.0 | End of Life |
 | SN2700       | Spectrum   | 3.3.0 | End of Life |
-| SN2201       | Spectrum   | 5.13.1 | |
-| SN2201_M     | Spectrum   | 5.13.1 | DC version of the switch|
+| SN2201       | Spectrum   | 5.2.0 | |
+| SN2201_M     | Spectrum   | 5.11.0 | DC version of the switch|
 | SN3420       | Spectrum-2 | 4.2.0 | |
 | SN3700       | Spectrum-2 | 4.0.0 | End of Life |
 | SN3700C      | Spectrum-2 | 4.0.0 | End of Life |

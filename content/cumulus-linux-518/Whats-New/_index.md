@@ -24,6 +24,10 @@ You can upgrade to 5.18.3 from the following versions using optimized image upgr
 - 5.17.0
 - 5.18.0, 5.18.1, 5.18.2
 
+{{%notice warning%}}
+Make sure to upgrade the SN6600-LD switch to Cumulus Linux 5.18.2 before upgrading to 5.18.3. NVIDIA introduced new capabilities to Spectrum-6 based switch hardware in Cumulus Linux 5.18.2 that requires a special firmware version.
+{{%/notice%}}
+
 ## What's New in Cumulus Linux 5.18.2
 
 Cumulus Linux 5.18.2 provides a new SDK and improvements to {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog">}} deadlock detection.

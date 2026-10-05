@@ -51,13 +51,6 @@ cumulus@switch:~$ nv set system gnmi-server state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-<!-- REVIEW: the bullet below beginning "Cumulus Linux does not check the listening address" documents
-     the limitation rather than the requirement. The spec's System Requirements now annotate the
-     rejection requirement itself as "not met today, see Known Limitations", which resolves the
-     three-way contradiction an earlier version of this spec had between its requirements, its
-     limitations, and its test plan. Confirm against a candidate build before publishing, and delete
-     this comment. -->
-
 {{%notice note%}}
 - The listening address can be any address configured on the switch, including a loopback address, a front panel port address, or the management address. The VRF that owns the address does not affect whether the gNMI server binds it.
 - The listening address selects a destination address. It does not restrict the interface on which the switch accepts gNMI traffic. To restrict gNMI to one reachability domain, apply control plane ACLs.
@@ -65,7 +58,7 @@ cumulus@switch:~$ nv config apply
 - Changing the listening address does not restart the gNMI server. The new address applies to connections the collector makes afterwards.
 - Cumulus Linux always adds `localhost` to the set of listening addresses. If you do not configure a listening address, `localhost` is the only entry and the gNMI server accepts connections on the switch itself and nowhere else. Configuring an address is what makes the gNMI server reachable remotely.
 - Cumulus Linux does not check the listening address against the addresses configured on the switch. If you configure an address that the switch does not have, the apply succeeds but the gNMI server is unreachable at that address.
-- The listening address must be an IPv4 or IPv6 address. Cumulus Linux rejects `localhost`, which it adds for you, and IPv6 link-local addresses. You cannot specify an interface name, `all`, or `any`.
+- The listening address must be an IPv4 or IPv6 address. Cumulus Linux rejects `localhost`, which it adds for you, IPv6 link-local addresses, and reserved loopback addresses such as `127.0.0.0/8` and `::1`. You cannot specify an interface name, `all`, or `any`. A loopback address you configure yourself, such as `10.10.10.1` on `lo`, is not affected by this rejection.
 {{%/notice%}}
 
 The following example imports and sets the CA certificate `CERT1` and the CRL `crl.crt` for mTLS:
@@ -123,24 +116,10 @@ When you do not configure a source address, the kernel selects the source of the
 
 The source address is optional and applies to one tunnel server, so tunnel servers with and without a source address coexist on the same switch.
 
-<!-- REVIEW: this note previously softened two bullets to "does not work" because the spec's validation
-     table listed only three rejections (malformed, IPv6 link-local, family mismatch) and its test
-     plan said an out-of-VRF address "must be rejected once validation exists". The spec has since
-     added a full Validation subsection with literal CLI reject messages for an address outside the
-     mgmt VRF, an address nowhere on the switch, and an address being deleted while still referenced,
-     plus a Security-section line stating plainly that "validation now rejects it at apply" -- concrete
-     enough that this draft states the rejections as fact and quotes the messages. The test plan's
-     "once validation exists" line was not updated to match, which is the one piece of evidence still
-     pointing the other way. Confirm the three literal messages against a candidate build before
-     publishing, and delete this comment. Separately, an earlier revision of this note also listed
-     reserved loopback addresses such as 127.0.0.1 and ::1 as rejected, which the spec's requirements
-     and test plan still state but the new Validation subsection's own three-row table omits; that
-     clause remains deliberately absent below. Confirm the omission is intentional. -->
-
 {{%notice note%}}
 - Dial-out leaves through the management VRF, so the source address must be reachable there. A loopback address you configure with the `nv set vrf mgmt loopback ip address <ip-address>` command qualifies, and so does the management address itself. Cumulus Linux rejects an address configured in another VRF, such as a loopback address in the default VRF, with `source-address <ip-address> is configured on <interface>, which is not in the mgmt VRF`.
 - The source address must already be configured on the switch, or you must add it in the same `nv config apply` that references it. Cumulus Linux validates the address against the pending configuration rather than the running system, so adding a loopback address and setting it as the source address in the same apply works. If the source address matches nothing on the switch, Cumulus Linux rejects the apply with `source-address <ip-address> is not configured on this switch`.
-- Cumulus Linux rejects the configuration when you run `nv config apply` if the source address is malformed, is an IPv6 link-local address, or belongs to a different address family than the tunnel server address.
+- Cumulus Linux rejects the configuration when you run `nv config apply` if the source address is malformed, is an IPv6 link-local address, belongs to a different address family than the tunnel server address, or is a reserved loopback address such as `127.0.0.0/8` or `::1`. A loopback address you configure yourself, such as `10.10.10.1` on `lo` in the management VRF, is not affected by this rejection.
 - Cumulus Linux also rejects an apply that deletes an address while a tunnel server still references it as a source address, with `source-address <ip-address> is being removed from the mgmt VRF while it is still configured as a source address`. To remove the address, remove or repoint the source address in the same apply.
 - If both the source address and a certificate are invalid, Cumulus Linux reports both errors from the same `nv config apply` rather than stopping at the first one.
 - The source address selects the address the switch presents to the tunnel server. It does not filter what the switch accepts.
@@ -189,13 +168,6 @@ cumulus@switch:~$ nv show system gnmi-server listening-address
 ----------
 10.1.1.100
 ```
-
-<!-- REVIEW: this release has no way to confirm a dial-in bind from nv show. The spec's System
-     Requirements now annotate this requirement directly as "not met today, see Known Limitations",
-     confirming what previously had to be inferred by cross-referencing three sections. An operational
-     column that shows the address still proves nothing about reachability, and no rule for reading it
-     can be written yet. Add one here when the requirement lands. Delete this comment before
-     publishing. -->
 
 `localhost` appears under `operational` even when you configure no listening address, because Cumulus Linux adds it for you.
 
@@ -250,13 +222,6 @@ status
 The `source-address` row in the configuration block is the value you configured, echoed back. It confirms that Cumulus Linux accepted the value, not that the switch bound it.
 
 To confirm that the source address took effect, read `local-address` in the `status` block after the tunnel establishes. It reports the source address the connection carries. A `local-address` that differs from the configured source address, or that stays empty while `register` reads `no`, means the switch could not open the connection from the address you configured.
-
-<!-- REVIEW: the paragraph below describes the failure the spec calls the hardest to diagnose, where a
-     bound source address is simply unreachable from the collector. It shares its symptoms with a bind
-     failure, which is why the paragraph leads with the packet capture that tells the two apart. The
-     spec states that the switch logs nothing in this case, and notes that closing the gap would mean
-     logging repeated connect timeouts. Remove the paragraph if that logging lands. Delete this
-     comment before publishing. -->
 
 An unreachable collector produces the same symptoms as a failed bind, so take a packet capture to tell the two apart. If the connection attempts leave carrying the source address you configured, the switch bound the address and the problem is on the return path: confirm that the collector has a route back to that address and that any ACL on the collector accepts it. If they leave carrying a different address, the switch did not bind the one you configured. The switch records nothing in either case, because from its point of view the connection is still in progress.
 

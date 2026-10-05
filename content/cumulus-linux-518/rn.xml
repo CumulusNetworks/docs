@@ -7,6 +7,30 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5317534</td>
+<td>Removing the {{cumulus}} user causes the LTTng tracing service to fail when the switch reboots or when the service restarts. Tracing no longer works because the service depends on configuration templates that still reference the deleted cumulus user. This issue can block troubleshooting and diagnostics.</td>
+<td>5.16.7-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5288214</td>
 <td>When you boot a switch with TACACS+ or RADIUS configured to reference a server by hostname, the networking service might take a long time (2 or more minutes) to start. </td>
 <td>5.18.0-5.18.2</td>
@@ -19,6 +43,43 @@
 <td></td>
 </tr>
 <tr>
+<td>5281416</td>
+<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
+
+Due to flow:
+
+REST API Client
+10.87.221.34
+      |
+      v
++---------------------+
+| Public NVUE NGINX   |
+| knows original IP   |
++---------------------+
+      |
+      | auth subrequest
+      | via 127.0.0.1 / ::1
+      v
++----------------------+
+| Internal NGINX Auth  |
++----------------------+
+      |
+      v
+   PAM nvueapi
+      |
+      v
+ pam_radius_auth
+      |
+      v
++----------------------+
+|    RADIUS Server     |
+| Calling-Station-Id = |
+| 127.0.0.1 / ::1  X   |
++----------------------+</td>
+<td>5.16.6-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5274511</td>
 <td>In scaled configurations, {{switchd}} might crash during EVPN multihoming layer 2 next hop group cleanup causing a daemon restart and brief traffic interruption.</td>
 <td>5.16.1, 5.16.5-5.18.2</td>
@@ -28,6 +89,18 @@
 <td>5272623</td>
 <td>The switch writes the {{all_packet_stats}} snapshot to the {{/var/lib/cumulus}} directory instead of the {{/var/run/cumulus}} directory, which might cause unnecessary SSD usage.</td>
 <td>5.18.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5268378</td>
+<td>UMF and telemetry services might remain in a failed state after an offline package upgrade interrupting management and telemetry functions.</td>
+<td>5.16.8-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5268313</td>
+<td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
+<td>5.16.8-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -58,6 +131,12 @@
 <td>5231075</td>
 <td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
 <td>5.16.7-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5227516</td>
+<td>The {{nv config replace}} workflow fails causing {{hostapd}} to crash and generate core dumps. This issue leaves the service unable to restart cleanly and can disrupt network-related functionality.</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -163,6 +242,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5190318</td>
+<td>A package upgrade might start the default telemetry service together with the configured management VRF instance, causing a port conflict and leaving a telemetry service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5190241</td>
 <td>When you configure TACACS+ authentication with a server hostname resolving to more than one IP address and enable STP on a bridge (the default setting), the switch stops responding.</td>
 <td>5.18.0-5.18.2</td>
@@ -193,6 +278,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5183727</td>
+<td>During a package upgrade, {{containerd image-ingest}} errors might prevent the UMF container image from loading and leave the {{nv-umf}} service unable to start.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5183654, 5234851</td>
 <td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
 <td>5.18.0-5.18.2</td>
@@ -205,6 +296,18 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182854</td>
+<td>Stopping and starting Docker in the management VRF might cause configured gRPC tunnel services to fail and generate an automatic cl-support file.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182805</td>
+<td>If Docker becomes unavailable after the initial readiness check, subsequent gNMI container start operations might fail and leave the {{nv-gnmi}} service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1190,10 +1293,34 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5317534</td>
+<td>Removing the {{cumulus}} user causes the LTTng tracing service to fail when the switch reboots or when the service restarts. Tracing no longer works because the service depends on configuration templates that still reference the deleted cumulus user. This issue can block troubleshooting and diagnostics.</td>
+<td>5.16.7-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5303568</td>
 <td>On Spectrum-6 switches running Cumulus Linux 5.18.0 or 5.18.1, an internal firmware image layout issue prevents you from upgrading to future releases. You must upgrade to 5.18.2 before you upgrade to a future release to ensure that firmware upgrade does not fail.</td>
 <td>5.18.0-5.18.1</td>
 <td>5.18.2</td>
+</tr>
+<tr>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
 </tr>
 <tr>
 <td>5288214</td>
@@ -1208,6 +1335,43 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5281416</td>
+<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
+
+Due to flow:
+
+REST API Client
+10.87.221.34
+      |
+      v
++---------------------+
+| Public NVUE NGINX   |
+| knows original IP   |
++---------------------+
+      |
+      | auth subrequest
+      | via 127.0.0.1 / ::1
+      v
++----------------------+
+| Internal NGINX Auth  |
++----------------------+
+      |
+      v
+   PAM nvueapi
+      |
+      v
+ pam_radius_auth
+      |
+      v
++----------------------+
+|    RADIUS Server     |
+| Calling-Station-Id = |
+| 127.0.0.1 / ::1  X   |
++----------------------+</td>
+<td>5.16.6-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5274511</td>
 <td>In scaled configurations, {{switchd}} might crash during EVPN multihoming layer 2 next hop group cleanup causing a daemon restart and brief traffic interruption.</td>
 <td>5.16.1, 5.16.5-5.18.2</td>
@@ -1217,6 +1381,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5272623</td>
 <td>The switch writes the {{all_packet_stats}} snapshot to the {{/var/lib/cumulus}} directory instead of the {{/var/run/cumulus}} directory, which might cause unnecessary SSD usage.</td>
 <td>5.18.1-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5268378</td>
+<td>UMF and telemetry services might remain in a failed state after an offline package upgrade interrupting management and telemetry functions.</td>
+<td>5.16.8-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5268313</td>
+<td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
+<td>5.16.8-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1247,6 +1423,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5231075</td>
 <td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
 <td>5.16.7-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5227516</td>
+<td>The {{nv config replace}} workflow fails causing {{hostapd}} to crash and generate core dumps. This issue leaves the service unable to restart cleanly and can disrupt network-related functionality.</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -1352,6 +1534,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5190318</td>
+<td>A package upgrade might start the default telemetry service together with the configured management VRF instance, causing a port conflict and leaving a telemetry service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5190241</td>
 <td>When you configure TACACS+ authentication with a server hostname resolving to more than one IP address and enable STP on a bridge (the default setting), the switch stops responding.</td>
 <td>5.18.0-5.18.2</td>
@@ -1382,6 +1570,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5183727</td>
+<td>During a package upgrade, {{containerd image-ingest}} errors might prevent the UMF container image from loading and leave the {{nv-umf}} service unable to start.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5183654, 5234851</td>
 <td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
 <td>5.18.0-5.18.2</td>
@@ -1394,6 +1588,18 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182854</td>
+<td>Stopping and starting Docker in the management VRF might cause configured gRPC tunnel services to fail and generate an automatic cl-support file.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182805</td>
+<td>If Docker becomes unavailable after the initial readiness check, subsequent gNMI container start operations might fail and leave the {{nv-gnmi}} service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2450,10 +2656,34 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5317534</td>
+<td>Removing the {{cumulus}} user causes the LTTng tracing service to fail when the switch reboots or when the service restarts. Tracing no longer works because the service depends on configuration templates that still reference the deleted cumulus user. This issue can block troubleshooting and diagnostics.</td>
+<td>5.16.7-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5303568</td>
 <td>On Spectrum-6 switches running Cumulus Linux 5.18.0 or 5.18.1, an internal firmware image layout issue prevents you from upgrading to future releases. You must upgrade to 5.18.2 before you upgrade to a future release to ensure that firmware upgrade does not fail.</td>
 <td>5.18.0-5.18.1</td>
 <td>5.18.2</td>
+</tr>
+<tr>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td>5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
 </tr>
 <tr>
 <td>5297900</td>
@@ -2474,9 +2704,58 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5281416</td>
+<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
+
+Due to flow:
+
+REST API Client
+10.87.221.34
+      |
+      v
++---------------------+
+| Public NVUE NGINX   |
+| knows original IP   |
++---------------------+
+      |
+      | auth subrequest
+      | via 127.0.0.1 / ::1
+      v
++----------------------+
+| Internal NGINX Auth  |
++----------------------+
+      |
+      v
+   PAM nvueapi
+      |
+      v
+ pam_radius_auth
+      |
+      v
++----------------------+
+|    RADIUS Server     |
+| Calling-Station-Id = |
+| 127.0.0.1 / ::1  X   |
++----------------------+</td>
+<td>5.16.6-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5274511</td>
 <td>In scaled configurations, {{switchd}} might crash during EVPN multihoming layer 2 next hop group cleanup causing a daemon restart and brief traffic interruption.</td>
 <td>5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5268378</td>
+<td>UMF and telemetry services might remain in a failed state after an offline package upgrade interrupting management and telemetry functions.</td>
+<td>5.16.8-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5268313</td>
+<td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
+<td>5.16.8-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2513,6 +2792,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>5231075</td>
 <td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
 <td>5.16.7-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5227516</td>
+<td>The {{nv config replace}} workflow fails causing {{hostapd}} to crash and generate core dumps. This issue leaves the service unable to restart cleanly and can disrupt network-related functionality.</td>
+<td>5.16.6-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -2624,6 +2909,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5190318</td>
+<td>A package upgrade might start the default telemetry service together with the configured management VRF instance, causing a port conflict and leaving a telemetry service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5190241</td>
 <td>When you configure TACACS+ authentication with a server hostname resolving to more than one IP address and enable STP on a bridge (the default setting), the switch stops responding.</td>
 <td>5.18.0-5.18.2</td>
@@ -2654,6 +2945,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5183727</td>
+<td>During a package upgrade, {{containerd image-ingest}} errors might prevent the UMF container image from loading and leave the {{nv-umf}} service unable to start.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5183654, 5234851</td>
 <td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
 <td>5.18.0-5.18.2</td>
@@ -2666,6 +2963,18 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182854</td>
+<td>Stopping and starting Docker in the management VRF might cause configured gRPC tunnel services to fail and generate an automatic cl-support file.</td>
+<td>5.18.0-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5182805</td>
+<td>If Docker becomes unavailable after the initial readiness check, subsequent gNMI container start operations might fail and leave the {{nv-gnmi}} service in a failed state.</td>
+<td>5.18.0-5.18.2</td>
 <td></td>
 </tr>
 <tr>
@@ -3910,6 +4219,11 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td>5.17.0</td>
 </tr>
 <tr>
+<td>5041582</td>
+<td>The switch is not set up to rotate the {{cl-system-services.log}} file because the required {{logrotate}} configuration file is never installed on the device. Because of that missing file, the log file keeps growing instead of being rotated.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>5041547, 5057189</td>
 <td>When the {{/var}} directory runs out of disk space, the NVUE service goes down and you see the message {{NVUE Service temporarily unavailable. Please try again later}}. To work around this issue, restart the NVUE service after {{/var}} frees up.</td>
 <td>5.16.1</td>
@@ -4027,6 +4341,11 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <tr>
 <td>4980039</td>
 <td>A narrow window condition occasionally occurs when the {{prometheus-sdk-stats}} service restarts while an HFT session is running.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
+<td>4975260</td>
+<td>The {{pimd}} process crashes and generates a core file.</td>
 <td>5.17.0</td>
 </tr>
 <tr>

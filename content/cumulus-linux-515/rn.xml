@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
 <td>5221394</td>
 <td>Under a sustained ARP storm at a high rate (abouth 25k ARPs per second), {{neighmgrd}} does not release the netlink notifications it has already processed. Memory grows for as long as the event rate stays high, ending in an out-of-memory state.</td>
 <td>5.11.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
@@ -1521,6 +1533,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5299253</td>
+<td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
+<td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
+</tr>
+<tr>
+<td>5298343</td>
+<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.2</td>
+<td></td>
 </tr>
 <tr>
 <td>5221394</td>

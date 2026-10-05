@@ -46,18 +46,24 @@ cumulus@switch:~$ nv set vrf default router rib ipv4 protocol bgp fib-filter rou
 
 Configures the protocol you want to import from the RIB to the FIB.
 
+{{%notice note%}}
+Cumulus Linux 5.19 removes `connected`, `kernel`, and `table` as valid values for `<protocol-id>`. If your configuration filters RIB-to-FIB routes from one of these three protocols, `nv config apply` rejects it after you upgrade.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<afi>`   |  The route address family: `ipv4` or `ipv6`. |
-| `<protocol-id>` |  The import protocol list. |
+| `<protocol-id>` |  The import protocol list: `bgp`, `ospf`, `static`, `rip`, `sharp`, `isis`, `ospf6`, or `ripng`. In Cumulus Linux 5.18 and earlier, `connected`, `kernel`, and `table` are also valid. |
 | `<route-map>` |  The route map name. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.11.0
+
+Cumulus Linux 5.19.0 removes `connected`, `kernel`, and `table` from `<protocol-id>`.
 
 ### Example
 

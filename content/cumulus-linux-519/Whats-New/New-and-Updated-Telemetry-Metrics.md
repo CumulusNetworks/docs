@@ -151,6 +151,16 @@ The following paths are present on a switch with co-packaged optics (CPO) only. 
 | `/interfaces/interface[name=<interface-id>]/state/cpo-channels` | The CPO module channels assigned to the interface. |
 
 {{< /tab >}}
+{{< tab "Back-to-sender on Link Down">}}
+
+The switch exports these xPaths on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#show-and-clear-back-to-sender-notification-on-link-down-counters" text="Show and Clear Back-to-sender Notification on Link Down Counters">}}.
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/spxm-notify-sender-link-down-pkts` | Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/notify-sender-trimmed-link-down-pkts` | Number of those packets the switch trimmed and sent as a back-to-sender notification. |
+
+{{< /tab >}}
 {{< /tabs >}}
 
 For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Streaming">}}.
@@ -269,6 +279,16 @@ The switch exports these metrics on Spectrum-6 switches only. For information ab
 | `nvswitch_interface_trimmed_drop_unicast_pkts [interface]` | Number of packets that were trimmed and dropped on the interface. |
 | `nvswitch_interface_tc_trimmed_tx_unicast_pkts [interface][tc]` | Number of packets that were trimmed and sent successfully on the interface and traffic class. |
 | `nvswitch_interface_tc_trimmed_drop_unicast_pkts [interface][tc]` | Number of packets that were trimmed and dropped on the interface and traffic class. |
+
+{{< /tab >}}
+{{< tab "Back-to-sender on Link Down">}}
+
+The switch exports these metrics on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#show-and-clear-back-to-sender-notification-on-link-down-counters" text="Show and Clear Back-to-sender Notification on Link Down Counters">}}.
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_qos_spxm_notify_sender_link_down_pkts` | Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. |
+| `nvswitch_qos_notify_sender_trimmed_link_down_pkts` | Number of those packets the switch trimmed and sent as a back-to-sender notification. |
 
 {{< /tab >}}
 {{< /tabs >}}

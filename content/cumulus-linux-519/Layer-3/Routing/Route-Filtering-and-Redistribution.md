@@ -486,6 +486,12 @@ neighbor swp51 route-map MAP2 in
 
 The following example filters routes from Zebra (RIB) into the Linux kernel (FIB). The commands apply the route map called MAP1 to BGP routes in the RIB:
 
+Valid values for `<import-protocol-id>` are `bgp`, `ospf`, `static`, `rip`, `sharp`, `isis`, `ospf6`, and `ripng`.
+
+{{%notice note%}}
+In Cumulus Linux 5.18 and earlier, `<import-protocol-id>` also accepted `connected`, `kernel`, and `table`. Cumulus Linux 5.19 removes these three values; `nv config apply` rejects them. If your configuration filters RIB-to-FIB routes from one of these protocols, update the configuration before you upgrade.
+{{%/notice%}}
+
 {{< tabs "TabID152 ">}}
 {{< tab "NVUE Commands ">}}
 

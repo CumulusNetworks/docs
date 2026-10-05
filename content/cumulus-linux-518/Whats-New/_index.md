@@ -10,9 +10,22 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 
 {{%notice note%}}
 - Cumulus Linux 5.18.1 is tested and validated as part of the Spectrum-X reference architecture release 2.3.1.
-- Cumulus Linux 5.18.2 is tested and validated as part of the Spectrum-X reference architecture release 2.3.2.
+- Cumulus Linux 5.18.2 and 5.18.3 are tested and validated as part of the Spectrum-X reference architecture release 2.3.2.
 
 For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+
+## What's New in Cumulus Linux 5.18.3
+
+Cumulus Linux 5.18.3 provides a new SDK (4.10.1148), adds support for a new ISSI flash component, and provides bug fixes.
+
+You can upgrade to 5.18.3 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the -t option to migrate your configuration:
+- 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7, 5.16.8
+- 5.17.0
+- 5.18.0, 5.18.1, 5.18.2
+
+{{%notice warning%}}
+Make sure to upgrade the SN6600-LD switch to Cumulus Linux 5.18.2 before upgrading to 5.18.3. NVIDIA introduced new capabilities to Spectrum-6 based switch hardware in Cumulus Linux 5.18.2 that requires a special firmware version.
 {{%/notice%}}
 
 ## What's New in Cumulus Linux 5.18.2

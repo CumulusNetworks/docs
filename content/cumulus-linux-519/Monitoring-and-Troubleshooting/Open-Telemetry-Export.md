@@ -1209,6 +1209,8 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 | `nvswitch_interface_trimmed_drop_unicast_pkts [interface]` | *Number of packets that were trimmed and dropped on the interface. Spectrum-6 only. |
 | `nvswitch_interface_tc_trimmed_tx_unicast_pkts [interface][tc]` | *Number of packets that were trimmed and sent successfully on the interface and traffic class. Spectrum-6 only. |
 | `nvswitch_interface_tc_trimmed_drop_unicast_pkts [interface][tc]` | *Number of packets that were trimmed and dropped on the interface and traffic class. Spectrum-6 only. |
+| `nvswitch_qos_spxm_notify_sender_link_down_pkts` | *Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. Spectrum-6 only. |
+| `nvswitch_qos_notify_sender_trimmed_link_down_pkts` | *Number of those packets the switch trimmed and sent as a back-to-sender notification. Spectrum-6 only. |
 
 <!-- REVIEW: Redmine 5299181 establishes only that RoCEv2 traffic increments the counter and TCP
      traffic does not. Drafted as "traffic that is eligible for adaptive routing, such as RoCEv2"

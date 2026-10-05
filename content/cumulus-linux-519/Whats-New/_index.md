@@ -10,16 +10,11 @@ This document supports the Cumulus Linux 5.19 release, and lists new features an
 
 ## What's New in Cumulus Linux 5.19.0
 
-Cumulus Linux 5.19.0 supports new platforms, contains new features and improvements, and provides bug fixes.
+Cumulus Linux 5.19.0 includes new features and improvements, and provides bug fixes.
 
 {{%notice infonopad%}}
 Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 {{%/notice%}}
-
-## Platforms
-
-- NVIDIA SN6600 (128x800G Spectrum-6)
-- NVIDIA SN4700-A1, Air-cooled (Spectrum-3)
 
 ### New Features and Enhancements
 
@@ -66,6 +61,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="gNMI-Streaming/#dial-out-source-address" text="Configurable source address for gNMI dial-out connections">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for CPO modules and laser sources">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="OTEL metrics for trimmed packet sent and dropped counters">}} on Spectrum-6 switches
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for back-to-sender notification on link down">}} on Spectrum-6 switches
 
 ## Release Considerations
 
@@ -145,6 +141,13 @@ Cumulus Linux 5.19 replaces the BFD offload boolean with an offload mode that se
 
 - The `nv set router bfd offload <enabled|disabled>` command is replaced by `nv set router bfd offload-mode <control-plane|kernel|hardware>`. When you upgrade, Cumulus Linux translates `offload enabled` to `offload-mode kernel` and removes `offload disabled`, which leaves the `control-plane` default in effect.
 - The per-peer offload field now reports the engine carrying the session. In `nv show vrf <vrf-id> router bfd peers` output, the `Offloaded` column shows `kernel`, `hardware`, or `control-plane`; in vtysh and JSON output, `offload-status` shows the same three values. In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. Update any automation or monitoring that matches on the string `offloaded`.
+
+### RIB-to-FIB Filter Protocol Values
+
+Cumulus Linux 5.19 removes `connected`, `kernel`, and `table` as valid values for `<import-protocol-id>` in the `nv set vrf <vrf-id> router rib <address-family> fib-filter protocol <import-protocol-id> route-map <route-map-id>` command; see {{<link url="Route-Filtering-and-Redistribution/#apply-a-route-map" text="Apply a Route Map">}}.
+
+- If your configuration filters RIB-to-FIB routes from one of these three protocols, `nv config apply` rejects it after you upgrade. Update any such configuration before you upgrade.
+- Remaining valid values are `bgp`, `ospf`, `static`, `rip`, `sharp`, `isis`, `ospf6`, and `ripng`.
 
 ### PIM and MSDP vtysh Commands
 

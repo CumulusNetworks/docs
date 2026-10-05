@@ -440,15 +440,25 @@ To enable and configure back-to-sender notification on link down:
         reading and the value already shown in the specification's own worked CLI example
         (switch-priority 1). Confirm which is correct before publishing.
 
-     2. Ingress eligibility DSCP: required, or optional with a default? The object model comment
-        reads "required when enabled", and REQ-SW-009 states "Empty eligibility DSCP while enabled =
-        hard error." But the Validation section (5.4) states the opposite: "Empty DSCP list while
-        enabled | Intent | Allow. Program default 1, 2, 3, 4" -- and the CLI Options Description
-        table agrees, giving a default of 1,2,3,4 and marking it optional. Documented here as
-        optional with a default, per the validation-specific section and the CLI options table,
-        which is the same section-role reasoning used elsewhere in this repo to prefer a CLI/
-        validation section over a terser requirements-table comment. Confirm before publishing --
-        if it is in fact required, delete the "if you do not set this" sentence above.
+     2. Ingress eligibility DSCP: required, or optional with a default, and what default? The object
+        model comment reads "required when enabled", and REQ-SW-009 states "Empty eligibility DSCP
+        while enabled = hard error." But the Validation section (5.4) states the opposite: "Empty
+        DSCP list while enabled | Intent | Allow. Program default 1, 2, 3, 4" -- and the CLI Options
+        Description table agrees, giving a default of 1,2,3,4 and marking it optional. The worked
+        `nv show ... link-down` example output in section 11.3 also shows an applied value of
+        "1,2,3,4". Documented here as optional with a default of 1, 2, 3, 4, per the validation
+        section, the CLI options table, and the worked example output outvoting the object model
+        comment -- the same section-role reasoning used elsewhere in this repo to prefer a CLI/
+        validation section over a terser requirements-table comment. A fourth source now disagrees
+        on the number, though not on optional-vs-required: the Open Issues table's own OI-2 decision
+        text reads "Closed (confirmed with ARCH). List of 0-63 is allowed. Product default for MRC
+        data is all" -- "all", not "1, 2, 3, 4". This is new text; the spec's earlier OI-2 wording
+        (read on the prior pass) gave the number as 1, 2, 3, 4, matching the other three sources, so
+        this looks like a drafting slip in the Open Issues row rather than an intentional change
+        nothing else in the document reflects. Keeping 1, 2, 3, 4 on the strength of three sources
+        against one, but confirm before publishing -- if "all" is in fact correct, this is a bigger
+        change than a number, since "all" DSCP values eligible by default is a materially different
+        default posture than a specific four-value list.
 
      3. Service port collision. The specification's Validation section (5.4) and its negative test
         case (Testing, case 7) both state the link-down service port must not be the same port as

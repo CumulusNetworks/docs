@@ -103,6 +103,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="gNMI-Streaming/#dial-out-source-address" text="Configurable source address for gNMI dial-out connections">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for CPO modules and laser sources">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="OTEL metrics for trimmed packet sent and dropped counters">}} on Spectrum-6 switches
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for back-to-sender notification on link down">}} on Spectrum-6 switches
 
 ## Release Considerations
 

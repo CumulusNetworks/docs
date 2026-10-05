@@ -445,7 +445,7 @@ Under heavy CPU load, such as route churn, ACL updates, or large-scale provision
 
 {{%notice note%}}
 - Hardware offload requires a Spectrum-6 switch. On any other platform, `nv config apply` rejects the configuration and tells you which mode to use instead.
-- Hardware offload carries single-hop sessions only. Multi-hop sessions continue to run in the control plane and stay up; the switch reports `control-plane` for them.
+- Hardware offload carries single-hop sessions only. Multi-hop sessions continue to run in the control plane and stay up; the switch reports `control-plane` for them. Set multi-hop profile timers to the control-plane minimum values described above (a detect multiplier of 3, a 300 millisecond transmit interval, and a 900 millisecond receive interval) even when `offload-mode` is `hardware`.
 - The firmware works in units of 10 milliseconds and rounds transmit intervals up to a multiple of 10 milliseconds.
 {{%/notice%}}
 
@@ -458,7 +458,7 @@ Hardware offload supports these single-hop interface types:
 
 Loopback interfaces have no physical egress port, so sessions sourced from a loopback stay in the control plane.
 
-<!-- REVIEW: the spec's In Scope list names SVI as a validated interface type, but Open Item 8 records SVI and bridge offload as "Deferred - out of scope for 5.19" and the functional test table marks SVI "Not validated". Bond subinterfaces are likewise listed as supported in the interface matrix but recorded as "Open - partial, FW issue" in Open Item 7. Both are omitted from the list above on the strength of the Open Items and test results. Confirm against a candidate build before publishing. -->
+Hardware offload does not support BGP unnumbered (IPv6 link-local) sessions when two or more parallel links between the same two switches have adaptive routing enabled. Numbered peering (IPv4 or IPv6 global addresses) with adaptive routing works on any number of links, and BGP unnumbered with adaptive routing works on a single link between two switches. To use hardware offload in this topology, use numbered peering on the adaptive-routing-enabled links, or disable adaptive routing on them. Setting a per-port MAC address is not a workaround, because NVUE does not allow you to configure `mac-address` together with adaptive routing on the same port.
 
 To offload BFD to hardware:
 
@@ -621,7 +621,7 @@ switch# show bfd vrf default peers brief json
 ]
 ```
 
-The `Offloaded` field shows the engine carrying the session: `kernel`, `hardware`, or `control-plane` if the session is not offloaded. In a mixed topology under `offload-mode hardware`, a single-hop peer shows `hardware` while a multi-hop peer shows `control-plane`, which is how you confirm where each session runs.
+The `Offloaded` field shows the engine carrying the session: `kernel`, `hardware`, or `control-plane` if the session is not offloaded. In a mixed topology under `offload-mode hardware`, a single-hop peer shows `hardware` while a multi-hop peer shows `control-plane`, which is how you confirm where each session runs. The vtysh `show bfd peers` command shows the same value under the `Offload Status:` label.
 
 {{%notice info%}}
 In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. If you have automation or monitoring that matches on the string `offloaded`, update it to match the specific engine name.

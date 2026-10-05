@@ -10,16 +10,12 @@ This document supports the Cumulus Linux 5.19 release, and lists new features an
 
 ## What's New in Cumulus Linux 5.19.0
 
-Cumulus Linux 5.19.0 supports new platforms, contains new features and improvements, and provides bug fixes.
+Cumulus Linux 5.19.0 includes new features and improvements, and provides bug fixes.
 
 {{%notice infonopad%}}
 Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 {{%/notice%}}
 
-## Platforms
-
-- NVIDIA SN6600 (128x800G Spectrum-6)
-- NVIDIA SN4700 (Spectrum-3)
 
 ### New Features and Enhancements
 

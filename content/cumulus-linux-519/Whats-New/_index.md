@@ -146,6 +146,13 @@ Cumulus Linux 5.19 replaces the BFD offload boolean with an offload mode that se
 - The `nv set router bfd offload <enabled|disabled>` command is replaced by `nv set router bfd offload-mode <control-plane|kernel|hardware>`. When you upgrade, Cumulus Linux translates `offload enabled` to `offload-mode kernel` and removes `offload disabled`, which leaves the `control-plane` default in effect.
 - The per-peer offload field now reports the engine carrying the session. In `nv show vrf <vrf-id> router bfd peers` output, the `Offloaded` column shows `kernel`, `hardware`, or `control-plane`; in vtysh and JSON output, `offload-status` shows the same three values. In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. Update any automation or monitoring that matches on the string `offloaded`.
 
+### RIB-to-FIB Filter Protocol Values
+
+Cumulus Linux 5.19 removes `connected`, `kernel`, and `table` as valid values for `<import-protocol-id>` in the `nv set vrf <vrf-id> router rib <address-family> fib-filter protocol <import-protocol-id> route-map <route-map-id>` command; see {{<link url="Route-Filtering-and-Redistribution/#apply-a-route-map" text="Apply a Route Map">}}.
+
+- If your configuration filters RIB-to-FIB routes from one of these three protocols, `nv config apply` rejects it after you upgrade. Update any such configuration before you upgrade.
+- Remaining valid values are `bgp`, `ospf`, `static`, `rip`, `sharp`, `isis`, `ospf6`, and `ripng`.
+
 ### PIM and MSDP vtysh Commands
 
 Cumulus Linux 5.19 upgrades FRR, which moves the vtysh commands that configure PIM and MSDP for a routing instance into a `router pim [vrf <vrf-name>]` block and drops the `ip` prefix; see {{<link url="Protocol-Independent-Multicast-PIM/#basic-pim-configuration" text="Protocol Independent Multicast - PIM">}}.

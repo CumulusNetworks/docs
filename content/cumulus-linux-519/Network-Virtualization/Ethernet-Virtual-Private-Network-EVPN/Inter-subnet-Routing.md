@@ -572,6 +572,7 @@ To prevent VRFs from re-exporting EVPN-originated leaked routes as type-5 routes
 - Locally originated routes, including locally originated routes leaked from another VRF, remain eligible for type-5 re-export.  
 - You set the skip EVPN imported setting for a specific BGP VRF instance and for either IPv4 or IPv6.
 - The emitted EVPN routes remain standards-compliant type-5 routes. This setting only decides which local paths FRR originates; it does not alter received EVPN route encoding, route-target processing, or peer interoperability. 
+- The skip EVPN imported setting is disabled by default, which preserves Cumulus Linux 5.18 and earlier behavior.
 
 {{< tabs "TabID576 ">}}
 {{< tab "NVUE Commands ">}}

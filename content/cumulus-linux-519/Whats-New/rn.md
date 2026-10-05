@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5317534 | Removing the <code>cumulus</code> user causes the LTTng tracing service to fail when the switch reboots or when the service restarts. Tracing no longer works because the service depends on configuration templates that still reference the deleted cumulus user. This issue can block troubleshooting and diagnostics. | 5.16.7-5.19.0 | |
 | 5298343 | The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity. | 5.15.0-5.19.0 | |
 | 5240151 | On the Spectrum-6 switch, running <code>bmc-cli collect-all</code>  does not successfully collect all available BMC data. The command completes, but only 27 out of 41 collection tasks are successful. | 5.19.0 | 5.18.1|
 | 5223707 | Restarting the networking service in an EVPN multihoming configuration leaves the host bonds enabled in configuration but not actually working. After the restart, the bond loses carrier, stops forwarding traffic, and a MAC address that is supposed to stay local gets removed from the local bond and is instead learned through VXLAN/ECMP. In some later observations, Linux shows the MAC address correctly back on the local hostbond, but the hardware still points it to ECMP, showing a software or hardware forwarding mismatch. | 5.16.7-5.19.0 | |

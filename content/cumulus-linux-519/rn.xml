@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5317534</td>
+<td>Removing the {{cumulus}} user causes the LTTng tracing service to fail when the switch reboots or when the service restarts. Tracing no longer works because the service depends on configuration templates that still reference the deleted cumulus user. This issue can block troubleshooting and diagnostics.</td>
+<td>5.16.7-5.19.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5298343</td>
 <td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
 <td>5.15.0-5.19.0</td>

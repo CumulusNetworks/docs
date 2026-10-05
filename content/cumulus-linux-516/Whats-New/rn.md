@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5317534 | Removing the <code>cumulus</code> user causes the LTTng tracing service to fail when the switch reboots or when the service restarts. Tracing no longer works because the service depends on configuration templates that still reference the deleted cumulus user. This issue can block troubleshooting and diagnostics. | 5.16.7-5.18.2 | |
 | 5299539 |  After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration. | 5.16.1-5.18.2 | |
 | 5299253 | LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking <code>snmpbulkwalk</code> and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days. | 5.11.3-5.18.2 | |
 | 5298343 | The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity. | 5.15.0-5.18.2 | |
@@ -272,6 +273,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5317534 | Removing the <code>cumulus</code> user causes the LTTng tracing service to fail when the switch reboots or when the service restarts. Tracing no longer works because the service depends on configuration templates that still reference the deleted cumulus user. This issue can block troubleshooting and diagnostics. | 5.16.7-5.18.2 | |
 | 5299539 |  After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration. | 5.16.1-5.18.2 | |
 | 5299253 | LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking <code>snmpbulkwalk</code> and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days. | 5.11.3-5.18.2 | |
 | 5298343 | The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity. | 5.15.0-5.18.2 | |

@@ -986,7 +986,9 @@ cumulus@switch:~$ nv show interface swp1 link flap-protection
 state               enabled  enabled
 ```
 
-## <h>nv set interface \<interface-id\> link phy detail</h>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> link phy detail</h>
 
 Shows physical layer diagnostic information for a port.
 

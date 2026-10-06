@@ -10,7 +10,7 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv config apply </h>
+## <h>nv config apply</h>
 
 In Cumulus Linux 5.8 and earlier, the `nv config apply` command applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. To save the startup configuration automatically when you run `nv config apply` without having to run the `nv config save` command, run the `nv set system config auto-save enable on` command.
 
@@ -223,7 +223,7 @@ cumulus@switch:~$ nv config find stp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-##  <h>nv config history</h>
+## <h>nv config history</h>
 
 Shows the `apply` history for the current configuration revision.
 

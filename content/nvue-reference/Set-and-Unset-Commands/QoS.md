@@ -159,7 +159,7 @@ cumulus@switch:~$ nv set interface swp1 qos egress-shaper profile MYPROFILE
 
 ## <h>nv set interface \<interface-id\> qos headroom lossy extra-threshold</h>
 
-Configures additional headroom for lossy priority groups before the switch drops packets. You can specify a value between 192 and 1236480 bytes.
+Configures additional headroom for lossy priority groups before the switch drops packets. You must specify at least one buffer cell: 192 bytes on NVIDIA Spectrum-4 and Spectrum-5, or 256 bytes on NVIDIA Spectrum-6. You can specify a value between 192 and 1236480 bytes on Spectrum-4 and Spectrum-5, or between 256 and 1818368 bytes on Spectrum-6.
 
 In certain cases, higher forwarding latency and a high probability of small packets increase the risk of headroom buffer exhaustion on lossy traffic and the current default maximum headroom of 150 KB per port might be insufficient.
 
@@ -2796,7 +2796,7 @@ cumulus@switch:~$ nv set qos traffic-pool 3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos pfc-watchdog polling-interval</h> 
+## <h>nv set qos pfc-watchdog polling-interval</h>
 
 Configures the PFC watchdog polling interval. The default polling interval is 100 milliseconds.
 
@@ -2812,7 +2812,23 @@ cumulus@switch:~$ nv set qos pfc-watchdog polling-interval 200
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos pfc-watchdog robustness</h> 
+## <h>nv set qos pfc-watchdog recovery-interval</h>
+
+Configures the number of consecutive polling intervals in which the PFC watchdog must record a recovery hit before it restores a port from mitigation. You can specify a value between 1 and 1000. The default value is 2.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog recovery-interval 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc-watchdog robustness</h>
 
 Configures how many polling intervals the PFC watchdog must wait before it mitigates the storm condition. The default number of polling intervals is 3.
 
@@ -2825,3 +2841,122 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv set qos pfc-watchdog robustness 5
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc-watchdog rx-pause-duration multiplier</h>
+
+Configures the receive pause threshold as a fraction of the polling interval, in units of 1/10000. You can specify a value between 1 and 9999. The default value is 9900.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-duration multiplier 9500
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc-watchdog rx-pause-duration state</h>
+
+Enables and disables evaluation of the receive pause duration term in the PFC watchdog. You can set a value of `enabled`, or `disabled`. The default setting is `enabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-duration state disabled
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc-watchdog rx-pause-threshold</h>
+
+Configures the maximum number of received pause frames in the polling interval that the switch counts as a recovery hit. You can specify a value between 0 and 65535. The default value is 0.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-threshold 100
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc-watchdog transmit-queue-threshold percent</h>
+
+Configures the transmit queue occupancy threshold, as a percentage, for the PFC watchdog. You can specify a value between 0 and 100. The default value is 0.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog transmit-queue-threshold percent 80
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc-watchdog transmit-queue-threshold state</h>
+
+Enables and disables evaluation of the transmit queue occupancy term in the PFC watchdog. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog transmit-queue-threshold state enabled
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc-watchdog tx-frames-threshold state</h>
+
+Enables and disables evaluation of the transmit frames term in the PFC watchdog. You can set a value of `enabled`, or `disabled`. The default setting is `enabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog tx-frames-threshold state disabled
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc-watchdog tx-frames-threshold value</h>
+
+Configures the maximum number of transmitted packets in the polling interval that the switch counts as a hit. You can specify a value between 0 and 65535. The default value is 0.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog tx-frames-threshold value 200
+```
+

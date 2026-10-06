@@ -51,7 +51,7 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system do-spx active-profile</h>
+## <h>nv show system do-spx active-profile</h>
 
 Shows the active profile on the switch.
 
@@ -68,7 +68,7 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system do-spx profile</h>
+## <h>nv show system do-spx profile</h>
 
 Shows all configuration profiles on the switch.
 
@@ -91,7 +91,7 @@ leaf          swp1-32           4x      swp33-64            4x      10.1.1.100  
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system do-spx profile \<profile-id\></h>
+## <h>nv show system do-spx profile \<profile-id\></h>
 
 Shows the switch configuration for the specified profile.
 
@@ -130,7 +130,7 @@ otlp-destination
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system do-spx profile \<profile-id\> uplink</h>
+## <h>nv show system do-spx profile \<profile-id\> uplink</h>
 
 Shows the upinks configured for the specified profile.
 
@@ -155,7 +155,7 @@ swp1-32    4x
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system do-spx profile \<profile-id\> uplink \<interface-id\></h>
+## <h>nv show system do-spx profile \<profile-id\> uplink \<interface-id\></h>
 
 Shows the breakouts configured for the specified profile uplink interface.
 
@@ -181,7 +181,7 @@ breakout  4x           4x       4x
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system do-spx profile \<profile-id\> downlink</h>
+## <h>nv show system do-spx profile \<profile-id\> downlink</h>
 
 Shows the downlinks configured for the specified profile.
 
@@ -207,7 +207,7 @@ swp33-64   4x
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system do-spx profile \<profile-id\> downlink \<interface-id\></h>
+## <h>nv show system do-spx profile \<profile-id\> downlink \<interface-id\></h>
 
 Shows the breakouts configured for the specified profile downlink interface.
 
@@ -233,7 +233,7 @@ breakout  4x           4x       4x
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system do-spx profile \<profile-id\> otlp-destination</h>
+## <h>nv show system do-spx profile \<profile-id\> otlp-destination</h>
 
 Shows the OTLP destination configured in the profile.
 
@@ -258,7 +258,7 @@ OTLP Dest IP  OTLP Port
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system do-spx profile \<profile-id\> otlp-destination \<destination-id\></h>
+## <h>nv show system do-spx profile \<profile-id\> otlp-destination \<destination-id\></h>
 
 Shows the specified OTLP destination configuration.
 

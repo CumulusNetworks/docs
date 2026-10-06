@@ -379,6 +379,50 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1:
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery prefix-lifetime valid</h>
+
+Configures the time, in seconds, that the prefixes derived from the addresses on the interface are valid for on-link determination. A prefix with its own valid lifetime is not affected. You can specify a value between 0 and 4294967295, or `infinite`. The default value is 2592000.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery prefix-lifetime valid 1296000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery prefix-lifetime preferred</h>
+
+Configures the time, in seconds, that addresses generated from the prefixes derived from the addresses on the interface remain preferred. A prefix with its own preferred lifetime is not affected. You can specify a value between 0 and 4294967295, or `infinite`. The default value is 604800.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery prefix-lifetime preferred 302400
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery rdnss \<address-id\></h>
 
 Configures recursive DNS servers (RDNSS). You must specify the IPv6 address of each RDNSS you want to advertise.

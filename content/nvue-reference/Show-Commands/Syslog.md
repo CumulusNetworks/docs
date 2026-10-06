@@ -120,6 +120,57 @@ protocol  tcp          tcp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system log secured-logs</h>
+
+Shows if secured logs are enabled. Secured logs include the date and time events occur, the source IP address and  username for NVUE commands, and when dynamic kernel modules load and unload.
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system logs secured-logs
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system log ztp</h>
+
+Shows the ZTP console message configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system log ztp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system log ztp messages</h>
+
+Shows the ZTP console message printing configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system log ztp messages
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system syslog</h>
 
 Shows the syslog configuration settings.
@@ -159,57 +210,6 @@ selector
                                                                           10      issu_start=true.+$  include
                                                                           15      smonctl                    
     selector-ifreload  info      ifreload      daemon
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system log secured-logs</h>
-
-Shows if secured logs are enabled. Secured logs include the date and time events occur, the source IP address and  username for NVUE commands, and when dynamic kernel modules load and unload.
-
-### Version History
-
-Introduced in Cumulus Linux 5.16.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system logs secured-logs
-       applied
------  -------
-state  enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system log ztp messages</h>
-
-Shows the ZTP console message printing configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system log ztp messages
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system log ztp</h>
-
-Shows the ZTP console message configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system log ztp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -212,26 +212,6 @@ cumulus@switch:~$ nv set system forwarding ecmp-hash inner-source-port enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system forwarding ecmp-hash ipv6-label</h>
-
-Enables and disables ECMP hashing on the IPv6 label field. The default setting is `disabled`.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
-{{%/notice%}}
-
-### Version History
-
-Introduced in Cumulus Linux 5.2.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system forwarding ecmp-hash ipv6-label enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system forwarding ecmp-hash ip-protocol</h>
 
 Enables and disables ECMP hashing on the IP protocol field. For IP traffic, the switch uses IP header source and destination fields in the hash calculation. The default setting is `disabled`.
@@ -248,6 +228,26 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv set system forwarding ecmp-hash ip-protocol enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system forwarding ecmp-hash ipv6-label</h>
+
+Enables and disables ECMP hashing on the IPv6 label field. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system forwarding ecmp-hash ipv6-label enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

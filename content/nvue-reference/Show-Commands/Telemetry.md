@@ -230,6 +230,232 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> telemetry histogram counter</h>
+
+Shows the counter histogram samples collected at the configured interval for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram counter
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram counter counter-type</h>
+
+Shows the counter histogram samples collected at the configured interval for all counter types for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-type
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram counter counter-type \<counter-type-id\></h>
+
+Shows the counter histogram samples collected at the configured interval for the specified counter type for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `<counter-type-id>` |  The counter type ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-type rx-packet
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram counter counter-type \<counter-type-id\> snapshot</h>
+
+Shows the snapshot collected for the counter histogram samples for the specified counter type.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `<counter-type-id>` |  The counter type ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-type rx-packet snapshot
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram counter counter-type \<counter-type-id\> threshold</h>
+
+Shows the configured interval set for counter histogram samples for the specified counter type.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `<counter-type-id>` |  The counter type ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-type rx-packet threshold
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer</h>
+
+Shows the egress queue depth histogram samples collected at the configured interval for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer traffic-class</h>
+
+Shows the ingress queue depth histogram samples collected for all traffic classes at the configured interval for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traffic class
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer traffic-class \<tc-id\></h>
+
+Shows the egress queue depth histogram samples collected at the configured interval for the specified traffic class and interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `<tc-id>` |  The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traffic class 4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer traffic-class \<tc-id\> snapshot</h>
+
+Shows the snapshot collected for the egress queue depth histogram samples.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `<tc-id>` |  The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traffic class 4 snapshot
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer traffic-class \<tc-id\> threshold</h>
+
+Shows the configured interval set for egress queue depth histogram samples.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `<tc-id>` |  The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traffic class 4 threshold
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> telemetry histogram ingress-buffer</h>
 
 Shows ingress queue depth histogram samples collected for the specified interface.
@@ -302,29 +528,6 @@ Time      0-863     864:2303    2304:3743  3744:5183   5184:6623   6624:8063   8
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> telemetry histogram ingress-buffer priority-group \<pg-id\> threshold</h>
-
-Show the configured interval set for ingress queue depth histogram samples.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-| `<pg-id>` |  The priority group ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram ingress-buffer priority-group 0 threshold
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show interface \<interface-id\> telemetry histogram ingress-buffer priority-group \<pg-id\> snapshot</h>
 
 Shows the snapshot collected for the ingress queue depth histogram samples.
@@ -360,15 +563,16 @@ Sl.No  Date-Time            Bin-0   Bin-1    Bin-2    Bin-3    Bin-4    Bin-5   
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer</h>
+## <h>nv show interface \<interface-id\> telemetry histogram ingress-buffer priority-group \<pg-id\> threshold</h>
 
-Shows the egress queue depth histogram samples collected at the configured interval for the specified interface.
+Show the configured interval set for ingress queue depth histogram samples.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface name. |
+| `<pg-id>` |  The priority group ID. |
 
 ### Version History
 
@@ -377,211 +581,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer traffic-class</h>
-
-Shows the ingress queue depth histogram samples collected for all traffic classes at the configured interval for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traffic class
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer traffic-class \<tc-id\></h>
-
-Shows the egress queue depth histogram samples collected at the configured interval for the specified traffic class and interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-| `<tc-id>` |  The traffic class ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traffic class 4
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer traffic-class \<tc-id\> threshold</h>
-
-Shows the configured interval set for egress queue depth histogram samples.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-| `<tc-id>` |  The traffic class ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traffic class 4 threshold
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer traffic-class \<tc-id\> snapshot</h>
-
-Shows the snapshot collected for the egress queue depth histogram samples.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-| `<tc-id>` |  The traffic class ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traffic class 4 snapshot
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> telemetry histogram counter</h>
-
-Shows the counter histogram samples collected at the configured interval for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram counter
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> telemetry histogram counter counter-type</h>
-
-Shows the counter histogram samples collected at the configured interval for all counter types for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-type
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> telemetry histogram counter counter-type \<counter-type-id\></h>
-
-Shows the counter histogram samples collected at the configured interval for the specified counter type for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-| `<counter-type-id>` |  The counter type ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-type rx-packet
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> telemetry histogram counter counter-type \<counter-type-id\> threshold</h>
-
-Shows the configured interval set for counter histogram samples for the specified counter type.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-| `<counter-type-id>` |  The counter type ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-type rx-packet threshold
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> telemetry histogram counter counter-type \<counter-type-id\> snapshot</h>
-
-Shows the snapshot collected for the counter histogram samples for the specified counter type.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-| `<counter-type-id>` |  The counter type ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-type rx-packet snapshot
+cumulus@switch:~$ nv show interface swp1 telemetry histogram ingress-buffer priority-group 0 threshold
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -653,29 +653,6 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-cla
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> telemetry histogram latency traffic-class \<tc-id\> threshold</h>
-
-Shows the configured interval set for latency histogram samples for the specified traffic class on the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-| `tc-id` | The traffic class ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.9.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-class 2 threshold
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show interface \<interface-id\> telemetry histogram latency traffic-class \<tc-id\> snapshot</h>
 
 Shows the snapshot collected for latency histogram samples for the specified traffic class on the specified interface.
@@ -699,39 +676,38 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-cla
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\> threshold</h>
+## <h>nv show interface \<interface-id\> telemetry histogram latency traffic-class \<tc-id\> threshold</h>
 
-Shows the microburst histogram threshold settings for a specific direction on the specified interface.
+Shows the configured interval set for latency histogram samples for the specified traffic class on the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface name. |
-| `<if-direction-id>` |  The traffic direction. |
+| `tc-id` | The traffic class ID. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.19.0
+Introduced in Cumulus Linux 5.9.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction rx threshold
+cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-class 2 threshold
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\> snapshot</h>
+## <h>nv show interface \<interface-id\> telemetry histogram microburst</h>
 
-Shows the microburst histogram snapshot for a specific direction on the specified interface.
+Shows microburst histogram details for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface name. |
-| `<if-direction-id>` |  The traffic direction. |
 
 ### Version History
 
@@ -740,7 +716,29 @@ Introduced in Cumulus Linux 5.19.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction rx snapshot
+cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram microburst direction</h>
+
+Shows the microburst histogram directions for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -768,15 +766,16 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst directio
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> telemetry histogram microburst direction</h>
+## <h>nv show interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\> snapshot</h>
 
-Shows the microburst histogram directions for the specified interface.
+Shows the microburst histogram snapshot for a specific direction on the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface name. |
+| `<if-direction-id>` |  The traffic direction. |
 
 ### Version History
 
@@ -785,20 +784,21 @@ Introduced in Cumulus Linux 5.19.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction
+cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction rx snapshot
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> telemetry histogram microburst</h>
+## <h>nv show interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\> threshold</h>
 
-Shows microburst histogram details for the specified interface.
+Shows the microburst histogram threshold settings for a specific direction on the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface name. |
+| `<if-direction-id>` |  The traffic direction. |
 
 ### Version History
 
@@ -807,7 +807,7 @@ Introduced in Cumulus Linux 5.19.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst
+cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction rx threshold
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -924,22 +924,6 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry control-plane-stats class punt-classifier</h>
-
-Shows the punt classifier counter telemetry configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry control-plane-stats class punt-classifier
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show system telemetry control-plane-stats class</h>
 
 Shows the control plane statistics class configuration.
@@ -952,6 +936,22 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry control-plane-stats class
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry control-plane-stats class punt-classifier</h>
+
+Shows the punt classifier counter telemetry configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry control-plane-stats class punt-classifier
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1152,6 +1152,25 @@ processors
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry health internal-metrics exporters</h>
+
+Shows health metrics about the telemetry exporters.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry health internal-metrics exporters
+Exporters       Enqueue Failed Metric Points   Queue Capacity   Queue Size   Send Failed Metric Points   Sent Metric Points
+---------       ----------------------------   --------------   ----------   -------------------------   ------------------
+otlp/global     0                              1000             0            7087                        52000844
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry health internal-metrics process</h>
 
 Shows health information about the telemetry process.
@@ -1172,26 +1191,6 @@ runtime-heap-alloc-bytes           28617960
 runtime-total-alloc-bytes          915541979208
 runtime-total-sys-memory-bytes     151368752
 uptime-seconds                     65313
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry health internal-metrics receivers</h>
-
-Shows health metrics about the telemetry receivers.
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry health internal-metrics receivers
-Receivers            Accepted Metric Points      Refused Metric Points
----------            ----------------------      ---------------------
-otlp/global          4967144                     0
-prometheus/global    46989135                    0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1228,9 +1227,9 @@ cumulus@switch:~$ nv show system telemetry health internal-metrics processors
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry health internal-metrics exporters</h>
+## <h>nv show system telemetry health internal-metrics receivers</h>
 
-Shows health metrics about the telemetry exporters.
+Shows health metrics about the telemetry receivers.
 
 ### Version History
 
@@ -1239,10 +1238,11 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry health internal-metrics exporters
-Exporters       Enqueue Failed Metric Points   Queue Capacity   Queue Size   Send Failed Metric Points   Sent Metric Points
----------       ----------------------------   --------------   ----------   -------------------------   ------------------
-otlp/global     0                              1000             0            7087                        52000844
+cumulus@switch:~$ nv show system telemetry health internal-metrics receivers
+Receivers            Accepted Metric Points      Refused Metric Points
+---------            ----------------------      ---------------------
+otlp/global          4967144                     0
+prometheus/global    46989135                    0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1724,15 +1724,9 @@ cumulus@switch:~$ nv show system telemetry histogram latency
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry histogram microburst top \<microburst-top-count-id\> interface</h>
+## <h>nv show system telemetry histogram microburst</h>
 
-Shows the highest scoring interfaces ranked by burstiness score.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<microburst-top-count-id>` |  The number of interfaces to show. |
+Shows the microburst histogram defaults and operational data.
 
 ### Version History
 
@@ -1741,7 +1735,55 @@ Introduced in Cumulus Linux 5.19.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry histogram microburst top 10 interface
+cumulus@switch:~$ nv show system telemetry histogram microburst
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry histogram microburst summary</h>
+
+Shows the interfaces with microburst activity, ranked by burstiness score.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry histogram microburst summary
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry histogram microburst threshold</h>
+
+Shows the microburst histogram threshold defaults.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry histogram microburst threshold
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry histogram microburst top</h>
+
+Shows the interface counts available for the ranked microburst view.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry histogram microburst top
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1768,25 +1810,15 @@ cumulus@switch:~$ nv show system telemetry histogram microburst top 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry histogram microburst top</h>
+## <h>nv show system telemetry histogram microburst top \<microburst-top-count-id\> interface</h>
 
-Shows the interface counts available for the ranked microburst view.
+Shows the highest scoring interfaces ranked by burstiness score.
 
-### Version History
+### Command Syntax
 
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry histogram microburst top
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry histogram microburst threshold</h>
-
-Shows the microburst histogram threshold defaults.
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<microburst-top-count-id>` |  The number of interfaces to show. |
 
 ### Version History
 
@@ -1795,39 +1827,7 @@ Introduced in Cumulus Linux 5.19.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry histogram microburst threshold
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry histogram microburst summary</h>
-
-Shows the interfaces with microburst activity, ranked by burstiness score.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry histogram microburst summary
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry histogram microburst</h>
-
-Shows the microburst histogram defaults and operational data.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry histogram microburst
+cumulus@switch:~$ nv show system telemetry histogram microburst top 10 interface
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1873,25 +1873,6 @@ phy
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry interface-stats class phy</h>
-
-Shows if interface PHY statistics export is enabled.
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$  nv show system telemetry interface-stats class phy
-       operational  applied 
------  -----------  --------
-state               disabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show system telemetry interface-stats class debounce</h>
 
 Shows link debounce interface statistics configuration.
@@ -1908,6 +1889,25 @@ cumulus@switch:~$  nv show system telemetry interface-stats class debounce
 ---------------  -----------  --------
 sample-interval  10           10      
 state            disabled     disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry interface-stats class phy</h>
+
+Shows if interface PHY statistics export is enabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$  nv show system telemetry interface-stats class phy
+       operational  applied 
+-----  -----------  --------
+state               disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2004,64 +2004,6 @@ state                         enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry radius-stats export</h>
-
-Shows the RADIUS login statistics export configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry radius-stats export
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry radius-stats</h>
-
-Shows the RADIUS login statistics configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry radius-stats
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry router</h>
-
-Shows which telemetry router statistics are enabled.
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry router
-                 applied 
----------------  --------
-bgp                      
-  export                 
-    state        enabled
-rib                      
-  export                 
-    state        enabled
-export                   
-  state          enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show system telemetry metric-list</h>
 
 Shows the configured metric lists.
@@ -2111,6 +2053,8 @@ description  Platform metrics
 [metric]     nvswitch_env_*
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry metric-list \<metric-list-id\> metric</h>
 
 Shows metrics for the specified metric list.
@@ -2136,6 +2080,8 @@ node_memory_MemTotal_bytes
 nvswitch_env_*
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry metric-list \<metric-list-id\> metric \<metric-id\></h>
 
 Shows information about a specific metric for the specified metric list.
@@ -2160,13 +2106,41 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry router export</h>
+## <h>nv show system telemetry radius-stats</h>
 
-Shows if the open telemetry routing service is enabled.
+Shows the RADIUS login statistics configuration.
 
-{{%notice note%}}
-To export any of the routing metrics, you must first enable the open telemetry routing service.
-{{%/notice%}}
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry radius-stats
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry radius-stats export</h>
+
+Shows the RADIUS login statistics export configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry radius-stats export
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router</h>
+
+Shows which telemetry router statistics are enabled.
 
 ### Version History
 
@@ -2175,10 +2149,17 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry router export
-       applied 
------  --------
-state  disabled
+cumulus@switch:~$ nv show system telemetry router
+                 applied 
+---------------  --------
+bgp                      
+  export                 
+    state        enabled
+rib                      
+  export                 
+    state        enabled
+export                   
+  state          enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2215,6 +2196,29 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show system telemetry router bgp export
+       applied 
+-----  --------
+state  disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router export</h>
+
+Shows if the open telemetry routing service is enabled.
+
+{{%notice note%}}
+To export any of the routing metrics, you must first enable the open telemetry routing service.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router export
        applied 
 -----  --------
 state  disabled
@@ -2391,171 +2395,6 @@ state  enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot-file</h>
-
-Shows histogram snapshot file configuration and operational data.
-
-{{%notice note%}}
-In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry snapshot-file`.
-{{%/notice%}}
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot-file
-       operational  applied                         
------  -----------  --------------------------------
-name                /var/run/cumulus/histogram_stats
-count               64
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold</h>
-
-Shows threshold configuration for the specified port group.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\></h>
-
-Shows configuration information for a specific type of threshold statistics for the port group.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\> action</h>
-
-Shows port group threshold action configuration.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\> action log</h>
-
-Shows port group threshold log action configuration.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action log
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold <threshold-stats-id> action collect</h>
-
-Shows port group threshold collect action configuration.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action collect
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats-type</h>
-
-Shows port group configuration for the different types of statistics.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg stats-type
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats buffer</h>
 
 Shows port group buffer information.
@@ -2668,6 +2507,175 @@ cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg sta
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer</h>
+
+Shows interface buffer information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer ingress-port</h>
+
+Shows port group snapshot interface ingress port buffer configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer ingress-port
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer ingress-port \<buffer-pool-id\></h>
+
+Shows port group snapshot interface ingress port buffer pool configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<buffer-pool-id>`| The buffer pool ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer ingress-port 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer pg</h>
+
+Shows interface ingress buffer information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer pg
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer pg \<pg-id\></h>
+
+Shows specific interface ingress buffer information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<pg-id>`| The priority group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer pg 0 
+Id       Date-Time                 Current Value        Watermark        
+-----    -------------------       ------------         -------------
+1        2023-12-13 11:02:44       0                    0                           
+2        2023-12-13 11:02:43       0                    0              
+3        2023-12-13 11:02:42       0                    0 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer tc</h>
+
+Shows interface egress buffer information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer tc
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer tc \<tc-id\></h>
+
+Shows specific interface egress buffer information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<tc-id>`| The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer tc 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet</h>
 
 Shows interface packet information for a port group.
@@ -2691,9 +2699,9 @@ cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg sta
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet good</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet all</h>
 
-Shows a snapshot for good packets transmitted and received on the specified interface.
+Shows a snapshot for all packets on the specified interface.
 
 ### Command Syntax
 
@@ -2709,14 +2717,14 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group nv show system telemetry snapshot port-group packet-all-pg stats interface swp1 packet good
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet all
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet good tx</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet all rx</h>
 
-Shows a snapshot for good packets transmitted on the specified interface.
+Shows a snapshot for all received packets on the specified interface.
 
 ### Command Syntax
 
@@ -2732,21 +2740,14 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet good tx 
-Id       Date-Time                 Packet         Byte             Mcast        Bcast         Mac Ctrl       Pause Mac Ctrl 
-
------    -------------------       ------------   -------------    ---------    ----------    ------------   ---------------
-
-1         2023-12-13 11:02:44      2              268              0            0             0              0
-2         2023-12-13 11:02:43      2              268              0            0             0              0
-3         2023-12-13 11:02:42      2              268              0            0             0              0
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet all rx
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet good rx</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet all tx</h>
 
-Shows a snapshot for good packets received on the specified interface.
+Shows a snapshot for all transmitted packets on the specified interface.
 
 ### Command Syntax
 
@@ -2762,7 +2763,7 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet good rx
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet all tx
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2790,9 +2791,9 @@ cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg sta
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet discard tx</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet discard general</h>
 
-Shows a snapshot for discarded packets transmitted on the specified interface.
+Shows a snapshot for general discarded packets on the specified interface.
 
 ### Command Syntax
 
@@ -2808,7 +2809,7 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet discard tx
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet discard general
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2843,9 +2844,9 @@ Id       Date-Time                  General      Policy        Vlan         Tag 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet discard general</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet discard tx</h>
 
-Shows a snapshot for general discarded packets on the specified interface.
+Shows a snapshot for discarded packets transmitted on the specified interface.
 
 ### Command Syntax
 
@@ -2861,14 +2862,14 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet discard general
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet discard tx
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet all</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet good</h>
 
-Shows a snapshot for all packets on the specified interface.
+Shows a snapshot for good packets transmitted and received on the specified interface.
 
 ### Command Syntax
 
@@ -2884,14 +2885,14 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet all
+cumulus@switch:~$ nv show system telemetry snapshot port-group nv show system telemetry snapshot port-group packet-all-pg stats interface swp1 packet good
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet all tx</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet good rx</h>
 
-Shows a snapshot for all transmitted packets on the specified interface.
+Shows a snapshot for good packets received on the specified interface.
 
 ### Command Syntax
 
@@ -2907,14 +2908,14 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet all tx
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet good rx
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet all rx</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet good tx</h>
 
-Shows a snapshot for all received packets on the specified interface.
+Shows a snapshot for good packets transmitted on the specified interface.
 
 ### Command Syntax
 
@@ -2930,7 +2931,109 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet all rx
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet good tx 
+Id       Date-Time                 Packet         Byte             Mcast        Bcast         Mac Ctrl       Pause Mac Ctrl 
+
+-----    -------------------       ------------   -------------    ---------    ----------    ------------   ---------------
+
+1         2023-12-13 11:02:44      2              268              0            0             0              0
+2         2023-12-13 11:02:43      2              268              0            0             0              0
+3         2023-12-13 11:02:42      2              268              0            0             0              0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg</h>
+
+Shows a snapshot for priority group packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg \<pg-id\></h>
+
+Shows a snapshot for specific priority group packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<pg-id>`| The priority group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg \<pg-id\> rx</h>
+
+Shows a snapshot for priority group packets received on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<pg-id>`| The priority group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg 1 tc
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg \<pg-id\> tx</h>
+
+Shows a snapshot for priority group packets transmitted on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<pg-id>`| The priority group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg 1 tx 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3006,16 +3109,15 @@ cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg sta
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats-type</h>
 
-Shows a snapshot for priority group packets on the specified interface.
+Shows port group configuration for the different types of statistics.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<port-group-id>`| The port group ID. |
-| `<interface-id>`| The interface name. |
 
 ### Version History
 
@@ -3024,22 +3126,21 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg stats-type
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg \<pg-id\></h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold</h>
 
-Shows a snapshot for specific priority group packets on the specified interface.
+Shows threshold configuration for the specified port group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-| `<interface-id>`| The interface name. |
-| `<pg-id>`| The priority group ID. |
+| `<port-group-id>`| The port group name. |
 
 ### Version History
 
@@ -3048,22 +3149,22 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg 1
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg \<pg-id\> tx</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\></h>
 
-Shows a snapshot for priority group packets transmitted on the specified interface.
+Shows configuration information for a specific type of threshold statistics for the port group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<port-group-id>`| The port group ID. |
-| `<interface-id>`| The interface name. |
-| `<pg-id>`| The priority group ID. |
+| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
 
 ### Version History
 
@@ -3072,22 +3173,22 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg 1 tx 
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg \<pg-id\> rx</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\> action</h>
 
-Shows a snapshot for priority group packets received on the specified interface.
+Shows port group threshold action configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<port-group-id>`| The port group ID. |
-| `<interface-id>`| The interface name. |
-| `<pg-id>`| The priority group ID. |
+| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
 
 ### Version History
 
@@ -3096,21 +3197,22 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg 1 tc
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold <threshold-stats-id> action collect</h>
 
-Shows interface buffer information.
+Shows port group threshold collect action configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<port-group-id>`| The port group ID. |
-| `<interface-id>`| The interface name. |
+| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
 
 ### Version History
 
@@ -3119,21 +3221,21 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer 
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action collect
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer tc</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\> action log</h>
 
-Shows interface egress buffer information.
+Shows port group threshold log action configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<port-group-id>`| The port group ID. |
-| `<interface-id>`| The interface name. |
+| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
 
 ### Version History
 
@@ -3142,130 +3244,32 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer tc
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action log
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer tc \<tc-id\></h>
+## <h>nv show system telemetry snapshot-file</h>
 
-Shows specific interface egress buffer information.
+Shows histogram snapshot file configuration and operational data.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-| `<interface-id>`| The interface name. |
-| `<tc-id>`| The traffic class ID. |
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry snapshot-file`.
+{{%/notice%}}
 
 ### Version History
 
-Introduced in Cumulus Linux 5.11.0
+Introduced in Cumulus Linux 5.7.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer tc 1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer pg</h>
-
-Shows interface ingress buffer information.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-| `<interface-id>`| The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer pg
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer pg \<pg-id\></h>
-
-Shows specific interface ingress buffer information.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-| `<interface-id>`| The interface name. |
-| `<pg-id>`| The priority group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer pg 0 
-Id       Date-Time                 Current Value        Watermark        
------    -------------------       ------------         -------------
-1        2023-12-13 11:02:44       0                    0                           
-2        2023-12-13 11:02:43       0                    0              
-3        2023-12-13 11:02:42       0                    0 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer ingress-port</h>
-
-Shows port group snapshot interface ingress port buffer configuration.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-| `<interface-id>`| The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer ingress-port
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer ingress-port \<buffer-pool-id\></h>
-
-Shows port group snapshot interface ingress port buffer pool configuration.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-| `<interface-id>`| The interface name. |
-| `<buffer-pool-id>`| The buffer pool ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer ingress-port 2
+cumulus@switch:~$ nv show system telemetry snapshot-file
+       operational  applied                         
+-----  -----------  --------------------------------
+name                /var/run/cumulus/histogram_stats
+count               64
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3286,6 +3290,220 @@ cumulus@switch:~$ nv show system telemetry stats-group
 -----------  ---------  ---------------  --------------  ------------------  ------------  -------------
 STAT-GROUP1  disabled   enabled          disabled        disabled            disabled      disabled     
 blah         disabled   disabled         disabled        disabled            disabled      disabled 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> buffer-stats</h>
+
+Shows configuration for the custom statistics group for buffer statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 buffer-stats
+                 applied 
+---------------  --------
+sample-interval  1       
+export                   
+  state          disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> buffer-stats export</h>
+
+Shows if the custom statistics group for buffer statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 buffer-stats export 
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats</h>
+
+Shows configuration for the custom statistics group for control plane statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 control-plane-stats
+                 applied 
+---------------  --------
+sample-interval  1       
+export                   
+  state          disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats class</h>
+
+Shows the control plane statistics class configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 control-plane-stats class
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats class punt-classifier</h>
+
+Shows the punt classifier counter telemetry configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 control-plane-stats class punt-classifier
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats export</h>
+
+Shows if the custom statistics group for control plane statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 control-plane-stats export 
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> histogram</h>
+
+Shows configuration for the custom statistics group for histogram statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 histogram
+                    applied 
+------------------  --------
+ingress-buffer              
+  bin-min-boundary  960     
+  histogram-size    12288   
+  sample-interval   1024    
+egress-buffer               
+  bin-min-boundary  960     
+  histogram-size    12288   
+  sample-interval   1024    
+counter                     
+  bin-min-boundary  100000  
+  histogram-size    10000000
+  sample-interval   1024    
+latency                     
+  bin-min-boundary  320     
+  histogram-size    5440    
+export                      
+  state             disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> histogram export</h>
+
+Shows if the custom statistics group for histogram statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 histogram export 
+       applied
+-----  -------
+state  enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3367,322 +3585,6 @@ state  enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group \<stats-group-id\> buffer-stats</h>
-
-Shows configuration for the custom statistics group for buffer statistics export.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>`| The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 buffer-stats
-                 applied 
----------------  --------
-sample-interval  1       
-export                   
-  state          disabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> buffer-stats export</h>
-
-Shows if the custom statistics group for buffer statistics export is enabled.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>`| The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 buffer-stats export 
-       applied
------  -------
-state  enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> histogram</h>
-
-Shows configuration for the custom statistics group for histogram statistics export.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>`| The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 histogram
-                    applied 
-------------------  --------
-ingress-buffer              
-  bin-min-boundary  960     
-  histogram-size    12288   
-  sample-interval   1024    
-egress-buffer               
-  bin-min-boundary  960     
-  histogram-size    12288   
-  sample-interval   1024    
-counter                     
-  bin-min-boundary  100000  
-  histogram-size    10000000
-  sample-interval   1024    
-latency                     
-  bin-min-boundary  320     
-  histogram-size    5440    
-export                      
-  state             disabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> histogram export</h>
-
-Shows if the custom statistics group for histogram statistics export is enabled.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>`| The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 histogram export 
-       applied
------  -------
-state  enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> radius-stats export</h>
-
-Shows the RADIUS login statistics export configuration for the specified statistics group.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>` |  The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry stats-group group1 radius-stats export
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> radius-stats</h>
-
-Shows the RADIUS login statistics configuration for the specified statistics group.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>` |  The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry stats-group group1 radius-stats
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> router</h>
-
-Shows configuration for the custom statistics group for router statistics export.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>`| The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 router
-                 applied 
----------------  --------
-bgp                      
-  export                 
-    state        disabled
-rib                      
-  export                 
-    state        disabled
-export                   
-  state          disabled
-sample-interval  30      
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> router export</h>
-
-Shows if the custom statistics group for router statistics export is enabled.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>`| The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 router export 
-       applied
------  -------
-state  enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats</h>
-
-Shows configuration for the custom statistics group for control plane statistics export.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>`| The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 control-plane-stats
-                 applied 
----------------  --------
-sample-interval  1       
-export                   
-  state          disabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats class punt-classifier</h>
-
-Shows the punt classifier counter telemetry configuration for the specified statistics group.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>` |  The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry stats-group group1 control-plane-stats class punt-classifier
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats class</h>
-
-Shows the control plane statistics class configuration for the specified statistics group.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>` |  The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry stats-group group1 control-plane-stats class
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats export</h>
-
-Shows if the custom statistics group for control plane statistics export is enabled.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>`| The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 control-plane-stats export 
-       applied
------  -------
-state  enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats</h>
 
 Shows configuration for the custom statistics group for platform statistics export.
@@ -3717,31 +3619,6 @@ class
 export                        
   state               disabled
   sample-interval     60      
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats export</h>
-
-Shows if the custom statistics group for platform statistics export is enabled.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>`| The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats export 
-       applied
------  -------
-state  enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3830,31 +3707,6 @@ state  enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class file-system</h>
-
-Shows if the custom statistics group for file system platform statistics export is enabled.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<stats-group-id>`| The statistics group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class file-system
-       applied
------  -------
-state  enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class environment-sensor</h>
 
 Shows if the custom statistics group for environment sensor platform statistics export is enabled.
@@ -3880,6 +3732,31 @@ state  enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class file-system</h>
+
+Shows if the custom statistics group for file system platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class file-system
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class memory</h>
 
 Shows if the custom statistics group for memory platform statistics export is enabled.
@@ -3898,6 +3775,133 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class memory
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats export</h>
+
+Shows if the custom statistics group for platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats export 
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> radius-stats</h>
+
+Shows the RADIUS login statistics configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 radius-stats
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> radius-stats export</h>
+
+Shows the RADIUS login statistics export configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 radius-stats export
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> router</h>
+
+Shows configuration for the custom statistics group for router statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 router
+                 applied 
+---------------  --------
+bgp                      
+  export                 
+    state        disabled
+rib                      
+  export                 
+    state        disabled
+export                   
+  state          disabled
+sample-interval  30      
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> router export</h>
+
+Shows if the custom statistics group for router statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 router export 
        applied
 -----  -------
 state  enabled

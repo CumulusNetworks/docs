@@ -90,28 +90,6 @@ cumulus@switch:~$ nv set system aaa radius auth-type peap-gtc
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa radius authorization \<privilege-level-id\> role</h>
-
-Configures the NVUE role that the switch assigns to the specified global RADIUS privilege level.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<privilege-level-id>` |  The RADIUS privilege level. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa radius authorization 15 role nvue-admin
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system aaa radius authorization \<privilege-level-id\></h>
 
 Configures a RADIUS authorization mapping for the specified privilege level.
@@ -130,6 +108,28 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv set system aaa radius authorization 15
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius authorization \<privilege-level-id\> role</h>
+
+Configures the NVUE role that the switch assigns to the specified global RADIUS privilege level.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<privilege-level-id>` |  The RADIUS privilege level. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius authorization 15 role nvue-admin
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -166,6 +166,28 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv set system aaa radius enable on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius nas-identifier \<identifier\></h>
+
+Configures the NAS (Network Access Server) identifier that the switch sends in RADIUS requests. The NAS identifier is a global setting that overrides the source IP address set for each RADIUS server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<identifier>` |  The NAS identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius nas-identifier AB-123
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -218,28 +240,6 @@ cumulus@switch:~$ nv set system aaa radius nas-ip-address 2001:DB8::1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa radius nas-identifier \<identifier\></h>
-
-Configures the NAS (Network Access Server) identifier that the switch sends in RADIUS requests. The NAS identifier is a global setting that overrides the source IP address set for each RADIUS server.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<identifier>` |  The NAS identifier. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa radius nas-identifier AB-123
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system aaa radius port</h>
 
 Configures the port you want to use for all RADIUS communication. You can specify a value between 0 and 65535. The default value is 1812.
@@ -262,22 +262,6 @@ cumulus@switch:~$ nv set system aaa radius privilege-level 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa radius retransmit</h>
-
-Configures the maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out. This is a global option only; you cannot set the number of retransmission attempts for specific RADIUS servers.
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa radius retransmit 8
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system aaa radius require-message-authenticator</h>
 
 Requires authentication packets to have the Message-Authenticator mode attribute; the switch discards as Access-Reject all packets that do not have the Message-Authenticator attribute. You can specify `enabled` or `disabled`.
@@ -290,6 +274,22 @@ Introduced in Cumulus Linux 5.13.0
 
 ```
 cumulus@switch:~$ nv set system aaa radius require-message-authenticator enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius retransmit</h>
+
+Configures the maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out. This is a global option only; you cannot set the number of retransmission attempts for specific RADIUS servers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius retransmit 8
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -338,6 +338,8 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 port 42
 
  <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa radius server \<server-id\> priority</h>
 
 Configures the priority at which Cumulus Linux contacts the specified RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
@@ -359,6 +361,8 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 10
 ```
 
  <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system aaa radius server \<server-id\> secret</h>
 

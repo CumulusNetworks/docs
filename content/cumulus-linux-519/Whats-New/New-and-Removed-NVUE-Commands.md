@@ -146,9 +146,10 @@ nv action clear interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-pr
 nv action clear system control-plane punt-classifier <rule-id> counters
 nv action clear system control-plane punt-classifier counters
 nv action delete platform firmware <platform-component-id> files <file>
-nv action generate system security spdm <component-id> <value>]
+nv action generate system security spdm <component-id> <value>
 nv action install platform transceiver <transceiver-id> firmware files <file>
 nv action prune system packages archive
+nv action reboot system mode power-off
 nv action rename platform firmware <platform-component-id> files <file> <name>
 nv action upload platform firmware <platform-component-id> files <file> <url>
 ```

@@ -735,6 +735,28 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast rout
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn skip-evpn-imported</h>
+
+Configures BGP not to export routes that it imports from EVPN as type-5 routes. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`. Setting this option to `disabled` has the same effect as unsetting it.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf vrf1 router bgp address-family ipv4-unicast route-export to-evpn skip-evpn-imported enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp address-family \<address-family\> route-export to-evpn skip-evpn-imported</h>
 
 Enables and disables the skip EVPN imported setting that prevents VRFs from re-exporting EVPN-originated leaked routes as type-5 routes when you configure IPv4 prefix-based routing using EVPN type-5 routes for the VRF (`nv set vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn state`). The default setting is disabled.
@@ -931,6 +953,32 @@ Introduced in Cumulus Linux 5.17.0
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp advertisement-delay time 90
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp allow-as-sets</h>
+
+Configures the BGP instance to send and accept updates that contain AS_SET or AS_CONFED_SET AS_PATH segments. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`, as RFC 9774 recommends. You must enable this option to use the multipath generate-asset path selection option and the address family aggregate route as-set option.
+
+{{%notice note%}}
+When you change this setting, the switch resets all BGP sessions in the instance.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp allow-as-sets enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

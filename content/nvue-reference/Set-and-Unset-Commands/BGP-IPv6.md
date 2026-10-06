@@ -596,6 +596,28 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast rout
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn skip-evpn-imported</h>
+
+Configures BGP not to export routes that it imports from EVPN as type-5 routes. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`. Setting this option to `disabled` has the same effect as unsetting it.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf vrf1 router bgp address-family ipv6-unicast route-export to-evpn skip-evpn-imported enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn state</h>
 
 Enables and disables IPv6 prefix-based routing for EVPN type-5 routes for the specified VRF. When `enabled`, the switch can announce IPv6 prefixes in the BGP RIB as EVPN type-5 routes. The default setting is `disabled`.
@@ -1804,6 +1826,29 @@ Introduced in Cumulus Linux 5.16.0
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unreachability state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> connection</h>
+
+Configures the transport that BGP uses to establish a session with an unnumbered interface neighbor. You can set a value of `system-defined`, or `v6-lla`. `system-defined` preserves automatic transport selection and `v6-lla` forces IPv6 link-local transport. The default setting is `system-defined`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp1 connection v6-lla
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

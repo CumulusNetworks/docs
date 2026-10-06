@@ -178,6 +178,52 @@ cumulus@switch:~$ nv set system aaa class class1 command-path /interface/*/acl/ 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system aaa class \<class-id\> os-command \<os-command-id\> command</h>
+
+Configures the complete Linux command that users in the class can run without a password. Specify an absolute executable path followed by its permitted arguments, in order.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<class-id>` |  The name of the class. |
+| `<os-command-id>` |  The OS command name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa class netops os-command restart-frr command /usr/bin/systemctl restart frr
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa class \<class-id\> os-command \<os-command-id\></h>
+
+Configures an OS command that users in the specified class can run.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<class-id>` |  The name of the class. |
+| `<os-command-id>` |  The OS command name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa class netops os-command restart-frr
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa role \<role-id\></h>
 
 Configues a role. A role is a virtual identifier for multiple classes (groups). You can assign only one role for a user. For example, for a user that can manage interfaces, you can create a role called `IFMgr`.

@@ -707,6 +707,29 @@ cumulus@switch:~$ nv action clear interface swp1 counters synce
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear interface \<interface-id\> ipv6 neighbor-discovery prefix \<ipv6-prefix-id\></h>
+
+Stops servers from using an advertised IPv6 prefix by readvertising the prefix with short lifetimes. You can set the valid lifetime and the preferred lifetime, in seconds, that the switch advertises while it clears the prefix.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<ipv6-prefix-id>` |  The IPv6 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface swp1 ipv6 neighbor-discovery prefix 2001:DB8::/64
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear interface \<interface-id\> link flap-protection violation</h>
 
 Clears the `protodown` state of the interface and brings the interface back up.
@@ -1050,6 +1073,44 @@ Introduced in Cumulus Linux 5.16.0
 ```
 cumulus@switch:~$ nv action clear system control-plane policer bfd statistics
 Action executing ...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system control-plane punt-classifier counters</h>
+
+Clears the drop counters for all control plane punt classifier rules.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system control-plane punt-classifier counters
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system control-plane punt-classifier \<rule-id\> counters</h>
+
+Clears the drop counters for the specified control plane punt classifier rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system control-plane punt-classifier 1 counters
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3858,6 +3919,28 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action generate system security spdm \<component-id\></h>
+
+Generates SPDM measurements on the BMC for the specified platform component. You can provide a nonce value for the measurement request.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<component-id>` |  The platform component name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate system security spdm cpu
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action generate system tech-support</h>
 
 Generates a technical support file (compressed archive file of useful information for troubleshooting). 
@@ -4610,7 +4693,7 @@ The following features are not supported during warm reboot:
 Introduced in Cumulus Linux 5.15.0
 
 {{%notice note%}}
-The `power-off` option is .
+The `power-off` option is available in Cumulus Linux 5.19.0 and later.
 {{%/notice%}}
 
 ### Example

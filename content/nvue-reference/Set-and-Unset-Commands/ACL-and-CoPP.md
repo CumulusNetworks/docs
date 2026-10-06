@@ -1878,3 +1878,141 @@ Introduced in Cumulus Linux 5.5.0
 ```
 cumulus@switch:~$ nv set system control-plane acl ACL1 outbound
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system control-plane punt-classifier \<rule-id\></h>
+
+Configures a control plane punt classifier rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system control-plane punt-classifier 1
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system control-plane punt-classifier \<rule-id\> action drop</h>
+
+Configures the switch to drop packets that match the rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system control-plane punt-classifier 1 action drop
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system control-plane punt-classifier \<rule-id\> match dscp</h>
+
+Configures the list of DSCP ranges that the rule matches for SPXM packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system control-plane punt-classifier 1 match dscp 10-20,32
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system control-plane punt-classifier \<rule-id\> match no-route</h>
+
+Configures the rule to match only packets that the switch punts because they hit the default route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system control-plane punt-classifier 1 match no-route
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system control-plane punt-classifier \<rule-id\> match packet-type</h>
+
+Configures the packet type that the rule matches. You can set a value of `spxm`, or `ipv6`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system control-plane punt-classifier 1 match packet-type ipv6
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system control-plane punt-classifier \<rule-id\> match udp-dport</h>
+
+Configures the UDP destination port that the rule matches for IPv6 packets. You can specify a value between 1 and 65535.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system control-plane punt-classifier 1 match udp-dport 4789
+```
+

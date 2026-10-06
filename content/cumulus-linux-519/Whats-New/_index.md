@@ -70,9 +70,9 @@ Review the following considerations before you upgrade to Cumulus Linux 5.19.
 ### Upgrade Requirements
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.19 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
-- 5.16.1 through 5.16.7
+- 5.16.1 through 5.16.8
 - 5.17.0
-- 5.18.2
+- 5.18.2, 5.18.3
 
 {{%notice infonopad%}}
 If your switch is running Cumulus Linux 5.18.0 or 5.18.1, you must first upgrade to 5.18.2 before you can upgrade to 5.19.

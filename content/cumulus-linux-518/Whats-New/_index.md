@@ -16,7 +16,7 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 {{%/notice%}}
 
 {{%notice warning%}}
-NVIDIA is introducing new capabilities to Spectrum-6 based switch hardware that requires a special firmware version. The new firmware is included in Cumulus Linux 5.18.2 and 5.18.3. NVIDIA requires you to upgrade the SN6600-LD switch to Cumulus Linux 5.18.2 or 5.8.3. Failure to perform this upgrade will prevent the switch from being upgraded to future software releases.
+NVIDIA is introducing new capabilities to Spectrum-6 based switch hardware that requires a special firmware version. The new firmware is included in Cumulus Linux 5.18.2 and 5.18.3. NVIDIA requires you to upgrade the SN6600-LD switch to Cumulus Linux 5.18.2 or 5.18.3. Failure to perform this upgrade will prevent the switch from being upgraded to future software releases.
 {{%/notice%}}
 
 ## What's New in Cumulus Linux 5.18.3

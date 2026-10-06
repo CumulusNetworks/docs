@@ -160,12 +160,12 @@ nv action upload platform firmware <platform-component-id> files <file> <url>
 
 | Cumulus Linux 5.19 | Cumulus Linux 5.18 |
 | ------------------ | ------------------ |
-| `nv set router bfd offload-mode (control-plane\|kernel\|hardware)` | `nv set router bfd offload (enabled\|disabled)` |
-| `nv action reboot system [mode (halt\|cold\|immediate\|warm\|fast\|power-cycle\|power-off)] [force]` | `nv action reboot system [mode (halt\|cold\|immediate\|warm\|fast\|power-cycle)] [force]` |
-| `nv set interface <interface-id> link mac-address (<mac>\|<mac-unicast>)` | `nv set interface <interface-id> link mac-address <mac>` |
-| `nv set interface <interface-id> qos headroom lossy extra-threshold (256-1818368\|192-1236480)` | `nv set interface <interface-id> qos headroom lossy extra-threshold (192-1236480)` |
+| `nv set router bfd offload-mode (control-plane, kernel, hardware)` | `nv set router bfd offload (enabled, disabled)` |
+| `nv action reboot system mode (halt, cold, immediate, warm, fast, power-cycle, power-off)` | `nv action reboot system mode (halt, cold, immediate, warm, fast, power-cycle)` |
+| `nv set interface <interface-id> link mac-address (<mac>, <mac-unicast>)` | `nv set interface <interface-id> link mac-address <mac>` |
+| `nv set interface <interface-id> qos headroom lossy extra-threshold (256-1818368, 192-1236480)` | `nv set interface <interface-id> qos headroom lossy extra-threshold (192-1236480)` |
 | `nv set router segment-routing static srv6-sid <sid> locator-name <generic-name>` | `nv set router segment-routing static srv6-sid <sid> locator-name <value>` |
-| `nv set system dot1x ipv6-profile <profile-id> property <property-id> value (0-4294967295\|<valid-ipv6-profile-property-value>)` | `nv set system dot1x ipv6-profile <profile-id> property <property-id> value (0-18446744073709551615\|<valid-ipv6-profile-property-value>)` |
+| `nv set system dot1x ipv6-profile <profile-id> property <property-id> value (0-4294967295, <valid-ipv6-profile-property-value>)` | `nv set system dot1x ipv6-profile <profile-id> property <property-id> value (0-18446744073709551615, <valid-ipv6-profile-property-value>)` |
 
 ## Removed NVUE Commands
 

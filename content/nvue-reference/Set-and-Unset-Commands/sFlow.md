@@ -184,6 +184,8 @@ Introduced in Cumulus Linux 5.11.0
 cumulus@switch:~$ 
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system sflow sampling-rate speed-10g</h>
 
 Configures the sampling rate in number of packets for 10G interfaces.

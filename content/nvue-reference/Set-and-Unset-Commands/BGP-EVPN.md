@@ -364,6 +364,8 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 ```
 HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound unsuppress-map</h>
 
 Configures the route map you want to use to unsuppress EVPN routes selectively when advertising to this neighbor; these are routes that have been suppressed due to aggregation configuration.

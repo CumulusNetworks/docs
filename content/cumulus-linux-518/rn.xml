@@ -14,7 +14,14 @@
 </tr>
 <tr>
 <td>5321800, 5322481</td>
-<td>During a package upgrade when upgrading the {{cumulus-overrides}} package, the upgrade moves the container root from {{/var/lib/containerd}} to {{/containerd}}. If any snapshots under {{/var/lib/containerd}} are removed during the container root move, package upgrade fails to update the {{cumulus-overrides}} package. In certain cases snapshots are deleted. After package upgrade encounters this failure, it also stops updating all the packages that depend on {{cumulus-overrides}}.</td>
+<td>During a package upgrade when upgrading the {{cumulus-overrides}} package, the upgrade moves the container root from {{/var/lib/containerd}} to {{/containerd}}. If any snapshots under {{/var/lib/containerd}} are removed during the container root move, package upgrade fails to update the {{cumulus-overrides}} package. In certain cases snapshots are deleted. After package upgrade encounters this failure, it also stops updating all the packages that depend on {{cumulus-overrides}}.
+To work around this issue, first upgrade the {{cumulus-overrides}} package, then run package upgrade after updating the {{/etc/apt/sources.list}}
+To upgrade the {cumulus-overrides}} package:
+cumulus@switch:~$ ip vrf exec mgmt apt-get update
+cumulus@switch:~$ ip vrf exec mgmt apt-get install cumulus-overrides
+To run package upgrade:
+cumulus@switch:~$ nv action upgrade system packages to latest use-vrf mgmt
+cumulus@switch:~$ nv action reboot system mode &lt;cold|warm&gt;</td>
 <td>5.18.3</td>
 <td></td>
 </tr>
@@ -46,12 +53,6 @@
 <td>5288214</td>
 <td>When you boot a switch with TACACS+ or RADIUS configured to reference a server by hostname, the networking service might take a long time (2 or more minutes) to start. </td>
 <td>5.18.0-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>5281522</td>
-<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
-<td>5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -449,12 +450,6 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5146439</td>
-<td>When the BMC power restore policy is set to {{AlwaysOff}}, a BMC-only reboot causes the running switch host to be powered off even though no AC power loss occurs. To work around this issue, set the power restore policy to {{AlwaysOn}} or {{LastState}}.</td>
-<td>5.17.0-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5146376</td>
 <td>If the remote server is unreachable, {{rsyslog}} generates internal error messages that flood syslog.</td>
 <td>5.18.0-5.18.3</td>
@@ -476,6 +471,30 @@ Pin-Priority: 992</td>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
 <td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093931, 5093933</td>
+<td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093926</td>
+<td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093874</td>
+<td>When you configure PTP on a trunk interface, where the selected PTP VLAN is the PVID (untagged native VLAN), the PTP packets might be tagged incorrectly with the VLAN ID.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093864, 5093865</td>
+<td>Known registered multicast traffic is duplicated to receivers behind an EVPN-MH dual-homed access switch.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -504,9 +523,9 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5072739, 5089352</td>
-<td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
-<td>5.17.0-5.18.3</td>
+<td>5076748, 5076747</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -522,21 +541,34 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>4993970</td>
-<td> Under certain conditions, AAA authentication restriction lockout attempts might not lock TACACS users out for failed REST API logins.</td>
-<td>5.17.0-5.18.3</td>
+<td>5001905, 4924486</td>
+<td>A fatal SDK event might occur during i2c or cable read events, observed with the following {{switchd}} log message:
+hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</td>
+<td>5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
-<td>4992289</td>
-<td>After optimized image upgrade, the SSH service fails and NVUE shows an error {{Failed to translate the startup configuration, will continue with the original startup}}.</td>
-<td>5.16.1, 5.17.0-5.18.3</td>
-<td>5.16.5</td>
+<td>4999344, 4992204, 4999345</td>
+<td>This {{nv set nve vxlan port &lt;udp port&gt;}} command is not supported; you do not see the configured UDP port in the outer VXLAN packet header.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
 </tr>
 <tr>
-<td>4982910</td>
-<td>The mellanox platform driver fails to register a {{pm_power_off}} handler for legacy platforms. As a result, it falls through to ACPI power off which doesn't work correctly on the BIOS and causes a reset.</td>
-<td>5.17.0-5.18.3</td>
+<td>4963271, 4986343</td>
+<td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
+<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>4958319, 4926427, 4964154</td>
+<td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
+<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>5.9.5</td>
+</tr>
+<tr>
+<td>4945652, 4895501, 4945654</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -659,12 +691,6 @@ Pin-Priority: 992</td>
 <td>4509255, 4546858</td>
 <td>In PTP two-step, the hardware incorrectly modifies the SYNC message correction field.</td>
 <td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>4508830</td>
-<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
-<td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -860,12 +886,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4077921</td>
 <td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1 or later. You must install the Cumulus Linux image instead.</td>
 <td>5.10.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>4049213, 4186873</td>
-<td>When there are routes that point to a single next hop, an ECMP entry is created in the SDK. After the single next hop from the route is removed, the ECMP entry might stay in the SDK until the time the next hop is present in the kernel.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1341,12 +1361,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5281522</td>
-<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
-<td>5.16.5-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5281416</td>
 <td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
 
@@ -1747,12 +1761,6 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5146439</td>
-<td>When the BMC power restore policy is set to {{AlwaysOff}}, a BMC-only reboot causes the running switch host to be powered off even though no AC power loss occurs. To work around this issue, set the power restore policy to {{AlwaysOn}} or {{LastState}}.</td>
-<td>5.17.0-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5146376</td>
 <td>If the remote server is unreachable, {{rsyslog}} generates internal error messages that flood syslog.</td>
 <td>5.18.0-5.18.3</td>
@@ -1774,6 +1782,30 @@ Pin-Priority: 992</td>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
 <td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093931, 5093933</td>
+<td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093926</td>
+<td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093874</td>
+<td>When you configure PTP on a trunk interface, where the selected PTP VLAN is the PVID (untagged native VLAN), the PTP packets might be tagged incorrectly with the VLAN ID.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093864, 5093865</td>
+<td>Known registered multicast traffic is duplicated to receivers behind an EVPN-MH dual-homed access switch.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1802,9 +1834,9 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5072739, 5089352</td>
-<td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
-<td>5.17.0-5.18.3</td>
+<td>5076748, 5076747</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1820,21 +1852,34 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>4993970</td>
-<td> Under certain conditions, AAA authentication restriction lockout attempts might not lock TACACS users out for failed REST API logins.</td>
-<td>5.17.0-5.18.3</td>
+<td>5001905, 4924486</td>
+<td>A fatal SDK event might occur during i2c or cable read events, observed with the following {{switchd}} log message:
+hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</td>
+<td>5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
-<td>4992289</td>
-<td>After optimized image upgrade, the SSH service fails and NVUE shows an error {{Failed to translate the startup configuration, will continue with the original startup}}.</td>
-<td>5.16.1, 5.17.0-5.18.3</td>
-<td>5.16.5</td>
+<td>4999344, 4992204, 4999345</td>
+<td>This {{nv set nve vxlan port &lt;udp port&gt;}} command is not supported; you do not see the configured UDP port in the outer VXLAN packet header.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
 </tr>
 <tr>
-<td>4982910</td>
-<td>The mellanox platform driver fails to register a {{pm_power_off}} handler for legacy platforms. As a result, it falls through to ACPI power off which doesn't work correctly on the BIOS and causes a reset.</td>
-<td>5.17.0-5.18.3</td>
+<td>4963271, 4986343</td>
+<td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
+<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>4958319, 4926427, 4964154</td>
+<td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
+<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>5.9.5</td>
+</tr>
+<tr>
+<td>4945652, 4895501, 4945654</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1957,12 +2002,6 @@ Pin-Priority: 992</td>
 <td>4509255, 4546858</td>
 <td>In PTP two-step, the hardware incorrectly modifies the SYNC message correction field.</td>
 <td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>4508830</td>
-<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
-<td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2158,12 +2197,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4077921</td>
 <td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1 or later. You must install the Cumulus Linux image instead.</td>
 <td>5.10.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>4049213, 4186873</td>
-<td>When there are routes that point to a single next hop, an ECMP entry is created in the SDK. After the single next hop from the route is removed, the ECMP entry might stay in the SDK until the time the next hop is present in the kernel.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2645,12 +2678,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5281522</td>
-<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
-<td>5.16.5-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5281416</td>
 <td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
 
@@ -3051,12 +3078,6 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5146439</td>
-<td>When the BMC power restore policy is set to {{AlwaysOff}}, a BMC-only reboot causes the running switch host to be powered off even though no AC power loss occurs. To work around this issue, set the power restore policy to {{AlwaysOn}} or {{LastState}}.</td>
-<td>5.17.0-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5146376</td>
 <td>If the remote server is unreachable, {{rsyslog}} generates internal error messages that flood syslog.</td>
 <td>5.18.0-5.18.3</td>
@@ -3078,6 +3099,30 @@ Pin-Priority: 992</td>
 <td>5107338</td>
 <td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
 <td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093931, 5093933</td>
+<td>When you configure dynamic NAT and traffic enters the switch on a bridge port that is routed through a VLAN SVI (the standard MLAG bridge topology), NAT flows are not offloaded to the ASIC. An upstream kernel change clears an internal flag during the bridge-to-host handoff that the NAT offload path depends on to signal the hardware. As a result, all dynamic NAT flows fall back to software forwarding on the CPU, reducing throughput by over 99%. Static NAT and deployments using direct layer 3 ports (no bridge) are not affected.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093926</td>
+<td>Configuring ECMP Hash seed with NVUE does not program the configuration into hardware with a switchd reload. </td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093874</td>
+<td>When you configure PTP on a trunk interface, where the selected PTP VLAN is the PVID (untagged native VLAN), the PTP packets might be tagged incorrectly with the VLAN ID.</td>
+<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5093864, 5093865</td>
+<td>Known registered multicast traffic is duplicated to receivers behind an EVPN-MH dual-homed access switch.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3106,9 +3151,9 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>5072739, 5089352</td>
-<td>Deleting more than 500 VRFs causes the {{nv config apply}} command to fail with the error {{Unable to reload-or-restart services (frr) / FRR configuration reload failed}}. </td>
-<td>5.17.0-5.18.3</td>
+<td>5076748, 5076747</td>
+<td>PXE boot intermittently fails when the host is dual attached to two switches on a bond with LACP bypass enabled and the bridge in PVST mode.  This issue occurs in MLAG and non-MLAG scenarios. To work around this issue, either unplug, then replug the ethernet cable or set the STP protocol to RSTP. </td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3124,21 +3169,34 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>4993970</td>
-<td> Under certain conditions, AAA authentication restriction lockout attempts might not lock TACACS users out for failed REST API logins.</td>
-<td>5.17.0-5.18.3</td>
+<td>5001905, 4924486</td>
+<td>A fatal SDK event might occur during i2c or cable read events, observed with the following {{switchd}} log message:
+hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health event: FW health issue</td>
+<td>5.12.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
-<td>4992289</td>
-<td>After optimized image upgrade, the SSH service fails and NVUE shows an error {{Failed to translate the startup configuration, will continue with the original startup}}.</td>
-<td>5.16.1, 5.17.0-5.18.3</td>
-<td>5.16.5</td>
+<td>4999344, 4992204, 4999345</td>
+<td>This {{nv set nve vxlan port &lt;udp port&gt;}} command is not supported; you do not see the configured UDP port in the outer VXLAN packet header.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
 </tr>
 <tr>
-<td>4982910</td>
-<td>The mellanox platform driver fails to register a {{pm_power_off}} handler for legacy platforms. As a result, it falls through to ACPI power off which doesn't work correctly on the BIOS and causes a reset.</td>
-<td>5.17.0-5.18.3</td>
+<td>4963271, 4986343</td>
+<td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
+<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>4958319, 4926427, 4964154</td>
+<td>When you run the {{nv config apply}} command or the {{sudo systemctl reload frr.service}} command on a switch configured with VRF route leaking that has many BGP peers, VRFs, and BGP learned prefixes, FRR reload might time out. To work around this issue, run {{sudo systemctl edit frr.service}} to change the {{TimeoutSec=2m}} to a higher value and apply the changes with {{sudo systemctl daemon-reload}}.</td>
+<td>5.9.0-5.9.4, 5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>5.9.5</td>
+</tr>
+<tr>
+<td>4945652, 4895501, 4945654</td>
+<td>Adding vlan 1 as a tagged VLAN to a newly created MLAG bond fails if no previous VLANs are configured on the MLAG bond.</td>
+<td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3261,12 +3319,6 @@ Pin-Priority: 992</td>
 <td>4509255, 4546858</td>
 <td>In PTP two-step, the hardware incorrectly modifies the SYNC message correction field.</td>
 <td>5.12.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>4508830</td>
-<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
-<td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3462,12 +3514,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4077921</td>
 <td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1 or later. You must install the Cumulus Linux image instead.</td>
 <td>5.10.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>4049213, 4186873</td>
-<td>When there are routes that point to a single next hop, an ECMP entry is created in the SDK. After the single next hop from the route is removed, the ECMP entry might stay in the SDK until the time the next hop is present in the kernel.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4009,7 +4055,7 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 </tr>
 <tr>
 <td>5298343</td>
-<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
+<td>In a numbered IPv6 BGP session, when an address is detected as duplicate (duplicate address detection), it is considered tentative.  The BGP session might use the alternate source address when trying to establish communication with the peer, which might cause the session to bind to an incorrect network interface or IP address and affect BGP neighbor establishment and network connectivity. To work around this issue, use the {{update-source}} command for the neighbor; for example, {{nv set vrf default router bgp neighbor 2006::11 update-source swp0}}.</td>
 <td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -4023,12 +4069,6 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td>5288214</td>
 <td>When you boot a switch with TACACS+ or RADIUS configured to reference a server by hostname, the networking service might take a long time (2 or more minutes) to start. </td>
 <td>5.18.0-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>5281522</td>
-<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
-<td>5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4657,12 +4697,6 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
-<td>4508830</td>
-<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
-<td>5.11.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>4501632, 4530257</td>
 <td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that the NVUE database has time to sync to the filesystem. </td>
 <td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
@@ -4855,12 +4889,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4077921</td>
 <td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1 or later. You must install the Cumulus Linux image instead.</td>
 <td>5.10.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>4049213, 4186873</td>
-<td>When there are routes that point to a single next hop, an ECMP entry is created in the SDK. After the single next hop from the route is removed, the ECMP entry might stay in the SDK until the time the next hop is present in the kernel.</td>
-<td>5.9.2-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>

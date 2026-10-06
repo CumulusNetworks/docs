@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5324888</td>
+<td>The persistent debug token used to install a debug image is not supported on devices using ISSI flash. All other debug tokens are supported.</td>
+<td>5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5321800, 5322481</td>
 <td>During a package upgrade when upgrading the {{cumulus-overrides}} package, the upgrade moves the container root from {{/var/lib/containerd}} to {{/containerd}}. If any snapshots under {{/var/lib/containerd}} are removed during the container root move, package upgrade fails to update the {{cumulus-overrides}} package. In certain cases snapshots are deleted. After package upgrade encounters this failure, it also stops updating all the packages that depend on {{cumulus-overrides}}.</td>
 <td>5.18.3</td>

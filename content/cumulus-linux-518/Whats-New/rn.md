@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5324888 | The persistent debug token used to install a debug image is not supported on devices using ISSI flash. All other debug tokens are supported. | 5.18.3 | |
 | 5321800, 5322481 | During a package upgrade when upgrading the <code>cumulus-overrides</code> package, the upgrade moves the container root from <code>/var/lib/containerd</code> to <code>/containerd</code>. If any snapshots under <code>/var/lib/containerd</code> are removed during the container root move, package upgrade fails to update the <code>cumulus-overrides</code> package. In certain cases snapshots are deleted. After package upgrade encounters this failure, it also stops updating all the packages that depend on <code>cumulus-overrides</code>. | 5.18.3 | |
 | 5316939, 5316919 | NVUE user management commands fail when the <code>/etc/passwd</code> file contains non-UTF-8 characters.  | 5.16.8-5.18.3 | |
 | 5299539 |  After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration. | 5.16.1, 5.16.5-5.18.3 | |

@@ -2159,7 +2159,7 @@ bonds           description     down            mlag-cc         qos-profile     
 brief           detail          lldp            neighbor        small           up
 ```
 
-{{%notice warning%}}
+{{%notice note%}}
 NVUE also accepts a view name positionally, without `--view`. For example, `nv show interface lldp` is equivalent to `nv show interface --view lldp`; in both, `lldp` is a view applied to the interface collection. In `nv show interface swp1 lldp`, however, `swp1` selects an interface instance and `lldp` is a child object of that instance, not a view, so the command can return different fields and a different JSON structure. This is not specific to LLDP; it applies wherever a view name and an object in the data model share a name. For more information, refer to {{<link url="NVUE-CLI/#named-views-positional-view-shorthand-and-object-paths" text="Named Views, Positional View Shorthand, and Object Paths">}}.
 {{%/notice%}}
 

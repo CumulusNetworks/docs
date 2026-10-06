@@ -74,6 +74,10 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 - 5.17.0
 - 5.18.2, 5.18.3
 
+{{%notice infonopad%}}
+If your switch is running Cumulus Linux 5.18.0 or 5.18.1, you must first upgrade to 5.18.2 before you can upgrade to 5.19.
+{{%/notice%}}
+
 To upgrade to Cumulus Linux 5.19 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).

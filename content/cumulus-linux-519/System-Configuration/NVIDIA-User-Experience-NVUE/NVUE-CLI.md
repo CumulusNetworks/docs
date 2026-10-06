@@ -1101,6 +1101,56 @@ cumulus@switch:~$ nv action import system security crl uri scp://user:password@h
 - For information about enabling certificates for gNMI, refer to {{<link url="gNMI-Streaming/#gnmi-with-cumulus-linux" text="gNMI streaming with Cumulus Linux">}}.
 - For information about enabling certificates for the NVUE API, refer to {{<link url="NVUE-API/#certificates" text="NVUE API">}}.
 
+## Named Views, Positional View Shorthand, and Object Paths
+
+Some `nv show` commands provide named views, a predefined subset or presentation of the collection data. Specify a named view with the `--view` option:
+
+```
+cumulus@switch:~$ nv show interface --view lldp
+```
+
+NVUE also accepts the view name as a positional argument, without `--view`:
+
+```
+cumulus@switch:~$ nv show interface lldp
+```
+
+These two commands are equivalent; in both, `lldp` is the name of a view applied to the interface collection. Interface views include `brief`, `detail`, `lldp`, `counters`, `rates`, `neighbor`, and others; to list the views available for a command, run the command with `--view` and press Tab, for example `nv show interface --view <<TAB>>`.
+
+{{%notice note%}}
+Do not confuse a named view with a child object under a specific collection instance. In `nv show interface swp1 lldp`, `swp1` selects an interface instance and `lldp` identifies a child object in the NVUE data model, not the `lldp` view. A named view and an object path can share the same name but return different fields and a different JSON structure:
+
+In the following example, `lldp` is a named collection view:
+
+```
+cumulus@switch:~$ nv show interface --view lldp
+```
+
+The following example shows positional shorthand for the same view:
+
+```
+cumulus@switch:~$ nv show interface lldp
+```
+
+In the following example, `lldp` is a child object of the swp1 interface instance, not a view:
+
+```
+cumulus@switch:~$ nv show interface swp1 lldp
+```
+
+This is not specific to LLDP and can occur wherever a named view and an object in the data model share a name, such as `counters`, `rates`, `neighbor`, or `link-tracking`. To make command intent clear, especially in scripts, use the explicit `--view <view-name>` syntax instead of the positional shorthand.
+{{%/notice%}}
+
+A named view projects the fields that view defines and normally keeps the instance keys of the collection. A command that selects a child object instead returns the contents under that object, and normally omits the enclosing collection, instance, and object keys. As a result, two commands that look like the same query at different scopes can return different fields and a different JSON structure.
+
+`--view` and `--filter` serve different purposes: `--view` selects a predefined field projection or presentation, and `--filter` selects collection entries or nested values that match a condition. You can combine them:
+
+```
+cumulus@switch:~$ nv show interface --view detail --filter mtu=1500
+```
+
+A named view can carry its own internal include, omit, or filter rules but that does not make it equivalent to a `--filter` you supply yourself.
+
 ## Filter nv show Command Output
 
 Filters show command output on column data; for example, to show only the interfaces with MTU set to 1500:

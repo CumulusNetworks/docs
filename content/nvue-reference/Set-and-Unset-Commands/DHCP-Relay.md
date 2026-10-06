@@ -229,7 +229,7 @@ cumulus@switch:~$ nv set service dhcp-relay default server 172.16.1.102
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-relay \<vrf-id\> server-group \<server-group-id\> </h>
+## <h>nv set service dhcp-relay \<vrf-id\> server-group \<server-group-id\></h>
 
 Configures the server group for DHCP relay.
 

@@ -914,7 +914,7 @@ cumulus@switch:~$ nv set vrf default router ospf default-originate metric-type 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf default-originate route-map
+## <h>nv set vrf \<vrf-id\> router ospf default-originate route-map</h>
 
 Applies the specified route map.
 

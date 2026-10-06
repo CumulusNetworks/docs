@@ -364,7 +364,7 @@ cumulus@switch:~$ nv set system syslog server 192.168.0.254 protocol tcp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system syslog server \<server-id\> selector \<priority-id\> selector-id \<value\></h>
+## <h>nv set system syslog server \<server-id\> selector \<priority-id\> selector-id \<value\></h>
 
 Sets a selector to use for a specific server.
 

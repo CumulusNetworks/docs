@@ -2796,7 +2796,7 @@ cumulus@switch:~$ nv set qos traffic-pool 3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos pfc-watchdog polling-interval</h> 
+## <h>nv set qos pfc-watchdog polling-interval</h>
 
 Configures the PFC watchdog polling interval. The default polling interval is 100 milliseconds.
 
@@ -2812,7 +2812,7 @@ cumulus@switch:~$ nv set qos pfc-watchdog polling-interval 200
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos pfc-watchdog robustness</h> 
+## <h>nv set qos pfc-watchdog robustness</h>
 
 Configures how many polling intervals the PFC watchdog must wait before it mitigates the storm condition. The default number of polling intervals is 3.
 

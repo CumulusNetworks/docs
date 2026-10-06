@@ -42,7 +42,7 @@ cumulus@switch:~$ nv set vrf default router rib ipv4 protocol bgp fib-filter rou
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id\> router rib \<afi\> fib-filter protocol \<protocol-id\> route-map \<route-map\></h>
+## <h>nv set vrf \<vrf-id\> router rib \<afi\> fib-filter protocol \<protocol-id\> route-map \<route-map\></h>
 
 Configures the protocol you want to import from the RIB to the FIB.
 
@@ -73,7 +73,7 @@ cumulus@switch:~$ nv set vrf default router rib ipv4 fib-filter protocol bgp rou
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id\> router rib \<afi\> fib-filter route-map \<route-map\></h>
+## <h>nv set vrf \<vrf-id\> router rib \<afi\> fib-filter route-map \<route-map\></h>
 
 Configures a route map to apply on the routes of the import protocol.
 

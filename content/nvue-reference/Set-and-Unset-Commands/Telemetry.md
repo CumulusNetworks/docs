@@ -417,7 +417,7 @@ cumulus@switch:~$ nv set interface swp1-8 telemetry histogram egress-buffer traf
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> telemetry histogram egress-buffer traffic-class \<tc-id\> histogram-size</h> 
+## <h>nv set interface \<interface-id\> telemetry histogram egress-buffer traffic-class \<tc-id\> histogram-size</h>
 
 Configures the size of the egress buffer histogram for the specified traffic class and interface. Adding this number to the minimum boundary size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. You can specify a value, which must be a multiple of 96, between 96 and 4294967295.
 
@@ -2031,7 +2031,7 @@ cumulus@switch:~$ nv set system telemetry platform-stats class asic-resource sta
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry platform-stats class asic-resource sample-interval </h>
+## <h>nv set system telemetry platform-stats class asic-resource sample-interval</h>
 
 Sets the sample interval for ASIC resource metrics.
 
@@ -2878,7 +2878,7 @@ cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1 platform-stats
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry stats-group \<stats-group-id\> platform-stats class cpu sample-interval 
+## <h>nv set system telemetry stats-group \<stats-group-id\> platform-stats class cpu sample-interval</h>
 
 Configures the sample interval for the custom statistics group for CPU platform statistics. You can specify a value between 1 and 86400. The default value is 1.
 
@@ -3010,7 +3010,7 @@ cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1 platform-stats
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry stats-group \<stats-group-id\> platform-stats class environment-sensor sample-interval</h> 
+## <h>nv set system telemetry stats-group \<stats-group-id\> platform-stats class environment-sensor sample-interval</h>
 
 Configures the sample interval for the custom statistics group for environment sensor platform statistics. You can specify a value between 1 and 86400. The default value is 1.
 

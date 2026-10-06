@@ -135,7 +135,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast aggr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h> nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast conditional-disaggregation</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast conditional-disaggregation</h>
 
 Enables and disables BGP conditional disaggregation for IPv6 on a leaf switch.
 
@@ -1693,7 +1693,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability prefix-limits maximum </h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unreachability prefix-limits maximum</h>
 
 Configures the maximum number of unreachability prefixes that can be received from the peer. This is CRITICAL for security to prevent state exhaustion.
 

@@ -64,7 +64,7 @@ swp6        up     1G     9216   swp
 
 Shows a tabular summary of PHY health statistics for all switch port interfaces in a single command, such as the error counters for all ports.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.18.0
 
@@ -95,7 +95,7 @@ Shows a tabular summary of transceiver temperature, voltage, and per-channel opt
 In Cumulus Linux 5.18.0, the `nv show interface --view dom` command is a Beta feature.
 {{%/notice%}}
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.18.0
 
@@ -1769,7 +1769,7 @@ interval   30
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system link-tracking/h>
+## <h>nv show system link-tracking</h>
 
 Shows link tracking configuration, such as the feature state (enabled or disabled) and all configured link tracking groups with their watch interfaces, minimum threshold, and state-change action.
 

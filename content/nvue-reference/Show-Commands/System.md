@@ -252,7 +252,7 @@ unix-time                  1700670174.4371066
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system disk usage </h>
+## <h>nv show system disk usage</h>
 
 Shows disk utilization.
 
@@ -564,7 +564,7 @@ end    4064         4064
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system global </h>
+## <h>nv show system global</h>
 
 Shows if the `svi-force-up` option is set to `on` for all SVIs on the switch.
 

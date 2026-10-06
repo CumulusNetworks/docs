@@ -10,7 +10,7 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> router ospf bfd </h>
+## <h>nv show interface \<interface-id\> router ospf bfd</h>
 
 Shows the BFD configuration profile associated with the OSPF interface.
 
@@ -35,7 +35,7 @@ profile               BFD1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> router pim bfd </h>
+## <h>nv show interface \<interface-id\> router pim bfd</h>
 
 Shows the BFD configuration profile associated with the PIM interface.
 

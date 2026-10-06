@@ -2159,6 +2159,10 @@ bonds           description     down            mlag-cc         qos-profile     
 brief           detail          lldp            neighbor        small           up
 ```
 
+{{%notice warning%}}
+NVUE also accepts a view name positionally, without `--view`. For example, `nv show interface lldp` is equivalent to `nv show interface --view lldp`; in both, `lldp` is a view applied to the interface collection. In `nv show interface swp1 lldp`, however, `swp1` selects an interface instance and `lldp` is a child object of that instance, not a view, so the command can return different fields and a different JSON structure. This is not specific to LLDP; it applies wherever a view name and an object in the data model share a name. For more information, refer to {{<link url="NVUE-CLI/#named-views-positional-view-shorthand-and-object-paths" text="Named Views, Positional View Shorthand, and Object Paths">}}.
+{{%/notice%}}
+
 For example, the `nv show interface --view=small` command lists the interfaces on the switch. The `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port. The `nv show interface --view=mac` command shows the MAC address of each interface.
 
 The description column only shows in the output when you use the `--view=detail` option.

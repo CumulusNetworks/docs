@@ -14,15 +14,9 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa authentication restrictions lockout-state</h>
+## <h>nv set system aaa aa restrictions lockout-reattempt</h>
 
-Enables and disables user authentication restrictions.
-
-AAA authentication restrictions are enabled by default to limit login attempts and prevent unauthorized access. After five consecutive failed login attempts, the user account is locked out.
-
-A reattempt timer controls when additional login attempts can be made. Following each failed login, the user must wait 15 seconds before retrying. This restriction remains in effect until the maximum number of consecutive failures is reached, triggering a lockout condition.
-
-To clear the restriction state for a user that is locked out, run the `nv action clear system aaa authentication restrictions user <username>` command.
+Configures the default user authentication reattempt timer (the number of seconds after which the user can retry authentication). You can specify a value between 0 and 99999. The default value is 15 seconds.
 
 ### Version History
 
@@ -31,23 +25,7 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system aaa authentication restrictions lockout-state disabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa authentication restrictions lockout-attempts</h>
-
-Configures the maximum number of failed login attempts allowed before the switch locks a user out. You can specify a value between 3 and 999. The default value is 5.
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa authentication restrictions lockout-attempts 10
+cumulus@switch:~$ nv set system aaa authentication restrictions lockout-reattempt 5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -68,9 +46,9 @@ cumulus@switch:~$ nv set system aaa authentication restrictions fail-delay 5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa aa restrictions lockout-reattempt</h>
+## <h>nv set system aaa authentication restrictions lockout-attempts</h>
 
-Configures the default user authentication reattempt timer (the number of seconds after which the user can retry authentication). You can specify a value between 0 and 99999. The default value is 15 seconds.
+Configures the maximum number of failed login attempts allowed before the switch locks a user out. You can specify a value between 3 and 999. The default value is 5.
 
 ### Version History
 
@@ -79,7 +57,29 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system aaa authentication restrictions lockout-reattempt 5
+cumulus@switch:~$ nv set system aaa authentication restrictions lockout-attempts 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa authentication restrictions lockout-state</h>
+
+Enables and disables user authentication restrictions.
+
+AAA authentication restrictions are enabled by default to limit login attempts and prevent unauthorized access. After five consecutive failed login attempts, the user account is locked out.
+
+A reattempt timer controls when additional login attempts can be made. Following each failed login, the user must wait 15 seconds before retrying. This restriction remains in effect until the maximum number of consecutive failures is reached, triggering a lockout condition.
+
+To clear the restriction state for a user that is locked out, run the `nv action clear system aaa authentication restrictions user <username>` command.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa authentication restrictions lockout-state disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -178,29 +178,6 @@ cumulus@switch:~$ nv set system aaa class class1 command-path /interface/*/acl/ 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa class \<class-id\> os-command \<os-command-id\> command</h>
-
-Configures the complete Linux command that users in the class can run without a password. Specify an absolute executable path followed by its permitted arguments, in order.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<class-id>` |  The name of the class. |
-| `<os-command-id>` |  The OS command name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa class netops os-command restart-frr command /usr/bin/systemctl restart frr
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system aaa class \<class-id\> os-command \<os-command-id\></h>
 
 Configures an OS command that users in the specified class can run.
@@ -220,6 +197,29 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv set system aaa class netops os-command restart-frr
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa class \<class-id\> os-command \<os-command-id\> command</h>
+
+Configures the complete Linux command that users in the class can run without a password. Specify an absolute executable path followed by its permitted arguments, in order.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<class-id>` |  The name of the class. |
+| `<os-command-id>` |  The OS command name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa class netops os-command restart-frr command /usr/bin/systemctl restart frr
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

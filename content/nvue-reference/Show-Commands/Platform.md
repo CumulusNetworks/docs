@@ -10,6 +10,117 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> transceiver</h>
+
+Shows transceiver data for an interface in a condensed format.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 transceiver
+cable-type             : Active cable 
+cable-length           : 3m 
+supported-cable-length : 0m om1, 0m om2, 0m om3, 3m om4, 0m om5 
+diagnostics-status     : Diagnostic Data Available 
+status                 : plugged_enabled 
+error-status           : N/A 
+revision-compliance    : SFF-8636 Rev 2.5/2.6/2.7 
+vendor-date-code       : 210215__ 
+identifier             : QSFP28 
+vendor-rev             : B2 
+vendor-oui             : 00:02:c9 
+vendor-name            : Mellanox 
+vendor-pn              : MFA1A00-C003 
+vendor-sn              : MT2108FT02204 
+temperature            : 42.56 degrees C / 108.61 degrees F 
+voltage                : 3.2888 V 
+ch-1-rx-power          : 0.8625 mW / -0.64 dBm 
+ch-1-tx-power          : 0.8988 mW / -0.46 dBm 
+ch-1-tx-bias-current   : 6.750 mA 
+ch-2-rx-power          : 0.8385 mW / -0.76 dBm 
+ch-2-tx-power          : 0.9154 mW / -0.38 dBm 
+ch-2-tx-bias-current   : 6.750 mA 
+ch-3-rx-power          : 0.8556 mW / -0.68 dBm 
+ch-3-tx-power          : 0.9537 mW / -0.21 dBm 
+ch-3-tx-bias-current   : 6.750 mA 
+ch-4-rx-power          : 0.8576 mW / -0.67 dBm 
+ch-4-tx-power          : 0.9695 mW / -0.13 dBm 
+ch-4-tx-bias-current   : 6.750 mA
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> transceiver compliance</h>
+
+Shows transceiver compliance information for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 transceiver compliance
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> transceiver thresholds</h>
+
+Shows the thresholds for the SFP or QSFP module for a specific interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface with the SFP or QSFP module. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp3 transceiver thresholds
+                     Ch    Value          High Alarm       High Warn        Low Warn       Low Alarm       Alt Value 
+                                          Threshold        Threshold       Threshold       Threshold 
+------------------------------------------------------------------------------------------------------------------------ 
+temperature          -     42.74 C         80.00 C         70.00 C         0.00 C          -10.00 C        108.94F 
+voltage              -     3.2862 V        3.5000 V        3.4650 V        3.1350 V        3.1000 V 
+rx-power             1     -0.64 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8625 mW 
+                     2     -0.70 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8514 mW 
+                     3     -0.68 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8556 mW 
+                     4     -0.60 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8704 mW 
+tx-power             1     -0.48 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.8963 mW 
+                     2     -0.38 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.9154 mW 
+                     3     -0.19 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.9562 mW 
+                     4     -0.13 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.9695 mW 
+tx-bias-current      1     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
+                     2     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
+                     3     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
+                     4     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show platform</h>
 
 Shows a list of all the software and hardware components on the switch.
@@ -655,6 +766,43 @@ fw-source        default
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show platform firmware BMC</h>
+
+Shows the BMC firmware part number and name for the Spectrum-6 switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform firmware BMC
+                 operational
+---------------  ------------
+part-number      NVIDIA
+actual-firmware  88.0060.2112
+fw-source        default
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform firmware BMC files</h>
+
+Shows the available BMC firmware files for the Spectrum-6 switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform firmware BMC files
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show platform hardware</h>
 
 Shows platform hardware information on the switch, such as the base MAC address, model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address.
@@ -807,43 +955,6 @@ type              bmc
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform firmware BMC</h>
-
-Shows the BMC firmware part number and name for the Spectrum-6 switch.
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show platform firmware BMC
-                 operational
----------------  ------------
-part-number      NVIDIA
-actual-firmware  88.0060.2112
-fw-source        default
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show platform firmware BMC files</h>
-
-Shows the available BMC firmware files for the Spectrum-6 switch.
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show platform firmware BMC files
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show platform software</h>
 
 Shows the software installed on the switch.
@@ -975,6 +1086,60 @@ swp22        QSFP28      Mellanox     MFA1A00-C003      MT2108FT02194  B2
 swp23        QSFP28      Mellanox     MFA1A00-C003      MT2108FT02194  B2 
 swp31        QSFP28      Mellanox     MCP1600-C001E30N  MT2039VB01191  A3 
 ... 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform transceiver /<interface-id/> firmware</h>
+
+Shows the current firmware version for a transceiver, the upgrade status, and the firmware files available.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface with the SFP or QSFP module. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 firmware
+                     operational
+-------------------  ---------------------
+actual-firmware      38.100.121
+fw-upgrade-status    ok
+[files]              fw-rel-38_100_121.bin
+[files]              fw-rel-38_100_122.bin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform transceiver /<interface-id/> firmware files</h>
+
+Shows the available firmware files and their paths.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface with the SFP or QSFP module. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 firmware files
+Available Firmware Files  File Path
+-------------------------  --------------------------------------------------------------
+fw-rel-38_100_121.bin      /etc/fae_platform_firmware/transceiver/fw-rel-38_100_121.bin
+fw-rel-38_100_122.bin      /tmp/firmware_downloads/transceiver/fw-rel-38_100_122.bin
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1135,132 +1300,6 @@ cumulus@switch:~$ nv show platform transceiver swp25 channel 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> transceiver</h>
-
-Shows transceiver data for an interface in a condensed format.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 transceiver
-cable-type             : Active cable 
-cable-length           : 3m 
-supported-cable-length : 0m om1, 0m om2, 0m om3, 3m om4, 0m om5 
-diagnostics-status     : Diagnostic Data Available 
-status                 : plugged_enabled 
-error-status           : N/A 
-revision-compliance    : SFF-8636 Rev 2.5/2.6/2.7 
-vendor-date-code       : 210215__ 
-identifier             : QSFP28 
-vendor-rev             : B2 
-vendor-oui             : 00:02:c9 
-vendor-name            : Mellanox 
-vendor-pn              : MFA1A00-C003 
-vendor-sn              : MT2108FT02204 
-temperature            : 42.56 degrees C / 108.61 degrees F 
-voltage                : 3.2888 V 
-ch-1-rx-power          : 0.8625 mW / -0.64 dBm 
-ch-1-tx-power          : 0.8988 mW / -0.46 dBm 
-ch-1-tx-bias-current   : 6.750 mA 
-ch-2-rx-power          : 0.8385 mW / -0.76 dBm 
-ch-2-tx-power          : 0.9154 mW / -0.38 dBm 
-ch-2-tx-bias-current   : 6.750 mA 
-ch-3-rx-power          : 0.8556 mW / -0.68 dBm 
-ch-3-tx-power          : 0.9537 mW / -0.21 dBm 
-ch-3-tx-bias-current   : 6.750 mA 
-ch-4-rx-power          : 0.8576 mW / -0.67 dBm 
-ch-4-tx-power          : 0.9695 mW / -0.13 dBm 
-ch-4-tx-bias-current   : 6.750 mA
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> transceiver compliance</h>
-
-Shows transceiver compliance information for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 transceiver compliance
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show platform transceiver /<interface-id/> firmware</h>
-
-Shows the current firmware version for a transceiver, the upgrade status, and the firmware files available.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` |  The interface with the SFP or QSFP module. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show platform transceiver swp1 firmware
-                     operational
--------------------  ---------------------
-actual-firmware      38.100.121
-fw-upgrade-status    ok
-[files]              fw-rel-38_100_121.bin
-[files]              fw-rel-38_100_122.bin
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show platform transceiver /<interface-id/> firmware files</h>
-
-Shows the available firmware files and their paths.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` |  The interface with the SFP or QSFP module. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show platform transceiver swp1 firmware files
-Available Firmware Files  File Path
--------------------------  --------------------------------------------------------------
-fw-rel-38_100_121.bin      /etc/fae_platform_firmware/transceiver/fw-rel-38_100_121.bin
-fw-rel-38_100_122.bin      /tmp/firmware_downloads/transceiver/fw-rel-38_100_122.bin
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show platform transceiver \<interface-id\> temperature</h>
 
 Shows the temperature threshold configuration for a port.
@@ -1304,43 +1343,4 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp1 compliance
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> transceiver thresholds</h>
-
-Shows the thresholds for the SFP or QSFP module for a specific interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` |  The interface with the SFP or QSFP module. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp3 transceiver thresholds
-                     Ch    Value          High Alarm       High Warn        Low Warn       Low Alarm       Alt Value 
-                                          Threshold        Threshold       Threshold       Threshold 
------------------------------------------------------------------------------------------------------------------------- 
-temperature          -     42.74 C         80.00 C         70.00 C         0.00 C          -10.00 C        108.94F 
-voltage              -     3.2862 V        3.5000 V        3.4650 V        3.1350 V        3.1000 V 
-rx-power             1     -0.64 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8625 mW 
-                     2     -0.70 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8514 mW 
-                     3     -0.68 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8556 mW 
-                     4     -0.60 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8704 mW 
-tx-power             1     -0.48 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.8963 mW 
-                     2     -0.38 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.9154 mW 
-                     3     -0.19 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.9562 mW 
-                     4     -0.13 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.9695 mW 
-tx-bias-current      1     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
-                     2     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
-                     3     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
-                     4     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA
 ```

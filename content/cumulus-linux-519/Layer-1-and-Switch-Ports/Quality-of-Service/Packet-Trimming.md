@@ -379,15 +379,6 @@ To show the requested and applied back-to-sender configuration for congestion ta
 - To show the configuration for a specific interface, run the `nv show interface <interface-id> packet-trim notify-sender tail-drop` command.
 - To show only the eligible traffic classes for a specific interface, run the `nv show interface <interface-id> packet-trim notify-sender tail-drop egress-eligibility` command.
 
-<!-- REVIEW: the two bullets above added 2026-10-06, from a live command list Velmurugan Durai
-     circulated ahead of the 2026-10-06 OM review meeting for FR 4373590 and FR 5013705. Neither
-     command appeared in the functional specification's own §13 CLI Syntax block, read in full for
-     the original draft; this is new information from the OM review, not a correction to something
-     already drafted. Same caveat as the link-down section's equivalent comment: this OM review was
-     still in progress as of this email, so treat as the best-available, not yet finally confirmed,
-     command surface. Confirm against the meeting outcome or a candidate build. Delete this comment
-     before publishing. -->
-
 <!-- TODO: capture this output on a Spectrum-6 switch and paste it here. The block below is adapted
      from the specification's own draft output. -->
 
@@ -499,19 +490,6 @@ link-down
 - To show only the link down configuration, run the `nv show system forwarding packet-trim notify-sender link-down` command.
 - To show the link down configuration for an interface, run the `nv show interface <interface-id> packet-trim spxm notify-sender link-down` command.
 - To show only the ingress eligibility DSCP configuration for an interface, run the `nv show interface <interface-id> packet-trim spxm notify-sender link-down ingress-eligibility` command.
-
-<!-- REVIEW: both bullets above corrected/added 2026-10-06, from a live `nv tree interface swp1
-     packet-trim` and `nv show` command list Velmurugan Durai circulated ahead of the 2026-10-06 OM
-     review meeting for FR 4373590 and FR 5013705. The per-interface show command was previously
-     drafted as `nv show interface <interface-id> packet-trim notify-sender link-down`, missing the
-     `spxm` node that the per-interface *set* command already carried (and that this same live tree
-     output confirms again). The third bullet, the ingress-eligibility-only show, was not previously
-     documented at all. This OM review was still in progress as of this email -- an earlier message in
-     the same thread (Reda Haddad, 2026-10-05) asked for an explicit confirmation meeting because no
-     formal approval had been recorded despite a "no objections, proceeding to commit" message sent
-     the same morning -- so treat this as the best-available, not yet finally confirmed, command
-     surface. Confirm against the meeting outcome or a candidate build. Delete this comment before
-     publishing. -->
 
 ### Show and Clear Back-to-sender Notification on Link Down Counters
 

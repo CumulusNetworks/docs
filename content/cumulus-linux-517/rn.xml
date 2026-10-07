@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>5298343</td>
-<td>In a numbered IPv6 BGP session, when an address is detected as duplicate (duplicate address detection), it is considered tentative.  The BGP session might use the alternate source address when trying to establish communication with the peer, which might cause the session to bind to an incorrect network interface or IP address and affect BGP neighbor establishment and network connectivity. To work around this issue, use the {{update-source}} command for the neighbor; for example, {{nv set vrf default router bgp neighbor 2006::11 update-source swp0}}.</td>
-<td>5.15.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
 <td>5.16.5-5.18.0</td>

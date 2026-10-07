@@ -567,8 +567,10 @@ end
 
 ### Prevent Re-export of VRF Leaked EVPN Routes
 
-To prevent VRFs from re-exporting EVPN-originated leaked routes as type-5 routes when you configure the switch to announce IP prefixes in the BGP RIB as EVPN type-5 routes, enable the skip EVPN imported setting.  
-- The skip EVPN imported setting affects only EVPN type-5 re-export and suppresses re-export when the VRF leak ancestry for the selected unicast path originates in the EVPN table.  
+When you configure a switch to announce IP prefixes in the BGP RIB as EVPN type-5 routes, the switch might re-export VRF-leaked routes that originate from the EVPN table as type-5 routes. To prevent the re-export of VRF-leaked EVPN routes, enable the skip EVPN imported setting.
+ 
+- The skip EVPN imported setting affects only EVPN type-5 re-export.
+- The skip EVPN imported setting suppresses re-export when the VRF leak ancestry for the selected unicast path originates in the EVPN table.  
 - Locally originated routes, including locally originated routes leaked from another VRF, remain eligible for type-5 re-export.  
 - You set the skip EVPN imported setting for a specific BGP VRF instance and for either IPv4 or IPv6.
 - The emitted EVPN routes remain standards-compliant type-5 routes. This setting only decides which local paths FRR originates; it does not alter received EVPN route encoding, route-target processing, or peer interoperability. 
@@ -585,6 +587,8 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 To disable the skip EVPN imported setting, run the `nv set vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn skip-evpn-imported disabled` command.
+
+To remove the skip EVPN imported configuration and restore the default behavior, run the `nv unset vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn skip-evpn-imported` command.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}

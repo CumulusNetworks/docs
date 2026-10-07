@@ -41,7 +41,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-cpo-module-and-laser-source-information" text="CPO module and laser source visibility on switches with co-packaged optics">}}
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Trimmed packet sent and dropped counters at the global, port, and traffic class level">}} on Spectrum-6 switches
 - NVUE
-  - {{<link url="Using-sudo-to-Delegate-Privileges" text="Passwordless sudo access by default">}} for members of the sudo group, and {{<link url="Role-Based-Access-Control/#os-command-classes" text="RBAC os-command allow-lists">}} for granular passwordless access to specific commands
+  - {{<link url="Using-sudo-to-Delegate-Privileges" text="Passwordless sudo access by default">}} for members of the sudo group, and {{<link url="Role-Based-Access-Control/#os-command-classes" text="RBAC os-command allow-lists">}} for granular passwordless access to specific commands (Beta)
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
   - {{<link url="Neighbor-Discovery-ND/#clear-a-stale-prefix" text="Clear a stale IPv6 ND prefix on demand">}}
   - {{<link url="BMC/#manage-staged-firmware-files" text="Manage staged platform firmware files, automatic updates, and firmware source per component">}}

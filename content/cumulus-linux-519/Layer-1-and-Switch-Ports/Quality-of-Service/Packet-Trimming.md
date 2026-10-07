@@ -437,54 +437,10 @@ Back-to-sender notification on link down runs alongside packet trimming. It uses
 To enable and configure back-to-sender notification on link down:
 - Set the state to enabled.
 - Optionally, set the DSCP value the switch writes onto the notification. You can specify a value between 0 and 63; the default is 11. Port level remarking is not supported for notifications. The value cannot be one of the ingress eligibility DSCP values below.
-- Optionally, set the ingress eligibility DSCP match list on the interfaces you want to cover, or on all interfaces. The switch sends a notification only for a packet that arrives with one of these DSCP values. If you do not set this while the feature is enabled, the switch programs a default list of 1, 2, 3, 4.
+- Optionally, set the ingress eligibility DSCP match list on the interfaces you want to cover, or on all interfaces. The switch sends a notification only for a packet that arrives with one of these DSCP values. If you do not set this while the feature is enabled, the switch programs a default of all DSCP values (0-63).
 - Optionally, set the maximum size of the notification in bytes. You can specify a value between 256 and 1024; the value must be a multiple of 4. The default is 256.
 - Optionally, set the switch priority of the notification. You can specify a value between 0 and 7. The default is 1.
 - Optionally, set the service port. The service port must be a bonus port, and cannot be the same port trim-and-forward or back-to-sender on congestion tail drop uses. If you do not set one, the switch uses the platform bonus port.
-
-<!-- REVIEW: two internal contradictions in the specification (revision 1.4, 23-09-2026), found on
-     this pass and not yet resolved:
-
-     1. Switch priority default. The object model section gives "switch-priority uint8 # 0-7
-        (default 1)", matching the configuration-knobs example elsewhere in the same document
-        (packet_trim.notify-sender.link-down.switch_prio = 1). But the CLI Options Description table
-        in the same section (Table 16) gives the default as 4. Documented here as 1, the majority
-        reading and the value already shown in the specification's own worked CLI example
-        (switch-priority 1). Confirm which is correct before publishing.
-
-     2. Ingress eligibility DSCP: required, or optional with a default, and what default? The object
-        model comment reads "required when enabled", and REQ-SW-009 states "Empty eligibility DSCP
-        while enabled = hard error." But the Validation section (5.4) states the opposite: "Empty
-        DSCP list while enabled | Intent | Allow. Program default 1, 2, 3, 4" -- and the CLI Options
-        Description table agrees, giving a default of 1,2,3,4 and marking it optional. The worked
-        `nv show ... link-down` example output in section 11.3 also shows an applied value of
-        "1,2,3,4". Documented here as optional with a default of 1, 2, 3, 4, per the validation
-        section, the CLI options table, and the worked example output outvoting the object model
-        comment -- the same section-role reasoning used elsewhere in this repo to prefer a CLI/
-        validation section over a terser requirements-table comment. A fourth source now disagrees
-        on the number, though not on optional-vs-required: the Open Issues table's own OI-2 decision
-        text reads "Closed (confirmed with ARCH). List of 0-63 is allowed. Product default for MRC
-        data is all" -- "all", not "1, 2, 3, 4". This is new text; the spec's earlier OI-2 wording
-        (read on the prior pass) gave the number as 1, 2, 3, 4, matching the other three sources, so
-        this looks like a drafting slip in the Open Issues row rather than an intentional change
-        nothing else in the document reflects. Keeping 1, 2, 3, 4 on the strength of three sources
-        against one, but confirm before publishing -- if "all" is in fact correct, this is a bigger
-        change than a number, since "all" DSCP values eligible by default is a materially different
-        default posture than a specific four-value list.
-
-     3. Service port collision. The specification's Validation section (5.4) and its negative test
-        case (Testing, case 7) both state the link-down service port must not be the same port as
-        "the T&F recirc port" -- Trim-and-Forward's recirculation port -- and that nv config apply
-        fails if it is. This appears to be shared validation logic carried over from Spectrum-4/5,
-        where Trim-and-Forward genuinely does use a service port. The separate BTS tail-drop
-        specification (FR 4373590, approved 22-09-2026) states Trim-and-Forward on Spectrum-6 does
-        not use a service port at all (it uses the on-chip trim agent), and that the NVUE leaf for
-        setting one is withdrawn there. It isn't clear from either document what "the T&F recirc
-        port" means on Spectrum-6 in practice, or how an operator would know which port to avoid.
-        Documented here as a stated constraint, since it is validated and tested, but confirm what
-        it actually means on Spectrum-6 before publishing.
-
-     Delete this comment before publishing. -->
 
 ```
 cumulus@switch:~$ nv set system forwarding packet-trim notify-sender link-down state enabled

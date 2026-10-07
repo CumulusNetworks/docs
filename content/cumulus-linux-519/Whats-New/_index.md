@@ -41,7 +41,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-cpo-module-and-laser-source-information" text="CPO module and laser source visibility on switches with co-packaged optics">}}
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Trimmed packet sent and dropped counters at the global, port, and traffic class level">}} on Spectrum-6 switches
 - NVUE
-  - {{<link url="Using-sudo-to-Delegate-Privileges" text="Passwordless sudo access by default">}} for members of the sudo group, and {{<link url="Role-Based-Access-Control/#os-command-classes" text="RBAC os-command allow-lists">}} for granular passwordless access to specific commands
+  - {{<link url="Using-sudo-to-Delegate-Privileges" text="Passwordless sudo access by default">}} for members of the sudo group, and {{<link url="Role-Based-Access-Control/#os-command-classes" text="RBAC os-command allow-lists">}} for granular passwordless access to specific commands (Beta)
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
   - {{<link url="Neighbor-Discovery-ND/#clear-a-stale-prefix" text="Clear a stale IPv6 ND prefix on demand">}}
   - {{<link url="BMC/#manage-staged-firmware-files" text="Manage staged platform firmware files, automatic updates, and firmware source per component">}}
@@ -70,13 +70,9 @@ Review the following considerations before you upgrade to Cumulus Linux 5.19.
 ### Upgrade Requirements
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.19 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
-- 5.16.1 through 5.16.7
+- 5.16.1 through 5.16.8
 - 5.17.0
-- 5.18.2
-
-{{%notice infonopad%}}
-If your switch is running Cumulus Linux 5.18.0 or 5.18.1, you must first upgrade to 5.18.2 before you can upgrade to 5.19.
-{{%/notice%}}
+- 5.18.2, 5.18.3
 
 To upgrade to Cumulus Linux 5.19 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 

@@ -1974,6 +1974,7 @@ On Spectrum-4 and later switches whose ports have two physical connectors per tr
 {{%notice note%}}
 - Physical-name is display-only. You cannot use it to configure or reference an interface in place of the canonical interface name, such as `swp1` or `swp1s0`.
 - Physical-name reflects the current breakout configuration. If you change the breakout mode on a port, Cumulus Linux updates the physical-name values for that port.
+- Physical-name applies only to front-panel ports with a transceiver connector. An interface without one, such as the management interface, has no physical-name value; `nv show interface physical` leaves the column blank for that interface.
 {{%/notice%}}
 
 Physical-name uses the format `swp<cage>c<connector>s<subinterface>`, where:

@@ -2450,10 +2450,10 @@ Because a service port cannot borrow from the shared buffer that the regular por
 - Cumulus Linux does not expose the service port pool as a service pool object. You cannot create, bind, resize, or delete it. The `nv show` commands read it.
 - All service ports on the switch use the same pool. You cannot bind an individual service port to a different pool.
 - Cumulus Linux does not support the shared headroom pool or the port shared buffer on a service port. NVUE rejects `nv set interface <interface-id> qos shared-headroom-pool enabled` before it applies the configuration, with an error such as `shared-headroom-pool config is not supported on service port <port-id>`.
-- Cumulus Linux supports priority flow control on a service port. You can set the switch priority, enable `tx` and `rx`, and bind a PFC profile. The lossless buffer sizes are fixed rather than derived from the cable length: 198 KB of headroom, 29 KB of xon, 29 KB of xoff, and a 169 KB port buffer.
 - Cumulus Linux does not support `cable-length`, `port-buffer`, `xon-threshold`, `xoff-threshold`, or `small-packet-probability` on a service port. NVUE rejects these settings when you apply the configuration.
 - Egress pools on service ports are unchanged.
 {{%/notice%}}
+
 
 {{< tabs "TabID2440 ">}}
 {{< tab "NVUE Commands ">}}
@@ -2465,7 +2465,6 @@ To change the buffer allocations for the service ports, run the `nv set qos adva
 | `ingress-sp-service-pool` | `reserved`, `shared-bytes` | The service port pool's port-level reserved and shared buffer allocation, in bytes. |
 | `ingress-sp-lossy-buffer` | `headroom`, `reserved`, `shared-bytes` | The lossy priority group buffer allocation for the service ports, in bytes. |
 | `ingress-sp-mgmt-buffer` | `headroom`, `reserved`, `shared-bytes` | The management priority group buffer allocation for the service ports, in bytes. |
-| `ingress-sp-lossless-buffer` | `shared-bytes` | The lossless priority group shared buffer allocation for the service ports, in bytes. |
 
 {{%notice note%}}
 `shared-alpha` is not available on any service port buffer; Cumulus Linux creates the service port pool as a static pool, so a service port buffer cannot take a dynamic alpha allocation. Set `shared-bytes` directly instead. The cumulative allocation across the service port pool and its priority groups must stay within the service port pool size, shown in the capacity table below. If a configuration would exceed it, NVUE rejects the apply.
@@ -2509,7 +2508,6 @@ Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to add the following parame
 | `priority_group.srvcp_mgmt.ingress_buffer.reserved` | The management priority group reserved buffer allocation for the service ports, in bytes. |
 | `priority_group.srvcp_mgmt.ingress_buffer.shared_size` | The management priority group static shared buffer allocation for the service ports, in bytes. |
 | `priority_group.srvcp_mgmt.ingress_buffer.lossy_headroom` | The management priority group headroom allocation for the service ports, in bytes. |
-| `flow_control.srvcp.ingress_buffer.shared_size` | The lossless priority group static shared buffer allocation for the service ports, in bytes. |
 
 ```
 cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
@@ -2528,12 +2526,20 @@ To return a parameter to its default, delete or comment out the line.
      across the supported service port speeds before publishing, or add the assumptions to the
      lead-in sentence. Delete this comment before publishing. -->
 
-The default allocations consume part of the pool before you tune anything. The following table shows what the defaults use and what remains, on a switch with two service ports and on a switch with four.
+The default allocations consume part of the pool before you tune anything. Cumulus Linux carves the pool per service port: each service port draws the same fixed 49 KB default lossy allocation and, if you enable priority flow control, the same fixed 198 KB lossless headroom, and the switch multiplies that per-port amount by the number of service ports on your platform. It does not divide a single shared total across the ports. The following table shows what the defaults use and what remains, on a switch with two service ports and on a switch with four.
+
+<!-- REVIEW: added 2026-10-07, in response to Reda Haddad's review comment on the FS review thread
+     asking that the documentation state explicitly whether the per-platform totals in the table below
+     come from dividing a shared total by the number of service ports, or multiplying a fixed per-port
+     amount by the number of ports. No one in the thread has yet given the answer directly; this is
+     derived from the table's own numbers, which already exactly double between the two-port and
+     four-port columns (98 -> 196, 396 -> 792) and divide evenly by the fixed 198 KB headroom figure
+     already stated in the priority flow control bullet above. Confirm this reading with Bhargav
+     Sivalenka or the updated FS before publishing. Delete this comment before publishing. -->
 
 | Allocation | Two service ports | Four service ports |
 | ---------- | ----------------- | ------------------ |
 | Default lossy allocation, including the port reserved buffer and the management priority group | 98 KB | 196 KB |
-| Additional lossless headroom when you enable priority flow control | 396 KB | 792 KB |
 | Remaining pool with lossy traffic only | 1848 KB | 1750 KB |
 | Remaining pool with priority flow control enabled | 1452 KB | 958 KB |
 

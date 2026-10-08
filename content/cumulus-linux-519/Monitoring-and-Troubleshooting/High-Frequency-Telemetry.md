@@ -304,16 +304,19 @@ High-frequency telemetry generates a significant volume of data records. For exa
 
 Step time estimation reports the step time of an AI training workload running across the fabric, so that you can track workload progress and spot infrastructure problems without access to the servers running the workload. The switch samples the transmitted bytes (`tx-byte`) counter with high frequency telemetry, looks for periodicity in the traffic pattern, and derives one estimate for each monitored interface. Only the estimates leave the switch; the switch does not export the high frequency telemetry samples behind them.
 
-Cumulus Linux exports the estimate as the `nvswitch_interface_step_time_estimate` OTLP gauge, in seconds, carrying an `interface` label, and as the gNMI leaf `/interfaces/interface[name=<interface-id>]/step-time-estimation/state/step-time-estimate`. A gNMI subscription to this leaf does not enable step time estimation and the subscription interval does not change how often the switch produces an estimate; the interval controls only how often gNMI exports the current value.
+Cumulus Linux exports the estimate as the `nvswitch_interface_step_time_estimate` OTLP gauge, in seconds, carrying an `interface` label, and as the gNMI path `/interfaces/interface[name=<interface-id>]/step-time-estimation/state/step-time-estimate`. A gNMI subscription to this path does not enable step time estimation and the subscription interval does not change how often the switch produces an estimate; the interval controls only how often gNMI exports the current value. The switch produces a new estimate only once per batch interval; the gNMI notification for this path carries the timestamp of when the switch produced that estimate, not the timestamp of the notification itself.
 
 <!-- REVIEW: the constraints note below. The specification requires the algorithm to handle 128
-     active interfaces at a 15 second window every 60 seconds, but never states a supported
+     active interfaces at a 15 second window every 60 seconds (the window duration was later
+     raised to 30 seconds -- see the batch-interval step below), but never states a supported
      interface scale, so the draft omits one. Confirm whether the page must state a maximum
      number of monitored interfaces. Delete this comment before publishing. -->
 
 {{%notice note%}}
-- You cannot run step time estimation and continuous streaming HFT export at the same time. Continuous export holds an HFT session open, and the switch runs only one HFT session at a time.
+- You cannot run step time estimation at the same time as continuous streaming HFT export. Continuous export holds an HFT session open, and the switch runs only one HFT session at a time.
+- You cannot run step time estimation at the same time as a {{<link url="#collect-hft-in-json-file" text="JSON file data collection job">}}.
 - You can configure step time estimation and a fixed duration streaming HFT export session at the same time, but the HFT session takes priority. The switch exports no step time estimates while that session runs.
+- Step time estimation is supported only on interfaces with four lanes or less.
 - You must enable step time estimation on at least one interface before you enable step time estimation export.
 - You cannot change `batch-interval` while step time estimation is enabled. Disable step time estimation export, change the value, then reenable export.
 - The switch skips a collection batch that overlaps a scheduled {{<link url="ASIC-Monitoring" text="ASIC monitoring">}} job and exports no estimates for that batch.
@@ -331,14 +334,20 @@ To configure step time estimation:
    cumulus@switch:~$ nv config apply
    ```
 
-3. Configure the batch interval, in seconds. This is the interval between successive runs of the algorithm, and therefore the interval between successive exports of the metric. You can set a value between 30 and 3600. The default value is 60:
+3. Configure the batch interval, in seconds. This is the interval between successive runs of the algorithm, and therefore the interval between successive exports of the metric. You can set a value between 300 and 3600:
+
+   <!-- REVIEW: default value. The spec this page was originally drafted from gave a default
+        batch-interval of 60 seconds, with a minimum of 30. Ralph Morgan's 2026-10-08 email raised
+        the minimum to 300 but did not mention the default, and 60 is no longer inside the valid
+        range. Confirm the current default before publishing. Delete this comment before
+        publishing. -->
 
    ```
-   cumulus@switch:~$ nv set system telemetry step-time-estimation batch-interval 120
+   cumulus@switch:~$ nv set system telemetry step-time-estimation batch-interval 600
    cumulus@switch:~$ nv config apply
    ```
 
-   The switch collects 15 seconds of high frequency telemetry data for each batch. This amount is fixed and you cannot configure it.
+   The switch collects 30 seconds of high frequency telemetry data for each batch. This amount is fixed and you cannot configure it.
 
 4. Enable step time estimation export:
 

@@ -707,7 +707,7 @@ NVIDIA recommends you set the value to at least twice the maximum number of BGP 
 {{< tabs "TabID674 ">}}
 {{< tab "NVUE Commands ">}}
 
-To set the maximum number of open file descriptors for the FRR routing daemons, run the `nv set router resource-limit max-file-descriptors <value>` command. You can specify a value between 1024 and 65536. The setting applies to every daemon that FRR starts, such as `bgpd`, `ospfd`, and `pimd`.
+To set the maximum number of open file descriptors for the FRR routing daemons, run the `nv set router resource-limit max-file-descriptors <value>` command. You can specify a value between 1024 and 65536. The default value is 2048. The recommended value is 16384. The setting applies to every daemon that FRR starts, such as `bgpd`, `ospfd`, and `pimd`.
 
 ```
 cumulus@switch:~$ nv set router resource-limit max-file-descriptors 8192

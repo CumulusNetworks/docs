@@ -72,7 +72,11 @@ Review the following considerations before you upgrade to Cumulus Linux 5.19.
 You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.19 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 - 5.16.1 through 5.16.8
 - 5.17.0
-- 5.18.2, 5.18.3
+- 5.18.0, 5.18.1, 5.18.2, 5.18.3
+
+{{%notice infonopad%}}
+For the SN6600-LD switch, you can upgrade to Cumulus Linux 5.19 only from Cumulus Linux 5.18.3 or later.
+{{%/notice%}}
 
 To upgrade to Cumulus Linux 5.19 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 

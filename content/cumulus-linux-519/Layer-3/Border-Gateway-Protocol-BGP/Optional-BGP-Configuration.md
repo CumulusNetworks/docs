@@ -936,10 +936,6 @@ router bgp 65101
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-When you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions can remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report `Cease/Connection Collision Resolution`. This timing-dependent issue might occur if you do not configure a BGP update source. To work around this issue, configure `update-source` separately for every numbered IPv6 BGP neighbor on both switches, using the local IPv6 address assigned to the link for that neighbor; do not configure a single shared source on the peer group when each parallel link has a different local address. After applying the configuration, clear the affected BGP sessions to remove any existing incorrectly associated connections.
-{{%/notice%}}
-
 ## ECMP
 
 BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sharing" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has the information necessary to program the routing table and forward traffic for that prefix through all these peers. BGP typically chooses one best path for each prefix and installs that route in the forwarding table.

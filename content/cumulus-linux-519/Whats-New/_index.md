@@ -168,6 +168,10 @@ FRR now treats the IPv4 240.0.0.0/4 (Class E) range as valid unicast address spa
 
 For more information, see {{<link url="FRRouting/#class-e-address-space-support" text="Class E Address Space Support">}}.
 
+### Multiple IPv6 numbered eBGP Sessions Between the Same Pair of Switches
+
+In Cumulus 5.18 and earlier, when you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report `Cease/Connection Collision Resolution`. This issue no longer occurs in Cumulus Linux 5.19 and later; you no longer need to configure `update-source` separately for every numbered IPv6 BGP neighbor on both switches using the local IPv6 address assigned to the link for that neighbor.
+
 ### Cumulus VX
 
 NVIDIA no longer releases Cumulus VX as a standalone image. To simulate a Cumulus Linux switch, use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA DSX Air">}}.

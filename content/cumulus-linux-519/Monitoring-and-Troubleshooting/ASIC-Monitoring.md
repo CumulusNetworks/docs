@@ -1,7 +1,7 @@
 ---
 title: ASIC Monitoring
 author: NVIDIA
-weight: 1230
+weight: 1231
 toc: 3
 ---
 Cumulus Linux provides several ASIC monitoring tools that collect and distribute data about the state of the ASIC.

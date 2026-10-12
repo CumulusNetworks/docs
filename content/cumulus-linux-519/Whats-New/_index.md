@@ -170,7 +170,7 @@ For more information, see {{<link url="FRRouting/#class-e-address-space-support"
 
 ### Multiple IPv6 numbered eBGP Sessions Between the Same Pair of Switches
 
-In Cumulus 5.18 and earlier, when you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report `Cease/Connection Collision Resolution`. This issue no longer occurs in Cumulus Linux 5.19 and later; you no longer need to configure `update-source` separately for every numbered IPv6 BGP neighbor on both switches using the local IPv6 address assigned to the link for that neighbor.
+In Cumulus 5.18 and earlier, when you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, you need to configure update-source separately for each session on both switches using the local IPv6 address assigned to the link for that neighbor. If you do not configure this setting, some sessions might remain in an idle state during simultaneous link or session bringup. This issue no longer occurs in Cumulus Linux 5.19 and later and you no longer need to configure this setting.
 
 ### Cumulus VX
 

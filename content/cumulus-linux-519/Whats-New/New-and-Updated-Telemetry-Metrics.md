@@ -71,7 +71,7 @@ The following metrics are added for unreachability AFI SAFI.
 
 |  Name | Description |
 |------ | ----------- |
-| `/interfaces/interface[name=<interface-id>]/step-time-estimation/state/step-time-estimate` | Estimated step time, in seconds, of the AI training workload running on the interface. Requires {{<link url="High-Frequency-Telemetry/#step-time-estimation" text="step time estimation">}}. |
+| `/interfaces/interface[name=<interface-id>]/step-time-estimation/state/step-time-estimate` | Estimated step time, in seconds, of the AI training workload running on the interface. Requires {{<link url="Step-Time-Estimation" text="step time estimation">}}. |
 
 {{< /tab >}}
 {{< tab "Microburst Histogram">}}
@@ -222,7 +222,7 @@ Each metric carries a single `server` label holding the RADIUS server address. F
 |------ | ----------- |
 | `nvswitch_interface_step_time_estimate` | Estimated step time, in seconds, of the AI training workload running on an interface. |
 
-This metric is a gauge carrying a single `interface` label holding the interface name. The switch exports a data point only for an interface for which the algorithm produces an estimate, and exports no metric at all when it produces no estimate for any interface. For information about the feature behind this metric, refer to {{<link url="High-Frequency-Telemetry/#step-time-estimation" text="Step Time Estimation">}}.
+This metric is a gauge carrying a single `interface` label holding the interface name. The switch exports a data point only for an interface for which the algorithm produces an estimate, and exports no metric at all when it produces no estimate for any interface. For information about the feature behind this metric, refer to {{<link url="Step-Time-Estimation" text="Step Time Estimation">}}.
 
 {{< /tab >}}
 {{< tab "Microburst Histogram">}}

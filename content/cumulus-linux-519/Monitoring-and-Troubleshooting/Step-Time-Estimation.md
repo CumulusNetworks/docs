@@ -4,13 +4,13 @@ author: NVIDIA
 weight: 1230
 toc: 2
 ---
-Step time estimation reports the step time of an AI training workload running across the fabric, so that you can track workload progress and spot infrastructure problems without access to the servers running the workload. The switch looks for periodicity in the traffic patterns on the monitored interfaces and derives one estimate for each interface. Only the estimates leave the switch; the switch does not export the data used to derive the estimates.
+Step time estimation reports the step time of an AI training workload running across the fabric, so that you can track workload progress and spot infrastructure problems without access to the servers running the workload. Use this feature to identify performance degradation over time in a single job: a step time estimate that holds steady around one value with only mild variation, then rises and stays at a higher value, can indicate a straggler in the GPU or host, or another performance issue. The switch looks for periodicity in the traffic patterns on the monitored interfaces and derives one estimate for each interface. Only the estimates leave the switch; the switch does not export the data used to derive the estimates.
 
 Cumulus Linux exports the estimate as the `nvswitch_interface_step_time_estimate` OTLP gauge, in seconds, carrying an `interface` label, and as the gNMI path `/interfaces/interface[name=<interface-id>]/step-time-estimation/state/step-time-estimate`. A gNMI subscription to this path does not enable step time estimation and the subscription interval does not change how often the switch produces an estimate; the interval controls only how often gNMI exports the current value. The switch produces a new estimate only once per batch interval; the gNMI notification for this path carries the timestamp of when the switch produced that estimate, not the timestamp of the notification itself.
 
 {{%notice note%}}
 - You cannot run step time estimation at the same time as continuous streaming HFT export. 
-- You cannot run step time estimation at the same time as a {{<link url="High-Frequency-Telemetry/#collect-hft-in-json-file" text="JSON file data collection job">}}; the switch does not support using the `cl-hft-tool` job management tool while step time estimation is running.
+- You cannot run step time estimation at the same time as an HFT {{<link url="High-Frequency-Telemetry/#collect-hft-in-json-file" text="JSON file data collection job">}}; the switch does not support using the `cl-hft-tool` job management tool while step time estimation is running.
 - You can configure step time estimation and a fixed duration streaming HFT export session at the same time, but the HFT session takes priority. The switch exports no step time estimates while that session runs.
 - Step time estimation is supported only on interfaces with four lanes or less.
 - You must enable step time estimation on at least one interface before you enable step time estimation export.
@@ -51,7 +51,12 @@ To configure step time estimation:
    cumulus@switch:~$ nv config apply
    ```
 
-To correlate an estimate with the server behind the interface, configure {{<link url="Open-Telemetry-Export/#static-labels" text="static labels">}} for the switch and its interfaces. The collector then receives the label descriptions alongside the estimate.
+To correlate an estimate with the server behind the interface, configure {{<link url="Open-Telemetry-Export/#static-labels" text="static labels">}} for the switch and its interfaces. The collector then receives the label descriptions alongside the estimate. For example, label a monitored interface with the identity of its peer:
+
+```
+cumulus@switch:~$ nv set interface swp1 telemetry label peer description "gpu-host-042"
+cumulus@switch:~$ nv config apply
+```
 
 To stop exporting step time estimates, run the `nv unset system telemetry step-time-estimation export state` command. To stop monitoring an interface, run the `nv unset interface <interface-id> telemetry step-time-estimation state` command.
 

@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5298343</td>
-<td>The BGP session uses the wrong source address when trying to establish communication, which might cause the session to bind to an incorrect network interface or IP and affect proper BGP neighbor establishment and network connectivity.</td>
-<td>5.15.0-5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5240151</td>
 <td>On the Spectrum-6 switch, running {{bmc-cli collect-all}}  does not successfully collect all available BMC data. The command completes, but only 27 out of 41 collection tasks are successful.</td>
 <td>5.19.0</td>
@@ -393,12 +387,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
-<td>4049213, 4186873</td>
-<td>When there are routes that point to a single next hop, an ECMP entry is created in the SDK. After the single next hop from the route is removed, the ECMP entry might stay in the SDK until the time the next hop is present in the kernel.</td>
-<td>5.9.2-5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4047798</td>
 <td>Packet distribution based on ECMP hashing using GTP-TEID does not function as expected in an EVPN Clos topology.</td>
 <td>5.10.0-5.19.0</td>
@@ -520,7 +508,7 @@ cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 </td>
-<td>4.0.0-4.4.5, 5.0.0-5.19.0</td>
+<td>4.0.0-4.4.6, 5.0.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -625,7 +613,7 @@ To work around this issue when using fiber cables:
 <td>3420056</td>
 <td>
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.19.0</td>
+<td>4.4.0-4.4.6, 5.0.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -663,7 +651,7 @@ You can ignore this error; it has no impact on switch functionality.</td>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.19.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.6, 5.0.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -744,18 +732,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>3084476</td>
 <td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.19.0</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.4-4.4.6</td>
 </tr>
 <tr>
 <td>3084027</td>
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.19.0</td>
+<td>4.3.0-4.4.6, 5.0.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
-<td>4.4.4-4.4.5, 5.1.0-5.19.0</td>
+<td>4.4.4-4.4.6, 5.1.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -773,7 +761,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.19.0</td>
+<td>3.7.15-3.7.16, 4.1.1-4.4.6, 5.0.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -781,7 +769,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5, 5.0.0-5.19.0</td>
+<td>4.4.0-4.4.6, 5.0.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -805,19 +793,19 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.19.0</td>
+<td>4.4.0-4.4.6, 5.0.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.19.0</td>
+<td>4.4.0-4.4.6, 5.0.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2671652</td>
 <td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
-<td>4.4.0-4.4.5, 5.5.0-5.19.0</td>
+<td>4.4.0-4.4.6, 5.5.0-5.19.0</td>
 <td></td>
 </tr>
 </table>
@@ -826,6 +814,48 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>5327622</td>
+<td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
+<td>5.11.5-5.18.3</td>
+</tr>
+<tr>
+<td>5321800, 5322481</td>
+<td>During a package upgrade when upgrading the {{cumulus-overrides}} package, the upgrade moves the container root from {{/var/lib/containerd}} to {{/containerd}}. If any snapshots under {{/var/lib/containerd}} are removed during the container root move, package upgrade fails to update the {{cumulus-overrides}} package. In certain cases snapshots are deleted. After package upgrade encounters this failure, it also stops updating all the packages that depend on {{cumulus-overrides}}.
+To work around this issue, first upgrade the {{cumulus-overrides}} package, then run package upgrade after updating the {{/etc/apt/sources.list}}
+To upgrade the {cumulus-overrides}} package:
+cumulus@switch:~$ ip vrf exec mgmt apt-get update
+cumulus@switch:~$ ip vrf exec mgmt apt-get install cumulus-overrides
+To run package upgrade:
+cumulus@switch:~$ nv action upgrade system packages to latest use-vrf mgmt
+cumulus@switch:~$ nv action reboot system mode &lt;cold|warm&gt;</td>
+<td>5.18.3</td>
+</tr>
+<tr>
+<td>5316939, 5316919</td>
+<td>NVUE user management commands fail when the {{/etc/passwd}} file contains non-UTF-8 characters. </td>
+<td>5.16.8-5.18.3</td>
+</tr>
+<tr>
+<td>5315365</td>
+<td>An incomplete, unauthenticated station entry is retained incorrectly and restored after upgrade. This causes a new EAP Identity exchange to start, but the entry is not aged out as expected on the wired interface, resulting in continuous retransmissions.</td>
+<td>5.16.7-5.18.3</td>
+</tr>
+<tr>
+<td>5306976</td>
+<td>The gNMI telemetry FEC histogram bin count decreases by 1 or 2 across successive reads on a counter64 path.</td>
+<td>5.16.6-5.18.3</td>
+</tr>
+<tr>
+<td>5303988</td>
+<td>The {{l1-show --pcs-errors --clear}} command resets the PHY error counters in the switch hardware. The NVUE {{nv show interface &lt;interface-id&gt; link phy health}} command and telemetry read the same counters, so their values are reset to zero whenever {{l1-show}} clears them.</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
+<td>5301567</td>
+<td>With continuous next hop churn in the network with 9k next hop groups created and deleted repeatedly, {{switchd}} runs into a netlink buffer overflow, which triggers a netlink resync; {{switchd}} encounters an out of memory error.</td>
+<td>5.16.6-5.18.3</td>
 </tr>
 <tr>
 <td>5299539</td>
@@ -838,14 +868,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.11.3-5.18.3</td>
 </tr>
 <tr>
+<td>5298360</td>
+<td>Custom gNMI clients that create a subscription and then tear down the send part of the gRPC can see the subscriptions stop and restart every 3600 seconds, resulting in a brief loss of telemetry data.</td>
+<td>5.18.1-5.18.3</td>
+</tr>
+<tr>
 <td>5288214</td>
 <td>When you boot a switch with TACACS+ or RADIUS configured to reference a server by hostname, the networking service might take a long time (2 or more minutes) to start. </td>
 <td>5.18.0-5.18.3</td>
-</tr>
-<tr>
-<td>5281522</td>
-<td>The install pending flag remains set for BGP Site of Origin (SoO) routes because it is waiting for routes with SoO to converge with SoO route paths. As a result, you might experience suboptimal routing for routes with SoO destination prefixes.</td>
-<td>5.16.3-5.18.3</td>
 </tr>
 <tr>
 <td>5281416</td>
@@ -894,6 +924,11 @@ REST API Client
 <td>5.18.1-5.18.3</td>
 </tr>
 <tr>
+<td>5272447</td>
+<td>Incorrect RMAC and next-hop programming causes invalid EVPN encapsulation for type-5 routes in mixed-mode environments. This might lead to one-way traffic and loss of proper mixed IPv4/IPv6 next-hop interoperability. </td>
+<td>5.11.5-5.18.3</td>
+</tr>
+<tr>
 <td>5269505</td>
 <td>The asic-monitor exceeds its 1 GB memory limit and restarts repeatedly when histogram snapshots are enabled on a large number of ports on a Spectrum-6 switch. </td>
 <td></td>
@@ -919,9 +954,24 @@ REST API Client
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>
+<td>5240565, 5317534</td>
+<td>Removing the {{cumulus}} user causes the LTTng tracing service to fail when the switch reboots or when the service restarts. Tracing no longer works because the service depends on configuration templates that still reference the deleted cumulus user. This issue can block troubleshooting and diagnostics.</td>
+<td>5.16.7-5.18.2</td>
+</tr>
+<tr>
 <td>5240513</td>
 <td>Packet trimming appears to be enabled successfully in NVUE, but never becomes operational. The issue occurs because WJH buffer monitoring uses the internal SPAN session that packet trimming also needs.</td>
 <td>5.16.3-5.18.3</td>
+</tr>
+<tr>
+<td>5240427</td>
+<td>At ECMP scale, SDK encounters ECMP errors due to {{No More Resources}} and shows ASSERT messages in the logs.</td>
+<td>5.13.1-5.18.3</td>
+</tr>
+<tr>
+<td>5240084</td>
+<td>Adaptive routing ECMP creation fails after more than 3000 adaptive routing ECMPs had already been created, causing repeated SDK internal error messages and leaving the HW ECMP database in an inconsistent state.</td>
+<td>5.13.1-5.18.3</td>
 </tr>
 <tr>
 <td>5236683</td>
@@ -1017,6 +1067,16 @@ REST API Client
 <td>5199525</td>
 <td>When EVPN prefixes learned from a BGP neighbor are withdrawn, the gNMI EVPN installed-prefix count does not decrease.</td>
 <td>5.16.1-5.18.3</td>
+</tr>
+<tr>
+<td>5197572, 5221130, 5221589, 5183241</td>
+<td>In rare cases, you cannot cancel bulk counter session(MOCS), which results in missing GNMI metrics during export. To work around this issue, reboot the switch.</td>
+<td>5.16.5-5.16.6</td>
+</tr>
+<tr>
+<td>5197375</td>
+<td>The {{nv show vrf &lt;vrf-id&gt; router bgp neighbor &lt;neighbor-id&gt;}} command shows graceful shutdown as disabled in the operational column even though BGP graceful shutdown is in effect for the neighbor. This issue occurs when the neighbor inherits graceful shutdown from its peer group or from the global BGP graceful shutdown setting. The {{vtysh show bgp neighbor}} output and the {{gracefulShutdown}} field in the JSON output report the same incorrect state.</td>
+<td>5.16.6-5.18.3</td>
 </tr>
 <tr>
 <td>5197214</td>
@@ -1119,6 +1179,11 @@ REST API Client
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>
+<td>5177109</td>
+<td>The switch does not forward multicast traffic when a bond is part of the prune flood vector. </td>
+<td>5.9.2-5.18.3</td>
+</tr>
+<tr>
 <td>5175676</td>
 <td>The {{nv action clear router segment-routing srv6 stats}} command completes without resetting SRv6 packet counters. A following {{nv show router segment-routing srv6 stats}} command still shows the values from before the clear.</td>
 <td>5.18.0-5.18.3</td>
@@ -1179,6 +1244,11 @@ REST API Client
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>
+<td>5157775</td>
+<td>On Spectrum-6 with 800Gx8 ports, traffic sent at full speed is consistently not fully transmitted, causing packet loss for every frame size. The loss increases as packet size increases, indicating that the egress path can not sustain full line-rate traffic and packets drop on transmit.</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
 <td>5154524</td>
 <td>The switch system health included the {{ledmgrd}} service in health evaluation incorrectly, causing false {{ServicesStatus: BAD}} results for virtual platforms. </td>
 <td>5.18.0-5.18.3</td>
@@ -1191,6 +1261,11 @@ REST API Client
 <tr>
 <td>5146376</td>
 <td>If the remote server is unreachable, {{rsyslog}} generates internal error messages that flood syslog.</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
+<td>5113098, 5319537</td>
+<td>The Spectrum-6 switch LED does not blink during boot sequence.</td>
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>

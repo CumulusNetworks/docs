@@ -86,7 +86,7 @@ cumulus@switch:~$ nv action reboot system mode &lt;cold|warm&gt;</td>
 <td></td>
 </tr>
 <tr>
-<td>5281416</td>
+<td>5281416, 5341616</td>
 <td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
 
 Due to flow:

@@ -770,7 +770,7 @@ state  enabled
 
 ### WJH Metrics
 
-When you enable WJH metrics, the switch exports information about WJH channels, such as the total number of dropped packets reported for a channel and which triggers are enabled for each channel. 
+When you enable [WJH metrics](#wjh-metrics-format), the switch exports information about WJH channels, such as the total number of dropped packets reported for a channel and which triggers are enabled for each channel. 
 
 To enable the WJH metrics export:
 
@@ -6635,7 +6635,7 @@ When you enable open telemetry with the `nv set system telemetry export otlp sta
 | `node_time_seconds` | System time in seconds since epoch (1970). |
 | `node_os_info` |  Operating system and image information, such as name and version. |
 
-### WJH Format
+### WJH Metrics Format
 
 When you enable {{<link url="/#wjh-metrics" text="WJH metrics">}}, the switch exports the following metrics:
 

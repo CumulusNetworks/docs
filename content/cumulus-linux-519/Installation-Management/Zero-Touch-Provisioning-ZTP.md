@@ -337,39 +337,12 @@ The switch prints ZTP messages on the console by default.
 - The setting is part of the switch configuration, so it does not carry across an image installation. When ZTP installs a different image and reboots the switch, console printing follows the configuration in the newly installed image.
 {{%/notice%}}
 
-<!-- REVIEW: an earlier revision of the specification stated that ZTP messages written directly to
-     standard output in verbose mode continue to appear on the console even when this setting is
-     disabled, and this page previously documented that exception. The current revision states
-     instead that disabling the setting stops messages "with all priority levels" from appearing, and
-     no longer carries the verbose-mode carve-out or the test case that verified it. Removed the
-     exception on that basis. Confirm against a candidate build that verbose-mode output is in fact
-     suppressed now, and restore the exception if it is not. Delete this comment before publishing. -->
-
-<!-- REVIEW: highest-priority item on this page. The specification names this leaf `messages state`
-     under `system log ztp` in its object-model tree, CLI syntax, CLI options table, and show
-     commands (revised in Rev 1.3, "Add revised OM proposal"), but its own Test Scenarios table still
-     calls the command `nv set system ztp wall-messages <enabled|disabled>` throughout, with no `log`
-     segment and no `state` leaf — the pre-1.3 path. More importantly, `content/nvue-reference/`, which
-     is generated from a real candidate-build command diff and not from the spec, currently lists
-     `nv set system ztp wall-messages` and `nv show system ztp wall-messages` — the old path, fully
-     formed, not merely absent. That is stronger evidence than the usual "not yet harvested" case: it
-     suggests either the revised OM proposal has not shipped in the build this reference was harvested
-     from, or the reference is stale. Drafted the specification's current path per the section-role
-     rule and because the spec is the drafting authority, but this is the one command on the page that
-     must be checked against an actual candidate build before publishing — if `wall-messages` under
-     `system ztp` is what is really there, this entire section needs the old path restored, not just
-     this comment deleted. Delete this comment before publishing. -->
-
 To stop the switch from printing ZTP messages on the console, run the `nv set system log ztp messages state disabled` command:
 
 ```
 cumulus@switch:~$ nv set system log ztp messages state disabled
 cumulus@switch:~$ nv config apply
 ```
-
-{{%notice note%}}
-The switch restarts the ZTP service to apply the new value.
-{{%/notice%}}
 
 Set this option before you rerun ZTP so that the broadcasts from the new provisioning run stay off the console. To rerun ZTP, refer to {{<link url="/#manually-run-ztp" text="Manually Run ZTP">}}.
 
@@ -387,20 +360,11 @@ cumulus@switch:~$ nv unset system log ztp messages state
 cumulus@switch:~$ nv config apply
 ```
 
-Remove this configuration before you downgrade the switch to a Cumulus Linux release that does not support the `system log ztp messages state` command.
-
-<!-- REVIEW: on a switch with more than one ASIC, the specification states that ZTP messages from
-     both the container and host namespaces normally appear through the host namespace, and that
-     disabling this setting stops messages from every namespace. This page does not otherwise
-     document per-namespace console behavior, so the terms are drafted directly from the
-     specification. Confirm the wording against how multi-ASIC namespaces are described elsewhere
-     before publishing. Delete this comment before publishing. -->
-
 {{%notice note%}}
 On a switch with more than one ASIC, disabling this setting stops ZTP messages from every ASIC namespace from appearing on the console, not only the host namespace.
 {{%/notice%}}
 
-To show the current setting, run the `nv show system log ztp messages state` command.
+To show the current setting, run the `nv show system log ztp messages` command.
 
 ## Write ZTP Scripts
 

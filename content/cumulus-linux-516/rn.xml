@@ -104,6 +104,18 @@ REST API Client
 <td></td>
 </tr>
 <tr>
+<td>5240084</td>
+<td>Adaptive routing ECMP creation fails after more than 3000 adaptive routing ECMPs had already been created, causing repeated SDK internal error messages and leaving the HW ECMP database in an inconsistent state.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5236181</td>
+<td>After an ISSU upgrade, you might see the SDK ECMP errors {{Entry Already Exists}}.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5231075</td>
 <td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
 <td>5.16.7-5.18.3</td>
@@ -370,6 +382,12 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <tr>
 <td>5024254</td>
 <td>When you apply an incorrect VLAN configuration to peer link bond member ports on the secondary MLAG switch, the MLAG peer link goes down and peer link member ports on both the primary and secondary MLAG switch go into a protodown state. The switch does not recover after NVUE rolls back the misconfiguration. To work around this issue (to restore the peer link and clear the protodown state}}), run the {{ifreload -a}} command or reboot the switch.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
+<td>5019111, 5165825</td>
+<td>After an ISSU package upgrade from 5.16.1 to 5.16.6, {{prometheus-sdk-stats}} fail to shut down, which delays warm reboot long enough for peer BGP Graceful Restart timers to expire, causing a significant warm reboot delay and an approximately 20-second traffic outage.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>
 <td>5.18.0-5.18.3</td>
 </tr>
@@ -1685,6 +1703,18 @@ REST API Client
 <td></td>
 </tr>
 <tr>
+<td>5240084</td>
+<td>Adaptive routing ECMP creation fails after more than 3000 adaptive routing ECMPs had already been created, causing repeated SDK internal error messages and leaving the HW ECMP database in an inconsistent state.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5236181</td>
+<td>After an ISSU upgrade, you might see the SDK ECMP errors {{Entry Already Exists}}.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5231075</td>
 <td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
 <td>5.16.7-5.18.3</td>
@@ -1963,6 +1993,12 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <tr>
 <td>5024254</td>
 <td>When you apply an incorrect VLAN configuration to peer link bond member ports on the secondary MLAG switch, the MLAG peer link goes down and peer link member ports on both the primary and secondary MLAG switch go into a protodown state. The switch does not recover after NVUE rolls back the misconfiguration. To work around this issue (to restore the peer link and clear the protodown state}}), run the {{ifreload -a}} command or reboot the switch.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
+<td>5019111, 5165825</td>
+<td>After an ISSU package upgrade from 5.16.1 to 5.16.6, {{prometheus-sdk-stats}} fail to shut down, which delays warm reboot long enough for peer BGP Graceful Restart timers to expire, causing a significant warm reboot delay and an approximately 20-second traffic outage.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>
 <td>5.18.0-5.18.3</td>
 </tr>
@@ -3333,6 +3369,12 @@ REST API Client
 <td></td>
 </tr>
 <tr>
+<td>5240084</td>
+<td>Adaptive routing ECMP creation fails after more than 3000 adaptive routing ECMPs had already been created, causing repeated SDK internal error messages and leaving the HW ECMP database in an inconsistent state.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5227516</td>
 <td>The {{nv config replace}} workflow fails causing {{hostapd}} to crash and generate core dumps. This issue leaves the service unable to restart cleanly and can disrupt network-related functionality.</td>
 <td>5.16.6-5.18.3</td>
@@ -3671,6 +3713,12 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <tr>
 <td>5024254</td>
 <td>When you apply an incorrect VLAN configuration to peer link bond member ports on the secondary MLAG switch, the MLAG peer link goes down and peer link member ports on both the primary and secondary MLAG switch go into a protodown state. The switch does not recover after NVUE rolls back the misconfiguration. To work around this issue (to restore the peer link and clear the protodown state}}), run the {{ifreload -a}} command or reboot the switch.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
+<td>5019111, 5165825</td>
+<td>After an ISSU package upgrade from 5.16.1 to 5.16.6, {{prometheus-sdk-stats}} fail to shut down, which delays warm reboot long enough for peer BGP Graceful Restart timers to expire, causing a significant warm reboot delay and an approximately 20-second traffic outage.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>
 <td>5.18.0-5.18.3</td>
 </tr>
@@ -5032,6 +5080,12 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td></td>
 </tr>
 <tr>
+<td>5240084</td>
+<td>Adaptive routing ECMP creation fails after more than 3000 adaptive routing ECMPs had already been created, causing repeated SDK internal error messages and leaving the HW ECMP database in an inconsistent state.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5225461</td>
 <td>For layer 3 VNI routes in single VXLAN device mode, zebra installs remote nexthop neighbors on the single VXLAN device. If the kernel ages or deletes one of the neighbors, the neighbor notification is ignored because the interface is not an SVI or bridge. As a result, routes that use the single VXLAN device nexthop have unresolved  VXLAN device neighbors even though the corresponding SVI neighbor is still present, and the switch does not forward the route. To work around this issue, restart FRR.</td>
 <td>5.16.5-5.18.3</td>
@@ -5432,6 +5486,12 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <tr>
 <td>5024254</td>
 <td>When you apply an incorrect VLAN configuration to peer link bond member ports on the secondary MLAG switch, the MLAG peer link goes down and peer link member ports on both the primary and secondary MLAG switch go into a protodown state. The switch does not recover after NVUE rolls back the misconfiguration. To work around this issue (to restore the peer link and clear the protodown state}}), run the {{ifreload -a}} command or reboot the switch.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
+<td>5019111, 5165825</td>
+<td>After an ISSU package upgrade from 5.16.1 to 5.16.6, {{prometheus-sdk-stats}} fail to shut down, which delays warm reboot long enough for peer BGP Graceful Restart timers to expire, causing a significant warm reboot delay and an approximately 20-second traffic outage.</td>
 <td>5.16.1, 5.16.5-5.17.0</td>
 <td>5.18.0-5.18.3</td>
 </tr>
@@ -6848,6 +6908,12 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
+<td>5240084</td>
+<td>Adaptive routing ECMP creation fails after more than 3000 adaptive routing ECMPs had already been created, causing repeated SDK internal error messages and leaving the HW ECMP database in an inconsistent state.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5224270</td>
 <td> On switches with TACACS+ servers configured by hostname (FQDN) instead of IP address, the switch might generate an excessive rate of DNS queries for the configured TACACS+ server names, including for local user or UID lookups that never actually need to contact a TACACS+ server.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
@@ -7151,6 +7217,12 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td> On Spectrum-1 switches, where the allocated MAC range crosses the hardware MAC profile boundary, the range check incorrectly identifies out-of-range MAC addresses as compatible. This causes the switch to program a router interface with a MAC address that the hardware cannot accept, resulting in interface creation failures with a {{No More Resources}} error.</td>
 <td>5.16.1</td>
 <td>5.16.5-5.18.3</td>
+</tr>
+<tr>
+<td>5019111, 5165825</td>
+<td>After an ISSU package upgrade from 5.16.1 to 5.16.6, {{prometheus-sdk-stats}} fail to shut down, which delays warm reboot long enough for peer BGP Graceful Restart timers to expire, causing a significant warm reboot delay and an approximately 20-second traffic outage.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td>5.18.0-5.18.3</td>
 </tr>
 <tr>
 <td>5018899, 5027908</td>
@@ -8594,6 +8666,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <td>5299253</td>
 <td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
 <td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5240084</td>
+<td>Adaptive routing ECMP creation fails after more than 3000 adaptive routing ECMPs had already been created, causing repeated SDK internal error messages and leaving the HW ECMP database in an inconsistent state.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>

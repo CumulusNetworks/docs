@@ -771,6 +771,28 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast rout
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn skip-evpn-imported</h>
+
+Configures BGP not to export routes that it imports from EVPN as type-5 routes. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`. Setting this option to `disabled` has the same effect as unsetting it.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf vrf1 router bgp address-family ipv4-unicast route-export to-evpn skip-evpn-imported enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn state</h>
 
 Enables and disables IPv4 prefix-based routing using EVPN type-5 routes for the specified VRF. When `enabled`, the switch can announce IP prefixes in the BGP RIB as EVPN type-5 routes. The default setting is `disabled`.
@@ -1010,6 +1032,32 @@ Introduced in Cumulus Linux 5.17.0
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp advertisement-delay time 90
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp allow-as-sets</h>
+
+Configures the BGP instance to send and accept updates that contain AS_SET or AS_CONFED_SET AS_PATH segments. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`, as RFC 9774 recommends. You must enable this option to use the multipath generate-asset path selection option and the address family aggregate route as-set option.
+
+{{%notice note%}}
+When you change this setting, the switch resets all BGP sessions in the instance.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp allow-as-sets enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1273,6 +1321,7 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise non-exist-map NONEXIST
 ```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound aspath-list</h>
@@ -4253,28 +4302,6 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES ttl-security s
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp rd</h>
-
-Configures the BGP route distinguisher (RD) in the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example 
-
-```
-cumulus@switch:~$ nv set vrf RED router bgp rd 10.1.20.2:5
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp plane-id</h>
 
 Configures Inter-DC routing. You can specify a value between 1 and 16. The default value is 0 (disabled)
@@ -4309,6 +4336,28 @@ Introduced in Cumulus Linux 5.18.0
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp plane-id 8
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp rd</h>
+
+Configures the BGP route distinguisher (RD) in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@switch:~$ nv set vrf RED router bgp rd 10.1.20.2:5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4553,6 +4602,7 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp timers connection-retry 10
 ```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp timers hold</h>

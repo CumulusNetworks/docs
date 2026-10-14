@@ -614,6 +614,22 @@ cumulus@switch:~$ nv set system forwarding programming log-level error
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system forwarding resilient-hash max-unbalanced-timer</h>
+
+Configures the time, in milliseconds, that the switch waits before it forces load balancing of a resilient ECMP group that remains unbalanced. You can specify a value between 0 and 4294967294. A value of 0 disables forced load balancing. The default value is 0.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system forwarding resilient-hash max-unbalanced-timer 60000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system forwarding resource-mode</h>
 
 Configures the system forwarding resource mode to be full or half. The default value is `full`.

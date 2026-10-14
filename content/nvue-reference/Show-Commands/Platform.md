@@ -8,6 +8,7 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show interface \<interface-id\> transceiver</h>
@@ -56,6 +57,28 @@ ch-3-tx-bias-current   : 6.750 mA
 ch-4-rx-power          : 0.8576 mW / -0.67 dBm 
 ch-4-tx-power          : 0.9695 mW / -0.13 dBm 
 ch-4-tx-bias-current   : 6.750 mA
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> transceiver compliance</h>
+
+Shows transceiver compliance information for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 transceiver compliance
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1245,4 +1268,26 @@ cumulus@switch:~$ nv show platform transceiver swp1 temperature
           operational  applied 
 --------  -----------  ------- 
 setpoint  60           60 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform transceiver \<transceiver-id\> compliance</h>
+
+Shows compliance information for the specified transceiver.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<transceiver-id>` |  The transceiver name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 compliance
 ```

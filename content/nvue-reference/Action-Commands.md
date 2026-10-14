@@ -8,6 +8,7 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action</h>
@@ -687,6 +688,29 @@ cumulus@switch:~$ nv action clear interface swp1 counters synce
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear interface \<interface-id\> ipv6 neighbor-discovery prefix \<ipv6-prefix-id\></h>
+
+Stops servers from using an advertised IPv6 prefix by readvertising the prefix with short lifetimes. You can set the valid lifetime and the preferred lifetime, in seconds, that the switch advertises while it clears the prefix.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<ipv6-prefix-id>` |  The IPv6 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface swp1 ipv6 neighbor-discovery prefix 2001:DB8::/64
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear interface \<interface-id\> link flap-protection violation</h>
 
 Clears the `protodown` state of the interface and brings the interface back up.
@@ -1341,6 +1365,7 @@ cumulus@switch:~$ nv action clear system aaa radius counters
 RADIUS counters cleared.
 Action succeeded
 ```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action clear system api session user \<user-id\></h>
@@ -1409,6 +1434,44 @@ Introduced in Cumulus Linux 5.16.0
 ```
 cumulus@switch:~$ nv action clear system control-plane policer statistics
 Action executing ...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system control-plane punt-classifier \<rule-id\> counters</h>
+
+Clears the drop counters for the specified control plane punt classifier rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system control-plane punt-classifier 1 counters
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system control-plane punt-classifier counters</h>
+
+Clears the drop counters for all control plane punt classifier rules.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system control-plane punt-classifier counters
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3481,7 +3544,6 @@ Do you want to continue? [y/N]
 
 If you add the `force` option (`nv action enable system ztp force`), ZTP enables and activates the provisioning process without prompting you for confirmation.
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action erase system disk</h>
@@ -3826,6 +3888,28 @@ Generated Hash Checksum
 5073306b0629c047d090e2c96b5eec4b /var/log/text.txt
 
 Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action generate system security spdm \<component-id\></h>
+
+Generates SPDM measurements on the BMC for the specified platform component. You can provide a nonce value for the measurement request.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<component-id>` |  The platform component name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate system security spdm cpu
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

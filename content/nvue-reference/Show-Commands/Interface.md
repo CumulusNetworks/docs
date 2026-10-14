@@ -846,7 +846,9 @@ cumulus@switch:~$ nv show interface swp1 link flap-protection
 state               enabled  enabled
 ```
 
-## <h>nv set interface \<interface-id\> link phy detail</h>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> link phy detail</h>
 
 Shows physical layer diagnostic information for a port.
 
@@ -1349,7 +1351,7 @@ cumulus@switch:~$ nv show interface swp1 tunnel
 
 Shows a tabular summary of PHY health statistics for all switch port interfaces in a single command, such as the error counters for all ports.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.18.0
 
@@ -1380,7 +1382,7 @@ Shows a tabular summary of transceiver temperature, voltage, and per-channel opt
 In Cumulus Linux 5.18.0, the `nv show interface --view dom` command is a Beta feature.
 {{%/notice%}}
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.18.0
 
@@ -1873,7 +1875,7 @@ cumulus@switch:~$ nv show system link-tracking group GROUP2 watch-interface swp1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system link-tracking/h>
+## <h>nv show system link-tracking</h>
 
 Shows link tracking configuration, such as the feature state (enabled or disabled) and all configured link tracking groups with their watch interfaces, minimum threshold, and state-change action.
 

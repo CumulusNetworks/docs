@@ -46,7 +46,7 @@ cumulus@switch:~$ nv set system sflow agent ip 10.0.0.0/8
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system sflow collector
+## <h>nv set system sflow collector</h>
 
 Configures the IP address of the designated sFlow collector.
 
@@ -236,6 +236,8 @@ Introduced in Cumulus Linux 5.11.0
 ```
 cumulus@switch:~$ 
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system sflow sampling-rate speed-10g</h>
 

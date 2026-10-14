@@ -374,7 +374,7 @@ source-ip  0.0.0.0/0    0.0.0.0/0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show router pbr nexthop-group </h>
+## <h>nv show router pbr nexthop-group</h>
 
 Shows the PBR next hop groups configured on the switch.
 

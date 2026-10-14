@@ -168,7 +168,7 @@ system-uuid    b41196dc-78f1-4048-8079-f3c0fbeef739
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform asic resource
+## <h>nv show platform asic resource</h>
 
 Shows both global and ACL ASIC resources.
 
@@ -228,7 +228,7 @@ Acl
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform asic resource acl
+## <h>nv show platform asic resource acl</h>
 
 Shows global and ASIC resources.
 
@@ -258,7 +258,7 @@ Resource Name                        18B Rule     36B Rule     54B Rule    Rule 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform asic resource global
+## <h>nv show platform asic resource global</h>
 
 Shows ACL ASIC resources.
 

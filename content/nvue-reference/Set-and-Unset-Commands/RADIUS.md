@@ -294,6 +294,8 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 port 42
 
  <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa radius server \<server-id\> priority</h>
 
 Configures the priority at which Cumulus Linux contacts the specified RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
@@ -315,6 +317,8 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 10
 ```
 
  <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system aaa radius server \<server-id\> secret</h>
 

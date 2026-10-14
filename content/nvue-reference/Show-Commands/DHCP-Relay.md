@@ -64,7 +64,7 @@ source-ip            auto           auto
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service dhcp-relay \<vrf-id\> agent
+## <h>nv show service dhcp-relay \<vrf-id\> agent</h>
 
 Shows DHCP Agent Information Option 82 configuration settings.
 
@@ -92,7 +92,7 @@ enable              on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service dhcp-relay \<vrf-id\> agent remote-id
+## <h>nv show service dhcp-relay \<vrf-id\> agent remote-id</h>
 
 Shows the remote IDs configured for DHCP Agent Information Option 82.
 
@@ -143,7 +143,7 @@ cumulus@switch:~$ nv show service dhcp-relay default agent remote-id 44:38:39:BE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service dhcp-relay \<vrf-id\> agent use-pif-circuit-id
+## <h>nv show service dhcp-relay \<vrf-id\> agent use-pif-circuit-id</h>
 
 Shows if circuit ID is ON for DHCP Agent Information Option 82.
 

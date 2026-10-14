@@ -1330,7 +1330,7 @@ Action succeeded
 
 Clears all the RADIUS server counters, such as the number of authorization requests, accepted, rejected, timed out and retried access requests, and authorization connection errors and bad responses.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.18.0
 

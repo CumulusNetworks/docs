@@ -215,7 +215,7 @@ cumulus@switch:~$ nv set acl acl-default-dos rule 10 action log rate 30000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl acl-default-dos rule \<rule-id\> action permit </h>
+## <h>nv set acl acl-default-dos rule \<rule-id\> action permit</h>
 
 Configures a permit action to permit packets for the firewall DoS rule.
 
@@ -482,7 +482,7 @@ cumulus@switch:~$ nv set acl acl-default-dos rule 10 action span swp1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl acl-default-dos rule \<rule-id\> match ip connection-state </h>
+## <h>nv set acl acl-default-dos rule \<rule-id\> match ip connection-state</h>
 
 Configures the connection state you want to match for the firewall DoS rule. You can set the value to `established`, `related`, `new`, or `invalid`.
 
@@ -1506,7 +1506,7 @@ cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action log rate 30000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl acl-default-whitelist rule \<rule-id\> action permit </h>
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action permit</h>
 
 Configures a permit action to permit packets for the firewall whitelist rule.
 
@@ -1773,7 +1773,7 @@ cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action span swp1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip connection-state </h>
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip connection-state</h>
 
 Configures the connection state you want to match for the firewall whitelist rule. You can set the value to `established`, `related`, `new`, or `invalid`.
 

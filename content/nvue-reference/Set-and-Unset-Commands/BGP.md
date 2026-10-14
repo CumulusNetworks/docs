@@ -503,7 +503,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast aggr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h> nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast conditional-disaggregation</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast conditional-disaggregation</h>
 
 Enables and disables BGP conditional disaggregation for IPv4 on a leaf switch.
 
@@ -1086,6 +1086,8 @@ Configures BGP dynamic neighbors that provide BGP peering to remote neighbors wi
 
 After you configure the dynamic neighbors, a BGP speaker can listen for, and form neighbor relationships with, any neighbor that is in the IP address range and maps to a peer group.
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp dynamic-neighbor limit</h>
 
 Configures the maximum number of dynamic neighbors from which you can accept a connection. You must also set the `nv set vrf <vrf-id> router bgp dynamic-neighbor listen-range` command. You can specify a value between 1 and 5000. The default value is 100.
@@ -1523,7 +1525,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unreachability prefix-limits inbound maximum </h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unreachability prefix-limits inbound maximum</h>
 
 Configures the maximum number of BGP unreachability SAFI IPv4 prefixes that can be received from the peer. This is CRITICAL for security to prevent state exhaustion.
 
@@ -4270,6 +4272,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf RED router bgp rd 10.1.20.2:5
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp plane-id</h>
 

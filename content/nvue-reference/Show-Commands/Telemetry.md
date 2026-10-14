@@ -1800,6 +1800,8 @@ description  Platform metrics
 [metric]     nvswitch_env_*
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry metric-list \<metric-list-id\> metric</h>
 
 Shows metrics for the specified metric list.
@@ -1824,6 +1826,8 @@ node_memory_MemFree_bytes
 node_memory_MemTotal_bytes
 nvswitch_env_*
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system telemetry metric-list \<metric-list-id\> metric \<metric-id\></h>
 
@@ -2796,7 +2800,7 @@ cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg sta
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet tc \<tc-id\> tx
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet tc \<tc-id\> tx</h>
 
 Shows a snapshot for specific traffic class transmitted packets on the specified interface.
 

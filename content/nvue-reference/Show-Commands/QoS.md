@@ -1,7 +1,7 @@
 ---
 title: QoS
 author: Cumulus Networks
-weight: 320
+weight: 480
 
 type: nojsscroll
 ---
@@ -3313,57 +3313,6 @@ cumulus@switch:~$ nv show qos qos pfc-watchdog
 polling-interval  0:00:00      0:00:00.100000
 robustness        0            3 
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show qos pfc-watchdog rx-pause-duration</h>
-
-Shows the PFC watchdog receive pause duration configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos pfc-watchdog rx-pause-duration
-```
-
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show qos pfc-watchdog transmit-queue-threshold</h>
-
-Shows the PFC watchdog transmit queue threshold configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos pfc-watchdog transmit-queue-threshold
-```
-
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show qos pfc-watchdog tx-frames-threshold</h>
-
-Shows the PFC watchdog transmit frames threshold configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos pfc-watchdog tx-frames-threshold
-```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

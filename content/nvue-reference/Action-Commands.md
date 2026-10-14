@@ -687,29 +687,6 @@ cumulus@switch:~$ nv action clear interface swp1 counters synce
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear interface \<interface-id\> ipv6 neighbor-discovery prefix \<ipv6-prefix-id\></h>
-
-Stops servers from using an advertised IPv6 prefix by readvertising the prefix with short lifetimes. You can set the valid lifetime and the preferred lifetime, in seconds, that the switch advertises while it clears the prefix.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-| `<ipv6-prefix-id>` |  The IPv6 address and route prefix in CIDR notation. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear interface swp1 ipv6 neighbor-discovery prefix 2001:DB8::/64
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action clear interface \<interface-id\> link flap-protection violation</h>
 
 Clears the `protodown` state of the interface and brings the interface back up.
@@ -1212,6 +1189,7 @@ Introduced in Cumulus Linux 5.14.0
 cumulus@switch:~$ nv action clear router segment-routing srv6 stats sid 2001:db8:1:1::100/48
 Action succeeded
 ```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action clear router segment-routing srv6 stats sid no-sid-drops</h>
@@ -1352,7 +1330,7 @@ Action succeeded
 
 Clears all the RADIUS server counters, such as the number of authorization requests, accepted, rejected, timed out and retried access requests, and authorization connection errors and bad responses.
 
-### Version History
+## Version History
 
 Introduced in Cumulus Linux 5.18.0
 
@@ -1363,7 +1341,6 @@ cumulus@switch:~$ nv action clear system aaa radius counters
 RADIUS counters cleared.
 Action succeeded
 ```
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action clear system api session user \<user-id\></h>
@@ -1432,44 +1409,6 @@ Introduced in Cumulus Linux 5.16.0
 ```
 cumulus@switch:~$ nv action clear system control-plane policer statistics
 Action executing ...
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear system control-plane punt-classifier \<rule-id\> counters</h>
-
-Clears the drop counters for the specified control plane punt classifier rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<rule-id>` |  The punt classifier rule ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear system control-plane punt-classifier 1 counters
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear system control-plane punt-classifier counters</h>
-
-Clears the drop counters for all control plane punt classifier rules.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear system control-plane punt-classifier counters
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3140,34 +3079,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete platform firmware /<platform-component-id/> files /<file-id/></h>
-
-Deletes a staged firmware file. 
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<platform-component-id>` |  The platform component. |
-| `<file-id>` |  The name of the file you want to delete. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action delete platform firmware SSD files ssd-fw-2.1.bin
-Action executing ...
-Deleting file: ssd-fw-2.1.bin
-Action executing ...
-File delete successfully
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action delete system file-path \<path-id\></h>
 
 Deletes the specified file from the switch.
@@ -3919,28 +3830,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate system security spdm \<component-id\></h>
-
-Generates SPDM measurements on the BMC for the specified platform component. You can provide a nonce value for the measurement request.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<component-id>` |  The platform component name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action generate system security spdm cpu
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action generate system tech-support</h>
 
 Generates a technical support file (compressed archive file of useful information for troubleshooting). 
@@ -4064,33 +3953,6 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv action import system security crl uri scp://user:password@hostname/path/crl.crt
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action install platform transceiver /<transceiver-id/> firmware files /<file-id/></h>
-
-Installs a firmware file on a transceiver module.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` |  The interface with the SFP or QSFP module. |
-| `<file-id>` |  The file name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action install platform transceiver swp1 firmware files fw-rel-38_100_121.bin
-Action executing ...
-Burning fw-rel-38_100_121.bin on swp1 ...
-Firmware burned on swp1 (mt4129_pciconf0_cable_0). Reset the module or power cycle the system to activate it
-Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4667,8 +4529,7 @@ Action succeeded
 
 Reboots the switch. Cumulus Linux provides these reboot modes:
 - `immediate` reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
-- `halt` shuts down the operating system and halts the CPU. The switch is no longer reachable over the network but switch hardware might remain powered. Use this mode for a graceful complete shutdown during planned maintenance when you must shut down the operating system fully but an operating system level halt is sufficient. You cannot connect to the switch until power cycled through a remote PDU connection.
-- `power-off` powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you require the switch to be powered off fully. You cannot connect to the switch until power cycled through a remote PDU connection. This option is supported in Cumulus Linux 5.19.0 and later.
+- `halt` shuts down the operating system and halts the CPU. The switch hardware may remain powered.
 - `power-cycle` lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
 - `cold` restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
 - `fast` restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
@@ -4686,15 +4547,11 @@ The following features are not supported during warm reboot:
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<mode-id>` |  The reboot mode: `immediate`, `halt`, `power-off`, `power-cycle`, `cold`, `fast`,or `warm`.|
+| `<mode-id>` |  The reboot mode: `immediate`, `halt`, `power-cycle`, `cold`, `fast`,or `warm`.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.15.0
-
-{{%notice note%}}
-The `power-off` option is available in Cumulus Linux 5.19.0 and later.
-{{%/notice%}}
 
 ### Example
 
@@ -4748,6 +4605,7 @@ Introduced in Cumulus Linux 5.15.0
 ```
 cumulus@switch:~$ nv action release interface swp1 ipv6 dhcp-client
 ```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action remove system docker container \<container-name\></h>
@@ -4814,33 +4672,6 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv action remove system docker image nginx tag latest
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action rename platform firmware /<platform-component-id/> files /<file-id/> /<new-name/></h>
-
-Renames a staged firmware file.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<platform-component-id>` |  The platform component. |
-| `<file-id>` |  The name of the file you want to rename. |
-| `<new-name>` |  The new name for the file. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action rename platform firmware SSD files ssd-fw-2.1.bin ssd-fw-2.1-verified.bin
-Action executing ...
-File renamed successfully
-Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5492,35 +5323,6 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dry-run
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action upload platform firmware /<platform-component-id/> files /<file-id/> /<url/></h>
-
-Uploads a staged firmware file to a remote server.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<platform-component-id>` |  The platform component. |
-| `<file-id>` |  The name of the file you want to rename. |
-| `<url>` |  The url to where you want to upload the staged firmware file. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action upload platform firmware SSD files ssd-fw-2.1.bin scp://admin@fw-archive.example.com/incoming/
-Action executing ...
-Uploading file ssd-fw-2.1.bin
-Action executing ...
-Successfully uploaded the file: ssd-fw-2.1.bin
-Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

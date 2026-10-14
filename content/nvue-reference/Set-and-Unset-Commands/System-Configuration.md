@@ -1,7 +1,7 @@
 ---
 title: System Configuration
 author: Cumulus Networks
-weight: 760
+weight: 1000
 
 type: nojsscroll
 ---
@@ -14,11 +14,9 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system cli pagination state</h>
+## <h>nv set system cli inactive-timeout</h>
 
-Enables or disables the CLI pager (pagination) state. The CLI pager enables you to view the contents of a large file or the output of an NVUE command one page at a time in the terminal window, using the up and down arrow keys or the space bar.
-
-You can set the pager state to `enabled` or `disabled`. The default value is `disabled`.
+Configures the CLI session timeout. The timeout reduces the window of opportunity for unauthorized user access to an unattended CLI sessions on the switch, or ends an inactive session and releases the resources associated with it. You can specify a value between 0 and 86400 minutes. The default value is 0 (disabled).
 
 ### Version History
 
@@ -27,7 +25,7 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system cli pagination state enabled
+cumulus@switch:~$ nv set system cli inactive-timeout 300
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -48,9 +46,11 @@ cumulus@switch:~$ nv set system cli pagination pager more
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system cli inactive-timeout</h>
+## <h>nv set system cli pagination state</h>
 
-Configures the CLI session timeout. The timeout reduces the window of opportunity for unauthorized user access to an unattended CLI sessions on the switch, or ends an inactive session and releases the resources associated with it. You can specify a value between 0 and 86400 minutes. The default value is 0 (disabled).
+Enables or disables the CLI pager (pagination) state. The CLI pager enables you to view the contents of a large file or the output of an NVUE command one page at a time in the terminal window, using the up and down arrow keys or the space bar.
+
+You can set the pager state to `enabled` or `disabled`. The default value is `disabled`.
 
 ### Version History
 
@@ -59,7 +59,7 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system cli inactive-timeout 300
+cumulus@switch:~$ nv set system cli pagination state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -234,22 +234,6 @@ cumulus@switch:~$ nv set system control-plane trap l3-mtu-err state enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system counter rates load-interval</h>
-
-Configures the interface rates calculation interval, in seconds. You can specify a value between 1 and 600. The default value is 60.
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system counter rates load-interval 100
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system counter polling-interval logical-interface</h>
 
 Configures the system counter polling interval in seconds for logical interfaces. You can set a value between 1 and 30.
@@ -278,6 +262,44 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv set system counter polling-interval physical-interface 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system counter rates load-interval</h>
+
+Configures the interface rates calculation interval, in seconds. You can specify a value between 1 and 600. The default value is 60.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system counter rates load-interval 100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h> nv set system date-time timezone</h>
+
+Configures the switch time zone.
+
+To see all the available time zones, run `nv set system date-time timezone` and press the Tab key.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show system timezone`.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system date-time timezone US/Eastern
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -569,26 +591,4 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv set system serial-console sysrq-capabilities enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system date-time timezone</h>
-
-Configures the switch time zone.
-
-To see all the available time zones, run `nv set system date-time timezone` and press the Tab key.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv show system timezone`.
-{{%/notice%}}
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system date-time timezone US/Eastern
 ```

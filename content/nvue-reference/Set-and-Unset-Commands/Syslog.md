@@ -1,7 +1,7 @@
 ---
 title: Syslog
 author: Cumulus Networks
-weight: 750
+weight: 990
 
 type: nojsscroll
 ---
@@ -107,22 +107,6 @@ Introduced in Cumulus Linux 5.16.0
 
 ```
 cumulus@switch:~$ nv set system log secured-logs state enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system log ztp messages state</h>
-
-Enables and disables ZTP console messages. You can set a value of `enabled`, or `disabled`. The default setting is `enabled`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system log ztp messages state disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -419,7 +403,7 @@ cumulus@switch:~$ nv set system syslog server 192.168.0.254 protocol tcp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system syslog server \<server-id\> selector \<priority-id\> selector-id \<value\></h>
+## nv set system syslog server \<server-id\> selector \<priority-id\> selector-id \<value\></h>
 
 Sets a selector to use for a specific server.
 

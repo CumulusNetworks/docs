@@ -102,7 +102,7 @@ cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 </td>
-<td>4.0.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.0.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -207,7 +207,7 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 
 This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
 <td>4.3.0-4.3.1, 5.0.0-5.5.1</td>
-<td>4.3.2-4.4.5, 5.6.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.3.2-4.4.6, 5.6.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 </tr>
 <tr>
 <td>3541912</td>
@@ -243,7 +243,7 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <td>3491259, 3497002</td>
 <td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
 <td>4.3.0-4.3.1, 5.0.0-5.5.1</td>
-<td>4.3.2-4.4.5, 5.6.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.3.2-4.4.6, 5.6.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -261,7 +261,7 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <td>3482006, 3486888</td>
 <td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
 <td>4.3.0-4.3.1, 5.0.0-5.5.1</td>
-<td>4.3.2-4.4.5, 5.6.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.3.2-4.4.6, 5.6.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 </tr>
 <tr>
 <td>3479786</td>
@@ -392,7 +392,7 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td>3420056</td>
 <td>
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -416,8 +416,8 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <tr>
 <td>3410952, 3413860, 3418045, 3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-4.3.1, 4.4.0-5.4.0</td>
-<td>4.3.2, 5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>3.7.0-4.3.1, 4.4.0-4.4.5, 5.0.0-5.4.0</td>
+<td>4.3.2, 4.4.6, 5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 </tr>
 <tr>
 <td>3410303</td>
@@ -439,7 +439,7 @@ ERR dummy internal vlans exhausted
 ERR cannot allocate vlan for sub-interface
 </td>
 <td>4.4.2-4.4.5, 5.0.0-5.4.0</td>
-<td>5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.6, 5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 </tr>
 <tr>
 <td>3395247</td>
@@ -479,7 +479,7 @@ To work around this issue, manually install the {{python-netaddr}} package with 
 <td>3389994, 3413826, 3413827, 3323143</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
 <td>4.2.1-4.3.1, 4.4.0-4.4.5, 5.0.0-5.4.0</td>
-<td>4.3.2, 5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.3.2, 4.4.6, 5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 </tr>
 <tr>
 <td>3389198</td>
@@ -658,7 +658,7 @@ cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -841,18 +841,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>3084476</td>
 <td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.4-4.4.6</td>
 </tr>
 <tr>
 <td>3084027</td>
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.3.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
-<td>4.4.4-4.4.5, 5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.4-4.4.6, 5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -894,7 +894,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>3.7.15-3.7.16, 4.1.1-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -902,7 +902,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -926,13 +926,13 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -998,7 +998,7 @@ You can safely ignore this warning.</td>
 <tr>
 <td>3329096, 3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
-<td>4.4.0-5.3.1</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.1</td>
 </tr>
 <tr>
 <td>3322944, 3456051</td>
@@ -1008,7 +1008,7 @@ You can safely ignore this warning.</td>
 <tr>
 <td>3320571, 3321391</td>
 <td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
-<td>4.2.1-5.3.1</td>
+<td>4.2.1-4.4.5, 5.2.0-5.3.1</td>
 </tr>
 <tr>
 <td>3308248</td>
@@ -1057,7 +1057,7 @@ ethtool (-S): unknown parameter 'clear'
 <tr>
 <td>3289972, 3289482</td>
 <td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
-<td>4.4.3-5.3.1</td>
+<td>4.4.3-4.4.5, 5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3289646, 3303084</td>
@@ -1074,7 +1074,7 @@ Type: L3
 Tenant VRF: BLUE
 Vlan: 0
 </td>
-<td>4.4.3-5.3.1</td>
+<td>4.4.3-4.4.5, 5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3267328</td>
@@ -1089,7 +1089,7 @@ Vlan: 0
 <tr>
 <td>3262012, 3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
-<td>4.4.0-5.3.1</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.1</td>
 </tr>
 <tr>
 <td>3255899, 3261883, 3255886</td>
@@ -1112,7 +1112,7 @@ Vlan: 0
 <tr>
 <td>3234085, 3240406, 3334036</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.3.1, 4.4.2-5.3.1</td>
+<td>4.3.0-4.3.1, 4.4.2-4.4.5, 5.0.1-5.3.1</td>
 </tr>
 <tr>
 <td>3226525</td>

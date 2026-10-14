@@ -1,7 +1,7 @@
 ---
 title: Profile-Based Configuration
 author: Cumulus Networks
-weight: 667
+weight: 850
 
 type: nojsscroll
 ---
@@ -39,29 +39,6 @@ Introduced in Cumulus Linux 5.18.0
 
 ```
 cumulus@switch:~$ nv action activate system do-spx profile leaf
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system do-spx profile \<profile-id\> uplink \<interface-id\> breakout</h>
-
-Configures the upinks for the profile. The breakout is required. With breakout 4x, parent ports swp1 through swp32 split into sub-interfaces swp1s0 through swp32s3 (128 ports). Breakout 1x keeps ports as-is (swp33 through swp64). All subsequent per-interface commands target the split ports.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<profile-id>` |  The role of the switch: `leaf`, `spine-2` (two-tier spine), `spine-3` (three-tier spine), or `super-spine`. |
-| `<interface-id>` |  The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system do-spx profile leaf uplink swp1-32 breakout 4x 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -134,4 +111,27 @@ Introduced in Cumulus Linux 5.18.0
 
 ```
 cumulus@switch:~$ nv set system do-spx profile leaf otlp-destination 10.1.1.100 otlp-port 4317
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system do-spx profile \<profile-id\> uplink \<interface-id\> breakout</h>
+
+Configures the upinks for the profile. The breakout is required. With breakout 4x, parent ports swp1 through swp32 split into sub-interfaces swp1s0 through swp32s3 (128 ports). Breakout 1x keeps ports as-is (swp33 through swp64). All subsequent per-interface commands target the split ports.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The role of the switch: `leaf`, `spine-2` (two-tier spine), `spine-3` (three-tier spine), or `super-spine`. |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system do-spx profile leaf uplink swp1-32 breakout 4x 
 ```

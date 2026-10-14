@@ -107,28 +107,6 @@ attached [rev_id: 27]
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system config backup state</h>
-
-Enables and disables automatic configuration backup. 
-
-NVUE provides an automatic configuration backup and restore feature that takes snapshots each time the `nv config apply` command runs successfully. NVUE also takes a snapshot weekly (even if no configuration change occurs) to ensure that at least one valid weekly snapshot is available. You can then restore a snapshot when needed.
-
-The switch stores snapshots as compressed archives in the `/var/lib/config-backup/auto-snapshots/applied` and `/var/lib/config-backup/auto-snapshots/weekly` directories in `config_backup-<YYYY-MM-DD-HH.MM.SS>_<hostname>` format; for example, `/var/lib/config-backup/auto-snapshots/applied/config_backup-2026-07-28-08.55.10_leaf01`. When you reach the maximum storage limit of 512 MB, the switch deletes the oldest snapshots and logs the deleted snapshots.
-
-Automatic configuration backup is disabled by default. 
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system config backup state enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv config delete \<revision-id\></h>
 
 Deletes a revision.
@@ -458,30 +436,6 @@ cumulus@switch:~$ nv config show
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv config translate revision \<revision-id\></h>
-
-Translates an NVUE configuration revision into NVUE commands. The revision ID must be either an integer or a named revision (such as startup or applied).
-
-If the revision is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<revision-id>` |  The revision ID.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv config translate revision 10 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv config translate filename \<filename\></h>
 
 Translates an NVUE configuration yaml file into NVUE commands. The configuration file must be located on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
@@ -502,6 +456,30 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv config translate filename /home/cumulus/backup.yaml
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv config translate revision \<revision-id\></h>
+
+Translates an NVUE configuration revision into NVUE commands. The revision ID must be either an integer or a named revision (such as startup or applied).
+
+If the revision is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<revision-id>` |  The revision ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config translate revision 10 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -571,4 +549,26 @@ Introduced in Cumulus Linux 5.17.0
 ```
 cumulus@switch:~$ nv config verify revision 2
 dry_run_complete [rev_id: 2]
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system config backup state</h>
+
+Enables and disables automatic configuration backup. 
+
+NVUE provides an automatic configuration backup and restore feature that takes snapshots each time the `nv config apply` command runs successfully. NVUE also takes a snapshot weekly (even if no configuration change occurs) to ensure that at least one valid weekly snapshot is available. You can then restore a snapshot when needed.
+
+The switch stores snapshots as compressed archives in the `/var/lib/config-backup/auto-snapshots/applied` and `/var/lib/config-backup/auto-snapshots/weekly` directories in `config_backup-<YYYY-MM-DD-HH.MM.SS>_<hostname>` format; for example, `/var/lib/config-backup/auto-snapshots/applied/config_backup-2026-07-28-08.55.10_leaf01`. When you reach the maximum storage limit of 512 MB, the switch deletes the oldest snapshots and logs the deleted snapshots.
+
+Automatic configuration backup is disabled by default. 
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system config backup state enabled
 ```

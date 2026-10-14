@@ -1,7 +1,7 @@
 ---
 title: SSH Server
 author: Cumulus Networks
-weight: 735
+weight: 960
 draft: true
 type: nojsscroll
 ---
@@ -11,6 +11,50 @@ h { color: RGB(118,185,0)}
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system security group \<group-id\> max-logins</h>
+
+Configures the maximum number of concurrent sessions allowed for the specified user group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<group-id>` |   The group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system security group GROUP1 max-logins 15
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system security user \<user-id\> max-logins</h>
+
+Configures the maximum number of concurrent sessions allowed for the specified user.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<user-id>` |   The username. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system security user USER1 max-logins 15
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -90,28 +134,6 @@ Introduced in Cumulus Linux 5.6.0
 
 ```
 cumulus@switch:~$ nv set system ssh-server deny-users user3
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system security group \<group-id\> max-logins</h>
-
-Configures the maximum number of concurrent sessions allowed for the specified user group.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<group-id>` |   The group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.16.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system security group GROUP1 max-logins 15
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -409,28 +431,6 @@ Introduced in Cumulus Linux 5.13.0
 
 ```
 cumulus@switch:~$ nv set system ssh-server trusted-ca-keys KEY1 type ssh-rsa
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system security user \<user-id\> max-logins</h>
-
-Configures the maximum number of concurrent sessions allowed for the specified user.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<user-id>` |   The username. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.16.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system security user USER1 max-logins 15
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

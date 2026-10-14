@@ -1,7 +1,7 @@
 ---
 title: EVPN
 author: Cumulus Networks
-weight: 170
+weight: 260
 
 type: nojsscroll
 ---
@@ -491,6 +491,57 @@ type
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show evpn multihoming bgp-info esi \<esi-id\> fragments</h>
+
+Shows EVPN multihoming BGP remote VTEP fragment information for a specific ESI.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<esi-id>` | The ESI identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments
+              evi-count
+------------  ---------
+10.10.10.1:8  1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show evpn multihoming bgp-info esi \<esi-id\> fragments \<fragment-id\></h>
+
+Shows specific EVPN multihoming BGP remote VTEP fragment information for a specific ESI.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<esi-id>` | The ESI identifier. |
+| `<fragment-id>` | The route-distinguisher. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments 10.10.10.1:8
+           operational  applied  pending
+---------  -----------  -------  -------
+evi-count  1  
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show evpn multihoming bgp-info esi \<esi-id\> remote-vtep</h>
 
 Shows EVPN multihoming BGP information for the specified ESI for all VTEPs.
@@ -542,57 +593,6 @@ df-preference  50000
 flags                                       
   active       on                           
   esr          on
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show evpn multihoming bgp-info esi \<esi-id\> fragments</h>
-
-Shows EVPN multihoming BGP remote VTEP fragment information for a specific ESI.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<esi-id>` | The ESI identifier. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments
-              evi-count
-------------  ---------
-10.10.10.1:8  1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show evpn multihoming bgp-info esi \<esi-id\> fragments \<fragment-id\></h>
-
-Shows specific EVPN multihoming BGP remote VTEP fragment information for a specific ESI.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<esi-id>` | The ESI identifier. |
-| `<fragment-id>` | The route-distinguisher. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments 10.10.10.1:8
-           operational  applied  pending
----------  -----------  -------  -------
-evi-count  1  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1253,6 +1253,31 @@ cumulus@switch:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show evpn vni \<vni-id\> remote-vtep</h>
+
+Shows the remote VTEPs that connect to the switch.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vni-id>` | The VNI name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show evpn vni 10 remote-vtep
+           flood
+---------  -----
+10.0.1.34  HER
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show evpn vni \<vni-id\> route-advertise</h>
 
 Shows route advertisement information for the specified VNI.
@@ -1464,31 +1489,6 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show evpn vni 10 route-target import 65102:10
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show evpn vni \<vni-id\> remote-vtep</h>
-
-Shows the remote VTEPs that connect to the switch.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vni-id>` | The VNI name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show evpn vni 10 remote-vtep
-           flood
----------  -----
-10.0.1.34  HER
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

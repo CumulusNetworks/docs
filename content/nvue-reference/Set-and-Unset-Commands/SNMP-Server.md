@@ -1,7 +1,7 @@
 ---
 title: SNMP Server
 author: Cumulus Networks
-weight: 730
+weight: 950
 
 type: nojsscroll
 ---
@@ -15,27 +15,6 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 {{%notice note%}}
 In Cumulus Linux 5.10 and earlier, `nv set system snmp-server` commands are `nv set service snmp-server` commands.
 {{%/notice%}}
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server state</h>
-
-Enables and disables the SNMP server. You can specify `enabled` or `disabled`.
-
-{{%notice note%}}
-- In Cumulus Linux 5.10 and earlier, this command is `nv set service snmp-server enable on` and `nv set service snmp-server enable off`.
-- In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-{{%/notice%}}
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server state enabled
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -260,6 +239,27 @@ cumulus@switch:~$ nv set system snmp-server readonly-community-v6 simplepassword
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system snmp-server state</h>
+
+Enables and disables the SNMP server. You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+- In Cumulus Linux 5.10 and earlier, this command is `nv set service snmp-server enable on` and `nv set service snmp-server enable off`.
+- In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system snmp-server system-contact \<value\></h>
 
 Configures the username and email address of the contact person for this managed node.
@@ -368,70 +368,6 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv set system snmp-server trap-cpu-load-average one-minute 12 five-minute 10 fifteen-minute 5
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server trap-link-down</h>
-
-Configures the switch to generate notifications when the operational status of the link changes to down.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server trap-link-down
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server trap-link-down check-frequency</h>
-
-Configures how often in seconds to check if the link is down to trigger notifications when the operational status of the link changes. You can specify a value between 5 and 300.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server trap-link-down check-frequency 10
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server trap-link-up</h>
-
-Configures the switch to generate notifications when the operational status of the link changes to up.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server trap-link-up
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server trap-link-up check-frequency</h>
-
-Configures how often in seconds to check if the link is up to trigger notifications when the operational status of the link changes. You can specify a value between 5 and 300.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server trap-link-up check-frequency 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -551,9 +487,34 @@ cumulus@switch:~$ nv set system snmp-server trap-destination localhost username 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform</h>
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\></h>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the engine ID.
+Configures the SNMP trap receiver IP address, and the SNMP username and MD5 authentication password, and the AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform</h>
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the AES encryption password, and the engine ID.
 
 The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
@@ -564,6 +525,7 @@ The SNMP trap receiving daemon must have usernames, authentication passwords, an
 | `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
 | `<engine-id>` | The engine ID.|
 
 ### Version History
@@ -573,7 +535,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -631,34 +593,9 @@ cumulus@switch:~$ nv set system snmp-server trap-destination localhost username 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\></h>
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform</h>
 
-Configures the SNMP trap receiver IP address, and the SNMP username and MD5 authentication password, and the AES encryption password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform</h>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the AES encryption password, and the engine ID.
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the engine ID.
 
 The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
@@ -669,7 +606,6 @@ The SNMP trap receiving daemon must have usernames, authentication passwords, an
 | `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
 | `<engine-id>` | The engine ID.|
 
 ### Version History
@@ -679,7 +615,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -708,9 +644,34 @@ cumulus@switch:~$ nv set system snmp-server trap-destination localhost username 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform</h>
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\></h>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform</h>
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
 
 The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
@@ -721,6 +682,7 @@ The SNMP trap receiving daemon must have usernames, authentication passwords, an
 | `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
 | `<engine-id>` | The engine ID.|
 
 ### Version History
@@ -730,7 +692,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -788,34 +750,9 @@ cumulus@switch:~$ nv set system snmp-server trap-destination localhost username 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\></h>
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform</h>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the AES encryption password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform</h>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
 
 The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
@@ -826,7 +763,6 @@ The SNMP trap receiving daemon must have usernames, authentication passwords, an
 | `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
 | `<engine-id>` | The engine ID.|
 
 ### Version History
@@ -836,7 +772,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -961,11 +897,9 @@ cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED u
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform</h>
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\></h>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the trap server Engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, and the AES encryption password.
 
 ### Command Syntax
 
@@ -975,7 +909,7 @@ The SNMP trap receiving daemon must have usernames, authentication passwords, an
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
-| `<engine-id>` | The trap server engine ID.|
+| `<encrypt-id>` | The AES encryption password.|
 
 ### Version History
 
@@ -984,7 +918,34 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor engine-id  0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor encrypt-aes myaessecret2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform</h>
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, the AES encryption password, and the trap server engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5password encrypt-aes user3encryption engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1042,35 +1003,11 @@ cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED u
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\></h>
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform</h>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, and the AES encryption password.
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the trap server Engine ID.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<vrf-name>` | The VRF name.|
-| `<username-id>` | The SNMP username.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor encrypt-aes myaessecret2
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform</h>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, the AES encryption password, and the trap server engine ID.
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 ### Command Syntax
 
@@ -1080,8 +1017,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-| `<engine-id>` | The engine ID.|
+| `<engine-id>` | The trap server engine ID.|
 
 ### Version History
 
@@ -1090,7 +1026,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5password encrypt-aes user3encryption engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor engine-id  0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1120,9 +1056,35 @@ cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED u
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform</h>
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\></h>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-aes myaessecret1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform</h>
+
+Configures the SNMP trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
 
 The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
@@ -1134,7 +1096,8 @@ The SNMP trap receiving daemon must have usernames, authentication passwords, an
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
-| `<engine-id>` | The trap server engine ID.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<engine-id>` | The engine ID.|
 
 ### Version History
 
@@ -1143,7 +1106,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-aes myaessecret1 engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1203,35 +1166,9 @@ cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED u
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\></h>
+## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform</h>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the AES encryption password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<vrf-name>` | The VRF name.|
-| `<username-id>` | The SNMP username.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-aes myaessecret1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform</h>
-
-Configures the SNMP trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
 
 The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
@@ -1243,8 +1180,7 @@ The SNMP trap receiving daemon must have usernames, authentication passwords, an
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-| `<engine-id>` | The engine ID.|
+| `<engine-id>` | The trap server engine ID.|
 
 ### Version History
 
@@ -1253,7 +1189,71 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-aes myaessecret1 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server trap-link-down</h>
+
+Configures the switch to generate notifications when the operational status of the link changes to down.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server trap-link-down
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server trap-link-down check-frequency</h>
+
+Configures how often in seconds to check if the link is down to trigger notifications when the operational status of the link changes. You can specify a value between 5 and 300.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server trap-link-down check-frequency 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server trap-link-up</h>
+
+Configures the switch to generate notifications when the operational status of the link changes to up.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server trap-link-up
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server trap-link-up check-frequency</h>
+
+Configures how often in seconds to check if the link is up to trigger notifications when the operational status of the link changes. You can specify a value between 5 and 300.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server trap-link-up check-frequency 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1321,80 +1321,6 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv set system snmp-server username testuser1 auth-md5 myauthmd5password
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\></h>
-
-Configures the DES encryption password for MD5 authentication for the specified SNMP user to encrypt the contents of the request and response packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> oid \<oid\></h>
-
-Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian snmp-mibs-downloader package.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-| `<oid>` | The OID tree that identifies an SNMP MIB object.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> view \<view\></h>
-
-Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-| `<view>` | The SNMP view (subnet).|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret view cumulusOnly
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1469,6 +1395,80 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv set system snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret view cumulusOnly
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\></h>
+
+Configures the DES encryption password for MD5 authentication for the specified SNMP user to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> oid \<oid\></h>
+
+Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian snmp-mibs-downloader package.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> view \<view\></h>
+
+Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret view cumulusOnly
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1622,80 +1622,6 @@ cumulus@switch:~$ nv set system snmp-server username testuser1 auth-sha SHApassw
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\></h>
-
-Configures the DES encryption password for SHA authentication for the specified SNMP user to encrypt the contents of the request and response packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> oid \<oid\></h>
-
-Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian snmp-mibs-downloader package.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-| `<oid>` | The OID tree that identifies an SNMP MIB object.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> view \<value\></h>
-
-Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-| `<view>` | The SNMP view (subnet).|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret view cumulusOnly
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\></h>
 
 Configures the AES encryption password for SHA authentication for the specified SNMP user to encrypt the contents of the request and response packets.
@@ -1766,6 +1692,80 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv set system snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret view cumulusOnly
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\></h>
+
+Configures the DES encryption password for SHA authentication for the specified SNMP user to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> oid \<oid\></h>
+
+Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian snmp-mibs-downloader package.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> view \<value\></h>
+
+Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret view cumulusOnly
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

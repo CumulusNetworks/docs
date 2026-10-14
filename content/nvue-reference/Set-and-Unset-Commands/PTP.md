@@ -1,7 +1,7 @@
 ---
 title: PTP
 author: Cumulus Networks
-weight: 680
+weight: 870
 
 type: nojsscroll
 ---
@@ -58,32 +58,6 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 ptp delay-mechanism end-to-end
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> ptp state</h>
-
-Enables and disables PTP on the specified PTP interface. The default setting is `disabled`.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set service ptp state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -218,6 +192,32 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 ptp shaper state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> ptp state</h>
+
+Enables and disables PTP on the specified PTP interface. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service ptp state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -514,56 +514,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set service ptp 1 domain 3
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set service ptp \<instance-id\> state</h>
-
-Enables and disables PTP globally. The default setting is `disabled`.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<instance-id>` |  The PTP instance number used for management purposes. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set service ptp 1 state enabled
-```
-
-HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set service ptp \<instance-id\> force-version</h>
-
-Configures the PTP minor version. Cumulus Linux uses a `linuxptp` package that is PTP v2.1 compliant, and sets the major PTP version to 2 and the minor PTP version to 1 by default in the configuration. If your PTP configuration does not work correctly when the minor version is set, you can change the minor version to 0.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<instance-id>` |  The PTP instance number used for management purposes. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.8.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set service ptp 1 force-version 2.0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1039,6 +989,81 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 profile-type itu-g-8275-1
 ```
 <!--
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service ptp \<instance-id\> profile \<profile-id\> sync-interval</h>
+
+Configures how often PTP synchronizes with the master for the custom profile. This is the mean sync interval for multicast messages, specified as a power of two in seconds. You can specify a value between -7 and 7. The default setting is `-4`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+| `<profile-id>` |  The custom profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 sync-interval 5
+```
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service ptp \<instance-id\> profile \<profile-id\> transport</h>
+
+Configures the transport mode for PTP messages for the custom profile. You can specify `ipv4`, `ipv6`, or `802.3`. The default setting is `ipv4`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+| `<profile-id>` |  The custom profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 transport ipv6
+```
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service ptp \<instance-id\> profile \<profile-id\> two-step</h>
+
+Configures clock correction mode for a custom profile. Specify `disabled` to use one-step mode or `enabled` to use two-step mode. The default value is `enabled`.
+
+In one-step mode, PTP time stamps the packet as it egresses the port and there is no need for a follow-up packet.
+In two-step mode, PTP notes the time when the packet egresses the port and sends it in a separate follow-up message.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+| `<profile-id>` |  The custom profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 two-step disabled
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service ptp \<instance-id\> servo noise-transfer</h>
@@ -1068,63 +1093,15 @@ Introduced in Cumulus Linux 5.7.0
 cumulus@switch:~$ nv set service ptp 1 servo noise-transfer
 ```
 -->
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set service ptp \<instance-id\> profile \<profile-id\> sync-interval</h>
-
-Configures how often PTP synchronizes with the master for the custom profile. This is the mean sync interval for multicast messages, specified as a power of two in seconds. You can specify a value between -7 and 7. The default setting is `-4`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<instance-id>` |  The PTP instance number used for management purposes. |
-| `<profile-id>` |  The custom profile name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.2.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 sync-interval 5
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service ptp \<instance-id\> profile \<profile-id\> transport</h>
+## <h>nv set service ptp \<instance-id\> state</h>
 
-Configures the transport mode for PTP messages for the custom profile. You can specify `ipv4`, `ipv6`, or `802.3`. The default setting is `ipv4`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<instance-id>` |  The PTP instance number used for management purposes. |
-| `<profile-id>` |  The custom profile name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.2.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 transport ipv6
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set service ptp \<instance-id\> profile \<profile-id\> two-step</h>
-
-Configures clock correction mode for a custom profile. Specify `disabled` to use one-step mode or `enabled` to use two-step mode. The default value is `enabled`.
-
-In one-step mode, PTP time stamps the packet as it egresses the port and there is no need for a follow-up packet.
-In two-step mode, PTP notes the time when the packet egresses the port and sends it in a separate follow-up message.
+Enables and disables PTP globally. The default setting is `disabled`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -1132,16 +1109,37 @@ In Cumulus Linux 5.14 and earlier, you specify `on` or `off`.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<instance-id>` |  The PTP instance number used for management purposes. |
-| `<profile-id>` |  The custom profile name. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.6.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 two-step disabled
+cumulus@switch:~$ nv set service ptp 1 state enabled
+```
+
+HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service ptp \<instance-id\> force-version</h>
+
+Configures the PTP minor version. Cumulus Linux uses a `linuxptp` package that is PTP v2.1 compliant, and sets the major PTP version to 2 and the minor PTP version to 1 by default in the configuration. If your PTP configuration does not work correctly when the minor version is set, you can change the minor version to 0.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service ptp 1 force-version 2.0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

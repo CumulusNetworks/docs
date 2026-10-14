@@ -1,7 +1,7 @@
 ---
 title: Platform
 author: Cumulus Networks
-weight: 270
+weight: 410
 
 type: nojsscroll
 ---
@@ -56,28 +56,6 @@ ch-3-tx-bias-current   : 6.750 mA
 ch-4-rx-power          : 0.8576 mW / -0.67 dBm 
 ch-4-tx-power          : 0.9695 mW / -0.13 dBm 
 ch-4-tx-bias-current   : 6.750 mA
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> transceiver compliance</h>
-
-Shows transceiver compliance information for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 transceiver compliance
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -190,7 +168,7 @@ system-uuid    b41196dc-78f1-4048-8079-f3c0fbeef739
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform asic resource</h>
+## <h>nv show platform asic resource
 
 Shows both global and ACL ASIC resources.
 
@@ -250,7 +228,7 @@ Acl
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform asic resource acl</h>
+## <h>nv show platform asic resource acl
 
 Shows global and ASIC resources.
 
@@ -280,7 +258,7 @@ Resource Name                        18B Rule     36B Rule     54B Rule    Rule 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform asic resource global</h>
+## <h>nv show platform asic resource global
 
 Shows ACL ASIC resources.
 
@@ -1090,60 +1068,6 @@ swp31        QSFP28      Mellanox     MCP1600-C001E30N  MT2039VB01191  A3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform transceiver /<interface-id/> firmware</h>
-
-Shows the current firmware version for a transceiver, the upgrade status, and the firmware files available.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` |  The interface with the SFP or QSFP module. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show platform transceiver swp1 firmware
-                     operational
--------------------  ---------------------
-actual-firmware      38.100.121
-fw-upgrade-status    ok
-[files]              fw-rel-38_100_121.bin
-[files]              fw-rel-38_100_122.bin
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show platform transceiver /<interface-id/> firmware files</h>
-
-Shows the available firmware files and their paths.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` |  The interface with the SFP or QSFP module. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show platform transceiver swp1 firmware files
-Available Firmware Files  File Path
--------------------------  --------------------------------------------------------------
-fw-rel-38_100_121.bin      /etc/fae_platform_firmware/transceiver/fw-rel-38_100_121.bin
-fw-rel-38_100_122.bin      /tmp/firmware_downloads/transceiver/fw-rel-38_100_122.bin
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show platform transceiver \<interface-id\></h>
 
 Shows hardware capabilities and measurement information on the SFP or QSFP module in a particular port.
@@ -1321,26 +1245,4 @@ cumulus@switch:~$ nv show platform transceiver swp1 temperature
           operational  applied 
 --------  -----------  ------- 
 setpoint  60           60 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show platform transceiver \<transceiver-id\> compliance</h>
-
-Shows compliance information for the specified transceiver.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<transceiver-id>` |  The transceiver name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show platform transceiver swp1 compliance
 ```

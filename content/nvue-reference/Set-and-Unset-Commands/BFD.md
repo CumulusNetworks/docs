@@ -1,7 +1,7 @@
 ---
 title: BFD
 author: Cumulus Networks
-weight: 519
+weight: 550
 
 type: nojsscroll
 ---
@@ -89,26 +89,6 @@ cumulus@switch:~$ nv set router bfd offload enabled
 {{%notice note%}}
 For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` command.
 {{%/notice%}}
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router bfd offload-mode</h>
-
-Configures where the switch processes BFD packets. You can set a value of `control-plane`, `kernel`, or `hardware`. `control-plane` runs BFD in software in the bfdd daemon, `kernel` offloads BFD to the kernel module, and `hardware` offloads BFD to the switch firmware. The default setting is `control-plane`.
-
-{{%notice note%}}
-The `hardware` option requires an NVIDIA Spectrum-6 switch.
-{{%/notice%}}
-
-### Version History
-
-Introduced in Cumulus Linux 5.19.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router bfd offload-mode kernel
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

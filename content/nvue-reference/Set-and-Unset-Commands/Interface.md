@@ -957,7 +957,7 @@ cumulus@switch:~$ nv set interface swp1 vlan 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set platform transceiver \<interface-id\> temperature setpoint</h>
+## <h>nv set platform transceiver \<interface-id\> temperature setpoint</h>
 
 Configures the temperature thresholds for fan activation in the FAN algorithm, ensuring that they are below the module’s high warning threshold to optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures. Lowering the thresholds leads to earlier and more frequent fan operation, increasing power usage and noise but protecting hardware performance and lifespan.
 

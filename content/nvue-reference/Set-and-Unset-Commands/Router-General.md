@@ -1,7 +1,7 @@
 ---
 title: Router General
 author: Cumulus Networks
-weight: 705
+weight: 905
 
 type: nojsscroll
 ---
@@ -35,7 +35,6 @@ Introduced in Cumulus Linux 5.19.0
 cumulus@switch:~$ nv set router allow-reserved-range class-e
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router resource-limit max-file-descriptors</h>
@@ -51,4 +50,3 @@ Introduced in Cumulus Linux 5.19.0
 ```
 cumulus@switch:~$ nv set router resource-limit max-file-descriptors 8192
 ```
-

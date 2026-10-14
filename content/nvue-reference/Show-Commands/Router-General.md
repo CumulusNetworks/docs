@@ -1,7 +1,7 @@
 ---
 title: Router General
 author: Cumulus Networks
-weight: 335
+weight: 505
 
 type: nojsscroll
 ---
@@ -25,7 +25,6 @@ Introduced in Cumulus Linux 5.19.0
 cumulus@switch:~$ nv show router allow-reserved-range
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show router allow-reserved-range \<allow-reserved-range-id\></h>
@@ -48,7 +47,6 @@ Introduced in Cumulus Linux 5.19.0
 cumulus@switch:~$ nv show router allow-reserved-range class-e
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show router resource-limit</h>
@@ -64,4 +62,3 @@ Introduced in Cumulus Linux 5.19.0
 ```
 cumulus@switch:~$ nv show router resource-limit
 ```
-

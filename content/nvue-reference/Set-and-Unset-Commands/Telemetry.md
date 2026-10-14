@@ -373,7 +373,7 @@ cumulus@switch:~$ nv set interface swp1-8 telemetry histogram egress-buffer traf
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> telemetry histogram egress-buffer traffic-class \<tc-id\> histogram-size</h> 
+## <h>nv set interface \<interface-id\> telemetry histogram egress-buffer traffic-class \<tc-id\> histogram-size</h>
 
 Configures the size of the egress buffer histogram for the specified traffic class and interface. Adding this number to the minimum boundary size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. You can specify a value, which must be a multiple of 96, between 96 and 4294967295.
 
@@ -718,6 +718,144 @@ cumulus@switch:~$ nv set interface swp1-8 telemetry histogram latency traffic-cl
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\></h>
+
+Configures the traffic direction for which the switch collects microburst histogram data on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<if-direction-id>` |  The traffic direction. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 telemetry histogram microburst direction rx
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\> bin-min-boundary</h>
+
+Configures the minimum boundary of the microburst histogram bins on the specified interface, in the configured unit. You can specify a value between 1 and 268435455. The default value is 960.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<if-direction-id>` |  The traffic direction. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 telemetry histogram microburst direction rx bin-min-boundary 1920
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\> histogram-size</h>
+
+Configures the microburst histogram bin size on the specified interface, in the configured unit. You can specify a value between 1 and 536870903. The default value is 12288.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<if-direction-id>` |  The traffic direction. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 telemetry histogram microburst direction rx histogram-size 24576
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\> sample-interval</h>
+
+Configures the microburst histogram sampling interval, in nanoseconds, on the specified interface. You can specify a value between 128 and 262144. The default value is 1024.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<if-direction-id>` |  The traffic direction. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 telemetry histogram microburst direction rx sample-interval 2048
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\> threshold score</h>
+
+Configures the burstiness score threshold for the specified direction and interface. The switch reports microburst activity when the score exceeds this threshold.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<if-direction-id>` |  The traffic direction. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 telemetry histogram microburst direction rx threshold score 0.8
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\> unit</h>
+
+Configures the unit for the microburst histogram on the specified interface. You can set a value of `bytes`, or `packets`. The default setting is `packets`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<if-direction-id>` |  The traffic direction. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 telemetry histogram microburst direction rx unit bytes
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry adaptive-routing-stats export state</h>
 
 Enables and disables export for adaptive routing statistics. You can specify `enabled` or `disabled`.
@@ -814,7 +952,39 @@ cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 500
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry dot1x-stats class server-metrics state</h>
+## <h>nv set system telemetry control-plane-stats class punt-classifier sample-interval</h>
+
+Configures the interval, in seconds, at which the switch samples punt classifier counters. You can specify a value between 10 and 86400. The default value is 10.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats class punt-classifier sample-interval 30
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry control-plane-stats class punt-classifier state</h>
+
+Enables and disables export of punt classifier counters. You can set a value of `enabled`, or `disabled`. The default setting is `enabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats class punt-classifier state disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry dot1x-stats class server-metrics state</h>
 
 Enables and disables the export of 802.1x Radius server metrics.
 
@@ -1642,6 +1812,86 @@ cumulus@switch:~$ nv set system telemetry histogram latency histogram-size 12288
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry histogram microburst bin-min-boundary</h>
+
+Configures the default minimum boundary of the microburst histogram bins for all interfaces. You can specify a value between 1 and 268435455. The default value is 960.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry histogram microburst bin-min-boundary 1920
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry histogram microburst histogram-size</h>
+
+Configures the default microburst histogram bin size for all interfaces. You can specify a value between 1 and 536870903. The default value is 12288.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry histogram microburst histogram-size 24576
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry histogram microburst sample-interval</h>
+
+Configures the default microburst histogram sampling interval, in nanoseconds, for all interfaces. You can specify a value between 128 and 262144. The default value is 1024.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry histogram microburst sample-interval 2048
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry histogram microburst threshold score</h>
+
+Configures the default burstiness score threshold for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry histogram microburst threshold score 0.8
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry histogram microburst unit</h>
+
+Configures the default unit for the microburst histogram on all interfaces. You can set a value of `bytes`, or `packets`. The default setting is `packets`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry histogram microburst unit bytes
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry histogram temporality \<mode\></h>
 
 Sets the temporality mode for open telemetry histogram collection. Histogram temporality mode lets you choose how to aggregate and report histogram metrics over time.
@@ -1987,7 +2237,7 @@ cumulus@switch:~$ nv set system telemetry metric-list PLATFORM_METRICS metric no
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry platform-stats class asic-resource sample-interval </h>
+## <h>nv set system telemetry platform-stats class asic-resource sample-interval</h>
 
 Sets the sample interval for ASIC resource metrics.
 
@@ -2049,6 +2299,38 @@ Introduced in Cumulus Linux 5.13.0
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class transceiver-info state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry radius-stats export state</h>
+
+Enables and disables export of RADIUS login statistics. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry radius-stats export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry radius-stats sample-interval</h>
+
+Configures the interval, in seconds, at which the switch samples RADIUS login statistics. You can specify a value between 5 and 86400. The default value is 5.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry radius-stats sample-interval 60
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2571,6 +2853,50 @@ cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP2 buffer-stats s
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry stats-group \<stats-group-id\> control-plane-stats class punt-classifier sample-interval</h>
+
+Configures the interval, in seconds, at which the switch samples punt classifier counters for the specified statistics group. You can specify a value between 10 and 86400. The default value is 10.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group group1 control-plane-stats class punt-classifier sample-interval 30
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> control-plane-stats class punt-classifier state</h>
+
+Enables and disables export of punt classifier counters for the specified statistics group. You can set a value of `enabled`, or `disabled`. The default setting is `enabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group group1 control-plane-stats class punt-classifier state disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry stats-group \<stats-group-id\> control-plane-stats export state</h>
 
 Configures a custom statistics group to export control plane statistics.
@@ -2590,6 +2916,7 @@ Introduced in Cumulus Linux 5.12.0
 ```
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1 control-plane-stats export state enabled
 ```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system telemetry stats-group \<stats-group-id\> control-plane-stats sample-interval</h>
@@ -2768,7 +3095,7 @@ cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1 interface-stat
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry stats-group \<stats-group-id\> platform-stats class cpu sample-interval 
+## <h>nv set system telemetry stats-group \<stats-group-id\> platform-stats class cpu sample-interval</h>
 
 Configures the sample interval for the custom statistics group for CPU platform statistics. You can specify a value between 1 and 86400. The default value is 1.
 
@@ -2856,7 +3183,7 @@ cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1 platform-stats
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry stats-group \<stats-group-id\> platform-stats class environment-sensor sample-interval</h> 
+## <h>nv set system telemetry stats-group \<stats-group-id\> platform-stats class environment-sensor sample-interval</h>
 
 Configures the sample interval for the custom statistics group for environment sensor platform statistics. You can specify a value between 1 and 86400. The default value is 1.
 
@@ -3032,6 +3359,50 @@ cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1 platform-stats
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry stats-group \<stats-group-id\> radius-stats export state</h>
+
+Enables and disables export of RADIUS login statistics for the specified statistics group. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group group1 radius-stats export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> radius-stats sample-interval</h>
+
+Configures the interval, in seconds, at which the switch samples RADIUS login statistics for the specified statistics group. You can specify a value between 5 and 86400. The default value is 5.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group group1 radius-stats sample-interval 60
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry stats-group \<stats-group-id\> router export state</h>
 
 Configures a custom statistics group to export router statistics.
@@ -3072,4 +3443,102 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP2 router sample-interval 100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> wjh export state</h>
+
+Enables and disables export of What Just Happened metrics for the specified statistics group. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group group1 wjh export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry stats-group \<stats-group-id\> wjh sample-interval</h>
+
+Configures the interval, in seconds, at which the switch exports What Just Happened metrics for the specified statistics group. This setting does not affect What Just Happened events. You can specify a value between 30 and 86400. The default value is 30.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group group1 wjh sample-interval 60
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry wjh channel \<channel-id\></h>
+
+Configures a What Just Happened export channel.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<channel-id>` |  The channel name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry wjh channel forwarding
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry wjh export state</h>
+
+Enables and disables export of What Just Happened metrics. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry wjh export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry wjh sample-interval</h>
+
+Configures the interval, in seconds, at which the switch exports What Just Happened metrics. This setting does not affect What Just Happened events. You can specify a value between 30 and 86400. The default value is 30.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry wjh sample-interval 60
 ```

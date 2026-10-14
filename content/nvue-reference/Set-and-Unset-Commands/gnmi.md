@@ -62,7 +62,7 @@ cumulus@switch:~$ nv set system gnmi-server listening-address localhost
 
 Sets the CA certificate you want to use to validate the client during mTLS.
 
-## Command Syntax
+### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
@@ -84,7 +84,7 @@ cumulus@switch:~$ nv set system gnmi-server mtls ca-certificate CERT
 
 Sets the <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span> you want to use to validate the client during mTLS.
 
-## Command Syntax
+### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
